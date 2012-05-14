@@ -52,16 +52,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_FLEXCAN_MCR - Module Configuration Register
@@ -74,38 +64,38 @@
  * Reset value: 0x5980000f
  *
  * This register defines global system configurations, such as the block operation mode (low power,
- * for example) and maximum message buffer configuration. {statement} Most of the fields in this
- * register can be accessed at any time, except the MAXMB field, which should only be changed while
- * the block is in Freeze Mode {statement} .
+ * for example) and maximum message buffer configuration. Most of the fields in this register can be
+ * accessed at any time, except the MAXMB field, which should only be changed while the block is in
+ * Freeze Mode.
  */
 typedef union _hw_flexcan_mcr
 {
     reg32_t U;
     struct _hw_flexcan_mcr_bitfields
     {
-        unsigned MAXMB : 6; //!< [5:0] This 6-bit field defines the maximum number of message buffers that will take part in the matching and arbitration processes {flexcan2_ipi_slv_flex_reg_mcr_maxmb} . The reset value (0x0F) is equivalent to 16 Mbyte configuration {flexcan2_ipi_slv_flex_reg_mcr_maxmb} . This field should be changed only while the block is in Freeze Mode {statement} . Maximum message buffers in use = MAXMB + 1. {flexcan2_ipi_slv_flex_reg_mcr_maxmb} MAXMB has to be programmed with a value smaller or equal to the number of available Message Buffers, otherwise FLEXCAN will not transmit or receive frames {statement} .
+        unsigned MAXMB : 6; //!< [5:0] This 6-bit field defines the maximum number of message buffers that will take part in the matching and arbitration processes.
         unsigned RESERVED0 : 2; //!< [7:6] Reserved
-        unsigned IDAM : 2; //!< [9:8] This 2-bit field identifies the format of the elements of the Rx FIFO filter table, as shown below. Note that all elements of the table are configured at the same time by this field (they are all the same format). See . 00 Format A One full ID (standard or extended) per filter element. 01 Format B Two full standard IDs or two partial 14-bit extended IDs per filter element 10 Format C Four partial 8-bit IDs (standard or extended) per filter element. 11 Format D All frames rejected.
+        unsigned IDAM : 2; //!< [9:8] This 2-bit field identifies the format of the elements of the Rx FIFO filter table, as shown below.
         unsigned RESERVED1 : 2; //!< [11:10] Reserved
-        unsigned AEN : 1; //!< [12] This bit is supplied for backwards compatibility reasons. When asserted, it enables the Tx abort feature. This feature guarantees a safe procedure for aborting a pending transmission, so that no frame is sent in the CAN bus without notification.
-        unsigned LPRIO_EN : 1; //!< [13] This bit is provided for backwards compatibility reasons. It controls whether the local priority feature is enabled or not. It is used to extend the ID used during the arbitration process. With this extended ID concept, the arbitration process is done based on the full 32-bit word, but the actual transmitted ID still has 11-bit for standard frames and 29-bit for extended frames.
+        unsigned AEN : 1; //!< [12] This bit is supplied for backwards compatibility reasons.
+        unsigned LPRIO_EN : 1; //!< [13] This bit is provided for backwards compatibility reasons.
         unsigned RESERVED2 : 2; //!< [15:14] Reserved
-        unsigned BCC : 1; //!< [16] This bit is provided to support Backwards Compatibility with previous FLEXCAN versions {statement} . When this bit is negated, the following configuration is applied: For ARM platforms supporting individual Rx ID masking, this feature is disabled {flexcan2_ipi_slv_flex_reg_rxmask} . Instead of individual ID masking per message buffer, FLEXCAN uses its previous masking scheme with RXGMASK, RX14MASK and RX15MASK {flexcan2_ipi_slv_flex_reg_rxmask} . The reception queue feature is disabled {flexcan2_ipi_slv_flex_queue_cs_code_rx} . Upon receiving a message, if the first message buffer with a matching ID that is found is still occupied by a previous unread message, FLEXCAN will not look for another matching message buffer {flexcan2_ipi_slv_flex_queue_cs_code_rx} . It will override this message buffer with the new message and set the CODE field to 0110 (overrun) {flexcan2_ipi_slv_flex_queue_cs_code_rx} . Upon reset this bit is negated, allowing legacy software to work without modification {flexcan2_ipi_slv_flex_reg_access} .
-        unsigned SRX_DIS : 1; //!< [17] This bit defines whether FLEXCAN is allowed to receive frames transmitted by itself. If this bit is asserted, frames transmitted by the block will not be stored in any message buffers, regardless if the message buffers is programmed with an ID that matches the transmitted frame, and no interrupt flag or interrupt signal will be generated due to the frame reception.
-        unsigned DOZE : 1; //!< [18] This bit defines whether FLEXCAN is allowed to enter low power mode when Doze Mode is requested at ARM platform level by the assertion of the Green-Line signal ipg_doze {flexcan2_ipi_slv_flex_dozemode} . This bit is automatically reset when FLEXCAN wakes up from Doze Mode upon detecting activity on the CAN bus (self wake-up enabled) {flexcan2_ipi_slv_flex_dozemode} . Doze Mode is not supported in i.MX53
-        unsigned WAK_SRC : 1; //!< [19] This bit defines whether the integrated low-pass filter is applied to protect the Rx CAN input. {statement}
-        unsigned LPM_ACK : 1; //!< [20] This read-only bit indicates that FLEXCAN is either in Disable Mode and Stop Mode {flexcan2_ipi_slv_flex_stopmode}{flexcan2_ipi_slv_flex_disablemode}{flexcan2_ipi_slv_flex_dozemode} . Either of these low power modes can not be entered until all current transmission or reception processes have finished, so the ARM can poll the LPM_ACK bit to know when FLEXCAN has actually entered low power mode {flexcan2_ipi_slv_flex_stopmode}{flexcan2_ipi_slv_flex_disablemode}{flexcan2_ipi_slv_flex_dozemode} {statement} .
-        unsigned WRN_EN : 1; //!< [21] When asserted, this bit enables the generation of the TWRN_INT and RWRN_INT flags in the Error and Status Register. If WRN_EN is negated, the TWRN_INT and RWRN_INT flags will always be zero, independent of the values of the error counters, and no warning interrupt will ever be generated.
-        unsigned SLF_WAK : 1; //!< [22] This bit enables the Self Wake Up feature when FLEXCAN is in Stop Mode {flexcan2_ipi_slv_flex_reg_mcr_swu} . If this bit had been asserted by the time FLEXCAN entered Stop Mode, then FLEXCAN will look for a recessive to dominant transition on the bus during these modes {flexcan2_ipi_slv_flex_reg_mcr_swu} . If a transition from recessive to dominant is detected during Stop Mode, then FLEXCAN generates, if enabled to do so, a Wake Up interrupt to the ARM so that it can resume the clocks globally. {flexcan2_ipi_slv_flex_reg_mcr_swu} This bit can not be written while the block is in Stop Mode {flexcan2_ipi_slv_flex_reg_mcr_swu} .
-        unsigned SUPV : 1; //!< [23] This bit configures some of the FLEXCAN registers to be either in Supervisor or Unrestricted memory space {flexcan2_ipi_slv_flex_reg_access}{flexcan2_ipi_slv_flex_ram_access}{flexcan2_ipi_slv_flex_ram_rximask_access} . The registers affected by this bit are marked as S/U in the Access Type column of the Memory Map. Reset value of this bit is 1, so the affected registers start with Supervisor access restrictions . {flexcan2_ipi_slv_flex_reg_access}
-        unsigned FRZ_ACK : 1; //!< [24] This read-only bit indicates that FLEXCAN is in Freeze Mode and its prescaler is stopped {flexcan2_ipi_slv_flex_freezemode} . The Freeze Mode request cannot be granted until current transmission or reception processes have finished {flexcan2_ipi_slv_flex_freezemode} . Therefore the software can poll the FRZ_ACK bit to know when FLEXCAN has actually entered Freeze Mode {flexcan2_ipi_slv_flex_freezemode} . If Freeze Mode request is negated, then this bit is negated once the FLEXCAN prescaler is running again. {flexcan2_ipi_slv_flex_freezemode} If Freeze Mode is requested while FLEXCAN is in any of the low power modes, then the FRZ_ACK bit will only be set when the low power mode is exited {flexcan2_ipi_slv_flex_freezemode} {statement} .
-        unsigned SOFT_RST : 1; //!< [25] When this bit is asserted, FLEXCAN resets its internal state machines and some of the memory mapped registers {flexcan2_ipi_slv_flex_softreset} . The following registers are reset: MCR (except the MDIS bit), TIMER, TCR, ECR, ESR, IMASK1, IMASK2, IFLAG1, IFLAG2. {flexcan2_ipi_slv_flex_softreset} Configuration registers that control the interface to the CAN bus are not affected by soft reset {flexcan2_ipi_slv_flex_softreset} . The following registers are unaffected {flexcan2_ipi_slv_flex_softreset} : CTRL {flexcan2_ipi_slv_flex_softreset} RXIMR0‚RXIMR63 {flexcan2_ipi_slv_flex_softreset} RXGMASK, RX14MASK, RX15MASK {flexcan2_ipi_slv_flex_softreset} all Message Buffers {flexcan2_ipi_slv_flex_softreset} The SOFT_RST bit can be asserted directly by the ARM when it writes to the MCR Register. Because soft reset is synchronous and has to follow a request/acknowledge procedure across clock domains, it may take some time to fully propagate its effect {statement} . The SOFT_RST bit remains asserted while reset is pending, and is automatically negated when reset completes {flexcan2_ipi_slv_flex_softreset} . Therefore, software can poll this bit to know when the soft reset has completed. {flexcan2_ipi_slv_flex_softreset} Soft reset cannot be applied while clocks are shut down in any of the low power modes {statement} . The block should be first removed from low power mode, and then soft reset can be applied {statement} .
-        unsigned WAK_MSK : 1; //!< [26] This bit enables the Wake Up Interrupt generation. {flexcan2_ipi_slv_flex_reg_esr_int}
-        unsigned NOT_RDY : 1; //!< [27] This read-only bit indicates that FLEXCAN is either in Disable Mode, Stop Mode or Freeze Mode {flexcan2_ipi_slv_flex_freezemode}{flexcan2_ipi_slv_flex_stopmode}{flexcan2_ipi_slv_flex_disablemode}{flexcan2_ipi_slv_flex_dozemode} . It is negated once FLEXCAN has exited these modes. {flexcan2_ipi_slv_flex_freezemode}{flexcan2_ipi_slv_flex_stopmode}{flexcan2_ipi_slv_flex_disablemode}{flexcan2_ipi_slv_flex_dozemode}{flexcan2_ipi_slv_flex_reg_mcr_swu}
-        unsigned HALT : 1; //!< [28] Assertion of this bit puts the FLEXCAN block into Freeze Mode {flexcan2_ipi_slv_flex_freezemode} . The ARM should clear it after initializing the Message Buffers and Control Register {statement} . No reception or transmission is performed by FLEXCAN before this bit is cleared {flexcan2_ipi_slv_flex_freezemode} . While in Freeze Mode, the ARM has write access to the Error Counter Register, that is otherwise read-only {flexcan2_ipi_slv_flex_freezemode} . Freeze Mode can not be entered while FLEXCAN is in any of the low power modes {flexcan2_ipi_slv_flex_freezemode} {statement} .
-        unsigned FEN : 1; //!< [29] This bit controls whether the FIFO feature is enabled or not. When FEN is set, message buffers 0 to 7 cannot be used for normal reception and transmission because the corresponding memory region (0x80-0xFF) is used by the FIFO engine.
-        unsigned FRZ : 1; //!< [30] The FRZ bit specifies the FLEXCAN behavior when the HALT bit in the MCR Register is set or when Debug Mode is requested at ARM platform level . When FRZ is asserted, FLEXCAN is enabled to enter Freeze Mode {flexcan2_ipi_slv_flex_freezemode} . Negation of this bit field causes FLEXCAN to exit from Freeze Mode {flexcan2_ipi_slv_flex_freezemode} .
-        unsigned MDIS : 1; //!< [31] This bit controls whether FLEXCAN is enabled or not {flexcan2_ipi_slv_flex_disablemode} . When disabled, FLEXCAN shuts down the clocks to the CAN Protocol Interface and Message Buffer Management sub-blocks {flexcan2_ipi_slv_flex_disablemode} . This is the only bit in MCR not affected by soft reset {flexcan2_ipi_slv_flex_softreset} . {statement}
+        unsigned BCC : 1; //!< [16] This bit is provided to support Backwards Compatibility with previous FLEXCAN versions.
+        unsigned SRX_DIS : 1; //!< [17] This bit defines whether FLEXCAN is allowed to receive frames transmitted by itself.
+        unsigned DOZE : 1; //!< [18] This bit defines whether FLEXCAN is allowed to enter low power mode when Doze Mode is requested at ARM platform level.
+        unsigned WAK_SRC : 1; //!< [19] This bit defines whether the integrated low-pass filter is applied to protect the Rx CAN input.
+        unsigned LPM_ACK : 1; //!< [20] This read-only bit indicates that FLEXCAN is either in Disable Mode and Stop Mode.
+        unsigned WRN_EN : 1; //!< [21] When asserted, this bit enables the generation of the TWRN_INT and RWRN_INT flags in the Error and Status Register.
+        unsigned SLF_WAK : 1; //!< [22] This bit enables the Self Wake Up feature when FLEXCAN is in Stop Mode.
+        unsigned SUPV : 1; //!< [23] This bit configures some of the FLEXCAN registers to be either in Supervisor or Unrestricted memory space.
+        unsigned FRZ_ACK : 1; //!< [24] This read-only bit indicates that FLEXCAN is in Freeze Mode and its prescaler is stopped.
+        unsigned SOFT_RST : 1; //!< [25] When this bit is asserted, FLEXCAN resets its internal state machines and some of the memory mapped registers.
+        unsigned WAK_MSK : 1; //!< [26] This bit enables the Wake Up Interrupt generation.
+        unsigned NOT_RDY : 1; //!< [27] This read-only bit indicates that FLEXCAN is either in Disable Mode, Stop Mode or Freeze Mode.
+        unsigned HALT : 1; //!< [28] Assertion of this bit puts the FLEXCAN block into Freeze Mode.
+        unsigned FEN : 1; //!< [29] This bit controls whether the FIFO feature is enabled or not.
+        unsigned FRZ : 1; //!< [30] The FRZ bit specifies the FLEXCAN behavior when the HALT bit in the MCR Register is set or when Debug Mode is requested at ARM platform level.
+        unsigned MDIS : 1; //!< [31] This bit controls whether FLEXCAN is enabled or not.
     } B;
 } hw_flexcan_mcr_t;
 #endif
@@ -131,12 +121,10 @@ typedef union _hw_flexcan_mcr
 /* --- Register HW_FLEXCAN_MCR, field MAXMB[5:0] (RW)
  *
  * This 6-bit field defines the maximum number of message buffers that will take part in the
- * matching and arbitration processes {flexcan2_ipi_slv_flex_reg_mcr_maxmb} . The reset value (0x0F)
- * is equivalent to 16 Mbyte configuration {flexcan2_ipi_slv_flex_reg_mcr_maxmb} . This field should
- * be changed only while the block is in Freeze Mode {statement} . Maximum message buffers in use =
- * MAXMB + 1. {flexcan2_ipi_slv_flex_reg_mcr_maxmb} MAXMB has to be programmed with a value smaller
- * or equal to the number of available Message Buffers, otherwise FLEXCAN will not transmit or
- * receive frames {statement} .
+ * matching and arbitration processes. The reset value (0x0F) is equivalent to 16 Mbyte
+ * configuration. This field should be changed only while the block is in Freeze Mode. Maximum
+ * message buffers in use = MAXMB + 1. MAXMB has to be programmed with a value smaller or equal to
+ * the number of available Message Buffers, otherwise FLEXCAN will not transmit or receive frames.
  */
 
 #define BP_FLEXCAN_MCR_MAXMB      (0)      //!< Bit position for FLEXCAN_MCR_MAXMB.
@@ -232,22 +220,19 @@ typedef union _hw_flexcan_mcr
 
 /* --- Register HW_FLEXCAN_MCR, field BCC[16] (RW)
  *
- * This bit is provided to support Backwards Compatibility with previous FLEXCAN versions
- * {statement} . When this bit is negated, the following configuration is applied: For ARM platforms
- * supporting individual Rx ID masking, this feature is disabled {flexcan2_ipi_slv_flex_reg_rxmask}
- * . Instead of individual ID masking per message buffer, FLEXCAN uses its previous masking scheme
- * with RXGMASK, RX14MASK and RX15MASK {flexcan2_ipi_slv_flex_reg_rxmask} . The reception queue
- * feature is disabled {flexcan2_ipi_slv_flex_queue_cs_code_rx} . Upon receiving a message, if the
- * first message buffer with a matching ID that is found is still occupied by a previous unread
- * message, FLEXCAN will not look for another matching message buffer
- * {flexcan2_ipi_slv_flex_queue_cs_code_rx} . It will override this message buffer with the new
- * message and set the CODE field to 0110 (overrun) {flexcan2_ipi_slv_flex_queue_cs_code_rx} . Upon
- * reset this bit is negated, allowing legacy software to work without modification
- * {flexcan2_ipi_slv_flex_reg_access} .
+ * This bit is provided to support Backwards Compatibility with previous FLEXCAN versions. When this
+ * bit is negated, the following configuration is applied: For ARM platforms supporting individual
+ * Rx ID masking, this feature is disabled. Instead of individual ID masking per message buffer,
+ * FLEXCAN uses its previous masking scheme with RXGMASK, RX14MASK and RX15MASK. The reception queue
+ * feature is disabled. Upon receiving a message, if the first message buffer with a matching ID
+ * that is found is still occupied by a previous unread message, FLEXCAN will not look for another
+ * matching message buffer. It will override this message buffer with the new message and set the
+ * CODE field to 0110 (overrun). Upon reset this bit is negated, allowing legacy software to work
+ * without modification.
  *
  * Values:
- * 0 - Individual Rx masking and queue feature are disabled {flexcan2_ipi_slv_flex_queue_cs_code_rx} .
- * 1 - Individual Rx masking and queue feature are enabled {flexcan2_ipi_slv_flex_queue_cs_code_rx} .
+ * 0 - Individual Rx masking and queue feature are disabled.
+ * 1 - Individual Rx masking and queue feature are enabled.
  */
 
 #define BP_FLEXCAN_MCR_BCC      (16)      //!< Bit position for FLEXCAN_MCR_BCC.
@@ -295,16 +280,12 @@ typedef union _hw_flexcan_mcr
 /* --- Register HW_FLEXCAN_MCR, field DOZE[18] (RW)
  *
  * This bit defines whether FLEXCAN is allowed to enter low power mode when Doze Mode is requested
- * at ARM platform level by the assertion of the Green-Line signal ipg_doze
- * {flexcan2_ipi_slv_flex_dozemode} . This bit is automatically reset when FLEXCAN wakes up from
- * Doze Mode upon detecting activity on the CAN bus (self wake-up enabled)
- * {flexcan2_ipi_slv_flex_dozemode} . Doze Mode is not supported in i.MX53
+ * at ARM platform level. This bit is automatically reset when FLEXCAN wakes up from Doze Mode upon
+ * detecting activity on the CAN bus (self wake-up enabled). Doze Mode is not supported in i.MX53
  *
  * Values:
  * 0 - FLEXCAN is not enabled to enter low power mode when Doze Mode is requested
- *     {flexcan2_ipi_slv_flex_dozemode}
  * 1 - FLEXCAN is enabled to enter low power mode when Doze Mode is requested
- *     {flexcan2_ipi_slv_flex_dozemode}
  */
 
 #define BP_FLEXCAN_MCR_DOZE      (18)      //!< Bit position for FLEXCAN_MCR_DOZE.
@@ -325,10 +306,9 @@ typedef union _hw_flexcan_mcr
 /* --- Register HW_FLEXCAN_MCR, field WAK_SRC[19] (RW)
  *
  * This bit defines whether the integrated low-pass filter is applied to protect the Rx CAN input.
- * {statement}
  *
  * Values:
- * 1 - FLEXCAN us _slv_flex_reg_mcr_swu}
+ * 1 - FLEXCAN us
  */
 
 #define BP_FLEXCAN_MCR_WAK_SRC      (19)      //!< Bit position for FLEXCAN_MCR_WAK_SRC.
@@ -348,20 +328,14 @@ typedef union _hw_flexcan_mcr
 
 /* --- Register HW_FLEXCAN_MCR, field LPM_ACK[20] (RO)
  *
- * This read-only bit indicates that FLEXCAN is either in Disable Mode and Stop Mode {flexcan2_ipi_s
- * lv_flex_stopmode}{flexcan2_ipi_slv_flex_disablemode}{flexcan2_ipi_slv_flex_dozemode} . Either of
+ * This read-only bit indicates that FLEXCAN is either in Disable Mode and Stop Mode. Either of
  * these low power modes can not be entered until all current transmission or reception processes
  * have finished, so the ARM can poll the LPM_ACK bit to know when FLEXCAN has actually entered low
- * power mode {flexcan2_ipi_slv_flex_stopmode}{flexcan2_ipi_slv_flex_disablemode}{flexcan2_ipi_slv_f
- * lex_dozemode} {statement} .
+ * power mode.
  *
  * Values:
  * 0 - FLEXCAN not in any of the low power modes
- *     {flexcan2_ipi_slv_flex_stopmode}{flexcan2_ipi_slv_flex_disablemode}{flexcan2_ipi_slv_flex_doz
- *     emode}
  * 1 - FLEXCAN is either in Disable Mode, or Stop mode
- *     {flexcan2_ipi_slv_flex_stopmode}{flexcan2_ipi_slv_flex_disablemode}{flexcan2_ipi_slv_flex_doz
- *     emode}
  */
 
 #define BP_FLEXCAN_MCR_LPM_ACK      (20)      //!< Bit position for FLEXCAN_MCR_LPM_ACK.
@@ -399,17 +373,16 @@ typedef union _hw_flexcan_mcr
 
 /* --- Register HW_FLEXCAN_MCR, field SLF_WAK[22] (RW)
  *
- * This bit enables the Self Wake Up feature when FLEXCAN is in Stop Mode
- * {flexcan2_ipi_slv_flex_reg_mcr_swu} . If this bit had been asserted by the time FLEXCAN entered
- * Stop Mode, then FLEXCAN will look for a recessive to dominant transition on the bus during these
- * modes {flexcan2_ipi_slv_flex_reg_mcr_swu} . If a transition from recessive to dominant is
+ * This bit enables the Self Wake Up feature when FLEXCAN is in Stop Mode. If this bit had been
+ * asserted by the time FLEXCAN entered Stop Mode, then FLEXCAN will look for a recessive to
+ * dominant transition on the bus during these modes. If a transition from recessive to dominant is
  * detected during Stop Mode, then FLEXCAN generates, if enabled to do so, a Wake Up interrupt to
- * the ARM so that it can resume the clocks globally. {flexcan2_ipi_slv_flex_reg_mcr_swu} This bit
- * can not be written while the block is in Stop Mode {flexcan2_ipi_slv_flex_reg_mcr_swu} .
+ * the ARM so that it can resume the clocks globally. This bit can not be written while the block is
+ * in Stop Mode.
  *
  * Values:
- * 0 - FLEXCAN Self Wake Up feature is disabled {flexcan2_ipi_slv_flex_reg_mcr_swu}
- * 1 - FLEXCAN Self Wake Up feature is enabled {flexcan2_ipi_slv_flex_reg_mcr_swu}
+ * 0 - FLEXCAN Self Wake Up feature is disabled
+ * 1 - FLEXCAN Self Wake Up feature is enabled
  */
 
 #define BP_FLEXCAN_MCR_SLF_WAK      (22)      //!< Bit position for FLEXCAN_MCR_SLF_WAK.
@@ -430,19 +403,14 @@ typedef union _hw_flexcan_mcr
 /* --- Register HW_FLEXCAN_MCR, field SUPV[23] (RW)
  *
  * This bit configures some of the FLEXCAN registers to be either in Supervisor or Unrestricted
- * memory space {flexcan2_ipi_slv_flex_reg_access}{flexcan2_ipi_slv_flex_ram_access}{flexcan2_ipi_sl
- * v_flex_ram_rximask_access} . The registers affected by this bit are marked as S/U in the Access
- * Type column of the Memory Map. Reset value of this bit is 1, so the affected registers start with
- * Supervisor access restrictions . {flexcan2_ipi_slv_flex_reg_access}
+ * memory space. The registers affected by this bit are marked as S/U in the Access Type column of
+ * the Memory Map. Reset value of this bit is 1, so the affected registers start with Supervisor
+ * access restrictions.
  *
  * Values:
- * 0 - Affected registers are in Unrestricted memory space  {flexcan2_ipi_slv_flex_reg_access}{flexcan2_ipi
- *     _slv_flex_ram_access}{flexcan2_ipi_slv_flex_ram_rximask_access}
- * 1 - Affected registers are in Supervisor memory space {flexcan2_ipi_slv_flex_reg_access}{flexcan2_ipi_sl
- *     v_flex_ram_access}{flexcan2_ipi_slv_flex_ram_rximask_access} . Any access without supervisor
- *     permission behaves as though the access was done to an unimplemented register location  {flex
- *     can2_ipi_slv_flex_reg_access}{flexcan2_ipi_slv_flex_ram_access}{flexcan2_ipi_slv_flex_ram_rxi
- *     mask_access}
+ * 0 - Affected registers are in Unrestricted memory space
+ * 1 - Affected registers are in Supervisor memory space. Any access without supervisor permission behaves
+ *     as though the access was done to an unimplemented register location
  */
 
 #define BP_FLEXCAN_MCR_SUPV      (23)      //!< Bit position for FLEXCAN_MCR_SUPV.
@@ -462,18 +430,16 @@ typedef union _hw_flexcan_mcr
 
 /* --- Register HW_FLEXCAN_MCR, field FRZ_ACK[24] (RO)
  *
- * This read-only bit indicates that FLEXCAN is in Freeze Mode and its prescaler is stopped
- * {flexcan2_ipi_slv_flex_freezemode} . The Freeze Mode request cannot be granted until current
- * transmission or reception processes have finished {flexcan2_ipi_slv_flex_freezemode} . Therefore
- * the software can poll the FRZ_ACK bit to know when FLEXCAN has actually entered Freeze Mode
- * {flexcan2_ipi_slv_flex_freezemode} . If Freeze Mode request is negated, then this bit is negated
- * once the FLEXCAN prescaler is running again. {flexcan2_ipi_slv_flex_freezemode} If Freeze Mode is
- * requested while FLEXCAN is in any of the low power modes, then the FRZ_ACK bit will only be set
- * when the low power mode is exited {flexcan2_ipi_slv_flex_freezemode} {statement} .
+ * This read-only bit indicates that FLEXCAN is in Freeze Mode and its prescaler is stopped. The
+ * Freeze Mode request cannot be granted until current transmission or reception processes have
+ * finished. Therefore the software can poll the FRZ_ACK bit to know when FLEXCAN has actually
+ * entered Freeze Mode. If Freeze Mode request is negated, then this bit is negated once the FLEXCAN
+ * prescaler is running again. If Freeze Mode is requested while FLEXCAN is in any of the low power
+ * modes, then the FRZ_ACK bit will only be set when the low power mode is exited.
  *
  * Values:
- * 0 - FLEXCAN not in Freeze Mode, prescaler running {flexcan2_ipi_slv_flex_freezemode}
- * 1 - FLEXCAN in Freeze Mode, prescaler stopped {flexcan2_ipi_slv_flex_freezemode}
+ * 0 - FLEXCAN not in Freeze Mode, prescaler running
+ * 1 - FLEXCAN in Freeze Mode, prescaler stopped
  */
 
 #define BP_FLEXCAN_MCR_FRZ_ACK      (24)      //!< Bit position for FLEXCAN_MCR_FRZ_ACK.
@@ -486,26 +452,20 @@ typedef union _hw_flexcan_mcr
 /* --- Register HW_FLEXCAN_MCR, field SOFT_RST[25] (RW)
  *
  * When this bit is asserted, FLEXCAN resets its internal state machines and some of the memory
- * mapped registers {flexcan2_ipi_slv_flex_softreset} . The following registers are reset: MCR
- * (except the MDIS bit), TIMER, TCR, ECR, ESR, IMASK1, IMASK2, IFLAG1, IFLAG2.
- * {flexcan2_ipi_slv_flex_softreset} Configuration registers that control the interface to the CAN
- * bus are not affected by soft reset {flexcan2_ipi_slv_flex_softreset} . The following registers
- * are unaffected {flexcan2_ipi_slv_flex_softreset} : CTRL {flexcan2_ipi_slv_flex_softreset}
- * RXIMR0‚RXIMR63 {flexcan2_ipi_slv_flex_softreset} RXGMASK, RX14MASK, RX15MASK
- * {flexcan2_ipi_slv_flex_softreset} all Message Buffers {flexcan2_ipi_slv_flex_softreset} The
- * SOFT_RST bit can be asserted directly by the ARM when it writes to the MCR Register. Because soft
- * reset is synchronous and has to follow a request/acknowledge procedure across clock domains, it
- * may take some time to fully propagate its effect {statement} . The SOFT_RST bit remains asserted
- * while reset is pending, and is automatically negated when reset completes
- * {flexcan2_ipi_slv_flex_softreset} . Therefore, software can poll this bit to know when the soft
- * reset has completed. {flexcan2_ipi_slv_flex_softreset} Soft reset cannot be applied while clocks
- * are shut down in any of the low power modes {statement} . The block should be first removed from
- * low power mode, and then soft reset can be applied {statement} .
+ * mapped registers. The following registers are reset: MCR (except the MDIS bit), TIMER, ECR, ESR,
+ * IMASK1, IMASK2, IFLAG1, IFLAG2. Configuration registers that control the interface to the CAN bus
+ * are not affected by soft reset. The following registers are unaffected: CTRL RXIMR0‚RXIMR63
+ * RXGMASK, RX14MASK, RX15MASK all Message Buffers The SOFT_RST bit can be asserted directly by the
+ * ARM when it writes to the MCR Register. Because soft reset is synchronous and has to follow a
+ * request/acknowledge procedure across clock domains, it may take some time to fully propagate its
+ * effect. The SOFT_RST bit remains asserted while reset is pending, and is automatically negated
+ * when reset completes. Therefore, software can poll this bit to know when the soft reset has
+ * completed. Soft reset cannot be applied while clocks are shut down in any of the low power modes.
+ * The block should be first removed from low power mode, and then soft reset can be applied.
  *
  * Values:
- * 0 - No reset request {flexcan2_ipi_slv_flex_softreset}
+ * 0 - No reset request
  * 1 - Resets the registers marked as affected by soft reset shown in the memory map
- *     {flexcan2_ipi_slv_flex_softreset}
  */
 
 #define BP_FLEXCAN_MCR_SOFT_RST      (25)      //!< Bit position for FLEXCAN_MCR_SOFT_RST.
@@ -525,11 +485,11 @@ typedef union _hw_flexcan_mcr
 
 /* --- Register HW_FLEXCAN_MCR, field WAK_MSK[26] (RW)
  *
- * This bit enables the Wake Up Interrupt generation. {flexcan2_ipi_slv_flex_reg_esr_int}
+ * This bit enables the Wake Up Interrupt generation.
  *
  * Values:
- * 0 - Wake Up Interrupt is disabled {flexcan2_ipi_slv_flex_reg_esr_int}
- * 1 - Wake Up Interrupt is enabled {flexcan2_ipi_slv_flex_reg_esr_int}
+ * 0 - Wake Up Interrupt is disabled
+ * 1 - Wake Up Interrupt is enabled
  */
 
 #define BP_FLEXCAN_MCR_WAK_MSK      (26)      //!< Bit position for FLEXCAN_MCR_WAK_MSK.
@@ -549,19 +509,12 @@ typedef union _hw_flexcan_mcr
 
 /* --- Register HW_FLEXCAN_MCR, field NOT_RDY[27] (RO)
  *
- * This read-only bit indicates that FLEXCAN is either in Disable Mode, Stop Mode or Freeze Mode {fl
- * excan2_ipi_slv_flex_freezemode}{flexcan2_ipi_slv_flex_stopmode}{flexcan2_ipi_slv_flex_disablemode
- * }{flexcan2_ipi_slv_flex_dozemode} . It is negated once FLEXCAN has exited these modes. {flexcan2_
- * ipi_slv_flex_freezemode}{flexcan2_ipi_slv_flex_stopmode}{flexcan2_ipi_slv_flex_disablemode}{flexc
- * an2_ipi_slv_flex_dozemode}{flexcan2_ipi_slv_flex_reg_mcr_swu}
+ * This read-only bit indicates that FLEXCAN is either in Disable Mode, Stop Mode or Freeze Mode. It
+ * is negated once FLEXCAN has exited these modes.
  *
  * Values:
- * 0 - FLEXCAN block is either in Normal Mode, Listen-Only Mode or Loop-Back Mode {flexcan2_ipi_slv_flex_fr
- *     eezemode}{flexcan2_ipi_slv_flex_stopmode}{flexcan2_ipi_slv_flex_disablemode}{flexcan2_ipi_slv
- *     _flex_dozemode}
- * 1 - FLEXCAN block is either in Disable Mode, Stop Mode or Freeze Mode {flexcan2_ipi_slv_flex_freezemode}
- *     {flexcan2_ipi_slv_flex_stopmode}{flexcan2_ipi_slv_flex_disablemode}{flexcan2_ipi_slv_flex_doz
- *     emode}
+ * 0 - FLEXCAN block is either in Normal Mode, Listen-Only Mode or Loop-Back Mode
+ * 1 - FLEXCAN block is either in Disable Mode, Stop Mode or Freeze Mode
  */
 
 #define BP_FLEXCAN_MCR_NOT_RDY      (27)      //!< Bit position for FLEXCAN_MCR_NOT_RDY.
@@ -573,17 +526,15 @@ typedef union _hw_flexcan_mcr
 
 /* --- Register HW_FLEXCAN_MCR, field HALT[28] (RW)
  *
- * Assertion of this bit puts the FLEXCAN block into Freeze Mode {flexcan2_ipi_slv_flex_freezemode}
- * . The ARM should clear it after initializing the Message Buffers and Control Register {statement}
- * . No reception or transmission is performed by FLEXCAN before this bit is cleared
- * {flexcan2_ipi_slv_flex_freezemode} . While in Freeze Mode, the ARM has write access to the Error
- * Counter Register, that is otherwise read-only {flexcan2_ipi_slv_flex_freezemode} . Freeze Mode
- * can not be entered while FLEXCAN is in any of the low power modes
- * {flexcan2_ipi_slv_flex_freezemode} {statement} .
+ * Assertion of this bit puts the FLEXCAN block into Freeze Mode. The ARM should clear it after
+ * initializing the Message Buffers and Control Register. No reception or transmission is performed
+ * by FLEXCAN before this bit is cleared. While in Freeze Mode, the ARM has write access to the
+ * Error Counter Register, that is otherwise read-only. Freeze Mode can not be entered while FLEXCAN
+ * is in any of the low power modes.
  *
  * Values:
- * 0 - No Freeze Mode request. {flexcan2_ipi_slv_flex_freezemode}
- * 1 - Enters Freeze Mode if the FRZ bit is asserted. {flexcan2_ipi_slv_flex_freezemode}
+ * 0 - No Freeze Mode request.
+ * 1 - Enters Freeze Mode if the FRZ bit is asserted.
  */
 
 #define BP_FLEXCAN_MCR_HALT      (28)      //!< Bit position for FLEXCAN_MCR_HALT.
@@ -630,13 +581,12 @@ typedef union _hw_flexcan_mcr
 /* --- Register HW_FLEXCAN_MCR, field FRZ[30] (RW)
  *
  * The FRZ bit specifies the FLEXCAN behavior when the HALT bit in the MCR Register is set or when
- * Debug Mode is requested at ARM platform level . When FRZ is asserted, FLEXCAN is enabled to enter
- * Freeze Mode {flexcan2_ipi_slv_flex_freezemode} . Negation of this bit field causes FLEXCAN to
- * exit from Freeze Mode {flexcan2_ipi_slv_flex_freezemode} .
+ * Debug Mode is requested at ARM platform level. When FRZ is asserted, FLEXCAN is enabled to enter
+ * Freeze Mode. Negation of this bit field causes FLEXCAN to exit from Freeze Mode.
  *
  * Values:
- * 0 - Not enabled to enter Freeze Mode {flexcan2_ipi_slv_flex_freezemode}
- * 1 - Enabled to enter Freeze Mode {flexcan2_ipi_slv_flex_freezemode}
+ * 0 - Not enabled to enter Freeze Mode
+ * 1 - Enabled to enter Freeze Mode
  */
 
 #define BP_FLEXCAN_MCR_FRZ      (30)      //!< Bit position for FLEXCAN_MCR_FRZ.
@@ -656,14 +606,13 @@ typedef union _hw_flexcan_mcr
 
 /* --- Register HW_FLEXCAN_MCR, field MDIS[31] (RW)
  *
- * This bit controls whether FLEXCAN is enabled or not {flexcan2_ipi_slv_flex_disablemode} . When
- * disabled, FLEXCAN shuts down the clocks to the CAN Protocol Interface and Message Buffer
- * Management sub-blocks {flexcan2_ipi_slv_flex_disablemode} . This is the only bit in MCR not
- * affected by soft reset {flexcan2_ipi_slv_flex_softreset} . {statement}
+ * This bit controls whether FLEXCAN is enabled or not. When disabled, FLEXCAN shuts down the clocks
+ * to the CAN Protocol Interface and Message Buffer Management sub-blocks. This is the only bit in
+ * MCR not affected by soft reset.
  *
  * Values:
- * 0 - Enable the FLEXCAN block {flexcan2_ipi_slv_flex_disablemode}
- * 1 - Disable the FLEXCAN block {flexcan2_ipi_slv_flex_disablemode}
+ * 0 - Enable the FLEXCAN block
+ * 1 - Disable the FLEXCAN block
  */
 
 #define BP_FLEXCAN_MCR_MDIS      (31)      //!< Bit position for FLEXCAN_MCR_MDIS.
@@ -693,34 +642,33 @@ typedef union _hw_flexcan_mcr
  *
  * This register is defined for specific FLEXCAN control features related to the CAN bus, such as
  * bit-rate, programmable sampling point within an Rx bit, Loop Back Mode, Listen Only Mode, Bus Off
- * recovery behavior and interrupt enabling (Bus-Off, Error, Warning) {statement} . It also
- * determines the Division Factor for the clock prescaler. {flexcan2_ipi_slv_can_timing_parameters}
- * Most of the fields in this register should only be changed while the block is in Disable Mode or
- * in Freeze Mode {statement} . Exceptions are the BOFF_MSK, ERR_MSK, TWRN_MSK, RWRN_MSK and
- * BOFF_REC bits, that can be accessed at any time {statement} .
+ * recovery behavior and interrupt enabling (Bus-Off, Error, Warning). It also determines the
+ * Division Factor for the clock prescaler. Most of the fields in this register should only be
+ * changed while the block is in Disable Mode or in Freeze Mode. Exceptions are the BOFF_MSK,
+ * ERR_MSK, TWRN_MSK, RWRN_MSK and BOFF_REC bits, that can be accessed at any time.
  */
 typedef union _hw_flexcan_ctrl
 {
     reg32_t U;
     struct _hw_flexcan_ctrl_bitfields
     {
-        unsigned PROP_SEG : 3; //!< [2:0] This 3-bit field defines the length of the Propagation Segment in the bit time {flexcan2_ipi_slv_can_timing_parameters} . The valid programmable values are 0‚7. {flexcan2_ipi_slv_can_timing_parameters} Propagation Segment Time = (PROPSEG + 1) * Time-Quanta. {flexcan2_ipi_slv_can_timing_parameters} Time-Quantum = one Sclock period. {flexcan2_ipi_slv_can_timing_parameters}
-        unsigned LOM : 1; //!< [3] This bit configures FLEXCAN to operate in Listen Only Mode {flexcan2_ipi_slv_flex_lomode} . In this mode, transmission is disabled, all error counters are frozen and the block operates in a CAN Error Passive mode {flexcan2_ipi_slv_flex_lomode} [Ref. 1]. Only messages acknowledged by another CAN station will be received {flexcan2_ipi_slv_flex_lomode} . If FLEXCAN detects a message that has not been acknowledged, it will flag a BIT0 error (without changing the REC), as if it was trying to acknowledge the message {flexcan2_ipi_slv_flex_lomode} .
-        unsigned LBUF : 1; //!< [4] This bit defines the ordering mechanism for Message Buffer transmission. When asserted, the LPRIO_EN bit does not affect the priority arbitration. {flexcan2_ipi_slv_flex_reg_ctrl_lbuf}
-        unsigned TSYN : 1; //!< [5] This bit enables a mechanism that resets the free-running timer each time a message is received in Message Buffer 0 {flexcan2_ipi_slv_flex_reg_ctrl_tsyn} . This feature provides a means to synchronize multiple FLEXCAN stations with a special SYNC message (for example, global network time). {statement} If the FEN bit in MCR is set (FIFO enabled), MB8 is used for timer synchronization instead of MB0.
-        unsigned BOFF_REC : 1; //!< [6] This bit defines how FLEXCAN recovers from Bus Off state. {flexcan2_ipi_slv_flex_reg_ctrl_boffrec} If this bit is negated, automatic recovering from Bus Off state occurs according to the CAN Specification 2.0B {flexcan2_ipi_slv_flex_reg_ctrl_boffrec} . If the bit is asserted, automatic recovering from Bus Off is disabled and the block remains in Bus Off state until the bit is negated by the user {flexcan2_ipi_slv_flex_reg_ctrl_boffrec} . If the negation occurs before 128 sequences of 11 recessive bits are detected on the CAN bus, then Bus Off recovery happens as if the BOFF_REC bit had never been asserted {flexcan2_ipi_slv_flex_reg_ctrl_boffrec} . If the negation occurs after 128 sequences of 11 recessive bits occurred, then FLEXCAN will re-synchronize to the bus by waiting for 11 recessive bits before joining the bus {flexcan2_ipi_slv_flex_reg_ctrl_boffrec} . After negation, the BOFF_REC bit can be re-asserted again during Bus Off, but it will only be effective the next time the block enters Bus Off {flexcan2_ipi_slv_flex_reg_ctrl_boffrec} . If BOFF_REC was negated when the block entered Bus Off, asserting it during Bus Off will not be effective for the current Bus Off recovery {flexcan2_ipi_slv_flex_reg_ctrl_boffrec} .
-        unsigned SMP : 1; //!< [7] This bit defines the sampling mode of CAN bits at the Rx input {flexcan2_ipi_slv_flex_reg_ctrl_smp} .
+        unsigned PROP_SEG : 3; //!< [2:0] This 3-bit field defines the length of the Propagation Segment in the bit time.
+        unsigned LOM : 1; //!< [3] This bit configures FLEXCAN to operate in Listen Only Mode.
+        unsigned LBUF : 1; //!< [4] This bit defines the ordering mechanism for Message Buffer transmission.
+        unsigned TSYN : 1; //!< [5] This bit enables a mechanism that resets the free-running timer each time a message is received in Message Buffer 0.
+        unsigned BOFF_REC : 1; //!< [6] This bit defines how FLEXCAN recovers from Bus Off state.
+        unsigned SMP : 1; //!< [7] This bit defines the sampling mode of CAN bits at the Rx input.
         unsigned RESERVED0 : 2; //!< [9:8] Reserved
-        unsigned RWRN_MSK : 1; //!< [10] This bit provides a mask for the Rx Warning Interrupt associated with the RWRN_INT flag in the Error and Status Register. This bit has no effect if the WRN_EN bit in MCR is negated and it is read as zero when WRN_EN is negated.
-        unsigned TWRN_MSK : 1; //!< [11] This bit provides a mask for the Tx Warning Interrupt associated with the TWRN_INT flag in the Error and Status Register. This bit has no effect if the WRN_EN bit in MCR is negated and it is read as zero when WRN_EN is negated.
-        unsigned LPB : 1; //!< [12] This bit configures FLEXCAN to operate in Loop-Back Mode {flexcan2_ipi_slv_flex_reg_ctrl_lpb} . In this mode, FLEXCAN performs an internal loop back that can be used for self test operation {statement} . The bit stream output of the transmitter is fed back internally to the receiver input {statement} . The Rx CAN input pin is ignored and the Tx CAN output goes to the recessive state (logic 1) {flexcan2_ipi_slv_flex_reg_ctrl_lpb} . FLEXCAN behaves as it normally does when transmitting, and treats its own transmitted message as a message received from a remote node {flexcan2_ipi_slv_flex_reg_ctrl_lpb} . In this mode, FLEXCAN ignores the bit sent during the ACK slot in the CAN frame acknowledge field, generating an internal acknowledge bit to ensure proper reception of its own message {flexcan2_ipi_slv_flex_reg_ctrl_lpb} . Both transmit and receive interrupts are generated. {flexcan2_ipi_slv_flex_reg_ctrl_lpb}
-        unsigned RESERVED1 : 1; //!< [13] Reserved CLK_SRC - This bit selects the clock source to the CAN Protocol Interface (CPI) to be either the peripheral clock (driven by the PLL) or the crystal oscillator clock {flexcan2_ipi_slv_flex_reg_ctrl_clksrc} . The selected clock is the one fed to the prescaler to generate the Serial Clock (Sclock) {flexcan2_ipi_slv_flex_reg_ctrl_clksrc} . In order to guarantee reliable operation, this bit should only be changed while the block is in Disable Mode {statement} . See . {statement}
-        unsigned ERR_MSK : 1; //!< [14] This bit provides a mask for the Error Interrupt. {flexcan2_ipi_slv_flex_reg_esr_int}
-        unsigned BOFF_MSK : 1; //!< [15] This bit provides a mask for the Bus Off Interrupt. {flexcan2_ipi_slv_flex_reg_esr_int}
-        unsigned PSEG2 : 3; //!< [18:16] This 3-bit field defines the length of Phase Buffer Segment 2 in the bit time {flexcan2_ipi_slv_can_timing_parameters} . The valid programmable values are 1‚7. {flexcan2_ipi_slv_can_timing_parameters} Phase Buffer Segment 2 = (PSEG2 + 1) x Time-Quanta. {flexcan2_ipi_slv_can_timing_parameters}
-        unsigned PSEG1 : 3; //!< [21:19] This 3-bit field defines the length of Phase Buffer Segment 1 in the bit time {flexcan2_ipi_slv_can_timing_parameters} . The valid programmable values are 0‚7. {flexcan2_ipi_slv_can_timing_parameters} Phase Buffer Segment 1 = (PSEG1 + 1) x Time-Quanta. {flexcan2_ipi_slv_can_timing_parameters}
-        unsigned RJW : 2; //!< [23:22] This 2-bit field defines the maximum number of time quanta One time quantum is equal to the Sclock period. {statement} that a bit time can be changed by one re-synchronization {flexcan2_ipi_slv_can_timing_resynchronization} . The valid programmable values are 0‚3. {flexcan2_ipi_slv_can_timing_resynchronization} Resync Jump Width = RJW + 1. {flexcan2_ipi_slv_can_timing_resynchronization}
-        unsigned PRESDIV : 8; //!< [31:24] This 8-bit field defines the ratio between the CPI clock frequency and the Serial Clock (Sclock) frequency {flexcan2_ipi_slv_can_timing_parameters} . The Sclock period defines the time quantum of the CAN protocol {flexcan2_ipi_slv_can_timing_parameters} . For the reset value, the Sclock frequency is equal to the CPI clock frequency {flexcan2_ipi_slv_can_timing_parameters} . The Maximum value of this register is 0xFF, that gives a minimum Sclock frequency equal to the CPI clock frequency divided by 256. {flexcan2_ipi_slv_can_timing_parameters} For more information refer to . {statement} Sclock frequency = CPI clock frequency / (PRESDIV + 1) {flexcan2_ipi_slv_can_timing_parameters}
+        unsigned RWRN_MSK : 1; //!< [10] This bit provides a mask for the Rx Warning Interrupt associated with the RWRN_INT flag in the Error and Status Register.
+        unsigned TWRN_MSK : 1; //!< [11] This bit provides a mask for the Tx Warning Interrupt associated with the TWRN_INT flag in the Error and Status Register.
+        unsigned LPB : 1; //!< [12] This bit configures FLEXCAN to operate in Loop-Back Mode.
+        unsigned RESERVED1 : 1; //!< [13] Reserved
+        unsigned ERR_MSK : 1; //!< [14] This bit provides a mask for the Error Interrupt.
+        unsigned BOFF_MSK : 1; //!< [15] This bit provides a mask for the Bus Off Interrupt.
+        unsigned PSEG2 : 3; //!< [18:16] This 3-bit field defines the length of Phase Buffer Segment 2 in the bit time.
+        unsigned PSEG1 : 3; //!< [21:19] This 3-bit field defines the length of Phase Buffer Segment 1 in the bit time.
+        unsigned RJW : 2; //!< [23:22] This 2-bit field defines the maximum number of time quanta One time quantum is equal to the Sclock period.
+        unsigned PRESDIV : 8; //!< [31:24] This 8-bit field defines the ratio between the CPI clock frequency and the Serial Clock (Sclock) frequency.
     } B;
 } hw_flexcan_ctrl_t;
 #endif
@@ -745,11 +693,9 @@ typedef union _hw_flexcan_ctrl
 
 /* --- Register HW_FLEXCAN_CTRL, field PROP_SEG[2:0] (RW)
  *
- * This 3-bit field defines the length of the Propagation Segment in the bit time
- * {flexcan2_ipi_slv_can_timing_parameters} . The valid programmable values are 0‚7.
- * {flexcan2_ipi_slv_can_timing_parameters} Propagation Segment Time = (PROPSEG + 1) * Time-Quanta.
- * {flexcan2_ipi_slv_can_timing_parameters} Time-Quantum = one Sclock period.
- * {flexcan2_ipi_slv_can_timing_parameters}
+ * This 3-bit field defines the length of the Propagation Segment in the bit time. The valid
+ * programmable values are 0‚7. Propagation Segment Time = (PROPSEG + 1) * Time-Quanta. Time-Quantum
+ * = one Sclock period.
  */
 
 #define BP_FLEXCAN_CTRL_PROP_SEG      (0)      //!< Bit position for FLEXCAN_CTRL_PROP_SEG.
@@ -768,16 +714,15 @@ typedef union _hw_flexcan_ctrl
 
 /* --- Register HW_FLEXCAN_CTRL, field LOM[3] (RW)
  *
- * This bit configures FLEXCAN to operate in Listen Only Mode {flexcan2_ipi_slv_flex_lomode} . In
- * this mode, transmission is disabled, all error counters are frozen and the block operates in a
- * CAN Error Passive mode {flexcan2_ipi_slv_flex_lomode} [Ref. 1]. Only messages acknowledged by
- * another CAN station will be received {flexcan2_ipi_slv_flex_lomode} . If FLEXCAN detects a
+ * This bit configures FLEXCAN to operate in Listen Only Mode. In this mode, transmission is
+ * disabled, all error counters are frozen and the block operates in a CAN Error Passive mode [Ref.
+ * 1]. Only messages acknowledged by another CAN station will be received. If FLEXCAN detects a
  * message that has not been acknowledged, it will flag a BIT0 error (without changing the REC), as
- * if it was trying to acknowledge the message {flexcan2_ipi_slv_flex_lomode} .
+ * if it was trying to acknowledge the message.
  *
  * Values:
- * 0 - Listen Only Mode is deactivated {flexcan2_ipi_slv_flex_lomode}
- * 1 - FLEXCAN block operates in Listen Only Mode {flexcan2_ipi_slv_flex_lomode}
+ * 0 - Listen Only Mode is deactivated
+ * 1 - FLEXCAN block operates in Listen Only Mode
  */
 
 #define BP_FLEXCAN_CTRL_LOM      (3)      //!< Bit position for FLEXCAN_CTRL_LOM.
@@ -798,11 +743,11 @@ typedef union _hw_flexcan_ctrl
 /* --- Register HW_FLEXCAN_CTRL, field LBUF[4] (RW)
  *
  * This bit defines the ordering mechanism for Message Buffer transmission. When asserted, the
- * LPRIO_EN bit does not affect the priority arbitration. {flexcan2_ipi_slv_flex_reg_ctrl_lbuf}
+ * LPRIO_EN bit does not affect the priority arbitration.
  *
  * Values:
- * 0 - Buffer with highest priority is transmitted first {flexcan2_ipi_slv_flex_reg_ctrl_lbuf}
- * 1 - Lowest number buffer is transmitted first {flexcan2_ipi_slv_flex_reg_ctrl_lbuf}
+ * 0 - Buffer with highest priority is transmitted first
+ * 1 - Lowest number buffer is transmitted first
  */
 
 #define BP_FLEXCAN_CTRL_LBUF      (4)      //!< Bit position for FLEXCAN_CTRL_LBUF.
@@ -823,14 +768,13 @@ typedef union _hw_flexcan_ctrl
 /* --- Register HW_FLEXCAN_CTRL, field TSYN[5] (RW)
  *
  * This bit enables a mechanism that resets the free-running timer each time a message is received
- * in Message Buffer 0 {flexcan2_ipi_slv_flex_reg_ctrl_tsyn} . This feature provides a means to
- * synchronize multiple FLEXCAN stations with a special SYNC message (for example, global network
- * time). {statement} If the FEN bit in MCR is set (FIFO enabled), MB8 is used for timer
- * synchronization instead of MB0.
+ * in Message Buffer 0. This feature provides a means to synchronize multiple FLEXCAN stations with
+ * a special SYNC message (for example, global network time). If the FEN bit in MCR is set (FIFO
+ * enabled), MB8 is used for timer synchronization instead of MB0.
  *
  * Values:
- * 0 - Timer Sync feature disabled {flexcan2_ipi_slv_flex_reg_ctrl_tsyn}
- * 1 - Timer Sync feature enabled {flexcan2_ipi_slv_flex_reg_ctrl_tsyn}
+ * 0 - Timer Sync feature disabled
+ * 1 - Timer Sync feature enabled
  */
 
 #define BP_FLEXCAN_CTRL_TSYN      (5)      //!< Bit position for FLEXCAN_CTRL_TSYN.
@@ -850,25 +794,20 @@ typedef union _hw_flexcan_ctrl
 
 /* --- Register HW_FLEXCAN_CTRL, field BOFF_REC[6] (RW)
  *
- * This bit defines how FLEXCAN recovers from Bus Off state.
- * {flexcan2_ipi_slv_flex_reg_ctrl_boffrec} If this bit is negated, automatic recovering from Bus
- * Off state occurs according to the CAN Specification 2.0B {flexcan2_ipi_slv_flex_reg_ctrl_boffrec}
- * . If the bit is asserted, automatic recovering from Bus Off is disabled and the block remains in
- * Bus Off state until the bit is negated by the user {flexcan2_ipi_slv_flex_reg_ctrl_boffrec} . If
- * the negation occurs before 128 sequences of 11 recessive bits are detected on the CAN bus, then
- * Bus Off recovery happens as if the BOFF_REC bit had never been asserted
- * {flexcan2_ipi_slv_flex_reg_ctrl_boffrec} . If the negation occurs after 128 sequences of 11
- * recessive bits occurred, then FLEXCAN will re-synchronize to the bus by waiting for 11 recessive
- * bits before joining the bus {flexcan2_ipi_slv_flex_reg_ctrl_boffrec} . After negation, the
- * BOFF_REC bit can be re-asserted again during Bus Off, but it will only be effective the next time
- * the block enters Bus Off {flexcan2_ipi_slv_flex_reg_ctrl_boffrec} . If BOFF_REC was negated when
- * the block entered Bus Off, asserting it during Bus Off will not be effective for the current Bus
- * Off recovery {flexcan2_ipi_slv_flex_reg_ctrl_boffrec} .
+ * This bit defines how FLEXCAN recovers from Bus Off state. If this bit is negated, automatic
+ * recovering from Bus Off state occurs according to the CAN Specification 2.0B. If the bit is
+ * asserted, automatic recovering from Bus Off is disabled and the block remains in Bus Off state
+ * until the bit is negated by the user. If the negation occurs before 128 sequences of 11 recessive
+ * bits are detected on the CAN bus, then Bus Off recovery happens as if the BOFF_REC bit had never
+ * been asserted. If the negation occurs after 128 sequences of 11 recessive bits occurred, then
+ * FLEXCAN will re-synchronize to the bus by waiting for 11 recessive bits before joining the bus.
+ * After negation, the BOFF_REC bit can be re-asserted again during Bus Off, but it will only be
+ * effective the next time the block enters Bus Off. If BOFF_REC was negated when the block entered
+ * Bus Off, asserting it during Bus Off will not be effective for the current Bus Off recovery.
  *
  * Values:
  * 0 - Automatic recovering from Bus Off state enabled, according to CAN Spec 2.0 part B
- *     {flexcan2_ipi_slv_flex_reg_ctrl_boffrec}
- * 1 - Automatic recovering from Bus Off state disabled {flexcan2_ipi_slv_flex_reg_ctrl_boffrec}
+ * 1 - Automatic recovering from Bus Off state disabled
  */
 
 #define BP_FLEXCAN_CTRL_BOFF_REC      (6)      //!< Bit position for FLEXCAN_CTRL_BOFF_REC.
@@ -888,13 +827,12 @@ typedef union _hw_flexcan_ctrl
 
 /* --- Register HW_FLEXCAN_CTRL, field SMP[7] (RW)
  *
- * This bit defines the sampling mode of CAN bits at the Rx input
- * {flexcan2_ipi_slv_flex_reg_ctrl_smp} .
+ * This bit defines the sampling mode of CAN bits at the Rx input.
  *
  * Values:
- * 0 - Just one sample is used to determine the bit value {flexcan2_ipi_slv_flex_reg_ctrl_smp}
+ * 0 - Just one sample is used to determine the bit value
  * 1 - Three samples are used to determine the value of the received bit: the regular one (sample point)
- *     and 2 preceding samples, a majority rule is used {flexcan2_ipi_slv_flex_reg_ctrl_smp}
+ *     and 2 preceding samples, a majority rule is used
  */
 
 #define BP_FLEXCAN_CTRL_SMP      (7)      //!< Bit position for FLEXCAN_CTRL_SMP.
@@ -966,20 +904,18 @@ typedef union _hw_flexcan_ctrl
 
 /* --- Register HW_FLEXCAN_CTRL, field LPB[12] (RW)
  *
- * This bit configures FLEXCAN to operate in Loop-Back Mode {flexcan2_ipi_slv_flex_reg_ctrl_lpb} .
- * In this mode, FLEXCAN performs an internal loop back that can be used for self test operation
- * {statement} . The bit stream output of the transmitter is fed back internally to the receiver
- * input {statement} . The Rx CAN input pin is ignored and the Tx CAN output goes to the recessive
- * state (logic 1) {flexcan2_ipi_slv_flex_reg_ctrl_lpb} . FLEXCAN behaves as it normally does when
- * transmitting, and treats its own transmitted message as a message received from a remote node
- * {flexcan2_ipi_slv_flex_reg_ctrl_lpb} . In this mode, FLEXCAN ignores the bit sent during the ACK
- * slot in the CAN frame acknowledge field, generating an internal acknowledge bit to ensure proper
- * reception of its own message {flexcan2_ipi_slv_flex_reg_ctrl_lpb} . Both transmit and receive
- * interrupts are generated. {flexcan2_ipi_slv_flex_reg_ctrl_lpb}
+ * This bit configures FLEXCAN to operate in Loop-Back Mode. In this mode, FLEXCAN performs an
+ * internal loop back that can be used for self test operation. The bit stream output of the
+ * transmitter is fed back internally to the receiver input. The Rx CAN input pin is ignored and the
+ * Tx CAN output goes to the recessive state (logic 1). FLEXCAN behaves as it normally does when
+ * transmitting, and treats its own transmitted message as a message received from a remote node. In
+ * this mode, FLEXCAN ignores the bit sent during the ACK slot in the CAN frame acknowledge field,
+ * generating an internal acknowledge bit to ensure proper reception of its own message. Both
+ * transmit and receive interrupts are generated.
  *
  * Values:
- * 0 - Loop Back disabled {flexcan2_ipi_slv_flex_reg_ctrl_lpb}
- * 1 - Loop Back enabled {flexcan2_ipi_slv_flex_reg_ctrl_lpb}
+ * 0 - Loop Back disabled
+ * 1 - Loop Back enabled
  */
 
 #define BP_FLEXCAN_CTRL_LPB      (12)      //!< Bit position for FLEXCAN_CTRL_LPB.
@@ -999,11 +935,11 @@ typedef union _hw_flexcan_ctrl
 
 /* --- Register HW_FLEXCAN_CTRL, field ERR_MSK[14] (RW)
  *
- * This bit provides a mask for the Error Interrupt. {flexcan2_ipi_slv_flex_reg_esr_int}
+ * This bit provides a mask for the Error Interrupt.
  *
  * Values:
- * 0 - Error interrupt disabled {flexcan2_ipi_slv_flex_reg_esr_int}
- * 1 - Error interrupt enabled {flexcan2_ipi_slv_flex_reg_esr_int}
+ * 0 - Error interrupt disabled
+ * 1 - Error interrupt enabled
  */
 
 #define BP_FLEXCAN_CTRL_ERR_MSK      (14)      //!< Bit position for FLEXCAN_CTRL_ERR_MSK.
@@ -1023,11 +959,11 @@ typedef union _hw_flexcan_ctrl
 
 /* --- Register HW_FLEXCAN_CTRL, field BOFF_MSK[15] (RW)
  *
- * This bit provides a mask for the Bus Off Interrupt. {flexcan2_ipi_slv_flex_reg_esr_int}
+ * This bit provides a mask for the Bus Off Interrupt.
  *
  * Values:
- * 0 - Bus Off interrupt disabled {flexcan2_ipi_slv_flex_reg_esr_int}
- * 1 - Bus Off interrupt enabled {flexcan2_ipi_slv_flex_reg_esr_int}
+ * 0 - Bus Off interrupt disabled
+ * 1 - Bus Off interrupt enabled
  */
 
 #define BP_FLEXCAN_CTRL_BOFF_MSK      (15)      //!< Bit position for FLEXCAN_CTRL_BOFF_MSK.
@@ -1047,10 +983,8 @@ typedef union _hw_flexcan_ctrl
 
 /* --- Register HW_FLEXCAN_CTRL, field PSEG2[18:16] (RW)
  *
- * This 3-bit field defines the length of Phase Buffer Segment 2 in the bit time
- * {flexcan2_ipi_slv_can_timing_parameters} . The valid programmable values are 1‚7.
- * {flexcan2_ipi_slv_can_timing_parameters} Phase Buffer Segment 2 = (PSEG2 + 1) x Time-Quanta.
- * {flexcan2_ipi_slv_can_timing_parameters}
+ * This 3-bit field defines the length of Phase Buffer Segment 2 in the bit time. The valid
+ * programmable values are 1‚7. Phase Buffer Segment 2 = (PSEG2 + 1) x Time-Quanta.
  */
 
 #define BP_FLEXCAN_CTRL_PSEG2      (16)      //!< Bit position for FLEXCAN_CTRL_PSEG2.
@@ -1069,10 +1003,8 @@ typedef union _hw_flexcan_ctrl
 
 /* --- Register HW_FLEXCAN_CTRL, field PSEG1[21:19] (RW)
  *
- * This 3-bit field defines the length of Phase Buffer Segment 1 in the bit time
- * {flexcan2_ipi_slv_can_timing_parameters} . The valid programmable values are 0‚7.
- * {flexcan2_ipi_slv_can_timing_parameters} Phase Buffer Segment 1 = (PSEG1 + 1) x Time-Quanta.
- * {flexcan2_ipi_slv_can_timing_parameters}
+ * This 3-bit field defines the length of Phase Buffer Segment 1 in the bit time. The valid
+ * programmable values are 0‚7. Phase Buffer Segment 1 = (PSEG1 + 1) x Time-Quanta.
  */
 
 #define BP_FLEXCAN_CTRL_PSEG1      (19)      //!< Bit position for FLEXCAN_CTRL_PSEG1.
@@ -1092,10 +1024,8 @@ typedef union _hw_flexcan_ctrl
 /* --- Register HW_FLEXCAN_CTRL, field RJW[23:22] (RW)
  *
  * This 2-bit field defines the maximum number of time quanta One time quantum is equal to the
- * Sclock period. {statement} that a bit time can be changed by one re-synchronization
- * {flexcan2_ipi_slv_can_timing_resynchronization} . The valid programmable values are 0‚3.
- * {flexcan2_ipi_slv_can_timing_resynchronization} Resync Jump Width = RJW + 1.
- * {flexcan2_ipi_slv_can_timing_resynchronization}
+ * Sclock period. that a bit time can be changed by one re-synchronization. The valid programmable
+ * values are 0‚3. Resync Jump Width = RJW + 1.
  */
 
 #define BP_FLEXCAN_CTRL_RJW      (22)      //!< Bit position for FLEXCAN_CTRL_RJW.
@@ -1115,13 +1045,10 @@ typedef union _hw_flexcan_ctrl
 /* --- Register HW_FLEXCAN_CTRL, field PRESDIV[31:24] (RW)
  *
  * This 8-bit field defines the ratio between the CPI clock frequency and the Serial Clock (Sclock)
- * frequency {flexcan2_ipi_slv_can_timing_parameters} . The Sclock period defines the time quantum
- * of the CAN protocol {flexcan2_ipi_slv_can_timing_parameters} . For the reset value, the Sclock
- * frequency is equal to the CPI clock frequency {flexcan2_ipi_slv_can_timing_parameters} . The
- * Maximum value of this register is 0xFF, that gives a minimum Sclock frequency equal to the CPI
- * clock frequency divided by 256. {flexcan2_ipi_slv_can_timing_parameters} For more information
- * refer to . {statement} Sclock frequency = CPI clock frequency / (PRESDIV + 1)
- * {flexcan2_ipi_slv_can_timing_parameters}
+ * frequency. The Sclock period defines the time quantum of the CAN protocol. For the reset value,
+ * the Sclock frequency is equal to the CPI clock frequency. The Maximum value of this register is
+ * 0xFF, that gives a minimum Sclock frequency equal to the CPI clock frequency divided by 256. For
+ * more information refer to . Sclock frequency = CPI clock frequency / (PRESDIV + 1)
  */
 
 #define BP_FLEXCAN_CTRL_PRESDIV      (24)      //!< Bit position for FLEXCAN_CTRL_PRESDIV.
@@ -1148,23 +1075,19 @@ typedef union _hw_flexcan_ctrl
  *
  * Reset value: 0x00000000
  *
- * This register represents a 16-bit free running counter that can be read and written by the ARM
- * {flexcan2_ipi_slv_flex_reg_timer} . The timer starts from 0x0000 after Reset, counts linearly to
- * 0xFFFF, and wraps around. {flexcan2_ipi_slv_flex_reg_timer}  The timer is clocked by the FLEXCAN
- * bit-clock (which defines the baud rate on the CAN bus) {flexcan2_ipi_slv_flex_reg_timer} . During
- * a message transmission/reception, it increments by one for each bit that is received or
- * transmitted {flexcan2_ipi_slv_flex_reg_timer} . When there is no message on the bus, it counts
- * using the previously programmed baud rate. {flexcan2_ipi_slv_flex_reg_timer} During Freeze Mode,
- * the timer is not incremented {flexcan2_ipi_slv_flex_reg_timer} .  The timer value is captured at
- * the beginning of the identifier field of any frame on the CAN bus
- * {flexcan2_ipi_slv_flex_reg_timer} . This captured value is written into the Time Stamp entry in a
- * message buffer after a successful reception or transmission of a message.
- * {flexcan2_ipi_slv_flex_reg_timer}  Writing to the timer is an indirect operation {statement} .
- * The data is first written to an auxiliary register and then an internal request/acknowledge
- * procedure across clock domains is executed {statement} . All this is transparent to the user,
- * except for the fact that the data will take some time to be actually written to the register
- * {statement} . If desired, software can poll the register to discover when the data was actually
- * written {flexcan2_ipi_slv_flex_reg_timer} .
+ * This register represents a 16-bit free running counter that can be read and written by the ARM.
+ * The timer starts from 0x0000 after Reset, counts linearly to 0xFFFF, and wraps around.  The timer
+ * is clocked by the FLEXCAN bit-clock (which defines the baud rate on the CAN bus). During a
+ * message transmission/reception, it increments by one for each bit that is received or
+ * transmitted. When there is no message on the bus, it counts using the previously programmed baud
+ * rate. During Freeze Mode, the timer is not incremented.  The timer value is captured at the
+ * beginning of the identifier field of any frame on the CAN bus. This captured value is written
+ * into the Time Stamp entry in a message buffer after a successful reception or transmission of a
+ * message.  Writing to the timer is an indirect operation. The data is first written to an
+ * auxiliary register and then an internal request/acknowledge procedure across clock domains is
+ * executed. All this is transparent to the user, except for the fact that the data will take some
+ * time to be actually written to the register. If desired, software can poll the register to
+ * discover when the data was actually written.
  */
 typedef union _hw_flexcan_timer
 {
@@ -1225,20 +1148,19 @@ typedef union _hw_flexcan_timer
  * Reset value: 0xffffffff
  *
  * Supports individual masks per message buffer, setting the BCC bit in MCR causes the RXGMASK
- * Register to have no effect on the block operation {flexcan2_ipi_slv_flex_reg_rxmask} .  RXGMASK
- * is used as acceptance mask for all Rx message buffers, excluding message buffers 14‚ 15, which
- * have individual mask registers {flexcan2_ipi_slv_flex_reg_rxmask} . When the FEN bit in MCR is
- * set (FIFO enabled), the RXGMASK also applies to all elements of the ID filter table, except
- * elements 6-7, which have individual masks. {flexcan2_ipi_slv_flex_reg_rxmask}  The contents of
- * this register must be programmed while the block is in Freeze Mode, and must not be modified when
- * the block is transmitting or receiving frames.
+ * Register to have no effect on the block operation.  RXGMASK is used as acceptance mask for all Rx
+ * message buffers, excluding message buffers 14‚ 15, which have individual mask registers. When the
+ * FEN bit in MCR is set (FIFO enabled), the RXGMASK also applies to all elements of the ID filter
+ * table, except elements 6-7, which have individual masks.  The contents of this register must be
+ * programmed while the block is in Freeze Mode, and must not be modified when the block is
+ * transmitting or receiving frames.
  */
 typedef union _hw_flexcan_rxgmask
 {
     reg32_t U;
     struct _hw_flexcan_rxgmask_bitfields
     {
-        unsigned MI31_MI0 : 32; //!< [31:0] For normal Rx message buffers, the mask bits affect the ID filter programmed on the message buffer. For the Rx FIFO, the mask bits affect all bits programmed in the filter table (ID, IDE, RTR) {flexcan2_ipi_slv_flex_reg_rxmask} .
+        unsigned MI31_MI0 : 32; //!< [31:0] For normal Rx message buffers, the mask bits affect the ID filter programmed on the message buffer.
     } B;
 } hw_flexcan_rxgmask_t;
 #endif
@@ -1265,7 +1187,7 @@ typedef union _hw_flexcan_rxgmask
  *
  * For normal Rx message buffers, the mask bits affect the ID filter programmed on the message
  * buffer. For the Rx FIFO, the mask bits affect all bits programmed in the filter table (ID, IDE,
- * RTR) {flexcan2_ipi_slv_flex_reg_rxmask} .
+ * RTR).
  *
  * Values:
  * 0 - the corresponding bit in the filter is dont care
@@ -1297,14 +1219,12 @@ typedef union _hw_flexcan_rxgmask
  *
  * Reset value: 0xffffffff
  *
- * Setting the BCC bit in MCR causes the RX14MASK Register to have no effect on the block operation
- * {flexcan2_ipi_slv_flex_reg_rxmask} .  RX14MASK is used as acceptance mask for the Identifier in
- * Message Buffer 14 {flexcan2_ipi_slv_flex_reg_rxmask} . When the FEN bit in MCR is set (FIFO
- * enabled), the RXG14MASK also applies to element 6 of the ID filter table. This register has the
- * same structure as the Rx Global Mask Register {flexcan2_ipi_slv_flex_reg_rxmask} . It must be
- * programmed while the block is in Freeze Mode, and must not be modified when the block is
- * transmitting or receiving frames.   Address Offset: 0x14 {flexcan2_ipi_slv_flex_reg_rxmask}
- * Reset Value: 0xFFFF_FFFF {flexcan2_ipi_slv_flex_reg_access}
+ * Setting the BCC bit in MCR causes the RX14MASK Register to have no effect on the block operation.
+ * RX14MASK is used as acceptance mask for the Identifier in Message Buffer 14. When the FEN bit in
+ * MCR is set (FIFO enabled), the RXG14MASK also applies to element 6 of the ID filter table. This
+ * register has the same structure as the Rx Global Mask Register. It must be programmed while the
+ * block is in Freeze Mode, and must not be modified when the block is transmitting or receiving
+ * frames.   Address Offset: 0x14  Reset Value: 0xFFFF_FFFF
  */
 typedef union _hw_flexcan_rx14mask
 {
@@ -1363,14 +1283,12 @@ typedef union _hw_flexcan_rx14mask
  *
  * Reset value: 0xffffffff
  *
- * Setting the BCC bit in MCR causes the RX15MASK Register to have no effect on the block operation
- * {flexcan2_ipi_slv_flex_reg_rxmask} .  When the BCC bit is negated, RX15MASK is used as acceptance
- * mask for the Identifier in Message Buffer 15 {flexcan2_ipi_slv_flex_reg_rxmask} . When the FEN
- * bit in MCR is set (FIFO enabled), the RXG14MASK also applies to element 7 of the ID filter table.
- * This register has the same structure as the Rx Global Mask Register
- * {flexcan2_ipi_slv_flex_reg_rxmask} . It must be programmed while the block is in Freeze Mode, and
- * must not be modified when the block is transmitting or receiving frames.   Address Offset: 0x18
- * {flexcan2_ipi_slv_flex_reg_rxmask}   Reset Value: 0xFFFF_FFFF {flexcan2_ipi_slv_flex_reg_access}
+ * Setting the BCC bit in MCR causes the RX15MASK Register to have no effect on the block operation.
+ * When the BCC bit is negated, RX15MASK is used as acceptance mask for the Identifier in Message
+ * Buffer 15. When the FEN bit in MCR is set (FIFO enabled), the RXG14MASK also applies to element 7
+ * of the ID filter table. This register has the same structure as the Rx Global Mask Register. It
+ * must be programmed while the block is in Freeze Mode, and must not be modified when the block is
+ * transmitting or receiving frames.   Address Offset: 0x18  Reset Value: 0xFFFF_FFFF
  */
 typedef union _hw_flexcan_rx15mask
 {
@@ -1430,51 +1348,40 @@ typedef union _hw_flexcan_rx15mask
  * Reset value: 0x00000000
  *
  * This register has 2 8-bit fields reflecting the value of two FLEXCAN error counters: Transmit
- * Error Counter (Tx_Err_Counter field) and Receive Error Counter (Rx_Err_Counter field)
- * {flexcan2_ipi_slv_can_counters_tx}{flexcan2_ipi_slv_can_counters_rx} . The rules for increasing
- * and decreasing these counters are described in the CAN protocol and are completely implemented in
- * the FLEXCAN block {flexcan2_ipi_slv_can_counters_tx}{flexcan2_ipi_slv_can_counters_rx} . Both
- * counters are read only except in Test Mode or Freeze Mode, where they can be written by the ARM.
- * {flexcan2_ipi_slv_flex_freezemode}{flexcan2_ipi_slv_flex_reg_test}  Writing to the Error Counter
- * Register while in Freeze Mode is an indirect operation {statement} . The data is first written to
- * an auxiliary register and then an internal request/acknowledge procedure across clock domains is
- * executed {statement} . All this is transparent to the user, except for the fact that the data
- * will take some time to be actually written to the register {statement} . If desired, software can
- * poll the register to discover when the data was actually written
- * {flexcan2_ipi_slv_flex_freezemode} .  FLEXCAN responds to any bus state as described in the
- * protocol {statement} that is transmit Error Active or Error Passive flag, delay its transmission
- * start time (Error Passive) and avoid any influence on the bus when in ‚ Bus Off state {statement}
- * . The following are the basic rules for FLEXCAN bus state transitions. {statement}   If the value
- * of Tx_Err_Counter or Rx_Err_Counter increases to be greater than or equal to 128, the FLT_CONF
- * field in the Error and Status Register is updated to reflect Error Passive state
- * {flexcan2_ipi_slv_can_error_multipleerrors}{flexcan2_ipi_slv_flex_reg_esr_fltconf} .  If the
- * FLEXCAN state is Error Passive and either Tx_Err_Counter or Rx_Err_Counter decrements to a value
- * less than or equal to 127. While the other already satisfies this condition, the FLT_CONF field
- * in the Error and Status Register is updated to reflect ErrorError Active state
- * {flexcan2_ipi_slv_can_error_multipleerrors}{flexcan2_ipi_slv_flex_reg_esr_fltconf} .  If the
- * value of Tx_Err_Counter increases to be greater than 255, the FLT_CONF field in the Error and
- * Status Register is updated to reflect Bus Off state and an interrupt may be issued {flexcan2_ipi_
- * slv_flex_reg_esr_fltconf}{flexcan2_ipi_slv_flex_reg_esr_int}{flexcan2_ipi_slv_flex_busoff} . The
- * value of Tx_Err_Counter is then reset to zero. {flexcan2_ipi_slv_flex_busoff}   If FLEXCAN is in
- * Bus Off state then Tx_Err_Counter is cascaded together with another internal counter to count the
- * 128th occurrences of 11 consecutive recessive bits on the bus {flexcan2_ipi_slv_flex_busoff} .
- * Hence, Tx_Err_Counter is reset to zero and counts in a manner where the internal counter counts
- * 11 such bits and then wraps around while incrementing the Tx_Err_Counter
- * {flexcan2_ipi_slv_flex_busoff} . When Tx_Err_Counter reaches the value of 128, the FLT_CONF field
- * in the Error and Status Register is updated to be Error Active and both error counters are reset
- * to zero {flexcan2_ipi_slv_flex_busoff} . At any instance of dominant bit following a stream of
- * less than 11 consecutive recessive bits, the internal counter resets itself to zero without
- * affecting the Tx_Err_Counter value. {flexcan2_ipi_slv_flex_busoff}   If during system start-up
- * only one node is operating, then its Tx_Err_Counter increases in each message it is trying to
- * transmit as a result of acknowledge errors (indicated by the ACK_ERR bit in the Error and Status
- * Register) {flexcan2_ipi_slv_can_error_multipleerrors} . After the transition to Error Passive
- * state, the Tx_Err_Counter does not increment anymore by acknowledge errors
- * {flexcan2_ipi_slv_can_error_multipleerrors} . Therefore the device never goes to the Bus Off
- * state. {flexcan2_ipi_slv_can_error_multipleerrors}   If the Rx_Err_Counter increases to a value
- * greater than 127, it is not incremented further even if more errors are detected while being a
- * receiver {flexcan2_ipi_slv_can_error_multipleerrors} . At the next successful message reception,
- * the counter is set to a value between 119 and 127 to resume to Error Active state.
- * {flexcan2_ipi_slv_can_error_multipleerrors}
+ * Error Counter (Tx_Err_Counter field) and Receive Error Counter (Rx_Err_Counter field). The rules
+ * for increasing and decreasing these counters are described in the CAN protocol and are completely
+ * implemented in the FLEXCAN block. Both counters are read only except in Freeze Mode, where they
+ * can be written by the ARM.  Writing to the Error Counter Register while in Freeze Mode is an
+ * indirect operation. The data is first written to an auxiliary register and then an internal
+ * request/acknowledge procedure across clock domains is executed. All this is transparent to the
+ * user, except for the fact that the data will take some time to be actually written to the
+ * register. If desired, software can poll the register to discover when the data was actually
+ * written.  FLEXCAN responds to any bus state as described in the protocolthat is transmit Error
+ * Active or Error Passive flag, delay its transmission start time (Error Passive) and avoid any
+ * influence on the bus when in ‚ Bus Off state. The following are the basic rules for FLEXCAN bus
+ * state transitions.   If the value of Tx_Err_Counter or Rx_Err_Counter increases to be greater
+ * than or equal to 128, the FLT_CONF field in the Error and Status Register is updated to reflect
+ * Error Passive state.  If the FLEXCAN state is Error Passive and either Tx_Err_Counter or
+ * Rx_Err_Counter decrements to a value less than or equal to 127. While the other already satisfies
+ * this condition, the FLT_CONF field in the Error and Status Register is updated to reflect
+ * ErrorError Active state.  If the value of Tx_Err_Counter increases to be greater than 255, the
+ * FLT_CONF field in the Error and Status Register is updated to reflect Bus Off state and an
+ * interrupt may be issued. The value of Tx_Err_Counter is then reset to zero.  If FLEXCAN is in Bus
+ * Off state then Tx_Err_Counter is cascaded together with another internal counter to count the
+ * 128th occurrences of 11 consecutive recessive bits on the bus. Hence, Tx_Err_Counter is reset to
+ * zero and counts in a manner where the internal counter counts 11 such bits and then wraps around
+ * while incrementing the Tx_Err_Counter. When Tx_Err_Counter reaches the value of 128, the FLT_CONF
+ * field in the Error and Status Register is updated to be Error Active and both error counters are
+ * reset to zero. At any instance of dominant bit following a stream of less than 11 consecutive
+ * recessive bits, the internal counter resets itself to zero without affecting the Tx_Err_Counter
+ * value.  If during system start-up only one node is operating, then its Tx_Err_Counter increases
+ * in each message it is trying to transmit as a result of acknowledge errors (indicated by the
+ * ACK_ERR bit in the Error and Status Register). After the transition to Error Passive state, the
+ * Tx_Err_Counter does not increment anymore by acknowledge errors. Therefore the device never goes
+ * to the Bus Off state.  If the Rx_Err_Counter increases to a value greater than 127, it is not
+ * incremented further even if more errors are detected while being a receiver. At the next
+ * successful message reception, the counter is set to a value between 119 and 127 to resume to
+ * Error Active state.
  */
 typedef union _hw_flexcan_ecr
 {
@@ -1555,37 +1462,34 @@ typedef union _hw_flexcan_ecr
  * Reset value: 0x00000000
  *
  * This register reflects various error conditions. Four of these error conditions may be programed
- * to signal an interrupt to the ARM. The reported error conditions (bits 15‚ 10) (bits 16-21) are
- * those that occurred since the last time the ARM read this register
- * {flexcan2_ipi_slv_flex_reg_esr_error} . The ARM read action clears (bits 15‚10)(bits 16-21)
- * {flexcan2_ipi_slv_flex_reg_esr_error} . (Bits 9‚ 4) (bits 22-28) are status bits. {statement}
- * Most bits in this register are read only, except TWRN_INT, RWRN_INT, BOFF_INT, WAK_INT and
- * ERR_INT {flexcan2_ipi_slv_flex_reg_access} , that are interrupt flags that can be cleared by
- * writing 1 to them (writing 0 has no effect) {flexcan2_ipi_slv_flex_reg_esr_int} . See for more
- * details. {statement}
+ * to signal an interrupt to the ARM. The reported error conditions (bits 15‚ 10) are those that
+ * occurred since the last time the ARM read this register. The ARM read action clears (bits
+ * 15‚10)(bits . (Bits 9‚ 4) (bits are status bits.  Most bits in this register are read only,
+ * except TWRN_INT, RWRN_INT, BOFF_INT, WAK_INT and ERR_INT, that are interrupt flags that can be
+ * cleared by writing 1 to them (writing 0 has no effect).
  */
 typedef union _hw_flexcan_esr
 {
     reg32_t U;
     struct _hw_flexcan_esr_bitfields
     {
-        unsigned WAK_INT : 1; //!< [0] When FLEXCAN is Stop Mode and a recessive to dominant transition is detected on the CAN bus and if the WAK_MSK bit in the MCR Register is set, an interrupt is generated to the ARM {flexcan2_ipi_slv_flex_reg_esr_int} . This bit is cleared by writing it to 1 {flexcan2_ipi_slv_flex_reg_esr_int} . Writing 0 has no effect. {flexcan2_ipi_slv_flex_reg_esr_int}
-        unsigned ERR_INT : 1; //!< [1] This bit indicates that at least one of the Error Bits (bits 15-10) (bits 16-21) is set {flexcan2_ipi_slv_flex_reg_esr_int} . If the corresponding mask bit in the Control Register (ERR_MSK) is set, an interrupt is generated to the ARM {flexcan2_ipi_slv_flex_reg_esr_int} . This bit is cleared by writing it to 1 {flexcan2_ipi_slv_flex_reg_esr_int} . Writing 0 has no effect. {flexcan2_ipi_slv_flex_reg_esr_int}
-        unsigned BOFF_INT : 1; //!< [2] This bit is set when FLEXCAN enters Bus Off state {flexcan2_ipi_slv_flex_reg_esr_int} . If the corresponding mask bit in the Control Register (BOFF_MSK) is set, an interrupt is generated to the ARM {flexcan2_ipi_slv_flex_reg_esr_int} . This bit is cleared by writing it to 1. Writing 0 has no effect. {flexcan2_ipi_slv_flex_reg_esr_int}
+        unsigned WAK_INT : 1; //!< [0] When FLEXCAN is Stop Mode and a recessive to dominant transition is detected on the CAN bus and if the WAK_MSK bit in the MCR Register is set, an interrupt is generated to the ARM.
+        unsigned ERR_INT : 1; //!< [1] This bit indicates that at least one of the Error Bits (bits 15-10) is set.
+        unsigned BOFF_INT : 1; //!< [2] This bit is set when FLEXCAN enters Bus Off state.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned FLT_CONF : 2; //!< [5:4] This 2-bit field indicates the Confinement State of the FLEXCAN block, as shown in below: {flexcan2_ipi_slv_flex_reg_esr_fltconf} If the LOM bit in the Control Register is asserted, the FLT_CONF field will indicate Error Passive {flexcan2_ipi_slv_flex_lomode} . Because the Control Register is not affected by soft reset, the FLT_CONF field will not be affected by soft reset if the LOM bit is asserted {flexcan2_ipi_slv_flex_softreset}
-        unsigned TXRX : 1; //!< [6] This bit indicates if FLEXCAN is transmitting or receiving a message when the CAN bus is not in IDLE state {flexcan2_ipi_slv_flex_reg_esr_idle} . This bit has no meaning when IDLE is asserted. {statement}
-        unsigned IDLE : 1; //!< [7] This bit indicates when CAN bus is in IDLE state. {flexcan2_ipi_slv_flex_reg_esr_idle}
-        unsigned RX_WRN : 1; //!< [8] This bit indicates when repetitive errors are occurring during message reception. {statement}
-        unsigned TX_WRN : 1; //!< [9] This bit indicates when repetitive errors are occurring during message transmission. {statement}
-        unsigned STF_ERR : 1; //!< [10] This bit indicates that a Stuffing Error has been detected. {flexcan2_ipi_slv_flex_reg_esr_error}
-        unsigned FRM_ERR : 1; //!< [11] This bit indicates that a Form Error has been detected by the receiver node, that is, a fixed-form bit field contains at least one illegal bit. {flexcan2_ipi_slv_flex_reg_esr_error}
-        unsigned CRC_ERR : 1; //!< [12] This bit indicates that a CRC Error has been detected by the receiver node, that is, the calculated CRC is different from the received. {flexcan2_ipi_slv_flex_reg_esr_error}
-        unsigned ACK_ERR : 1; //!< [13] This bit indicates that an Acknowledge Error has been detected by the transmitter node, that is, a dominant bit has not been detected during the ACK SLOT {flexcan2_ipi_slv_flex_reg_esr_error} .
-        unsigned BIT0_ERR : 1; //!< [14] This bit indicates when an inconsistency occurs between the transmitted and the received bit in a message. {flexcan2_ipi_slv_flex_reg_esr_error}
-        unsigned BIT1_ERR : 1; //!< [15] This bit indicates when an inconsistency occurs between the transmitted and the received bit in a message {flexcan2_ipi_slv_flex_reg_esr_error} . This bit is not set by a transmitter in case of arbitration field or ACK slot, or in case of a node sending a passive error flag that detects dominant bits. {flexcan2_ipi_slv_flex_reg_esr_error}
-        unsigned RWRN_INT : 1; //!< [16] If the WRN_EN bit in MCR is asserted, the RWRN_INT bit is set when the RX_WRN flag transitions from 0 to 1, meaning that the Rx error counters reached 96. If the corresponding mask bit in the Control Register (RWRN_MSK) is set, an interrupt is generated to the ARM. This bit is cleared by writing it to 1. Writing 0 has no effect.
-        unsigned TWRN_INT : 1; //!< [17] If the WRN_EN bit in MCR is asserted, the TWRN_INT bit is set when the TX_WRN flag transitions from 0 to 1, meaning that the Tx error counter reached 96. If the corresponding mask bit in the Control Register (TWRN_MSK) is set, an interrupt is generated to the ARM. This bit is cleared by writing it to 1. Writing 0 has no effect.
+        unsigned FLT_CONF : 2; //!< [5:4] This 2-bit field indicates the Confinement State of the FLEXCAN block, as shown in below: If the LOM bit in the Control Register is asserted, the FLT_CONF field will indicate Error Passive.
+        unsigned TXRX : 1; //!< [6] This bit indicates if FLEXCAN is transmitting or receiving a message when the CAN bus is not in IDLE state.
+        unsigned IDLE : 1; //!< [7] This bit indicates when CAN bus is in IDLE state.
+        unsigned RX_WRN : 1; //!< [8] This bit indicates when repetitive errors are occurring during message reception.
+        unsigned TX_WRN : 1; //!< [9] This bit indicates when repetitive errors are occurring during message transmission.
+        unsigned STF_ERR : 1; //!< [10] This bit indicates that a Stuffing Error has been detected.
+        unsigned FRM_ERR : 1; //!< [11] This bit indicates that a Form Error has been detected by the receiver node, that is, a fixed-form bit field contains at least one illegal bit.
+        unsigned CRC_ERR : 1; //!< [12] This bit indicates that a CRC Error has been detected by the receiver node, that is, the calculated CRC is different from the received.
+        unsigned ACK_ERR : 1; //!< [13] This bit indicates that an Acknowledge Error has been detected by the transmitter node, that is, a dominant bit has not been detected during the ACK SLOT.
+        unsigned BIT0_ERR : 1; //!< [14] This bit indicates when an inconsistency occurs between the transmitted and the received bit in a message.
+        unsigned BIT1_ERR : 1; //!< [15] This bit indicates when an inconsistency occurs between the transmitted and the received bit in a message.
+        unsigned RWRN_INT : 1; //!< [16] If the WRN_EN bit in MCR is asserted, the RWRN_INT bit is set when the RX_WRN flag transitions from 0 to 1, meaning that the Rx error counters reached 96.
+        unsigned TWRN_INT : 1; //!< [17] If the WRN_EN bit in MCR is asserted, the TWRN_INT bit is set when the TX_WRN flag transitions from 0 to 1, meaning that the Tx error counter reached 96.
         unsigned RESERVED1 : 14; //!< [31:18] Reserved
     } B;
 } hw_flexcan_esr_t;
@@ -1612,15 +1516,13 @@ typedef union _hw_flexcan_esr
 /* --- Register HW_FLEXCAN_ESR, field WAK_INT[0] (RW)
  *
  * When FLEXCAN is Stop Mode and a recessive to dominant transition is detected on the CAN bus and
- * if the WAK_MSK bit in the MCR Register is set, an interrupt is generated to the ARM
- * {flexcan2_ipi_slv_flex_reg_esr_int} . This bit is cleared by writing it to 1
- * {flexcan2_ipi_slv_flex_reg_esr_int} . Writing 0 has no effect.
- * {flexcan2_ipi_slv_flex_reg_esr_int}
+ * if the WAK_MSK bit in the MCR Register is set, an interrupt is generated to the ARM. This bit is
+ * cleared by writing it to 1. Writing 0 has no effect.
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_reg_esr_int}
+ * 0 - No such occurrence
  * 1 - Indicates a recessive to dominant transition received on the CAN bus when the FLEXCAN is in Stop
- *     Mode {flexcan2_ipi_slv_flex_reg_esr_int}
+ *     Mode
  */
 
 #define BP_FLEXCAN_ESR_WAK_INT      (0)      //!< Bit position for FLEXCAN_ESR_WAK_INT.
@@ -1640,16 +1542,13 @@ typedef union _hw_flexcan_esr
 
 /* --- Register HW_FLEXCAN_ESR, field ERR_INT[1] (RW)
  *
- * This bit indicates that at least one of the Error Bits (bits 15-10) (bits 16-21) is set
- * {flexcan2_ipi_slv_flex_reg_esr_int} . If the corresponding mask bit in the Control Register
- * (ERR_MSK) is set, an interrupt is generated to the ARM {flexcan2_ipi_slv_flex_reg_esr_int} . This
- * bit is cleared by writing it to 1 {flexcan2_ipi_slv_flex_reg_esr_int} . Writing 0 has no effect.
- * {flexcan2_ipi_slv_flex_reg_esr_int}
+ * This bit indicates that at least one of the Error Bits (bits 15-10) is set. If the corresponding
+ * mask bit in the Control Register (ERR_MSK) is set, an interrupt is generated to the ARM. This bit
+ * is cleared by writing it to 1. Writing 0 has no effect.
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_reg_esr_int}
+ * 0 - No such occurrence
  * 1 - Indicates setting of any Error Bit in the Error and Status Register
- *     {flexcan2_ipi_slv_flex_reg_esr_int}
  */
 
 #define BP_FLEXCAN_ESR_ERR_INT      (1)      //!< Bit position for FLEXCAN_ESR_ERR_INT.
@@ -1669,14 +1568,13 @@ typedef union _hw_flexcan_esr
 
 /* --- Register HW_FLEXCAN_ESR, field BOFF_INT[2] (RW)
  *
- * This bit is set when FLEXCAN enters Bus Off state {flexcan2_ipi_slv_flex_reg_esr_int} . If the
- * corresponding mask bit in the Control Register (BOFF_MSK) is set, an interrupt is generated to
- * the ARM {flexcan2_ipi_slv_flex_reg_esr_int} . This bit is cleared by writing it to 1. Writing 0
- * has no effect. {flexcan2_ipi_slv_flex_reg_esr_int}
+ * This bit is set when FLEXCAN enters Bus Off state. If the corresponding mask bit in the Control
+ * Register (BOFF_MSK) is set, an interrupt is generated to the ARM. This bit is cleared by writing
+ * it to 1. Writing 0 has no effect.
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_reg_esr_int}
- * 1 - FLEXCAN block entered Bus Off state {flexcan2_ipi_slv_flex_reg_esr_int}
+ * 0 - No such occurrence
+ * 1 - FLEXCAN block entered Bus Off state
  */
 
 #define BP_FLEXCAN_ESR_BOFF_INT      (2)      //!< Bit position for FLEXCAN_ESR_BOFF_INT.
@@ -1696,11 +1594,10 @@ typedef union _hw_flexcan_esr
 
 /* --- Register HW_FLEXCAN_ESR, field FLT_CONF[5:4] (RO)
  *
- * This 2-bit field indicates the Confinement State of the FLEXCAN block, as shown in below:
- * {flexcan2_ipi_slv_flex_reg_esr_fltconf} If the LOM bit in the Control Register is asserted, the
- * FLT_CONF field will indicate Error Passive {flexcan2_ipi_slv_flex_lomode} . Because the Control
- * Register is not affected by soft reset, the FLT_CONF field will not be affected by soft reset if
- * the LOM bit is asserted {flexcan2_ipi_slv_flex_softreset}
+ * This 2-bit field indicates the Confinement State of the FLEXCAN block, as shown in below: If the
+ * LOM bit in the Control Register is asserted, the FLT_CONF field will indicate Error Passive.
+ * Because the Control Register is not affected by soft reset, the FLT_CONF field will not be
+ * affected by soft reset if the LOM bit is asserted
  *
  * Values:
  * 01 - Error Passive
@@ -1717,12 +1614,11 @@ typedef union _hw_flexcan_esr
 /* --- Register HW_FLEXCAN_ESR, field TXRX[6] (RO)
  *
  * This bit indicates if FLEXCAN is transmitting or receiving a message when the CAN bus is not in
- * IDLE state {flexcan2_ipi_slv_flex_reg_esr_idle} . This bit has no meaning when IDLE is asserted.
- * {statement}
+ * IDLE state. This bit has no meaning when IDLE is asserted.
  *
  * Values:
- * 0 - FLEXCAN is receiving a message (IDLE=0) {flexcan2_ipi_slv_flex_reg_esr_idle}
- * 1 - FLEXCAN is transmitting a message (IDLE=0) {flexcan2_ipi_slv_flex_reg_esr_idle}
+ * 0 - FLEXCAN is receiving a message (IDLE=0)
+ * 1 - FLEXCAN is transmitting a message (IDLE=0)
  */
 
 #define BP_FLEXCAN_ESR_TXRX      (6)      //!< Bit position for FLEXCAN_ESR_TXRX.
@@ -1734,11 +1630,11 @@ typedef union _hw_flexcan_esr
 
 /* --- Register HW_FLEXCAN_ESR, field IDLE[7] (RO)
  *
- * This bit indicates when CAN bus is in IDLE state. {flexcan2_ipi_slv_flex_reg_esr_idle}
+ * This bit indicates when CAN bus is in IDLE state.
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_reg_esr_idle}
- * 1 - CAN bus is now IDLE {flexcan2_ipi_slv_flex_reg_esr_idle}
+ * 0 - No such occurrence
+ * 1 - CAN bus is now IDLE
  */
 
 #define BP_FLEXCAN_ESR_IDLE      (7)      //!< Bit position for FLEXCAN_ESR_IDLE.
@@ -1750,11 +1646,11 @@ typedef union _hw_flexcan_esr
 
 /* --- Register HW_FLEXCAN_ESR, field RX_WRN[8] (RO)
  *
- * This bit indicates when repetitive errors are occurring during message reception. {statement}
+ * This bit indicates when repetitive errors are occurring during message reception.
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_can_error_multipleerrors}
- * 1 - Rx_Err_Counter ℜ≥ 96 {flexcan2_ipi_slv_can_error_multipleerrors}
+ * 0 - No such occurrence
+ * 1 - Rx_Err_Counter ℜ≥ 96
  */
 
 #define BP_FLEXCAN_ESR_RX_WRN      (8)      //!< Bit position for FLEXCAN_ESR_RX_WRN.
@@ -1766,11 +1662,11 @@ typedef union _hw_flexcan_esr
 
 /* --- Register HW_FLEXCAN_ESR, field TX_WRN[9] (RO)
  *
- * This bit indicates when repetitive errors are occurring during message transmission. {statement}
+ * This bit indicates when repetitive errors are occurring during message transmission.
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_can_error_multipleerrors}
- * 1 - TX_Err_Counter ℜ≥ 96 {flexcan2_ipi_slv_can_error_multipleerrors}
+ * 0 - No such occurrence
+ * 1 - TX_Err_Counter ℜ≥ 96
  */
 
 #define BP_FLEXCAN_ESR_TX_WRN      (9)      //!< Bit position for FLEXCAN_ESR_TX_WRN.
@@ -1782,11 +1678,11 @@ typedef union _hw_flexcan_esr
 
 /* --- Register HW_FLEXCAN_ESR, field STF_ERR[10] (RO)
  *
- * This bit indicates that a Stuffing Error has been detected. {flexcan2_ipi_slv_flex_reg_esr_error}
+ * This bit indicates that a Stuffing Error has been detected.
  *
  * Values:
- * 0 - No such occurrence. {flexcan2_ipi_slv_flex_reg_esr_error}
- * 1 - A Stuffing Error occurred since last read of this register. {flexcan2_ipi_slv_flex_reg_esr_error}
+ * 0 - No such occurrence.
+ * 1 - A Stuffing Error occurred since last read of this register.
  */
 
 #define BP_FLEXCAN_ESR_STF_ERR      (10)      //!< Bit position for FLEXCAN_ESR_STF_ERR.
@@ -1799,11 +1695,11 @@ typedef union _hw_flexcan_esr
 /* --- Register HW_FLEXCAN_ESR, field FRM_ERR[11] (RO)
  *
  * This bit indicates that a Form Error has been detected by the receiver node, that is, a fixed-
- * form bit field contains at least one illegal bit. {flexcan2_ipi_slv_flex_reg_esr_error}
+ * form bit field contains at least one illegal bit.
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_reg_esr_error}
- * 1 - A Form Error occurred since last read of this register {flexcan2_ipi_slv_flex_reg_esr_error}
+ * 0 - No such occurrence
+ * 1 - A Form Error occurred since last read of this register
  */
 
 #define BP_FLEXCAN_ESR_FRM_ERR      (11)      //!< Bit position for FLEXCAN_ESR_FRM_ERR.
@@ -1816,11 +1712,11 @@ typedef union _hw_flexcan_esr
 /* --- Register HW_FLEXCAN_ESR, field CRC_ERR[12] (RO)
  *
  * This bit indicates that a CRC Error has been detected by the receiver node, that is, the
- * calculated CRC is different from the received. {flexcan2_ipi_slv_flex_reg_esr_error}
+ * calculated CRC is different from the received.
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_reg_esr_error}
- * 1 - A CRC error occurred since last read of this register. {flexcan2_ipi_slv_flex_reg_esr_error}
+ * 0 - No such occurrence
+ * 1 - A CRC error occurred since last read of this register.
  */
 
 #define BP_FLEXCAN_ESR_CRC_ERR      (12)      //!< Bit position for FLEXCAN_ESR_CRC_ERR.
@@ -1833,11 +1729,11 @@ typedef union _hw_flexcan_esr
 /* --- Register HW_FLEXCAN_ESR, field ACK_ERR[13] (RO)
  *
  * This bit indicates that an Acknowledge Error has been detected by the transmitter node, that is,
- * a dominant bit has not been detected during the ACK SLOT {flexcan2_ipi_slv_flex_reg_esr_error} .
+ * a dominant bit has not been detected during the ACK SLOT.
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_reg_esr_error}
- * 1 - An ACK error occurred since last read of this register {flexcan2_ipi_slv_flex_reg_esr_error}
+ * 0 - No such occurrence
+ * 1 - An ACK error occurred since last read of this register
  */
 
 #define BP_FLEXCAN_ESR_ACK_ERR      (13)      //!< Bit position for FLEXCAN_ESR_ACK_ERR.
@@ -1850,11 +1746,11 @@ typedef union _hw_flexcan_esr
 /* --- Register HW_FLEXCAN_ESR, field BIT0_ERR[14] (RO)
  *
  * This bit indicates when an inconsistency occurs between the transmitted and the received bit in a
- * message. {flexcan2_ipi_slv_flex_reg_esr_error}
+ * message.
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_reg_esr_error}
- * 1 - At least one bit sent as dominant is received as recessive {flexcan2_ipi_slv_flex_reg_esr_error}
+ * 0 - No such occurrence
+ * 1 - At least one bit sent as dominant is received as recessive
  */
 
 #define BP_FLEXCAN_ESR_BIT0_ERR      (14)      //!< Bit position for FLEXCAN_ESR_BIT0_ERR.
@@ -1867,13 +1763,12 @@ typedef union _hw_flexcan_esr
 /* --- Register HW_FLEXCAN_ESR, field BIT1_ERR[15] (RO)
  *
  * This bit indicates when an inconsistency occurs between the transmitted and the received bit in a
- * message {flexcan2_ipi_slv_flex_reg_esr_error} . This bit is not set by a transmitter in case of
- * arbitration field or ACK slot, or in case of a node sending a passive error flag that detects
- * dominant bits. {flexcan2_ipi_slv_flex_reg_esr_error}
+ * message. This bit is not set by a transmitter in case of arbitration field or ACK slot, or in
+ * case of a node sending a passive error flag that detects dominant bits.
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_reg_esr_error}
- * 1 - At least one bit sent as recessive is received as dominant {flexcan2_ipi_slv_flex_reg_esr_error}
+ * 0 - No such occurrence
+ * 1 - At least one bit sent as recessive is received as dominant
  */
 
 #define BP_FLEXCAN_ESR_BIT1_ERR      (15)      //!< Bit position for FLEXCAN_ESR_BIT1_ERR.
@@ -1948,19 +1843,17 @@ typedef union _hw_flexcan_esr
  * Reset value: 0x00000000
  *
  * This register allows any number of a range of 32 Message Buffer Interrupts to be enabled or
- * disabled {flexcan2_ipi_slv_flex_mbuffer_int} . It contains one interrupt mask bit per buffer
- * enabling the ARM to determine which buffer generates an interrupt after a successful transmission
- * or reception {flexcan2_ipi_slv_flex_mbuffer_int} (that is, when the corresponding IFLAG2 bit is
- * set) {flexcan2_ipi_slv_flex_mbuffer_int} .  Setting or clearing a bit in the IMASK2 Register can
- * assert or negate an interrupt request if the corresponding IFLAG2 bit is set.
- * {flexcan2_ipi_slv_flex_mbuffer_int}
+ * disabled. It contains one interrupt mask bit per buffer enabling the ARM to determine which
+ * buffer generates an interrupt after a successful transmission or reception (that is, when the
+ * corresponding IFLAG2 bit is set).  Setting or clearing a bit in the IMASK2 Register can assert or
+ * negate an interrupt request if the corresponding IFLAG2 bit is set.
  */
 typedef union _hw_flexcan_imask2
 {
     reg32_t U;
     struct _hw_flexcan_imask2_bitfields
     {
-        unsigned BUF63M : 32; //!< [31:0] Each bit enables or disables the respective FLEXCAN Message Buffer (MB32 to MB63) Interrupt. {flexcan2_ipi_slv_flex_mbuffer_int}
+        unsigned BUF63M : 32; //!< [31:0] Each bit enables or disables the respective FLEXCAN Message Buffer (MB32 to MB63) Interrupt.
     } B;
 } hw_flexcan_imask2_t;
 #endif
@@ -1986,11 +1879,10 @@ typedef union _hw_flexcan_imask2
 /* --- Register HW_FLEXCAN_IMASK2, field BUF63M[31:0] (RW)
  *
  * Each bit enables or disables the respective FLEXCAN Message Buffer (MB32 to MB63) Interrupt.
- * {flexcan2_ipi_slv_flex_mbuffer_int}
  *
  * Values:
- * 0 - The corresponding buffer Interrupt is disabled {flexcan2_ipi_slv_flex_mbuffer_int}
- * 1 - The corresponding buffer Interrupt is enabled {flexcan2_ipi_slv_flex_mbuffer_int}
+ * 0 - The corresponding buffer Interrupt is disabled
+ * 1 - The corresponding buffer Interrupt is enabled
  */
 
 #define BP_FLEXCAN_IMASK2_BUF63M      (0)      //!< Bit position for FLEXCAN_IMASK2_BUF63M.
@@ -2019,19 +1911,17 @@ typedef union _hw_flexcan_imask2
  * Reset value: 0x00000000
  *
  * This register allows the enabling or disabling of any number of a range of 32 Message Buffer
- * Interrupts {flexcan2_ipi_slv_flex_mbuffer_int} . It contains one interrupt mask bit per buffer
- * enabling the ARM to determine which buffer generates an interrupt after a successful transmission
- * or reception {flexcan2_ipi_slv_flex_mbuffer_int} (that is, when the corresponding IFLAG1 bit is
- * set). {flexcan2_ipi_slv_flex_mbuffer_int}  Setting or clearing a bit in the IMASK1 Register can
- * assert or negate an interrupt request if the corresponding IFLAG1 bit is set.
- * {flexcan2_ipi_slv_flex_mbuffer_int}
+ * Interrupts. It contains one interrupt mask bit per buffer enabling the ARM to determine which
+ * buffer generates an interrupt after a successful transmission or reception (that is, when the
+ * corresponding IFLAG1 bit is set).  Setting or clearing a bit in the IMASK1 Register can assert or
+ * negate an interrupt request if the corresponding IFLAG1 bit is set.
  */
 typedef union _hw_flexcan_imask1
 {
     reg32_t U;
     struct _hw_flexcan_imask1_bitfields
     {
-        unsigned BUF31M_BUF0M : 32; //!< [31:0] Each bit enables or disables the respective FLEXCAN Message Buffer (MB0 to MB31) Interrupt. {flexcan2_ipi_slv_flex_mbuffer_int}
+        unsigned BUF31M_BUF0M : 32; //!< [31:0] Each bit enables or disables the respective FLEXCAN Message Buffer (MB0 to MB31) Interrupt.
     } B;
 } hw_flexcan_imask1_t;
 #endif
@@ -2057,11 +1947,10 @@ typedef union _hw_flexcan_imask1
 /* --- Register HW_FLEXCAN_IMASK1, field BUF31M_BUF0M[31:0] (RW)
  *
  * Each bit enables or disables the respective FLEXCAN Message Buffer (MB0 to MB31) Interrupt.
- * {flexcan2_ipi_slv_flex_mbuffer_int}
  *
  * Values:
- * 0 - The corresponding buffer Interrupt is disabled {flexcan2_ipi_slv_flex_mbuffer_int}
- * 1 - The corresponding buffer Interrupt is enabled {flexcan2_ipi_slv_flex_mbuffer_int}
+ * 0 - The corresponding buffer Interrupt is disabled
+ * 1 - The corresponding buffer Interrupt is enabled
  */
 
 #define BP_FLEXCAN_IMASK1_BUF31M_BUF0M      (0)      //!< Bit position for FLEXCAN_IMASK1_BUF31M_BUF0M.
@@ -2089,22 +1978,19 @@ typedef union _hw_flexcan_imask1
  *
  * Reset value: 0x00000000
  *
- * This register defines the flags for 32 Message Buffer interrupts
- * {flexcan2_ipi_slv_flex_mbuffer_int} . It contains one interrupt flag bit per buffer
- * {flexcan2_ipi_slv_flex_mbuffer_int} . Each successful transmission or reception sets the
- * corresponding IFLAG2 bit {flexcan2_ipi_slv_flex_mbuffer_int} . If the corresponding IMASK2 bit is
- * set, an interrupt will be generated. {flexcan2_ipi_slv_flex_mbuffer_int} The interrupt flag must
- * be cleared by writing it to 1 {flexcan2_ipi_slv_flex_mbuffer_int} . Writing 0 has no effect.
- * {flexcan2_ipi_slv_flex_mbuffer_int}  When the AEN bit in the MCR is set (Abort enabled), while
- * the IFLAG2 bit is set for a message buffer configured as Tx, the writing access done by ARM into
- * the corresponding message buffer will be blocked.
+ * This register defines the flags for 32 Message Buffer interrupts. It contains one interrupt flag
+ * bit per buffer. Each successful transmission or reception sets the corresponding IFLAG2 bit. If
+ * the corresponding IMASK2 bit is set, an interrupt will be generated. The interrupt flag must be
+ * cleared by writing it to 1. Writing 0 has no effect.  When the AEN bit in the MCR is set (Abort
+ * enabled), while the IFLAG2 bit is set for a message buffer configured as Tx, the writing access
+ * done by ARM into the corresponding message buffer will be blocked.
  */
 typedef union _hw_flexcan_iflag2
 {
     reg32_t U;
     struct _hw_flexcan_iflag2_bitfields
     {
-        unsigned BUF63I_BUF32I : 32; //!< [31:0] Each bit flags the respective FLEXCAN Message Buffer (MB32 to MB63) interrupt. {flexcan2_ipi_slv_flex_mbuffer_int}
+        unsigned BUF63I_BUF32I : 32; //!< [31:0] Each bit flags the respective FLEXCAN Message Buffer (MB32 to MB63) interrupt.
     } B;
 } hw_flexcan_iflag2_t;
 #endif
@@ -2130,12 +2016,10 @@ typedef union _hw_flexcan_iflag2
 /* --- Register HW_FLEXCAN_IFLAG2, field BUF63I_BUF32I[31:0] (RW)
  *
  * Each bit flags the respective FLEXCAN Message Buffer (MB32 to MB63) interrupt.
- * {flexcan2_ipi_slv_flex_mbuffer_int}
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_mbuffer_int}
+ * 0 - No such occurrence
  * 1 - The corresponding buffer has successfully completed transmission or reception
- *     {flexcan2_ipi_slv_flex_mbuffer_int}
  */
 
 #define BP_FLEXCAN_IFLAG2_BUF63I_BUF32I      (0)      //!< Bit position for FLEXCAN_IFLAG2_BUF63I_BUF32I.
@@ -2163,29 +2047,26 @@ typedef union _hw_flexcan_iflag2
  *
  * Reset value: 0x00000000
  *
- * This register defines the flags for 32 Message Buffer interrupts
- * {flexcan2_ipi_slv_flex_mbuffer_int} and FIFO interrupts. It contains one interrupt flag bit per
- * buffer {flexcan2_ipi_slv_flex_mbuffer_int} . Each successful transmission or reception sets the
- * corresponding IFLAG1 bit {flexcan2_ipi_slv_flex_mbuffer_int} . If the corresponding IMASK1 bit is
- * set, an interrupt will be generated. {flexcan2_ipi_slv_flex_mbuffer_int} The Interrupt flag must
- * be cleared by writing it to 1 {flexcan2_ipi_slv_flex_mbuffer_int} . Writing 0 has no effect.
- * {flexcan2_ipi_slv_flex_mbuffer_int}  When the AEN bit in the MCR is set (Abort enabled), while
- * the IFLAG1 bit is set for a message buffer configured as Tx, the writing access done by ARM into
- * the corresponding message buffer will be blocked.  When the FEN bit in the MCR is set (FIFO
- * enabled), the function of the 8 least significant interrupt flags (BUF7I - BUF0I) is changed to
- * support the FIFO operation. BUF7I, BUF6I and BUF5I indicate operating conditions of the FIFO,
- * while BUF4I to BUF0I are not used.
+ * This register defines the flags for 32 Message Buffer interrupts and FIFO interrupts. It contains
+ * one interrupt flag bit per buffer. Each successful transmission or reception sets the
+ * corresponding IFLAG1 bit . If the corresponding IMASK1 bit is set, an interrupt will be
+ * generated. The Interrupt flag must be cleared by writing it to 1. Writing 0 has no effect.  When
+ * the AEN bit in the MCR is set (Abort enabled), while the IFLAG1 bit is set for a message buffer
+ * configured as Tx, the writing access done by ARM into the corresponding message buffer will be
+ * blocked.  When the FEN bit in the MCR is set (FIFO enabled), the function of the 8 least
+ * significant interrupt flags (BUF7I - BUF0I) is changed to support the FIFO operation. BUF7I,
+ * BUF6I and BUF5I indicate operating conditions of the FIFO, while BUF4I to BUF0I are not used.
  */
 typedef union _hw_flexcan_iflag1
 {
     reg32_t U;
     struct _hw_flexcan_iflag1_bitfields
     {
-        unsigned BUF4I_BUF0I : 5; //!< [4:0] If the FIFO is not enabled, these bits flag the interrupts for MB0 to MB4. {flexcan2_ipi_slv_flex_mbuffer_int} If the FIFO is enabled, these flags are not used and must be considered as reserved locations.
-        unsigned BUF5I : 1; //!< [5] If the FIFO is not enabled, this bit flags the interrupt for MB5. {flexcan2_ipi_slv_flex_mbuffer_int} If the FIFO is enabled, this flag indicates that at least one frame is available to be read from the FIFO.
-        unsigned BUF6I : 1; //!< [6] If the FIFO is not enabled, this bit flags the interrupt for MB6. {flexcan2_ipi_slv_flex_mbuffer_int} If the FIFO is enabled, this flag indicates that 4 out of 6 buffers of the FIFO are already occupied (FIFO almost full).
-        unsigned BUF7I : 1; //!< [7] If the FIFO is not enabled, this bit flags the interrupt for MB7. {flexcan2_ipi_slv_flex_mbuffer_int} If the FIFO is enabled, this flag indicates an overflow condition in the FIFO (frame lost because FIFO is full).
-        unsigned BUF31I_BUF8I : 24; //!< [31:8] Each bit flags the respective FLEXCAN Message Buffer (MB8 to MB31) interrupt. {flexcan2_ipi_slv_flex_mbuffer_int}
+        unsigned BUF4I_BUF0I : 5; //!< [4:0] If the FIFO is not enabled, these bits flag the interrupts for MB0 to MB4.
+        unsigned BUF5I : 1; //!< [5] If the FIFO is not enabled, this bit flags the interrupt for MB5.
+        unsigned BUF6I : 1; //!< [6] If the FIFO is not enabled, this bit flags the interrupt for MB6.
+        unsigned BUF7I : 1; //!< [7] If the FIFO is not enabled, this bit flags the interrupt for MB7.
+        unsigned BUF31I_BUF8I : 24; //!< [31:8] Each bit flags the respective FLEXCAN Message Buffer (MB8 to MB31) interrupt.
     } B;
 } hw_flexcan_iflag1_t;
 #endif
@@ -2210,12 +2091,11 @@ typedef union _hw_flexcan_iflag1
 
 /* --- Register HW_FLEXCAN_IFLAG1, field BUF4I_BUF0I[4:0] (RW)
  *
- * If the FIFO is not enabled, these bits flag the interrupts for MB0 to MB4.
- * {flexcan2_ipi_slv_flex_mbuffer_int} If the FIFO is enabled, these flags are not used and must be
- * considered as reserved locations.
+ * If the FIFO is not enabled, these bits flag the interrupts for MB0 to MB4. If the FIFO is
+ * enabled, these flags are not used and must be considered as reserved locations.
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_mbuffer_int}
+ * 0 - No such occurrence
  * 1 - Corresponding message buffer completed transmission/reception
  */
 
@@ -2236,12 +2116,11 @@ typedef union _hw_flexcan_iflag1
 
 /* --- Register HW_FLEXCAN_IFLAG1, field BUF5I[5] (RW)
  *
- * If the FIFO is not enabled, this bit flags the interrupt for MB5.
- * {flexcan2_ipi_slv_flex_mbuffer_int} If the FIFO is enabled, this flag indicates that at least one
- * frame is available to be read from the FIFO.
+ * If the FIFO is not enabled, this bit flags the interrupt for MB5. If the FIFO is enabled, this
+ * flag indicates that at least one frame is available to be read from the FIFO.
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_mbuffer_int}
+ * 0 - No such occurrence
  * 1 - MB5 completed transmission/reception or frames available in the FIFO
  */
 
@@ -2262,12 +2141,11 @@ typedef union _hw_flexcan_iflag1
 
 /* --- Register HW_FLEXCAN_IFLAG1, field BUF6I[6] (RW)
  *
- * If the FIFO is not enabled, this bit flags the interrupt for MB6.
- * {flexcan2_ipi_slv_flex_mbuffer_int} If the FIFO is enabled, this flag indicates that 4 out of 6
- * buffers of the FIFO are already occupied (FIFO almost full).
+ * If the FIFO is not enabled, this bit flags the interrupt for MB6. If the FIFO is enabled, this
+ * flag indicates that 4 out of 6 buffers of the FIFO are already occupied (FIFO almost full).
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_mbuffer_int}
+ * 0 - No such occurrence
  * 1 - MB6 completed transmission/reception or FIFO almost full
  */
 
@@ -2288,13 +2166,12 @@ typedef union _hw_flexcan_iflag1
 
 /* --- Register HW_FLEXCAN_IFLAG1, field BUF7I[7] (RW)
  *
- * If the FIFO is not enabled, this bit flags the interrupt for MB7.
- * {flexcan2_ipi_slv_flex_mbuffer_int} If the FIFO is enabled, this flag indicates an overflow
- * condition in the FIFO (frame lost because FIFO is full).
+ * If the FIFO is not enabled, this bit flags the interrupt for MB7. If the FIFO is enabled, this
+ * flag indicates an overflow condition in the FIFO (frame lost because FIFO is full).
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_mbuffer_int}
- * 1 - MB7 completed transmission/reception or FIFO overflow {flexcan2_ipi_slv_flex_mbuffer_int}
+ * 0 - No such occurrence
+ * 1 - MB7 completed transmission/reception or FIFO overflow
  */
 
 #define BP_FLEXCAN_IFLAG1_BUF7I      (7)      //!< Bit position for FLEXCAN_IFLAG1_BUF7I.
@@ -2315,12 +2192,10 @@ typedef union _hw_flexcan_iflag1
 /* --- Register HW_FLEXCAN_IFLAG1, field BUF31I_BUF8I[31:8] (RW)
  *
  * Each bit flags the respective FLEXCAN Message Buffer (MB8 to MB31) interrupt.
- * {flexcan2_ipi_slv_flex_mbuffer_int}
  *
  * Values:
- * 0 - No such occurrence {flexcan2_ipi_slv_flex_mbuffer_int}
+ * 0 - No such occurrence
  * 1 - The corresponding message buffer has successfully completed transmission or reception
- *     {flexcan2_ipi_slv_flex_mbuffer_int}
  */
 
 #define BP_FLEXCAN_IFLAG1_BUF31I_BUF8I      (8)      //!< Bit position for FLEXCAN_IFLAG1_BUF31I_BUF8I.
@@ -2355,7 +2230,7 @@ typedef union _hw_flexcan_gfwr
     reg32_t U;
     struct _hw_flexcan_gfwr_bitfields
     {
-        unsigned GFWR : 8; //!< [7:0] It determines the Glitch Filter Width. The width will be divided from Oscillator clock by GFWR values. By default, it is 5.33us when the oscillator is 24MHz.
+        unsigned GFWR : 8; //!< [7:0] It determines the Glitch Filter Width.
         unsigned RESERVED0 : 24; //!< [31:8] Reserved
     } B;
 } hw_flexcan_gfwr_t;
@@ -2409,26 +2284,23 @@ typedef union _hw_flexcan_gfwr
  *
  * Reset value: 0x00000000
  *
- * These registers are used as acceptance masks for ID filtering in Rx message buffers
- * {flexcan2_ipi_slv_flex_ram_rximask} and the FIFO. If the FIFO is not enabled, one mask register
- * is provided for each available Message Buffer, providing ID masking capability on a per Message
- * Buffer basis {flexcan2_ipi_slv_flex_ram_rximask} . When the FIFO is enabled (FEN bit in MCR is
- * set), the first 8 Mask Registers apply to the 8 elements of the FIFO filter table (on a one-to-
- * one correspondence) while the rest of the registers apply to the regular message buffers starting
- * from MB8.  The Individual Rx Mask Registers are implemented in RAM so they are not affected by
- * reset and must be explicitly initialized prior to any reception {statement} . Furthermore, they
- * can only be accessed by the ARM while the block is in Freeze Mode
- * {flexcan2_ipi_slv_flex_ram_rximask_access} . Out of Freeze Mode, write accesses are blocked and
- * read accesses will return all zeros {flexcan2_ipi_slv_flex_ram_rximask_access} . Furthermore, if
- * the BCC bit in the MCR Register is negated, any read or write operation to these registers
- * results in access error {flexcan2_ipi_slv_flex_ram_rximask_access} .
+ * These registers are used as acceptance masks for ID filtering in Rx message buffers and the FIFO.
+ * If the FIFO is not enabled, one mask register is provided for each available Message Buffer,
+ * providing ID masking capability on a per Message Buffer basis. When the FIFO is enabled (FEN bit
+ * in MCR is set), the first 8 Mask Registers apply to the 8 elements of the FIFO filter table (on a
+ * one-to-one correspondence) while the rest of the registers apply to the regular message buffers
+ * starting from MB8.  The Individual Rx Mask Registers are implemented in RAM so they are not
+ * affected by reset and must be explicitly initialized prior to any reception. Furthermore, they
+ * can only be accessed by the ARM while the block is in Freeze Mode. Out of Freeze Mode, write
+ * accesses are blocked and read accesses will return all zeros. Furthermore, if the BCC bit in the
+ * MCR Register is negated, any read or write operation to these registers results in access error.
  */
 typedef union _hw_flexcan_rx0imr
 {
     reg32_t U;
     struct _hw_flexcan_rx0imr_bitfields
     {
-        unsigned MI31_MI0 : 32; //!< [31:0] For normal Rx message buffers, the mask bits affect the ID filter programmed on the message buffer. For the Rx FIFO, the mask bits affect all bits programmed in the filter table (ID, IDE, RTR) {flexcan2_ipi_slv_flex_reg_rxmask} .
+        unsigned MI31_MI0 : 32; //!< [31:0] For normal Rx message buffers, the mask bits affect the ID filter programmed on the message buffer.
     } B;
 } hw_flexcan_rx0imr_t;
 #endif
@@ -2455,7 +2327,7 @@ typedef union _hw_flexcan_rx0imr
  *
  * For normal Rx message buffers, the mask bits affect the ID filter programmed on the message
  * buffer. For the Rx FIFO, the mask bits affect all bits programmed in the filter table (ID, IDE,
- * RTR) {flexcan2_ipi_slv_flex_reg_rxmask} .
+ * RTR).
  *
  * Values:
  * 0 - the corresponding bit in the filter is dont care
@@ -2487,26 +2359,23 @@ typedef union _hw_flexcan_rx0imr
  *
  * Reset value: 0x00000000
  *
- * These registers are used as acceptance masks for ID filtering in Rx message buffers
- * {flexcan2_ipi_slv_flex_ram_rximask} and the FIFO. If the FIFO is not enabled, one mask register
- * is provided for each available Message Buffer, providing ID masking capability on a per Message
- * Buffer basis {flexcan2_ipi_slv_flex_ram_rximask} . When the FIFO is enabled (FEN bit in MCR is
- * set), the first 8 Mask Registers apply to the 8 elements of the FIFO filter table (on a one-to-
- * one correspondence) while the rest of the registers apply to the regular message buffers starting
- * from MB8.  The Individual Rx Mask Registers are implemented in RAM so they are not affected by
- * reset and must be explicitly initialized prior to any reception {statement} . Furthermore, they
- * can only be accessed by the ARM while the block is in Freeze Mode
- * {flexcan2_ipi_slv_flex_ram_rximask_access} . Out of Freeze Mode, write accesses are blocked and
- * read accesses will return all zeros {flexcan2_ipi_slv_flex_ram_rximask_access} . Furthermore, if
- * the BCC bit in the MCR Register is negated, any read or write operation to these registers
- * results in access error {flexcan2_ipi_slv_flex_ram_rximask_access} .
+ * These registers are used as acceptance masks for ID filtering in Rx message buffers and the FIFO.
+ * If the FIFO is not enabled, one mask register is provided for each available Message Buffer,
+ * providing ID masking capability on a per Message Buffer basis. When the FIFO is enabled (FEN bit
+ * in MCR is set), the first 8 Mask Registers apply to the 8 elements of the FIFO filter table (on a
+ * one-to-one correspondence) while the rest of the registers apply to the regular message buffers
+ * starting from MB8.  The Individual Rx Mask Registers are implemented in RAM so they are not
+ * affected by reset and must be explicitly initialized prior to any reception. Furthermore, they
+ * can only be accessed by the ARM while the block is in Freeze Mode. Out of Freeze Mode, write
+ * accesses are blocked and read accesses will return all zeros. Furthermore, if the BCC bit in the
+ * MCR Register is negated, any read or write operation to these registers results in access error.
  */
 typedef union _hw_flexcan_rx63imr
 {
     reg32_t U;
     struct _hw_flexcan_rx63imr_bitfields
     {
-        unsigned MI31_MI0 : 32; //!< [31:0] For normal Rx message buffers, the mask bits affect the ID filter programmed on the message buffer. For the Rx FIFO, the mask bits affect all bits programmed in the filter table (ID, IDE, RTR) {flexcan2_ipi_slv_flex_reg_rxmask} .
+        unsigned MI31_MI0 : 32; //!< [31:0] For normal Rx message buffers, the mask bits affect the ID filter programmed on the message buffer.
     } B;
 } hw_flexcan_rx63imr_t;
 #endif
@@ -2533,7 +2402,7 @@ typedef union _hw_flexcan_rx63imr
  *
  * For normal Rx message buffers, the mask bits affect the ID filter programmed on the message
  * buffer. For the Rx FIFO, the mask bits affect all bits programmed in the filter table (ID, IDE,
- * RTR) {flexcan2_ipi_slv_flex_reg_rxmask} .
+ * RTR).
  *
  * Values:
  * 0 - the corresponding bit in the filter is dont care

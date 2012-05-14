@@ -32,16 +32,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_PMU_REG_1P1 - Regulator 1P1 Register
@@ -65,12 +55,12 @@ typedef union _hw_pmu_reg_1p1
         unsigned ENABLE_BO : 1; //!< [1] Control bit to enable the brown-out circuitry in the regulator.
         unsigned ENABLE_ILIMIT : 1; //!< [2] Control bit to enable the current-limit circuitry in the regulator.
         unsigned ENABLE_PULLDOWN : 1; //!< [3] Control bit to enable the pull-down circuitry in the regulator
-        unsigned BO_OFFSET : 3; //!< [6:4] Control bits to adjust the regulator brown-out offset voltage in 25mV steps. The reset brown-offset is 175mV below the programmed target code. Brown-out target = OUTPUT_TRG - BO_OFFSET. Not all steps will make sense to use either because of input supply limitations or load operation.
+        unsigned BO_OFFSET : 3; //!< [6:4] Control bits to adjust the regulator brown-out offset voltage in 25mV steps.
         unsigned RESERVED0 : 1; //!< [7] Reserved.
-        unsigned OUTPUT_TRG : 5; //!< [12:8] Control bits to adjust the regulator output voltage. Each LSB is worth 25mV. Programming examples are detailed below. Other output target voltages may be interpolated from these examples. Choices must be in this range: 0x1b >= output_trg >= 0x04 There may be reduced chip functionality or reliability at the extremes of the programming range.
+        unsigned OUTPUT_TRG : 5; //!< [12:8] Control bits to adjust the regulator output voltage.
         unsigned RESERVED1 : 3; //!< [15:13] Reserved.
         unsigned BO_VDD1P1 : 1; //!< [16] Status bit that signals when a brown-out is detected on the regulator output.
-        unsigned OK_VDD1P1 : 1; //!< [17] Status bit that signals when the regulator output is ok. 1 = regulator output > brownout target
+        unsigned OK_VDD1P1 : 1; //!< [17] Status bit that signals when the regulator output is ok.
         unsigned RESERVED2 : 14; //!< [31:18] Reserved.
     } B;
 } hw_pmu_reg_1p1_t;
@@ -263,12 +253,12 @@ typedef union _hw_pmu_reg_3p0
         unsigned ENABLE_BO : 1; //!< [1] Control bit to enable the brown-out circuitry in the regulator.
         unsigned ENABLE_ILIMIT : 1; //!< [2] Control bit to enable the current-limit circuitry in the regulator.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned BO_OFFSET : 3; //!< [6:4] Control bits to adjust the regulator brown-out offset voltage in 25mV steps. The reset brown-offset is 175mV below the programmed target code. Brown-out target = OUTPUT_TRG - BO_OFFSET. Not all steps will make sense to use either because of input supply limitations or load operation.
-        unsigned VBUS_SEL : 1; //!< [7] Select input voltage source for LDO_3P0 from either USB OTG1 or USB OTG2. If only one of the two VBUS voltages is present, it will automatically be selected.
-        unsigned OUTPUT_TRG : 5; //!< [12:8] Control bits to adjust the regulator output voltage. Each LSB is worth 25mV. Programming examples are detailed below. Other output target voltages may be interpolated from these examples. There may be reduced chip functionality or reliability at the extremes of the programming range.
+        unsigned BO_OFFSET : 3; //!< [6:4] Control bits to adjust the regulator brown-out offset voltage in 25mV steps.
+        unsigned VBUS_SEL : 1; //!< [7] Select input voltage source for LDO_3P0 from either USB OTG1 or USB OTG2.
+        unsigned OUTPUT_TRG : 5; //!< [12:8] Control bits to adjust the regulator output voltage.
         unsigned RESERVED1 : 3; //!< [15:13] Reserved.
         unsigned BO_VDD3P0 : 1; //!< [16] Status bit that signals when a brown-out is detected on the regulator output.
-        unsigned OK_VDD3P0 : 1; //!< [17] Status bit that signals when the regulator output is ok. 1 = regulator output > brownout target
+        unsigned OK_VDD3P0 : 1; //!< [17] Status bit that signals when the regulator output is ok.
         unsigned RESERVED2 : 14; //!< [31:18] Reserved.
     } B;
 } hw_pmu_reg_3p0_t;
@@ -454,7 +444,7 @@ typedef union _hw_pmu_reg_3p0
 /*!
  * @brief HW_PMU_REG_2P5 - Regulator 2P5 Register (RW)
  *
- * Reset value: 0x00004211
+ * Reset value: 0x00005071
  *
  * This register defines the control and status bits for the 2.5V regulator.
  */
@@ -467,13 +457,13 @@ typedef union _hw_pmu_reg_2p5
         unsigned ENABLE_BO : 1; //!< [1] Control bit to enable the brown-out circuitry in the regulator.
         unsigned ENABLE_ILIMIT : 1; //!< [2] Control bit to enable the current-limit circuitry in the regulator.
         unsigned ENABLE_PULLDOWN : 1; //!< [3] Control bit to enable the pull-down circuitry in the regulator
-        unsigned BO_OFFSET : 3; //!< [6:4] Control bits to adjust the regulator brown-out offset voltage in 25mV steps. The reset brown-offset is 175mV below the programmed target code. Brown-out target = OUTPUT_TRG - BO_OFFSET. Not all steps will make sense to use either because of input supply limitations or load operation.
+        unsigned BO_OFFSET : 3; //!< [6:4] Control bits to adjust the regulator brown-out offset voltage in 25mV steps.
         unsigned RESERVED0 : 1; //!< [7] Reserved.
-        unsigned OUTPUT_TRG : 5; //!< [12:8] Control bits to adjust the regulator output voltage. Each LSB is worth 25mV. Programming examples are detailed below. Other output target voltages may be interpolated from these examples. There may be reduced chip functionality or reliability at the extremes of the programming range.
+        unsigned OUTPUT_TRG : 5; //!< [12:8] Control bits to adjust the regulator output voltage.
         unsigned RESERVED1 : 3; //!< [15:13] Reserved.
         unsigned BO_VDD2P5 : 1; //!< [16] Status bit that signals when a brown-out is detected on the regulator output.
-        unsigned OK_VDD2P5 : 1; //!< [17] Status bit that signals when the regulator output is ok. 1 = regulator output > brownout target
-        unsigned ENABLE_WEAK_LINREG : 1; //!< [18] Enables the weak 2p5 regulator. This low power regulator is used when the main 2p5 regulator is disabled to keep the 2.5V output roughly at 2.5V. Scales directly with the value of VDDHIGH_IN.
+        unsigned OK_VDD2P5 : 1; //!< [17] Status bit that signals when the regulator output is ok.
+        unsigned ENABLE_WEAK_LINREG : 1; //!< [18] Enables the weak 2p5 regulator.
         unsigned RESERVED2 : 13; //!< [31:19] Reserved.
     } B;
 } hw_pmu_reg_2p5_t;
@@ -680,14 +670,14 @@ typedef union _hw_pmu_reg_core
     reg32_t U;
     struct _hw_pmu_reg_core_bitfields
     {
-        unsigned REG0_TRIG : 5; //!< [4:0] This bitfield defines the target voltage for the arm core power domain. Single bit increments reflect 25mV core voltage steps. Not all steps will make sense to use either because of input supply limitations or load operation.
-        unsigned REG0_ADJ : 4; //!< [8:5] This bitfield defines the adjustment bits to calibrate the target value of REG1 (ARM_CORE). The adjustment is applied on top of any adjustment applied to the global reference in the MISC0 Register.
-        unsigned REG1_TRIG : 5; //!< [13:9] This bitfield defines the target voltage for the VPU/GPU power domain. Single bit increments reflect 25mV core voltage steps. Not all steps will make sense to use either because of input supply limitations or load operation.
-        unsigned REG1_ADJ : 4; //!< [17:14] This bitfield defines the adjustment bits to calibrate the target value of REG1 (REG_PU). The adjustment is applied on top of any adjustment applied to the global reference in the MISC0 Register.
-        unsigned REG2_TRIG : 5; //!< [22:18] This bitfield defines the target voltage for the SOC power domain. Single bit increments reflect 25mV core voltage steps. Not all steps will make sense to use either because of input supply limitations or load operation.
-        unsigned REG2_ADJ : 4; //!< [26:23] This bitfield defines the adjustment bits to calibrate the target value of REG2 (REG_SOC). The adjustment is applied on top of any adjustment applied to the global reference in the MISC0 Register.
+        unsigned REG0_TARG : 5; //!< [4:0] This bitfield defines the target voltage for the arm core power domain.
+        unsigned REG0_ADJ : 4; //!< [8:5] This bitfield defines the adjustment bits to calibrate the target value of REG1 (ARM_CORE).
+        unsigned REG1_TARG : 5; //!< [13:9] This bitfield defines the target voltage for the VPU/GPU power domain.
+        unsigned REG1_ADJ : 4; //!< [17:14] This bitfield defines the adjustment bits to calibrate the target value of REG1 (REG_PU).
+        unsigned REG2_TARG : 5; //!< [22:18] This bitfield defines the target voltage for the SOC power domain.
+        unsigned REG2_ADJ : 4; //!< [26:23] This bitfield defines the adjustment bits to calibrate the target value of REG2 (REG_SOC).
         unsigned RESERVED0 : 2; //!< [28:27] Reserved
-        unsigned FET_ODRIVE : 1; //!< [29] If set, increases the gate drive on power gating fets to reduce leakage in the off state. Care must be taken to only apply this bit when the input supply voltage to the power fet is less than 1.1V. This bit should only be used in low power modes where the external input supply voltage is nominally 0.9V.
+        unsigned FET_ODRIVE : 1; //!< [29] If set, increases the gate drive on power gating fets to reduce leakage in the off state.
         unsigned RESERVED1 : 2; //!< [31:30] Reserved.
     } B;
 } hw_pmu_reg_core_t;
@@ -711,7 +701,7 @@ typedef union _hw_pmu_reg_core
  * constants & macros for individual PMU_REG_CORE bitfields
  */
 
-/* --- Register HW_PMU_REG_CORE, field REG0_TRIG[4:0] (RW)
+/* --- Register HW_PMU_REG_CORE, field REG0_TARG[4:0] (RW)
  *
  * This bitfield defines the target voltage for the arm core power domain. Single bit increments
  * reflect 25mV core voltage steps. Not all steps will make sense to use either because of input
@@ -725,18 +715,18 @@ typedef union _hw_pmu_reg_core
  * 11111 - Power FET switched full on. No regulation.
  */
 
-#define BP_PMU_REG_CORE_REG0_TRIG      (0)      //!< Bit position for PMU_REG_CORE_REG0_TRIG.
-#define BM_PMU_REG_CORE_REG0_TRIG      (0x0000001f)  //!< Bit mask for PMU_REG_CORE_REG0_TRIG.
+#define BP_PMU_REG_CORE_REG0_TARG      (0)      //!< Bit position for PMU_REG_CORE_REG0_TARG.
+#define BM_PMU_REG_CORE_REG0_TARG      (0x0000001f)  //!< Bit mask for PMU_REG_CORE_REG0_TARG.
 
-//! @brief Get value of PMU_REG_CORE_REG0_TRIG from a register value.
-#define BG_PMU_REG_CORE_REG0_TRIG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_REG_CORE_REG0_TRIG) >> BP_PMU_REG_CORE_REG0_TRIG)
+//! @brief Get value of PMU_REG_CORE_REG0_TARG from a register value.
+#define BG_PMU_REG_CORE_REG0_TARG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_REG_CORE_REG0_TARG) >> BP_PMU_REG_CORE_REG0_TARG)
 
-//! @brief Format value for bitfield PMU_REG_CORE_REG0_TRIG.
-#define BF_PMU_REG_CORE_REG0_TRIG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_REG_CORE_REG0_TRIG) & BM_PMU_REG_CORE_REG0_TRIG)
+//! @brief Format value for bitfield PMU_REG_CORE_REG0_TARG.
+#define BF_PMU_REG_CORE_REG0_TARG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_REG_CORE_REG0_TARG) & BM_PMU_REG_CORE_REG0_TARG)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the REG0_TRIG field to a new value.
-#define BW_PMU_REG_CORE_REG0_TRIG(v)   (HW_PMU_REG_CORE_WR((HW_PMU_REG_CORE_RD() & ~BM_PMU_REG_CORE_REG0_TRIG) | BF_PMU_REG_CORE_REG0_TRIG(v)))
+//! @brief Set the REG0_TARG field to a new value.
+#define BW_PMU_REG_CORE_REG0_TARG(v)   (HW_PMU_REG_CORE_WR((HW_PMU_REG_CORE_RD() & ~BM_PMU_REG_CORE_REG0_TARG) | BF_PMU_REG_CORE_REG0_TARG(v)))
 #endif
 
 
@@ -780,7 +770,7 @@ typedef union _hw_pmu_reg_core
 #endif
 
 
-/* --- Register HW_PMU_REG_CORE, field REG1_TRIG[13:9] (RW)
+/* --- Register HW_PMU_REG_CORE, field REG1_TARG[13:9] (RW)
  *
  * This bitfield defines the target voltage for the VPU/GPU power domain. Single bit increments
  * reflect 25mV core voltage steps. Not all steps will make sense to use either because of input
@@ -794,18 +784,18 @@ typedef union _hw_pmu_reg_core
  * 11111 - Power FET switched full on. No regulation.
  */
 
-#define BP_PMU_REG_CORE_REG1_TRIG      (9)      //!< Bit position for PMU_REG_CORE_REG1_TRIG.
-#define BM_PMU_REG_CORE_REG1_TRIG      (0x00003e00)  //!< Bit mask for PMU_REG_CORE_REG1_TRIG.
+#define BP_PMU_REG_CORE_REG1_TARG      (9)      //!< Bit position for PMU_REG_CORE_REG1_TARG.
+#define BM_PMU_REG_CORE_REG1_TARG      (0x00003e00)  //!< Bit mask for PMU_REG_CORE_REG1_TARG.
 
-//! @brief Get value of PMU_REG_CORE_REG1_TRIG from a register value.
-#define BG_PMU_REG_CORE_REG1_TRIG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_REG_CORE_REG1_TRIG) >> BP_PMU_REG_CORE_REG1_TRIG)
+//! @brief Get value of PMU_REG_CORE_REG1_TARG from a register value.
+#define BG_PMU_REG_CORE_REG1_TARG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_REG_CORE_REG1_TARG) >> BP_PMU_REG_CORE_REG1_TARG)
 
-//! @brief Format value for bitfield PMU_REG_CORE_REG1_TRIG.
-#define BF_PMU_REG_CORE_REG1_TRIG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_REG_CORE_REG1_TRIG) & BM_PMU_REG_CORE_REG1_TRIG)
+//! @brief Format value for bitfield PMU_REG_CORE_REG1_TARG.
+#define BF_PMU_REG_CORE_REG1_TARG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_REG_CORE_REG1_TARG) & BM_PMU_REG_CORE_REG1_TARG)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the REG1_TRIG field to a new value.
-#define BW_PMU_REG_CORE_REG1_TRIG(v)   (HW_PMU_REG_CORE_WR((HW_PMU_REG_CORE_RD() & ~BM_PMU_REG_CORE_REG1_TRIG) | BF_PMU_REG_CORE_REG1_TRIG(v)))
+//! @brief Set the REG1_TARG field to a new value.
+#define BW_PMU_REG_CORE_REG1_TARG(v)   (HW_PMU_REG_CORE_WR((HW_PMU_REG_CORE_RD() & ~BM_PMU_REG_CORE_REG1_TARG) | BF_PMU_REG_CORE_REG1_TARG(v)))
 #endif
 
 
@@ -849,7 +839,7 @@ typedef union _hw_pmu_reg_core
 #endif
 
 
-/* --- Register HW_PMU_REG_CORE, field REG2_TRIG[22:18] (RW)
+/* --- Register HW_PMU_REG_CORE, field REG2_TARG[22:18] (RW)
  *
  * This bitfield defines the target voltage for the SOC power domain. Single bit increments reflect
  * 25mV core voltage steps. Not all steps will make sense to use either because of input supply
@@ -863,18 +853,18 @@ typedef union _hw_pmu_reg_core
  * 11111 - Power FET switched full on. No regulation.
  */
 
-#define BP_PMU_REG_CORE_REG2_TRIG      (18)      //!< Bit position for PMU_REG_CORE_REG2_TRIG.
-#define BM_PMU_REG_CORE_REG2_TRIG      (0x007c0000)  //!< Bit mask for PMU_REG_CORE_REG2_TRIG.
+#define BP_PMU_REG_CORE_REG2_TARG      (18)      //!< Bit position for PMU_REG_CORE_REG2_TARG.
+#define BM_PMU_REG_CORE_REG2_TARG      (0x007c0000)  //!< Bit mask for PMU_REG_CORE_REG2_TARG.
 
-//! @brief Get value of PMU_REG_CORE_REG2_TRIG from a register value.
-#define BG_PMU_REG_CORE_REG2_TRIG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_REG_CORE_REG2_TRIG) >> BP_PMU_REG_CORE_REG2_TRIG)
+//! @brief Get value of PMU_REG_CORE_REG2_TARG from a register value.
+#define BG_PMU_REG_CORE_REG2_TARG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_REG_CORE_REG2_TARG) >> BP_PMU_REG_CORE_REG2_TARG)
 
-//! @brief Format value for bitfield PMU_REG_CORE_REG2_TRIG.
-#define BF_PMU_REG_CORE_REG2_TRIG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_REG_CORE_REG2_TRIG) & BM_PMU_REG_CORE_REG2_TRIG)
+//! @brief Format value for bitfield PMU_REG_CORE_REG2_TARG.
+#define BF_PMU_REG_CORE_REG2_TARG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_PMU_REG_CORE_REG2_TARG) & BM_PMU_REG_CORE_REG2_TARG)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the REG2_TRIG field to a new value.
-#define BW_PMU_REG_CORE_REG2_TRIG(v)   (HW_PMU_REG_CORE_WR((HW_PMU_REG_CORE_RD() & ~BM_PMU_REG_CORE_REG2_TRIG) | BF_PMU_REG_CORE_REG2_TRIG(v)))
+//! @brief Set the REG2_TARG field to a new value.
+#define BW_PMU_REG_CORE_REG2_TARG(v)   (HW_PMU_REG_CORE_WR((HW_PMU_REG_CORE_RD() & ~BM_PMU_REG_CORE_REG2_TARG) | BF_PMU_REG_CORE_REG2_TARG(v)))
 #endif
 
 
@@ -957,21 +947,21 @@ typedef union _hw_pmu_misc0
     reg32_t U;
     struct _hw_pmu_misc0_bitfields
     {
-        unsigned REFTOP_PWD : 1; //!< [0] Control bit to power-down the analog bandgap reference circuitry. A note of caution, the bandgap is necessary for correct operation of most of the LDO, pll, and other analog functions on the die.
+        unsigned REFTOP_PWD : 1; //!< [0] Control bit to power-down the analog bandgap reference circuitry.
         unsigned RESERVED0 : 2; //!< [2:1] Reserved
-        unsigned REFTOP_SELFBIASOFF : 1; //!< [3] Control bit to disable the self-bias circuit in the analog bandgap. The self-bias circuit is used by the bandgap during startup. This bit should be set after the bandgap has stabilized and is necessary for best noise performance of analog blocks using the outputs of the bandgap. Value should be returned to zero before removing vddhigh_in or asserting bit 0 of this register (REFTOP_PWD) to assure proper restart of the circuit.
+        unsigned REFTOP_SELFBIASOFF : 1; //!< [3] Control bit to disable the self-bias circuit in the analog bandgap.
         unsigned REFTOP_VBGADJ : 3; //!< [6:4] 
-        unsigned REFTOP_VBGUP : 1; //!< [7] Status bit which signals that the analog bandgap voltage is up and stable. 1 - Stable.
+        unsigned REFTOP_VBGUP : 1; //!< [7] Status bit which signals that the analog bandgap voltage is up and stable.
         unsigned RESERVED1 : 4; //!< [11:8] Reserved
         unsigned STOP_MODE_CONFIG : 1; //!< [12] Configure the analog behavior in stop mode.
         unsigned RESERVED2 : 1; //!< [13] Reserved
-        unsigned OSC_I : 2; //!< [15:14] This bit field determines the bias current in the 24MHz oscillator. The idea is to start up with the highest bias current which can be decreased after startup if determined to be acceptable. Not related to PMU.
-        unsigned OSC_XTALOK : 1; //!< [16] Status bit which signals that the output of the 24MHz crystal oscillator is stable. Generated from a timer and active detection of the actual frequency. Not related to PMU, Clocking content.
-        unsigned OSC_XTALOK_EN : 1; //!< [17] This bit is asserted when the 24MHz oscillator is close to its operating frequency. Not related to PMU, Clocking content
+        unsigned OSC_I : 2; //!< [15:14] This bit field determines the bias current in the 24MHz oscillator.
+        unsigned OSC_XTALOK : 1; //!< [16] Status bit which signals that the output of the 24MHz crystal oscillator is stable.
+        unsigned OSC_XTALOK_EN : 1; //!< [17] This bit is asserted when the 24MHz oscillator is close to its operating frequency.
         unsigned WBCP_VPW_THRESH : 2; //!< [19:18] This signal alters the voltage that the pwell is charged pumped to.
-        unsigned RESERVED3 : 5; //!< [24:20] Reserved. Always set to zero.
-        unsigned CLKGATE_CTRL : 1; //!< [25] This bit allows disabling the clock gate (always un-gated) for the xtal 24MHz clock that clocks the digital logic in the analog block. Do not change the field during a low power event. This is not a field that the user would normally need to modify Not related to PMU.
-        unsigned CLKGATE_DELAY : 3; //!< [28:26] This field specifies the delay between powering up the XTAL 24MHz clock and release the clock to the digital logic inside the analog block. Do not change the field during a low power event. This is not a field that the user would normally need to modify Not related to PMU.
+        unsigned RESERVED3 : 5; //!< [24:20] Reserved.
+        unsigned CLKGATE_CTRL : 1; //!< [25] This bit allows disabling the clock gate (always un-gated) for the xtal 24MHz clock that clocks the digital logic in the analog block.
+        unsigned CLKGATE_DELAY : 3; //!< [28:26] This field specifies the delay between powering up the XTAL 24MHz clock and release the clock to the digital logic inside the analog block.
         unsigned RESERVED4 : 3; //!< [31:29] Reserved
     } B;
 } hw_pmu_misc0_t;
@@ -1284,23 +1274,23 @@ typedef union _hw_pmu_misc0
  * Reset value: 0x00000000
  *
  * This register defines the control and status bits for miscellaneous analog blocks. The lvds1 and
- * lvds2 controls below control the behavior of the anaclk1/1b and anaclk2/2b lvds IO's.  lvds IO.
+ * lvds2 controls below control the behavior of the anaclk1/1b and anaclk2/2b lvds IO's.
  */
 typedef union _hw_pmu_misc1
 {
     reg32_t U;
     struct _hw_pmu_misc1_bitfields
     {
-        unsigned LVDS1_CLK_SEL : 5; //!< [4:0] This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
-        unsigned LVDS2_CLK_SEL : 5; //!< [9:5] This field selects the clk to be routed to anaclk2/2b. Not related to PMU.
-        unsigned LVDSCLK1_OBEN : 1; //!< [10] This enables the lvds output buffer for anaclk1/1b. Do not enable input and output buffers simutaneously. Not related to PMU, clocking content.
-        unsigned LVDSCLK2_OBEN : 1; //!< [11] This enables the lvds output buffer for anaclk2/2b. Do not enable input and output buffers simutaneously. Not related to PMU.
-        unsigned LVDSCLK1_IBEN : 1; //!< [12] This enables the lvds input buffer for anaclk1/1b. Do not enable input and output buffers simutaneously. Not related to PMU, Clocking content.
-        unsigned LVDSCLK2_IBEN : 1; //!< [13] This enables the lvds input buffer for anaclk2/2b. Do not enable input and output buffers simutaneously. Not related to PMU.
+        unsigned LVDS1_CLK_SEL : 5; //!< [4:0] This field selects the clk to be routed to anaclk2/2b.
+        unsigned LVDS2_CLK_SEL : 5; //!< [9:5] This field selects the clk to be routed to anaclk2/2b.
+        unsigned LVDSCLK1_OBEN : 1; //!< [10] This enables the lvds output buffer for anaclk1/1b.
+        unsigned LVDSCLK2_OBEN : 1; //!< [11] This enables the lvds output buffer for anaclk2/2b.
+        unsigned LVDSCLK1_IBEN : 1; //!< [12] This enables the lvds input buffer for anaclk1/1b.
+        unsigned LVDSCLK2_IBEN : 1; //!< [13] This enables the lvds input buffer for anaclk2/2b.
         unsigned RESERVED0 : 15; //!< [28:14] Reserved
-        unsigned IRQ_TEMPSENSE : 1; //!< [29] This status bit is set to one when when the temperature sensor interrupt asserts. Not related to PMU, Temperature Monitor content.
-        unsigned IRQ_ANA_BO : 1; //!< [30] This status bit is set to one when when any of the analog regulator brownout interrupts assert. Check the regulator status bits to discover which regulator interrupt asserted.
-        unsigned IRQ_DIG_BO : 1; //!< [31] This status bit is set to one when when any of the digital regulator brownout interrupts assert. Check the regulator status bits to discover which regulator interrupt asserted.
+        unsigned IRQ_TEMPSENSE : 1; //!< [29] This status bit is set to one when when the temperature sensor interrupt asserts.
+        unsigned IRQ_ANA_BO : 1; //!< [30] This status bit is set to one when when any of the analog regulator brownout interrupts assert.
+        unsigned IRQ_DIG_BO : 1; //!< [31] This status bit is set to one when when any of the digital regulator brownout interrupts assert.
     } B;
 } hw_pmu_misc1_t;
 #endif
@@ -1614,27 +1604,27 @@ typedef union _hw_pmu_misc2
     reg32_t U;
     struct _hw_pmu_misc2_bitfields
     {
-        unsigned REG0_BO_OFFSET : 3; //!< [2:0] This bit field defines the brown out voltage offset for the CORE power domain. IRQ_DIG_BO is also asserted. Single bit increments reflect 25mV brownout voltage steps. Not all steps will make sense to use either because of input supply limitations or load operation.
+        unsigned REG0_BO_OFFSET : 3; //!< [2:0] This bit field defines the brown out voltage offset for the CORE power domain.
         unsigned REG0_BO_STATUS : 1; //!< [3] Reg0 brownout status bit.
         unsigned RESERVED0 : 1; //!< [4] Reserved.
         unsigned REG0_ENABLE_BO : 1; //!< [5] Enables the brownout detection.
         unsigned RESERVED1 : 1; //!< [6] Reserved
-        unsigned PLL3_DISABLE : 1; //!< [7] Default value of "0". Should be set to "1" to turn off the USB-PLL(PLL3) in run mode.
-        unsigned REG1_BO_OFFSET : 3; //!< [10:8] This bit field defines the brown out voltage offset for the xPU power domain. IRQ_DIG_BO is also asserted. Single bit increments reflect 25mV brownout voltage steps. The reset brown-offset is 175mV below the programmed target code. Brown-out target = OUTPUT_TRG - BO_OFFSET Not all steps will make sense to use either because of input supply limitations or load operation.
+        unsigned PLL3_DISABLE : 1; //!< [7] Default value of "0".
+        unsigned REG1_BO_OFFSET : 3; //!< [10:8] This bit field defines the brown out voltage offset for the xPU power domain.
         unsigned REG1_BO_STATUS : 1; //!< [11] Reg1 brownout status bit.
         unsigned RESERVED2 : 1; //!< [12] Reserved.
         unsigned REG1_ENABLE_BO : 1; //!< [13] Enables the brownout detection.
         unsigned RESERVED3 : 2; //!< [15:14] Reserved.
-        unsigned REG2_BO_OFFSET : 3; //!< [18:16] This bit field defines the brown out voltage offset for the xPU power domain. IRQ_DIG_BO is also asserted. Single bit increments reflect 25mV brownout voltage steps. The reset brown-offset is 175mV below the programmed target code. Brown-out target = OUTPUT_TRG - BO_OFFSET Not all steps will make sense to use either because of input supply limitations or load operation.
+        unsigned REG2_BO_OFFSET : 3; //!< [18:16] This bit field defines the brown out voltage offset for the xPU power domain.
         unsigned REG2_BO_STATUS : 1; //!< [19] Reg2 brownout status bit.
         unsigned RESERVED4 : 1; //!< [20] Reserved.
         unsigned REG2_ENABLE_BO : 1; //!< [21] Enables the brownout detection.
-        unsigned REG2_OK : 1; //!< [22] Signals that the voltage is above the brownout level for the SOC supply. 1 = regulator output > brownout_target
+        unsigned REG2_OK : 1; //!< [22] Signals that the voltage is above the brownout level for the SOC supply.
         unsigned RESERVED5 : 1; //!< [23] Reserved
         unsigned REG0_STEP_TIME : 2; //!< [25:24] Number of clock periods (24MHz clock).
         unsigned REG1_STEP_TIME : 2; //!< [27:26] Number of clock periods (24MHz clock).
         unsigned REG2_STEP_TIME : 2; //!< [29:28] Number of clock periods (24MHz clock).
-        unsigned VIDEO_DIV : 2; //!< [31:30] Post-divider for video PLL. The output clock of the video PLL should be gated prior to changing this divider to prevent glitches.
+        unsigned VIDEO_DIV : 2; //!< [31:30] Post-divider for video PLL.
     } B;
 } hw_pmu_misc2_t;
 #endif

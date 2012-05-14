@@ -163,16 +163,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_OCOTP_CTRL - OTP Controller Control Register
@@ -197,15 +187,15 @@ typedef union _hw_ocotp_ctrl
     reg32_t U;
     struct _hw_ocotp_ctrl_bitfields
     {
-        unsigned ADDR : 7; //!< [6:0] OTP write and read access address register. Specifies one of 128 word address locations (0x00 - 0x7f). If a valid access is accepted by the controller, the controller makes an internal copy of this value. This internal copy will not update until the access is complete.
+        unsigned ADDR : 7; //!< [6:0] OTP write and read access address register.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned BUSY : 1; //!< [8] OTP controller status bit. When active, no new write access or read access to OTP(including RELOAD_SHADOWS) can be performed. Cleared by controller when access complete. After reset (or after setting RELOAD_SHADOWS), this bit is set by the controller until the HW/SW and LOCK registers are successfully copied, after which time it is automatically cleared by the controller.
-        unsigned ERROR : 1; //!< [9] Set by the controller when an access to a locked region(OTP or shadow register) is requested. Must be cleared before any further access can be performed. This bit can only be set by the controller. This bit is also set if the Pin interface is active and software requests an access to the OTP. In this instance, the ERROR bit cannot be cleared until the Pin interface access has completed. Reset this bit by writing a one to the SCT clear address space and not by a general write.
-        unsigned RELOAD_SHADOWS : 1; //!< [10] Set to force re-loading the shadow registers (HW/SW capability and LOCK). This operation will automatically set BUSY. Once the shadow registers have been re-loaded, BUSY and RELOAD_SHADOWS are automatically cleared by the controller.
+        unsigned BUSY : 1; //!< [8] OTP controller status bit.
+        unsigned ERROR : 1; //!< [9] Set by the controller when an access to a locked region(OTP or shadow register) is requested.
+        unsigned RELOAD_SHADOWS : 1; //!< [10] Set to force re-loading the shadow registers (HW/SW capability and LOCK).
         unsigned CRC_TEST : 1; //!< [11] Set to calculate CRC according to start address and end address in CRC_ADDR register.And compare with CRC fuse word according CRC address in CRC_ADDR register to generate CRC_FAIL flag
         unsigned CRC_FAIL : 1; //!< [12] Set by controller when calculated CRC value is not equal to appointed CRC fuse word
         unsigned RESERVED1 : 3; //!< [15:13] Reserved
-        unsigned WR_UNLOCK : 16; //!< [31:16] Write 0x3E77 to enable OTP write accesses. NOTE: This register must be unlocked on a write-by-write basis (a write is initiated when HW_OCOTP_DATA is written), so the UNLOCK bitfield must contain the correct key value during all writes to HW_OCOTP_DATA, otherwise a write shall not be initiated. This field is automatically cleared after a successful write completion (clearing of BUSY).
+        unsigned WR_UNLOCK : 16; //!< [31:16] Write 0x3E77 to enable OTP write accesses.
     } B;
 } hw_ocotp_ctrl_t;
 #endif
@@ -397,10 +387,10 @@ typedef union _hw_ocotp_timing
     reg32_t U;
     struct _hw_ocotp_timing_bitfields
     {
-        unsigned STROBE_PROG : 12; //!< [11:0] This count value specifies the strobe period in one time write OTP. Tpgm = ((STROBE_PROG+1)- 2*(RELAX+1)) /ipg_clk_freq. It is given in number of ipg_clk periods.
-        unsigned RELAX : 4; //!< [15:12] This count value specifies the time to add to all default timing parameters other than the Tpgm and Trd. It is given in number of ipg_clk periods.
-        unsigned STROBE_READ : 6; //!< [21:16] This count value specifies the strobe period in one time read OTP. Trd = ((STROBE_READ+1)- 2*(RELAX+1)) /ipg_clk_freq. It is given in number of ipg_clk periods.
-        unsigned WAIT : 6; //!< [27:22] This count value specifies time interval between auto read and write access in one time program. It is given in number of ipg_clk periods.
+        unsigned STROBE_PROG : 12; //!< [11:0] This count value specifies the strobe period in one time write OTP.
+        unsigned RELAX : 4; //!< [15:12] This count value specifies the time to add to all default timing parameters other than the Tpgm and Trd.
+        unsigned STROBE_READ : 6; //!< [21:16] This count value specifies the strobe period in one time read OTP.
+        unsigned WAIT : 6; //!< [27:22] This count value specifies time interval between auto read and write access in one time program.
         unsigned RESERVED0 : 4; //!< [31:28] These bits always read back zero.
     } B;
 } hw_ocotp_timing_t;
@@ -523,7 +513,7 @@ typedef union _hw_ocotp_data
     reg32_t U;
     struct _hw_ocotp_data_bitfields
     {
-        unsigned DATA : 32; //!< [31:0] Used to initiate a write to OTP. Please see the "Software Write Sequence" section for operating details.
+        unsigned DATA : 32; //!< [31:0] Used to initiate a write to OTP.
     } B;
 } hw_ocotp_data_t;
 #endif
@@ -585,7 +575,7 @@ typedef union _hw_ocotp_read_ctrl
     reg32_t U;
     struct _hw_ocotp_read_ctrl_bitfields
     {
-        unsigned READ_FUSE : 1; //!< [0] Used to initiate a read to OTP. Please see the "Software read Sequence" section for operating details.
+        unsigned READ_FUSE : 1; //!< [0] Used to initiate a read to OTP.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_ocotp_read_ctrl_t;
@@ -707,8 +697,8 @@ typedef union _hw_ocotp_sw_sticky
     struct _hw_ocotp_sw_sticky_bitfields
     {
         unsigned RESERVED0 : 1; //!< [0] Reserved.
-        unsigned SRK_REVOKE_LOCK : 1; //!< [1] Shadow register write and OTP write lock for SRK_REVOKE region. When set, the writing of this region's shadow register and OTP fuse word are blocked. Once this bit is set, it is always high unless a POR is issued.
-        unsigned FIELD_RETURN_LOCK : 1; //!< [2] Shadow register write and OTP write lock for FIELD_RETURN region. When set, the writing of this region's shadow register and OTP fuse word are blocked.Once this bit is set, it is always high unless a POR is issued.
+        unsigned SRK_REVOKE_LOCK : 1; //!< [1] Shadow register write and OTP write lock for SRK_REVOKE region.
+        unsigned FIELD_RETURN_LOCK : 1; //!< [2] Shadow register write and OTP write lock for FIELD_RETURN region.
         unsigned RESERVED1 : 29; //!< [31:3] Reserved
     } B;
 } hw_ocotp_sw_sticky_t;
@@ -793,9 +783,9 @@ typedef union _hw_ocotp_scs
     reg32_t U;
     struct _hw_ocotp_scs_bitfields
     {
-        unsigned HAB_JDE : 1; //!< [0] HAB JTAG Debug Enable. This bit is used by the HAB to enable JTAG debugging, assuming that a properlay signed command to do so is found and validated by the HAB. The HAB must lock the register before passing control to the OS whether or not JTAG debugging has been enabled. Once JTAG is enabled by this bit, it can not be disabled unless the system is reset by POR. 0: JTAG debugging is not enabled by the HAB (it may still be enabled by other mechanisms). 1: JTAG debugging is enabled by the HAB (though this signal may be gated off).
+        unsigned HAB_JDE : 1; //!< [0] HAB JTAG Debug Enable.
         unsigned SPARE : 30; //!< [30:1] Unallocated read/write bits for implementation specific software use.
-        unsigned LOCK : 1; //!< [31] When set, all of the bits in this register are locked and can not be changed through SW programming. This bit is only reset after a POR is issued.
+        unsigned LOCK : 1; //!< [31] When set, all of the bits in this register are locked and can not be changed through SW programming.
     } B;
 } hw_ocotp_scs_t;
 #endif
@@ -1140,27 +1130,27 @@ typedef union _hw_ocotp_lock
     reg32_t U;
     struct _hw_ocotp_lock_bitfields
     {
-        unsigned TESTER : 2; //!< [1:0] Status of shadow register and OTP write lock for tester region. When bit 1 is set, the writing of this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP fuse word is blocked.
-        unsigned BOOT_CFG : 2; //!< [3:2] Status of shadow register and OTP write lock for boot_cfg region. When bit 1 is set, the writing of this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP fuse word is blocked.
-        unsigned MEM_TRIM : 2; //!< [5:4] Status of shadow register and OTP write lock for mem_trim region. When bit 1 is set, the writing of this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP fuse word is blocked.
-        unsigned SJC_RESP : 1; //!< [6] Status of shadow register read and write, OTP read and write lock for sjc_resp region. When set, the writing of this region's shadow register and OTP fuse word are blocked. The read of this region's shadow register and OTP fuse word are also blocked.
+        unsigned TESTER : 2; //!< [1:0] Status of shadow register and OTP write lock for tester region.
+        unsigned BOOT_CFG : 2; //!< [3:2] Status of shadow register and OTP write lock for boot_cfg region.
+        unsigned MEM_TRIM : 2; //!< [5:4] Status of shadow register and OTP write lock for mem_trim region.
+        unsigned SJC_RESP : 1; //!< [6] Status of shadow register read and write, OTP read and write lock for sjc_resp region.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned MAC_ADDR : 2; //!< [9:8] Status of shadow register and OTP write lock for mac_addr region. When bit 1 is set, the writing of this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP fuse word is blocked.
-        unsigned GP1 : 2; //!< [11:10] Status of shadow register and OTP write lock for gp2 region. When bit 1 is set, the writing of this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP fuse word is blocked.
-        unsigned GP2 : 2; //!< [13:12] Status of shadow register and OTP write lock for gp2 region. When bit 1 is set, the writing of this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP fuse word is blocked.
-        unsigned SRK : 1; //!< [14] Status of shadow register and OTP write lock for srk region. When set, the writing of this region's shadow register and OTP fuse word are blocked.
+        unsigned MAC_ADDR : 2; //!< [9:8] Status of shadow register and OTP write lock for mac_addr region.
+        unsigned GP1 : 2; //!< [11:10] Status of shadow register and OTP write lock for gp2 region.
+        unsigned GP2 : 2; //!< [13:12] Status of shadow register and OTP write lock for gp2 region.
+        unsigned SRK : 1; //!< [14] Status of shadow register and OTP write lock for srk region.
         unsigned RESERVED1 : 1; //!< [15] Reserved
-        unsigned DTCP_KEY : 1; //!< [16] Status of shadow register read and write, OTP read and write lock for dtcp_key region. When set, the writing of this region's shadow register and OTP fuse word are blocked. The read of this region's shadow register and OTP fuse word are also blocked.
-        unsigned OTPMK : 1; //!< [17] Status of shadow register read and write, OTP read and write lock for otpmk region. When set, the writing of this region's shadow register and OTP fuse word are blocked. The read of this region's shadow register and OTP fuse word are also blocked.
-        unsigned ANALOG : 2; //!< [19:18] Status of shadow register and OTP write lock for analog region. When bit 1 is set, the writing of this region's shadow register is blocked. When bit 0 is set, the writing of this region's OTP fuse word is blocked.
-        unsigned HDCP_KSV : 1; //!< [20] Status of shadow register and OTP write lock for hdcp_ksv region. When set, the writing of this region's shadow register and OTP fuse word are blocked.
-        unsigned HDCP_KEYS : 1; //!< [21] Status of OTP write, shadow register read and write for hdcp_key region. When set, the writing of this region's shadow register and OTP fuse word are blocked. HDTP key shadow register also can be not read by ARM if set. The HDCP key region can not support OTP read feature in any case.
-        unsigned MISC_CONF : 1; //!< [22] Status of shadow register and OTP write lock for misc_conf region. When set, the writing of this region's shadow register and OTP fuse word are blocked.
-        unsigned DTCP_DEV_CERT : 1; //!< [23] Status of shadow register and OTP write lock for dtcp_dev_cert region. When set, the writing of this region's shadow register and OTP fuse word are blocked.
+        unsigned DTCP_KEY : 1; //!< [16] Status of shadow register read and write, OTP read and write lock for dtcp_key region.
+        unsigned OTPMK : 1; //!< [17] Status of shadow register read and write, OTP read and write lock for otpmk region.
+        unsigned ANALOG : 2; //!< [19:18] Status of shadow register and OTP write lock for analog region.
+        unsigned HDCP_KSV : 1; //!< [20] Status of shadow register and OTP write lock for hdcp_ksv region.
+        unsigned HDCP_KEYS : 1; //!< [21] Status of OTP write, shadow register read and write for hdcp_key region.
+        unsigned MISC_CONF : 1; //!< [22] Status of shadow register and OTP write lock for misc_conf region.
+        unsigned DTCP_DEV_CERT : 1; //!< [23] Status of shadow register and OTP write lock for dtcp_dev_cert region.
         unsigned RESERVED2 : 1; //!< [24] Reserved
-        unsigned PIN : 1; //!< [25] Status of Pin access lock bit. When set, pin access is disabled.
-        unsigned CRC_GP_LO_LOCK : 2; //!< [27:26] Status of shadow register write and read, OTP program and read lock for lower 128 bits CRC region. When bit 1 is set, the reading and writing of this region's OTP fuse and reading of shadow register are blocked.When bit 0 is set, the writing of this region's shadow register and OTP fuse are blocked.
-        unsigned CRC_GP_HI_LOCK : 2; //!< [29:28] Status of shadow register write and read, OTP program and read lock for upper 128 bits CRC region. When bit 1 is set, the reading and writing of this region's OTP fuse and reading of shadow register are blocked.When bit 0 is set, the writing of this region's shadow register and OTP fuse are blocked.
+        unsigned PIN : 1; //!< [25] Status of Pin access lock bit.
+        unsigned CRC_GP_LO_LOCK : 2; //!< [27:26] Status of shadow register write and read, OTP program and read lock for lower 128 bits CRC region.
+        unsigned CRC_GP_HI_LOCK : 2; //!< [29:28] Status of shadow register write and read, OTP program and read lock for upper 128 bits CRC region.
         unsigned UNALLOCATED : 2; //!< [31:30] Value of un-used portion of LOCK word
     } B;
 } hw_ocotp_lock_t;
@@ -1440,7 +1430,7 @@ typedef union _hw_ocotp_cfg0
     reg32_t U;
     struct _hw_ocotp_cfg0_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] This register contains 32 bits of the Unique ID and SJC_CHALLENGE field. Reflects value of OTP Bank 0, word 1 (ADDR = 0x01). These bits become read-only after the HW_OCOTP_LOCK_TESTER[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] This register contains 32 bits of the Unique ID and SJC_CHALLENGE field.
     } B;
 } hw_ocotp_cfg0_t;
 #endif
@@ -1503,7 +1493,7 @@ typedef union _hw_ocotp_cfg1
     reg32_t U;
     struct _hw_ocotp_cfg1_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] This register contains 32 bits of the Unique ID and SJC_CHALLENGE field. Reflects value of OTP Bank 0, word 2 (ADDR = 0x02). These bits become read-only after the HW_OCOTP_LOCK_TESTER[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] This register contains 32 bits of the Unique ID and SJC_CHALLENGE field.
     } B;
 } hw_ocotp_cfg1_t;
 #endif
@@ -1566,7 +1556,7 @@ typedef union _hw_ocotp_cfg2
     reg32_t U;
     struct _hw_ocotp_cfg2_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Reflects value of OTP Bank 0, word 3 (ADDR = 0x03). These bits become read-only after the HW_OCOTP_LOCK_TESTER[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] Reflects value of OTP Bank 0, word 3 (ADDR = 0x03).
     } B;
 } hw_ocotp_cfg2_t;
 #endif
@@ -1628,7 +1618,7 @@ typedef union _hw_ocotp_cfg3
     reg32_t U;
     struct _hw_ocotp_cfg3_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Reflects value of OTP Bank 0, word 4 (ADDR = 0x04). These bits become read-only after the HW_OCOTP_LOCK_TESTER[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] Reflects value of OTP Bank 0, word 4 (ADDR = 0x04).
     } B;
 } hw_ocotp_cfg3_t;
 #endif
@@ -1690,7 +1680,7 @@ typedef union _hw_ocotp_cfg4
     reg32_t U;
     struct _hw_ocotp_cfg4_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Reflects value of OTP Bank 0, word 5 (ADDR = 0x05). These bits become read-only after the HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] Reflects value of OTP Bank 0, word 5 (ADDR = 0x05).
     } B;
 } hw_ocotp_cfg4_t;
 #endif
@@ -1752,7 +1742,7 @@ typedef union _hw_ocotp_cfg5
     reg32_t U;
     struct _hw_ocotp_cfg5_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Reflects value of OTP Bank 0, word 6 (ADDR = 0x06). These bits become read-only after the HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] Reflects value of OTP Bank 0, word 6 (ADDR = 0x06).
     } B;
 } hw_ocotp_cfg5_t;
 #endif
@@ -1814,7 +1804,7 @@ typedef union _hw_ocotp_cfg6
     reg32_t U;
     struct _hw_ocotp_cfg6_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Reflects value of OTP Bank 0, word 7 (ADDR = 0x07). These bits become read-only after the HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] Reflects value of OTP Bank 0, word 7 (ADDR = 0x07).
     } B;
 } hw_ocotp_cfg6_t;
 #endif
@@ -1876,7 +1866,7 @@ typedef union _hw_ocotp_mem0
     reg32_t U;
     struct _hw_ocotp_mem0_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 0 (ADDR = 0x08). These bits become read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 0 (ADDR = 0x08).
     } B;
 } hw_ocotp_mem0_t;
 #endif
@@ -1938,7 +1928,7 @@ typedef union _hw_ocotp_mem1
     reg32_t U;
     struct _hw_ocotp_mem1_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 1 (ADDR = 0x09). These bits become read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 1 (ADDR = 0x09).
     } B;
 } hw_ocotp_mem1_t;
 #endif
@@ -2000,7 +1990,7 @@ typedef union _hw_ocotp_mem2
     reg32_t U;
     struct _hw_ocotp_mem2_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 2 (ADDR = 0x0A). These bits become read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 2 (ADDR = 0x0A).
     } B;
 } hw_ocotp_mem2_t;
 #endif
@@ -2062,7 +2052,7 @@ typedef union _hw_ocotp_mem3
     reg32_t U;
     struct _hw_ocotp_mem3_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 3 (ADDR = 0x0B). These bits become read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 3 (ADDR = 0x0B).
     } B;
 } hw_ocotp_mem3_t;
 #endif
@@ -2124,7 +2114,7 @@ typedef union _hw_ocotp_mem4
     reg32_t U;
     struct _hw_ocotp_mem4_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 4 (ADDR = 0x0C). These bits become read-only after the HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 4 (ADDR = 0x0C).
     } B;
 } hw_ocotp_mem4_t;
 #endif
@@ -2186,7 +2176,7 @@ typedef union _hw_ocotp_ana0
     reg32_t U;
     struct _hw_ocotp_ana0_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 5 (ADDR = 0x0D). These bits become read-only after the HW_OCOTP_LOCK_ANALOG[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 5 (ADDR = 0x0D).
     } B;
 } hw_ocotp_ana0_t;
 #endif
@@ -2248,7 +2238,7 @@ typedef union _hw_ocotp_ana1
     reg32_t U;
     struct _hw_ocotp_ana1_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 6 (ADDR = 0x0E). These bits become read-only after the HW_OCOTP_LOCK_ANALOG[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 6 (ADDR = 0x0E).
     } B;
 } hw_ocotp_ana1_t;
 #endif
@@ -2310,7 +2300,7 @@ typedef union _hw_ocotp_ana2
     reg32_t U;
     struct _hw_ocotp_ana2_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 7 (ADDR = 0x0F). These bits become read-only after the HW_OCOTP_LOCK_ANALOG[1] bit is set.
+        unsigned BITS : 32; //!< [31:0] Reflects value of OTP bank 1, word 7 (ADDR = 0x0F).
     } B;
 } hw_ocotp_ana2_t;
 #endif
@@ -2372,7 +2362,7 @@ typedef union _hw_ocotp_otpmk0
     reg32_t U;
     struct _hw_ocotp_otpmk0_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word0 (Copy of OTP Bank 2, word 0 (ADDR = 0x10)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
+        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word0 (Copy of OTP Bank 2, word 0 (ADDR = 0x10)).
     } B;
 } hw_ocotp_otpmk0_t;
 #endif
@@ -2435,7 +2425,7 @@ typedef union _hw_ocotp_otpmk1
     reg32_t U;
     struct _hw_ocotp_otpmk1_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word1 (Copy of OTP Bank 2, word 1 (ADDR = 0x11)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
+        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word1 (Copy of OTP Bank 2, word 1 (ADDR = 0x11)).
     } B;
 } hw_ocotp_otpmk1_t;
 #endif
@@ -2498,7 +2488,7 @@ typedef union _hw_ocotp_otpmk2
     reg32_t U;
     struct _hw_ocotp_otpmk2_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word2 (Copy of OTP Bank 2, word 2 (ADDR = 0x12)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
+        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word2 (Copy of OTP Bank 2, word 2 (ADDR = 0x12)).
     } B;
 } hw_ocotp_otpmk2_t;
 #endif
@@ -2561,7 +2551,7 @@ typedef union _hw_ocotp_otpmk3
     reg32_t U;
     struct _hw_ocotp_otpmk3_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word3 (Copy of OTP Bank 2, word 3 (ADDR = 0x13)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
+        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word3 (Copy of OTP Bank 2, word 3 (ADDR = 0x13)).
     } B;
 } hw_ocotp_otpmk3_t;
 #endif
@@ -2624,7 +2614,7 @@ typedef union _hw_ocotp_otpmk4
     reg32_t U;
     struct _hw_ocotp_otpmk4_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word4 (Copy of OTP Bank 2, word 4 (ADDR = 0x14)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
+        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word4 (Copy of OTP Bank 2, word 4 (ADDR = 0x14)).
     } B;
 } hw_ocotp_otpmk4_t;
 #endif
@@ -2687,7 +2677,7 @@ typedef union _hw_ocotp_otpmk5
     reg32_t U;
     struct _hw_ocotp_otpmk5_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word5 (Copy of OTP Bank 2, word 5 (ADDR = 0x15)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
+        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word5 (Copy of OTP Bank 2, word 5 (ADDR = 0x15)).
     } B;
 } hw_ocotp_otpmk5_t;
 #endif
@@ -2750,7 +2740,7 @@ typedef union _hw_ocotp_otpmk6
     reg32_t U;
     struct _hw_ocotp_otpmk6_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word6 (Copy of OTP Bank 2, word 6 (ADDR = 0x16)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
+        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word6 (Copy of OTP Bank 2, word 6 (ADDR = 0x16)).
     } B;
 } hw_ocotp_otpmk6_t;
 #endif
@@ -2813,7 +2803,7 @@ typedef union _hw_ocotp_otpmk7
     reg32_t U;
     struct _hw_ocotp_otpmk7_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word7 (Copy of OTP Bank 2, word 7 (ADDR = 0x17)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_OTPMK bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
+        unsigned BITS : 32; //!< [31:0] Shadow register for the OTPMK Key word7 (Copy of OTP Bank 2, word 7 (ADDR = 0x17)).
     } B;
 } hw_ocotp_otpmk7_t;
 #endif
@@ -2876,7 +2866,7 @@ typedef union _hw_ocotp_srk0
     reg32_t U;
     struct _hw_ocotp_srk0_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word0 (Copy of OTP Bank 3, word 0 (ADDR = 0x1C)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
+        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word0 (Copy of OTP Bank 3, word 0 (ADDR = 0x1C)).
     } B;
 } hw_ocotp_srk0_t;
 #endif
@@ -2938,7 +2928,7 @@ typedef union _hw_ocotp_srk1
     reg32_t U;
     struct _hw_ocotp_srk1_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word1 (Copy of OTP Bank 3, word 1 (ADDR = 0x1D)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
+        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word1 (Copy of OTP Bank 3, word 1 (ADDR = 0x1D)).
     } B;
 } hw_ocotp_srk1_t;
 #endif
@@ -3000,7 +2990,7 @@ typedef union _hw_ocotp_srk2
     reg32_t U;
     struct _hw_ocotp_srk2_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word2 (Copy of OTP Bank 3, word 2 (ADDR = 0x1E)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
+        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word2 (Copy of OTP Bank 3, word 2 (ADDR = 0x1E)).
     } B;
 } hw_ocotp_srk2_t;
 #endif
@@ -3062,7 +3052,7 @@ typedef union _hw_ocotp_srk3
     reg32_t U;
     struct _hw_ocotp_srk3_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word3 (Copy of OTP Bank 3, word 3 (ADDR = 0x1F)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
+        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word3 (Copy of OTP Bank 3, word 3 (ADDR = 0x1F)).
     } B;
 } hw_ocotp_srk3_t;
 #endif
@@ -3124,7 +3114,7 @@ typedef union _hw_ocotp_srk4
     reg32_t U;
     struct _hw_ocotp_srk4_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word4 (Copy of OTP Bank 3, word 4 (ADDR = 0x20)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
+        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word4 (Copy of OTP Bank 3, word 4 (ADDR = 0x20)).
     } B;
 } hw_ocotp_srk4_t;
 #endif
@@ -3186,7 +3176,7 @@ typedef union _hw_ocotp_srk5
     reg32_t U;
     struct _hw_ocotp_srk5_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word5 (Copy of OTP Bank 3, word 5 (ADDR = 0x21)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
+        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word5 (Copy of OTP Bank 3, word 5 (ADDR = 0x21)).
     } B;
 } hw_ocotp_srk5_t;
 #endif
@@ -3248,7 +3238,7 @@ typedef union _hw_ocotp_srk6
     reg32_t U;
     struct _hw_ocotp_srk6_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word6 (Copy of OTP Bank 3, word 6 (ADDR = 0x22)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
+        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word6 (Copy of OTP Bank 3, word 6 (ADDR = 0x22)).
     } B;
 } hw_ocotp_srk6_t;
 #endif
@@ -3310,7 +3300,7 @@ typedef union _hw_ocotp_srk7
     reg32_t U;
     struct _hw_ocotp_srk7_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word7 (Copy of OTP Bank 3, word 7 (ADDR = 0x23)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
+        unsigned BITS : 32; //!< [31:0] Shadow register for the hash of the Super Root Key word7 (Copy of OTP Bank 3, word 7 (ADDR = 0x23)).
     } B;
 } hw_ocotp_srk7_t;
 #endif
@@ -3372,7 +3362,7 @@ typedef union _hw_ocotp_resp0
     reg32_t U;
     struct _hw_ocotp_resp0_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the SJC_RESP Key word0 (Copy of OTP Bank 4, word 0 (ADDR = 0x20)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_SJC_RESP bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
+        unsigned BITS : 32; //!< [31:0] Shadow register for the SJC_RESP Key word0 (Copy of OTP Bank 4, word 0 (ADDR = 0x20)).
     } B;
 } hw_ocotp_resp0_t;
 #endif
@@ -3435,7 +3425,7 @@ typedef union _hw_ocotp_hsjc_resp1
     reg32_t U;
     struct _hw_ocotp_hsjc_resp1_bitfields
     {
-        unsigned BITS : 32; //!< [31:0] Shadow register for the SJC_RESP Key word1 (Copy of OTP Bank 4, word 1 (ADDR = 0x21)). These bits can be not read and wrotten after the HW_OCOTP_LOCK_SJC_RESP bit is set. If read, returns 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
+        unsigned BITS : 32; //!< [31:0] Shadow register for the SJC_RESP Key word1 (Copy of OTP Bank 4, word 1 (ADDR = 0x21)).
     } B;
 } hw_ocotp_hsjc_resp1_t;
 #endif

@@ -31,16 +31,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_USBNC_USB_OTG1_CTRL - USB OTG1 Control Register
@@ -65,14 +55,14 @@ typedef union _hw_usbnc_usb_otg1_ctrl
         unsigned OVER_CUR_DIS : 1; //!< [7] Disable OTG1 Overcurrent Detection
         unsigned OVER_CUR_POL : 1; //!< [8] OTG1 Polarity of Overcurrent The polarity of OTG1 port overcurrent event
         unsigned PWR_POL : 1; //!< [9] OTG1 Power Polarity This bit should be set according to PMIC Power Pin polarity.
-        unsigned WIE : 1; //!< [10] OTG1 Wake-up Interrupt Enable This bit enables or disables the OTG1 wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
+        unsigned WIE : 1; //!< [10] OTG1 Wake-up Interrupt Enable This bit enables or disables the OTG1 wake-up interrupt.
         unsigned RESERVED1 : 3; //!< [13:11] Reserved
         unsigned WKUP_SW_EN : 1; //!< [14] OTG1 Software Wake-up Enable
         unsigned WKUP_SW : 1; //!< [15] OTG1 Software Wake-up
         unsigned WKUP_ID_EN : 1; //!< [16] OTG1 Wake-up on ID change enable
         unsigned WKUP_VBUS_EN : 1; //!< [17] OTG1 wake-up on VBUS change enable
         unsigned RESERVED2 : 13; //!< [30:18] Reserved
-        unsigned WIR : 1; //!< [31] OTG1 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the OTG1 port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
+        unsigned WIR : 1; //!< [31] OTG1 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the OTG1 port.
     } B;
 } hw_usbnc_usb_otg1_ctrl_t;
 #endif
@@ -329,14 +319,14 @@ typedef union _hw_usbnc_usb_otg2_ctrl
         unsigned OVER_CUR_DIS : 1; //!< [7] Disable OTG2 Overcurrent Detection
         unsigned OVER_CUR_POL : 1; //!< [8] OTG2 Polarity of Overcurrent The polarity of OTG2 port overcurrent event
         unsigned PWR_POL : 1; //!< [9] OTG2 Power Polarity This bit should be set according to PMIC Power Pin polarity.
-        unsigned WIE : 1; //!< [10] OTG2 Wake-up Interrupt Enable This bit enables or disables the OTG2 wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
+        unsigned WIE : 1; //!< [10] OTG2 Wake-up Interrupt Enable This bit enables or disables the OTG2 wake-up interrupt.
         unsigned RESERVED1 : 3; //!< [13:11] Reserved
         unsigned WKUP_SW_EN : 1; //!< [14] OTG2 Software Wake-up Enable
         unsigned WKUP_SW : 1; //!< [15] OTG2 Software Wake-up
         unsigned WKUP_ID_EN : 1; //!< [16] OTG2 Wake-up on ID change enable
         unsigned WKUP_VBUS_EN : 1; //!< [17] OTG2 wake-up on VBUS change enable
         unsigned RESERVED2 : 13; //!< [30:18] Reserved
-        unsigned WIR : 1; //!< [31] OTG2 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the OTG port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
+        unsigned WIR : 1; //!< [31] OTG2 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the OTG port.
     } B;
 } hw_usbnc_usb_otg2_ctrl_t;
 #endif
@@ -590,14 +580,14 @@ typedef union _hw_usbnc_usb_uh_ctrl
     struct _hw_usbnc_usb_uh_ctrl_bitfields
     {
         unsigned RESERVED0 : 10; //!< [9:0] Reserved
-        unsigned WIE : 1; //!< [10] Host Wake-up Interrupt Enable This bit enables or disables the Host wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
-        unsigned RESET : 1; //!< [11] Force Host UTMI PHY Reset This bit is used to force a reset to the UTMI PHY. During normal operation, S/W should set USBCMD.RST bit to reset the UTMI PHY For Freescale test only.
-        unsigned SUSPENDM : 1; //!< [12] Force Host UTMI PHY Suspend This bit is used to put PHY into suspend mode. During normal operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend mode. For Freescale test only.
+        unsigned WIE : 1; //!< [10] Host Wake-up Interrupt Enable This bit enables or disables the Host wake-up interrupt.
+        unsigned RESET : 1; //!< [11] Force Host UTMI PHY Reset This bit is used to force a reset to the UTMI PHY.
+        unsigned SUSPENDM : 1; //!< [12] Force Host UTMI PHY Suspend This bit is used to put PHY into suspend mode.
         unsigned _480M_CLK_ON : 1; //!< [13] Force OTG UTMI PHY 480M clock output on when Host is not in suspend mode.
         unsigned WKUP_SW_EN : 1; //!< [14] Host Software Wake-up Enable
         unsigned WKUP_SW : 1; //!< [15] Host Software Wake-up
         unsigned RESERVED1 : 15; //!< [30:16] Reserved
-        unsigned WIR : 1; //!< [31] Host Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the Host port. This bit is cleared by disabling the wake-up interrupt (clearing bit "WIE").
+        unsigned WIR : 1; //!< [31] Host Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the Host port.
     } B;
 } hw_usbnc_usb_uh_ctrl_t;
 #endif

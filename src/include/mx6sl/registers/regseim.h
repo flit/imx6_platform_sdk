@@ -66,16 +66,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_EIM_CS0GCR1 - Chip Select n General Configuration Register 1
@@ -94,25 +84,25 @@ typedef union _hw_eim_cs0gcr1
     reg32_t U;
     struct _hw_eim_cs0gcr1_bitfields
     {
-        unsigned CSEN : 1; //!< [0] CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
-        unsigned SWR : 1; //!< [1] Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned SRD : 1; //!< [2] Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned MUM : 1; //!< [3] Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
-        unsigned WFL : 1; //!< [4] Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
-        unsigned RFL : 1; //!< [5] Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
-        unsigned CRE : 1; //!< [6] Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
-        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
-        unsigned BL : 3; //!< [10:8] Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
-        unsigned WC : 1; //!< [11] Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
-        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
-        unsigned BCS : 2; //!< [15:14] Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
-        unsigned DSZ : 3; //!< [18:16] Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
-        unsigned SP : 1; //!< [19] Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
-        unsigned CSREC : 3; //!< [22:20] CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
-        unsigned AUS : 1; //!< [23] Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
-        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
-        unsigned WP : 1; //!< [27] Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
-        unsigned PSZ : 4; //!< [31:28] Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
+        unsigned CSEN : 1; //!< [0] CS Enable.
+        unsigned SWR : 1; //!< [1] Synchronous Write Data.
+        unsigned SRD : 1; //!< [2] Synchronous Read Data.
+        unsigned MUM : 1; //!< [3] Multiplexed Mode.
+        unsigned WFL : 1; //!< [4] Write Fix Latency.
+        unsigned RFL : 1; //!< [5] Read Fix Latency.
+        unsigned CRE : 1; //!< [6] Configuration Register Enable.
+        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity.
+        unsigned BL : 3; //!< [10:8] Burst Length.
+        unsigned WC : 1; //!< [11] Write Continuous.
+        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor.
+        unsigned BCS : 2; //!< [15:14] Burst Clock Start.
+        unsigned DSZ : 3; //!< [18:16] Data Port Size.
+        unsigned SP : 1; //!< [19] Supervisor Protect.
+        unsigned CSREC : 3; //!< [22:20] CS Recovery.
+        unsigned AUS : 1; //!< [23] Address UnShifted.
+        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects.
+        unsigned WP : 1; //!< [27] Write Protect.
+        unsigned PSZ : 4; //!< [31:28] Page Size.
     } B;
 } hw_eim_cs0gcr1_t;
 #endif
@@ -476,9 +466,8 @@ typedef union _hw_eim_cs0gcr1
 /* --- Register HW_EIM_CS0GCR1, field DSZ[18:16] (RW)
  *
  * Data Port Size. This bit field defines the width of an external device's data port as shown
- * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] =
- * {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1
- * - EIM_CS5GCR1, the reset value is 0b001.
+ * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1, DSZ[2] = 0,
+ * DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
  *
  * Values:
  * 000 - Reserved.
@@ -536,9 +525,8 @@ typedef union _hw_eim_cs0gcr1
  *
  * CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse
  * width of CS, OE, and WE control signals before executing a new back to back access to the same
- * chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is
- * EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset
- * value is 0b000. Example settings:
+ * chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:0] is
+ * 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
  *
  * Values:
  * 000 - 0 EIM clock cycles minimum width of CS, OE and WE signals (read async. mode only)
@@ -565,8 +553,7 @@ typedef union _hw_eim_cs0gcr1
 /* --- Register HW_EIM_CS0GCR1, field AUS[23] (RW)
  *
  * Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant
- * chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS]
- * = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
+ * chip select accesses. AUS bit is cleared by hardware reset.
  *
  * Values:
  * 0 - Address shifted according to port size (DSZ config.)
@@ -697,13 +684,13 @@ typedef union _hw_eim_cs0gcr2
     reg32_t U;
     struct _hw_eim_cs0gcr2_bitfields
     {
-        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
+        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode).
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
-        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
-        unsigned DAE : 1; //!< [8] Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
-        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
+        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start.
+        unsigned DAE : 1; //!< [8] Data Acknowledge Enable.
+        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity.
         unsigned RESERVED1 : 2; //!< [11:10] Reserved
-        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant.
         unsigned RESERVED2 : 19; //!< [31:13] Reserved
     } B;
 } hw_eim_cs0gcr2_t;
@@ -843,8 +830,7 @@ typedef union _hw_eim_cs0gcr2
 /* --- Register HW_EIM_CS0GCR2, field MUX16_BYP_GRANT[12] (RW)
  *
  * Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration
- * with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT]
- * = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+ * with NFC (only for 16 bit muxed mode accesses).
  *
  * Values:
  * 0 - EIM waits for grant before driving a 16 bit muxed mode access to the memory.
@@ -883,19 +869,19 @@ typedef union _hw_eim_cs0rcr1
     reg32_t U;
     struct _hw_eim_cs0rcr1_bitfields
     {
-        unsigned RCSN : 3; //!< [2:0] Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
+        unsigned RCSN : 3; //!< [2:0] Read CS Negation.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned RCSA : 3; //!< [6:4] Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
+        unsigned RCSA : 3; //!< [6:4] Read CS Assertion.
         unsigned RESERVED1 : 1; //!< [7] Reserved
-        unsigned OEN : 3; //!< [10:8] OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
+        unsigned OEN : 3; //!< [10:8] OE Negation.
         unsigned RESERVED2 : 1; //!< [11] Reserved
-        unsigned OEA : 3; //!< [14:12] OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
+        unsigned OEA : 3; //!< [14:12] OE Assertion.
         unsigned RESERVED3 : 1; //!< [15] Reserved
-        unsigned RADVN : 3; //!< [18:16] ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
-        unsigned RAL : 1; //!< [19] Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
-        unsigned RADVA : 3; //!< [22:20] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
+        unsigned RADVN : 3; //!< [18:16] ADV Negation.
+        unsigned RAL : 1; //!< [19] Read ADV Low.
+        unsigned RADVA : 3; //!< [22:20] ADV Assertion.
         unsigned RESERVED4 : 1; //!< [23] Reserved
-        unsigned RWSC : 6; //!< [29:24] Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
+        unsigned RWSC : 6; //!< [29:24] Read Wait State Control.
         unsigned RESERVED5 : 2; //!< [31:30] Reserved
     } B;
 } hw_eim_cs0rcr1_t;
@@ -1064,8 +1050,7 @@ typedef union _hw_eim_cs0rcr1
  *
  * Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is
  * ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal
- * is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3].
- * RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
+ * is according to RADVN bit field configuration.
  */
 
 #define BP_EIM_CS0RCR1_RAL      (19)      //!< Bit position for EIM_CS0RCR1_RAL.
@@ -1122,10 +1107,8 @@ typedef union _hw_eim_cs0rcr1
  * the start of an access, until the external device is ready for data transfer, this is referred as
  * fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length
  * and the number of EIM clock cycles from the start of access until the external device is ready
- * for data transfer. RWSC is cleared by a hardware reset. The reset value for
- * EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000
- * EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example
- * settings:
+ * for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1,
+ * RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
  *
  * Values:
  * 000000 - Reserved
@@ -1168,14 +1151,14 @@ typedef union _hw_eim_cs0rcr2
     reg32_t U;
     struct _hw_eim_cs0rcr2_bitfields
     {
-        unsigned RBEN : 3; //!< [2:0] Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
-        unsigned RBE : 1; //!< [3] Read BE enable. This bit field determines if BE will be asserted during read access.
-        unsigned RBEA : 3; //!< [6:4] Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
+        unsigned RBEN : 3; //!< [2:0] Read BE Negation.
+        unsigned RBE : 1; //!< [3] Read BE enable.
+        unsigned RBEA : 3; //!< [6:4] Read BE Assertion.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned RL : 2; //!< [9:8] Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
+        unsigned RL : 2; //!< [9:8] Read Latency.
         unsigned RESERVED1 : 2; //!< [11:10] Reserved
-        unsigned PAT : 3; //!< [14:12] Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
-        unsigned APR : 1; //!< [15] Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
+        unsigned PAT : 3; //!< [14:12] Page Access Time.
+        unsigned APR : 1; //!< [15] Asynchronous Page Read.
         unsigned RESERVED2 : 16; //!< [31:16] Reserved
     } B;
 } hw_eim_cs0rcr2_t;
@@ -1380,17 +1363,17 @@ typedef union _hw_eim_cs0wcr1
     reg32_t U;
     struct _hw_eim_cs0wcr1_bitfields
     {
-        unsigned WCSN : 3; //!< [2:0] Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
-        unsigned WCSA : 3; //!< [5:3] Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
-        unsigned WEN : 3; //!< [8:6] WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WEA : 3; //!< [11:9] WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
-        unsigned WBEA : 3; //!< [17:15] BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WADVN : 3; //!< [20:18] ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
-        unsigned WADVA : 3; //!< [23:21] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
-        unsigned WWSC : 6; //!< [29:24] Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
-        unsigned WBED : 1; //!< [30] Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
-        unsigned WAL : 1; //!< [31] Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+        unsigned WCSN : 3; //!< [2:0] Write CS Negation.
+        unsigned WCSA : 3; //!< [5:3] Write CS Assertion.
+        unsigned WEN : 3; //!< [8:6] WE Negation.
+        unsigned WEA : 3; //!< [11:9] WE Assertion.
+        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation.
+        unsigned WBEA : 3; //!< [17:15] BE Assertion.
+        unsigned WADVN : 3; //!< [20:18] ADV Negation.
+        unsigned WADVA : 3; //!< [23:21] ADV Assertion.
+        unsigned WWSC : 6; //!< [29:24] Write Wait State Control.
+        unsigned WBED : 1; //!< [30] Write Byte Enable Disable.
+        unsigned WAL : 1; //!< [31] Write ADV Low.
     } B;
 } hw_eim_cs0wcr1_t;
 #endif
@@ -1648,10 +1631,9 @@ typedef union _hw_eim_cs0wcr1
  * the start of an access, until the external device is ready for data transfer, this is referred as
  * fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length
  * and the number of EIM clock cycles from the start of access until the external device is ready
- * for data transfer. WWSC is cleared by a hardware reset. The reset value for
- * EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] =
- * 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example
- * settings:
+ * for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1,
+ * WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000.
+ * Example settings:
  *
  * Values:
  * 000000 - Reserved
@@ -1700,8 +1682,7 @@ typedef union _hw_eim_cs0wcr1
  *
  * Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1,
  * WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0
- * negation of ADV signal is according to WADVN bit field configuration. The reset value of
- * CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+ * negation of ADV signal is according to WADVN bit field configuration.
  */
 
 #define BP_EIM_CS0WCR1_WAL      (31)      //!< Bit position for EIM_CS0WCR1_WAL.
@@ -1735,7 +1716,7 @@ typedef union _hw_eim_cs0wcr2
     reg32_t U;
     struct _hw_eim_cs0wcr2_bitfields
     {
-        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
+        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_eim_cs0wcr2_t;
@@ -1797,25 +1778,25 @@ typedef union _hw_eim_cs1gcr1
     reg32_t U;
     struct _hw_eim_cs1gcr1_bitfields
     {
-        unsigned CSEN : 1; //!< [0] CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
-        unsigned SWR : 1; //!< [1] Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned SRD : 1; //!< [2] Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned MUM : 1; //!< [3] Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
-        unsigned WFL : 1; //!< [4] Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
-        unsigned RFL : 1; //!< [5] Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
-        unsigned CRE : 1; //!< [6] Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
-        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
-        unsigned BL : 3; //!< [10:8] Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
-        unsigned WC : 1; //!< [11] Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
-        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
-        unsigned BCS : 2; //!< [15:14] Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
-        unsigned DSZ : 3; //!< [18:16] Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
-        unsigned SP : 1; //!< [19] Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
-        unsigned CSREC : 3; //!< [22:20] CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
-        unsigned AUS : 1; //!< [23] Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
-        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
-        unsigned WP : 1; //!< [27] Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
-        unsigned PSZ : 4; //!< [31:28] Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
+        unsigned CSEN : 1; //!< [0] CS Enable.
+        unsigned SWR : 1; //!< [1] Synchronous Write Data.
+        unsigned SRD : 1; //!< [2] Synchronous Read Data.
+        unsigned MUM : 1; //!< [3] Multiplexed Mode.
+        unsigned WFL : 1; //!< [4] Write Fix Latency.
+        unsigned RFL : 1; //!< [5] Read Fix Latency.
+        unsigned CRE : 1; //!< [6] Configuration Register Enable.
+        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity.
+        unsigned BL : 3; //!< [10:8] Burst Length.
+        unsigned WC : 1; //!< [11] Write Continuous.
+        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor.
+        unsigned BCS : 2; //!< [15:14] Burst Clock Start.
+        unsigned DSZ : 3; //!< [18:16] Data Port Size.
+        unsigned SP : 1; //!< [19] Supervisor Protect.
+        unsigned CSREC : 3; //!< [22:20] CS Recovery.
+        unsigned AUS : 1; //!< [23] Address UnShifted.
+        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects.
+        unsigned WP : 1; //!< [27] Write Protect.
+        unsigned PSZ : 4; //!< [31:28] Page Size.
     } B;
 } hw_eim_cs1gcr1_t;
 #endif
@@ -2179,9 +2160,8 @@ typedef union _hw_eim_cs1gcr1
 /* --- Register HW_EIM_CS1GCR1, field DSZ[18:16] (RW)
  *
  * Data Port Size. This bit field defines the width of an external device's data port as shown
- * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] =
- * {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1
- * - EIM_CS5GCR1, the reset value is 0b001.
+ * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1, DSZ[2] = 0,
+ * DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
  *
  * Values:
  * 000 - Reserved.
@@ -2239,9 +2219,8 @@ typedef union _hw_eim_cs1gcr1
  *
  * CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse
  * width of CS, OE, and WE control signals before executing a new back to back access to the same
- * chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is
- * EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset
- * value is 0b000. Example settings:
+ * chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:0] is
+ * 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
  *
  * Values:
  * 000 - 0 EIM clock cycles minimum width of CS, OE and WE signals (read async. mode only)
@@ -2268,8 +2247,7 @@ typedef union _hw_eim_cs1gcr1
 /* --- Register HW_EIM_CS1GCR1, field AUS[23] (RW)
  *
  * Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant
- * chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS]
- * = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
+ * chip select accesses. AUS bit is cleared by hardware reset.
  *
  * Values:
  * 0 - Address shifted according to port size (DSZ config.)
@@ -2400,13 +2378,13 @@ typedef union _hw_eim_cs1gcr2
     reg32_t U;
     struct _hw_eim_cs1gcr2_bitfields
     {
-        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
+        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode).
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
-        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
-        unsigned DAE : 1; //!< [8] Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
-        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
+        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start.
+        unsigned DAE : 1; //!< [8] Data Acknowledge Enable.
+        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity.
         unsigned RESERVED1 : 2; //!< [11:10] Reserved
-        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant.
         unsigned RESERVED2 : 19; //!< [31:13] Reserved
     } B;
 } hw_eim_cs1gcr2_t;
@@ -2546,8 +2524,7 @@ typedef union _hw_eim_cs1gcr2
 /* --- Register HW_EIM_CS1GCR2, field MUX16_BYP_GRANT[12] (RW)
  *
  * Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration
- * with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT]
- * = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+ * with NFC (only for 16 bit muxed mode accesses).
  *
  * Values:
  * 0 - EIM waits for grant before driving a 16 bit muxed mode access to the memory.
@@ -2586,19 +2563,19 @@ typedef union _hw_eim_cs1rcr1
     reg32_t U;
     struct _hw_eim_cs1rcr1_bitfields
     {
-        unsigned RCSN : 3; //!< [2:0] Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
+        unsigned RCSN : 3; //!< [2:0] Read CS Negation.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned RCSA : 3; //!< [6:4] Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
+        unsigned RCSA : 3; //!< [6:4] Read CS Assertion.
         unsigned RESERVED1 : 1; //!< [7] Reserved
-        unsigned OEN : 3; //!< [10:8] OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
+        unsigned OEN : 3; //!< [10:8] OE Negation.
         unsigned RESERVED2 : 1; //!< [11] Reserved
-        unsigned OEA : 3; //!< [14:12] OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
+        unsigned OEA : 3; //!< [14:12] OE Assertion.
         unsigned RESERVED3 : 1; //!< [15] Reserved
-        unsigned RADVN : 3; //!< [18:16] ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
-        unsigned RAL : 1; //!< [19] Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
-        unsigned RADVA : 3; //!< [22:20] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
+        unsigned RADVN : 3; //!< [18:16] ADV Negation.
+        unsigned RAL : 1; //!< [19] Read ADV Low.
+        unsigned RADVA : 3; //!< [22:20] ADV Assertion.
         unsigned RESERVED4 : 1; //!< [23] Reserved
-        unsigned RWSC : 6; //!< [29:24] Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
+        unsigned RWSC : 6; //!< [29:24] Read Wait State Control.
         unsigned RESERVED5 : 2; //!< [31:30] Reserved
     } B;
 } hw_eim_cs1rcr1_t;
@@ -2767,8 +2744,7 @@ typedef union _hw_eim_cs1rcr1
  *
  * Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is
  * ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal
- * is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3].
- * RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
+ * is according to RADVN bit field configuration.
  */
 
 #define BP_EIM_CS1RCR1_RAL      (19)      //!< Bit position for EIM_CS1RCR1_RAL.
@@ -2825,10 +2801,8 @@ typedef union _hw_eim_cs1rcr1
  * the start of an access, until the external device is ready for data transfer, this is referred as
  * fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length
  * and the number of EIM clock cycles from the start of access until the external device is ready
- * for data transfer. RWSC is cleared by a hardware reset. The reset value for
- * EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000
- * EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example
- * settings:
+ * for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1,
+ * RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
  *
  * Values:
  * 000000 - Reserved
@@ -2871,14 +2845,14 @@ typedef union _hw_eim_cs1rcr2
     reg32_t U;
     struct _hw_eim_cs1rcr2_bitfields
     {
-        unsigned RBEN : 3; //!< [2:0] Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
-        unsigned RBE : 1; //!< [3] Read BE enable. This bit field determines if BE will be asserted during read access.
-        unsigned RBEA : 3; //!< [6:4] Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
+        unsigned RBEN : 3; //!< [2:0] Read BE Negation.
+        unsigned RBE : 1; //!< [3] Read BE enable.
+        unsigned RBEA : 3; //!< [6:4] Read BE Assertion.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned RL : 2; //!< [9:8] Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
+        unsigned RL : 2; //!< [9:8] Read Latency.
         unsigned RESERVED1 : 2; //!< [11:10] Reserved
-        unsigned PAT : 3; //!< [14:12] Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
-        unsigned APR : 1; //!< [15] Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
+        unsigned PAT : 3; //!< [14:12] Page Access Time.
+        unsigned APR : 1; //!< [15] Asynchronous Page Read.
         unsigned RESERVED2 : 16; //!< [31:16] Reserved
     } B;
 } hw_eim_cs1rcr2_t;
@@ -3083,17 +3057,17 @@ typedef union _hw_eim_cs1wcr1
     reg32_t U;
     struct _hw_eim_cs1wcr1_bitfields
     {
-        unsigned WCSN : 3; //!< [2:0] Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
-        unsigned WCSA : 3; //!< [5:3] Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
-        unsigned WEN : 3; //!< [8:6] WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WEA : 3; //!< [11:9] WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
-        unsigned WBEA : 3; //!< [17:15] BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WADVN : 3; //!< [20:18] ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
-        unsigned WADVA : 3; //!< [23:21] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
-        unsigned WWSC : 6; //!< [29:24] Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
-        unsigned WBED : 1; //!< [30] Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
-        unsigned WAL : 1; //!< [31] Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+        unsigned WCSN : 3; //!< [2:0] Write CS Negation.
+        unsigned WCSA : 3; //!< [5:3] Write CS Assertion.
+        unsigned WEN : 3; //!< [8:6] WE Negation.
+        unsigned WEA : 3; //!< [11:9] WE Assertion.
+        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation.
+        unsigned WBEA : 3; //!< [17:15] BE Assertion.
+        unsigned WADVN : 3; //!< [20:18] ADV Negation.
+        unsigned WADVA : 3; //!< [23:21] ADV Assertion.
+        unsigned WWSC : 6; //!< [29:24] Write Wait State Control.
+        unsigned WBED : 1; //!< [30] Write Byte Enable Disable.
+        unsigned WAL : 1; //!< [31] Write ADV Low.
     } B;
 } hw_eim_cs1wcr1_t;
 #endif
@@ -3351,10 +3325,9 @@ typedef union _hw_eim_cs1wcr1
  * the start of an access, until the external device is ready for data transfer, this is referred as
  * fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length
  * and the number of EIM clock cycles from the start of access until the external device is ready
- * for data transfer. WWSC is cleared by a hardware reset. The reset value for
- * EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] =
- * 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example
- * settings:
+ * for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1,
+ * WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000.
+ * Example settings:
  *
  * Values:
  * 000000 - Reserved
@@ -3403,8 +3376,7 @@ typedef union _hw_eim_cs1wcr1
  *
  * Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1,
  * WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0
- * negation of ADV signal is according to WADVN bit field configuration. The reset value of
- * CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+ * negation of ADV signal is according to WADVN bit field configuration.
  */
 
 #define BP_EIM_CS1WCR1_WAL      (31)      //!< Bit position for EIM_CS1WCR1_WAL.
@@ -3438,7 +3410,7 @@ typedef union _hw_eim_cs1wcr2
     reg32_t U;
     struct _hw_eim_cs1wcr2_bitfields
     {
-        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
+        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_eim_cs1wcr2_t;
@@ -3500,25 +3472,25 @@ typedef union _hw_eim_cs2gcr1
     reg32_t U;
     struct _hw_eim_cs2gcr1_bitfields
     {
-        unsigned CSEN : 1; //!< [0] CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
-        unsigned SWR : 1; //!< [1] Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned SRD : 1; //!< [2] Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned MUM : 1; //!< [3] Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
-        unsigned WFL : 1; //!< [4] Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
-        unsigned RFL : 1; //!< [5] Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
-        unsigned CRE : 1; //!< [6] Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
-        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
-        unsigned BL : 3; //!< [10:8] Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
-        unsigned WC : 1; //!< [11] Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
-        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
-        unsigned BCS : 2; //!< [15:14] Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
-        unsigned DSZ : 3; //!< [18:16] Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
-        unsigned SP : 1; //!< [19] Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
-        unsigned CSREC : 3; //!< [22:20] CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
-        unsigned AUS : 1; //!< [23] Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
-        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
-        unsigned WP : 1; //!< [27] Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
-        unsigned PSZ : 4; //!< [31:28] Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
+        unsigned CSEN : 1; //!< [0] CS Enable.
+        unsigned SWR : 1; //!< [1] Synchronous Write Data.
+        unsigned SRD : 1; //!< [2] Synchronous Read Data.
+        unsigned MUM : 1; //!< [3] Multiplexed Mode.
+        unsigned WFL : 1; //!< [4] Write Fix Latency.
+        unsigned RFL : 1; //!< [5] Read Fix Latency.
+        unsigned CRE : 1; //!< [6] Configuration Register Enable.
+        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity.
+        unsigned BL : 3; //!< [10:8] Burst Length.
+        unsigned WC : 1; //!< [11] Write Continuous.
+        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor.
+        unsigned BCS : 2; //!< [15:14] Burst Clock Start.
+        unsigned DSZ : 3; //!< [18:16] Data Port Size.
+        unsigned SP : 1; //!< [19] Supervisor Protect.
+        unsigned CSREC : 3; //!< [22:20] CS Recovery.
+        unsigned AUS : 1; //!< [23] Address UnShifted.
+        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects.
+        unsigned WP : 1; //!< [27] Write Protect.
+        unsigned PSZ : 4; //!< [31:28] Page Size.
     } B;
 } hw_eim_cs2gcr1_t;
 #endif
@@ -3882,9 +3854,8 @@ typedef union _hw_eim_cs2gcr1
 /* --- Register HW_EIM_CS2GCR1, field DSZ[18:16] (RW)
  *
  * Data Port Size. This bit field defines the width of an external device's data port as shown
- * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] =
- * {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1
- * - EIM_CS5GCR1, the reset value is 0b001.
+ * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1, DSZ[2] = 0,
+ * DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
  *
  * Values:
  * 000 - Reserved.
@@ -3942,9 +3913,8 @@ typedef union _hw_eim_cs2gcr1
  *
  * CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse
  * width of CS, OE, and WE control signals before executing a new back to back access to the same
- * chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is
- * EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset
- * value is 0b000. Example settings:
+ * chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:0] is
+ * 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
  *
  * Values:
  * 000 - 0 EIM clock cycles minimum width of CS, OE and WE signals (read async. mode only)
@@ -3971,8 +3941,7 @@ typedef union _hw_eim_cs2gcr1
 /* --- Register HW_EIM_CS2GCR1, field AUS[23] (RW)
  *
  * Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant
- * chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS]
- * = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
+ * chip select accesses. AUS bit is cleared by hardware reset.
  *
  * Values:
  * 0 - Address shifted according to port size (DSZ config.)
@@ -4103,13 +4072,13 @@ typedef union _hw_eim_cs2gcr2
     reg32_t U;
     struct _hw_eim_cs2gcr2_bitfields
     {
-        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
+        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode).
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
-        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
-        unsigned DAE : 1; //!< [8] Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
-        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
+        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start.
+        unsigned DAE : 1; //!< [8] Data Acknowledge Enable.
+        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity.
         unsigned RESERVED1 : 2; //!< [11:10] Reserved
-        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant.
         unsigned RESERVED2 : 19; //!< [31:13] Reserved
     } B;
 } hw_eim_cs2gcr2_t;
@@ -4249,8 +4218,7 @@ typedef union _hw_eim_cs2gcr2
 /* --- Register HW_EIM_CS2GCR2, field MUX16_BYP_GRANT[12] (RW)
  *
  * Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration
- * with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT]
- * = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+ * with NFC (only for 16 bit muxed mode accesses).
  *
  * Values:
  * 0 - EIM waits for grant before driving a 16 bit muxed mode access to the memory.
@@ -4289,19 +4257,19 @@ typedef union _hw_eim_cs2rcr1
     reg32_t U;
     struct _hw_eim_cs2rcr1_bitfields
     {
-        unsigned RCSN : 3; //!< [2:0] Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
+        unsigned RCSN : 3; //!< [2:0] Read CS Negation.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned RCSA : 3; //!< [6:4] Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
+        unsigned RCSA : 3; //!< [6:4] Read CS Assertion.
         unsigned RESERVED1 : 1; //!< [7] Reserved
-        unsigned OEN : 3; //!< [10:8] OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
+        unsigned OEN : 3; //!< [10:8] OE Negation.
         unsigned RESERVED2 : 1; //!< [11] Reserved
-        unsigned OEA : 3; //!< [14:12] OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
+        unsigned OEA : 3; //!< [14:12] OE Assertion.
         unsigned RESERVED3 : 1; //!< [15] Reserved
-        unsigned RADVN : 3; //!< [18:16] ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
-        unsigned RAL : 1; //!< [19] Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
-        unsigned RADVA : 3; //!< [22:20] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
+        unsigned RADVN : 3; //!< [18:16] ADV Negation.
+        unsigned RAL : 1; //!< [19] Read ADV Low.
+        unsigned RADVA : 3; //!< [22:20] ADV Assertion.
         unsigned RESERVED4 : 1; //!< [23] Reserved
-        unsigned RWSC : 6; //!< [29:24] Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
+        unsigned RWSC : 6; //!< [29:24] Read Wait State Control.
         unsigned RESERVED5 : 2; //!< [31:30] Reserved
     } B;
 } hw_eim_cs2rcr1_t;
@@ -4470,8 +4438,7 @@ typedef union _hw_eim_cs2rcr1
  *
  * Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is
  * ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal
- * is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3].
- * RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
+ * is according to RADVN bit field configuration.
  */
 
 #define BP_EIM_CS2RCR1_RAL      (19)      //!< Bit position for EIM_CS2RCR1_RAL.
@@ -4528,10 +4495,8 @@ typedef union _hw_eim_cs2rcr1
  * the start of an access, until the external device is ready for data transfer, this is referred as
  * fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length
  * and the number of EIM clock cycles from the start of access until the external device is ready
- * for data transfer. RWSC is cleared by a hardware reset. The reset value for
- * EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000
- * EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example
- * settings:
+ * for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1,
+ * RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
  *
  * Values:
  * 000000 - Reserved
@@ -4574,14 +4539,14 @@ typedef union _hw_eim_cs2rcr2
     reg32_t U;
     struct _hw_eim_cs2rcr2_bitfields
     {
-        unsigned RBEN : 3; //!< [2:0] Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
-        unsigned RBE : 1; //!< [3] Read BE enable. This bit field determines if BE will be asserted during read access.
-        unsigned RBEA : 3; //!< [6:4] Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
+        unsigned RBEN : 3; //!< [2:0] Read BE Negation.
+        unsigned RBE : 1; //!< [3] Read BE enable.
+        unsigned RBEA : 3; //!< [6:4] Read BE Assertion.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned RL : 2; //!< [9:8] Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
+        unsigned RL : 2; //!< [9:8] Read Latency.
         unsigned RESERVED1 : 2; //!< [11:10] Reserved
-        unsigned PAT : 3; //!< [14:12] Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
-        unsigned APR : 1; //!< [15] Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
+        unsigned PAT : 3; //!< [14:12] Page Access Time.
+        unsigned APR : 1; //!< [15] Asynchronous Page Read.
         unsigned RESERVED2 : 16; //!< [31:16] Reserved
     } B;
 } hw_eim_cs2rcr2_t;
@@ -4786,17 +4751,17 @@ typedef union _hw_eim_cs2wcr1
     reg32_t U;
     struct _hw_eim_cs2wcr1_bitfields
     {
-        unsigned WCSN : 3; //!< [2:0] Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
-        unsigned WCSA : 3; //!< [5:3] Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
-        unsigned WEN : 3; //!< [8:6] WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WEA : 3; //!< [11:9] WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
-        unsigned WBEA : 3; //!< [17:15] BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WADVN : 3; //!< [20:18] ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
-        unsigned WADVA : 3; //!< [23:21] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
-        unsigned WWSC : 6; //!< [29:24] Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
-        unsigned WBED : 1; //!< [30] Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
-        unsigned WAL : 1; //!< [31] Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+        unsigned WCSN : 3; //!< [2:0] Write CS Negation.
+        unsigned WCSA : 3; //!< [5:3] Write CS Assertion.
+        unsigned WEN : 3; //!< [8:6] WE Negation.
+        unsigned WEA : 3; //!< [11:9] WE Assertion.
+        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation.
+        unsigned WBEA : 3; //!< [17:15] BE Assertion.
+        unsigned WADVN : 3; //!< [20:18] ADV Negation.
+        unsigned WADVA : 3; //!< [23:21] ADV Assertion.
+        unsigned WWSC : 6; //!< [29:24] Write Wait State Control.
+        unsigned WBED : 1; //!< [30] Write Byte Enable Disable.
+        unsigned WAL : 1; //!< [31] Write ADV Low.
     } B;
 } hw_eim_cs2wcr1_t;
 #endif
@@ -5054,10 +5019,9 @@ typedef union _hw_eim_cs2wcr1
  * the start of an access, until the external device is ready for data transfer, this is referred as
  * fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length
  * and the number of EIM clock cycles from the start of access until the external device is ready
- * for data transfer. WWSC is cleared by a hardware reset. The reset value for
- * EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] =
- * 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example
- * settings:
+ * for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1,
+ * WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000.
+ * Example settings:
  *
  * Values:
  * 000000 - Reserved
@@ -5106,8 +5070,7 @@ typedef union _hw_eim_cs2wcr1
  *
  * Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1,
  * WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0
- * negation of ADV signal is according to WADVN bit field configuration. The reset value of
- * CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+ * negation of ADV signal is according to WADVN bit field configuration.
  */
 
 #define BP_EIM_CS2WCR1_WAL      (31)      //!< Bit position for EIM_CS2WCR1_WAL.
@@ -5141,7 +5104,7 @@ typedef union _hw_eim_cs2wcr2
     reg32_t U;
     struct _hw_eim_cs2wcr2_bitfields
     {
-        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
+        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_eim_cs2wcr2_t;
@@ -5203,25 +5166,25 @@ typedef union _hw_eim_cs3gcr1
     reg32_t U;
     struct _hw_eim_cs3gcr1_bitfields
     {
-        unsigned CSEN : 1; //!< [0] CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
-        unsigned SWR : 1; //!< [1] Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned SRD : 1; //!< [2] Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned MUM : 1; //!< [3] Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
-        unsigned WFL : 1; //!< [4] Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
-        unsigned RFL : 1; //!< [5] Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
-        unsigned CRE : 1; //!< [6] Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
-        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
-        unsigned BL : 3; //!< [10:8] Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
-        unsigned WC : 1; //!< [11] Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
-        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
-        unsigned BCS : 2; //!< [15:14] Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
-        unsigned DSZ : 3; //!< [18:16] Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
-        unsigned SP : 1; //!< [19] Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
-        unsigned CSREC : 3; //!< [22:20] CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
-        unsigned AUS : 1; //!< [23] Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
-        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
-        unsigned WP : 1; //!< [27] Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
-        unsigned PSZ : 4; //!< [31:28] Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
+        unsigned CSEN : 1; //!< [0] CS Enable.
+        unsigned SWR : 1; //!< [1] Synchronous Write Data.
+        unsigned SRD : 1; //!< [2] Synchronous Read Data.
+        unsigned MUM : 1; //!< [3] Multiplexed Mode.
+        unsigned WFL : 1; //!< [4] Write Fix Latency.
+        unsigned RFL : 1; //!< [5] Read Fix Latency.
+        unsigned CRE : 1; //!< [6] Configuration Register Enable.
+        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity.
+        unsigned BL : 3; //!< [10:8] Burst Length.
+        unsigned WC : 1; //!< [11] Write Continuous.
+        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor.
+        unsigned BCS : 2; //!< [15:14] Burst Clock Start.
+        unsigned DSZ : 3; //!< [18:16] Data Port Size.
+        unsigned SP : 1; //!< [19] Supervisor Protect.
+        unsigned CSREC : 3; //!< [22:20] CS Recovery.
+        unsigned AUS : 1; //!< [23] Address UnShifted.
+        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects.
+        unsigned WP : 1; //!< [27] Write Protect.
+        unsigned PSZ : 4; //!< [31:28] Page Size.
     } B;
 } hw_eim_cs3gcr1_t;
 #endif
@@ -5585,9 +5548,8 @@ typedef union _hw_eim_cs3gcr1
 /* --- Register HW_EIM_CS3GCR1, field DSZ[18:16] (RW)
  *
  * Data Port Size. This bit field defines the width of an external device's data port as shown
- * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] =
- * {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1
- * - EIM_CS5GCR1, the reset value is 0b001.
+ * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1, DSZ[2] = 0,
+ * DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
  *
  * Values:
  * 000 - Reserved.
@@ -5645,9 +5607,8 @@ typedef union _hw_eim_cs3gcr1
  *
  * CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse
  * width of CS, OE, and WE control signals before executing a new back to back access to the same
- * chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is
- * EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset
- * value is 0b000. Example settings:
+ * chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:0] is
+ * 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
  *
  * Values:
  * 000 - 0 EIM clock cycles minimum width of CS, OE and WE signals (read async. mode only)
@@ -5674,8 +5635,7 @@ typedef union _hw_eim_cs3gcr1
 /* --- Register HW_EIM_CS3GCR1, field AUS[23] (RW)
  *
  * Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant
- * chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS]
- * = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
+ * chip select accesses. AUS bit is cleared by hardware reset.
  *
  * Values:
  * 0 - Address shifted according to port size (DSZ config.)
@@ -5806,13 +5766,13 @@ typedef union _hw_eim_cs3gcr2
     reg32_t U;
     struct _hw_eim_cs3gcr2_bitfields
     {
-        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
+        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode).
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
-        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
-        unsigned DAE : 1; //!< [8] Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
-        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
+        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start.
+        unsigned DAE : 1; //!< [8] Data Acknowledge Enable.
+        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity.
         unsigned RESERVED1 : 2; //!< [11:10] Reserved
-        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant.
         unsigned RESERVED2 : 19; //!< [31:13] Reserved
     } B;
 } hw_eim_cs3gcr2_t;
@@ -5952,8 +5912,7 @@ typedef union _hw_eim_cs3gcr2
 /* --- Register HW_EIM_CS3GCR2, field MUX16_BYP_GRANT[12] (RW)
  *
  * Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration
- * with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT]
- * = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+ * with NFC (only for 16 bit muxed mode accesses).
  *
  * Values:
  * 0 - EIM waits for grant before driving a 16 bit muxed mode access to the memory.
@@ -5992,19 +5951,19 @@ typedef union _hw_eim_cs3rcr1
     reg32_t U;
     struct _hw_eim_cs3rcr1_bitfields
     {
-        unsigned RCSN : 3; //!< [2:0] Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
+        unsigned RCSN : 3; //!< [2:0] Read CS Negation.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned RCSA : 3; //!< [6:4] Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
+        unsigned RCSA : 3; //!< [6:4] Read CS Assertion.
         unsigned RESERVED1 : 1; //!< [7] Reserved
-        unsigned OEN : 3; //!< [10:8] OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
+        unsigned OEN : 3; //!< [10:8] OE Negation.
         unsigned RESERVED2 : 1; //!< [11] Reserved
-        unsigned OEA : 3; //!< [14:12] OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
+        unsigned OEA : 3; //!< [14:12] OE Assertion.
         unsigned RESERVED3 : 1; //!< [15] Reserved
-        unsigned RADVN : 3; //!< [18:16] ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
-        unsigned RAL : 1; //!< [19] Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
-        unsigned RADVA : 3; //!< [22:20] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
+        unsigned RADVN : 3; //!< [18:16] ADV Negation.
+        unsigned RAL : 1; //!< [19] Read ADV Low.
+        unsigned RADVA : 3; //!< [22:20] ADV Assertion.
         unsigned RESERVED4 : 1; //!< [23] Reserved
-        unsigned RWSC : 6; //!< [29:24] Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
+        unsigned RWSC : 6; //!< [29:24] Read Wait State Control.
         unsigned RESERVED5 : 2; //!< [31:30] Reserved
     } B;
 } hw_eim_cs3rcr1_t;
@@ -6173,8 +6132,7 @@ typedef union _hw_eim_cs3rcr1
  *
  * Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is
  * ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal
- * is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3].
- * RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
+ * is according to RADVN bit field configuration.
  */
 
 #define BP_EIM_CS3RCR1_RAL      (19)      //!< Bit position for EIM_CS3RCR1_RAL.
@@ -6231,10 +6189,8 @@ typedef union _hw_eim_cs3rcr1
  * the start of an access, until the external device is ready for data transfer, this is referred as
  * fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length
  * and the number of EIM clock cycles from the start of access until the external device is ready
- * for data transfer. RWSC is cleared by a hardware reset. The reset value for
- * EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000
- * EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example
- * settings:
+ * for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1,
+ * RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
  *
  * Values:
  * 000000 - Reserved
@@ -6277,14 +6233,14 @@ typedef union _hw_eim_cs3rcr2
     reg32_t U;
     struct _hw_eim_cs3rcr2_bitfields
     {
-        unsigned RBEN : 3; //!< [2:0] Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
-        unsigned RBE : 1; //!< [3] Read BE enable. This bit field determines if BE will be asserted during read access.
-        unsigned RBEA : 3; //!< [6:4] Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
+        unsigned RBEN : 3; //!< [2:0] Read BE Negation.
+        unsigned RBE : 1; //!< [3] Read BE enable.
+        unsigned RBEA : 3; //!< [6:4] Read BE Assertion.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned RL : 2; //!< [9:8] Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
+        unsigned RL : 2; //!< [9:8] Read Latency.
         unsigned RESERVED1 : 2; //!< [11:10] Reserved
-        unsigned PAT : 3; //!< [14:12] Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
-        unsigned APR : 1; //!< [15] Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
+        unsigned PAT : 3; //!< [14:12] Page Access Time.
+        unsigned APR : 1; //!< [15] Asynchronous Page Read.
         unsigned RESERVED2 : 16; //!< [31:16] Reserved
     } B;
 } hw_eim_cs3rcr2_t;
@@ -6489,17 +6445,17 @@ typedef union _hw_eim_cs3wcr1
     reg32_t U;
     struct _hw_eim_cs3wcr1_bitfields
     {
-        unsigned WCSN : 3; //!< [2:0] Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
-        unsigned WCSA : 3; //!< [5:3] Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
-        unsigned WEN : 3; //!< [8:6] WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WEA : 3; //!< [11:9] WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
-        unsigned WBEA : 3; //!< [17:15] BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WADVN : 3; //!< [20:18] ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
-        unsigned WADVA : 3; //!< [23:21] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
-        unsigned WWSC : 6; //!< [29:24] Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
-        unsigned WBED : 1; //!< [30] Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
-        unsigned WAL : 1; //!< [31] Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+        unsigned WCSN : 3; //!< [2:0] Write CS Negation.
+        unsigned WCSA : 3; //!< [5:3] Write CS Assertion.
+        unsigned WEN : 3; //!< [8:6] WE Negation.
+        unsigned WEA : 3; //!< [11:9] WE Assertion.
+        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation.
+        unsigned WBEA : 3; //!< [17:15] BE Assertion.
+        unsigned WADVN : 3; //!< [20:18] ADV Negation.
+        unsigned WADVA : 3; //!< [23:21] ADV Assertion.
+        unsigned WWSC : 6; //!< [29:24] Write Wait State Control.
+        unsigned WBED : 1; //!< [30] Write Byte Enable Disable.
+        unsigned WAL : 1; //!< [31] Write ADV Low.
     } B;
 } hw_eim_cs3wcr1_t;
 #endif
@@ -6757,10 +6713,9 @@ typedef union _hw_eim_cs3wcr1
  * the start of an access, until the external device is ready for data transfer, this is referred as
  * fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length
  * and the number of EIM clock cycles from the start of access until the external device is ready
- * for data transfer. WWSC is cleared by a hardware reset. The reset value for
- * EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] =
- * 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example
- * settings:
+ * for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1,
+ * WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000.
+ * Example settings:
  *
  * Values:
  * 000000 - Reserved
@@ -6809,8 +6764,7 @@ typedef union _hw_eim_cs3wcr1
  *
  * Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1,
  * WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0
- * negation of ADV signal is according to WADVN bit field configuration. The reset value of
- * CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+ * negation of ADV signal is according to WADVN bit field configuration.
  */
 
 #define BP_EIM_CS3WCR1_WAL      (31)      //!< Bit position for EIM_CS3WCR1_WAL.
@@ -6844,7 +6798,7 @@ typedef union _hw_eim_cs3wcr2
     reg32_t U;
     struct _hw_eim_cs3wcr2_bitfields
     {
-        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
+        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_eim_cs3wcr2_t;
@@ -6906,25 +6860,25 @@ typedef union _hw_eim_cs4gcr1
     reg32_t U;
     struct _hw_eim_cs4gcr1_bitfields
     {
-        unsigned CSEN : 1; //!< [0] CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
-        unsigned SWR : 1; //!< [1] Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned SRD : 1; //!< [2] Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned MUM : 1; //!< [3] Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
-        unsigned WFL : 1; //!< [4] Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
-        unsigned RFL : 1; //!< [5] Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
-        unsigned CRE : 1; //!< [6] Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
-        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
-        unsigned BL : 3; //!< [10:8] Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
-        unsigned WC : 1; //!< [11] Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
-        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
-        unsigned BCS : 2; //!< [15:14] Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
-        unsigned DSZ : 3; //!< [18:16] Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
-        unsigned SP : 1; //!< [19] Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
-        unsigned CSREC : 3; //!< [22:20] CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
-        unsigned AUS : 1; //!< [23] Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
-        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
-        unsigned WP : 1; //!< [27] Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
-        unsigned PSZ : 4; //!< [31:28] Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
+        unsigned CSEN : 1; //!< [0] CS Enable.
+        unsigned SWR : 1; //!< [1] Synchronous Write Data.
+        unsigned SRD : 1; //!< [2] Synchronous Read Data.
+        unsigned MUM : 1; //!< [3] Multiplexed Mode.
+        unsigned WFL : 1; //!< [4] Write Fix Latency.
+        unsigned RFL : 1; //!< [5] Read Fix Latency.
+        unsigned CRE : 1; //!< [6] Configuration Register Enable.
+        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity.
+        unsigned BL : 3; //!< [10:8] Burst Length.
+        unsigned WC : 1; //!< [11] Write Continuous.
+        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor.
+        unsigned BCS : 2; //!< [15:14] Burst Clock Start.
+        unsigned DSZ : 3; //!< [18:16] Data Port Size.
+        unsigned SP : 1; //!< [19] Supervisor Protect.
+        unsigned CSREC : 3; //!< [22:20] CS Recovery.
+        unsigned AUS : 1; //!< [23] Address UnShifted.
+        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects.
+        unsigned WP : 1; //!< [27] Write Protect.
+        unsigned PSZ : 4; //!< [31:28] Page Size.
     } B;
 } hw_eim_cs4gcr1_t;
 #endif
@@ -7288,9 +7242,8 @@ typedef union _hw_eim_cs4gcr1
 /* --- Register HW_EIM_CS4GCR1, field DSZ[18:16] (RW)
  *
  * Data Port Size. This bit field defines the width of an external device's data port as shown
- * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] =
- * {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1
- * - EIM_CS5GCR1, the reset value is 0b001.
+ * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1, DSZ[2] = 0,
+ * DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
  *
  * Values:
  * 000 - Reserved.
@@ -7348,9 +7301,8 @@ typedef union _hw_eim_cs4gcr1
  *
  * CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse
  * width of CS, OE, and WE control signals before executing a new back to back access to the same
- * chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is
- * EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset
- * value is 0b000. Example settings:
+ * chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:0] is
+ * 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
  *
  * Values:
  * 000 - 0 EIM clock cycles minimum width of CS, OE and WE signals (read async. mode only)
@@ -7377,8 +7329,7 @@ typedef union _hw_eim_cs4gcr1
 /* --- Register HW_EIM_CS4GCR1, field AUS[23] (RW)
  *
  * Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant
- * chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS]
- * = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
+ * chip select accesses. AUS bit is cleared by hardware reset.
  *
  * Values:
  * 0 - Address shifted according to port size (DSZ config.)
@@ -7509,13 +7460,13 @@ typedef union _hw_eim_cs4gcr2
     reg32_t U;
     struct _hw_eim_cs4gcr2_bitfields
     {
-        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
+        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode).
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
-        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
-        unsigned DAE : 1; //!< [8] Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
-        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
+        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start.
+        unsigned DAE : 1; //!< [8] Data Acknowledge Enable.
+        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity.
         unsigned RESERVED1 : 2; //!< [11:10] Reserved
-        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant.
         unsigned RESERVED2 : 19; //!< [31:13] Reserved
     } B;
 } hw_eim_cs4gcr2_t;
@@ -7655,8 +7606,7 @@ typedef union _hw_eim_cs4gcr2
 /* --- Register HW_EIM_CS4GCR2, field MUX16_BYP_GRANT[12] (RW)
  *
  * Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration
- * with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT]
- * = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+ * with NFC (only for 16 bit muxed mode accesses).
  *
  * Values:
  * 0 - EIM waits for grant before driving a 16 bit muxed mode access to the memory.
@@ -7695,19 +7645,19 @@ typedef union _hw_eim_cs4rcr1
     reg32_t U;
     struct _hw_eim_cs4rcr1_bitfields
     {
-        unsigned RCSN : 3; //!< [2:0] Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
+        unsigned RCSN : 3; //!< [2:0] Read CS Negation.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned RCSA : 3; //!< [6:4] Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
+        unsigned RCSA : 3; //!< [6:4] Read CS Assertion.
         unsigned RESERVED1 : 1; //!< [7] Reserved
-        unsigned OEN : 3; //!< [10:8] OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
+        unsigned OEN : 3; //!< [10:8] OE Negation.
         unsigned RESERVED2 : 1; //!< [11] Reserved
-        unsigned OEA : 3; //!< [14:12] OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
+        unsigned OEA : 3; //!< [14:12] OE Assertion.
         unsigned RESERVED3 : 1; //!< [15] Reserved
-        unsigned RADVN : 3; //!< [18:16] ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
-        unsigned RAL : 1; //!< [19] Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
-        unsigned RADVA : 3; //!< [22:20] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
+        unsigned RADVN : 3; //!< [18:16] ADV Negation.
+        unsigned RAL : 1; //!< [19] Read ADV Low.
+        unsigned RADVA : 3; //!< [22:20] ADV Assertion.
         unsigned RESERVED4 : 1; //!< [23] Reserved
-        unsigned RWSC : 6; //!< [29:24] Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
+        unsigned RWSC : 6; //!< [29:24] Read Wait State Control.
         unsigned RESERVED5 : 2; //!< [31:30] Reserved
     } B;
 } hw_eim_cs4rcr1_t;
@@ -7876,8 +7826,7 @@ typedef union _hw_eim_cs4rcr1
  *
  * Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is
  * ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal
- * is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3].
- * RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
+ * is according to RADVN bit field configuration.
  */
 
 #define BP_EIM_CS4RCR1_RAL      (19)      //!< Bit position for EIM_CS4RCR1_RAL.
@@ -7934,10 +7883,8 @@ typedef union _hw_eim_cs4rcr1
  * the start of an access, until the external device is ready for data transfer, this is referred as
  * fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length
  * and the number of EIM clock cycles from the start of access until the external device is ready
- * for data transfer. RWSC is cleared by a hardware reset. The reset value for
- * EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000
- * EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example
- * settings:
+ * for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1,
+ * RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
  *
  * Values:
  * 000000 - Reserved
@@ -7980,14 +7927,14 @@ typedef union _hw_eim_cs4rcr2
     reg32_t U;
     struct _hw_eim_cs4rcr2_bitfields
     {
-        unsigned RBEN : 3; //!< [2:0] Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
-        unsigned RBE : 1; //!< [3] Read BE enable. This bit field determines if BE will be asserted during read access.
-        unsigned RBEA : 3; //!< [6:4] Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
+        unsigned RBEN : 3; //!< [2:0] Read BE Negation.
+        unsigned RBE : 1; //!< [3] Read BE enable.
+        unsigned RBEA : 3; //!< [6:4] Read BE Assertion.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned RL : 2; //!< [9:8] Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
+        unsigned RL : 2; //!< [9:8] Read Latency.
         unsigned RESERVED1 : 2; //!< [11:10] Reserved
-        unsigned PAT : 3; //!< [14:12] Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
-        unsigned APR : 1; //!< [15] Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
+        unsigned PAT : 3; //!< [14:12] Page Access Time.
+        unsigned APR : 1; //!< [15] Asynchronous Page Read.
         unsigned RESERVED2 : 16; //!< [31:16] Reserved
     } B;
 } hw_eim_cs4rcr2_t;
@@ -8192,17 +8139,17 @@ typedef union _hw_eim_cs4wcr1
     reg32_t U;
     struct _hw_eim_cs4wcr1_bitfields
     {
-        unsigned WCSN : 3; //!< [2:0] Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
-        unsigned WCSA : 3; //!< [5:3] Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
-        unsigned WEN : 3; //!< [8:6] WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WEA : 3; //!< [11:9] WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
-        unsigned WBEA : 3; //!< [17:15] BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WADVN : 3; //!< [20:18] ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
-        unsigned WADVA : 3; //!< [23:21] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
-        unsigned WWSC : 6; //!< [29:24] Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
-        unsigned WBED : 1; //!< [30] Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
-        unsigned WAL : 1; //!< [31] Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+        unsigned WCSN : 3; //!< [2:0] Write CS Negation.
+        unsigned WCSA : 3; //!< [5:3] Write CS Assertion.
+        unsigned WEN : 3; //!< [8:6] WE Negation.
+        unsigned WEA : 3; //!< [11:9] WE Assertion.
+        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation.
+        unsigned WBEA : 3; //!< [17:15] BE Assertion.
+        unsigned WADVN : 3; //!< [20:18] ADV Negation.
+        unsigned WADVA : 3; //!< [23:21] ADV Assertion.
+        unsigned WWSC : 6; //!< [29:24] Write Wait State Control.
+        unsigned WBED : 1; //!< [30] Write Byte Enable Disable.
+        unsigned WAL : 1; //!< [31] Write ADV Low.
     } B;
 } hw_eim_cs4wcr1_t;
 #endif
@@ -8460,10 +8407,9 @@ typedef union _hw_eim_cs4wcr1
  * the start of an access, until the external device is ready for data transfer, this is referred as
  * fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length
  * and the number of EIM clock cycles from the start of access until the external device is ready
- * for data transfer. WWSC is cleared by a hardware reset. The reset value for
- * EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] =
- * 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example
- * settings:
+ * for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1,
+ * WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000.
+ * Example settings:
  *
  * Values:
  * 000000 - Reserved
@@ -8512,8 +8458,7 @@ typedef union _hw_eim_cs4wcr1
  *
  * Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1,
  * WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0
- * negation of ADV signal is according to WADVN bit field configuration. The reset value of
- * CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+ * negation of ADV signal is according to WADVN bit field configuration.
  */
 
 #define BP_EIM_CS4WCR1_WAL      (31)      //!< Bit position for EIM_CS4WCR1_WAL.
@@ -8547,7 +8492,7 @@ typedef union _hw_eim_cs4wcr2
     reg32_t U;
     struct _hw_eim_cs4wcr2_bitfields
     {
-        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
+        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_eim_cs4wcr2_t;
@@ -8609,25 +8554,25 @@ typedef union _hw_eim_cs5gcr1
     reg32_t U;
     struct _hw_eim_cs5gcr1_bitfields
     {
-        unsigned CSEN : 1; //!< [0] CS Enable. This bit controls the operation of the chip select pin. CSEN is set by a hardware reset for CSGCR0 to allow external boot operation. CSEN is cleared by a hardware reset to CSGCR1-CSGCR5. Reset value for EIM_CS0GCR1 for CSEN is 1. For EIM_CS1GCR1-CS1GCR5 reset value is 0.
-        unsigned SWR : 1; //!< [1] Synchronous Write Data. This bit field determine the write accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SWR is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned SRD : 1; //!< [2] Synchronous Read Data. This bit field determine the read accesses mode to the External device of the chip select. The External device should be configured to the same mode as this bit implicates. SRD is cleared by a hardware reset. Sync. accesses supported only for 16/32 bit port.
-        unsigned MUM : 1; //!< [3] Multiplexed Mode. This bit determines the address/data multiplexed mode for asynchronous and synchronous accesses for 8 bit, 16 bit or 32 bit devices (DSZ config. dependent). The reset value for EIM_CS0GCR1[MUM] = EIM_BOOT[2]. For EIM_CS1GCR1 - EIM_CS5GCR1 the reset value is 0.
-        unsigned WFL : 1; //!< [4] Write Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start data transfer according to WWSC field, it only valid in synchronous mode. WFL is cleared by a hardware reset. When WFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device
-        unsigned RFL : 1; //!< [5] Read Fix Latency. This bit field determine if the controller is monitoring the WAIT signal from the External device connected to the chip select (handshake mode - fix or variable data latency) or if it start sampling data according to RWSC field, it only valid in synchronous mode. RFL is cleared by a hardware reset. When RFL=1 Burst access is terminated on page boundary and resume on the following page according to BL bit field configuration, because WAIT signal is not monitored from the external device.
-        unsigned CRE : 1; //!< [6] Configuration Register Enable. This bit indicates CRE memory pin state while executing a memory register set command to PSRAM external device. CRE is cleared by a hardware reset.
-        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity. This bit indicates CRE memory pin assertion state, active-low or active-high, while executing a memory register set command to the external device (PSRAM memory type). CREP is set by a hardware reset. Whenever PSRAM is connected the CREP value must be correct also for accesses where CRE is disabled. For Non-PSRAM memory CREP value should be 1.
-        unsigned BL : 3; //!< [10:8] Burst Length. The BL bit field indicates memory burst length in words (word is defined by the DSZ field) and should be properly initialized for mixed wrap/increment accesses support. Continuous BL value corresponds to continuous burst length setting of the external memory device. For fix memory burst size, type is always wrap. In case not matching wrap boundaries in both the memory (BL field) and Master access on the current address, EIM update address on the external device address bus and regenerates the access. BL is cleared by a hardware reset. When APR=1, Page Read Mode is applied, BL determine the number of words within the read page burst. BL is cleared by a hardware reset for EIM_CS0GCR1 - EIM_CS5GCR1.
-        unsigned WC : 1; //!< [11] Write Continuous. The WI bit indicates that write access to the memory are always continuous accesses regardless of the BL field value. WI is cleared by hardware reset.
-        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor. This bit field contains the value used to program the burst clock divisor for BCLK generation. It is used to divide the internal EIMbus frequency. BCD is cleared by a hardware reset. For other then the mentioned below frequency such as 104 MHz, EIM clock (input clock) should be adjust accordingly.
-        unsigned BCS : 2; //!< [15:14] Burst Clock Start. When SRD=1 or SWR=1,this bit field determines the number of EIM clock cycles delay from start of access before the first rising edge of BCLK is generated. When BCD=0 value of BCS=0 results in a half clock delay after the start of access. For other values of BCD a one clock delay after the start of access is applied, not an immediate assertion. BCS is cleared by a hardware reset.
-        unsigned DSZ : 3; //!< [18:16] Data Port Size. This bit field defines the width of an external device's data port as shown below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] = {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
-        unsigned SP : 1; //!< [19] Supervisor Protect. This bit prevents accesses to the address range defined by the corresponding chip select when the access is attempted in the User mode. SP is cleared by a hardware reset.
-        unsigned CSREC : 3; //!< [22:20] CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse width of CS, OE, and WE control signals before executing a new back to back access to the same chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
-        unsigned AUS : 1; //!< [23] Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS] = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
-        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects. This bit field, according to the settings shown below, determines the minimum time between end of access to the current chip select and start of access to different chip select. GBC is cleared by a hardware reset. Example settings:
-        unsigned WP : 1; //!< [27] Write Protect. This bit prevents writes to the address range defined by the corresponding chip select. WP is cleared by a hardware reset.
-        unsigned PSZ : 4; //!< [31:28] Page Size. This bit field indicates memory page size in words (word is defined by the DSZ field). PSZ is used when fix latency mode is applied, WFL=1 for sync. write accesses, RFL=1 for sync. Read accesses. When working in fix latency mode WAIT signal from the external device is not being monitored, PSZ is used to determine if page boundary is reached and renewal of access is preformed. This bit field is ignored when sync. Mode is disabled or fix latency mode is not being used for write or read access separately. It can be valid for both access type, read or write, or only for one type, according to configuration. PSZ is cleared by a hardware reset.
+        unsigned CSEN : 1; //!< [0] CS Enable.
+        unsigned SWR : 1; //!< [1] Synchronous Write Data.
+        unsigned SRD : 1; //!< [2] Synchronous Read Data.
+        unsigned MUM : 1; //!< [3] Multiplexed Mode.
+        unsigned WFL : 1; //!< [4] Write Fix Latency.
+        unsigned RFL : 1; //!< [5] Read Fix Latency.
+        unsigned CRE : 1; //!< [6] Configuration Register Enable.
+        unsigned CREP : 1; //!< [7] Configuration Register Enable Polarity.
+        unsigned BL : 3; //!< [10:8] Burst Length.
+        unsigned WC : 1; //!< [11] Write Continuous.
+        unsigned BCD : 2; //!< [13:12] Burst Clock Divisor.
+        unsigned BCS : 2; //!< [15:14] Burst Clock Start.
+        unsigned DSZ : 3; //!< [18:16] Data Port Size.
+        unsigned SP : 1; //!< [19] Supervisor Protect.
+        unsigned CSREC : 3; //!< [22:20] CS Recovery.
+        unsigned AUS : 1; //!< [23] Address UnShifted.
+        unsigned GBC : 3; //!< [26:24] Gap Between Chip Selects.
+        unsigned WP : 1; //!< [27] Write Protect.
+        unsigned PSZ : 4; //!< [31:28] Page Size.
     } B;
 } hw_eim_cs5gcr1_t;
 #endif
@@ -8991,9 +8936,8 @@ typedef union _hw_eim_cs5gcr1
 /* --- Register HW_EIM_CS5GCR1, field DSZ[18:16] (RW)
  *
  * Data Port Size. This bit field defines the width of an external device's data port as shown
- * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1[DSZ] =
- * {EIM_BOOT[11], EIM_BOOT[1:0]} EIM_CS0GCR1, DSZ[2] = 0, DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1
- * - EIM_CS5GCR1, the reset value is 0b001.
+ * below. Only async. access supported for 8 bit port. The reset value for EIM_CS0GCR1, DSZ[2] = 0,
+ * DSZ[1:0] = EIM_BOOT[1:0]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value is 0b001.
  *
  * Values:
  * 000 - Reserved.
@@ -9051,9 +8995,8 @@ typedef union _hw_eim_cs5gcr1
  *
  * CS Recovery. This bit field, according to the settings shown below, determines the minimum pulse
  * width of CS, OE, and WE control signals before executing a new back to back access to the same
- * chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:1] is
- * EIM_BOOT[9:8], for CSREC[0] is 0 CSREC[2:0] is 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset
- * value is 0b000. Example settings:
+ * chip select. CSREC is cleared by a hardware reset. The reset value for EIM_CS0GCR1, CSREC[2:0] is
+ * 0b110. For EIM_CS1GCR1 - EIM_CS5GCR, the reset value is 0b000. Example settings:
  *
  * Values:
  * 000 - 0 EIM clock cycles minimum width of CS, OE and WE signals (read async. mode only)
@@ -9080,8 +9023,7 @@ typedef union _hw_eim_cs5gcr1
 /* --- Register HW_EIM_CS5GCR1, field AUS[23] (RW)
  *
  * Address UnShifted. This bit indicates an unshifted mode for address assertion for the relevant
- * chip select accesses. AUS bit is cleared by hardware reset. The reset value for EIM_CS0GCR1[AUS]
- * = EIM_BOOT[10]. For EIM_CS1GCR1 - EIM_CS5GCR1, the reset value of AUS is 0.
+ * chip select accesses. AUS bit is cleared by hardware reset.
  *
  * Values:
  * 0 - Address shifted according to port size (DSZ config.)
@@ -9212,13 +9154,13 @@ typedef union _hw_eim_cs5gcr2
     reg32_t U;
     struct _hw_eim_cs5gcr2_bitfields
     {
-        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode). When mum = 0 this bit has no effect. For read accesses the field determines when the pads direction will be switched. Reset value for EIM_CS0GCR2 for ADH is 10. For EIM_CS1GCR2-EIM_CS5GCR2 reset value is 00.
+        unsigned ADH : 2; //!< [1:0] Address hold time - This bit field determine the address hold time after ADV negation when mum = 1 (muxed mode).
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
-        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start. This bit field determine the starting point of DTACK input signal polling. DAPS is used only in asynchronous single read or write accesses. Since DTACK is an async. signal the start point of DTACK signal polling is at least 3 cycles after the start of access. DAPS is cleared by a hardware reset. Example settings:
-        unsigned DAE : 1; //!< [8] Data Acknowledge Enable. This bit indicates external device is using DTACK pin as strobe/terminator of an async. access. DTACK signal may be used only in asynchronous single read (APR=0) or write accesses. DTACK poling start point is set by DAPS bit field. polarity of DTACK is set by DAP bit field. DAE is cleared by a hardware reset.
-        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity. This bit indicates DTACK memory pin assertion state, active-low or active-high, while executing an async access using DTACK signal from the external device. DAP is cleared by a hardware reset.
+        unsigned DAPS : 4; //!< [7:4] Data Acknowledge Poling Start.
+        unsigned DAE : 1; //!< [8] Data Acknowledge Enable.
+        unsigned DAP : 1; //!< [9] Data Acknowledge Polarity.
         unsigned RESERVED1 : 2; //!< [11:10] Reserved
-        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT] = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+        unsigned MUX16_BYP_GRANT : 1; //!< [12] Muxed 16 bypass grant.
         unsigned RESERVED2 : 19; //!< [31:13] Reserved
     } B;
 } hw_eim_cs5gcr2_t;
@@ -9358,8 +9300,7 @@ typedef union _hw_eim_cs5gcr2
 /* --- Register HW_EIM_CS5GCR2, field MUX16_BYP_GRANT[12] (RW)
  *
  * Muxed 16 bypass grant. This bit when asserted causes EIM to bypass the grant/ack. arbitration
- * with NFC (only for 16 bit muxed mode accesses). The reset value for EIM_CS0GCR2[MUX16_BYP_GRANT]
- * = EIM_BOOT[12]. For EIM_CS1GCR2 - EIM_CS5GCR2, MUX16_BYP_GRANT reset value is 1.
+ * with NFC (only for 16 bit muxed mode accesses).
  *
  * Values:
  * 0 - EIM waits for grant before driving a 16 bit muxed mode access to the memory.
@@ -9398,19 +9339,19 @@ typedef union _hw_eim_cs5rcr1
     reg32_t U;
     struct _hw_eim_cs5rcr1_bitfields
     {
-        unsigned RCSN : 3; //!< [2:0] Read CS Negation. This bit field determines when CS signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. RCSN is cleared by a hardware reset. Example settings:
+        unsigned RCSN : 3; //!< [2:0] Read CS Negation.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned RCSA : 3; //!< [6:4] Read CS Assertion. This bit field determines when CS signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RCSA is cleared by a hardware reset. Example settings:
+        unsigned RCSA : 3; //!< [6:4] Read CS Assertion.
         unsigned RESERVED1 : 1; //!< [7] Reserved
-        unsigned OEN : 3; //!< [10:8] OE Negation. This bit field determines when OE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR = 0), according to the settings shown below. This bit field is ignored when SRD=1. OEN is cleared by a hardware reset. Example settings:
+        unsigned OEN : 3; //!< [10:8] OE Negation.
         unsigned RESERVED2 : 1; //!< [11] Reserved
-        unsigned OEA : 3; //!< [14:12] OE Assertion. This bit field determines when OE signal are asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. OEA is cleared by a hardware reset. In muxed mode OE assertion occurs (OEA + RADVN + RADVA + ADH +1) EIM clock cycles from start of access. The reset value for EIM_CS0RCR1[OEA] is 0b000 if EIM_BOOT[2] = 0. If EIM_BOOT[2] is 1, the reset value for EIM_CS0RCR1 is 0b010. The reset value of this field for EIM_CS1RCR1 - EIM_CS5RCR1 is 0b000. Example settings:
+        unsigned OEA : 3; //!< [14:12] OE Assertion.
         unsigned RESERVED3 : 1; //!< [15] Reserved
-        unsigned RADVN : 3; //!< [18:16] ADV Negation. This bit field determines when ADV signal to memory is negated during read accesses. When SRD=1 (synchronous read mode), ADV negation occurs according to the following formula: (RADVN + RADVA + BCD + BCS + 1) EIM clock cycles from start of access. When asynchronous read mode is applied (SRD=0) and RAL=0 ADV negation occurs according to the following formula: (RADVN + RADVA + 1) EIM clock cycles from start of access. RADVN is cleared by a hardware reset. the reset value for EIM_CS0RCR1[RADVN] = 2. For EIM_CS1RCR1 - EIM_CS5RCR1, the reset value is 0b000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time with the end of access user should RAL bit.
-        unsigned RAL : 1; //!< [19] Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3]. RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
-        unsigned RADVA : 3; //!< [22:20] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous read modes according to the settings shown below. RADVA is cleared by a hardware reset. Example settings:
+        unsigned RADVN : 3; //!< [18:16] ADV Negation.
+        unsigned RAL : 1; //!< [19] Read ADV Low.
+        unsigned RADVA : 3; //!< [22:20] ADV Assertion.
         unsigned RESERVED4 : 1; //!< [23] Reserved
-        unsigned RWSC : 6; //!< [29:24] Read Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous read access to the external device connected to the chip select. When SRD=1 and RFL=0, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the controller can start sample data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SRD=1 and RFL=1, RWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000 EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
+        unsigned RWSC : 6; //!< [29:24] Read Wait State Control.
         unsigned RESERVED5 : 2; //!< [31:30] Reserved
     } B;
 } hw_eim_cs5rcr1_t;
@@ -9579,8 +9520,7 @@ typedef union _hw_eim_cs5rcr1
  *
  * Read ADV Low. This bit field determine ADV signal negation time. When RAL=1, RADVN bit field is
  * ignored and ADV signal will stay asserted until end of access. When RAL=0 negation of ADV signal
- * is according to RADVN bit field configuration. The reset value of EIM_CS0RCR1[RAL] = EIM_BOOT[3].
- * RAL is cleared by a hardware reset for EIM_CS1RCR1 - EIM_CS5RCR1.
+ * is according to RADVN bit field configuration.
  */
 
 #define BP_EIM_CS5RCR1_RAL      (19)      //!< Bit position for EIM_CS5RCR1_RAL.
@@ -9637,10 +9577,8 @@ typedef union _hw_eim_cs5rcr1
  * the start of an access, until the external device is ready for data transfer, this is referred as
  * fix latency mode. When SRD=0, RFL bit is ignored, RWSC indicates the asynchronous access length
  * and the number of EIM clock cycles from the start of access until the external device is ready
- * for data transfer. RWSC is cleared by a hardware reset. The reset value for
- * EIM_CS0RCR1[RWSC[4:2]] = EIM_BOOT [7:5]. For {RWSC[5], RWSC[1:0]} the reset value is 0b000
- * EIM_CS0RCR1, RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example
- * settings:
+ * for data transfer. RWSC is cleared by a hardware reset. The reset value for EIM_CS0RCR1,
+ * RWSC[5:0] = 0b011100. For CG1RCR1 - CS1RCR5 the reset value is 0b000000. Example settings:
  *
  * Values:
  * 000000 - Reserved
@@ -9683,14 +9621,14 @@ typedef union _hw_eim_cs5rcr2
     reg32_t U;
     struct _hw_eim_cs5rcr2_bitfields
     {
-        unsigned RBEN : 3; //!< [2:0] Read BE Negation. This bit field determines when BE signal is negated during read cycles in asynchronous single mode only (SRD=0 & APR=0), according to the settings shown below. This bit field is ignored when SRD=1. RBEN is cleared by a hardware reset. Example settings:
-        unsigned RBE : 1; //!< [3] Read BE enable. This bit field determines if BE will be asserted during read access.
-        unsigned RBEA : 3; //!< [6:4] Read BE Assertion. This bit field determines when BE signal is asserted during read cycles (synchronous or asynchronous mode), according to the settings shown below. RBEA is cleared by a hardware reset. Example settings:
+        unsigned RBEN : 3; //!< [2:0] Read BE Negation.
+        unsigned RBE : 1; //!< [3] Read BE enable.
+        unsigned RBEA : 3; //!< [6:4] Read BE Assertion.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned RL : 2; //!< [9:8] Read Latency. This bit field indicates cycle latency when executing a synchronous read operation. The fields holds the feedback clock loop delay in aclk cycle units. This field is cleared by a hardware reset.
+        unsigned RL : 2; //!< [9:8] Read Latency.
         unsigned RESERVED1 : 2; //!< [11:10] Reserved
-        unsigned PAT : 3; //!< [14:12] Page Access Time. This bit field is used in Asynchronous Page Read mode only (APR=1). the initial access is set by RWSC as in regular asynchronous mode. the consecutive address assertions width determine by PAT field according to the settings shown below. when APR=0 this field is ignored. PAT is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1.
-        unsigned APR : 1; //!< [15] Asynchronous Page Read. This bit field determine the asynchronous read mode to the external device. When APR=0, the async. read access is done as single word (where word is defined by the DSZ field). when APR=1, the async. read access executed as page read. page size is according to BL field config., RCSN,RBEN,OEN and RADVN are being ignored. APR is cleared by a hardware reset for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
+        unsigned PAT : 3; //!< [14:12] Page Access Time.
+        unsigned APR : 1; //!< [15] Asynchronous Page Read.
         unsigned RESERVED2 : 16; //!< [31:16] Reserved
     } B;
 } hw_eim_cs5rcr2_t;
@@ -9895,17 +9833,17 @@ typedef union _hw_eim_cs5wcr1
     reg32_t U;
     struct _hw_eim_cs5wcr1_bitfields
     {
-        unsigned WCSN : 3; //!< [2:0] Write CS Negation. This bit field determines when CS signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WCSN is cleared by a hardware reset. Example settings:
-        unsigned WCSA : 3; //!< [5:3] Write CS Assertion. This bit field determines when CS signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below.this bit field is ignored when executing a read access to the external device. WCSA is cleared by a hardware reset. Example settings:
-        unsigned WEN : 3; //!< [8:6] WE Negation. This bit field determines when WE signal is negated during write cycles in asynchronous mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. WEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WEA : 3; //!< [11:9] WE Assertion. This bit field determines when WE signal is asserted during write cycles (synchronous or asynchronous mode), according to the settings shown below. This bit field is ignored when executing a read access to the external device. WEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation. This bit field determines when BE[3:0] bus signal is negated during write cycles in async. mode only (SWR=0), according to the settings shown below. This bit field is ignored when SWR=1. BEN is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings: 000 0 EIM clock cycles between end of access and WE negation 001 1 EIM clock cycles between end of access and WE negation 010 2 EIM clock cycles between end of access and WE negation 111 7 EIM clock cycles between end of access and WE negation
-        unsigned WBEA : 3; //!< [17:15] BE Assertion. This bit field determines when BE signal is asserted during write cycles in async. mode only (SWR=0), according to the settings shown below. BEA is cleared by a hardware reset. Reset value for EIM_CS0WCR for WBEA is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. Example settings:
-        unsigned WADVN : 3; //!< [20:18] ADV Negation. This bit field determines when ADV signal to memory is negated during write accesses. When SWR=1 (synchronous write mode), ADV negation occurs according to the following formula: (WADVN + WADVA + BCD + BCS + 1) EIM clock cycles. When asynchronous read mode is applied (SWR=0) ADV negation occurs according to the following formula: (WADVN + WADVA + 1) EIM clock cycles. Reset value for EIM_CS0WCR for WADVN is 2. For EIM_CS1WCR - EIM_CS5WCR reset value is 000. This field should be configured so ADV negation will occur before the end of access. For ADV negation at the same time as the end of access, S/W should set the WAL bit.
-        unsigned WADVA : 3; //!< [23:21] ADV Assertion. This bit field determines when ADV signal is asserted for synchronous or asynchronous write modes according to the settings shown below. WADVA is cleared by a hardware reset. Example settings:
-        unsigned WWSC : 6; //!< [29:24] Write Wait State Control. This bit field programs the number of wait-states, according to the settings shown below, for synchronous or asynchronous write access to the external device connected to the chip select. When SWR=1 and WFL=0, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, before the memory can sample the first data.Since WAIT signal can be asserted one cycle before the first data can be sampled, the controller starts evaluating the WAIT signal state one cycle before, this is referred as handshake mode or variable latency mode. When SWR=1 and WFL=1, WWSC indicates the number of burst clock (BCLK) cycles from the start of an access, until the external device is ready for data transfer, this is referred as fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length and the number of EIM clock cycles from the start of access until the external device is ready for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example settings:
-        unsigned WBED : 1; //!< [30] Write Byte Enable Disable. When asserted this bit prevent from IPP_DO_BE_B[x] to be asserted during write accesses.This bit is cleared by hardware reset.
-        unsigned WAL : 1; //!< [31] Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1, WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0 negation of ADV signal is according to WADVN bit field configuration. The reset value of CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+        unsigned WCSN : 3; //!< [2:0] Write CS Negation.
+        unsigned WCSA : 3; //!< [5:3] Write CS Assertion.
+        unsigned WEN : 3; //!< [8:6] WE Negation.
+        unsigned WEA : 3; //!< [11:9] WE Assertion.
+        unsigned WBEN : 3; //!< [14:12] BE[3:0] Negation.
+        unsigned WBEA : 3; //!< [17:15] BE Assertion.
+        unsigned WADVN : 3; //!< [20:18] ADV Negation.
+        unsigned WADVA : 3; //!< [23:21] ADV Assertion.
+        unsigned WWSC : 6; //!< [29:24] Write Wait State Control.
+        unsigned WBED : 1; //!< [30] Write Byte Enable Disable.
+        unsigned WAL : 1; //!< [31] Write ADV Low.
     } B;
 } hw_eim_cs5wcr1_t;
 #endif
@@ -10163,10 +10101,9 @@ typedef union _hw_eim_cs5wcr1
  * the start of an access, until the external device is ready for data transfer, this is referred as
  * fix latency mode. When SWR=0, WFL bit is ignored, WWSC indicates the asynchronous access length
  * and the number of EIM clock cycles from the start of access until the external device is ready
- * for data transfer. WWSC is cleared by a hardware reset. The reset value for
- * EIM_CS0WCR1[WWSC[4:2]] = EIM_BOOT [7:5], {WWSC[5], WWSC[1:0]} = 0b000 EIM_CS0WCR1, WWSC[5:0] =
- * 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000. Example
- * settings:
+ * for data transfer. WWSC is cleared by a hardware reset. The reset value for EIM_CS0WCR1,
+ * WWSC[5:0] = 0b011100. For EIM_CS1WCR1 - EIM_CS5WCR1, the reset value of this field is 0b000000.
+ * Example settings:
  *
  * Values:
  * 000000 - Reserved
@@ -10215,8 +10152,7 @@ typedef union _hw_eim_cs5wcr1
  *
  * Write ADV Low. This bit field determine ADV signal negation time in write accesses. When WAL=1,
  * WADVN bit field is ignored and ADV signal will stay asserted until end of access. When WAL=0
- * negation of ADV signal is according to WADVN bit field configuration. The reset value of
- * CS0WCR1[WAL] = EIM_BOOT[3]. This field is cleared by a hardware reset for CS1WCR1 - CS5WCR1.
+ * negation of ADV signal is according to WADVN bit field configuration.
  */
 
 #define BP_EIM_CS5WCR1_WAL      (31)      //!< Bit position for EIM_CS5WCR1_WAL.
@@ -10250,7 +10186,7 @@ typedef union _hw_eim_cs5wcr2
     reg32_t U;
     struct _hw_eim_cs5wcr2_bitfields
     {
-        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement. If this bit is asserted and BCD value is 0 sync. write access will be preformed as if BCD value is 1.When this bit is negated or BCD value is not 0 this bit has no affect. This bit is cleared by hardware reset.
+        unsigned WBCDD : 1; //!< [0] Write Burst Clock Divisor Decrement.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_eim_cs5wcr2_t;
@@ -10312,14 +10248,14 @@ typedef union _hw_eim_wcr
     reg32_t U;
     struct _hw_eim_wcr_bitfields
     {
-        unsigned BCM : 1; //!< [0] Burst Clock Mode. This bit selects the burst clock mode of operation. It is used for system debug mode. BCM is cleared by a hardware reset. The BCLK frequency in this mode is according to GBCD bit field. The BCLK phase is opposite to the EIM clock in this mode if GBCD is 0. This bit should be used only in async. accesses. No sync access can be executed if this bit is set. When this bit is set bcd field shouldn't be configured to 0.
-        unsigned GBCD : 2; //!< [2:1] General Burst Clock Divisor. When BCM bit is set, this bit field contains the value used to program the burst clock divisor for Continuous BCLK generation. The other BCD bit fields for each chip select are ignored. It is used to divide the internal AXI bus frequency. When BCM=0 GBCD bit field has no influence. GBCD is cleared by a hardware reset.
-        unsigned CONT_BCLK_SEL : 1; //!< [3] When this bit is set BCLK pin output continuous clock. Otherwize, BCLK will output clock only when nesserary.
-        unsigned INTEN : 1; //!< [4] Interrupt Enable. When this bit is set the External signal RDY_INT as active interrupt. When interrupt occurs, INT bit at the WCR will be set and t EIM_EXT_INT signal will be asserted correspondingly. This bit is cleared by a hardware reset.
-        unsigned INTPOL : 1; //!< [5] Interrupt Polarity. This bit field determines the polarity of the external device interrupt.
+        unsigned BCM : 1; //!< [0] Burst Clock Mode.
+        unsigned GBCD : 2; //!< [2:1] General Burst Clock Divisor.
+        unsigned CONT_BCLK_SEL : 1; //!< [3] When this bit is set BCLK pin output continuous clock.
+        unsigned INTEN : 1; //!< [4] Interrupt Enable.
+        unsigned INTPOL : 1; //!< [5] Interrupt Polarity.
         unsigned RESERVED0 : 2; //!< [7:6] Reserved
-        unsigned WDOG_EN : 1; //!< [8] Memory WDog enable. This bit controls the operation of the wdog counter that terminates the EIM access.
-        unsigned WDOG_LIMIT : 2; //!< [10:9] Memory Watch Dog (WDog) cycle limit. This bit field determines the number of BCLK cycles (ACLK cycles in dtack mode) before the wdog counter terminates the access and send an error response to the master.
+        unsigned WDOG_EN : 1; //!< [8] Memory WDog enable.
+        unsigned WDOG_LIMIT : 2; //!< [10:9] Memory Watch Dog (WDog) cycle limit.
         unsigned FRUN_ACLK_EN : 1; //!< [11] 
         unsigned RESERVED1 : 20; //!< [31:12] 
     } B;
@@ -10907,11 +10843,11 @@ typedef union _hw_eim_wiar
     reg32_t U;
     struct _hw_eim_wiar_bitfields
     {
-        unsigned IPS_REQ : 1; //!< [0] IPS request. The Master requests to access one of the IPS registers.Dutring such access the EIM should not preform any AXI/memory accesses. The EIM finishes the AXI accesses that already starts and asserts the IPS_ACK bit.
-        unsigned IPS_ACK : 1; //!< [1] IPS ACK. The EIM is ready for ips access. There is no active AXI access and no new AXI access is accepted till this bit is cleared. This bit is cleared by the master after it completes the ips accesses.
-        unsigned INT : 1; //!< [2] Interrupt. This bit indicates interrupt assertion by an external device according to RDY_INT signal. When polling this bit, INT=0 indicates interrupt not occurred and INT=1 indicates assertion of the external device interrupt. This bit is cleared by a hardware reset.
-        unsigned ERRST : 1; //!< [3] READY After Reset. This bit controls the initial ready/busy status for external devices on CS0 immediately after hardware reset. This is a sticky bit which is cleared once the RDY_INT signal is asserted by the external device. When ERRST = 1 the first fetch access from EIM to the external device located on CS0 will be pending until RDY_INT signal indicates that the external device is ready, then EIM will execute the access. Reset value for ERRST is EIM_BOOT[4].
-        unsigned ACLK_EN : 1; //!< [4] ACLK enable. This bit gates the ACLK for the EIM except from FFs that get ipg_aclk_s. After reset ACLK is enabled.
+        unsigned IPS_REQ : 1; //!< [0] IPS request.
+        unsigned IPS_ACK : 1; //!< [1] IPS ACK.
+        unsigned INT : 1; //!< [2] Interrupt.
+        unsigned ERRST : 1; //!< [3] READY After Reset.
+        unsigned ACLK_EN : 1; //!< [4] ACLK enable.
         unsigned RESERVED0 : 27; //!< [31:5] Reserved
     } B;
 } hw_eim_wiar_t;
@@ -11078,7 +11014,7 @@ typedef union _hw_eim_ear
     reg32_t U;
     struct _hw_eim_ear_bitfields
     {
-        unsigned ERROR_ADDR : 32; //!< [31:0] Error Address. This bit field holds the AXI address of the last access that caused error. This register is read only register.
+        unsigned ERROR_ADDR : 32; //!< [31:0] Error Address.
     } B;
 } hw_eim_ear_t;
 #endif

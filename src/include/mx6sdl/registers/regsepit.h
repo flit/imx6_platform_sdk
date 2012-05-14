@@ -42,16 +42,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_EPIT_EPITCR - Control register
@@ -65,29 +55,29 @@
  *
  * The EPIT control register (EPIT_EPITCR) is used to configure the operating settings of the EPIT.
  * It contains the clock division prescaler value and also the interrupt enable bit. Additionally it
- * contains other control bit which are outlined below.  Peripheral (IP) Bus Write access to EPIT
- * Control Register (EPIT_EPITCR) results in one cycle of the wait state (ips_xfr_wait high for 1
- * cycle) , while other valid peripheral (IP) bus accesses are with 0 wait state.
+ * contains other control bit which are outlined below.  Peripheral Bus Write access to EPIT Control
+ * Register (EPIT_EPITCR) results in one cycle of the wait state, while other valid peripheral bus
+ * accesses are with 0 wait state.
  */
 typedef union _hw_epit_epitcr
 {
     reg32_t U;
     struct _hw_epit_epitcr_bitfields
     {
-        unsigned EN : 1; //!< [0] This bit enables the EPIT. EPIT counter and prescaler value when EPIT is enabled (EN =1), is dependent upon ENMOD and RLD bit as described for ENMOD bit. It is recommended that all registers be properly programmed before setting this bit. This bit is reset by a hardware reset. A software reset does not affect this bit.
-        unsigned ENMOD : 1; //!< [1] EPIT enable mode. When EPIT is disabled (EN=0), both main counter and prescaler counter freeze their count at current count values. ENMOD bit is a r/w bit that determines the counter value when the EPIT is enabled again by setting EN bit. If ENMOD bit is set, then main counter is loaded with the load value (If RLD=1)/ 0xFFFF_FFFF (If RLD=0) and prescaler counter is reset, when EPIT is enabled (EN=1). If ENMOD is programmed to 0 then both main counter and prescaler counter restart counting from their frozen values when EPIT is enabled (EN=1). If EPIT is programmed to be disabled in a low-power mode (STOP/WAIT/DEBUG /DOZE ), then both the main counter and the prescaler counter freeze at their current count values when EPIT enters low-power mode. When EPIT exits the low-power mode, both main counter and prescaler counter start counting from their frozen values irrespective of the ENMOD bit. This bit is reset by a hardware reset. A software reset does not affect this bit.
-        unsigned OCIEN : 1; //!< [2] Output compare interrupt enable. This bit enables the generation of interrupt on occurrence of compare event.
-        unsigned RLD : 1; //!< [3] Counter reload control. This bit is cleared by hardware reset. It decides the counter functionality, whether to run in free-running mode or set-and-forget mode.
-        unsigned PRESCALAR : 12; //!< [15:4] Counter clock prescaler value. This bit field determines the prescaler value by which the clock is divided before it goes to the counter
-        unsigned SWR : 1; //!< [16] Software reset. The EPIT is reset when this bit is set to 1. It is a self clearing bit. This bit is set when the block is in reset state and is cleared when the reset procedure is over. Setting this bit resets all the registers to their reset values, except for the EN, ENMOD, STOPEN , DOZEN , WAITEN and DBGEN bits in this control register
-        unsigned IOVW : 1; //!< [17] EPIT counter overwrite enable. This bit controls the counter data when the modulus register is written. When this bit is set, all writes to the load register overwrites the counter contents and the counter starts subsequently counting down from the programmed value.
-        unsigned DBGEN : 1; //!< [18] This bit is used to keep the EPIT functional in debug mode. When this bit is cleared, the input clock is gated off in debug mode.This bit is reset by hardware reset. A software reset does not affect this bit.
-        unsigned WAITEN : 1; //!< [19] This read/write control bit enables the operation of the EPIT during wait mode. This bit is reset by a hardware reset. A software reset does not affect this bit.
-        unsigned RESERVED0 : 1; //!< [20] Reserved. Writing to these bits does not affect the functionality of EPIT. These bits are always read as zero.
-        unsigned STOPEN : 1; //!< [21] EPIT stop mode enable. This read/write control bit enables the operation of the EPIT during stop mode. This bit is reset by a hardware reset and unaffected by software reset.
+        unsigned EN : 1; //!< [0] This bit enables the EPIT.
+        unsigned ENMOD : 1; //!< [1] EPIT enable mode.
+        unsigned OCIEN : 1; //!< [2] Output compare interrupt enable.
+        unsigned RLD : 1; //!< [3] Counter reload control.
+        unsigned PRESCALAR : 12; //!< [15:4] Counter clock prescaler value.
+        unsigned SWR : 1; //!< [16] Software reset.
+        unsigned IOVW : 1; //!< [17] EPIT counter overwrite enable.
+        unsigned DBGEN : 1; //!< [18] This bit is used to keep the EPIT functional in debug mode.
+        unsigned WAITEN : 1; //!< [19] This read/write control bit enables the operation of the EPIT during wait mode.
+        unsigned RESERVED0 : 1; //!< [20] Reserved.
+        unsigned STOPEN : 1; //!< [21] EPIT stop mode enable.
         unsigned OM : 2; //!< [23:22] EPIT output mode.This bit field determines the mode of EPIT output on the output pin.
-        unsigned CLKSRC : 2; //!< [25:24] Select clock source These bits determine which clock input is to be selected for running the counter. This field value should only be changed when the EPIT is disabled by clearing the EN bit in this register. For other programming requirements while changing clock source, refer to .
-        unsigned RESERVED1 : 6; //!< [31:26] Reserved. Writing to these bits does not affect the functionality of EPIT. These bits are always read as zero.
+        unsigned CLKSRC : 2; //!< [25:24] Select clock source These bits determine which clock input is to be selected for running the counter.
+        unsigned RESERVED1 : 6; //!< [31:26] Reserved.
     } B;
 } hw_epit_epitcr_t;
 #endif
@@ -145,11 +135,11 @@ typedef union _hw_epit_epitcr
  * loaded with the load value (If RLD=1)/ 0xFFFF_FFFF (If RLD=0) and prescaler counter is reset,
  * when EPIT is enabled (EN=1). If ENMOD is programmed to 0 then both main counter and prescaler
  * counter restart counting from their frozen values when EPIT is enabled (EN=1). If EPIT is
- * programmed to be disabled in a low-power mode (STOP/WAIT/DEBUG /DOZE ), then both the main
- * counter and the prescaler counter freeze at their current count values when EPIT enters low-power
- * mode. When EPIT exits the low-power mode, both main counter and prescaler counter start counting
- * from their frozen values irrespective of the ENMOD bit. This bit is reset by a hardware reset. A
- * software reset does not affect this bit.
+ * programmed to be disabled in a low-power mode (STOP/WAIT/DEBUG), then both the main counter and
+ * the prescaler counter freeze at their current count values when EPIT enters low-power mode. When
+ * EPIT exits the low-power mode, both main counter and prescaler counter start counting from their
+ * frozen values irrespective of the ENMOD bit. This bit is reset by a hardware reset. A software
+ * reset does not affect this bit.
  *
  * Values:
  * 0 - Counter starts counting from the value it had when it was disabled.
@@ -251,8 +241,8 @@ typedef union _hw_epit_epitcr
  *
  * Software reset. The EPIT is reset when this bit is set to 1. It is a self clearing bit. This bit
  * is set when the block is in reset state and is cleared when the reset procedure is over. Setting
- * this bit resets all the registers to their reset values, except for the EN, ENMOD, STOPEN , DOZEN
- * , WAITEN and DBGEN bits in this control register
+ * this bit resets all the registers to their reset values, except for the EN, ENMOD, STOPEN, WAITEN
+ * and DBGEN bits in this control register
  *
  * Values:
  * 0 - EPIT is out of reset
@@ -410,9 +400,9 @@ typedef union _hw_epit_epitcr
  *
  * Values:
  * 00 - Clock is off
- * 01 - Peripheral clock (ipg_clk)
- * 10 - High-frequency reference clock (ipg_clk_highfreq)
- * 11 - Low-frequency reference clock (ipg_clk_32k)
+ * 01 - Peripheral clock
+ * 10 - High-frequency reference clock
+ * 11 - Low-frequency reference clock
  */
 
 #define BP_EPIT_EPITCR_CLKSRC      (24)      //!< Bit position for EPIT_EPITCR_CLKSRC.
@@ -448,8 +438,8 @@ typedef union _hw_epit_epitsr
     reg32_t U;
     struct _hw_epit_epitsr_bitfields
     {
-        unsigned OCIF : 1; //!< [0] Output compare interrupt flag. This bit is the interrupt flag that is set when the content of counter equals the content of the compare register (EPIT_EPITCMPR). The bit is a write 1 to clear bit.
-        unsigned RESERVED0 : 31; //!< [31:1] Reserved. Writing to these bits does not affect the functionality of EPIT. These bits are always read as zero.
+        unsigned OCIF : 1; //!< [0] Output compare interrupt flag.
+        unsigned RESERVED0 : 31; //!< [31:1] Reserved.
     } B;
 } hw_epit_epitsr_t;
 #endif
@@ -512,16 +502,14 @@ typedef union _hw_epit_epitsr
  * when EPIT counter reaches zero if the RLD bit in EPIT_EPITCR is set. If the IOVW bit in the
  * EPIT_EPITCR is set then a write to this register overwrites the value of the EPIT counter
  * register in addition to updating this registers value. This overwrite feature is active even if
- * the RLD bit is not set.  IP Bus Write access to EPIT Load Register (EPITLR) results in one cycle
- * of wait state (ips_xfr_wait high for 1 cycle), while other valid IP bus accesses are with 0 wait
- * state.
+ * the RLD bit is not set.
  */
 typedef union _hw_epit_epitlr
 {
     reg32_t U;
     struct _hw_epit_epitlr_bitfields
     {
-        unsigned LOAD : 32; //!< [31:0] Load value. Value that is loaded into the counter at the start of each count cycle.
+        unsigned LOAD : 32; //!< [31:0] Load value.
     } B;
 } hw_epit_epitlr_t;
 #endif
@@ -581,7 +569,7 @@ typedef union _hw_epit_epitcmpr
     reg32_t U;
     struct _hw_epit_epitcmpr_bitfields
     {
-        unsigned COMPARE : 32; //!< [31:0] Compare Value. When the counter value equals this bit field value a compare event is generated.
+        unsigned COMPARE : 32; //!< [31:0] Compare Value.
     } B;
 } hw_epit_epitcmpr_t;
 #endif
@@ -644,7 +632,7 @@ typedef union _hw_epit_epitcnr
     reg32_t U;
     struct _hw_epit_epitcnr_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] Counter value. This contains the current value of the counter.
+        unsigned COUNT : 32; //!< [31:0] Counter value.
     } B;
 } hw_epit_epitcnr_t;
 #endif

@@ -35,16 +35,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_DBGMON_HW_DBGMON_CTRL - HW_DBGMON_CTRL
@@ -65,12 +55,12 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
     {
         unsigned RUN : 1; //!< [0] Set this bit to one to enable the DBGMON operation
         unsigned SNAP : 1; //!< [1] Set this bit to snapshot the registers selected by REQSEL to SNVS domain registers
-        unsigned CLR : 1; //!< [2] Set this bit to clear the registers in SOC domain. This bit will be automatically set to 0 once the clear process is done
+        unsigned CLR : 1; //!< [2] Set this bit to clear the registers in SOC domain.
         unsigned CLR_SNVS : 1; //!< [3] Set this bit to clear the registers in SNVS domain
         unsigned ADDR_TRAPMODE : 1; //!< [4] The bit defines the address trap function.
         unsigned ID_TRAPMODE : 1; //!< [5] The bit defines the ID trap function.
         unsigned RESERVED0 : 2; //!< [7:6] Reserved
-        unsigned REQSEL : 2; //!< [9:8] This field defines which sets of AXI transaction will be snaped to SNVS domain registers. Assume (N-3), (N-2), (N-1), N represent four continous most recent AXI transactions, N is the latest transactions
+        unsigned REQSEL : 2; //!< [9:8] This field defines which sets of AXI transaction will be snaped to SNVS domain registers.
         unsigned RESERVED1 : 6; //!< [15:10] Reserved
         unsigned WORKMODE : 1; //!< [16] This field defines whether ignore the transaction in IRQ
         unsigned RESERVED2 : 3; //!< [19:17] Reserved
@@ -78,8 +68,8 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
         unsigned RESERVED3 : 3; //!< [23:21] Reserved
         unsigned WDOG_IRQ_SEL : 1; //!< [24] Select the source of WDOG IRQ.
         unsigned RESERVED4 : 5; //!< [29:25] Reserved
-        unsigned CLKGATE : 1; //!< [30] This bit must be set to zero for normal oepration. When set to one it gates off the clock to the block.
-        unsigned SFTRST : 1; //!< [31] Set to zero for normal operation. When this bit is set to one(default), then the entire block is held in its reset state
+        unsigned CLKGATE : 1; //!< [30] This bit must be set to zero for normal oepration.
+        unsigned SFTRST : 1; //!< [31] Set to zero for normal operation.
     } B;
 } hw_dbgmon_hw_dbgmon_ctrl_t;
 #endif
@@ -761,10 +751,10 @@ typedef union _hw_dbgmon_hw_dbgmon_irq
     {
         unsigned ADDR_TRAP_IRQEN : 1; //!< [0] Address trap interrupt control.
         unsigned ID_TRAP_IRQEN : 1; //!< [1] ID trap interrupt control.
-        unsigned ADDR_TRAP_IRQ : 1; //!< [2] This bit indicates the Address trap interrupt is happening. Write to 1 to SCT address(offset = 0x28) to clear it.
-        unsigned ID_TRAP_IRQ : 1; //!< [3] This bit indicates the ID trap interrupt is happening. Write to 1 to SCT address(offset = 0x28) to clear it.
+        unsigned ADDR_TRAP_IRQ : 1; //!< [2] This bit indicates the Address trap interrupt is happening.
+        unsigned ID_TRAP_IRQ : 1; //!< [3] This bit indicates the ID trap interrupt is happening.
         unsigned RESERVED0 : 12; //!< [15:4] Reserved.
-        unsigned IRQ_MID : 16; //!< [31:16] This field indicate which master sends the interrupt, will not update until all interrupts are cleared. each bit represents one master. IRQ_MID[16] represents Master 0 IRQ_MID[17] represents Master 1, and so on
+        unsigned IRQ_MID : 16; //!< [31:16] This field indicate which master sends the interrupt, will not update until all interrupts are cleared.
     } B;
 } hw_dbgmon_hw_dbgmon_irq_t;
 #endif
@@ -1204,8 +1194,8 @@ typedef union _hw_dbgmon_hw_dbgmon_snvs_info
     reg32_t U;
     struct _hw_dbgmon_hw_dbgmon_snvs_info_bitfields
     {
-        unsigned COMPLETE : 1; //!< [0] The field indicates whether the AXI transaction in SNVS domain complete. 0: not complete, 1: Complete
-        unsigned RDWR : 1; //!< [1] The field indicates the read/write attribute of AXI transaction in SNVS domain. 0: read, 1: Write
+        unsigned COMPLETE : 1; //!< [0] The field indicates whether the AXI transaction in SNVS domain complete.
+        unsigned RDWR : 1; //!< [1] The field indicates the read/write attribute of AXI transaction in SNVS domain.
         unsigned RESERVED0 : 14; //!< [15:2] Reserved
         unsigned ID : 16; //!< [31:16] The field contain the ID of the AXI transaction in SNVS domain
     } B;

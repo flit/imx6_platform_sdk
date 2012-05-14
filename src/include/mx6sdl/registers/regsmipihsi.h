@@ -157,16 +157,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_MIPI_HSI_CTRL - HSI Control Register
@@ -186,17 +176,17 @@ typedef union _hw_mipi_hsi_ctrl
     struct _hw_mipi_hsi_ctrl_bitfields
     {
         unsigned TX_CLK_DIVISOR : 4; //!< [3:0] This register holds the divisor of the base clock (tx_refclk) frequency for HSI Tx clock (internal clock used to drive Transmitter interface).
-        unsigned TX_BREAK : 1; //!< [4] Seeting this bit to one trigger a transmission break at HSI Tx. Once this bit is set to one, the HSI controller will send a serise zeros on "tx_data" port according to the tx break co unt. It will be automatically cleared, when the send is finished.
+        unsigned TX_BREAK : 1; //!< [4] Seeting this bit to one trigger a transmission break at HSI Tx.
         unsigned RESERVED0 : 3; //!< [7:5] Reserved.
-        unsigned DATA_TIMEOUT_CNT : 4; //!< [11:8] This value determines the interval by which DATA timeouts are detected. This data timeout counter logic is used only for Receive operations. The counter should start counting when data in any of the RX channel fifo is less than the threshold value and resets to zero when there is a threshold reached interrupt from any of the RX buffers. The counter value should be zero, when RX fifo is empty. An interrupt will be asserted to the host driver, when the counter value reaches the data timeout counter value.
-        unsigned RX_TAIL_BIT_CNT : 2; //!< [13:12] The value determines the length of the Tailing bit counter. The receiver shall start Receiver Tailing bit counter after the nth frame programmed in Rx Frame Burst counter is received. The receiver shall then drive ready to logic one if the receiver Tailing-bit counter has completed with no errors detected, and the receiver has enough room for at least one new frame.
+        unsigned DATA_TIMEOUT_CNT : 4; //!< [11:8] This value determines the interval by which DATA timeouts are detected.
+        unsigned RX_TAIL_BIT_CNT : 2; //!< [13:12] The value determines the length of the Tailing bit counter.
         unsigned RESERVED1 : 2; //!< [15:14] Reserved.
-        unsigned RX_FRAME_BRST_CNT : 8; //!< [23:16] This value is to limit the continous Frame transmission count in Pipelined Data flow. The Receiver Frame Burst counter shall be able to support upto 256 frames of continous transfer. 7'h00 256 frames transmission count is set. 7'h01 1 frames transmission count is set. 7'h02 2 frames transmission count is set. 7'hff 255 frames transmission count is set.
+        unsigned RX_FRAME_BRST_CNT : 8; //!< [23:16] This value is to limit the continous Frame transmission count in Pipelined Data flow.
         unsigned RX_DLY_SEL : 3; //!< [26:24] These values denote the tap delay values for reception of data and flag.
-        unsigned DMA_DISABLE : 1; //!< [27] This bit must be set to zero for any DMA operation. When set to one it disabel all the DMA channels.
+        unsigned DMA_DISABLE : 1; //!< [27] This bit must be set to zero for any DMA operation.
         unsigned RESERVED2 : 2; //!< [29:28] Reserved, always set to zero.
-        unsigned CLKGATE : 1; //!< [30] This bit must be set to zero for normal operation. When set to one it gates off the clocks to the block.
-        unsigned SFTRST : 1; //!< [31] Set this bit to zero to enable normal HSI operation. Set this bit to one (default) to disable clocking with the HSI and hold it in its reset (lowest power) state. This bit can be turned on and then off to reset the HSI block to its default state.
+        unsigned CLKGATE : 1; //!< [30] This bit must be set to zero for normal operation.
+        unsigned SFTRST : 1; //!< [31] Set this bit to zero to enable normal HSI operation.
     } B;
 } hw_mipi_hsi_ctrl_t;
 #endif
@@ -463,7 +453,7 @@ typedef union _hw_mipi_hsi_tx_conf
     struct _hw_mipi_hsi_tx_conf_bitfields
     {
         unsigned TRANS_MODE : 1; //!< [0] 
-        unsigned WAKEUP : 1; //!< [1] When this bit gets set to one, HSI transmitter sends "tx_wake" signal to Rx of other device. For a transmit operation this bit should be one.
+        unsigned WAKEUP : 1; //!< [1] When this bit gets set to one, HSI transmitter sends "tx_wake" signal to Rx of other device.
         unsigned RESERVED0 : 6; //!< [7:2] Reserved.
         unsigned TIMEOUT_CNT : 4; //!< [11:8] 
         unsigned RESERVED1 : 4; //!< [15:12] Reserved.
@@ -989,7 +979,7 @@ typedef union _hw_mipi_hsi_rx_conf
         unsigned REC_MODE : 1; //!< [3] 
         unsigned TAIL_BIT_CNT_EN : 1; //!< [4] 
         unsigned RESERVED0 : 3; //!< [7:5] Reserved.
-        unsigned TIMEOUT_CNT : 7; //!< [14:8] Receive Frame Timeout Counter: The counter shall be started when the first bit of the Frame has been found. The counter shall be stopped once the receiver has received the correct number of bits for a Frame. If the counter expires before Frame reception is completed, the receiver shall signal to the protocol layer that it has found an incomplete Frame and asserts Rx Error Interrupt. 7'h0 14800 ---> tx_refclk 7'h1 16400 ---> tx_refclk 7'h2 18000 ---> tx_refclk 7'h4 19600 ---> tx_refclk 7'h8 21200 ---> tx_refclk 7'h10 22800 ---> tx_refclk 7'h20 24400 ---> tx_refclk 7'h40 26000 ---> tx_refclk
+        unsigned TIMEOUT_CNT : 7; //!< [14:8] Receive Frame Timeout Counter: The counter shall be started when the first bit of the Frame has been found.
         unsigned RESERVED1 : 1; //!< [15] Reserved.
         unsigned CH0_EN : 1; //!< [16] 
         unsigned CH1_EN : 1; //!< [17] 
@@ -1700,14 +1690,14 @@ typedef union _hw_mipi_hsi_tx_wml0
     reg32_t U;
     struct _hw_mipi_hsi_tx_wml0_bitfields
     {
-        unsigned CH8 : 4; //!< [3:0] This value denotes the WML of Tx Channel 8. When > 1010 reserved
-        unsigned CH9 : 4; //!< [7:4] This value denotes the WML of Tx Channel 9. When > 1010 reserved
-        unsigned CH10 : 4; //!< [11:8] This value denotes the WML of Tx Channel 10. When > 1010 reserved
-        unsigned CH11 : 4; //!< [15:12] This value denotes the WML of Tx Channel 11. When > 1010 reserved
-        unsigned CH12 : 4; //!< [19:16] This value denotes the WML of Tx Channel 12. When > 1010 reserved
-        unsigned CH13 : 4; //!< [23:20] This value denotes the WML of Tx Channel 13. When > 1010 reserved
-        unsigned CH14 : 4; //!< [27:24] This value denotes the WML of Tx Channel 14. When > 1010 reserved
-        unsigned CH15 : 4; //!< [31:28] This value denotes the WML of Tx Channel 15. When > 1010 Reserved
+        unsigned CH8 : 4; //!< [3:0] This value denotes the WML of Tx Channel 8.
+        unsigned CH9 : 4; //!< [7:4] This value denotes the WML of Tx Channel 9.
+        unsigned CH10 : 4; //!< [11:8] This value denotes the WML of Tx Channel 10.
+        unsigned CH11 : 4; //!< [15:12] This value denotes the WML of Tx Channel 11.
+        unsigned CH12 : 4; //!< [19:16] This value denotes the WML of Tx Channel 12.
+        unsigned CH13 : 4; //!< [23:20] This value denotes the WML of Tx Channel 13.
+        unsigned CH14 : 4; //!< [27:24] This value denotes the WML of Tx Channel 14.
+        unsigned CH15 : 4; //!< [31:28] This value denotes the WML of Tx Channel 15.
     } B;
 } hw_mipi_hsi_tx_wml0_t;
 #endif
@@ -1972,14 +1962,14 @@ typedef union _hw_mipi_hsi_tx_tml1
     reg32_t U;
     struct _hw_mipi_hsi_tx_tml1_bitfields
     {
-        unsigned CH0 : 4; //!< [3:0] This value denotes the WML of Tx Channel 0. When > 1010 reserved
-        unsigned CH1 : 4; //!< [7:4] This value denotes the WML of Tx Channel 1. When > 1010 reserved
-        unsigned CH2 : 4; //!< [11:8] This value denotes the WML of Tx Channel 2. When > 1010 reserved
-        unsigned CH3 : 4; //!< [15:12] This value denotes the WML of Tx Channel 3. When > 1010 reserved
-        unsigned CH4 : 4; //!< [19:16] This value denotes the WML of Tx Channel 4. When > 1010 reserved
-        unsigned CH5 : 4; //!< [23:20] This value denotes the WML of Tx Channel 5. When > 1010 reserved
-        unsigned CH6 : 4; //!< [27:24] This value denotes the WML of Tx Channel 6. When > 1010 reserved
-        unsigned CH7 : 4; //!< [31:28] This value denotes the WML of Tx Channel 7. When > 1010 reserved
+        unsigned CH0 : 4; //!< [3:0] This value denotes the WML of Tx Channel 0.
+        unsigned CH1 : 4; //!< [7:4] This value denotes the WML of Tx Channel 1.
+        unsigned CH2 : 4; //!< [11:8] This value denotes the WML of Tx Channel 2.
+        unsigned CH3 : 4; //!< [15:12] This value denotes the WML of Tx Channel 3.
+        unsigned CH4 : 4; //!< [19:16] This value denotes the WML of Tx Channel 4.
+        unsigned CH5 : 4; //!< [23:20] This value denotes the WML of Tx Channel 5.
+        unsigned CH6 : 4; //!< [27:24] This value denotes the WML of Tx Channel 6.
+        unsigned CH7 : 4; //!< [31:28] This value denotes the WML of Tx Channel 7.
     } B;
 } hw_mipi_hsi_tx_tml1_t;
 #endif
@@ -2243,14 +2233,14 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
     reg32_t U;
     struct _hw_mipi_hsi_tx_arb_pri0_bitfields
     {
-        unsigned CH0 : 4; //!< [3:0] This value denotes the priority of Tx Channel 0. When > 1010 reserved
-        unsigned CH1 : 4; //!< [7:4] This value denotes the priority of Tx Channel 1. When > 1010 reserved
-        unsigned CH2 : 4; //!< [11:8] This value denotes the priority of Tx Channel 2. When > 1010 reserved
-        unsigned CH3 : 4; //!< [15:12] This value denotes the priority of Tx Channel 3. When > 1010 reserved
-        unsigned CH4 : 4; //!< [19:16] This value denotes the priority of Tx Channel 4. When > 1010 reserved
-        unsigned CH5 : 4; //!< [23:20] This value denotes the priority of Tx Channel 5. When > 1010 reserved
-        unsigned CH6 : 4; //!< [27:24] This value denotes the priority of Tx Channel 6. When > 1010 reserved
-        unsigned CH7 : 4; //!< [31:28] This value denotes the priority of Tx Channel 7. When > 1010 reserved
+        unsigned CH0 : 4; //!< [3:0] This value denotes the priority of Tx Channel 0.
+        unsigned CH1 : 4; //!< [7:4] This value denotes the priority of Tx Channel 1.
+        unsigned CH2 : 4; //!< [11:8] This value denotes the priority of Tx Channel 2.
+        unsigned CH3 : 4; //!< [15:12] This value denotes the priority of Tx Channel 3.
+        unsigned CH4 : 4; //!< [19:16] This value denotes the priority of Tx Channel 4.
+        unsigned CH5 : 4; //!< [23:20] This value denotes the priority of Tx Channel 5.
+        unsigned CH6 : 4; //!< [27:24] This value denotes the priority of Tx Channel 6.
+        unsigned CH7 : 4; //!< [31:28] This value denotes the priority of Tx Channel 7.
     } B;
 } hw_mipi_hsi_tx_arb_pri0_t;
 #endif
@@ -2514,14 +2504,14 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
     reg32_t U;
     struct _hw_mipi_hsi_tx_arb_pri1_bitfields
     {
-        unsigned CH8 : 4; //!< [3:0] This value denotes the priority of Tx Channel 8. When > 1010 reserved
-        unsigned CH9 : 4; //!< [7:4] This value denotes the priority of Tx Channel 9. When > 1010 reserved
-        unsigned CH10 : 4; //!< [11:8] This value denotes the priority of Tx Channel 10. When > 1010 reserved
-        unsigned CH11 : 4; //!< [15:12] This value denotes the priority of Tx Channel 11. When > 1010 reserved
-        unsigned CH12 : 4; //!< [19:16] This value denotes the priority of Tx Channel 12. When > 1010 reserved
-        unsigned CH13 : 4; //!< [23:20] This value denotes the priority of Tx Channel 13. When > 1010 reserved
-        unsigned CH14 : 4; //!< [27:24] This value denotes the priority of Tx Channel 14. When > 1010 reserved
-        unsigned CH15 : 4; //!< [31:28] This value denotes the priority of Tx Channel 15. When > 1010 Reserved
+        unsigned CH8 : 4; //!< [3:0] This value denotes the priority of Tx Channel 8.
+        unsigned CH9 : 4; //!< [7:4] This value denotes the priority of Tx Channel 9.
+        unsigned CH10 : 4; //!< [11:8] This value denotes the priority of Tx Channel 10.
+        unsigned CH11 : 4; //!< [15:12] This value denotes the priority of Tx Channel 11.
+        unsigned CH12 : 4; //!< [19:16] This value denotes the priority of Tx Channel 12.
+        unsigned CH13 : 4; //!< [23:20] This value denotes the priority of Tx Channel 13.
+        unsigned CH14 : 4; //!< [27:24] This value denotes the priority of Tx Channel 14.
+        unsigned CH15 : 4; //!< [31:28] This value denotes the priority of Tx Channel 15.
     } B;
 } hw_mipi_hsi_tx_arb_pri1_t;
 #endif
@@ -3854,38 +3844,38 @@ typedef union _hw_mipi_hsi_ch_sftrst
     reg32_t U;
     struct _hw_mipi_hsi_ch_sftrst_bitfields
     {
-        unsigned RX_CH0 : 1; //!< [0] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 0 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH1 : 1; //!< [1] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 1 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH2 : 1; //!< [2] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 2 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH3 : 1; //!< [3] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 3 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH4 : 1; //!< [4] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 4 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH5 : 1; //!< [5] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 5 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH6 : 1; //!< [6] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 6 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH7 : 1; //!< [7] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 7 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH8 : 1; //!< [8] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 8 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH9 : 1; //!< [9] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 9 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH10 : 1; //!< [10] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 10 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH11 : 1; //!< [11] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 11 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH12 : 1; //!< [12] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 12 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH13 : 1; //!< [13] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 13 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH14 : 1; //!< [14] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 14 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned RX_CH15 : 1; //!< [15] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Rx Channel 15 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH0 : 1; //!< [16] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 0 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH1 : 1; //!< [17] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 1 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH2 : 1; //!< [18] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 2 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH3 : 1; //!< [19] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 3 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH4 : 1; //!< [20] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 4 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH5 : 1; //!< [21] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 5 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH6 : 1; //!< [22] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 6 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH7 : 1; //!< [23] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 7 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH8 : 1; //!< [24] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 8 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH9 : 1; //!< [25] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 9 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH10 : 1; //!< [26] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 10 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH11 : 1; //!< [27] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 11 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH12 : 1; //!< [28] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 12 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH13 : 1; //!< [29] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 13 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH14 : 1; //!< [30] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 14 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
-        unsigned TX_CH15 : 1; //!< [31] Set this bit to zero to enable normal HSI operation. Set this bit to one to reset Tx Channel 15 (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
+        unsigned RX_CH0 : 1; //!< [0] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH1 : 1; //!< [1] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH2 : 1; //!< [2] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH3 : 1; //!< [3] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH4 : 1; //!< [4] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH5 : 1; //!< [5] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH6 : 1; //!< [6] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH7 : 1; //!< [7] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH8 : 1; //!< [8] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH9 : 1; //!< [9] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH10 : 1; //!< [10] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH11 : 1; //!< [11] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH12 : 1; //!< [12] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH13 : 1; //!< [13] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH14 : 1; //!< [14] Set this bit to zero to enable normal HSI operation.
+        unsigned RX_CH15 : 1; //!< [15] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH0 : 1; //!< [16] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH1 : 1; //!< [17] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH2 : 1; //!< [18] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH3 : 1; //!< [19] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH4 : 1; //!< [20] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH5 : 1; //!< [21] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH6 : 1; //!< [22] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH7 : 1; //!< [23] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH8 : 1; //!< [24] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH9 : 1; //!< [25] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH10 : 1; //!< [26] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH11 : 1; //!< [27] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH12 : 1; //!< [28] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH13 : 1; //!< [29] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH14 : 1; //!< [30] Set this bit to zero to enable normal HSI operation.
+        unsigned TX_CH15 : 1; //!< [31] Set this bit to zero to enable normal HSI operation.
     } B;
 } hw_mipi_hsi_ch_sftrst_t;
 #endif
@@ -4404,9 +4394,9 @@ typedef union _hw_mipi_hsi_irqstat
     {
         unsigned FIFO_THRESHOLD_INT : 1; //!< [0] 
         unsigned RX_WAKEUP_INT : 1; //!< [1] 
-        unsigned RX_TIMEOUT_INT : 1; //!< [2] If any bit in the HSI Error Interrupt Status Register is set, then this bit is set. on seeing this bit set, the ocp driver will read the Error Interrupt Staus Register.
+        unsigned RX_TIMEOUT_INT : 1; //!< [2] If any bit in the HSI Error Interrupt Status Register is set, then this bit is set.
         unsigned DMA_INT : 1; //!< [3] This bit is set when a Transmit or Receive Operation is completed for DMA.
-        unsigned DMA_ERR_INT : 1; //!< [4] If any bit in the DMA Error Interrupt Status Register is set, then this bit is set. on seeing this bit set, the ocp driver will read the Error Interrupt Staus Register.
+        unsigned DMA_ERR_INT : 1; //!< [4] If any bit in the DMA Error Interrupt Status Register is set, then this bit is set.
         unsigned TX_TIMEOUT_ERR_INT : 1; //!< [5] 
         unsigned RX_ERROR_INT : 1; //!< [6] 
         unsigned RX_BREAK_INT : 1; //!< [7] 
@@ -9280,22 +9270,22 @@ typedef union _hw_mipi_hsi_err_irqstat
     struct _hw_mipi_hsi_err_irqstat_bitfields
     {
         unsigned RESERVED0 : 16; //!< [15:0] Reserved, always set to zero.
-        unsigned RX_CH0_TIMEOUT_INT : 1; //!< [16] This status bit is set when data timeout counter for ch0 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch0 buffer and then read HSI Status register to find the further status of the Rx ch0 Buffer. The host driver has to read the Rx ch0 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH1_TIMEOUT_INT : 1; //!< [17] This status bit is set when data timeout counter for ch1 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch1 buffer and then read HSI Status register to find the further status of the Rx ch1 Buffer. The host driver has to read the Rx ch1 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH2_TIMEOUT_INT : 1; //!< [18] This status bit is set when data timeout counter for ch2 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch2 buffer and then read HSI Status register to find the further status of the Rx ch2 Buffer. The host driver has to read the Rx ch2 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH3_TIMEOUT_INT : 1; //!< [19] This status bit is set when data timeout counter for ch3 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch3 buffer and then read HSI Status register to find the further status of the Rx ch3 Buffer. The host driver has to read the Rx ch3 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH4_TIMEOUT_INT : 1; //!< [20] This status bit is set when data timeout counter for ch4 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch4 buffer and then read HSI Status register to find the further status of the Rx ch4 Buffer. The host driver has to read the Rx ch4 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH5_TIMEOUT_INT : 1; //!< [21] This status bit is set when data timeout counter for ch5 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch5 buffer and then read HSI Status register to find the further status of the Rx ch5 Buffer. The host driver has to read the Rx ch5 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH6_TIMEOUT_INT : 1; //!< [22] This status bit is set when data timeout counter for ch6 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch6 buffer and then read HSI Status register to find the further status of the Rx ch6 Buffer. The host driver has to read the Rx ch6 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH7_TIMEOUT_INT : 1; //!< [23] This status bit is set when data timeout counter for ch7 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch7 buffer and then read HSI Status register to find the further status of the Rx ch7 Buffer. The host driver has to read the Rx ch7 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH8_TIMEOUT_INT : 1; //!< [24] This status bit is set when data timeout counter for ch8 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch8 buffer and then read HSI Status register to find the further status of the Rx ch8 Buffer. The host driver has to read the Rx ch8 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH9_TIMEOUT_INT : 1; //!< [25] This status bit is set when data timeout counter for ch9 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch9 buffer and then read HSI Status register to find the further status of the Rx ch9 Buffer. The host driver has to read the Rx ch9 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH10_TIMEOUT_INT : 1; //!< [26] This status bit is set when data timeout counter for ch10 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch10 buffer and then read HSI Status register to find the further status of the Rx ch10 Buffer. The host driver has to read the Rx ch10 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH11_TIMEOUT_INT : 1; //!< [27] This status bit is set when data timeout counter for ch11 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch11 buffer and then read HSI Status register to find the further status of the Rx ch11 Buffer. The host driver has to read the Rx ch11 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH12_TIMEOUT_INT : 1; //!< [28] This status bit is set when data timeout counter for ch12 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch12 buffer and then read HSI Status register to find the further status of the Rx ch12 Buffer. The host driver has to read the Rx ch12 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH13_TIMEOUT_INT : 1; //!< [29] This status bit is set when data timeout counter for ch13 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch13 buffer and then read HSI Status register to find the further status of the Rx ch13 Buffer. The host driver has to read the Rx ch13 fifo on Dword basis, till thefifo is completely empty.
-        unsigned RX_CH14_TIMEOUT_INT : 1; //!< [30] This status bit is set when data timeout counter for ch14 reaches the data timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch14 buffer and then read HSI Status register to find the further status of the Rx ch14 Buffer. The host driver has to read the Rx ch14 fifo on Dword basis, till the fifo is completely empty.
-        unsigned RX_CH15_TIMEOUT_INT : 1; //!< [31] This status bit is set when data timeout counter for ch15 reaches thedata timeout counter value. On receiving the interrupt the host driver should read 1Dword of data from Rx ch15 buffer and then read HSI Status register to find the further status of the Rx ch15 Buffer. The host driver has to read the Rx ch15 fifo on Dword basis, till the fifo is completely empty.
+        unsigned RX_CH0_TIMEOUT_INT : 1; //!< [16] This status bit is set when data timeout counter for ch0 reaches the data timeout counter value.
+        unsigned RX_CH1_TIMEOUT_INT : 1; //!< [17] This status bit is set when data timeout counter for ch1 reaches the data timeout counter value.
+        unsigned RX_CH2_TIMEOUT_INT : 1; //!< [18] This status bit is set when data timeout counter for ch2 reaches the data timeout counter value.
+        unsigned RX_CH3_TIMEOUT_INT : 1; //!< [19] This status bit is set when data timeout counter for ch3 reaches the data timeout counter value.
+        unsigned RX_CH4_TIMEOUT_INT : 1; //!< [20] This status bit is set when data timeout counter for ch4 reaches the data timeout counter value.
+        unsigned RX_CH5_TIMEOUT_INT : 1; //!< [21] This status bit is set when data timeout counter for ch5 reaches the data timeout counter value.
+        unsigned RX_CH6_TIMEOUT_INT : 1; //!< [22] This status bit is set when data timeout counter for ch6 reaches the data timeout counter value.
+        unsigned RX_CH7_TIMEOUT_INT : 1; //!< [23] This status bit is set when data timeout counter for ch7 reaches the data timeout counter value.
+        unsigned RX_CH8_TIMEOUT_INT : 1; //!< [24] This status bit is set when data timeout counter for ch8 reaches the data timeout counter value.
+        unsigned RX_CH9_TIMEOUT_INT : 1; //!< [25] This status bit is set when data timeout counter for ch9 reaches the data timeout counter value.
+        unsigned RX_CH10_TIMEOUT_INT : 1; //!< [26] This status bit is set when data timeout counter for ch10 reaches the data timeout counter value.
+        unsigned RX_CH11_TIMEOUT_INT : 1; //!< [27] This status bit is set when data timeout counter for ch11 reaches the data timeout counter value.
+        unsigned RX_CH12_TIMEOUT_INT : 1; //!< [28] This status bit is set when data timeout counter for ch12 reaches the data timeout counter value.
+        unsigned RX_CH13_TIMEOUT_INT : 1; //!< [29] This status bit is set when data timeout counter for ch13 reaches the data timeout counter value.
+        unsigned RX_CH14_TIMEOUT_INT : 1; //!< [30] This status bit is set when data timeout counter for ch14 reaches the data timeout counter value.
+        unsigned RX_CH15_TIMEOUT_INT : 1; //!< [31] This status bit is set when data timeout counter for ch15 reaches thedata timeout counter value.
     } B;
 } hw_mipi_hsi_err_irqstat_t;
 #endif
@@ -10437,8 +10427,8 @@ typedef union _hw_mipi_hsi_tdma0_conf
     struct _hw_mipi_hsi_tdma0_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -10542,8 +10532,8 @@ typedef union _hw_mipi_hsi_tdma1_conf
     struct _hw_mipi_hsi_tdma1_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -10647,8 +10637,8 @@ typedef union _hw_mipi_hsi_tdma2_conf
     struct _hw_mipi_hsi_tdma2_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -10752,8 +10742,8 @@ typedef union _hw_mipi_hsi_tdma3_conf
     struct _hw_mipi_hsi_tdma3_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -10857,8 +10847,8 @@ typedef union _hw_mipi_hsi_tdma4_conf
     struct _hw_mipi_hsi_tdma4_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -10962,8 +10952,8 @@ typedef union _hw_mipi_hsi_tdma5_conf
     struct _hw_mipi_hsi_tdma5_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -11067,8 +11057,8 @@ typedef union _hw_mipi_hsi_tdma6_conf
     struct _hw_mipi_hsi_tdma6_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -11172,8 +11162,8 @@ typedef union _hw_mipi_hsi_tdma7_conf
     struct _hw_mipi_hsi_tdma7_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -11277,8 +11267,8 @@ typedef union _hw_mipi_hsi_tdma8_conf
     struct _hw_mipi_hsi_tdma8_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -11382,8 +11372,8 @@ typedef union _hw_mipi_hsi_tdma9_conf
     struct _hw_mipi_hsi_tdma9_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -11487,8 +11477,8 @@ typedef union _hw_mipi_hsi_tdma10_conf
     struct _hw_mipi_hsi_tdma10_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -11592,8 +11582,8 @@ typedef union _hw_mipi_hsi_tdma11_conf
     struct _hw_mipi_hsi_tdma11_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -11697,8 +11687,8 @@ typedef union _hw_mipi_hsi_tdma12_conf
     struct _hw_mipi_hsi_tdma12_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -11802,8 +11792,8 @@ typedef union _hw_mipi_hsi_tdma13_conf
     struct _hw_mipi_hsi_tdma13_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -11907,8 +11897,8 @@ typedef union _hw_mipi_hsi_tdma14_conf
     struct _hw_mipi_hsi_tdma14_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -12012,8 +12002,8 @@ typedef union _hw_mipi_hsi_tdma15_conf
     struct _hw_mipi_hsi_tdma15_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
@@ -12117,8 +12107,8 @@ typedef union _hw_mipi_hsi_rdma0_conf
     struct _hw_mipi_hsi_rdma0_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -12222,8 +12212,8 @@ typedef union _hw_mipi_hsi_rdma1_conf
     struct _hw_mipi_hsi_rdma1_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -12327,8 +12317,8 @@ typedef union _hw_mipi_hsi_rdma2_conf
     struct _hw_mipi_hsi_rdma2_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -12432,8 +12422,8 @@ typedef union _hw_mipi_hsi_rdma3_conf
     struct _hw_mipi_hsi_rdma3_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -12537,8 +12527,8 @@ typedef union _hw_mipi_hsi_rdma4_conf
     struct _hw_mipi_hsi_rdma4_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -12642,8 +12632,8 @@ typedef union _hw_mipi_hsi_rdma5_conf
     struct _hw_mipi_hsi_rdma5_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -12747,8 +12737,8 @@ typedef union _hw_mipi_hsi_rdma6_conf
     struct _hw_mipi_hsi_rdma6_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -12852,8 +12842,8 @@ typedef union _hw_mipi_hsi_rdma7_conf
     struct _hw_mipi_hsi_rdma7_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -12957,8 +12947,8 @@ typedef union _hw_mipi_hsi_rdma8_conf
     struct _hw_mipi_hsi_rdma8_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -13062,8 +13052,8 @@ typedef union _hw_mipi_hsi_rdma9_conf
     struct _hw_mipi_hsi_rdma9_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -13167,8 +13157,8 @@ typedef union _hw_mipi_hsi_rdma10_conf
     struct _hw_mipi_hsi_rdma10_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -13272,8 +13262,8 @@ typedef union _hw_mipi_hsi_rdma11_conf
     struct _hw_mipi_hsi_rdma11_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -13377,8 +13367,8 @@ typedef union _hw_mipi_hsi_rdma12_conf
     struct _hw_mipi_hsi_rdma12_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -13482,8 +13472,8 @@ typedef union _hw_mipi_hsi_rdma13_conf
     struct _hw_mipi_hsi_rdma13_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -13587,8 +13577,8 @@ typedef union _hw_mipi_hsi_rdma14_conf
     struct _hw_mipi_hsi_rdma14_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -13692,8 +13682,8 @@ typedef union _hw_mipi_hsi_rdma15_conf
     struct _hw_mipi_hsi_rdma15_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to transfer hfffff 1048575Dwords to transfer
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
+        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
+        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
@@ -13796,7 +13786,7 @@ typedef union _hw_mipi_hsi_tdma0_sta_addr
     struct _hw_mipi_hsi_tdma0_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma0_sta_addr_t;
 #endif
@@ -13856,7 +13846,7 @@ typedef union _hw_mipi_hsi_tdma1_sta_addr
     struct _hw_mipi_hsi_tdma1_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma1_sta_addr_t;
 #endif
@@ -13916,7 +13906,7 @@ typedef union _hw_mipi_hsi_tdma2_sta_addr
     struct _hw_mipi_hsi_tdma2_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma2_sta_addr_t;
 #endif
@@ -13976,7 +13966,7 @@ typedef union _hw_mipi_hsi_tdma3_sta_addr
     struct _hw_mipi_hsi_tdma3_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma3_sta_addr_t;
 #endif
@@ -14036,7 +14026,7 @@ typedef union _hw_mipi_hsi_tdma4_sta_addr
     struct _hw_mipi_hsi_tdma4_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma4_sta_addr_t;
 #endif
@@ -14096,7 +14086,7 @@ typedef union _hw_mipi_hsi_tdma5_sta_addr
     struct _hw_mipi_hsi_tdma5_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma5_sta_addr_t;
 #endif
@@ -14156,7 +14146,7 @@ typedef union _hw_mipi_hsi_tdma6_sta_addr
     struct _hw_mipi_hsi_tdma6_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma6_sta_addr_t;
 #endif
@@ -14216,7 +14206,7 @@ typedef union _hw_mipi_hsi_tdma7_sta_addr
     struct _hw_mipi_hsi_tdma7_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma7_sta_addr_t;
 #endif
@@ -14276,7 +14266,7 @@ typedef union _hw_mipi_hsi_tdma8_sta_addr
     struct _hw_mipi_hsi_tdma8_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma8_sta_addr_t;
 #endif
@@ -14336,7 +14326,7 @@ typedef union _hw_mipi_hsi_tdma9_sta_addr
     struct _hw_mipi_hsi_tdma9_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma9_sta_addr_t;
 #endif
@@ -14396,7 +14386,7 @@ typedef union _hw_mipi_hsi_tdma10_sta_addr
     struct _hw_mipi_hsi_tdma10_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma10_sta_addr_t;
 #endif
@@ -14456,7 +14446,7 @@ typedef union _hw_mipi_hsi_tdma11_sta_addr
     struct _hw_mipi_hsi_tdma11_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma11_sta_addr_t;
 #endif
@@ -14516,7 +14506,7 @@ typedef union _hw_mipi_hsi_tdma12_sta_addr
     struct _hw_mipi_hsi_tdma12_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma12_sta_addr_t;
 #endif
@@ -14576,7 +14566,7 @@ typedef union _hw_mipi_hsi_tdma13_sta_addr
     struct _hw_mipi_hsi_tdma13_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma13_sta_addr_t;
 #endif
@@ -14636,7 +14626,7 @@ typedef union _hw_mipi_hsi_tdma14_sta_addr
     struct _hw_mipi_hsi_tdma14_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma14_sta_addr_t;
 #endif
@@ -14696,7 +14686,7 @@ typedef union _hw_mipi_hsi_tdma15_sta_addr
     struct _hw_mipi_hsi_tdma15_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
 } hw_mipi_hsi_tdma15_sta_addr_t;
 #endif
@@ -14756,7 +14746,7 @@ typedef union _hw_mipi_hsi_rdma0_sta_addr
     struct _hw_mipi_hsi_rdma0_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma0_sta_addr_t;
 #endif
@@ -14816,7 +14806,7 @@ typedef union _hw_mipi_hsi_rdma1_sta_addr
     struct _hw_mipi_hsi_rdma1_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma1_sta_addr_t;
 #endif
@@ -14876,7 +14866,7 @@ typedef union _hw_mipi_hsi_rdma2_sta_addr
     struct _hw_mipi_hsi_rdma2_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma2_sta_addr_t;
 #endif
@@ -14936,7 +14926,7 @@ typedef union _hw_mipi_hsi_rdma3_sta_addr
     struct _hw_mipi_hsi_rdma3_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma3_sta_addr_t;
 #endif
@@ -14996,7 +14986,7 @@ typedef union _hw_mipi_hsi_rdma4_sta_addr
     struct _hw_mipi_hsi_rdma4_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma4_sta_addr_t;
 #endif
@@ -15056,7 +15046,7 @@ typedef union _hw_mipi_hsi_rdma5_sta_addr
     struct _hw_mipi_hsi_rdma5_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma5_sta_addr_t;
 #endif
@@ -15116,7 +15106,7 @@ typedef union _hw_mipi_hsi_rdma6_sta_addr
     struct _hw_mipi_hsi_rdma6_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma6_sta_addr_t;
 #endif
@@ -15176,7 +15166,7 @@ typedef union _hw_mipi_hsi_rdma7_sta_addr
     struct _hw_mipi_hsi_rdma7_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma7_sta_addr_t;
 #endif
@@ -15236,7 +15226,7 @@ typedef union _hw_mipi_hsi_rdma8_sta_addr
     struct _hw_mipi_hsi_rdma8_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma8_sta_addr_t;
 #endif
@@ -15296,7 +15286,7 @@ typedef union _hw_mipi_hsi_rdma9_sta_addr
     struct _hw_mipi_hsi_rdma9_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma9_sta_addr_t;
 #endif
@@ -15356,7 +15346,7 @@ typedef union _hw_mipi_hsi_rdma10_sta_addr
     struct _hw_mipi_hsi_rdma10_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma10_sta_addr_t;
 #endif
@@ -15416,7 +15406,7 @@ typedef union _hw_mipi_hsi_rdma11_sta_addr
     struct _hw_mipi_hsi_rdma11_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma11_sta_addr_t;
 #endif
@@ -15476,7 +15466,7 @@ typedef union _hw_mipi_hsi_rdma12_sta_addr
     struct _hw_mipi_hsi_rdma12_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma12_sta_addr_t;
 #endif
@@ -15536,7 +15526,7 @@ typedef union _hw_mipi_hsi_rdma13_sta_addr
     struct _hw_mipi_hsi_rdma13_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma13_sta_addr_t;
 #endif
@@ -15596,7 +15586,7 @@ typedef union _hw_mipi_hsi_rdma14_sta_addr
     struct _hw_mipi_hsi_rdma14_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma14_sta_addr_t;
 #endif
@@ -15656,7 +15646,7 @@ typedef union _hw_mipi_hsi_rdma15_sta_addr
     struct _hw_mipi_hsi_rdma15_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n. DWord aligned
+        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
 } hw_mipi_hsi_rdma15_sta_addr_t;
 #endif
@@ -19723,14 +19713,14 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
     reg32_t U;
     struct _hw_mipi_hsi_tx_fifo_size_conf0_bitfields
     {
-        unsigned CH8 : 4; //!< [3:0] This field is used to set the buffer size for channel 8. All the allowed combinations of bit setting are listed here .
-        unsigned CH9 : 4; //!< [7:4] This field is used to set the buffer size for channel 9. All the allowed combinations of bit setting are listed here .
-        unsigned CH10 : 4; //!< [11:8] This field is used to set the buffer size for channel 10. All the allowed combinations of bit setting are listed here .
-        unsigned CH11 : 4; //!< [15:12] This field is used to set the buffer size for channel 11. All the allowed combinations of bit setting are listed here .
-        unsigned CH12 : 4; //!< [19:16] This field is used to set the buffer size for channel 12. All the allowed combinations of bit setting are listed here .
-        unsigned CH13 : 4; //!< [23:20] This field is used to set the buffer size for channel 13. All the allowed combinations of bit setting are listed here .
-        unsigned CH14 : 4; //!< [27:24] This field is used to set the buffer size for channel 14. All the allowed combinations of bit setting are listed here .
-        unsigned CH15 : 4; //!< [31:28] This field is used to set the buffer size for channel 15. All the allowed combinations of bit setting are listed here .
+        unsigned CH8 : 4; //!< [3:0] This field is used to set the buffer size for channel 8.
+        unsigned CH9 : 4; //!< [7:4] This field is used to set the buffer size for channel 9.
+        unsigned CH10 : 4; //!< [11:8] This field is used to set the buffer size for channel 10.
+        unsigned CH11 : 4; //!< [15:12] This field is used to set the buffer size for channel 11.
+        unsigned CH12 : 4; //!< [19:16] This field is used to set the buffer size for channel 12.
+        unsigned CH13 : 4; //!< [23:20] This field is used to set the buffer size for channel 13.
+        unsigned CH14 : 4; //!< [27:24] This field is used to set the buffer size for channel 14.
+        unsigned CH15 : 4; //!< [31:28] This field is used to set the buffer size for channel 15.
     } B;
 } hw_mipi_hsi_tx_fifo_size_conf0_t;
 #endif
@@ -20050,14 +20040,14 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
     reg32_t U;
     struct _hw_mipi_hsi_tx_fifo_size_conf1_bitfields
     {
-        unsigned CH0 : 4; //!< [3:0] This field is used to set the buffer size for channel 0. All the allowed combinations of bit setting are listed here .
-        unsigned CH1 : 4; //!< [7:4] This field is used to set the buffer size for channel 1. All the allowed combinations of bit setting are listed here .
-        unsigned CH2 : 4; //!< [11:8] This field is used to set the buffer size for channel 2. All the allowed combinations of bit setting are listed here .
-        unsigned CH3 : 4; //!< [15:12] This field is used to set the buffer size for channel 3. All the allowed combinations of bit setting are listed here .
-        unsigned CH4 : 4; //!< [19:16] This field is used to set the buffer size for channel 4. All the allowed combinations of bit setting are listed here .
-        unsigned CH5 : 4; //!< [23:20] This field is used to set the buffer size for channel 5. All the allowed combinations of bit setting are listed here .
-        unsigned CH6 : 4; //!< [27:24] This field is used to set the buffer size for channel 6. All the allowed combinations of bit setting are listed here .
-        unsigned CH7 : 4; //!< [31:28] This field is used to set the buffer size for channel 7. All the allowed combinations of bit setting are listed here .
+        unsigned CH0 : 4; //!< [3:0] This field is used to set the buffer size for channel 0.
+        unsigned CH1 : 4; //!< [7:4] This field is used to set the buffer size for channel 1.
+        unsigned CH2 : 4; //!< [11:8] This field is used to set the buffer size for channel 2.
+        unsigned CH3 : 4; //!< [15:12] This field is used to set the buffer size for channel 3.
+        unsigned CH4 : 4; //!< [19:16] This field is used to set the buffer size for channel 4.
+        unsigned CH5 : 4; //!< [23:20] This field is used to set the buffer size for channel 5.
+        unsigned CH6 : 4; //!< [27:24] This field is used to set the buffer size for channel 6.
+        unsigned CH7 : 4; //!< [31:28] This field is used to set the buffer size for channel 7.
     } B;
 } hw_mipi_hsi_tx_fifo_size_conf1_t;
 #endif
@@ -20377,14 +20367,14 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
     reg32_t U;
     struct _hw_mipi_hsi_rx_fifo_size_conf0_bitfields
     {
-        unsigned CH8 : 4; //!< [3:0] This field is used to set the buffer size for channel 8. All the allowed combinations of bit setting are listed here .
-        unsigned CH9 : 4; //!< [7:4] This field is used to set the buffer size for channel 9. All the allowed combinations of bit setting are listed here .
-        unsigned CH10 : 4; //!< [11:8] This field is used to set the buffer size for channel 10. All the allowed combinations of bit setting are listed here .
-        unsigned CH11 : 4; //!< [15:12] This field is used to set the buffer size for channel 11. All the allowed combinations of bit setting are listed here .
-        unsigned CH12 : 4; //!< [19:16] This field is used to set the buffer size for channel 12. All the allowed combinations of bit setting are listed here .
-        unsigned CH13 : 4; //!< [23:20] This field is used to set the buffer size for channel 13. All the allowed combinations of bit setting are listed here .
-        unsigned CH14 : 4; //!< [27:24] This field is used to set the buffer size for channel 14. All the allowed combinations of bit setting are listed here .
-        unsigned CH15 : 4; //!< [31:28] This field is used to set the buffer size for channel 15. All the allowed combinations of bit setting are listed here .
+        unsigned CH8 : 4; //!< [3:0] This field is used to set the buffer size for channel 8.
+        unsigned CH9 : 4; //!< [7:4] This field is used to set the buffer size for channel 9.
+        unsigned CH10 : 4; //!< [11:8] This field is used to set the buffer size for channel 10.
+        unsigned CH11 : 4; //!< [15:12] This field is used to set the buffer size for channel 11.
+        unsigned CH12 : 4; //!< [19:16] This field is used to set the buffer size for channel 12.
+        unsigned CH13 : 4; //!< [23:20] This field is used to set the buffer size for channel 13.
+        unsigned CH14 : 4; //!< [27:24] This field is used to set the buffer size for channel 14.
+        unsigned CH15 : 4; //!< [31:28] This field is used to set the buffer size for channel 15.
     } B;
 } hw_mipi_hsi_rx_fifo_size_conf0_t;
 #endif
@@ -20704,14 +20694,14 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
     reg32_t U;
     struct _hw_mipi_hsi_rx_fifo_size_conf1_bitfields
     {
-        unsigned CH0 : 4; //!< [3:0] This field is used to set the buffer size for channel 0. All the allowed combinations of bit setting are listed here .
-        unsigned CH1 : 4; //!< [7:4] This field is used to set the buffer size for channel 1. All the allowed combinations of bit setting are listed here .
-        unsigned CH2 : 4; //!< [11:8] This field is used to set the buffer size for channel 2. All the allowed combinations of bit setting are listed here .
-        unsigned CH3 : 4; //!< [15:12] This field is used to set the buffer size for channel 3. All the allowed combinations of bit setting are listed here .
-        unsigned CH4 : 4; //!< [19:16] This field is used to set the buffer size for channel 4. All the allowed combinations of bit setting are listed here .
-        unsigned CH5 : 4; //!< [23:20] This field is used to set the buffer size for channel 5. All the allowed combinations of bit setting are listed here .
-        unsigned CH6 : 4; //!< [27:24] This field is used to set the buffer size for channel 6. All the allowed combinations of bit setting are listed here .
-        unsigned CH7 : 4; //!< [31:28] This field is used to set the buffer size for channel 7. All the allowed combinations of bit setting are listed here .
+        unsigned CH0 : 4; //!< [3:0] This field is used to set the buffer size for channel 0.
+        unsigned CH1 : 4; //!< [7:4] This field is used to set the buffer size for channel 1.
+        unsigned CH2 : 4; //!< [11:8] This field is used to set the buffer size for channel 2.
+        unsigned CH3 : 4; //!< [15:12] This field is used to set the buffer size for channel 3.
+        unsigned CH4 : 4; //!< [19:16] This field is used to set the buffer size for channel 4.
+        unsigned CH5 : 4; //!< [23:20] This field is used to set the buffer size for channel 5.
+        unsigned CH6 : 4; //!< [27:24] This field is used to set the buffer size for channel 6.
+        unsigned CH7 : 4; //!< [31:28] This field is used to set the buffer size for channel 7.
     } B;
 } hw_mipi_hsi_rx_fifo_size_conf1_t;
 #endif
@@ -21818,7 +21808,7 @@ typedef union _hw_mipi_hsi_tx_break_len
     reg32_t U;
     struct _hw_mipi_hsi_tx_break_len_bitfields
     {
-        unsigned COUNT : 6; //!< [5:0] The tx break length count. 6'h00 64 6'h01 1 6'h3f 63
+        unsigned COUNT : 6; //!< [5:0] The tx break length count.
         unsigned RESERVED0 : 26; //!< [31:6] Reserved, always set to zero.
     } B;
 } hw_mipi_hsi_tx_break_len_t;

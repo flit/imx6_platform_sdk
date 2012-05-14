@@ -37,16 +37,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_MIPI_CSI_VERSION - Controller Version Identification Register
@@ -106,15 +96,15 @@ typedef union _hw_mipi_csi_version
  *
  * Reset value: 0x00000000
  *
- * Name: Number of Active Data Lanes  Address Offset: 0x004  Size: 2 bits  Size: 1 bits  Default
- * Value: CSI_N_LANES  Access: Read/Write
+ * Name: Number of Active Data Lanes  Address Offset: 0x004  Size: 1 bits  Default Value:
+ * CSI_N_LANES  Access: Read/Write
  */
 typedef union _hw_mipi_csi_n_lanes
 {
     reg32_t U;
     struct _hw_mipi_csi_n_lanes_bitfields
     {
-        unsigned N_LANES : 1; //!< [0] Number of Active Data Lanes Can only be updated when the PHY lane is in stop state. Default Value: CSI_N_LANES
+        unsigned N_LANES : 1; //!< [0] Number of Active Data Lanes Can only be updated when the PHY lane is in stop state.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved.
     } B;
 } hw_mipi_csi_n_lanes_t;
@@ -181,7 +171,7 @@ typedef union _hw_mipi_csi_phy_shutdownz
     reg32_t U;
     struct _hw_mipi_csi_phy_shutdownz_bitfields
     {
-        unsigned PHY_SHUTDOWNZ : 1; //!< [0] Shutdown input. This line is used to place the complete macro in power down. All analog blocks are in power down mode and digital logic is cleared. Active Low Default Value: 0
+        unsigned PHY_SHUTDOWNZ : 1; //!< [0] Shutdown input.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_mipi_csi_phy_shutdownz_t;
@@ -242,7 +232,7 @@ typedef union _hw_mipi_csi_dphy_rstz
     reg32_t U;
     struct _hw_mipi_csi_dphy_rstz_bitfields
     {
-        unsigned DPHY_RSTZ : 1; //!< [0] DPHY reset output. Active Low Default Value: 0
+        unsigned DPHY_RSTZ : 1; //!< [0] DPHY reset output.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_mipi_csi_dphy_rstz_t;
@@ -303,7 +293,7 @@ typedef union _hw_mipi_csi_csi2_resetn
     reg32_t U;
     struct _hw_mipi_csi_csi2_resetn_bitfields
     {
-        unsigned CSI2_RESETN : 1; //!< [0] CSI-2 controller reset output. Active Low Default Value: 0
+        unsigned CSI2_RESETN : 1; //!< [0] CSI-2 controller reset output.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_mipi_csi_csi2_resetn_t;
@@ -356,8 +346,8 @@ typedef union _hw_mipi_csi_csi2_resetn
  *
  * Reset value: 0x00000000
  *
- * Name: General settings for all blocks  Address Offset: 0x014  Size: 12 bit  Size: 8 bit  Default
- * Value: 0  Access: Read (with exception of bit 11 which is Read/Write)
+ * Name: General settings for all blocks  Address Offset: 0x014  Size: 8 bit  Default Value: 0
+ * Access: Read (with exception of bit 11 which is Read/Write)
  */
 typedef union _hw_mipi_csi_phy_state
 {
@@ -371,7 +361,7 @@ typedef union _hw_mipi_csi_phy_state
         unsigned PHY_STOPSTATEDATA_1 : 1; //!< [5] Data Lane 1 in Stop state Default Value: 0
         unsigned RESERVED1 : 2; //!< [7:6] 
         unsigned PHY_RXCLKACTIVEHS : 1; //!< [8] Indicates that the clock lane is actively receiving a DDR clock Default Value: 0
-        unsigned PHY_RXULPSCLKNOT : 1; //!< [9] Active Low. This signal indicates that the Clock Lane module has entered the Ultra Low Power state Default Value: 0
+        unsigned PHY_RXULPSCLKNOT : 1; //!< [9] Active Low.
         unsigned PHY_STOPSTATECLK : 1; //!< [10] Clock Lane in Stop state Default Value: 0
         unsigned BYPASS_2ECC_TST : 1; //!< [11] Payload Bypass test mode for double ECC errors Default Value: 0
         unsigned RESERVED2 : 20; //!< [31:12] Reserved
@@ -692,8 +682,7 @@ typedef union _hw_mipi_csi_data_ids_1
  *
  * Reset value: 0x00000000
  *
- * Name: Error state register 1  Address Offset: 0x020  Size: 29 bit  Size: 29 bit  Default Value: 0
- * Access: Read
+ * Name: Error state register 1  Address Offset: 0x020  Size: 29 bit  Default Value: 0  Access: Read
  */
 typedef union _hw_mipi_csi_err1
 {
@@ -727,7 +716,7 @@ typedef union _hw_mipi_csi_err1
         unsigned VC1_ERR_CRC : 1; //!< [25] Checksum Error detected on Virtual Channel 1 Default Value: 0
         unsigned VC2_ERR_CRC : 1; //!< [26] Checksum Error detected on Virtual Channel 2 Default Value: 0
         unsigned VC3_ERR_CRC : 1; //!< [27] Checksum Error detected on Virtual Channel 3 Default Value: 0
-        unsigned ERR_ECC_DOUBLE : 1; //!< [28] Header ECC contains 2 errors. Unrecoverable. Default Value: 0
+        unsigned ERR_ECC_DOUBLE : 1; //!< [28] Header ECC contains 2 errors.
         unsigned RESERVED1 : 3; //!< [31:29] Reserved
     } B;
 } hw_mipi_csi_err1_t;
@@ -1246,20 +1235,20 @@ typedef union _hw_mipi_csi_mask2
     reg32_t U;
     struct _hw_mipi_csi_mask2_bitfields
     {
-        unsigned MASK_PHY_ERRESC_0 : 1; //!< [0] Mask for phy_erresc_0. Default Value: 0
-        unsigned MASK_PHY_ERRESC_1 : 1; //!< [1] Mask for phy_erresc_1. Default Value: 0
+        unsigned MASK_PHY_ERRESC_0 : 1; //!< [0] Mask for phy_erresc_0.
+        unsigned MASK_PHY_ERRESC_1 : 1; //!< [1] Mask for phy_erresc_1.
         unsigned RESERVED0 : 2; //!< [3:2] 
-        unsigned MASK_PHY_ERRSOTHS_0 : 1; //!< [4] Mask for phy_errsoths_0. Default Value: 0
-        unsigned MASK_PHY_ERRSOTHS_1 : 1; //!< [5] Mask for phy_errsoths_1. Default Value: 0
+        unsigned MASK_PHY_ERRSOTHS_0 : 1; //!< [4] Mask for phy_errsoths_0.
+        unsigned MASK_PHY_ERRSOTHS_1 : 1; //!< [5] Mask for phy_errsoths_1.
         unsigned RESERVED1 : 2; //!< [7:6] 
-        unsigned MASK_VC0_ERR_ECC_CORRECTED : 1; //!< [8] Mask for vc0_err_ecc_corrected. Default Value: 0
-        unsigned MASK_VC1_ERR_ECC_CORRECTED : 1; //!< [9] Mask for vc1_err_ecc_corrected. Default Value: 0
-        unsigned MASK_VC2_ERR_ECC_CORRECTED : 1; //!< [10] Mask for vc2_err_ecc_corrected. Default Value: 0
-        unsigned MASK_VC3_ERR_ECC_CORRECTED : 1; //!< [11] Mask for vc3_err_ecc_corrected. Default Value: 0
-        unsigned MASK_ERR_ID_VC0 : 1; //!< [12] Mask for err_id_vc0. Default Value: 0
-        unsigned MASK_ERR_ID_VC1 : 1; //!< [13] Mask for err_id_vc1. Default Value: 0
-        unsigned MASK_ERR_ID_VC2 : 1; //!< [14] Mask for err_id_vc2. Default Value: 0
-        unsigned MASK_ERR_ID_VC3 : 1; //!< [15] Mask for err_id_vc3. Default Value: 0
+        unsigned MASK_VC0_ERR_ECC_CORRECTED : 1; //!< [8] Mask for vc0_err_ecc_corrected.
+        unsigned MASK_VC1_ERR_ECC_CORRECTED : 1; //!< [9] Mask for vc1_err_ecc_corrected.
+        unsigned MASK_VC2_ERR_ECC_CORRECTED : 1; //!< [10] Mask for vc2_err_ecc_corrected.
+        unsigned MASK_VC3_ERR_ECC_CORRECTED : 1; //!< [11] Mask for vc3_err_ecc_corrected.
+        unsigned MASK_ERR_ID_VC0 : 1; //!< [12] Mask for err_id_vc0.
+        unsigned MASK_ERR_ID_VC1 : 1; //!< [13] Mask for err_id_vc1.
+        unsigned MASK_ERR_ID_VC2 : 1; //!< [14] Mask for err_id_vc2.
+        unsigned MASK_ERR_ID_VC3 : 1; //!< [15] Mask for err_id_vc3.
         unsigned RESERVED2 : 16; //!< [31:16] Reserved.
     } B;
 } hw_mipi_csi_mask2_t;
@@ -1529,8 +1518,8 @@ typedef union _hw_mipi_csi_phy_tst_crtl0
     reg32_t U;
     struct _hw_mipi_csi_phy_tst_crtl0_bitfields
     {
-        unsigned PHY_TESTCLR : 1; //!< [0] PHY test interface clear. Used when active performs vendor specific interface initialization(Active High). Default Value: 0
-        unsigned PHY_TESTCLK : 1; //!< [1] PHY test interface strobe signal. Used to clock TESTDIN bus into the D-PHY. In conjunction with TESTEN signal controls the operation selection. Default Value: 0
+        unsigned PHY_TESTCLR : 1; //!< [0] PHY test interface clear.
+        unsigned PHY_TESTCLK : 1; //!< [1] PHY test interface strobe signal.
         unsigned RESERVED0 : 30; //!< [31:2] Reserved
     } B;
 } hw_mipi_csi_phy_tst_crtl0_t;
@@ -1613,7 +1602,7 @@ typedef union _hw_mipi_csi_phy_tst_ctrl1
     struct _hw_mipi_csi_phy_tst_ctrl1_bitfields
     {
         unsigned PHY_TESTDIN : 8; //!< [7:0] PHY test interface input 8-bit data bus for internal register programming and test functionalities access Default Value: 0
-        unsigned PHY_TESTDOUT : 8; //!< [15:8] PHY output 8-bit data bus for read-back and internal probing functionalities. Default Value: 0
+        unsigned PHY_TESTDOUT : 8; //!< [15:8] PHY output 8-bit data bus for read-back and internal probing functionalities.
         unsigned PHY_TESTEN : 1; //!< [16] PHY test interface operation selector:
         unsigned RESERVED0 : 15; //!< [31:17] Reserved
     } B;

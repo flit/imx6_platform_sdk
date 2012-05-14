@@ -57,16 +57,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_GPU3D_AQH_CLK_CTRL - AQHiClockControl
@@ -90,7 +80,7 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
         unsigned FSCALE_VAL : 7; //!< [8:2] 
         unsigned FSCALE_CMD_LOAD : 1; //!< [9] 
         unsigned DISABLE_RAM_CLOCK_GATING : 1; //!< [10] Disables clock gating for rams.
-        unsigned DISABLE_DEBUG_REGISTERS : 1; //!< [11] Disable debug registers. If this bit is 1, debug registers are clock gated.
+        unsigned DISABLE_DEBUG_REGISTERS : 1; //!< [11] Disable debug registers.
         unsigned SOFT_RESET : 1; //!< [12] Soft resets the IP.
         unsigned RESERVED0 : 3; //!< [15:13] Reserved
         unsigned IDLE3_D : 1; //!< [16] 3D pipe is idle.
@@ -1835,12 +1825,12 @@ typedef union _hw_gpu3d_gcm_feat_0
         unsigned TILE_STATUS_2BITS : 1; //!< [10] 2 bits are used instead of 4 bits for tile status.
         unsigned SEPARATE_TILE_STATUS_WHEN_INTERLEAVED : 1; //!< [11] Use 2 separate tile status buffers in interleaved mode.
         unsigned SUPER_TILED_32X32 : 1; //!< [12] 32x32 super tile is available.
-        unsigned VG_20 : 1; //!< [13] Major updates to VG pipe (TS buffer tiling. State masking.).
+        unsigned VG_20 : 1; //!< [13] Major updates to VG pipe (TS buffer tiling.
         unsigned TS_EXTENDED_COMMANDS : 1; //!< [14] New commands added to the tessellator.
-        unsigned COMPRESSION_FIFO_FIXED : 1; //!< [15] If this bit is not set, the FIFO counter should be set to 50. Else, the default should remain.
+        unsigned COMPRESSION_FIFO_FIXED : 1; //!< [15] If this bit is not set, the FIFO counter should be set to 50.
         unsigned EXTRA_SHADER_INSTRUCTIONS0 : 1; //!< [16] Floor, ceil, and sign instructions are available.
         unsigned VG_FILTER : 1; //!< [17] VG filter is available.
-        unsigned VG_21 : 1; //!< [18] Minor updates to VG pipe (Event generation from VG, TS, PE). Tiled image support.
+        unsigned VG_21 : 1; //!< [18] Minor updates to VG pipe (Event generation from VG, TS, PE).
         unsigned SHADER_GETS_W : 1; //!< [19] W is sent to SH from RA.
         unsigned EXTRA_SHADER_INSTRUCTIONS1 : 1; //!< [20] Sqrt, sin, cos intructions are available.
         unsigned DEFAULT_REG0 : 1; //!< [21] Unavailable registers will return 0.

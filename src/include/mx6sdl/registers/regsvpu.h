@@ -32,16 +32,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_VPU_CODERUN - BIT Processor run start
@@ -61,7 +51,7 @@ typedef union _hw_vpu_coderun
     reg32_t U;
     struct _hw_vpu_coderun_bitfields
     {
-        unsigned VPU_CODERUN : 1; //!< [0] VPU_CodeRun. BIT processor run start bit.
+        unsigned VPU_CODERUN : 1; //!< [0] VPU_CodeRun.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_vpu_coderun_t;
@@ -186,7 +176,7 @@ typedef union _hw_vpu_hostintreq
     reg32_t U;
     struct _hw_vpu_hostintreq_bitfields
     {
-        unsigned INTREQ : 1; //!< [0] IntReq. The host interrupt request bit.
+        unsigned INTREQ : 1; //!< [0] IntReq.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_vpu_hostintreq_t;
@@ -243,7 +233,7 @@ typedef union _hw_vpu_bitintclear
     reg32_t U;
     struct _hw_vpu_bitintclear_bitfields
     {
-        unsigned INTCLEAR : 1; //!< [0] IntClear. BIT interrupt clear bit.
+        unsigned INTCLEAR : 1; //!< [0] IntClear.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_vpu_bitintclear_t;
@@ -300,7 +290,7 @@ typedef union _hw_vpu_bitintsts
     reg32_t U;
     struct _hw_vpu_bitintsts_bitfields
     {
-        unsigned INTSTS : 1; //!< [0] IntSts. BIT interrupt status bit.
+        unsigned INTSTS : 1; //!< [0] IntSts.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_vpu_bitintsts_t;
@@ -355,7 +345,7 @@ typedef union _hw_vpu_bitcurpc
     reg32_t U;
     struct _hw_vpu_bitcurpc_bitfields
     {
-        unsigned CURPC : 14; //!< [13:0] CurPc[13:0]. BIT current PC value. Returns the current program counter of BIT processor by reading this register.
+        unsigned CURPC : 14; //!< [13:0] CurPc[13:0].
         unsigned RESERVED0 : 18; //!< [31:14] Reserved
     } B;
 } hw_vpu_bitcurpc_t;

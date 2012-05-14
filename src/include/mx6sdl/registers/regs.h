@@ -30,6 +30,18 @@ typedef unsigned int reg32_t;
 #endif
 
 //
+// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
+// used to simplify macro definitions in the module register headers.
+//
+#ifndef __REG_VALUE_TYPE
+    #ifndef __LANGUAGE_ASM__
+        #define __REG_VALUE_TYPE(v, t) ((t)(v))
+    #else
+        #define __REG_VALUE_TYPE(v, t) (v)
+    #endif
+#endif
+
+//
 // macros for single instance registers
 //
 

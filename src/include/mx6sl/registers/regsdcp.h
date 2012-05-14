@@ -60,16 +60,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_DCP_CTRL - DCP Control Register 0
@@ -94,16 +84,16 @@ typedef union _hw_dcp_ctrl
     reg32_t U;
     struct _hw_dcp_ctrl_bitfields
     {
-        unsigned CHANNEL_INTERRUPT_ENABLE : 8; //!< [7:0] Per-channel interrupt enable bit. When set, the channel's interrupt will get routed to the interrupt controller. Channel 0 is routed to the dcp_vmi_irq signal and the other channels are combined (along with the CRC interrupt) into the dcp_irq signal.
+        unsigned CHANNEL_INTERRUPT_ENABLE : 8; //!< [7:0] Per-channel interrupt enable bit.
         unsigned RESERVED0 : 13; //!< [20:8] Reserved.
-        unsigned ENABLE_CONTEXT_SWITCHING : 1; //!< [21] Enable automatic context switching for the channels. Software should set this bit if more than one channel is doing hashing or cipher operations that require context to be saved (for instance, when CBC mode is enabled). By disabling context switching, software can save the 208 bytes used for the context buffer.
-        unsigned ENABLE_CONTEXT_CACHING : 1; //!< [22] Software should set this bit to enable caching of contexts between operations. If only a single channel is used for encryption/hashing, enabling caching causes the context to not be reloaded if the channel was the last to be used.
-        unsigned GATHER_RESIDUAL_WRITES : 1; //!< [23] Software should set this bit to enable ragged writes to unaligned buffers to be gathered between multiple write operations. This improves performance by removing several byte operations between write bursts. Trailing byte writes are held in a residual write data buffer and combined with a subsequent write to the buffer to form a word write.
+        unsigned ENABLE_CONTEXT_SWITCHING : 1; //!< [21] Enable automatic context switching for the channels.
+        unsigned ENABLE_CONTEXT_CACHING : 1; //!< [22] Software should set this bit to enable caching of contexts between operations.
+        unsigned GATHER_RESIDUAL_WRITES : 1; //!< [23] Software should set this bit to enable ragged writes to unaligned buffers to be gathered between multiple write operations.
         unsigned RESERVED1 : 4; //!< [27:24] Reserved, always set to zero.
         unsigned PRESENT_SHA : 1; //!< [28] Indicates whether the SHA1/SHA2 functions are present.
         unsigned PRESENT_CRYPTO : 1; //!< [29] Indicates whether the crypto (Cipher/Hash) functions are present.
-        unsigned CLKGATE : 1; //!< [30] This bit must be set to zero for normal operation. When set to one it gates off the clocks to the block.
-        unsigned SFTRST : 1; //!< [31] Set this bit to zero to enable normal DCP operation. Set this bit to one (default) to disable clocking with the DCP and hold it in its reset (lowest power) state. This bit can be turned on and then off to reset the DCP block to its default state.
+        unsigned CLKGATE : 1; //!< [30] This bit must be set to zero for normal operation.
+        unsigned SFTRST : 1; //!< [31] Set this bit to zero to enable normal DCP operation.
     } B;
 } hw_dcp_ctrl_t;
 #endif
@@ -320,9 +310,9 @@ typedef union _hw_dcp_stat
     reg32_t U;
     struct _hw_dcp_stat_bitfields
     {
-        unsigned IRQ : 4; //!< [3:0] Indicates which channels have pending interrupt requests. Channel 0's interrupt is routed through the dcp_vmi_irq and the other interrupt bits are routed through the dcp_irq.
+        unsigned IRQ : 4; //!< [3:0] Indicates which channels have pending interrupt requests.
         unsigned RESERVED0 : 12; //!< [15:4] Reserved.
-        unsigned READY_CHANNELS : 8; //!< [23:16] Indicates which channels are ready to proceed with a transfer (active channel also included). Each bit is a one-hot indicating the request status for the associated channel.
+        unsigned READY_CHANNELS : 8; //!< [23:16] Indicates which channels are ready to proceed with a transfer (active channel also included).
         unsigned CUR_CHANNEL : 4; //!< [27:24] Current (active) channel (encoded).
         unsigned OTP_KEY_READY : 1; //!< [28] When set, indicates that the OTP key has been shifted from the fuse block and is ready for use.
         unsigned RESERVED1 : 3; //!< [31:29] Reserved, always set to zero.
@@ -447,9 +437,9 @@ typedef union _hw_dcp_channelctrl
     reg32_t U;
     struct _hw_dcp_channelctrl_bitfields
     {
-        unsigned ENABLE_CHANNEL : 8; //!< [7:0] Setting a bit in this field will enabled the DMA channel associated with it. This field is a direct input to the DMA channel arbiter. When not enabled, the channel is denied access to the central DMA resources.
-        unsigned HIGH_PRIORITY_CHANNEL : 8; //!< [15:8] Setting a bit in this field causes the corresponding channel to have high-priority arbitration. High priority channels will be arbitrated round-robin and will take precedence over other channels that are not marked as high priority.
-        unsigned CH0_IRQ_MERGED : 1; //!< [16] Indicates that the interrupt for channel 0 should be merged with the other interrupts on the shared dcp_irq interrupt. When set to 0, channel 0's interrupt will be routed to the separate dcp_vmi_irq. When set to 1, the interrupt will be routed to the shared DCP interrupt.
+        unsigned ENABLE_CHANNEL : 8; //!< [7:0] Setting a bit in this field will enabled the DMA channel associated with it.
+        unsigned HIGH_PRIORITY_CHANNEL : 8; //!< [15:8] Setting a bit in this field causes the corresponding channel to have high-priority arbitration.
+        unsigned CH0_IRQ_MERGED : 1; //!< [16] Indicates that the interrupt for channel 0 should be merged with the other interrupts on the shared dcp_irq interrupt.
         unsigned RESERVED0 : 15; //!< [31:17] Reserved, always set to zero.
     } B;
 } hw_dcp_channelctrl_t;
@@ -580,9 +570,9 @@ typedef union _hw_dcp_capability0
         unsigned NUM_KEYS : 8; //!< [7:0] Encoded value indicating the number of key storage locations implemented in the design.
         unsigned NUM_CHANNELS : 4; //!< [11:8] Encoded value indicating the number of channels implemented in the design.
         unsigned RESERVED0 : 17; //!< [28:12] Reserved, always set to zero.
-        unsigned DISABLE_UNIQUE_KEY : 1; //!< [29] Write to a 1 disable the per-device unique key. The device-specific hardware key may be selected by using a value of 0xFE in the key select field.
+        unsigned DISABLE_UNIQUE_KEY : 1; //!< [29] Write to a 1 disable the per-device unique key.
         unsigned RESERVED1 : 1; //!< [30] -
-        unsigned DISABLE_DECRYPT : 1; //!< [31] Write to a 1 to disable decryption. This bit can only be written by secure software and the value can only be cleared by a reset.
+        unsigned DISABLE_DECRYPT : 1; //!< [31] Write to a 1 to disable decryption.
     } B;
 } hw_dcp_capability0_t;
 #endif
@@ -763,7 +753,7 @@ typedef union _hw_dcp_context
     reg32_t U;
     struct _hw_dcp_context_bitfields
     {
-        unsigned ADDR : 32; //!< [31:0] Context pointer address. Address should be located in system RAM and should be word-aligned for optimal performance.
+        unsigned ADDR : 32; //!< [31:0] Context pointer address.
     } B;
 } hw_dcp_context_t;
 #endif
@@ -832,9 +822,9 @@ typedef union _hw_dcp_key
     reg32_t U;
     struct _hw_dcp_key_bitfields
     {
-        unsigned SUBWORD : 2; //!< [1:0] Key subword pointer. Valid indices are 0-3. After each write to the key data register, this field will increment.
+        unsigned SUBWORD : 2; //!< [1:0] Key subword pointer.
         unsigned RESERVED0 : 2; //!< [3:2] Reserved, always set to zero.
-        unsigned INDEX : 2; //!< [5:4] Key index pointer. Valid indices are 0-[number_keys].
+        unsigned INDEX : 2; //!< [5:4] Key index pointer.
         unsigned RESERVED1 : 26; //!< [31:6] Reserved.
     } B;
 } hw_dcp_key_t;
@@ -921,7 +911,7 @@ typedef union _hw_dcp_keydata
     reg32_t U;
     struct _hw_dcp_keydata_bitfields
     {
-        unsigned DATA : 32; //!< [31:0] Word 0 data for key. This is the least-significant word.
+        unsigned DATA : 32; //!< [31:0] Word 0 data for key.
     } B;
 } hw_dcp_keydata_t;
 #endif
@@ -1032,23 +1022,23 @@ typedef union _hw_dcp_packet1
     struct _hw_dcp_packet1_bitfields
     {
         unsigned INTERRUPT : 1; //!< [0] Reflects whether the channel should issue an interrupt upon completion of the packet.
-        unsigned DECR_SEMAPHORE : 1; //!< [1] Reflects whether the channel's semaphore should be decremented at the end of the current operation. When the semaphore reaches a value of zero, no more operations will be issued from the channel.
+        unsigned DECR_SEMAPHORE : 1; //!< [1] Reflects whether the channel's semaphore should be decremented at the end of the current operation.
         unsigned CHAIN : 1; //!< [2] Reflects whether the next command pointer register should be loaded into the channel's current descriptor pointer.
         unsigned CHAIN_CONTIGUOUS : 1; //!< [3] Reflects whether the next packet's address is located following this packet's payload.
         unsigned ENABLE_MEMCOPY : 1; //!< [4] Reflects whether the selected hashing function should be enabled for this operation.
         unsigned ENABLE_CIPHER : 1; //!< [5] Reflects whether the selected cipher function should be enabled for this operation.
         unsigned ENABLE_HASH : 1; //!< [6] Reflects whether the selected hashing function should be enabled for this operation.
-        unsigned ENABLE_BLIT : 1; //!< [7] Reflects whether the DCP should perform a blit operation. Source data is always continuous and the destination buffer is written in run/stride format. When set, the BUFFER_SIZE field is treated as two 16-bit values for the X-Y extents of the blit operation.
+        unsigned ENABLE_BLIT : 1; //!< [7] Reflects whether the DCP should perform a blit operation.
         unsigned CIPHER_ENCRYPT : 1; //!< [8] When the cipher block is enabled, this bit indicates whether the operation is encryption or decryption.
         unsigned CIPHER_INIT : 1; //!< [9] Reflects whether the cipher block should load the initialization vector from the payload for this operation.
-        unsigned OTP_KEY : 1; //!< [10] Reflects whether a hardware-based key should be used. The KEY_SELECT field from the Control1 field is used to select from multiple hardware keys. The PAYLOAD_KEY bit takes precedence over the OTP_KEY bit.
-        unsigned PAYLOAD_KEY : 1; //!< [11] When set, indicates the payload contains the key. This bit takes precedence over the OTP_KEY control
+        unsigned OTP_KEY : 1; //!< [10] Reflects whether a hardware-based key should be used.
+        unsigned PAYLOAD_KEY : 1; //!< [11] When set, indicates the payload contains the key.
         unsigned HASH_INIT : 1; //!< [12] Reflects whether the current hashing block is the initial block in the hashing operation, so the hash registers should be initialized before the operation.
         unsigned HASH_TERM : 1; //!< [13] Reflects whether the current hashing block is the final block in the hashing operation, so the hash padding should be applied by hardware.
         unsigned CHECK_HASH : 1; //!< [14] Reflects whether the calculated hash value should be compared against the hash provided in the payload.
         unsigned HASH_OUTPUT : 1; //!< [15] When hashing is enabled, this bit controls whether the input or output data is hashed.
         unsigned CONSTANT_FILL : 1; //!< [16] When this bit is set (MEMCOPY and BLIT modes only), the DCP will simply fill the destination buffer with the value found in the Source Address field.
-        unsigned TEST_SEMA_IRQ : 1; //!< [17] This bit is used to test the channel semaphore transition to 0. FOR TEST USE ONLY!
+        unsigned TEST_SEMA_IRQ : 1; //!< [17] This bit is used to test the channel semaphore transition to 0.
         unsigned KEY_BYTESWAP : 1; //!< [18] Reflects whether the DCP engine will swap key bytes (big-endian key).
         unsigned KEY_WORDSWAP : 1; //!< [19] Reflects whether the DCP engine will swap key words (big-endian key).
         unsigned INPUT_BYTESWAP : 1; //!< [20] Reflects whether the DCP engine will byteswap input data (big-endian data).
@@ -1396,11 +1386,11 @@ typedef union _hw_dcp_packet2
     struct _hw_dcp_packet2_bitfields
     {
         unsigned CIPHER_SELECT : 4; //!< [3:0] Cipher Selection Field
-        unsigned CIPHER_MODE : 4; //!< [7:4] Cipher Mode Selection Field. Reflects the mode of operation for cipher operations.
-        unsigned KEY_SELECT : 8; //!< [15:8] Key Selection Field. The value here reflects the key index for the cipher operation. Values 0-3 refer to the software keys that can be written to the key RAM. The OTP key or the unique device-specific key may also be selected with a value of 0xFF (OTP key) or 0xFE (unique key).
+        unsigned CIPHER_MODE : 4; //!< [7:4] Cipher Mode Selection Field.
+        unsigned KEY_SELECT : 8; //!< [15:8] Key Selection Field.
         unsigned HASH_SELECT : 4; //!< [19:16] Hash Selection Field
         unsigned RESERVED0 : 4; //!< [23:20] Reserved, always set to zero.
-        unsigned CIPHER_CFG : 8; //!< [31:24] Cipher configuration bits. Optional configuration bits required for ciphers
+        unsigned CIPHER_CFG : 8; //!< [31:24] Cipher configuration bits.
     } B;
 } hw_dcp_packet2_t;
 #endif
@@ -1532,7 +1522,7 @@ typedef union _hw_dcp_packet3
     reg32_t U;
     struct _hw_dcp_packet3_bitfields
     {
-        unsigned ADDR : 32; //!< [31:0] Source Buffer Address Pointer. This value is the working value and will update as the operation proceeds.
+        unsigned ADDR : 32; //!< [31:0] Source Buffer Address Pointer.
     } B;
 } hw_dcp_packet3_t;
 #endif
@@ -1582,7 +1572,7 @@ typedef union _hw_dcp_packet4
     reg32_t U;
     struct _hw_dcp_packet4_bitfields
     {
-        unsigned ADDR : 32; //!< [31:0] Destination Buffer Address Pointer. This value is the working value and will update as the operation proceeds.
+        unsigned ADDR : 32; //!< [31:0] Destination Buffer Address Pointer.
     } B;
 } hw_dcp_packet4_t;
 #endif
@@ -1636,7 +1626,7 @@ typedef union _hw_dcp_packet5
     reg32_t U;
     struct _hw_dcp_packet5_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] Byte Count register. This value is the working value and will update as the operation proceeds.
+        unsigned COUNT : 32; //!< [31:0] Byte Count register.
     } B;
 } hw_dcp_packet5_t;
 #endif
@@ -1817,7 +1807,7 @@ typedef union _hw_dcp_ch0sema
     reg32_t U;
     struct _hw_dcp_ch0sema_bitfields
     {
-        unsigned INCREMENT : 8; //!< [7:0] The value written to this field is added to the semaphore count in an atomic way such that simultaneous software adds and DCP hardware substracts happening on the same clock are protected. This bit field reads back a value of 0x00. Writing a value of 0x02 increments the semaphore count by two, unless the DCP channel decrements the count on the same clock, then the count is incremented by a net one. The semaphore may be cleared by writing 0xFF to the DCP_CHnSEMA_CLR register.
+        unsigned INCREMENT : 8; //!< [7:0] The value written to this field is added to the semaphore count in an atomic way such that simultaneous software adds and DCP hardware substracts happening on the same clock are protected.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved, always set to zero.
         unsigned VALUE : 8; //!< [23:16] This read-only field shows the current (instantaneous) value of the semaphore counter.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved, always set to zero.
@@ -1902,13 +1892,13 @@ typedef union _hw_dcp_ch0stat
     reg32_t U;
     struct _hw_dcp_ch0stat_bitfields
     {
-        unsigned RESERVED0 : 1; //!< [0] This bit will always read 0 in the status register, but will be set to 1 in the packet status field after processing of the packet has completed. This was done so that software can verify that each packet completed properly in a chain of commands for cases when an interrupt is issued only for the last item in a packet. The completion bit for the channel is effectively the channel interrupt status bit.
-        unsigned HASH_MISMATCH : 1; //!< [1] The bit indicates that a hashing check operation mismatched for control packets that enable the HASH_CHECK bit. When an error is detected, the channel's processing will stop until the error is handled by software.
-        unsigned ERROR_SETUP : 1; //!< [2] This bit indicates that the hardware has detected an invalid programming configuration such as a buffer length that is not a multiple of the natural data size for the operation. When an error is detected, the channel's processing will stop until the error is handled by software.
-        unsigned ERROR_PACKET : 1; //!< [3] This bit indicates that a a bus error occurred when reading the packet or payload or when writing status back to the packet payload. When an error is detected, the channel's processing will stop until the error is handled by software.
-        unsigned ERROR_SRC : 1; //!< [4] This bit indicates a bus error occurred when reading from the source buffer. When an error is detected, the channel's processing will stop until the error handled by software.
-        unsigned ERROR_DST : 1; //!< [5] This bit indicates a bus error occurred when storing to the destination buffer. When an error is detected, the channel's processing will stop until the error handled by software.
-        unsigned ERROR_PAGEFAULT : 1; //!< [6] This bit indicates a page fault occurred while converting a virtual address to a physical address.. When an error is detected, the channel's processing will stop until the error handled by software.
+        unsigned RESERVED0 : 1; //!< [0] This bit will always read 0 in the status register, but will be set to 1 in the packet status field after processing of the packet has completed.
+        unsigned HASH_MISMATCH : 1; //!< [1] The bit indicates that a hashing check operation mismatched for control packets that enable the HASH_CHECK bit.
+        unsigned ERROR_SETUP : 1; //!< [2] This bit indicates that the hardware has detected an invalid programming configuration such as a buffer length that is not a multiple of the natural data size for the operation.
+        unsigned ERROR_PACKET : 1; //!< [3] This bit indicates that a a bus error occurred when reading the packet or payload or when writing status back to the packet payload.
+        unsigned ERROR_SRC : 1; //!< [4] This bit indicates a bus error occurred when reading from the source buffer.
+        unsigned ERROR_DST : 1; //!< [5] This bit indicates a bus error occurred when storing to the destination buffer.
+        unsigned ERROR_PAGEFAULT : 1; //!< [6] This bit indicates a page fault occurred while converting a virtual address to a physical address..
         unsigned RESERVED1 : 9; //!< [15:7] Reserved, always set to zero.
         unsigned ERROR_CODE : 8; //!< [23:16] Indicates additional error codes for some error conditions.
         unsigned TAG : 8; //!< [31:24] Indicates the tag from the last completed packet in the command structure
@@ -2122,7 +2112,7 @@ typedef union _hw_dcp_ch0opts
     reg32_t U;
     struct _hw_dcp_ch0opts_bitfields
     {
-        unsigned RECOVERY_TIMER : 16; //!< [15:0] This field indicates the recovery time for the channel. After each operation, the recover timer for the channel is initiallized with this value and then decremented until the timer reaches zero. The channel will not initiate another operation for the next packet in the chain until the recovery time has been satisfied. The timebase for the recovery timer is 16 HCLK clock cycles, providing a range of 0ns to 8.3ms at 133 MHz operation.
+        unsigned RECOVERY_TIMER : 16; //!< [15:0] This field indicates the recovery time for the channel.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved, always set to zero.
     } B;
 } hw_dcp_ch0opts_t;
@@ -2270,7 +2260,7 @@ typedef union _hw_dcp_ch1sema
     reg32_t U;
     struct _hw_dcp_ch1sema_bitfields
     {
-        unsigned INCREMENT : 8; //!< [7:0] The value written to this field is added to the semaphore count in an atomic way such that simultaneous software adds and DCP hardware substracts happening on the same clock are protected. This bit field reads back a value of 0x00. Writing a value of 0x02 increments the semaphore count by two, unless the DCP channel decrements the count on the same clock, then the count is incremented by a net one. The semaphore may be cleared by writing 0xFF to the DCP_CHnSEMA_CLR register.
+        unsigned INCREMENT : 8; //!< [7:0] The value written to this field is added to the semaphore count in an atomic way such that simultaneous software adds and DCP hardware substracts happening on the same clock are protected.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved, always set to zero.
         unsigned VALUE : 8; //!< [23:16] This read-only field shows the current (instantaneous) value of the semaphore counter.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved, always set to zero.
@@ -2355,13 +2345,13 @@ typedef union _hw_dcp_ch1stat
     reg32_t U;
     struct _hw_dcp_ch1stat_bitfields
     {
-        unsigned RESERVED0 : 1; //!< [0] This bit will always read 0 in the status register, but will be set to 1 in the packet status field after processing of the packet has completed. This was done so that software can verify that each packet completed properly in a chain of commands for cases when an interrupt is issued only for the last item in a packet. The completion bit for the channel is effectively the channel interrupt status bit.
-        unsigned HASH_MISMATCH : 1; //!< [1] The bit indicates that a hashing check operation mismatched for control packets that enable the HASH_CHECK bit. When an error is detected, the channel's processing will stop until the error is handled by software.
-        unsigned ERROR_SETUP : 1; //!< [2] This bit indicates that the hardware detected an invalid programming configuration such as a buffer length that is not a multiple of the natural data size for the operation. When an error is detected, the channel's processing will stop until the error is handled by software.
-        unsigned ERROR_PACKET : 1; //!< [3] This bit indicates that a bus error occurs when reading the packet or payload or when writing status back to the packet paylaod. When an error is detected, the channel's processing will stop until the error is handled by software.
-        unsigned ERROR_SRC : 1; //!< [4] This bit indicates a bus error occurred when reading from the source buffer. When an error is detected, the channel's processing will stop until the error handled by software.
-        unsigned ERROR_DST : 1; //!< [5] This bit indicates a bus error occurred when storing to the destination buffer. When an error is detected, the channel's processing will stop until the error handled by software.
-        unsigned ERROR_PAGEFAULT : 1; //!< [6] This bit indicates a page fault occurred while converting a virtual address to a physical address.. When an error is detected, the channel's processing will stop until the error handled by software.
+        unsigned RESERVED0 : 1; //!< [0] This bit will always read 0 in the status register, but will be set to 1 in the packet status field after processing of the packet has completed.
+        unsigned HASH_MISMATCH : 1; //!< [1] The bit indicates that a hashing check operation mismatched for control packets that enable the HASH_CHECK bit.
+        unsigned ERROR_SETUP : 1; //!< [2] This bit indicates that the hardware detected an invalid programming configuration such as a buffer length that is not a multiple of the natural data size for the operation.
+        unsigned ERROR_PACKET : 1; //!< [3] This bit indicates that a bus error occurs when reading the packet or payload or when writing status back to the packet paylaod.
+        unsigned ERROR_SRC : 1; //!< [4] This bit indicates a bus error occurred when reading from the source buffer.
+        unsigned ERROR_DST : 1; //!< [5] This bit indicates a bus error occurred when storing to the destination buffer.
+        unsigned ERROR_PAGEFAULT : 1; //!< [6] This bit indicates a page fault occurred while converting a virtual address to a physical address..
         unsigned RESERVED1 : 9; //!< [15:7] Reserved, always set to zero.
         unsigned ERROR_CODE : 8; //!< [23:16] Indicates additional error codes for some error conditions.
         unsigned TAG : 8; //!< [31:24] Indicates the tag from the last completed packet in the command structure
@@ -2575,7 +2565,7 @@ typedef union _hw_dcp_ch1opts
     reg32_t U;
     struct _hw_dcp_ch1opts_bitfields
     {
-        unsigned RECOVERY_TIMER : 16; //!< [15:0] This field indicates the recovery time for the channel. After each operation, the recover timer for the channel is initiallized with this value and then decremented until the timer reaches zero. The channel will not initiate operation on the next packet in the chain until the recovery time has been satisfied. The timebase for the recovery timer is 16 HCLK clock cycles, providing a range of 0ns to 8.3ms at 133 MHz operation.
+        unsigned RECOVERY_TIMER : 16; //!< [15:0] This field indicates the recovery time for the channel.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved, always set to zero.
     } B;
 } hw_dcp_ch1opts_t;
@@ -2723,7 +2713,7 @@ typedef union _hw_dcp_ch2sema
     reg32_t U;
     struct _hw_dcp_ch2sema_bitfields
     {
-        unsigned INCREMENT : 8; //!< [7:0] The value written to this field is added to the semaphore count in an atomic way such that simultaneous software adds and DCP hardware substracts happening on the same clock are protected. This bit field reads back a value of 0x00. Writing a value of 0x02 increments the semaphore count by two, unless the DCP channel decrements the count on the same clock, then the count is incremented by a net one. The semaphore may be cleared by writing 0xFF to the DCP_CHnSEMA_CLR register.
+        unsigned INCREMENT : 8; //!< [7:0] The value written to this field is added to the semaphore count in an atomic way such that simultaneous software adds and DCP hardware substracts happening on the same clock are protected.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved, always set to zero.
         unsigned VALUE : 8; //!< [23:16] This read-only field shows the current (instantaneous) value of the semaphore counter.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved, always set to zero.
@@ -2808,13 +2798,13 @@ typedef union _hw_dcp_ch2stat
     reg32_t U;
     struct _hw_dcp_ch2stat_bitfields
     {
-        unsigned RESERVED0 : 1; //!< [0] This bit will always read 0 in the status register, but will be set to 1 in the packet status field after processing of the packet has completed. This was done so that software can verify that each packet completed properly in a chain of commands for cases when an interrupt is issued only for the last item in a packet. The completion bit for the channel is effectively the channel interrupt status bit.
-        unsigned HASH_MISMATCH : 1; //!< [1] The bit indicates that a hashing check operation mismatched for control packets that enable the HASH_CHECK bit. When an error is detected, the channel's processing will stop until the error is handled by software.
-        unsigned ERROR_SETUP : 1; //!< [2] This bit indicates that the hardware detected an invalid programming configuration such as a buffer length that is not a multiple of the natural data size for the operation. When an error is detected, the channel's processing will stop until the error is handled by software.
-        unsigned ERROR_PACKET : 1; //!< [3] This bit indicates that a bus error occurred when reading the packet or payload or when writing status back to the packet paylaod. When an error is detected, the channel's processing will stop until the error is handled by software.
-        unsigned ERROR_SRC : 1; //!< [4] This bit indicates a bus error occurred when reading from the source buffer. When an error is detected, the channel's processing will stop until the error handled by software.
-        unsigned ERROR_DST : 1; //!< [5] This bit indicates a bus error occurred when storing to the destination buffer. When an error is detected, the channel's processing will stop until the error handled by software.
-        unsigned ERROR_PAGEFAULT : 1; //!< [6] This bit indicates a page fault occurred while converting a virtual address to a physical address.. When an error is detected, the channel's processing will stop until the error handled by software.
+        unsigned RESERVED0 : 1; //!< [0] This bit will always read 0 in the status register, but will be set to 1 in the packet status field after processing of the packet has completed.
+        unsigned HASH_MISMATCH : 1; //!< [1] The bit indicates that a hashing check operation mismatched for control packets that enable the HASH_CHECK bit.
+        unsigned ERROR_SETUP : 1; //!< [2] This bit indicates that the hardware detected an invalid programming configuration such as a buffer length that is not a multiple of the natural data size for the operation.
+        unsigned ERROR_PACKET : 1; //!< [3] This bit indicates that a bus error occurred when reading the packet or payload or when writing status back to the packet paylaod.
+        unsigned ERROR_SRC : 1; //!< [4] This bit indicates a bus error occurred when reading from the source buffer.
+        unsigned ERROR_DST : 1; //!< [5] This bit indicates a bus error occurred when storing to the destination buffer.
+        unsigned ERROR_PAGEFAULT : 1; //!< [6] This bit indicates a page fault occurred while converting a virtual address to a physical address..
         unsigned RESERVED1 : 9; //!< [15:7] Reserved, always set to zero.
         unsigned ERROR_CODE : 8; //!< [23:16] Indicates additional error codes for some error conditions.
         unsigned TAG : 8; //!< [31:24] Indicates the tag from the last completed packet in the command structure
@@ -3028,7 +3018,7 @@ typedef union _hw_dcp_ch2opts
     reg32_t U;
     struct _hw_dcp_ch2opts_bitfields
     {
-        unsigned RECOVERY_TIMER : 16; //!< [15:0] This field indicates the recovery time for the channel. After each operation, the recover timer for the channel is initiallized with this value and then decremented until the timer reaches zero. The channel will not initiate operation on the next packet in the chain until the recovery time has been satisfied. The timebase for the recovery timer is 16 HCLK clock cycles, providing a range of 0ns to 8.3ms at 133 MHz operation.
+        unsigned RECOVERY_TIMER : 16; //!< [15:0] This field indicates the recovery time for the channel.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved, always set to zero.
     } B;
 } hw_dcp_ch2opts_t;
@@ -3176,7 +3166,7 @@ typedef union _hw_dcp_ch3sema
     reg32_t U;
     struct _hw_dcp_ch3sema_bitfields
     {
-        unsigned INCREMENT : 8; //!< [7:0] The value written to this field is added to the semaphore count in an atomic way such that simultaneous software adds and DCP hardware substracts happening on the same clock are protected. This bit field reads back a value of 0x00. Writing a value of 0x02 increments the semaphore count by two, unless the DCP channel decrements the count on the same clock, then the count is incremented by a net one. The semaphore may be cleared by writing 0xFF to the DCP_CHnSEMA_CLR register.
+        unsigned INCREMENT : 8; //!< [7:0] The value written to this field is added to the semaphore count in an atomic way such that simultaneous software adds and DCP hardware substracts happening on the same clock are protected.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved, always set to zero.
         unsigned VALUE : 8; //!< [23:16] This read-only field shows the current (instantaneous) value of the semaphore counter.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved, always set to zero.
@@ -3261,13 +3251,13 @@ typedef union _hw_dcp_ch3stat
     reg32_t U;
     struct _hw_dcp_ch3stat_bitfields
     {
-        unsigned RESERVED0 : 1; //!< [0] This bit will always read 0 in the status register, but will be set to 1 in the packet status field after processing of the packet has completed. This was done so that software can verify that each packet completed properly in a chain of commands for cases when an interrupt is issued only for the last item in a packet. The completion bit for the channel is effectively the channel interrupt status bit.
-        unsigned HASH_MISMATCH : 1; //!< [1] The bit indicates that a hashing check operation mismatched for control packets that enable the HASH_CHECK bit. When an error is detected, the channel's processing will stop until the error is handled by software.
-        unsigned ERROR_SETUP : 1; //!< [2] This bit indicates that the hardware detected an invalid programming configuration such as a buffer length that is not a multiple of the natural data size for the operation. When an error is detected, the channel's processing will stop until the error is handled by software.
-        unsigned ERROR_PACKET : 1; //!< [3] This bit indicates that a bus error occurred when reading the packet or payload or when writing status back to the packet paylaod. When an error is detected, the channel's processing will stop until the error is handled by software.
-        unsigned ERROR_SRC : 1; //!< [4] This bit indicates a bus error occurred when reading from the source buffer. When an error is detected, the channel's processing will stop until the error handled by software.
-        unsigned ERROR_DST : 1; //!< [5] This bit indicates a bus error occurred when storing to the destination buffer. When an error is detected, the channel's processing will stop until the error handled by software.
-        unsigned ERROR_PAGEFAULT : 1; //!< [6] This bit indicates a page fault occurred while converting a virtual address to a physical address.. When an error is detected, the channel's processing will stop until the error handled by software.
+        unsigned RESERVED0 : 1; //!< [0] This bit will always read 0 in the status register, but will be set to 1 in the packet status field after processing of the packet has completed.
+        unsigned HASH_MISMATCH : 1; //!< [1] The bit indicates that a hashing check operation mismatched for control packets that enable the HASH_CHECK bit.
+        unsigned ERROR_SETUP : 1; //!< [2] This bit indicates that the hardware detected an invalid programming configuration such as a buffer length that is not a multiple of the natural data size for the operation.
+        unsigned ERROR_PACKET : 1; //!< [3] This bit indicates that a bus error occurred when reading the packet or payload or when writing status back to the packet paylaod.
+        unsigned ERROR_SRC : 1; //!< [4] This bit indicates a bus error occurred when reading from the source buffer.
+        unsigned ERROR_DST : 1; //!< [5] This bit indicates a bus error occurred when storing to the destination buffer.
+        unsigned ERROR_PAGEFAULT : 1; //!< [6] This bit indicates a page fault occurred while converting a virtual address to a physical address..
         unsigned RESERVED1 : 9; //!< [15:7] Reserved, always set to zero.
         unsigned ERROR_CODE : 8; //!< [23:16] Indicates additional error codes for some error conditions.
         unsigned TAG : 8; //!< [31:24] Indicates the tag from the last completed packet in the command structure
@@ -3481,7 +3471,7 @@ typedef union _hw_dcp_ch3opts
     reg32_t U;
     struct _hw_dcp_ch3opts_bitfields
     {
-        unsigned RECOVERY_TIMER : 16; //!< [15:0] This field indicates the recovery time for the channel. After each operation, the recover timer for the channel is initiallized with this value and then decremented until the timer reaches zero. The channel will not initiate operation on the next packet in the chain until the recovery time has been satisfied. The timebase for the recovery timer is 16 HCLK clock cycles, providing a range of 0ns to 8.3ms at 133 MHz operation.
+        unsigned RECOVERY_TIMER : 16; //!< [15:0] This field indicates the recovery time for the channel.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved, always set to zero.
     } B;
 } hw_dcp_ch3opts_t;
@@ -3670,9 +3660,9 @@ typedef union _hw_dcp_pagetable
     reg32_t U;
     struct _hw_dcp_pagetable_bitfields
     {
-        unsigned ENABLE : 1; //!< [0] Page Table Enable control. Virtual addressing will only be used when this bit is set to a 1. Disabling the page table will not flush any cached entries, so software should write the FLUSH high and enable LOW when updating page tables.
-        unsigned FLUSH : 1; //!< [1] Page Table Flush control. To flush the TLB, write this bit to a 1 then back to a 0.
-        unsigned BASE : 30; //!< [31:2] Page Table Base Address. The page table must be word aligned and the pointer should reference a page table in the standard ARM format.
+        unsigned ENABLE : 1; //!< [0] Page Table Enable control.
+        unsigned FLUSH : 1; //!< [1] Page Table Flush control.
+        unsigned BASE : 30; //!< [31:2] Page Table Base Address.
     } B;
 } hw_dcp_pagetable_t;
 #endif

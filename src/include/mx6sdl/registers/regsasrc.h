@@ -63,16 +63,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_ASRC_ASRCTR - ASRC Control Register
@@ -93,22 +83,22 @@ typedef union _hw_asrc_asrctr
     struct _hw_asrc_asrctr_bitfields
     {
         unsigned ASRCEN : 1; //!< [0] ASRC Enable Enable the operation of ASRC.
-        unsigned ASREA : 1; //!< [1] ASRC Enable A Enable the operation of the conversion A of ASRC. When ASREA is cleared, operation of conversion A is disabled.
-        unsigned ASREB : 1; //!< [2] ASRC Enable B Enable the operation of the conversion B of ASRC. When ASREB is cleared, operation of conversion B is disabled.
-        unsigned ASREC : 1; //!< [3] ASRC Enable C Enable the operation of the conversion C of ASRC. When ASREC is cleared, operation of conversion C is disabled.
-        unsigned SRST : 1; //!< [4] Software Reset This bit is self-clear bit. Once it is been written as 1, it will generate a software reset signal inside ASRC. After 9 cycles of the ASRC processing clock, this reset process will stop, and this bit will be cleared automatically.
-        unsigned RESERVED0 : 8; //!< [12:5] Reserved. Should be written as zero for compatibility.
-        unsigned IDRA : 1; //!< [13] Use Ideal Ratio for Pair A When USRA=0, this bit has no usage. When USRA=1 and IDRA=0, ASRC internal measured ratio will be used. When USRA=1 and IDRA=1, the idea ratio from the interface register ASRIDRHA, ASRIDRLA will be used. It is suggested to manually set ASRCFG:POSTMODA, ASRCFG:PREMODA according to in this case.
-        unsigned USRA : 1; //!< [14] Use Ratio for Pair A Use ratio as the input to ASRC. This bit is used in conjunction with IDRA control bit.
-        unsigned IDRB : 1; //!< [15] Use Ideal Ratio for Pair B When USRB=0, this bit has no usage. When USRB=1 and IDRB=0, ASRC internal measured ratio will be used. When USRB=1 and IDRB=1, the idea ratio from the interface register ASRIDRHB, ASRIDRLB will be used.It is suggested to manually set ASRCFG:POSTMODB, ASRCFG:PREMODB according to in this case.
-        unsigned USRB : 1; //!< [16] Use Ratio for Pair B Use ratio as the input to ASRC. This bit is used in conjunction with IDRB control bit.
-        unsigned IDRC : 1; //!< [17] Use Ideal Ratio for Pair C When USRC=0, this bit has no usage. When USRC=1 and IDRC=0, ASRC internal measured ratio will be used. When USRC=1 and IDRC=1, the idea ratio from the interface register ASRIDRHC, ASRIDRLC will be used. It is suggested to manually set ASRCFG:POSTMODC, ASRCFG:PREMODC according to in this case.
-        unsigned USRC : 1; //!< [18] Use Ratio for Pair C Use ratio as the input to ASRC. This bit is used in conjunction with IDRC control bit.
-        unsigned RESERVED1 : 1; //!< [19] Reserved. Should be written as zero for compatibility.
-        unsigned ATSA : 1; //!< [20] ASRC Pair A Automatic Selection For Processing Options When this bit is 1, pair A will automatic update its pre-processing and post-processing options (ASRCFG: PREMODA, ASRCFG:POSTMODA , ASRCFG:HFA see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit is 0, the user is responsible for choosing the proper processing options for pair A. This bit should be disabled when {USRA, IDRA}={1,1}.
-        unsigned ATSB : 1; //!< [21] ASRC Pair B Automatic Selection For Processing Options When this bit is 1, pair B will automatic update its pre-processing and post-processing options (ASRCFG: PREMODB, ASRCFG:POSTMODB , ASRCFG:HFB see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit is 0, the user is responsible for choosing the proper processing options for pair B. This bit should be disabled when {USRB, IDRB}={1,1}.
-        unsigned ATSC : 1; //!< [22] ASRC Pair C Automatic Selection For Processing Options When this bit is 1, pair C will automatic update its pre-processing and post-processing options (ASRCFG: PREMODC, ASRCFG:POSTMODC , ASRCFG:HFC see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit is 0, the user is responsible for choosing the proper processing options for pair C. This bit should be disabled when {USRC, IDRC}={1,1}.
-        unsigned RESERVED2 : 1; //!< [23] Reserved. Should be written as zero for compatibility.
+        unsigned ASREA : 1; //!< [1] ASRC Enable A Enable the operation of the conversion A of ASRC.
+        unsigned ASREB : 1; //!< [2] ASRC Enable B Enable the operation of the conversion B of ASRC.
+        unsigned ASREC : 1; //!< [3] ASRC Enable C Enable the operation of the conversion C of ASRC.
+        unsigned SRST : 1; //!< [4] Software Reset This bit is self-clear bit.
+        unsigned RESERVED0 : 8; //!< [12:5] Reserved.
+        unsigned IDRA : 1; //!< [13] Use Ideal Ratio for Pair A When USRA=0, this bit has no usage.
+        unsigned USRA : 1; //!< [14] Use Ratio for Pair A Use ratio as the input to ASRC.
+        unsigned IDRB : 1; //!< [15] Use Ideal Ratio for Pair B When USRB=0, this bit has no usage.
+        unsigned USRB : 1; //!< [16] Use Ratio for Pair B Use ratio as the input to ASRC.
+        unsigned IDRC : 1; //!< [17] Use Ideal Ratio for Pair C When USRC=0, this bit has no usage.
+        unsigned USRC : 1; //!< [18] Use Ratio for Pair C Use ratio as the input to ASRC.
+        unsigned RESERVED1 : 1; //!< [19] Reserved.
+        unsigned ATSA : 1; //!< [20] ASRC Pair A Automatic Selection For Processing Options When this bit is 1, pair A will automatic update its pre-processing and post-processing options (ASRCFG: PREMODA, ASRCFG:POSTMODA see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected.
+        unsigned ATSB : 1; //!< [21] ASRC Pair B Automatic Selection For Processing Options When this bit is 1, pair B will automatic update its pre-processing and post-processing options (ASRCFG: PREMODB, ASRCFG:POSTMODB see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected.
+        unsigned ATSC : 1; //!< [22] ASRC Pair C Automatic Selection For Processing Options When this bit is 1, pair C will automatic update its pre-processing and post-processing options (ASRCFG: PREMODC, ASRCFG:POSTMODC see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected.
+        unsigned RESERVED2 : 1; //!< [23] Reserved.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asrctr_t;
@@ -356,12 +346,12 @@ typedef union _hw_asrc_asrctr
 /* --- Register HW_ASRC_ASRCTR, field ATSA[20] (RW)
  *
  * ASRC Pair A Automatic Selection For Processing Options When this bit is 1, pair A will automatic
- * update its pre-processing and post-processing options (ASRCFG: PREMODA, ASRCFG:POSTMODA ,
- * ASRCFG:HFA see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To
- * use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC
- * Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit
- * is 0, the user is responsible for choosing the proper processing options for pair A. This bit
- * should be disabled when {USRA, IDRA}={1,1}.
+ * update its pre-processing and post-processing options (ASRCFG: PREMODA, ASRCFG:POSTMODA see ASRC
+ * Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option,
+ * the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control
+ * Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit is 0, the user
+ * is responsible for choosing the proper processing options for pair A. This bit should be disabled
+ * when {USRA, IDRA}={1,1}.
  */
 
 #define BP_ASRC_ASRCTR_ATSA      (20)      //!< Bit position for ASRC_ASRCTR_ATSA.
@@ -381,12 +371,12 @@ typedef union _hw_asrc_asrctr
 /* --- Register HW_ASRC_ASRCTR, field ATSB[21] (RW)
  *
  * ASRC Pair B Automatic Selection For Processing Options When this bit is 1, pair B will automatic
- * update its pre-processing and post-processing options (ASRCFG: PREMODB, ASRCFG:POSTMODB ,
- * ASRCFG:HFB see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To
- * use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC
- * Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit
- * is 0, the user is responsible for choosing the proper processing options for pair B. This bit
- * should be disabled when {USRB, IDRB}={1,1}.
+ * update its pre-processing and post-processing options (ASRCFG: PREMODB, ASRCFG:POSTMODB see ASRC
+ * Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option,
+ * the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control
+ * Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit is 0, the user
+ * is responsible for choosing the proper processing options for pair B. This bit should be disabled
+ * when {USRB, IDRB}={1,1}.
  */
 
 #define BP_ASRC_ASRCTR_ATSB      (21)      //!< Bit position for ASRC_ASRCTR_ATSB.
@@ -406,12 +396,12 @@ typedef union _hw_asrc_asrctr
 /* --- Register HW_ASRC_ASRCTR, field ATSC[22] (RW)
  *
  * ASRC Pair C Automatic Selection For Processing Options When this bit is 1, pair C will automatic
- * update its pre-processing and post-processing options (ASRCFG: PREMODC, ASRCFG:POSTMODC ,
- * ASRCFG:HFC see ASRC Misc Control Register 1 for Pair C ) based on the frequencies it detected. To
- * use this option, the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC
- * Misc Control Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit
- * is 0, the user is responsible for choosing the proper processing options for pair C. This bit
- * should be disabled when {USRC, IDRC}={1,1}.
+ * update its pre-processing and post-processing options (ASRCFG: PREMODC, ASRCFG:POSTMODC see ASRC
+ * Misc Control Register 1 for Pair C ) based on the frequencies it detected. To use this option,
+ * the two parameter registers(ASR76K and ASR56K) should be set correctly (see ASRC Misc Control
+ * Register 1 for Pair C and ASRC Misc Control Register 1 for Pair C ). When this bit is 0, the user
+ * is responsible for choosing the proper processing options for pair C. This bit should be disabled
+ * when {USRC, IDRC}={1,1}.
  */
 
 #define BP_ASRC_ASRCTR_ATSC      (22)      //!< Bit position for ASRC_ASRCTR_ATSC.
@@ -449,8 +439,7 @@ typedef union _hw_asrc_asrctr
  *
  * Reset value: 0x00000000
  *
- * These 8 bits combined with corresponding 8 LSBs in ASRSTR register can generate interrupt
- * requests.
+
  */
 typedef union _hw_asrc_asrier
 {
@@ -465,7 +454,7 @@ typedef union _hw_asrc_asrier
         unsigned ADOEC : 1; //!< [5] Data Output C Interrupt Enable Enables the data output C interrupt.
         unsigned AOLIE : 1; //!< [6] Overload Interrupt Enable Enables the overload interrupt.
         unsigned AFPWE : 1; //!< [7] FP in Wait State Interrupt Enable Enables the FP in wait state interrupt.
-        unsigned RESERVED0 : 16; //!< [23:8] Reserved. Should be written as zero for compatibility.
+        unsigned RESERVED0 : 16; //!< [23:8] Reserved.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asrier_t;
@@ -714,10 +703,10 @@ typedef union _hw_asrc_asrcncr
     reg32_t U;
     struct _hw_asrc_asrcncr_bitfields
     {
-        unsigned ANCA : 3; //!< [2:0] Number of A Channels
-        unsigned ANCB : 3; //!< [5:3] Number of B Channels
-        unsigned ANCC : 3; //!< [8:6] Number of C Channels ANCC+ANCB+ANCA<=10. Hardware is not checking the constraint. Programmer should take the responsibility to ensure the constraint is satisfied.
-        unsigned RESERVED0 : 15; //!< [23:9] Reserved. Should be written as zero for compatibility.
+        unsigned ANCA : 4; //!< [3:0] Number of A Channels
+        unsigned ANCB : 4; //!< [7:4] Number of B Channels
+        unsigned ANCC : 4; //!< [11:8] Number of C Channels ANCC+ANCB+ANCA<=10.
+        unsigned RESERVED0 : 12; //!< [23:12] Reserved.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asrcncr_t;
@@ -741,7 +730,7 @@ typedef union _hw_asrc_asrcncr
  * constants & macros for individual ASRC_ASRCNCR bitfields
  */
 
-/* --- Register HW_ASRC_ASRCNCR, field ANCA[2:0] (RW)
+/* --- Register HW_ASRC_ASRCNCR, field ANCA[3:0] (RW)
  *
  * Number of A Channels
  *
@@ -761,7 +750,7 @@ typedef union _hw_asrc_asrcncr
  */
 
 #define BP_ASRC_ASRCNCR_ANCA      (0)      //!< Bit position for ASRC_ASRCNCR_ANCA.
-#define BM_ASRC_ASRCNCR_ANCA      (0x00000007)  //!< Bit mask for ASRC_ASRCNCR_ANCA.
+#define BM_ASRC_ASRCNCR_ANCA      (0x0000000f)  //!< Bit mask for ASRC_ASRCNCR_ANCA.
 
 //! @brief Get value of ASRC_ASRCNCR_ANCA from a register value.
 #define BG_ASRC_ASRCNCR_ANCA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCNCR_ANCA) >> BP_ASRC_ASRCNCR_ANCA)
@@ -775,7 +764,7 @@ typedef union _hw_asrc_asrcncr
 #endif
 
 
-/* --- Register HW_ASRC_ASRCNCR, field ANCB[5:3] (RW)
+/* --- Register HW_ASRC_ASRCNCR, field ANCB[7:4] (RW)
  *
  * Number of B Channels
  *
@@ -794,8 +783,8 @@ typedef union _hw_asrc_asrcncr
  * 1011-1111 - Should not be used.
  */
 
-#define BP_ASRC_ASRCNCR_ANCB      (3)      //!< Bit position for ASRC_ASRCNCR_ANCB.
-#define BM_ASRC_ASRCNCR_ANCB      (0x00000038)  //!< Bit mask for ASRC_ASRCNCR_ANCB.
+#define BP_ASRC_ASRCNCR_ANCB      (4)      //!< Bit position for ASRC_ASRCNCR_ANCB.
+#define BM_ASRC_ASRCNCR_ANCB      (0x000000f0)  //!< Bit mask for ASRC_ASRCNCR_ANCB.
 
 //! @brief Get value of ASRC_ASRCNCR_ANCB from a register value.
 #define BG_ASRC_ASRCNCR_ANCB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCNCR_ANCB) >> BP_ASRC_ASRCNCR_ANCB)
@@ -809,7 +798,7 @@ typedef union _hw_asrc_asrcncr
 #endif
 
 
-/* --- Register HW_ASRC_ASRCNCR, field ANCC[8:6] (RW)
+/* --- Register HW_ASRC_ASRCNCR, field ANCC[11:8] (RW)
  *
  * Number of C Channels ANCC+ANCB+ANCA<=10. Hardware is not checking the constraint. Programmer
  * should take the responsibility to ensure the constraint is satisfied.
@@ -829,8 +818,8 @@ typedef union _hw_asrc_asrcncr
  * 1011-1111 - Should not be used.
  */
 
-#define BP_ASRC_ASRCNCR_ANCC      (6)      //!< Bit position for ASRC_ASRCNCR_ANCC.
-#define BM_ASRC_ASRCNCR_ANCC      (0x000001c0)  //!< Bit mask for ASRC_ASRCNCR_ANCC.
+#define BP_ASRC_ASRCNCR_ANCC      (8)      //!< Bit position for ASRC_ASRCNCR_ANCC.
+#define BM_ASRC_ASRCNCR_ANCC      (0x00000f00)  //!< Bit mask for ASRC_ASRCNCR_ANCC.
 
 //! @brief Get value of ASRC_ASRCNCR_ANCC from a register value.
 #define BG_ASRC_ASRCNCR_ANCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ASRC_ASRCNCR_ANCC) >> BP_ASRC_ASRCNCR_ANCC)
@@ -873,19 +862,19 @@ typedef union _hw_asrc_asrcfg
     reg32_t U;
     struct _hw_asrc_asrcfg_bitfields
     {
-        unsigned RESERVED0 : 6; //!< [5:0] Reserved. Should be written as zero for compatibility.
-        unsigned PREMODA : 2; //!< [7:6] Pre-Processing Configuration for Conversion Pair A These bits will be read/write by user if ASRCTR:ATSA=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSA=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-processing configuration.
-        unsigned POSTMODA : 2; //!< [9:8] Post-Processing Configuration for Conversion Pair A These bits will be read/write by user if ASRCTR:ATSA=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSA=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the post-processing configuration.
-        unsigned PREMODB : 2; //!< [11:10] Pre-Processing Configuration for Conversion Pair B These bits will be read/write by user if ASRCTR:ATSB=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSB=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-processing configuration.
-        unsigned POSTMODB : 2; //!< [13:12] Post-Processing Configuration for Conversion Pair B These bits will be read/write by user if ASRCTR:ATSB=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSB=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the post-processing configuration.
-        unsigned PREMODC : 2; //!< [15:14] Pre-Processing Configuration for Conversion Pair C These bits will be read/write by user if ASRCTR:ATSC=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSC=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the pre-processing configuration.
-        unsigned POSTMODC : 2; //!< [17:16] Post-Processing Configuration for Conversion Pair C These bits will be read/write by user if ASRCTR:ATSC=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSC=1 (see ASRC Misc Control Register 1 for Pair C ). These bits set the selection of the post-processing configuration.
+        unsigned RESERVED0 : 6; //!< [5:0] Reserved.
+        unsigned PREMODA : 2; //!< [7:6] Pre-Processing Configuration for Conversion Pair A These bits will be read/write by user if ASRCTR:ATSA=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSA=1 (see ASRC Misc Control Register 1 for Pair C ).
+        unsigned POSTMODA : 2; //!< [9:8] Post-Processing Configuration for Conversion Pair A These bits will be read/write by user if ASRCTR:ATSA=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSA=1 (see ASRC Misc Control Register 1 for Pair C ).
+        unsigned PREMODB : 2; //!< [11:10] Pre-Processing Configuration for Conversion Pair B These bits will be read/write by user if ASRCTR:ATSB=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSB=1 (see ASRC Misc Control Register 1 for Pair C ).
+        unsigned POSTMODB : 2; //!< [13:12] Post-Processing Configuration for Conversion Pair B These bits will be read/write by user if ASRCTR:ATSB=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSB=1 (see ASRC Misc Control Register 1 for Pair C ).
+        unsigned PREMODC : 2; //!< [15:14] Pre-Processing Configuration for Conversion Pair C These bits will be read/write by user if ASRCTR:ATSC=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSC=1 (see ASRC Misc Control Register 1 for Pair C ).
+        unsigned POSTMODC : 2; //!< [17:16] Post-Processing Configuration for Conversion Pair C These bits will be read/write by user if ASRCTR:ATSC=0, and can also be automatically updated by the ASRC internal logic if ASRCTR:ATSC=1 (see ASRC Misc Control Register 1 for Pair C ).
         unsigned NDPRA : 1; //!< [18] Not Use Default Parameters for RAM-stored Parameters For Conversion Pair A
         unsigned NDPRB : 1; //!< [19] Not Use Default Parameters for RAM-stored Parameters For Conversion Pair B
         unsigned NDPRC : 1; //!< [20] Not Use Default Parameters for RAM-stored Parameters For Conversion Pair C
-        unsigned INIRQA : 1; //!< [21] Initialization for Conversion Pair A is served When this bit is 1, it means the initialization for conversion pair A is served. This bit is cleared by disabling the ASRC conversion pair (ASRCTR:ASREA=0 or ASRCTR:ASRCEN=0).
-        unsigned INIRQB : 1; //!< [22] Initialization for Conversion Pair B is served When this bit is 1, it means the initialization for conversion pair B is served. This bit is cleared by disabling the ASRC conversion pair (ASRCTR:ASREB=0 or ASRCTR:ASRCEN=0).
-        unsigned INIRQC : 1; //!< [23] Initialization for Conversion Pair C is served When this bit is 1, it means the initialization for conversion pair C is served. This bit is cleared by disabling the ASRC conversion pair (ASRCTR:ASREC=0 or ASRCTR:ASRCEN=0).
+        unsigned INIRQA : 1; //!< [21] Initialization for Conversion Pair A is served When this bit is 1, it means the initialization for conversion pair A is served.
+        unsigned INIRQB : 1; //!< [22] Initialization for Conversion Pair B is served When this bit is 1, it means the initialization for conversion pair B is served.
+        unsigned INIRQC : 1; //!< [23] Initialization for Conversion Pair C is served When this bit is 1, it means the initialization for conversion pair C is served.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asrcfg_t;
@@ -920,7 +909,7 @@ typedef union _hw_asrc_asrcfg
  * 00 - Select Upsampling-by-2 as defined in
  * 01 - Select Direct-Connection as defined in
  * 10 - Select Downsampling-by-2 as defined in
- * 11 - Select passthrough mode. In this case, POSTMODA[1-0] ,HFA[1:0] have no use.
+ * 11 - Select passthrough mode. In this case, POSTMODA[1-0] have no use.
  */
 
 #define BP_ASRC_ASRCFG_PREMODA      (6)      //!< Bit position for ASRC_ASRCFG_PREMODA.
@@ -977,7 +966,7 @@ typedef union _hw_asrc_asrcfg
  * 00 - Select Upsampling-by-2 as defined in
  * 01 - Select Direct-Connection as defined in
  * 10 - Select Downsampling-by-2 as defined in
- * 11 - Select passthrough mode. In this case, POSTMODB[1-0] ,HFB[1:0] have no use.
+ * 11 - Select passthrough mode. In this case, POSTMODB[1-0] have no use.
  */
 
 #define BP_ASRC_ASRCFG_PREMODB      (10)      //!< Bit position for ASRC_ASRCFG_PREMODB.
@@ -1034,7 +1023,7 @@ typedef union _hw_asrc_asrcfg
  * 00 - Select Upsampling-by-2 as defined in
  * 01 - Select Direct-Connection as defined in
  * 10 - Select Downsampling-by-2 as defined in
- * 11 - Select passthrough mode. In this case, POSTMODC[1-0] ,HFC[1:0] have no use.
+ * 11 - Select passthrough mode. In this case, POSTMODC[1-0] have no use.
  */
 
 #define BP_ASRC_ASRCFG_PREMODC      (14)      //!< Bit position for ASRC_ASRCFG_PREMODC.
@@ -1514,14 +1503,14 @@ typedef union _hw_asrc_asrcdr1
     reg32_t U;
     struct _hw_asrc_asrcdr1_bitfields
     {
-        unsigned AICPA : 3; //!< [2:0] Input Clock Prescaler A Specify the prescaling factor of the input prescaler A. The prescaling ratio may be any power of 2 from 1 to 128.
-        unsigned AICDA : 3; //!< [5:3] Input Clock Divider A Specify the divide ratio of the input clock divider A. The divide ratio may range from 1 to 8 (AICDA[2:0] = 000 to 111).
-        unsigned AICPB : 3; //!< [8:6] Input Clock Prescaler B Specify the prescaling factor of the input prescaler B. The prescaling ratio may be any power of 2 from 1 to 128.
-        unsigned AICDB : 3; //!< [11:9] Input Clock Divider B Specify the divide ratio of the input clock divider B. The divide ratio may range from 1 to 8 (AICDB[2:0] = 000 to 111).
-        unsigned AOCPA : 3; //!< [14:12] Output Clock Prescaler A Specify the prescaling factor of the output prescaler A. The prescaling ratio may be any power of 2 from 1 to 128.
-        unsigned AOCDA : 3; //!< [17:15] Output Clock Divider A Specify the divide ratio of the output clock divider A. The divide ratio may range from 1 to 8 (AOCDA[2:0] = 000 to 111).
-        unsigned AOCPB : 3; //!< [20:18] Output Clock Prescaler B Specify the prescaling factor of the output prescaler B. The prescaling ratio may be any power of 2 from 1 to 128.
-        unsigned AOCDB : 3; //!< [23:21] Output Clock Divider B Specify the divide ratio of the output clock divider B. The divide ratio may range from 1 to 8 (AOCDB[2:0] = 000 to 111).
+        unsigned AICPA : 3; //!< [2:0] Input Clock Prescaler A Specify the prescaling factor of the input prescaler A.
+        unsigned AICDA : 3; //!< [5:3] Input Clock Divider A Specify the divide ratio of the input clock divider A.
+        unsigned AICPB : 3; //!< [8:6] Input Clock Prescaler B Specify the prescaling factor of the input prescaler B.
+        unsigned AICDB : 3; //!< [11:9] Input Clock Divider B Specify the divide ratio of the input clock divider B.
+        unsigned AOCPA : 3; //!< [14:12] Output Clock Prescaler A Specify the prescaling factor of the output prescaler A.
+        unsigned AOCDA : 3; //!< [17:15] Output Clock Divider A Specify the divide ratio of the output clock divider A.
+        unsigned AOCPB : 3; //!< [20:18] Output Clock Prescaler B Specify the prescaling factor of the output prescaler B.
+        unsigned AOCDB : 3; //!< [23:21] Output Clock Divider B Specify the divide ratio of the output clock divider B.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asrcdr1_t;
@@ -1734,11 +1723,11 @@ typedef union _hw_asrc_asrcdr2
     reg32_t U;
     struct _hw_asrc_asrcdr2_bitfields
     {
-        unsigned AICPC : 3; //!< [2:0] Input Clock Prescaler C Specify the prescaling factor of the input prescaler C. The prescaling ratio may be any power of 2 from 1 to 128.
-        unsigned AICDC : 3; //!< [5:3] Input Clock Divider C Specify the divide ratio of the input clock divider C. The divide ratio may range from 1 to 8 (AICDC[2:0] = 000 to 111).
-        unsigned AOCPC : 3; //!< [8:6] Output Clock Prescaler C Specify the prescaling factor of the output prescaler C. The prescaling ratio may be any power of 2 from 1 to 128.
-        unsigned AOCDC : 3; //!< [11:9] Output Clock Divider C Specify the divide ratio of the output clock divider C. The divide ratio may range from 1 to 8 (AOCDC[2:0] = 000 to 111).
-        unsigned RESERVED0 : 12; //!< [23:12] Reserved. Should be written as zero for compatibility.
+        unsigned AICPC : 3; //!< [2:0] Input Clock Prescaler C Specify the prescaling factor of the input prescaler C.
+        unsigned AICDC : 3; //!< [5:3] Input Clock Divider C Specify the divide ratio of the input clock divider C.
+        unsigned AOCPC : 3; //!< [8:6] Output Clock Prescaler C Specify the prescaling factor of the output prescaler C.
+        unsigned AOCDC : 3; //!< [11:9] Output Clock Divider C Specify the divide ratio of the output clock divider C.
+        unsigned RESERVED0 : 12; //!< [23:12] Reserved.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asrcdr2_t;
@@ -1872,29 +1861,29 @@ typedef union _hw_asrc_asrstr
     reg32_t U;
     struct _hw_asrc_asrstr_bitfields
     {
-        unsigned AIDEA : 1; //!< [0] Number of data in Input Data Buffer A is less than threshold When set, this bit indicates that number of data still available in ASRDIRA is less than threshold and the processor can write data to ASRDIRA. When AIDEA is set, the ASRC generates data input A interrupt request to the processor, if enabled (that is, ASRCTR:ADIEA = 1). A DMA request is always generated when the AIDEA bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
-        unsigned AIDEB : 1; //!< [1] Number of data in Input Data Buffer B is less than threshold When set, this bit indicates that number of data still available in ASRDIRB is less than threshold and the processor can write data to ASRDIRB. When AIDEB is set, the ASRC generates data input B interrupt request to the processor, if enabled (that is, ASRCTR:ADIEB = 1). A DMA request is always generated when the AIDEB bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
-        unsigned AIDEC : 1; //!< [2] Number of data in Input Data Buffer C is less than threshold When set, this bit indicates that number of data still available in ASRDIRC is less than threshold and the processor can write data to ASRDIRC. When AIDEC is set, the ASRC generates data input C interrupt request to the processor, if enabled (that is, ASRCTR:ADIEC = 1). A DMA request is always generated when the AIDEC bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
-        unsigned AODFA : 1; //!< [3] Number of data in Output Data Buffer A is greater than threshold When set, this bit indicates that number of data already existing in ASRDORA is greater than threshold and the processor can read data from ASRDORA. When AODFA is set, the ASRC generates data output A interrupt request to the processor, if enabled (that is, ASRCTR:ADOEA = 1). A DMA request is always generated when the AODFA bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
-        unsigned AODFB : 1; //!< [4] Number of data in Output Data Buffer B is greater than threshold When set, this bit indicates that number of data already existing in ASRDORB is greater than threshold and the processor can read data from ASRDORB. When AODFB is set, the ASRC generates data output B interrupt request to the processor, if enabled (that is, ASRCTR:ADOEB = 1). A DMA request is always generated when the AODFB bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
-        unsigned AODFC : 1; //!< [5] Number of data in Output Data Buffer C is greater than threshold When set, this bit indicates that number of data already existing in ASRDORC is greater than threshold and the processor can read data from ASRDORC. When AODFC is set, the ASRC generates data output C interrupt request to the processor, if enabled (that is, ASRCTR:ADOEC = 1). A DMA request is always generated when the AODFC bit is set, but a DMA transfer takes place only if a DMA channel is active and triggered by this event.
-        unsigned AOLE : 1; //!< [6] Overload Error Flag When set, this bit indicates that the task rate is too high for the ASRC to handle. The reasons for overload may be: - too high input clock frequency, - too high output clock frequency, - incorrect selection of the pre-filter, - low ASRC processing clock, - too many channels, - underrun, - or any combination of the reasons above. Since the ASRC uses the same hardware resources to perform various tasks, the real reason for the overload is not straight forward, and it should be carefully analyzed by the programmer. If ASRCTR:AOLIE=1, an interrupt will be proposed when this bit is set. Write any value with this bit set as one into the status register will clear this bit and the interrupt request proposed by this bit.
-        unsigned FPWT : 1; //!< [7] FP is in wait states This bit is for debug only. When set, this bit indicates that ASRC is in wait states. When clear, this bit indicates that ASRC is not in wait states. If ASRCTR:AFPWE=1 and ASRCTR:ASDBG=1, an interrupt will be proposed when this bit is set.
-        unsigned AIDUA : 1; //!< [8] Input Data Buffer A has underflowed When set, this bit indicates that input data buffer A has underflowed. When clear, this bit indicates that input data buffer A has not underflowed.
-        unsigned AIDUB : 1; //!< [9] Input Data Buffer B has underflowed When set, this bit indicates that input data buffer B has underflowed. When clear, this bit indicates that input data buffer B has not underflowed.
-        unsigned AIDUC : 1; //!< [10] Input Data Buffer C has underflowed When set, this bit indicates that input data buffer C has underflowed. When clear, this bit indicates that input data buffer C has not underflowed.
-        unsigned AODOA : 1; //!< [11] Output Data Buffer A has overflowed When set, this bit indicates that output data buffer A has overflowed. When clear, this bit indicates that output data buffer A has not overflowed
-        unsigned AODOB : 1; //!< [12] Output Data Buffer B has overflowed When set, this bit indicates that output data buffer B has overflowed. When clear, this bit indicates that output data buffer B has not overflowed
-        unsigned AODOC : 1; //!< [13] Output Data Buffer C has overflowed When set, this bit indicates that output data buffer C has overflowed. When clear, this bit indicates that output data buffer C has not overflowed
-        unsigned AIOLA : 1; //!< [14] Pair A Input Task Overload When set, this bit indicates that pair A input task is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned AIOLB : 1; //!< [15] Pair B Input Task Overload When set, this bit indicates that pair B input task is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned AIOLC : 1; //!< [16] Pair C Input Task Overload When set, this bit indicates that pair C input task is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned AOOLA : 1; //!< [17] Pair A Output Task Overload When set, this bit indicates that pair A output task is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned AOOLB : 1; //!< [18] Pair B Output Task Overload When set, this bit indicates that pair B output task is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned AOOLC : 1; //!< [19] Pair C Output Task Overload When set, this bit indicates that pair C output task is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned ATQOL : 1; //!< [20] Task Queue FIFO overload When set, this bit indicates that task queue FIFO logic is oveloaded. This may help to check the reason why overload interrupt happens. The bit is cleared when writing ASRCTR:AOLIE as 1.
-        unsigned DSLCNT : 1; //!< [21] DSL Counter Input to FIFO ready When set, this bit indicates that new DSL counter information is stored in the internal ASRC FIFO. When clear, this bit indicates that new DSL counter information is in the process of storage into the internal ASRC FIFO. When ASRIER:AFPWE=1, the rising edge of this signal will propose an interrupt request. Writing any value with this bit set will clear the interrupt request proposed by the rising edge of this bit.
-        unsigned RESERVED0 : 2; //!< [23:22] Reserved. Should be written as zero for compatibility.
+        unsigned AIDEA : 1; //!< [0] Number of data in Input Data Buffer A is less than threshold When set, this bit indicates that number of data still available in ASRDIRA is less than threshold and the processor can write data to ASRDIRA.
+        unsigned AIDEB : 1; //!< [1] Number of data in Input Data Buffer B is less than threshold When set, this bit indicates that number of data still available in ASRDIRB is less than threshold and the processor can write data to ASRDIRB.
+        unsigned AIDEC : 1; //!< [2] Number of data in Input Data Buffer C is less than threshold When set, this bit indicates that number of data still available in ASRDIRC is less than threshold and the processor can write data to ASRDIRC.
+        unsigned AODFA : 1; //!< [3] Number of data in Output Data Buffer A is greater than threshold When set, this bit indicates that number of data already existing in ASRDORA is greater than threshold and the processor can read data from ASRDORA.
+        unsigned AODFB : 1; //!< [4] Number of data in Output Data Buffer B is greater than threshold When set, this bit indicates that number of data already existing in ASRDORB is greater than threshold and the processor can read data from ASRDORB.
+        unsigned AODFC : 1; //!< [5] Number of data in Output Data Buffer C is greater than threshold When set, this bit indicates that number of data already existing in ASRDORC is greater than threshold and the processor can read data from ASRDORC.
+        unsigned AOLE : 1; //!< [6] Overload Error Flag When set, this bit indicates that the task rate is too high for the ASRC to handle.
+        unsigned FPWT : 1; //!< [7] FP is in wait states This bit is for debug only.
+        unsigned AIDUA : 1; //!< [8] Input Data Buffer A has underflowed When set, this bit indicates that input data buffer A has underflowed.
+        unsigned AIDUB : 1; //!< [9] Input Data Buffer B has underflowed When set, this bit indicates that input data buffer B has underflowed.
+        unsigned AIDUC : 1; //!< [10] Input Data Buffer C has underflowed When set, this bit indicates that input data buffer C has underflowed.
+        unsigned AODOA : 1; //!< [11] Output Data Buffer A has overflowed When set, this bit indicates that output data buffer A has overflowed.
+        unsigned AODOB : 1; //!< [12] Output Data Buffer B has overflowed When set, this bit indicates that output data buffer B has overflowed.
+        unsigned AODOC : 1; //!< [13] Output Data Buffer C has overflowed When set, this bit indicates that output data buffer C has overflowed.
+        unsigned AIOLA : 1; //!< [14] Pair A Input Task Overload When set, this bit indicates that pair A input task is oveloaded.
+        unsigned AIOLB : 1; //!< [15] Pair B Input Task Overload When set, this bit indicates that pair B input task is oveloaded.
+        unsigned AIOLC : 1; //!< [16] Pair C Input Task Overload When set, this bit indicates that pair C input task is oveloaded.
+        unsigned AOOLA : 1; //!< [17] Pair A Output Task Overload When set, this bit indicates that pair A output task is oveloaded.
+        unsigned AOOLB : 1; //!< [18] Pair B Output Task Overload When set, this bit indicates that pair B output task is oveloaded.
+        unsigned AOOLC : 1; //!< [19] Pair C Output Task Overload When set, this bit indicates that pair C output task is oveloaded.
+        unsigned ATQOL : 1; //!< [20] Task Queue FIFO overload When set, this bit indicates that task queue FIFO logic is oveloaded.
+        unsigned DSLCNT : 1; //!< [21] DSL Counter Input to FIFO ready When set, this bit indicates that new DSL counter information is stored in the internal ASRC FIFO.
+        unsigned RESERVED0 : 2; //!< [23:22] Reserved.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asrstr_t;
@@ -2620,18 +2609,17 @@ typedef union _hw_asrc_asrpmn5
  *
  * Reset value: 0x00000000
  *
- * These registers define and show The register defines and shows the parameters for ASRC inner task
- * queue FIFOs.
+ * The register defines and shows the parameters for ASRC inner task queue FIFOs.
  */
 typedef union _hw_asrc_asrtfr1
 {
     reg32_t U;
     struct _hw_asrc_asrtfr1_bitfields
     {
-        unsigned RESERVED0 : 6; //!< [5:0] Reserved. Should be written as zero for compatibility.
-        unsigned TF_BASE : 7; //!< [12:6] Base address for task queue FIFO. Set to 0x7C.
+        unsigned RESERVED0 : 6; //!< [5:0] Reserved.
+        unsigned TF_BASE : 7; //!< [12:6] Base address for task queue FIFO.
         unsigned TF_FILL : 7; //!< [19:13] Current number of entries in task queue FIFO.
-        unsigned RESERVED1 : 4; //!< [23:20] Reserved. Should be written as zero for compatibility.
+        unsigned RESERVED1 : 4; //!< [23:20] Reserved.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asrtfr1_t;
@@ -2715,12 +2703,12 @@ typedef union _hw_asrc_asrccr
     reg32_t U;
     struct _hw_asrc_asrccr_bitfields
     {
-        unsigned ACIA : 4; //!< [3:0] The channel counter for Pair A's input FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair A's input FIFO's usage. The value can be any value between [0, ANCA-1]
-        unsigned ACIB : 4; //!< [7:4] The channel counter for Pair B's input FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair B's input FIFO's usage. The value can be any value between [0, ANCB-1]
-        unsigned ACIC : 4; //!< [11:8] The channel counter for Pair C's input FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair C's input FIFO's usage. The value can be any value between [0, ANCC-1]
-        unsigned ACOA : 4; //!< [15:12] The channel counter for Pair A's output FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair A's output FIFO's usage. The value can be any value between [0, ANCA-1]
-        unsigned ACOB : 4; //!< [19:16] The channel counter for Pair B's output FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair B's output FIFO's usage. The value can be any value between [0, ANCB-1]
-        unsigned ACOC : 4; //!< [23:20] The channel counter for Pair C's output FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair C's output FIFO's usage. The value can be any value between [0, ANCC-1]
+        unsigned ACIA : 4; //!< [3:0] The channel counter for Pair A's input FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair A's input FIFO's usage.
+        unsigned ACIB : 4; //!< [7:4] The channel counter for Pair B's input FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair B's input FIFO's usage.
+        unsigned ACIC : 4; //!< [11:8] The channel counter for Pair C's input FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair C's input FIFO's usage.
+        unsigned ACOA : 4; //!< [15:12] The channel counter for Pair A's output FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair A's output FIFO's usage.
+        unsigned ACOB : 4; //!< [19:16] The channel counter for Pair B's output FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair B's output FIFO's usage.
+        unsigned ACOC : 4; //!< [23:20] The channel counter for Pair C's output FIFO These bits stand for the current channel being accessed through shared peripheral bus for Pair C's output FIFO's usage.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asrccr_t;
@@ -2892,8 +2880,7 @@ typedef union _hw_asrc_asrccr
  * Reset value: 0x00000000
  *
  * These registers are the interface registers for the audio data input of pair A,B,C respectively.
- * They are backed by FIFOs.  The usage of these registers is shown in "xref to 56898: Heading5:
- * 1.2.3.2.1 Data Input Modes"
+ * They are backed by FIFOs.
  */
 typedef union _hw_asrc_asrdia
 {
@@ -2956,7 +2943,7 @@ typedef union _hw_asrc_asrdia
  * Reset value: 0x00000000
  *
  * These registers are the interface registers for the audio data output of pair A,B,C respectively.
- * They are backed by FIFOs.  The usage of these registers is shown in xref to "Data Output modes."
+ * They are backed by FIFOs.
  */
 typedef union _hw_asrc_asrdoa
 {
@@ -3016,8 +3003,7 @@ typedef union _hw_asrc_asrdoa
  * Reset value: 0x00000000
  *
  * These registers are the interface registers for the audio data input of pair A,B,C respectively.
- * They are backed by FIFOs.  The usage of these registers is shown in "xref to 56898: Heading5:
- * 1.2.3.2.1 Data Input Modes"
+ * They are backed by FIFOs.
  */
 typedef union _hw_asrc_asrdib
 {
@@ -3080,7 +3066,7 @@ typedef union _hw_asrc_asrdib
  * Reset value: 0x00000000
  *
  * These registers are the interface registers for the audio data output of pair A,B,C respectively.
- * They are backed by FIFOs.  The usage of these registers is shown in xref to "Data Output modes."
+ * They are backed by FIFOs.
  */
 typedef union _hw_asrc_asrdob
 {
@@ -3140,8 +3126,7 @@ typedef union _hw_asrc_asrdob
  * Reset value: 0x00000000
  *
  * These registers are the interface registers for the audio data input of pair A,B,C respectively.
- * They are backed by FIFOs.  The usage of these registers is shown in "xref to 56898: Heading5:
- * 1.2.3.2.1 Data Input Modes"
+ * They are backed by FIFOs.
  */
 typedef union _hw_asrc_asrdic
 {
@@ -3204,7 +3189,7 @@ typedef union _hw_asrc_asrdic
  * Reset value: 0x00000000
  *
  * These registers are the interface registers for the audio data output of pair A,B,C respectively.
- * They are backed by FIFOs.  The usage of these registers is shown in xref to "Data Output modes."
+ * They are backed by FIFOs.
  */
 typedef union _hw_asrc_asrdoc
 {
@@ -3272,7 +3257,7 @@ typedef union _hw_asrc_asridrha
     reg32_t U;
     struct _hw_asrc_asridrha_bitfields
     {
-        unsigned IDRATIOA : 8; //!< [7:0] IDRATIOA[31:24]. High part of ideal ratio value for pair A
+        unsigned IDRATIOA : 8; //!< [7:0] IDRATIOA[31:24].
         unsigned RESERVED0 : 16; //!< [23:8] Reserved
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
@@ -3346,7 +3331,7 @@ typedef union _hw_asrc_asridrla
     reg32_t U;
     struct _hw_asrc_asridrla_bitfields
     {
-        unsigned IDRATIOA : 24; //!< [23:0] IDRATIOA[23:0]. Low part of ideal ratio value for pair A
+        unsigned IDRATIOA : 24; //!< [23:0] IDRATIOA[23:0].
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asridrla_t;
@@ -3419,7 +3404,7 @@ typedef union _hw_asrc_asridrhb
     reg32_t U;
     struct _hw_asrc_asridrhb_bitfields
     {
-        unsigned IDRATIOB : 8; //!< [7:0] IDRATIOB[31:24]. High part of ideal ratio value for pair B.
+        unsigned IDRATIOB : 8; //!< [7:0] IDRATIOB[31:24].
         unsigned RESERVED0 : 16; //!< [23:8] Reserved
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
@@ -3493,7 +3478,7 @@ typedef union _hw_asrc_asridrlb
     reg32_t U;
     struct _hw_asrc_asridrlb_bitfields
     {
-        unsigned IDRATIOB : 24; //!< [23:0] IDRATIOB[23:0]. Low part of ideal ratio value for pair B.
+        unsigned IDRATIOB : 24; //!< [23:0] IDRATIOB[23:0].
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asridrlb_t;
@@ -3566,7 +3551,7 @@ typedef union _hw_asrc_asridrhc
     reg32_t U;
     struct _hw_asrc_asridrhc_bitfields
     {
-        unsigned IDRATIOC : 8; //!< [7:0] IDRATIOC[31:24]. High part of ideal ratio value for pair C.
+        unsigned IDRATIOC : 8; //!< [7:0] IDRATIOC[31:24].
         unsigned RESERVED0 : 16; //!< [23:8] Reserved
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
@@ -3640,7 +3625,7 @@ typedef union _hw_asrc_asridrlc
     reg32_t U;
     struct _hw_asrc_asridrlc_bitfields
     {
-        unsigned IDRATIOC : 24; //!< [23:0] IDRATIOC[23:0]. Low part of ideal ratio value for pair C.
+        unsigned IDRATIOC : 24; //!< [23:0] IDRATIOC[23:0].
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asridrlc_t;
@@ -3865,16 +3850,16 @@ typedef union _hw_asrc_asrmcra
     reg32_t U;
     struct _hw_asrc_asrmcra_bitfields
     {
-        unsigned INFIFO_THRESHOLDA : 6; //!< [5:0] The threshold for Pair A's input FIFO per channel These bits stand for the threshold for Pair A's input FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the number of input FIFO fillings of the pair is less than n samples per channel, the input data needed flag is set; when the number of input FIFO fillings of the pair is greater than or equal to n samples per channel, the input data needed flag is automatically cleared.
-        unsigned RESERVED0 : 4; //!< [9:6] Reserved. Should be written as zero for future compatibility.
-        unsigned RSYNOFA : 1; //!< [10] Re-sync Output FIFO Channel Counter If bit set, force ASRCCR:ACOA=0. If bit clear, untouch ASRCCR:ACOA.
-        unsigned RSYNIFA : 1; //!< [11] Re-sync Input FIFO Channel Counter If bit set, force ASRCCR:ACIA=0. If bit clear, untouch ASRCCR:ACIA.
-        unsigned OUTFIFO_THRESHOLDA : 6; //!< [17:12] The threshold for Pair A's output FIFO per channel These bits stand for the threshold for Pair A's output FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the number of output FIFO fillings of the pair is greater than n samples per channel, the output data ready flag is set; when the number of output FIFO fillings of the pair is less than or equal to n samples per channel, the output data ready flag is automatically cleared.
-        unsigned RESERVED1 : 2; //!< [19:18] Reserved. Should be written as zero for future compatibility.
+        unsigned INFIFO_THRESHOLDA : 6; //!< [5:0] The threshold for Pair A's input FIFO per channel These bits stand for the threshold for Pair A's input FIFO per channel.
+        unsigned RESERVED0 : 4; //!< [9:6] Reserved.
+        unsigned RSYNOFA : 1; //!< [10] Re-sync Output FIFO Channel Counter If bit set, force ASRCCR:ACOA=0.
+        unsigned RSYNIFA : 1; //!< [11] Re-sync Input FIFO Channel Counter If bit set, force ASRCCR:ACIA=0.
+        unsigned OUTFIFO_THRESHOLDA : 6; //!< [17:12] The threshold for Pair A's output FIFO per channel These bits stand for the threshold for Pair A's output FIFO per channel.
+        unsigned RESERVED1 : 2; //!< [19:18] Reserved.
         unsigned BYPASSPOLYA : 1; //!< [20] Bypass Polyphase Filtering for Pair A This bit will determine whether the polyphase filtering part of Pair A conversion will be bypassed.
-        unsigned BUFSTALLA : 1; //!< [21] Stall Pair A conversion in case of Buffer Near Empty/Full Condition This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair A. This option can only work when external ratio is used. Near empty condition is the condition when input FIFO has less than 4 useful samples per channel. Near full condition is the condition when the output FIFO has less than 4 vacant sample words to fill per channel.
+        unsigned BUFSTALLA : 1; //!< [21] Stall Pair A conversion in case of Buffer Near Empty/Full Condition This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair A.
         unsigned EXTTHRSHA : 1; //!< [22] Use external thresholds for FIFO control of Pair A This bit will determine whether the FIFO thresholds externally defined in this register is used to control ASRC internal FIFO logic for pair A.
-        unsigned ZEROBUFA : 1; //!< [23] Initialize buf of Pair A when pair A is enabled. Always clear option. This bit is used to control whether the buffer is to be zeroized when pair A is enabled.
+        unsigned ZEROBUFA : 1; //!< [23] Initialize buf of Pair A when pair A is enabled.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asrmcra_t;
@@ -4116,11 +4101,11 @@ typedef union _hw_asrc_asrfsta
     reg32_t U;
     struct _hw_asrc_asrfsta_bitfields
     {
-        unsigned INFIFO_FILLA : 7; //!< [6:0] The fillings for Pair A's input FIFO per channel These bits stand for the fillings for Pair A's input FIFO per channel. Possible range is [0,64].
-        unsigned RESERVED0 : 4; //!< [10:7] Reserved. Should be written as zero for future compatibility.
+        unsigned INFIFO_FILLA : 7; //!< [6:0] The fillings for Pair A's input FIFO per channel These bits stand for the fillings for Pair A's input FIFO per channel.
+        unsigned RESERVED0 : 4; //!< [10:7] Reserved.
         unsigned IAEA : 1; //!< [11] Input FIFO is near Empty for Pair A This bit is to indicate whether the input FIFO of Pair A is near empty.
-        unsigned OUTFIFO_FILLA : 7; //!< [18:12] The fillings for Pair A's output FIFO per channel These bits stand for the fillings for Pair A's output FIFO per channel. Possible range is [0,64].
-        unsigned RESERVED1 : 4; //!< [22:19] Reserved. Should be written as zero for future compatibility.
+        unsigned OUTFIFO_FILLA : 7; //!< [18:12] The fillings for Pair A's output FIFO per channel These bits stand for the fillings for Pair A's output FIFO per channel.
+        unsigned RESERVED1 : 4; //!< [22:19] Reserved.
         unsigned OAFA : 1; //!< [23] Output FIFO is near Full for Pair A This bit is to indicate whether the output FIFO of Pair A is near full.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
@@ -4217,14 +4202,14 @@ typedef union _hw_asrc_asrmcrb
     reg32_t U;
     struct _hw_asrc_asrmcrb_bitfields
     {
-        unsigned INFIFO_THRESHOLDB : 6; //!< [5:0] The threshold for Pair B's input FIFO per channel These bits stand for the threshold for Pair B's input FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the number of input FIFO fillings of the pair is less than n samples per channel, the input data needed flag is set; when the number of input FIFO fillings of the pair is greater than or equal to n samples per channel, the input data needed flag is automatically cleared.
-        unsigned RESERVED0 : 4; //!< [9:6] Reserved. Should be written as zero for future compatibility.
-        unsigned RSYNOFB : 1; //!< [10] Re-sync Output FIFO Channel Counter If bit set, force ASRCCR:ACOB=0. If bit clear, untouch ASRCCR:ACOB.
-        unsigned RSYNIFB : 1; //!< [11] Re-sync Input FIFO Channel Counter If bit set, force ASRCCR:ACIB=0. If bit clear, untouch ASRCCR:ACIB.
-        unsigned OUTFIFO_THRESHOLDB : 6; //!< [17:12] The threshold for Pair B's output FIFO per channel These bits stand for the threshold for Pair B's output FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the number of output FIFO fillings of the pair is greater than n samples per channel, the output data ready flag is set; when the number of output FIFO fillings of the pair is less than or equal to n samples per channel, the output data ready flag is automatically cleared.
-        unsigned RESERVED1 : 2; //!< [19:18] Reserved. Should be written as zero for future compatibility.
+        unsigned INFIFO_THRESHOLDB : 6; //!< [5:0] The threshold for Pair B's input FIFO per channel These bits stand for the threshold for Pair B's input FIFO per channel.
+        unsigned RESERVED0 : 4; //!< [9:6] Reserved.
+        unsigned RSYNOFB : 1; //!< [10] Re-sync Output FIFO Channel Counter If bit set, force ASRCCR:ACOB=0.
+        unsigned RSYNIFB : 1; //!< [11] Re-sync Input FIFO Channel Counter If bit set, force ASRCCR:ACIB=0.
+        unsigned OUTFIFO_THRESHOLDB : 6; //!< [17:12] The threshold for Pair B's output FIFO per channel These bits stand for the threshold for Pair B's output FIFO per channel.
+        unsigned RESERVED1 : 2; //!< [19:18] Reserved.
         unsigned BYPASSPOLYB : 1; //!< [20] Bypass Polyphase Filtering for Pair B This bit will determine whether the polyphase filtering part of Pair B conversion will be bypassed.
-        unsigned BUFSTALLB : 1; //!< [21] Stall Pair B conversion in case of Buffer Near Empty/Full Condition This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair B. This option can only work when external ratio is used. Near empty condition is the condition when input FIFO has less than 4 useful samples per channel. Near full condition is the condition when the output FIFO has less than 4 vacant sample words to fill per channel.
+        unsigned BUFSTALLB : 1; //!< [21] Stall Pair B conversion in case of Buffer Near Empty/Full Condition This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair B.
         unsigned EXTTHRSHB : 1; //!< [22] Use external thresholds for FIFO control of Pair B This bit will determine whether the FIFO thresholds externally defined in this register is used to control ASRC internal FIFO logic for pair B.
         unsigned ZEROBUFB : 1; //!< [23] Initialize buf of Pair B when pair B is enabled This bit is used to control whether the buffer is to be zeroized when pair B is enabled.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
@@ -4468,11 +4453,11 @@ typedef union _hw_asrc_asrfstb
     reg32_t U;
     struct _hw_asrc_asrfstb_bitfields
     {
-        unsigned INFIFO_FILLB : 7; //!< [6:0] The fillings for Pair B's input FIFO per channel These bits stand for the fillings for Pair B's input FIFO per channel. Possible range is [0,64].
-        unsigned RESERVED0 : 4; //!< [10:7] Reserved. Should be written as zero for future compatibility.
+        unsigned INFIFO_FILLB : 7; //!< [6:0] The fillings for Pair B's input FIFO per channel These bits stand for the fillings for Pair B's input FIFO per channel.
+        unsigned RESERVED0 : 4; //!< [10:7] Reserved.
         unsigned IAEB : 1; //!< [11] Input FIFO is near Empty for Pair B This bit is to indicate whether the input FIFO of Pair B is near empty.
-        unsigned OUTFIFO_FILLB : 7; //!< [18:12] The fillings for Pair B's output FIFO per channel These bits stand for the fillings for Pair B's output FIFO per channel. Possible range is [0,64].
-        unsigned RESERVED1 : 4; //!< [22:19] Reserved. Should be written as zero for future compatibility.
+        unsigned OUTFIFO_FILLB : 7; //!< [18:12] The fillings for Pair B's output FIFO per channel These bits stand for the fillings for Pair B's output FIFO per channel.
+        unsigned RESERVED1 : 4; //!< [22:19] Reserved.
         unsigned OAFB : 1; //!< [23] Output FIFO is near Full for Pair B This bit is to indicate whether the output FIFO of Pair B is near full.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
@@ -4569,14 +4554,14 @@ typedef union _hw_asrc_asrmcrc
     reg32_t U;
     struct _hw_asrc_asrmcrc_bitfields
     {
-        unsigned INFIFO_THRESHOLDC : 6; //!< [5:0] The threshold for Pair C's input FIFO per channel These bits stand for the threshold for Pair C's input FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the number of input FIFO fillings of the pair is less than n samples per channel, the input data needed flag is set; when the number of input FIFO fillings of the pair is greater than or equal to n samples per channel, the input data needed flag is automatically cleared.
-        unsigned RESERVED0 : 4; //!< [9:6] Reserved. Should be written as zero for future compatibility.
-        unsigned RSYNOFC : 1; //!< [10] Re-sync Output FIFO Channel Counter If bit set, force ASRCCR:ACOC=0. If bit clear, untouch ASRCCR:ACOC.
-        unsigned RSYNIFC : 1; //!< [11] Re-sync Input FIFO Channel Counter If bit set, force ASRCCR:ACIC=0. If bit clear, untouch ASRCCR:ACIC.
-        unsigned OUTFIFO_THRESHOLDC : 6; //!< [17:12] The threshold for Pair C's output FIFO per channel These bits stand for the threshold for Pair C's output FIFO per channel. Possible range is [0,63]. When the value is n, it means that: when the number of output FIFO fillings of the pair is greater than n samples per channel, the output data ready flag is set; when the number of output FIFO fillings of the pair is less than or equal to n samples per channel, the output data ready flag is automatically cleared.
-        unsigned RESERVED1 : 2; //!< [19:18] Reserved. Should be written as zero for future compatibility.
+        unsigned INFIFO_THRESHOLDC : 6; //!< [5:0] The threshold for Pair C's input FIFO per channel These bits stand for the threshold for Pair C's input FIFO per channel.
+        unsigned RESERVED0 : 4; //!< [9:6] Reserved.
+        unsigned RSYNOFC : 1; //!< [10] Re-sync Output FIFO Channel Counter If bit set, force ASRCCR:ACOC=0.
+        unsigned RSYNIFC : 1; //!< [11] Re-sync Input FIFO Channel Counter If bit set, force ASRCCR:ACIC=0.
+        unsigned OUTFIFO_THRESHOLDC : 6; //!< [17:12] The threshold for Pair C's output FIFO per channel These bits stand for the threshold for Pair C's output FIFO per channel.
+        unsigned RESERVED1 : 2; //!< [19:18] Reserved.
         unsigned BYPASSPOLYC : 1; //!< [20] Bypass Polyphase Filtering for Pair C This bit will determine whether the polyphase filtering part of Pair C conversion will be bypassed.
-        unsigned BUFSTALLC : 1; //!< [21] Stall Pair C conversion in case of Buffer Near Empty/Full Condition This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair C. This option can only work when external ratio is used. Near empty condition is the condition when input FIFO has less than 4 useful samples per channel. Near full condition is the condition when the output FIFO has less than 4 vacant sample words to fill per channel.
+        unsigned BUFSTALLC : 1; //!< [21] Stall Pair C conversion in case of Buffer Near Empty/Full Condition This bit will determine whether the near empty/full FIFO condition will stall the rate conversion for pair C.
         unsigned EXTTHRSHC : 1; //!< [22] Use external thresholds for FIFO control of Pair C This bit will determine whether the FIFO thresholds externally defined in this register is used to control ASRC internal FIFO logic for pair C.
         unsigned ZEROBUFC : 1; //!< [23] Initialize buf of Pair C when pair C is enabled This bit is used to control whether the buffer is to be zeroized when pair C is enabled.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
@@ -4820,11 +4805,11 @@ typedef union _hw_asrc_asrfstc
     reg32_t U;
     struct _hw_asrc_asrfstc_bitfields
     {
-        unsigned INFIFO_FILLC : 7; //!< [6:0] The fillings for Pair C's input FIFO per channel These bits stand for the fillings for Pair C's input FIFO per channel. Possible range is [0,64].
-        unsigned RESERVED0 : 4; //!< [10:7] Reserved. Should be written as zero for future compatibility.
+        unsigned INFIFO_FILLC : 7; //!< [6:0] The fillings for Pair C's input FIFO per channel These bits stand for the fillings for Pair C's input FIFO per channel.
+        unsigned RESERVED0 : 4; //!< [10:7] Reserved.
         unsigned IAEC : 1; //!< [11] Input FIFO is near Empty for Pair C This bit is to indicate whether the input FIFO of Pair C is near empty.
-        unsigned OUTFIFO_FILLC : 7; //!< [18:12] The fillings for Pair C's output FIFO per channel These bits stand for the fillings for Pair C's output FIFO per channel. Possible range is [0,64].
-        unsigned RESERVED1 : 4; //!< [22:19] Reserved. Should be written as zero for future compatibility.
+        unsigned OUTFIFO_FILLC : 7; //!< [18:12] The fillings for Pair C's output FIFO per channel These bits stand for the fillings for Pair C's output FIFO per channel.
+        unsigned RESERVED1 : 4; //!< [22:19] Reserved.
         unsigned OAFC : 1; //!< [23] Output FIFO is near Full for Pair C This bit is to indicate whether the output FIFO of Pair C is near full.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
@@ -4925,10 +4910,10 @@ typedef union _hw_asrc_asrmcr1a
         unsigned OW16 : 1; //!< [0] Bit Width Option of the output FIFO This bit will determine the bit width option of the output FIFO.
         unsigned OSGN : 1; //!< [1] Sign Extension Option of the output FIFO This bit will determine the sign extension option of the output FIFO.
         unsigned OMSB : 1; //!< [2] Data Alignment of the output FIFO This bit will determine the data alignment of the output FIFO.
-        unsigned RESERVED0 : 5; //!< [7:3] Reserved. Should be written as zero for future compatibility.
+        unsigned RESERVED0 : 5; //!< [7:3] Reserved.
         unsigned IMSB : 1; //!< [8] Data Alignment of the input FIFO This bit will determine the data alignment of the input FIFO.
-        unsigned IWD : 3; //!< [11:9] Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into ASRC All other settings not shown are reserved. 3'b000 24-bit audio data. 3'b001 16-bit audio data. 3'b010 8-bit audio data.
-        unsigned RESERVED1 : 12; //!< [23:12] Reserved. Should be written as zero for future compatibility.
+        unsigned IWD : 3; //!< [11:9] Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into ASRC All other settings not shown are reserved.
+        unsigned RESERVED1 : 12; //!< [23:12] Reserved.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asrmcr1a_t;
@@ -5103,10 +5088,10 @@ typedef union _hw_asrc_asrmcr1b
         unsigned OW16 : 1; //!< [0] Bit Width Option of the output FIFO This bit will determine the bit width option of the output FIFO.
         unsigned OSGN : 1; //!< [1] Sign Extension Option of the output FIFO This bit will determine the sign extension option of the output FIFO.
         unsigned OMSB : 1; //!< [2] Data Alignment of the output FIFO This bit will determine the data alignment of the output FIFO.
-        unsigned RESERVED0 : 5; //!< [7:3] Reserved. Should be written as zero for future compatibility.
+        unsigned RESERVED0 : 5; //!< [7:3] Reserved.
         unsigned IMSB : 1; //!< [8] Data Alignment of the input FIFO This bit will determine the data alignment of the input FIFO.
-        unsigned IWD : 3; //!< [11:9] Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into ASRC All other settings not shown are reserved. 3'b000 24-bit audio data. 3'b001 16-bit audio data. 3'b010 8-bit audio data.
-        unsigned RESERVED1 : 12; //!< [23:12] Reserved. Should be written as zero for future compatibility.
+        unsigned IWD : 3; //!< [11:9] Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into ASRC All other settings not shown are reserved.
+        unsigned RESERVED1 : 12; //!< [23:12] Reserved.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asrmcr1b_t;
@@ -5281,10 +5266,10 @@ typedef union _hw_asrc_asrmcr1c
         unsigned OW16 : 1; //!< [0] Bit Width Option of the output FIFO This bit will determine the bit width option of the output FIFO.
         unsigned OSGN : 1; //!< [1] Sign Extension Option of the output FIFO This bit will determine the sign extension option of the output FIFO.
         unsigned OMSB : 1; //!< [2] Data Alignment of the output FIFO This bit will determine the data alignment of the output FIFO.
-        unsigned RESERVED0 : 5; //!< [7:3] Reserved. Should be written as zero for future compatibility.
+        unsigned RESERVED0 : 5; //!< [7:3] Reserved.
         unsigned IMSB : 1; //!< [8] Data Alignment of the input FIFO This bit will determine the data alignment of the input FIFO.
-        unsigned IWD : 3; //!< [11:9] Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into ASRC All other settings not shown are reserved. 3'b000 24-bit audio data. 3'b001 16-bit audio data. 3'b010 8-bit audio data.
-        unsigned RESERVED1 : 12; //!< [23:12] Reserved. Should be written as zero for future compatibility.
+        unsigned IWD : 3; //!< [11:9] Data Width of the input FIFO These three bits will determine the bitwidth for the audio data into ASRC All other settings not shown are reserved.
+        unsigned RESERVED1 : 12; //!< [23:12] Reserved.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_asrc_asrmcr1c_t;

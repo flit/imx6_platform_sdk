@@ -29,16 +29,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_KPP_KPCR - Keypad Control Register
@@ -61,8 +51,8 @@ typedef union _hw_kpp_kpcr
     reg16_t U;
     struct _hw_kpp_kpcr_bitfields
     {
-        unsigned short KRE : 8; //!< [7:0] Keypad Row Enable. Setting a row enable control bit in this register enables the corresponding row line to participate in interrupt generation. Likewise, clearing a bit disables that row from being used to generate an interrupt. This register is cleared by a reset, disabling all rows. The row-enable logic is independent of the programmed direction of the pin. Writing a "0" to the data register of the pins configured as outputs will cause a keypad interrupt to be generated if the row enable associated with that bit is set.
-        unsigned short KCO : 8; //!< [15:8] Keypad Column Strobe Open-Drain Enable. Setting a column open-drain enable bit (KCO7-KCO0) disables the pull-up driver on that pin. Clearing the bit allows the pin to drive to the high state. This bit has no effect when the pin is configured as an input. Configuration of external port control logic (for example, IOMUX) should be done properly so that the KPP controls an open-drain enable of the pin.
+        unsigned short KRE : 8; //!< [7:0] Keypad Row Enable.
+        unsigned short KCO : 8; //!< [15:8] Keypad Column Strobe Open-Drain Enable.
     } B;
 } hw_kpp_kpcr_t;
 #endif
@@ -160,13 +150,13 @@ typedef union _hw_kpp_kpsr
     reg16_t U;
     struct _hw_kpp_kpsr_bitfields
     {
-        unsigned short KPKD : 1; //!< [0] Keypad Key Depress. The keypad key depress (KPKD) status bit is set when one or more enabled rows are detected low after synchronization. The KPKD status bit remains set until cleared by the software. The KPKD bit may be used to generate a maskable key depress interrupt. If desired, the software may clear the key press synchronizer chain to allow a repeated interrupt to be generated while a key remains pressed. In this case, a new interrupt will be generated after the synchronizer delay (4 cycles of the low frequency reference clock (ipg_clk_32k) elapses if a key remains pressed. This functionality can be used to detect a long key press. This allows detection of additional key presses of the same key or other keys. Due to the logic function of the release and depress synchronizer chains, it is possible to see the re-assertion of a status flag (KPKD or KPKR) if it is cleared by the software prior to the system exiting the state it represents.
-        unsigned short KPKR : 1; //!< [1] Keypad Key Release. The keypad key release (KPKR) status bit is set when all enabled rows are detected high after synchronization (the KPKR status bit will be set when cleared by a reset). The KPKR bit may be used to generate a maskable key release interrupt. The key release synchronizer may be set high by software after scanning the keypad to ensure a known state. Due to the logic function of the release and depress synchronizer chains, it is possible to see the re-assertion of a status flag (KPKD or KPKR) if it is cleared by software prior to the system exiting the state it represents. Reset value of register is "0" as long as reset is asserted. However when reset is de-asserted, the value of the register depends upon the external row pins and can become "1".
-        unsigned short KDSC : 1; //!< [2] Key Depress Synchronizer Clear. Self-clear bit. The Key depress synchronizer is cleared by writing a logic "1" into this bit. Reads return a value of "0".
-        unsigned short KPP_KRSS : 1; //!< [3] Key Release Synchronizer Set. Self-clear bit. The Key release synchronizer is set by writing a logic one into this bit. Reads return a value of "0".
+        unsigned short KPKD : 1; //!< [0] Keypad Key Depress.
+        unsigned short KPKR : 1; //!< [1] Keypad Key Release.
+        unsigned short KDSC : 1; //!< [2] Key Depress Synchronizer Clear.
+        unsigned short KPP_KRSS : 1; //!< [3] Key Release Synchronizer Set.
         unsigned short RESERVED0 : 4; //!< [7:4] Reserved, should be cleared
-        unsigned short KDIE : 1; //!< [8] Keypad Key Depress Interrupt Enable. Software should ensure that the interrupt for a Key Release event is masked until it has entered the key pressed state, and vice-versa, unless this activity is desired (as might be the case when a repeated interrupt is to be generated). The synchronizer chains are capable of being initialized to detect repeated key presses or releases. If they are not initialized when the corresponding event flag is cleared, false interrupts may be generated for depress (or release) events shorter than the length of the corresponding chain.
-        unsigned short KRIE : 1; //!< [9] Keypad Release Interrupt Enable. The software should ensure that the interrupt for a Key Release event is masked until it has entered the key pressed state, and vice versa, unless this activity is desired (as might be the case when a repeated interrupt is to be generated). The synchronizer chains are capable of being initialized to detect repeated key presses or releases. If they are not initialized when the corresponding event flag is cleared, false interrupts may be generated for depress (or release) events shorter than the length of the corresponding chain.
+        unsigned short KDIE : 1; //!< [8] Keypad Key Depress Interrupt Enable.
+        unsigned short KRIE : 1; //!< [9] Keypad Release Interrupt Enable.
         unsigned short RESERVED1 : 6; //!< [15:10] Reserved
     } B;
 } hw_kpp_kpsr_t;
@@ -197,9 +187,9 @@ typedef union _hw_kpp_kpsr
  * software. The KPKD bit may be used to generate a maskable key depress interrupt. If desired, the
  * software may clear the key press synchronizer chain to allow a repeated interrupt to be generated
  * while a key remains pressed. In this case, a new interrupt will be generated after the
- * synchronizer delay (4 cycles of the low frequency reference clock (ipg_clk_32k) elapses if a key
- * remains pressed. This functionality can be used to detect a long key press. This allows detection
- * of additional key presses of the same key or other keys. Due to the logic function of the release
+ * synchronizer delay (4 cycles of the low frequency reference clock elapses if a key remains
+ * pressed. This functionality can be used to detect a long key press. This allows detection of
+ * additional key presses of the same key or other keys. Due to the logic function of the release
  * and depress synchronizer chains, it is possible to see the re-assertion of a status flag (KPKD or
  * KPKR) if it is cleared by the software prior to the system exiting the state it represents.
  *
@@ -377,8 +367,8 @@ typedef union _hw_kpp_kddr
     reg16_t U;
     struct _hw_kpp_kddr_bitfields
     {
-        unsigned short KRDD : 8; //!< [7:0] Keypad Row Data Direction. Setting a bit configures the corresponding ROW n pin as an output (where n = 7 through 0).
-        unsigned short KCDD : 8; //!< [15:8] Keypad Column Data Direction Register. Setting a bit configures the corresponding COL n pin as an output (where n = 7 through 0).
+        unsigned short KRDD : 8; //!< [7:0] Keypad Row Data Direction.
+        unsigned short KCDD : 8; //!< [15:8] Keypad Column Data Direction Register.
     } B;
 } hw_kpp_kddr_t;
 #endif
@@ -473,8 +463,8 @@ typedef union _hw_kpp_kpdr
     reg16_t U;
     struct _hw_kpp_kpdr_bitfields
     {
-        unsigned short KRD : 8; //!< [7:0] Keypad Row Data. A read of these bits returns the value on the pin for those bits configured as inputs. Otherwise, the value read is the value stored in the register. 0 Read/Write "0" from/to row ports 1 Read/Write "1" from/to row ports
-        unsigned short KCD : 8; //!< [15:8] Keypad Column Data. A read of these bits returns the value on the pin for those bits configured as inputs. Otherwise, the value read is the value stored in the register. 0 Read/Write "0" from/to column ports 1 Read/Write "1" from/to column ports
+        unsigned short KRD : 8; //!< [7:0] Keypad Row Data.
+        unsigned short KCD : 8; //!< [15:8] Keypad Column Data.
     } B;
 } hw_kpp_kpdr_t;
 #endif

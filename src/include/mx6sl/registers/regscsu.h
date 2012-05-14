@@ -68,16 +68,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_CSU_CSL0 - Config security level register
@@ -93,40 +83,37 @@
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl0
 {
@@ -141,7 +128,7 @@ typedef union _hw_csu_csl0
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -151,7 +138,7 @@ typedef union _hw_csu_csl0
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl0_t;
@@ -621,40 +608,37 @@ typedef union _hw_csu_csl0
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl1
 {
@@ -669,7 +653,7 @@ typedef union _hw_csu_csl1
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -679,7 +663,7 @@ typedef union _hw_csu_csl1
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl1_t;
@@ -1149,40 +1133,37 @@ typedef union _hw_csu_csl1
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl2
 {
@@ -1197,7 +1178,7 @@ typedef union _hw_csu_csl2
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -1207,7 +1188,7 @@ typedef union _hw_csu_csl2
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl2_t;
@@ -1677,40 +1658,37 @@ typedef union _hw_csu_csl2
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl3
 {
@@ -1725,7 +1703,7 @@ typedef union _hw_csu_csl3
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -1735,7 +1713,7 @@ typedef union _hw_csu_csl3
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl3_t;
@@ -2205,40 +2183,37 @@ typedef union _hw_csu_csl3
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl4
 {
@@ -2253,7 +2228,7 @@ typedef union _hw_csu_csl4
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -2263,7 +2238,7 @@ typedef union _hw_csu_csl4
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl4_t;
@@ -2733,40 +2708,37 @@ typedef union _hw_csu_csl4
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl5
 {
@@ -2781,7 +2753,7 @@ typedef union _hw_csu_csl5
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -2791,7 +2763,7 @@ typedef union _hw_csu_csl5
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl5_t;
@@ -3261,40 +3233,37 @@ typedef union _hw_csu_csl5
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl6
 {
@@ -3309,7 +3278,7 @@ typedef union _hw_csu_csl6
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -3319,7 +3288,7 @@ typedef union _hw_csu_csl6
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl6_t;
@@ -3789,40 +3758,37 @@ typedef union _hw_csu_csl6
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl7
 {
@@ -3837,7 +3803,7 @@ typedef union _hw_csu_csl7
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -3847,7 +3813,7 @@ typedef union _hw_csu_csl7
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl7_t;
@@ -4317,40 +4283,37 @@ typedef union _hw_csu_csl7
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl8
 {
@@ -4365,7 +4328,7 @@ typedef union _hw_csu_csl8
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -4375,7 +4338,7 @@ typedef union _hw_csu_csl8
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl8_t;
@@ -4845,40 +4808,37 @@ typedef union _hw_csu_csl8
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl9
 {
@@ -4893,7 +4853,7 @@ typedef union _hw_csu_csl9
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -4903,7 +4863,7 @@ typedef union _hw_csu_csl9
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl9_t;
@@ -5373,40 +5333,37 @@ typedef union _hw_csu_csl9
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl10
 {
@@ -5421,7 +5378,7 @@ typedef union _hw_csu_csl10
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -5431,7 +5388,7 @@ typedef union _hw_csu_csl10
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl10_t;
@@ -5901,40 +5858,37 @@ typedef union _hw_csu_csl10
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl11
 {
@@ -5949,7 +5903,7 @@ typedef union _hw_csu_csl11
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -5959,7 +5913,7 @@ typedef union _hw_csu_csl11
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl11_t;
@@ -6429,40 +6383,37 @@ typedef union _hw_csu_csl11
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl12
 {
@@ -6477,7 +6428,7 @@ typedef union _hw_csu_csl12
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -6487,7 +6438,7 @@ typedef union _hw_csu_csl12
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl12_t;
@@ -6957,40 +6908,37 @@ typedef union _hw_csu_csl12
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl13
 {
@@ -7005,7 +6953,7 @@ typedef union _hw_csu_csl13
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -7015,7 +6963,7 @@ typedef union _hw_csu_csl13
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl13_t;
@@ -7485,40 +7433,37 @@ typedef union _hw_csu_csl13
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl14
 {
@@ -7533,7 +7478,7 @@ typedef union _hw_csu_csl14
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -7543,7 +7488,7 @@ typedef union _hw_csu_csl14
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl14_t;
@@ -8013,40 +7958,37 @@ typedef union _hw_csu_csl14
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl15
 {
@@ -8061,7 +8003,7 @@ typedef union _hw_csu_csl15
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -8071,7 +8013,7 @@ typedef union _hw_csu_csl15
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl15_t;
@@ -8541,40 +8483,37 @@ typedef union _hw_csu_csl15
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl16
 {
@@ -8589,7 +8528,7 @@ typedef union _hw_csu_csl16
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -8599,7 +8538,7 @@ typedef union _hw_csu_csl16
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl16_t;
@@ -9069,40 +9008,37 @@ typedef union _hw_csu_csl16
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl17
 {
@@ -9117,7 +9053,7 @@ typedef union _hw_csu_csl17
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -9127,7 +9063,7 @@ typedef union _hw_csu_csl17
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl17_t;
@@ -9597,40 +9533,37 @@ typedef union _hw_csu_csl17
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl18
 {
@@ -9645,7 +9578,7 @@ typedef union _hw_csu_csl18
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -9655,7 +9588,7 @@ typedef union _hw_csu_csl18
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl18_t;
@@ -10125,40 +10058,37 @@ typedef union _hw_csu_csl18
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl19
 {
@@ -10173,7 +10103,7 @@ typedef union _hw_csu_csl19
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -10183,7 +10113,7 @@ typedef union _hw_csu_csl19
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl19_t;
@@ -10653,40 +10583,37 @@ typedef union _hw_csu_csl19
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl20
 {
@@ -10701,7 +10628,7 @@ typedef union _hw_csu_csl20
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -10711,7 +10638,7 @@ typedef union _hw_csu_csl20
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl20_t;
@@ -11181,40 +11108,37 @@ typedef union _hw_csu_csl20
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl21
 {
@@ -11229,7 +11153,7 @@ typedef union _hw_csu_csl21
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -11239,7 +11163,7 @@ typedef union _hw_csu_csl21
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl21_t;
@@ -11709,40 +11633,37 @@ typedef union _hw_csu_csl21
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl22
 {
@@ -11757,7 +11678,7 @@ typedef union _hw_csu_csl22
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -11767,7 +11688,7 @@ typedef union _hw_csu_csl22
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl22_t;
@@ -12237,40 +12158,37 @@ typedef union _hw_csu_csl22
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl23
 {
@@ -12285,7 +12203,7 @@ typedef union _hw_csu_csl23
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -12295,7 +12213,7 @@ typedef union _hw_csu_csl23
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl23_t;
@@ -12765,40 +12683,37 @@ typedef union _hw_csu_csl23
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl24
 {
@@ -12813,7 +12728,7 @@ typedef union _hw_csu_csl24
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -12823,7 +12738,7 @@ typedef union _hw_csu_csl24
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl24_t;
@@ -13293,40 +13208,37 @@ typedef union _hw_csu_csl24
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl25
 {
@@ -13341,7 +13253,7 @@ typedef union _hw_csu_csl25
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -13351,7 +13263,7 @@ typedef union _hw_csu_csl25
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl25_t;
@@ -13821,40 +13733,37 @@ typedef union _hw_csu_csl25
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl26
 {
@@ -13869,7 +13778,7 @@ typedef union _hw_csu_csl26
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -13879,7 +13788,7 @@ typedef union _hw_csu_csl26
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl26_t;
@@ -14349,40 +14258,37 @@ typedef union _hw_csu_csl26
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl27
 {
@@ -14397,7 +14303,7 @@ typedef union _hw_csu_csl27
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -14407,7 +14313,7 @@ typedef union _hw_csu_csl27
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl27_t;
@@ -14877,40 +14783,37 @@ typedef union _hw_csu_csl27
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl28
 {
@@ -14925,7 +14828,7 @@ typedef union _hw_csu_csl28
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -14935,7 +14838,7 @@ typedef union _hw_csu_csl28
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl28_t;
@@ -15405,40 +15308,37 @@ typedef union _hw_csu_csl28
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl29
 {
@@ -15453,7 +15353,7 @@ typedef union _hw_csu_csl29
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -15463,7 +15363,7 @@ typedef union _hw_csu_csl29
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl29_t;
@@ -15933,40 +15833,37 @@ typedef union _hw_csu_csl29
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl30
 {
@@ -15981,7 +15878,7 @@ typedef union _hw_csu_csl30
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -15991,7 +15888,7 @@ typedef union _hw_csu_csl30
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl30_t;
@@ -16461,40 +16358,37 @@ typedef union _hw_csu_csl30
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl31
 {
@@ -16509,7 +16403,7 @@ typedef union _hw_csu_csl31
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -16519,7 +16413,7 @@ typedef union _hw_csu_csl31
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl31_t;
@@ -16989,40 +16883,37 @@ typedef union _hw_csu_csl31
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl32
 {
@@ -17037,7 +16928,7 @@ typedef union _hw_csu_csl32
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -17047,7 +16938,7 @@ typedef union _hw_csu_csl32
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl32_t;
@@ -17517,40 +17408,37 @@ typedef union _hw_csu_csl32
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl33
 {
@@ -17565,7 +17453,7 @@ typedef union _hw_csu_csl33
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -17575,7 +17463,7 @@ typedef union _hw_csu_csl33
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl33_t;
@@ -18045,40 +17933,37 @@ typedef union _hw_csu_csl33
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl34
 {
@@ -18093,7 +17978,7 @@ typedef union _hw_csu_csl34
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -18103,7 +17988,7 @@ typedef union _hw_csu_csl34
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl34_t;
@@ -18573,40 +18458,37 @@ typedef union _hw_csu_csl34
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl35
 {
@@ -18621,7 +18503,7 @@ typedef union _hw_csu_csl35
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -18631,7 +18513,7 @@ typedef union _hw_csu_csl35
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl35_t;
@@ -19101,40 +18983,37 @@ typedef union _hw_csu_csl35
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl36
 {
@@ -19149,7 +19028,7 @@ typedef union _hw_csu_csl36
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -19159,7 +19038,7 @@ typedef union _hw_csu_csl36
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl36_t;
@@ -19629,40 +19508,37 @@ typedef union _hw_csu_csl36
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl37
 {
@@ -19677,7 +19553,7 @@ typedef union _hw_csu_csl37
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -19687,7 +19563,7 @@ typedef union _hw_csu_csl37
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl37_t;
@@ -20157,40 +20033,37 @@ typedef union _hw_csu_csl37
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl38
 {
@@ -20205,7 +20078,7 @@ typedef union _hw_csu_csl38
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -20215,7 +20088,7 @@ typedef union _hw_csu_csl38
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl38_t;
@@ -20685,40 +20558,37 @@ typedef union _hw_csu_csl38
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together. The following table shows allocation of CSL register per slave or group of
- * slave modules.   CSL Slave Modules Mapping        Corresponding CSL register and bit field  Slave
- * Module  Comments       CSL0 [7:0]    PWM1  PWM2  PWM3  PWM4         CSL0 [23:16]    DBGMON
- * CSL1 [7:0]    QOS         CSL1 [23:16]    GPT  EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2
- * CSL2 [23:16]    GPIO3  GPIO4         CSL3 [7:0]    GPIO5         CSL3 [23:16]    ----
- * CSL4 [7:0]    KPP         CSL4 [23:16]    WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]
- * CCM  SNVS_HP  SRC  GPC         CSL6 [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7
- * [7:0]    CSI  TCON         CSL7 [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]
- * FEC         CSL9 [7:0]    MSHC         CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2
- * CSL10 [23:16]    USDHC3         CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12
- * [7:0]    I2C2         CSL12 [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]
- * DCP  MMDC         CSL14 [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]
- * ----         CSL15 [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16
- * [23:16]    RNGB         CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]
- * SPDIF         CSL18 [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]
- * eCSPI3         CSL20 [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1
- * CSL21 [23:16]    UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23
- * [7:0]    SSI3         CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]
- * ROMCP         CSL25 [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM
- * CSL26 [23:16]    ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28
- * [7:0]    ----         CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]
- * ARM         CSL30 [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF
- * CSL31 [23:16]    WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33
- * [7:0]    ----         CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]
- * ----         CSL35 [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----
- * CSL36 [23:16]    ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38
- * [7:0]    ----         CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]
- * ----          Do not modify the following peripherals' CSL register bits while they are being
- * accessed through the AHB/AXI slave bus: EIM,.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together. The following table shows
+ * allocation of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping
+ * Corresponding CSL register and bit field  Slave Module  Comments       CSL0 [7:0]    PWM1  PWM2
+ * PWM3  PWM4         CSL0 [23:16]    DBGMON         CSL1 [7:0]    QOS         CSL1 [23:16]    GPT
+ * EPIT1  EPIT2         CSL2 [7:0]    GPIO1  GPIO2         CSL2 [23:16]    GPIO3  GPIO4         CSL3
+ * [7:0]    GPIO5         CSL3 [23:16]    ----         CSL4 [7:0]    KPP         CSL4 [23:16]
+ * WDOG1         CSL5 [7:0]    WDOG2         CSL5 [23:16]    CCM  SNVS_HP  SRC  GPC         CSL6
+ * [7:0]    ANATOP         CSL6 [23:16]    IOMUXC         CSL7 [7:0]    CSI  TCON         CSL7
+ * [23:16]    SDMA         CSL8 [7:0]    USB         CSL8 [23:16]    FEC         CSL9 [7:0]    MSHC
+ * CSL9 [23:16]    USDHC1         CSL10 [7:0]    USDHC2         CSL10 [23:16]    USDHC3
+ * CSL11 [7:0]    USDHC4         CSL11 [23:16]    I2C1         CSL12 [7:0]    I2C2         CSL12
+ * [23:16]    I2C3         CSL13 [7:0]    ROMCP         CSL13 [23:16]    DCP  MMDC         CSL14
+ * [7:0]    WEIM         CSL14 [23:16]    OCOTP_CTRL         CSL15 [7:0]    ----         CSL15
+ * [23:16]    PERFMON1  PERFMON2         CSL16 [7:0]    TZASC1         CSL16 [23:16]    RNGB
+ * CSL17 [7:0]    AUDMUX         CSL17 [23:16]    ----         CSL18 [7:0]    SPDIF         CSL18
+ * [23:16]    eCSPI1         CSL19 [7:0]    eCSPI2         CSL19 [23:16]    eCSPI3         CSL20
+ * [7:0]    eCSPI4         CSL20 [23:16]    UART5         CSL21 [7:0]    UART1         CSL21 [23:16]
+ * UART2         CSL22 [7:0]    SSI1         CSL22 [23:16]    SSI2         CSL23 [7:0]    SSI3
+ * CSL23 [23:16]    UART3         CSL24 [7:0]    ----         CSL24 [23:16]    ROMCP         CSL25
+ * [7:0]    ----         CSL25 [23:16]    ----         CSL26 [7:0]    OCRAM         CSL26 [23:16]
+ * ----         CSL27 [7:0]    ----         CSL27 [23:16]    ----         CSL28 [7:0]    ----
+ * CSL28 [23:16]    PXP         CSL29 [7:0]    OPENVG         CSL29 [23:16]    ARM         CSL30
+ * [7:0]    EPDC         CSL30 [23:16]    ----         CSL31 [7:0]    LCDIF         CSL31 [23:16]
+ * WEIM         CSL32 [7:0]    ----         CSL32 [23:16]    GPU2D         CSL33 [7:0]    ----
+ * CSL33 [23:16]    ----         CSL34 [7:0]    ----         CSL34 [23:16]    ----         CSL35
+ * [7:0]    ----         CSL35 [23:16]    ----         CSL36 [7:0]    ----         CSL36 [23:16]
+ * ----         CSL37 [7:0]    ----         CSL37 [23:16]    ----         CSL38 [7:0]    ----
+ * CSL38 [23:16]    UART4         CSL39 [7:0]    SPBA         CSL39 [23:16]    ----          Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM,.
  */
 typedef union _hw_csu_csl39
 {
@@ -20733,7 +20603,7 @@ typedef union _hw_csu_csl39
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -20743,7 +20613,7 @@ typedef union _hw_csu_csl39
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl39_t;
@@ -21214,12 +21084,8 @@ typedef union _hw_csu_csl39
  * by muxing it with the corresponding bit in this register.  The sixteen even bit positions
  * (CSU_HP[30,28,...0]) in the register hold the privilege indicator bits; while the odd bit
  * positions (CSU_HP[31,29,...,1])) contain lock bits which enable/disable writing to the
- * corresponding privilege indicator bits.  Memory Space has been reserved for 32 Masters. Since,
- * one 32 bit register can accommodate HP fields corresponding to 16 masters, hence for 32 masters
- * memory equivalent of 2 registers is reserved.However, actual number of registers(flops) inferred
- * in a design would depend on the following Parameter --- Name - No_Of_Masters Min. Value -1 Max.
- * Value - 32 Possible Values - 1 to 32   HP Slave Modules Mapping         Corresponding HP register
- * and bit field    Master Module   Comments       HP[1:0]    ----         HP[3:2]    DCP
+ * corresponding privilege indicator bits.   HP Slave Modules Mapping         Corresponding HP
+ * register and bit field    Master Module   Comments       HP[1:0]    ----         HP[3:2]    DCP
  * HP[5:4]    SDMA         HP[7:6]    EPDC  TCON  LCDIF  PXP  GPU2D         HP[9:8]    USB
  * HP[11:10]    Test Port         HP[13:12]    CSI         HP[15:14]    MSHC         HP[17:16]
  * ----         HP[19:18]    ----         HP[21:20]    FEC         HP[23:22]    DAP/ARM
@@ -22068,12 +21934,8 @@ typedef union _hw_csu_hp0
  * by muxing it with the corresponding bit in this register.  The sixteen even bit positions
  * (CSU_HP[30,28,...0]) in the register hold the privilege indicator bits; while the odd bit
  * positions (CSU_HP[31,29,...,1])) contain lock bits which enable/disable writing to the
- * corresponding privilege indicator bits.  Memory Space has been reserved for 32 Masters. Since,
- * one 32 bit register can accommodate HP fields corresponding to 16 masters, hence for 32 masters
- * memory equivalent of 2 registers is reserved.However, actual number of registers(flops) inferred
- * in a design would depend on the following Parameter --- Name - No_Of_Masters Min. Value -1 Max.
- * Value - 32 Possible Values - 1 to 32   HP Slave Modules Mapping         Corresponding HP register
- * and bit field    Master Module   Comments       HP[1:0]    ----         HP[3:2]    DCP
+ * corresponding privilege indicator bits.   HP Slave Modules Mapping         Corresponding HP
+ * register and bit field    Master Module   Comments       HP[1:0]    ----         HP[3:2]    DCP
  * HP[5:4]    SDMA         HP[7:6]    EPDC  TCON  LCDIF  PXP  GPU2D         HP[9:8]    USB
  * HP[11:10]    Test Port         HP[13:12]    CSI         HP[15:14]    MSHC         HP[17:16]
  * ----         HP[19:18]    ----         HP[21:20]    FEC         HP[23:22]    DAP/ARM
@@ -22922,15 +22784,11 @@ typedef union _hw_csu_hp1
  * Type 1 masters which are incapable of setting the policy by themselves.  The sixteen even bit
  * positions (CSU_SA[30,28,...,0]) in the register hold the policy indicator bits; while the odd bit
  * positions (CSU_SA[31,29,...,1]) contain lock bits which enable/disable writing to the
- * corresponding policy indicator bits.  Memory Space has been reserved for 32 Type 1 Masters.
- * Since, one 32 bit register can accommodate SA fields corresponding to 16 masters, hence for 32
- * masters memory equivalent of 2 registers is reserved.However, actual number of registers(flops)
- * inferred in a design would depend on the following Parameter --- Name - No_Of_TP1_Masters Min.
- * Value -1 Max. Value - 32 Possible Values - 1 to 32   SA Slave Modules Mapping
- * Corresponding SA register and bit field    Master Module   Comments       SA[1:0]    ---
- * SA[3:2]    DCP         SA[5:4]    SDMA         SA[7:6]    EPDC  TCON  LCDIF  PXP  GPU2D
- * SA[9:8]    USB         SA[11:10]    Test Port         SA[13:12]    CSI         SA[15:14]    MSHC
- * SA[17:16]    FEC         SA[19:18]    DAP         SA[21:20]    USDHC1         SA[23:22]    USDHC2
+ * corresponding policy indicator bits.   SA Slave Modules Mapping         Corresponding SA register
+ * and bit field    Master Module   Comments       SA[1:0]    ---         SA[3:2]    DCP
+ * SA[5:4]    SDMA         SA[7:6]    EPDC  TCON  LCDIF  PXP  GPU2D         SA[9:8]    USB
+ * SA[11:10]    Test Port         SA[13:12]    CSI         SA[15:14]    MSHC         SA[17:16]
+ * FEC         SA[19:18]    DAP         SA[21:20]    USDHC1         SA[23:22]    USDHC2
  * SA[25:24]    USDHC3         SA[27:26]    USDHC4         SA[29:28]    ----         SA[31:30]
  * ----
  */

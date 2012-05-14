@@ -19,13 +19,13 @@
  * - HW_AUDMUX_PDCR2 - Port Data Control Register 2
  * - HW_AUDMUX_PTCR3 - Port Timing Control Register 3
  * - HW_AUDMUX_PDCR3 - Port Data Control Register 3
- * - HW_AUDMUX_PTCR4 - Port Timing Control Register n
+ * - HW_AUDMUX_PTCR4 - Port Timing Control Register 4
  * - HW_AUDMUX_PDCR4 - Port Data Control Register 4
- * - HW_AUDMUX_PTCR5 - Port Timing Control Register n
+ * - HW_AUDMUX_PTCR5 - Port Timing Control Register 5
  * - HW_AUDMUX_PDCR5 - Port Data Control Register 5
- * - HW_AUDMUX_PTCR6 - Port Timing Control Register n
+ * - HW_AUDMUX_PTCR6 - Port Timing Control Register 6
  * - HW_AUDMUX_PDCR6 - Port Data Control Register 6
- * - HW_AUDMUX_PTCR7 - Port Timing Control Register n
+ * - HW_AUDMUX_PTCR7 - Port Timing Control Register 7
  * - HW_AUDMUX_PDCR7 - Port Data Control Register 7
  *
  * - hw_audmux_t - Struct containing all module registers.
@@ -38,16 +38,6 @@
 #define REGS_AUDMUX_BASE (0x021d8000) //!< Base address for AUDMUX.
 #endif
 //@}
-
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
 
 
 //-------------------------------------------------------------------------------------------
@@ -68,15 +58,15 @@ typedef union _hw_audmux_ptcr1
     struct _hw_audmux_ptcr1_bitfields
     {
         unsigned RESERVED0 : 11; //!< [10:0] Reserved
-        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and receive sections use common clock and frame sync signals (that is, the port is a 4-wire interface). When SYN is cleared, asynchronous mode is chosen and separate clock and frame sync signals are used for the transmit and receive sections (that is, the port is a 6-wire interface). RCLKDIR and SYN should not be changed at the same time.
-        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced from TxClk and RxClk from other ports.
-        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as an output or input. When set as an input, the RCSEL settings are ignored. When set as an output, the RCSEL settings determine the source port of the clock. RCLKDIR and SYN should not be changed at the same time.
-        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be sourced from TxFS and RxFS from other ports.
-        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the interface as an output or input. When set as an input, the RFSEL settings are ignored. When set as an output, the RFSEL settings determine the source port of the frame sync.
-        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select. Selects the source port from which TxClk is sourced.
-        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface as an output or input. When set as an input, the TCSEL settings are ignored. When set as an output, the TCSEL settings determine the source port of the clock.
-        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
-        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the interface as an output or input. When set as an input, the TFSEL settings are ignored. When set as an output, the TFSEL settings determine the source port of the frame sync.
+        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select.
+        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select.
+        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control.
+        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select.
+        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control.
+        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select.
+        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control.
+        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select.
+        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control.
     } B;
 } hw_audmux_ptcr1_t;
 #endif
@@ -135,9 +125,7 @@ typedef union _hw_audmux_ptcr1
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -191,9 +179,7 @@ typedef union _hw_audmux_ptcr1
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -246,9 +232,7 @@ typedef union _hw_audmux_ptcr1
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -301,9 +285,7 @@ typedef union _hw_audmux_ptcr1
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -366,11 +348,11 @@ typedef union _hw_audmux_pdcr1
     reg32_t U;
     struct _hw_audmux_pdcr1_bitfields
     {
-        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
-        unsigned MODE : 1; //!< [8] Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following: Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port. Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask.
+        unsigned MODE : 1; //!< [8] Mode Select.
         unsigned RESERVED0 : 3; //!< [11:9] Reserved
-        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
-        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable.
+        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_audmux_pdcr1_t;
@@ -397,8 +379,8 @@ typedef union _hw_audmux_pdcr1
 /* --- Register HW_AUDMUX_PDCR1, field INMMASK[7:0] (RW)
  *
  * Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be
- * ANDed together for internal network mode. Bit 6 represents RxD from Port 7 Port 6 and bit0
- * represents RxD from Port 1.
+ * ANDed together for internal network mode. Bit 6 represents RxD from Port 7 and bit0 represents
+ * RxD from Port 1.
  *
  * Values:
  * 0 - Includes RxDn for ANDing
@@ -473,15 +455,13 @@ typedef union _hw_audmux_pdcr1
 
 /* --- Register HW_AUDMUX_PDCR1, field RXDSEL[15:13] (RW)
  *
- * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 1
  * (that is, Internal Network Mode is enabled).
  *
  * Values:
  * xxx - Port number for RxD
  * 000 - Port 1
- * 101 - Port 6
  * 110 - Port 7
- * 11x - Reserved
  * 111 - Reserved
  */
 
@@ -518,15 +498,15 @@ typedef union _hw_audmux_ptcr2
     struct _hw_audmux_ptcr2_bitfields
     {
         unsigned RESERVED0 : 11; //!< [10:0] Reserved
-        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and receive sections use common clock and frame sync signals (that is, the port is a 4-wire interface). When SYN is cleared, asynchronous mode is chosen and separate clock and frame sync signals are used for the transmit and receive sections (that is, the port is a 6-wire interface). RCLKDIR and SYN should not be changed at the same time.
-        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced from TxClk and RxClk from other ports.
-        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as an output or input. When set as an input, the RCSEL settings are ignored. When set as an output, the RCSEL settings determine the source port of the clock. RCLKDIR and SYN should not be changed at the same time.
-        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be sourced from TxFS and RxFS from other ports.
-        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the interface as an output or input. When set as an input, the RFSEL settings are ignored. When set as an output, the RFSEL settings determine the source port of the frame sync.
-        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select. Selects the source port from which TxClk is sourced.
-        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface as an output or input. When set as an input, the TCSEL settings are ignored. When set as an output, the TCSEL settings determine the source port of the clock.
-        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
-        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the interface as an output or input. When set as an input, the TFSEL settings are ignored. When set as an output, the TFSEL settings determine the source port of the frame sync.
+        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select.
+        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select.
+        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control.
+        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select.
+        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control.
+        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select.
+        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control.
+        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select.
+        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control.
     } B;
 } hw_audmux_ptcr2_t;
 #endif
@@ -585,9 +565,7 @@ typedef union _hw_audmux_ptcr2
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -641,9 +619,7 @@ typedef union _hw_audmux_ptcr2
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -696,9 +672,7 @@ typedef union _hw_audmux_ptcr2
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -751,9 +725,7 @@ typedef union _hw_audmux_ptcr2
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -816,11 +788,11 @@ typedef union _hw_audmux_pdcr2
     reg32_t U;
     struct _hw_audmux_pdcr2_bitfields
     {
-        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
-        unsigned MODE : 1; //!< [8] Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following: Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port. Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask.
+        unsigned MODE : 1; //!< [8] Mode Select.
         unsigned RESERVED0 : 3; //!< [11:9] Reserved
-        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
-        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable.
+        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_audmux_pdcr2_t;
@@ -847,8 +819,8 @@ typedef union _hw_audmux_pdcr2
 /* --- Register HW_AUDMUX_PDCR2, field INMMASK[7:0] (RW)
  *
  * Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be
- * ANDed together for internal network mode. Bit 6 represents RxD from Port 7 Port 6 and bit0
- * represents RxD from Port 1.
+ * ANDed together for internal network mode. Bit 6 represents RxD from Port 7 and bit0 represents
+ * RxD from Port 1.
  *
  * Values:
  * 0 - Includes RxDn for ANDing
@@ -923,15 +895,13 @@ typedef union _hw_audmux_pdcr2
 
 /* --- Register HW_AUDMUX_PDCR2, field RXDSEL[15:13] (RW)
  *
- * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 1
  * (that is, Internal Network Mode is enabled).
  *
  * Values:
  * xxx - Port number for RxD
  * 000 - Port 1
- * 101 - Port 6
  * 110 - Port 7
- * 11x - Reserved
  * 111 - Reserved
  */
 
@@ -968,15 +938,15 @@ typedef union _hw_audmux_ptcr3
     struct _hw_audmux_ptcr3_bitfields
     {
         unsigned RESERVED0 : 11; //!< [10:0] Reserved
-        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and receive sections use common clock and frame sync signals (that is, the port is a 4-wire interface). When SYN is cleared, asynchronous mode is chosen and separate clock and frame sync signals are used for the transmit and receive sections (that is, the port is a 6-wire interface). RCLKDIR and SYN should not be changed at the same time.
-        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced from TxClk and RxClk from other ports.
-        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as an output or input. When set as an input, the RCSEL settings are ignored. When set as an output, the RCSEL settings determine the source port of the clock. RCLKDIR and SYN should not be changed at the same time.
-        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be sourced from TxFS and RxFS from other ports.
-        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the interface as an output or input. When set as an input, the RFSEL settings are ignored. When set as an output, the RFSEL settings determine the source port of the frame sync.
-        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select. Selects the source port from which TxClk is sourced.
-        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface as an output or input. When set as an input, the TCSEL settings are ignored. When set as an output, the TCSEL settings determine the source port of the clock.
-        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
-        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the interface as an output or input. When set as an input, the TFSEL settings are ignored. When set as an output, the TFSEL settings determine the source port of the frame sync.
+        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select.
+        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select.
+        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control.
+        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select.
+        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control.
+        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select.
+        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control.
+        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select.
+        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control.
     } B;
 } hw_audmux_ptcr3_t;
 #endif
@@ -1035,9 +1005,7 @@ typedef union _hw_audmux_ptcr3
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -1091,9 +1059,7 @@ typedef union _hw_audmux_ptcr3
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -1146,9 +1112,7 @@ typedef union _hw_audmux_ptcr3
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -1201,9 +1165,7 @@ typedef union _hw_audmux_ptcr3
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -1266,11 +1228,11 @@ typedef union _hw_audmux_pdcr3
     reg32_t U;
     struct _hw_audmux_pdcr3_bitfields
     {
-        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
-        unsigned MODE : 1; //!< [8] Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following: Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port. Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask.
+        unsigned MODE : 1; //!< [8] Mode Select.
         unsigned RESERVED0 : 3; //!< [11:9] Reserved
-        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
-        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable.
+        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_audmux_pdcr3_t;
@@ -1297,8 +1259,8 @@ typedef union _hw_audmux_pdcr3
 /* --- Register HW_AUDMUX_PDCR3, field INMMASK[7:0] (RW)
  *
  * Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be
- * ANDed together for internal network mode. Bit 6 represents RxD from Port 7 Port 6 and bit0
- * represents RxD from Port 1.
+ * ANDed together for internal network mode. Bit 6 represents RxD from Port 7 and bit0 represents
+ * RxD from Port 1.
  *
  * Values:
  * 0 - Includes RxDn for ANDing
@@ -1373,15 +1335,13 @@ typedef union _hw_audmux_pdcr3
 
 /* --- Register HW_AUDMUX_PDCR3, field RXDSEL[15:13] (RW)
  *
- * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 1
  * (that is, Internal Network Mode is enabled).
  *
  * Values:
  * xxx - Port number for RxD
  * 000 - Port 1
- * 101 - Port 6
  * 110 - Port 7
- * 11x - Reserved
  * 111 - Reserved
  */
 
@@ -1401,16 +1361,16 @@ typedef union _hw_audmux_pdcr3
 
 
 //-------------------------------------------------------------------------------------------
-// HW_AUDMUX_PTCR4 - Port Timing Control Register n
+// HW_AUDMUX_PTCR4 - Port Timing Control Register 4
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_AUDMUX_PTCR4 - Port Timing Control Register n (RW)
+ * @brief HW_AUDMUX_PTCR4 - Port Timing Control Register 4 (RW)
  *
  * Reset value: 0x00000800
  *
- * PTCR n is the Port Timing Control Register for Port n , where n ranges from 4 through 7.
+ * Port Timing Control Register for Port 4
  */
 typedef union _hw_audmux_ptcr4
 {
@@ -1418,15 +1378,15 @@ typedef union _hw_audmux_ptcr4
     struct _hw_audmux_ptcr4_bitfields
     {
         unsigned RESERVED0 : 11; //!< [10:0] Reserved
-        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and receive sections use common clock and frame sync signals (that is, the port is a 4-wire interface). When SYN is cleared, asynchronous mode is chosen and separate clock and frame sync signals are used for the transmit and receive sections (that is, the port is a 6-wire interface). RCLKDIR and SYN should not be changed at the same time.
-        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced from TxClk and RxClk from other ports.
-        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as an output or input. When set as an input, the RCSEL settings are ignored. When set as an output, the RCSEL settings determine the source port of the clock. RCLKDIR and SYN should not be changed at the same time.
-        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be sourced from TxFS and RxFS from other ports.
-        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the interface as an output or input. When set as an input, the RFSEL settings are ignored. When set as an output, the RFSEL settings determine the source port of the frame sync.
-        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select. Selects the source port from which TxClk is sourced.
-        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface as an output or input. When set as an input, the TCSEL settings are ignored. When set as an output, the TCSEL settings determine the source port of the clock.
-        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
-        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the interface as an output or input. When set as an input, the TFSEL settings are ignored. When set as an output, the TFSEL settings determine the source port of the frame sync.
+        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select.
+        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select.
+        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control.
+        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select.
+        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control.
+        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select.
+        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control.
+        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select.
+        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control.
     } B;
 } hw_audmux_ptcr4_t;
 #endif
@@ -1485,9 +1445,7 @@ typedef union _hw_audmux_ptcr4
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -1541,9 +1499,7 @@ typedef union _hw_audmux_ptcr4
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -1596,9 +1552,7 @@ typedef union _hw_audmux_ptcr4
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -1651,9 +1605,7 @@ typedef union _hw_audmux_ptcr4
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -1716,11 +1668,11 @@ typedef union _hw_audmux_pdcr4
     reg32_t U;
     struct _hw_audmux_pdcr4_bitfields
     {
-        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 5 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
-        unsigned MODE : 1; //!< [8] Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following: Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port. Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask.
+        unsigned MODE : 1; //!< [8] Mode Select.
         unsigned RESERVED0 : 3; //!< [11:9] Reserved
-        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
-        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable.
+        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_audmux_pdcr4_t;
@@ -1747,8 +1699,8 @@ typedef union _hw_audmux_pdcr4
 /* --- Register HW_AUDMUX_PDCR4, field INMMASK[7:0] (RW)
  *
  * Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be
- * ANDed together for internal network mode. Bit 6 5 represents RxD from Port 7 Port 6 and bit0
- * represents RxD from Port 1.
+ * ANDed together for internal network mode. Bit 6 represents RxD from Port 7 and bit0 represents
+ * RxD from Port 1.
  *
  * Values:
  * 0 - Includes RxDn for ANDing
@@ -1823,15 +1775,13 @@ typedef union _hw_audmux_pdcr4
 
 /* --- Register HW_AUDMUX_PDCR4, field RXDSEL[15:13] (RW)
  *
- * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 1
  * (that is, Internal Network Mode is enabled).
  *
  * Values:
  * xxx - Port number for RxD
  * 000 - Port 1
- * 101 - Port 6
  * 110 - Port 7
- * 11x - Reserved
  * 111 - Reserved
  */
 
@@ -1851,16 +1801,16 @@ typedef union _hw_audmux_pdcr4
 
 
 //-------------------------------------------------------------------------------------------
-// HW_AUDMUX_PTCR5 - Port Timing Control Register n
+// HW_AUDMUX_PTCR5 - Port Timing Control Register 5
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_AUDMUX_PTCR5 - Port Timing Control Register n (RW)
+ * @brief HW_AUDMUX_PTCR5 - Port Timing Control Register 5 (RW)
  *
  * Reset value: 0x00000800
  *
- * PTCR n is the Port Timing Control Register for Port n , where n ranges from 4 through 7.
+ * Port Timing Control Register for Port 4
  */
 typedef union _hw_audmux_ptcr5
 {
@@ -1868,15 +1818,15 @@ typedef union _hw_audmux_ptcr5
     struct _hw_audmux_ptcr5_bitfields
     {
         unsigned RESERVED0 : 11; //!< [10:0] Reserved
-        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and receive sections use common clock and frame sync signals (that is, the port is a 4-wire interface). When SYN is cleared, asynchronous mode is chosen and separate clock and frame sync signals are used for the transmit and receive sections (that is, the port is a 6-wire interface). RCLKDIR and SYN should not be changed at the same time.
-        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced from TxClk and RxClk from other ports.
-        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as an output or input. When set as an input, the RCSEL settings are ignored. When set as an output, the RCSEL settings determine the source port of the clock. RCLKDIR and SYN should not be changed at the same time.
-        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be sourced from TxFS and RxFS from other ports.
-        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the interface as an output or input. When set as an input, the RFSEL settings are ignored. When set as an output, the RFSEL settings determine the source port of the frame sync.
-        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select. Selects the source port from which TxClk is sourced.
-        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface as an output or input. When set as an input, the TCSEL settings are ignored. When set as an output, the TCSEL settings determine the source port of the clock.
-        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
-        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the interface as an output or input. When set as an input, the TFSEL settings are ignored. When set as an output, the TFSEL settings determine the source port of the frame sync.
+        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select.
+        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select.
+        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control.
+        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select.
+        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control.
+        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select.
+        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control.
+        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select.
+        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control.
     } B;
 } hw_audmux_ptcr5_t;
 #endif
@@ -1935,9 +1885,7 @@ typedef union _hw_audmux_ptcr5
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -1991,9 +1939,7 @@ typedef union _hw_audmux_ptcr5
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -2046,9 +1992,7 @@ typedef union _hw_audmux_ptcr5
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -2101,9 +2045,7 @@ typedef union _hw_audmux_ptcr5
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -2166,11 +2108,11 @@ typedef union _hw_audmux_pdcr5
     reg32_t U;
     struct _hw_audmux_pdcr5_bitfields
     {
-        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 5 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
-        unsigned MODE : 1; //!< [8] Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following: Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port. Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask.
+        unsigned MODE : 1; //!< [8] Mode Select.
         unsigned RESERVED0 : 3; //!< [11:9] Reserved
-        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
-        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable.
+        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_audmux_pdcr5_t;
@@ -2197,8 +2139,8 @@ typedef union _hw_audmux_pdcr5
 /* --- Register HW_AUDMUX_PDCR5, field INMMASK[7:0] (RW)
  *
  * Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be
- * ANDed together for internal network mode. Bit 6 5 represents RxD from Port 7 Port 6 and bit0
- * represents RxD from Port 1.
+ * ANDed together for internal network mode. Bit 6 represents RxD from Port 7 and bit0 represents
+ * RxD from Port 1.
  *
  * Values:
  * 0 - Includes RxDn for ANDing
@@ -2273,15 +2215,13 @@ typedef union _hw_audmux_pdcr5
 
 /* --- Register HW_AUDMUX_PDCR5, field RXDSEL[15:13] (RW)
  *
- * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 1
  * (that is, Internal Network Mode is enabled).
  *
  * Values:
  * xxx - Port number for RxD
  * 000 - Port 1
- * 101 - Port 6
  * 110 - Port 7
- * 11x - Reserved
  * 111 - Reserved
  */
 
@@ -2301,16 +2241,16 @@ typedef union _hw_audmux_pdcr5
 
 
 //-------------------------------------------------------------------------------------------
-// HW_AUDMUX_PTCR6 - Port Timing Control Register n
+// HW_AUDMUX_PTCR6 - Port Timing Control Register 6
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_AUDMUX_PTCR6 - Port Timing Control Register n (RW)
+ * @brief HW_AUDMUX_PTCR6 - Port Timing Control Register 6 (RW)
  *
  * Reset value: 0x00000800
  *
- * PTCR n is the Port Timing Control Register for Port n , where n ranges from 4 through 7.
+ * Port Timing Control Register for Port 6
  */
 typedef union _hw_audmux_ptcr6
 {
@@ -2318,15 +2258,15 @@ typedef union _hw_audmux_ptcr6
     struct _hw_audmux_ptcr6_bitfields
     {
         unsigned RESERVED0 : 11; //!< [10:0] Reserved
-        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and receive sections use common clock and frame sync signals (that is, the port is a 4-wire interface). When SYN is cleared, asynchronous mode is chosen and separate clock and frame sync signals are used for the transmit and receive sections (that is, the port is a 6-wire interface). RCLKDIR and SYN should not be changed at the same time.
-        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced from TxClk and RxClk from other ports.
-        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as an output or input. When set as an input, the RCSEL settings are ignored. When set as an output, the RCSEL settings determine the source port of the clock. RCLKDIR and SYN should not be changed at the same time.
-        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be sourced from TxFS and RxFS from other ports.
-        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the interface as an output or input. When set as an input, the RFSEL settings are ignored. When set as an output, the RFSEL settings determine the source port of the frame sync.
-        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select. Selects the source port from which TxClk is sourced.
-        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface as an output or input. When set as an input, the TCSEL settings are ignored. When set as an output, the TCSEL settings determine the source port of the clock.
-        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
-        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the interface as an output or input. When set as an input, the TFSEL settings are ignored. When set as an output, the TFSEL settings determine the source port of the frame sync.
+        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select.
+        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select.
+        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control.
+        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select.
+        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control.
+        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select.
+        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control.
+        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select.
+        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control.
     } B;
 } hw_audmux_ptcr6_t;
 #endif
@@ -2385,9 +2325,7 @@ typedef union _hw_audmux_ptcr6
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -2441,9 +2379,7 @@ typedef union _hw_audmux_ptcr6
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -2496,9 +2432,7 @@ typedef union _hw_audmux_ptcr6
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -2551,9 +2485,7 @@ typedef union _hw_audmux_ptcr6
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -2616,11 +2548,11 @@ typedef union _hw_audmux_pdcr6
     reg32_t U;
     struct _hw_audmux_pdcr6_bitfields
     {
-        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 5 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
-        unsigned MODE : 1; //!< [8] Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following: Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port. Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask.
+        unsigned MODE : 1; //!< [8] Mode Select.
         unsigned RESERVED0 : 3; //!< [11:9] Reserved
-        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
-        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable.
+        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_audmux_pdcr6_t;
@@ -2647,8 +2579,8 @@ typedef union _hw_audmux_pdcr6
 /* --- Register HW_AUDMUX_PDCR6, field INMMASK[7:0] (RW)
  *
  * Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be
- * ANDed together for internal network mode. Bit 6 5 represents RxD from Port 7 Port 6 and bit0
- * represents RxD from Port 1.
+ * ANDed together for internal network mode. Bit 6 represents RxD from Port 7 and bit0 represents
+ * RxD from Port 1.
  *
  * Values:
  * 0 - Includes RxDn for ANDing
@@ -2723,15 +2655,13 @@ typedef union _hw_audmux_pdcr6
 
 /* --- Register HW_AUDMUX_PDCR6, field RXDSEL[15:13] (RW)
  *
- * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 1
  * (that is, Internal Network Mode is enabled).
  *
  * Values:
  * xxx - Port number for RxD
  * 000 - Port 1
- * 101 - Port 6
  * 110 - Port 7
- * 11x - Reserved
  * 111 - Reserved
  */
 
@@ -2751,16 +2681,16 @@ typedef union _hw_audmux_pdcr6
 
 
 //-------------------------------------------------------------------------------------------
-// HW_AUDMUX_PTCR7 - Port Timing Control Register n
+// HW_AUDMUX_PTCR7 - Port Timing Control Register 7
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_AUDMUX_PTCR7 - Port Timing Control Register n (RW)
+ * @brief HW_AUDMUX_PTCR7 - Port Timing Control Register 7 (RW)
  *
  * Reset value: 0x00000800
  *
- * PTCR n is the Port Timing Control Register for Port n , where n ranges from 4 through 7.
+ * Port Timing Control Register for Port 7
  */
 typedef union _hw_audmux_ptcr7
 {
@@ -2768,15 +2698,15 @@ typedef union _hw_audmux_ptcr7
     struct _hw_audmux_ptcr7_bitfields
     {
         unsigned RESERVED0 : 11; //!< [10:0] Reserved
-        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select. When SYN is set, synchronous mode is chosen and the transmit and receive sections use common clock and frame sync signals (that is, the port is a 4-wire interface). When SYN is cleared, asynchronous mode is chosen and separate clock and frame sync signals are used for the transmit and receive sections (that is, the port is a 6-wire interface). RCLKDIR and SYN should not be changed at the same time.
-        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select. Selects the source port from which RxClk is sourced. RxClk can be sourced from TxClk and RxClk from other ports.
-        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control. This bit sets the direction of the RxClk pin of the interface as an output or input. When set as an input, the RCSEL settings are ignored. When set as an output, the RCSEL settings determine the source port of the clock. RCLKDIR and SYN should not be changed at the same time.
-        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select. Selects the source port from which RxFS is sourced. RxFS can be sourced from TxFS and RxFS from other ports.
-        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control. This bit sets the direction of the RxFS pin of the interface as an output or input. When set as an input, the RFSEL settings are ignored. When set as an output, the RFSEL settings determine the source port of the frame sync.
-        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select. Selects the source port from which TxClk is sourced.
-        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control. This bit sets the direction of the TxClk pin of the interface as an output or input. When set as an input, the TCSEL settings are ignored. When set as an output, the TCSEL settings determine the source port of the clock.
-        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select. Selects the source port from which TxFS is sourced.
-        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control. This bit sets the direction of the TxFS pin of the interface as an output or input. When set as an input, the TFSEL settings are ignored. When set as an output, the TFSEL settings determine the source port of the frame sync.
+        unsigned SYN : 1; //!< [11] Synchronous/Asynchronous Select.
+        unsigned RCSEL : 4; //!< [15:12] Receive Clock Select.
+        unsigned RCLKDIR : 1; //!< [16] Receive Clock Direction Control.
+        unsigned RFSEL : 4; //!< [20:17] Receive Frame Sync Select.
+        unsigned RFS_DIR : 1; //!< [21] Receive Frame Sync Direction Control.
+        unsigned TCSEL : 4; //!< [25:22] Transmit Clock Select.
+        unsigned TCLKDIR : 1; //!< [26] Transmit Clock Direction Control.
+        unsigned TFSEL : 4; //!< [30:27] Transmit Frame Sync Select.
+        unsigned TFS_DIR : 1; //!< [31] Transmit Frame Sync Direction Control.
     } B;
 } hw_audmux_ptcr7_t;
 #endif
@@ -2835,9 +2765,7 @@ typedef union _hw_audmux_ptcr7
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -2891,9 +2819,7 @@ typedef union _hw_audmux_ptcr7
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -2946,9 +2872,7 @@ typedef union _hw_audmux_ptcr7
  * Values:
  * 0xxx - Selects TxClk from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxClk from port.
  */
@@ -3001,9 +2925,7 @@ typedef union _hw_audmux_ptcr7
  * Values:
  * 0xxx - Selects TxFS from port.
  * x000 - Port 1
- * x101 - Port 6
  * x110 - Port 7
- * x11x - Reserved
  * x111 - Reserved
  * 1xxx - Selects RxFS from port.
  */
@@ -3059,18 +2981,18 @@ typedef union _hw_audmux_ptcr7
  *
  * Reset value: 0x0000c000
  *
- * PDCR7 PDCR6 is the Port Data Control Register for Port 7 Port 6 .
+ * PDCR7 is the Port Data Control Register for Port 7 .
  */
 typedef union _hw_audmux_pdcr7
 {
     reg32_t U;
     struct _hw_audmux_pdcr7_bitfields
     {
-        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be ANDed together for internal network mode. Bit 6 represents RxD from Port 7 Port 6 and bit0 represents RxD from Port 1.
-        unsigned MODE : 1; //!< [8] Mode Select. This field selects the mode in which the port is to operate. The modes of operation include the following: Normal mode, in which the RxD from the port selected by RXDSEL is routed to the port. Internal Network mode in which RxD from other ports are ANDed together. RXDSEL is ignored. INMMASK determines which RxD signals are ANDed together.
+        unsigned INMMASK : 8; //!< [7:0] Internal Network Mode Mask.
+        unsigned MODE : 1; //!< [8] Mode Select.
         unsigned RESERVED0 : 3; //!< [11:9] Reserved
-        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable. Swaps the transmit and receive signals.
-        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1 (that is, Internal Network Mode is enabled).
+        unsigned TXRXEN : 1; //!< [12] Transmit/Receive Switch Enable.
+        unsigned RXDSEL : 3; //!< [15:13] Receive Data Select.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_audmux_pdcr7_t;
@@ -3097,8 +3019,8 @@ typedef union _hw_audmux_pdcr7
 /* --- Register HW_AUDMUX_PDCR7, field INMMASK[7:0] (RW)
  *
  * Internal Network Mode Mask. Bit mask that selects the ports from which the RxD signals are to be
- * ANDed together for internal network mode. Bit 6 represents RxD from Port 7 Port 6 and bit0
- * represents RxD from Port 1.
+ * ANDed together for internal network mode. Bit 6 represents RxD from Port 7 and bit0 represents
+ * RxD from Port 1.
  *
  * Values:
  * 0 - Includes RxDn for ANDing
@@ -3173,15 +3095,13 @@ typedef union _hw_audmux_pdcr7
 
 /* --- Register HW_AUDMUX_PDCR7, field RXDSEL[15:13] (RW)
  *
- * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 0 1
+ * Receive Data Select. Selects the source port for the RxD data. RXDSEL is ignored if MODE = 1
  * (that is, Internal Network Mode is enabled).
  *
  * Values:
  * xxx - Port number for RxD
  * 000 - Port 1
- * 101 - Port 6
  * 110 - Port 7
- * 11x - Reserved
  * 111 - Reserved
  */
 
@@ -3214,13 +3134,13 @@ typedef struct _hw_audmux
     volatile hw_audmux_pdcr2_t PDCR2; //!< Port Data Control Register 2
     volatile hw_audmux_ptcr3_t PTCR3; //!< Port Timing Control Register 3
     volatile hw_audmux_pdcr3_t PDCR3; //!< Port Data Control Register 3
-    volatile hw_audmux_ptcr4_t PTCR4; //!< Port Timing Control Register n
+    volatile hw_audmux_ptcr4_t PTCR4; //!< Port Timing Control Register 4
     volatile hw_audmux_pdcr4_t PDCR4; //!< Port Data Control Register 4
-    volatile hw_audmux_ptcr5_t PTCR5; //!< Port Timing Control Register n
+    volatile hw_audmux_ptcr5_t PTCR5; //!< Port Timing Control Register 5
     volatile hw_audmux_pdcr5_t PDCR5; //!< Port Data Control Register 5
-    volatile hw_audmux_ptcr6_t PTCR6; //!< Port Timing Control Register n
+    volatile hw_audmux_ptcr6_t PTCR6; //!< Port Timing Control Register 6
     volatile hw_audmux_pdcr6_t PDCR6; //!< Port Data Control Register 6
-    volatile hw_audmux_ptcr7_t PTCR7; //!< Port Timing Control Register n
+    volatile hw_audmux_ptcr7_t PTCR7; //!< Port Timing Control Register 7
     volatile hw_audmux_pdcr7_t PDCR7; //!< Port Data Control Register 7
 } hw_audmux_t;
 #pragma pack()

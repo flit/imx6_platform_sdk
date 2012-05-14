@@ -70,16 +70,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_CSU_CSL0 - Config security level register
@@ -95,46 +85,40 @@
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl0
 {
@@ -149,7 +133,7 @@ typedef union _hw_csu_csl0
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -159,7 +143,7 @@ typedef union _hw_csu_csl0
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl0_t;
@@ -629,46 +613,40 @@ typedef union _hw_csu_csl0
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl1
 {
@@ -683,7 +661,7 @@ typedef union _hw_csu_csl1
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -693,7 +671,7 @@ typedef union _hw_csu_csl1
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl1_t;
@@ -1163,46 +1141,40 @@ typedef union _hw_csu_csl1
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl2
 {
@@ -1217,7 +1189,7 @@ typedef union _hw_csu_csl2
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -1227,7 +1199,7 @@ typedef union _hw_csu_csl2
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl2_t;
@@ -1697,46 +1669,40 @@ typedef union _hw_csu_csl2
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl3
 {
@@ -1751,7 +1717,7 @@ typedef union _hw_csu_csl3
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -1761,7 +1727,7 @@ typedef union _hw_csu_csl3
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl3_t;
@@ -2231,46 +2197,40 @@ typedef union _hw_csu_csl3
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl4
 {
@@ -2285,7 +2245,7 @@ typedef union _hw_csu_csl4
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -2295,7 +2255,7 @@ typedef union _hw_csu_csl4
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl4_t;
@@ -2765,46 +2725,40 @@ typedef union _hw_csu_csl4
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl5
 {
@@ -2819,7 +2773,7 @@ typedef union _hw_csu_csl5
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -2829,7 +2783,7 @@ typedef union _hw_csu_csl5
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl5_t;
@@ -3299,46 +3253,40 @@ typedef union _hw_csu_csl5
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl6
 {
@@ -3353,7 +3301,7 @@ typedef union _hw_csu_csl6
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -3363,7 +3311,7 @@ typedef union _hw_csu_csl6
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl6_t;
@@ -3833,46 +3781,40 @@ typedef union _hw_csu_csl6
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl7
 {
@@ -3887,7 +3829,7 @@ typedef union _hw_csu_csl7
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -3897,7 +3839,7 @@ typedef union _hw_csu_csl7
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl7_t;
@@ -4367,46 +4309,40 @@ typedef union _hw_csu_csl7
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl8
 {
@@ -4421,7 +4357,7 @@ typedef union _hw_csu_csl8
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -4431,7 +4367,7 @@ typedef union _hw_csu_csl8
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl8_t;
@@ -4901,46 +4837,40 @@ typedef union _hw_csu_csl8
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl9
 {
@@ -4955,7 +4885,7 @@ typedef union _hw_csu_csl9
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -4965,7 +4895,7 @@ typedef union _hw_csu_csl9
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl9_t;
@@ -5435,46 +5365,40 @@ typedef union _hw_csu_csl9
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl10
 {
@@ -5489,7 +5413,7 @@ typedef union _hw_csu_csl10
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -5499,7 +5423,7 @@ typedef union _hw_csu_csl10
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl10_t;
@@ -5969,46 +5893,40 @@ typedef union _hw_csu_csl10
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl11
 {
@@ -6023,7 +5941,7 @@ typedef union _hw_csu_csl11
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -6033,7 +5951,7 @@ typedef union _hw_csu_csl11
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl11_t;
@@ -6503,46 +6421,40 @@ typedef union _hw_csu_csl11
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl12
 {
@@ -6557,7 +6469,7 @@ typedef union _hw_csu_csl12
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -6567,7 +6479,7 @@ typedef union _hw_csu_csl12
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl12_t;
@@ -7037,46 +6949,40 @@ typedef union _hw_csu_csl12
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl13
 {
@@ -7091,7 +6997,7 @@ typedef union _hw_csu_csl13
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -7101,7 +7007,7 @@ typedef union _hw_csu_csl13
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl13_t;
@@ -7571,46 +7477,40 @@ typedef union _hw_csu_csl13
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl14
 {
@@ -7625,7 +7525,7 @@ typedef union _hw_csu_csl14
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -7635,7 +7535,7 @@ typedef union _hw_csu_csl14
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl14_t;
@@ -8105,46 +8005,40 @@ typedef union _hw_csu_csl14
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl15
 {
@@ -8159,7 +8053,7 @@ typedef union _hw_csu_csl15
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -8169,7 +8063,7 @@ typedef union _hw_csu_csl15
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl15_t;
@@ -8639,46 +8533,40 @@ typedef union _hw_csu_csl15
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl16
 {
@@ -8693,7 +8581,7 @@ typedef union _hw_csu_csl16
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -8703,7 +8591,7 @@ typedef union _hw_csu_csl16
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl16_t;
@@ -9173,46 +9061,40 @@ typedef union _hw_csu_csl16
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl17
 {
@@ -9227,7 +9109,7 @@ typedef union _hw_csu_csl17
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -9237,7 +9119,7 @@ typedef union _hw_csu_csl17
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl17_t;
@@ -9707,46 +9589,40 @@ typedef union _hw_csu_csl17
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl18
 {
@@ -9761,7 +9637,7 @@ typedef union _hw_csu_csl18
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -9771,7 +9647,7 @@ typedef union _hw_csu_csl18
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl18_t;
@@ -10241,46 +10117,40 @@ typedef union _hw_csu_csl18
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl19
 {
@@ -10295,7 +10165,7 @@ typedef union _hw_csu_csl19
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -10305,7 +10175,7 @@ typedef union _hw_csu_csl19
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl19_t;
@@ -10775,46 +10645,40 @@ typedef union _hw_csu_csl19
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl20
 {
@@ -10829,7 +10693,7 @@ typedef union _hw_csu_csl20
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -10839,7 +10703,7 @@ typedef union _hw_csu_csl20
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl20_t;
@@ -11309,46 +11173,40 @@ typedef union _hw_csu_csl20
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl21
 {
@@ -11363,7 +11221,7 @@ typedef union _hw_csu_csl21
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -11373,7 +11231,7 @@ typedef union _hw_csu_csl21
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl21_t;
@@ -11843,46 +11701,40 @@ typedef union _hw_csu_csl21
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl22
 {
@@ -11897,7 +11749,7 @@ typedef union _hw_csu_csl22
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -11907,7 +11759,7 @@ typedef union _hw_csu_csl22
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl22_t;
@@ -12377,46 +12229,40 @@ typedef union _hw_csu_csl22
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl23
 {
@@ -12431,7 +12277,7 @@ typedef union _hw_csu_csl23
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -12441,7 +12287,7 @@ typedef union _hw_csu_csl23
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl23_t;
@@ -12911,46 +12757,40 @@ typedef union _hw_csu_csl23
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl24
 {
@@ -12965,7 +12805,7 @@ typedef union _hw_csu_csl24
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -12975,7 +12815,7 @@ typedef union _hw_csu_csl24
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl24_t;
@@ -13445,46 +13285,40 @@ typedef union _hw_csu_csl24
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl25
 {
@@ -13499,7 +13333,7 @@ typedef union _hw_csu_csl25
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -13509,7 +13343,7 @@ typedef union _hw_csu_csl25
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl25_t;
@@ -13979,46 +13813,40 @@ typedef union _hw_csu_csl25
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl26
 {
@@ -14033,7 +13861,7 @@ typedef union _hw_csu_csl26
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -14043,7 +13871,7 @@ typedef union _hw_csu_csl26
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl26_t;
@@ -14513,46 +14341,40 @@ typedef union _hw_csu_csl26
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl27
 {
@@ -14567,7 +14389,7 @@ typedef union _hw_csu_csl27
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -14577,7 +14399,7 @@ typedef union _hw_csu_csl27
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl27_t;
@@ -15047,46 +14869,40 @@ typedef union _hw_csu_csl27
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl28
 {
@@ -15101,7 +14917,7 @@ typedef union _hw_csu_csl28
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -15111,7 +14927,7 @@ typedef union _hw_csu_csl28
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl28_t;
@@ -15581,46 +15397,40 @@ typedef union _hw_csu_csl28
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl29
 {
@@ -15635,7 +15445,7 @@ typedef union _hw_csu_csl29
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -15645,7 +15455,7 @@ typedef union _hw_csu_csl29
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl29_t;
@@ -16115,46 +15925,40 @@ typedef union _hw_csu_csl29
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl30
 {
@@ -16169,7 +15973,7 @@ typedef union _hw_csu_csl30
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -16179,7 +15983,7 @@ typedef union _hw_csu_csl30
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl30_t;
@@ -16649,46 +16453,40 @@ typedef union _hw_csu_csl30
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl31
 {
@@ -16703,7 +16501,7 @@ typedef union _hw_csu_csl31
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -16713,7 +16511,7 @@ typedef union _hw_csu_csl31
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl31_t;
@@ -17183,46 +16981,40 @@ typedef union _hw_csu_csl31
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl32
 {
@@ -17237,7 +17029,7 @@ typedef union _hw_csu_csl32
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -17247,7 +17039,7 @@ typedef union _hw_csu_csl32
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl32_t;
@@ -17717,46 +17509,40 @@ typedef union _hw_csu_csl32
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl33
 {
@@ -17771,7 +17557,7 @@ typedef union _hw_csu_csl33
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -17781,7 +17567,7 @@ typedef union _hw_csu_csl33
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl33_t;
@@ -18251,46 +18037,40 @@ typedef union _hw_csu_csl33
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl34
 {
@@ -18305,7 +18085,7 @@ typedef union _hw_csu_csl34
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -18315,7 +18095,7 @@ typedef union _hw_csu_csl34
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl34_t;
@@ -18785,46 +18565,40 @@ typedef union _hw_csu_csl34
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl35
 {
@@ -18839,7 +18613,7 @@ typedef union _hw_csu_csl35
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -18849,7 +18623,7 @@ typedef union _hw_csu_csl35
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl35_t;
@@ -19319,46 +19093,40 @@ typedef union _hw_csu_csl35
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl36
 {
@@ -19373,7 +19141,7 @@ typedef union _hw_csu_csl36
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -19383,7 +19151,7 @@ typedef union _hw_csu_csl36
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl36_t;
@@ -19853,46 +19621,40 @@ typedef union _hw_csu_csl36
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl37
 {
@@ -19907,7 +19669,7 @@ typedef union _hw_csu_csl37
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -19917,7 +19679,7 @@ typedef union _hw_csu_csl37
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl37_t;
@@ -20387,46 +20149,40 @@ typedef union _hw_csu_csl37
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl38
 {
@@ -20441,7 +20197,7 @@ typedef union _hw_csu_csl38
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -20451,7 +20207,7 @@ typedef union _hw_csu_csl38
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl38_t;
@@ -20921,46 +20677,40 @@ typedef union _hw_csu_csl38
  * two fields, each field used to determine the read and write access permissions for a slave
  * peripheral. These 8-bit fields for the first and second slaves are in the locations b23-b16 and
  * bits b7-b0, respectively.  Permission Access Table shows security levels and csu_sec_level signal
- * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Memory
- * space has been reserved for 128 slaves since each of the sixty-four 32-bit register can
- * accommodate CSL fields of two slaves. However, actual number of registers inferred in a design
- * would depend on the following Parameter --- Name - No_Of_Slaves Min. Value - 48 Max. Value - 128
- * Possible Values - 48,64,80,96,112,128  Most slaves have unique CSL registers. Some slaves are
- * grouped together in USB, Timers, PowerUp and Audio groups. The following table shows allocation
- * of CSL register per slave or group of slave modules.   CSL Slave Modules Mapping         Slave
- * Module    Corresponding CSL register and bit field   Comments       PWM1  PWM2  PWM3  PWM4
- * CSL0 [7:0]    Audio group shared control      CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]
- * GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and
- * GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]    GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3
- * [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3 [23:16]       KPP    CSL4 [7:0]       WDOG1
- * CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM  SNVS_HP  SRC  GPC    CSL5 [23:16]    Power
- * group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC    CSL6 [23:16]       DCIC1  DCIC2    CSL7
- * [7:0]       SDMA (port IPS_HOST)  EPDC for i.MX6SDL only   LCDIF for i.MX6SDL only   PXP for
- * i.MX6SDL only     CSL7 [23:16]       USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]
- * ENET    CSL8 [23:16]       MLB150    CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2
- * CSL10 [7:0]       USDHC3    CSL10 [23:16]       USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]
- * I2C2    CSL12 [7:0]       I2C3    CSL12 [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE
- * (port IPS_P0) MMDC_CORE (port IPS_P1)   CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]
- * OCOTP_CTRL    CSL14 [23:16]       Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3
- * CSL15 [23:16]    PerfMon group      TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]
- * AUDMUX    CSL17 [7:0]       CAAM    CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1
- * CSL18 [23:16]       eCSPI2    CSL19 [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20
- * [7:0]       eCSPI5  Reserved for i.MX6SDL     CSL20 [23:16]       UART1    CSL21 [7:0]
- * ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22 [23:16]       SSI3    CSL23
- * [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved    CSL24 [7:0]       ROMCP    CSL24
- * [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25 [23:16]       OCRAM    CSL26 [7:0]
- * CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]       HDMI    CSL27 [23:16]       GPU3D
- * CSL28[7:0]       SATA  Reserved for i.MX6SDL     CSL28 [23:16]       OPENVG  Reserved for
- * i.MX6SDL     CSL29 [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]
- * HSI    CSL30 [7:0]       IPU1    CSL30 [23:16]       IPU2  Reserved for i.MX6SDL     CSL31 [7:0]
- * WEIM    CSL31 [23:16]       PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI
- * CSL33 [7:0]       MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34
- * [23:16]       UART3    CSL35 [7:0]       UART4    CSL35 [23:16]       UART5  I2C4 for i.MX6SDL
- * only     CSL36 [7:0]       DTCP    CSL36 [23:16]       Reserved    CSL37 [7:0]       Reserved
- * CSL37 [23:16]       Reserved    CSL38 [7:0]       Reserved    CSL38 [23:16]       SPBA    CSL39
- * [7:0]       Reserved    CSL39 [23:16]        Do not modify the following peripherals' CSL
- * register bits while they are being accessed through the AHB/AXI slave bus: EIM, IPU, DTCP,
- * APBHDMA and PCIe.
+ * levels corresponding to different values of the 8-bit CSU_CSL field for a given slave.  Most
+ * slaves have unique CSL registers. Some slaves are grouped together in USB, Timers, PowerUp and
+ * Audio groups. The following table shows allocation of CSL register per slave or group of slave
+ * modules.   CSL Slave Modules Mapping         Slave Module    Corresponding CSL register and bit
+ * field   Comments       PWM1  PWM2  PWM3  PWM4    CSL0 [7:0]    Audio group shared control
+ * CAN1    CSL0 [23:16]       CAN2    CSL1 [7:0]       GPT  EPIT1  EPIT2    CSL1 [23:16]    Timers
+ * group      GPIO1  GPIO2    CSL2 [7:0]    GPIO1 and GPIO2 group      GPIO3  GPIO4    CSL2 [23:16]
+ * GPIO3 and GPIO4 group      GPIO5  GPIO6    CSL3 [7:0]    GPIO5 and GPIO6 group      GPIO7    CSL3
+ * [23:16]       KPP    CSL4 [7:0]       WDOG1    CSL4 [23:16]       WDOG2    CSL5 [7:0]       CCM
+ * SNVS_HP  SRC  GPC    CSL5 [23:16]    Power group      IP2APB_ANATOP    CSL6 [7:0]       IOMUXC
+ * CSL6 [23:16]       DCIC1  DCIC2    CSL7 [7:0]       SDMA (port IPS_HOST)    CSL7 [23:16]
+ * USBOH3 (port PL301)  USBOH3 (port USB)    CSL8 [7:0]       ENET    CSL8 [23:16]       MLB150
+ * CSL9 [7:0]       USDHC1    CSL9 [23:16]       USDHC2    CSL10 [7:0]       USDHC3    CSL10 [23:16]
+ * USDHC4    CSL11 [7:0]       I2C1    CSL11 [23:16]       I2C2    CSL12 [7:0]       I2C3    CSL12
+ * [23:16]       ROMCP    CSL13[7:0]      VPU MMDC_CORE (port IPS_P0) MMDC_CORE (port IPS_P1)
+ * CSL13 [23:16]    MMDC Group      WEIM    CSL14 [7:0]       OCOTP_CTRL    CSL14 [23:16]
+ * Reserved    CSL15 [7:0]       PERFMON1  PERFMON2  PERFMON3    CSL15 [23:16]    PerfMon group
+ * TZASC1    CSL16 [7:0]       TZASC2    CSL16 [23:16]       AUDMUX    CSL17 [7:0]       CAAM
+ * CSL17 [23:16]       SPDIF    CSL18 [7:0]       eCSPI1    CSL18 [23:16]       eCSPI2    CSL19
+ * [7:0]       eCSPI3    CSL19 [23:16]       eCSPI4    CSL20 [7:0]       eCSPI5    CSL20 [23:16]
+ * UART1    CSL21 [7:0]       ESAI1    CSL21 [23:16]       SSI1    CSL22 [7:0]       SSI2    CSL22
+ * [23:16]       SSI3    CSL23 [7:0]       ASRC (VIA IPSYNC)    CSL23 [23:16]       Reserved
+ * CSL24 [7:0]       ROMCP    CSL24 [23:16]       Reserved    CSL25 [7:0]       Reserved    CSL25
+ * [23:16]       OCRAM    CSL26 [7:0]       CAAM    CSL26 [23:16]       APBH_DMA    CSL27 [7:0]
+ * HDMI    CSL27 [23:16]       GPU3D    CSL28[7:0]       SATA    CSL28 [23:16]       OPENVG    CSL29
+ * [7:0]       ARM core platform DAP and platform controller    CSL29 [23:16]       HSI    CSL30
+ * [7:0]       IPU1    CSL30 [23:16]       IPU2    CSL31 [7:0]       WEIM    CSL31 [23:16]
+ * PCIE    CSL32 [7:0]       GPU2D    CSL32 [23:16]       MIPI_CORE_CSI    CSL33 [7:0]
+ * MIPI_CORE_HSI    CSL33 [23:16]       VDOA    CSL34 [7:0]       UART2    CSL34 [23:16]       UART3
+ * CSL35 [7:0]       UART4    CSL35 [23:16]       UART5    CSL36 [7:0]       DTCP    CSL36 [23:16]
+ * Reserved    CSL37 [7:0]       Reserved    CSL37 [23:16]       Reserved    CSL38 [7:0]
+ * Reserved    CSL38 [23:16]       SPBA    CSL39 [7:0]       Reserved    CSL39 [23:16]        Do not
+ * modify the following peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus: EIM, IPU, DTCP, APBHDMA and PCIe.
  */
 typedef union _hw_csu_csl39
 {
@@ -20975,7 +20725,7 @@ typedef union _hw_csu_csl39
         unsigned SSW_S2 : 1; //!< [5] Secure supervisor write access control for the second slave
         unsigned NUW_S2 : 1; //!< [6] Non-secure user write access control for the second slave
         unsigned NSW_S2 : 1; //!< [7] Non-secure supervisor write access control for the second slave
-        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave. Written by secure software.
+        unsigned LOCK_S2 : 1; //!< [8] Lock bit corresponding to the second slave.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
         unsigned SUR_S1 : 1; //!< [16] Secure user read access control for the first slave
         unsigned SSR_S1 : 1; //!< [17] Secure supervisor read access control for the first slave
@@ -20985,7 +20735,7 @@ typedef union _hw_csu_csl39
         unsigned SSW_S1 : 1; //!< [21] Secure supervisor write access control for the first slave
         unsigned NUW_S1 : 1; //!< [22] Non-secure user write access control for the first slave
         unsigned NSW_S1 : 1; //!< [23] Non-secure supervisor write access control for the first slave
-        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave. Written by secure software.
+        unsigned LOCK_S1 : 1; //!< [24] Lock bit corresponding to the first slave.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_csu_csl39_t;
@@ -21456,11 +21206,7 @@ typedef union _hw_csu_csl39
  * group may be overridden by muxing it with the corresponding bit in this register.  The even bit
  * positions (CSU_HP0[30,28,...0] and CSU_HP1[0]) in the registers hold the privilege indicator
  * bits; while the odd bit positions (CSU_HP0[31,29,...,1] and CSU_HP1[1]) contain lock bits which
- * enable/disable writing to the corresponding privilege indicator bits.  Memory Space has been
- * reserved for 32 Masters. Since, one 32 bit register can accommodate HP fields corresponding to 16
- * masters, hence for 32 masters memory equivalent of 2 registers is reserved.However, actual number
- * of registers(flops) inferred in a design would depend on the following Parameter --- Name -
- * No_Of_Masters Min. Value -1 Max. Value - 32 Possible Values - 1 to 32
+ * enable/disable writing to the corresponding privilege indicator bits.
  */
 typedef union _hw_csu_hp0
 {
@@ -21472,7 +21218,7 @@ typedef union _hw_csu_hp0
         unsigned RESERVED0 : 2; //!< [3:2] Reserved.
         unsigned HP_SDMA : 1; //!< [4] Indicate the Privilege/User Mode for SDMA.
         unsigned L_SDMA : 1; //!< [5] Lock bit set by TZ software for HP_SDMA.
-        unsigned HP_PU : 1; //!< [6] Indicate the Privilege/User Mode for GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG EPDC, PXP, LCDIF and VDOA. NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
+        unsigned HP_PU : 1; //!< [6] Indicate the Privilege/User Mode for GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG and VDOA.
         unsigned L_PU : 1; //!< [7] Lock bit set by TZ software for HP_PU.
         unsigned HP_USB : 1; //!< [8] Indicate the Privilege/User Mode for USB.
         unsigned L_USB : 1; //!< [9] Lock bit set by TZ software for HP_USB.
@@ -21618,8 +21364,7 @@ typedef union _hw_csu_hp0
 
 /* --- Register HW_CSU_HP0, field HP_PU[6] (RW)
  *
- * Indicate the Privilege/User Mode for GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG EPDC, PXP, LCDIF and
- * VDOA. NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
+ * Indicate the Privilege/User Mode for GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG and VDOA.
  *
  * Values:
  * 0 - User Mode for the corresponding master
@@ -22346,11 +22091,7 @@ typedef union _hw_csu_hp1
  * Type 1 masters which are incapable of setting the policy by themselves.  The sixteen even bit
  * positions (CSU_SA[30,28,...,0]) in the register hold the policy indicator bits; while the odd bit
  * positions (CSU_SA[31,29,...,1]) contain lock bits which enable/disable writing to the
- * corresponding policy indicator bits.  Memory Space has been reserved for 32 Type 1 Masters.
- * Since, one 32 bit register can accommodate SA fields corresponding to 16 masters, hence for 32
- * masters memory equivalent of 2 registers is reserved.However, actual number of registers(flops)
- * inferred in a design would depend on the following Parameter --- Name - No_Of_TP1_Masters Min.
- * Value -1 Max. Value - 32 Possible Values - 1 to 32
+ * corresponding policy indicator bits.
  */
 typedef union _hw_csu_sa
 {
@@ -22362,7 +22103,7 @@ typedef union _hw_csu_sa
         unsigned RESERVED0 : 2; //!< [3:2] Reserved.
         unsigned SA_SDMA : 1; //!< [4] Indicate the Type (Secured/Non-Secured) Access for SDMA.
         unsigned L_SDMA : 1; //!< [5] Lock bit set by TZ software for SA_SDMA.
-        unsigned SA_PU : 1; //!< [6] Indicate the Type (Secured/Non-Secured) Access for GPU3D, VDOA, GPU2D, IPU1, IPU2, OPENVG EPDC, PXP, LCDIF and VPU. NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
+        unsigned SA_PU : 1; //!< [6] Indicate the Type (Secured/Non-Secured) Access for GPU3D, VDOA, GPU2D, IPU1, IPU2, OPENVG and VPU.
         unsigned L_PU : 1; //!< [7] Lock bit set by TZ software for SA_PU.
         unsigned SA_USB_MLB : 1; //!< [8] Indicate the Type (Secured/Non-Secured) Access for USB and MLB.
         unsigned L_USB_MLB : 1; //!< [9] Lock bit set by TZ software for SA_USB_MLB.
@@ -22506,8 +22247,8 @@ typedef union _hw_csu_sa
 
 /* --- Register HW_CSU_SA, field SA_PU[6] (RW)
  *
- * Indicate the Type (Secured/Non-Secured) Access for GPU3D, VDOA, GPU2D, IPU1, IPU2, OPENVG EPDC,
- * PXP, LCDIF and VPU. NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
+ * Indicate the Type (Secured/Non-Secured) Access for GPU3D, VDOA, GPU2D, IPU1, IPU2, OPENVG and
+ * VPU.
  *
  * Values:
  * 0 - Secure access for the corresponding Type 1 master
@@ -23059,7 +22800,7 @@ typedef union _hw_csu_hpcontrol0
         unsigned RESERVED0 : 2; //!< [3:2] Reserved.
         unsigned HPC_SDMA : 1; //!< [4] Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of SDMA.
         unsigned L_SDMA : 1; //!< [5] Lock bit set by TZ software for HPC_SDMA.
-        unsigned HPC_PU : 1; //!< [6] Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG EPDC, PXP, LCDIF and VDOA. NOTE: IPU2 and OpenVG on i.MX6DQ only; EPDC, PXP and LCDIF on i.MX6SDL only
+        unsigned HPC_PU : 1; //!< [6] Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG and VDOA.
         unsigned L_PU : 1; //!< [7] Lock bit set by TZ software for HPC_PU.
         unsigned HPC_USB : 1; //!< [8] Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of USB.
         unsigned L_USB : 1; //!< [9] Lock bit set by TZ software for HPC_USB.
@@ -23208,8 +22949,7 @@ typedef union _hw_csu_hpcontrol0
 /* --- Register HW_CSU_HPCONTROL0, field HPC_PU[6] (RW)
  *
  * Determines if the Register value of the HP field corresponding will be pass as the hprot[1] of
- * GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG EPDC, PXP, LCDIF and VDOA. NOTE: IPU2 and OpenVG on i.MX6DQ
- * only; EPDC, PXP and LCDIF on i.MX6SDL only
+ * GPU3D, GPU2D, VPU, IPU1, IPU2, OpenVG and VDOA.
  *
  * Values:
  * 0 - Input signal hprot1 value is routed to csu_hprot1 output for the corresponding master

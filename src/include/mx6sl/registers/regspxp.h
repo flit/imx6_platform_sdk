@@ -72,20 +72,10 @@
 //! @name Module base addresses
 //@{
 #ifndef REGS_PXP_BASE
-#define HW_PXP_INSTANCE_COUNT (0) //!< Number of instances of the PXP module.
-#define REGS_PXP_BASE (0x00000000) //!< Base address for PXP.
+#define HW_PXP_INSTANCE_COUNT (1) //!< Number of instances of the PXP module.
+#define REGS_PXP_BASE (0x020f0000) //!< Base address for PXP.
 #endif
 //@}
-
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
 
 
 //-------------------------------------------------------------------------------------------
@@ -109,23 +99,23 @@ typedef union _hw_pxp_ctrl
     reg32_t U;
     struct _hw_pxp_ctrl_bitfields
     {
-        unsigned ENABLE : 1; //!< [0] Enables PXP operation with specified parameters. The ENABLE bit will remain set while the PXP is active and will be cleared once the current operation completes. Software should use the IRQ bit in the PXP_STAT when polling for PXP completion.
-        unsigned IRQ_ENABLE : 1; //!< [1] Interrupt enable. NOTE: When using the PXP_NEXT functionality to reprogram the PXP, the new value of this bit will be used and may therefore enable or disable an interrupt unintentionally.
-        unsigned NEXT_IRQ_ENABLE : 1; //!< [2] Next command interrupt enable. When set, the PXP will issue an interrupt when a queued command initiated by a write to the PXP_NEXT register has been loaded into the PXP's registers. This interrupt also indicates that a new command may now be queued.
-        unsigned LUT_DMA_IRQ_ENABLE : 1; //!< [3] LUT DMA interrupt enable. When set, the PXP will issue an interrupt when the LUT DMA has finished transferring data.
-        unsigned ENABLE_LCD_HANDSHAKE : 1; //!< [4] Enable handshake with LCD controller. When this is set, the PXP will not process an entire framebuffer, but will instead process rows of NxN blocks in a double-buffer handshake with the LCDIF. This enables the use of the onboard SRAM for a partial frame buffer.
+        unsigned ENABLE : 1; //!< [0] Enables PXP operation with specified parameters.
+        unsigned IRQ_ENABLE : 1; //!< [1] Interrupt enable.
+        unsigned NEXT_IRQ_ENABLE : 1; //!< [2] Next command interrupt enable.
+        unsigned LUT_DMA_IRQ_ENABLE : 1; //!< [3] LUT DMA interrupt enable.
+        unsigned ENABLE_LCD_HANDSHAKE : 1; //!< [4] Enable handshake with LCD controller.
         unsigned RESERVED0 : 3; //!< [7:5] Reserved, always set to zero.
-        unsigned ROTATE : 2; //!< [9:8] Indicates the clockwise rotation to be applied at the output buffer. The rotation effect is defined as occurring after the FLIP_X and FLIP_Y permutation.
+        unsigned ROTATE : 2; //!< [9:8] Indicates the clockwise rotation to be applied at the output buffer.
         unsigned HFLIP : 1; //!< [10] Indicates that the output buffer should be flipped horizontally (effect applied before rotation).
         unsigned VFLIP : 1; //!< [11] Indicates that the output buffer should be flipped vertically (effect applied before rotation).
         unsigned RESERVED1 : 10; //!< [21:12] Reserved, always set to zero.
-        unsigned ROT_POS : 1; //!< [22] This bit controls where rotation will occur in the PXP datapath. Setting this bit to 1'b0 will place the rotation resources at the output stage of the PXP data path. Image compositing will occur before pixels are processed for rotation. Setting this bit to a 1'b1 will place the rotation resources before image composition. Only the PS can be rotated in this configuration and AS will not be rotated.
+        unsigned ROT_POS : 1; //!< [22] This bit controls where rotation will occur in the PXP datapath.
         unsigned BLOCK_SIZE : 1; //!< [23] Select the block size to process.
         unsigned RESERVED2 : 4; //!< [27:24] Reserved, always set to zero.
-        unsigned EN_REPEAT : 1; //!< [28] Enable the PXP to run continuously. When this bit is set, the PXP will repeat based on the current configuration register settings. If this bit is not set, the PXP will complete the process and enter the idle state ready to accept the next frame to be processed. This bit should be set when the LCDIF handshake mode is enabled so that the next frame is automatically generated for the next screen refresh cycle. If it not set and the handshake mode is enabled, the CPU will have to initiate the PXP for the next refresh cycle. When the PXP NEXT feature is used, it has priority over the REPEAT mode, in that the new register settings are fetched first, and then the next PXP operation will continue.
+        unsigned EN_REPEAT : 1; //!< [28] Enable the PXP to run continuously.
         unsigned RESERVED3 : 1; //!< [29] Reserved, always set to zero.
-        unsigned CLKGATE : 1; //!< [30] This bit must be set to zero for normal operation. When set to one it gates off the clocks to the block.
-        unsigned SFTRST : 1; //!< [31] Set this bit to zero to enable normal PXP operation. Set this bit to one (default) to disable clocking with the PXP and hold it in its reset (lowest power) state. This bit can be turned on and then off to reset the PXP block to its default state.
+        unsigned CLKGATE : 1; //!< [30] This bit must be set to zero for normal operation.
+        unsigned SFTRST : 1; //!< [31] Set this bit to zero to enable normal PXP operation.
     } B;
 } hw_pxp_ctrl_t;
 #endif
@@ -456,7 +446,7 @@ typedef union _hw_pxp_stat
     reg32_t U;
     struct _hw_pxp_stat_bitfields
     {
-        unsigned IRQ : 1; //!< [0] Indicates current PXP interrupt status. The IRQ is routed through the pxp_irq when the IRQ_ENABLE bit in the control register is set.
+        unsigned IRQ : 1; //!< [0] Indicates current PXP interrupt status.
         unsigned AXI_WRITE_ERROR : 1; //!< [1] Indicates PXP encountered an AXI write error and processing has been terminated.
         unsigned AXI_READ_ERROR : 1; //!< [2] Indicates PXP encountered an AXI read error and processing has been terminated.
         unsigned NEXT_IRQ : 1; //!< [3] Indicates that a command issued with the "Next Command" functionality has been issued and that a new command may be initiated with a write to the PXP_NEXT register.
@@ -638,11 +628,11 @@ typedef union _hw_pxp_out_ctrl
     reg32_t U;
     struct _hw_pxp_out_ctrl_bitfields
     {
-        unsigned FORMAT : 5; //!< [4:0] Output framebuffer format. The UV byte lanes are synonymous with CbCr byte lanes for YUV output pixel formats. For example, the YUV2P420 format should be selected when the output is YCbCr 2-plane 420 output format.
+        unsigned FORMAT : 5; //!< [4:0] Output framebuffer format.
         unsigned RESERVED0 : 3; //!< [7:5] Reserved, always set to zero.
-        unsigned INTERLACED_OUTPUT : 2; //!< [9:8] Determines how the PXP writes it's output data. Output interlacing should not be used in conjunction with input interlacing. Splitting frames into fields is most efficient using output interlacing. 2-plane output formats AND interlaced output is NOT supported.
+        unsigned INTERLACED_OUTPUT : 2; //!< [9:8] Determines how the PXP writes it's output data.
         unsigned RESERVED1 : 13; //!< [22:10] Reserved, always set to zero.
-        unsigned ALPHA_OUTPUT : 1; //!< [23] Indicates that alpha component in output buffer pixels should be overwritten by PXP_OUT_CTRL[ALPHA]. If 0, retain their alpha value from the computed alpha for that pixel.
+        unsigned ALPHA_OUTPUT : 1; //!< [23] Indicates that alpha component in output buffer pixels should be overwritten by PXP_OUT_CTRL[ALPHA].
         unsigned ALPHA : 8; //!< [31:24] When generating an output buffer with an alpha component, the value in this field will be used when enabled to override the alpha passed through the pixel data pipeline.
     } B;
 } hw_pxp_out_ctrl_t;
@@ -816,7 +806,7 @@ typedef union _hw_pxp_out_buf
     reg32_t U;
     struct _hw_pxp_out_buf_bitfields
     {
-        unsigned ADDR : 32; //!< [31:0] Current address pointer for the output frame buffer. The address can have any byte alignment. 64B alignment is recommended for optimal performance.
+        unsigned ADDR : 32; //!< [31:0] Current address pointer for the output frame buffer.
     } B;
 } hw_pxp_out_buf_t;
 #endif
@@ -882,7 +872,7 @@ typedef union _hw_pxp_out_buf2
     reg32_t U;
     struct _hw_pxp_out_buf2_bitfields
     {
-        unsigned ADDR : 32; //!< [31:0] Current address pointer for the output frame buffer. The address can have any byte alignment. 64B alignment is recommended for optimal performance.
+        unsigned ADDR : 32; //!< [31:0] Current address pointer for the output frame buffer.
     } B;
 } hw_pxp_out_buf2_t;
 #endif
@@ -1012,9 +1002,9 @@ typedef union _hw_pxp_out_lrc
     reg32_t U;
     struct _hw_pxp_out_lrc_bitfields
     {
-        unsigned Y : 14; //!< [13:0] Indicates the number of vertical PIXELS in the output surface (non-rotated). The output buffer pixel height minus 1 should be programmed. The image size is not required to be a multiple of 8 pixels. The PXP will clip the pixel output at this boundary.
+        unsigned Y : 14; //!< [13:0] Indicates the number of vertical PIXELS in the output surface (non-rotated).
         unsigned RESERVED0 : 2; //!< [15:14] Reserved, always set to zero.
-        unsigned X : 14; //!< [29:16] Indicates number of horizontal PIXELS in the output surface (non-rotated). The output buffer pixel width minus 1 should be programmed. The image size is not required to be a multiple of 8 pixels. The PXP will clip the pixel output at this boundary.
+        unsigned X : 14; //!< [29:16] Indicates number of horizontal PIXELS in the output surface (non-rotated).
         unsigned RESERVED1 : 2; //!< [31:30] Reserved, always set to zero.
     } B;
 } hw_pxp_out_lrc_t;
@@ -1460,8 +1450,8 @@ typedef union _hw_pxp_ps_ctrl
     reg32_t U;
     struct _hw_pxp_ps_ctrl_bitfields
     {
-        unsigned FORMAT : 5; //!< [4:0] PS buffer format. To select between YUV and YCbCr formats, see bit 31 of the CSC1_COEF0 register.
-        unsigned WB_SWAP : 1; //!< [5] Swap bytes in words. For each 16 bit word, the two bytes will be swapped.
+        unsigned FORMAT : 5; //!< [4:0] PS buffer format.
+        unsigned WB_SWAP : 1; //!< [5] Swap bytes in words.
         unsigned RESERVED0 : 2; //!< [7:6] Reserved, always set to zero.
         unsigned DECY : 2; //!< [9:8] Verticle pre decimation filter control.
         unsigned DECX : 2; //!< [11:10] Horizontal pre decimation filter control.
@@ -1982,9 +1972,9 @@ typedef union _hw_pxp_ps_scale
     reg32_t U;
     struct _hw_pxp_ps_scale_bitfields
     {
-        unsigned XSCALE : 15; //!< [14:0] This is a two bit integer and 12 bit fractional representation (##.####_####_####) of the X scaling factor for the PS source buffer. The maximum value programmed should be 2 since scaling down by a factor greater than 2 is not supported with the bilinear filter. Decimation and the bilinear filter should be used together to achieve scaling by more than a factor of 2.
+        unsigned XSCALE : 15; //!< [14:0] This is a two bit integer and 12 bit fractional representation (##.####_####_####) of the X scaling factor for the PS source buffer.
         unsigned RESERVED0 : 1; //!< [15] Reserved, always set to zero.
-        unsigned YSCALE : 15; //!< [30:16] This is a two bit integer and 12 bit fractional representation (##.####_####_####) of the Y scaling factor for the PS source buffer. The maximum value programmed should be 2 since scaling down by a factor greater than 2 is not supported with the bilinear filter. Decimation and the bilinear filter should be used together to achieve scaling by more than a factor of 2.
+        unsigned YSCALE : 15; //!< [30:16] This is a two bit integer and 12 bit fractional representation (##.####_####_####) of the Y scaling factor for the PS source buffer.
         unsigned RESERVED1 : 1; //!< [31] Reserved, always set to zero.
     } B;
 } hw_pxp_ps_scale_t;
@@ -2079,9 +2069,9 @@ typedef union _hw_pxp_ps_offset
     reg32_t U;
     struct _hw_pxp_ps_offset_bitfields
     {
-        unsigned XOFFSET : 12; //!< [11:0] This is a 12 bit fractional representation (0.####_####_####) of the X scaling offset. This represents a fixed pixel offset which gets added to the scaled address to determine source data for the scaling engine.
+        unsigned XOFFSET : 12; //!< [11:0] This is a 12 bit fractional representation (0.####_####_####) of the X scaling offset.
         unsigned RESERVED0 : 4; //!< [15:12] Reserved, always set to zero.
-        unsigned YOFFSET : 12; //!< [27:16] This is a 12 bit fractional representation (0.####_####_####) of the Y scaling offset. This represents a fixed pixel offset which gets added to the scaled address to determine source data for the scaling engine.
+        unsigned YOFFSET : 12; //!< [27:16] This is a 12 bit fractional representation (0.####_####_####) of the Y scaling offset.
         unsigned RESERVED1 : 4; //!< [31:28] Reserved, always set to zero.
     } B;
 } hw_pxp_ps_offset_t;
@@ -2170,7 +2160,7 @@ typedef union _hw_pxp_ps_clrkeylow
     reg32_t U;
     struct _hw_pxp_ps_clrkeylow_bitfields
     {
-        unsigned PIXEL : 24; //!< [23:0] Low range of color key applied to PS buffer. To disable PS colorkeying, set the low colorkey to 0xFFFFFF and the high colorkey to 0x000000.
+        unsigned PIXEL : 24; //!< [23:0] Low range of color key applied to PS buffer.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved, always set to zero.
     } B;
 } hw_pxp_ps_clrkeylow_t;
@@ -2237,7 +2227,7 @@ typedef union _hw_pxp_ps_clrkeyhigh
     reg32_t U;
     struct _hw_pxp_ps_clrkeyhigh_bitfields
     {
-        unsigned PIXEL : 24; //!< [23:0] High range of color key applied to PS buffer. To disable PS colorkeying, set the low colorkey to 0xFFFFFF and the high colorkey to 0x000000.
+        unsigned PIXEL : 24; //!< [23:0] High range of color key applied to PS buffer.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved, always set to zero.
     } B;
 } hw_pxp_ps_clrkeyhigh_t;
@@ -2304,12 +2294,12 @@ typedef union _hw_pxp_as_ctrl
     struct _hw_pxp_as_ctrl_bitfields
     {
         unsigned RESERVED0 : 1; //!< [0] Reserved, always set to zero.
-        unsigned ALPHA_CTRL : 2; //!< [2:1] Determines how the alpha value is constructed for this alpha surface. Indicates that the value in the ALPHA field should be used instead of the alpha values present in the input pixels.
-        unsigned ENABLE_COLORKEY : 1; //!< [3] Indicates that colorkey functionality is enabled for this alpha surface. Pixels found in the alpha surface colorkey range will be displayed as transparent (the PS pixel will be used).
+        unsigned ALPHA_CTRL : 2; //!< [2:1] Determines how the alpha value is constructed for this alpha surface.
+        unsigned ENABLE_COLORKEY : 1; //!< [3] Indicates that colorkey functionality is enabled for this alpha surface.
         unsigned FORMAT : 4; //!< [7:4] Indicates the input buffer format for AS.
-        unsigned ALPHA : 8; //!< [15:8] Alpha modifier used when the ALPHA_MULTIPLY or ALPHA_OVERRIDE values are programmed in PXP_AS_CTRL[ALPHA_CTRL]. The output alpha value will either be replaced (ALPHA_OVERRIDE) or scaled (ALPHA_MULTIPLY) when selected.
-        unsigned ROP : 4; //!< [19:16] Indicates a raster operation to perform when enabled. Raster operations are enabled through the ALPHA_CTRL field.
-        unsigned ALPHA_INVERT : 1; //!< [20] Setting this bit to logic 0 will not alter the alpha value. A logic 1 will invert the alpha value and apply (1-alpha) for image composition.
+        unsigned ALPHA : 8; //!< [15:8] Alpha modifier used when the ALPHA_MULTIPLY or ALPHA_OVERRIDE values are programmed in PXP_AS_CTRL[ALPHA_CTRL].
+        unsigned ROP : 4; //!< [19:16] Indicates a raster operation to perform when enabled.
+        unsigned ALPHA_INVERT : 1; //!< [20] Setting this bit to logic 0 will not alter the alpha value.
         unsigned RESERVED1 : 11; //!< [31:21] Reserved, always set to zero.
     } B;
 } hw_pxp_as_ctrl_t;
@@ -2660,7 +2650,7 @@ typedef union _hw_pxp_as_clrkeylow
     reg32_t U;
     struct _hw_pxp_as_clrkeylow_bitfields
     {
-        unsigned PIXEL : 24; //!< [23:0] Low range of RGB color key applied to AS buffer. Each overlay has an independent colorkey enable.
+        unsigned PIXEL : 24; //!< [23:0] Low range of RGB color key applied to AS buffer.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved, always set to zero.
     } B;
 } hw_pxp_as_clrkeylow_t;
@@ -2726,7 +2716,7 @@ typedef union _hw_pxp_as_clrkeyhigh
     reg32_t U;
     struct _hw_pxp_as_clrkeyhigh_bitfields
     {
-        unsigned PIXEL : 24; //!< [23:0] High range of RGB color key applied to AS buffer. Each overlay has an independent colorkey enable.
+        unsigned PIXEL : 24; //!< [23:0] High range of RGB color key applied to AS buffer.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved, always set to zero.
     } B;
 } hw_pxp_as_clrkeyhigh_t;
@@ -2795,12 +2785,12 @@ typedef union _hw_pxp_csc1_coef0
     reg32_t U;
     struct _hw_pxp_csc1_coef0_bitfields
     {
-        unsigned Y_OFFSET : 9; //!< [8:0] Two's compliment amplitude offset implicit in the Y data. For YUV, this is typically 0 and for YCbCr, this is typically -16 (0x1F0)
-        unsigned UV_OFFSET : 9; //!< [17:9] Two's compliment phase offset implicit for CbCr data. Generally used for YCbCr to RGB conversion. YCbCr=0x180, YUV=0x000 (typically -128 or 0x180 to indicate normalized -0.5 to 0.5 range)
-        unsigned C0 : 11; //!< [28:18] Two's compliment Y multiplier coefficient. YUV=0x100 (1.000) YCbCr=0x12A (1.164)
+        unsigned Y_OFFSET : 9; //!< [8:0] Two's compliment amplitude offset implicit in the Y data.
+        unsigned UV_OFFSET : 9; //!< [17:9] Two's compliment phase offset implicit for CbCr data.
+        unsigned C0 : 11; //!< [28:18] Two's compliment Y multiplier coefficient.
         unsigned RESERVED0 : 1; //!< [29] Reserved, always set to zero.
-        unsigned BYPASS : 1; //!< [30] Bypass the CSC unit in the scaling engine. When set to logic 1, bypass is enabled and the output pixels will be in the YUV/YCbCr color space. When set to logic 0, the CSC unit is enabled and the pixels will be converted based on the programmed coefficients.
-        unsigned YCBCR_MODE : 1; //!< [31] Set to 1 when performing YCbCr conversion to RGB. Set to 0 when converting YUV to RGB data. This bit changes the behavior of the scaler when performing U/V scaling.
+        unsigned BYPASS : 1; //!< [30] Bypass the CSC unit in the scaling engine.
+        unsigned YCBCR_MODE : 1; //!< [31] Set to 1 when performing YCbCr conversion to RGB.
     } B;
 } hw_pxp_csc1_coef0_t;
 #endif
@@ -2947,9 +2937,9 @@ typedef union _hw_pxp_csc1_coef1
     reg32_t U;
     struct _hw_pxp_csc1_coef1_bitfields
     {
-        unsigned C4 : 11; //!< [10:0] Two's compliment Blue U/Cb multiplier coefficient. YUV=0x208 (2.032) YCbCr=0x204 (2.017)
+        unsigned C4 : 11; //!< [10:0] Two's compliment Blue U/Cb multiplier coefficient.
         unsigned RESERVED0 : 5; //!< [15:11] Reserved, always set to zero.
-        unsigned C1 : 11; //!< [26:16] Two's compliment Red V/Cr multiplier coefficient. YUV=0x123 (1.140) YCbCr=0x198 (1.596)
+        unsigned C1 : 11; //!< [26:16] Two's compliment Red V/Cr multiplier coefficient.
         unsigned RESERVED1 : 5; //!< [31:27] Reserved, always set to zero.
     } B;
 } hw_pxp_csc1_coef1_t;
@@ -3037,9 +3027,9 @@ typedef union _hw_pxp_csc1_coef2
     reg32_t U;
     struct _hw_pxp_csc1_coef2_bitfields
     {
-        unsigned C3 : 11; //!< [10:0] Two's complement Green U/Cb multiplier coefficient. YUV=0x79C (-0.394) YCbCr=0x79C (-0.392)
+        unsigned C3 : 11; //!< [10:0] Two's complement Green U/Cb multiplier coefficient.
         unsigned RESERVED0 : 5; //!< [15:11] Reserved, always set to zero.
-        unsigned C2 : 11; //!< [26:16] Two's complement Green V/Cr multiplier coefficient. YUV=0x76B (-0.581) YCbCr=0x730 (-0.813)
+        unsigned C2 : 11; //!< [26:16] Two's complement Green V/Cr multiplier coefficient.
         unsigned RESERVED1 : 5; //!< [31:27] Reserved, always set to zero.
     } B;
 } hw_pxp_csc1_coef2_t;
@@ -3125,7 +3115,7 @@ typedef union _hw_pxp_csc2_ctrl
     reg32_t U;
     struct _hw_pxp_csc2_ctrl_bitfields
     {
-        unsigned BYPASS : 1; //!< [0] This bit controls whether the pixels entering the CSC2 unit get converted or not. When BYPASS is set, no operations occur on the pixels. When BYPASS is cleared, the selected CSC operation takes place.
+        unsigned BYPASS : 1; //!< [0] This bit controls whether the pixels entering the CSC2 unit get converted or not.
         unsigned CSC_MODE : 2; //!< [2:1] This field controls how the CSC unit operates on pixels when the CSC is not bypassed.
         unsigned RESERVED0 : 29; //!< [31:3] Reserved, always set to zero.
     } B;
@@ -3218,9 +3208,9 @@ typedef union _hw_pxp_csc2_coef0
     reg32_t U;
     struct _hw_pxp_csc2_coef0_bitfields
     {
-        unsigned A1 : 11; //!< [10:0] Two's complement coefficient offset. This coefficient has a sign bit, 2 bits integer, and 8 bits of fraction as ###.####_####.
+        unsigned A1 : 11; //!< [10:0] Two's complement coefficient offset.
         unsigned RESERVED0 : 5; //!< [15:11] Reserved, always set to zero.
-        unsigned A2 : 11; //!< [26:16] Two's complement coefficient offset. This coefficient has a sign bit, 2 bits integer, and 8 bits of fraction as ###.####_####.
+        unsigned A2 : 11; //!< [26:16] Two's complement coefficient offset.
         unsigned RESERVED1 : 5; //!< [31:27] Reserved, always set to zero.
     } B;
 } hw_pxp_csc2_coef0_t;
@@ -3301,9 +3291,9 @@ typedef union _hw_pxp_csc2_coef1
     reg32_t U;
     struct _hw_pxp_csc2_coef1_bitfields
     {
-        unsigned A3 : 11; //!< [10:0] Two's complement coefficient offset. This coefficient has a sign bit, 2 bits integer, and 8 bits of fraction as ###.####_####.
+        unsigned A3 : 11; //!< [10:0] Two's complement coefficient offset.
         unsigned RESERVED0 : 5; //!< [15:11] Reserved, always set to zero.
-        unsigned B1 : 11; //!< [26:16] Two's complement coefficient offset. This coefficient has a sign bit, 2 bits integer, and 8 bits of fraction as ###.####_####.
+        unsigned B1 : 11; //!< [26:16] Two's complement coefficient offset.
         unsigned RESERVED1 : 5; //!< [31:27] Reserved, always set to zero.
     } B;
 } hw_pxp_csc2_coef1_t;
@@ -3384,9 +3374,9 @@ typedef union _hw_pxp_csc2_coef2
     reg32_t U;
     struct _hw_pxp_csc2_coef2_bitfields
     {
-        unsigned B2 : 11; //!< [10:0] Two's complement coefficient offset. This coefficient has a sign bit, 2 bits integer, and 8 bits of fraction as ###.####_####.
+        unsigned B2 : 11; //!< [10:0] Two's complement coefficient offset.
         unsigned RESERVED0 : 5; //!< [15:11] Reserved, always set to zero.
-        unsigned B3 : 11; //!< [26:16] Two's complement coefficient offset. This coefficient has a sign bit, 2 bits integer, and 8 bits of fraction as ###.####_####.
+        unsigned B3 : 11; //!< [26:16] Two's complement coefficient offset.
         unsigned RESERVED1 : 5; //!< [31:27] Reserved, always set to zero.
     } B;
 } hw_pxp_csc2_coef2_t;
@@ -3467,9 +3457,9 @@ typedef union _hw_pxp_csc2_coef3
     reg32_t U;
     struct _hw_pxp_csc2_coef3_bitfields
     {
-        unsigned C1 : 11; //!< [10:0] Two's complement coefficient offset. This coefficient has a sign bit, 2 bits integer, and 8 bits of fraction as ###.####_####.
+        unsigned C1 : 11; //!< [10:0] Two's complement coefficient offset.
         unsigned RESERVED0 : 5; //!< [15:11] Reserved, always set to zero.
-        unsigned C2 : 11; //!< [26:16] Two's complement coefficient offset. This coefficient has a sign bit, 2 bits integer, and 8 bits of fraction as ###.####_####.
+        unsigned C2 : 11; //!< [26:16] Two's complement coefficient offset.
         unsigned RESERVED1 : 5; //!< [31:27] Reserved, always set to zero.
     } B;
 } hw_pxp_csc2_coef3_t;
@@ -3550,7 +3540,7 @@ typedef union _hw_pxp_csc2_coef4
     reg32_t U;
     struct _hw_pxp_csc2_coef4_bitfields
     {
-        unsigned C3 : 11; //!< [10:0] Two's complement coefficient offset. This coefficient has a sign bit, 2 bits integer, and 8 bits of fraction as ###.####_####.
+        unsigned C3 : 11; //!< [10:0] Two's complement coefficient offset.
         unsigned RESERVED0 : 5; //!< [15:11] Reserved, always set to zero.
         unsigned D1 : 9; //!< [24:16] Two's complement coefficient integer offset to be added.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved, always set to zero.
@@ -3723,17 +3713,17 @@ typedef union _hw_pxp_lut_ctrl
     reg32_t U;
     struct _hw_pxp_lut_ctrl_bitfields
     {
-        unsigned DMA_START : 1; //!< [0] Setting this bit will result in the DMA operation to load the PXP LUT memory based on PXP_LUT_ADDR_NUM_BYTES, PXP_LUT_ADDR_ADDR, and PXP_LUT_MEM_ADDR. This bit will automatically reset when set to a logic 1. Note: The LOOKUP_MODE must not be set to CACHE_RGB565 when starting and performing DMA transfers.
+        unsigned DMA_START : 1; //!< [0] Setting this bit will result in the DMA operation to load the PXP LUT memory based on PXP_LUT_ADDR_NUM_BYTES, PXP_LUT_ADDR_ADDR, and PXP_LUT_MEM_ADDR.
         unsigned RESERVED0 : 7; //!< [7:1] Reserved, always set to zero.
-        unsigned INVALID : 1; //!< [8] Invalidate the cache LRU and valid bits. This bit will automatically reset when set to a logic 1.
-        unsigned LRU_UPD : 1; //!< [9] Least Recently Used Policy Update Control: 1=> block LRU update for hit after miss. 0=> update LRU for all hits including hit after miss.
-        unsigned SEL_8KB : 1; //!< [10] Selects which 8KB bank of memory to use for direct 12bpp lookup modes. Logic 0 indicates first 8KB, logic 1 indicates second 8KB. Two direct LUT arrays can be stored and one can be selected for a given PXP operation.
+        unsigned INVALID : 1; //!< [8] Invalidate the cache LRU and valid bits.
+        unsigned LRU_UPD : 1; //!< [9] Least Recently Used Policy Update Control: 1=> block LRU update for hit after miss.
+        unsigned SEL_8KB : 1; //!< [10] Selects which 8KB bank of memory to use for direct 12bpp lookup modes.
         unsigned RESERVED1 : 5; //!< [15:11] Reserved, always set to zero.
-        unsigned OUT_MODE : 2; //!< [17:16] Select the output mode of operation for the LUT resource. There are four bytes [3-0] in the data path at the output of the LUT resource. Byte lane 3 is always bypassed and usually contains an alpha value. The LUT can be programmed to transform bytes 2,1,0 according to the options available in this field.
+        unsigned OUT_MODE : 2; //!< [17:16] Select the output mode of operation for the LUT resource.
         unsigned RESERVED2 : 6; //!< [23:18] Reserved, always set to zero.
-        unsigned LOOKUP_MODE : 2; //!< [25:24] Configure the input address for the 16KB LUT memory. The address into the LUT uses different parts of the pixel data path bytes. The data path is defined as three bytes, conceptually as RGB/YUV/YCbCr[23:0]. Also referred to as R/Y[7:0],G/U[7:0],B/V[7:0]
+        unsigned LOOKUP_MODE : 2; //!< [25:24] Configure the input address for the 16KB LUT memory.
         unsigned RESERVED3 : 5; //!< [30:26] Reserved, always set to zero.
-        unsigned BYPASS : 1; //!< [31] Setting this bit will bypass the LUT memory resource completely. No pixel transfermations will occur at this stage of the PXP pixel rpocessing pipeline.
+        unsigned BYPASS : 1; //!< [31] Setting this bit will bypass the LUT memory resource completely.
     } B;
 } hw_pxp_lut_ctrl_t;
 #endif
@@ -3951,9 +3941,9 @@ typedef union _hw_pxp_lut_addr
     reg32_t U;
     struct _hw_pxp_lut_addr_bitfields
     {
-        unsigned ADDR : 14; //!< [13:0] LUT indexed address pointer. This address into the LUT memory is always four byte aligned for PIO access, and eight byte aligned for DMA access. The least two significant bits are not used to drive the LUT memory array. For PIO LUT access, when the LUT data register is written, the contents of the LUT at the address specified by this address field will be loaded with a 32-bit DWORD. This address pointer will be incremented after the LUT data is written. This will provide recursive writes to the LUT data register to initialize the entire LUT array with recursive writes to the LUT data register. For DMA access, this register indicates the LUT memory address of the 8 byte QWORD to be loaded. When using the NUM_BYTES field to load more than 8 bytes, the register should be programmed with the first LUT memory location to be filled and each load of the LUT memory will increment this address field until NUM_BYTES has been loaded.
+        unsigned ADDR : 14; //!< [13:0] LUT indexed address pointer.
         unsigned RESERVED0 : 2; //!< [15:14] Reserved, always set to zero.
-        unsigned NUM_BYTES : 15; //!< [30:16] Indicates the number of bytes to load via a DMA operation. This field must be divisable by 8 and the least significant 3 bits must be 0. The value 8 indicates load 8 bytes from the external address indicated by PXP_LUT_MEM_ADDR to the LUT memory location indicated by PXP_LUT_CTRL_ADDR.
+        unsigned NUM_BYTES : 15; //!< [30:16] Indicates the number of bytes to load via a DMA operation.
         unsigned RESERVED1 : 1; //!< [31] Reserved, always set to zero.
     } B;
 } hw_pxp_lut_addr_t;
@@ -4105,7 +4095,7 @@ typedef union _hw_pxp_lut_extmem
     reg32_t U;
     struct _hw_pxp_lut_extmem_bitfields
     {
-        unsigned ADDR : 32; //!< [31:0] This register contains the external memory address used for LUT memory operation. For DMA LUT memory loads, this is the base address from which data will be sourced to store into the LUT memory array. For Cached LUT memory pixel transformations, this register will store the base address of the full 64K pixel LUT translation table.
+        unsigned ADDR : 32; //!< [31:0] This register contains the external memory address used for LUT memory operation.
     } B;
 } hw_pxp_lut_extmem_t;
 #endif
@@ -4172,7 +4162,7 @@ typedef union _hw_pxp_cfa
     reg32_t U;
     struct _hw_pxp_cfa_bitfields
     {
-        unsigned DATA : 32; //!< [31:0] This register contains the Color Filter Array pattern for decimation of RGBW4444 16 bit pixels to individual R, G, B, W values. The pattern represents a replicated 4x4 color filter array for the entire output frame buffer.
+        unsigned DATA : 32; //!< [31:0] This register contains the Color Filter Array pattern for decimation of RGBW4444 16 bit pixels to individual R, G, B, W values.
     } B;
 } hw_pxp_cfa_t;
 #endif
@@ -4233,8 +4223,8 @@ typedef union _hw_pxp_hist_ctrl
     reg32_t U;
     struct _hw_pxp_hist_ctrl_bitfields
     {
-        unsigned STATUS : 4; //!< [3:0] Indicates which histogram matched the processed bitmap. Bit[0] indicates that the bitmap pixels were fully contained within the HIST2 (black / white) histogram. Bit[1] indicates that the bitmap pixels were fully contained within the HIST4 (2-bit grayscale) histogram. Bit[2] indicates that the bitmap pixels were fully contained within the HIST8 (3-bit grayscale) histogram. Bit[3] indicates that the bitmap pixels were fully contained within the HIST16 (4-bit grayscale) histogram.
-        unsigned PANEL_MODE : 2; //!< [5:4] Specifies the EPDC panel grayscale depth. This value is used to specify the number of bits used in comparisons when matching pixels to histogram bins. All comparator values MUST be programmed such that their bit width is consistent with the value of this register field. For instance, if GRAY16 is selected, comparator values must be in the range of 0x0-0xF.
+        unsigned STATUS : 4; //!< [3:0] Indicates which histogram matched the processed bitmap.
+        unsigned PANEL_MODE : 2; //!< [5:4] Specifies the EPDC panel grayscale depth.
         unsigned RESERVED0 : 26; //!< [31:6] Reserved, always set to zero.
     } B;
 } hw_pxp_hist_ctrl_t;
@@ -5484,10 +5474,10 @@ typedef union _hw_pxp_power
  * then proceed with rendering the next frame of data. Software may cancel the reload operation by
  * issuing a CLEAR operation to this register. SET and TOGGLE operations should not be used when
  * addressing this register. All registers will be reloaded with the exception of the following:
- * STAT, CSCCOEFn, NEXT , VERSION . All other registers will be loaded in the order they appear in
- * the register map. Once the pointer's contents have been loaded into the PXP's registers, the
- * NEXT_IRQ interrupt will be issued (see the PXP_STATUS register).   EXAMPLE   // create register
- * command structure in memory u32* pxp_commands0[48], pxp_commands1; u32 rc; // initialize control
+ * STAT, CSCCOEFn, NEXT. All other registers will be loaded in the order they appear in the register
+ * map. Once the pointer's contents have been loaded into the PXP's registers, the NEXT_IRQ
+ * interrupt will be issued (see the PXP_STATUS register).   EXAMPLE   // create register command
+ * structure in memory u32* pxp_commands0[48], pxp_commands1; u32 rc; // initialize control
  * structure for frame 0 pxp_commands0[0] = ...; // CTRL pxp_commands0[1] = ...; // OUT Buffer ...
  * pxp_commands0[47] = ..; // Overlay7 param2 // initialize control structure for frame 1
  * pxp_commands1[0] = ...; // CTRL pxp_commands1[1] = ...; // OUT Buffer ... pxp_commands1[47] = ..;
@@ -5501,9 +5491,9 @@ typedef union _hw_pxp_next
     reg32_t U;
     struct _hw_pxp_next_bitfields
     {
-        unsigned ENABLED : 1; //!< [0] Indicates that the "next frame" functionality has been enabled. This bit reflects the status of the hardware semaphore indicating that a reload operation is pending at the end of the current frame.
+        unsigned ENABLED : 1; //!< [0] Indicates that the "next frame" functionality has been enabled.
         unsigned RESERVED0 : 1; //!< [1] Reserved, always set to zero.
-        unsigned POINTER : 30; //!< [31:2] A pointer to a data structure containing register values to be used when processing the next frame. The pointer must be 32-bit aligned and should reside in on-chip or off-chip memory.
+        unsigned POINTER : 30; //!< [31:2] A pointer to a data structure containing register values to be used when processing the next frame.
     } B;
 } hw_pxp_next_t;
 #endif

@@ -131,16 +131,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_SDMAARM_MC0PTR - ARM platform Channel 0 Pointer
@@ -159,7 +149,7 @@ typedef union _hw_sdmaarm_mc0ptr
     reg32_t U;
     struct _hw_sdmaarm_mc0ptr_bitfields
     {
-        unsigned MC0PTR : 32; //!< [31:0] Channel 0 Pointer contains the 32-bit address, in ARM platform memory, of channel 0 control block (the boot channel). Appendix A fully describes the SDMA Application Programming Interface (API). The ARM platform has a read/write access and the SDMA has a read-only access.
+        unsigned MC0PTR : 32; //!< [31:0] Channel 0 Pointer contains the 32-bit address, in ARM platform memory, of channel 0 control block (the boot channel).
     } B;
 } hw_sdmaarm_mc0ptr_t;
 #endif
@@ -220,7 +210,7 @@ typedef union _hw_sdmaarm_intr
     reg32_t U;
     struct _hw_sdmaarm_intr_bitfields
     {
-        unsigned HI : 32; //!< [31:0] The ARM platform Interrupts register contains the 32 HI[i] bits. If any bit is set, it will cause an interrupt to the ARM platform. This register is a "write-ones" register to the ARM platform. When the ARM platform sets a bit in this register the corresponding HI[i] bit is cleared. The interrupt service routine should clear individual channel bits when their interrupts are serviced, failure to do so will cause continuous interrupts. The SDMA is responsible for setting the HI[i] bit corresponding to the current channel when the corresponding done instruction is executed.
+        unsigned HI : 32; //!< [31:0] The ARM platform Interrupts register contains the 32 HI[i] bits.
     } B;
 } hw_sdmaarm_intr_t;
 #endif
@@ -285,7 +275,7 @@ typedef union _hw_sdmaarm_stop_stat
     reg32_t U;
     struct _hw_sdmaarm_stop_stat_bitfields
     {
-        unsigned HE : 32; //!< [31:0] This 32-bit register gives access to the ARM platform Enable bits. There is one bit for every channel. This register is a "write-ones" register to the ARM platform. When the ARM platform writes 1 in bit i of this register, it clears the HE[i] and HSTART[i] bits. Reading this register yields the current state of the HE[i] bits.
+        unsigned HE : 32; //!< [31:0] This 32-bit register gives access to the ARM platform Enable bits.
     } B;
 } hw_sdmaarm_stop_stat_t;
 #endif
@@ -347,7 +337,7 @@ typedef union _hw_sdmaarm_hstart
     reg32_t U;
     struct _hw_sdmaarm_hstart_bitfields
     {
-        unsigned HSTART : 32; //!< [31:0] The HSTART/HE registers are 32 bits wide with one bit for every channel. When a bit is written to 1, it enables the corresponding channel. Two physical registers are accessed with that address (HSTART and HE), which enables the ARM platform to trigger a channel a second time before the first trigger is processed. This register is a "write-ones" register to the ARM platform. Neither HSTART[i] bit can be set while the corresponding HE[i] bit is cleared. When the ARM platform tries to set the HSTART[i] bit by writing a one (if the corresponding HE[i] bit is clear), the bit in the HSTART[i] register will remain cleared and the HE[i] bit will be set. If the corresponding HE[i] bit was already set, the HSTART[i] bit will be set. The next time the SDMA channel i attempts to clear the HE[i] bit by means of a done instruction, the bit in the HSTART[i] register will be cleared and the HE[i] bit will take the old value of the HSTART[i] bit. Reading this register yields the current state of the HSTART[i] bits. This mechanism enables the ARM platform to pipeline two HSTART commands per channel.
+        unsigned HSTART : 32; //!< [31:0] The HSTART/HE registers are 32 bits wide with one bit for every channel.
     } B;
 } hw_sdmaarm_hstart_t;
 #endif
@@ -417,7 +407,7 @@ typedef union _hw_sdmaarm_evtovr
     reg32_t U;
     struct _hw_sdmaarm_evtovr_bitfields
     {
-        unsigned EO : 32; //!< [31:0] The Channel Event Override register contains the 32 EO[i] bits. A bit set in this register causes the SDMA to ignore DMA requests when scheduling the corresponding channel.
+        unsigned EO : 32; //!< [31:0] The Channel Event Override register contains the 32 EO[i] bits.
     } B;
 } hw_sdmaarm_evtovr_t;
 #endif
@@ -477,7 +467,7 @@ typedef union _hw_sdmaarm_dspovr
     reg32_t U;
     struct _hw_sdmaarm_dspovr_bitfields
     {
-        unsigned DO : 32; //!< [31:0] The Channel BP Override register contains the 32 DO[i] bits. A bit set in this register causes the SDMA to ignore a BP enable condition when scheduling the corresponding channel. By default, all DO[i] bits are set to 1, which means that register can be ignored when the BP connections are not used. This register is reserved. All DO bits should be set to the reset value of 1. A setting of 0 will prevent SDMA channels from starting according to the condition described in .
+        unsigned DO : 32; //!< [31:0] This register is reserved.
     } B;
 } hw_sdmaarm_dspovr_t;
 #endif
@@ -502,11 +492,8 @@ typedef union _hw_sdmaarm_dspovr
 
 /* --- Register HW_SDMAARM_DSPOVR, field DO[31:0] (RW)
  *
- * The Channel BP Override register contains the 32 DO[i] bits. A bit set in this register causes
- * the SDMA to ignore a BP enable condition when scheduling the corresponding channel. By default,
- * all DO[i] bits are set to 1, which means that register can be ignored when the BP connections are
- * not used. This register is reserved. All DO bits should be set to the reset value of 1. A setting
- * of 0 will prevent SDMA channels from starting according to the condition described in .
+ * This register is reserved. All DO bits should be set to the reset value of 1. A setting of 0 will
+ * prevent SDMA channels from starting according to the condition described in .
  *
  * Values:
  * 0 - - Reserved
@@ -545,7 +532,7 @@ typedef union _hw_sdmaarm_hostovr
     reg32_t U;
     struct _hw_sdmaarm_hostovr_bitfields
     {
-        unsigned HO : 32; //!< [31:0] The Channel ARM platform Override register contains the 32 HO[i] bits. A bit set in this register causes the SDMA to ignore the ARM platform enable bit (HE) when scheduling the corresponding channel.
+        unsigned HO : 32; //!< [31:0] The Channel ARM platform Override register contains the 32 HO[i] bits.
     } B;
 } hw_sdmaarm_hostovr_t;
 #endif
@@ -606,7 +593,7 @@ typedef union _hw_sdmaarm_evtpend
     reg32_t U;
     struct _hw_sdmaarm_evtpend_bitfields
     {
-        unsigned EP : 32; //!< [31:0] The Channel Event Pending register contains the 32 EP[i] bits. Reading this register enables the ARM platform to determine what channels are pending after the reception of a DMA request. Setting a bit in this register causes the SDMA to reevaluate scheduling as if a DMA request mapped on this channel had occurred. This is useful for starting up channels, so that initialization is done before awaiting the first request. The scheduler can also set bits in the EVTPEND register according to the received DMA requests. The EP[i] bit may be cleared by the done instruction when running the channel i script. This a "write-ones" mechanism: Writing a '0' does not clear the corresponding bit.
+        unsigned EP : 32; //!< [31:0] The Channel Event Pending register contains the 32 EP[i] bits.
     } B;
 } hw_sdmaarm_evtpend_t;
 #endif
@@ -672,8 +659,8 @@ typedef union _hw_sdmaarm_reset
     reg32_t U;
     struct _hw_sdmaarm_reset_bitfields
     {
-        unsigned RESET : 1; //!< [0] When set, this bit causes the SDMA to be held in a software reset. The internal reset signal is held low 16 cycles; the RESET bit is automatically cleared when the internal reset signal rises.
-        unsigned RESCHED : 1; //!< [1] When set, this bit forces the SDMA to reschedule as if a script had executed a done instruction. This enables the ARM platform to recover from a runaway script on a channel by clearing its HE[i] bit via the STOP register, and then forcing a reschedule via the RESCHED bit. The RESCHED bit is cleared when the context switch starts.
+        unsigned RESET : 1; //!< [0] When set, this bit causes the SDMA to be held in a software reset.
+        unsigned RESCHED : 1; //!< [1] When set, this bit forces the SDMA to reschedule as if a script had executed a done instruction.
         unsigned RESERVED0 : 30; //!< [31:2] Reserved
     } B;
 } hw_sdmaarm_reset_t;
@@ -736,7 +723,7 @@ typedef union _hw_sdmaarm_evterr
     reg32_t U;
     struct _hw_sdmaarm_evterr_bitfields
     {
-        unsigned CHNERR : 32; //!< [31:0] This register is used by the SDMA to warn the ARM platform when an incoming DMA request was detected and it triggers a channel that is already pending or being serviced. This probably means there is an overflow of data for that channel. An interrupt is sent to the ARM platform if the corresponding channel bit is set in the INTRMASK register. This is a "write-ones" register for the scheduler. It is only able to set the flags. The flags are cleared when the register is read by the ARM platform or during SDMA reset. The CHNERR[i] bit is set when a DMA request that triggers channel i is received through the corresponding input pins and the EP[i] bit is already set; the EVTERR[i] bit is unaffected if the ARM platform tries to set the EP[i] bit, whereas, that EP[i] bit is already set.
+        unsigned CHNERR : 32; //!< [31:0] This register is used by the SDMA to warn the ARM platform when an incoming DMA request was detected and it triggers a channel that is already pending or being serviced.
     } B;
 } hw_sdmaarm_evterr_t;
 #endif
@@ -791,7 +778,7 @@ typedef union _hw_sdmaarm_intrmask
     reg32_t U;
     struct _hw_sdmaarm_intrmask_bitfields
     {
-        unsigned HIMASK : 32; //!< [31:0] The Interrupt Mask Register contains 32 interrupt generation mask bits. If bit HIMASK[i] is set, the HI[i] bit is set and an interrupt is sent to the ARM platform when a DMA request error is detected on channel i (for example, EVTERR[i] is set).
+        unsigned HIMASK : 32; //!< [31:0] The Interrupt Mask Register contains 32 interrupt generation mask bits.
     } B;
 } hw_sdmaarm_intrmask_t;
 #endif
@@ -852,10 +839,10 @@ typedef union _hw_sdmaarm_psw
     reg32_t U;
     struct _hw_sdmaarm_psw_bitfields
     {
-        unsigned CCR : 4; //!< [3:0] The Current Channel Register indicates the number of the channel that is being executed by the SDMA. SDMA. In the case that the SDMA has finished running the channel and has entered sleep state, CCR will indicate the previous running channel.
-        unsigned CCP : 4; //!< [7:4] The Current Channel Priority indicates the priority of the current active channel. When the priority is 0, no channel is running: The SDMA is idle and the CCR value has no meaning. In the case that the SDMA has finished running the channel and has entered sleep state, CCP will indicate the priority of previous running channel.
+        unsigned CCR : 4; //!< [3:0] The Current Channel Register indicates the number of the channel that is being executed by the SDMA.
+        unsigned CCP : 4; //!< [7:4] The Current Channel Priority indicates the priority of the current active channel.
         unsigned NCR : 5; //!< [12:8] The Next Channel Register indicates the number of the next scheduled pending channel with the highest priority.
-        unsigned NCP : 3; //!< [15:13] The Next Channel Priority gives the next pending channel priority. When the priority is 0, it means there is no pending channel and the NCR value has no meaning.
+        unsigned NCP : 3; //!< [15:13] The Next Channel Priority gives the next pending channel priority.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmaarm_psw_t;
@@ -953,7 +940,7 @@ typedef union _hw_sdmaarm_evterrdbg
     reg32_t U;
     struct _hw_sdmaarm_evterrdbg_bitfields
     {
-        unsigned CHNERR : 32; //!< [31:0] This register is the same as EVTERR, except reading it does not clear its contents. This address is meant to be used in debug mode. The ARM platform OnCE may check this register value without modifying it.
+        unsigned CHNERR : 32; //!< [31:0] This register is the same as EVTERR, except reading it does not clear its contents.
     } B;
 } hw_sdmaarm_evterrdbg_t;
 #endif
@@ -1002,9 +989,9 @@ typedef union _hw_sdmaarm_config
     reg32_t U;
     struct _hw_sdmaarm_config_bitfields
     {
-        unsigned CSM : 2; //!< [1:0] Selects the Context Switch Mode. The ARM platform has a read/write access. The SDMA cannot modify that register. The value at reset is 3, which selects the dynamic context switch by default. That register can be modified at anytime but the new context switch configuration will only be taken into account at the start of the next restore phase. NOTE: The first call to SDMA's channel 0 Bootload script after reset should use static context switch mode to ensure the context RAM for channel 0 is initialized in the channel SAVE Phase. After Channel 0 is run once, then any of the dynamic context modes can be used.
+        unsigned CSM : 2; //!< [1:0] Selects the Context Switch Mode.
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
-        unsigned ACR : 1; //!< [4] ARM platform DMA / SDMA Core Clock Ratio. Selects the clock ratio between ARM platform DMA interfaces (burst DMA and burst DMA2 and peripheral DMA ) and the internal SDMA core clock. The frequency selection is determined separately by the chip clock controller. This bit has to match the configuration of the chip clock controller that generates the clocks used in the SDMA.
+        unsigned ACR : 1; //!< [4] ARM platform DMA / SDMA Core Clock Ratio.
         unsigned RESERVED1 : 6; //!< [10:5] Reserved
         unsigned RTDOBS : 1; //!< [11] Indicates if Real-Time Debug pins are used: They do not toggle by default in order to reduce power consumption.
         unsigned DSPDMA : 1; //!< [12] This bit's function is reserved and should be configured as zero.
@@ -1066,9 +1053,9 @@ typedef union _hw_sdmaarm_config
 /* --- Register HW_SDMAARM_CONFIG, field ACR[4] (RW)
  *
  * ARM platform DMA / SDMA Core Clock Ratio. Selects the clock ratio between ARM platform DMA
- * interfaces (burst DMA and burst DMA2 and peripheral DMA ) and the internal SDMA core clock. The
- * frequency selection is determined separately by the chip clock controller. This bit has to match
- * the configuration of the chip clock controller that generates the clocks used in the SDMA.
+ * interfaces (burst DMA and peripheral DMA ) and the internal SDMA core clock. The frequency
+ * selection is determined separately by the chip clock controller. This bit has to match the
+ * configuration of the chip clock controller that generates the clocks used in the SDMA.
  *
  * Values:
  * 0 - ARM platform DMA interface frequency equals twice core frequency
@@ -1156,8 +1143,8 @@ typedef union _hw_sdmaarm_sdma_lock
     reg32_t U;
     struct _hw_sdmaarm_sdma_lock_bitfields
     {
-        unsigned LOCK : 1; //!< [0] The LOCK bit is used to restrict access to update SDMA script memory through ROM channel zero scripts and through the OnCE interface under ARM platform control. The LOCK bit is set: The SDMA_LOCK, ONCE_ENB,CH0ADDR, and ILLINSTADDR registers cannot be written. These registers can be read, but writes are ignored. SDMA software executing out of ROM or RAM may check the LOCK bit in the LOCK register to determine if certain operations are allowed, such as up-loading new scripts. Once the LOCK bit is set to 1, only a reset can clear it. The LOCK bit is cleared by a hardware reset. LOCK is cleared by a software reset only if SRESET_LOCK_CLR is set.
-        unsigned SRESET_LOCK_CLR : 1; //!< [1] The SRESET_LOCK_CLR bit determine if the LOCK bit is cleared on a software reset triggered by writing to the RESET register. This bit cannot be changed if LOCK=1. SREST_LOCK_CLR is cleared by conditions that clear the LOCK bit.
+        unsigned LOCK : 1; //!< [0] The LOCK bit is used to restrict access to update SDMA script memory through ROM channel zero scripts and through the OnCE interface under ARM platform control.
+        unsigned SRESET_LOCK_CLR : 1; //!< [1] The SRESET_LOCK_CLR bit determine if the LOCK bit is cleared on a software reset triggered by writing to the RESET register.
         unsigned RESERVED0 : 30; //!< [31:2] Reserved
     } B;
 } hw_sdmaarm_sdma_lock_t;
@@ -1254,7 +1241,7 @@ typedef union _hw_sdmaarm_once_enb
     reg32_t U;
     struct _hw_sdmaarm_once_enb_bitfields
     {
-        unsigned ENB : 1; //!< [0] The OnCE Enable register selects the OnCE control source: When cleared (0), the OnCE registers are accessed through the JTAG interface; when set (1), the OnCE registers may be accessed by the ARM platform through the addresses described, as follows. After reset, the OnCE registers are accessed through the JTAG interface. Writing a 1 to ENB enables the ARM platform to access the ONCE_* as any other SDMA control register. When cleared (0), all the ONCE_xxx registers cannot be written. The value of ENB cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
+        unsigned ENB : 1; //!< [0] The OnCE Enable register selects the OnCE control source: When cleared (0), the OnCE registers are accessed through the JTAG interface; when set (1), the OnCE registers may be accessed by the ARM platform through the addresses described, as follows.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_sdmaarm_once_enb_t;
@@ -1319,7 +1306,7 @@ typedef union _hw_sdmaarm_once_data
     reg32_t U;
     struct _hw_sdmaarm_once_data_bitfields
     {
-        unsigned DATA : 32; //!< [31:0] Data register of the OnCE JTAG controller. Refer to for information on this register.
+        unsigned DATA : 32; //!< [31:0] Data register of the OnCE JTAG controller.
     } B;
 } hw_sdmaarm_once_data_t;
 #endif
@@ -1378,7 +1365,7 @@ typedef union _hw_sdmaarm_once_instr
     reg32_t U;
     struct _hw_sdmaarm_once_instr_bitfields
     {
-        unsigned INSTR : 16; //!< [15:0] Instruction register of the OnCE JTAG controller. Refer to for information on this register.
+        unsigned INSTR : 16; //!< [15:0] Instruction register of the OnCE JTAG controller.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmaarm_once_instr_t;
@@ -1438,14 +1425,14 @@ typedef union _hw_sdmaarm_once_stat
     reg32_t U;
     struct _hw_sdmaarm_once_stat_bitfields
     {
-        unsigned ECDR : 3; //!< [2:0] Event Cell Debug Request. If the debug request comes from the event cell, the reason for entering debug mode is given by the EDR bits. If all three bits of the EDR are reset, then it did not generate any debug request. If the cell did generate a debug request, then at least one of the EDR bits is set (the meaning of the encoding is given below). The encoding of the EDR bits is useful to find out more precisely why the debug request was generated. A debug request from an event cell is generated for a specific combination of the addra_cond, addrb_cond, and data_cond conditions. The value of those fields is given by the EDR bits.
+        unsigned ECDR : 3; //!< [2:0] Event Cell Debug Request.
         unsigned RESERVED0 : 4; //!< [6:3] Reserved
         unsigned MST : 1; //!< [7] This flag is raised when the OnCE is controlled from the ARM platform peripheral interface.
         unsigned SWB : 1; //!< [8] This flag is raised when the SDMA has entered debug mode after a software breakpoint.
         unsigned ODR : 1; //!< [9] This flag is raised when the SDMA has entered debug mode after a OnCE debug request.
         unsigned EDR : 1; //!< [10] This flag is raised when the SDMA has entered debug mode after an external debug request.
-        unsigned RCV : 1; //!< [11] After each write access to the real time buffer (RTB), the RCV bit is set. This bit is cleared after execution of an rbuffer command and on a JTAG reset.
-        unsigned PST : 4; //!< [15:12] The Processor Status bits reflect the state of the SDMA RISC engine. Its states are as follows: The "Program" state is the usual instruction execution cycle. The "Data" state is inserted when there are wait-states during a load or a store on the data bus (ld or st). The "Change of Flow" state is the second cycle of any instruction that breaks the sequence of instructions (jumps and channel switching instructions). The "Change of Flow in Loop" state is used when an error causes a hardware loop exit. The "Debug" state means the SDMA is in debug mode. The "Functional Unit" state is inserted when there are wait-states during a load or a store on the functional units bus (ldf or stf). In "Sleep" modes, no script is running (this is the RISC engine idle state). The "after Reset" is slightly different because no context restoring phase will happen when a channel is triggered: The script located at address 0 will be executed (boot operation). The "in Sleep" states are the same as above except they do not have any corresponding channel: They are used when entering debug mode after reset. The reason is that it is necessary to return to the "Sleep after Reset" state when leaving debug mode.
+        unsigned RCV : 1; //!< [11] After each write access to the real time buffer (RTB), the RCV bit is set.
+        unsigned PST : 4; //!< [15:12] The Processor Status bits reflect the state of the SDMA RISC engine.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmaarm_once_stat_t;
@@ -1608,7 +1595,7 @@ typedef union _hw_sdmaarm_once_cmd
     reg32_t U;
     struct _hw_sdmaarm_once_cmd_bitfields
     {
-        unsigned CMD : 4; //!< [3:0] Writing to this register will cause the OnCE to execute the command that is written. When needed, the ONCE_DATA and ONCE_INSTR registers should be loaded with the correct value before writing the command to that register. For a list of the OnCE commands and their usage, see . 7-15 reserved
+        unsigned CMD : 4; //!< [3:0] Writing to this register will cause the OnCE to execute the command that is written.
         unsigned RESERVED0 : 28; //!< [31:4] Reserved
     } B;
 } hw_sdmaarm_once_cmd_t;
@@ -1680,7 +1667,7 @@ typedef union _hw_sdmaarm_illinstaddr
     reg32_t U;
     struct _hw_sdmaarm_illinstaddr_bitfields
     {
-        unsigned ILLINSTADDR : 14; //!< [13:0] The Illegal Instruction Trap Address is the address where the SDMA jumps when an illegal instruction is executed. It is 0x0001 after reset. The value of ILLINSTADDR cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
+        unsigned ILLINSTADDR : 14; //!< [13:0] The Illegal Instruction Trap Address is the address where the SDMA jumps when an illegal instruction is executed.
         unsigned RESERVED0 : 18; //!< [31:14] Reserved
     } B;
 } hw_sdmaarm_illinstaddr_t;
@@ -1742,8 +1729,8 @@ typedef union _hw_sdmaarm_chn0addr
     reg32_t U;
     struct _hw_sdmaarm_chn0addr_bitfields
     {
-        unsigned CHN0ADDR : 14; //!< [13:0] This 14-bit register is used by the boot code of the SDMA. After reset, it points to the standard boot routine in ROM (channel 0 routine). By changing this address, you can perform a boot sequence with your own routine. The very first instructions of the boot code fetch the contents of this register (it is also mapped in the SDMA memory space) and jump to the given address. The reset value is 0x0050 (decimal 80). The value of CHN0ADDR cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
-        unsigned SMSZ : 1; //!< [14] The bit 14 (Scratch Memory Size) determines if scratch memory must be available after every channel context. After reset, it is equal to 0, which defines a RAM space of 24 words for each channel. All of this area stores the channel context. By setting this bit, 32 words are reserved for every channel context, which gives eight additional words that can be used by the channel script to store any type of data. Those words are never erased by the context switching mechanism. The value of SMSZ cannot be changed if the LOCK bit in the SDMA_LOCK register is set.
+        unsigned CHN0ADDR : 14; //!< [13:0] This 14-bit register is used by the boot code of the SDMA.
+        unsigned SMSZ : 1; //!< [14] The bit 14 (Scratch Memory Size) determines if scratch memory must be available after every channel context.
         unsigned RESERVED0 : 17; //!< [31:15] Reserved
     } B;
 } hw_sdmaarm_chn0addr_t;
@@ -1837,7 +1824,7 @@ typedef union _hw_sdmaarm_evt_mirror
     reg32_t U;
     struct _hw_sdmaarm_evt_mirror_bitfields
     {
-        unsigned EVENTS : 32; //!< [31:0] This register reflects the DMA requests received by the SDMA for events 31-0. The ARM platform and the SDMA have a read-only access. There is one bit associated with each of 32 DMA request events. This information may be useful during debug of the blocks that generate the DMA requests. The EVT_MIRROR register is cleared following read access.
+        unsigned EVENTS : 32; //!< [31:0] This register reflects the DMA requests received by the SDMA for events 31-0.
     } B;
 } hw_sdmaarm_evt_mirror_t;
 #endif
@@ -1892,7 +1879,7 @@ typedef union _hw_sdmaarm_evt_mirror2
     reg32_t U;
     struct _hw_sdmaarm_evt_mirror2_bitfields
     {
-        unsigned EVENTS : 16; //!< [15:0] This register reflects the DMA requests received by the SDMA for events 47-32. The ARM platform and the SDMA have a read-only access. There is one bit associated with each of DMA request events. This information may be useful during debug of the blocks that generate the DMA requests. The EVT_MIRROR2 register is cleared following read access.
+        unsigned EVENTS : 16; //!< [15:0] This register reflects the DMA requests received by the SDMA for events 47-32.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmaarm_evt_mirror2_t;
@@ -1949,16 +1936,16 @@ typedef union _hw_sdmaarm_xtrig_conf1
     struct _hw_sdmaarm_xtrig_conf1_bitfields
     {
         unsigned NUM0 : 6; //!< [5:0] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF0 : 1; //!< [6] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned CNF0 : 1; //!< [6] Configuration of the SDMA event line number i that is connected to the cross-trigger.
         unsigned RESERVED0 : 1; //!< [7] Reserved
         unsigned NUM1 : 6; //!< [13:8] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF1 : 1; //!< [14] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned CNF1 : 1; //!< [14] Configuration of the SDMA event line number i that is connected to the cross-trigger.
         unsigned RESERVED1 : 1; //!< [15] Reserved
         unsigned NUM2 : 6; //!< [21:16] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF2 : 1; //!< [22] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned CNF2 : 1; //!< [22] Configuration of the SDMA event line number i that is connected to the cross-trigger.
         unsigned RESERVED2 : 1; //!< [23] Reserved
         unsigned NUM3 : 6; //!< [29:24] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF3 : 1; //!< [30] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by the reception of a DMA request or by the starting of a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned CNF3 : 1; //!< [30] Configuration of the SDMA event line number i that is connected to the cross-trigger.
         unsigned RESERVED3 : 1; //!< [31] Reserved
     } B;
 } hw_sdmaarm_xtrig_conf1_t;
@@ -2006,9 +1993,7 @@ typedef union _hw_sdmaarm_xtrig_conf1
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
- * channel script execution. When a pulse is generated by starting of a channel script execution, it
- * is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is
- * generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+ * channel script execution.
  *
  * Values:
  * 0 - channel
@@ -2054,9 +2039,7 @@ typedef union _hw_sdmaarm_xtrig_conf1
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
- * channel script execution. When a pulse is generated by starting of a channel script execution, it
- * is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is
- * generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+ * channel script execution.
  *
  * Values:
  * 0 - channel
@@ -2102,9 +2085,7 @@ typedef union _hw_sdmaarm_xtrig_conf1
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
- * channel script execution. When a pulse is generated by starting of a channel script execution, it
- * is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is
- * generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+ * channel script execution.
  *
  * Values:
  * 0 - channel
@@ -2150,10 +2131,7 @@ typedef union _hw_sdmaarm_xtrig_conf1
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by the reception of a DMA request or by the
- * starting of a channel script execution. When a pulse is generated by starting of a channel script
- * execution, it is in fact generated by the restore part of the context switch mechanism.
- * Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset
- * (on AP demand).
+ * starting of a channel script execution.
  *
  * Values:
  * 0 - channel
@@ -2193,16 +2171,16 @@ typedef union _hw_sdmaarm_xtrig_conf2
     struct _hw_sdmaarm_xtrig_conf2_bitfields
     {
         unsigned NUM4 : 6; //!< [5:0] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF4 : 1; //!< [6] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned CNF4 : 1; //!< [6] Configuration of the SDMA event line number i that is connected to the cross-trigger.
         unsigned RESERVED0 : 1; //!< [7] Reserved
         unsigned NUM5 : 6; //!< [13:8] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF5 : 1; //!< [14] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution . When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned CNF5 : 1; //!< [14] Configuration of the SDMA event line number i that is connected to the cross-trigger.
         unsigned RESERVED1 : 1; //!< [15] Reserved
         unsigned NUM6 : 6; //!< [21:16] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF6 : 1; //!< [22] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned CNF6 : 1; //!< [22] Configuration of the SDMA event line number i that is connected to the cross-trigger.
         unsigned RESERVED2 : 1; //!< [23] Reserved
         unsigned NUM7 : 6; //!< [29:24] Contains the number of the DMA request or channel that triggers the pulse on the cross-trigger event line number i .
-        unsigned CNF7 : 1; //!< [30] Configuration of the SDMA event line number i that is connected to the cross-trigger. It determines whether the event line pulse is generated by receiving a DMA request or by starting a channel script execution. When a pulse is generated by starting of a channel script execution, it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+        unsigned CNF7 : 1; //!< [30] Configuration of the SDMA event line number i that is connected to the cross-trigger.
         unsigned RESERVED3 : 1; //!< [31] Reserved
     } B;
 } hw_sdmaarm_xtrig_conf2_t;
@@ -2250,9 +2228,7 @@ typedef union _hw_sdmaarm_xtrig_conf2
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
- * channel script execution. When a pulse is generated by starting of a channel script execution, it
- * is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is
- * generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+ * channel script execution.
  *
  * Values:
  * 0 - channel
@@ -2298,9 +2274,7 @@ typedef union _hw_sdmaarm_xtrig_conf2
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
- * channel script execution . When a pulse is generated by starting of a channel script execution,
- * it is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse
- * is generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+ * channel script execution
  *
  * Values:
  * 0 - channel
@@ -2346,9 +2320,7 @@ typedef union _hw_sdmaarm_xtrig_conf2
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
- * channel script execution. When a pulse is generated by starting of a channel script execution, it
- * is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is
- * generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+ * channel script execution.
  *
  * Values:
  * 0 - channel
@@ -2394,9 +2366,7 @@ typedef union _hw_sdmaarm_xtrig_conf2
  *
  * Configuration of the SDMA event line number i that is connected to the cross-trigger. It
  * determines whether the event line pulse is generated by receiving a DMA request or by starting a
- * channel script execution. When a pulse is generated by starting of a channel script execution, it
- * is in fact generated by the restore part of the context switch mechanism. Therefore, no pulse is
- * generated the first time channel 0 (boot channel) is executed after reset (on AP demand).
+ * channel script execution.
  *
  * Values:
  * 0 - channel
@@ -2435,7 +2405,7 @@ typedef union _hw_sdmaarm_sdma_chnpri0
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri0_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri0_t;
@@ -2497,7 +2467,7 @@ typedef union _hw_sdmaarm_sdma_chnpri1
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri1_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri1_t;
@@ -2559,7 +2529,7 @@ typedef union _hw_sdmaarm_sdma_chnpri2
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri2_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri2_t;
@@ -2621,7 +2591,7 @@ typedef union _hw_sdmaarm_sdma_chnpri3
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri3_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri3_t;
@@ -2683,7 +2653,7 @@ typedef union _hw_sdmaarm_sdma_chnpri4
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri4_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri4_t;
@@ -2745,7 +2715,7 @@ typedef union _hw_sdmaarm_sdma_chnpri5
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri5_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri5_t;
@@ -2807,7 +2777,7 @@ typedef union _hw_sdmaarm_sdma_chnpri6
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri6_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri6_t;
@@ -2869,7 +2839,7 @@ typedef union _hw_sdmaarm_sdma_chnpri7
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri7_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri7_t;
@@ -2931,7 +2901,7 @@ typedef union _hw_sdmaarm_sdma_chnpri8
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri8_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri8_t;
@@ -2993,7 +2963,7 @@ typedef union _hw_sdmaarm_sdma_chnpri9
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri9_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri9_t;
@@ -3055,7 +3025,7 @@ typedef union _hw_sdmaarm_sdma_chnpri10
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri10_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri10_t;
@@ -3117,7 +3087,7 @@ typedef union _hw_sdmaarm_sdma_chnpri11
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri11_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri11_t;
@@ -3179,7 +3149,7 @@ typedef union _hw_sdmaarm_sdma_chnpri12
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri12_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri12_t;
@@ -3241,7 +3211,7 @@ typedef union _hw_sdmaarm_sdma_chnpri13
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri13_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri13_t;
@@ -3303,7 +3273,7 @@ typedef union _hw_sdmaarm_sdma_chnpri14
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri14_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri14_t;
@@ -3365,7 +3335,7 @@ typedef union _hw_sdmaarm_sdma_chnpri15
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri15_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri15_t;
@@ -3427,7 +3397,7 @@ typedef union _hw_sdmaarm_sdma_chnpri16
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri16_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri16_t;
@@ -3489,7 +3459,7 @@ typedef union _hw_sdmaarm_sdma_chnpri17
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri17_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri17_t;
@@ -3551,7 +3521,7 @@ typedef union _hw_sdmaarm_sdma_chnpri18
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri18_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri18_t;
@@ -3613,7 +3583,7 @@ typedef union _hw_sdmaarm_sdma_chnpri19
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri19_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri19_t;
@@ -3675,7 +3645,7 @@ typedef union _hw_sdmaarm_sdma_chnpri20
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri20_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri20_t;
@@ -3737,7 +3707,7 @@ typedef union _hw_sdmaarm_sdma_chnpri21
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri21_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri21_t;
@@ -3799,7 +3769,7 @@ typedef union _hw_sdmaarm_sdma_chnpri22
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri22_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri22_t;
@@ -3861,7 +3831,7 @@ typedef union _hw_sdmaarm_sdma_chnpri23
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri23_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri23_t;
@@ -3923,7 +3893,7 @@ typedef union _hw_sdmaarm_sdma_chnpri24
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri24_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri24_t;
@@ -3985,7 +3955,7 @@ typedef union _hw_sdmaarm_sdma_chnpri25
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri25_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri25_t;
@@ -4047,7 +4017,7 @@ typedef union _hw_sdmaarm_sdma_chnpri26
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri26_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri26_t;
@@ -4109,7 +4079,7 @@ typedef union _hw_sdmaarm_sdma_chnpri27
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri27_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri27_t;
@@ -4171,7 +4141,7 @@ typedef union _hw_sdmaarm_sdma_chnpri28
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri28_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri28_t;
@@ -4233,7 +4203,7 @@ typedef union _hw_sdmaarm_sdma_chnpri29
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri29_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri29_t;
@@ -4295,7 +4265,7 @@ typedef union _hw_sdmaarm_sdma_chnpri30
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri30_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri30_t;
@@ -4357,7 +4327,7 @@ typedef union _hw_sdmaarm_sdma_chnpri31
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnpri31_bitfields
     {
-        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n . Useful values are between 1 and 7; 0 is reserved by the SDMA hardware to determine when there is no pending channel. Reset value is 0, which prevents the channels from starting.
+        unsigned CHNPRIN : 3; //!< [2:0] This contains the priority of channel number n .
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmaarm_sdma_chnpri31_t;
@@ -4419,7 +4389,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl0
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl0_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl0_t;
 #endif
@@ -4482,7 +4452,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl1
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl1_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl1_t;
 #endif
@@ -4545,7 +4515,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl2
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl2_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl2_t;
 #endif
@@ -4608,7 +4578,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl3
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl3_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl3_t;
 #endif
@@ -4671,7 +4641,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl4
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl4_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl4_t;
 #endif
@@ -4734,7 +4704,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl5
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl5_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl5_t;
 #endif
@@ -4797,7 +4767,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl6
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl6_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl6_t;
 #endif
@@ -4860,7 +4830,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl7
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl7_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl7_t;
 #endif
@@ -4923,7 +4893,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl8
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl8_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl8_t;
 #endif
@@ -4986,7 +4956,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl9
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl9_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl9_t;
 #endif
@@ -5049,7 +5019,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl10
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl10_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl10_t;
 #endif
@@ -5112,7 +5082,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl11
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl11_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl11_t;
 #endif
@@ -5175,7 +5145,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl12
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl12_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl12_t;
 #endif
@@ -5238,7 +5208,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl13
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl13_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl13_t;
 #endif
@@ -5301,7 +5271,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl14
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl14_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl14_t;
 #endif
@@ -5364,7 +5334,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl15
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl15_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl15_t;
 #endif
@@ -5427,7 +5397,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl16
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl16_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl16_t;
 #endif
@@ -5490,7 +5460,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl17
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl17_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl17_t;
 #endif
@@ -5553,7 +5523,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl18
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl18_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl18_t;
 #endif
@@ -5616,7 +5586,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl19
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl19_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl19_t;
 #endif
@@ -5679,7 +5649,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl20
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl20_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl20_t;
 #endif
@@ -5742,7 +5712,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl21
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl21_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl21_t;
 #endif
@@ -5805,7 +5775,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl22
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl22_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl22_t;
 #endif
@@ -5868,7 +5838,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl23
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl23_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl23_t;
 #endif
@@ -5931,7 +5901,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl24
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl24_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl24_t;
 #endif
@@ -5994,7 +5964,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl25
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl25_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl25_t;
 #endif
@@ -6057,7 +6027,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl26
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl26_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl26_t;
 #endif
@@ -6120,7 +6090,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl27
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl27_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl27_t;
 #endif
@@ -6183,7 +6153,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl28
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl28_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl28_t;
 #endif
@@ -6246,7 +6216,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl29
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl29_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl29_t;
 #endif
@@ -6309,7 +6279,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl30
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl30_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl30_t;
 #endif
@@ -6372,7 +6342,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl31
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl31_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl31_t;
 #endif
@@ -6435,7 +6405,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl32
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl32_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl32_t;
 #endif
@@ -6498,7 +6468,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl33
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl33_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl33_t;
 #endif
@@ -6561,7 +6531,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl34
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl34_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl34_t;
 #endif
@@ -6624,7 +6594,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl35
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl35_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl35_t;
 #endif
@@ -6687,7 +6657,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl36
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl36_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl36_t;
 #endif
@@ -6750,7 +6720,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl37
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl37_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl37_t;
 #endif
@@ -6813,7 +6783,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl38
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl38_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl38_t;
 #endif
@@ -6876,7 +6846,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl39
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl39_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl39_t;
 #endif
@@ -6939,7 +6909,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl40
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl40_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl40_t;
 #endif
@@ -7002,7 +6972,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl41
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl41_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl41_t;
 #endif
@@ -7065,7 +7035,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl42
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl42_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl42_t;
 #endif
@@ -7128,7 +7098,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl43
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl43_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl43_t;
 #endif
@@ -7191,7 +7161,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl44
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl44_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl44_t;
 #endif
@@ -7254,7 +7224,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl45
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl45_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl45_t;
 #endif
@@ -7317,7 +7287,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl46
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl46_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl46_t;
 #endif
@@ -7380,7 +7350,7 @@ typedef union _hw_sdmaarm_sdma_chnenbl47
     reg32_t U;
     struct _hw_sdmaarm_sdma_chnenbl47_bitfields
     {
-        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n . If ENBLn[i] is set to 1, bit EP[i] will be set when the DMA request n is received. These 48 32-bit registers are physically located in a RAM, with no known reset value. It is thus essential for the ARM platform to program them before any DMA request is triggered to the SDMA, otherwise an unpredictable combination of channels may be started.
+        unsigned ENBLN : 32; //!< [31:0] This 32-bit value selects the channels that are triggered by the DMA request number n .
     } B;
 } hw_sdmaarm_sdma_chnenbl47_t;
 #endif

@@ -56,16 +56,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_ESAI_ETDR - ESAI Transmit Data Register
@@ -84,7 +74,7 @@ typedef union _hw_esai_etdr
     reg32_t U;
     struct _hw_esai_etdr_bitfields
     {
-        unsigned ETDR : 32; //!< [31:0] ESAI Transmit Data Register. Writing to this register stores the data written into the ESAI Transmit FIFO. Writing to this register when the Transmit FIFO is full causes the data written to be lost (the existing data within the FIFO is not overwritten). When multiple ESAI transmitters are enabled, the data for each transmitter must be interleaved from lowest transmitter to highest transmitter (for example, if transmitters 0, 2 and 3 are enabled then data must be written as follows: transmitter #0, transmitter #2, transmitter #3, transmitter #0, transmitter #2, transmitter #3, transmitter #0, etc). Data within the ESAI Transmit FIFO is passed to the ESAI transmit shifter registers as defined by the Transmit Word Alignment configuration bits.
+        unsigned ETDR : 32; //!< [31:0] ESAI Transmit Data Register.
     } B;
 } hw_esai_etdr_t;
 #endif
@@ -141,7 +131,7 @@ typedef union _hw_esai_erdr
     reg32_t U;
     struct _hw_esai_erdr_bitfields
     {
-        unsigned ERDR : 32; //!< [31:0] ESAI Receive Data Register. Reading this register returns the data within the ESAI Receive FIFO. Reading this register when the Receive FIFO is empty returns the last valid data word. When multiple ESAI receivers are enabled, the data for each receiver is interleaved from lowest receiver to highest receiver (for example, if receivers 0, 2 and 3 are enabled then data is returned as follows: receiver #0, receiver #2, receiver #3, receiver #0, receiver #2, receiver #3, receiver #0, etc). Data is passed from the ESAI receive shift registers to the ESAI Receive FIFO as defined by the Receiver Word Alignment configuration bits either zero or sign-extended based on the Receive Extension control bit.
+        unsigned ERDR : 32; //!< [31:0] ESAI Receive Data Register.
     } B;
 } hw_esai_erdr_t;
 #endif
@@ -195,13 +185,13 @@ typedef union _hw_esai_ecr
     reg32_t U;
     struct _hw_esai_ecr_bitfields
     {
-        unsigned ESAIEN : 1; //!< [0] ESAI Enable. Enables/disables the ESAI logic clock. Enable the ESAI before reading or writing other ESAI registers.
-        unsigned ERST : 1; //!< [1] ESAI Reset. Reset the ESAI core logic (including configuration registers) but not the ESAI FIFOs.
+        unsigned ESAIEN : 1; //!< [0] ESAI Enable.
+        unsigned ERST : 1; //!< [1] ESAI Reset.
         unsigned RESERVED0 : 14; //!< [15:2] Reserved
-        unsigned ERO : 1; //!< [16] EXTAL Receiver Out. Drive the EXTAL input on the High Frequency Receiver Clock pin.
-        unsigned ERI : 1; //!< [17] EXTAL Receiver In. Mux EXTAL in place of the High Frequency Receiver Clock input pin. HCKR can still be used to drive a divided down EXTAL or as GPIO.
-        unsigned ETO : 1; //!< [18] EXTAL Transmitter Out. Drive the EXTAL input on the High Frequency Transmitter Clock pin.
-        unsigned ETI : 1; //!< [19] EXTAL Transmitter In. Mux EXTAL in place of the High Frequency Transmitter Clock input pin. HCKT can still be used to drive a divided down EXTAL or as GPIO.
+        unsigned ERO : 1; //!< [16] EXTAL Receiver Out.
+        unsigned ERI : 1; //!< [17] EXTAL Receiver In.
+        unsigned ETO : 1; //!< [18] EXTAL Transmitter Out.
+        unsigned ETI : 1; //!< [19] EXTAL Transmitter In.
         unsigned RESERVED1 : 12; //!< [31:20] Reserved
     } B;
 } hw_esai_ecr_t;
@@ -392,14 +382,14 @@ typedef union _hw_esai_esr
         unsigned RD : 1; //!< [0] Receive Data.
         unsigned RED : 1; //!< [1] Receive Even Data.
         unsigned RDE : 1; //!< [2] Receive Data Exception.
-        unsigned RLS : 1; //!< [3] Receive Last Slot. Reading this register when RLS is set will negate the Receive Last Slot interrupt.
+        unsigned RLS : 1; //!< [3] Receive Last Slot.
         unsigned TD : 1; //!< [4] Transmit Data.
         unsigned TED : 1; //!< [5] Transmit Even Data.
         unsigned TDE : 1; //!< [6] Transmit Data Exception.
-        unsigned TLS : 1; //!< [7] Transmit Last Slot. Reading this register when TLS is set will negate the Transmit Last Slot interrupt.
-        unsigned TFE : 1; //!< [8] Transmit FIFO Empty. Indicates that the number of empty slots in the Transmit FIFO has met or exceeded the Transmit FIFO Watermark. This flag also drives the ESAI Transmitter DMA request line. ESAI FIFO DMA request see .
-        unsigned RFF : 1; //!< [9] Receive FIFO Full. Indicates that the number of data words in the Receive FIFO has equaled or exceeded the Receive FIFO Watermark. This flag also drives the ESAI Receiver DMA request line. ESAI FIFO DMA requests see .
-        unsigned TINIT : 1; //!< [10] Transmit Initialization. Indicates that the Transmit FIFO is writing the first word for each enabled transmitter into the Transmit Data Registers. This bit sets when the Transmit FIFO is enabled (provided Transmit Initialization is enabled) and clears after the Transmit Data Registers have been initialized. The Transmit Enable bits in the Transmit Control Register should not be set until this flag has cleared.
+        unsigned TLS : 1; //!< [7] Transmit Last Slot.
+        unsigned TFE : 1; //!< [8] Transmit FIFO Empty.
+        unsigned RFF : 1; //!< [9] Receive FIFO Full.
+        unsigned TINIT : 1; //!< [10] Transmit Initialization.
         unsigned RESERVED0 : 21; //!< [31:11] Reserved
     } B;
 } hw_esai_esr_t;
@@ -623,17 +613,17 @@ typedef union _hw_esai_tfcr
     reg32_t U;
     struct _hw_esai_tfcr_bitfields
     {
-        unsigned TFE : 1; //!< [0] Transmit FIFO Enable. This bit enables the use of the Transmit FIFO.
-        unsigned TFR : 1; //!< [1] Transmit FIFO Reset. This bit resets the Transmit FIFO pointers.
-        unsigned TE0 : 1; //!< [2] Transmitter #0 FIFO Enable. This bit enables transmitter #0 to use the Transmit FIFO. Do not change this bit when the Transmitter FIFO is enabled.
-        unsigned TE1 : 1; //!< [3] Transmitter #1 FIFO Enable. This bit enables transmitter #1 to use the Transmit FIFO. Do not change this bit when the Transmitter FIFO is enabled.
-        unsigned TE2 : 1; //!< [4] Transmitter #2 FIFO Enable. This bit enables transmitter #2 to use the Transmit FIFO. Do not change this bit when the Transmitter FIFO is enabled.
-        unsigned TE3 : 1; //!< [5] Transmitter #3 FIFO Enable. This bit enables transmitter #3 to use the Transmit FIFO. Do not change this bit when the Transmitter FIFO is enabled.
-        unsigned TE4 : 1; //!< [6] Transmitter #4 FIFO Enable. This bit enables transmitter #4 to use the Transmit FIFO. Do not change this bit when the Transmitter FIFO is enabled.
-        unsigned TE5 : 1; //!< [7] Transmitter #5 FIFO Enable. This bit enables transmitter #5 to use the Transmit FIFO. Do not change this bit when the Transmitter FIFO is enabled.
-        unsigned TFWM : 8; //!< [15:8] Transmit FIFO Watermark. These bits configure the threshold at which the Transmit FIFO Empty flag will set. The TFE is set when the number of empty slots in the Transmit FIFO equal or exceed the selected threshold.
-        unsigned TWA : 3; //!< [18:16] Transmit Word Alignment. Configures the alignment of the data written into the ESAI Transmit Data Register and then passed to the relevant 24 bit Transmit shift register.
-        unsigned TIEN : 1; //!< [19] Transmitter Initialization Enable. Enables the initialization of the Transmit Data Registers when the Transmitter FIFO is enabled.
+        unsigned TFE : 1; //!< [0] Transmit FIFO Enable.
+        unsigned TFR : 1; //!< [1] Transmit FIFO Reset.
+        unsigned TE0 : 1; //!< [2] Transmitter #0 FIFO Enable.
+        unsigned TE1 : 1; //!< [3] Transmitter #1 FIFO Enable.
+        unsigned TE2 : 1; //!< [4] Transmitter #2 FIFO Enable.
+        unsigned TE3 : 1; //!< [5] Transmitter #3 FIFO Enable.
+        unsigned TE4 : 1; //!< [6] Transmitter #4 FIFO Enable.
+        unsigned TE5 : 1; //!< [7] Transmitter #5 FIFO Enable.
+        unsigned TFWM : 8; //!< [15:8] Transmit FIFO Watermark.
+        unsigned TWA : 3; //!< [18:16] Transmit Word Alignment.
+        unsigned TIEN : 1; //!< [19] Transmitter Initialization Enable.
         unsigned RESERVED0 : 12; //!< [31:20] Reserved
     } B;
 } hw_esai_tfcr_t;
@@ -950,10 +940,10 @@ typedef union _hw_esai_tfsr
     reg32_t U;
     struct _hw_esai_tfsr_bitfields
     {
-        unsigned TFCNT : 8; //!< [7:0] Transmit FIFO Counter. These bits indicate the number of data words stored in the Transmit FIFO.
-        unsigned NTFI : 3; //!< [10:8] Next Transmitter FIFO In. Indicates which transmitter receives the next word written to the FIFO.
+        unsigned TFCNT : 8; //!< [7:0] Transmit FIFO Counter.
+        unsigned NTFI : 3; //!< [10:8] Next Transmitter FIFO In.
         unsigned RESERVED0 : 1; //!< [11] Reserved
-        unsigned NTFO : 3; //!< [14:12] Next Transmitter FIFO Out. Indicates which Transmit Data Register receives the top word of the Transmit FIFO. This will usually equal the lowest enabled transmitter, unless the transmit FIFO is empty.
+        unsigned NTFO : 3; //!< [14:12] Next Transmitter FIFO Out.
         unsigned RESERVED1 : 17; //!< [31:15] Reserved
     } B;
 } hw_esai_tfsr_t;
@@ -1047,16 +1037,16 @@ typedef union _hw_esai_rfcr
     reg32_t U;
     struct _hw_esai_rfcr_bitfields
     {
-        unsigned RFE : 1; //!< [0] Receive FIFO Enable. This bit enables the use of the Receive FIFO.
-        unsigned RFR : 1; //!< [1] Receive FIFO Reset. This bit resets the Receive FIFO pointers.
-        unsigned RE0 : 1; //!< [2] Receiver #0 FIFO Enable. This bit enables receiver #0 to use the Receive FIFO. Do not change this bit when the Receiver FIFO is enabled.
-        unsigned RE1 : 1; //!< [3] Receiver #1 FIFO Enable. This bit enables receiver #1 to use the Receive FIFO. Do not change this bit when the Receiver FIFO is enabled.
-        unsigned RE2 : 1; //!< [4] Receiver #2 FIFO Enable. This bit enables receiver #2 to use the Receive FIFO. Do not change this bit when the Receiver FIFO is enabled.
-        unsigned RE3 : 1; //!< [5] Receiver #3 FIFO Enable. This bit enables receiver #3 to use the Receive FIFO. Do not change this bit when the Receiver FIFO is enabled.
+        unsigned RFE : 1; //!< [0] Receive FIFO Enable.
+        unsigned RFR : 1; //!< [1] Receive FIFO Reset.
+        unsigned RE0 : 1; //!< [2] Receiver #0 FIFO Enable.
+        unsigned RE1 : 1; //!< [3] Receiver #1 FIFO Enable.
+        unsigned RE2 : 1; //!< [4] Receiver #2 FIFO Enable.
+        unsigned RE3 : 1; //!< [5] Receiver #3 FIFO Enable.
         unsigned RESERVED0 : 2; //!< [7:6] Reserved
-        unsigned RFWM : 8; //!< [15:8] Receive FIFO Watermark. These bits configure the threshold at which the Receive FIFO Full flag will set. The RFF is set when the number of words in the Receive FIFO equal or exceed the selected threshold. It can be set to a non-zero value.
-        unsigned RWA : 3; //!< [18:16] Receive Word Alignment. Configures the alignment of the data passed from the relevant 24 bit Receive shift register and read out the ESAI Receive Data Register.
-        unsigned REXT : 1; //!< [19] Receive Extension. Enables the receive data to be returned sign extended when the Receive Word Alignment is configured to return data where the MSB is not aligned with bit 31.
+        unsigned RFWM : 8; //!< [15:8] Receive FIFO Watermark.
+        unsigned RWA : 3; //!< [18:16] Receive Word Alignment.
+        unsigned REXT : 1; //!< [19] Receive Extension.
         unsigned RESERVED1 : 12; //!< [31:20] Reserved
     } B;
 } hw_esai_rfcr_t;
@@ -1322,10 +1312,10 @@ typedef union _hw_esai_rfsr
     reg32_t U;
     struct _hw_esai_rfsr_bitfields
     {
-        unsigned RFCNT : 8; //!< [7:0] Receive FIFO Counter. These bits indicate the number of data words stored in the Receive FIFO.
-        unsigned NRFO : 2; //!< [9:8] Next Receiver FIFO Out. Indicates which receiver returns the top word of the Receive FIFO.
+        unsigned RFCNT : 8; //!< [7:0] Receive FIFO Counter.
+        unsigned NRFO : 2; //!< [9:8] Next Receiver FIFO Out.
         unsigned RESERVED0 : 2; //!< [11:10] Reserved
-        unsigned NRFI : 2; //!< [13:12] Next Receiver FIFO In. Indicates which Receiver Data Register the Receive FIFO will load next. This will usually equal the lowest enabled receiver, unless the receive FIFO is full.
+        unsigned NRFI : 2; //!< [13:12] Next Receiver FIFO In.
         unsigned RESERVED1 : 18; //!< [31:14] Reserved
     } B;
 } hw_esai_rfsr_t;
@@ -1416,7 +1406,7 @@ typedef union _hw_esai_tx0
     reg32_t U;
     struct _hw_esai_tx0_bitfields
     {
-        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
+        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_esai_tx0_t;
@@ -1474,7 +1464,7 @@ typedef union _hw_esai_tx1
     reg32_t U;
     struct _hw_esai_tx1_bitfields
     {
-        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
+        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_esai_tx1_t;
@@ -1532,7 +1522,7 @@ typedef union _hw_esai_tx2
     reg32_t U;
     struct _hw_esai_tx2_bitfields
     {
-        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
+        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_esai_tx2_t;
@@ -1590,7 +1580,7 @@ typedef union _hw_esai_tx3
     reg32_t U;
     struct _hw_esai_tx3_bitfields
     {
-        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
+        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_esai_tx3_t;
@@ -1648,7 +1638,7 @@ typedef union _hw_esai_tx4
     reg32_t U;
     struct _hw_esai_tx4_bitfields
     {
-        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
+        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_esai_tx4_t;
@@ -1706,7 +1696,7 @@ typedef union _hw_esai_tx5
     reg32_t U;
     struct _hw_esai_tx5_bitfields
     {
-        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
+        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_esai_tx5_t;
@@ -1764,7 +1754,7 @@ typedef union _hw_esai_tx
     reg32_t U;
     struct _hw_esai_tx_bitfields
     {
-        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers. See .
+        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_esai_tx_t;
@@ -2025,21 +2015,21 @@ typedef union _hw_esai_saisr
     reg32_t U;
     struct _hw_esai_saisr_bitfields
     {
-        unsigned IF0 : 1; //!< [0] ESAI_SAISR Serial Input Flag 0. The IF0 bit is enabled only when the SCKR pin is defined as ESAI in the Port Control Register, SYN=1 and RCKD=0, indicating that SCKR is an input flag and the synchronous mode is selected. Data present on the SCKR pin is latched during reception of the first received data bit after frame sync is detected. The IF0 bit is updated with this data when the receiver shift registers are transferred into the receiver data registers. IF0 reads as a zero when it is not enabled. Hardware, software, ESAI individual reset clear IF0.
-        unsigned IF1 : 1; //!< [1] ESAI_SAISR Serial Inout Flag 1. The IF1 bit is enabled only when the FSR pin is defined as ESAI in the Port Control Register, SYN =1, RFSD=0 and TEBE=0, indicating that FSR is an input flag and the synchronous mode is selected. Data present on the FSR pin is latched during reception of the first received data bit after frame sync is detected. The IF1 bit is updated with this data when the receiver shift registers are transferred into the receiver data registers. IF1 reads as a zero when it is not enabled. Hardware, software, ESAI individual reset clear IF1.
-        unsigned IF2 : 1; //!< [2] ESAI_SAISR Serial Input Flag 2. The IF2 bit is enabled only when the HCKR pin is defined as ESAI in the Port Control Register, SYN=1 and RHCKD=0, indicating that HCKR is an input flag and the synchronous mode is selected. Data present on the HCKR pin is latched during reception of the first received data bit after frame sync is detected. The IF2 bit is updated with this data when the receive shift registers are transferred into the receiver data registers. IF2 reads as a zero when it is not enabled. Hardware, software, ESAI individual reset clear IF2.
+        unsigned IF0 : 1; //!< [0] ESAI_SAISR Serial Input Flag 0.
+        unsigned IF1 : 1; //!< [1] ESAI_SAISR Serial Inout Flag 1.
+        unsigned IF2 : 1; //!< [2] ESAI_SAISR Serial Input Flag 2.
         unsigned RESERVED0 : 3; //!< [5:3] Reserved.
-        unsigned RFS : 1; //!< [6] ESAI_SAISR Receive Frame Sync Flag. When set, RFS indicates that a receive frame sync occurred during reception of the words in the receiver data registers. This indicates that the data words are from the first slot in the frame. When RFS is clear and a word is received, it indicates (only in the network mode) that the frame sync did not occur during reception of that word. RFS is cleared by hardware, software, ESAI individual reset. RFS is valid only if at least one of the receivers is enabled (REx=1). (In normal mode, RFS always reads as a one when reading data because there is only one time slot per frame - the "frame sync" time slot)
-        unsigned ROE : 1; //!< [7] ESAI_SAISR Receive Overrun Error Flag. The ROE flag is set when the serial receive shift register of an enabled receiver is full and ready to transfer to its receiver data register (RXn) and the register is already full (RDF=1). If REIE is set, an ESAI receive data with exception (overrun error) interrupt request is issued when ROE is set. Hardware, software, ESAI individual reset clear ROE. ROE is also cleared by reading the SAISR with ROE set, followed by reading all the enabled receive data registers.
-        unsigned RDF : 1; //!< [8] ESAI_SAISR Receive Data Register Full. RDF is set when the contents of the receive shift register of an enabled receiver is transferred to the respective receive data register. RDF is cleared when the Core reads the receive data register of all enabled receivers or cleared by hardware, software, ESAI individual reset. If RIE is set, an ESAI receive data interrupt request is issued when RDF is set.
-        unsigned REDF : 1; //!< [9] ESAI_SAISR Receive Even-Data Register Full. When set, REDF indicates that the received data in the receive data registers of the enabled receivers have arrived during an even time slot when operating in the network mode. Even time slots are all even-numbered slots (0, 2, 4, 6, and so on). Time slots are numbered from zero to N-1, where N is the number of time slots in the frame. The zero time slot is considered even. REDF is set when the contents of the receive shift registers are transferred to the receive data registers. REDF is cleared when the Core reads all the enabled receive data registers or cleared by hardware, software, ESAI individual resets. If REDIE is set, an ESAI receive even slot data interrupt request is issued when REDF is set.
-        unsigned RODF : 1; //!< [10] ESAI_SAISR Receive Odd-Data Register Full. When set, RODF indicates that the received data in the receive data registers of the enabled receivers have arrived during an odd time slot when operating in the network mode. Odd time slots are all odd-numbered slots (1, 3, 5, and so on). Time slots are numbered from zero to N-1, where N is the number of time slots in the frame. RODF is set when the contents of the receive shift registers are transferred to the receive data registers. RODF is cleared when the Core reads all the enabled receive data registers or cleared by hardware, software, ESAI individual resets.
+        unsigned RFS : 1; //!< [6] ESAI_SAISR Receive Frame Sync Flag.
+        unsigned ROE : 1; //!< [7] ESAI_SAISR Receive Overrun Error Flag.
+        unsigned RDF : 1; //!< [8] ESAI_SAISR Receive Data Register Full.
+        unsigned REDF : 1; //!< [9] ESAI_SAISR Receive Even-Data Register Full.
+        unsigned RODF : 1; //!< [10] ESAI_SAISR Receive Odd-Data Register Full.
         unsigned RESERVED1 : 2; //!< [12:11] Reserved.
-        unsigned TFS : 1; //!< [13] ESAI_SAISR Transmit Frame Sync Flar. When set, TFS indicates that a transmit frame sync occurred in the current time slot. TFS is set at the start of the first time slot in the frame and cleared during all other time slots. Data written to a transmit data register during the time slot when TFS is set is transmitted (in network mode), if the transmitter is enabled, during the second time slot in the frame. TFS is useful in network mode to identify the start of a frame. TFS is cleared by hardware, software, ESAI individual reset. TFS is valid only if at least one transmitter is enabled, that is, one or more of TE0, TE1, TE2, TE3, TE4 and TE5 are set. (In normal mode, TFS always reads as a one when transmitting data because there is only one time slot per frame - the "frame sync" time slot)
-        unsigned TUE : 1; //!< [14] ESAI_SAISR Transmit Underrun Error Flag. TUE is set when at least one of the enabled serial transmit shift registers is empty (no new data to be transmitted) and a transmit time slot occurs. When a transmit underrun error occurs, the previous data (which is still present in the TX registers that were not written) is retransmitted. If TEIE is set, an ESAI transmit data with exception (underrun error) interrupt request is issued when TUE is set. Hardware, software, ESAI individual reset clear TUE. TUE is also cleared by reading the ESAI_SAISR with TUE set, followed by writing to all the enabled transmit data registers or to ESAI_TSR.
-        unsigned TDE : 1; //!< [15] ESAI_SAISR Transmit Data Register Empty. TDE is set when the contents of the transmit data register of all the enabled transmitters are transferred to the transmit shift registers; it is also set for a TSR disabled time slot period in network mode (as if data were being transmitted after the TSR was written). When set, TDE indicates that data should be written to all the TX registers of the enabled transmitters or to the transmit slot register (ESAI_TSR). TDE is cleared when the Core writes to all the transmit data registers of the enabled transmitters, or when the Core writes to the TSR to disable transmission of the next time slot. If TIE is set, an ESAI transmit data interrupt request is issued when TDE is set. Hardware, software, ESAI individual reset clear TDE.
-        unsigned TEDE : 1; //!< [16] ESAI_SAISR Transmit Even-DataRegister Empty. When set, TEDE indicates that the enabled transmitter data registers became empty at the beginning of an even time slot. Even time slots are all even-numbered slots (0, 2, 4, 6, etc.). Time slots are numbered from zero to N-1, where N is the number of time slots in the frame. The zero time slot is considered even. This flag is set when the contents of the transmit data register of all the enabled transmitters are transferred to the transmit shift registers; it is also set for a TSR disabled time slot period in network mode (as if data were being transmitted after the TSR was written). When set, TEDE indicates that data should be written to all the TX registers of the enabled transmitters or to the transmit slot register (ESAI_TSR). TEDE is cleared when the Core writes to all the transmit data registers of the enabled transmitters, or when the Core writes to the TSR to disable transmission of the next time slot. If TIE is set, an ESAI transmit data interrupt request is issued when TEDE is set. Hardware, software, ESAI individual reset clear TEDE.
-        unsigned TODFE : 1; //!< [17] ESAI_SAISR Transmit Odd-Data Register Empty. When set, TODFE indicates that the enabled transmitter data registers became empty at the beginning of an odd time slot. Odd time slots are all odd-numbered slots (1, 3, 5, and so on). Time slots are numbered from zero to N-1, where N is the number of time slots in the frame. This flag is set when the contents of the transmit data register of all the enabled transmitters are transferred to the transmit shift registers; it is also set for a TSR disabled time slot period in network mode (as if data were being transmitted after the TSR was written). When set, TODFE indicates that data should be written to all the TX registers of the enabled transmitters or to the transmit slot register (ESAI_TSR). TODE is cleared when the Core writes to all the transmit data registers of the enabled transmitters, or when the Core writes to the TSR to disable transmission of the next time slot. If TIE is set, an ESAI transmit data interrupt request is issued when TODFE is set. Hardware, software, ESAI individual reset clear TODFE.
+        unsigned TFS : 1; //!< [13] ESAI_SAISR Transmit Frame Sync Flar.
+        unsigned TUE : 1; //!< [14] ESAI_SAISR Transmit Underrun Error Flag.
+        unsigned TDE : 1; //!< [15] ESAI_SAISR Transmit Data Register Empty.
+        unsigned TEDE : 1; //!< [16] ESAI_SAISR Transmit Even-DataRegister Empty.
+        unsigned TODFE : 1; //!< [17] ESAI_SAISR Transmit Odd-Data Register Empty.
         unsigned RESERVED2 : 14; //!< [31:18] Reserved.
     } B;
 } hw_esai_saisr_t;
@@ -2307,13 +2297,13 @@ typedef union _hw_esai_saicr
     reg32_t U;
     struct _hw_esai_saicr_bitfields
     {
-        unsigned OF0 : 1; //!< [0] ESAI_SAICR Serial Output Flag 0. The Serial Output Flag 0 (OF0) is a data bit used to hold data to be send to the OF0 pin. When the ESAI is in the synchronous clock mode (SYN=1), the SCKR pin is configured as the ESAI flag 0. If the receiver serial clock direction bit (RCKD) is set, the SCKR pin is the output flag OF0, and data present in the OF0 bit is written to the OF0 pin at the beginning of the frame in normal mode or at the beginning of the next time slot in network mode.
-        unsigned OF1 : 1; //!< [1] ESAI_SAICR Serial Output Flag 1. The Serial Output Flag 1 (OF1) is a data bit used to hold data to be send to the OF1 pin. When the ESAI is in the synchronous clock mode (SYN=1), the FSR pin is configured as the ESAI flag 1. If the receiver frame sync direction bit (RFSD) is set and the TEBE bit is cleared, the FSR pin is the output flag OF1, and data present in the OF1 bit is written to the OF1 pin at the beginning of the frame in normal mode or at the beginning of the next time slot in network mode.
-        unsigned OF2 : 1; //!< [2] ESAI_SAICR Serial Output Flag 2. The Serial Output Flag 2 (OF2) is a data bit used to hold data to be send to the OF2 pin. When the ESAI is in the synchronous clock mode (SYN=1), the HCKR pin is configured as the ESAI flag 2. If the receiver high frequency clock direction bit (RHCKD) is set, the HCKR pin is the output flag OF2, and data present in the OF2 bit is written to the OF2 pin at the beginning of the frame in normal mode or at the beginning of the next time slot in network mode.
+        unsigned OF0 : 1; //!< [0] ESAI_SAICR Serial Output Flag 0.
+        unsigned OF1 : 1; //!< [1] ESAI_SAICR Serial Output Flag 1.
+        unsigned OF2 : 1; //!< [2] ESAI_SAICR Serial Output Flag 2.
         unsigned RESERVED0 : 3; //!< [5:3] Reserved.
-        unsigned SYN : 1; //!< [6] ESAI_SAICR Synchronous Mode Selection. The Synchronous Mode Selection (SYN) bit controls whether the receiver and transmitter sections of the ESAI operate synchronously or asynchronously with respect to each other (see Port C Control Register ). When SYN is cleared, the asynchronous mode is chosen and independent clock and frame sync signals are used for the transmit and receive sections. When SYN is set, the synchronous mode is chosen and the transmit and receive sections use common clock and frame sync signals. When in the synchronous mode (SYN=1), the transmit and receive sections use the transmitter section clock generator as the source of the clock and frame sync for both sections. Also, the receiver clock pins SCKR, FSR and HCKR now operate as I/O flags. Refer to , , and for the effects of SYN on the receiver clock pins.
-        unsigned TEBE : 1; //!< [7] ESAI_SAICR Transmit External Buffer Enable. The Transmitter External Buffer Enable (TEBE) bit controls the function of the FSR pin when in the synchronous mode. If the ESAI is configured for operation in the synchronous mode (SYN=1), and TEBE is set while FSR pin is configured as an output (RFSD=1), the FSR pin functions as the transmitter external buffer enable control to enable the use of an external buffers on the transmitter outputs. If TEBE is cleared, the FSR pin functions as the serial I/O flag 1. See Port C Control Register for a summary of the effects of TEBE on the FSR pin.
-        unsigned ALC : 1; //!< [8] ESAI_SAICR Alignment Control. The ESAI is designed for 24-bit fractional data, thus shorter data words are left aligned to the MSB (bit 23). Some applications use 16-bit fractional data. In those cases, shorter data words may be left aligned to bit 15. The Alignment Control (ALC) bit supports these applications. If ALC is set, transmitted and received words are left aligned to bit 15 in the transmit and receive shift registers. If ALC is cleared, transmitted and received word are left aligned to bit 23 in the transmit and receive shift registers. While ALC is set, 20-bit and 24-bit words may not be used, and word length control should specify 8-, 12-, or 16-bit words; otherwise, results are unpredictable.
+        unsigned SYN : 1; //!< [6] ESAI_SAICR Synchronous Mode Selection.
+        unsigned TEBE : 1; //!< [7] ESAI_SAICR Transmit External Buffer Enable.
+        unsigned ALC : 1; //!< [8] ESAI_SAICR Alignment Control.
         unsigned RESERVED1 : 23; //!< [31:9] Reserved
     } B;
 } hw_esai_saicr_t;
@@ -2516,25 +2506,25 @@ typedef union _hw_esai_tcr
     reg32_t U;
     struct _hw_esai_tcr_bitfields
     {
-        unsigned TE0 : 1; //!< [0] ESAI_TCR ESAI Transmit 0 Enable. TE0 enables the transfer of data from ESAI_TX0 to the transmit shift register #0. When TE0 is set and a frame sync is detected, the transmit #0 portion of the ESAI is enabled for that frame. When TE0 is cleared, the transmitter #0 is disabled after completing transmission of data currently in the ESAI transmit shift register. The SDO0 output is tri-stated, and any data present in ESAI_TX0 is not transmitted, that is, data can be written to ESAI_TX0 with TE0 cleared, but data is not transferred to the transmit shift register #0. The normal mode transmit enable sequence is to write data to one or more transmit data registers before setting TEx. The normal transmit disable sequence is to clear TEx, TIE and TEIE after TDE equals one. In the network mode, the operation of clearing TE0 and setting it again disables the transmitter #0 after completing transmission of the current data word until the beginning of the next frame. During that time period, the SDO0 pin remains in the high-impedance state.The on-demand mode transmit enable sequence can be the same as the normal mode, or TE0 can be left enabled.
-        unsigned TE1 : 1; //!< [1] ESAI_TCR ESAI Transmit 1 Enable. TE1 enables the transfer of data from TX1 to the transmit shift register #1. When TE1 is set and a frame sync is detected, the transmit #1 portion of the ESAI is enabled for that frame. When TE1 is cleared, the transmitter #1 is disabled after completing transmission of data currently in the ESAI transmit shift register. The SDO1 output is tri-stated, and any data present in TX1 is not transmitted, that is, data can be written to TX1 with TE1 cleared, but data is not transferred to the transmit shift register #1. The normal mode transmit enable sequence is to write data to one or more transmit data registers before setting TEx. The normal transmit disable sequence is to clear TEx, TIE and TEIE after TDE equals one. In the network mode, the operation of clearing TE1 and setting it again disables the transmitter #1 after completing transmission of the current data word until the beginning of the next frame. During that time period, the SDO1 pin remains in the high-impedance state. The on-demand mode transmit enable sequence can be the same as the normal mode, or TE1 can be left enabled.
-        unsigned TE2 : 1; //!< [2] ESAI_TCR ESAI Transmit 2 Enable. TE2 enables the transfer of data from ESAI_TX2 to the transmit shift register #2. When TE2 is set and a frame sync is detected, the transmit #2 portion of the ESAI is enabled for that frame. When TE2 is cleared, the transmitter #2 is disabled after completing transmission of data currently in the ESAI transmit shift register. Data can be written to ESAI_TX2 when TE2 is cleared but the data is not transferred to the transmit shift register #2. The SDO2/SDI3 pin is the data input pin for ESAI_RX3 if TE2 is cleared and RE3 in the ESAI_RCR register is set. If both RE3 and TE2 are cleared, the transmitter and receiver are disabled, and the pin is tri-stated. Both RE3 and TE2 should not be set at the same time. The normal mode transmit enable sequence is to write data to one or more transmit data registers before setting TEx. The normal transmit disable sequence is to clear TEx, TIE and TEIE after TDE equals one. In the network mode, the operation of clearing TE2 and setting it again disables the transmitter #2 after completing transmission of the current data word until the beginning of the next frame. During that time period, the SDO2/SDI3 pin remains in the high-impedance state. The on-demand mode transmit enable sequence can be the same as the normal mode, or TE2 can be left enabled.
-        unsigned TE3 : 1; //!< [3] ESAI_TCR ESAI Transmit 3 Enable. TE3 enables the transfer of data from ESAI_TX3 to the transmit shift register #3. When TE3 is set and a frame sync is detected, the transmit #3 portion of the ESAI is enabled for that frame. When TE3 is cleared, the transmitter #3 is disabled after completing transmission of data currently in the ESAI transmit shift register. Data can be written to ESAI_TX3 when TE3 is cleared but the data is not transferred to the transmit shift register #3. The SDO3/SDI2 pin is the data input pin for ESAI_RX2 if TE3 is cleared and RE2 in the ESAI_RCR register is set. If both RE2 and TE3 are cleared, the transmitter and receiver are disabled, and the pin is tri-stated. Both RE2 and TE3 should not be set at the same time. The normal mode transmit enable sequence is to write data to one or more transmit data registers before setting TEx. The normal transmit disable sequence is to clear TEx, TIE and TEIE after TDE equals one. In the network mode, the operation of clearing TE3 and setting it again disables the transmitter #3 after completing transmission of the current data word until the beginning of the next frame. During that time period, the SDO3/SDI2 pin remains in the high-impedance state. The on-demand mode transmit enable sequence can be the same as the normal mode, or TE3 can be left enabled.
-        unsigned TE4 : 1; //!< [4] ESAI_TCR ESAI Transmit 4 Enable. TE4 enables the transfer of data from ESAI_TX4 to the transmit shift register #4. When TE4 is set and a frame sync is detected, the transmit #4 portion of the ESAI is enabled for that frame. When TE4 is cleared, the transmitter #4 is disabled after completing transmission of data currently in the ESAI transmit shift register. Data can be written to ESAI_TX4 when TE4 is cleared but the data is not transferred to the transmit shift register #4. The SDO4/SDI1 pin is the data input pin for ESAI_RX1 if TE4 is cleared and RE1 in the RCR register is set. If both RE1 and TE4 are cleared, the transmitter and receiver are disabled, and the pin is tri-stated. Both RE1 and TE4 should not be set at the same time. The normal mode transmit enable sequence is to write data to one or more transmit data registers before setting TEx. The normal transmit disable sequence is to clear TEx, TIE and TEIE after TDE equals one. In the network mode, the operation of clearing TE4 and setting it again disables the transmitter #4 after completing transmission of the current data word until the beginning of the next frame. During that time period, the SDO4/SDI1 pin remains in the high-impedance state. The on-demand mode transmit enable sequence can be the same as the normal mode, or TE4 can be left enabled.
-        unsigned TE5 : 1; //!< [5] ESAI_TCR ESAI Transmit 5 Enable. TE5 enables the transfer of data from ESAI_TX5 to the transmit shift register #5. When TE5 is set and a frame sync is detected, the transmit #5 portion of the ESAI is enabled for that frame. When TE5 is cleared, the transmitter #5 is disabled after completing transmission of data currently in the ESAI transmit shift register. Data can be written to ESAI_TX5 when TE5 is cleared but the data is not transferred to the transmit shift register #5. The SDO5/SDI0 pin is the data input pin for ESAI_RX0 if TE5 is cleared and RE0 in the ESAI_RCR register is set. If both RE0 and TE5 are cleared, the transmitter and receiver are disabled, and the pin is tri-stated. Both RE0 and TE5 should not be set at the same time. The normal mode transmit enable sequence is to write data to one or more transmit data registers before setting TEx. The normal transmit disable sequence is to clear TEx, TIE and TEIE after TDE equals one. In the network mode, the operation of clearing TE5 and setting it again disables the transmitter #5 after completing transmission of the current data word until the beginning of the next frame. During that time period, the SDO5/SDI0 pin remains in the high-impedance state. The on-demand mode transmit enable sequence can be the same as the normal mode, or TE5 can be left enabled.
-        unsigned TSHFD : 1; //!< [6] ESAI_TCR Transmit Shift Direction. The TSHFD bit causes the transmit shift registers to shift data out MSB first when TSHFD equals zero or LSB first when TSHFD equals one (see and .
-        unsigned TWA : 1; //!< [7] ESAI_TCR Transmit Word Alignment Control. The Transmitter Word Alignment Control (TWA) bit defines the alignment of the data word in relation to the slot. This is relevant for the cases where the word length is shorter than the slot length. If TWA is cleared, the data word is left-aligned in the slot frame during transmission. If TWA is set, the data word is right-aligned in the slot frame during transmission. Because the data word is shorter than the slot length, the data word is extended until achieving the slot length, according to the following rule: If the data word is left-aligned (TWA=0), and zero padding is disabled (PADC=0), the last data bit is repeated after the data word has been transmitted. If zero padding is enabled (PADC=1), zeroes are transmitted after the data word has been transmitted. If the data word is right-aligned (TWA=1), and zero padding is disabled (PADC=0), the first data bit is repeated before the transmission of the data word. If zero padding is enabled (PADC=1), zeroes are transmitted before the transmission of the data word.
-        unsigned TMOD : 2; //!< [9:8] ESAI_TCR Transmit Network Mode Control (TMOD1-TMOD0). The TMOD1 and TMOD0 bits are used to define the network mode of ESAI transmitters, as shown in Port C Control Register . In the normal mode, the frame rate divider determines the word transfer rate - one word is transferred per frame sync during the frame sync time slot, as shown in . In network mode, it is possible to transfer a word for every time slot, as shown in . For further details, refer to In order to comply with AC-97 specifications, TSWS4-TSWS0 should be set to 00011 (20-bit slot, 20-bit word length), TFSL and TFSR should be cleared, and TDC4-TDC0 should be set to 0x0C (13 words in frame). If TMOD[1:0]=0b11 and the above recommendations are followed, the first slot and word will be 16 bits long, and the next 12 slots and words will be 20 bits long, as required by the AC97 protocol.
-        unsigned TSWS : 5; //!< [14:10] ESAI_TCR Tx Slot and Word Length Select (TSWS4-TSWS0). The TSWS4-TSWS0 bits are used to select the length of the slot and the length of the data words being transferred through the ESAI. The word length must be equal to or shorter than the slot length. The possible combinations are shown in . See also the ESAI data path programming model in and .
-        unsigned TFSL : 1; //!< [15] ESAI_TCR Transmit Frame Sync Length. The TFSL bit selects the length of frame sync to be generated or recognized. If TFSL is cleared, a word-length frame sync is selected. If TFSL is set, a 1-bit clock period frame sync is selected. See Figure 1-21 for examples of frame length selection.
-        unsigned TFSR : 1; //!< [16] ESAI_TCR Transmit Frame Sync Relative Timing. TFSR determines the relative timing of the transmit frame sync signal as referred to the serial data lines, for a word length frame sync only (TFSL=0). When TFSR is cleared the word length frame sync occurs together with the first bit of the data word of the first slot. When TFSR is set the word length frame sync starts one serial clock cycle earlier, that is, together with the last bit of the previous data word.
-        unsigned PADC : 1; //!< [17] ESAI_TCR Transmit Zero Padding Control. When PADC is cleared, zero padding is disabled. When PADC is set, zero padding is enabled. PADC, in conjunction with the TWA control bit, determines the way that padding is done for operating modes where the word length is less than the slot length. See the TWA bit description in bit 7 for more details. Because the data word is shorter than the slot length, the data word is extended until achieving the slot length, according to the following rule: If the data word is left-aligned (TWA=0), and zero padding is disabled (PADC=0), the last data bit is repeated after the data word has been transmitted. If zero padding is enabled (PADC=1), zeroes are transmitted after the data word has been transmitted. If the data word is right-aligned (TWA=1), and zero padding is disabled (PADC=0), the first data bit is repeated before the transmission of the data word. If zero padding is enabled (PADC=1), zeroes are transmitted before the transmission of the data word.
+        unsigned TE0 : 1; //!< [0] ESAI_TCR ESAI Transmit 0 Enable.
+        unsigned TE1 : 1; //!< [1] ESAI_TCR ESAI Transmit 1 Enable.
+        unsigned TE2 : 1; //!< [2] ESAI_TCR ESAI Transmit 2 Enable.
+        unsigned TE3 : 1; //!< [3] ESAI_TCR ESAI Transmit 3 Enable.
+        unsigned TE4 : 1; //!< [4] ESAI_TCR ESAI Transmit 4 Enable.
+        unsigned TE5 : 1; //!< [5] ESAI_TCR ESAI Transmit 5 Enable.
+        unsigned TSHFD : 1; //!< [6] ESAI_TCR Transmit Shift Direction.
+        unsigned TWA : 1; //!< [7] ESAI_TCR Transmit Word Alignment Control.
+        unsigned TMOD : 2; //!< [9:8] ESAI_TCR Transmit Network Mode Control (TMOD1-TMOD0).
+        unsigned TSWS : 5; //!< [14:10] ESAI_TCR Tx Slot and Word Length Select (TSWS4-TSWS0).
+        unsigned TFSL : 1; //!< [15] ESAI_TCR Transmit Frame Sync Length.
+        unsigned TFSR : 1; //!< [16] ESAI_TCR Transmit Frame Sync Relative Timing.
+        unsigned PADC : 1; //!< [17] ESAI_TCR Transmit Zero Padding Control.
         unsigned RESERVED0 : 1; //!< [18] Reserved.
-        unsigned TPR : 1; //!< [19] ESAI_TCR Transmit Section Personal Reset. The TPR control bit is used to put the transmitter section of the ESAI in the personal reset state. The receiver section is not affected. When TPR is cleared, the transmitter section may operate normally. When TPR is set, the transmitter section enters the personal reset state immediately. When in the personal reset state, the status bits are reset to the same state as after hardware reset. The control bits are not affected by the personal reset state. The transmitter data pins are tri-stated while in the personal reset state; if a stable logic level is desired, the transmitter data pins should be defined as GPIO outputs, or external pull-up or pull-down resistors should be used. The transmitter clock outputs drive zeroes while in the personal reset state. Note that to leave the personal reset state by clearing TPR, the procedure described in should be followed.
-        unsigned TEIE : 1; //!< [20] ESAI_TCR Transmit Exception Interrupt Enable. When TEIE is set, the Core is interrupted when both TDE and TUE in the ESAI_SAISR status register are set. When TEIE is cleared, this interrupt is disabled. Reading the ESAI_SAISR status register followed by writing to all the data registers of the enabled transmitters clears TUE, thus clearing the pending interrupt.
-        unsigned TEDIE : 1; //!< [21] ESAI_TCR Transmit Even Slot Data Interrupt Enable. The TEDIE control bit is used to enable the transmit even slot data interrupts. If TEDIE is set, the transmit even slot data interrupts are enabled. If TEDIE is cleared, the transmit even slot data interrupts are disabled. A transmit even slot data interrupt request is generated if TEDIE is set and the TEDE status flag in the ESAI_SAISR status register is set. Even time slots are all even-numbered time slots (0, 2, 4, etc.) when operating in network mode. The zero time slot in the frame is marked by the frame sync signal and is considered to be even. Writing data to all the data registers of the enabled transmitters or to ESAI_TSR clears the TEDE flag, thus servicing the interrupt. Transmit interrupts with exception have higher priority than transmit even slot data interrupts, therefore if exception occurs (TUE is set) and TEIE is set, the ESAI requests an ESAI transmit data with exception interrupt from the interrupt controller.
-        unsigned TIE : 1; //!< [22] ESAI_TCR Transmit Interrupt Enable. The Core is interrupted when TIE and the TDE flag in the ESAI_SAISR status register are set. When TIE is cleared, this interrupt is disabled. Writing data to all the data registers of the enabled transmitters or to ESAI_TSR clears TDE, thus clearing the interrupt. Transmit interrupts with exception have higher priority than normal transmit data interrupts, therefore if exception occurs (TUE is set) and TEIE is set, the ESAI requests an ESAI transmit data with exception interrupt from the interrupt controller.
-        unsigned TLIE : 1; //!< [23] ESAI_TCR Transmit Last Slot Interrupt Enable. TLIE enables an interrupt at the beginning of last slot of a frame in network mode. When TLIE is set the Core is interrupted at the start of the last slot in a frame in network mode regardless of the transmit mask register setting. When TLIE is cleared the transmit last slot interrupt is disabled. TLIE is disabled when TDC[4:0]=0x00000 (on-demand mode). The use of the transmit last slot interrupt is described in .
+        unsigned TPR : 1; //!< [19] ESAI_TCR Transmit Section Personal Reset.
+        unsigned TEIE : 1; //!< [20] ESAI_TCR Transmit Exception Interrupt Enable.
+        unsigned TEDIE : 1; //!< [21] ESAI_TCR Transmit Even Slot Data Interrupt Enable.
+        unsigned TIE : 1; //!< [22] ESAI_TCR Transmit Interrupt Enable.
+        unsigned TLIE : 1; //!< [23] ESAI_TCR Transmit Last Slot Interrupt Enable.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved.
     } B;
 } hw_esai_tcr_t;
@@ -3081,16 +3071,16 @@ typedef union _hw_esai_tccr
     reg32_t U;
     struct _hw_esai_tccr_bitfields
     {
-        unsigned TPM : 8; //!< [7:0] ESAI_TCCR Transmit Prescale Modulus Select. The TPM7-TPM0 bits specify the divide ratio of the prescale divider in the ESAI transmitter clock generator. A divide ratio from 1 to 256 (TPM[7:0]=0x00 to 0xFF) may be selected. The bit clock output is available at the transmit serial bit clock (SCKT) pin. The bit clock output is also available internally for use as the bit clock to shift the transmit and receive shift registers. The ESAI transmit clock generator functional diagram is shown in .
-        unsigned TPSR : 1; //!< [8] ESAI_TCCR Transmit Prescaler Range. The TPSR bit controls a fixed divide-by-eight prescaler in series with the variable prescaler. This bit is used to extend the range of the prescaler for those cases where a slower bit clock is desired. When TPSR is set, the fixed prescaler is bypassed. When TPSR is cleared, the fixed divide-by-eight prescaler is operational (see ). The maximum internally generated bit clock frequency is Fsys/4; the minimum internally generated bit clock frequency is Fsys/(2 x 8 x 256 x 16)=Fsys/65536. (Do not use the combination TPSR=1, TPM7-TPM0=0x00, and TFP3-TFP0=0x0 which causes synchronization problems when using the internal ARM Core clock as source (TCKD=1 or THCKD=1))
-        unsigned TDC : 5; //!< [13:9] ESAI_TCCR Tx Frame Rate Divider Control. The TDC4-TDC0 bits control the divide ratio for the programmable frame rate dividers used to generate the transmitter frame clocks. In network mode, this ratio may be interpreted as the number of words per frame minus one. The divide ratio may range from 2 to 32 (TDC[4:0]=0x00001 to 0x11111) for network mode. A divide ratio of one (TDC[4:0]=0x00000) in network mode is a special case (on-demand mode). In normal mode, this ratio determines the word transfer rate. The divide ratio may range from 1 to 32 (TDC[4:0]=0x00000 to 0x11111) for normal mode. In normal mode, a divide ratio of 1 (TDC[4:0]=0x00000) provides continuous periodic data word transfers. A bit-length frame sync (TFSL=1) must be used in this case. The ESAI frame sync generator functional diagram is shown in
-        unsigned TFP : 4; //!< [17:14] ESAI_TCCR Tx High Frequency Clock Divider. The TFP3-TFP0 bits control the divide ratio of the transmitter high frequency clock to the transmitter serial bit clock when the source of the high frequency clock and the bit clock is the internal ARM Core clock. When the HCKT input is being driven from an external high frequency clock, the TFP3-TFP0 bits specify an additional division ratio in the clock divider chain. shows the specification for the divide ratio. shows the ESAI high frequency clock generator functional diagram.
-        unsigned TCKP : 1; //!< [18] ESAI_TCCR Transmit Clock Polarity. The Transmitter Clock Polarity (TCKP) bit controls on which bit clock edge data and frame sync are clocked out and latched in. If TCKP is cleared the data and the frame sync are clocked out on the rising edge of the transmit bit clock and latched in on the falling edge of the transmit bit clock. If TCKP is set the falling edge of the transmit clock is used to clock the data out and frame sync and the rising edge of the transmit clock is used to latch the data and frame sync in.
-        unsigned TFSP : 1; //!< [19] ESAI_TCCR Transmit Frame Sync Polarity. The Transmitter Frame Sync Polarity (TFSP) bit determines the polarity of the transmit frame sync signal. When TFSP is cleared, the frame sync signal polarity is positive, that is, the frame start is indicated by a high level on the frame sync pin. When TFSP is set, the frame sync signal polarity is negative, that is, the frame start is indicated by a low level on the frame sync pin.
-        unsigned THCKP : 1; //!< [20] ESAI_TCCR Transmit High Frequency Clock Polarity. The Transmitter High Frequency Clock Polarity (THCKP) bit controls on which bit clock edge data and frame sync are clocked out and latched in. If THCKP is cleared the data and the frame sync are clocked out on the rising edge of the transmit high frequency bit clock and latched in on the falling edge of the transmit bit clock. If THCKP is set the falling edge of the transmit clock is used to clock the data out and frame sync and the rising edge of the transmit clock is used to latch the data and frame sync in.
-        unsigned TCKD : 1; //!< [21] ESAI_TCCR Transmit Clock Source Direction. The Transmitter Clock Source Direction (TCKD) bit selects the source of the clock signal used to clock the transmit shift registers in the asynchronous mode (SYN=0) and the transmit shift registers and the receive shift registers in the synchronous mode (SYN=1). When TCKD is set, the internal clock source becomes the bit clock for the transmit shift registers and word length divider and is the output on the SCKT pin. When TCKD is cleared, the clock source is external; the internal clock generator is disconnected from the SCKT pin, and an external clock source may drive this pin (see ).
-        unsigned TFSD : 1; //!< [22] ESAI_TCCR Transmit Frame Sync Signal Direction. TFSD controls the direction of the FST pin. When TFSD is cleared, FST is an input; when TFSD is set, FST is an output (see ).
-        unsigned THCKD : 1; //!< [23] ESAI_TCCR Transmit High Frequency Clock Direction. THCKD controls the direction of the HCKT pin. When THCKD is cleared, HCKT is an input; when THCKD is set, HCKT is an output (see ).
+        unsigned TPM : 8; //!< [7:0] ESAI_TCCR Transmit Prescale Modulus Select.
+        unsigned TPSR : 1; //!< [8] ESAI_TCCR Transmit Prescaler Range.
+        unsigned TDC : 5; //!< [13:9] ESAI_TCCR Tx Frame Rate Divider Control.
+        unsigned TFP : 4; //!< [17:14] ESAI_TCCR Tx High Frequency Clock Divider.
+        unsigned TCKP : 1; //!< [18] ESAI_TCCR Transmit Clock Polarity.
+        unsigned TFSP : 1; //!< [19] ESAI_TCCR Transmit Frame Sync Polarity.
+        unsigned THCKP : 1; //!< [20] ESAI_TCCR Transmit High Frequency Clock Polarity.
+        unsigned TCKD : 1; //!< [21] ESAI_TCCR Transmit Clock Source Direction.
+        unsigned TFSD : 1; //!< [22] ESAI_TCCR Transmit Frame Sync Signal Direction.
+        unsigned THCKD : 1; //!< [23] ESAI_TCCR Transmit High Frequency Clock Direction.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved.
     } B;
 } hw_esai_tccr_t;
@@ -3382,23 +3372,23 @@ typedef union _hw_esai_rcr
     reg32_t U;
     struct _hw_esai_rcr_bitfields
     {
-        unsigned RE0 : 1; //!< [0] ESAI_RCR ESAI Receiver 0 Enable. When RE0 is set and TE5 is cleared, the ESAI receiver 0 is enabled and samples data at the SDO5/SDI0 pin. ESAI_TX5 and ESAI_RX0 should not be enabled at the same time (RE0=1 and TE5=1). When RE0 is cleared, receiver 0 is disabled by inhibiting data transfer into ESAI_RX0. If this bit is cleared while receiving a data word, the remainder of the word is shifted in and transferred to the ESAI_RX0 data register. If RE0 is set while some of the other receivers are already in operation, the first data word received in ESAI_RX0 will be invalid and must be discarded.
-        unsigned RE1 : 1; //!< [1] ESAI_RCR ESAI Receiver 1 Enable. When RE1 is set and TE4 is cleared, the ESAI receiver 1 is enabled and samples data at the SDO4/SDI1 pin. ESAI_TX4 and ESAI_RX1 should not be enabled at the same time (RE1=1 and TE4=1). When RE1 is cleared, receiver 1 is disabled by inhibiting data transfer into ESAI_RX1. If this bit is cleared while receiving a data word, the remainder of the word is shifted in and transferred to the ESAI_RX1 data register. If RE1 is set while some of the other receivers are already in operation, the first data word received in ESAI_RX1 will be invalid and must be discarded.
-        unsigned RE2 : 1; //!< [2] ESAI_RCR ESAI Receiver 2 Enable. When RE2 is set and TE3 is cleared, the ESAI receiver 2 is enabled and samples data at the SDO3/SDI2 pin. ESAI_TX3 and ESAI_RX2 should not be enabled at the same time (RE2=1 and TE3=1). When RE2 is cleared, receiver 2 is disabled by inhibiting data transfer into ESAI_RX2. If this bit is cleared while receiving a data word, the remainder of the word is shifted in and transferred to the ESAI_RX2 data register. If RE2 is set while some of the other receivers are already in operation, the first data word received in ESAI_RX2 will be invalid and must be discarded.
-        unsigned RE3 : 1; //!< [3] ESAI_RCR ESAI Receiver 3 Enable. When RE3 is set and TE2 is cleared, the ESAI receiver 3 is enabled and samples data at the SDO2/SDI3 pin. ESAI_TX2 and ESAI_RX3 should not be enabled at the same time (RE3=1 and TE2=1). When RE3 is cleared, receiver 3 is disabled by inhibiting data transfer into ESAI_RX3. If this bit is cleared while receiving a data word, the remainder of the word is shifted in and transferred to the ESAI_RX3 data register. If RE3 is set while some of the other receivers are already in operation, the first data word received in ESAI_RX3 will be invalid and must be discarded.
+        unsigned RE0 : 1; //!< [0] ESAI_RCR ESAI Receiver 0 Enable.
+        unsigned RE1 : 1; //!< [1] ESAI_RCR ESAI Receiver 1 Enable.
+        unsigned RE2 : 1; //!< [2] ESAI_RCR ESAI Receiver 2 Enable.
+        unsigned RE3 : 1; //!< [3] ESAI_RCR ESAI Receiver 3 Enable.
         unsigned RESERVED0 : 2; //!< [5:4] Reserved.
-        unsigned RSHFD : 1; //!< [6] ESAI_RCR Receiver Shift Direction. The RSHFD bit causes the receiver shift registers to shift data in MSB first when RSHFD is cleared or LSB first when RSHFD is set (see and ).
-        unsigned RWA : 1; //!< [7] ESAI_RCR Receiver Word Alignment Control. The Receiver Word Alignment Control (RWA) bit defines the alignment of the data word in relation to the slot. This is relevant for the cases where the word length is shorter than the slot length. If RWA is cleared, the data word is assumed to be left-aligned in the slot frame. If RWA is set, the data word is assumed to be right-aligned in the slot frame. If the data word is shorter than the slot length, the data bits which are not in the data word field are ignored. For data word lengths of less than 24 bits, the data word is right-extended with zeroes before being stored in the receive data registers.
-        unsigned RMOD : 2; //!< [9:8] ESAI_RCR Receiver Network Mode Control. The RMOD1 and RMOD0 bits are used to define the network mode of the ESAI receivers, as shown in . In the normal mode, the frame rate divider determines the word transfer rate - one word is transferred per frame sync during the frame sync time slot, as shown in . In network mode, it is possible to transfer a word for every time slot, as shown in . For more details, see . In order to comply with AC-97 specifications, RSWS4-RSWS0 should be set to 0x00011 (20-bit slot, 20-bit word); RFSL and RFSR should be cleared, and RDC4-RDC0 should be set to 0x0C (13 words in frame).
-        unsigned RSWS : 5; //!< [14:10] ESAI_RCR Receiver Slot and Word Select. The RSWS4-RSWS0 bits are used to select the length of the slot and the length of the data words being received through the ESAI. The word length must be equal to or shorter than the slot length. The possible combinations are shown in . See also the ESAI data path programming model in and .
-        unsigned RFSL : 1; //!< [15] ESAI_RCR Receiver Frame Sync Length. The RFSL bit selects the length of the receive frame sync to be generated or recognized. If RFSL is cleared, a word-length frame sync is selected. If RFSL is set, a 1-bit clock period frame sync is selected. Refer to for examples of frame length selection.
-        unsigned RFSR : 1; //!< [16] ESAI_RCR Receiver Frame Sync Relative Timing. RFSR determines the relative timing of the receive frame sync signal as referred to the serial data lines, for a word length frame sync only. When RFSR is cleared the word length frame sync occurs together with the first bit of the data word of the first slot. When RFSR is set the word length frame sync starts one serial clock cycle earlier, that is, together with the last bit of the previous data word.
+        unsigned RSHFD : 1; //!< [6] ESAI_RCR Receiver Shift Direction.
+        unsigned RWA : 1; //!< [7] ESAI_RCR Receiver Word Alignment Control.
+        unsigned RMOD : 2; //!< [9:8] ESAI_RCR Receiver Network Mode Control.
+        unsigned RSWS : 5; //!< [14:10] ESAI_RCR Receiver Slot and Word Select.
+        unsigned RFSL : 1; //!< [15] ESAI_RCR Receiver Frame Sync Length.
+        unsigned RFSR : 1; //!< [16] ESAI_RCR Receiver Frame Sync Relative Timing.
         unsigned RESERVED1 : 2; //!< [18:17] Reserved.
-        unsigned RPR : 1; //!< [19] ESAI_RCR Receiver Section Personal Reset. The RPR control bit is used to put the receiver section of the ESAI in the personal reset state. The transmitter section is not affected. When RPR is cleared, the receiver section may operate normally. When RPR is set, the receiver section enters the personal reset state immediately. When in the personal reset state, the status bits are reset to the same state as after hardware reset.The control bits are not affected by the personal reset state.The receiver data pins are disconnected while in the personal reset state. To leave the personal reset state by clearing RPR, the procedure described in should be followed.
-        unsigned REIE : 1; //!< [20] ESAI_RCR Receive Exception Interrupt Enable. When REIE is set, the Core is interrupted when both RDF and ROE in the ESAI_SAISR status register are set. When REIE is cleared, this interrupt is disabled. Reading the ESAI_SAISR status register followed by reading the enabled receivers data registers clears ROE, thus clearing the pending interrupt.
-        unsigned REDIE : 1; //!< [21] ESAI_RCR Receive Even Slot Data Interrupt Enable. The REDIE control bit is used to enable the receive even slot data interrupts. If REDIE is set, the receive even slot data interrupts are enabled. If REDIE is cleared, the receive even slot data interrupts are disabled. A receive even slot data interrupt request is generated if REDIE is set and the REDF status flag in the ESAI_SAISR status register is set. Even time slots are all even-numbered time slots (0, 2, 4, etc.) when operating in network mode. The zero time slot is marked by the frame sync signal and is considered to be even. Reading all the data registers of the enabled receivers clears the REDF flag, thus servicing the interrupt. Receive interrupts with exception have higher priority than receive even slot data interrupts, therefore if exception occurs (ROE is set) and REIE is set, the ESAI requests an ESAI receive data with exception interrupt from the interrupt controller.
-        unsigned RIE : 1; //!< [22] ESAI_RCR Receive Interrupt Enable. The Core is interrupted when RIE and the RDF flag in the ESAI_SAISR status register are set. When RIE is cleared, this interrupt is disabled. Reading the receive data registers of the enabled receivers clears RDF, thus clearing the interrupt. Receive interrupts with exception have higher priority than normal receive data interrupts, therefore if exception occurs (ROE is set) and REIE is set, the ESAI requests an ESAI receive data with exception interrupt from the interrupt controller.
-        unsigned RLIE : 1; //!< [23] ESAI_RCR Receive Last Slot Interrupt Enable. RLIE enables an interrupt after the last slot of a frame ended in network mode only. When RLIE is set the Core is interrupted after the last slot in a frame ended regardless of the receive mask register setting. When RLIE is cleared the receive last slot interrupt is disabled. Hardware and software reset clear RLIE. RLIE is disabled when RDC[4:0]=00000 (on-demand mode). The use of the receive last slot interrupt is described in .
+        unsigned RPR : 1; //!< [19] ESAI_RCR Receiver Section Personal Reset.
+        unsigned REIE : 1; //!< [20] ESAI_RCR Receive Exception Interrupt Enable.
+        unsigned REDIE : 1; //!< [21] ESAI_RCR Receive Even Slot Data Interrupt Enable.
+        unsigned RIE : 1; //!< [22] ESAI_RCR Receive Interrupt Enable.
+        unsigned RLIE : 1; //!< [23] ESAI_RCR Receive Last Slot Interrupt Enable.
         unsigned RESERVED2 : 8; //!< [31:24] Reserved.
     } B;
 } hw_esai_rcr_t;
@@ -3808,16 +3798,16 @@ typedef union _hw_esai_rccr
     reg32_t U;
     struct _hw_esai_rccr_bitfields
     {
-        unsigned RPM : 8; //!< [7:0] ESAI_RCCR Receiver Prescale Modulus Select. The RPM7-RPM0 bits specify the divide ratio of the prescale divider in the ESAI receiver clock generator. A divide ratio from 1 to 256 (RPM[7:0]=0x00 to 0xFF) may be selected. The bit clock output is available at the receiver serial bit clock (SCKR) pin. The bit clock output is also available internally for use as the bit clock to shift the receive shift registers. The ESAI receive clock generator functional diagram is shown in .
-        unsigned RPSP : 1; //!< [8] ESAI_RCCR Receiver Prescaler Range. The RPSR controls a fixed divide-by-eight prescaler in series with the variable prescaler. This bit is used to extend the range of the prescaler for those cases where a slower bit clock is desired. When RPSR is set, the fixed prescaler is bypassed. When RPSR is cleared, the fixed divide-by-eight prescaler is operational (see ). The maximum internally generated bit clock frequency is Fsys/4, the minimum internally generated bit clock frequency is Fsys/(2 x 8 x 256 x 16)=Fsys/65536. (Do not use the combination RPSR=1 and RPM7-RPM0 =0x00, which causes synchronization problems when using the internal Core clock as source (RHCKD=1 or RCKD=1))
-        unsigned RDC : 5; //!< [13:9] ESAI_RCCR Rx Frame Rate Divider Control. The RDC4-RDC0 bits control the divide ratio for the programmable frame rate dividers used to generate the receiver frame clocks. In network mode, this ratio may be interpreted as the number of words per frame minus one. The divide ratio may range from 2 to 32 (RDC[4:0]=0x00001 to 0x11111) for network mode. A divide ratio of one (RDC[4:0]=0x00000) in network mode is a special case (on-demand mode). In normal mode, this ratio determines the word transfer rate. The divide ratio may range from 1 to 32 (RDC[4:0]=0x00000 to 0x11111) for normal mode. In normal mode, a divide ratio of one (RDC[4:0]=0x00000) provides continuous periodic data word transfers. A bit-length frame sync (RFSL=1) must be used in this case. The ESAI frame sync generator functional diagram is shown in .
-        unsigned RFP : 4; //!< [17:14] ESAI_RCCR Rx High Frequency Clock Divider. The RFP3-RFP0 bits control the divide ratio of the receiver high frequency clock to the receiver serial bit clock when the source of the receiver high frequency clock and the bit clock is the internal Arm Core clock. When the HCKR input is being driven from an external high frequency clock, the RFP3-RFP0 bits specify an additional division ration in the clock divider chain. provides the specification of the divide ratio. shows the ESAI high frequency generator functional diagram.
-        unsigned RCKP : 1; //!< [18] The Receiver Clock Polarity (RCKP) bit controls on which bit clock edge data and frame sync are clocked out and latched in. If RCKP is cleared the data and the frame sync are clocked out on the rising edge of the receive bit clock and the frame sync is latched in on the falling edge of the receive bit clock. If RCKP is set the falling edge of the receive clock is used to clock the data and frame sync out and the rising edge of the receive clock is used to latch the frame sync in.
-        unsigned RFSP : 1; //!< [19] ESAI_RCCR Receiver Frame Sync Polarity. The Receiver Frame Sync Polarity (RFSP) determines the polarity of the receive frame sync signal. When RFSP is cleared the frame sync signal polarity is positive, that is, the frame start is indicated by a high level on the frame sync pin. When RFSP is set the frame sync signal polarity is negative, that is, the frame start is indicated by a low level on the frame sync pin.
-        unsigned RHCKP : 1; //!< [20] ESAI_RCCR Receiver High Frequency Clock Polarity. The Receiver High Frequency Clock Polarity (RHCKP) bit controls on which bit clock edge data and frame sync are clocked out and latched in. If RHCKP is cleared the data and the frame sync are clocked out on the rising edge of the receive high frequency bit clock and the frame sync is latched in on the falling edge of the receive bit clock. If RHCKP is set the falling edge of the receive clock is used to clock the data and frame sync out and the rising edge of the receive clock is used to latch the frame sync in.
-        unsigned RCKD : 1; //!< [21] ESAI_RCCR Receiver Clock Source Direction. The Receiver Clock Source Direction (RCKD) bit selects the source of the clock signal used to clock the receive shift register in the asynchronous mode (SYN=0) and the IF0/OF0 flag direction in the synchronous mode (SYN=1). In the asynchronous mode, when RCKD is set, the internal clock source becomes the bit clock for the receive shift registers and word length divider and is the output on the SCKR pin. In the asynchronous mode when RCKD is cleared, the clock source is external; the internal clock generator is disconnected from the SCKR pin, and an external clock source may drive this pin. In the synchronous mode when RCKD is set, the SCKR pin becomes the OF0 output flag. If RCKD is cleared, the SCKR pin becomes the IF0 input flag. Refer to and .
-        unsigned RFSD : 1; //!< [22] ESAI_RCCR Receiver Frame Sync Signal Direction. The Receiver Frame Sync Signal Direction (RFSD) bit selects the source of the receiver frame sync signal when in the asynchronous mode (SYN=0) and the IF1/OF1/Transmitter Buffer Enable flag direction in the synchronous mode (SYN=1). In the asynchronous mode, when RFSD is set, the internal clock generator becomes the source of the receiver frame sync and is the output on the FSR pin. In the asynchronous mode, when RFSD is cleared, the receiver frame sync source is external; the internal clock generator is disconnected from the FSR pin, and an external clock source may drive this pin. In the synchronous mode when RFSD is set, the FSR pin becomes the OF1 output flag or the Transmitter Buffer Enable, according to the TEBE control bit. If RFSD is cleared, the FSR pin becomes the IF1 input flag. Refer to and .
-        unsigned RHCKD : 1; //!< [23] ESAI_RCCR Receiver High Frequency Clock Direction. The Receiver High Frequency Clock Direction (RHCKD) bit selects the source of the receiver high frequency clock when in the asynchronous mode (SYN=0) and the IF2/OF2 flag direction in the synchronous mode (SYN=1). In the asynchronous mode, when RHCKD is set, the internal clock generator becomes the source of the receiver high frequency clock and is the output on the HCKR pin. In the asynchronous mode, when RHCKD is cleared, the receiver high frequency clock source is external; the internal clock generator is disconnected from the HCKR pin, and an external clock source may drive this pin. When RHCKD is cleared, HCKR is an input; when RHCKD is set, HCKR is an output. In the synchronous mode when RHCKD is set, the HCKR pin becomes the OF2 output flag. If RHCKD is cleared, the HCKR pin becomes the IF2 input flag. Refer to and .
+        unsigned RPM : 8; //!< [7:0] ESAI_RCCR Receiver Prescale Modulus Select.
+        unsigned RPSP : 1; //!< [8] ESAI_RCCR Receiver Prescaler Range.
+        unsigned RDC : 5; //!< [13:9] ESAI_RCCR Rx Frame Rate Divider Control.
+        unsigned RFP : 4; //!< [17:14] ESAI_RCCR Rx High Frequency Clock Divider.
+        unsigned RCKP : 1; //!< [18] The Receiver Clock Polarity (RCKP) bit controls on which bit clock edge data and frame sync are clocked out and latched in.
+        unsigned RFSP : 1; //!< [19] ESAI_RCCR Receiver Frame Sync Polarity.
+        unsigned RHCKP : 1; //!< [20] ESAI_RCCR Receiver High Frequency Clock Polarity.
+        unsigned RCKD : 1; //!< [21] ESAI_RCCR Receiver Clock Source Direction.
+        unsigned RFSD : 1; //!< [22] ESAI_RCCR Receiver Frame Sync Signal Direction.
+        unsigned RHCKD : 1; //!< [23] ESAI_RCCR Receiver High Frequency Clock Direction.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved.
     } B;
 } hw_esai_rccr_t;
@@ -4117,7 +4107,7 @@ typedef union _hw_esai_tsma
     reg32_t U;
     struct _hw_esai_tsma_bitfields
     {
-        unsigned TS : 16; //!< [15:0] When bit number N in ESAI_TSMA is cleared, all the transmit data pins of the enabled transmitters are tri-stated during transmit time slot number N. The data is still transferred from the transmit data registers to the transmit shift registers but neither the TDE nor the TUE flags are set. This means that during a disabled slot, no transmitter empty interrupt is generated. The Core is interrupted only for enabled slots. Data that is written to the transmit data registers when servicing this request is transmitted in the next enabled transmit time slot. When bit number N in ESAI_TSMA register is set, the transmit sequence is as usual: data is transferred from the TX registers to the shift registers and transmitted during slot number N, and the TDE flag is set. Using the slot mask in ESAI_TSMA does not conflict with using TSR. Even if a slot is enabled in ESAI_TSMA, the user may choose to write to TSR instead of writing to the transmit data registers TXn. This causes all the transmit data pins of the enabled transmitters to be tri-stated during the next slot. Data written to the ESAI_TSMA affects the next frame transmission. The frame being transmitted is not affected by this data and would comply to the last ESAI_TSMA setting. Data read from ESAI_TSMA returns the last written data. After hardware or software reset, the ESAI_TSMA register is preset to 0x0000FFFF, which means that all 16 possible slots are enabled for data transmission. When operating in normal mode, bit 0 of the ESAI_TSMA register must be set, otherwise no output is generated.
+        unsigned TS : 16; //!< [15:0] When bit number N in ESAI_TSMA is cleared, all the transmit data pins of the enabled transmitters are tri-stated during transmit time slot number N.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_esai_tsma_t;
@@ -4198,7 +4188,7 @@ typedef union _hw_esai_tsmb
     reg32_t U;
     struct _hw_esai_tsmb_bitfields
     {
-        unsigned TS : 16; //!< [15:0] When bit number N in ESAI_TSMB is cleared, all the transmit data pins of the enabled transmitters are tri-stated during transmit time slot number N. The data is still transferred from the transmit data registers to the transmit shift registers but neither the TDE nor the TUE flags are set. This means that during a disabled slot, no transmitter empty interrupt is generated. The Core is interrupted only for enabled slots. Data that is written to the transmit data registers when servicing this request is transmitted in the next enabled transmit time slot. When bit number N in ESAI_TSMB register is set, the transmit sequence is as usual: data is transferred from the TX registers to the shift registers and transmitted during slot number N, and the TDE flag is set. Using the slot mask in ESAI_TSMB does not conflict with using TSR. Even if a slot is enabled in TSMB, the user may chose to write to TSR instead of writing to the transmit data registers TXn. This causes all the transmit data pins of the enabled transmitters to be tri-stated during the next slot. Data written to the ESAI_TSMB affects the next frame transmission. The frame being transmitted is not affected by this data and would comply to the last ESAI_TSMB setting. Data read from ESAI_TSMB returns the last written data. After hardware or software reset, the ESAI_TSMB register is preset to 0x0000FFFF, which means that all 16 possible slots are enabled for data transmission.
+        unsigned TS : 16; //!< [15:0] When bit number N in ESAI_TSMB is cleared, all the transmit data pins of the enabled transmitters are tri-stated during transmit time slot number N.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_esai_tsmb_t;
@@ -4278,7 +4268,7 @@ typedef union _hw_esai_rsma
     reg32_t U;
     struct _hw_esai_rsma_bitfields
     {
-        unsigned RS : 16; //!< [15:0] When bit number N in the ESAI_RSMA register is cleared, the data from the enabled receivers input pins are shifted into their receive shift registers during slot number N. The data is not transferred from the receive shift registers to the receive data registers, and neither the RDF nor the ROE flag is set. This means that during a disabled slot, no receiver full interrupt is generated. The Core is interrupted only for enabled slots. When bit number N in the ESAI_RSMA is set, the receive sequence is as usual: data which is shifted into the enabled receivers shift registers is transferred to the receive data registers and the RDF flag is set. Data written to the ESAI_RSMA affects the next received frame. The frame being received is not affected by this data and would comply to the last ESAI_RSMA setting. Data read from ESAI_RSMA returns the last written data. After hardware or software reset, the ESAI_RSMA register is preset to 0x0000FFFF, which means that all 16 possible slots are enabled for data reception. When operating in normal mode, bit 0 of the ESAI_RSMA register must be set to one, otherwise no input is received.
+        unsigned RS : 16; //!< [15:0] When bit number N in the ESAI_RSMA register is cleared, the data from the enabled receivers input pins are shifted into their receive shift registers during slot number N.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_esai_rsma_t;
@@ -4354,7 +4344,7 @@ typedef union _hw_esai_rsmb
     reg32_t U;
     struct _hw_esai_rsmb_bitfields
     {
-        unsigned RS : 16; //!< [15:0] When bit number N in the ESAI_RSMB register is cleared, the data from the enabled receivers input pins are shifted into their receive shift registers during slot number N. The data is not transferred from the receive shift registers to the receive data registers, and neither the RDF nor the ROE flag is set. This means that during a disabled slot, no receiver full interrupt is generated. The Core is interrupted only for enabled slots. When bit number N in the ESAI_RSMB is set, the receive sequence is as usual: data which is shifted into the enabled receivers shift registers is transferred to the receive data registers and the RDF flag is set. Data written to the ESAI_RSMB affects the next received frame. The frame being received is not affected by this data and would comply to the last ESAI_RSMB setting. Data read from ESAI_RSMB returns the last written data. After hardware or software reset, the ESAI_RSMB register is preset to 0x0000FFFF, which means that all 16 possible slots are enabled for data reception.
+        unsigned RS : 16; //!< [15:0] When bit number N in the ESAI_RSMB register is cleared, the data from the enabled receivers input pins are shifted into their receive shift registers during slot number N.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_esai_rsmb_t;
@@ -4485,8 +4475,7 @@ typedef union _hw_esai_prrc
  * Direction Register (ESAI_PRRC) controls the functionality of the ESAI personal reset state. Each
  * of the PC(11:0) bits controls the functionality of the corresponding port pin. provides the port
  * pin configurations. Hardware and software reset clear all ESAI_PCRC bits.   PCRC and PRRC Bits
- * Functionality        PDC[i]  PC[i]  Port Pin[i] Function      0  0  Disconnected    0  1  Not
- * used    1  0  Not used    1  1  ESAI
+ * Functionality        PDC[i]  PC[i]  Port Pin[i] Function      0  0  Disconnected    1  1  ESAI
  */
 typedef union _hw_esai_pcrc
 {

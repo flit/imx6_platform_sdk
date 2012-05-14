@@ -27,16 +27,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_TEMPMON_TEMPSENSE0 - Tempsensor Control Register 0
@@ -57,8 +47,8 @@ typedef union _hw_tempmon_tempsense0
     struct _hw_tempmon_tempsense0_bitfields
     {
         unsigned POWER_DOWN : 1; //!< [0] This bit powers down the temperature sensor.
-        unsigned MEASURE_TEMP : 1; //!< [1] Starts the measurement process. If the measurement frequency is zero in the TEMPSENSE1 register, this results in a single conversion.
-        unsigned FINISHED : 1; //!< [2] Indicates that the latest temp is valid. This bit should be cleared by the sensor after the start of each measurement.
+        unsigned MEASURE_TEMP : 1; //!< [1] Starts the measurement process.
+        unsigned FINISHED : 1; //!< [2] Indicates that the latest temp is valid.
         unsigned RESERVED0 : 5; //!< [7:3] Reserved.
         unsigned TEMP_CNT : 12; //!< [19:8] This bit field contains the last measured temperature count.
         unsigned ALARM_VALUE : 12; //!< [31:20] This bit field contains the temperature count (raw sensor output) that will generate an alarm interrupt.
@@ -207,7 +197,7 @@ typedef union _hw_tempmon_tempsense1
     reg32_t U;
     struct _hw_tempmon_tempsense1_bitfields
     {
-        unsigned MEASURE_FREQ : 16; //!< [15:0] This bits determines how many RTC clocks to wait before automatically repeating a temperature measurement. 0x0000 - defines a single measurement with no repeat. 0xFFFF determines a two second sample rate with a 32.768KHz RTC clock. Exact timings depend on the accuracy of the RTC clock.
+        unsigned MEASURE_FREQ : 16; //!< [15:0] This bits determines how many RTC clocks to wait before automatically repeating a temperature measurement.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved.
     } B;
 } hw_tempmon_tempsense1_t;

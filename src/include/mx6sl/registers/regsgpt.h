@@ -35,16 +35,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_GPT_CR - GPT Control Register
@@ -57,33 +47,33 @@
  * Reset value: 0x00000000
  *
  * The GPT Control Register (GPT_CR) is used to program and configure GPT operations. An IP Bus
- * Write to the GPT Control Register occurs after one cycle of wait state (ips_xfr_wait high for 1
- * cycle) , while an IP Bus Read occurs after 0 wait states.
+ * Write to the GPT Control Register occurs after one cycle of wait state, while an IP Bus Read
+ * occurs after 0 wait states.
  */
 typedef union _hw_gpt_cr
 {
     reg32_t U;
     struct _hw_gpt_cr_bitfields
     {
-        unsigned EN : 1; //!< [0] GPT Enable. The EN bit is the GPT module enable bit. Before setting the EN bit , we recommend that all registers be properly programmed . A hardware reset resets the EN bit. A software reset does not affect the EN bit.
-        unsigned ENMOD : 1; //!< [1] GPT Enable mode. When the GPT is disabled (EN=0), then both the Main Counter and Prescaler Counter freeze their current count values . The ENMOD bit determines the value of the GPT counter when Counter is enabled again (if the EN bit is set). If the ENMOD bit is 1, then the Main Counter and Prescaler Counter values are reset to 0 after GPT is enabled (EN=1). If the ENMOD bit is 0, then the Main Counter and Prescaler Counter restart counting from their frozen values after GPT is enabled (EN=1). If GPT is programmed to be disabled in a low power mode (STOP/WAIT), then the Main Counter and Prescaler Counter freeze at their current count values when the GPT enters low power mode. When GPT exits low power mode, the Main Counter and Prescaler Counter start counting from their frozen values, regardless of the ENMOD bit value. Setting the SWR bit will clear the Main Counter and Prescaler Counter values, regardless of the value of EN or ENMOD bits. A hardware reset resets the ENMOD bit. A software reset does not affect the ENMOD bit.
-        unsigned DBGEN : 1; //!< [2] GPT debug mode enable. The DBGEN read/write control bit enables GPT operation during Debug mode . A hardware reset resets the DBGEN bit. A software reset does not affect the DBGEN bit.
-        unsigned WAITEN : 1; //!< [3] GPT Wait Mode enable. The WAITEN read/write control bit enables GPT operation during Wait mode . A hardware reset resets the WAITEN bit. A software reset does not affect the WAITEN bit.
-        unsigned DOZEEN : 1; //!< [4] GPT Doze Mode Enable. A hardware reset resets the DOZEEN bit. A software reset does not affect the DOZEEN bit.
-        unsigned STOPEN : 1; //!< [5] GPT Stop Mode enable. The STOPEN read/write control bit enables GPT operation during Stop mode . A hardware reset resets the STOPEN bit. A software reset does not affect the STOPEN bit.
-        unsigned CLKSRC : 3; //!< [8:6] Clock Source select. The CLKSRC bits select which clock will go to the prescaler (and subsequently be used to run the GPT counter). The CLKSRC bit field value should only be changed after disabling the GPT by clearing the EN bit in this register (GPT_CR). A software reset does not affect the CLKSRC bit. For other programming requirements to change the clock source, see section .
-        unsigned FRR : 1; //!< [9] Free-Run or Restart mode. The FFR bit determines the behavior of the GPT when a compare event in channel 1 occurs. In Restart mode, after a compare event, the counter resets to 0x00000000 and resumes counting (after the occurrence of a compare event). In Free-Run mode, after a compare event, the counter continues counting until 0xFFFFFFFF and then rolls over to 0.
-        unsigned _24MEN : 1; //!< [10] Enable 24MHz clock input from crystal. A hardware reset resets the 24MEN bit. A software reset does not affect the 24MEN bit.
-        unsigned RESERVED0 : 4; //!< [14:11] Reserved bits. Writing a value to these reserved bits will not affect GPT operations. These reserved bits are always read as zero. It is recommended that all writes to these reserved bits be 0 (for forward compatibility).
-        unsigned SWR : 1; //!< [15] Software reset. This is the software reset of the GPT module. It is a self-clearing bit. The SWR bit is set when the module is in reset state. The SWR bit is cleared when the reset procedure finishes. Setting the SWR bit resets all of the registers to their default reset values, except for the CLKSRC, EN, ENMOD, STOPEN, WAITEN, and DBGEN bits in the GPT Control Register (this control register).
+        unsigned EN : 1; //!< [0] GPT Enable.
+        unsigned ENMOD : 1; //!< [1] GPT Enable mode.
+        unsigned DBGEN : 1; //!< [2] GPT debug mode enable.
+        unsigned WAITEN : 1; //!< [3] GPT Wait Mode enable.
+        unsigned DOZEEN : 1; //!< [4] GPT Doze Mode Enable.
+        unsigned STOPEN : 1; //!< [5] GPT Stop Mode enable.
+        unsigned CLKSRC : 3; //!< [8:6] Clock Source select.
+        unsigned FRR : 1; //!< [9] Free-Run or Restart mode.
+        unsigned _24MEN : 1; //!< [10] Enable 24MHz clock input from crystal.
+        unsigned RESERVED0 : 4; //!< [14:11] Reserved bits.
+        unsigned SWR : 1; //!< [15] Software reset.
         unsigned IM1 : 2; //!< [17:16] See IM2
         unsigned IM2 : 2; //!< [19:18] IM2 (bits 19-18, Input Capture Channel 2 operating mode) IM1 (bits 17-16, Input Capture Channel 1 operating mode) The IM n bit field determines the transition on the input pin (for Input capture channel n ), which will trigger a capture event.
         unsigned OM1 : 3; //!< [22:20] See OM3
         unsigned OM2 : 3; //!< [25:23] See OM3
-        unsigned OM3 : 3; //!< [28:26] OM3 (bits 28-26) controls the Output Compare Channel 3 operating mode. OM2 (bits 25-23) controls the Output Compare Channel 2 operating mode. OM1 (bits 22-20) controls the Output Compare Channel 1 operating mode. The OM n bits specify the response that a compare event will generate on the output pin of Output Compare Channel n . The toggle, clear, and set options cause a change on the output pin only if a compare event occurs. When OM n is programmed as 1xx (active low pulse), the output pin is set to one immediately on the next input clock; a low pulse (that is an input clock in width) occurs when there is a compare event. Note that here, "input clock" refers to the clock selected by the CLKSRC bits of the GPT Control Register.
+        unsigned OM3 : 3; //!< [28:26] OM3 (bits 28-26) controls the Output Compare Channel 3 operating mode.
         unsigned FO1 : 1; //!< [29] See F03
         unsigned FO2 : 1; //!< [30] See F03
-        unsigned FO3 : 1; //!< [31] FO3 Force Output Compare Channel 3 FO2 Force Output Compare Channel 2 FO1 Force Output Compare Channel 1 The FO n bit causes the pin action programmed for the timer Output Compare n pin (according to the OM n bits in this register). The OF n flag (OF3, OF2, OF1) in the status register is not affected . This bit is self-negating and always read as zero.
+        unsigned FO3 : 1; //!< [31] FO3 Force Output Compare Channel 3 FO2 Force Output Compare Channel 2 FO1 Force Output Compare Channel 1 The FO n bit causes the pin action programmed for the timer Output Compare n pin (according to the OM n bits in this register).
     } B;
 } hw_gpt_cr_t;
 #endif
@@ -271,16 +261,15 @@ typedef union _hw_gpt_cr
  * Clock Source select. The CLKSRC bits select which clock will go to the prescaler (and
  * subsequently be used to run the GPT counter). The CLKSRC bit field value should only be changed
  * after disabling the GPT by clearing the EN bit in this register (GPT_CR). A software reset does
- * not affect the CLKSRC bit. For other programming requirements to change the clock source, see
- * section .
+ * not affect the CLKSRC bit.
  *
  * Values:
  * 000 - No clock
- * 001 - Peripheral Clock (ipg_clk)
- * 010 - High Frequency Reference Clock (ipg_clk_highfreq)
- * 011 - External Clock ( IND_ CLKIN) (ipp_ind_clkin, external clock from pad)
- * 100 - Low Frequency Reference Clock (ipg_clk_32k)
- * 101 - Crystal oscillator as Reference Clock (ipg_clk_24M)
+ * 001 - Peripheral Clock
+ * 010 - High Frequency Reference Clock
+ * 011 - External Clock (CLKIN)
+ * 100 - Low Frequency Reference Clock
+ * 101 - Crystal oscillator as Reference Clock
  * others - Reserved
  */
 
@@ -566,9 +555,9 @@ typedef union _hw_gpt_pr
     reg32_t U;
     struct _hw_gpt_pr_bitfields
     {
-        unsigned PRESCALER : 12; //!< [11:0] Prescaler bits. The clock selected by the CLKSRC field is divided by [PRESCALER + 1], and then used to run the counter. A change in the value of the PRESCALER bits cause the Prescaler counter to reset and a new count period to start immediately. See for the timing diagram.
-        unsigned PRESCALER24M : 4; //!< [15:12] Prescaler bits. 24M crystal clock is divided by [PRESCALER24M + 1] before selected by the CLKSRC field. If 24M crystal clock is not selected, this feild takes no effect.
-        unsigned RESERVED0 : 16; //!< [31:16] Reserved bits. Writing a value to these reserved bits will not affect GPT operations. These reserved bits are always read as zero.
+        unsigned PRESCALER : 12; //!< [11:0] Prescaler bits.
+        unsigned PRESCALER24M : 4; //!< [15:12] Prescaler bits.
+        unsigned RESERVED0 : 16; //!< [31:16] Reserved bits.
     } B;
 } hw_gpt_pr_t;
 #endif
@@ -670,8 +659,8 @@ typedef union _hw_gpt_sr
         unsigned OF3 : 1; //!< [2] OF3 Output Compare 3 Flag OF2 Output Compare 2 Flag OF1 Output Compare 1 Flag The OF n bit indicates that a compare event has occurred on Output Compare channel n .
         unsigned IF1 : 1; //!< [3] See IF2
         unsigned IF2 : 1; //!< [4] IF2 Input capture 2 Flag IF1 Input capture 1 Flag The IF n bit indicates that a capture event has occurred on Input Capture channel n .
-        unsigned ROV : 1; //!< [5] Rollover Flag. The ROV bit indicates that the counter has reached its maximum possible value and rolled over to 0 (from which the counter continues counting). The ROV bit is only set if the counter has reached 0xFFFFFFFF in both Restart and Free-Run modes.
-        unsigned RESERVED0 : 26; //!< [31:6] Reserved bits. Writing a value to these reserved bits will not affect GPT operations. These reserved bits are always read as zero.
+        unsigned ROV : 1; //!< [5] Rollover Flag.
+        unsigned RESERVED0 : 26; //!< [31:6] Reserved bits.
     } B;
 } hw_gpt_sr_t;
 #endif
@@ -850,8 +839,8 @@ typedef union _hw_gpt_ir
         unsigned OF3IE : 1; //!< [2] OF3IE Output Compare 3 Interrupt Enable OF2IE Output Compare 2 Interrupt Enable OF1IE Output Compare 1 Interrupt Enable The OF n IE bit controls the Output Compare Channel n interrupt.
         unsigned IF1IE : 1; //!< [3] See IF2IE
         unsigned IF2IE : 1; //!< [4] IF2IE Input capture 2 Interrupt Enable IF1IE Input capture 1 Interrupt Enable The IF n IE bit controls the IF n IE Input Capture n Interrupt Enable.
-        unsigned ROVIE : 1; //!< [5] Rollover Interrupt Enable. The ROVIE bit controls the Rollover interrupt.
-        unsigned RESERVED0 : 26; //!< [31:6] Reserved bits. Writing a value to these reserved bits will not affect GPT operations. These reserved bits are always read as zero.
+        unsigned ROVIE : 1; //!< [5] Rollover Interrupt Enable.
+        unsigned RESERVED0 : 26; //!< [31:6] Reserved bits.
     } B;
 } hw_gpt_ir_t;
 #endif
@@ -1018,15 +1007,15 @@ typedef union _hw_gpt_ir
  * The GPT Compare Register 1 (GPT_OCR1) holds the value that determines when a compare event will
  * be generated on Output Compare Channel 1. Any write access to the Compare register of Channel 1
  * while in Restart mode (FRR=0) will reset the GPT counter.  An IP Bus Write access to the GPT
- * Output Compare Register1 (GPT_OCR1) occurs after one cycle of wait state (ips_xfr_wait high for 1
- * cycle) ; an IP Bus Read access occurs immediately (0 wait states).
+ * Output Compare Register1 (GPT_OCR1) occurs after one cycle of wait state; an IP Bus Read access
+ * occurs immediately (0 wait states).
  */
 typedef union _hw_gpt_ocr1
 {
     reg32_t U;
     struct _hw_gpt_ocr1_bitfields
     {
-        unsigned COMP : 32; //!< [31:0] Compare Value. When the counter value equals the COMP bit field value, a compare event is generated on Output Compare Channel 1.
+        unsigned COMP : 32; //!< [31:0] Compare Value.
     } B;
 } hw_gpt_ocr1_t;
 #endif
@@ -1087,7 +1076,7 @@ typedef union _hw_gpt_ocr2
     reg32_t U;
     struct _hw_gpt_ocr2_bitfields
     {
-        unsigned COMP : 32; //!< [31:0] Compare Value. When the counter value equals the COMP bit field value, a compare event is generated on Output Compare Channel 2.
+        unsigned COMP : 32; //!< [31:0] Compare Value.
     } B;
 } hw_gpt_ocr2_t;
 #endif
@@ -1148,7 +1137,7 @@ typedef union _hw_gpt_ocr3
     reg32_t U;
     struct _hw_gpt_ocr3_bitfields
     {
-        unsigned COMP : 32; //!< [31:0] Compare Value. When the counter value equals the COMP bit field value, a compare event is generated on Output Compare Channel 3.
+        unsigned COMP : 32; //!< [31:0] Compare Value.
     } B;
 } hw_gpt_ocr3_t;
 #endif
@@ -1209,7 +1198,7 @@ typedef union _hw_gpt_icr1
     reg32_t U;
     struct _hw_gpt_icr1_bitfields
     {
-        unsigned CAPT : 32; //!< [31:0] Capture Value. After a capture event on Input Capture Channel 1 occurs, the current value of the counter is loaded into GPT Input Capture Register 1.
+        unsigned CAPT : 32; //!< [31:0] Capture Value.
     } B;
 } hw_gpt_icr1_t;
 #endif
@@ -1258,7 +1247,7 @@ typedef union _hw_gpt_icr2
     reg32_t U;
     struct _hw_gpt_icr2_bitfields
     {
-        unsigned CAPT : 32; //!< [31:0] Capture Value. After a capture event on Input Capture Channel 2 occurs, the current value of the counter is loaded into GPT Input Capture Register 2.
+        unsigned CAPT : 32; //!< [31:0] Capture Value.
     } B;
 } hw_gpt_icr2_t;
 #endif
@@ -1307,7 +1296,7 @@ typedef union _hw_gpt_cnt
     reg32_t U;
     struct _hw_gpt_cnt_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] Counter Value. The COUNT bits show the current count value of the GPT counter.
+        unsigned COUNT : 32; //!< [31:0] Counter Value.
     } B;
 } hw_gpt_cnt_t;
 #endif

@@ -60,16 +60,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_UART_URXD - UART Receiver Register
@@ -89,14 +79,14 @@ typedef union _hw_uart_urxd
     reg32_t U;
     struct _hw_uart_urxd_bitfields
     {
-        unsigned RX_DATA : 8; //!< [7:0] Received Data . Holds the received character. In 7-bit mode, the most significant bit (MSB) is forced to 0. In 8-bit mode, all bits are active.
+        unsigned RX_DATA : 8; //!< [7:0] Received Data .
         unsigned RESERVED0 : 2; //!< [9:8] Reserved
-        unsigned PRERR : 1; //!< [10] In RS-485 mode, it holds the ninth data bit (bit [8]) of received 9-bit RS-485 data In RS232/IrDA mode, it is the Parity Error flag . Indicates whether the current character was detected with a parity error and is possibly corrupted. PRERR is updated for each character read from the RxFIFO. When parity is disabled, PRERR always reads as 0.
-        unsigned BRK : 1; //!< [11] BREAK Detect. Indicates whether the current character was detected as a BREAK character. The data bits and the stop bit are all 0. The FRMERR bit is set when BRK is set. When odd parity is selected, PRERR is also set when BRK is set. BRK is valid for each character read from the RxFIFO.
-        unsigned FRMERR : 1; //!< [12] Frame Error. Indicates whether the current character had a framing error (a missing stop bit) and is possibly corrupted. FRMERR is updated for each character read from the RxFIFO.
-        unsigned OVRRUN : 1; //!< [13] Receiver Overrun. This read-only bit, when HIGH, indicates that the corresponding character was stored in the last position (32nd) of the Rx FIFO. Even if a 33rd character has not been detected, this bit will be set to '1' for the 32nd character.
-        unsigned ERR : 1; //!< [14] Error Detect. Indicates whether the character present in the RX_DATA field has an error (OVRRUN, FRMERR, BRK or PRERR) status. The ERR bit is updated and valid for each received character.
-        unsigned CHARRDY : 1; //!< [15] Character Ready. This read-only bit indicates an invalid read when the FIFO becomes empty and software tries to read the same old data. This bit should not be used for polling for data written to the RX FIFO.
+        unsigned PRERR : 1; //!< [10] In RS-485 mode, it holds the ninth data bit (bit [8]) of received 9-bit RS-485 data In RS232/IrDA mode, it is the Parity Error flag .
+        unsigned BRK : 1; //!< [11] BREAK Detect.
+        unsigned FRMERR : 1; //!< [12] Frame Error.
+        unsigned OVRRUN : 1; //!< [13] Receiver Overrun.
+        unsigned ERR : 1; //!< [14] Error Detect.
+        unsigned CHARRDY : 1; //!< [15] Character Ready.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_uart_urxd_t;
@@ -256,7 +246,7 @@ typedef union _hw_uart_utxd
     reg32_t U;
     struct _hw_uart_utxd_bitfields
     {
-        unsigned TX_DATA : 8; //!< [7:0] Transmit Data . Holds the parallel transmit data inputs. In 7-bit mode, D7 is ignored. In 8-bit mode, all bits are used. Data is transmitted least significant bit (LSB) first. A new character is transmitted when the TX_DATA field is written. The TX_DATA field must be written only when the TRDY bit is high to ensure that corrupted data is not sent.
+        unsigned TX_DATA : 8; //!< [7:0] Transmit Data .
         unsigned RESERVED0 : 24; //!< [31:8] Reserved.
     } B;
 } hw_uart_utxd_t;
@@ -310,21 +300,21 @@ typedef union _hw_uart_ucr1
     reg32_t U;
     struct _hw_uart_ucr1_bitfields
     {
-        unsigned UARTEN : 1; //!< [0] UART Enable . Enables/Disables the UART. If UARTEN is negated in the middle of a transmission, the transmitter stops and pulls the TXD line to a logic 1. UARTEN must be set to 1 before any access to UTXD and URXD registers, otherwise a transfer error is returned. Output ipg_uart_clk_en is internally connected to UARTEN and can be used for software controlled clock gating purpose. This bit can be set to 1 along with other bits in this register. There is no restriction to the sequence of programing this bit and other control registers.
-        unsigned DOZE : 1; //!< [1] DOZE . Determines the UART enable condition in the DOZE state. When doze_req input pin is at '1', (the ARM Platform executes a doze instruction and the system is placed in the Doze State), the DOZE bit affects operation of the UART. While in the Doze State, if this bit is asserted, the UART is disabled. See the description in .
-        unsigned ATDMAEN : 1; //!< [2] Aging DMA Timer Enable . Enables/Disables the receive DMA request dma_req_rx for the aging timer interrupt (triggered with AGTIM flag in USR1[8]).
-        unsigned TXDMAEN : 1; //!< [3] Transmitter Ready DMA Enable . Enables/Disables the transmit DMA request dma_req_tx when the transmitter has one or more slots available in the TxFIFO. The fill level in the TxFIFO that generates the dma_req_tx is controlled by the TXTL bits. A DMA request will be issued as long as TXDMAEN and TRDY are high even if the transmitter is not enabled. In general, user should enable the transmitter before enabling the transmit DMA request.
-        unsigned SNDBRK : 1; //!< [4] Send BREAK . Forces the transmitter to send a BREAK character. The transmitter finishes sending the character in progress (if any) and sends BREAK characters until SNDBRK is reset. Because the transmitter samples SNDBRK after every bit is transmitted, it is important that SNDBRK is asserted high for a sufficient period of time to generate a valid BREAK. After the BREAK transmission completes, the UART transmits 2 mark bits. The user can continue to fill the TxFIFO and any characters remaining are transmitted when the BREAK is terminated.
-        unsigned RTSDEN : 1; //!< [5] RTS Delta Interrupt Enable . Enables/Disables the RTSD interrupt. The current status of the RTS pin is read in the RTSS bit.
-        unsigned TXMPTYEN : 1; //!< [6] Transmitter Empty Interrupt Enable . Enables/Disables the transmitter FIFO empty (TXFE) interrupt. interrupt_tx interrupt_uart . When negated, the TXFE interrupt is disabled. An interrupt will be issued as long as TXMPTYEN and TXFE are high even if the transmitter is not enabled. In general, user should enable the transmitter before enabling the TXFE interrupt.
-        unsigned IREN : 1; //!< [7] Infrared Interface Enable . Enables/Disables the IR interface. See the IR interface description in , for more information. Note: MDEN(UMCR[0]) must be cleared to 0 when using IrDA interface. See
-        unsigned RXDMAEN : 1; //!< [8] Receive Ready DMA Enable . Enables/Disables the receive DMA request dma_req_rx when the receiver has data in the RxFIFO. The fill level in the RxFIFO at which a DMA request is generated is controlled by the RXTL bits. When negated, the receive DMA request is disabled.
-        unsigned RRDYEN : 1; //!< [9] Receiver Ready Interrupt Enable . Enables/Disables the RRDY interrupt when the RxFIFO contains data. The fill level in the RxFIFO at which an interrupt is generated is controlled by the RXTL bits. When RRDYEN is negated, the receiver ready interrupt is disabled.
-        unsigned ICD : 2; //!< [11:10] Idle Condition Detect . Controls the number of frames RXD is allowed to be idle before an idle condition is reported.
-        unsigned IDEN : 1; //!< [12] Idle Condition Detected Interrupt Enable . Enables/Disables the IDLE bit to generate an interrupt ( interrupt_rx interrupt_uart = 0).
-        unsigned TRDYEN : 1; //!< [13] Transmitter Ready Interrupt Enable . Enables/Disables the transmitter Ready Interrupt (TRDY) when the transmitter has one or more slots available in the TxFIFO. The fill level in the TXFIFO at which an interrupt is generated is controlled by TxTL bits. When TRDYEN is negated, the transmitter ready interrupt is disabled. An interrupt will be issued as long as TRDYEN and TRDY are high even if the transmitter is not enabled. In general, user should enable the transmitter before enabling the TRDY interrupt.
-        unsigned ADBR : 1; //!< [14] Automatic Detection of Baud Rate . Enables/Disables automatic baud rate detection. When the ADBR bit is set and the ADET bit is cleared, the receiver detects the incoming baud rate automatically. The ADET flag is set when the receiver verifies that the incoming baud rate is detected properly by detecting an ASCII character "A" or "a" (0x61 or 0x41).
-        unsigned ADEN : 1; //!< [15] Automatic Baud Rate Detection Interrupt Enable . Enables/Disables the automatic baud rate detect complete (ADET) bit to generate an interrupt ( interrupt_mint interrupt_uart = 0).
+        unsigned UARTEN : 1; //!< [0] UART Enable .
+        unsigned DOZE : 1; //!< [1] DOZE .
+        unsigned ATDMAEN : 1; //!< [2] Aging DMA Timer Enable .
+        unsigned TXDMAEN : 1; //!< [3] Transmitter Ready DMA Enable .
+        unsigned SNDBRK : 1; //!< [4] Send BREAK .
+        unsigned RTSDEN : 1; //!< [5] RTS Delta Interrupt Enable .
+        unsigned TXMPTYEN : 1; //!< [6] Transmitter Empty Interrupt Enable .
+        unsigned IREN : 1; //!< [7] Infrared Interface Enable .
+        unsigned RXDMAEN : 1; //!< [8] Receive Ready DMA Enable .
+        unsigned RRDYEN : 1; //!< [9] Receiver Ready Interrupt Enable .
+        unsigned ICD : 2; //!< [11:10] Idle Condition Detect .
+        unsigned IDEN : 1; //!< [12] Idle Condition Detected Interrupt Enable .
+        unsigned TRDYEN : 1; //!< [13] Transmitter Ready Interrupt Enable .
+        unsigned ADBR : 1; //!< [14] Automatic Detection of Baud Rate .
+        unsigned ADEN : 1; //!< [15] Automatic Baud Rate Detection Interrupt Enable .
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_uart_ucr1_t;
@@ -352,10 +342,9 @@ typedef union _hw_uart_ucr1
  *
  * UART Enable . Enables/Disables the UART. If UARTEN is negated in the middle of a transmission,
  * the transmitter stops and pulls the TXD line to a logic 1. UARTEN must be set to 1 before any
- * access to UTXD and URXD registers, otherwise a transfer error is returned. Output ipg_uart_clk_en
- * is internally connected to UARTEN and can be used for software controlled clock gating purpose.
- * This bit can be set to 1 along with other bits in this register. There is no restriction to the
- * sequence of programing this bit and other control registers.
+ * access to UTXD and URXD registers, otherwise a transfer error is returned. This bit can be set to
+ * 1 along with other bits in this register. There is no restriction to the sequence of programing
+ * this bit and other control registers.
  *
  * Values:
  * 0 - Disable the UART
@@ -514,9 +503,9 @@ typedef union _hw_uart_ucr1
 /* --- Register HW_UART_UCR1, field TXMPTYEN[6] (RW)
  *
  * Transmitter Empty Interrupt Enable . Enables/Disables the transmitter FIFO empty (TXFE)
- * interrupt. interrupt_tx interrupt_uart . When negated, the TXFE interrupt is disabled. An
- * interrupt will be issued as long as TXMPTYEN and TXFE are high even if the transmitter is not
- * enabled. In general, user should enable the transmitter before enabling the TXFE interrupt.
+ * interrupt. interrupt_uart . When negated, the TXFE interrupt is disabled. An interrupt will be
+ * issued as long as TXMPTYEN and TXFE are high even if the transmitter is not enabled. In general,
+ * user should enable the transmitter before enabling the TXFE interrupt.
  *
  * Values:
  * 0 - Disable the transmitter FIFO empty interrupt
@@ -646,7 +635,7 @@ typedef union _hw_uart_ucr1
 /* --- Register HW_UART_UCR1, field IDEN[12] (RW)
  *
  * Idle Condition Detected Interrupt Enable . Enables/Disables the IDLE bit to generate an interrupt
- * ( interrupt_rx interrupt_uart = 0).
+ * ( interrupt_uart = 0).
  *
  * Values:
  * 0 - Disable the IDLE interrupt
@@ -727,7 +716,7 @@ typedef union _hw_uart_ucr1
 /* --- Register HW_UART_UCR1, field ADEN[15] (RW)
  *
  * Automatic Baud Rate Detection Interrupt Enable . Enables/Disables the automatic baud rate detect
- * complete (ADET) bit to generate an interrupt ( interrupt_mint interrupt_uart = 0).
+ * complete (ADET) bit to generate an interrupt ( interrupt_uart = 0).
  *
  * Values:
  * 0 - Disable the automatic baud rate detection interrupt
@@ -766,21 +755,21 @@ typedef union _hw_uart_ucr2
     reg32_t U;
     struct _hw_uart_ucr2_bitfields
     {
-        unsigned SRST : 1; //!< [0] Software Reset . Once the software writes 0 to SRST , the software reset remains active for 4 module_clock (ipg_perclk) cycles before the hardware deasserts SRST . The software can only write 0 to SRST . Writing 1 to SRST is ignored.
-        unsigned RXEN : 1; //!< [1] Receiver Enable . Enables/Disables the receiver. When the receiver is enabled, if the RXD input is already low, the receiver does not recognize BREAK characters, because it requires a valid 1-to-0 transition before it can accept any character.
-        unsigned TXEN : 1; //!< [2] Transmitter Enable . Enables/Disables the transmitter. When TXEN is negated the transmitter is disabled and idle. When the UARTEN and TXEN bits are set the transmitter is enabled. If TXEN is negated in the middle of a transmission, the UART disables the transmitter immediately, and starts marking 1s. The transmitter FIFO cannot be written when this bit is cleared.
-        unsigned ATEN : 1; //!< [3] Aging Timer Enable . This bit is used to enable the aging timer interrupt (triggered with AGTIM)
-        unsigned RTSEN : 1; //!< [4] Request to Send Interrupt Enable. Controls the RTS edge sensitive interrupt. When RTSEN is asserted and the programmed edge is detected on the RTS pin (the RTSF bit is asserted), an interrupt will be generated on the interrupt_mint interrupt_uart pin. (See .)
-        unsigned WS : 1; //!< [5] Word Size . Controls the character length. When WS is high, the transmitter and receiver are in 8-bit mode. When WS is low, they are in 7-bit mode. The transmitter ignores bit 7 and the receiver sets bit 7 to 0. WS can be changed in-between transmission (reception) of characters, however not when a transmission (reception) is in progress, in which case the length of the current character being transmitted (received) is unpredictable.
-        unsigned STPB : 1; //!< [6] Stop . Controls the number of stop bits after a character. When STPB is low, 1 stop bit is sent. When STPB is high, 2 stop bits are sent. STPB also affects the receiver.
-        unsigned PROE : 1; //!< [7] Parity Odd/Even . Controls the sense of the parity generator and checker. When PROE is high, odd parity is generated and expected. When PROE is low, even parity is generated and expected. PROE has no function if PREN is low.
-        unsigned PREN : 1; //!< [8] Parity Enable . Enables/Disables the parity generator in the transmitter and parity checker in the receiver. When PREN is asserted, the parity generator and checker are enabled, and disabled when PREN is negated.
-        unsigned RTEC : 2; //!< [10:9] Request to Send Edge Control . Selects the edge that triggers the RTS interrupt. This has no effect on the RTS delta interrupt. RTEC has an effect only when RTSEN = 1 (see ).
-        unsigned ESCEN : 1; //!< [11] Escape Enable . Enables/Disables the escape sequence detection logic.
-        unsigned CTS : 1; //!< [12] Clear to Send . Controls the CTS pin when the CTSC bit is negated. CTS has no function when CTSC is asserted.
-        unsigned CTSC : 1; //!< [13] CTS Pin Control . Controls the operation of the CTS output pin. When CTSC is asserted, the CTS output pin is controlled by the receiver. When the RxFIFO is filled to the level of the programmed trigger level and the start bit of the overflowing character (TRIGGER LEVEL + 1) is validated, the CTS output pin is negated to indicate to the far-end transmitter to stop transmitting. When the trigger level is programmed for less than 32, the receiver continues to receive data until the RxFIFO is full. When the CTSC bit is negated, the CTS output pin is controlled by the CTS bit. On reset, because CTSC is cleared to 0, the CTS pin is controlled by the CTS bit, which again is cleared to 0 on reset. This means that on reset the CTS signal is negated.
-        unsigned IRTS : 1; //!< [14] Ignore RTS Pin . Forces the RTS input signal presented to the transmitter to always be asserted (set to low), effectively ignoring the external pin. When in this mode, the RTS pin serves as a general purpose input.
-        unsigned ESCI : 1; //!< [15] Escape Sequence Interrupt Enable . Enables/Disables the ESCF bit to generate an interrupt.
+        unsigned SRST : 1; //!< [0] Software Reset .
+        unsigned RXEN : 1; //!< [1] Receiver Enable .
+        unsigned TXEN : 1; //!< [2] Transmitter Enable .
+        unsigned ATEN : 1; //!< [3] Aging Timer Enable .
+        unsigned RTSEN : 1; //!< [4] Request to Send Interrupt Enable.
+        unsigned WS : 1; //!< [5] Word Size .
+        unsigned STPB : 1; //!< [6] Stop .
+        unsigned PROE : 1; //!< [7] Parity Odd/Even .
+        unsigned PREN : 1; //!< [8] Parity Enable .
+        unsigned RTEC : 2; //!< [10:9] Request to Send Edge Control .
+        unsigned ESCEN : 1; //!< [11] Escape Enable .
+        unsigned CTS : 1; //!< [12] Clear to Send .
+        unsigned CTSC : 1; //!< [13] CTS Pin Control .
+        unsigned IRTS : 1; //!< [14] Ignore RTS Pin .
+        unsigned ESCI : 1; //!< [15] Escape Sequence Interrupt Enable .
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_uart_ucr2_t;
@@ -807,8 +796,8 @@ typedef union _hw_uart_ucr2
 /* --- Register HW_UART_UCR2, field SRST[0] (RW)
  *
  * Software Reset . Once the software writes 0 to SRST , the software reset remains active for 4
- * module_clock (ipg_perclk) cycles before the hardware deasserts SRST . The software can only write
- * 0 to SRST . Writing 1 to SRST is ignored.
+ * module_clock cycles before the hardware deasserts SRST . The software can only write 0 to SRST .
+ * Writing 1 to SRST is ignored.
  *
  * Values:
  * 0 - Reset the transmit and receive state machines, all FIFOs and register USR1, USR2, UBIR, UBMR, UBRC ,
@@ -912,7 +901,7 @@ typedef union _hw_uart_ucr2
  *
  * Request to Send Interrupt Enable. Controls the RTS edge sensitive interrupt. When RTSEN is
  * asserted and the programmed edge is detected on the RTS pin (the RTSF bit is asserted), an
- * interrupt will be generated on the interrupt_mint interrupt_uart pin. (See .)
+ * interrupt will be generated on the interrupt_uart pin. (See .)
  *
  * Values:
  * 0 - Disable request to send interrupt
@@ -1213,21 +1202,21 @@ typedef union _hw_uart_ucr3
     reg32_t U;
     struct _hw_uart_ucr3_bitfields
     {
-        unsigned ACIEN : 1; //!< [0] Autobaud Counter Interrupt Enable. This bit is used to enable the autobaud counter stopped interrupt (triggered with ACST (USR2[11]).
-        unsigned INVT : 1; //!< [1] Invert TXD output in RS-232/RS-485 mode, set TXD active level in IrDA mode. In RS232/RS-485 mode(UMCR[0] = 1), if this bit is set to 1, the TXD output is inverted before transmitted. In IrDA mode , when INVT is cleared, the infrared logic block transmits a positive IR 3/16 pulse for all 0s and 0s are transmitted for 1s. When INVT is set (INVT = 1), the infrared logic block transmits an active low or negative infrared 3/16 pulse for all 0s and 1s are transmitted for 1s.
-        unsigned RXDMUXSEL : 1; //!< [2] RXD Muxed Input Selected. Selects proper input pins for serial and Infrared input signal. In this chip, UARTs are used in MUXED mode, so that this bit should always be set. In this chip, UARTs are used in Non-MUXED mode, so that this bit should always be cleared. 0 Input pin RXD (ipp_uart_rxd_mux) is not used for serial and IR interfaces 1 Input pin RXD (ipp_uart_rxd_mux) is used for serial and IR interfaces 0 Serial input pin is UART_RXD (ipp_uart_rxd) and IrDA input pin is UART_RXD_IR (ipp_uart_rxd_ir) 1 Input pin UART_RXD (ipp_uart_rxd) and UART_RXD_IR (ipp_uart_rxd_ir) are not used
-        unsigned DTRDEN : 1; //!< [3] This bit is not used in this chip. Data Terminal Ready Delta Enable . Enables / Disables the asynchronous DTRD interrupt. When DTRDEN is asserted and an edge (rising or falling) is detected on DTR (in DCE mode) or on DSR (in DTE mode), then an interrupt is generated.
-        unsigned AWAKEN : 1; //!< [4] Asynchronous WAKE Interrupt Enable. Controls the asynchronous WAKE interrupt. An interrupt is generated when AWAKEN is asserted and a falling edge is detected on the RXD pin.
-        unsigned AIRINTEN : 1; //!< [5] Asynchronous IR WAKE Interrupt Enable. Controls the asynchronous IR WAKE interrupt. An interrupt is generated when AIRINTEN is asserted and a pulse is detected on the RXD pin.
-        unsigned RXDSEN : 1; //!< [6] Receive Status Interrupt Enable. Controls the receive status interrupt ( interrupt_rx interrupt_uart ). When this bit is enabled and RXDS status bit is set, the interrupt interrupt_rx interrupt_uart will be generated.
-        unsigned ADNIMP : 1; //!< [7] Autobaud Detection Not Improved-. Disables new features of autobaud detection (See , for more details).
-        unsigned RI : 1; //!< [8] This bit is not used in this chip. Ring Indicator . In DCE mode this bit is used by software to control the RI output pin for the modem interface. In DTE mode, when this bit is set, it will enable the status bit RIDELT (USR2 (10)) to cause an interrupt.
-        unsigned DCD : 1; //!< [9] This bit is not used in this chip. Data Carrier Detect . In DCE mode this bit is used by software to control the DCD output pin for the modem interface. In DTE mode, when this bit is set, it will enable the status bit DCDDELT (USR2 (6)) to cause an interrupt.
-        unsigned DSR : 1; //!< [10] This bit is not used in this chip. Data Set Ready . This bit is used by software to control the DSR/DTR output pin for the modem interface. In DCE mode it applies to DSR and in DTE mode it applies to DTR .
-        unsigned FRAERREN : 1; //!< [11] Frame Error Interrupt Enable. Enables/Disables the interrupt. When asserted, FRAERREN causes the FRAMERR bit to generate an interrupt.
-        unsigned PARERREN : 1; //!< [12] Parity Error Interrupt Enable. Enables/Disables the interrupt. When asserted, PARERREN causes the PARITYERR bit to generate an interrupt.
-        unsigned DTREN : 1; //!< [13] This bit is not used in this chip. Data Terminal Ready Interrupt Enable . When this bit is set, it will enable the status bit DTRF (USR2 [13]) (DTR/DSR edge sensitive interrupt) to cause an interrupt.
-        unsigned DPEC : 2; //!< [15:14] This bit is not used in this chip. DTR/DSR Interrupt Edge Control . These bits control the edge of DTR (DCE) or DSR (DTE) on which an interrupt will be generated. An interrupt will only be generated if the DTREN bit is set.
+        unsigned ACIEN : 1; //!< [0] Autobaud Counter Interrupt Enable.
+        unsigned INVT : 1; //!< [1] Invert TXD output in RS-232/RS-485 mode, set TXD active level in IrDA mode.
+        unsigned RXDMUXSEL : 1; //!< [2] RXD Muxed Input Selected.
+        unsigned DTRDEN : 1; //!< [3] Data Terminal Ready Delta Enable .
+        unsigned AWAKEN : 1; //!< [4] Asynchronous WAKE Interrupt Enable.
+        unsigned AIRINTEN : 1; //!< [5] Asynchronous IR WAKE Interrupt Enable.
+        unsigned RXDSEN : 1; //!< [6] Receive Status Interrupt Enable.
+        unsigned ADNIMP : 1; //!< [7] Autobaud Detection Not Improved-.
+        unsigned RI : 1; //!< [8] Ring Indicator .
+        unsigned DCD : 1; //!< [9] Data Carrier Detect .
+        unsigned DSR : 1; //!< [10] Data Set Ready .
+        unsigned FRAERREN : 1; //!< [11] Frame Error Interrupt Enable.
+        unsigned PARERREN : 1; //!< [12] Parity Error Interrupt Enable.
+        unsigned DTREN : 1; //!< [13] Data Terminal Ready Interrupt Enable .
+        unsigned DPEC : 2; //!< [15:14] DTR/DSR Interrupt Edge Control .
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_uart_ucr3_t;
@@ -1309,12 +1298,7 @@ typedef union _hw_uart_ucr3
 /* --- Register HW_UART_UCR3, field RXDMUXSEL[2] (RW)
  *
  * RXD Muxed Input Selected. Selects proper input pins for serial and Infrared input signal. In this
- * chip, UARTs are used in MUXED mode, so that this bit should always be set. In this chip, UARTs
- * are used in Non-MUXED mode, so that this bit should always be cleared. 0 Input pin RXD
- * (ipp_uart_rxd_mux) is not used for serial and IR interfaces 1 Input pin RXD (ipp_uart_rxd_mux) is
- * used for serial and IR interfaces 0 Serial input pin is UART_RXD (ipp_uart_rxd) and IrDA input
- * pin is UART_RXD_IR (ipp_uart_rxd_ir) 1 Input pin UART_RXD (ipp_uart_rxd) and UART_RXD_IR
- * (ipp_uart_rxd_ir) are not used
+ * chip, UARTs are used in MUXED mode, so that this bit should always be set.
  */
 
 #define BP_UART_UCR3_RXDMUXSEL      (2)      //!< Bit position for UART_UCR3_RXDMUXSEL.
@@ -1333,9 +1317,9 @@ typedef union _hw_uart_ucr3
 
 /* --- Register HW_UART_UCR3, field DTRDEN[3] (RW)
  *
- * This bit is not used in this chip. Data Terminal Ready Delta Enable . Enables / Disables the
- * asynchronous DTRD interrupt. When DTRDEN is asserted and an edge (rising or falling) is detected
- * on DTR (in DCE mode) or on DSR (in DTE mode), then an interrupt is generated.
+ * Data Terminal Ready Delta Enable . Enables / Disables the asynchronous DTRD interrupt. When
+ * DTRDEN is asserted and an edge (rising or falling) is detected on DTR (in DCE mode) or on DSR (in
+ * DTE mode), then an interrupt is generated.
  *
  * Values:
  * 0 - Disable DTRD interrupt
@@ -1409,9 +1393,8 @@ typedef union _hw_uart_ucr3
 
 /* --- Register HW_UART_UCR3, field RXDSEN[6] (RW)
  *
- * Receive Status Interrupt Enable. Controls the receive status interrupt ( interrupt_rx
- * interrupt_uart ). When this bit is enabled and RXDS status bit is set, the interrupt interrupt_rx
- * interrupt_uart will be generated.
+ * Receive Status Interrupt Enable. Controls the receive status interrupt ( interrupt_uart ). When
+ * this bit is enabled and RXDS status bit is set, the interrupt interrupt_uart will be generated.
  *
  * Values:
  * 0 - Disable the RXDS interrupt
@@ -1460,9 +1443,9 @@ typedef union _hw_uart_ucr3
 
 /* --- Register HW_UART_UCR3, field RI[8] (RW)
  *
- * This bit is not used in this chip. Ring Indicator . In DCE mode this bit is used by software to
- * control the RI output pin for the modem interface. In DTE mode, when this bit is set, it will
- * enable the status bit RIDELT (USR2 (10)) to cause an interrupt.
+ * Ring Indicator . In DCE mode this bit is used by software to control the RI output pin for the
+ * modem interface. In DTE mode, when this bit is set, it will enable the status bit RIDELT (USR2
+ * (10)) to cause an interrupt.
  *
  * Values:
  * 0 - RI pin is logic zero (DCE mode)
@@ -1488,9 +1471,9 @@ typedef union _hw_uart_ucr3
 
 /* --- Register HW_UART_UCR3, field DCD[9] (RW)
  *
- * This bit is not used in this chip. Data Carrier Detect . In DCE mode this bit is used by software
- * to control the DCD output pin for the modem interface. In DTE mode, when this bit is set, it will
- * enable the status bit DCDDELT (USR2 (6)) to cause an interrupt.
+ * Data Carrier Detect . In DCE mode this bit is used by software to control the DCD output pin for
+ * the modem interface. In DTE mode, when this bit is set, it will enable the status bit DCDDELT
+ * (USR2 (6)) to cause an interrupt.
  *
  * Values:
  * 0 - DCD pin is logic zero (DCE mode)
@@ -1516,9 +1499,8 @@ typedef union _hw_uart_ucr3
 
 /* --- Register HW_UART_UCR3, field DSR[10] (RW)
  *
- * This bit is not used in this chip. Data Set Ready . This bit is used by software to control the
- * DSR/DTR output pin for the modem interface. In DCE mode it applies to DSR and in DTE mode it
- * applies to DTR .
+ * Data Set Ready . This bit is used by software to control the DSR/DTR output pin for the modem
+ * interface. In DCE mode it applies to DSR and in DTE mode it applies to DTR .
  *
  * Values:
  * 0 - DSR/ DTR pin is logic zero
@@ -1592,9 +1574,8 @@ typedef union _hw_uart_ucr3
 
 /* --- Register HW_UART_UCR3, field DTREN[13] (RW)
  *
- * This bit is not used in this chip. Data Terminal Ready Interrupt Enable . When this bit is set,
- * it will enable the status bit DTRF (USR2 [13]) (DTR/DSR edge sensitive interrupt) to cause an
- * interrupt.
+ * Data Terminal Ready Interrupt Enable . When this bit is set, it will enable the status bit DTRF
+ * (USR2 [13]) (DTR/DSR edge sensitive interrupt) to cause an interrupt.
  *
  * Values:
  * 0 - Data Terminal Ready Interrupt Disabled
@@ -1618,9 +1599,8 @@ typedef union _hw_uart_ucr3
 
 /* --- Register HW_UART_UCR3, field DPEC[15:14] (RW)
  *
- * This bit is not used in this chip. DTR/DSR Interrupt Edge Control . These bits control the edge
- * of DTR (DCE) or DSR (DTE) on which an interrupt will be generated. An interrupt will only be
- * generated if the DTREN bit is set.
+ * DTR/DSR Interrupt Edge Control . These bits control the edge of DTR (DCE) or DSR (DTE) on which
+ * an interrupt will be generated. An interrupt will only be generated if the DTREN bit is set.
  *
  * Values:
  * 00 - interrupt generated on rising edge
@@ -1660,17 +1640,17 @@ typedef union _hw_uart_ucr4
     reg32_t U;
     struct _hw_uart_ucr4_bitfields
     {
-        unsigned DREN : 1; //!< [0] Receive Data Ready Interrupt Enable . Enables/Disables the RDR bit to generate an interrupt.
-        unsigned OREN : 1; //!< [1] Receiver Overrun Interrupt Enable . Enables/Disables the ORE bit to generate an interrupt.
-        unsigned BKEN : 1; //!< [2] BREAK Condition Detected Interrupt Enable . Enables/Disables the BRCD bit to generate an interrupt.
-        unsigned TCEN : 1; //!< [3] Transmit Complete Interrupt Enable . Enables/Disables the TXDC bit to generate an interrupt ( interrupt_tx interrupt_uart = 0) An interrupt will be issued as long as TCEN and TXDC are high even if the transmitter is not enabled. In general, user should enable the transmitter before enabling the TXDC interrupt.
-        unsigned LPBYP : 1; //!< [4] Low Power Bypass . Allows to bypass the low power new features in UART. To use during debug phase.
-        unsigned IRSC : 1; //!< [5] IR Special Case . Selects the clock for the vote logic. When set, IRSC switches the vote logic clock from the sampling clock to the UART reference clock. The IR pulses are counted a predetermined amount of time depending on the reference frequency. See .
+        unsigned DREN : 1; //!< [0] Receive Data Ready Interrupt Enable .
+        unsigned OREN : 1; //!< [1] Receiver Overrun Interrupt Enable .
+        unsigned BKEN : 1; //!< [2] BREAK Condition Detected Interrupt Enable .
+        unsigned TCEN : 1; //!< [3] Transmit Complete Interrupt Enable .
+        unsigned LPBYP : 1; //!< [4] Low Power Bypass .
+        unsigned IRSC : 1; //!< [5] IR Special Case .
         unsigned IDDMAEN : 1; //!< [6] DMA IDLE Condition Detected Interrupt Enable Enables/Disables the receive DMA request dma_req_rx for the IDLE interrupt (triggered with IDLE flag in USR2[12]).
-        unsigned WKEN : 1; //!< [7] WAKE Interrupt Enable . Enables/Disables the WAKE bit to generate an interrupt. The WAKE bit is set at the detection of a start bit by the receiver.
-        unsigned ENIRI : 1; //!< [8] Serial Infrared Interrupt Enable . Enables/Disables the serial infrared interrupt.
-        unsigned INVR : 1; //!< [9] Invert RXD input in RS-232/RS-485 Mode, d etermine RXD input logic level being sampled in In IrDA mode. In RS232/RS-485 Mode(UMCR[0] = 1), if this bit is set to 1, the RXD input is inverted before sampled. In IrDA mode ,when cleared, the infrared logic block expects an active low or negative IR 3/16 pulse for 0s and 1s are expected for 1s. When INVR is set (INVR 1), the infrared logic block expects an active high or positive IR 3/16 pulse for 0s and 0s are expected for 1s.
-        unsigned CTSTL : 6; //!< [15:10] CTS Trigger Level . Controls the threshold at which the CTS pin is deasserted by the RxFIFO. After the trigger level is reached and the CTS pin is deasserted, the RxFIFO continues to receive data until it is full. The CTSTL bits are encoded as shown in the Settings column. Settings 0 to 32 are in use. All other settings are Reserved.
+        unsigned WKEN : 1; //!< [7] WAKE Interrupt Enable .
+        unsigned ENIRI : 1; //!< [8] Serial Infrared Interrupt Enable .
+        unsigned INVR : 1; //!< [9] Invert RXD input in RS-232/RS-485 Mode, d etermine RXD input logic level being sampled in In IrDA mode.
+        unsigned CTSTL : 6; //!< [15:10] CTS Trigger Level .
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_uart_ucr4_t;
@@ -1770,9 +1750,9 @@ typedef union _hw_uart_ucr4
 /* --- Register HW_UART_UCR4, field TCEN[3] (RW)
  *
  * Transmit Complete Interrupt Enable . Enables/Disables the TXDC bit to generate an interrupt (
- * interrupt_tx interrupt_uart = 0) An interrupt will be issued as long as TCEN and TXDC are high
- * even if the transmitter is not enabled. In general, user should enable the transmitter before
- * enabling the TXDC interrupt.
+ * interrupt_uart = 0) An interrupt will be issued as long as TCEN and TXDC are high even if the
+ * transmitter is not enabled. In general, user should enable the transmitter before enabling the
+ * TXDC interrupt.
  *
  * Values:
  * 0 - Disable TXDC interrupt
@@ -1996,10 +1976,10 @@ typedef union _hw_uart_ufcr
     reg32_t U;
     struct _hw_uart_ufcr_bitfields
     {
-        unsigned RXTL : 6; //!< [5:0] Receiver Trigger Level . Controls the threshold at which a maskable interrupt is generated by the RxFIFO. A maskable interrupt is generated whenever the data level in the RxFIFO reaches the selected threshold. The RXTL bits are encoded as shown in the Settings column. Setting 0 to 32 are in use. All other settings are Reserved.
-        unsigned DCEDTE : 1; //!< [6] DCE/DTE mode select . Select UART as data communication equipment (DCE mode) or as data terminal equipment (DTE mode).
-        unsigned RFDIV : 3; //!< [9:7] Reference Frequency Divider. Controls the divide ratio for the reference clock. The input clock is module_clock (ipg_perclk) . The output from the divider is ref_clk which is used by BRM to create the 16x baud rate oversampling clock ( brm_clk ).
-        unsigned TXTL : 6; //!< [15:10] Transmitter Trigger Level . Controls the threshold at which a maskable interrupt is generated by the TxFIFO. A maskable interrupt is generated whenever the data level in the TxFIFO falls below the selected threshold. The bits are encoded as shown in the Settings column. Settings 0 to 32 are in use. All other settings are Reserved.
+        unsigned RXTL : 6; //!< [5:0] Receiver Trigger Level .
+        unsigned DCEDTE : 1; //!< [6] DCE/DTE mode select .
+        unsigned RFDIV : 3; //!< [9:7] Reference Frequency Divider.
+        unsigned TXTL : 6; //!< [15:10] Transmitter Trigger Level .
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_uart_ufcr_t;
@@ -2082,8 +2062,8 @@ typedef union _hw_uart_ufcr
 /* --- Register HW_UART_UFCR, field RFDIV[9:7] (RW)
  *
  * Reference Frequency Divider. Controls the divide ratio for the reference clock. The input clock
- * is module_clock (ipg_perclk) . The output from the divider is ref_clk which is used by BRM to
- * create the 16x baud rate oversampling clock ( brm_clk ).
+ * is module_clock . The output from the divider is ref_clk which is used by BRM to create the 16x
+ * baud rate oversampling clock ( brm_clk ).
  *
  * Values:
  * 000 - Divide input clock by 6
@@ -2161,19 +2141,19 @@ typedef union _hw_uart_usr1
     struct _hw_uart_usr1_bitfields
     {
         unsigned RESERVED0 : 3; //!< [2:0] Reserved
-        unsigned SAD : 1; //!< [3] RS-485 Slave Address Detected Interrupt Flag. Indicates if RS-485 Slave Address was detected . SAD was asserted in RS-485 mode when the SADEN bit is set and Slave Address is detected in RxFIFO (in Nomal Address Detect Mode, the 9 th data bit = 1; in Automatic Address Detect Mode, the received charater matches the programmed SLADDR).
-        unsigned AWAKE : 1; //!< [4] Asynchronous WAKE Interrupt Flag. Indicates that a falling edge was detected on the UART_RXD_IR RXD pin. Clear AWAKE by writing 1 to it. Writing 0 to AWAKE has no effect. Caution: AWAKE Interrupt flag is affected by external RXD pin whether in loopback mode (UTS[12] = 1'b1) or not (see UART RS-485 Mode Control Register ).
-        unsigned AIRINT : 1; //!< [5] Asynchronous IR WAKE Interrupt Flag. Indicates that the IR WAKE pulse was detected on the UART_RXD_IR RXD pin. Clear AIRINT by writing 1 to it. Writing 0 to AIRINT has no effect. Caution: AIRINT Interrupt flag is affected by external RXD pin whether in loopback mode (UTS[12] = 1'b1) or not (see ).
-        unsigned RXDS : 1; //!< [6] Receiver IDLE Interrupt Flag. Indicates that the receiver state machine is in an IDLE state, the next state is IDLE, and the receive pin is high. RXDS is automatically cleared when a character is received. RXDS is active only when the receiver is enabled.
-        unsigned DTRD : 1; //!< [7] This bit is not used in this chip. DTR Delta. Indicates whether DTR (in DCE mode) or DSR (in DTE mode) pins changed state. DTRD generates a maskable interrupt if DTRDEN (UCR3[3]) is set. Clear DTRD by writing 1 to it. Writing 0 to DTRD has no effect.
-        unsigned AGTIM : 1; //!< [8] Ageing Timer Interrupt Flag. Indicates that data in the RxFIFO has been idle for a time of 8 character lengths (where a character length consists of 7 or 8 bits, depending on the setting of the WS bit in UCR2, with the bit time corresponding to the baud rate setting) and FIFO data level is less than RxFIFO threshold level (RXTL in the UFCR). Clear by writing a 1 to it.
-        unsigned RRDY : 1; //!< [9] Receiver Ready Interrupt / DMA Flag . Indicates that the RxFIFO data level is above the threshold set by the RXTL bits. (See the RXTL bits description in for setting the interrupt threshold.) When asserted, RRDY generates a maskable interrupt or DMA request. RRDY is automatically cleared when data level in the RxFIFO goes below the set threshold level. At reset, RRDY is set to 0.
-        unsigned FRAMERR : 1; //!< [10] Frame Error Interrupt Flag . Indicates that a frame error is detected. The interrupt_mint interrupt_uart interrupt will be generated if a frame error is detected and the interrupt is enabled. Clear FRAMERR by writing 1 to it. Writing 0 to FRAMERR has no effect.
-        unsigned ESCF : 1; //!< [11] Escape Sequence Interrupt Flag . Indicates if an escape sequence was detected. ESCF is asserted when the ESCEN bit is set and an escape sequence is detected in the RxFIFO. Clear ESCF by writing 1 to it. Writing 0 to ESCF has no effect.
-        unsigned RTSD : 1; //!< [12] RTS Delta. Indicates whether the RTS pin changed state. It (RTSD) generates a maskable interrupt. When in STOP mode, RTS assertion sets RTSD and can be used to wake the processor. The current state of the RTS pin is available on the RTSS bit. Clear RTSD by writing 1 to it. Writing 0 to RTSD has no effect. At reset, RTSD is set to 0.
-        unsigned TRDY : 1; //!< [13] Transmitter Ready Interrupt / DMA Flag . Indicates that the TxFIFO emptied below its target threshold and requires data. TRDY is automatically cleared when the data level in the TxFIFO exceeds the threshold set by TXTL bits. At reset, TRDY is set to 1.
-        unsigned RTSS : 1; //!< [14] RTS Pin Status . Indicates the current status of the RTS pin. A "snapshot" of the pin is taken immediately before RTSS is presented to the data bus. RTSS cannot be cleared because all writes to RTSS are ignored. At reset, RTSS is set to 0.
-        unsigned PARITYERR : 1; //!< [15] Parity Error Interrupt Flag . Indicates a parity error is detected. PARITYERR is cleared by writing 1 to it. Writing 0 to PARITYERR has no effect. When parity is disabled, PARITYERR always reads 0. At reset, PARITYERR is set to 0.
+        unsigned SAD : 1; //!< [3] RS-485 Slave Address Detected Interrupt Flag.
+        unsigned AWAKE : 1; //!< [4] Asynchronous WAKE Interrupt Flag.
+        unsigned AIRINT : 1; //!< [5] Asynchronous IR WAKE Interrupt Flag.
+        unsigned RXDS : 1; //!< [6] Receiver IDLE Interrupt Flag.
+        unsigned DTRD : 1; //!< [7] DTR Delta.
+        unsigned AGTIM : 1; //!< [8] Ageing Timer Interrupt Flag.
+        unsigned RRDY : 1; //!< [9] Receiver Ready Interrupt / DMA Flag .
+        unsigned FRAMERR : 1; //!< [10] Frame Error Interrupt Flag .
+        unsigned ESCF : 1; //!< [11] Escape Sequence Interrupt Flag .
+        unsigned RTSD : 1; //!< [12] RTS Delta.
+        unsigned TRDY : 1; //!< [13] Transmitter Ready Interrupt / DMA Flag .
+        unsigned RTSS : 1; //!< [14] RTS Pin Status .
+        unsigned PARITYERR : 1; //!< [15] Parity Error Interrupt Flag .
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_uart_usr1_t;
@@ -2226,10 +2206,8 @@ typedef union _hw_uart_usr1
 
 /* --- Register HW_UART_USR1, field AWAKE[4] (W1C)
  *
- * Asynchronous WAKE Interrupt Flag. Indicates that a falling edge was detected on the UART_RXD_IR
- * RXD pin. Clear AWAKE by writing 1 to it. Writing 0 to AWAKE has no effect. Caution: AWAKE
- * Interrupt flag is affected by external RXD pin whether in loopback mode (UTS[12] = 1'b1) or not
- * (see UART RS-485 Mode Control Register ).
+ * Asynchronous WAKE Interrupt Flag. Indicates that a falling edge was detected on the RXD pin.
+ * Clear AWAKE by writing 1 to it. Writing 0 to AWAKE has no effect.
  *
  * Values:
  * 0 - No falling edge was detected on the RXD Serial pin
@@ -2253,10 +2231,8 @@ typedef union _hw_uart_usr1
 
 /* --- Register HW_UART_USR1, field AIRINT[5] (W1C)
  *
- * Asynchronous IR WAKE Interrupt Flag. Indicates that the IR WAKE pulse was detected on the
- * UART_RXD_IR RXD pin. Clear AIRINT by writing 1 to it. Writing 0 to AIRINT has no effect. Caution:
- * AIRINT Interrupt flag is affected by external RXD pin whether in loopback mode (UTS[12] = 1'b1)
- * or not (see ).
+ * Asynchronous IR WAKE Interrupt Flag. Indicates that the IR WAKE pulse was detected on the RXD
+ * pin. Clear AIRINT by writing 1 to it. Writing 0 to AIRINT has no effect.
  *
  * Values:
  * 0 - No pulse was detected on the RXD IrDA pin
@@ -2298,9 +2274,9 @@ typedef union _hw_uart_usr1
 
 /* --- Register HW_UART_USR1, field DTRD[7] (W1C)
  *
- * This bit is not used in this chip. DTR Delta. Indicates whether DTR (in DCE mode) or DSR (in DTE
- * mode) pins changed state. DTRD generates a maskable interrupt if DTRDEN (UCR3[3]) is set. Clear
- * DTRD by writing 1 to it. Writing 0 to DTRD has no effect.
+ * DTR Delta. Indicates whether DTR (in DCE mode) or DSR (in DTE mode) pins changed state. DTRD
+ * generates a maskable interrupt if DTRDEN (UCR3[3]) is set. Clear DTRD by writing 1 to it. Writing
+ * 0 to DTRD has no effect.
  *
  * Values:
  * 0 - DTR (DCE) or DSR (DTE) pin did not change state since last cleared
@@ -2370,9 +2346,9 @@ typedef union _hw_uart_usr1
 
 /* --- Register HW_UART_USR1, field FRAMERR[10] (W1C)
  *
- * Frame Error Interrupt Flag . Indicates that a frame error is detected. The interrupt_mint
- * interrupt_uart interrupt will be generated if a frame error is detected and the interrupt is
- * enabled. Clear FRAMERR by writing 1 to it. Writing 0 to FRAMERR has no effect.
+ * Frame Error Interrupt Flag . Indicates that a frame error is detected. The interrupt_uart
+ * interrupt will be generated if a frame error is detected and the interrupt is enabled. Clear
+ * FRAMERR by writing 1 to it. Writing 0 to FRAMERR has no effect.
  *
  * Values:
  * 0 - No frame error detected
@@ -2526,22 +2502,22 @@ typedef union _hw_uart_usr2
     reg32_t U;
     struct _hw_uart_usr2_bitfields
     {
-        unsigned RDR : 1; //!< [0] Receive Data Ready -Indicates that at least 1 character is received and written to the RxFIFO. If the URXD register is read and there is only 1 character in the RxFIFO, RDR is automatically cleared.
-        unsigned ORE : 1; //!< [1] Overrun Error . When set to 1, ORE indicates that the receive buffer (RxFIFO) was full (32 chars inside), and a 33rd character has been fully received. This 33rd character has been discarded. Clear ORE by writing 1 to it. Writing 0 to ORE has no effect.
-        unsigned BRCD : 1; //!< [2] BREAK Condition Detected . Indicates that a BREAK condition was detected by the receiver. Clear BRCD by writing 1 to it. Writing 0 to BRCD has no effect.
-        unsigned TXDC : 1; //!< [3] Transmitter Complete . Indicates that the transmit buffer (TxFIFO) and Shift Register is empty; therefore the transmission is complete. TXDC is cleared automatically when data is written to the TxFIFO.
-        unsigned RTSF : 1; //!< [4] RTS Edge Triggered Interrupt Flag. Indicates if a programmed edge is detected on the RTS pin. The RTEC bits select the edge that generates an interrupt (see ). RTSF can generate an interrupt that can be masked using the RTSEN bit. Clear RTSF by writing 1 to it. Writing 0 to RTSF has no effect.
-        unsigned DCDIN : 1; //!< [5] This bit is not used in this chip. Data Carrier Detect Input . This bit is used in DTE mode reflect the status of the Data Carrier Detect input ( DCD ). The Data Carrier Detect input is used to indicate that a carrier signal has been detected. In DCE mode this bit is always zero.
-        unsigned DCDDELT : 1; //!< [6] This bit is not used in this chip. Data Carrier Detect Delta . This bit is used in DTE mode to indicate that the Data Carrier Detect input ( DCD ) has changed state. This flag can cause an interrupt if DCD (UCR3[9]) is enabled. When in STOP mode, this bit can be used to wake the processor. In DCE mode this bit is always zero.
-        unsigned WAKE : 1; //!< [7] Wake . Indicates the start bit is detected. WAKE can generate an interrupt that can be masked using the WKEN bit. Clear WAKE by writing 1 to it. Writing 0 to WAKE has no effect.
-        unsigned IRINT : 1; //!< [8] Serial Infrared Interrupt Flag. When an edge is detected on the RXD pin during SIR Mode, this flag will be asserted. This flag can cause an interrupt which can be masked using the control bit ENIRI: UCR4 [8].
-        unsigned RIIN : 1; //!< [9] This bit is not used in this chip. Ring Indicator Input . This bit is used in DTE mode to reflect the status if the Ring Indicator input ( RI ). The Ring Indicator input is used to indicate that a ring has occurred. In DCE mode this bit is always zero.
-        unsigned RIDELT : 1; //!< [10] This bit is not used in this chip. Ring Indicator Delta . This bit is used in DTE mode to indicate that the Ring Indicator input ( RI ) has changed state. This flag can generate an interrupt if RI (UCR3[8]) is enabled. RIDELT is cleared by writing 1 to it. Writing 0 to RIDELT has no effect.
-        unsigned ACST : 1; //!< [11] Autobaud Counter Stopped . In autobaud detection (ADBR=1), indicates the counter which determines the baud rate was running and is now stopped. This means either START bit is finished (if ADNIMP=1), or Bit 0 is finished (if ADNIMP=0). See , for more details. An interrupt can be flagged on interrupt_mint interrupt_uart if ACIEN=1.
-        unsigned IDLE : 1; //!< [12] Idle Condition . Indicates that an idle condition has existed for more than a programmed amount frame (see . An interrupt can be generated by this IDLE bit if IDEN (UCR1[12]) is enabled. IDLE is cleared by writing 1 to it. Writing 0 to IDLE has no effect.
-        unsigned DTRF : 1; //!< [13] This bit is not used in this chip. DTR edge triggered interrupt flag . This bit is asserted, when the programmed edge is detected on the DTR pin (DCE mode) or on DSR (DTE mode). This flag can cause an interrupt if DTREN (UCR3[13]) is enabled.
-        unsigned TXFE : 1; //!< [14] Transmit Buffer FIFO Empty . Indicates that the transmit buffer (TxFIFO) is empty. TXFE is cleared automatically when data is written to the TxFIFO. Even though TXFE is high, the transmission might still be in progress.
-        unsigned ADET : 1; //!< [15] Automatic Baud Rate Detect Complete . Indicates that an "A" or "a" was received and that the receiver detected and verified the incoming baud rate. Clear ADET by writing 1 to it. Writing 0 to ADET has no effect.
+        unsigned RDR : 1; //!< [0] Receive Data Ready -Indicates that at least 1 character is received and written to the RxFIFO.
+        unsigned ORE : 1; //!< [1] Overrun Error .
+        unsigned BRCD : 1; //!< [2] BREAK Condition Detected .
+        unsigned TXDC : 1; //!< [3] Transmitter Complete .
+        unsigned RTSF : 1; //!< [4] RTS Edge Triggered Interrupt Flag.
+        unsigned DCDIN : 1; //!< [5] Data Carrier Detect Input .
+        unsigned DCDDELT : 1; //!< [6] Data Carrier Detect Delta .
+        unsigned WAKE : 1; //!< [7] Wake .
+        unsigned IRINT : 1; //!< [8] Serial Infrared Interrupt Flag.
+        unsigned RIIN : 1; //!< [9] Ring Indicator Input .
+        unsigned RIDELT : 1; //!< [10] Ring Indicator Delta .
+        unsigned ACST : 1; //!< [11] Autobaud Counter Stopped .
+        unsigned IDLE : 1; //!< [12] Idle Condition .
+        unsigned DTRF : 1; //!< [13] DTR edge triggered interrupt flag .
+        unsigned TXFE : 1; //!< [14] Transmit Buffer FIFO Empty .
+        unsigned ADET : 1; //!< [15] Automatic Baud Rate Detect Complete .
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_uart_usr2_t;
@@ -2681,9 +2657,9 @@ typedef union _hw_uart_usr2
 
 /* --- Register HW_UART_USR2, field DCDIN[5] (RO)
  *
- * This bit is not used in this chip. Data Carrier Detect Input . This bit is used in DTE mode
- * reflect the status of the Data Carrier Detect input ( DCD ). The Data Carrier Detect input is
- * used to indicate that a carrier signal has been detected. In DCE mode this bit is always zero.
+ * Data Carrier Detect Input . This bit is used in DTE mode reflect the status of the Data Carrier
+ * Detect input ( DCD ). The Data Carrier Detect input is used to indicate that a carrier signal has
+ * been detected. In DCE mode this bit is always zero.
  *
  * Values:
  * 0 - Carrier signal Detected
@@ -2699,10 +2675,10 @@ typedef union _hw_uart_usr2
 
 /* --- Register HW_UART_USR2, field DCDDELT[6] (W1C)
  *
- * This bit is not used in this chip. Data Carrier Detect Delta . This bit is used in DTE mode to
- * indicate that the Data Carrier Detect input ( DCD ) has changed state. This flag can cause an
- * interrupt if DCD (UCR3[9]) is enabled. When in STOP mode, this bit can be used to wake the
- * processor. In DCE mode this bit is always zero.
+ * Data Carrier Detect Delta . This bit is used in DTE mode to indicate that the Data Carrier Detect
+ * input ( DCD ) has changed state. This flag can cause an interrupt if DCD (UCR3[9]) is enabled.
+ * When in STOP mode, this bit can be used to wake the processor. In DCE mode this bit is always
+ * zero.
  *
  * Values:
  * 0 - Data Carrier Detect input has not changed state
@@ -2777,9 +2753,9 @@ typedef union _hw_uart_usr2
 
 /* --- Register HW_UART_USR2, field RIIN[9] (RO)
  *
- * This bit is not used in this chip. Ring Indicator Input . This bit is used in DTE mode to reflect
- * the status if the Ring Indicator input ( RI ). The Ring Indicator input is used to indicate that
- * a ring has occurred. In DCE mode this bit is always zero.
+ * Ring Indicator Input . This bit is used in DTE mode to reflect the status if the Ring Indicator
+ * input ( RI ). The Ring Indicator input is used to indicate that a ring has occurred. In DCE mode
+ * this bit is always zero.
  *
  * Values:
  * 0 - Ring Detected
@@ -2795,10 +2771,9 @@ typedef union _hw_uart_usr2
 
 /* --- Register HW_UART_USR2, field RIDELT[10] (W1C)
  *
- * This bit is not used in this chip. Ring Indicator Delta . This bit is used in DTE mode to
- * indicate that the Ring Indicator input ( RI ) has changed state. This flag can generate an
- * interrupt if RI (UCR3[8]) is enabled. RIDELT is cleared by writing 1 to it. Writing 0 to RIDELT
- * has no effect.
+ * Ring Indicator Delta . This bit is used in DTE mode to indicate that the Ring Indicator input (
+ * RI ) has changed state. This flag can generate an interrupt if RI (UCR3[8]) is enabled. RIDELT is
+ * cleared by writing 1 to it. Writing 0 to RIDELT has no effect.
  *
  * Values:
  * 0 - Ring Indicator input has not changed state
@@ -2825,7 +2800,7 @@ typedef union _hw_uart_usr2
  * Autobaud Counter Stopped . In autobaud detection (ADBR=1), indicates the counter which determines
  * the baud rate was running and is now stopped. This means either START bit is finished (if
  * ADNIMP=1), or Bit 0 is finished (if ADNIMP=0). See , for more details. An interrupt can be
- * flagged on interrupt_mint interrupt_uart if ACIEN=1.
+ * flagged on interrupt_uart if ACIEN=1.
  *
  * Values:
  * 0 - Measurement of bit length not finished (in autobaud)
@@ -2875,9 +2850,9 @@ typedef union _hw_uart_usr2
 
 /* --- Register HW_UART_USR2, field DTRF[13] (W1C)
  *
- * This bit is not used in this chip. DTR edge triggered interrupt flag . This bit is asserted, when
- * the programmed edge is detected on the DTR pin (DCE mode) or on DSR (DTE mode). This flag can
- * cause an interrupt if DTREN (UCR3[13]) is enabled.
+ * DTR edge triggered interrupt flag . This bit is asserted, when the programmed edge is detected on
+ * the DTR pin (DCE mode) or on DSR (DTE mode). This flag can cause an interrupt if DTREN (UCR3[13])
+ * is enabled.
  *
  * Values:
  * 0 - Programmed edge not detected on DTR/DSR
@@ -2960,7 +2935,7 @@ typedef union _hw_uart_uesc
     reg32_t U;
     struct _hw_uart_uesc_bitfields
     {
-        unsigned ESC_CHAR : 8; //!< [7:0] UART Escape Character . Holds the selected escape character that all received characters are compared against to detect an escape sequence.
+        unsigned ESC_CHAR : 8; //!< [7:0] UART Escape Character .
         unsigned RESERVED0 : 24; //!< [31:8] Reserved
     } B;
 } hw_uart_uesc_t;
@@ -3021,7 +2996,7 @@ typedef union _hw_uart_utim
     reg32_t U;
     struct _hw_uart_utim_bitfields
     {
-        unsigned TIM : 12; //!< [11:0] UART Escape Timer. Holds the maximum time interval (in ms) allowed between escape characters. The escape timer register is programmable in intervals of 2 ms. See and for more information on the UART escape sequence detection. Reset value 0x000 = 2 ms up to 0xFFF = 8.192 s.
+        unsigned TIM : 12; //!< [11:0] UART Escape Timer.
         unsigned RESERVED0 : 20; //!< [31:12] Reserved
     } B;
 } hw_uart_utim_t;
@@ -3081,16 +3056,14 @@ typedef union _hw_uart_utim
  * rate. Hardware has higher priority when both software and hardware try to write it at the same
  * cycle Note: The write priority in the new design is not same as the original UART. In the orginal
  * design, software has higher priotiry than hardware when writing this register at the same time.
- * .  Please note software reset will reset the register to its reset value.  Writes to the UBIR and
- * UBMR registers will only take effect if the UART Enable bit (UARTEN) in the Uart Control Register
- * 1 (UCR1) is set.
+ * .  Please note software reset will reset the register to its reset value.
  */
 typedef union _hw_uart_ubir
 {
     reg32_t U;
     struct _hw_uart_ubir_bitfields
     {
-        unsigned INC : 16; //!< [15:0] Incremental Numerator. Holds the numerator value minus one of the BRM ratio (see ). The UBIR register MUST be updated before the UBMR register for the baud rate to be updated correctly. If only one register is written to by software, the BRM will ignore this data until the other register is written to by software. Updating this field using byte accesses is not recommended and is undefined.
+        unsigned INC : 16; //!< [15:0] Incremental Numerator.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_uart_ubir_t;
@@ -3152,16 +3125,14 @@ typedef union _hw_uart_ubir
  * Hardware has higher priority when both software and hardware try to write it at the same cycle
  * Note: The write priority in the new design is not same as the original UART. In the orginal
  * design, software has higher priotiry than hardware when writing this register at the same time.
- * .  Please note software reset will reset the register to its reset value.  Writes to the UBIR and
- * UBMR registers will only take effect if the UART Enable bit (UARTEN) in the Uart Control Register
- * 1 (UCR1) is set.
+ * .  Please note software reset will reset the register to its reset value.
  */
 typedef union _hw_uart_ubmr
 {
     reg32_t U;
     struct _hw_uart_ubmr_bitfields
     {
-        unsigned MOD : 16; //!< [15:0] Modulator Denominator. Holds the value of the denominator minus one of the BRM ratio (see ). The UBIR register MUST be updated before the UBMR register for the baud rate to be updated correctly. If only one register is written to by software, the BRM will ignore this data until the other register is written to by software. Updating this register using byte accesses is not recommended and undefined.
+        unsigned MOD : 16; //!< [15:0] Modulator Denominator.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_uart_ubmr_t;
@@ -3225,7 +3196,7 @@ typedef union _hw_uart_ubrc
     reg32_t U;
     struct _hw_uart_ubrc_bitfields
     {
-        unsigned BCNT : 16; //!< [15:0] Baud Rate Count Register. This read only register is used to count the start bit of the incoming baud rate (if ADNIMP=1), or start bit + bit0 (if ADNIMP=0). When the measurement is done, the Baud Rate Count Register contains the number of UART internal clock cycles (clock after divider) present in an incoming bit. BCNT retains its value until the next Automatic Baud Rate Detection sequence has been initiated. The 16 bit Baud Rate Count register is reset to 4 and stays at hex FFFF in the case of an overflow.
+        unsigned BCNT : 16; //!< [15:0] Baud Rate Count Register.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_uart_ubrc_t;
@@ -3273,16 +3244,16 @@ typedef union _hw_uart_ubrc
  *
  * This register has been expanded from 16 bits to 24 bits. In previous versions, the 16-bit ONEMS
  * can only support the maximum 65.535MHz (0xFFFFx1000) ref_clk . To support 4Mbps Bluetooth
- * application with 66.5MHz   module_clock  (ipg_perclk)   , the value 0x103C4 (66.5M/1000) should
- * be written into this register. In this case, the 16 bits are not enough to contain the 0x103C4.
- * So this register was expanded to 24 bits to support high frequency of the ref_clk .
+ * application with 66.5MHz   module_clock   , the value 0x103C4 (66.5M/1000) should be written into
+ * this register. In this case, the 16 bits are not enough to contain the 0x103C4. So this register
+ * was expanded to 24 bits to support high frequency of the ref_clk .
  */
 typedef union _hw_uart_onems
 {
     reg32_t U;
     struct _hw_uart_onems_bitfields
     {
-        unsigned ONEMS : 24; //!< [23:0] One Millisecond Register. This 24-bit register must contain the value of the UART internal frequency ( ref_clk in ) divided by 1000. The internal frequency is obtained after the UART BRM internal divider (F ( ref_clk ) = F( module_clock ) / RFDIV). In fact this register contains the value corresponding to the number of UART BRM internal clock cycles present in one millisecond. The ONEMS (and UTIM) registers value are used in the escape character detection feature ( ) to count the number of clock cycles left between two escape characters. The ONEMS register is also used in infrared special case mode (IRSC = UCR4[5] = 1'b1), see .
+        unsigned ONEMS : 24; //!< [23:0] One Millisecond Register.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_uart_onems_t;
@@ -3348,18 +3319,18 @@ typedef union _hw_uart_uts
     reg32_t U;
     struct _hw_uart_uts_bitfields
     {
-        unsigned SOFTRST : 1; //!< [0] Software Reset. Indicates the status of the software reset ( SRST bit of UCR2).
+        unsigned SOFTRST : 1; //!< [0] Software Reset.
         unsigned RESERVED0 : 2; //!< [2:1] Reserved
-        unsigned RXFULL : 1; //!< [3] RxFIFO FULL. Indicates the RxFIFO is full.
-        unsigned TXFULL : 1; //!< [4] TxFIFO FULL. Indicates the TxFIFO is full.
-        unsigned RXEMPTY : 1; //!< [5] RxFIFO Empty. Indicates the RxFIFO is empty.
-        unsigned TXEMPTY : 1; //!< [6] TxFIFO Empty. Indicates that the TxFIFO is empty.
+        unsigned RXFULL : 1; //!< [3] RxFIFO FULL.
+        unsigned TXFULL : 1; //!< [4] TxFIFO FULL.
+        unsigned RXEMPTY : 1; //!< [5] RxFIFO Empty.
+        unsigned TXEMPTY : 1; //!< [6] TxFIFO Empty.
         unsigned RESERVED1 : 2; //!< [8:7] Reserved
-        unsigned RXDBG : 1; //!< [9] This bit is not used in this chip. The user should clear this bit for future compatibility. RX_fifo_debug_mode. This bit controls the operation of the RX fifo read counter when in debug mode.
-        unsigned LOOPIR : 1; //!< [10] Loop TX and RX for IR Test (LOOPIR) . This bit controls loopback from transmitter to receiver in the InfraRed interface.
-        unsigned DBGEN : 1; //!< [11] This bit is not used in this chip. The user should clear this bit for future compatibility. debug_enable . This bit controls whether to respond to the debug_req input signal.
-        unsigned LOOP : 1; //!< [12] Loop TX and RX for Test. Controls loopback for test purposes. When LOOP is high, the receiver input is internally connected to the transmitter and ignores the RXD pin. The transmitter is unaffected by LOOP. If RXDMUXSEL (UCR3[2]) is set to 1, the loopback is applied on serial and IrDA signals. If RXDMUXSEL is set to 0, the loopback is only applied on serial signals.
-        unsigned FRCPERR : 1; //!< [13] Force Parity Error. Forces the transmitter to generate a parity error if parity is enabled. FRCPERR is provided for system debugging.
+        unsigned RXDBG : 1; //!< [9] RX_fifo_debug_mode.
+        unsigned LOOPIR : 1; //!< [10] Loop TX and RX for IR Test (LOOPIR) .
+        unsigned DBGEN : 1; //!< [11] debug_enable .
+        unsigned LOOP : 1; //!< [12] Loop TX and RX for Test.
+        unsigned FRCPERR : 1; //!< [13] Force Parity Error.
         unsigned RESERVED2 : 18; //!< [31:14] Reserved
     } B;
 } hw_uart_uts_t;
@@ -3505,7 +3476,6 @@ typedef union _hw_uart_uts
 
 /* --- Register HW_UART_UTS, field RXDBG[9] (RW)
  *
- * This bit is not used in this chip. The user should clear this bit for future compatibility.
  * RX_fifo_debug_mode. This bit controls the operation of the RX fifo read counter when in debug
  * mode.
  *
@@ -3556,7 +3526,6 @@ typedef union _hw_uart_uts
 
 /* --- Register HW_UART_UTS, field DBGEN[11] (RW)
  *
- * This bit is not used in this chip. The user should clear this bit for future compatibility.
  * debug_enable . This bit controls whether to respond to the debug_req input signal.
  *
  * Values:
@@ -3650,10 +3619,10 @@ typedef union _hw_uart_umcr
     {
         unsigned MDEN : 1; //!< [0] 9-bit data or Multidrop Mode (RS-485) Enable.
         unsigned SLAM : 1; //!< [1] RS-485 Slave Address Detect Mode Selection.
-        unsigned TXB8 : 1; //!< [2] Transmit RS-485 bit 8 (the ninth bit or 9 th bit). In RS-485 mode, software writes TXB8 bit as the 9 th data bit to be transmitted.
+        unsigned TXB8 : 1; //!< [2] Transmit RS-485 bit 8 (the ninth bit or 9 th bit).
         unsigned SADEN : 1; //!< [3] RS-485 Slave Address Detected Interrupt Enable.
         unsigned RESERVED0 : 4; //!< [7:4] Reserved
-        unsigned SLADDR : 8; //!< [15:8] RS-485 Slave Address Character. Holds the selected slave adress character that the receiver wil try to detect.
+        unsigned SLADDR : 8; //!< [15:8] RS-485 Slave Address Character.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_uart_umcr_t;

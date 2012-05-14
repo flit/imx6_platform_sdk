@@ -64,16 +64,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_ENET_EIR - Interrupt Event Register
@@ -87,10 +77,7 @@
  *
  * When an event occurs that sets a bit in EIR, an interrupt occurs if the corresponding bit in the
  * interrupt mask register (EIMR) is also set. Writing a 1 to an EIR bit clears it; writing 0 has no
- * effect. This register is cleared upon hardware reset.  Clearing the interrupt bits requires one
- * pclk clock cycle after the write transaction completes. An immediate read after the write to the
- * register returns the old value if there is not at least one pclk cycle between the two
- * transactions.
+ * effect. This register is cleared upon hardware reset.
  */
 typedef union _hw_enet_eir
 {
@@ -98,21 +85,21 @@ typedef union _hw_enet_eir
     struct _hw_enet_eir_bitfields
     {
         unsigned RESERVED0 : 15; //!< [14:0] 
-        unsigned TS_TIMER : 1; //!< [15] The adjustable timer reached the period event. A period event interrupt can be generated if ATCR[PEREN] is set and the timer wraps according to the periodic setting in the ATPER register. Set the timer period value before setting ATCR[PEREN].
+        unsigned TS_TIMER : 1; //!< [15] The adjustable timer reached the period event.
         unsigned TS_AVAIL : 1; //!< [16] Indicates that the timestamp of the last transmitted timing frame is available in the ATSTMP register.
-        unsigned WAKEUP : 1; //!< [17] Read-only status bit to indicate that a magic packet has been detected. Will act only if ECR[MAGICEN] is set.
-        unsigned PLR : 1; //!< [18] Indicates a frame was received with a payload length error. See Frame Length/Type Verification: Payload Length Check for more information.
-        unsigned UN : 1; //!< [19] Indicates the transmit FIFO became empty before the complete frame was transmitted. A bad CRC is appended to the frame fragment and the remainder of the frame is discarded.
-        unsigned RL : 1; //!< [20] Indicates a collision occurred on each of 16 successive attempts to transmit the frame. The frame is discarded without being transmitted and transmission of the next frame commences. This error can only occur in half-duplex mode.
-        unsigned LC : 1; //!< [21] Indicates a collision occurred beyond the collision window (slot time) in half-duplex mode. The frame truncates with a bad CRC and the remainder of the frame is discarded.
-        unsigned EBERR : 1; //!< [22] Indicates a system bus error occurred when a uDMA transaction is underway. (Signal dma_eberr_int asserted.) When this bit is set, ECR[ETHER_EN] is cleared, halting frame processing by the MAC. When this occurs, software must ensure proper actions, possibly resetting the system, to resume normal operation.
+        unsigned WAKEUP : 1; //!< [17] Read-only status bit to indicate that a magic packet has been detected.
+        unsigned PLR : 1; //!< [18] Indicates a frame was received with a payload length error.
+        unsigned UN : 1; //!< [19] Indicates the transmit FIFO became empty before the complete frame was transmitted.
+        unsigned RL : 1; //!< [20] Indicates a collision occurred on each of 16 successive attempts to transmit the frame.
+        unsigned LC : 1; //!< [21] Indicates a collision occurred beyond the collision window (slot time) in half-duplex mode.
+        unsigned EBERR : 1; //!< [22] Indicates a system bus error occurred when a uDMA transaction is underway.
         unsigned MII : 1; //!< [23] Indicates that the MII has completed the data transfer requested.
-        unsigned RXB : 1; //!< [24] Indicates a receive buffer descriptor is not the last in the frame has been updated. (Signal dma_rxb_int asserted)
-        unsigned RXF : 1; //!< [25] Indicates a frame has been received and the last corresponding buffer descriptor has been updated. (Signal dma_rxf_int asserted)
-        unsigned TXB : 1; //!< [26] Indicates a transmit buffer descriptor has been updated. (Signal dma_txb_int asserted)
-        unsigned TXF : 1; //!< [27] Indicates a frame has been transmitted and the last corresponding buffer descriptor has been updated. (Signal dma_txf_int asserted)
-        unsigned GRA : 1; //!< [28] This interrupt is asserted after the transmitter is put into a pause state after completion of the frame currently being transmitted. See Graceful Transmit Stop (GTS) for conditions that lead to graceful stop. The GRA interrupt is asserted only when the TX transitions into the stopped state. If this bit is cleared by writing 1 and the TX is still stopped, the bit is not set again.
-        unsigned BABT : 1; //!< [29] Indicates the transmitted frame length exceeds RCR[MAX_FL] bytes. Usually this condition is caused when a frame that is too long is placed into the transmit data buffer(s). Truncation does not occur.
+        unsigned RXB : 1; //!< [24] Indicates a receive buffer descriptor is not the last in the frame has been updated.
+        unsigned RXF : 1; //!< [25] Indicates a frame has been received and the last corresponding buffer descriptor has been updated.
+        unsigned TXB : 1; //!< [26] Indicates a transmit buffer descriptor has been updated.
+        unsigned TXF : 1; //!< [27] Indicates a frame has been transmitted and the last corresponding buffer descriptor has been updated.
+        unsigned GRA : 1; //!< [28] This interrupt is asserted after the transmitter is put into a pause state after completion of the frame currently being transmitted.
+        unsigned BABT : 1; //!< [29] Indicates the transmitted frame length exceeds RCR[MAX_FL] bytes.
         unsigned BABR : 1; //!< [30] Indicates a frame was received with length in excess of RCR[MAX_FL] bytes.
         unsigned RESERVED1 : 1; //!< [31] 
     } B;
@@ -281,10 +268,9 @@ typedef union _hw_enet_eir
 
 /* --- Register HW_ENET_EIR, field EBERR[22] (W1C)
  *
- * Indicates a system bus error occurred when a uDMA transaction is underway. (Signal dma_eberr_int
- * asserted.) When this bit is set, ECR[ETHER_EN] is cleared, halting frame processing by the MAC.
- * When this occurs, software must ensure proper actions, possibly resetting the system, to resume
- * normal operation.
+ * Indicates a system bus error occurred when a uDMA transaction is underway. When this bit is set,
+ * ECR[ETHER_EN] is cleared, halting frame processing by the MAC. When this occurs, software must
+ * ensure proper actions, possibly resetting the system, to resume normal operation.
  */
 
 #define BP_ENET_EIR_EBERR      (22)      //!< Bit position for ENET_EIR_EBERR.
@@ -322,8 +308,7 @@ typedef union _hw_enet_eir
 
 /* --- Register HW_ENET_EIR, field RXB[24] (W1C)
  *
- * Indicates a receive buffer descriptor is not the last in the frame has been updated. (Signal
- * dma_rxb_int asserted)
+ * Indicates a receive buffer descriptor is not the last in the frame has been updated.
  */
 
 #define BP_ENET_EIR_RXB      (24)      //!< Bit position for ENET_EIR_RXB.
@@ -343,7 +328,7 @@ typedef union _hw_enet_eir
 /* --- Register HW_ENET_EIR, field RXF[25] (W1C)
  *
  * Indicates a frame has been received and the last corresponding buffer descriptor has been
- * updated. (Signal dma_rxf_int asserted)
+ * updated.
  */
 
 #define BP_ENET_EIR_RXF      (25)      //!< Bit position for ENET_EIR_RXF.
@@ -362,7 +347,7 @@ typedef union _hw_enet_eir
 
 /* --- Register HW_ENET_EIR, field TXB[26] (W1C)
  *
- * Indicates a transmit buffer descriptor has been updated. (Signal dma_txb_int asserted)
+ * Indicates a transmit buffer descriptor has been updated.
  */
 
 #define BP_ENET_EIR_TXB      (26)      //!< Bit position for ENET_EIR_TXB.
@@ -382,7 +367,7 @@ typedef union _hw_enet_eir
 /* --- Register HW_ENET_EIR, field TXF[27] (W1C)
  *
  * Indicates a frame has been transmitted and the last corresponding buffer descriptor has been
- * updated. (Signal dma_txf_int asserted)
+ * updated.
  */
 
 #define BP_ENET_EIR_TXF      (27)      //!< Bit position for ENET_EIR_TXF.
@@ -482,22 +467,22 @@ typedef union _hw_enet_eimr
     struct _hw_enet_eimr_bitfields
     {
         unsigned RESERVED0 : 15; //!< [14:0] 
-        unsigned TS_TIMER : 1; //!< [15] Corresponds to interrupt source TS_TIMER defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR TS_TIMER field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned TS_AVAIL : 1; //!< [16] Corresponds to interrupt source TS_AVAIL defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR TS_AVAIL field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned WAKEUP : 1; //!< [17] Corresponds to interrupt source WAKEUP defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR WAKEUP field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned PLR : 1; //!< [18] Corresponds to interrupt source PLR defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR PLR field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned UN : 1; //!< [19] Corresponds to interrupt source UN defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR UN field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned RL : 1; //!< [20] Corresponds to interrupt source RL defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR RL field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned LC : 1; //!< [21] Corresponds to interrupt source LC defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR LC field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned EBERR : 1; //!< [22] Corresponds to interrupt source EBERR defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR EBERR field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned MII : 1; //!< [23] Corresponds to interrupt source MII defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR MII field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned RXB : 1; //!< [24] Corresponds to interrupt source RXB defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR RXB field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned RXF : 1; //!< [25] Corresponds to interrupt source RXF defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR RXF field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned TXB : 1; //!< [26] Corresponds to interrupt source TXB defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR TXF field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned TXF : 1; //!< [27] Corresponds to interrupt source TXF defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR TXF field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned GRA : 1; //!< [28] Corresponds to interrupt source GRA defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR GRA field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned BABT : 1; //!< [29] Corresponds to interrupt source BABT defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR BABT field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
-        unsigned BABR : 1; //!< [30] Corresponds to interrupt source BABR defined by the EIR register and determines whether an interrupt condition can generate an interrupt. At every module clock, the EIR samples the signal generated by the interrupting source. The corresponding EIR BABR field reflects the state of the interrupt signal even if the corresponding EIMR field is cleared.
+        unsigned TS_TIMER : 1; //!< [15] Corresponds to interrupt source TS_TIMER defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned TS_AVAIL : 1; //!< [16] Corresponds to interrupt source TS_AVAIL defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned WAKEUP : 1; //!< [17] Corresponds to interrupt source WAKEUP defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned PLR : 1; //!< [18] Corresponds to interrupt source PLR defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned UN : 1; //!< [19] Corresponds to interrupt source UN defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned RL : 1; //!< [20] Corresponds to interrupt source RL defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned LC : 1; //!< [21] Corresponds to interrupt source LC defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned EBERR : 1; //!< [22] Corresponds to interrupt source EBERR defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned MII : 1; //!< [23] Corresponds to interrupt source MII defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned RXB : 1; //!< [24] Corresponds to interrupt source RXB defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned RXF : 1; //!< [25] Corresponds to interrupt source RXF defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned TXB : 1; //!< [26] Corresponds to interrupt source TXB defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned TXF : 1; //!< [27] Corresponds to interrupt source TXF defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned GRA : 1; //!< [28] Corresponds to interrupt source GRA defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned BABT : 1; //!< [29] Corresponds to interrupt source BABT defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
+        unsigned BABR : 1; //!< [30] Corresponds to interrupt source BABR defined by the EIR register and determines whether an interrupt condition can generate an interrupt.
         unsigned RESERVED1 : 1; //!< [31] 
     } B;
 } hw_enet_eimr_t;
@@ -924,7 +909,7 @@ typedef union _hw_enet_rdar
     struct _hw_enet_rdar_bitfields
     {
         unsigned RESERVED0 : 24; //!< [23:0] 
-        unsigned RDAR : 1; //!< [24] Always set to 1 when this register is written, regardless of the value written. This field is cleared by the MAC device when no additional empty descriptors remain in the receive ring. It is also cleared when ECR[ETHER_EN] transitions from set to cleared or when ECR[RESET] is set.
+        unsigned RDAR : 1; //!< [24] Always set to 1 when this register is written, regardless of the value written.
         unsigned RESERVED1 : 7; //!< [31:25] 
     } B;
 } hw_enet_rdar_t;
@@ -995,7 +980,7 @@ typedef union _hw_enet_tdar
     struct _hw_enet_tdar_bitfields
     {
         unsigned RESERVED0 : 24; //!< [23:0] 
-        unsigned TDAR : 1; //!< [24] Always set to 1 when this register is written, regardless of the value written. This bit is cleared by the MAC device when no additional ready descriptors remain in the transmit ring. Also cleared when ECR[ETHER_EN] transitions from set to cleared or when ECR[RESET] is set.
+        unsigned TDAR : 1; //!< [24] Always set to 1 when this register is written, regardless of the value written.
         unsigned RESERVED1 : 7; //!< [31:25] 
     } B;
 } hw_enet_tdar_t;
@@ -1059,14 +1044,14 @@ typedef union _hw_enet_ecr
     reg32_t U;
     struct _hw_enet_ecr_bitfields
     {
-        unsigned RESET : 1; //!< [0] When this field is set, it clears the ETHER_EN field. The system that instanciates the MAC is expected to perform necessary actions to perform the equivalent of a hardware reset on the MAC when the pin ecr_reset becomes asserted.
-        unsigned ETHEREN : 1; //!< [1] Enables/disables the Ethernet MAC. When the MAC is disabled, the buffer descriptors for an aborted transmit frame are not updated. The uDMA, buffer descriptor, and FIFO control logic are reset, including the buffer descriptor and FIFO pointers. Hardware clears this field under the following conditions: RESET is set by software An error condition causes the EBERR field to set. ETHEREN must be set at the very last step during ENET configuration/setup/initialization, only after all other ENET-related registers have been configured.
-        unsigned MAGICEN : 1; //!< [2] Enables/disables magic packet detection. MAGICEN is relevant only if the SLEEP field is set. If MAGICEN is set, changing the SLEEP field enables/disables sleep mode and magic packet detection.
+        unsigned RESET : 1; //!< [0] When this field is set, it clears the ETHER_EN field.
+        unsigned ETHEREN : 1; //!< [1] Enables/disables the Ethernet MAC.
+        unsigned MAGICEN : 1; //!< [2] Enables/disables magic packet detection.
         unsigned SLEEP : 1; //!< [3] 
         unsigned EN1588 : 1; //!< [4] Enables enhanced functionality of the MAC.
         unsigned RESERVED0 : 1; //!< [5] Reserved.
-        unsigned DBGEN : 1; //!< [6] Enables debug input pin mac_freeze the MAC to enter hardware freeze mode when the device enters debug mode. In addition, the bit setting is available on the toplevel signal dbg_en.
-        unsigned STOPEN : 1; //!< [7] Controls toplevel output pin stop_en. Has no effect inside the core beside controlling the pin device behavior in doze mode. In doze mode, if this field is set then all the clocks of the ENET assembly are disabled, except the RMII /MII clock. Doze mode is similar to a conditional stop mode entry for the ENET assembly depending on ECR[STOPEN]. If module clocks are gated in this mode, the module can still wake the system after receiving a magic packet in stop mode. MAGICEN must be set prior to entering sleep/stop mode.
+        unsigned DBGEN : 1; //!< [6] Enables the MAC to enter hardware freeze mode when the device enters debug mode.
+        unsigned STOPEN : 1; //!< [7] Controls device behavior in doze mode.
         unsigned RESERVED1 : 24; //!< [31:8] Reserved.
     } B;
 } hw_enet_ecr_t;
@@ -1092,9 +1077,7 @@ typedef union _hw_enet_ecr
 
 /* --- Register HW_ENET_ECR, field RESET[0] (RW)
  *
- * When this field is set, it clears the ETHER_EN field. The system that instanciates the MAC is
- * expected to perform necessary actions to perform the equivalent of a hardware reset on the MAC
- * when the pin ecr_reset becomes asserted.
+ * When this field is set, it clears the ETHER_EN field.
  */
 
 #define BP_ENET_ECR_RESET      (0)      //!< Bit position for ENET_ECR_RESET.
@@ -1196,8 +1179,7 @@ typedef union _hw_enet_ecr
  *
  * Values:
  * 0 - Legacy FEC buffer descriptors and functions enabled.
- * 1 - Enhanced frame time-stamping functions enabled. Has no effect within the MAC besides controlling the
- *     DMA control bit ena_1588.
+ * 1 - Enhanced frame time-stamping functions enabled.
  */
 
 #define BP_ENET_ECR_EN1588      (4)      //!< Bit position for ENET_ECR_EN1588.
@@ -1217,8 +1199,7 @@ typedef union _hw_enet_ecr
 
 /* --- Register HW_ENET_ECR, field DBGEN[6] (RW)
  *
- * Enables debug input pin mac_freeze the MAC to enter hardware freeze mode when the device enters
- * debug mode. In addition, the bit setting is available on the toplevel signal dbg_en.
+ * Enables the MAC to enter hardware freeze mode when the device enters debug mode.
  *
  * Values:
  * 0 - MAC continues operation in debug mode.
@@ -1242,9 +1223,8 @@ typedef union _hw_enet_ecr
 
 /* --- Register HW_ENET_ECR, field STOPEN[7] (RW)
  *
- * Controls toplevel output pin stop_en. Has no effect inside the core beside controlling the pin
- * device behavior in doze mode. In doze mode, if this field is set then all the clocks of the ENET
- * assembly are disabled, except the RMII /MII clock. Doze mode is similar to a conditional stop
+ * Controls device behavior in doze mode. In doze mode, if this field is set then all the clocks of
+ * the ENET assembly are disabled, except the RMII clock. Doze mode is similar to a conditional stop
  * mode entry for the ENET assembly depending on ECR[STOPEN]. If module clocks are gated in this
  * mode, the module can still wake the system after receiving a magic packet in stop mode. MAGICEN
  * must be set prior to entering sleep/stop mode.
@@ -1276,12 +1256,10 @@ typedef union _hw_enet_ecr
  *
  * Writing to MMFR triggers a management frame transaction to the PHY device unless MSCR is
  * programmed to zero.  If MSCR is changed from zero to non-zero during a write to MMFR, an MII
- * frame is generated with the data previously written to the MMFR. If MSCR is cleared while MMFR is
- * written and then MSCR is written with a non-zero value, an MII frame is generated with the data
- * previously written to the MMFR. This allows MMFR and MSCR to be programmed in either order if
- * MSCR is currently zero.  If the MMFR register is written while frame generation is in progress,
- * the frame contents are altered. Software must use the EIR[MII] interrupt indication to avoid
- * writing to the MMFR register while frame generation is in progress.
+ * frame is generated with the data previously written to the MMFR. This allows MMFR and MSCR to be
+ * programmed in either order if MSCR is currently zero.  If the MMFR register is written while
+ * frame generation is in progress, the frame contents are altered. Software must use the EIR[MII]
+ * interrupt indication to avoid writing to the MMFR register while frame generation is in progress.
  */
 typedef union _hw_enet_mmfr
 {
@@ -1466,9 +1444,9 @@ typedef union _hw_enet_mscr
     struct _hw_enet_mscr_bitfields
     {
         unsigned RESERVED0 : 1; //!< [0] 
-        unsigned MII_SPEED : 6; //!< [6:1] Controls the frequency of the MII management interface clock (MDC) relative to the internal module clock. A value of 0 in this field turns off MDC and leaves it in low voltage state. Any non-zero value results in the MDC frequency of: 1/((MII_SPEED + 1) x 2) of the internal module clock frequency (ipg_clk_s)
-        unsigned DIS_PRE : 1; //!< [7] Enables/disables prepending a preamble to the MII management frame. The MII standard allows the preamble to be dropped if the attached PHY devices do not require it.
-        unsigned HOLDTIME : 3; //!< [10:8] IEEE802.3 clause 22 defines a minimum of 10 ns for the holdtime on the MDIO output. Depending on the host bus frequency, the setting may need to be increased.
+        unsigned MII_SPEED : 6; //!< [6:1] Controls the frequency of the MII management interface clock (MDC) relative to the internal module clock.
+        unsigned DIS_PRE : 1; //!< [7] Enables/disables prepending a preamble to the MII management frame.
+        unsigned HOLDTIME : 3; //!< [10:8] IEEE802.3 clause 22 defines a minimum of 10 ns for the holdtime on the MDIO output.
         unsigned RESERVED1 : 21; //!< [31:11] 
     } B;
 } hw_enet_mscr_t;
@@ -1497,7 +1475,7 @@ typedef union _hw_enet_mscr
  * Controls the frequency of the MII management interface clock (MDC) relative to the internal
  * module clock. A value of 0 in this field turns off MDC and leaves it in low voltage state. Any
  * non-zero value results in the MDC frequency of: 1/((MII_SPEED + 1) x 2) of the internal module
- * clock frequency (ipg_clk_s)
+ * clock frequency
  */
 
 #define BP_ENET_MSCR_MII_SPEED      (1)      //!< Bit position for ENET_MSCR_MII_SPEED.
@@ -1545,10 +1523,10 @@ typedef union _hw_enet_mscr
  * the host bus frequency, the setting may need to be increased.
  *
  * Values:
- * 000 - 1 internal module clock pclk (ipg_clk_s) cycle
- * 001 - 2 internal module clock pclk (ipg_clk_s) cycles
- * 010 - 3 internal module clock pclk (ipg_clk_s) cycles
- * 111 - 8 internal module clock pclk (ipg_clk_s) cycles
+ * 000 - 1 internal module clock cycle
+ * 001 - 2 internal module clock cycles
+ * 010 - 3 internal module clock cycles
+ * 111 - 8 internal module clock cycles
  */
 
 #define BP_ENET_MSCR_HOLDTIME      (8)      //!< Bit position for ENET_MSCR_HOLDTIME.
@@ -1586,7 +1564,7 @@ typedef union _hw_enet_mibc
     struct _hw_enet_mibc_bitfields
     {
         unsigned RESERVED0 : 29; //!< [28:0] 
-        unsigned MIB_CLEAR : 1; //!< [29] If set, all statistics counters are reset to 0. This field is not self-clearing. To clear the MIB counters set and then clear the field.
+        unsigned MIB_CLEAR : 1; //!< [29] If set, all statistics counters are reset to 0.
         unsigned MIB_IDLE : 1; //!< [30] If this status field is set, the MIB block is not currently updating any MIB counters.
         unsigned MIB_DIS : 1; //!< [31] If this control field is set, the MIB logic halts and does not update any MIB counters.
     } B;
@@ -1682,17 +1660,17 @@ typedef union _hw_enet_rcr
         unsigned DRT : 1; //!< [1] 
         unsigned MII_MODE : 1; //!< [2] This field must always be set.
         unsigned PROM : 1; //!< [3] All frames are accepted regardless of address matching.
-        unsigned BC_REJ : 1; //!< [4] If set, frames with destination address (DA) equal to 0xFFFF_FFFF_FFFF are rejected unless the PROM field is set. If BC_REJ and PROM are set, frames with broadcast DA are accepted and the MISS (M) is set in the receive buffer descriptor.
-        unsigned FCE : 1; //!< [5] If set, the receiver detects PAUSE frames. Upon PAUSE frame detection, the transmitter stops transmitting data frames for a given duration.
+        unsigned BC_REJ : 1; //!< [4] If set, frames with destination address (DA) equal to 0xFFFF_FFFF_FFFF are rejected unless the PROM field is set.
+        unsigned FCE : 1; //!< [5] If set, the receiver detects PAUSE frames.
         unsigned RESERVED0 : 2; //!< [7:6] Reserved.
-        unsigned RMII_MODE : 1; //!< [8] Specifies whether the MAC is configured for MII mode or RMII operation , when ECR[SPEED] is cleared . Do not set both RCR[RGMII_EN] or RCR[RMII_MODE].
-        unsigned RMII_10T : 1; //!< [9] Enables 10-Mbps mode of the RMII or RGMII .
+        unsigned RMII_MODE : 1; //!< [8] Specifies whether the MAC is configured for MII mode or RMII operation .
+        unsigned RMII_10T : 1; //!< [9] Enables 10-Mbps mode of the RMII .
         unsigned RESERVED1 : 2; //!< [11:10] 
         unsigned PADEN : 1; //!< [12] Specifies whether the MAC removes padding from received frames.
         unsigned PAUFWD : 1; //!< [13] Specifies whether pause frames are terminated or forwarded.
-        unsigned CRCFWD : 1; //!< [14] Specifies whether the CRC field of received frames is transmitted or stripped. If padding function is enabled (PADEN = 1), CRCFWD is ignored and the CRC field is checked and always terminated and removed.
+        unsigned CRCFWD : 1; //!< [14] Specifies whether the CRC field of received frames is transmitted or stripped.
         unsigned CFEN : 1; //!< [15] Enables/disables the MAC control frame.
-        unsigned MAX_FL : 14; //!< [29:16] Resets to decimal 1518. Length is measured starting at DA and includes the CRC at the end of the frame. Transmit frames longer than MAX_FL cause the BABT interrupt to occur. Receive frames longer than MAX_FL cause the BABR interrupt to occur and set the LG field in the end of frame receive buffer descriptor. The recommended default value to be programmed is 1518 or 1522 if VLAN tags are supported.
+        unsigned MAX_FL : 14; //!< [29:16] Resets to decimal 1518.
         unsigned NLC : 1; //!< [30] Enables/disables a payload length check.
         unsigned GRS : 1; //!< [31] Read-only status indicating that the MAC receive datapath is stopped.
     } B;
@@ -1725,7 +1703,7 @@ typedef union _hw_enet_rcr
  * Values:
  * 0 - Loopback disabled.
  * 1 - Transmitted frames are looped back internal to the device and transmit MII output signals are not
- *     asserted. DRT must be cleared. When set the Core signal ena_loop is set to '1'.
+ *     asserted. DRT must be cleared.
  */
 
 #define BP_ENET_RCR_LOOP      (0)      //!< Bit position for ENET_RCR_LOOP.
@@ -1859,12 +1837,11 @@ typedef union _hw_enet_rcr
 
 /* --- Register HW_ENET_RCR, field RMII_MODE[8] (RW)
  *
- * Specifies whether the MAC is configured for MII mode or RMII operation , when ECR[SPEED] is
- * cleared . Do not set both RCR[RGMII_EN] or RCR[RMII_MODE].
+ * Specifies whether the MAC is configured for MII mode or RMII operation .
  *
  * Values:
- * 0 - MAC configured for MII mode. The core signal ena_rmii is set to 0.
- * 1 - MAC configured for RMII operation. The core signal ena_rmii is set to 1.
+ * 0 - MAC configured for MII mode.
+ * 1 - MAC configured for RMII operation.
  */
 
 #define BP_ENET_RCR_RMII_MODE      (8)      //!< Bit position for ENET_RCR_RMII_MODE.
@@ -1884,14 +1861,11 @@ typedef union _hw_enet_rcr
 
 /* --- Register HW_ENET_RCR, field RMII_10T[9] (RW)
  *
- * Enables 10-Mbps mode of the RMII or RGMII .
+ * Enables 10-Mbps mode of the RMII .
  *
  * Values:
- * 0 - 100 Mbps operation. . The 50 MHz RMII reference clock (RMII_REF_CLK) is sent to the RMII or RGMII ,
- *     while a divided-by-2 version (25 MHz) is sent to the MAC. The core signal set_10 is set to 0.
- * 1 - 10 Mbps operation. . The 50 MHz RMII reference clock (RMII_REF_CLK) is divided by 10 (5 MHz) and
- *     used in the RMII or RGMII , while a divided-by-20 version (2.5 MHz) is sent to the MAC. The
- *     core signal set_10 is set to 1.
+ * 0 - 100 Mbps operation.
+ * 1 - 10 Mbps operation.
  */
 
 #define BP_ENET_RCR_RMII_10T      (9)      //!< Bit position for ENET_RCR_RMII_10T.
@@ -2085,12 +2059,12 @@ typedef union _hw_enet_tcr
     reg32_t U;
     struct _hw_enet_tcr_bitfields
     {
-        unsigned GTS : 1; //!< [0] When this field is set, MAC stops transmission after any frame currently transmitted is complete and EIR[GRA] is set. If frame transmission is not currently underway, the GRA interrupt is asserted immediately. After transmission finishes, clear GTS to restart. The next frame in the transmit FIFO is then transmitted. If an early collision occurs during transmission when GTS is set, transmission stops after the collision. The frame is transmitted again after GTS is cleared. There may be old frames in the transmit FIFO that transmit when GTS is reasserted. To avoid this, clear ECR[ETHER_EN] following the GRA interrupt.
+        unsigned GTS : 1; //!< [0] When this field is set, MAC stops transmission after any frame currently transmitted is complete and EIR[GRA] is set.
         unsigned RESERVED0 : 1; //!< [1] 
-        unsigned FDEN : 1; //!< [2] If this field is set, frames transmit independent of carrier sense and collision inputs. Only modify this bit when ECR[ETHER_EN] is cleared.
-        unsigned TFC_PAUSE : 1; //!< [3] Pauses frame transmission. When this field is set, EIR[GRA] is set. With transmission of data frames stopped, the MAC transmits a MAC control PAUSE frame. Next, the MAC clears TFC_PAUSE and resumes transmitting data frames. If the transmitter pauses due to user assertion of GTS or reception of a PAUSE frame, the MAC may continue transmitting a MAC control PAUSE frame.
-        unsigned RFC_PAUSE : 1; //!< [4] This status field is set when a full-duplex flow control pause frame is received and the transmitter pauses for the duration defined in this pause frame. This field automatically clears when the pause duration is complete.
-        unsigned ADDSEL : 3; //!< [7:5] If ADDINS is set, indicates the MAC address that overwrites the source MAC address. If any other value than those listed below is used, supplemental MAC address 3 (SMACx3) is used.
+        unsigned FDEN : 1; //!< [2] If this field is set, frames transmit independent of carrier sense and collision inputs.
+        unsigned TFC_PAUSE : 1; //!< [3] Pauses frame transmission.
+        unsigned RFC_PAUSE : 1; //!< [4] This status field is set when a full-duplex flow control pause frame is received and the transmitter pauses for the duration defined in this pause frame.
+        unsigned ADDSEL : 3; //!< [7:5] If ADDINS is set, indicates the MAC address that overwrites the source MAC address.
         unsigned ADDINS : 1; //!< [8] 
         unsigned CRCFWD : 1; //!< [9] 
         unsigned RESERVED1 : 22; //!< [31:10] 
@@ -2203,14 +2177,13 @@ typedef union _hw_enet_tcr
 
 /* --- Register HW_ENET_TCR, field ADDSEL[7:5] (RW)
  *
- * If ADDINS is set, indicates the MAC address that overwrites the source MAC address. If any other
- * value than those listed below is used, supplemental MAC address 3 (SMACx3) is used.
+ * If ADDINS is set, indicates the MAC address that overwrites the source MAC address.
  *
  * Values:
  * 000 - Node MAC address programmed on PADDR1/2 registers.
- * 100 -  Reserved.  Supplemental MAC address 0 (SMACx0).
- * 101 -  Reserved.  Supplemental MAC address 1 (SMACx1).
- * 110 -  Reserved.  Supplemental MAC address 2 (SMACx2).
+ * 100 - 
+ * 101 - 
+ * 110 - 
  */
 
 #define BP_ENET_TCR_ADDSEL      (5)      //!< Bit position for ENET_TCR_ADDSEL.
@@ -2257,7 +2230,7 @@ typedef union _hw_enet_tcr
 
  *
  * Values:
- * 0 - TxBD[TC] ff_tx_crc_fwd controls whether the frame has a CRC from the application.
+ * 0 - TxBD[TC] controls whether the frame has a CRC from the application.
  * 1 - The transmitter does not append any CRC to transmitted frames, as it is expecting a frame with CRC
  *     from the application.
  */
@@ -2513,7 +2486,7 @@ typedef union _hw_enet_iaur
     reg32_t U;
     struct _hw_enet_iaur_bitfields
     {
-        unsigned IADDR1 : 32; //!< [31:0] Contains the upper 32 bits of the 64-bit hash table used in the address recognition process for receive frames with a unicast address. Bit 31 of IADDR1 contains hash index bit 63. Bit 0 of IADDR1 contains hash index bit 32.
+        unsigned IADDR1 : 32; //!< [31:0] Contains the upper 32 bits of the 64-bit hash table used in the address recognition process for receive frames with a unicast address.
     } B;
 } hw_enet_iaur_t;
 #endif
@@ -2576,7 +2549,7 @@ typedef union _hw_enet_ialr
     reg32_t U;
     struct _hw_enet_ialr_bitfields
     {
-        unsigned IADDR2 : 32; //!< [31:0] Contains the lower 32 bits of the 64-bit hash table used in the address recognition process for receive frames with a unicast address. Bit 31 of IADDR2 contains hash index bit 31. Bit 0 of IADDR2 contains hash index bit 0.
+        unsigned IADDR2 : 32; //!< [31:0] Contains the lower 32 bits of the 64-bit hash table used in the address recognition process for receive frames with a unicast address.
     } B;
 } hw_enet_ialr_t;
 #endif
@@ -2638,7 +2611,7 @@ typedef union _hw_enet_gaur
     reg32_t U;
     struct _hw_enet_gaur_bitfields
     {
-        unsigned GADDR1 : 32; //!< [31:0] Contains the upper 32 bits of the 64-bit hash table used in the address recognition process for receive frames with a multicast address. Bit 31 of GADDR1 contains hash index bit 63. Bit 0 of GADDR1 contains hash index bit 32.
+        unsigned GADDR1 : 32; //!< [31:0] Contains the upper 32 bits of the 64-bit hash table used in the address recognition process for receive frames with a multicast address.
     } B;
 } hw_enet_gaur_t;
 #endif
@@ -2700,7 +2673,7 @@ typedef union _hw_enet_galr
     reg32_t U;
     struct _hw_enet_galr_bitfields
     {
-        unsigned GADDR2 : 32; //!< [31:0] Contains the lower 32 bits of the 64-bit hash table used in the address recognition process for receive frames with a multicast address. Bit 31 of GADDR2 contains hash index bit 31. Bit 0 of GADDR2 contains hash index bit 0.
+        unsigned GADDR2 : 32; //!< [31:0] Contains the lower 32 bits of the 64-bit hash table used in the address recognition process for receive frames with a multicast address.
     } B;
 } hw_enet_galr_t;
 #endif
@@ -2767,7 +2740,7 @@ typedef union _hw_enet_tfwr
     reg32_t U;
     struct _hw_enet_tfwr_bitfields
     {
-        unsigned TFWR : 6; //!< [5:0] If STRFWD is cleared, indicates the number of bytes written to the transmit FIFO before transmission of a frame begins. If a frame with less than the threshold is written,it is still sent, independently of this threshold setting. The threshold is only relevant if the frame is larger than the threshold given.
+        unsigned TFWR : 6; //!< [5:0] If STRFWD is cleared, indicates the number of bytes written to the transmit FIFO before transmission of a frame begins.
         unsigned RESERVED0 : 2; //!< [7:6] 
         unsigned STRFWD : 1; //!< [8] 
         unsigned RESERVED1 : 23; //!< [31:9] 
@@ -2868,7 +2841,7 @@ typedef union _hw_enet_rdsr
     struct _hw_enet_rdsr_bitfields
     {
         unsigned RESERVED0 : 3; //!< [2:0] 
-        unsigned R_DES_START : 29; //!< [31:3] Pointer to the beginning of the receive buffer descriptor queue. Not used internally, drives the core output signal RDSR.
+        unsigned R_DES_START : 29; //!< [31:3] Pointer to the beginning of the receive buffer descriptor queue.
     } B;
 } hw_enet_rdsr_t;
 #endif
@@ -2893,8 +2866,7 @@ typedef union _hw_enet_rdsr
 
 /* --- Register HW_ENET_RDSR, field R_DES_START[31:3] (RW)
  *
- * Pointer to the beginning of the receive buffer descriptor queue. Not used internally, drives the
- * core output signal RDSR.
+ * Pointer to the beginning of the receive buffer descriptor queue.
  */
 
 #define BP_ENET_RDSR_R_DES_START      (3)      //!< Bit position for ENET_RDSR_R_DES_START.
@@ -2932,7 +2904,7 @@ typedef union _hw_enet_tdsr
     struct _hw_enet_tdsr_bitfields
     {
         unsigned RESERVED0 : 3; //!< [2:0] 
-        unsigned X_DES_START : 29; //!< [31:3] Pointer to the beginning of the transmit buffer descriptor queue. Not used internally, drives the core output signal TDSR.
+        unsigned X_DES_START : 29; //!< [31:3] Pointer to the beginning of the transmit buffer descriptor queue.
     } B;
 } hw_enet_tdsr_t;
 #endif
@@ -2957,8 +2929,7 @@ typedef union _hw_enet_tdsr
 
 /* --- Register HW_ENET_TDSR, field X_DES_START[31:3] (RW)
  *
- * Pointer to the beginning of the transmit buffer descriptor queue. Not used internally, drives the
- * core output signal TDSR.
+ * Pointer to the beginning of the transmit buffer descriptor queue.
  */
 
 #define BP_ENET_TDSR_X_DES_START      (3)      //!< Bit position for ENET_TDSR_X_DES_START.
@@ -2998,7 +2969,7 @@ typedef union _hw_enet_mrbr
     struct _hw_enet_mrbr_bitfields
     {
         unsigned RESERVED0 : 4; //!< [3:0] 
-        unsigned R_BUF_SIZE : 10; //!< [13:4] Receive buffer size in bytes. Not used internally, drives the Core output signal TDSR.
+        unsigned R_BUF_SIZE : 10; //!< [13:4] Receive buffer size in bytes.
         unsigned RESERVED1 : 18; //!< [31:14] 
     } B;
 } hw_enet_mrbr_t;
@@ -3024,7 +2995,7 @@ typedef union _hw_enet_mrbr
 
 /* --- Register HW_ENET_MRBR, field R_BUF_SIZE[13:4] (RW)
  *
- * Receive buffer size in bytes. Not used internally, drives the Core output signal TDSR.
+ * Receive buffer size in bytes.
  */
 
 #define BP_ENET_MRBR_R_BUF_SIZE      (4)      //!< Bit position for ENET_MRBR_R_BUF_SIZE.
@@ -3338,7 +3309,7 @@ typedef union _hw_enet_tipg
     reg32_t U;
     struct _hw_enet_tipg_bitfields
     {
-        unsigned IPG : 5; //!< [4:0] Indicates the IPG, in bytes, between transmitted frames. Valid values range from 8 to 27. If value is less than 8, the IPG is 8. If value is greater than 27, the IPG is 27.
+        unsigned IPG : 5; //!< [4:0] Indicates the IPG, in bytes, between transmitted frames.
         unsigned RESERVED0 : 27; //!< [31:5] 
     } B;
 } hw_enet_tipg_t;
@@ -3399,7 +3370,7 @@ typedef union _hw_enet_ftrl
     reg32_t U;
     struct _hw_enet_ftrl_bitfields
     {
-        unsigned TRUNC_FL : 14; //!< [13:0] Indicates the value a receive frame is truncated, if it is greater than this value. Must be greater than or equal to RCR[MAX_FL]. Truncation happens at TRUNC_FL. However, when truncation occurs, the application (FIFO) may receive less data, guaranteeing that it never receives more than the set limit.
+        unsigned TRUNC_FL : 14; //!< [13:0] Indicates the value a receive frame is truncated, if it is greater than this value.
         unsigned RESERVED0 : 18; //!< [31:14] 
     } B;
 } hw_enet_ftrl_t;
@@ -3466,8 +3437,8 @@ typedef union _hw_enet_tacc
     {
         unsigned SHIFT16 : 1; //!< [0] 
         unsigned RESERVED0 : 2; //!< [2:1] 
-        unsigned IPCHK : 1; //!< [3] Enables insertion of IP header checksum. The setting is OR'ed with the pin ff_tx_ipchk_ins.
-        unsigned PROCHK : 1; //!< [4] Enables insertion of protocol checksum. The setting is OR'ed with the pin ff_tx_protchk_ins.
+        unsigned IPCHK : 1; //!< [3] Enables insertion of IP header checksum.
+        unsigned PROCHK : 1; //!< [4] Enables insertion of protocol checksum.
         unsigned RESERVED1 : 27; //!< [31:5] 
     } B;
 } hw_enet_tacc_t;
@@ -3520,7 +3491,7 @@ typedef union _hw_enet_tacc
 
 /* --- Register HW_ENET_TACC, field IPCHK[3] (RW)
  *
- * Enables insertion of IP header checksum. The setting is OR'ed with the pin ff_tx_ipchk_ins.
+ * Enables insertion of IP header checksum.
  *
  * Values:
  * 0 - Checksum is not inserted.
@@ -3545,7 +3516,7 @@ typedef union _hw_enet_tacc
 
 /* --- Register HW_ENET_TACC, field PROCHK[4] (RW)
  *
- * Enables insertion of protocol checksum. The setting is OR'ed with the pin ff_tx_protchk_ins.
+ * Enables insertion of protocol checksum.
  *
  * Values:
  * 0 - Checksum not inserted.
@@ -3590,7 +3561,7 @@ typedef union _hw_enet_racc
         unsigned PRODIS : 1; //!< [2] 
         unsigned RESERVED0 : 3; //!< [5:3] 
         unsigned LINEDIS : 1; //!< [6] 
-        unsigned SHIFT16 : 1; //!< [7] When this field is set, the actual frame data starts at bit 16 of the first word read from the RX FIFO aligning the Ethernet payload on a 32-bit boundary. This function only affects the FIFO storage and has no influence on the statistics, which use the actual length of the frame received.
+        unsigned SHIFT16 : 1; //!< [7] When this field is set, the actual frame data starts at bit 16 of the first word read from the RX FIFO aligning the Ethernet payload on a 32-bit boundary.
         unsigned RESERVED1 : 24; //!< [31:8] 
     } B;
 } hw_enet_racc_t;
@@ -3767,12 +3738,12 @@ typedef union _hw_enet_atcr
         unsigned OFFRST : 1; //!< [3] 
         unsigned PEREN : 1; //!< [4] 
         unsigned RESERVED1 : 2; //!< [6:5] 
-        unsigned PINPER : 1; //!< [7] Enables event signal output external pin frc_evt_period assertion on period event. Not all devices contain the event signal output. See the chip configuration details.
+        unsigned PINPER : 1; //!< [7] Enables event signal output assertion on period event.
         unsigned RESERVED2 : 1; //!< [8] 
-        unsigned RESTART : 1; //!< [9] Resets the timer to zero. This has no effect on the counter enable. If the counter is enabled when this field is set, the timer is reset to zero and starts counting from there. When set, all other fields are ignored during a write.
+        unsigned RESTART : 1; //!< [9] Resets the timer to zero.
         unsigned RESERVED3 : 1; //!< [10] 
         unsigned CAPTURE : 1; //!< [11] 
-        unsigned RESERVED4 : 1; //!< [12] This is a test command. When set, the timer increments by the value given in the correction increment register. Should not be used during normal operation.
+        unsigned RESERVED4 : 1; //!< [12] 
         unsigned SLAVE : 1; //!< [13] 
         unsigned RESERVED5 : 18; //!< [31:14] 
     } B;
@@ -3878,10 +3849,10 @@ typedef union _hw_enet_atcr
  *
  * Values:
  * 0 - Disable.
- * 1 -  A period event interrupt can be generated (EIR[TS_TIMER]) and the event signal output external pin
- *     frc_evt_period is asserted when the timer wraps around according to the periodic setting
- *     ATPER. The timer period value must be set before setting this bit.  Not all devices contain
- *     the event signal output. See the chip configuration details.
+ * 1 -  A period event interrupt can be generated (EIR[TS_TIMER]) and the event signal output is asserted
+ *     when the timer wraps around according to the periodic setting ATPER. The timer period value
+ *     must be set before setting this bit.  Not all devices contain the event signal output. See
+ *     the chip configuration details.
  */
 
 #define BP_ENET_ATCR_PEREN      (4)      //!< Bit position for ENET_ATCR_PEREN.
@@ -3901,8 +3872,8 @@ typedef union _hw_enet_atcr
 
 /* --- Register HW_ENET_ATCR, field PINPER[7] (RW)
  *
- * Enables event signal output external pin frc_evt_period assertion on period event. Not all
- * devices contain the event signal output. See the chip configuration details.
+ * Enables event signal output assertion on period event. Not all devices contain the event signal
+ * output. See the chip configuration details.
  *
  * Values:
  * 0 - Disable.
@@ -3975,9 +3946,9 @@ typedef union _hw_enet_atcr
  *
  * Values:
  * 0 - The timer is active and all configuration fields in this register are relevant.
- * 1 - The internal timer is disabled and the externally provided timer value from pins frc_in() is used.
- *     All other fields, except CAPTURE, in this register have no effect. CAPTURE can still be used
- *     to capture the current timer value.
+ * 1 - The internal timer is disabled and the externally provided timer value is used. All other fields,
+ *     except CAPTURE, in this register have no effect. CAPTURE can still be used to capture the
+ *     current timer value.
  */
 
 #define BP_ENET_ATCR_SLAVE      (13)      //!< Bit position for ENET_ATCR_SLAVE.
@@ -4012,7 +3983,7 @@ typedef union _hw_enet_atvr
     reg32_t U;
     struct _hw_enet_atvr_bitfields
     {
-        unsigned ATIME : 32; //!< [31:0] A write sets the timer. A read returns the last captured value. To read the current value, issue a capture command (set ATCR[CAPTURE]) prior to reading this register.
+        unsigned ATIME : 32; //!< [31:0] A write sets the timer.
     } B;
 } hw_enet_atvr_t;
 #endif
@@ -4072,7 +4043,7 @@ typedef union _hw_enet_atoff
     reg32_t U;
     struct _hw_enet_atoff_bitfields
     {
-        unsigned OFFSET : 32; //!< [31:0] Offset value for one-shot event generation. When the timer reaches the value, an event can be generated to reset the counter. If the increment value in ATINC is given in true nanoseconds, this value is also given in true nanoseconds.
+        unsigned OFFSET : 32; //!< [31:0] Offset value for one-shot event generation.
     } B;
 } hw_enet_atoff_t;
 #endif
@@ -4133,7 +4104,7 @@ typedef union _hw_enet_atper
     reg32_t U;
     struct _hw_enet_atper_bitfields
     {
-        unsigned PERIOD : 32; //!< [31:0] Value for generating periodic events. Each instance the timer reaches this value, the period event occurs and the timer restarts. If the increment value in ATINC is given in true nanoseconds, this value is also given in true nanoseconds. The value should be initialized to 1,000,000,000 (1 x 10 9 ) to represent a timer wrap around of one second. The increment value set in ATINC should be set to the true nanoseconds of the period of clock ts_clk, hence implementing a true 1 second counter.
+        unsigned PERIOD : 32; //!< [31:0] Value for generating periodic events.
     } B;
 } hw_enet_atper_t;
 #endif
@@ -4197,7 +4168,7 @@ typedef union _hw_enet_atcor
     reg32_t U;
     struct _hw_enet_atcor_bitfields
     {
-        unsigned COR : 31; //!< [30:0] Defines after how many timer clock cycles (ts_clk) the correction counter should be reset and trigger a correction increment on the timer. The amount of correction is defined in ATINC[INC_CORR]. For example, setting the increment amount to zero stops the timer for one clock cycle, slowing it down. Larger values speed up the timer. A value of 0 disables the correction counter and no corrections occur. This value is given in clock cycles, not in nanoseconds as all other values.
+        unsigned COR : 31; //!< [30:0] Defines after how many timer clock cycles (ts_clk) the correction counter should be reset and trigger a correction increment on the timer.
         unsigned RESERVED0 : 1; //!< [31] 
     } B;
 } hw_enet_atcor_t;
@@ -4225,10 +4196,8 @@ typedef union _hw_enet_atcor
  *
  * Defines after how many timer clock cycles (ts_clk) the correction counter should be reset and
  * trigger a correction increment on the timer. The amount of correction is defined in
- * ATINC[INC_CORR]. For example, setting the increment amount to zero stops the timer for one clock
- * cycle, slowing it down. Larger values speed up the timer. A value of 0 disables the correction
- * counter and no corrections occur. This value is given in clock cycles, not in nanoseconds as all
- * other values.
+ * ATINC[INC_CORR]. A value of 0 disables the correction counter and no corrections occur. This
+ * value is given in clock cycles, not in nanoseconds as all other values.
  */
 
 #define BP_ENET_ATCOR_COR      (0)      //!< Bit position for ENET_ATCOR_COR.
@@ -4262,9 +4231,9 @@ typedef union _hw_enet_atinc
     reg32_t U;
     struct _hw_enet_atinc_bitfields
     {
-        unsigned INC : 7; //!< [6:0] The timer increments by this amount each clock cycle. For example, set to 10 for 100 MHz, 8 for 125 MHz, 5 for 200 MHz. For highest precision, use a value that is an integer fraction of the period set in ATPER.
+        unsigned INC : 7; //!< [6:0] The timer increments by this amount each clock cycle.
         unsigned RESERVED0 : 1; //!< [7] 
-        unsigned INC_CORR : 7; //!< [14:8] This value is added every time the correction timer expires (every clock cycle given in ATCOR). A value smaller than INC slows the timer, while a value larger than INC speeds the timer.
+        unsigned INC_CORR : 7; //!< [14:8] This value is added every time the correction timer expires (every clock cycle given in ATCOR).
         unsigned RESERVED1 : 17; //!< [31:15] 
     } B;
 } hw_enet_atinc_t;
@@ -4346,7 +4315,7 @@ typedef union _hw_enet_atstmp
     reg32_t U;
     struct _hw_enet_atstmp_bitfields
     {
-        unsigned TIMESTAMP : 32; //!< [31:0] Timestamp of the last frame transmitted by the core that had TxBD[TS] set the ff_tx_ts_frm signal asserted from the user application . This register is only valid when EIR[TS_AVAIL] is set.
+        unsigned TIMESTAMP : 32; //!< [31:0] Timestamp of the last frame transmitted by the core that had TxBD[TS] set .
     } B;
 } hw_enet_atstmp_t;
 #endif
@@ -4367,8 +4336,8 @@ typedef union _hw_enet_atstmp
 
 /* --- Register HW_ENET_ATSTMP, field TIMESTAMP[31:0] (RW)
  *
- * Timestamp of the last frame transmitted by the core that had TxBD[TS] set the ff_tx_ts_frm signal
- * asserted from the user application . This register is only valid when EIR[TS_AVAIL] is set.
+ * Timestamp of the last frame transmitted by the core that had TxBD[TS] set . This register is only
+ * valid when EIR[TS_AVAIL] is set.
  */
 
 #define BP_ENET_ATSTMP_TIMESTAMP      (0)      //!< Bit position for ENET_ATSTMP_TIMESTAMP.

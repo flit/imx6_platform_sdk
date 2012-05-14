@@ -16,7 +16,7 @@
  * - HW_CCM_ANALOG_PLL_ARM - Analog ARM PLL control Register
  * - HW_CCM_ANALOG_PLL_USB1 - Analog USB1 480MHz PLL Control Register
  * - HW_CCM_ANALOG_PLL_USB2 - Analog USB2 480MHz PLL Control Register
- * - HW_CCM_ANALOG_PLL_SYS - Analog 528MHz System PLL Control Register
+ * - HW_CCM_ANALOG_PLL_SYS - Analog System PLL Control Register
  * - HW_CCM_ANALOG_PLL_AUDIO - Analog Audio PLL control Register
  * - HW_CCM_ANALOG_PLL_AUDIO_NUM - Numerator of Audio PLL Fractional Loop Divider Register
  * - HW_CCM_ANALOG_PLL_AUDIO_DENOM - Denominator of Audio PLL Fractional Loop Divider Register
@@ -40,16 +40,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_CCM_ANALOG_PLL_ARM - Analog ARM PLL control Register
@@ -68,7 +58,7 @@ typedef union _hw_ccm_analog_pll_arm
     reg32_t U;
     struct _hw_ccm_analog_pll_arm_bitfields
     {
-        unsigned DIV_SELECT : 7; //!< [6:0] This field controls the pll loop divider. Valid range for divider value: 54-108. Fout = Fin * div_select/2.0.
+        unsigned DIV_SELECT : 7; //!< [6:0] This field controls the pll loop divider.
         unsigned HALF_LF : 1; //!< [7] Reserved by Freescale.
         unsigned DOUBLE_LF : 1; //!< [8] Reserved by Freescale.
         unsigned HALF_CP : 1; //!< [9] Reserved by Freescale.
@@ -82,7 +72,7 @@ typedef union _hw_ccm_analog_pll_arm
         unsigned LVDS_24MHZ_SEL : 1; //!< [18] Analog Debug Bit
         unsigned PLL_SEL : 1; //!< [19] Reserved
         unsigned RESERVED0 : 11; //!< [30:20] Always set to zero (0).
-        unsigned LOCK : 1; //!< [31] 1 - PLL is currently locked. 0 - PLL is not currently locked.
+        unsigned LOCK : 1; //!< [31] 1 - PLL is currently locked.
     } B;
 } hw_ccm_analog_pll_arm_t;
 #endif
@@ -395,14 +385,16 @@ typedef union _hw_ccm_analog_pll_usb1
     reg32_t U;
     struct _hw_ccm_analog_pll_usb1_bitfields
     {
-        unsigned DIV_SELECT : 2; //!< [1:0] This field controls the pll loop divider. 0 - Fout=Fref*20; 1 - Fout=Fref*22.
+        unsigned DIV_SELECT : 2; //!< [1:0] This field controls the pll loop divider.
         unsigned RESERVED0 : 4; //!< [5:2] Always set to zero (0).
-        unsigned EN_USB_CLKS : 1; //!< [6] Powers the 9-phase PLL outputs for USBPHYn. Additionally, the UTMI clock gate must be deasserted in the USBPHYn to enable USBn operation (clear CLKGATE bit in USBPHYn_CTRL). This bit will be set automatically when USBPHYn remote wakeup event occurs.
+        unsigned EN_USB_CLKS : 1; //!< [6] Powers the 9-phase PLL outputs for USBPHYn.
         unsigned RESERVED1 : 5; //!< [11:7] Always set to zero (0).
-        unsigned POWER : 1; //!< [12] Powers up the PLL. This bit will be set automatically when USBPHY0 remote wakeup event happens.
+        unsigned POWER : 1; //!< [12] Powers up the PLL.
         unsigned ENABLE : 1; //!< [13] Enable the PLL clock output.
-        unsigned RESERVED2 : 17; //!< [30:14] Always set to zero (0).
-        unsigned LOCK : 1; //!< [31] 1 - PLL is currently locked. 0 - PLL is not currently locked.
+        unsigned BYPASS_CLK_SRC : 2; //!< [15:14] Determines the bypass source.
+        unsigned BYPASS : 1; //!< [16] Bypass the pll.
+        unsigned RESERVED2 : 14; //!< [30:17] Always set to zero (0).
+        unsigned LOCK : 1; //!< [31] 1 - PLL is currently locked.
     } B;
 } hw_ccm_analog_pll_usb1_t;
 #endif
@@ -511,6 +503,55 @@ typedef union _hw_ccm_analog_pll_usb1
 #define BW_CCM_ANALOG_PLL_USB1_ENABLE(v)   BF_CS1(CCM_ANALOG_PLL_USB1, ENABLE, v)
 #endif
 
+/* --- Register HW_CCM_ANALOG_PLL_USB1, field BYPASS_CLK_SRC[15:14] (RW)
+ *
+ * Determines the bypass source.
+ *
+ * Values:
+ * OSC_24M = 0x0 - Select the 24MHz oscillator as source.
+ * ANACLK_1 = 0x1 - Select the Anaclk1/1b as source.
+ * GPANAIO = 0x2 - 
+ * CHRG_DET_B = 0x3 - 
+ */
+
+#define BP_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC      (14)      //!< Bit position for CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC.
+#define BM_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC      (0x0000c000)  //!< Bit mask for CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC.
+
+//! @brief Get value of CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC from a register value.
+#define BG_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC) >> BP_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC)
+
+//! @brief Format value for bitfield CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC.
+#define BF_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC) & BM_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the BYPASS_CLK_SRC field to a new value.
+#define BW_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC(v)   BF_CS1(CCM_ANALOG_PLL_USB1, BYPASS_CLK_SRC, v)
+#endif
+
+#define BV_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC__OSC_24M (0x0) //!< Select the 24MHz oscillator as source.
+#define BV_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC__ANACLK_1 (0x1) //!< Select the Anaclk1/1b as source.
+#define BV_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC__GPANAIO (0x2) //!< 
+#define BV_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC__CHRG_DET_B (0x3) //!< 
+
+/* --- Register HW_CCM_ANALOG_PLL_USB1, field BYPASS[16] (RW)
+ *
+ * Bypass the pll.
+ */
+
+#define BP_CCM_ANALOG_PLL_USB1_BYPASS      (16)      //!< Bit position for CCM_ANALOG_PLL_USB1_BYPASS.
+#define BM_CCM_ANALOG_PLL_USB1_BYPASS      (0x00010000)  //!< Bit mask for CCM_ANALOG_PLL_USB1_BYPASS.
+
+//! @brief Get value of CCM_ANALOG_PLL_USB1_BYPASS from a register value.
+#define BG_CCM_ANALOG_PLL_USB1_BYPASS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PLL_USB1_BYPASS) >> BP_CCM_ANALOG_PLL_USB1_BYPASS)
+
+//! @brief Format value for bitfield CCM_ANALOG_PLL_USB1_BYPASS.
+#define BF_CCM_ANALOG_PLL_USB1_BYPASS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_ANALOG_PLL_USB1_BYPASS) & BM_CCM_ANALOG_PLL_USB1_BYPASS)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the BYPASS field to a new value.
+#define BW_CCM_ANALOG_PLL_USB1_BYPASS(v)   BF_CS1(CCM_ANALOG_PLL_USB1, BYPASS, v)
+#endif
+
 /* --- Register HW_CCM_ANALOG_PLL_USB1, field LOCK[31] (RO)
  *
  * 1 - PLL is currently locked. 0 - PLL is not currently locked.
@@ -539,14 +580,16 @@ typedef union _hw_ccm_analog_pll_usb2
     reg32_t U;
     struct _hw_ccm_analog_pll_usb2_bitfields
     {
-        unsigned DIV_SELECT : 2; //!< [1:0] This field controls the pll loop divider. 0 - Fout=Fref*20; 1 - Fout=Fref*22.
+        unsigned DIV_SELECT : 2; //!< [1:0] This field controls the pll loop divider.
         unsigned RESERVED0 : 4; //!< [5:2] Always set to zero (0).
-        unsigned EN_USB_CLKS : 1; //!< [6] 0: 8-phase PLL outputs for USBPHY1 are powered down. If set to 1, 8-phase PLL outputs for USBPHY1 are powered up. Additionally, the utmi clock gate must be deasserted in the USBPHY1 to enable USB0 operation (clear CLKGATE bit in USBPHY1_CTRL).This bit will be set automatically when USBPHY1 remote wakeup event happens.
+        unsigned EN_USB_CLKS : 1; //!< [6] 0: 8-phase PLL outputs for USBPHY1 are powered down.
         unsigned RESERVED1 : 5; //!< [11:7] Always set to zero (0).
-        unsigned POWER : 1; //!< [12] Powers up the PLL. This bit will be set automatically when USBPHY1 remote wakeup event happens.
+        unsigned POWER : 1; //!< [12] Powers up the PLL.
         unsigned ENABLE : 1; //!< [13] Enable the PLL clock output.
-        unsigned RESERVED2 : 17; //!< [30:14] Always set to zero (0).
-        unsigned LOCK : 1; //!< [31] 1 - PLL is currently locked. 0 - PLL is not currently locked.
+        unsigned BYPASS_CLK_SRC : 2; //!< [15:14] Determines the bypass source.
+        unsigned BYPASS : 1; //!< [16] Bypass the pll.
+        unsigned RESERVED2 : 14; //!< [30:17] Always set to zero (0).
+        unsigned LOCK : 1; //!< [31] 1 - PLL is currently locked.
     } B;
 } hw_ccm_analog_pll_usb2_t;
 #endif
@@ -651,6 +694,55 @@ typedef union _hw_ccm_analog_pll_usb2
 #define BW_CCM_ANALOG_PLL_USB2_ENABLE(v)   BF_CS1(CCM_ANALOG_PLL_USB2, ENABLE, v)
 #endif
 
+/* --- Register HW_CCM_ANALOG_PLL_USB2, field BYPASS_CLK_SRC[15:14] (RW)
+ *
+ * Determines the bypass source.
+ *
+ * Values:
+ * OSC_24M = 0x0 - Select the 24MHz oscillator as source.
+ * ANACLK_1 = 0x1 - Select the Anaclk1/1b as source.
+ * RESERVED = 0x2 - 
+ * RESERVED = 0x3 - 
+ */
+
+#define BP_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC      (14)      //!< Bit position for CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC.
+#define BM_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC      (0x0000c000)  //!< Bit mask for CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC.
+
+//! @brief Get value of CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC from a register value.
+#define BG_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC) >> BP_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC)
+
+//! @brief Format value for bitfield CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC.
+#define BF_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC) & BM_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the BYPASS_CLK_SRC field to a new value.
+#define BW_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC(v)   BF_CS1(CCM_ANALOG_PLL_USB2, BYPASS_CLK_SRC, v)
+#endif
+
+#define BV_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC__OSC_24M (0x0) //!< Select the 24MHz oscillator as source.
+#define BV_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC__ANACLK_1 (0x1) //!< Select the Anaclk1/1b as source.
+#define BV_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC__RESERVED (0x2) //!< 
+#define BV_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC__RESERVED (0x3) //!< 
+
+/* --- Register HW_CCM_ANALOG_PLL_USB2, field BYPASS[16] (RW)
+ *
+ * Bypass the pll.
+ */
+
+#define BP_CCM_ANALOG_PLL_USB2_BYPASS      (16)      //!< Bit position for CCM_ANALOG_PLL_USB2_BYPASS.
+#define BM_CCM_ANALOG_PLL_USB2_BYPASS      (0x00010000)  //!< Bit mask for CCM_ANALOG_PLL_USB2_BYPASS.
+
+//! @brief Get value of CCM_ANALOG_PLL_USB2_BYPASS from a register value.
+#define BG_CCM_ANALOG_PLL_USB2_BYPASS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PLL_USB2_BYPASS) >> BP_CCM_ANALOG_PLL_USB2_BYPASS)
+
+//! @brief Format value for bitfield CCM_ANALOG_PLL_USB2_BYPASS.
+#define BF_CCM_ANALOG_PLL_USB2_BYPASS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_ANALOG_PLL_USB2_BYPASS) & BM_CCM_ANALOG_PLL_USB2_BYPASS)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the BYPASS field to a new value.
+#define BW_CCM_ANALOG_PLL_USB2_BYPASS(v)   BF_CS1(CCM_ANALOG_PLL_USB2, BYPASS, v)
+#endif
+
 /* --- Register HW_CCM_ANALOG_PLL_USB2, field LOCK[31] (RO)
  *
  * 1 - PLL is currently locked. 0 - PLL is not currently locked.
@@ -663,12 +755,12 @@ typedef union _hw_ccm_analog_pll_usb2
 #define BG_CCM_ANALOG_PLL_USB2_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PLL_USB2_LOCK) >> BP_CCM_ANALOG_PLL_USB2_LOCK)
 
 //-------------------------------------------------------------------------------------------
-// HW_CCM_ANALOG_PLL_SYS - Analog 528MHz System PLL Control Register
+// HW_CCM_ANALOG_PLL_SYS - Analog System PLL Control Register
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_CCM_ANALOG_PLL_SYS - Analog 528MHz System PLL Control Register (RW)
+ * @brief HW_CCM_ANALOG_PLL_SYS - Analog System PLL Control Register (RW)
  *
  * Reset value: 0x00013001
  *
@@ -679,7 +771,7 @@ typedef union _hw_ccm_analog_pll_sys
     reg32_t U;
     struct _hw_ccm_analog_pll_sys_bitfields
     {
-        unsigned DIV_SELECT : 1; //!< [0] This field controls the pll loop divider. 0 - Fout=Fref*20; 1 - Fout=Fref*22.
+        unsigned DIV_SELECT : 1; //!< [0] This field controls the pll loop divider.
         unsigned RESERVED0 : 6; //!< [6:1] Always set to zero (0).
         unsigned HALF_LF : 1; //!< [7] Reserved by Freescale
         unsigned DOUBLE_LF : 1; //!< [8] Reserved by Freescale
@@ -967,7 +1059,7 @@ typedef union _hw_ccm_analog_pll_audio
     reg32_t U;
     struct _hw_ccm_analog_pll_audio_bitfields
     {
-        unsigned DIV_SELECT : 7; //!< [6:0] This field controls the pll loop divider. Valid range for DIV_SELECT divider value: 27~54.
+        unsigned DIV_SELECT : 7; //!< [6:0] This field controls the pll loop divider.
         unsigned HALF_LF : 1; //!< [7] Reserved by Freescale.
         unsigned DOUBLE_LF : 1; //!< [8] Reserved by Freescale.
         unsigned HALF_CP : 1; //!< [9] Reserved by Freescale.
@@ -982,7 +1074,7 @@ typedef union _hw_ccm_analog_pll_audio
         unsigned POST_DIV_SELECT : 2; //!< [20:19] These bits implement a divider after the PLL, but before the enable and bypass mux.
         unsigned SSC_EN : 1; //!< [21] Reserved Bit
         unsigned RESERVED1 : 9; //!< [30:22] Always set to zero (0).
-        unsigned LOCK : 1; //!< [31] 1 - PLL is currently locked. 0 - PLL is not currently locked.
+        unsigned LOCK : 1; //!< [31] 1 - PLL is currently locked.
     } B;
 } hw_ccm_analog_pll_audio_t;
 #endif
@@ -1422,7 +1514,7 @@ typedef union _hw_ccm_analog_pll_video
     reg32_t U;
     struct _hw_ccm_analog_pll_video_bitfields
     {
-        unsigned DIV_SELECT : 7; //!< [6:0] This field controls the pll loop divider. Valid range for DIV_SELECT divider value: 27~54.
+        unsigned DIV_SELECT : 7; //!< [6:0] This field controls the pll loop divider.
         unsigned HALF_LF : 1; //!< [7] Reserved by Freescale.
         unsigned DOUBLE_LF : 1; //!< [8] Reserved by Freescale.
         unsigned HALF_CP : 1; //!< [9] Reserved by Freescale.
@@ -1878,7 +1970,7 @@ typedef union _hw_ccm_analog_pll_enet
     reg32_t U;
     struct _hw_ccm_analog_pll_enet_bitfields
     {
-        unsigned DIV_SELECT : 2; //!< [1:0] Controls the frequency of the ethernet reference clock.00 - 25MHz; 01 - 50MHz; 10 - 100MHz (not 50% duty cycle); 11 - 125MHz; Note: PCIe and SATA outputs are fixed at 125MHz and 100MHz respectively.
+        unsigned DIV_SELECT : 2; //!< [1:0] Controls the frequency of the ethernet reference clock.00 - 25MHz; 01 - 50MHz; 10 - 100MHz (not 50% duty cycle); 11 - 125MHz;
         unsigned RESERVED0 : 5; //!< [6:2] Always set to zero (0).
         unsigned HALF_LF : 1; //!< [7] Reserved by Freescale
         unsigned DOUBLE_LF : 1; //!< [8] Reserved by Freescale
@@ -1923,8 +2015,7 @@ typedef union _hw_ccm_analog_pll_enet
 /* --- Register HW_CCM_ANALOG_PLL_ENET, field DIV_SELECT[1:0] (RW)
  *
  * Controls the frequency of the ethernet reference clock.00 - 25MHz; 01 - 50MHz; 10 - 100MHz (not
- * 50% duty cycle); 11 - 125MHz; Note: PCIe and SATA outputs are fixed at 125MHz and 100MHz
- * respectively.
+ * 50% duty cycle); 11 - 125MHz;
  */
 
 #define BP_CCM_ANALOG_PLL_ENET_DIV_SELECT      (0)      //!< Bit position for CCM_ANALOG_PLL_ENET_DIV_SELECT.
@@ -2210,18 +2301,18 @@ typedef union _hw_ccm_analog_pfd_480
     reg32_t U;
     struct _hw_ccm_analog_pfd_480_bitfields
     {
-        unsigned PFD0_FRAC : 6; //!< [5:0] This field controls the fractional divide value. The resulting frequency shall be 480*18/PFD0_FRAC where PFD0_FRAC is in the range 12-35.
-        unsigned PFD0_STABLE : 1; //!< [6] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code. The value inverts when the new programmed fractional divide value has taken effect. Read this bit, program the new value, and when this bit inverts, the phase divider clock output is stable. Note that the value will not invert when the fractional divider is taken out of or placed into clock-gated state.
-        unsigned PFD0_CLKGATE : 1; //!< [7] If set to 1, the IO fractional divider clock (reference ref_pfd0) is off (power savings). 0: ref_pfd0 fractional divider clock is enabled. Need to assert this bit before PLL is powered down
-        unsigned PFD1_FRAC : 6; //!< [13:8] This field controls the fractional divide value. The resulting frequency shall be 480*18/PFD1_FRAC where PFD1_FRAC is in the range 12-35.
-        unsigned PFD1_STABLE : 1; //!< [14] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code. The value inverts when the new programmed fractional divide value has taken effect. Read this bit, program the new value, and when this bit inverts, the phase divider clock output is stable. Note that the value will not invert when the fractional divider is taken out of or placed into clock-gated state.
-        unsigned PFD1_CLKGATE : 1; //!< [15] IO Clock Gate. If set to 1, the IO fractional divider clock (reference ref_pfd1) is off (power savings). 0: ref_pfd1 fractional divider clock is enabled. Need to assert this bit before PLL is powered down
-        unsigned PFD2_FRAC : 6; //!< [21:16] This field controls the fractional divide value. The resulting frequency shall be 480*18/PFD2_FRAC where PFD2_FRAC is in the range 12-35.
-        unsigned PFD2_STABLE : 1; //!< [22] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code. The value inverts when the new programmed fractional divide value has taken effect. Read this bit, program the new value, and when this bit inverts, the phase divider clock output is stable. Note that the value will not invert when the fractional divider is taken out of or placed into clock-gated state.
-        unsigned PFD2_CLKGATE : 1; //!< [23] IO Clock Gate. If set to 1, the IO fractional divider clock (reference ref_pfd2) is off (power savings). 0: ref_pfd2 fractional divider clock is enabled. Need to assert this bit before PLL is powered down
-        unsigned PFD3_FRAC : 6; //!< [29:24] This field controls the fractional divide value. The resulting frequency shall be 480*18/PFD3_FRAC where PFD3_FRAC is in the range 12-35.
-        unsigned PFD3_STABLE : 1; //!< [30] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code. The value inverts when the new programmed fractional divide value has taken effect. Read this bit, program the new value, and when this bit inverts, the phase divider clock output is stable. Note that the value will not invert when the fractional divider is taken out of or placed into clock-gated state.
-        unsigned PFD3_CLKGATE : 1; //!< [31] IO Clock Gate. If set to 1, the 3rd fractional divider clock (reference ref_pfd3) is off (power savings). 0: ref_pfd3 fractional divider clock is enabled. Need to assert this bit before PLL is powered down
+        unsigned PFD0_FRAC : 6; //!< [5:0] This field controls the fractional divide value.
+        unsigned PFD0_STABLE : 1; //!< [6] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code.
+        unsigned PFD0_CLKGATE : 1; //!< [7] If set to 1, the IO fractional divider clock (reference ref_pfd0) is off (power savings).
+        unsigned PFD1_FRAC : 6; //!< [13:8] This field controls the fractional divide value.
+        unsigned PFD1_STABLE : 1; //!< [14] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code.
+        unsigned PFD1_CLKGATE : 1; //!< [15] IO Clock Gate.
+        unsigned PFD2_FRAC : 6; //!< [21:16] This field controls the fractional divide value.
+        unsigned PFD2_STABLE : 1; //!< [22] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code.
+        unsigned PFD2_CLKGATE : 1; //!< [23] IO Clock Gate.
+        unsigned PFD3_FRAC : 6; //!< [29:24] This field controls the fractional divide value.
+        unsigned PFD3_STABLE : 1; //!< [30] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code.
+        unsigned PFD3_CLKGATE : 1; //!< [31] IO Clock Gate.
     } B;
 } hw_ccm_analog_pfd_480_t;
 #endif
@@ -2493,18 +2584,18 @@ typedef union _hw_ccm_analog_pfd_528
     reg32_t U;
     struct _hw_ccm_analog_pfd_528_bitfields
     {
-        unsigned PFD0_FRAC : 6; //!< [5:0] This field controls the fractional divide value. The resulting frequency shall be 480*18/PFD0_FRAC where PFD0_FRAC is in the range 12-35.
-        unsigned PFD0_STABLE : 1; //!< [6] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code. The value inverts when the new programmed fractional divide value has taken effect. Read this bit, program the new value, and when this bit inverts, the phase divider clock output is stable. Note that the value will not invert when the fractional divider is taken out of or placed into clock-gated state.
-        unsigned PFD0_CLKGATE : 1; //!< [7] If set to 1, the IO fractional divider clock (reference ref_pfd0) is off (power savings). 0: ref_pfd0 fractional divider clock is enabled. Need to assert this bit before PLL powered down
-        unsigned PFD1_FRAC : 6; //!< [13:8] This field controls the fractional divide value. The resulting frequency shall be 480*18/PFD1_FRAC where PFD1_FRAC is in the range 12-35.
-        unsigned PFD1_STABLE : 1; //!< [14] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code. The value inverts when the new programmed fractional divide value has taken effect. Read this bit, program the new value, and when this bit inverts, the phase divider clock output is stable. Note that the value will not invert when the fractional divider is taken out of or placed into clock-gated state.
-        unsigned PFD1_CLKGATE : 1; //!< [15] IO Clock Gate. If set to 1, the IO fractional divider clock (reference ref_pfd1) is off (power savings). 0: ref_pfd1 fractional divider clock is enabled. Need to assert this bit before PLL powered down
-        unsigned PFD2_FRAC : 6; //!< [21:16] This field controls the fractional divide value. The resulting frequency shall be 480*18/PFD2_FRAC where PFD2_FRAC is in the range 12-35.
-        unsigned PFD2_STABLE : 1; //!< [22] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code. The value inverts when the new programmed fractional divide value has taken effect. Read this bit, program the new value, and when this bit inverts, the phase divider clock output is stable. Note that the value will not invert when the fractional divider is taken out of or placed into clock-gated state.
-        unsigned PFD2_CLKGATE : 1; //!< [23] IO Clock Gate. If set to 1, the IO fractional divider clock (reference ref_pfd2) is off (power savings). 0: ref_pfd2 fractional divider clock is enabled. Need to assert this bit before PLL powered down
-        unsigned PFD3_FRAC : 6; //!< [29:24] This field controls the fractional divide value. The resulting frequency shall be 480*18/PFD3_FRAC where PFD3_FRAC is in the range 12-35.
-        unsigned PFD3_STABLE : 1; //!< [30] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code. The value inverts when the new programmed fractional divide value has taken effect. Read this bit, program the new value, and when this bit inverts, the phase divider clock output is stable. Note that the value will not invert when the fractional divider is taken out of or placed into clock-gated state.
-        unsigned PFD3_CLKGATE : 1; //!< [31] IO Clock Gate. If set to 1, the 3rd fractional divider clock (reference ref_pfd3) is off (power savings). 0: ref_pfd3 fractional divider clock is enabled. Need to assert this bit before PLL powered down
+        unsigned PFD0_FRAC : 6; //!< [5:0] This field controls the fractional divide value.
+        unsigned PFD0_STABLE : 1; //!< [6] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code.
+        unsigned PFD0_CLKGATE : 1; //!< [7] If set to 1, the IO fractional divider clock (reference ref_pfd0) is off (power savings).
+        unsigned PFD1_FRAC : 6; //!< [13:8] This field controls the fractional divide value.
+        unsigned PFD1_STABLE : 1; //!< [14] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code.
+        unsigned PFD1_CLKGATE : 1; //!< [15] IO Clock Gate.
+        unsigned PFD2_FRAC : 6; //!< [21:16] This field controls the fractional divide value.
+        unsigned PFD2_STABLE : 1; //!< [22] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code.
+        unsigned PFD2_CLKGATE : 1; //!< [23] IO Clock Gate.
+        unsigned PFD3_FRAC : 6; //!< [29:24] This field controls the fractional divide value.
+        unsigned PFD3_STABLE : 1; //!< [30] This read-only bitfield is for DIAGNOSTIC PURPOSES ONLY since the fractional divider should become stable quickly enough that this field will never need to be used by either device driver or application code.
+        unsigned PFD3_CLKGATE : 1; //!< [31] IO Clock Gate.
     } B;
 } hw_ccm_analog_pfd_528_t;
 #endif
@@ -2775,7 +2866,7 @@ typedef union _hw_ccm_analog_misc0
     struct _hw_ccm_analog_misc0_bitfields
     {
         unsigned RESERVED0 : 11; //!< [10:0] 
-        unsigned STOP_MODE_CONFIG : 2; //!< [12:11] Configure the analog behavior in stop mode. 0 - all analog except rtc powered down on stop mode assertion. XtalOsc=on, RCOsc=off
+        unsigned STOP_MODE_CONFIG : 2; //!< [12:11] Configure the analog behavior in stop mode.
         unsigned RESERVED1 : 19; //!< [31:13] 
     } B;
 } hw_ccm_analog_misc0_t;
@@ -2840,13 +2931,13 @@ typedef union _hw_ccm_analog_misc2
     struct _hw_ccm_analog_misc2_bitfields
     {
         unsigned RESERVED0 : 7; //!< [6:0] 
-        unsigned PLL3_DISABLE : 1; //!< [7] Default value of "0". Should be set to "1" to turn off the USB-PLL(PLL3) in run mode
+        unsigned PLL3_DISABLE : 1; //!< [7] Default value of "0".
         unsigned RESERVED1 : 7; //!< [14:8] 
-        unsigned AUDIO_DIV_LSB : 1; //!< [15] LSB of Post-divider for Audio PLL: 0x0=div-by-1(default), 0x1=div-by-2, 0x2=div-by-1, 0x3=div-by-4. The output clock of the video PLL should be gated prior to changing this divider to prevent glitches.
+        unsigned AUDIO_DIV_LSB : 1; //!< [15] LSB of Post-divider for Audio PLL: 0x0=div-by-1(default), 0x1=div-by-2, 0x2=div-by-1, 0x3=div-by-4.
         unsigned RESERVED2 : 7; //!< [22:16] 
-        unsigned AUDIO_DIV_MSB : 1; //!< [23] MSB of Post-divider for Audio PLL: 0x0=div-by-1(default), 0x1=div-by-2, 0x2=div-by-1, 0x3=div-by-4. The output clock of the video PLL should be gated prior to changing this divider to prevent glitches.
+        unsigned AUDIO_DIV_MSB : 1; //!< [23] MSB of Post-divider for Audio PLL: 0x0=div-by-1(default), 0x1=div-by-2, 0x2=div-by-1, 0x3=div-by-4.
         unsigned RESERVED3 : 6; //!< [29:24] 
-        unsigned VIDEO_DIV : 2; //!< [31:30] Post-divider for video: 0x0=div-by-1(default), 0x1=div-by-2, 0x2=div-by-1, 0x3=div-by-4. The output clock of the video PLL should be gated prior to changing this divider to prevent glitches.
+        unsigned VIDEO_DIV : 2; //!< [31:30] Post-divider for video: 0x0=div-by-1(default), 0x1=div-by-2, 0x2=div-by-1, 0x3=div-by-4.
     } B;
 } hw_ccm_analog_misc2_t;
 #endif
@@ -2973,10 +3064,10 @@ typedef struct _hw_ccm_analog
     volatile reg32_t PLL_USB2_SET; //!< Analog USB2 480MHz PLL Control Register Set
     volatile reg32_t PLL_USB2_CLR; //!< Analog USB2 480MHz PLL Control Register Clear
     volatile reg32_t PLL_USB2_TOG; //!< Analog USB2 480MHz PLL Control Register Toggle
-    volatile hw_ccm_analog_pll_sys_t PLL_SYS; //!< Analog 528MHz System PLL Control Register
-    volatile reg32_t PLL_SYS_SET; //!< Analog 528MHz System PLL Control Register Set
-    volatile reg32_t PLL_SYS_CLR; //!< Analog 528MHz System PLL Control Register Clear
-    volatile reg32_t PLL_SYS_TOG; //!< Analog 528MHz System PLL Control Register Toggle
+    volatile hw_ccm_analog_pll_sys_t PLL_SYS; //!< Analog System PLL Control Register
+    volatile reg32_t PLL_SYS_SET; //!< Analog System PLL Control Register Set
+    volatile reg32_t PLL_SYS_CLR; //!< Analog System PLL Control Register Clear
+    volatile reg32_t PLL_SYS_TOG; //!< Analog System PLL Control Register Toggle
     reg32_t _reserved0[12];
     volatile hw_ccm_analog_pll_audio_t PLL_AUDIO; //!< Analog Audio PLL control Register
     volatile reg32_t PLL_AUDIO_SET; //!< Analog Audio PLL control Register Set

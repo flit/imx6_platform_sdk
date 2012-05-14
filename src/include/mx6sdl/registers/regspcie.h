@@ -73,16 +73,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_PCIE_DEVICEID - Device ID and Vendor ID Register
@@ -142,22 +132,22 @@ typedef union _hw_pcie_command
         unsigned I_O_SPACE_ENABLE : 1; //!< [0] I/O Space Enable
         unsigned MEMORY_SPACE_ENABLE : 1; //!< [1] Memory Space Enable
         unsigned BUS_MASTER_ENABLE : 1; //!< [2] Bus Master Enable
-        unsigned SPECIAL_CYCLE_ENABLE : 1; //!< [3] Special Cycle Enable Not applicable for PCI Express. Must be hardwired to 0.
-        unsigned MEMORY_WRITE_AND_INVALIDATE : 1; //!< [4] Memory Write and Invalidate Not applicable for PCI Express. Must be hardwired to 0.
-        unsigned VGA_PALETTE_SNOOP : 1; //!< [5] VGA Palette Snoop Not applicable for PCI Express. Must be hardwired to 0.
+        unsigned SPECIAL_CYCLE_ENABLE : 1; //!< [3] Special Cycle Enable Not applicable for PCI Express.
+        unsigned MEMORY_WRITE_AND_INVALIDATE : 1; //!< [4] Memory Write and Invalidate Not applicable for PCI Express.
+        unsigned VGA_PALETTE_SNOOP : 1; //!< [5] VGA Palette Snoop Not applicable for PCI Express.
         unsigned PARITY_ERROR_RESPONSE : 1; //!< [6] Parity Error Response
-        unsigned IDSEL_STEPPING : 1; //!< [7] IDSEL Stepping/Wait Cycle Control Not applicable for PCI Express. Must be hardwired to 0
+        unsigned IDSEL_STEPPING : 1; //!< [7] IDSEL Stepping/Wait Cycle Control Not applicable for PCI Express.
         unsigned SERR_ENABLE : 1; //!< [8] SERR# Enable
-        unsigned FAST_BACK_TO_BACK_ENABLE : 1; //!< [9] Fast Back-to-Back Enable Not applicable for PCI Express. Must be hardwired to 0.
+        unsigned FAST_BACK_TO_BACK_ENABLE : 1; //!< [9] Fast Back-to-Back Enable Not applicable for PCI Express.
         unsigned INTX_ASSERTION_DISABLE : 1; //!< [10] INTx Assertion Disable
         unsigned RESERVED0 : 8; //!< [18:11] Reserved.
         unsigned INTX_STATUS : 1; //!< [19] INTx Status
-        unsigned CAPABILITIES_LIST : 1; //!< [20] Capabilities List Indicates presence of an extended capability item. Hardwired to 1.
-        unsigned SIXTYSIX_MHZ_CAPABLE : 1; //!< [21] 66 MHz Capable Not applicable for PCI Express. Hardwired to 0.
+        unsigned CAPABILITIES_LIST : 1; //!< [20] Capabilities List Indicates presence of an extended capability item.
+        unsigned SIXTYSIX_MHZ_CAPABLE : 1; //!< [21] 66 MHz Capable Not applicable for PCI Express.
         unsigned RESERVED1 : 1; //!< [22] Reserved
-        unsigned FAST_BACK_TO_BACK_CAPABLE : 1; //!< [23] Fast Back-to-Back Capable Not applicable for PCI Express. Hardwired to 0.
+        unsigned FAST_BACK_TO_BACK_CAPABLE : 1; //!< [23] Fast Back-to-Back Capable Not applicable for PCI Express.
         unsigned MASTER_DATA_PARITY_ERROR : 1; //!< [24] Master Data Parity Error
-        unsigned DEVSEL_TIMING : 2; //!< [26:25] DEVSEL Timing Not applicable for PCI Express. Hardwired to 0.
+        unsigned DEVSEL_TIMING : 2; //!< [26:25] DEVSEL Timing Not applicable for PCI Express.
         unsigned SIGNALED_TARGET_ABORT : 1; //!< [27] Signaled Target Abort
         unsigned RECEIVED_TARGET_ABORT : 1; //!< [28] Received Target Abort
         unsigned RECEIVED_MASTER_ABORT : 1; //!< [29] Received Master Abort
@@ -703,11 +693,11 @@ typedef union _hw_pcie_bist
     reg32_t U;
     struct _hw_pcie_bist_bitfields
     {
-        unsigned CACHE_LINE_SIZE : 8; //!< [7:0] Cache Line Size The Cache Line Size register is RW for legacy compatibility purposes and is not applicable to PCI Express device functionality. Writing to the Cache Line Size register does not impact functionality of the core.
+        unsigned CACHE_LINE_SIZE : 8; //!< [7:0] Cache Line Size The Cache Line Size register is RW for legacy compatibility purposes and is not applicable to PCI Express device functionality.
         unsigned MASTER_LATENCY_TIMER : 8; //!< [15:8] Master Latency Timer Not applicable for PCI Express, hardwired to 0.
         unsigned CONFIGURATION_HEADER_FORMAT : 7; //!< [22:16] Configuration Header Format Hardwired to 0 for type 0.
-        unsigned MULTI_FUNCTION_DEVICE : 1; //!< [23] Multi Function Device The default value is 0 for a single function device (`CX_NFUNC = 1) or 1 for a multi-function device (`CX_NFUNC != 1). The Multi Function Device bit is writable through the DBI.
-        unsigned NOT_SUPPORTED_BY__CORE : 8; //!< [31:24] The BIST register functions are not supported by the core. All 8 bits of the BIST register are hardwired to 0.
+        unsigned MULTI_FUNCTION_DEVICE : 1; //!< [23] Multi Function Device The default value is 0 for a single function device (`CX_NFUNC = 1) or 1 for a multi-function device (`CX_NFUNC != 1).
+        unsigned NOT_SUPPORTED_BY__CORE : 8; //!< [31:24] The BIST register functions are not supported by the core.
     } B;
 } hw_pcie_bist_t;
 #endif
@@ -846,51 +836,45 @@ typedef union _hw_pcie_bist
  * example, BARs 0 and 1 are two independent 32-bit BARs.  One 32-bit BAR: For example, BAR 0 is a
  * 32-bit BAR and BAR 1 is either disabled or removed from the core altogether to reduce gate count.
  * In addition, you can configure each BAR to have its incoming Requests routed to either:   RTRGT1
- * RTRGT0 for local application register access on the ELBI    The following sections describe how
- * to set up the BAR types and sizes by programming values into the base address registers. For more
- * information about routing Requests to either RTRGT1 or RTRGT0 on a BAR-by- BAR basis, see
- * îReceive Filteringî on page 85.  The contents of the six BARs determine the BAR configuration.
- * The reset values of the BARs are determined by hardware configuration options.  At runtime,
- * application software can overwrite the BAR contents to reconfigure the BARs (unless the affected
- * BAR is removed during hardware configuration). Application software must observe the rules listed
- * below when writing to the BARs.  The rules for BAR configuration are the same for all three
- * pairs. Using BARs 0 and 1 as the example pair, the rules for BAR configuration are:   Any pair
- * (for example, BARs 0 and 1) can be configured as one 64-bit BAR, two 32-bit BARs, or one 32-bit
- * BAR.  BAR pairs cannot overlap to form a 64-bit BAR. For example, you cannot combine BARs 1 and 2
- * to form a 64-bit BAR.  Any 32-bit BAR that is not needed can be removed during core hardware
- * configuration to reduce gate count.   An I/O BAR must be a 32-bit BAR and cannot be prefetchable.
- * If the device is configured as a PCI Express Endpoint (not a Legacy Endpoint), then any memory
- * that is configured as prefetchable must be a 64-bit memory BAR.  If BAR 0 is configured as a
- * 64-bit BAR:    BAR 1 is the upper 32 bits of the combined 64-bit BAR formed by BARs 0 and 1.
- * Therefore, BAR 1 must be disabled and cannot be configured independently.  BAR 0 must be a memory
- * BAR and can be either prefetchable or non-prefetchable.  The contents of the BAR 0 Mask register
- * determine the number of writable bits in the 64-bit BAR, subject to the restrictions described in
- * îBAR Mask Registersî on page 536. The BAR 1 Mask register contains the upper 32 bits of the BAR 0
- * Mask value.  BAR 0 can be disabled by writing 0 to bit 0 of the BAR 0 Mask register (if
- * `BAR0_MASK_WRITABLE_N = 1).     If BAR 0 is configured as a 32-bit BAR:    You can configure BAR
- * 1 as an independent 32-bit BAR or remove BAR 1 from the core hardware configuration.   BAR 0 can
- * be configured as a memory BAR or an I/O BAR.  The contents of the BAR 0 Mask register determine
- * the number of writable bits in the 32-bit BAR 0, subject to the restrictions described in îBAR
- * Mask Registersî on page 536.  BAR 0 can be disabled by writing 0 to bit 0 of the BAR 0 Mask
- * register (if `BAR0_MASK_WRITABLE_N = 1).     When BAR 0 is configured as a 32-bit BAR, BAR 1 is
+ * The following sections describe how to set up the BAR types and sizes by programming values into
+ * the base address registers. For more information about routing Requests to either RTRGT1 on a
+ * BAR-by- BAR basis, see îReceive Filteringî on page 85.  The contents of the six BARs determine
+ * the BAR configuration. The reset values of the BARs are determined by hardware configuration
+ * options.  At runtime, application software can overwrite the BAR contents to reconfigure the BARs
+ * (unless the affected BAR is removed during hardware configuration). Application software must
+ * observe the rules listed below when writing to the BARs.  The rules for BAR configuration are the
+ * same for all three pairs. Using BARs 0 and 1 as the example pair, the rules for BAR configuration
+ * are:   Any pair (for example, BARs 0 and 1) can be configured as one 64-bit BAR, two 32-bit BARs,
+ * or one 32-bit BAR.  BAR pairs cannot overlap to form a 64-bit BAR. For example, you cannot
+ * combine BARs 1 and 2 to form a 64-bit BAR.    An I/O BAR must be a 32-bit BAR and cannot be
+ * prefetchable.  If the device is configured as a PCI Express Endpoint (not a Legacy Endpoint),
+ * then any memory that is configured as prefetchable must be a 64-bit memory BAR.  If BAR 0 is
+ * configured as a 64-bit BAR:    BAR 1 is the upper 32 bits of the combined 64-bit BAR formed by
+ * BARs 0 and 1. Therefore, BAR 1 must be disabled and cannot be configured independently.  BAR 0
+ * must be a memory BAR and can be either prefetchable or non-prefetchable.  The contents of the BAR
+ * 0 Mask register determine the number of writable bits in the 64-bit BAR, subject to the
+ * restrictions described in îBAR Mask Registersî on page 536. The BAR 1 Mask register contains the
+ * upper 32 bits of the BAR 0 Mask value.  BAR 0 can be disabled by writing 0 to bit 0 of the BAR 0
+ * Mask register    If BAR 0 is configured as a 32-bit BAR:    You can configure BAR 1 as an
+ * independent 32-bit BAR  BAR 0 can be configured as a memory BAR or an I/O BAR.  The contents of
+ * the BAR 0 Mask register determine the number of writable bits in the 32-bit BAR 0, subject to the
+ * restrictions described in îBAR Mask Registersî on page 536.  BAR 0 can be disabled by writing 0
+ * to bit 0 of the BAR 0 Mask register    When BAR 0 is configured as a 32-bit BAR, BAR 1 is
  * available as an independent 32-bit BAR according to the following rules:    BAR 1 can be
  * configured as a memory BAR or an I/O BAR.  The contents of the BAR 1 Mask register determine the
  * number of writable bits in the 32-bit BAR 1, subject to the restrictions described in îBAR Mask
- * Registersî on page 536.  BAR 1 can be disabled by writing 0 to bit 0 of the BAR 1 Mask register
- * (if `BAR1_MASK_WRITABLE_N = 1).   If BAR 1 is not required in your design, you can remove BAR 1
- * from the hardware configuration by setting both `BAR1_ENABLED_N and `BAR1_MASK_WRITABLE_N to 0.
- * The same rules apply for pairs 2/3 and 4/5.  Offset: 0x10 (if included in the core hardware
- * configuration)
+ * Registersî on page 536.       The same rules apply for pairs 2/3 and 4/5.  Offset: 0x10 (if
+ * included in the core hardware configuration)
  */
 typedef union _hw_pcie_bar0
 {
     reg32_t U;
     struct _hw_pcie_bar0_bitfields
     {
-        unsigned MEM_I_O : 1; //!< [0] MEM0_SPACE_DECODER_N Bits [3:0] are writable through the DBI.
-        unsigned TYPE : 2; //!< [2:1] BAR0_TYPE_N for memory BAR 00 for I/O BAR If BAR 0 is an I/O BAR, bit 2 the least significant bit of the base address and bit 1 is 0. Bits [3:0] are writable through the DBI. If BAR 0 is a memory BAR, bits [2:1] determine the BAR type:
-        unsigned PREF : 1; //!< [3] PREFETCHABLE0_N for memory BAR 0 for I/O BAR If BAR 0 is an I/O BAR, bit 3 is the second least significant bit of the base address. Bits [3:0] are writable through the DBI. If BAR 0 is a memory BAR, bit 3 indicates if the memory region is prefetchable:
-        unsigned ADDRESS : 28; //!< [31:4] BAR 0 base address bits (for a 64-bit BAR, the remaining upper address bits are in BAR 1). The BAR 0 Mask value determines which address bits are masked.
+        unsigned MEM_I_O : 1; //!< [0] Bits [3:0] are writable through the DBI.
+        unsigned TYPE : 2; //!< [2:1] If BAR 0 is an I/O BAR, bit 2 the least significant bit of the base address and bit 1 is 0.
+        unsigned PREF : 1; //!< [3] If BAR 0 is an I/O BAR, bit 3 is the second least significant bit of the base address.
+        unsigned ADDRESS : 28; //!< [31:4] BAR 0 base address bits (for a 64-bit BAR, the remaining upper address bits are in BAR 1).
     } B;
 } hw_pcie_bar0_t;
 #endif
@@ -911,7 +895,7 @@ typedef union _hw_pcie_bar0
 
 /* --- Register HW_PCIE_BAR0, field MEM_I_O[0] (RO)
  *
- * MEM0_SPACE_DECODER_N Bits [3:0] are writable through the DBI.
+ * Bits [3:0] are writable through the DBI.
  *
  * Values:
  * 0 - = BAR 0 is a memory BAR
@@ -927,9 +911,8 @@ typedef union _hw_pcie_bar0
 
 /* --- Register HW_PCIE_BAR0, field TYPE[2:1] (RO)
  *
- * BAR0_TYPE_N for memory BAR 00 for I/O BAR If BAR 0 is an I/O BAR, bit 2 the least significant bit
- * of the base address and bit 1 is 0. Bits [3:0] are writable through the DBI. If BAR 0 is a memory
- * BAR, bits [2:1] determine the BAR type:
+ * If BAR 0 is an I/O BAR, bit 2 the least significant bit of the base address and bit 1 is 0. Bits
+ * [3:0] are writable through the DBI. If BAR 0 is a memory BAR, bits [2:1] determine the BAR type:
  *
  * Values:
  * 00 - = 32-bit BAR
@@ -945,9 +928,9 @@ typedef union _hw_pcie_bar0
 
 /* --- Register HW_PCIE_BAR0, field PREF[3] (RO)
  *
- * PREFETCHABLE0_N for memory BAR 0 for I/O BAR If BAR 0 is an I/O BAR, bit 3 is the second least
- * significant bit of the base address. Bits [3:0] are writable through the DBI. If BAR 0 is a
- * memory BAR, bit 3 indicates if the memory region is prefetchable:
+ * If BAR 0 is an I/O BAR, bit 3 is the second least significant bit of the base address. Bits [3:0]
+ * are writable through the DBI. If BAR 0 is a memory BAR, bit 3 indicates if the memory region is
+ * prefetchable:
  *
  * Values:
  * 0 - = Non-prefetchable
@@ -983,14 +966,14 @@ typedef union _hw_pcie_bar0
  *
  * Reset value: 0x00000000
  *
- * Address: 0x14 (if included in the core hardware configuration)
+ * Address: 0x14
  */
 typedef union _hw_pcie_bar1
 {
     reg32_t U;
     struct _hw_pcie_bar1_bitfields
     {
-        unsigned ADDRESS : 32; //!< [31:0] Configuration- dependent If BAR 0 is a 64-bit BAR, BAR 1 contains the upper 32 bits of the BAR 0 base address (bits [63:32]). If BAR 0 is a 32-bit BAR, BAR 1 can be independently programmed as an additional 32-bit BAR or can be excluded from the core hardware configuration. If programmed as an independent 32-bit BAR, the BAR 1 bit definitions are the same as the BAR 0 bit definitions.
+        unsigned ADDRESS : 32; //!< [31:0] BAR 1 contains the upper 32 bits of the BAR 0 base address (bits [63:32]).
     } B;
 } hw_pcie_bar1_t;
 #endif
@@ -1011,11 +994,7 @@ typedef union _hw_pcie_bar1
 
 /* --- Register HW_PCIE_BAR1, field ADDRESS[31:0] (RO)
  *
- * Configuration- dependent If BAR 0 is a 64-bit BAR, BAR 1 contains the upper 32 bits of the BAR 0
- * base address (bits [63:32]). If BAR 0 is a 32-bit BAR, BAR 1 can be independently programmed as
- * an additional 32-bit BAR or can be excluded from the core hardware configuration. If programmed
- * as an independent 32-bit BAR, the BAR 1 bit definitions are the same as the BAR 0 bit
- * definitions.
+ * BAR 1 contains the upper 32 bits of the BAR 0 base address (bits [63:32]).
  */
 
 #define BP_PCIE_BAR1_ADDRESS      (0)      //!< Bit position for PCIE_BAR1_ADDRESS.
@@ -1041,10 +1020,10 @@ typedef union _hw_pcie_bar2
     reg32_t U;
     struct _hw_pcie_bar2_bitfields
     {
-        unsigned MEM_I_O : 1; //!< [0] MEM2_SPACE_DECODER_N Bits [3:0] are writable through the DBI.
-        unsigned TYPE : 2; //!< [2:1] BAR2_TYPE_N for memory BAR 00 for I/O BAR If BAR 2 is an I/O BAR, bit 2 the least significant bit of the base address and bit 1 is 0. Bits [3:0] are Writable through the DBI. If BAR 2 is a memory BAR, bits [2:1] determine the BAR type:
-        unsigned PREF : 1; //!< [3] PREFETCHABLE2_N for memory BAR 0 for I/O BAR If BAR 2 is an I/O BAR, bit 3 is the second least significant bit of the base address. Bits [3:0] are writable through the DBI. If BAR 2 is a memory BAR, bit 3 indicates if the memory region is prefetchable:
-        unsigned ADDRESS : 28; //!< [31:4] BAR 2 base address bits (for a 64-bit BAR, the remaining upper address bits are in BAR 3). The BAR 2 Mask value determines which address bits are masked.
+        unsigned MEM_I_O : 1; //!< [0] Bits [3:0] are writable through the DBI.
+        unsigned TYPE : 2; //!< [2:1] If BAR 2 is an I/O BAR, bit 2 the least significant bit of the base address and bit 1 is 0.
+        unsigned PREF : 1; //!< [3] If BAR 2 is an I/O BAR, bit 3 is the second least significant bit of the base address.
+        unsigned ADDRESS : 28; //!< [31:4] BAR 2 base address bits (for a 64-bit BAR, the remaining upper address bits are in BAR 3).
     } B;
 } hw_pcie_bar2_t;
 #endif
@@ -1065,7 +1044,7 @@ typedef union _hw_pcie_bar2
 
 /* --- Register HW_PCIE_BAR2, field MEM_I_O[0] (RO)
  *
- * MEM2_SPACE_DECODER_N Bits [3:0] are writable through the DBI.
+ * Bits [3:0] are writable through the DBI.
  *
  * Values:
  * 0 - = BAR 2 is a memory BAR
@@ -1081,9 +1060,8 @@ typedef union _hw_pcie_bar2
 
 /* --- Register HW_PCIE_BAR2, field TYPE[2:1] (RO)
  *
- * BAR2_TYPE_N for memory BAR 00 for I/O BAR If BAR 2 is an I/O BAR, bit 2 the least significant bit
- * of the base address and bit 1 is 0. Bits [3:0] are Writable through the DBI. If BAR 2 is a memory
- * BAR, bits [2:1] determine the BAR type:
+ * If BAR 2 is an I/O BAR, bit 2 the least significant bit of the base address and bit 1 is 0. Bits
+ * [3:0] are Writable through the DBI. If BAR 2 is a memory BAR, bits [2:1] determine the BAR type:
  *
  * Values:
  * 00 - = 32-bit BAR
@@ -1099,9 +1077,9 @@ typedef union _hw_pcie_bar2
 
 /* --- Register HW_PCIE_BAR2, field PREF[3] (RO)
  *
- * PREFETCHABLE2_N for memory BAR 0 for I/O BAR If BAR 2 is an I/O BAR, bit 3 is the second least
- * significant bit of the base address. Bits [3:0] are writable through the DBI. If BAR 2 is a
- * memory BAR, bit 3 indicates if the memory region is prefetchable:
+ * If BAR 2 is an I/O BAR, bit 3 is the second least significant bit of the base address. Bits [3:0]
+ * are writable through the DBI. If BAR 2 is a memory BAR, bit 3 indicates if the memory region is
+ * prefetchable:
  *
  * Values:
  * 0 - = Non-prefetchable
@@ -1144,7 +1122,7 @@ typedef union _hw_pcie_bar3
     reg32_t U;
     struct _hw_pcie_bar3_bitfields
     {
-        unsigned ADDRESS : 32; //!< [31:0] Configuration- dependent If BAR 2 is a 64-bit BAR, BAR 3 contains the upper 32 bits of the BAR 2 base address (bits [63:32]). If BAR 2 is a 32-bit BAR, BAR 3 can be independently programmed as an additional 32-bit BAR or can be excluded from the core hardware configuration. If programmed as an independent 32-bit BAR, the BAR 3 bit definitions are the same as the BAR 2 bit definitions.
+        unsigned ADDRESS : 32; //!< [31:0] BAR 3 bit definitions are the same as the BAR 2 bit definitions.
     } B;
 } hw_pcie_bar3_t;
 #endif
@@ -1165,11 +1143,7 @@ typedef union _hw_pcie_bar3
 
 /* --- Register HW_PCIE_BAR3, field ADDRESS[31:0] (RO)
  *
- * Configuration- dependent If BAR 2 is a 64-bit BAR, BAR 3 contains the upper 32 bits of the BAR 2
- * base address (bits [63:32]). If BAR 2 is a 32-bit BAR, BAR 3 can be independently programmed as
- * an additional 32-bit BAR or can be excluded from the core hardware configuration. If programmed
- * as an independent 32-bit BAR, the BAR 3 bit definitions are the same as the BAR 2 bit
- * definitions.
+ * BAR 3 bit definitions are the same as the BAR 2 bit definitions.
  */
 
 #define BP_PCIE_BAR3_ADDRESS      (0)      //!< Bit position for PCIE_BAR3_ADDRESS.
@@ -1196,9 +1170,9 @@ typedef union _hw_pcie_bar4
     struct _hw_pcie_bar4_bitfields
     {
         unsigned MEM_I_O : 1; //!< [0] MEM4_SPACE_DECODER_N Bits [3:0] are writable through the DBI.
-        unsigned TYPE : 2; //!< [2:1] BAR4_TYPE_N for memory BAR If BAR 4 is an I/O BAR, bit 2 the least significant bit of the base address and bit 1 is 0. Bits [3:0] are writable through the DBI. If BAR 4 is a memory BAR, bits [2:1] determine the BAR type:
-        unsigned PREF : 1; //!< [3] PREFETCHABLE4_N for memory BAR 0 for I/O BAR If BAR 4 is an I/O BAR, bit 3 is the second least significant bit of the base address. Bits [3:0] are writable through the DBI. If BAR 4 is a memory BAR, bit 3 indicates if the memory region is prefetchable:
-        unsigned ADDRESS : 28; //!< [31:4] BAR 4 base address bits (for a 64-bit BAR, the remaining upper address bits are in BAR 5). The BAR 4 Mask value determines which address bits are masked.
+        unsigned TYPE : 2; //!< [2:1] BAR4_TYPE_N for memory BAR If BAR 4 is an I/O BAR, bit 2 the least significant bit of the base address and bit 1 is 0.
+        unsigned PREF : 1; //!< [3] PREFETCHABLE4_N for memory BAR 0 for I/O BAR If BAR 4 is an I/O BAR, bit 3 is the second least significant bit of the base address.
+        unsigned ADDRESS : 28; //!< [31:4] BAR 4 base address bits (for a 64-bit BAR, the remaining upper address bits are in BAR 5).
     } B;
 } hw_pcie_bar4_t;
 #endif
@@ -1298,7 +1272,7 @@ typedef union _hw_pcie_bar5
     reg32_t U;
     struct _hw_pcie_bar5_bitfields
     {
-        unsigned ADDRESS : 32; //!< [31:0] Configuration- dependent If BAR 4 is a 64-bit BAR, BAR 5 contains the upper 32 bits of the BAR 4 base address (bits 63:32). If BAR 4 is a 32-bit BAR, BAR 5 can be independently programmed as an additional 32-bit BAR or can be excluded from the core hardware configuration. If programmed as an independent 32-bit BAR, the BAR 5 bit definitions are the same as the BAR 4 bit definitions.
+        unsigned ADDRESS : 32; //!< [31:0] Configuration- dependent If BAR 4 is a 64-bit BAR, BAR 5 contains the upper 32 bits of the BAR 4 base address (bits 63:32).
     } B;
 } hw_pcie_bar5_t;
 #endif
@@ -1500,7 +1474,7 @@ typedef union _hw_pcie_cappr
     reg32_t U;
     struct _hw_pcie_cappr_bitfields
     {
-        unsigned CFG_NEXT_PTR : 8; //!< [7:0] First Capability Pointer. See Tables 5-2 and 5-3 on page 510.
+        unsigned CFG_NEXT_PTR : 8; //!< [7:0] First Capability Pointer.
         unsigned RESERVED0 : 24; //!< [31:8] Reserved
     } B;
 } hw_pcie_cappr_t;
@@ -1548,8 +1522,8 @@ typedef union _hw_pcie_ilr
     reg32_t U;
     struct _hw_pcie_ilr_bitfields
     {
-        unsigned INTERRUPT_LINE : 8; //!< [7:0] Interrupt Line Value in this register is system architecture specific. POST software will write the routing information into this register as it initializes and configures the system.
-        unsigned INT_PIN_MAPPING_N : 8; //!< [15:8] Interrupt Pin Identifies the legacy interrupt Message that the device (or device function) uses. In a single-function configuration, the core only uses INTA. The Interrupt Pin register is writable through the DBI. Valid values are:
+        unsigned INTERRUPT_LINE : 8; //!< [7:0] Interrupt Line Value in this register is system architecture specific.
+        unsigned INT_PIN_MAPPING_N : 8; //!< [15:8] Interrupt Pin Identifies the legacy interrupt Message that the device (or device function) uses.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_pcie_ilr_t;
@@ -1655,7 +1629,7 @@ typedef union _hw_pcie_pmcr
         unsigned AUX_CURRENT : 3; //!< [24:22] AUX Current, writable through the DBI
         unsigned D1_SUPPORT : 1; //!< [25] D1 Support, writable through the DBI
         unsigned D2_SUPPORT : 1; //!< [26] D2 Support, writable through the DBI
-        unsigned PME_SUPPORT : 5; //!< [31:27] PME_Support Identifies the power states from which the core can generate PME Messages. A value of 0 for any bit indicates that the device (or function) is not capable of generating PME Messages while in that power state: Bit 11: If set, PME Messages can be generated from D0 Bit 12: If set, PME Messages can be generated from D1 Bit 13: If set, PME Messages can be generated from D2 Bit 14: If set, PME Messages can be generated from D3 hot Bit 15: If set, PME Messages can be generated from D3 cold The PME_Support field is writable through the DBI.
+        unsigned PME_SUPPORT : 5; //!< [31:27] PME_Support Identifies the power states from which the core can generate PME Messages.
     } B;
 } hw_pcie_pmcr_t;
 #endif
@@ -1795,7 +1769,7 @@ typedef union _hw_pcie_pmcsr
     reg32_t U;
     struct _hw_pcie_pmcsr_bitfields
     {
-        unsigned POWER_STATE : 2; //!< [1:0] Power State The written value is ignored if the specific state is not supported. Controls the device power state:
+        unsigned POWER_STATE : 2; //!< [1:0] Power State The written value is ignored if the specific state is not supported.
         unsigned RESERVED0 : 1; //!< [2] Reserved
         unsigned NO_SOFT_RESET : 1; //!< [3] No Soft Reset, writable through the DBI
         unsigned RESERVED1 : 4; //!< [7:4] Reserved
@@ -2029,7 +2003,7 @@ typedef union _hw_pcie_cidr
         unsigned PCI_EXPRESS_CAPABILITY_ID : 8; //!< [7:0] PCI Express Capability ID
         unsigned NEXT_CAPABILITY_POINTER : 8; //!< [15:8] Next Capability Pointer See Tables 5-214 and 5-215 on page 638.
         unsigned PCI_EXPRESS_CAPABILITY_VERSION : 4; //!< [19:16] PCI Express Capability Version
-        unsigned DEVICE_PORT_TYPE : 4; //!< [23:20] Device/Port Type Indicates the specific type of this PCI Express Function. Supported encodings for RC and DM(RC mode) are: •4'b0100: Root Port of PCI Express Root Complex Note: All other encodings (including those for PCI/PCI-X bridges and RC Integrated Endpoint) are NOT supported.
+        unsigned DEVICE_PORT_TYPE : 4; //!< [23:20] Device/Port Type Indicates the specific type of this PCI Express Function.
         unsigned SLOT_IMPLEMENTED : 1; //!< [24] Slot Implemented, writable through the DBI
         unsigned INTERRUPT_MESSAGE_NUMBER : 5; //!< [29:25] Interrupt Message Number Updated by hardware, writable through the DBI.
         unsigned RESERVED0 : 2; //!< [31:30] RsvdP
@@ -2137,12 +2111,12 @@ typedef union _hw_pcie_dcr
     struct _hw_pcie_dcr_bitfields
     {
         unsigned MAX_PAYLOAD_SIZE_SUPPORTED : 3; //!< [2:0] Max_Payload_Size Supported, writable through the DBI
-        unsigned PHANTOM_FUNCTION_SUPPORTED : 2; //!< [4:3] Phantom Function Supported This field is writable through the DBI. However, Phantom Function is not supported. Therefore, the application must not write any value other than 0x0 to this field.
-        unsigned EXTENDED_TAG_FIELD_SUPPORTED : 1; //!< [5] Extended Tag Field Supported This bit is writable through the DBI. However, if the core supports only 5 bits of TAG, then the application must not write a 1 to this field because the hardware to support more than 32 tags are not implemented.
+        unsigned PHANTOM_FUNCTION_SUPPORTED : 2; //!< [4:3] Phantom Function Supported This field is writable through the DBI.
+        unsigned EXTENDED_TAG_FIELD_SUPPORTED : 1; //!< [5] Extended Tag Field Supported This bit is writable through the DBI.
         unsigned ENDPOINT_L0S_ACCEPTABLE_LATENCY : 3; //!< [8:6] Endpoint L0s Acceptable Latency Must be 0x0 for non-Endpoint devices.
         unsigned ENDPOINT_L1_ACCEPTABLE_LATENCY : 3; //!< [11:9] Endpoint L1 Acceptable Latency Must be 0x0 for non-Endpoint devices.
         unsigned RESERVED0 : 3; //!< [14:12] Reserved.
-        unsigned ROLE_BASED_ERROR_REPORTING : 1; //!< [15] Role-Based Error Reporting, writable through the DBI. Required to be set for device compliant to 1.1 spec and later.
+        unsigned ROLE_BASED_ERROR_REPORTING : 1; //!< [15] Role-Based Error Reporting, writable through the DBI.
         unsigned RESERVED1 : 2; //!< [17:16] Reserved
         unsigned CAPTURED_SLOT_POWER_LIMIT_VALUE : 8; //!< [25:18] Captured Slot Power Limit Value Upstream port only.
         unsigned CAPTURED_SLOT_POWER_LIMIT_SCALE : 2; //!< [27:26] Captured Slot Power Limit Scale Upstream port only.
@@ -2727,12 +2701,12 @@ typedef union _hw_pcie_lcr
     reg32_t U;
     struct _hw_pcie_lcr_bitfields
     {
-        unsigned MAX_LINK_SPEEDS : 4; //!< [3:0] Max Link Speeds Indicates the supported maximum Link speeds of the associated Port. The encoding is the binary value of the bit location in the Supported Link Speeds Vector (in the Link Capabilities 2 register) that corresponds to the maximum Link speed. This field is writable through the DBI.
+        unsigned MAX_LINK_SPEEDS : 4; //!< [3:0] Max Link Speeds Indicates the supported maximum Link speeds of the associated Port.
         unsigned MAXIMUM_LINK_WIDTH : 6; //!< [9:4] Maximum Link Width Writable through the DBI.
         unsigned ACTIVE_STATE_LINK_PM_SUPPORT : 2; //!< [11:10] Active State Link PM Support The default value is the value you specify during core configuration, writable through the DBI.
         unsigned L0S_EXIT_LATENCY : 3; //!< [14:12] L0s Exit Latency Writable through the DBI.
         unsigned L1_EXIT_LATENCY : 3; //!< [17:15] L1 Exit Latency Writable through the DBI.
-        unsigned CLOCK_POWER_MANAGEMENT : 1; //!< [18] Clock Power Management Component can tolerate the removal of refclk via CLKREQ# (if supported). Hardwired to 0 for downstream ports. Writable through the DBI.
+        unsigned CLOCK_POWER_MANAGEMENT : 1; //!< [18] Clock Power Management Component can tolerate the removal of refclk via CLKREQ# (if supported).
         unsigned SURPRISE_DOWN_ERROR_REPORTING_CAPABLE : 1; //!< [19] Surprise Down Error Reporting Capable Not supported, hardwired to 0x0.
         unsigned DATA_LINK_LAYER_ACTIVE_REPORTING_CAPABLE : 1; //!< [20] Data Link Layer Active Reporting Capable Hardwired to 1 for Downstream Ports and 0 for Upstream Ports.
         unsigned LINK_BANDWIDTH_NOTIFICATION_CAPABILITY : 1; //!< [21] Link Bandwidth Notification Capability Hardwired to 1 for Downstream Ports and 0 for Upstream Ports.
@@ -2899,17 +2873,17 @@ typedef union _hw_pcie_lcsr
         unsigned EXTENDED_SYNCH : 1; //!< [7] Extended Synch
         unsigned ENABLE_CLOCK_POWER_MANAGEMENT : 1; //!< [8] Enable Clock Power Management Hardwired to 0 if Clock Power Management is disabled in the Link Capabilities register.
         unsigned HARDWARE_AUTONOMOUS_WIDTH_DISABLE : 1; //!< [9] Hardware Autonomous Width Disable Not supported, hardwired to 0.
-        unsigned LINK_BANDWIDTH_MANAGEMENT_INTERRUPT_ENABLE : 1; //!< [10] Link Bandwidth Management Interrupt Enable When set, this bit enables the generation of an interrupt to indicate that the Link Bandwidth Management Status bit has been set. This bit is not applicable and is reserved for Endpoints, PCI Express-to-PCI/PCI-X bridges.
-        unsigned LINK_AUTONOMOUS_BANDWIDTH_INTERRUPT_ENABLE : 1; //!< [11] Link Autonomous Bandwidth Interrupt Enable When set, this bit enables the generation of an interrupt to indicate that the Link Autonomous Bandwidth Status bit has been set. This bit is not applicable and is reserved for Endpoints, PCI Express-to-PCI/PCI-X bridges.
+        unsigned LINK_BANDWIDTH_MANAGEMENT_INTERRUPT_ENABLE : 1; //!< [10] Link Bandwidth Management Interrupt Enable When set, this bit enables the generation of an interrupt to indicate that the Link Bandwidth Management Status bit has been set.
+        unsigned LINK_AUTONOMOUS_BANDWIDTH_INTERRUPT_ENABLE : 1; //!< [11] Link Autonomous Bandwidth Interrupt Enable When set, this bit enables the generation of an interrupt to indicate that the Link Autonomous Bandwidth Status bit has been set.
         unsigned RESERVED1 : 4; //!< [15:12] Reserved
-        unsigned LINK_SPEED : 4; //!< [19:16] Link Speed Indicates the negotiated Link speed. The encoding is the binary value of the bit location in the Supported Link Speeds Vector (in the Link Capabilities 2 register) that corresponds to the current Link speed. Possible values are:
-        unsigned NEGOTIATED_LINK_WIDTH : 6; //!< [25:20] Negotiated Link Width Set automatically by hardware after Link initialization. The value is undefined when link is not up.
+        unsigned LINK_SPEED : 4; //!< [19:16] Link Speed Indicates the negotiated Link speed.
+        unsigned NEGOTIATED_LINK_WIDTH : 6; //!< [25:20] Negotiated Link Width Set automatically by hardware after Link initialization.
         unsigned RESERVED2 : 1; //!< [26] Reserved Undefined for PCI Express 1.1 (Was Training Error for PCI Express 1.0a)
         unsigned LINK_TRAINING : 1; //!< [27] Link Training This bit is not applicable and is reserved for Endpoints, PCI Express to PCI/PCI-X bridges.
-        unsigned SLOT_CLOCK_CONFIGURATION : 1; //!< [28] Slot Clock Configuration Indicates that the component uses the same physical reference clock that the platform provides on the connector. The default value is the value you select during hardware configuration, writable through the DBI.
-        unsigned DATA_LINK_LAYER_ACTIVE : 1; //!< [29] Data Link Layer Active This bit must be implemented if the corresponding Data Link Layer Link Active Reporting capability bit is implemented. Otherwise, this bit must be hardwired to 0b.
-        unsigned LINK_BANDWIDTH_MANAGEMENT_STATUS : 1; //!< [30] Link Bandwidth Management Status This bit is set by hardware to indicate that either of the following has occurred without the Port transitioning through DL_Down status: •A Link retraining has completed following a write of 1b to the Retrain Link bit. •Hardware has changed Link speed or width to attempt to correct unreliable Link operation, either through an LTSSM timeout or a higher level process. This bit must be set if the Physical Layer reports a speed or width change was initiated by the Downstream component that was not indicated as an autonomous change. : This bit is set following any write of 1b to the Retrain Link bit, including when the Link is in the process of retraining for some other reason. This bit is not applicable and is reserved for Endpoints, PCI Express-to-PCI/PCI-X bridges.
-        unsigned LINK_AUTONOMOUS_BANDWIDTH_STATUS : 1; //!< [31] Link Autonomous Bandwidth Status This bit is set by hardware to indicate that hardware has autonomously changed Link speed or width, without the Port transitioning through DL_Down status, for reasons other than to attempt to correct unreliable Link operation. This bit must be set if the Physical Layer reports a speed or a width change was initiated by the Downstream component that was indicated as an autonomous change. This bit is not applicable and is reserved for Endpoints, PCI Express-to-PCI/PCI-X bridges.
+        unsigned SLOT_CLOCK_CONFIGURATION : 1; //!< [28] Slot Clock Configuration Indicates that the component uses the same physical reference clock that the platform provides on the connector.
+        unsigned DATA_LINK_LAYER_ACTIVE : 1; //!< [29] Data Link Layer Active This bit must be implemented if the corresponding Data Link Layer Link Active Reporting capability bit is implemented.
+        unsigned LINK_BANDWIDTH_MANAGEMENT_STATUS : 1; //!< [30] Link Bandwidth Management Status This bit is set by hardware to indicate that either of the following has occurred without the Port transitioning through DL_Down status: •A Link retraining has completed following a write of 1b to the Retrain Link bit.
+        unsigned LINK_AUTONOMOUS_BANDWIDTH_STATUS : 1; //!< [31] Link Autonomous Bandwidth Status This bit is set by hardware to indicate that hardware has autonomously changed Link speed or width, without the Port transitioning through DL_Down status, for reasons other than to attempt to correct unreliable Link operation.
     } B;
 } hw_pcie_lcsr_t;
 #endif
@@ -4184,7 +4158,7 @@ typedef union _hw_pcie_dcr2
     reg32_t U;
     struct _hw_pcie_dcr2_bitfields
     {
-        unsigned COMPLETION_TIMEOUT_RANGES_SUPPORTED : 4; //!< [3:0] Completion Timeout Ranges Supported This field is applicable only to Root Ports, Endpoints that issue Requests on their own behalf, and PCI Express to PCI/PCI-X Bridges that take ownership of Requests issued on PCI Express. If `CX_CPL_TO_RANGES_ENABLE is defined, then the default value is 0xf (A, B, C and D ranges supported) If `CX_CPL_TO_RANGES_ENABLE is not defined, the default value is 0x0.
+        unsigned COMPLETION_TIMEOUT_RANGES_SUPPORTED : 4; //!< [3:0] Completion Timeout Ranges Supported This field is applicable only to Root Ports, Endpoints that issue Requests on their own behalf, and PCI Express to PCI/PCI-X Bridges that take ownership of Requests issued on PCI Express.
         unsigned COMPLETION_TIMEOUT_DISABLE_SUPPORTED : 1; //!< [4] Completion Timeout Disable Supported
         unsigned RESERVED0 : 27; //!< [31:5] Reserved
     } B;
@@ -4209,9 +4183,8 @@ typedef union _hw_pcie_dcr2
  *
  * Completion Timeout Ranges Supported This field is applicable only to Root Ports, Endpoints that
  * issue Requests on their own behalf, and PCI Express to PCI/PCI-X Bridges that take ownership of
- * Requests issued on PCI Express. If `CX_CPL_TO_RANGES_ENABLE is defined, then the default value is
- * 0xf (A, B, C and D ranges supported) If `CX_CPL_TO_RANGES_ENABLE is not defined, the default
- * value is 0x0.
+ * Requests issued on PCI Express. the default value is 0xf (A, B, C and D ranges supported) If
+ * `CX_CPL_TO_RANGES_ENABLE is not defined, the default value is 0x0.
  */
 
 #define BP_PCIE_DCR2_COMPLETION_TIMEOUT_RANGES_SUPPORTED      (0)      //!< Bit position for PCIE_DCR2_COMPLETION_TIMEOUT_RANGES_SUPPORTED.
@@ -4248,7 +4221,7 @@ typedef union _hw_pcie_dcsr2
     reg32_t U;
     struct _hw_pcie_dcsr2_bitfields
     {
-        unsigned COMPLETION_TIMEOUT_VALUE : 4; //!< [3:0] Completion Timeout Value If the default range is chosen, the core will have a timeout in the range of 16ms to 55ms. If `CX_CPL_TO_RANGES_ENABLE is not defined, the core will have a timeout in the range of 16ms to 55ms . If `CX_CPL_TO_RANGES_ENABLE is defined, the following encodings apply: Values not defined below are reserved.
+        unsigned COMPLETION_TIMEOUT_VALUE : 4; //!< [3:0] Completion Timeout Value If the default range is chosen, the core will have a timeout in the range of 16ms to 55ms.
         unsigned COMPLETION_TIMEOUT_DISABLE : 1; //!< [4] Completion Timeout Disable
         unsigned RESERVED0 : 27; //!< [31:5] Reserved
     } B;
@@ -4276,9 +4249,7 @@ typedef union _hw_pcie_dcsr2
 /* --- Register HW_PCIE_DCSR2, field COMPLETION_TIMEOUT_VALUE[3:0] (RW)
  *
  * Completion Timeout Value If the default range is chosen, the core will have a timeout in the
- * range of 16ms to 55ms. If `CX_CPL_TO_RANGES_ENABLE is not defined, the core will have a timeout
- * in the range of 16ms to 55ms . If `CX_CPL_TO_RANGES_ENABLE is defined, the following encodings
- * apply: Values not defined below are reserved.
+ * range of 16ms to 55ms. . following encodings apply: Values not defined below are reserved.
  *
  * Values:
  * 0000 - Default range: 50 ìs to 50 ms
@@ -4344,7 +4315,7 @@ typedef union _hw_pcie_lcr2
     struct _hw_pcie_lcr2_bitfields
     {
         unsigned RESERVED0 : 1; //!< [0] Reserved
-        unsigned SUPPORTED_LINK_SPEEDS_VECTOR : 7; //!< [7:1] Supported Link Speeds Vector Indicates the supported Link speeds of the associated Port. For each bit, a value of 1b indicates that the corresponding Link speed is supported; otherwise, the Link speed is not supported. Bit definitions are: Bit 1 2.5 GT/s Bit 2 5.0 GT/s Bit 3 8.0 GT/s Bits 7:4 reserved This field is writable through the DBI.
+        unsigned SUPPORTED_LINK_SPEEDS_VECTOR : 7; //!< [7:1] Supported Link Speeds Vector Indicates the supported Link speeds of the associated Port.
         unsigned CROSSLINK_SUPPORTED : 1; //!< [8] Crosslink Supported
         unsigned RESERVED1 : 23; //!< [31:9] Reserved
     } B;
@@ -4407,13 +4378,13 @@ typedef union _hw_pcie_lcsr2
     reg32_t U;
     struct _hw_pcie_lcsr2_bitfields
     {
-        unsigned TARGET_LINK_SPEED : 4; //!< [3:0] Target Link Speed For Downstream ports, this field sets an upper limit on link operational speed by restricting the values advertised by the upstream component in its training sequences: The encoding is the binary value of the bit in the Supported Link Speeds Vector (in the Link Capabilities 2 register) that corresponds to the desired target Link speed. If a value is written to this field that does not correspond to a speed included in the Supported Link Speeds field, the result is undefined. The default value of this field is the highest link speed supported by the component (as reported in the Max Link Speed field of the Link Capabilities Register) unless the corresponding platform / form factor requires a different default value. Components that support only the 2.5 GT/s speed are permitted to hardwire this field to 0000b. All other encodings are reserved.
-        unsigned ENTER_COMPLIANCE : 1; //!< [4] Enter Compliance Software is permitted to force a link to enter Compliance mode at the speed indicated in the Target Link Speed field by setting this bit to 1b in both components on a link and then initiating a hot reset on the link. The default value of this field following Fundamental Reset is 0b.
-        unsigned HARDWARE_AUTONOMOUS_SPEED_DISABLE : 1; //!< [5] Hardware Autonomous Speed Disable When cfg_hw_auto_sp_dis signal is asserted, the application must disable hardware from changing the Link speed for device-specific reasons other than attempting to correct unreliable Link operation by reducing Link speed. Initial transition to the highest supported common link speed is not blocked by this signal.
-        unsigned SELECTABLE_DEEMPHASIS : 1; //!< [6] Selectable De-emphasis When the Link is operating at 2.5 GT/s speed, the setting of this bit has no effect. Components that support only the 2.5 GT/s speed are permitted to hardwire this bit to 0b. Default value is implementation-specific, unless a specific value is required for a selected form factor or platform. When the Link is operating at 5.0 GT/s speed, selects the level of de-emphasis:
-        unsigned TRANSMIT_MARGIN : 3; //!< [9:7] Transmit Margin This field is reset to 000b on entry to the LTSSM Polling. Compliance substate. Components that support only the 2.5 GT/s speed are permitted to hard-wire this bit to 0b. When operating in 5.0 GT/s mode with full swing, the de-emphasis ratio must be maintained within +/- 1 dB from the specification-defined operational value (either -3.5 or -6 dB). This field controls the value of the non-de-emphasized voltage level at the Transmitter pins:
-        unsigned ENTER_MODIFIED_COMPLIANCE : 1; //!< [10] Enter Modified Compliance When this bit is set to 1b, the device transmits modified compliance pattern if the LTSSM enters Polling. Compliance state. Components that support only the 2.5 GT/s speed are permitted to hard-wire this bit to 0b.
-        unsigned COMPLIANCE_SOS : 1; //!< [11] Compliance SOS When set to 1b, the LTSSM is required to send SKP Ordered Sets periodically in between the (modified) compliance patterns. GT/s speed are permitted to hardwire this bit to 0b. When the Link is operating at 2.5 GT/s, the setting of this bit has no effect. Components that support only 2.5
+        unsigned TARGET_LINK_SPEED : 4; //!< [3:0] Target Link Speed For Downstream ports, this field sets an upper limit on link operational speed by restricting the values advertised by the upstream component in its training sequences: The encoding is the binary value of the bit in the Supported Link Speeds Vector (in the Link Capabilities 2 register) that corresponds to the desired target Link speed.
+        unsigned ENTER_COMPLIANCE : 1; //!< [4] Enter Compliance Software is permitted to force a link to enter Compliance mode at the speed indicated in the Target Link Speed field by setting this bit to 1b in both components on a link and then initiating a hot reset on the link.
+        unsigned HARDWARE_AUTONOMOUS_SPEED_DISABLE : 1; //!< [5] Hardware Autonomous Speed Disable When cfg_hw_auto_sp_dis signal is asserted, the application must disable hardware from changing the Link speed for device-specific reasons other than attempting to correct unreliable Link operation by reducing Link speed.
+        unsigned SELECTABLE_DEEMPHASIS : 1; //!< [6] Selectable De-emphasis When the Link is operating at 2.5 GT/s speed, the setting of this bit has no effect.
+        unsigned TRANSMIT_MARGIN : 3; //!< [9:7] Transmit Margin This field is reset to 000b on entry to the LTSSM Polling.
+        unsigned ENTER_MODIFIED_COMPLIANCE : 1; //!< [10] Enter Modified Compliance When this bit is set to 1b, the device transmits modified compliance pattern if the LTSSM enters Polling.
+        unsigned COMPLIANCE_SOS : 1; //!< [11] Compliance SOS When set to 1b, the LTSSM is required to send SKP Ordered Sets periodically in between the (modified) compliance patterns.
         unsigned COMPLIANCE_PRE_SET_DEEMPHASIS : 4; //!< [15:12] Compliance Pre-set/ De-emphasis
         unsigned CURRENT_DEEMPHASIS_LEVEL : 1; //!< [16] Current De-emphasis Level
         unsigned EQUALIZATION_COMPLETE : 1; //!< [17] Equalization Complete
@@ -4767,8 +4738,7 @@ typedef union _hw_pcie_lcsr2
  * Reset value: 0x00000000
  *
  * The core implements the following PCI Express Extended Capabilities registers:  ? Advanced Error
- * Reporting Capability register set  ? Virtual Channel Capability register set - only exists in the
- * first function of a multi-function device  Address: 0x100
+ * Reporting Capability register set  ? Virtual Channel Capability register set -  Address: 0x100
  */
 typedef union _hw_pcie_aer
 {
@@ -6592,7 +6562,7 @@ typedef union _hw_pcie_pvccr1
     reg32_t U;
     struct _hw_pcie_pvccr1_bitfields
     {
-        unsigned EXTENDED_VC_COUNT : 3; //!< [2:0] Extended VC Count The default value is the one less than the number of VCs that you specify during hardware configuration (`CX_NVC - 1).
+        unsigned EXTENDED_VC_COUNT : 3; //!< [2:0] Extended VC Count The default value is the one less than the number of VCs that
         unsigned RESERVED0 : 1; //!< [3] Reserved
         unsigned LOW_PRIORITY_EXTENDED_VC_COUNT : 3; //!< [6:4] Low Priority Extended VC Count, writable through the DBI
         unsigned RESERVED1 : 1; //!< [7] Reserved
@@ -6619,8 +6589,7 @@ typedef union _hw_pcie_pvccr1
 
 /* --- Register HW_PCIE_PVCCR1, field EXTENDED_VC_COUNT[2:0] (RO)
  *
- * Extended VC Count The default value is the one less than the number of VCs that you specify
- * during hardware configuration (`CX_NVC - 1).
+ * Extended VC Count The default value is the one less than the number of VCs that
  */
 
 #define BP_PCIE_PVCCR1_EXTENDED_VC_COUNT      (0)      //!< Bit position for PCIE_PVCCR1_EXTENDED_VC_COUNT.
@@ -6679,7 +6648,7 @@ typedef union _hw_pcie_pvccr2
     reg32_t U;
     struct _hw_pcie_pvccr2_bitfields
     {
-        unsigned VC_ARBITRATION_CAPABILITY : 8; //!< [7:0] VC Arbitration Capability Indicates which VC arbitration mode(s) the device supports, writable through the DBI: •Bit 0: Device supports hardware fixed arbitration scheme. For the core, the scheme is 16-phase weighted round robin (WRR). •Bit 1: Device supports 32-phase WRR •Bit 2: Device supports 64-phase WRR •Bit 3: Device supports 128-phase WRR •Bits 4-7: Reserved
+        unsigned VC_ARBITRATION_CAPABILITY : 8; //!< [7:0] VC Arbitration Capability Indicates which VC arbitration mode(s) the device supports, writable through the DBI: •Bit 0: Device supports hardware fixed arbitration scheme.
         unsigned RESERVED0 : 16; //!< [23:8] Reserved
         unsigned VC_ARBITRATION_TABLE_OFFSET : 8; //!< [31:24] VC Arbitration Table Offset (not supported) The default value is 0x00 (no arbitration table present).
     } B;

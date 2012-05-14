@@ -62,16 +62,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_SATA_CAP - HBA Capabilites Register
@@ -90,27 +80,27 @@ typedef union _hw_sata_cap
     reg32_t U;
     struct _hw_sata_cap_bitfields
     {
-        unsigned NP : 5; //!< [4:0] Number of Ports. 0's based value indicating the number of Ports supported by the SATA block: The options for this field are: • 0x00: 1 Port • 0x01: 2 Ports • 0x02: 3 Ports Reset Value: 0x00 Configurable: AHSATA_NUM_PORTS-1
-        unsigned SXS : 1; //!< [5] Supports External SATA. The options for this field are: 1 Indicates that the SATA block has one or more Ports that has a signal only connector (power is not part of that connector) that is externally accessible. When this bit is set to 1, the software can refer to the SATA_P # 0 CMD[ESP] bit to determine whether a specific Port has its signal connector externally accessible. 0 Indicates that the SATA block has no Ports that have a signal only connector externally accessible. Reset Value: Configurable
-        unsigned EMS : 1; //!< [6] Enclosure Management Support. SATA block does not support enclosure management.
-        unsigned CCCS : 1; //!< [7] Command Completion Coalescing Support. SATA block supports command completion coalescing.
-        unsigned NCS : 5; //!< [12:8] Number of Command Slots. SATA block supports 32 command slots per Port.
-        unsigned PSC : 1; //!< [13] Partial State Capable. SATA block supports transitions to the interface PARTIAL power management state.
-        unsigned SSC : 1; //!< [14] Slumber State Capable. SATA block supports transitions to the interface SLUMBER power management state.
-        unsigned PMD : 1; //!< [15] PIO Multiple DRQ Block. SATA block supports multiple DRQ block data transfers for the PIO command protocol.
+        unsigned NP : 5; //!< [4:0] Number of Ports.
+        unsigned SXS : 1; //!< [5] Supports External SATA.
+        unsigned EMS : 1; //!< [6] Enclosure Management Support.
+        unsigned CCCS : 1; //!< [7] Command Completion Coalescing Support.
+        unsigned NCS : 5; //!< [12:8] Number of Command Slots.
+        unsigned PSC : 1; //!< [13] Partial State Capable.
+        unsigned SSC : 1; //!< [14] Slumber State Capable.
+        unsigned PMD : 1; //!< [15] PIO Multiple DRQ Block.
         unsigned RESERVED0 : 1; //!< [16] Reserved.
-        unsigned SMP : 1; //!< [17] Supports Port Multiplier. SATA block supports command-based switching Port Multiplier on any of its Ports.
-        unsigned SAM : 1; //!< [18] Supports AHCI Mode Only. SATA block supports AHCI mode only and does not support legacy, task-file based register interface.
-        unsigned RESERVED1 : 1; //!< [19] Reserved. Returns 0 on read.
-        unsigned ISS : 4; //!< [23:20] Interface Speed Support. Reserved. Returns 0x2 on read.
-        unsigned SCLO : 1; //!< [24] Supports Command List Override. SATA block supports the SATA_P # 0 CMD[CLO] bit functionality for Port Multiplier devices' enumeration.
-        unsigned SAL : 1; //!< [25] Supports Activity LED. SATA block supports activity indication using signal p # 0 _act_led.
-        unsigned SALP : 1; //!< [26] Supports Aggressive Link Power Management. SATA block supports auto-generating (Port-initiated) Link Layer requests to the PARTIAL or SLUMBER power management states when there are no commands to process.
-        unsigned SSS : 1; //!< [27] Supports Staggered Spin-up. This bit is set by the system firmware/BIOS to indicate platform support for staggered devices' spin-up. SATA block supports this feature through the SATA_P # 0 CMD[SUD] bit functionality.
-        unsigned SMPS : 1; //!< [28] Supports Mechanical Presence Switch. This bit is set by the system firmware/BIOS when the platform supports mechanical presence switch for hot plug operation. Dependencies: This field is implemented only when parameter (Macro configuration parm) DEV_MP_SWITCH==Include. When this field is not implemented, this field is reserved, and reads 1'b0.
-        unsigned SSNTF : 1; //!< [29] Supports SNotification Register. SATA block supports SATA_P # 0 SNTF (SNotification) register and its associated functionality.
-        unsigned SNCQ : 1; //!< [30] Supports Native Command Queuing. SATA block supports SATA native command queueing by handling DMA Setup FIS natively.
-        unsigned S64A : 1; //!< [31] Supports 64-bit Addressing SATA block supports 64-bit addressable data structures by utilizing PFFBU and P#CLBU registers. Reset Value: Configurable.
+        unsigned SMP : 1; //!< [17] Supports Port Multiplier.
+        unsigned SAM : 1; //!< [18] Supports AHCI Mode Only.
+        unsigned RESERVED1 : 1; //!< [19] Reserved.
+        unsigned ISS : 4; //!< [23:20] Interface Speed Support.
+        unsigned SCLO : 1; //!< [24] Supports Command List Override.
+        unsigned SAL : 1; //!< [25] Supports Activity LED.
+        unsigned SALP : 1; //!< [26] Supports Aggressive Link Power Management.
+        unsigned SSS : 1; //!< [27] Supports Staggered Spin-up.
+        unsigned SMPS : 1; //!< [28] Supports Mechanical Presence Switch.
+        unsigned SSNTF : 1; //!< [29] Supports SNotification Register.
+        unsigned SNCQ : 1; //!< [30] Supports Native Command Queuing.
+        unsigned S64A : 1; //!< [31] Supports 64-bit Addressing SATA block supports 64-bit addressable data structures by utilizing PFFBU and P#CLBU registers.
     } B;
 } hw_sata_cap_t;
 #endif
@@ -133,7 +123,6 @@ typedef union _hw_sata_cap
  *
  * Number of Ports. 0's based value indicating the number of Ports supported by the SATA block: The
  * options for this field are: • 0x00: 1 Port • 0x01: 2 Ports • 0x02: 3 Ports Reset Value: 0x00
- * Configurable: AHSATA_NUM_PORTS-1
  */
 
 #define BP_SATA_CAP_NP      (0)      //!< Bit position for SATA_CAP_NP.
@@ -146,14 +135,14 @@ typedef union _hw_sata_cap
  *
  * Supports External SATA. The options for this field are: 1 Indicates that the SATA block has one
  * or more Ports that has a signal only connector (power is not part of that connector) that is
- * externally accessible. When this bit is set to 1, the software can refer to the SATA_P # 0
- * CMD[ESP] bit to determine whether a specific Port has its signal connector externally accessible.
- * 0 Indicates that the SATA block has no Ports that have a signal only connector externally
+ * externally accessible. When this bit is set to 1, the software can refer to the SATA_P 0 CMD[ESP]
+ * bit to determine whether a specific Port has its signal connector externally accessible. 0
+ * Indicates that the SATA block has no Ports that have a signal only connector externally
  * accessible. Reset Value: Configurable
  *
  * Values:
- * 0 - when all of the SATA_P #  0 CMD[ESP]=0
- * 1 - when any of the SATA_P #  0 CMD[ESP]=1
+ * 0 - when all of the SATA_P 0 CMD[ESP]=0
+ * 1 - when any of the SATA_P 0 CMD[ESP]=1
  */
 
 #define BP_SATA_CAP_SXS      (5)      //!< Bit position for SATA_CAP_SXS.
@@ -269,7 +258,7 @@ typedef union _hw_sata_cap
 
 /* --- Register HW_SATA_CAP, field SCLO[24] (RO)
  *
- * Supports Command List Override. SATA block supports the SATA_P # 0 CMD[CLO] bit functionality for
+ * Supports Command List Override. SATA block supports the SATA_P 0 CMD[CLO] bit functionality for
  * Port Multiplier devices' enumeration.
  */
 
@@ -281,7 +270,7 @@ typedef union _hw_sata_cap
 
 /* --- Register HW_SATA_CAP, field SAL[25] (RO)
  *
- * Supports Activity LED. SATA block supports activity indication using signal p # 0 _act_led.
+ * Supports Activity LED. SATA block supports activity indication using signal p 0 _act_led.
  */
 
 #define BP_SATA_CAP_SAL      (25)      //!< Bit position for SATA_CAP_SAL.
@@ -306,7 +295,7 @@ typedef union _hw_sata_cap
 /* --- Register HW_SATA_CAP, field SSS[27] (RO)
  *
  * Supports Staggered Spin-up. This bit is set by the system firmware/BIOS to indicate platform
- * support for staggered devices' spin-up. SATA block supports this feature through the SATA_P # 0
+ * support for staggered devices' spin-up. SATA block supports this feature through the SATA_P 0
  * CMD[SUD] bit functionality.
  */
 
@@ -332,7 +321,7 @@ typedef union _hw_sata_cap
 
 /* --- Register HW_SATA_CAP, field SSNTF[29] (RO)
  *
- * Supports SNotification Register. SATA block supports SATA_P # 0 SNTF (SNotification) register and
+ * Supports SNotification Register. SATA block supports SATA_P 0 SNTF (SNotification) register and
  * its associated functionality.
  */
 
@@ -388,10 +377,10 @@ typedef union _hw_sata_ghc
     reg32_t U;
     struct _hw_sata_ghc_bitfields
     {
-        unsigned HR : 1; //!< [0] HBA Reset. When set by the software, this bit causes an internal Global reset of the SATA block. All state machines that relate to data transfers and queueing return to an idle state, and all the Ports are re-initialized by sending COMRESET When staggered spin-up is not supported. When staggered spin-up is supported, then the software must spin-up each Port after this reset has completed. See for details. The SATA block clears this bit when the reset action is done. A software write of 0 has no effect.
-        unsigned IE : 1; //!< [1] Interrupt Enable. This global bit enables interrupts from the SATA block. When cleared, all interrupt sources from all the Ports are disabled (masked). When set, interrupts are enabled and any SATA block interrupt event causes intrq output assertion. This field is reset on Global reset (SATA_GHC[HR]=1).
+        unsigned HR : 1; //!< [0] HBA Reset.
+        unsigned IE : 1; //!< [1] Interrupt Enable.
         unsigned RESERVED0 : 29; //!< [30:2] Reserved
-        unsigned AE : 1; //!< [31] AHCI Enable. This bit is always set since SATA block supports only AHCI mode as indicated by the SATA_CAP[SAM]=1.
+        unsigned AE : 1; //!< [31] AHCI Enable.
     } B;
 } hw_sata_ghc_t;
 #endif
@@ -494,8 +483,8 @@ typedef union _hw_sata_is
     reg32_t U;
     struct _hw_sata_is_bitfields
     {
-        unsigned IPS : 2; //!< [1:0] Interrupt Pending Status. np-1-0 np = AHSATA_NUM_PORTS. When bit 1is set, this bit indicates that the corresponding Port 0 has an interrupt pending. Software can use this information to determine which Ports require service after an interrupt. The bits of this field are set by the Ports that have interrupt events pending in the P#IS bits and enabled by the P#IE (see "Interrupts" on page 73). Set bits are cleared by the software writing 1 to all bits to clear. This bit is set when the Port has an interrupt event pending and the interrupt source is enabled (see the definition of the SATA_P # 0 IE register). Bit 0 of the IPS field is not used.
-        unsigned RESERVED0 : 30; //!< [31:2] Reserved. 31- np +1 np = AHSATA_NUM_PORTS
+        unsigned IPS : 2; //!< [1:0] Interrupt Pending Status.
+        unsigned RESERVED0 : 30; //!< [31:2] Reserved.
     } B;
 } hw_sata_is_t;
 #endif
@@ -520,13 +509,9 @@ typedef union _hw_sata_is
 
 /* --- Register HW_SATA_IS, field IPS[1:0] (W1C)
  *
- * Interrupt Pending Status. np-1-0 np = AHSATA_NUM_PORTS. When bit 1is set, this bit indicates that
- * the corresponding Port 0 has an interrupt pending. Software can use this information to determine
- * which Ports require service after an interrupt. The bits of this field are set by the Ports that
- * have interrupt events pending in the P#IS bits and enabled by the P#IE (see "Interrupts" on page
- * 73). Set bits are cleared by the software writing 1 to all bits to clear. This bit is set when
- * the Port has an interrupt event pending and the interrupt source is enabled (see the definition
- * of the SATA_P # 0 IE register). Bit 0 of the IPS field is not used.
+ * Interrupt Pending Status. When bit 1is set, this indicates that Port 0 has an interrupt pending.
+ * This bit is set when the Port has an interrupt event pending and the interrupt source is enabled
+ * (see the definition of the SATA_P 0 IE register). Bit 0 of the IPS field is not used.
  */
 
 #define BP_SATA_IS_IPS      (0)      //!< Bit position for SATA_IS_IPS.
@@ -564,8 +549,8 @@ typedef union _hw_sata_pi
     reg32_t U;
     struct _hw_sata_pi_bitfields
     {
-        unsigned PI : 1; //!< [0] Ports Implemented. BIOS must set this bit to 1 np-1-0. np = AHSATA_NUM_PORTS. This register is bit significant. The maximum number of bits that can be set to 1 is CAP.NP+1. At least one bit must be set to 1.
-        unsigned RESERVED0 : 31; //!< [31:1] Reserved. 31-1np np = AHSATA_NUM_PORTS.
+        unsigned PI : 1; //!< [0] Ports Implemented.
+        unsigned RESERVED0 : 31; //!< [31:1] Reserved.
     } B;
 } hw_sata_pi_t;
 #endif
@@ -586,9 +571,7 @@ typedef union _hw_sata_pi
 
 /* --- Register HW_SATA_PI, field PI[0] (RO)
  *
- * Ports Implemented. BIOS must set this bit to 1 np-1-0. np = AHSATA_NUM_PORTS. This register is
- * bit significant. The maximum number of bits that can be set to 1 is CAP.NP+1. At least one bit
- * must be set to 1.
+ * Ports Implemented. BIOS must set this bit to 1
  */
 
 #define BP_SATA_PI_PI      (0)      //!< Bit position for SATA_PI_PI.
@@ -617,8 +600,8 @@ typedef union _hw_sata_vs
     reg32_t U;
     struct _hw_sata_vs_bitfields
     {
-        unsigned MNR : 16; //!< [15:0] Minor Version Number. Indicates that the minor AHCI version is 30.
-        unsigned MJR : 16; //!< [31:16] Major Version Number. Indicates that the major AHCI version is 1.
+        unsigned MNR : 16; //!< [15:0] Minor Version Number.
+        unsigned MJR : 16; //!< [31:16] Major Version Number.
     } B;
 } hw_sata_vs_t;
 #endif
@@ -677,11 +660,11 @@ typedef union _hw_sata_ccc_ctl
     reg32_t U;
     struct _hw_sata_ccc_ctl_bitfields
     {
-        unsigned EN : 1; //!< [0] Enable. When field SATA_CCC_CTL[EN]==1, the software can not change the fields SATA_CCC_CTL[TV] and SATA_CCC_CTL[CC]. The options for this field are:
+        unsigned EN : 1; //!< [0] Enable.
         unsigned RESERVED0 : 2; //!< [2:1] Reserved.
-        unsigned INT : 5; //!< [7:3] Interrupt. Set this field to 0x01. This field specifies the interrupt used by the CCC feature, using the number of Ports configured for the core. For example, when AHSATA_NUM_PORTS==6 then This field SATA_CCC_CTL.INT==6. When a CCC interrupt occurs, the field SATA_IS.IPS[INT] is set to 1. Reset Value: Configurable: AHSATA_NUM_PORTS.
-        unsigned CC : 8; //!< [15:8] Command Completions. This field specifies the number of command completions that are necessary to cause a CCC interrupt. The value 0x00 for this field disables CCC interrupts being generated based on the number of commands completed. In this case, CCC interrupts are only generated based on the timer. Software loads this value prior to enabling CCC: Field access is: • RW when SATA_CCC_CTL[EN]==0 • RO when SATA_CCC_CTL[EN]==1
-        unsigned TV : 16; //!< [31:16] Time-out Value. This field specifies the CCC time-out value in 1ms intervals. The software loads this value prior to enabling CCC. The options for this field are: • RW when SATA_CCC_CTL[EN]==0. • RO when SATA_CCC_CTL[EN]==1. A time-out value of 0x0000 is reserved and should not be used.
+        unsigned INT : 5; //!< [7:3] Interrupt.
+        unsigned CC : 8; //!< [15:8] Command Completions.
+        unsigned TV : 16; //!< [31:16] Time-out Value.
     } B;
 } hw_sata_ccc_ctl_t;
 #endif
@@ -732,10 +715,7 @@ typedef union _hw_sata_ccc_ctl
 
 /* --- Register HW_SATA_CCC_CTL, field INT[7:3] (RW)
  *
- * Interrupt. Set this field to 0x01. This field specifies the interrupt used by the CCC feature,
- * using the number of Ports configured for the core. For example, when AHSATA_NUM_PORTS==6 then
- * This field SATA_CCC_CTL.INT==6. When a CCC interrupt occurs, the field SATA_IS.IPS[INT] is set to
- * 1. Reset Value: Configurable: AHSATA_NUM_PORTS.
+ * Interrupt. Set this field to 0x01.
  */
 
 #define BP_SATA_CCC_CTL_INT      (3)      //!< Bit position for SATA_CCC_CTL_INT.
@@ -814,7 +794,7 @@ typedef union _hw_sata_ccc_ports
     reg32_t U;
     struct _hw_sata_ccc_ports_bitfields
     {
-        unsigned PRT : 32; //!< [31:0] Ports. This field is bit significant. Each bit corresponds to a particular Port, where bit 0 corresponds to Port0. Bits set in this register must have the corresponding bit set in the SATA_PI (Ports Implemented Register). The options for this field are:
+        unsigned PRT : 32; //!< [31:0] Ports.
     } B;
 } hw_sata_ccc_ports_t;
 #endif
@@ -881,7 +861,7 @@ typedef union _hw_sata_cap2
     struct _hw_sata_cap2_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved.
-        unsigned APST : 1; //!< [2] Automatic Partial to Slumber Transitions. SATA block supports automatic Partial to Slumber transitions.
+        unsigned APST : 1; //!< [2] Automatic Partial to Slumber Transitions.
         unsigned RESERVED1 : 29; //!< [31:3] Reserved
     } B;
 } hw_sata_cap2_t;
@@ -933,8 +913,8 @@ typedef union _hw_sata_bistafr
     reg32_t U;
     struct _hw_sata_bistafr_bitfields
     {
-        unsigned PD : 8; //!< [7:0] Pattern Definition Indicates the pattern definition field of the received BIST Activate FIS - bits [23:16] of the first DWORD. It is used to put the SATA block in one of the following BIST modes: For far-end transmit only modes SATA_BISTAFR[NCP] field contains the required data pattern.
-        unsigned NCP : 8; //!< [15:8] Least significant byte of the received BIST Activate FIS second DWORD (bits [7:0]). This value defines the required pattern for far-end transmit only mode (SATA_BISTAFR[PD]=0x80 or 0xA0): When none of these values is decoded, the simultaneous switching pattern is transmitted by default.
+        unsigned PD : 8; //!< [7:0] Pattern Definition Indicates the pattern definition field of the received BIST Activate FIS - bits [23:16] of the first DWORD.
+        unsigned NCP : 8; //!< [15:8] Least significant byte of the received BIST Activate FIS second DWORD (bits [7:0]).
         unsigned RESERVED0 : 16; //!< [31:16] Reserved.
     } B;
 } hw_sata_bistafr_t;
@@ -1018,22 +998,22 @@ typedef union _hw_sata_bistcr
     reg32_t U;
     struct _hw_sata_bistcr_bitfields
     {
-        unsigned PATTERN : 4; //!< [3:0] This field defines one of the following SATA compliant patterns for far-end retimed/ far-end analog/ near-end analog initiator modes, or non-compliant patterns for transmit-only responder mode when initiated by the software writing to the SATA_BISTCR[TXO] bit. If the value is none of the listed below, Composite pattern (COMP) is transmitted by default.
-        unsigned PV : 1; //!< [4] Pattern Version This bit is used to select either short or long version of the SSOP, HTDP, LTDP, LFSCP, COMP patterns. The options for this field are:
+        unsigned PATTERN : 4; //!< [3:0] This field defines one of the following SATA compliant patterns for far-end retimed/ far-end analog/ near-end analog initiator modes, or non-compliant patterns for transmit-only responder mode when initiated by the software writing to the SATA_BISTCR[TXO] bit.
+        unsigned PV : 1; //!< [4] Pattern Version This bit is used to select either short or long version of the SSOP, HTDP, LTDP, LFSCP, COMP patterns.
         unsigned FLIP : 1; //!< [5] Flip Disparity This bit is used to change disparity of the current test pattern to the opposite every time its state is changed by the software.
-        unsigned ERREN : 1; //!< [6] Error Enable. This bit is used to allow or filter (disable) [ internal errors outside the FIS boundary to set corresponding SATA_P # 0 SERR bits. The options for this field are:
+        unsigned ERREN : 1; //!< [6] Error Enable.
         unsigned RESERVED0 : 1; //!< [7] Reserved.
-        unsigned LLC : 3; //!< [10:8] Link Layer Control This field controls the Port Link Layer functions: scrambler, descrambler, and repeat primitive drop. Note the different meanings for normal and BIST modes of operation: • Bit8-SCRAM The options for this field are: 0 Scrambler disabled in normal mode, enabled in BIST mode 1 Scrambler enabled in normal mode, disabled in BIST mode • Bit9-DESCRAM The options for this field are: 0 Descrambler disabled in normal mode, enabled in BIST mode 1 Descrambler enabled in normal mode, disabled in BIST mode • Bit10-RPD The options for this field are: 0 Repeat primitive drop function disabled in normal mode, NA in BIST mode. 1 Repeat primitive drop function enabled in normal mode, NA in BIST mode. The SCRAM bit is cleared (enabled) by the Port when the Port enters a responder far-end transmit BIST mode with scrambling enabled (SATA_BISTAFR[PD]=0x80). In normal mode, the functions scrambler, descrambler, or RPD can be changed only during Port reset (SATA_P # 0 SCTL[DET]=0x1)
+        unsigned LLC : 3; //!< [10:8] Link Layer Control This field controls the Port Link Layer functions: scrambler, descrambler, and repeat primitive drop.
         unsigned RESERVED1 : 1; //!< [11] Reserved.
-        unsigned SDFE : 1; //!< [12] Signal Detect Feature Enable Reset: PHY_INTERFACE_TYPE 1: Link layer feature to handle unstable/absent phy_sig_det signal is enabled 0: Link layer feature to handle unstable/absent phy_sig_det signal is disabled. This bit is set on power-up or asynchronous reset if PHY_INTERFACE_TYPE = Synopsys_SATA_II (1) or PHY_INTERFACE_TYPE = Synopsys_SATA_6G (2), otherwise, the bit is cleared until it is set via programming. It is not affected by a Global reset or COMRESET. For special handling in systems where phy_sig_det may not be present or stable after OOB signalling and during normal operation , see . For these systems, phy_rx_data_vld must not be tied high and must go low when no data is detected on the wires.
+        unsigned SDFE : 1; //!< [12] Signal Detect Feature Enable Reset: PHY_INTERFACE_TYPE 1: Link layer feature to handle unstable/absent phy_sig_det signal is enabled 0: Link layer feature to handle unstable/absent phy_sig_det signal is disabled.
         unsigned RESERVED2 : 1; //!< [13] Reserved.
-        unsigned QPHYINIT : 1; //!< [14] When set, this bit enables quick PHY initialization feature. The Link does not require any ALIGNs to transition from OOB to normal operation. For more details, see This bit is available only when TX_OOB_MODE = Exclude (0) and ALIGN_MODE = Aligned (1), otherwise it is reserved.
+        unsigned QPHYINIT : 1; //!< [14] When set, this bit enables quick PHY initialization feature.
         unsigned RESERVED3 : 1; //!< [15] Reserved.
-        unsigned NEALB : 1; //!< [16] Near-End Analog Loopback This mode should be initiated either in the PARTIAL or SLUMBER power mode, or with the device disconnected from the Port PHY (Link NOCOMM state). BIST Activate FIS is not sent to the device in this mode. This bit places the Port PHY into near-end analog loopback mode. This field is one-shot type and reads returns 0:
-        unsigned CNTCLR : 1; //!< [17] Counter Clear This bit clears BIST error count registers. This field is one-shot type and reads returns 0.
-        unsigned TXO : 1; //!< [18] Transmit Only. This bit is used to initiate transmission of one of the non-compliant patterns defined by the SATA_BISTCR[PATTERN] value when the device is disconnected.
+        unsigned NEALB : 1; //!< [16] Near-End Analog Loopback This mode should be initiated either in the PARTIAL or SLUMBER power mode, or with the device disconnected from the Port PHY (Link NOCOMM state).
+        unsigned CNTCLR : 1; //!< [17] Counter Clear This bit clears BIST error count registers.
+        unsigned TXO : 1; //!< [18] Transmit Only.
         unsigned RESERVED4 : 1; //!< [19] Reserved.
-        unsigned FERLB : 1; //!< [20] Far-end Retimed Loopback. When set, this bit is used to put the SATA block Link into Far-end Retimed mode, without the BIST Activate FIS, regardless whether the device is connected or disconnected (Link in NOCOMM state). This field is one-shot type and reads returns 0.
+        unsigned FERLB : 1; //!< [20] Far-end Retimed Loopback.
         unsigned RESERVED5 : 11; //!< [31:21] Reserved.
     } B;
 } hw_sata_bistcr_t;
@@ -1140,7 +1120,7 @@ typedef union _hw_sata_bistcr
 /* --- Register HW_SATA_BISTCR, field ERREN[6] (RW)
  *
  * Error Enable. This bit is used to allow or filter (disable) [ internal errors outside the FIS
- * boundary to set corresponding SATA_P # 0 SERR bits. The options for this field are:
+ * boundary to set corresponding SATA_P 0 SERR bits. The options for this field are:
  *
  * Values:
  * 0 - Filter errors outside the FIS, allow errors inside the FIS;
@@ -1174,7 +1154,7 @@ typedef union _hw_sata_bistcr
  * function enabled in normal mode, NA in BIST mode. The SCRAM bit is cleared (enabled) by the Port
  * when the Port enters a responder far-end transmit BIST mode with scrambling enabled
  * (SATA_BISTAFR[PD]=0x80). In normal mode, the functions scrambler, descrambler, or RPD can be
- * changed only during Port reset (SATA_P # 0 SCTL[DET]=0x1)
+ * changed only during Port reset (SATA_P 0 SCTL[DET]=0x1)
  */
 
 #define BP_SATA_BISTCR_LLC      (8)      //!< Bit position for SATA_BISTCR_LLC.
@@ -1199,8 +1179,8 @@ typedef union _hw_sata_bistcr
  * PHY_INTERFACE_TYPE = Synopsys_SATA_II (1) or PHY_INTERFACE_TYPE = Synopsys_SATA_6G (2),
  * otherwise, the bit is cleared until it is set via programming. It is not affected by a Global
  * reset or COMRESET. For special handling in systems where phy_sig_det may not be present or stable
- * after OOB signalling and during normal operation , see . For these systems, phy_rx_data_vld must
- * not be tied high and must go low when no data is detected on the wires.
+ * after OOB signalling and during normal operation . For these systems, phy_rx_data_vld must not be
+ * tied high and must go low when no data is detected on the wires.
  */
 
 #define BP_SATA_BISTCR_SDFE      (12)      //!< Bit position for SATA_BISTCR_SDFE.
@@ -1220,8 +1200,8 @@ typedef union _hw_sata_bistcr
 /* --- Register HW_SATA_BISTCR, field QPHYINIT[14] (RW)
  *
  * When set, this bit enables quick PHY initialization feature. The Link does not require any ALIGNs
- * to transition from OOB to normal operation. For more details, see This bit is available only when
- * TX_OOB_MODE = Exclude (0) and ALIGN_MODE = Aligned (1), otherwise it is reserved.
+ * to transition from OOB to normal operation. This bit is available only when TX_OOB_MODE = Exclude
+ * (0) and ALIGN_MODE = Aligned (1), otherwise it is reserved.
  */
 
 #define BP_SATA_BISTCR_QPHYINIT      (14)      //!< Bit position for SATA_BISTCR_QPHYINIT.
@@ -1265,7 +1245,7 @@ typedef union _hw_sata_bistcr
  * returns 0.
  *
  * Values:
- * 1 - Clear SATA_BISTFCTR, and SATA_BISTSR , and SATA_BISTDECR registers.
+ * 1 - Clear SATA_BISTFCTR, and SATA_BISTSR registers.
  */
 
 #define BP_SATA_BISTCR_CNTCLR      (17)      //!< Bit position for SATA_BISTCR_CNTCLR.
@@ -1374,8 +1354,8 @@ typedef union _hw_sata_bistsr
     reg32_t U;
     struct _hw_sata_bistsr_bitfields
     {
-        unsigned FRAMERR : 16; //!< [15:0] Frame Error. This field contains the frame error count. It is accumulated (new value is added to the old value) each time a new BIST frame with a CRC error is received. The FRAMERR value does not roll over and freezes at FFFFh.
-        unsigned BRSTERR : 8; //!< [23:16] Burst Error. This field contains the burst error count. It is accumulated each time a burst error condition is detected: DWORD error is detected in the received frame and 1.5 seconds (27,000 frames) passed since the previous burst error was detected. The BRSTERR value does not roll over and freezes at FFh. This field is updated when parameter (Macro configuration parm) BIST_MODE=DWORD.
+        unsigned FRAMERR : 16; //!< [15:0] Frame Error.
+        unsigned BRSTERR : 8; //!< [23:16] Burst Error.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved.
     } B;
 } hw_sata_bistsr_t;
@@ -1413,8 +1393,7 @@ typedef union _hw_sata_bistsr
  * Burst Error. This field contains the burst error count. It is accumulated each time a burst error
  * condition is detected: DWORD error is detected in the received frame and 1.5 seconds (27,000
  * frames) passed since the previous burst error was detected. The BRSTERR value does not roll over
- * and freezes at FFh. This field is updated when parameter (Macro configuration parm)
- * BIST_MODE=DWORD.
+ * and freezes at FFh. This field is updated when parameter BIST_MODE=DWORD.
  */
 
 #define BP_SATA_BISTSR_BRSTERR      (16)      //!< Bit position for SATA_BISTSR_BRSTERR.
@@ -1434,12 +1413,8 @@ typedef union _hw_sata_bistsr
  * Reset value: 0x00000000
  *
  * This register controls the Link layer OOB detection counters. The default values, MIN_COMWAKE,
- * MAX_COMWAKE, MIN_COMINIT and MAX_COMINIT are calculated based on the RXOOB_CLK  RXOOB_CLK_FREQ
- * parameter and loaded on power-up or asynchronous SATA block reset.   The resulting default OOB
- * spacing ranges are shown in Table 3-1. To change these ranges, the new values must be
- * recalculated based on formulas in and and loaded into the link as follows:    Set SATA_OOBR bit
- * 31 to enable other SATA_OOBR fields  Write new values to the corresponding SATA_OOBR fields
- * Generate PORT Reset (COMRESET)   Dependencies: Present only when RXOOB_CLK_MODE==Include
+ * MAX_COMWAKE, MIN_COMINIT and MAX_COMINIT are calculated based on the RXOOB_CLK parameter and
+ * loaded on power-up or asynchronous SATA block reset.
  */
 typedef union _hw_sata_oobr
 {
@@ -1450,7 +1425,7 @@ typedef union _hw_sata_oobr
         unsigned CIMIN : 8; //!< [15:8] COMINIT Minimum Value This field is RW when WE=1 and RO when WE=0.
         unsigned CWMAX : 8; //!< [23:16] COMWAKE Maximum Value This field is RW when WE=1 and RO when WE=0.
         unsigned CWMIN : 7; //!< [30:24] COMWAKE Minimum Value This field is RW when WE=1 and RO when WE=0.
-        unsigned WE : 1; //!< [31] Write Enable This bit is cleared when COMRESET is detected. The options for this field are:
+        unsigned WE : 1; //!< [31] Write Enable This bit is cleared when COMRESET is detected.
     } B;
 } hw_sata_oobr_t;
 #endif
@@ -1593,7 +1568,7 @@ typedef union _hw_sata_gpcr
     reg32_t U;
     struct _hw_sata_gpcr_bitfields
     {
-        unsigned GP_CONTROL : 32; //!< [31:0] General Purpose Control. Present only when GP_CTRL=Include(1). Reset Value: Configurable parameter GP_CTRL_DEF
+        unsigned GP_CONTROL : 32; //!< [31:0] General Purpose Control.
     } B;
 } hw_sata_gpcr_t;
 #endif
@@ -1658,7 +1633,7 @@ typedef union _hw_sata_gpsr
     reg32_t U;
     struct _hw_sata_gpsr_bitfields
     {
-        unsigned GP_STATUS : 32; //!< [31:0] General Purpose Status. Present only when GP_STAT=Include(1)
+        unsigned GP_STATUS : 32; //!< [31:0] General Purpose Status.
     } B;
 } hw_sata_gpsr_t;
 #endif
@@ -1784,19 +1759,19 @@ typedef union _hw_sata_gparam1r
     struct _hw_sata_gparam1r_bitfields
     {
         unsigned RESERVED0 : 6; //!< [5:0] Reserved.
-        unsigned M_HADDR : 1; //!< [6] AHB Master Address Bus Width This value is derived from the M_HADDR_WIDTH parameter: The options for this field are:
-        unsigned S_HADDR : 1; //!< [7] AHB Slave Address Bus Width This value is derived from the S_HADDR_WIDTH parameter: The options for this field are:
-        unsigned AHB_ENDIAN : 2; //!< [9:8] AHB Bus Endianness This value is derived from the AHB_ENDIANNESS parameter: The options for this field are:
-        unsigned RETURN_ERR : 1; //!< [10] AHB Error Response This value is derived from the RETURN_ERR_RESP parameter: The options for this field are:
-        unsigned RESERVED1 : 2; //!< [12:11] Reserved. Returns 1.
-        unsigned BIST_M : 1; //!< [13] BIST Loopback Checking Depth This value is derived from the BIST_MODE parameter. The options for this field are:
-        unsigned RESERVED2 : 1; //!< [14] Reserved. Returns 0.
-        unsigned PHY_STAT : 6; //!< [20:15] PHY Status Width 0x20 (32) PHY Status Width is 32 bits. This value reflects the PHY_STAT_W parameter.
-        unsigned PHY_CTRL : 6; //!< [26:21] PHY Control Width 0x20 (32) PHY Control Width is 32 bits. This value reflects the PHY_CTRL_W parameter.
-        unsigned PHY_RST : 1; //!< [27] PHY Reset Mode This value is derived from the PHY_RST_MODE parameter. The options for this field are:
-        unsigned PHY_DATA : 2; //!< [29:28] PHY Data Width This value is derived from the PHY_DATA_WIDTH parameter: The options for this field are: • 0x0: 1 0x1: PHY DATA WIDTH = 2 • 0x2: 4 Other values are reserved.
-        unsigned RX_BUFFER : 1; //!< [30] Rx Data Buffer This value is derived from the RX_BUFFER_MODE parameter:
-        unsigned ALIGN_M : 1; //!< [31] Rx Data Alignment This value is derived from the ALIGN_MODE parameter. The options for this field are:
+        unsigned M_HADDR : 1; //!< [6] AHB Master Address Bus Width
+        unsigned S_HADDR : 1; //!< [7] AHB Slave Address Bus Width
+        unsigned AHB_ENDIAN : 2; //!< [9:8] AHB Bus Endianness
+        unsigned RETURN_ERR : 1; //!< [10] AHB Error Response
+        unsigned RESERVED1 : 2; //!< [12:11] Reserved.
+        unsigned BIST_M : 1; //!< [13] BIST Loopback Checking Depth
+        unsigned RESERVED2 : 1; //!< [14] Reserved.
+        unsigned PHY_STAT : 6; //!< [20:15] PHY Status Width 0x20 (32) PHY Status Width is 32 bits.
+        unsigned PHY_CTRL : 6; //!< [26:21] PHY Control Width 0x20 (32) PHY Control Width is 32 bits.
+        unsigned PHY_RST : 1; //!< [27] PHY Reset Mode
+        unsigned PHY_DATA : 2; //!< [29:28] PHY Data Width 0x1: PHY DATA WIDTH = 2
+        unsigned RX_BUFFER : 1; //!< [30] Rx Data Buffer
+        unsigned ALIGN_M : 1; //!< [31] Rx Data Alignment
     } B;
 } hw_sata_gparam1r_t;
 #endif
@@ -1817,8 +1792,7 @@ typedef union _hw_sata_gparam1r
 
 /* --- Register HW_SATA_GPARAM1R, field M_HADDR[6] (RO)
  *
- * AHB Master Address Bus Width This value is derived from the M_HADDR_WIDTH parameter: The options
- * for this field are:
+ * AHB Master Address Bus Width
  *
  * Values:
  * 0 - 32 bits
@@ -1833,8 +1807,7 @@ typedef union _hw_sata_gparam1r
 
 /* --- Register HW_SATA_GPARAM1R, field S_HADDR[7] (RO)
  *
- * AHB Slave Address Bus Width This value is derived from the S_HADDR_WIDTH parameter: The options
- * for this field are:
+ * AHB Slave Address Bus Width
  *
  * Values:
  * 0 - 32 bits
@@ -1849,8 +1822,7 @@ typedef union _hw_sata_gparam1r
 
 /* --- Register HW_SATA_GPARAM1R, field AHB_ENDIAN[9:8] (RO)
  *
- * AHB Bus Endianness This value is derived from the AHB_ENDIANNESS parameter: The options for this
- * field are:
+ * AHB Bus Endianness
  *
  * Values:
  * 0 - Little Endian
@@ -1865,8 +1837,7 @@ typedef union _hw_sata_gparam1r
 
 /* --- Register HW_SATA_GPARAM1R, field RETURN_ERR[10] (RO)
  *
- * AHB Error Response This value is derived from the RETURN_ERR_RESP parameter: The options for this
- * field are:
+ * AHB Error Response
  *
  * Values:
  * 1 - True
@@ -1881,8 +1852,7 @@ typedef union _hw_sata_gparam1r
 
 /* --- Register HW_SATA_GPARAM1R, field BIST_M[13] (RO)
  *
- * BIST Loopback Checking Depth This value is derived from the BIST_MODE parameter. The options for
- * this field are:
+ * BIST Loopback Checking Depth
  *
  * Values:
  * 0 - FIS
@@ -1897,8 +1867,7 @@ typedef union _hw_sata_gparam1r
 
 /* --- Register HW_SATA_GPARAM1R, field PHY_STAT[20:15] (RO)
  *
- * PHY Status Width 0x20 (32) PHY Status Width is 32 bits. This value reflects the PHY_STAT_W
- * parameter.
+ * PHY Status Width 0x20 (32) PHY Status Width is 32 bits.
  */
 
 #define BP_SATA_GPARAM1R_PHY_STAT      (15)      //!< Bit position for SATA_GPARAM1R_PHY_STAT.
@@ -1909,8 +1878,7 @@ typedef union _hw_sata_gparam1r
 
 /* --- Register HW_SATA_GPARAM1R, field PHY_CTRL[26:21] (RO)
  *
- * PHY Control Width 0x20 (32) PHY Control Width is 32 bits. This value reflects the PHY_CTRL_W
- * parameter.
+ * PHY Control Width 0x20 (32) PHY Control Width is 32 bits.
  */
 
 #define BP_SATA_GPARAM1R_PHY_CTRL      (21)      //!< Bit position for SATA_GPARAM1R_PHY_CTRL.
@@ -1921,8 +1889,7 @@ typedef union _hw_sata_gparam1r
 
 /* --- Register HW_SATA_GPARAM1R, field PHY_RST[27] (RO)
  *
- * PHY Reset Mode This value is derived from the PHY_RST_MODE parameter. The options for this field
- * are:
+ * PHY Reset Mode
  *
  * Values:
  * 0 - Low
@@ -1937,8 +1904,7 @@ typedef union _hw_sata_gparam1r
 
 /* --- Register HW_SATA_GPARAM1R, field PHY_DATA[29:28] (RO)
  *
- * PHY Data Width This value is derived from the PHY_DATA_WIDTH parameter: The options for this
- * field are: • 0x0: 1 0x1: PHY DATA WIDTH = 2 • 0x2: 4 Other values are reserved.
+ * PHY Data Width 0x1: PHY DATA WIDTH = 2
  */
 
 #define BP_SATA_GPARAM1R_PHY_DATA      (28)      //!< Bit position for SATA_GPARAM1R_PHY_DATA.
@@ -1949,7 +1915,7 @@ typedef union _hw_sata_gparam1r
 
 /* --- Register HW_SATA_GPARAM1R, field RX_BUFFER[30] (RO)
  *
- * Rx Data Buffer This value is derived from the RX_BUFFER_MODE parameter:
+ * Rx Data Buffer
  *
  * Values:
  * 1 - Include
@@ -1964,8 +1930,7 @@ typedef union _hw_sata_gparam1r
 
 /* --- Register HW_SATA_GPARAM1R, field ALIGN_M[31] (RO)
  *
- * Rx Data Alignment This value is derived from the ALIGN_MODE parameter. The options for this field
- * are:
+ * Rx Data Alignment
  *
  * Values:
  * 0 - Misaligned
@@ -1996,13 +1961,13 @@ typedef union _hw_sata_gparam2r
     reg32_t U;
     struct _hw_sata_gparam2r_bitfields
     {
-        unsigned RXOOB_CLK : 9; //!< [8:0] Rx OOB Clock Frequency This field returns 0x32 (50 decimal) The Rx OOB clock frequency is 50 MHz. This value reflects the hexadecimal value of the RXOOB_CLK_FREQ parameter .
-        unsigned TX_OOB_M : 1; //!< [9] Tx OOB Mode This value is derived from the TX_OOB_MODE parameter: The options for this field are:
-        unsigned RX_OOB_M : 1; //!< [10] Rx OOB Mode This value is derived from the RX_OOB_MODE parameter: The options for this field are:
-        unsigned RXOOB_CLK_M : 1; //!< [11] Rx OOB Clock Mode This value is derived from the RXOOB_CLK_MODE parameter, The options for this field are:
-        unsigned ENCODE_M : 1; //!< [12] 8b/10b Encoding/Decoding This value is derived from the ENCODE_MODE parameter. The options for this field are:
-        unsigned DEV_MP : 1; //!< [13] Mechanical Presence Switch This value is derived from the DEV_MP_SWITCH parameter. The options for this field are:
-        unsigned DEV_CP : 1; //!< [14] Cold Presence Detect This value is derived from the DEV_CP_DET parameter. The options for this field are:
+        unsigned RXOOB_CLK : 9; //!< [8:0] Rx OOB Clock Frequency This field returns 0x32 (50 decimal) The Rx OOB clock frequency is 50 MHz.
+        unsigned TX_OOB_M : 1; //!< [9] Tx OOB Mode
+        unsigned RX_OOB_M : 1; //!< [10] Rx OOB Mode
+        unsigned RXOOB_CLK_M : 1; //!< [11] Rx OOB Clock Mode
+        unsigned ENCODE_M : 1; //!< [12] 8b/10b Encoding/Decoding
+        unsigned DEV_MP : 1; //!< [13] Mechanical Presence Switch
+        unsigned DEV_CP : 1; //!< [14] Cold Presence Detect
         unsigned RESERVED0 : 17; //!< [31:15] Reserved
     } B;
 } hw_sata_gparam2r_t;
@@ -2025,7 +1990,7 @@ typedef union _hw_sata_gparam2r
 /* --- Register HW_SATA_GPARAM2R, field RXOOB_CLK[8:0] (RO)
  *
  * Rx OOB Clock Frequency This field returns 0x32 (50 decimal) The Rx OOB clock frequency is 50 MHz.
- * This value reflects the hexadecimal value of the RXOOB_CLK_FREQ parameter .
+ * .
  */
 
 #define BP_SATA_GPARAM2R_RXOOB_CLK      (0)      //!< Bit position for SATA_GPARAM2R_RXOOB_CLK.
@@ -2036,7 +2001,7 @@ typedef union _hw_sata_gparam2r
 
 /* --- Register HW_SATA_GPARAM2R, field TX_OOB_M[9] (RO)
  *
- * Tx OOB Mode This value is derived from the TX_OOB_MODE parameter: The options for this field are:
+ * Tx OOB Mode
  *
  * Values:
  * 1 - Tx OOB signalling is supported
@@ -2051,7 +2016,7 @@ typedef union _hw_sata_gparam2r
 
 /* --- Register HW_SATA_GPARAM2R, field RX_OOB_M[10] (RO)
  *
- * Rx OOB Mode This value is derived from the RX_OOB_MODE parameter: The options for this field are:
+ * Rx OOB Mode
  *
  * Values:
  * 1 - Rx OOB signalling is supported
@@ -2066,8 +2031,7 @@ typedef union _hw_sata_gparam2r
 
 /* --- Register HW_SATA_GPARAM2R, field RXOOB_CLK_M[11] (RO)
  *
- * Rx OOB Clock Mode This value is derived from the RXOOB_CLK_MODE parameter, The options for this
- * field are:
+ * Rx OOB Clock Mode
  *
  * Values:
  * 1 - separate clock
@@ -2082,8 +2046,7 @@ typedef union _hw_sata_gparam2r
 
 /* --- Register HW_SATA_GPARAM2R, field ENCODE_M[12] (RO)
  *
- * 8b/10b Encoding/Decoding This value is derived from the ENCODE_MODE parameter. The options for
- * this field are:
+ * 8b/10b Encoding/Decoding
  *
  * Values:
  * 1 - 8b/10b encoding/decoding is supported
@@ -2098,8 +2061,7 @@ typedef union _hw_sata_gparam2r
 
 /* --- Register HW_SATA_GPARAM2R, field DEV_MP[13] (RO)
  *
- * Mechanical Presence Switch This value is derived from the DEV_MP_SWITCH parameter. The options
- * for this field are:
+ * Mechanical Presence Switch
  *
  * Values:
  * 0 - Mechanical presence switch is not supported
@@ -2114,8 +2076,7 @@ typedef union _hw_sata_gparam2r
 
 /* --- Register HW_SATA_GPARAM2R, field DEV_CP[14] (RO)
  *
- * Cold Presence Detect This value is derived from the DEV_CP_DET parameter. The options for this
- * field are:
+ * Cold Presence Detect
  *
  * Values:
  * 0 - cold presence detect is not supported
@@ -2146,14 +2107,14 @@ typedef union _hw_sata_pparamr
     reg32_t U;
     struct _hw_sata_pparamr_bitfields
     {
-        unsigned RXFIFO_DEPTH : 3; //!< [2:0] Rx FIFO Depth 0x4 Rx FIFO Depth set to 512 DWORDs This value is derived from the P#_RXFIFO_DEPTH parameter: The options for this field are:
-        unsigned TXFIFO_DEPTH : 3; //!< [5:3] Tx FIFO Depth 0x4 Tx FIFO Depth set to 512 DWORDs This value is derived from the P#_TXFIFO_DEPTH parameter: The options for this field are:
-        unsigned RX_MEM_S : 1; //!< [6] Rx FIFO Memory Type This value is derived from the P#_RX_MEM_SELECT parameter: The options for this field are:
-        unsigned RX_MEM_M : 1; //!< [7] Rx FIFO Memory Read Port Type This value is derived from the P#_RX_MEM_MODE parameter: The options for this field are:
-        unsigned TX_MEM_S : 1; //!< [8] Tx FIFO Memory Type This value is derived from the P#_TX_MEM_SELECT parameter: The options for this field are:
-        unsigned TX_MEM_M : 1; //!< [9] Tx FIFO Memory Read Port Type This value is derived from the P#_TX_MEM_MODE parameter: The options for this field are:
-        unsigned TX_MEM_S1 : 1; //!< [10] TX FIFO Memory This value is derived from the P0_TX_MEM_SELECT parameter. The options for this field are:
-        unsigned TX_MEM_M1 : 1; //!< [11] TX FIFO Memory Read Port Type This value is derived from the P0_TX_MEM_MODE parameter. The options for this field are:
+        unsigned RXFIFO_DEPTH : 3; //!< [2:0] Rx FIFO Depth 0x4 Rx FIFO Depth set to 512 DWORDs
+        unsigned TXFIFO_DEPTH : 3; //!< [5:3] Tx FIFO Depth 0x4 Tx FIFO Depth set to 512 DWORDs
+        unsigned RX_MEM_S : 1; //!< [6] Rx FIFO Memory Type
+        unsigned RX_MEM_M : 1; //!< [7] Rx FIFO Memory Read Port Type
+        unsigned TX_MEM_S : 1; //!< [8] Tx FIFO Memory Type
+        unsigned TX_MEM_M : 1; //!< [9] Tx FIFO Memory Read Port Type
+        unsigned TX_MEM_S1 : 1; //!< [10] TX FIFO Memory This value is derived from the P0_TX_MEM_SELECT parameter.
+        unsigned TX_MEM_M1 : 1; //!< [11] TX FIFO Memory Read Port Type This value is derived from the P0_TX_MEM_MODE parameter.
         unsigned RESERVED0 : 20; //!< [31:12] Reserved
     } B;
 } hw_sata_pparamr_t;
@@ -2175,8 +2136,7 @@ typedef union _hw_sata_pparamr
 
 /* --- Register HW_SATA_PPARAMR, field RXFIFO_DEPTH[2:0] (RO)
  *
- * Rx FIFO Depth 0x4 Rx FIFO Depth set to 512 DWORDs This value is derived from the P#_RXFIFO_DEPTH
- * parameter: The options for this field are:
+ * Rx FIFO Depth 0x4 Rx FIFO Depth set to 512 DWORDs
  */
 
 #define BP_SATA_PPARAMR_RXFIFO_DEPTH      (0)      //!< Bit position for SATA_PPARAMR_RXFIFO_DEPTH.
@@ -2187,8 +2147,7 @@ typedef union _hw_sata_pparamr
 
 /* --- Register HW_SATA_PPARAMR, field TXFIFO_DEPTH[5:3] (RO)
  *
- * Tx FIFO Depth 0x4 Tx FIFO Depth set to 512 DWORDs This value is derived from the P#_TXFIFO_DEPTH
- * parameter: The options for this field are:
+ * Tx FIFO Depth 0x4 Tx FIFO Depth set to 512 DWORDs
  */
 
 #define BP_SATA_PPARAMR_TXFIFO_DEPTH      (3)      //!< Bit position for SATA_PPARAMR_TXFIFO_DEPTH.
@@ -2199,8 +2158,7 @@ typedef union _hw_sata_pparamr
 
 /* --- Register HW_SATA_PPARAMR, field RX_MEM_S[6] (RO)
  *
- * Rx FIFO Memory Type This value is derived from the P#_RX_MEM_SELECT parameter: The options for
- * this field are:
+ * Rx FIFO Memory Type
  *
  * Values:
  * 0 - External
@@ -2215,8 +2173,7 @@ typedef union _hw_sata_pparamr
 
 /* --- Register HW_SATA_PPARAMR, field RX_MEM_M[7] (RO)
  *
- * Rx FIFO Memory Read Port Type This value is derived from the P#_RX_MEM_MODE parameter: The
- * options for this field are:
+ * Rx FIFO Memory Read Port Type
  *
  * Values:
  * 1 - Sync
@@ -2231,8 +2188,7 @@ typedef union _hw_sata_pparamr
 
 /* --- Register HW_SATA_PPARAMR, field TX_MEM_S[8] (RO)
  *
- * Tx FIFO Memory Type This value is derived from the P#_TX_MEM_SELECT parameter: The options for
- * this field are:
+ * Tx FIFO Memory Type
  *
  * Values:
  * 0 - External
@@ -2247,8 +2203,7 @@ typedef union _hw_sata_pparamr
 
 /* --- Register HW_SATA_PPARAMR, field TX_MEM_M[9] (RO)
  *
- * Tx FIFO Memory Read Port Type This value is derived from the P#_TX_MEM_MODE parameter: The
- * options for this field are:
+ * Tx FIFO Memory Read Port Type
  *
  * Values:
  * 1 - Sync
@@ -2313,7 +2268,7 @@ typedef union _hw_sata_testr
     reg32_t U;
     struct _hw_sata_testr_bitfields
     {
-        unsigned TEST_IF : 1; //!< [0] TEST_IF: Test Interface Normal operation is disabled. The following registers can be accessed in this mode: - SATA_GHC register IE bit - SATA_BISTAFR register NCP and PD bits become read-write - SATA_BISTCR register LLC, ERREN, FLIP, PV, PATTERN - SATA_BISTFCTR, SATA_BISTSR , SATA_BISTDECR become read-write - SATA_P # 0 CLB /CLBU , SATA_P # 0 FB /FBU registers - SATA_P # 0 IS register RW1C and UFS bits become read-write - SATA_P # 0 IE register - SATA_P # 0 CMD register ASP, ALPE, DLAE, ATAPI, PMA bits - SATA_P # 0 TFD, SATA_P # 0 SIG registers become read-write - SATA_P # 0 SCTL register - SATA_P # 0 SERR register RW1C bits become read-write bits - SATA_P # 0 SACT, SATA_P # 0 CI, SATA_P # 0 SNTF registers become read-write - SATA_P # 0 DMACR register - SATA_P # 0 PHYCR register - SATA_P # 0 PHYSR register becomes read-write Notes: • Interrupt is asserted when any of the SATA_IS register bits is set after setting the corresponding SATA_P # 0 IS and SATA_P # 0 IE registers and SATA_GHC[IE]=1. • SATA_CAP[SMPS], SATA_CAP[SSS], SATA_PI, SATA_P # 0 CMD[ESP], SATA_P # 0 CMD[CPD], SATA_P # 0 CMD[MPSP], and SATA_P # 0 CMD[HPCP] register bits are HwInit type and can not be used in Test mode. They are written once after power-on reset and become read-only. • Global SATA block reset must be issued (SATA_GHC[HR]=1) after TEST_WHEN bit is cleared following the Test mode operation. This bit is used to put the SATA block slave interface into the test mode: The options for this field are:
+        unsigned TEST_IF : 1; //!< [0] TEST_IF: Test Interface Normal operation is disabled.
         unsigned RESERVED0 : 15; //!< [15:1] Reserved
         unsigned PSEL : 3; //!< [18:16] Port Select This field is used to select a Port for BIST operation: The options for this field are:
         unsigned RESERVED1 : 13; //!< [31:19] Reserved
@@ -2343,20 +2298,19 @@ typedef union _hw_sata_testr
  *
  * TEST_IF: Test Interface Normal operation is disabled. The following registers can be accessed in
  * this mode: - SATA_GHC register IE bit - SATA_BISTAFR register NCP and PD bits become read-write -
- * SATA_BISTCR register LLC, ERREN, FLIP, PV, PATTERN - SATA_BISTFCTR, SATA_BISTSR , SATA_BISTDECR
- * become read-write - SATA_P # 0 CLB /CLBU , SATA_P # 0 FB /FBU registers - SATA_P # 0 IS register
- * RW1C and UFS bits become read-write - SATA_P # 0 IE register - SATA_P # 0 CMD register ASP, ALPE,
- * DLAE, ATAPI, PMA bits - SATA_P # 0 TFD, SATA_P # 0 SIG registers become read-write - SATA_P # 0
- * SCTL register - SATA_P # 0 SERR register RW1C bits become read-write bits - SATA_P # 0 SACT,
- * SATA_P # 0 CI, SATA_P # 0 SNTF registers become read-write - SATA_P # 0 DMACR register - SATA_P #
- * 0 PHYCR register - SATA_P # 0 PHYSR register becomes read-write Notes: • Interrupt is asserted
- * when any of the SATA_IS register bits is set after setting the corresponding SATA_P # 0 IS and
- * SATA_P # 0 IE registers and SATA_GHC[IE]=1. • SATA_CAP[SMPS], SATA_CAP[SSS], SATA_PI, SATA_P # 0
- * CMD[ESP], SATA_P # 0 CMD[CPD], SATA_P # 0 CMD[MPSP], and SATA_P # 0 CMD[HPCP] register bits are
- * HwInit type and can not be used in Test mode. They are written once after power-on reset and
- * become read-only. • Global SATA block reset must be issued (SATA_GHC[HR]=1) after TEST_WHEN bit
- * is cleared following the Test mode operation. This bit is used to put the SATA block slave
- * interface into the test mode: The options for this field are:
+ * SATA_BISTCR register LLC, ERREN, FLIP, PV, PATTERN - SATA_BISTFCTR, SATA_BISTSR become read-write
+ * - SATA_P 0 CLB , SATA_P 0 FB registers - SATA_P 0 IS register RW1C and UFS bits become read-write
+ * - SATA_P 0 IE register - SATA_P 0 CMD register ASP, ALPE, DLAE, ATAPI, PMA bits - SATA_P 0 TFD,
+ * SATA_P 0 SIG registers become read-write - SATA_P 0 SCTL register - SATA_P 0 SERR register RW1C
+ * bits become read-write bits - SATA_P 0 SACT, SATA_P 0 CI, SATA_P 0 SNTF registers become read-
+ * write - SATA_P 0 DMACR register - SATA_P 0 PHYCR register - SATA_P 0 PHYSR register becomes read-
+ * write Notes: • Interrupt is asserted when any of the SATA_IS register bits is set after setting
+ * the corresponding SATA_P 0 IS and SATA_P 0 IE registers and SATA_GHC[IE]=1. • SATA_CAP[SMPS],
+ * SATA_CAP[SSS], SATA_PI, SATA_P 0 CMD[ESP], SATA_P 0 CMD[CPD], SATA_P 0 CMD[MPSP], and SATA_P 0
+ * CMD[HPCP] register bits are HwInit type and can not be used in Test mode. They are written once
+ * after power-on reset and become read-only. • Global SATA block reset must be issued
+ * (SATA_GHC[HR]=1) after TEST_WHEN bit is cleared following the Test mode operation. This bit is
+ * used to put the SATA block slave interface into the test mode: The options for this field are:
  *
  * Values:
  * 0 - Normal mode: the read back value of some registers is a function of the SATA block state and does
@@ -2422,16 +2376,13 @@ typedef union _hw_sata_testr
  *
  * This 32-bit read-only register contains a hard-coded ASCII string that represents the version
  * level of the SATA block. This register contains the ASCII string "300*" (hexadecimal 0x3330302A).
- * This 32-bit read-only register contains a hard-coded component version value set by the
- * AHSATA_VERSION_NUM parameter. The value represents an ASCII code of the version number. For
- * example, version 1.24* is coded as 0x3132_342A.
  */
 typedef union _hw_sata_versionr
 {
     reg32_t U;
     struct _hw_sata_versionr_bitfields
     {
-        unsigned RESERVED0 : 32; //!< [31:0] SATA block hard-coded hexadecimal version value encoded in ASCII. Parameter AHSATA_VERSION_NUM
+        unsigned RESERVED0 : 32; //!< [31:0] SATA block hard-coded hexadecimal version value encoded in ASCII.
     } B;
 } hw_sata_versionr_t;
 #endif
@@ -2460,10 +2411,7 @@ typedef union _hw_sata_versionr
  *
  * Reset value: 0x00000000
  *
- * The algorithm for the software to determine the offset is:   Port offset = 0x100 + (PI Asserted
- * Bit Position * 0x80)    Size: 32 bits  Address offset: for # = 0 to 7:   P0CLB: 0x100  P1CLB:
- * 0x180  P2CLB: 0x200  P3CLB: 0x280  P4CLB: 0x300  P5CLB: 0x380  P6CLB: 0x400  P7CLB: 0x480
- * Read/write access: Read/write  Reset: 0x0000_0000
+
  */
 typedef union _hw_sata_p0clb
 {
@@ -2471,7 +2419,7 @@ typedef union _hw_sata_p0clb
     struct _hw_sata_p0clb_bitfields
     {
         unsigned RESERVED0 : 10; //!< [9:0] Reserved.
-        unsigned CLB : 22; //!< [31:10] Command List Base Address Indicates the 32-bit base physical address for the command list for this Port. This base is used when fetching commands to execute. The structure pointed to by this address range is 1 KB in length. This address must be 1-KB-aligned as indicated by bits [9:0] being read only.
+        unsigned CLB : 22; //!< [31:10] Command List Base Address Indicates the 32-bit base physical address for the command list for this Port.
     } B;
 } hw_sata_p0clb_t;
 #endif
@@ -2526,9 +2474,7 @@ typedef union _hw_sata_p0clb
  *
  * Reset value: 0x00000000
  *
- * Size: 32 bits  Address offset: for # = 0 to 7:   P0FB: 0x108  P1FB: 0x188  P2FB: 0x208  P3FB:
- * 0x288  P4FB: 0x308  P5FB: 0x388  P6FB: 0x408  P7FB: 0x488    Read/write access: Read/write
- * Reset: 0x0000_0000
+
  */
 typedef union _hw_sata_p0fb
 {
@@ -2536,7 +2482,7 @@ typedef union _hw_sata_p0fb
     struct _hw_sata_p0fb_bitfields
     {
         unsigned RESERVED0 : 8; //!< [7:0] Reserved.
-        unsigned FB : 24; //!< [31:8] FIS Base Address. Indicates the 32-bit base physical address for received FISes. The structure pointed to by this address range is 256 bytes in length. This address must be 256byte-aligned as indicated by bits [7:0] being read only. Reset: 0x000000
+        unsigned FB : 24; //!< [31:8] FIS Base Address.
     } B;
 } hw_sata_p0fb_t;
 #endif
@@ -2592,10 +2538,7 @@ typedef union _hw_sata_p0fb
  *
  * This register is used to generate SATA block interrupt when any of the bits are set. Bits in this
  * register are set by some internal conditions, and cleared by the software writing ones in the
- * positions it wants to clear. This register is reset on Global SATA block reset.   Size: 32 bits
- * Address offset: for # = 0 to 7:   SATA_P0IS: 0x110  P1IS: 0x190  P2IS: 0x210  P3IS: 0x290  P4IS:
- * 0x310  P5IS: 0x390  P6IS: 0x410  P7IS: 0x490    Read/write access: Read-only/Write One to Clear
- * Reset: 0x0000_0000
+ * positions it wants to clear. This register is reset on Global SATA block reset.
  */
 typedef union _hw_sata_p0is
 {
@@ -2603,23 +2546,23 @@ typedef union _hw_sata_p0is
     struct _hw_sata_p0is_bitfields
     {
         unsigned DHRS : 1; //!< [0] Device to Host Register FIS Interrupt A D2H Register FIS has been received with the 'I' bit set, and has been copied into system memory.
-        unsigned PSS : 1; //!< [1] PIO Setup FIS Interrupt. A PIO Setup FIS has been received with the 'I' bit set, it has been copied into system memory, and the data related to that FIS has been transferred. This bit is set even when the data transfer resulted in an error.
+        unsigned PSS : 1; //!< [1] PIO Setup FIS Interrupt.
         unsigned DSS : 1; //!< [2] DMA Setup FIS Interrupt A DMA Setup FIS has been received with the 'I' bit set and has been copied into system memory.
-        unsigned SDBS : 1; //!< [3] Set Device Bits Interrupt. A Set Device Bits FIS has been received with the 'I' bit set and has been copied into system memory.
-        unsigned UFS : 1; //!< [4] Unknown FIS Interrupt. When set to 1, indicates that an unknown FIS was received and has been copied into system memory. This bit is cleared to 0 by the software clearing the SATA_P # 0 SERR[DIAG_F] bit to 0. The UFS bit does not directly reflect the SATA_P # 0 SERR[DIAG_F] bit. SATA_P # 0 SERR[DIAG_F] bit is set immediately when an unknown FIS is detected, whereas the UFS bit is set when that FIS is posted to memory. The software should wait to act on an unknown FIS until the UFS bit is set to 1 or the two bits may become out of sync.
-        unsigned DPS : 1; //!< [5] Descriptor Processed A PRD with the I bit set has transferred all of its data. This is an opportunistic interrupt and must not be used to definitively indicate the end of a transfer. Two PRD interrupts could happen close in time together such that the second interrupt is missed when the first PRD interrupt is being cleared.
-        unsigned PCS : 1; //!< [6] Port Connect Change Status This bit is cleared only when SATA_P # 0 SERR[DIAG_X] is cleared. This bit reflects the state of the SATA_P # 0 SERR[DIAG_X] bit:
-        unsigned RESERVED0 : 15; //!< [21:7] Reserved. Returns 0 on read.
-        unsigned PRCS : 1; //!< [22] PHY Ready Change Status This bit reflects the state of the SATA_P # 0 SERR[DIAG_N] bit. When set to 1, indicates the internal p # 0 _phy_ready signal changed state. To clear this bit, the software must clear the SATA_P # 0 SERR[DIAG_N] bit to 0.
-        unsigned IPMS : 1; //!< [23] Incorrect Port Multiplier Status. Indicates that the HBA received a FIS from a device whose Port Multiplier field did not match what was expected. This bit may be set during enumeration of devices on a Port Multiplier due to the normal Port Multiplier enumeration process. The software must use the IPMS bit only after enumeration is complete on the Port Multiplier.
-        unsigned OFS : 1; //!< [24] Overflow Status This bit is set when command list overflow is detected during read or write operation when the software builds command table that has fever total bytes than the transaction given to the device. Port DMA transitions to a fatal state until the software clears SATA_P # 0 CMD[ST] bit or resets the interface by way of Port or Global reset.
+        unsigned SDBS : 1; //!< [3] Set Device Bits Interrupt.
+        unsigned UFS : 1; //!< [4] Unknown FIS Interrupt.
+        unsigned DPS : 1; //!< [5] Descriptor Processed A PRD with the I bit set has transferred all of its data.
+        unsigned PCS : 1; //!< [6] Port Connect Change Status This bit is cleared only when SATA_P 0 SERR[DIAG_X] is cleared.
+        unsigned RESERVED0 : 15; //!< [21:7] Reserved.
+        unsigned PRCS : 1; //!< [22] PHY Ready Change Status This bit reflects the state of the SATA_P 0 SERR[DIAG_N] bit.
+        unsigned IPMS : 1; //!< [23] Incorrect Port Multiplier Status.
+        unsigned OFS : 1; //!< [24] Overflow Status This bit is set when command list overflow is detected during read or write operation when the software builds command table that has fever total bytes than the transaction given to the device.
         unsigned RESERVED1 : 1; //!< [25] Reserved
-        unsigned INFS : 1; //!< [26] Interface Non-fatal Error Status This bit is set when any of the following conditions is detected: • One or more of the following errors are detected during non-data FIS transfer - 10B to 8B Decode Error (SATA_P # 0 SERR[DIAG_B]) - Protocol (SATA_P # 0 SERR[ERR_P]) - CRC (SATA_P # 0 SERR[DIAG_C]), - Handshake (SATA_P # 0 SERR[DIAG_H]) - PHY Not Ready (SATA_P # 0 SERR[ERR_C]); • Command list underflow during read operation (i.e. DMA read) when the software builds command table that has more total bytes than the transaction given to the device.
-        unsigned IFS : 1; //!< [27] Interface Fatal Error Status This bit is set when any of the following conditions is detected: • SYNC escape is received from the device during H2D Register or Data FIS transmission; • One or more of the following errors are detected during Data FIS transfer: - 10B to 8B Decode Error (SATA_P # 0 SERR[DIAG_B]) - Protocol (SATA_P # 0 SERR[ERR_P]) - CRC (SATA_P # 0 SERR[DIAG_C]) - Handshake (SATA_P # 0 SERR[DIAG_H]) - PHY Not Ready (SATA_P # 0 SERR[ERR_C]) • Unknown FIS is received with good CRC, but the length exceeds 64 bytes; • PRD table byte count is zero. Port DMA transitions to a fatal state until the software clears SATA_P # 0 CMD[ST] bit or resets the interface by way of Port or Global reset.
-        unsigned HBDS : 1; //!< [28] Host Bus Data Error Status. This bit is always cleared to 0.
-        unsigned HBFS : 1; //!< [29] Host Bus Fatal Error Status. This bit is set when SATA block AHB Master detects an ERROR response from the slave.
-        unsigned TFES : 1; //!< [30] Task File Error Status. This bit is set whenever the SATA_P # 0 TFD[STS] register is updated by the device and the error bit (bit 0) is set.
-        unsigned RESERVED2 : 1; //!< [31] Reserved. Returns 0 on read.
+        unsigned INFS : 1; //!< [26] Interface Non-fatal Error Status This bit is set when any of the following conditions is detected: • One or more of the following errors are detected during non-data FIS transfer - 10B to 8B Decode Error (SATA_P 0 SERR[DIAG_B]) - Protocol (SATA_P 0 SERR[ERR_P]) - CRC (SATA_P 0 SERR[DIAG_C]), - Handshake (SATA_P 0 SERR[DIAG_H]) - PHY Not Ready (SATA_P 0 SERR[ERR_C]); • Command list underflow during read operation (i.e.
+        unsigned IFS : 1; //!< [27] Interface Fatal Error Status This bit is set when any of the following conditions is detected: • SYNC escape is received from the device during H2D Register or Data FIS transmission; • One or more of the following errors are detected during Data FIS transfer: - 10B to 8B Decode Error (SATA_P 0 SERR[DIAG_B]) - Protocol (SATA_P 0 SERR[ERR_P]) - CRC (SATA_P 0 SERR[DIAG_C]) - Handshake (SATA_P 0 SERR[DIAG_H]) - PHY Not Ready (SATA_P 0 SERR[ERR_C]) • Unknown FIS is received with good CRC, but the length exceeds 64 bytes; • PRD table byte count is zero.
+        unsigned HBDS : 1; //!< [28] Host Bus Data Error Status.
+        unsigned HBFS : 1; //!< [29] Host Bus Fatal Error Status.
+        unsigned TFES : 1; //!< [30] Task File Error Status.
+        unsigned RESERVED2 : 1; //!< [31] Reserved.
     } B;
 } hw_sata_p0is_t;
 #endif
@@ -2694,11 +2637,11 @@ typedef union _hw_sata_p0is
 /* --- Register HW_SATA_P0IS, field UFS[4] (RO)
  *
  * Unknown FIS Interrupt. When set to 1, indicates that an unknown FIS was received and has been
- * copied into system memory. This bit is cleared to 0 by the software clearing the SATA_P # 0
- * SERR[DIAG_F] bit to 0. The UFS bit does not directly reflect the SATA_P # 0 SERR[DIAG_F] bit.
- * SATA_P # 0 SERR[DIAG_F] bit is set immediately when an unknown FIS is detected, whereas the UFS
- * bit is set when that FIS is posted to memory. The software should wait to act on an unknown FIS
- * until the UFS bit is set to 1 or the two bits may become out of sync.
+ * copied into system memory. This bit is cleared to 0 by the software clearing the SATA_P 0
+ * SERR[DIAG_F] bit to 0. The UFS bit does not directly reflect the SATA_P 0 SERR[DIAG_F] bit.
+ * SATA_P 0 SERR[DIAG_F] bit is set immediately when an unknown FIS is detected, whereas the UFS bit
+ * is set when that FIS is posted to memory. The software should wait to act on an unknown FIS until
+ * the UFS bit is set to 1 or the two bits may become out of sync.
  */
 
 #define BP_SATA_P0IS_UFS      (4)      //!< Bit position for SATA_P0IS_UFS.
@@ -2723,8 +2666,8 @@ typedef union _hw_sata_p0is
 
 /* --- Register HW_SATA_P0IS, field PCS[6] (RO)
  *
- * Port Connect Change Status This bit is cleared only when SATA_P # 0 SERR[DIAG_X] is cleared. This
- * bit reflects the state of the SATA_P # 0 SERR[DIAG_X] bit:
+ * Port Connect Change Status This bit is cleared only when SATA_P 0 SERR[DIAG_X] is cleared. This
+ * bit reflects the state of the SATA_P 0 SERR[DIAG_X] bit:
  *
  * Values:
  * 0 - No change in Current Connect Status.
@@ -2740,9 +2683,9 @@ typedef union _hw_sata_p0is
 
 /* --- Register HW_SATA_P0IS, field PRCS[22] (RO)
  *
- * PHY Ready Change Status This bit reflects the state of the SATA_P # 0 SERR[DIAG_N] bit. When set
- * to 1, indicates the internal p # 0 _phy_ready signal changed state. To clear this bit, the
- * software must clear the SATA_P # 0 SERR[DIAG_N] bit to 0.
+ * PHY Ready Change Status This bit reflects the state of the SATA_P 0 SERR[DIAG_N] bit. When set to
+ * 1, indicates the internal p 0 _phy_ready signal changed state. To clear this bit, the software
+ * must clear the SATA_P 0 SERR[DIAG_N] bit to 0.
  */
 
 #define BP_SATA_P0IS_PRCS      (22)      //!< Bit position for SATA_P0IS_PRCS.
@@ -2769,7 +2712,7 @@ typedef union _hw_sata_p0is
  *
  * Overflow Status This bit is set when command list overflow is detected during read or write
  * operation when the software builds command table that has fever total bytes than the transaction
- * given to the device. Port DMA transitions to a fatal state until the software clears SATA_P # 0
+ * given to the device. Port DMA transitions to a fatal state until the software clears SATA_P 0
  * CMD[ST] bit or resets the interface by way of Port or Global reset.
  */
 
@@ -2783,9 +2726,9 @@ typedef union _hw_sata_p0is
  *
  * Interface Non-fatal Error Status This bit is set when any of the following conditions is
  * detected: • One or more of the following errors are detected during non-data FIS transfer - 10B
- * to 8B Decode Error (SATA_P # 0 SERR[DIAG_B]) - Protocol (SATA_P # 0 SERR[ERR_P]) - CRC (SATA_P #
- * 0 SERR[DIAG_C]), - Handshake (SATA_P # 0 SERR[DIAG_H]) - PHY Not Ready (SATA_P # 0 SERR[ERR_C]);
- * • Command list underflow during read operation (i.e. DMA read) when the software builds command
+ * to 8B Decode Error (SATA_P 0 SERR[DIAG_B]) - Protocol (SATA_P 0 SERR[ERR_P]) - CRC (SATA_P 0
+ * SERR[DIAG_C]), - Handshake (SATA_P 0 SERR[DIAG_H]) - PHY Not Ready (SATA_P 0 SERR[ERR_C]); •
+ * Command list underflow during read operation (i.e. DMA read) when the software builds command
  * table that has more total bytes than the transaction given to the device.
  */
 
@@ -2800,10 +2743,10 @@ typedef union _hw_sata_p0is
  * Interface Fatal Error Status This bit is set when any of the following conditions is detected: •
  * SYNC escape is received from the device during H2D Register or Data FIS transmission; • One or
  * more of the following errors are detected during Data FIS transfer: - 10B to 8B Decode Error
- * (SATA_P # 0 SERR[DIAG_B]) - Protocol (SATA_P # 0 SERR[ERR_P]) - CRC (SATA_P # 0 SERR[DIAG_C]) -
- * Handshake (SATA_P # 0 SERR[DIAG_H]) - PHY Not Ready (SATA_P # 0 SERR[ERR_C]) • Unknown FIS is
+ * (SATA_P 0 SERR[DIAG_B]) - Protocol (SATA_P 0 SERR[ERR_P]) - CRC (SATA_P 0 SERR[DIAG_C]) -
+ * Handshake (SATA_P 0 SERR[DIAG_H]) - PHY Not Ready (SATA_P 0 SERR[ERR_C]) • Unknown FIS is
  * received with good CRC, but the length exceeds 64 bytes; • PRD table byte count is zero. Port DMA
- * transitions to a fatal state until the software clears SATA_P # 0 CMD[ST] bit or resets the
+ * transitions to a fatal state until the software clears SATA_P 0 CMD[ST] bit or resets the
  * interface by way of Port or Global reset.
  */
 
@@ -2838,8 +2781,8 @@ typedef union _hw_sata_p0is
 
 /* --- Register HW_SATA_P0IS, field TFES[30] (RO)
  *
- * Task File Error Status. This bit is set whenever the SATA_P # 0 TFD[STS] register is updated by
- * the device and the error bit (bit 0) is set.
+ * Task File Error Status. This bit is set whenever the SATA_P 0 TFD[STS] register is updated by the
+ * device and the error bit (bit 0) is set.
  */
 
 #define BP_SATA_P0IS_TFES      (30)      //!< Bit position for SATA_P0IS_TFES.
@@ -2861,34 +2804,32 @@ typedef union _hw_sata_p0is
  * This register enables and disables the reporting of the corresponding interrupt to the software.
  * When a bit is set (1), and the corresponding interrupt condition is active, then the SATA block
  * intrq output is asserted. Interrupt sources that are disabled (0) are still reflected in the
- * status registers. This register is symmetrical with the SATA_P #  0 IS register. This register is
- * reset on Global SATA block reset.   Size: 32 bits  Address offset: for # = 0 to 7:   P0IE: 0x114
- * P0IE: 0x194  P0IE: 0x214  P0IE: 0x294  P0IE: 0x314  P0IE: 0x394  P0IE: 0x414  P0IE: 0x494
- * Read/write access: Read/write  Reset: 0x0000_0000
+ * status registers. This register is symmetrical with the SATA_P 0 IS register. This register is
+ * reset on Global SATA block reset.
  */
 typedef union _hw_sata_p0ie
 {
     reg32_t U;
     struct _hw_sata_p0ie_bitfields
     {
-        unsigned DHRE : 1; //!< [0] Device to Host Register FIS Interrupt Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[DHRS]=1
-        unsigned PSE : 1; //!< [1] PIO Setup FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[PSS]=1
-        unsigned DSE : 1; //!< [2] DMA Setup FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[DSS]=1
-        unsigned SDBE : 1; //!< [3] Set Device Bits FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[SDBS]=1
-        unsigned UFE : 1; //!< [4] Unknown FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[UFS]=1
-        unsigned DPE : 1; //!< [5] Descriptor Processed Interrupt Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[DPS]=1
-        unsigned PCE : 1; //!< [6] Port Change Interrupt Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[PCS]=1
+        unsigned DHRE : 1; //!< [0] Device to Host Register FIS Interrupt Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[DHRS]=1
+        unsigned PSE : 1; //!< [1] PIO Setup FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[PSS]=1
+        unsigned DSE : 1; //!< [2] DMA Setup FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[DSS]=1
+        unsigned SDBE : 1; //!< [3] Set Device Bits FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[SDBS]=1
+        unsigned UFE : 1; //!< [4] Unknown FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[UFS]=1
+        unsigned DPE : 1; //!< [5] Descriptor Processed Interrupt Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[DPS]=1
+        unsigned PCE : 1; //!< [6] Port Change Interrupt Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[PCS]=1
         unsigned RESERVED0 : 15; //!< [21:7] Reserved.
-        unsigned PRCE : 1; //!< [22] PHY Ready Change Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[PRCS]=1
-        unsigned IPME : 1; //!< [23] Incorrect Port Multiplier Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[IPMS]=1
-        unsigned OFE : 1; //!< [24] Overflow Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[OFS]=1
+        unsigned PRCE : 1; //!< [22] PHY Ready Change Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[PRCS]=1
+        unsigned IPME : 1; //!< [23] Incorrect Port Multiplier Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[IPMS]=1
+        unsigned OFE : 1; //!< [24] Overflow Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[OFS]=1
         unsigned RESERVED1 : 1; //!< [25] Reserved
-        unsigned INFE : 1; //!< [26] Interface Non-Fatal Error Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[INFS]=1
-        unsigned IFE : 1; //!< [27] Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[IFS]=1
-        unsigned HBDE : 1; //!< [28] Host Bus Data Error Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[HBDS]=1
-        unsigned HBFE : 1; //!< [29] Host Bus Fatal Error Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[HBFS]=1
-        unsigned TFEE : 1; //!< [30] Task File Error Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[TFES]=1
-        unsigned CPDE : 1; //!< [31] Cold Port Detect Enable Read-only. Returns 0. The options for this field are: • When DEV_CP_DET=Include, this bit is read/write. • When DEV_CP_DET=Exclude, this bit is read-only 0. Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • P#IS[CPDS]=1
+        unsigned INFE : 1; //!< [26] Interface Non-Fatal Error Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[INFS]=1
+        unsigned IFE : 1; //!< [27] Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[IFS]=1
+        unsigned HBDE : 1; //!< [28] Host Bus Data Error Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[HBDS]=1
+        unsigned HBFE : 1; //!< [29] Host Bus Fatal Error Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[HBFS]=1
+        unsigned TFEE : 1; //!< [30] Task File Error Enable Dependencies: when the following conditions are true, the intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[TFES]=1
+        unsigned CPDE : 1; //!< [31] Cold Port Detect Enable Read-only.
     } B;
 } hw_sata_p0ie_t;
 #endif
@@ -2914,7 +2855,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field DHRE[0] (RW)
  *
  * Device to Host Register FIS Interrupt Dependencies: when the following conditions are true, the
- * intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[DHRS]=1
+ * intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[DHRS]=1
  */
 
 #define BP_SATA_P0IE_DHRE      (0)      //!< Bit position for SATA_P0IE_DHRE.
@@ -2934,7 +2875,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field PSE[1] (RW)
  *
  * PIO Setup FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq
- * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[PSS]=1
+ * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[PSS]=1
  */
 
 #define BP_SATA_P0IE_PSE      (1)      //!< Bit position for SATA_P0IE_PSE.
@@ -2954,7 +2895,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field DSE[2] (RW)
  *
  * DMA Setup FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq
- * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[DSS]=1
+ * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[DSS]=1
  */
 
 #define BP_SATA_P0IE_DSE      (2)      //!< Bit position for SATA_P0IE_DSE.
@@ -2974,7 +2915,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field SDBE[3] (RW)
  *
  * Set Device Bits FIS Interrupt Enable Dependencies: when the following conditions are true, the
- * intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[SDBS]=1
+ * intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[SDBS]=1
  */
 
 #define BP_SATA_P0IE_SDBE      (3)      //!< Bit position for SATA_P0IE_SDBE.
@@ -2994,7 +2935,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field UFE[4] (RW)
  *
  * Unknown FIS Interrupt Enable Dependencies: when the following conditions are true, the intrq
- * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[UFS]=1
+ * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[UFS]=1
  */
 
 #define BP_SATA_P0IE_UFE      (4)      //!< Bit position for SATA_P0IE_UFE.
@@ -3014,7 +2955,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field DPE[5] (RW)
  *
  * Descriptor Processed Interrupt Enable Dependencies: when the following conditions are true, the
- * intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[DPS]=1
+ * intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[DPS]=1
  */
 
 #define BP_SATA_P0IE_DPE      (5)      //!< Bit position for SATA_P0IE_DPE.
@@ -3034,7 +2975,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field PCE[6] (RW)
  *
  * Port Change Interrupt Enable Dependencies: when the following conditions are true, the intrq
- * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[PCS]=1
+ * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[PCS]=1
  */
 
 #define BP_SATA_P0IE_PCE      (6)      //!< Bit position for SATA_P0IE_PCE.
@@ -3054,7 +2995,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field PRCE[22] (RW)
  *
  * PHY Ready Change Enable Dependencies: when the following conditions are true, the intrq output
- * signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[PRCS]=1
+ * signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[PRCS]=1
  */
 
 #define BP_SATA_P0IE_PRCE      (22)      //!< Bit position for SATA_P0IE_PRCE.
@@ -3074,7 +3015,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field IPME[23] (RW)
  *
  * Incorrect Port Multiplier Enable Dependencies: when the following conditions are true, the intrq
- * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[IPMS]=1
+ * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[IPMS]=1
  */
 
 #define BP_SATA_P0IE_IPME      (23)      //!< Bit position for SATA_P0IE_IPME.
@@ -3094,7 +3035,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field OFE[24] (RW)
  *
  * Overflow Enable Dependencies: when the following conditions are true, the intrq output signal is
- * asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[OFS]=1
+ * asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[OFS]=1
  */
 
 #define BP_SATA_P0IE_OFE      (24)      //!< Bit position for SATA_P0IE_OFE.
@@ -3114,7 +3055,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field INFE[26] (RW)
  *
  * Interface Non-Fatal Error Enable Dependencies: when the following conditions are true, the intrq
- * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[INFS]=1
+ * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[INFS]=1
  */
 
 #define BP_SATA_P0IE_INFE      (26)      //!< Bit position for SATA_P0IE_INFE.
@@ -3134,7 +3075,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field IFE[27] (RW)
  *
  * Dependencies: when the following conditions are true, the intrq output signal is asserted: • This
- * bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[IFS]=1
+ * bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[IFS]=1
  */
 
 #define BP_SATA_P0IE_IFE      (27)      //!< Bit position for SATA_P0IE_IFE.
@@ -3154,7 +3095,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field HBDE[28] (RW)
  *
  * Host Bus Data Error Enable Dependencies: when the following conditions are true, the intrq output
- * signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[HBDS]=1
+ * signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[HBDS]=1
  */
 
 #define BP_SATA_P0IE_HBDE      (28)      //!< Bit position for SATA_P0IE_HBDE.
@@ -3174,7 +3115,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field HBFE[29] (RW)
  *
  * Host Bus Fatal Error Enable Dependencies: when the following conditions are true, the intrq
- * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[HBFS]=1
+ * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[HBFS]=1
  */
 
 #define BP_SATA_P0IE_HBFE      (29)      //!< Bit position for SATA_P0IE_HBFE.
@@ -3194,7 +3135,7 @@ typedef union _hw_sata_p0ie
 /* --- Register HW_SATA_P0IE, field TFEE[30] (RW)
  *
  * Task File Error Enable Dependencies: when the following conditions are true, the intrq output
- * signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P # 0 IS[TFES]=1
+ * signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[TFES]=1
  */
 
 #define BP_SATA_P0IE_TFEE      (30)      //!< Bit position for SATA_P0IE_TFEE.
@@ -3213,10 +3154,7 @@ typedef union _hw_sata_p0ie
 
 /* --- Register HW_SATA_P0IE, field CPDE[31] (RW)
  *
- * Cold Port Detect Enable Read-only. Returns 0. The options for this field are: • When
- * DEV_CP_DET=Include, this bit is read/write. • When DEV_CP_DET=Exclude, this bit is read-only 0.
- * Dependencies: when the following conditions are true, the intrq output signal is asserted: • This
- * bit=1 • SATA_GHC[IE]=1 • P#IS[CPDS]=1
+ * Cold Port Detect Enable Read-only. Returns 0.
  */
 
 #define BP_SATA_P0IE_CPDE      (31)      //!< Bit position for SATA_P0IE_CPDE.
@@ -3244,37 +3182,35 @@ typedef union _hw_sata_p0ie
  * Reset value: 0x00000000
  *
  * This register contains bits controlling various Port functions. All RW bits are reset on Global
- * reset.   Size: 32 bits  Address offset: for # = 0 to 7:  P0CMD: 0x118  P1CMD: 0x198  P2CMD: 0x218
- * P3CMD: 0x298  P4CMD: 0x318  P5CMD: 0x398  P6CMD: 0x418  P7CMD: 0x498    Read/write access: (See
- * table below)  Reset: 0x0000_0000
+ * reset.
  */
 typedef union _hw_sata_p0cmd
 {
     reg32_t U;
     struct _hw_sata_p0cmd_bitfields
     {
-        unsigned ST : 1; //!< [0] Start When set to 1, the Port processes the command list. When cleared, the Port does not process the command list. Whenever this bit is changed from a 0 to a 1, the Port starts processing the command list at entry'0. Whenever this bit is changed from a 1 to a 0, the SATA_P # 0 CI register is cleared by the Port upon transition into an idle state. Refer to AHCI specification, section 10.3.1, for important restrictions on when this bit can be set to 1. Note: SATA_P # 0 SERR register must be cleared prior to setting ST bit to 1.
-        unsigned SUD : 1; //!< [1] Spin-Up Device This bit is read/write when staggered spin-up is supported as indicated by the SATA_CAP[SSS]=1. This bit is read-only 1 when staggered spin-up is not supported and SATA_CAP[SSS]=0. On an edge detect from 0 to 1, the Port starts a COMRESET initialization sequence to the device. Clearing this bit causes no action on the interface. Note: The SUD bit is read-only 0 on power-up until SATA_CAP[SSS] bit is written with the required value.
-        unsigned POD : 1; //!< [2] Power On Device This bit is read/write when cold presence detection is supported on this Port as indicated by SATA_P # 0 CMD[CPD]=1. This bit is read-only 1 when cold presence detection is not supported and SATA_P # 0 CMD[CPD]=0. When set, the Port asserts the p # 0 _cp_pod output pin so that it may be used to provide power to a cold-presence detectable Port.
-        unsigned CLO : 1; //!< [3] Command List Override Setting this bit to 1 causes the SATA_P # 0 TFD[STS] field BSY bit and the SATA_P # 0 TFD[STS] field DRQ bit to be cleared. This allows a software reset to be transmitted to the device regardless of whether the BSY and DRQ bits are still set in the SATA_P # 0 TFD[STS] field. This bit is cleared to 0 when SATA_P # 0 TFD[STS] BSY bit and SATA_P # 0 TFD[STS] DRQ bit have been cleared. A write to this register with a value of '0' has no effect. This bit should only be set to 1 immediately prior to setting SATA_P # 0 CMD[ST] bit to 1 from a previous value of 0. Setting this bit to 1 at any other time is not supported and results in indeterminate behavior.
-        unsigned FRE : 1; //!< [4] FIS Receive Enable When set to 1, the Port may post received FISes into the FIS receive area pointed to by SATA_P # 0 FB (and P#FBU when M_HADDR_WIDTH=64) . When cleared, received FISes are not accepted by the Port, except for the first D2H register FIS after the initialization sequence, and no FISes are posted to the FIS receive area. The software must not set this bit until SATA_P # 0 FB (P#FBU) has been programmed with a valid pointer to the FIS receive area When the software wishes to move the base, this bit must first be cleared, and the software must wait for the SATA_P # 0 CMD[FR] bit to be cleared.
+        unsigned ST : 1; //!< [0] Start When set to 1, the Port processes the command list.
+        unsigned SUD : 1; //!< [1] Spin-Up Device This bit is read/write when staggered spin-up is supported as indicated by the SATA_CAP[SSS]=1.
+        unsigned POD : 1; //!< [2] Power On Device This bit is read/write when cold presence detection is supported on this Port as indicated by SATA_P 0 CMD[CPD]=1.
+        unsigned CLO : 1; //!< [3] Command List Override Setting this bit to 1 causes the SATA_P 0 TFD[STS] field BSY bit and the SATA_P 0 TFD[STS] field DRQ bit to be cleared.
+        unsigned FRE : 1; //!< [4] FIS Receive Enable When set to 1, the Port may post received FISes into the FIS receive area pointed to by SATA_P 0 FB .
         unsigned RESERVED0 : 3; //!< [7:5] Reserved.
-        unsigned CCS : 5; //!< [12:8] Current Command Slot This field is set to the command slot value value of the command that is currently being issued by the Port. • When SATA_P # 0 CMD[ST] transitions from 1 to 0, this field is recleared to 0x00. • After SATA_P # 0 CMD[ST] transitions from 0 to 1, the highest priority slot to issue from next is command slot 0. After the first command has been issued, the highest priority slot to issue from next is SATA_P # 0 CMD[CCS]+1.For example, after the Port has issued its first command, when CCS=0x00 and SATA_P # 0 CI is cleared to 0x3, the next command issued is from command slot 1. This field is valid only when SATA_P # 0 CMD[ST] is set to 1.
-        unsigned MPSS : 1; //!< [13] Mechanical Presence Switch State The software must use this bit only when both SATA_CAP[SMPS] and SATA_P # 0 CMD[MPSP] are set. This bit reports the state of a mechanical presence switch attached to this Port as indicated by the p # 0 _mp_switch input state (assuming SATA_CAP[SMPS]=1 and SATA_P # 0 CMD[MPSP]=1). The options for this field are: When SATA_CAP[SMPS]=0 then this bit is cleared to 0.
-        unsigned FR : 1; //!< [14] FIS Receive Running When set to '1', the FIS Receive DMA engine for the Port is running. See AHCI specification section 10.3.2 for details on when this bit is set and cleared by the Port.
-        unsigned CR : 1; //!< [15] Command List Running When this bit is set to '1', the command list DMA engine for this Port is running. See AHCI state machine in AHCI specification section 5.3.2 (this is a reference to an external document) for details on when this bit is set and cleared by the Port.
-        unsigned CPS : 1; //!< [16] Cold Presence State This bit reports whether a device is currently detected on this Port as indicated by the p # 0 _cp_det input state (assuming SATA_P # 0 CMD[CPD]=1). The options for this field are:
-        unsigned PMA : 1; //!< [17] Port Multiplier Attached The software is responsible for detecting whether a Port Multiplier is present; the SATA block Port does not auto-detect the presence of a Port Multiplier. The options for this field are:
-        unsigned HPCP : 1; //!< [18] Hot Plug Capable Port The HPCP bit is mutually exclusive with SATA_P # 0 CMD[ESP]. The options for this field are:
+        unsigned CCS : 5; //!< [12:8] Current Command Slot This field is set to the command slot value value of the command that is currently being issued by the Port.
+        unsigned MPSS : 1; //!< [13] Mechanical Presence Switch State The software must use this bit only when both SATA_CAP[SMPS] and SATA_P 0 CMD[MPSP] are set.
+        unsigned FR : 1; //!< [14] FIS Receive Running When set to '1', the FIS Receive DMA engine for the Port is running.
+        unsigned CR : 1; //!< [15] Command List Running When this bit is set to '1', the command list DMA engine for this Port is running.
+        unsigned CPS : 1; //!< [16] Cold Presence State This bit reports whether a device is currently detected on this Port as indicated by the p 0 _cp_det input state (assuming SATA_P 0 CMD[CPD]=1).
+        unsigned PMA : 1; //!< [17] Port Multiplier Attached The software is responsible for detecting whether a Port Multiplier is present; the SATA block Port does not auto-detect the presence of a Port Multiplier.
+        unsigned HPCP : 1; //!< [18] Hot Plug Capable Port The HPCP bit is mutually exclusive with SATA_P 0 CMD[ESP].
         unsigned RESERVED1 : 2; //!< [20:19] Reserved.
-        unsigned ESP : 1; //!< [21] External SATA Port When set to 1, indicates that this Port's signal only connector is externally accessible. When set to 1, SATA_CAP[SXS] is also set to 1. When cleared to 0, indicates that this Port's signal only connector is not externally accessible. Note: The ESP bit is mutually exclusive with SATA_P # 0 CMD[HPCP]
+        unsigned ESP : 1; //!< [21] External SATA Port When set to 1, indicates that this Port's signal only connector is externally accessible.
         unsigned RESERVED2 : 1; //!< [22] Reserved
-        unsigned APSTE : 1; //!< [23] Device is ATAPI This bit is used by the Port to control whether to assert p # 0 _act_led output when commands are active (see " ) . The options for this field are:
-        unsigned ATAPI : 1; //!< [24] ATAPI Device is ATAPI This bit is used by the Port to control whether to assert p # 0 _act_led output when commands are active (see " ) . The options for this field are:
-        unsigned DLAE : 1; //!< [25] Drive LED on ATAPI Enable When set to 1, SATA_P # 0 CMD[ATAPI]=1, and commands are active, the Port asserts p # 0 _act_led output (see " ) .
-        unsigned ALPE : 1; //!< [26] Aggressive Link Power Management Enable When set to 1, the Port aggressively enters a lower link power state (PARTIAL or SLUMBER) based on the setting of the SATA_P # 0 CMD[ASP] bit. When cleared to 0, aggressive power management state transition is disabled.
-        unsigned ASP : 1; //!< [27] Aggressive Slumber/ Partial The options for this field are: • When set to 1, and SATA_P # 0 CMD[ALPE]=1, the Port aggressively enters the SLUMBER state when one of the following conditions is true: - The Port clears the SATA_P # 0 CI and the SATA_P # 0 SACT register is cleared. - The Port clears the SATA_P # 0 SACT register and SATA_P # 0 CI is cleared. • When cleared to 0, and SATA_P # 0 CMD[ALPE]=1, the Port aggressively enters the PARTIAL state when one of the following conditions is true: - The Port clears the SATA_P # 0 CI register and the SATA_P # 0 SACT register is cleared. - The Port clears the SATA_P # 0 SACT register and SATA_P # 0 CI is cleared.
-        unsigned ICC : 4; //!< [31:28] Interface Communication Control This field is used to control power management states of the interface. When the Link layer is currently in the L_IDLE state, writes to this field cause the Port to initiate a transition to the interface power management state requested. When the Link layer is not currently in the L_IDLE state, writes to this field have no effect. • 0xF-0x7: Reserved • 0x6: Slumber. This causes the Port to request a transition of the interface to the Slumber state. The SATA device can reject the request and the interface remains in its current state. • 0x5-0x3: Reserved • 0x2: Partial. This causes the Port to request a transition of the interface to the Partial state. The SATA device can reject the request and the interface remains in its current state. • 0x1: Active. This causes the Port to request a transition of the interface into the active state. • 0x0: No-Op/ Idle. This value indicates to the software that the Port # 0 is ready to accept a new interface control command, although the transition to the previously selected state may not yet have occurred. When the software writes a non-reserved value other than No-Op (0x0), the Port performs the action and update this field back to Idle (0x0). When the software writes to this field to change the state to a state the link is already in (i.e., interface is in the active state and a request is made to go to the active state), the Port takes no action and returns this field to Idle. When the interface is in a low power state and the software wants to transition to a different low power state, the software must first bring the link to active and then initiate the transition to the desired low power state.
+        unsigned APSTE : 1; //!< [23] Device is ATAPI This bit is used by the Port to control whether to assert p 0 _act_led output when commands are active.
+        unsigned ATAPI : 1; //!< [24] ATAPI Device is ATAPI This bit is used by the Port to control whether to assert p 0 _act_led output when commands are active.
+        unsigned DLAE : 1; //!< [25] Drive LED on ATAPI Enable When set to 1, SATA_P 0 CMD[ATAPI]=1, and commands are active, the Port asserts p 0 _act_led output.
+        unsigned ALPE : 1; //!< [26] Aggressive Link Power Management Enable When set to 1, the Port aggressively enters a lower link power state (PARTIAL or SLUMBER) based on the setting of the SATA_P 0 CMD[ASP] bit.
+        unsigned ASP : 1; //!< [27] Aggressive Slumber/ Partial The options for this field are: • When set to 1, and SATA_P 0 CMD[ALPE]=1, the Port aggressively enters the SLUMBER state when one of the following conditions is true: - The Port clears the SATA_P 0 CI and the SATA_P 0 SACT register is cleared.
+        unsigned ICC : 4; //!< [31:28] Interface Communication Control This field is used to control power management states of the interface.
     } B;
 } hw_sata_p0cmd_t;
 #endif
@@ -3301,10 +3237,10 @@ typedef union _hw_sata_p0cmd
  *
  * Start When set to 1, the Port processes the command list. When cleared, the Port does not process
  * the command list. Whenever this bit is changed from a 0 to a 1, the Port starts processing the
- * command list at entry'0. Whenever this bit is changed from a 1 to a 0, the SATA_P # 0 CI register
+ * command list at entry'0. Whenever this bit is changed from a 1 to a 0, the SATA_P 0 CI register
  * is cleared by the Port upon transition into an idle state. Refer to AHCI specification, section
- * 10.3.1, for important restrictions on when this bit can be set to 1. Note: SATA_P # 0 SERR
- * register must be cleared prior to setting ST bit to 1.
+ * 10.3.1, for important restrictions on when this bit can be set to 1. Note: SATA_P 0 SERR register
+ * must be cleared prior to setting ST bit to 1.
  */
 
 #define BP_SATA_P0CMD_ST      (0)      //!< Bit position for SATA_P0CMD_ST.
@@ -3347,9 +3283,9 @@ typedef union _hw_sata_p0cmd
 /* --- Register HW_SATA_P0CMD, field POD[2] (RW)
  *
  * Power On Device This bit is read/write when cold presence detection is supported on this Port as
- * indicated by SATA_P # 0 CMD[CPD]=1. This bit is read-only 1 when cold presence detection is not
- * supported and SATA_P # 0 CMD[CPD]=0. When set, the Port asserts the p # 0 _cp_pod output pin so
- * that it may be used to provide power to a cold-presence detectable Port.
+ * indicated by SATA_P 0 CMD[CPD]=1. This bit is read-only 1 when cold presence detection is not
+ * supported and SATA_P 0 CMD[CPD]=0. When set, the Port asserts the p 0 _cp_pod output pin so that
+ * it may be used to provide power to a cold-presence detectable Port.
  */
 
 #define BP_SATA_P0CMD_POD      (2)      //!< Bit position for SATA_P0CMD_POD.
@@ -3368,14 +3304,13 @@ typedef union _hw_sata_p0cmd
 
 /* --- Register HW_SATA_P0CMD, field CLO[3] (RW)
  *
- * Command List Override Setting this bit to 1 causes the SATA_P # 0 TFD[STS] field BSY bit and the
- * SATA_P # 0 TFD[STS] field DRQ bit to be cleared. This allows a software reset to be transmitted
- * to the device regardless of whether the BSY and DRQ bits are still set in the SATA_P # 0 TFD[STS]
- * field. This bit is cleared to 0 when SATA_P # 0 TFD[STS] BSY bit and SATA_P # 0 TFD[STS] DRQ bit
- * have been cleared. A write to this register with a value of '0' has no effect. This bit should
- * only be set to 1 immediately prior to setting SATA_P # 0 CMD[ST] bit to 1 from a previous value
- * of 0. Setting this bit to 1 at any other time is not supported and results in indeterminate
- * behavior.
+ * Command List Override Setting this bit to 1 causes the SATA_P 0 TFD[STS] field BSY bit and the
+ * SATA_P 0 TFD[STS] field DRQ bit to be cleared. This allows a software reset to be transmitted to
+ * the device regardless of whether the BSY and DRQ bits are still set in the SATA_P 0 TFD[STS]
+ * field. This bit is cleared to 0 when SATA_P 0 TFD[STS] BSY bit and SATA_P 0 TFD[STS] DRQ bit have
+ * been cleared. A write to this register with a value of '0' has no effect. This bit should only be
+ * set to 1 immediately prior to setting SATA_P 0 CMD[ST] bit to 1 from a previous value of 0.
+ * Setting this bit to 1 at any other time is not supported and results in indeterminate behavior.
  */
 
 #define BP_SATA_P0CMD_CLO      (3)      //!< Bit position for SATA_P0CMD_CLO.
@@ -3395,12 +3330,11 @@ typedef union _hw_sata_p0cmd
 /* --- Register HW_SATA_P0CMD, field FRE[4] (RW)
  *
  * FIS Receive Enable When set to 1, the Port may post received FISes into the FIS receive area
- * pointed to by SATA_P # 0 FB (and P#FBU when M_HADDR_WIDTH=64) . When cleared, received FISes are
- * not accepted by the Port, except for the first D2H register FIS after the initialization
- * sequence, and no FISes are posted to the FIS receive area. The software must not set this bit
- * until SATA_P # 0 FB (P#FBU) has been programmed with a valid pointer to the FIS receive area When
- * the software wishes to move the base, this bit must first be cleared, and the software must wait
- * for the SATA_P # 0 CMD[FR] bit to be cleared.
+ * pointed to by SATA_P 0 FB . When cleared, received FISes are not accepted by the Port, except for
+ * the first D2H register FIS after the initialization sequence, and no FISes are posted to the FIS
+ * receive area. The software must not set this bit until SATA_P 0 FB has been programmed with a
+ * valid pointer to the FIS receive area When the software wishes to move the base, this bit must
+ * first be cleared, and the software must wait for the SATA_P 0 CMD[FR] bit to be cleared.
  */
 
 #define BP_SATA_P0CMD_FRE      (4)      //!< Bit position for SATA_P0CMD_FRE.
@@ -3420,12 +3354,12 @@ typedef union _hw_sata_p0cmd
 /* --- Register HW_SATA_P0CMD, field CCS[12:8] (RW)
  *
  * Current Command Slot This field is set to the command slot value value of the command that is
- * currently being issued by the Port. • When SATA_P # 0 CMD[ST] transitions from 1 to 0, this field
- * is recleared to 0x00. • After SATA_P # 0 CMD[ST] transitions from 0 to 1, the highest priority
- * slot to issue from next is command slot 0. After the first command has been issued, the highest
- * priority slot to issue from next is SATA_P # 0 CMD[CCS]+1.For example, after the Port has issued
- * its first command, when CCS=0x00 and SATA_P # 0 CI is cleared to 0x3, the next command issued is
- * from command slot 1. This field is valid only when SATA_P # 0 CMD[ST] is set to 1.
+ * currently being issued by the Port. • When SATA_P 0 CMD[ST] transitions from 1 to 0, this field
+ * is recleared to 0x00. • After SATA_P 0 CMD[ST] transitions from 0 to 1, the highest priority slot
+ * to issue from next is command slot 0. After the first command has been issued, the highest
+ * priority slot to issue from next is SATA_P 0 CMD[CCS]+1.For example, after the Port has issued
+ * its first command, when CCS=0x00 and SATA_P 0 CI is cleared to 0x3, the next command issued is
+ * from command slot 1. This field is valid only when SATA_P 0 CMD[ST] is set to 1.
  */
 
 #define BP_SATA_P0CMD_CCS      (8)      //!< Bit position for SATA_P0CMD_CCS.
@@ -3445,10 +3379,10 @@ typedef union _hw_sata_p0cmd
 /* --- Register HW_SATA_P0CMD, field MPSS[13] (RW)
  *
  * Mechanical Presence Switch State The software must use this bit only when both SATA_CAP[SMPS] and
- * SATA_P # 0 CMD[MPSP] are set. This bit reports the state of a mechanical presence switch attached
- * to this Port as indicated by the p # 0 _mp_switch input state (assuming SATA_CAP[SMPS]=1 and
- * SATA_P # 0 CMD[MPSP]=1). The options for this field are: When SATA_CAP[SMPS]=0 then this bit is
- * cleared to 0.
+ * SATA_P 0 CMD[MPSP] are set. This bit reports the state of a mechanical presence switch attached
+ * to this Port as indicated by the p 0 _mp_switch input state (assuming SATA_CAP[SMPS]=1 and SATA_P
+ * 0 CMD[MPSP]=1). The options for this field are: When SATA_CAP[SMPS]=0 then this bit is cleared to
+ * 0.
  *
  * Values:
  * 0 - Switch is closed
@@ -3493,8 +3427,8 @@ typedef union _hw_sata_p0cmd
 /* --- Register HW_SATA_P0CMD, field CR[15] (RW)
  *
  * Command List Running When this bit is set to '1', the command list DMA engine for this Port is
- * running. See AHCI state machine in AHCI specification section 5.3.2 (this is a reference to an
- * external document) for details on when this bit is set and cleared by the Port.
+ * running. See AHCI state machine in AHCI specification section 5.3.2 for details on when this bit
+ * is set and cleared by the Port.
  */
 
 #define BP_SATA_P0CMD_CR      (15)      //!< Bit position for SATA_P0CMD_CR.
@@ -3514,7 +3448,7 @@ typedef union _hw_sata_p0cmd
 /* --- Register HW_SATA_P0CMD, field CPS[16] (RW)
  *
  * Cold Presence State This bit reports whether a device is currently detected on this Port as
- * indicated by the p # 0 _cp_det input state (assuming SATA_P # 0 CMD[CPD]=1). The options for this
+ * indicated by the p 0 _cp_det input state (assuming SATA_P 0 CMD[CPD]=1). The options for this
  * field are:
  *
  * Values:
@@ -3565,8 +3499,8 @@ typedef union _hw_sata_p0cmd
 
 /* --- Register HW_SATA_P0CMD, field HPCP[18] (RW)
  *
- * Hot Plug Capable Port The HPCP bit is mutually exclusive with SATA_P # 0 CMD[ESP]. The options
- * for this field are:
+ * Hot Plug Capable Port The HPCP bit is mutually exclusive with SATA_P 0 CMD[ESP]. The options for
+ * this field are:
  *
  * Values:
  * 0 - Indicates that this Port's signal and power connectors are not externally accessible.
@@ -3594,7 +3528,7 @@ typedef union _hw_sata_p0cmd
  * External SATA Port When set to 1, indicates that this Port's signal only connector is externally
  * accessible. When set to 1, SATA_CAP[SXS] is also set to 1. When cleared to 0, indicates that this
  * Port's signal only connector is not externally accessible. Note: The ESP bit is mutually
- * exclusive with SATA_P # 0 CMD[HPCP]
+ * exclusive with SATA_P 0 CMD[HPCP]
  */
 
 #define BP_SATA_P0CMD_ESP      (21)      //!< Bit position for SATA_P0CMD_ESP.
@@ -3613,8 +3547,8 @@ typedef union _hw_sata_p0cmd
 
 /* --- Register HW_SATA_P0CMD, field APSTE[23] (RW)
  *
- * Device is ATAPI This bit is used by the Port to control whether to assert p # 0 _act_led output
- * when commands are active (see " ) . The options for this field are:
+ * Device is ATAPI This bit is used by the Port to control whether to assert p 0 _act_led output
+ * when commands are active. The options for this field are:
  *
  * Values:
  * 0 - non-ATAPI device
@@ -3638,8 +3572,8 @@ typedef union _hw_sata_p0cmd
 
 /* --- Register HW_SATA_P0CMD, field ATAPI[24] (RW)
  *
- * ATAPI Device is ATAPI This bit is used by the Port to control whether to assert p # 0 _act_led
- * output when commands are active (see " ) . The options for this field are:
+ * ATAPI Device is ATAPI This bit is used by the Port to control whether to assert p 0 _act_led
+ * output when commands are active. The options for this field are:
  *
  * Values:
  * 0 - non-ATAPI device
@@ -3663,8 +3597,8 @@ typedef union _hw_sata_p0cmd
 
 /* --- Register HW_SATA_P0CMD, field DLAE[25] (RW)
  *
- * Drive LED on ATAPI Enable When set to 1, SATA_P # 0 CMD[ATAPI]=1, and commands are active, the
- * Port asserts p # 0 _act_led output (see " ) .
+ * Drive LED on ATAPI Enable When set to 1, SATA_P 0 CMD[ATAPI]=1, and commands are active, the Port
+ * asserts p 0 _act_led output.
  */
 
 #define BP_SATA_P0CMD_DLAE      (25)      //!< Bit position for SATA_P0CMD_DLAE.
@@ -3684,8 +3618,8 @@ typedef union _hw_sata_p0cmd
 /* --- Register HW_SATA_P0CMD, field ALPE[26] (RW)
  *
  * Aggressive Link Power Management Enable When set to 1, the Port aggressively enters a lower link
- * power state (PARTIAL or SLUMBER) based on the setting of the SATA_P # 0 CMD[ASP] bit. When
- * cleared to 0, aggressive power management state transition is disabled.
+ * power state (PARTIAL or SLUMBER) based on the setting of the SATA_P 0 CMD[ASP] bit. When cleared
+ * to 0, aggressive power management state transition is disabled.
  */
 
 #define BP_SATA_P0CMD_ALPE      (26)      //!< Bit position for SATA_P0CMD_ALPE.
@@ -3704,13 +3638,13 @@ typedef union _hw_sata_p0cmd
 
 /* --- Register HW_SATA_P0CMD, field ASP[27] (RW)
  *
- * Aggressive Slumber/ Partial The options for this field are: • When set to 1, and SATA_P # 0
+ * Aggressive Slumber/ Partial The options for this field are: • When set to 1, and SATA_P 0
  * CMD[ALPE]=1, the Port aggressively enters the SLUMBER state when one of the following conditions
- * is true: - The Port clears the SATA_P # 0 CI and the SATA_P # 0 SACT register is cleared. - The
- * Port clears the SATA_P # 0 SACT register and SATA_P # 0 CI is cleared. • When cleared to 0, and
- * SATA_P # 0 CMD[ALPE]=1, the Port aggressively enters the PARTIAL state when one of the following
- * conditions is true: - The Port clears the SATA_P # 0 CI register and the SATA_P # 0 SACT register
- * is cleared. - The Port clears the SATA_P # 0 SACT register and SATA_P # 0 CI is cleared.
+ * is true: - The Port clears the SATA_P 0 CI and the SATA_P 0 SACT register is cleared. - The Port
+ * clears the SATA_P 0 SACT register and SATA_P 0 CI is cleared. • When cleared to 0, and SATA_P 0
+ * CMD[ALPE]=1, the Port aggressively enters the PARTIAL state when one of the following conditions
+ * is true: - The Port clears the SATA_P 0 CI register and the SATA_P 0 SACT register is cleared. -
+ * The Port clears the SATA_P 0 SACT register and SATA_P 0 CI is cleared.
  */
 
 #define BP_SATA_P0CMD_ASP      (27)      //!< Bit position for SATA_P0CMD_ASP.
@@ -3739,7 +3673,7 @@ typedef union _hw_sata_p0cmd
  * interface to the Partial state. The SATA device can reject the request and the interface remains
  * in its current state. • 0x1: Active. This causes the Port to request a transition of the
  * interface into the active state. • 0x0: No-Op/ Idle. This value indicates to the software that
- * the Port # 0 is ready to accept a new interface control command, although the transition to the
+ * the Port 0 is ready to accept a new interface control command, although the transition to the
  * previously selected state may not yet have occurred. When the software writes a non-reserved
  * value other than No-Op (0x0), the Port performs the action and update this field back to Idle
  * (0x0). When the software writes to this field to change the state to a state the link is already
@@ -3775,16 +3709,14 @@ typedef union _hw_sata_p0cmd
  *
  * This register contains Error and Status registers updated every time a new Register FIS, PIO
  * Setup FIS, or Set Device Bits FIS is received from the device. Reset on Global or Port reset
- * (COMRESET).   Size: 32 bits  Address offset: for # = 0 to 7:   P0TFD: 0x120  P1TFD: 0x1A0  P2TFD:
- * 0x220  P3TFD: 0x2A0  P4TFD: 0x320  P5TFD: 0x3A0  P6TFD: 0x420  P7TFD: 0x4A0    Read/write access:
- * Read-only  Reset: 0x0000_007F
+ * (COMRESET).
  */
 typedef union _hw_sata_p0tfd
 {
     reg32_t U;
     struct _hw_sata_p0tfd_bitfields
     {
-        unsigned STS : 8; //!< [7:0] Status This field contains the latest copy of the task file status register. The bits that affect SATA block operation are: • Bit [7] BSY - Indicates the interface is busy • Bits [6:4] cs - Command specific • Bit [3] DRQ - Indicates a data transfer is requested • Bits [2:1] cs - Command specific • Bit [0] ERR - Indicates an error during the transfer The Port updates the entire 8-bit field, not just the bits noted above.
+        unsigned STS : 8; //!< [7:0] Status This field contains the latest copy of the task file status register.
         unsigned ERR : 8; //!< [15:8] Error This field contains the latest copy of the task file error register.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
@@ -3841,16 +3773,14 @@ typedef union _hw_sata_p0tfd
  *
  * Reset value: 0xffffffff
  *
- * Size: 32 bits  Address offset: for # = 0 to 7:  P0SIG: 0x124  P1SIG: 0x1A4  P2SIG: 0x224  P3SIG:
- * 0x2A4  P4SIG: 0x324  P5SIG: 0x3A4  P6SIG: 0x424  P7SIG: 0x4A4    Read/write access: Read-only
- * Reset: 0xFFFF_FFFF
+
  */
 typedef union _hw_sata_p0sig
 {
     reg32_t U;
     struct _hw_sata_p0sig_bitfields
     {
-        unsigned SIG : 32; //!< [31:0] Signature This field contains the signature received from a device on the first D2H Register FIS. The bit order as follows: • Bits [31:24] - LBA High (Cylinder High) Register • Bits [23:16] - LBA Mid (Cylinder Low) Register • Bits [15:8] - LBA Low (Sector Number) Register • Bits [7:0] - Sector Count Register This field is updated once after a reset sequence. Reset on Global or Port reset.
+        unsigned SIG : 32; //!< [31:0] Signature This field contains the signature received from a device on the first D2H Register FIS.
     } B;
 } hw_sata_p0sig_t;
 #endif
@@ -3897,18 +3827,15 @@ typedef union _hw_sata_p0sig
  * This 32-bit register conveys the current state of the interface and host. The Port updates it
  * continuously and asynchronously. When the Port transmits a COMRESET to the device, this register
  * is updated to its reset values (i.e., Global reset, Port reset, or COMINIT from the device
- * Size: 32 bits  Address offset: 0x128  for # = 0 to 7:  P0SSTS: 0x128  P1SSTS: 0x1A8  P2SSTS:
- * 0x228  P3SSTS: 0x2A8  P4SSTS: 0x328  P5SSTS: 0x3A8  P6SSTS: 0x428  P7SSTS: 0x4A8    Read/write
- * access: Read-only  Reset: 0x0000_0000
  */
 typedef union _hw_sata_p0ssts
 {
     reg32_t U;
     struct _hw_sata_p0ssts_bitfields
     {
-        unsigned DET : 4; //!< [3:0] Indicates the interface device detection and PHY state. The options for this field are: 0x0: No device detected and PHY communication not established 0x1: Device presence detected but PHY communication not established (COMINIT is detected) 0x3: Device presence detected and PHY communication established (“PHY Ready” is detected) 0x4: PHY in offline mode as a result of the interface being disabled or running in a BIST loopback mode. All other values reserved.
-        unsigned SPD : 4; //!< [7:4] Current Interface Speed Indicates the negotiated interface communication speed. The options for this field are:
-        unsigned IPM : 4; //!< [11:8] Interface Power Management Indicates the current interface state. The options for this field are:
+        unsigned DET : 4; //!< [3:0] Indicates the interface device detection and PHY state.
+        unsigned SPD : 4; //!< [7:4] Current Interface Speed Indicates the negotiated interface communication speed.
+        unsigned IPM : 4; //!< [11:8] Interface Power Management Indicates the current interface state.
         unsigned RESERVED0 : 20; //!< [31:12] Reserved
     } B;
 } hw_sata_p0ssts_t;
@@ -3995,19 +3922,17 @@ typedef union _hw_sata_p0ssts
  * Writes to this register result in an action being taken by the Port PHY interface. Reads from the
  * register return the last value written to it. Reset on Global reset.  These bits are static and
  * should not be changed frequently due to the clock crossing between the Transport and Link Layers.
- * The software must wait for at least seven periods of the slower clock (clk_asic #  0 or hclk)
- * before changing this register   Size: 32 bits  Address offset: for # = 0 to 7:   P0SCTL: 0x12C
- * P1SCTL: 0x1AC  P2SCTL: 0x22C  P3SCTL: 0x2AC  P4SCTL: 0x32C  P5SCTL: 0x3AC  P6SCTL: 0x42C  P7SCTL:
- * 0x4AC    Read/write access: Read/Write  Reset: 0x0000_0000
+ * The software must wait for at least seven periods of the slower clock (clk_asic 0 or hclk) before
+ * changing this register
  */
 typedef union _hw_sata_p0sctl
 {
     reg32_t U;
     struct _hw_sata_p0sctl_bitfields
     {
-        unsigned DET : 4; //!< [3:0] Device Detection Initialization Controls the Port's device detection and interface initialization. The options for this field are: This field may only be modified when SATA_P # 0 CMD[ST] is 0. Changing this field while the SATA_P # 0 CMD[ST]=1 results in undefined behavior. When SATA_P # 0 CMD[ST] is set to 1, this field should have a value of 0x0.
-        unsigned SPD : 4; //!< [7:4] Speed Allowed This field indicates the highest allowable speed of the Port PHY interface. The options for this field are: When the host software must change this field value, the host must also reset the Port (SATA_P # 0 SCTL[DET] = 0x1) at the same time to ensure proper speed negotiation.
-        unsigned IPM : 4; //!< [11:8] Interface Power Management Transitions Allowed This field indicates which power states the Port PHY interface is allowed to transition to. When an interface power management state is disabled, the Port does not initiate that state and any request from the device to enter that state is rejected via PMNAKp The options for this field are:
+        unsigned DET : 4; //!< [3:0] Device Detection Initialization Controls the Port's device detection and interface initialization.
+        unsigned SPD : 4; //!< [7:4] Speed Allowed This field indicates the highest allowable speed of the Port PHY interface.
+        unsigned IPM : 4; //!< [11:8] Interface Power Management Transitions Allowed This field indicates which power states the Port PHY interface is allowed to transition to.
         unsigned RESERVED0 : 20; //!< [31:12] Reserved
     } B;
 } hw_sata_p0sctl_t;
@@ -4034,9 +3959,9 @@ typedef union _hw_sata_p0sctl
 /* --- Register HW_SATA_P0SCTL, field DET[3:0] (RW)
  *
  * Device Detection Initialization Controls the Port's device detection and interface
- * initialization. The options for this field are: This field may only be modified when SATA_P # 0
- * CMD[ST] is 0. Changing this field while the SATA_P # 0 CMD[ST]=1 results in undefined behavior.
- * When SATA_P # 0 CMD[ST] is set to 1, this field should have a value of 0x0.
+ * initialization. The options for this field are: This field may only be modified when SATA_P 0
+ * CMD[ST] is 0. Changing this field while the SATA_P 0 CMD[ST]=1 results in undefined behavior.
+ * When SATA_P 0 CMD[ST] is set to 1, this field should have a value of 0x0.
  *
  * Values:
  * 0x0 - No device detection or initialization action requested
@@ -4064,7 +3989,7 @@ typedef union _hw_sata_p0sctl
  *
  * Speed Allowed This field indicates the highest allowable speed of the Port PHY interface. The
  * options for this field are: When the host software must change this field value, the host must
- * also reset the Port (SATA_P # 0 SCTL[DET] = 0x1) at the same time to ensure proper speed
+ * also reset the Port (SATA_P 0 SCTL[DET] = 0x1) at the same time to ensure proper speed
  * negotiation.
  *
  * Values:
@@ -4142,25 +4067,25 @@ typedef union _hw_sata_p0serr
     reg32_t U;
     struct _hw_sata_p0serr_bitfields
     {
-        unsigned ERR_I : 1; //!< [0] This bit is set when any of the following SATA_P # 0 SERR register bits is set during non- Data FIS transfer: • DIAG_C (CRC) • DIAG_H (Handshake) • ERR_C ("PHY Ready" negation)
+        unsigned ERR_I : 1; //!< [0] This bit is set when any of the following SATA_P 0 SERR register bits is set during non- Data FIS transfer: • DIAG_C (CRC) • DIAG_H (Handshake) • ERR_C ("PHY Ready" negation)
         unsigned ERR_M : 1; //!< [1] Recovered Communication Error This bit is set to 1 when PHY Ready condition is detected after interface initialization, but not after transition from Partial or Slumber power management state to active state.
         unsigned RESERVED0 : 6; //!< [7:2] Reserved
-        unsigned ERR_T : 1; //!< [8] Non-Recovered Transient Data Integrity Error This bit is set when any of the following SATA_P # 0 SERR register bits is set during Data FIS transfer: ERR_P (Protocol) • DIAG_C (CRC) • DIAG_H (Handshake) • ERR_C ("PHY Ready" negation)
+        unsigned ERR_T : 1; //!< [8] Non-Recovered Transient Data Integrity Error This bit is set when any of the following SATA_P 0 SERR register bits is set during Data FIS transfer: ERR_P (Protocol) • DIAG_C (CRC) • DIAG_H (Handshake) • ERR_C ("PHY Ready" negation)
         unsigned ERR_C : 1; //!< [9] Non-Recovered Persistent Communication Error This bit is set to 1 when PHY Ready signal is negated due to the loss of communication with the device or problems with interface, but not after transition from active to Partial or Slumber power management state.
-        unsigned ERR_P : 1; //!< [10] Protocol Error This bit is set to 1 when any of the following conditions are detected. • Transport state transition error (DIAG_T) • Link sequence error (DIAG_S) • RxFIFO overflow • Link bad end error (WTRM instead of EOF is received).
+        unsigned ERR_P : 1; //!< [10] Protocol Error This bit is set to 1 when any of the following conditions are detected.
         unsigned ERR_E : 1; //!< [11] Internal Error This bit is set to 1 when one or more AHB bus ERROR responses are detected on the master interface.
         unsigned RESERVED1 : 4; //!< [15:12] Reserved
-        unsigned DIAG_N : 1; //!< [16] PHY Ready Change This bit indicates that the PHY Ready signal changed state. This bit is reflected in the SATA_P # 0 IS[PRCS] bit.
-        unsigned DIAG_I : 1; //!< [17] PHY Internal Error This bit is set when the PHY detects some internal error as indicated by the assertion of the p # 0 _phy_rx_err input. The setting of this bit is controlled by the SATA_BISTCR[ERREN] bit: when ERREN==0 (default), only errors occurring inside the received FIS cause DIAG_I bit to be set; when ERREN==1, any error inside or outside the FIS causes the DIAG_I bit to be set.
+        unsigned DIAG_N : 1; //!< [16] PHY Ready Change This bit indicates that the PHY Ready signal changed state.
+        unsigned DIAG_I : 1; //!< [17] PHY Internal Error This bit is set when the PHY detects some internal error as indicated by the assertion of the p 0 _phy_rx_err input.
         unsigned DIAG_W : 1; //!< [18] Comm Wake This bit is set when PHY COMWAKE signal is detected.
-        unsigned DIAG_B : 1; //!< [19] 10B to 8B Decode Error This bit indicates errors were detected by 10b8b decoder. This bit indicates that one or more CRC errors were detected by the Link layer during FIS reception. This bit is set only when an error is detected on the received FIS data dword. This bit is not set when an error is detected on the primitive, regardless whether it is inside or outside the FIS.
+        unsigned DIAG_B : 1; //!< [19] 10B to 8B Decode Error This bit indicates errors were detected by 10b8b decoder.
         unsigned DIAG_D : 1; //!< [20] Disparity Error This bit is always cleared to 0 since it is not used by the AHCI specification.
         unsigned DIAG_C : 1; //!< [21] CRC Error
-        unsigned DIAG_H : 1; //!< [22] Handshake Error This bit indicates that one or more R_ERRp was received in response to frame transmission. Such errors may be the result of a CRC error detected by the device, a disparity or 8b/10b decoding error, or other error condition leading to a negative handshake on a transmitted frame.
-        unsigned DIAG_S : 1; //!< [23] Link Sequence Error This bit indicates that one or more Link state machine error conditions was encountered. One of the conditions that cause this bit to be set is device doing SYNC escape during FIS transmission.
-        unsigned DIAG_T : 1; //!< [24] Transport State Transition Error This bit indicates that a Transport Layer protocol violation was detected since the last time this bit was cleared. See for details.
-        unsigned DIAG_F : 1; //!< [25] Unknown FIS Type This bit indicates that one or more FISes were received by the Transport layer with good CRC, but had a type field that was not recognized/known and the length was less than or equal to 64bytes. When the Unknown FIS length exceeds 64 bytes, the DIAG_F bit is not set and the DIAG_T bit is set instead.
-        unsigned DIAG_X : 1; //!< [26] Exchanged This bit is set to 1 when PHY COMINIT signal is detected. This bit is reflected in the SATA_P # 0 IS[PCS] bit.
+        unsigned DIAG_H : 1; //!< [22] Handshake Error This bit indicates that one or more R_ERRp was received in response to frame transmission.
+        unsigned DIAG_S : 1; //!< [23] Link Sequence Error This bit indicates that one or more Link state machine error conditions was encountered.
+        unsigned DIAG_T : 1; //!< [24] Transport State Transition Error This bit indicates that a Transport Layer protocol violation was detected since the last time this bit was cleared.
+        unsigned DIAG_F : 1; //!< [25] Unknown FIS Type This bit indicates that one or more FISes were received by the Transport layer with good CRC, but had a type field that was not recognized/known and the length was less than or equal to 64bytes.
+        unsigned DIAG_X : 1; //!< [26] Exchanged This bit is set to 1 when PHY COMINIT signal is detected.
         unsigned RESERVED2 : 5; //!< [31:27] Reserved
     } B;
 } hw_sata_p0serr_t;
@@ -4186,8 +4111,8 @@ typedef union _hw_sata_p0serr
 
 /* --- Register HW_SATA_P0SERR, field ERR_I[0] (RO)
  *
- * This bit is set when any of the following SATA_P # 0 SERR register bits is set during non- Data
- * FIS transfer: • DIAG_C (CRC) • DIAG_H (Handshake) • ERR_C ("PHY Ready" negation)
+ * This bit is set when any of the following SATA_P 0 SERR register bits is set during non- Data FIS
+ * transfer: • DIAG_C (CRC) • DIAG_H (Handshake) • ERR_C ("PHY Ready" negation)
  */
 
 #define BP_SATA_P0SERR_ERR_I      (0)      //!< Bit position for SATA_P0SERR_ERR_I.
@@ -4211,7 +4136,7 @@ typedef union _hw_sata_p0serr
 
 /* --- Register HW_SATA_P0SERR, field ERR_T[8] (RO)
  *
- * Non-Recovered Transient Data Integrity Error This bit is set when any of the following SATA_P # 0
+ * Non-Recovered Transient Data Integrity Error This bit is set when any of the following SATA_P 0
  * SERR register bits is set during Data FIS transfer: ERR_P (Protocol) • DIAG_C (CRC) • DIAG_H
  * (Handshake) • ERR_C ("PHY Ready" negation)
  */
@@ -4263,7 +4188,7 @@ typedef union _hw_sata_p0serr
 /* --- Register HW_SATA_P0SERR, field DIAG_N[16] (RO)
  *
  * PHY Ready Change This bit indicates that the PHY Ready signal changed state. This bit is
- * reflected in the SATA_P # 0 IS[PRCS] bit.
+ * reflected in the SATA_P 0 IS[PRCS] bit.
  */
 
 #define BP_SATA_P0SERR_DIAG_N      (16)      //!< Bit position for SATA_P0SERR_DIAG_N.
@@ -4275,7 +4200,7 @@ typedef union _hw_sata_p0serr
 /* --- Register HW_SATA_P0SERR, field DIAG_I[17] (RO)
  *
  * PHY Internal Error This bit is set when the PHY detects some internal error as indicated by the
- * assertion of the p # 0 _phy_rx_err input. The setting of this bit is controlled by the
+ * assertion of the p 0 _phy_rx_err input. The setting of this bit is controlled by the
  * SATA_BISTCR[ERREN] bit: when ERREN==0 (default), only errors occurring inside the received FIS
  * cause DIAG_I bit to be set; when ERREN==1, any error inside or outside the FIS causes the DIAG_I
  * bit to be set.
@@ -4390,7 +4315,7 @@ typedef union _hw_sata_p0serr
 /* --- Register HW_SATA_P0SERR, field DIAG_X[26] (RO)
  *
  * Exchanged This bit is set to 1 when PHY COMINIT signal is detected. This bit is reflected in the
- * SATA_P # 0 IS[PCS] bit.
+ * SATA_P 0 IS[PCS] bit.
  */
 
 #define BP_SATA_P0SERR_DIAG_X      (26)      //!< Bit position for SATA_P0SERR_DIAG_X.
@@ -4416,7 +4341,7 @@ typedef union _hw_sata_p0sact
     reg32_t U;
     struct _hw_sata_p0sact_bitfields
     {
-        unsigned DS : 32; //!< [31:0] Device Status This field is bit significant. Each bit corresponds to the TAG and command slot of a native queued command, where bit 0 corresponds to TAG 0 and command slot 0. Software sets this field prior to issuing a native queued command for a particular command slot. Prior to writing SATA_P # 0 CI[TAG] to 1, the software sets DS[TAG] to 1 to indicate that a command with that TAG is outstanding. This field is cleared to 0 when: • The software writes SATA_P # 0 CMD[ST from a 1 to a 0 . • The device sends a Set Device Bits FIS to the Port. The Port clears bits in this field that are set in the SActive field of the Set Device Bits FIS. The Port clears only bits that correspond to native queued commands that have completed successfully. This field is not cleared by the following: • Port reset (COMRESET). • Software reset. Software must write this field only when SATA_P # 0 CMD[ST] bit is set to 1.
+        unsigned DS : 32; //!< [31:0] Device Status This field is bit significant.
     } B;
 } hw_sata_p0sact_t;
 #endif
@@ -4444,13 +4369,13 @@ typedef union _hw_sata_p0sact
  * Device Status This field is bit significant. Each bit corresponds to the TAG and command slot of
  * a native queued command, where bit 0 corresponds to TAG 0 and command slot 0. Software sets this
  * field prior to issuing a native queued command for a particular command slot. Prior to writing
- * SATA_P # 0 CI[TAG] to 1, the software sets DS[TAG] to 1 to indicate that a command with that TAG
- * is outstanding. This field is cleared to 0 when: • The software writes SATA_P # 0 CMD[ST from a 1
- * to a 0 . • The device sends a Set Device Bits FIS to the Port. The Port clears bits in this field
- * that are set in the SActive field of the Set Device Bits FIS. The Port clears only bits that
+ * SATA_P 0 CI[TAG] to 1, the software sets DS[TAG] to 1 to indicate that a command with that TAG is
+ * outstanding. This field is cleared to 0 when: • The software writes SATA_P 0 CMD[ST from a 1 to a
+ * 0 . • The device sends a Set Device Bits FIS to the Port. The Port clears bits in this field that
+ * are set in the SActive field of the Set Device Bits FIS. The Port clears only bits that
  * correspond to native queued commands that have completed successfully. This field is not cleared
  * by the following: • Port reset (COMRESET). • Software reset. Software must write this field only
- * when SATA_P # 0 CMD[ST] bit is set to 1.
+ * when SATA_P 0 CMD[ST] bit is set to 1.
  */
 
 #define BP_SATA_P0SACT_DS      (0)      //!< Bit position for SATA_P0SACT_DS.
@@ -4484,7 +4409,7 @@ typedef union _hw_sata_p0ci
     reg32_t U;
     struct _hw_sata_p0ci_bitfields
     {
-        unsigned CI : 32; //!< [31:0] Command Issued This field is bit significant. Each bit corresponds to a command slot, where bit 0 corresponds to command slot 0. This field is set by the software to indicate to the Port that a command has been built in system memory for a command slot and may be sent to the device. When the Port receives a FIS which clears the BSY, DRQ, and ERR bits for the command, it clears the corresponding bit in this register for that command slot. Bits in this field can only be set to 1 by the software when SATA_P # 0 CMD[ST] is set to 1. This field is reset when SATA_P # 0 CMD[ST] is written from a 1 to a 0 by the software.
+        unsigned CI : 32; //!< [31:0] Command Issued This field is bit significant.
     } B;
 } hw_sata_p0ci_t;
 #endif
@@ -4514,8 +4439,8 @@ typedef union _hw_sata_p0ci
  * command has been built in system memory for a command slot and may be sent to the device. When
  * the Port receives a FIS which clears the BSY, DRQ, and ERR bits for the command, it clears the
  * corresponding bit in this register for that command slot. Bits in this field can only be set to 1
- * by the software when SATA_P # 0 CMD[ST] is set to 1. This field is reset when SATA_P # 0 CMD[ST]
- * is written from a 1 to a 0 by the software.
+ * by the software when SATA_P 0 CMD[ST] is set to 1. This field is reset when SATA_P 0 CMD[ST] is
+ * written from a 1 to a 0 by the software.
  */
 
 #define BP_SATA_P0CI_CI      (0)      //!< Bit position for SATA_P0CI_CI.
@@ -4543,17 +4468,14 @@ typedef union _hw_sata_p0ci
  * Reset value: 0x00000000
  *
  * This register is used to determine when asynchronous notification events have occurred for
- * directly connected devices and devices connected to a Port Multiplier.   Size: 32 bits  Address
- * offset: for # = 0 to 7:  P0SNTF: 0x13C  P1SNTF: 0x1BC  P2SNTF: 0x23C  P3SNTF: 0x2BC  P4SNTF:
- * 0x33C  P5SNTF: 0x3BC  P6SNTF: 0x43C  P7SNTF: 0x4BC    Read/write access: Read/Write One to Clear
- * Reset: 0x0000_0000
+ * directly connected devices and devices connected to a Port Multiplier.
  */
 typedef union _hw_sata_p0sntf
 {
     reg32_t U;
     struct _hw_sata_p0sntf_bitfields
     {
-        unsigned PMN : 16; //!< [15:0] PM Notify This field indicates whether a particular device with the corresponding PM Port number issued a Set Device Bits FIS to the SATA block Port with the Notification bit set: • PM Port 0h sets bit 0, • PM Port 1h sets bit 1, ... • PM Port Fh sets bit 15. Individual bits are cleared by the software writing 1s to the corresponding bit positions. This field is reset on Global reset, but it is not reset by Port reset (COMRESET) or software reset.
+        unsigned PMN : 16; //!< [15:0] PM Notify This field indicates whether a particular device with the corresponding PM Port number issued a Set Device Bits FIS to the SATA block Port with the Notification bit set: • PM Port 0h sets bit 0, • PM Port 1h sets bit 1, ...
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_sata_p0sntf_t;
@@ -4611,19 +4533,16 @@ typedef union _hw_sata_p0sntf
  * Reset value: 0x00000044
  *
  * This register contains bits for controlling the Port DMA engine. The software can change the
- * fields of this register only when SATA_P 0  # CMD[ST]=0. Power-up (system reset), Global reset,
- * or Port reset (COMRESET) reset this register to the default value.   Size: 32 bits  Address
- * offset: for # = 0 to 7:  P0DMACR: 0x170  P1DMACR: 0x1F0  P2DMACR: 0x270  P3DMACR: 0x2F0  P4DMACR:
- * 0x370  P5DMACR: 0x3F0  P6DMACR: 0x470  P7DMACR: 0x4F0    Read/write access: Read/Write or Read-
- * only  Reset: 0x0000_0044
+ * fields of this register only when SATA_P 0 CMD[ST]=0. Power-up (system reset), Global reset, or
+ * Port reset (COMRESET) reset this register to the default value.
  */
 typedef union _hw_sata_p0dmacr
 {
     reg32_t U;
     struct _hw_sata_p0dmacr_bitfields
     {
-        unsigned TXTS : 4; //!< [3:0] Transmit Transaction Size This field defines the DMA transaction size in DWORDs for transmit (system bus read, device write) operation. The options for this field are: This field is read-write when SATA_P 0 # CMD[ST]=0 and read-only when SATA_P 0 # CMD[ST]=1. The maximum value of this field is determined by the TxFIFO depth set by the P#_TXFIFO_DEPTH parameter. When the software attempts to write a value exceeding this value, the maximum value would be set instead.
-        unsigned RXTS : 4; //!< [7:4] Receive Transaction Size This field defines the Port DMA transaction size in DWORDs for receive (system bus write, device read) operation. This field is read-write when SATA_P 0 # CMD[ST]=0 and read-only when SATA_P 0 # CMD[ST]=1. The maximum value of this field is determined by the RxFIFO depth set by the P#_RXFIFO_DEPTH parameter. When the software attempts to write a value exceeding this value, the maximum value would be set instead.
+        unsigned TXTS : 4; //!< [3:0] Transmit Transaction Size This field defines the DMA transaction size in DWORDs for transmit (system bus read, device write) operation.
+        unsigned RXTS : 4; //!< [7:4] Receive Transaction Size This field defines the Port DMA transaction size in DWORDs for receive (system bus write, device read) operation.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
@@ -4652,23 +4571,23 @@ typedef union _hw_sata_p0dmacr
  *
  * Transmit Transaction Size This field defines the DMA transaction size in DWORDs for transmit
  * (system bus read, device write) operation. The options for this field are: This field is read-
- * write when SATA_P 0 # CMD[ST]=0 and read-only when SATA_P 0 # CMD[ST]=1. The maximum value of
- * this field is determined by the TxFIFO depth set by the P#_TXFIFO_DEPTH parameter. When the
- * software attempts to write a value exceeding this value, the maximum value would be set instead.
+ * write when SATA_P 0 CMD[ST]=0 and read-only when SATA_P 0 CMD[ST]=1. The maximum value of this
+ * field is determined by the TxFIFO depth parameter. When the software attempts to write a value
+ * exceeding this value, the maximum value would be set instead.
  *
  * Values:
  * 0x0 - 1 DWORD
  * 0x1 - 2 DWORD
  * 0x2 - 4 DWORD
  * 0x3 - 8 DWORD
- * 0x4 - 16 DWORDs (maximum value when P#_ TXFIFO_DEPTH=32)
- * 0x5 - 32 DWORDs (maximum value when P#_ TXFIFO_DEPTH=64)
- * 0x6 - 64 DWORDs (maximum value when P#_ TXFIFO_DEPTH=128)
- * 0x7 - 128 DWORDs (maximum value when P#_ TXFIFO_DEPTH=256)
- * 0x8 - 256 DWORDs (maximum value when P#_ TXFIFO_DEPTH=512)
- * 0x9 - 512 DWORDs (maximum value when P#_ TXFIFO_DEPTH=1024)
- * 0xA - 1024 DWORDs (maximum value when P#_ TXFIFO_DEPTH=2048) All other values are reserved and should not
- *     be used.
+ * 0x4 - 16 DWORDs (maximum value when TXFIFO_DEPTH=32)
+ * 0x5 - 32 DWORDs (maximum value when TXFIFO_DEPTH=64)
+ * 0x6 - 64 DWORDs (maximum value when TXFIFO_DEPTH=128)
+ * 0x7 - 128 DWORDs (maximum value when TXFIFO_DEPTH=256)
+ * 0x8 - 256 DWORDs (maximum value when TXFIFO_DEPTH=512)
+ * 0x9 - 512 DWORDs (maximum value when TXFIFO_DEPTH=1024)
+ * 0xA - 1024 DWORDs (maximum value when TXFIFO_DEPTH=2048) All other values are reserved and should not be
+ *     used.
  */
 
 #define BP_SATA_P0DMACR_TXTS      (0)      //!< Bit position for SATA_P0DMACR_TXTS.
@@ -4689,24 +4608,24 @@ typedef union _hw_sata_p0dmacr
 /* --- Register HW_SATA_P0DMACR, field RXTS[7:4] (RW)
  *
  * Receive Transaction Size This field defines the Port DMA transaction size in DWORDs for receive
- * (system bus write, device read) operation. This field is read-write when SATA_P 0 # CMD[ST]=0 and
- * read-only when SATA_P 0 # CMD[ST]=1. The maximum value of this field is determined by the RxFIFO
- * depth set by the P#_RXFIFO_DEPTH parameter. When the software attempts to write a value exceeding
- * this value, the maximum value would be set instead.
+ * (system bus write, device read) operation. This field is read-write when SATA_P 0 CMD[ST]=0 and
+ * read-only when SATA_P 0 CMD[ST]=1. The maximum value of this field is determined by the RxFIFO
+ * depth parameter. When the software attempts to write a value exceeding this value, the maximum
+ * value would be set instead.
  *
  * Values:
  * 0x0 - 1 DWORD
  * 0x1 - 2 DWORD
  * 0x2 - 4 DWORD
  * 0x3 - 8 DWORD
- * 0x4 - 16 DWORDs (maximum value when P#_ RXFIFO_DEPTH=64)
+ * 0x4 - 16 DWORDs (maximum value when RXFIFO_DEPTH=64)
  * 0x5 - 32 DWORD
- * 0x6 - 64 DWORDs (maximum value when P#_ RXFIFO_DEPTH=128)
- * 0x7 - 128 DWORDs (maximum value when P#_ RXFIFO_DEPTH=256)
- * 0x8 - 256 DWORDs (maximum value when P#_ RXFIFO_DEPTH=512)
- * 0x9 - 12 DWORDs (maximum value when P#_ RXFIFO_DEPTH=1024)
- * 0xA - 1024 DWORDs (maximum value when P#_ RXFIFO_DEPTH=2048) All other values are reserved and should not
- *     be used.
+ * 0x6 - 64 DWORDs (maximum value when RXFIFO_DEPTH=128)
+ * 0x7 - 128 DWORDs (maximum value when RXFIFO_DEPTH=256)
+ * 0x8 - 256 DWORDs (maximum value when RXFIFO_DEPTH=512)
+ * 0x9 - 12 DWORDs (maximum value when RXFIFO_DEPTH=1024)
+ * 0xA - 1024 DWORDs (maximum value when RXFIFO_DEPTH=2048) All other values are reserved and should not be
+ *     used.
  */
 
 #define BP_SATA_P0DMACR_RXTS      (4)      //!< Bit position for SATA_P0DMACR_RXTS.
@@ -4734,26 +4653,20 @@ typedef union _hw_sata_p0dmacr
  *
  * Reset value: 0x00000000
  *
- * This register is used for Port PHY control. This register only exists when PHY_CTRL_W parameter
- * is set to a non-zero value, otherwise this location is reserved. The width is set by the
- * PHY_CTRL_W parameter (valid range: 0 to 32). When PHY_CTRL_W < 32, the remaining bits are
- * reserved: reads return zeros, writes have no effect.   Bits of this register are connected to the
- * corresponding bits of the p 0  # _phy_ctrl output Port. Resets on power- up (system reset) only
- * to the PHY_CTRL_DEF value.   The SATA_P #  0 PHYCR register supports only 32-bit write access
- * (s_hsize = 3'b010).    Size: 32 bits  Address offset: for # = 0 to 7:  P0PHYCR: 0x178  P1PHYCR:
- * 0x1F8  P2PHYCR: 0x278  P3PHYCR: 0x2F8  P4PHYCR: 0x378  P5PHYCR: 0x3F8  P6PHYCR: 0x478  P7PHYCR:
- * 0x4F8    Read/write access: Read/Write  Reset: 0x0000_0000 PHY_CTRL_DEF
+ * This register is used for Port PHY control.  Bits of this register are connected to the
+ * corresponding bits of the p 0 _phy_ctrl output Port.  The SATA_P 0 PHYCR register supports only
+ * 32-bit write access
  */
 typedef union _hw_sata_p0phycr
 {
     reg32_t U;
     struct _hw_sata_p0phycr_bitfields
     {
-        unsigned CR_DATA_IN : 16; //!< [15:0] CR Address and Write Data Input Bus. Supplies and captures address and write data.
-        unsigned CR_CAP_ADDR : 1; //!< [16] CR Capture Address. Captures phy_cr_data_in[15:0] into the Address register.
-        unsigned CR_CAP_DATA : 1; //!< [17] CR Capture Data. Captures phy_cr_data_in[15:0] into the Write Data register.
-        unsigned CR_WRITE : 1; //!< [18] CR Write. Writes the Write Data register to the referenced Address register.
-        unsigned CR_READ : 1; //!< [19] CR Read. Reads from the referenced Address register.
+        unsigned CR_DATA_IN : 16; //!< [15:0] CR Address and Write Data Input Bus.
+        unsigned CR_CAP_ADDR : 1; //!< [16] CR Capture Address.
+        unsigned CR_CAP_DATA : 1; //!< [17] CR Capture Data.
+        unsigned CR_WRITE : 1; //!< [18] CR Write.
+        unsigned CR_READ : 1; //!< [19] CR Read.
         unsigned TEST_PDDQ : 1; //!< [20] Test IDDQ
         unsigned RESERVED0 : 11; //!< [31:21] Reserved
     } B;
@@ -4902,25 +4815,20 @@ typedef union _hw_sata_p0phycr
  *
  * Reset value: 0x00000000
  *
- * This register is used to monitor PHY status. This register only exists when PHY_STAT_W parameter
- * is set to a non-zero value, otherwise this location is reserved. The width is set by the
- * PHY_STAT_W parameter (valid range: 0 to 32). When PHY_CTRL_W < 32, the remaining bits are
- * reserved: reads return zeros, writes have no effect.   The bits of this register reflect the
- * state of the corresponding bits of the p #  0 _phy_status input.  Signals connected to the p #  0
- * _phy_status input can be asynchronous to any of the SATA block clocks, however they must not
- * change faster than five hclk periods, otherwise the SATA_P #  0 PHYSR register may never be
- * updated with the intermediate changing values.   Size: 32 bits  Address offset: for # = 0 to 7:
- * P0PHYSR: 0x17C  P1PHYSR: 0x1FC  P2PHYSR: 0x27C  P3PHYSR: 0x2FC  P4PHYSR: 0x37C  P5PHYSR: 0x3FC
- * P6PHYSR: 0x47C  P7PHYSR: 0x4FC    Read/write access: Read-only  Reset: p#_phy_status
+ * This register is used to monitor PHY status.  The bits of this register reflect the state of the
+ * corresponding bits of the p 0 _phy_status input.  Signals connected to the p 0 _phy_status input
+ * can be asynchronous to any of the SATA block clocks, however they must not change faster than
+ * five hclk periods, otherwise the SATA_P 0 PHYSR register may never be updated with the
+ * intermediate changing values.
  */
 typedef union _hw_sata_p0physr
 {
     reg32_t U;
     struct _hw_sata_p0physr_bitfields
     {
-        unsigned CR_DATA_OUT : 16; //!< [15:0] CR Data Output Bus. Always presents last read data.
+        unsigned CR_DATA_OUT : 16; //!< [15:0] CR Data Output Bus.
         unsigned RESERVED0 : 2; //!< [17:16] 
-        unsigned CR_ACK : 1; //!< [18] CR Acknowledgement. Acknowledgement for the phy_cr_cap_addr, phy_cr_cap_data, phy_cr_write, and phy_cr_read control signals.
+        unsigned CR_ACK : 1; //!< [18] CR Acknowledgement.
         unsigned RESERVED1 : 13; //!< [31:19] 
     } B;
 } hw_sata_p0physr_t;

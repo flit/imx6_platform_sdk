@@ -38,16 +38,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_CSI_CSICR1 - CSI Control Register 1
@@ -59,45 +49,44 @@
  *
  * Reset value: 0x40000800
  *
- * This register controls the sensor interface timing , CSI-to-PrP bus interface and interrupt
- * generation. The interrupt enable bits in this register control the interrupt signals and the
- * status bits. That means status bits will only function when the corresponding interrupt bits are
- * enabled.
+ * This register controls the sensor interface timing and interrupt generation. The interrupt enable
+ * bits in this register control the interrupt signals and the status bits. That means status bits
+ * will only function when the corresponding interrupt bits are enabled.
  */
 typedef union _hw_csi_csicr1
 {
     reg32_t U;
     struct _hw_csi_csicr1_bitfields
     {
-        unsigned PIXEL_BIT : 1; //!< [0] Pixel Bit. This bit indicates the bayer data width for each pixel. This bit should be configured before activating or re-starting the embedded DMA controller.
-        unsigned REDGE : 1; //!< [1] Valid Pixel Clock Edge Select. Selects which edge of the CSI_PIXCLK is used to latch the pixel data.
-        unsigned INV_PCLK : 1; //!< [2] Invert Pixel Clock Input. This bit determines if the Pixel Clock (CSI_PIXCLK) is inverted before it is applied to the CSI module.
-        unsigned INV_DATA : 1; //!< [3] Invert Data Input. This bit enables or disables internal inverters on the data lines.
-        unsigned GCLK_MODE : 1; //!< [4] Gated Clock Mode Enable. Controls if CSI is working in gated or non-gated mode. This bit works only in traditional mode-that is, CCIR_EN = 0. Otherwise this bit is ignored.
-        unsigned CLR_RXFIFO : 1; //!< [5] Asynchronous RXFIFO Clear. This bit clears the RXFIFO. This bit works only in async FIFO clear mode-that is, FCC = 0. Otherwise this bit is ignored. Writing 1 clears the RXFIFO immediately, RXFIFO restarts immediately after that. The bit is restored to 0 automatically after finish. Normally reads 0.
-        unsigned CLR_STATFIFO : 1; //!< [6] Asynchronous STATFIFO Clear. This bit clears the STATFIFO and Reset STAT block. This bit works only in async FIFO clear mode-that is, FCC = 0. Otherwise this bit is ignored. Writing 1 will clear STATFIFO and reset STAT block immediately, STATFIFO and STAT block then wait and restart after the arrival of next SOF. The bit is restored to 0 automatically after finish. Normally reads 0.
-        unsigned PACK_DIR : 1; //!< [7] Data Packing Direction. This bit Controls how 8-bit/10-bit image data is packed into 32-bit RX FIFO, and how 16-bit statistical data is packed into 32-bit STAT FIFO.
-        unsigned FCC : 1; //!< [8] FIFO Clear Control. This bit determines how the RXFIFO and STATFIFO are cleared. When Synchronous FIFO clear is selected the RXFIFO and STATFIFO are cleared, and STAT block is reset, on every SOF. FIFOs and STAT block restarts immediately after reset. For information on the operation when Asynchronous FIFO clear is selected, refer to the descriptions for the CLR_RXFIFO and CLR_STATFIFO bits.
+        unsigned PIXEL_BIT : 1; //!< [0] Pixel Bit.
+        unsigned REDGE : 1; //!< [1] Valid Pixel Clock Edge Select.
+        unsigned INV_PCLK : 1; //!< [2] Invert Pixel Clock Input.
+        unsigned INV_DATA : 1; //!< [3] Invert Data Input.
+        unsigned GCLK_MODE : 1; //!< [4] Gated Clock Mode Enable.
+        unsigned CLR_RXFIFO : 1; //!< [5] Asynchronous RXFIFO Clear.
+        unsigned CLR_STATFIFO : 1; //!< [6] Asynchronous STATFIFO Clear.
+        unsigned PACK_DIR : 1; //!< [7] Data Packing Direction.
+        unsigned FCC : 1; //!< [8] FIFO Clear Control.
         unsigned RESERVED0 : 1; //!< [9] This field is reserved.
-        unsigned CCIR_EN : 1; //!< [10] CCIR656 Interface Enable. This bit selects the type of interface used. When the CCIR656 timing decoder is enabled, it replaces the function of timing interface logic.
-        unsigned HSYNC_POL : 1; //!< [11] HSYNC Polarity Select. This bit controls the polarity of HSYNC. This bit only works in gated-clock-that is, GCLK_MODE = 1 and CCIR_EN = 0.
-        unsigned RESERVED1 : 4; //!< [15:12] Reserved. This field is reserved.
-        unsigned SOF_INTEN : 1; //!< [16] Start Of Frame (SOF) Interrupt Enable. This bit enables the SOF interrupt.
-        unsigned SOF_POL : 1; //!< [17] SOF Interrupt Polarity. This bit controls the condition that generates an SOF interrupt.
-        unsigned RXFF_INTEN : 1; //!< [18] RxFIFO Full Interrupt Enable. This bit enables the RxFIFO full interrupt.
-        unsigned FB1_DMA_DONE_INTEN : 1; //!< [19] Frame Buffer1 DMA Transfer Done Interrupt Enable. This bit enables the interrupt of Frame Buffer1 DMA transfer done.
-        unsigned FB2_DMA_DONE_INTEN : 1; //!< [20] Frame Buffer2 DMA Transfer Done Interrupt Enable. This bit enables the interrupt of Frame Buffer2 DMA transfer done.
-        unsigned STATFF_INTEN : 1; //!< [21] STATFIFO Full Interrupt Enable. This bit enables the STAT FIFO interrupt.
-        unsigned SFF_DMA_DONE_INTEN : 1; //!< [22] STATFIFO DMA Transfer Done Interrupt Enable. This bit enables the interrupt of STATFIFO DMA transfer done.
-        unsigned RESERVED2 : 1; //!< [23] Reserved. This bit is reserved and should read 0.
-        unsigned RF_OR_INTEN : 1; //!< [24] RxFIFO Overrun Interrupt Enable. This bit enables the RX FIFO overrun interrupt.
-        unsigned SF_OR_INTEN : 1; //!< [25] STAT FIFO Overrun Interrupt Enable. This bit enables the STATFIFO overrun interrupt.
-        unsigned COF_INT_EN : 1; //!< [26] Change Of Image Field (COF) Interrupt Enable. This bit enables the COF interrupt. This bit works only in CCIR interlace mode which is when CCIR_EN = 1 and CCIR_MODE = 1.
-        unsigned CCIR_MODE : 1; //!< [27] CCIR Mode Select. This bit controls the CCIR mode of operation. This bit only works in CCIR interface mode.
-        unsigned PRP_IF_EN : 1; //!< [28] CSI-PrP Interface Enable. This bit controls the CSI to PrP bus. When enabled the RxFIFO is detached from the AHB bus and connected to PrP. All CPU reads or DMA accesses to the RxFIFO register are ignored. All CSI interrupts are also masked.
-        unsigned EOF_INT_EN : 1; //!< [29] End-of-Frame Interrupt Enable. This bit enables and disables the EOF interrupt.
-        unsigned EXT_VSYNC : 1; //!< [30] External VSYNC Enable. This bit controls the operational VSYNC mode. This only works when the CSI is in CCIR progressive mode.
-        unsigned SWAP16_EN : 1; //!< [31] SWAP 16-Bit Enable. This bit enables the swapping of 16-bit data. Data is packed from 8-bit or 10-bit to 32-bit first (according to the setting of PACK_DIR) and then swapped as 16-bit words before being put into the RX FIFO. The action of the bit only affects the RX FIFO and has no affect on the STAT FIFO. Example of swapping enabled: Data input to FIFO = 0x11223344 Data in RX FIFO = 0x 33441122 Example of swapping disabled: Data input to FIFO = 0x11223344 Data in RX FIFO = 0x11223344
+        unsigned CCIR_EN : 1; //!< [10] CCIR656 Interface Enable.
+        unsigned HSYNC_POL : 1; //!< [11] HSYNC Polarity Select.
+        unsigned RESERVED1 : 4; //!< [15:12] Reserved.
+        unsigned SOF_INTEN : 1; //!< [16] Start Of Frame (SOF) Interrupt Enable.
+        unsigned SOF_POL : 1; //!< [17] SOF Interrupt Polarity.
+        unsigned RXFF_INTEN : 1; //!< [18] RxFIFO Full Interrupt Enable.
+        unsigned FB1_DMA_DONE_INTEN : 1; //!< [19] Frame Buffer1 DMA Transfer Done Interrupt Enable.
+        unsigned FB2_DMA_DONE_INTEN : 1; //!< [20] Frame Buffer2 DMA Transfer Done Interrupt Enable.
+        unsigned STATFF_INTEN : 1; //!< [21] STATFIFO Full Interrupt Enable.
+        unsigned SFF_DMA_DONE_INTEN : 1; //!< [22] STATFIFO DMA Transfer Done Interrupt Enable.
+        unsigned RESERVED2 : 1; //!< [23] Reserved.
+        unsigned RF_OR_INTEN : 1; //!< [24] RxFIFO Overrun Interrupt Enable.
+        unsigned SF_OR_INTEN : 1; //!< [25] STAT FIFO Overrun Interrupt Enable.
+        unsigned COF_INT_EN : 1; //!< [26] Change Of Image Field (COF) Interrupt Enable.
+        unsigned CCIR_MODE : 1; //!< [27] CCIR Mode Select.
+        unsigned PRP_IF_EN : 1; //!< [28] CSI-PrP Interface Enable.
+        unsigned EOF_INT_EN : 1; //!< [29] End-of-Frame Interrupt Enable.
+        unsigned EXT_VSYNC : 1; //!< [30] External VSYNC Enable.
+        unsigned SWAP16_EN : 1; //!< [31] SWAP 16-Bit Enable.
     } B;
 } hw_csi_csicr1_t;
 #endif
@@ -787,17 +776,17 @@ typedef union _hw_csi_csicr2
     reg32_t U;
     struct _hw_csi_csicr2_bitfields
     {
-        unsigned HSC : 8; //!< [7:0] Horizontal Skip Count. Contains the number of pixels to skip. SCE must be 1, otherwise HSC is ignored.
-        unsigned VSC : 8; //!< [15:8] Vertical Skip Count. Contains the number of rows to skip. SCE must be 1, otherwise VSC is ignored.
-        unsigned LVRM : 3; //!< [18:16] Live View Resolution Mode. Selects the grid size used for live view resolution.
-        unsigned BTS : 2; //!< [20:19] Bayer Tile Start. Controls the Bayer pattern starting point.
-        unsigned RESERVED0 : 2; //!< [22:21] Reserved. These bits are reserved and should read 0.
-        unsigned SCE : 1; //!< [23] Skip Count Enable. Enables or disables the skip count feature.
-        unsigned AFS : 2; //!< [25:24] Auto Focus Spread. Selects which green pixels are used for auto-focus.
-        unsigned DRM : 1; //!< [26] Double Resolution Mode. Controls size of statistics grid.
-        unsigned RESERVED1 : 1; //!< [27] Reserved. These bit is reserved and should read 0.
-        unsigned DMA_BURST_TYPE_SFF : 2; //!< [29:28] Burst Type of DMA Transfer from STATFIFO. Selects the burst type of DMA transfer from STATFIFO.
-        unsigned DMA_BURST_TYPE_RFF : 2; //!< [31:30] Burst Type of DMA Transfer from RxFIFO. Selects the burst type of DMA transfer from RxFIFO.
+        unsigned HSC : 8; //!< [7:0] Horizontal Skip Count.
+        unsigned VSC : 8; //!< [15:8] Vertical Skip Count.
+        unsigned LVRM : 3; //!< [18:16] Live View Resolution Mode.
+        unsigned BTS : 2; //!< [20:19] Bayer Tile Start.
+        unsigned RESERVED0 : 2; //!< [22:21] Reserved.
+        unsigned SCE : 1; //!< [23] Skip Count Enable.
+        unsigned AFS : 2; //!< [25:24] Auto Focus Spread.
+        unsigned DRM : 1; //!< [26] Double Resolution Mode.
+        unsigned RESERVED1 : 1; //!< [27] Reserved.
+        unsigned DMA_BURST_TYPE_SFF : 2; //!< [29:28] Burst Type of DMA Transfer from STATFIFO.
+        unsigned DMA_BURST_TYPE_RFF : 2; //!< [31:30] Burst Type of DMA Transfer from RxFIFO.
     } B;
 } hw_csi_csicr2_t;
 #endif
@@ -1064,19 +1053,19 @@ typedef union _hw_csi_csicr3
     reg32_t U;
     struct _hw_csi_csicr3_bitfields
     {
-        unsigned ECC_AUTO_EN : 1; //!< [0] Automatic Error Correction Enable. This bit enables and disables the automatic error correction. If an error occurs and error correction is disabled only the ECC_INT status bit is set. This feature only works in CCIR interlace mode.
-        unsigned ECC_INT_EN : 1; //!< [1] Error Detection Interrupt Enable. This bit enables and disables the error detection interrupt. This feature only works in CCIR interlace mode.
-        unsigned ZERO_PACK_EN : 1; //!< [2] Dummy Zero Packing Enable. This bit causes a dummy zero to be packed with every 3 incoming bytes, forming a 32-bit word. The dummy zero is always packed to the LSB position. This packing function is only available in 8-bit/pixel mode.
-        unsigned TWO_8BIT_SENSOR : 1; //!< [3] Two 8-bit Sensor Mode. This bit indicates one 16-bit sensor or two 8-bit sensors are connected to the 16-bit data ports. This bit should be set if there is one 16-bit sensor or two 8-bit sensors are connected. This bit should be configured before activating or restarting the embedded DMA controller.
-        unsigned RXFF_LEVEL : 3; //!< [6:4] RxFIFO Full Level . When the number of data in RxFIFO reaches this level, a RxFIFO full interrupt is generated, or an RXFIFO DMA request is sent , or CSI-PrP burst cycle is issued .
-        unsigned HRESP_ERR_EN : 1; //!< [7] Hresponse Error Enable. This bit enables the hresponse error interrupt.
-        unsigned STATFF_LEVEL : 3; //!< [10:8] STATFIFO Full Level. When the number of data in STATFIFO reach this level, STATFIFO full interrupt is generated, or STATFIFO DMA request is sent.
-        unsigned DMA_REQ_EN_SFF : 1; //!< [11] DMA Request Enable for STATFIFO. This bit enables the dma request from STATFIFO to the embedded DMA controller.
-        unsigned DMA_REQ_EN_RFF : 1; //!< [12] DMA Request Enable for RxFIFO. This bit enables the dma request from RxFIFO to the embedded DMA controller.
-        unsigned DMA_REFLASH_SFF : 1; //!< [13] Reflash DMA Controller for STATFIFO. This bit reflash the embedded DMA controller for STATFIFO. It should be reflashed before the embedded DMA controller starts to work. (Cleared automatically after reflashing is done)
-        unsigned DMA_REFLASH_RFF : 1; //!< [14] Reflash DMA Controller for RxFIFO. This bit reflash the embedded DMA controller for RxFIFO. It should be reflashed before the embedded DMA controller starts to work. (Cleared automatically after reflashing is done)
-        unsigned FRMCNT_RST : 1; //!< [15] Frame Count Reset. Resets the Frame Counter. (Cleared automatically after reset is done)
-        unsigned FRMCNT : 16; //!< [31:16] Frame Counter. This is a 16-bit Frame Counter (Wraps around automatically after reaching the maximum)
+        unsigned ECC_AUTO_EN : 1; //!< [0] Automatic Error Correction Enable.
+        unsigned ECC_INT_EN : 1; //!< [1] Error Detection Interrupt Enable.
+        unsigned ZERO_PACK_EN : 1; //!< [2] Dummy Zero Packing Enable.
+        unsigned TWO_8BIT_SENSOR : 1; //!< [3] Two 8-bit Sensor Mode.
+        unsigned RXFF_LEVEL : 3; //!< [6:4] RxFIFO Full Level .
+        unsigned HRESP_ERR_EN : 1; //!< [7] Hresponse Error Enable.
+        unsigned STATFF_LEVEL : 3; //!< [10:8] STATFIFO Full Level.
+        unsigned DMA_REQ_EN_SFF : 1; //!< [11] DMA Request Enable for STATFIFO.
+        unsigned DMA_REQ_EN_RFF : 1; //!< [12] DMA Request Enable for RxFIFO.
+        unsigned DMA_REFLASH_SFF : 1; //!< [13] Reflash DMA Controller for STATFIFO.
+        unsigned DMA_REFLASH_RFF : 1; //!< [14] Reflash DMA Controller for RxFIFO.
+        unsigned FRMCNT_RST : 1; //!< [15] Frame Count Reset.
+        unsigned FRMCNT : 16; //!< [31:16] Frame Counter.
     } B;
 } hw_csi_csicr3_t;
 #endif
@@ -1206,7 +1195,7 @@ typedef union _hw_csi_csicr3
 /* --- Register HW_CSI_CSICR3, field RXFF_LEVEL[6:4] (RW)
  *
  * RxFIFO Full Level . When the number of data in RxFIFO reaches this level, a RxFIFO full interrupt
- * is generated, or an RXFIFO DMA request is sent , or CSI-PrP burst cycle is issued .
+ * is generated, or an RXFIFO DMA request is sent.
  *
  * Values:
  * 000 - 4 Words
@@ -1551,8 +1540,8 @@ typedef union _hw_csi_csirxcnt
     reg32_t U;
     struct _hw_csi_csirxcnt_bitfields
     {
-        unsigned RXCNT : 22; //!< [21:0] RxFIFO Count. This 22-bit counter for RXFIFO is updated each time the RXFIFO is read by CPU or DMA.This counter should be set to the expected number of words to receive that would generate an EOF interrupt.
-        unsigned RESERVED0 : 10; //!< [31:22] Reserved. These bits are reserved and should read 0.
+        unsigned RXCNT : 22; //!< [21:0] RxFIFO Count.
+        unsigned RESERVED0 : 10; //!< [31:22] Reserved.
     } B;
 } hw_csi_csirxcnt_t;
 #endif
@@ -1615,25 +1604,25 @@ typedef union _hw_csi_csisr
     reg32_t U;
     struct _hw_csi_csisr_bitfields
     {
-        unsigned DRDY : 1; //!< [0] RXFIFO Data Ready. Indicates the presence of data that is ready for transfer in the RxFIFO. (Cleared automatically by reading FIFO)
-        unsigned ECC_INT : 1; //!< [1] CCIR Error Interrupt. This bit indicates an error has occurred. This only works in CCIR Interlace mode. (Cleared by writing 1)
-        unsigned RESERVED0 : 5; //!< [6:2] Reserved. These bits are reserved and should read 0.
-        unsigned HRESP_ERR_INT : 1; //!< [7] Hresponse Error Interrupt Status. Indicates that a hresponse error has been detected. (Cleared by writing 1)
-        unsigned RESERVED1 : 5; //!< [12:8] Reserved. These bits are reserved and should read 0.
-        unsigned COF_INT : 1; //!< [13] Change Of Field Interrupt Status. Indicates that a change of the video field has been detected. Only works in CCIR Interlace mode. Software should read this bit first and then dispatch the new field from F1_INT and F2_INT. (Cleared by writing 1)
-        unsigned F1_INT : 1; //!< [14] CCIR Field 1 Interrupt Status. Indicates the presence of field 1 of video in CCIR mode. (Cleared automatically when current field does not match) Only works in CCIR Interlace mode.
-        unsigned F2_INT : 1; //!< [15] CCIR Field 2 Interrupt Status. Indicates the presence of field 2 of video in CCIR mode. (Cleared automatically when current field does not match) Only works in CCIR Interlace mode.
-        unsigned SOF_INT : 1; //!< [16] Start of Frame Interrupt Status. Indicates when SOF is detected. (Cleared by writing 1)
-        unsigned EOF_INT : 1; //!< [17] End of Frame (EOF) Interrupt Status. Indicates when EOF is detected. (Cleared by writing 1)
-        unsigned RXFF_INT : 1; //!< [18] RXFIFO Full Interrupt Status. Indicates the number of data in the RxFIFO reaches the trigger level. (this bit is cleared automatically by reading the RxFIFO)
-        unsigned DMA_TSF_DONE_FB1 : 1; //!< [19] DMA Transfer Done in Frame Buffer1. Indicates that the DMA transfer from RxFIFO to Frame Buffer1 is completed. It can trigger an interrupt if the corresponding enable bit is set in CSICR1. This bit can be cleared by by writting 1 or reflashing the RxFIFO dma controller in CSICR3. (Cleared by writing 1)
-        unsigned DMA_TSF_DONE_FB2 : 1; //!< [20] DMA Transfer Done in Frame Buffer2. Indicates that the DMA transfer from RxFIFO to Frame Buffer2 is completed. It can trigger an interrupt if the corresponding enable bit is set in CSICR1. This bit can be cleared by by writting 1 or reflashing the RxFIFO dma controller in CSICR3. (Cleared by writing 1)
-        unsigned STATFF_INT : 1; //!< [21] STATFIFO Full Interrupt Status. Indicates the number of data in the STATFIFO reaches the trigger level. (this bit is cleared automatically by reading the STATFIFO)
-        unsigned DMA_TSF_DONE_SFF : 1; //!< [22] DMA Transfer Done from StatFIFO. Indicates that the dma transfer from StatFIFO is completed. It can trigger an interrupt if the corresponding enable bit is set in CSICR1. This bit can be cleared by writting 1 or reflashing the StatFIFO dma controller in CSICR3.(Cleared by writing 1)
-        unsigned RESERVED2 : 1; //!< [23] Reserved. This bit is reserved and should read 0.
-        unsigned RF_OR_INT : 1; //!< [24] RxFIFO Overrun Interrupt Status. Indicates the overflow status of the RxFIFO register. (Cleared by writing 1)
-        unsigned SF_OR_INT : 1; //!< [25] STATFIFO Overrun Interrupt Status. Indicates the overflow status of the STATFIFO register. (Cleared by writing 1)
-        unsigned RESERVED3 : 6; //!< [31:26] Reserved. These bits are reserved and should read 0.
+        unsigned DRDY : 1; //!< [0] RXFIFO Data Ready.
+        unsigned ECC_INT : 1; //!< [1] CCIR Error Interrupt.
+        unsigned RESERVED0 : 5; //!< [6:2] Reserved.
+        unsigned HRESP_ERR_INT : 1; //!< [7] Hresponse Error Interrupt Status.
+        unsigned RESERVED1 : 5; //!< [12:8] Reserved.
+        unsigned COF_INT : 1; //!< [13] Change Of Field Interrupt Status.
+        unsigned F1_INT : 1; //!< [14] CCIR Field 1 Interrupt Status.
+        unsigned F2_INT : 1; //!< [15] CCIR Field 2 Interrupt Status.
+        unsigned SOF_INT : 1; //!< [16] Start of Frame Interrupt Status.
+        unsigned EOF_INT : 1; //!< [17] End of Frame (EOF) Interrupt Status.
+        unsigned RXFF_INT : 1; //!< [18] RXFIFO Full Interrupt Status.
+        unsigned DMA_TSF_DONE_FB1 : 1; //!< [19] DMA Transfer Done in Frame Buffer1.
+        unsigned DMA_TSF_DONE_FB2 : 1; //!< [20] DMA Transfer Done in Frame Buffer2.
+        unsigned STATFF_INT : 1; //!< [21] STATFIFO Full Interrupt Status.
+        unsigned DMA_TSF_DONE_SFF : 1; //!< [22] DMA Transfer Done from StatFIFO.
+        unsigned RESERVED2 : 1; //!< [23] Reserved.
+        unsigned RF_OR_INT : 1; //!< [24] RxFIFO Overrun Interrupt Status.
+        unsigned SF_OR_INT : 1; //!< [25] STATFIFO Overrun Interrupt Status.
+        unsigned RESERVED3 : 6; //!< [31:26] Reserved.
     } B;
 } hw_csi_csisr_t;
 #endif
@@ -2055,8 +2044,8 @@ typedef union _hw_csi_csidmasa_statfifo
     reg32_t U;
     struct _hw_csi_csidmasa_statfifo_bitfields
     {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved. These bits are reserved and should read 0.
-        unsigned DMA_START_ADDR_SFF : 30; //!< [31:2] DMA Start Address for STATFIFO. Indicates the start address to write data. The embedded DMA controller will read data from STATFIFO and write it from this address through AHB bus. The address should be word aligned.
+        unsigned RESERVED0 : 2; //!< [1:0] Reserved.
+        unsigned DMA_START_ADDR_SFF : 30; //!< [31:2] DMA Start Address for STATFIFO.
     } B;
 } hw_csi_csidmasa_statfifo_t;
 #endif
@@ -2118,7 +2107,7 @@ typedef union _hw_csi_csidmats_statfifo
     reg32_t U;
     struct _hw_csi_csidmats_statfifo_bitfields
     {
-        unsigned DMA_TSF_SIZE_SFF : 32; //!< [31:0] DMA Transfer Size for STATFIFO. Indicates how many words to be transfered by the embedded DMA controller. The size should be word aligned.
+        unsigned DMA_TSF_SIZE_SFF : 32; //!< [31:0] DMA Transfer Size for STATFIFO.
     } B;
 } hw_csi_csidmats_statfifo_t;
 #endif
@@ -2181,8 +2170,8 @@ typedef union _hw_csi_csidmasa_fb1
     reg32_t U;
     struct _hw_csi_csidmasa_fb1_bitfields
     {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved. These bits are reserved and should read 0.
-        unsigned DMA_START_ADDR_FB1 : 30; //!< [31:2] DMA Start Address in Frame Buffer1. Indicates the start address to write data. The embedded DMA controller will read data from RxFIFO and write it from this address through AHB bus. The address should be word aligned.
+        unsigned RESERVED0 : 2; //!< [1:0] Reserved.
+        unsigned DMA_START_ADDR_FB1 : 30; //!< [31:2] DMA Start Address in Frame Buffer1.
     } B;
 } hw_csi_csidmasa_fb1_t;
 #endif
@@ -2246,8 +2235,8 @@ typedef union _hw_csi_csidmasa_fb2
     reg32_t U;
     struct _hw_csi_csidmasa_fb2_bitfields
     {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved. These bits are reserved and should read 0.
-        unsigned DMA_START_ADDR_FB2 : 30; //!< [31:2] DMA Start Address in Frame Buffer2. Indicates the start address to write data. The embedded DMA controller will read data from RxFIFO and write it from this address through AHB bus. The address should be word aligned.
+        unsigned RESERVED0 : 2; //!< [1:0] Reserved.
+        unsigned DMA_START_ADDR_FB2 : 30; //!< [31:2] DMA Start Address in Frame Buffer2.
     } B;
 } hw_csi_csidmasa_fb2_t;
 #endif
@@ -2311,8 +2300,8 @@ typedef union _hw_csi_csifbuf_para
     reg32_t U;
     struct _hw_csi_csifbuf_para_bitfields
     {
-        unsigned FBUF_STRIDE : 16; //!< [15:0] Frame Buffer Parameter. Indicates the stride of the frame buffer. The width of the frame buffer(in word) minus the width of the image(in word) is the stride. The stride should be word aligned. The embedded DMA controller will skip the stride before starting to write the next row of the image.
-        unsigned RESERVED0 : 16; //!< [31:16] Reserved. These bits are reserved and should read 0.
+        unsigned FBUF_STRIDE : 16; //!< [15:0] Frame Buffer Parameter.
+        unsigned RESERVED0 : 16; //!< [31:16] Reserved.
     } B;
 } hw_csi_csifbuf_para_t;
 #endif
@@ -2377,8 +2366,8 @@ typedef union _hw_csi_csiimag_para
     reg32_t U;
     struct _hw_csi_csiimag_para_bitfields
     {
-        unsigned IMAGE_HEIGHT : 16; //!< [15:0] Image Height. Indicates how many pixels in a column of the image from the sensor.
-        unsigned IMAGE_WIDTH : 16; //!< [31:16] Image Width. Indicates how many pixels in a line of the image from the sensor. If the input data from the sensor is 8-bit/pixel format, the IMAGE_WIDTH should be a multiple of 4 pixels. If the input data from the sensor is 10-bit/pixel or 16-bit/pixel format, the IMAGE_WIDTH should be a multiple of 2 pixels.
+        unsigned IMAGE_HEIGHT : 16; //!< [15:0] Image Height.
+        unsigned IMAGE_WIDTH : 16; //!< [31:16] Image Width.
     } B;
 } hw_csi_csiimag_para_t;
 #endif

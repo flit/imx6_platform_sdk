@@ -32,16 +32,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_SJC_GPUSR1 - General Purpose Unsecured Status Register 1
@@ -61,8 +51,8 @@ typedef union _hw_sjc_gpusr1
     reg32_t U;
     struct _hw_sjc_gpusr1_bitfields
     {
-        unsigned A_DBG : 1; //!< [0] ARM core debug status bit Bit 0 is the ARM core DBGACK (debug acknowledge) DBGACK can be overwritten in the ARM core DCR to force a particular DBGACK value. Consequently interpretation of the DBGACK value is highly dependent on the debug sequence. When this bit is HIGH, ARM core is in debug.
-        unsigned A_WFI : 1; //!< [1] ARM core wait-for interrupt bit Bit 1 is the ARM core standbywfi (stand by wait-for interrupt). When this bit is HIGH, ARM core is in wait for interrupt mode.
+        unsigned A_DBG : 1; //!< [0] ARM core debug status bit Bit 0 is the ARM core DBGACK (debug acknowledge) DBGACK can be overwritten in the ARM core DCR to force a particular DBGACK value.
+        unsigned A_WFI : 1; //!< [1] ARM core wait-for interrupt bit Bit 1 is the ARM core standbywfi (stand by wait-for interrupt).
         unsigned S_STAT : 3; //!< [4:2] 3 LSBits of SDMA core statusH.
         unsigned RESERVED0 : 3; //!< [7:5] Reserved.
         unsigned PLL_LOCK : 1; //!< [8] PLL_LOCK A Combined PLL-Lock flag indicator, for all the PLL's.
@@ -349,7 +339,7 @@ typedef union _hw_sjc_dcr
         unsigned DEBUG_OBS : 1; //!< [3] Debug observability This bit controls the propagation of the "system debug" input to SJC For i.MX 6x, the SJC's "system_debug" input is tied to logic HIGH value, therefore, set of "debug_obs" bit, will result in unconditional assertion of DE_B pad.
         unsigned RESERVED1 : 1; //!< [4] Reserved
         unsigned DIRECT_SDMA_REQ_EN : 1; //!< [5] Debug enable of the sdma debug request This bit controls the propagation of debug request DE_B to the sdma.
-        unsigned DIRECT_ARM_REQ_EN : 1; //!< [6] Pass Debug Enable event from DE_B pin to ARM platform debug request signal(s). This bit controls the propagation of debug request DE_B to the Arm platform.
+        unsigned DIRECT_ARM_REQ_EN : 1; //!< [6] Pass Debug Enable event from DE_B pin to ARM platform debug request signal(s).
         unsigned RESERVED2 : 25; //!< [31:7] Reserved
     } B;
 } hw_sjc_dcr_t;
@@ -507,7 +497,7 @@ typedef union _hw_sjc_dcr
 /*!
  * @brief HW_SJC_SSR - Security Status Register (RO)
  *
- * Reset value: 0x00000000
+ * Reset value: 0x00000100
  *
 
  */
@@ -524,7 +514,7 @@ typedef union _hw_sjc_ssr
         unsigned EBG : 1; //!< [5] External boot granted External boot enabled, requested and granted
         unsigned RESERVED0 : 2; //!< [7:6] Reserved.
         unsigned FT : 1; //!< [8] Fuse type Fuse type bit - e-fuse or laser fuse
-        unsigned SJM : 2; //!< [10:9] SJC Secure mode Secure JTAG mode, as set by external fuses. These bits do not reflect the change due to burn of Bypass Secure JTAG fuse.
+        unsigned SJM : 2; //!< [10:9] SJC Secure mode Secure JTAG mode, as set by external fuses.
         unsigned RSSTAT : 2; //!< [12:11] Response status Response status bits
         unsigned RESERVED1 : 1; //!< [13] Reserved
         unsigned BOOTIND : 1; //!< [14] Boot Indication Inverted Internal Boot indication, i.e inverse of SRC: "src_int_boot" signal
@@ -661,8 +651,7 @@ typedef union _hw_sjc_ssr
 
 /* --- Register HW_SJC_SSR, field SJM[10:9] (RO)
  *
- * SJC Secure mode Secure JTAG mode, as set by external fuses. These bits do not reflect the change
- * due to burn of Bypass Secure JTAG fuse.
+ * SJC Secure mode Secure JTAG mode, as set by external fuses.
  *
  * Values:
  * 00 - No debug (#1)

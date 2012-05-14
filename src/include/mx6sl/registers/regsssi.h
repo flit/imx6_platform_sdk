@@ -60,16 +60,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_SSI_SSI_STX0 - SSI Transmit Data Register n
@@ -88,7 +78,7 @@ typedef union _hw_ssi_ssi_stx0
     reg32_t U;
     struct _hw_ssi_ssi_stx0_bitfields
     {
-        unsigned STXN : 32; //!< [31:0] SSI Transmit Data. These bits store the data to be transmitted by the These are implemented as the first word of their respective Tx FIFOs. Data written to these registers is transferred to the Transmit Shift Register (TXSR), when shifting of the previous data is complete. If both FIFOs are in use, data is alternately transferred from STX0 and STX1, to TXSR. Multiple writes to the STX registers will not result in the previous data being over-written by the subsequent data. STX1 can only be used in Two-Channel mode of operation. Protection from over-writing is present irrespective of whether the transmitter is enabled or not. Example 1: If Tx FIFO0 is in use and user writes Data1... Data9 Data16 to STX0, Data9 Data16 will not over-write Data1. Data1... Data8 Data15 are stored in the FIFO while Data9 Data16 is discarded. Example 2: If Tx FIFO0 is not in use and user writes Data1, Data2 to STX0, then Data2 will not over-write Data1 and will be discarded.
+        unsigned STXN : 32; //!< [31:0] SSI Transmit Data.
     } B;
 } hw_ssi_ssi_stx0_t;
 #endif
@@ -120,10 +110,9 @@ typedef union _hw_ssi_ssi_stx0
  * STX registers will not result in the previous data being over-written by the subsequent data.
  * STX1 can only be used in Two-Channel mode of operation. Protection from over-writing is present
  * irrespective of whether the transmitter is enabled or not. Example 1: If Tx FIFO0 is in use and
- * user writes Data1... Data9 Data16 to STX0, Data9 Data16 will not over-write Data1. Data1... Data8
- * Data15 are stored in the FIFO while Data9 Data16 is discarded. Example 2: If Tx FIFO0 is not in
- * use and user writes Data1, Data2 to STX0, then Data2 will not over-write Data1 and will be
- * discarded.
+ * user writes Data1... Data16 to STX0, Data16 will not over-write Data1. Data1... Data15 are stored
+ * in the FIFO while Data16 is discarded. Example 2: If Tx FIFO0 is not in use and user writes
+ * Data1, Data2 to STX0, then Data2 will not over-write Data1 and will be discarded.
  */
 
 #define BP_SSI_SSI_STX0_STXN      (0)      //!< Bit position for SSI_SSI_STX0_STXN.
@@ -157,7 +146,7 @@ typedef union _hw_ssi_ssi_stx1
     reg32_t U;
     struct _hw_ssi_ssi_stx1_bitfields
     {
-        unsigned STXN : 32; //!< [31:0] SSI Transmit Data. These bits store the data to be transmitted by the These are implemented as the first word of their respective Tx FIFOs. Data written to these registers is transferred to the Transmit Shift Register (TXSR), when shifting of the previous data is complete. If both FIFOs are in use, data is alternately transferred from STX0 and STX1, to TXSR. Multiple writes to the STX registers will not result in the previous data being over-written by the subsequent data. STX1 can only be used in Two-Channel mode of operation. Protection from over-writing is present irrespective of whether the transmitter is enabled or not. Example 1: If Tx FIFO0 is in use and user writes Data1... Data9 Data16 to STX0, Data9 Data16 will not over-write Data1. Data1... Data8 Data15 are stored in the FIFO while Data9 Data16 is discarded. Example 2: If Tx FIFO0 is not in use and user writes Data1, Data2 to STX0, then Data2 will not over-write Data1 and will be discarded.
+        unsigned STXN : 32; //!< [31:0] SSI Transmit Data.
     } B;
 } hw_ssi_ssi_stx1_t;
 #endif
@@ -189,10 +178,9 @@ typedef union _hw_ssi_ssi_stx1
  * STX registers will not result in the previous data being over-written by the subsequent data.
  * STX1 can only be used in Two-Channel mode of operation. Protection from over-writing is present
  * irrespective of whether the transmitter is enabled or not. Example 1: If Tx FIFO0 is in use and
- * user writes Data1... Data9 Data16 to STX0, Data9 Data16 will not over-write Data1. Data1... Data8
- * Data15 are stored in the FIFO while Data9 Data16 is discarded. Example 2: If Tx FIFO0 is not in
- * use and user writes Data1, Data2 to STX0, then Data2 will not over-write Data1 and will be
- * discarded.
+ * user writes Data1... Data16 to STX0, Data16 will not over-write Data1. Data1... Data15 are stored
+ * in the FIFO while Data16 is discarded. Example 2: If Tx FIFO0 is not in use and user writes
+ * Data1, Data2 to STX0, then Data2 will not over-write Data1 and will be discarded.
  */
 
 #define BP_SSI_SSI_STX1_STXN      (0)      //!< Bit position for SSI_SSI_STX1_STXN.
@@ -226,7 +214,7 @@ typedef union _hw_ssi_ssi_srx0
     reg32_t U;
     struct _hw_ssi_ssi_srx0_bitfields
     {
-        unsigned SRXN : 32; //!< [31:0] SSI Receive Data. These bits store the data received by the These are implemented as the first word of their respective Rx FIFOs. These bits receive data from the RXSR depending on the mode of operation. In case both FIFOs are in use, data is transferred to each data register alternately. SRX1 can only be used in Two-Channel mode of operation.
+        unsigned SRXN : 32; //!< [31:0] SSI Receive Data.
     } B;
 } hw_ssi_ssi_srx0_t;
 #endif
@@ -276,7 +264,7 @@ typedef union _hw_ssi_ssi_srx1
     reg32_t U;
     struct _hw_ssi_ssi_srx1_bitfields
     {
-        unsigned SRXN : 32; //!< [31:0] SSI Receive Data. These bits store the data received by the These are implemented as the first word of their respective Rx FIFOs. These bits receive data from the RXSR depending on the mode of operation. In case both FIFOs are in use, data is transferred to each data register alternately. SRX1 can only be used in Two-Channel mode of operation.
+        unsigned SRXN : 32; //!< [31:0] SSI Receive Data.
     } B;
 } hw_ssi_ssi_srx1_t;
 #endif
@@ -328,18 +316,18 @@ typedef union _hw_ssi_ssi_scr
     reg32_t U;
     struct _hw_ssi_ssi_scr_bitfields
     {
-        unsigned SSIEN : 1; //!< [0] SSIEN - SSI Enable This bit is used to enable/disable the When disabled, all SSI status bits are preset to the same state produced by the power-on reset, all control bits are unaffected, the contents of Tx and Rx FIFOs are cleared. When SSI is disabled, all internal clocks are disabled (except register access clock).
-        unsigned TE : 1; //!< [1] Transmit Enable. This control bit enables the transmit section of the It enables the transfer of the contents of the STX registers to the TXSR and also enables the internal transmit clock. The transmit section is enabled when this bit is set and a frame boundary is detected. When this bit is cleared, the transmitter continues to send data until the end of the current frame and then stops. Data can be written to the STX registers with the TE bit cleared (the corresponding TDE bit will be cleared). If the TE bit is cleared and then set again before the second to last bit of the last time slot in the current frame, data transmission continues without interruption. The normal transmit enable sequence is to write data to the STX register(s) and then set the TE bit. The normal disable sequence is to clear the TE and TIE bits after the TDE bit is set. In gated clock mode, clearing the TE bit results in the clock stopping after the data currently in TXSR has shifted out. When the TE bit is set, the clock starts immediately (for internal gated clock mode). TE should not be toggled in the same frame. After enabling/disabling transmission, SSI expects 4 setup clock cycles before arrival of frame-sync for frame-sync to be accepted/rejected by In case of fewer clock cycles, there is high probability of the frame-sync to get missed. Note: If continuos clock is not provided, SSI expects 6 clock cycles before arrival of frame-sync for frame-sync to be accepted by
-        unsigned RE : 1; //!< [2] Receive Enable. This control bit enables the receive section of the When this bit is enabled, data reception starts with the arrival of the next frame sync. If data is being received when this bit is cleared, data reception continues until the end of the current frame and then stops. If this bit is set again before the second to last bit of the last time slot in the current frame, then reception continues without interruption. RE should not be toggled in the same frame.
-        unsigned NET : 1; //!< [3] Network Mode. This bit controls whether SSI is in network mode or not.
-        unsigned SYN : 1; //!< [4] Synchronous Mode. This bit controls whether SSI is in synchronous mode or not. In synchronous mode, the transmit and receive sections of SSI share a common clock port (STCK) and frame sync port (STFS).
-        unsigned I2S_MODE : 2; //!< [6:5] I2S Mode Select. These bits allow the SSI to operate in Normal, I2S Master or I2S Slave mode. Refer to for a detailed description of I2S Mode of operation. Refer to for details regarding settings.
-        unsigned SYS_CLK_EN : 1; //!< [7] Network Clock (Oversampling Clock) Enable. When set, this bit allows the SSI to output the network clock (ccm_ssi_clk) at the SRCK port, provided that synchronous mode, and transmit internal clock mode are set. The relationship between bit clock and network clock (ccm_ssi_clk) is determined by DIV2, PSR, and PM bits. This feature is especially useful in I2S Master mode to output network clock (oversampling clock) on SRCK port.
-        unsigned TCH_EN : 1; //!< [8] Two-Channel Operation Enable. This bit allows SSI to operate in the two-channel mode.In this mode while receiving, the RXSR transfers data to SRX0 and SRX1 alternately and while transmitting, data is alternately transferred from STX0 and STX1 to TXSR. For an even number of slots, Two-Channel Operation can be enabled to optimize usage of both FIFOs or disabled as in the case of odd number of active slots. This feature is especially useful in I2S mode, where data for Left Speaker can be placed in Tx-FIFO0 and for Right speaker in Tx-FIFO1. Review_Q&A: Mike Austin-Which SRX and STX registers are not used with two-channel mode disabled?
-        unsigned CLK_IST : 1; //!< [9] Clock Idle State. This bit controls the idle state of the transmit clock port during SSI internal gated mode. Note: When Clock idle state is '1' the clock polarity should always be negedge triggered and when Clock idle = '0' the clock polarity should always be positive edge triggered.
-        unsigned TFR_CLK_DIS : 1; //!< [10] Transmit Frame Clock Disable. This bit provide option to keep the Frame-sync and Clock enabled or disabled after current transmit frame, in which transmitter is disabled by clearing TE bit. Writing to this bit has effect only when SSI is enabled TE is disabled.
-        unsigned RFR_CLK_DIS : 1; //!< [11] Receive Frame Clock Disable. This bit provides the option to keep the Frame-sync and Clock enabled or to disable them after the receive frame in which the receiver is disabled. Writing to this bit has effect only when RE is disabled.The receiver is disabled by clearing the RE bit.
-        unsigned SYNC_TX_FS : 1; //!< [12] SYNC_FS_TX bit provides a safe window for TE to be visible to the internal circuit which is just after FS occurrence. When SYNC_TX_FS is set, TE(SCR[1]) gets latched on FS occurrence & latched TE is used to enable/disable SSI transmitter. TE needs setup of 2 bit-clock cycles before occurrence of FS. If TE is changed within 2 bit-clock cycles of FS occurrence, there is high probability that TE will be latched on next FS. Note: With TFR_CLK_DIS feature on, TE is used directly to enable transmitter in following cases (i) Sync mode & Rx disabled (ii) Async Mode. Latched-TE is used to disable the transmitter. This bit has no relevance in gated mode and AC97 mode.
+        unsigned SSIEN : 1; //!< [0] SSIEN - SSI Enable This bit is used to enable/disable the When disabled, all SSI status bits are preset to the same state produced by the power-on reset, all control bits are unaffected, the contents of Tx and Rx FIFOs are cleared.
+        unsigned TE : 1; //!< [1] Transmit Enable.
+        unsigned RE : 1; //!< [2] Receive Enable.
+        unsigned NET : 1; //!< [3] Network Mode.
+        unsigned SYN : 1; //!< [4] Synchronous Mode.
+        unsigned I2S_MODE : 2; //!< [6:5] I2S Mode Select.
+        unsigned SYS_CLK_EN : 1; //!< [7] Network Clock (Oversampling Clock) Enable.
+        unsigned TCH_EN : 1; //!< [8] Two-Channel Operation Enable.
+        unsigned CLK_IST : 1; //!< [9] Clock Idle State.
+        unsigned TFR_CLK_DIS : 1; //!< [10] Transmit Frame Clock Disable.
+        unsigned RFR_CLK_DIS : 1; //!< [11] Receive Frame Clock Disable.
+        unsigned SYNC_TX_FS : 1; //!< [12] SYNC_FS_TX bit provides a safe window for TE to be visible to the internal circuit which is just after FS occurrence.
         unsigned RESERVED0 : 19; //!< [31:13] Reserved
     } B;
 } hw_ssi_ssi_scr_t;
@@ -531,14 +519,14 @@ typedef union _hw_ssi_ssi_scr
 /* --- Register HW_SSI_SSI_SCR, field SYS_CLK_EN[7] (RW)
  *
  * Network Clock (Oversampling Clock) Enable. When set, this bit allows the SSI to output the
- * network clock (ccm_ssi_clk) at the SRCK port, provided that synchronous mode, and transmit
- * internal clock mode are set. The relationship between bit clock and network clock (ccm_ssi_clk)
- * is determined by DIV2, PSR, and PM bits. This feature is especially useful in I2S Master mode to
- * output network clock (oversampling clock) on SRCK port.
+ * network clock at the SRCK port, provided that synchronous mode, and transmit internal clock mode
+ * are set. The relationship between bit clock and network clock is determined by DIV2, PSR, and PM
+ * bits. This feature is especially useful in I2S Master mode to output network clock (oversampling
+ * clock) on SRCK port.
  *
  * Values:
- * 0 - network clock (ccm_ssi_clk) not output on SRCK port.
- * 1 - network clock (ccm_ssi_clk) output on SRCK port.
+ * 0 - network clock not output on SRCK port.
+ * 1 - network clock output on SRCK port.
  */
 
 #define BP_SSI_SSI_SCR_SYS_CLK_EN      (7)      //!< Bit position for SSI_SSI_SCR_SYS_CLK_EN.
@@ -563,8 +551,7 @@ typedef union _hw_ssi_ssi_scr
  * data is alternately transferred from STX0 and STX1 to TXSR. For an even number of slots, Two-
  * Channel Operation can be enabled to optimize usage of both FIFOs or disabled as in the case of
  * odd number of active slots. This feature is especially useful in I2S mode, where data for Left
- * Speaker can be placed in Tx-FIFO0 and for Right speaker in Tx-FIFO1. Review_Q&A: Mike Austin-
- * Which SRX and STX registers are not used with two-channel mode disabled?
+ * Speaker can be placed in Tx-FIFO0 and for Right speaker in Tx-FIFO1.
  *
  * Values:
  * 0 - Two-channel mode disabled.
@@ -724,28 +711,28 @@ typedef union _hw_ssi_ssi_sisr
     reg32_t U;
     struct _hw_ssi_ssi_sisr_bitfields
     {
-        unsigned TFE0 : 1; //!< [0] Transmit FIFO Empty 0. This flag is set when the empty slots in Tx FIFO exceed or are equal to the selected Tx FIFO WaterMark 0 (TFWM0) threshold. The setting of TFE0 only causes an interrupt when TIE and TFE0_EN are set and Tx FIFO0 is enabled. The TFE0 bit is automatically cleared when the data level in Tx FIFO0 becomes more than the amount specified by the watermark bits. The TFE0 bit is set by POR and SSI reset.
-        unsigned TFE1 : 1; //!< [1] Transmit FIFO Empty 1. This flag is set when the empty slots in Tx FIFO exceed or are equal to the selected Tx FIFO WaterMark 1 (TFWM1) threshold and the Two-Channel mode is selected. The setting of TFE1 only causes an interrupt when TIE and TFE1_EN are set, Tx FIFO1 is enabled and Two-Channel mode is selected. The TFE1 bit is automatically cleared when the data level in Tx FIFO1 becomes more than the amount specified by the watermark bits. The TFE1 bit is set by POR and SSI reset.
-        unsigned RFF0 : 1; //!< [2] Receive FIFO Full 0. This flag is set when Rx FIFO0 is enabled and the data level in Rx FIFO0 reaches the selected Rx FIFO WaterMark 0 (RFWM0) threshold. The setting of RFF0 only causes an interrupt when RIE and RFF0_EN are set and Rx FIFO0 is enabled. RFF0 is automatically cleared when the amount of data in Rx FIFO0 falls below the threshold. The RFF0 bit is cleared by POR and SSI reset. When Rx FIFO0 contains 8 15 words, the maximum it can hold, all further data received (for storage in this FIFO) is ignored until the FIFO contents are read.
-        unsigned RFF1 : 1; //!< [3] Receive FIFO Full 1. This flag is set when Rx FIFO1 is enabled, the data level in Rx FIFO1 reaches the selected Rx FIFO WaterMark 1 (RFWM1) threshold and the SSI is in Two-Channel mode. The setting of RFF1 only causes an interrupt when RIE and RFF1_EN are set, Rx FIFO1 is enabled and the Two-Channel mode is selected. RFF1 is automatically cleared when the amount of data in Rx FIFO1 falls below the threshold. The RFF1 bit is cleared by POR and SSI reset. When Rx FIFO1 contains 8 15 words, the maximum it can hold, all further data received (for storage in this FIFO) is ignored until the FIFO contents are read.
-        unsigned RLS : 1; //!< [4] Receive Last Time Slot. This flag indicates the last time slot in a frame. When set, it indicates that the current time slot is the last receive time slot of the frame. RLS is set at the end of the last time slot and causes the SSI to issue an interrupt (if RIE and RLS_EN are set). RLS is cleared when the SISR is read with this bit set. The RLS bit is cleared by POR and SSI reset.
-        unsigned TLS : 1; //!< [5] Transmit Last Time Slot. This flag indicates the last time slot in a frame. When set, it indicates that the current time slot is the last time slot of the frame. TLS is set at the start of the last transmit time slot and causes the SSI to issue an interrupt (if TIE and TLS_EN are set). TLS is not generated when frame rate is 1 in normal mode of operation. TLS is cleared when the SISR is read with this bit set. The TLS bit is cleared by POR and SSI reset.
-        unsigned RFS : 1; //!< [6] Receive Frame Sync. This flag indicates the occurrence of receive frame sync. In Network mode, the RFS bit is set when the first slot of the frame is being received. It is cleared when the next slot begins to be received. In Normal mode, this bit is always high (When DC = 0). This flag causes an interrupt if RIE and RFS_EN are set. The RFS bit is cleared by POR and SSI reset.
-        unsigned TFS : 1; //!< [7] Transmit Frame Sync. This flag indicates the occurrence of transmit frame sync. Data written to the STX registers during the time slot when the TFS flag is set, is sent during the second time slot (in Network mode) or in the next first time slot (in Normal mode). In Network mode, the TFS bit is set during transmission of the first time slot of the frame and is then cleared when starting transmission of the next time slot. In Normal mode, this bit is high for the first time slot. This flag causes an interrupt if TIE and TFS_EN are set. The TFS bit is cleared by POR and SSI reset.
-        unsigned TUE0 : 1; //!< [8] Transmitter Underrun Error 0. This flag is set when the TXSR is empty (no data to be transmitted), the TDE0 flag is set and a transmit time slot occurs. When a transmit underrun error occurs, the previous data is retransmitted. In Network mode, each time slot requires data transmission (unless masked through STMSK register), when the transmitter is enabled (TE is set). The TUE0 flag causes an interrupt if TIE and TUE0_EN are set. The TUE0 bit is cleared by POR and SSI reset. It is also cleared by writing '1' to this bit.
-        unsigned TUE1 : 1; //!< [9] Transmitter Underrun Error 1. This flag is set when the TXSR is empty (no data to be transmitted), the TDE1 flag is set, a transmit time slot occurs and the SSI is in Two-Channel mode. When a transmit underrun error occurs, the previous data is retransmitted. In Network mode, each time slot requires data transmission (unless masked through STMSK register), when the transmitter is enabled (TE is set). The TUE1 flag causes an interrupt if TIE and TUE1_EN are set. The TUE1 bit is cleared by POR and SSI reset. It is also cleared by writing '1' to this bit.
-        unsigned ROE0 : 1; //!< [10] Receiver Overrun Error 0. This flag is set when the RXSR is filled and ready to transfer to SRX0 register or to Rx FIFO 0 (when enabled) and these are already full. If Rx FIFO 0 is enabled, this is indicated by RFF0 flag, else this is indicated by the RDR0 flag. The RXSR is not transferred in this case. The ROE0 flag causes an interrupt if RIE and ROE0_EN are set. The ROE0 bit is cleared by POR and SSI reset. It is also cleared by writing '1' to this bit. Clearing the RE bit does not affect the ROE0 bit.
-        unsigned ROE1 : 1; //!< [11] Receiver Overrun Error 1. This flag is set when the RXSR is filled and ready to transfer to SRX1 register or to Rx FIFO 1 (when enabled) and these are already full and Two-Channel mode is selected. If Rx FIFO 1 is enabled, this is indicated by RFF1 flag, else this is indicated by the RDR1 flag. The RXSR is not transferred in this case. The ROE1 flag causes an interrupt if RIE and ROE1_EN are set. The ROE1 bit is cleared by POR and SSI reset. It is also cleared by writing '1' to this bit. Clearing the RE bit does not affect the ROE1 bit.
-        unsigned TDE0 : 1; //!< [12] Transmit Data Register Empty 0. This flag is set whenever data is transferred to TXSR from STX0 register. If Tx FIFO 0 is enabled, this occurs when there is at least one empty slot in STX0 or Tx FIFO 0. If Tx FIFO 0 is not enabled, this occurs when the contents of STX0 are transferred to TXSR. The TDE0 bit is cleared when the Core writes to STX0. If TIE and TDE0_EN are set, an SSI Transmit Data 0 interrupt request is issued on setting of TDE0 bit. The TDE0 bit is cleared by POR and SSI reset.
-        unsigned TDE1 : 1; //!< [13] Transmit Data Register Empty 1. This flag is set whenever data is transferred to TXSR from STX1 register and Two-Channel mode is selected. If Tx FIFO1 is enabled, this occurs when there is at least one empty slot in STX1 or Tx FIFO1. If Tx FIFO1 is not enabled, this occurs when the contents of STX1 are transferred to TXSR. The TDE1 bit is cleared when the Core writes to STX1. If TIE and TDE1_EN are set, an SSI Transmit Data 1 interrupt request is issued on setting of TDE1 bit. The TDE1 bit is cleared by POR and SSI reset.
-        unsigned RDR0 : 1; //!< [14] Receive Data Ready 0. This flag bit is set when SRX0 or Rx FIFO 0 is loaded with a new value. RDR0 is cleared when the Core reads the SRX0 register. If Rx FIFO 0 is enabled, RDR0 is cleared when the FIFO is empty. If RIE and RDR0_EN are set, a Receive Data 0 interrupt request is issued on setting of RDR0 bit in case Rx FIFO0 is disabled, if the FIFO is enabled, the interrupt is issued on RFF0 assertion. The RDR0 bit is cleared by POR and SSI reset.
-        unsigned RDR1 : 1; //!< [15] Receive Data Ready 1. This flag bit is set when SRX1 or Rx FIFO 1 is loaded with a new value and Two-Channel mode is selected. RDR1 is cleared when the Core reads the SRX1 register. If Rx FIFO 1 is enabled, RDR1 is cleared when the FIFO is empty. If RIE and RDR1_EN are set, a Receive Data 1 interrupt request is issued on setting of RDR1 bit in case Rx FIFO1 is disabled, if the FIFO is enabled, the interrupt is issued on RFF1 assertion. The RDR1 bit is cleared by POR and SSI reset.
-        unsigned RXT : 1; //!< [16] Receive Tag Updated. This status bit is set each time there is a difference in the previous and current value of the received tag. It causes the Receive Tag Interrupt (if RXT_EN bit is set). This bit is cleared on reading the SATAG register.
-        unsigned CMDDU : 1; //!< [17] Command Data Register Updated. This bit causes the Command Data Updated interrupt (when CMDDU_EN bit is set). This status bit is set each time there is a difference in the previous and current value of the received Command Data. This bit is cleared on reading the SACDAT register.
-        unsigned CMDAU : 1; //!< [18] Command Address Register Updated. This bit causes the Command Address Updated interrupt (when CMDAU_EN bit is set). This status bit is set each time there is a difference in the previous and current value of the received Command Address. This bit is cleared on reading the SACADD register.
+        unsigned TFE0 : 1; //!< [0] Transmit FIFO Empty 0.
+        unsigned TFE1 : 1; //!< [1] Transmit FIFO Empty 1.
+        unsigned RFF0 : 1; //!< [2] Receive FIFO Full 0.
+        unsigned RFF1 : 1; //!< [3] Receive FIFO Full 1.
+        unsigned RLS : 1; //!< [4] Receive Last Time Slot.
+        unsigned TLS : 1; //!< [5] Transmit Last Time Slot.
+        unsigned RFS : 1; //!< [6] Receive Frame Sync.
+        unsigned TFS : 1; //!< [7] Transmit Frame Sync.
+        unsigned TUE0 : 1; //!< [8] Transmitter Underrun Error 0.
+        unsigned TUE1 : 1; //!< [9] Transmitter Underrun Error 1.
+        unsigned ROE0 : 1; //!< [10] Receiver Overrun Error 0.
+        unsigned ROE1 : 1; //!< [11] Receiver Overrun Error 1.
+        unsigned TDE0 : 1; //!< [12] Transmit Data Register Empty 0.
+        unsigned TDE1 : 1; //!< [13] Transmit Data Register Empty 1.
+        unsigned RDR0 : 1; //!< [14] Receive Data Ready 0.
+        unsigned RDR1 : 1; //!< [15] Receive Data Ready 1.
+        unsigned RXT : 1; //!< [16] Receive Tag Updated.
+        unsigned CMDDU : 1; //!< [17] Command Data Register Updated.
+        unsigned CMDAU : 1; //!< [18] Command Address Register Updated.
         unsigned RESERVED0 : 4; //!< [22:19] Reserved
-        unsigned TFRC : 1; //!< [23] Transmit Frame Complete. This flag is set at the end of the frame during which Transmitter is disabled. If Transmit Frame & Clock are not disabled in the same frame, this flag is also set at the end of the frame in which Transmit Frame & Clock are disabled. See description of TFR_CLK_DIS bit for more details on how to disable Transmit Frame & Clock or keep them enabled after transmitter is disabled.
-        unsigned RFRC : 1; //!< [24] Receive Frame Complete. This flag is set at the end of the frame during which Receiver is disabled. If Receive Frame & Clock are not disabled in the same frame, this flag is also set at the end of the frame in which Receive Frame & Clock are disabled. See the description of RFR_CLK_DIS bit for more details on how to disable Receiver Frame & Clock or keep them enabled after receiver is disabled.
+        unsigned TFRC : 1; //!< [23] Transmit Frame Complete.
+        unsigned RFRC : 1; //!< [24] Receive Frame Complete.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_ssi_ssi_sisr_t;
@@ -816,7 +803,7 @@ typedef union _hw_ssi_ssi_sisr
  * reaches the selected Rx FIFO WaterMark 0 (RFWM0) threshold. The setting of RFF0 only causes an
  * interrupt when RIE and RFF0_EN are set and Rx FIFO0 is enabled. RFF0 is automatically cleared
  * when the amount of data in Rx FIFO0 falls below the threshold. The RFF0 bit is cleared by POR and
- * SSI reset. When Rx FIFO0 contains 8 15 words, the maximum it can hold, all further data received
+ * SSI reset. When Rx FIFO0 contains 15 words, the maximum it can hold, all further data received
  * (for storage in this FIFO) is ignored until the FIFO contents are read.
  *
  * Values:
@@ -838,8 +825,8 @@ typedef union _hw_ssi_ssi_sisr
  * The setting of RFF1 only causes an interrupt when RIE and RFF1_EN are set, Rx FIFO1 is enabled
  * and the Two-Channel mode is selected. RFF1 is automatically cleared when the amount of data in Rx
  * FIFO1 falls below the threshold. The RFF1 bit is cleared by POR and SSI reset. When Rx FIFO1
- * contains 8 15 words, the maximum it can hold, all further data received (for storage in this
- * FIFO) is ignored until the FIFO contents are read.
+ * contains 15 words, the maximum it can hold, all further data received (for storage in this FIFO)
+ * is ignored until the FIFO contents are read.
  *
  * Values:
  * 0 - Space available in Receive FIFO1.
@@ -1245,12 +1232,12 @@ typedef union _hw_ssi_sier
     reg32_t U;
     struct _hw_ssi_sier_bitfields
     {
-        unsigned ENABLE_BITS : 19; //!< [18:0] Enable Bit. Each bit controls whether the corresponding status bit in SISR can issue an interrupt to the Core or not.
-        unsigned TIE : 1; //!< [19] Transmit Interrupt Enable. This control bit allows the SSI to issue transmitter data related interrupts to the Core. Refer to for a detailed description of this bit.
-        unsigned TDMAE : 1; //!< [20] Transmit DMA Enable. This bit allows SSI to request for DMA transfers. When enabled, DMA requests are generated when any of the TFE0/1 bits in the SISR are set and if the corresponding TFEN bit is also set. If the corresponding FIFO is disabled, a DMA request is generated when the corresponding TDE bit is set.
-        unsigned RIE : 1; //!< [21] Receive Interrupt Enable. This control bit allows the SSI to issue receiver related interrupts to the Core. Refer to for a detailed description of this bit.
-        unsigned RDMAE : 1; //!< [22] Receive DMA Enable. This bit allows SSI to request for DMA transfers. When enabled, DMA requests are generated when any of the RFF0/1 bits in the SISR are set and if the corresponding RFEN bit is also set. If the corresponding FIFO is disabled, a DMA request is generated when the corresponding RDR bit is set.
-        unsigned ENABLE_BITS1 : 2; //!< [24:23] Enable Bit. Each bit controls whether the corresponding status bit in SISR can issue an interrupt to the Core or not.
+        unsigned ENABLE_BITS : 19; //!< [18:0] Enable Bit.
+        unsigned TIE : 1; //!< [19] Transmit Interrupt Enable.
+        unsigned TDMAE : 1; //!< [20] Transmit DMA Enable.
+        unsigned RIE : 1; //!< [21] Receive Interrupt Enable.
+        unsigned RDMAE : 1; //!< [22] Receive DMA Enable.
+        unsigned ENABLE_BITS1 : 2; //!< [24:23] Enable Bit.
         unsigned RESERVED0 : 7; //!< [31:25] Reserved
     } B;
 } hw_ssi_sier_t;
@@ -1453,16 +1440,16 @@ typedef union _hw_ssi_ssi_stcr
     reg32_t U;
     struct _hw_ssi_ssi_stcr_bitfields
     {
-        unsigned TEFS : 1; //!< [0] Transmit Early Frame Sync. This bit controls when the frame sync is initiated for the transmit section. The frame sync signal is deasserted after one bit-for-bit length frame sync and after one word-for-word length frame sync. In case of synchronous operation, the frame sync can also be initiated on receiving the first bit of data.
-        unsigned TFSL : 1; //!< [1] Transmit Frame Sync Length. This bit controls the length of the frame sync signal to be generated or recognized for the transmit section. The length of a word-long frame sync is same as the length of the data word selected by WL[3:0].
-        unsigned TFSI : 1; //!< [2] Transmit Frame Sync Invert. This bit controls the active state of the frame sync I/O signal for the transmit section of SSI.
-        unsigned TSCKP : 1; //!< [3] Transmit Clock Polarity. This bit controls which bit clock edge is used to clock out data for the transmit section. Note: TSCKP is 0 CLK_IST = 0; TSCKP is 1CLK_IST = 1
-        unsigned TSHFD : 1; //!< [4] Transmit Shift Direction. This bit controls whether the MSB or LSB will be transmitted first in a sample. The CODEC device labels the MSB as bit 0, whereas the Core labels the LSB as bit 0. Therefore, when using a standard CODEC, Core MSB (CODEC LSB) is shifted in first (TSHFD cleared).
-        unsigned TXDIR : 1; //!< [5] Transmit Clock Direction. This bit controls the direction and source of the clock signal used to clock the TXSR. Internally generated clock is output through the STCK port. External clock is taken from this port. Refer to for details of clock pin configurations.
-        unsigned TFDIR : 1; //!< [6] Transmit Frame Direction. This bit controls the direction and source of the transmit frame sync signal. Internally generated frame sync signal is sent out through the STFS port and external frame sync is taken from the same port.
-        unsigned TFEN0 : 1; //!< [7] Transmit FIFO Enable 0. This bit enables transmit FIFO 0. When enabled, the FIFO allows 8 15 samples to be transmitted by the SSI per channel (a 9th sample can be shifting out) before TDE0 bit is set. When the FIFO is disabled, an interrupt is generated when a single sample is transferred to the transmit shift register (provided the interrupt is enabled).
-        unsigned TFEN1 : 1; //!< [8] Transmit FIFO Enable 1. This bit enables transmit FIFO 1. When enabled, the FIFO allows 8 15 samples to be transmitted by the SSI (per channel) (a 9th sample can be shifting out) before TDE1 bit is set. When the FIFO is disabled, an interrupt is generated when a single sample is transferred to the transmit shift register (provided the interrupt is enabled).
-        unsigned TXBIT0 : 1; //!< [9] Transmit Bit 0. This control bit allows SSI to transmit the data word from bit position 0 or 15/31 in the transmit shift register. The shifting data direction can be MSB or LSB first, controlled by the TSHFD bit.
+        unsigned TEFS : 1; //!< [0] Transmit Early Frame Sync.
+        unsigned TFSL : 1; //!< [1] Transmit Frame Sync Length.
+        unsigned TFSI : 1; //!< [2] Transmit Frame Sync Invert.
+        unsigned TSCKP : 1; //!< [3] Transmit Clock Polarity.
+        unsigned TSHFD : 1; //!< [4] Transmit Shift Direction.
+        unsigned TXDIR : 1; //!< [5] Transmit Clock Direction.
+        unsigned TFDIR : 1; //!< [6] Transmit Frame Direction.
+        unsigned TFEN0 : 1; //!< [7] Transmit FIFO Enable 0.
+        unsigned TFEN1 : 1; //!< [8] Transmit FIFO Enable 1.
+        unsigned TXBIT0 : 1; //!< [9] Transmit Bit 0.
         unsigned RESERVED0 : 22; //!< [31:10] Reserved
     } B;
 } hw_ssi_ssi_stcr_t;
@@ -1669,7 +1656,7 @@ typedef union _hw_ssi_ssi_stcr
 
 /* --- Register HW_SSI_SSI_STCR, field TFEN0[7] (RW)
  *
- * Transmit FIFO Enable 0. This bit enables transmit FIFO 0. When enabled, the FIFO allows 8 15
+ * Transmit FIFO Enable 0. This bit enables transmit FIFO 0. When enabled, the FIFO allows 15
  * samples to be transmitted by the SSI per channel (a 9th sample can be shifting out) before TDE0
  * bit is set. When the FIFO is disabled, an interrupt is generated when a single sample is
  * transferred to the transmit shift register (provided the interrupt is enabled).
@@ -1696,7 +1683,7 @@ typedef union _hw_ssi_ssi_stcr
 
 /* --- Register HW_SSI_SSI_STCR, field TFEN1[8] (RW)
  *
- * Transmit FIFO Enable 1. This bit enables transmit FIFO 1. When enabled, the FIFO allows 8 15
+ * Transmit FIFO Enable 1. This bit enables transmit FIFO 1. When enabled, the FIFO allows 15
  * samples to be transmitted by the SSI (per channel) (a 9th sample can be shifting out) before TDE1
  * bit is set. When the FIFO is disabled, an interrupt is generated when a single sample is
  * transferred to the transmit shift register (provided the interrupt is enabled).
@@ -1769,17 +1756,17 @@ typedef union _hw_ssi_ssi_srcr
     reg32_t U;
     struct _hw_ssi_ssi_srcr_bitfields
     {
-        unsigned REFS : 1; //!< [0] Receive Early Frame Sync. This bit controls when the frame sync is initiated for the receive section. The frame sync is disabled after one bit-for-bit length frame sync and after one word-for-word length frame sync.
-        unsigned RFSL : 1; //!< [1] Receive Frame Sync Length. This bit controls the length of the frame sync signal to be generated or recognized for the receive section. The length of a word-long frame sync is same as the length of the data word selected by WL[3:0].
-        unsigned RFSI : 1; //!< [2] Receive Frame Sync Invert. This bit controls the active state of the frame sync I/O signal for the receive section of SSI.
-        unsigned RSCKP : 1; //!< [3] Receive Clock Polarity. This bit controls which bit clock edge is used to latch in data for the receive section.
-        unsigned RSHFD : 1; //!< [4] Receive Shift Direction. This bit controls whether the MSB or LSB will be received first in a sample. The CODEC device labels the MSB as bit 0, whereas the Core labels the LSB as bit 0. Therefore, when using a standard CODEC, Core MSB (CODEC LSB) is shifted in first (RSHFD cleared).
-        unsigned RXDIR : 1; //!< [5] Receive Clock Direction. This bit controls the direction and source of the clock signal used to clock the RXSR. Internally generated clock is output through the SRCK port. External clock is taken from this port. Refer to for details on clock pin configurations.
-        unsigned RFDIR : 1; //!< [6] Receive Frame Direction. This bit controls the direction and source of the receive frame sync signal. Internally generated frame sync signal is sent out through the SRFS port and external frame sync is taken from the same port.
-        unsigned RFEN0 : 1; //!< [7] Receive FIFO Enable 0. This bit enables receive FIFO 0. When enabled, the FIFO allows 8 15 samples to be received by the SSI (per channel) (a 16th sample can be shifting in) before RDR0 bit is set. When the FIFO is disabled, an interrupt is generated when a single sample is received by the SSI (provided the interrupt is enabled).
-        unsigned RFEN1 : 1; //!< [8] Receive FIFO Enable 1. This bit enables receive FIFO 1. When enabled, the FIFO allows 8 15 samples to be received by the SSI per channel (a 16th sample can be shifting in) before RDR1 bit is set. When the FIFO is disabled, an interrupt is generated when a single sample is received by the SSI (provided the interrupt is enabled).
-        unsigned RXBIT0 : 1; //!< [9] Receive Bit 0. This control bit allows SSI to receive the data word at bit position 0 or 15/31 in the receive shift register. The shifting data direction can be MSB or LSB first, controlled by the RSHFD bit.
-        unsigned RXEXT : 1; //!< [10] Receive Data Extension. This control bit allows SSI to store the received data word in sign extended form. This bit affects data storage only in case received data is LSB aligned (SRCR[9]=1)
+        unsigned REFS : 1; //!< [0] Receive Early Frame Sync.
+        unsigned RFSL : 1; //!< [1] Receive Frame Sync Length.
+        unsigned RFSI : 1; //!< [2] Receive Frame Sync Invert.
+        unsigned RSCKP : 1; //!< [3] Receive Clock Polarity.
+        unsigned RSHFD : 1; //!< [4] Receive Shift Direction.
+        unsigned RXDIR : 1; //!< [5] Receive Clock Direction.
+        unsigned RFDIR : 1; //!< [6] Receive Frame Direction.
+        unsigned RFEN0 : 1; //!< [7] Receive FIFO Enable 0.
+        unsigned RFEN1 : 1; //!< [8] Receive FIFO Enable 1.
+        unsigned RXBIT0 : 1; //!< [9] Receive Bit 0.
+        unsigned RXEXT : 1; //!< [10] Receive Data Extension.
         unsigned RESERVED0 : 21; //!< [31:11] Reserved
     } B;
 } hw_ssi_ssi_srcr_t;
@@ -1985,10 +1972,10 @@ typedef union _hw_ssi_ssi_srcr
 
 /* --- Register HW_SSI_SSI_SRCR, field RFEN0[7] (RW)
  *
- * Receive FIFO Enable 0. This bit enables receive FIFO 0. When enabled, the FIFO allows 8 15
- * samples to be received by the SSI (per channel) (a 16th sample can be shifting in) before RDR0
- * bit is set. When the FIFO is disabled, an interrupt is generated when a single sample is received
- * by the SSI (provided the interrupt is enabled).
+ * Receive FIFO Enable 0. This bit enables receive FIFO 0. When enabled, the FIFO allows 15 samples
+ * to be received by the SSI (per channel) (a 16th sample can be shifting in) before RDR0 bit is
+ * set. When the FIFO is disabled, an interrupt is generated when a single sample is received by the
+ * SSI (provided the interrupt is enabled).
  *
  * Values:
  * 0 - Receive FIFO 0 disabled.
@@ -2012,10 +1999,10 @@ typedef union _hw_ssi_ssi_srcr
 
 /* --- Register HW_SSI_SSI_SRCR, field RFEN1[8] (RW)
  *
- * Receive FIFO Enable 1. This bit enables receive FIFO 1. When enabled, the FIFO allows 8 15
- * samples to be received by the SSI per channel (a 16th sample can be shifting in) before RDR1 bit
- * is set. When the FIFO is disabled, an interrupt is generated when a single sample is received by
- * the SSI (provided the interrupt is enabled).
+ * Receive FIFO Enable 1. This bit enables receive FIFO 1. When enabled, the FIFO allows 15 samples
+ * to be received by the SSI per channel (a 16th sample can be shifting in) before RDR1 bit is set.
+ * When the FIFO is disabled, an interrupt is generated when a single sample is received by the SSI
+ * (provided the interrupt is enabled).
  *
  * Values:
  * 0 - Receive FIFO 1 disabled.
@@ -2102,35 +2089,35 @@ typedef union _hw_ssi_ssi_srcr
  *
  * The SSI Transmit and Receive Control (SSI_STCCR and SSI_SRCCR) registers are 19-bit, read/write
  * control registers used to direct the operation of the SSI. The Clock Controller Module (CCM) can
- * source the SSI clock (SSI's sys clock-from CCM's ssi_clk_root ccm_ssi_clk ) from multiple sources
- * and perform fractional division to support commonly used audio bit rates. The CCM can maintain
- * the SSI's sys clock ccm_ssi_clk  (ccm_ssi_clk) frequency at a constant rate even in cases where
- * the ipg_clk (from CCM) peripheral clock frequency changes. These registers control the SSI clock
- * generator, bit and frame sync rates, word length, and number of words per frame for the serial
- * data. The SSI.STCCR register is dedicated to the transmit section, and the SSI_SRCCR register is
- * dedicated to the receive section except in Synchronous mode, in which the SSI_STCCR register
- * controls both the receive and transmit sections. Power-on reset clears all SSI_STCCR and
- * SSI_SRCCR bits. SSI reset does not affect the SSI_STCCR and SSI_SRCCR bits. The control bits are
- * described in the following paragraphs. Although the bit patterns of the SSI_STCCR and SSI_SRCCR
- * registers are the same, the contents of these two registers can be programmed differently.   SSI
- * Data Length            WL3    WL2    WL1    WL0    Number of Bits/Word    Supported in
- * Implementation        0    0    0    0    2    No      0    0    0    1    4    No      0    0
- * 1    0    6    No      0    0    1    1    8    Yes      0    1    0    0    10    Yes      0
- * 1    0    1    12    Yes      0    1    1    0    14    No      0    1    1    1    16    Yes
- * 1    0    0    0    18    Yes      1    0    0    1    20    Yes      1    0    1    0    22
- * Yes      1    0    1    1    24    Yes      1    1    0    0    26    No      1    1    0    1
- * 28    No      1    1    1    0    30    No      1    1    1    1    32    No
+ * source the SSI clock (SSI's sys clock-from CCM's ssi_clk_root) from multiple sources and perform
+ * fractional division to support commonly used audio bit rates. The CCM can maintain the SSI's sys
+ * clock frequency at a constant rate even in cases where the ipg_clk (from CCM) frequency changes.
+ * These registers control the SSI clock generator, bit and frame sync rates, word length, and
+ * number of words per frame for the serial data. The SSI.STCCR register is dedicated to the
+ * transmit section, and the SSI_SRCCR register is dedicated to the receive section except in
+ * Synchronous mode, in which the SSI_STCCR register controls both the receive and transmit
+ * sections. Power-on reset clears all SSI_STCCR and SSI_SRCCR bits. SSI reset does not affect the
+ * SSI_STCCR and SSI_SRCCR bits. The control bits are described in the following paragraphs.
+ * Although the bit patterns of the SSI_STCCR and SSI_SRCCR registers are the same, the contents of
+ * these two registers can be programmed differently.   SSI Data Length            WL3    WL2    WL1
+ * WL0    Number of Bits/Word    Supported in Implementation        0    0    0    0    2    No
+ * 0    0    0    1    4    No      0    0    1    0    6    No      0    0    1    1    8    Yes
+ * 0    1    0    0    10    Yes      0    1    0    1    12    Yes      0    1    1    0    14
+ * No      0    1    1    1    16    Yes      1    0    0    0    18    Yes      1    0    0    1
+ * 20    Yes      1    0    1    0    22    Yes      1    0    1    1    24    Yes      1    1    0
+ * 0    26    No      1    1    0    1    28    No      1    1    1    0    30    No      1    1
+ * 1    1    32    No
  */
 typedef union _hw_ssi_ssi_stccr
 {
     reg32_t U;
     struct _hw_ssi_ssi_stccr_bitfields
     {
-        unsigned PM7_PM0 : 8; //!< [7:0] Prescaler Modulus Select. These bits control the prescale divider in the clock generator. This prescaler is used only in Internal Clock mode to divide the internal clock (ccm_ssi_clk) . The bit clock output is available at the clock port. A divide ratio from 1 to 256 (PM[7:0] = 0x00 to 0xFF) can be selected. Refer to for details regarding settings.
-        unsigned DC4_DC0 : 5; //!< [12:8] Frame Rate Divider Control. These bits are used to control the divide ratio for the programmable frame rate dividers. The divide ratio works on the word clock. In Normal mode, this ratio determines the word transfer rate. In Network mode, this ratio sets the number of words per frame. The divide ratio ranges from 1 to 32 in Normal mode and from 2 to 32 in Network mode. In Normal mode, a divide ratio of 1 (DC=00000) provides continuous periodic data word transfer. A bit-length frame sync must be used in this case. These bits can be programmed with values ranging from "00000" to "11111" to control the number of words in a frame.
-        unsigned WL3_WL0 : 4; //!< [16:13] Word Length Control. These bits are used to control the length of the data words being transferred by the SSI. These bits control the Word Length Divider in the Clock Generator. They also control the frame sync pulse length when the FSL bit is cleared. In I2S Master mode, the SSI works with a fixed word length of 32, and the WL bits are used to control the amount of valid data in those 32 bits. In AC97 Mode of operation, if word length is set to any value other than 16 bits, it will result in a word length of 20 bits. [table]
-        unsigned PSR : 1; //!< [17] Prescaler Range. This bit controls a fixed divide-by-eight prescaler in series with the variable prescaler. It extends the range of the prescaler for those cases where a slower bit clock is required. 0 Prescaler bypassed. 1 Prescaler used to divide clock by 8.
-        unsigned DIV2 : 1; //!< [18] Divide By 2. This bit controls a divide-by-two divider in series with the rest of the prescalers. 0 Divider bypassed. 1 Divider used to divide clock by 2.
+        unsigned PM7_PM0 : 8; //!< [7:0] Prescaler Modulus Select.
+        unsigned DC4_DC0 : 5; //!< [12:8] Frame Rate Divider Control.
+        unsigned WL3_WL0 : 4; //!< [16:13] Word Length Control.
+        unsigned PSR : 1; //!< [17] Prescaler Range.
+        unsigned DIV2 : 1; //!< [18] Divide By 2.
         unsigned RESERVED0 : 13; //!< [31:19] Reserved
     } B;
 } hw_ssi_ssi_stccr_t;
@@ -2157,9 +2144,9 @@ typedef union _hw_ssi_ssi_stccr
 /* --- Register HW_SSI_SSI_STCCR, field PM7_PM0[7:0] (RW)
  *
  * Prescaler Modulus Select. These bits control the prescale divider in the clock generator. This
- * prescaler is used only in Internal Clock mode to divide the internal clock (ccm_ssi_clk) . The
- * bit clock output is available at the clock port. A divide ratio from 1 to 256 (PM[7:0] = 0x00 to
- * 0xFF) can be selected. Refer to for details regarding settings.
+ * prescaler is used only in Internal Clock mode to divide the internal clock. The bit clock output
+ * is available at the clock port. A divide ratio from 1 to 256 (PM[7:0] = 0x00 to 0xFF) can be
+ * selected. Refer to for details regarding settings.
  */
 
 #define BP_SSI_SSI_STCCR_PM7_PM0      (0)      //!< Bit position for SSI_SSI_STCCR_PM7_PM0.
@@ -2208,7 +2195,7 @@ typedef union _hw_ssi_ssi_stccr
  * also control the frame sync pulse length when the FSL bit is cleared. In I2S Master mode, the SSI
  * works with a fixed word length of 32, and the WL bits are used to control the amount of valid
  * data in those 32 bits. In AC97 Mode of operation, if word length is set to any value other than
- * 16 bits, it will result in a word length of 20 bits. [table]
+ * 16 bits, it will result in a word length of 20 bits.
  */
 
 #define BP_SSI_SSI_STCCR_WL3_WL0      (13)      //!< Bit position for SSI_SSI_STCCR_WL3_WL0.
@@ -2278,35 +2265,35 @@ typedef union _hw_ssi_ssi_stccr
  *
  * The SSI Transmit and Receive Control (SSI_STCCR and SSI_SRCCR) registers are 19-bit, read/write
  * control registers used to direct the operation of the SSI. The Clock Controller Module (CCM) can
- * source the SSI clock (SSI's sys clock-from CCM's ssi_clk_root ccm_ssi_clk ) from multiple sources
- * and perform fractional division to support commonly used audio bit rates. The CCM can maintain
- * the SSI's sys clock ccm_ssi_clk  (ccm_ssi_clk) frequency at a constant rate even in cases where
- * the ipg_clk from CCM peripheral clock frequency changes. These registers control the SSI clock
- * generator, bit and frame sync rates, word length, and number of words per frame for the serial
- * data. The SSI_STCCR register is dedicated to the transmit section, and the SSI_SRCCR register is
- * dedicated to the receive section except in Synchronous mode, in which the SSI_STCCR register
- * controls both the receive and transmit sections. Power-on reset clears all SSI_STCCR and
- * SSI_SRCCR bits. SSI reset does not affect the SSI_STCCR and SSI_SRCCR bits. The control bits are
- * described in the following paragraphs. Although the bit patterns of the SSI_STCCR and SSI_SRCCR
- * registers are the same, the contents of these two registers can be programmed differently.   SSI
- * Data Length            WL3    WL2    WL1    WL0    Number of Bits/Word    Supported in
- * Implementation        0    0    0    0    2    No      0    0    0    1    4    No      0    0
- * 1    0    6    No      0    0    1    1    8    Yes      0    1    0    0    10    Yes      0
- * 1    0    1    12    Yes      0    1    1    0    14    No      0    1    1    1    16    Yes
- * 1    0    0    0    18    Yes      1    0    0    1    20    Yes      1    0    1    0    22
- * Yes      1    0    1    1    24    Yes      1    1    0    0    26    No      1    1    0    1
- * 28    No      1    1    1    0    30    No      1    1    1    1    32    No
+ * source the SSI clock (SSI's sys clock-from CCM's ssi_clk_root) from multiple sources and perform
+ * fractional division to support commonly used audio bit rates. The CCM can maintain the SSI's sys
+ * clock frequency at a constant rate even in cases where the ipg_clk from CCM frequency changes.
+ * These registers control the SSI clock generator, bit and frame sync rates, word length, and
+ * number of words per frame for the serial data. The SSI_STCCR register is dedicated to the
+ * transmit section, and the SSI_SRCCR register is dedicated to the receive section except in
+ * Synchronous mode, in which the SSI_STCCR register controls both the receive and transmit
+ * sections. Power-on reset clears all SSI_STCCR and SSI_SRCCR bits. SSI reset does not affect the
+ * SSI_STCCR and SSI_SRCCR bits. The control bits are described in the following paragraphs.
+ * Although the bit patterns of the SSI_STCCR and SSI_SRCCR registers are the same, the contents of
+ * these two registers can be programmed differently.   SSI Data Length            WL3    WL2    WL1
+ * WL0    Number of Bits/Word    Supported in Implementation        0    0    0    0    2    No
+ * 0    0    0    1    4    No      0    0    1    0    6    No      0    0    1    1    8    Yes
+ * 0    1    0    0    10    Yes      0    1    0    1    12    Yes      0    1    1    0    14
+ * No      0    1    1    1    16    Yes      1    0    0    0    18    Yes      1    0    0    1
+ * 20    Yes      1    0    1    0    22    Yes      1    0    1    1    24    Yes      1    1    0
+ * 0    26    No      1    1    0    1    28    No      1    1    1    0    30    No      1    1
+ * 1    1    32    No
  */
 typedef union _hw_ssi_srccr
 {
     reg32_t U;
     struct _hw_ssi_srccr_bitfields
     {
-        unsigned PM7_PM0 : 8; //!< [7:0] Prescaler Modulus Select. These bits control the prescale divider in the clock generator. This prescaler is used only in Internal Clock mode to divide the internal clock (ccm_ssi_clk) . The bit clock output is available at the clock port. A divide ratio from 1 to 256 (PM[7:0] = 0x00 to 0xFF) can be selected. Refer to for details regarding settings.
-        unsigned DC4_DC0 : 5; //!< [12:8] Frame Rate Divider Control. These bits are used to control the divide ratio for the programmable frame rate dividers. The divide ratio works on the word clock. In Normal mode, this ratio determines the word transfer rate. In Network mode, this ratio sets the number of words per frame. The divide ratio ranges from 1 to 32 in Normal mode and from 2 to 32 in Network mode. In Normal mode, a divide ratio of 1 (DC=00000) provides continuous periodic data word transfer. A bit-length frame sync must be used in this case. These bits can be programmed with values ranging from "00000" to "11111" to control the number of words in a frame.
-        unsigned WL3_WL0 : 4; //!< [16:13] Word Length Control. These bits are used to control the length of the data words being transferred by the SSI. These bits control the Word Length Divider in the Clock Generator. They also control the frame sync pulse length when the FSL bit is cleared. In I2S Master mode, the SSI works with a fixed word length of 32, and the WL bits are used to control the amount of valid data in those 32 bits. In AC97 Mode of operation, if word length is set to any value other than 16 bits, it will result in a word length of 20 bits. [table]
-        unsigned PSR : 1; //!< [17] Prescaler Range. This bit controls a fixed divide-by-eight prescaler in series with the variable prescaler. It extends the range of the prescaler for those cases where a slower bit clock is required. 0 Prescaler bypassed. 1 Prescaler used to divide clock by 8.
-        unsigned DIV2 : 1; //!< [18] Divide By 2. This bit controls a divide-by-two divider in series with the rest of the prescalers. 0 Divider bypassed. 1 Divider used to divide clock by 2.
+        unsigned PM7_PM0 : 8; //!< [7:0] Prescaler Modulus Select.
+        unsigned DC4_DC0 : 5; //!< [12:8] Frame Rate Divider Control.
+        unsigned WL3_WL0 : 4; //!< [16:13] Word Length Control.
+        unsigned PSR : 1; //!< [17] Prescaler Range.
+        unsigned DIV2 : 1; //!< [18] Divide By 2.
         unsigned RESERVED0 : 13; //!< [31:19] Reserved
     } B;
 } hw_ssi_srccr_t;
@@ -2333,9 +2320,9 @@ typedef union _hw_ssi_srccr
 /* --- Register HW_SSI_SRCCR, field PM7_PM0[7:0] (RW)
  *
  * Prescaler Modulus Select. These bits control the prescale divider in the clock generator. This
- * prescaler is used only in Internal Clock mode to divide the internal clock (ccm_ssi_clk) . The
- * bit clock output is available at the clock port. A divide ratio from 1 to 256 (PM[7:0] = 0x00 to
- * 0xFF) can be selected. Refer to for details regarding settings.
+ * prescaler is used only in Internal Clock mode to divide the internal clock. The bit clock output
+ * is available at the clock port. A divide ratio from 1 to 256 (PM[7:0] = 0x00 to 0xFF) can be
+ * selected. Refer to for details regarding settings.
  */
 
 #define BP_SSI_SRCCR_PM7_PM0      (0)      //!< Bit position for SSI_SRCCR_PM7_PM0.
@@ -2384,7 +2371,7 @@ typedef union _hw_ssi_srccr
  * also control the frame sync pulse length when the FSL bit is cleared. In I2S Master mode, the SSI
  * works with a fixed word length of 32, and the WL bits are used to control the amount of valid
  * data in those 32 bits. In AC97 Mode of operation, if word length is set to any value other than
- * 16 bits, it will result in a word length of 20 bits. [table]
+ * 16 bits, it will result in a word length of 20 bits.
  */
 
 #define BP_SSI_SRCCR_WL3_WL0      (13)      //!< Bit position for SSI_SRCCR_WL3_WL0.
@@ -2454,41 +2441,35 @@ typedef union _hw_ssi_srccr
  *
  * The SSI FIFO Control / Status Register indicates the status of the Transmit FIFO Empty flag, with
  * different settings of the Transmit FIFO WaterMark bits and varying amounts of data in the Tx FIFO
- * .   Status of Transmit FIFO Empty Flag               Transmit FIFO Watermark (TFWM)    Number of
- * data in Tx-Fifo      1    2    3    4    5    6    7    8        1    1    1    1    1    1    1
- * 1    0      2    1    1    1    1    1    1    0    0      3    1    1    1    1    1    0    0
- * 0      4    1    1    1    1    0    0    0    0      5    1    1    1    0    0    0    0    0
- * 6    1    1    0    0    0    0    0    0      7    1    0    0    0    0    0    0    0      8
- * 0    0    0    0    0    0    0    0        Status of Transmit FIFO Empty Flag
- * Transmit FIFO Watermark (TFWM)    Number of data in Tx-Fifo      1    2    3    4    5    6    7
- * 8    9    10    11    12    13    14    15        1    1    1    1    1    1    1    1    1    1
- * 1    1    1    1    1    0      2    1    1    1    1    1    1    1    1    1    1    1    1
- * 1    0    0      3    1    1    1    1    1    1    1    1    1    1    1    1    0    0    0
- * 4    1    1    1    1    1    1    1    1    1    1    1    0    0    0    0      5    1    1
- * 1    1    1    1    1    1    1    1    0    0    0    0    0      6    1    1    1    1    1
- * 1    1    1    1    0    0    0    0    0    0      7    1    1    1    1    1    1    1    1
- * 0    0    0    0    0    0    0      8    1    1    1    1    1    1    1    0    0    0    0
- * 0    0    0    0      9    1    1    1    1    1    1    0    0    0    0    0    0    0    0
- * 0      10    1    1    1    1    1    0    0    0    0    0    0    0    0    0    0      11    1
- * 1    1    1    0    0    0    0    0    0    0    0    0    0    0      12    1    1    1    0
- * 0    0    0    0    0    0    0    0    0    0    0      13    1    1    0    0    0    0    0
- * 0    0    0    0    0    0    0    0      14    1    0    0    0    0    0    0    0    0    0
- * 0    0    0    0    0      15    0    0    0    0    0    0    0    0    0    0    0    0    0
- * 0    0
+ * .   Status of Transmit FIFO Empty Flag                      Transmit FIFO Watermark (TFWM)
+ * Number of data in Tx-Fifo      1    2    3    4    5    6    7    8    9    10    11    12    13
+ * 14    15        1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    0
+ * 2    1    1    1    1    1    1    1    1    1    1    1    1    1    0    0      3    1    1
+ * 1    1    1    1    1    1    1    1    1    1    0    0    0      4    1    1    1    1    1
+ * 1    1    1    1    1    1    0    0    0    0      5    1    1    1    1    1    1    1    1
+ * 1    1    0    0    0    0    0      6    1    1    1    1    1    1    1    1    1    0    0
+ * 0    0    0    0      7    1    1    1    1    1    1    1    1    0    0    0    0    0    0
+ * 0      8    1    1    1    1    1    1    1    0    0    0    0    0    0    0    0      9    1
+ * 1    1    1    1    1    0    0    0    0    0    0    0    0    0      10    1    1    1    1
+ * 1    0    0    0    0    0    0    0    0    0    0      11    1    1    1    1    0    0    0
+ * 0    0    0    0    0    0    0    0      12    1    1    1    0    0    0    0    0    0    0
+ * 0    0    0    0    0      13    1    1    0    0    0    0    0    0    0    0    0    0    0
+ * 0    0      14    1    0    0    0    0    0    0    0    0    0    0    0    0    0    0      15
+ * 0    0    0    0    0    0    0    0    0    0    0    0    0    0    0
  */
 typedef union _hw_ssi_ssi_sfcsr
 {
     reg32_t U;
     struct _hw_ssi_ssi_sfcsr_bitfields
     {
-        unsigned TFWM0 : 4; //!< [3:0] Transmit FIFO Empty WaterMark 0. These bits control the threshold at which the TFE0 flag will be set. The TFE0 flag is set whenever the empty slots in Tx FIFO exceed or are equal to the selected threshold. See SSI_SFCSR_bf4 for details regarding settings for transmit FIFO watermark bits.
-        unsigned RFWM0 : 4; //!< [7:4] Receive FIFO Full WaterMark 0. These bits control the threshold at which the RFF0 flag will be set. The RFF0 flag is set whenever the data level in Rx FIFO 0 reaches the selected threshold. See SSI_SFCSR_bf3 for details regarding settings for receive FIFO watermark bits.
-        unsigned TFCNT0 : 4; //!< [11:8] Transmit FIFO Counter 0. These bits indicate the number of data words in Transmit FIFO 0. See SSI_SFCSR_bf2 for details regarding settings for transmit FIFO counter bits.
-        unsigned RFCNT0 : 4; //!< [15:12] Receive FIFO Counter 0. These bits indicate the number of data words in Receive FIFO 0. See SSI_SFCSR_bf1 for details regarding settings for receive FIFO counter bits.
-        unsigned TFWM1 : 4; //!< [19:16] Transmit FIFO Empty WaterMark 1. These bits control the threshold at which the TFE1 flag will be set. The TFE1 flag is set whenever the empty slots in Tx FIFO exceed or are equal to the selected threshold.
-        unsigned RFWM1 : 4; //!< [23:20] Receive FIFO Full WaterMark 1. These bits control the threshold at which the RFF1 flag will be set. The RFF1 flag is set whenever the data level in Rx FIFO 1 reaches the selected threshold.
-        unsigned TFCNT1 : 4; //!< [27:24] Transmit FIFO Counter1. These bits indicate the number of data words in Transmit FIFO.
-        unsigned RFCNT1 : 4; //!< [31:28] Receive FIFO Counter1. These bits indicate the number of data words in Receive FIFO 1.
+        unsigned TFWM0 : 4; //!< [3:0] Transmit FIFO Empty WaterMark 0.
+        unsigned RFWM0 : 4; //!< [7:4] Receive FIFO Full WaterMark 0.
+        unsigned TFCNT0 : 4; //!< [11:8] Transmit FIFO Counter 0.
+        unsigned RFCNT0 : 4; //!< [15:12] Receive FIFO Counter 0.
+        unsigned TFWM1 : 4; //!< [19:16] Transmit FIFO Empty WaterMark 1.
+        unsigned RFWM1 : 4; //!< [23:20] Receive FIFO Full WaterMark 1.
+        unsigned TFCNT1 : 4; //!< [27:24] Transmit FIFO Counter1.
+        unsigned RFCNT1 : 4; //!< [31:28] Receive FIFO Counter1.
     } B;
 } hw_ssi_ssi_sfcsr_t;
 #endif
@@ -2602,21 +2583,21 @@ typedef union _hw_ssi_ssi_sfcsr
  * Values:
  * 0000 - Reserved
  * 0001 - TFE set when there are more than or equal to 1 empty slots in Transmit FIFO (default). Transmit FIFO
- *     empty is set when TxFIFO <= 7 14 data.
+ *     empty is set when TxFIFO <= 14 data.
  * 0010 - TFE set when there are more than or equal to 2 empty slots in Transmit FIFO. Transmit FIFO empty is
- *     set when TxFIFO <= 6 13 data.
+ *     set when TxFIFO <= 13 data.
  * 0011 - TFE set when there are more than or equal to 3 empty slots in Transmit FIFO. Transmit FIFO empty is
- *     set when TxFIFO <= 5 12 data.
+ *     set when TxFIFO <= 12 data.
  * 0100 - TFE set when there are more than or equal to 4 empty slots in Transmit FIFO. Transmit FIFO empty is
- *     set when TxFIFO <= 4 11 data.
+ *     set when TxFIFO <= 11 data.
  * 0101 - TFE set when there are more than or equal to 5 empty slots in Transmit FIFO. Transmit FIFO empty is
- *     set when TxFIFO <= 3 10 data.
+ *     set when TxFIFO <= 10 data.
  * 0110 - TFE set when there are more than or equal to 6 empty slots in Transmit FIFO. Transmit FIFO empty is
- *     set when TxFIFO <= 2 9 data.
+ *     set when TxFIFO <= 9 data.
  * 0111 - TFE set when there are more than or equal to 7 empty slots in Transmit FIFO. Transmit FIFO empty is
- *     set when TxFIFO <= 1 8 data.
+ *     set when TxFIFO <= 8 data.
  * 1000 - TFE set when there are more than or equal to 8 empty slots in Transmit FIFO. Transmit FIFO empty is
- *     set when TxFIFO <= 0 7 data.
+ *     set when TxFIFO <= 7 data.
  * 1001 - TFE set when there are more than or equal to 9 empty slots in Transmit FIFO. Transmit FIFO empty is
  *     set when TxFIFO <= 6 data.
  * 1010 - TFE set when there are more than or equal to 10 empty slots in Transmit FIFO. Transmit FIFO empty is
@@ -2656,21 +2637,21 @@ typedef union _hw_ssi_ssi_sfcsr
  * Values:
  * 0000 - Reserved
  * 0001 - RFF set when at least one data word has been written to the Receive FIFO. Set when RxFIFO = 1,2.....
- *     8 15 data words
+ *     15 data words
  * 0010 - RFF set when 2 or more data words have been written to the Receive FIFO. Set when RxFIFO = 2,3.....
- *     8 15 data words
+ *     15 data words
  * 0011 - RFF set when 3 or more data words have been written to the Receive FIFO. Set when RxFIFO = 3,4.....
- *     8 15 data words
+ *     15 data words
  * 0100 - RFF set when 4 or more data words have been written to the Receive FIFO. Set when RxFIFO = 4,5.....
- *     8 15 data words
+ *     15 data words
  * 0101 - RFF set when 5 or more data words have been written to the Receive FIFO. Set when RxFIFO = 5,6.....
- *     8 15 data words
- * 0110 - RFF set when 6 or more data words have been written to the Receive.. Set when RxFIFO = 6,7 ,8
- *     ......15 data words
+ *     15 data words
+ * 0110 - RFF set when 6 or more data words have been written to the Receive.. Set when RxFIFO = 6,7 ......15
+ *     data words
  * 0111 - RFF set when 7 or more data words have been written to the Receive FIFO. Set when RxFIFO = 7,8
  *     ......15 data words
  * 1000 - RFF set when 8 or more data words have been written to the Receive FIFO. Set when RxFIFO = 8,9.....
- *     8 15 data words
+ *     15 data words
  * 1001 - RFF set when 9 or more data words have been written to the Receive FIFO. Set when RxFIFO =
  *     9,10.....15 data words
  * 1010 - RFF set when 10 or more data words have been written to the Receive FIFO. Set when RxFIFO =
@@ -2795,12 +2776,12 @@ typedef union _hw_ssi_ssi_sacnt
     reg32_t U;
     struct _hw_ssi_ssi_sacnt_bitfields
     {
-        unsigned AC97EN : 1; //!< [0] AC97 Mode Enable. This bit is used to enable SSI AC97 operation. Refer to for details of AC97 operation.
-        unsigned FV : 1; //!< [1] Fixed/Variable Operation. This bit selects whether the SSI is in AC97 Fixed mode or AC97 Variable mode.
-        unsigned TIF : 1; //!< [2] Tag in FIFO. This bit controls the destination of the information received in AC97 tag slot (Slot #0).
-        unsigned RD : 1; //!< [3] Read Command. This bit specifies whether the next frame will carry an AC97 Read Command or not. The programmer should take care that only one of the bits (WR or RD) is set at a time. When this bit is set, the corresponding tag bit (corresponding to Command Address slot of the next Tx frame) is automatically set. This bit is automatically cleared by the SSI after completing transmission of a frame.
-        unsigned WR : 1; //!< [4] Write Command. This bit specifies whether the next frame will carry an AC97 Write Command or not. The programmer should take care that only one of the bits (WR or RD) is set at a time. When this bit is set, the corresponding tag bits (corresponding to Command Address and Command Data slots of the next Tx frame) are automatically set. This bit is automatically cleared by the SSI after completing transmission of a frame.
-        unsigned FRDIV : 6; //!< [10:5] Frame Rate Divider. These bits control the frequency of AC97 data transmission/reception. They are programmed with the number of frames for which the SSI should be idle, after operating in one frame. Through these bits, AC97 frequency of operation, from 48 KHz (000000) to 1 KHz (101111) can be achieved. Sample Value: 001010 (10 Decimal) = SSI will operate once every 11 frames.
+        unsigned AC97EN : 1; //!< [0] AC97 Mode Enable.
+        unsigned FV : 1; //!< [1] Fixed/Variable Operation.
+        unsigned TIF : 1; //!< [2] Tag in FIFO.
+        unsigned RD : 1; //!< [3] Read Command.
+        unsigned WR : 1; //!< [4] Write Command.
+        unsigned FRDIV : 6; //!< [10:5] Frame Rate Divider.
         unsigned RESERVED0 : 21; //!< [31:11] Reserved
     } B;
 } hw_ssi_ssi_sacnt_t;
@@ -2994,7 +2975,7 @@ typedef union _hw_ssi_ssi_sacadd
     reg32_t U;
     struct _hw_ssi_ssi_sacadd_bitfields
     {
-        unsigned SACADD : 19; //!< [18:0] AC97 Command Address. These bits store the Command Address Slot information (bit 19 of the slot is sent in accordance with the Read and Write Command bits in SSI_SACNT register). These bits can be updated by a direct write from the Core. They are also updated with the information received in the incoming Command Address Slot. If the contents of these bits change due to an update, the CMDAU bit in SISR is set.
+        unsigned SACADD : 19; //!< [18:0] AC97 Command Address.
         unsigned RESERVED0 : 13; //!< [31:19] Reserved
     } B;
 } hw_ssi_ssi_sacadd_t;
@@ -3058,7 +3039,7 @@ typedef union _hw_ssi_ssi_sacdat
     reg32_t U;
     struct _hw_ssi_ssi_sacdat_bitfields
     {
-        unsigned SACDAT : 20; //!< [19:0] AC97 Command Data. The outgoing Command Data Slot carries the information contained in these bits. These bits can be updated by a direct write from the Core. They are also updated with the information received in the incoming Command Data Slot. If the contents of these bits change due to an update, the CMDDU bit in SISR is set. These bits are transmitted only during AC97 Write Command. During AC97 Read Command, 0x00000 is transmitted in time slot #2.
+        unsigned SACDAT : 20; //!< [19:0] AC97 Command Data.
         unsigned RESERVED0 : 12; //!< [31:20] Reserved
     } B;
 } hw_ssi_ssi_sacdat_t;
@@ -3122,7 +3103,7 @@ typedef union _hw_ssi_satag
     reg32_t U;
     struct _hw_ssi_satag_bitfields
     {
-        unsigned SATAG : 16; //!< [15:0] AC97 Tag Value. Writing to this register (by the Core) sets the value of the Tx-Tag in AC97 fixed mode of operation. On a read, the Core gets the Rx-Tag Value received (in the last frame) from the Codec. If TIF bit in SSI_SACNT register is set, the TAG value is also stored in Rx-FIFO in addition to SATAG register. When the received Tag value changes, the RXT bit in SISR register is set. Bits SATAG[1:0] convey the Codec -ID. In current implementation only Primary Codecs are supported. Thus writing value 2'b00 to this field is mandatory.
+        unsigned SATAG : 16; //!< [15:0] AC97 Tag Value.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_ssi_satag_t;
@@ -3187,7 +3168,7 @@ typedef union _hw_ssi_ssi_stmsk
     reg32_t U;
     struct _hw_ssi_ssi_stmsk_bitfields
     {
-        unsigned STMSK : 32; //!< [31:0] Transmit Mask. These bits indicate which slot has been masked in the current frame. The Core can write to this register to control the time slots in which the SSI transmits data. Each bit has info corresponding to the respective time slot in the frame. Transmit mask bits should not be used in I2S Slave mode of operation. SSI_STMSK register value must be set before enabling Transmission.
+        unsigned STMSK : 32; //!< [31:0] Transmit Mask.
     } B;
 } hw_ssi_ssi_stmsk_t;
 #endif
@@ -3255,7 +3236,7 @@ typedef union _hw_ssi_ssi_srmsk
     reg32_t U;
     struct _hw_ssi_ssi_srmsk_bitfields
     {
-        unsigned SRMSK : 32; //!< [31:0] Receive Mask. These bits indicate which slot has been masked in the current frame. The Core can write to this register to control the time slots in which the SSI receives data. Each bit has info corresponding to the respective time slot in the frame. SSI_SRMSK register value must be set before enabling Receiver. Receive mask bits should not be used in I2S Slave mode of operation.
+        unsigned SRMSK : 32; //!< [31:0] Receive Mask.
     } B;
 } hw_ssi_ssi_srmsk_t;
 #endif
@@ -3322,7 +3303,7 @@ typedef union _hw_ssi_ssi_saccst
     reg32_t U;
     struct _hw_ssi_ssi_saccst_bitfields
     {
-        unsigned SACCST : 10; //!< [9:0] AC97 Channel Status. These bits indicate which data slot has been enabled in AC97 variable mode operation. This register is updated in case the core enables/disables a channel through a write to SSI_SACCEN/SSI_SACCDIS register or the external codec enables a channel by sending a '1' in the corresponding SLOTREQ bit. Bit [0] corresponds to the first data slot in an AC97 frame (Slot #3) and Bit [9] corresponds to the tenth data slot (slot #12). The contents of this register only have relevance while the SSI is operating in AC97 variable mode. Writes to this register result in an error response on the block interface.
+        unsigned SACCST : 10; //!< [9:0] AC97 Channel Status.
         unsigned RESERVED0 : 22; //!< [31:10] Reserved
     } B;
 } hw_ssi_ssi_saccst_t;
@@ -3381,7 +3362,7 @@ typedef union _hw_ssi_ssi_saccen
     reg32_t U;
     struct _hw_ssi_ssi_saccen_bitfields
     {
-        unsigned SACCEN : 10; //!< [9:0] AC97 Channel Enable. The Core writes a '1' to these bits to enable an AC97 data channel. Writing a '0' has no effect. Bit [0] corresponds to the first data slot in an AC97 frame (Slot #3) and Bit [9] corresponds to the tenth data slot (slot #12). Writes to these bits only have effect in the AC97 Variable mode of operation. These bits are always read as '0' by the Core.
+        unsigned SACCEN : 10; //!< [9:0] AC97 Channel Enable.
         unsigned RESERVED0 : 22; //!< [31:10] Reserved
     } B;
 } hw_ssi_ssi_saccen_t;
@@ -3440,7 +3421,7 @@ typedef union _hw_ssi_ssi_saccdis
     reg32_t U;
     struct _hw_ssi_ssi_saccdis_bitfields
     {
-        unsigned SACCDIS : 10; //!< [9:0] AC97 Channel Disable. The Core writes a '1' to these bits to disable an AC97 data channel. Writing a '0' has no effect. Bit [0] corresponds to the first data slot in an AC97 frame (Slot #3) and Bit [9] corresponds to the tenth data slot (slot #12). Writes to these bits only have effect in the AC97 Variable mode of operation. These bits are always read as '0' by the Core.
+        unsigned SACCDIS : 10; //!< [9:0] AC97 Channel Disable.
         unsigned RESERVED0 : 22; //!< [31:10] Reserved
     } B;
 } hw_ssi_ssi_saccdis_t;

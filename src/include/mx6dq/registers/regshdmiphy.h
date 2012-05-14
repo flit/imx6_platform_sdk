@@ -63,16 +63,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_HDMI_PHY_PWRCTRL - Power Control
@@ -475,9 +465,9 @@ typedef union _hw_hdmi_phy_serckkillctrl
     reg16_t U;
     struct _hw_hdmi_phy_serckkillctrl_bitfields
     {
-        unsigned short TX_SER_CLK_KILL2 : 1; //!< [0] Transmitter Serializer Clock Kill 2 This bit is used to delay the tx_ck_out2 sampling clock by a time t delay , where t delay equals one period of refclk (340 MHz). This delay equals 0.2 UI of the tx_ck_out2 clock.
-        unsigned short TX_SER_CLK_KILL1 : 1; //!< [1] Transmitter Serializer Clock Kill 1 This bit is used to delay the tx_ck_out1 sampling clock by a time t delay , where t delay equals one period of refclk (340 MHz). This delay equals 0.2 UI of the tx_ck_out1 clock.
-        unsigned short TX_SER_CLK_KILL0 : 1; //!< [2] Transmitter Serializer Clock Kill 0 This bit is used to delay the tx_ck_out0 sampling clock by a time t delay , where t delay equals one period of refclk (340 MHz). This delay equals 0.2 UI of the tx_ck_out0 clock.
+        unsigned short TX_SER_CLK_KILL2 : 1; //!< [0] Transmitter Serializer Clock Kill 2 This bit is used to delay the tx_ck_out2 sampling clock by a time t delay , where t delay equals one period of refclk (340 MHz).
+        unsigned short TX_SER_CLK_KILL1 : 1; //!< [1] Transmitter Serializer Clock Kill 1 This bit is used to delay the tx_ck_out1 sampling clock by a time t delay , where t delay equals one period of refclk (340 MHz).
+        unsigned short TX_SER_CLK_KILL0 : 1; //!< [2] Transmitter Serializer Clock Kill 0 This bit is used to delay the tx_ck_out0 sampling clock by a time t delay , where t delay equals one period of refclk (340 MHz).
         unsigned short RESERVED0 : 12; //!< [14:3] Reserved
         unsigned short OVERRIDE : 1; //!< [15] If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -593,8 +583,8 @@ typedef union _hw_hdmi_phy_txresctrl
     reg16_t U;
     struct _hw_hdmi_phy_txresctrl_bitfields
     {
-        unsigned short RESCAL_REP : 7; //!< [6:0] Resistance Calibration Replica This bus controls the bias voltage of the transmitter driver. rescal_rep[6:0] provides 64 voltage levels; the specific values are defined from lab test results.
-        unsigned short TX_RESCAL : 7; //!< [13:7] Transmitter Resistance Calibration This bus controls the parallel termination of the transmitter drivers and sets termination to a value based on the calibration algorithm performed in the support resistance calibration module. tx_rescal[6:0] provides 64 termination levels; the specific values are defined from lab test results.
+        unsigned short RESCAL_REP : 7; //!< [6:0] Resistance Calibration Replica This bus controls the bias voltage of the transmitter driver.
+        unsigned short TX_RESCAL : 7; //!< [13:7] Transmitter Resistance Calibration This bus controls the parallel termination of the transmitter drivers and sets termination to a value based on the calibration algorithm performed in the support resistance calibration module.
         unsigned short RESERVED0 : 1; //!< [14] Reserved
         unsigned short OVERRIDE : 1; //!< [15] If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -680,7 +670,7 @@ typedef union _hw_hdmi_phy_ckcalctrl
     reg16_t U;
     struct _hw_hdmi_phy_ckcalctrl_bitfields
     {
-        unsigned short CK_RESCAL : 7; //!< [6:0] Clock Resistance Calibration This bus controls the termination of the clock driver and sets the termination to a value based on the calibration algorithm performed in the support resistance calibration module. ck_rescal[6:0] provides 64 termination levels; the specific values are defined from lab test results.
+        unsigned short CK_RESCAL : 7; //!< [6:0] Clock Resistance Calibration This bus controls the termination of the clock driver and sets the termination to a value based on the calibration algorithm performed in the support resistance calibration module.
         unsigned short RESERVED0 : 8; //!< [14:7] Reserved
         unsigned short OVERRIDE : 1; //!< [15] If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -750,7 +740,7 @@ typedef union _hw_hdmi_phy_cpce_ctrl
     struct _hw_hdmi_phy_cpce_ctrl_bitfields
     {
         unsigned short CLR_DPTH : 2; //!< [1:0] Color Depth This bus controls the factor by which to divide the reference clock (PCLK) by the output TMDS rate (ck_ref_mpll_p/m).
-        unsigned short PIXEL_REP : 3; //!< [4:2] Pixel Repetition This bus controls another factor by which to divide the input frequency (refclk) by the output TMDS rate (ck_ref_mpll_p/m). FTMDS/Fin = (clr_depth[1:0] x pixel_rep[2]) / (pixel_rep[1:0])
+        unsigned short PIXEL_REP : 3; //!< [4:2] Pixel Repetition This bus controls another factor by which to divide the input frequency (refclk) by the output TMDS rate (ck_ref_mpll_p/m).
         unsigned short PLL_N_CNTRL : 2; //!< [6:5] Programmable Divider Control This bus controls the programmable divider modules, which are set based on the refclk_p/m (pixel rate) input reference frequency to keep the ring oscillator within the required range (740 MHz through 1.48 GHz in PLL).
         unsigned short MPLL_N_CNTRL : 2; //!< [8:7] Programmable Divider Control This bus controls the programmable divider modulus, which are set based on the ck_ref_mpll_p/m (TMDS rate) input reference frequency to keep the ring oscillator within the required range (925 MHz through 1.85 GHz in MPLL).
         unsigned short CK_EDGERATE : 2; //!< [10:9] Clock Edge Rate This bus controls the slew rate of the clock output driver.
@@ -1130,9 +1120,9 @@ typedef union _hw_hdmi_phy_cksymtxctrl
     reg16_t U;
     struct _hw_hdmi_phy_cksymtxctrl_bitfields
     {
-        unsigned short CK_SYMON : 1; //!< [0] Clock Symbol On This bit enables the clock symbol driver. To enable the clock driver, the ck_powon bit must be high. In addition, there is no pre-emphasis enable for the clock driver.
-        unsigned short TX_TRBON : 1; //!< [1] Transmitter Trailer B On This bit enables the transmitter trailer B driver(s). To enable the transmitter trailer B driver(s) and to enable pre-emphasis, the tx_pwron bit for each channel must be high.
-        unsigned short TX_TRAON : 1; //!< [2] Transmitter Trailer A On This bit enables the transmitter trailer A driver(s). To enable the transmitter trailer A driver(s) and to enable pre-emphasis, the tx_pwron bit for each channel must be high.
+        unsigned short CK_SYMON : 1; //!< [0] Clock Symbol On This bit enables the clock symbol driver.
+        unsigned short TX_TRBON : 1; //!< [1] Transmitter Trailer B On This bit enables the transmitter trailer B driver(s).
+        unsigned short TX_TRAON : 1; //!< [2] Transmitter Trailer A On This bit enables the transmitter trailer A driver(s).
         unsigned short TX_SYMON : 1; //!< [3] Transmitter Symbol On This bit enables the transmitter symbol driver(s), To enable the transmitter driver(s), the tx_pwron bit for each channel must be high.
         unsigned short RESERVED0 : 11; //!< [14:4] Reserved
         unsigned short OVERRIDE : 1; //!< [15] 
@@ -1585,8 +1575,8 @@ typedef union _hw_hdmi_phy_vlevctrl
     reg16_t U;
     struct _hw_hdmi_phy_vlevctrl_bitfields
     {
-        unsigned short SUP_CK_LVL : 5; //!< [4:0] Support Clock Level This bus controls the reference voltage level of the Clock Channel module. This voltage reference has a direct relation with the output signal voltage level. For more information about the driver voltage level configuration, see .
-        unsigned short SUP_TX_LVL : 5; //!< [9:5] Support Transmitter Level This bus controls the reference voltage level of the three transmitter channel modules. This voltage reference has a direct relation with the output signal voltage level. For more information about the driver voltage level configuration, see .
+        unsigned short SUP_CK_LVL : 5; //!< [4:0] Support Clock Level This bus controls the reference voltage level of the Clock Channel module.
+        unsigned short SUP_TX_LVL : 5; //!< [9:5] Support Transmitter Level This bus controls the reference voltage level of the three transmitter channel modules.
         unsigned short RESERVED0 : 6; //!< [15:10] Reserved
     } B;
 } hw_hdmi_phy_vlevctrl_t;
@@ -1655,7 +1645,7 @@ typedef union _hw_hdmi_phy_d2actrl
     reg16_t U;
     struct _hw_hdmi_phy_d2actrl_bitfields
     {
-        unsigned short SUP_DAC_TH_N : 3; //!< [2:0] Support Digital-to-Analog Thermometer Inverted This bus value is inverted and defined in the thermometer code to represent the binary code of the two MSB's of the 9-bit DAC value. Note : To increase the stability of the DAC block, the two MSB's of the 9-bit DAC value are represented in thermometer code, not in binary code. The MSB's of the 9-bit DAC value is split into two thermometer-code bits. A transition from 0 to 1 of the 9-bit DAC value's MSB is represented by "00" -> "01" -> "11" in thermometer code.
+        unsigned short SUP_DAC_TH_N : 3; //!< [2:0] Support Digital-to-Analog Thermometer Inverted This bus value is inverted and defined in the thermometer code to represent the binary code of the two MSB's of the 9-bit DAC value.
         unsigned short SUP_DAC_N : 8; //!< [10:3] Support Analog-to-Digital Inverted This bus represents the LSB's of the 9-bit DAC value.
         unsigned short RESERVED0 : 4; //!< [14:11] Reserved
         unsigned short OVERRIDE : 1; //!< [15] If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
@@ -1741,10 +1731,10 @@ typedef union _hw_hdmi_phy_currctrl
     reg16_t U;
     struct _hw_hdmi_phy_currctrl_bitfields
     {
-        unsigned short PLL_INT_CNTRL : 3; //!< [2:0] PLL Charge Pump Integral Control This bus controls the PLL charge pump integral current. Eight levels of charge pump integral current value are possible. The specific values are defined in . Default (reset) value of pll_int_cntrl[2:0] is 100.
-        unsigned short PLL_PROP_CNTRL : 3; //!< [5:3] PLL Proportional Control This bus controls the PLL charge pump proportional current. Eight levels of charge pump proportional current value are possible. The specific values are defined in . Default (reset) value of pll_int_cntrl is 011.
-        unsigned short MPLL_INT_CNTRL : 3; //!< [8:6] MPLL Integral Control This bus controls the charge pump integral current. Eight levels of charge pump integral current value are possible. The specific values are defined in . Default (reset) value of pll_int_cntrl[1:0] is 100.
-        unsigned short MPLL_PROP_CNTRL : 3; //!< [11:9] MPLL Proportional Control This bus controls the MPLL charge pump proportional current. Eight levels of charge pump proportional current value are possible. The specific values are defined in . Default (reset) value of pll_prop_cntrl[1:0] is 100.
+        unsigned short PLL_INT_CNTRL : 3; //!< [2:0] PLL Charge Pump Integral Control This bus controls the PLL charge pump integral current.
+        unsigned short PLL_PROP_CNTRL : 3; //!< [5:3] PLL Proportional Control This bus controls the PLL charge pump proportional current.
+        unsigned short MPLL_INT_CNTRL : 3; //!< [8:6] MPLL Integral Control This bus controls the charge pump integral current.
+        unsigned short MPLL_PROP_CNTRL : 3; //!< [11:9] MPLL Proportional Control This bus controls the MPLL charge pump proportional current.
         unsigned short RESERVED0 : 4; //!< [15:12] Reserved
     } B;
 } hw_hdmi_phy_currctrl_t;
@@ -1845,8 +1835,8 @@ typedef union _hw_hdmi_phy_drvanactrl
     reg16_t U;
     struct _hw_hdmi_phy_drvanactrl_bitfields
     {
-        unsigned short MPLL_DRV_ANA : 1; //!< [0] MPLL Drive Analog This bit enables or disables driving the ck_ref_p/m clocks to all transmitters (tx_topa). Default (reset) value of mpll_drv_ana is 1.
-        unsigned short PLL_DRV_ANA : 1; //!< [1] PLL Drive Analog This bit enables or disables driving the ck_ref_mpll_p/m clocks to the MPLL module. Default (reset) value of pll_drv_ana is 1.
+        unsigned short MPLL_DRV_ANA : 1; //!< [0] MPLL Drive Analog This bit enables or disables driving the ck_ref_p/m clocks to all transmitters (tx_topa).
+        unsigned short PLL_DRV_ANA : 1; //!< [1] PLL Drive Analog This bit enables or disables driving the ck_ref_mpll_p/m clocks to the MPLL module.
         unsigned short RESERVED0 : 13; //!< [14:2] Reserved
         unsigned short OVERRIDE : 1; //!< [15] If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -1953,8 +1943,8 @@ typedef union _hw_hdmi_phy_pllmeasctrl
     struct _hw_hdmi_phy_pllmeasctrl_bitfields
     {
         unsigned short PLL_MEAS_GD : 1; //!< [0] PLL Measure Ground This bit connects or disconnects the ground signal to the atb_sense (analog test bus) bus.
-        unsigned short PLL_MEAS_IV : 11; //!< [11:1] PLL Measure Internal Voltage This bus enables or disables measuring various PLL node voltages and branch currents. For information about the bit settings, see the pll_meas_iv[10:0] table.
-        unsigned short PLL_ATB_SENSE_SEL : 1; //!< [12] PLL Analog Test Bus Sense Select This bit enables or disables internal signals of the PLL to be connected to the analog test bus. Without setting this bit, no measurements can be made on the atb_sense line. Default (reset) value of pll_atb_sense_sel is 0.
+        unsigned short PLL_MEAS_IV : 11; //!< [11:1] PLL Measure Internal Voltage This bus enables or disables measuring various PLL node voltages and branch currents.
+        unsigned short PLL_ATB_SENSE_SEL : 1; //!< [12] PLL Analog Test Bus Sense Select This bit enables or disables internal signals of the PLL to be connected to the analog test bus.
         unsigned short RESERVED0 : 3; //!< [15:13] Reserved
     } B;
 } hw_hdmi_phy_pllmeasctrl_t;
@@ -2143,7 +2133,7 @@ typedef union _hw_hdmi_phy_grp_ctrl
         unsigned short MPLL_RST : 1; //!< [2] MPLL Reset This bit is used to place the MPLL in Reset mode.
         unsigned short MPLL_PWR_ON : 1; //!< [3] MPLL Power-On This bit is used to power-on/off the MPLL module.
         unsigned short PLL_RST : 1; //!< [4] PLL Reset This bit is used to place the MPLL in Reset mode.
-        unsigned short PLL_PWR_ON : 1; //!< [5] PLL Power-On This bit is used to power on/off the PLL module. Note: If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
+        unsigned short PLL_PWR_ON : 1; //!< [5] PLL Power-On This bit is used to power on/off the PLL module.
         unsigned short RESERVED0 : 9; //!< [14:6] Reserved
         unsigned short OVERRIDE : 1; //!< [15] If the Override bit is set to 1, the working value is the Override bit value, not the registered value.
     } B;
@@ -2412,8 +2402,8 @@ typedef union _hw_hdmi_phy_mpllmeasctrl
     struct _hw_hdmi_phy_mpllmeasctrl_bitfields
     {
         unsigned short MPLL_MEAS_GD : 1; //!< [0] MPLL Measure Ground This bit connects or disconnects the ground signal to the atb_sense (analog test bus) bus.
-        unsigned short MPLL_MEAS_IV : 12; //!< [12:1] MPLL Measure Internal Voltage This bus enables or disables measuring various PLL node voltages and branch currents. For information about the bit settings, see the mpll_meas_iv[11:0] table.
-        unsigned short MPLL_ATB_SENSE_SEL : 1; //!< [13] MPLL Analog Test Bus Sense Select This bit enables or disables internal signals of the PLL to be connected to the analog test bus. Without setting this bit, no measurements can be made on the atb_sense line. Default (reset) value of mpll_atb_sense_sel is 0.
+        unsigned short MPLL_MEAS_IV : 12; //!< [12:1] MPLL Measure Internal Voltage This bus enables or disables measuring various PLL node voltages and branch currents.
+        unsigned short MPLL_ATB_SENSE_SEL : 1; //!< [13] MPLL Analog Test Bus Sense Select This bit enables or disables internal signals of the PLL to be connected to the analog test bus.
         unsigned short RESERVED0 : 2; //!< [15:14] Reserved
     } B;
 } hw_hdmi_phy_mpllmeasctrl_t;
@@ -2514,7 +2504,7 @@ typedef union _hw_hdmi_phy_msm_ctrl
     struct _hw_hdmi_phy_msm_ctrl_bitfields
     {
         unsigned short SCOPE_CK_SEL : 1; //!< [0] Scope Clock Select Selects the clock to connect to the scope clock signal: the differential pll_cko_p/m or the differential mpll_cko_p/m.
-        unsigned short CKO_SEL : 2; //!< [2:1] Clock Output Select This bus selects the clock to be connected to the output TMDS clock channel. Notes: Normal mode: The color depth or pixel repetition is required, which means that the PLL is powered on (pll_pwr_on bit is set to 1) and the bypass_ppll bit is set to 0. Bypass mode: The color depth and the pixel repetition is not required, which means that the PLL is powered off (pll_pwr_on bit is set to 0) and the bypass_ppll bit is set to 1. For information about the cko_sel[1:0] bit settings and corresponding PLL/MPLL modes, see the cko_sel[1:0] table.
+        unsigned short CKO_SEL : 2; //!< [2:1] Clock Output Select This bus selects the clock to be connected to the output TMDS clock channel.
         unsigned short MPLL_PH_SEL : 10; //!< [12:3] MPLL Phase Select This bus is a control word for the MPLL's phase mixer and enables the phase of pll_cko_pm_p /m to be varied ± 0.5 UI of the VCO frequency, which has a range of 925-1,850 MHz.
         unsigned short MPLL_PH_SEL_CK : 1; //!< [13] MPLL Phase Select Clock This bit enables or disables latching ph_sel[9:0] into a 9-bit DAC used in the phase mixer.
         unsigned short RESERVED0 : 2; //!< [15:14] Reserved
@@ -2761,7 +2751,7 @@ typedef union _hw_hdmi_phy_txterm
     reg16_t U;
     struct _hw_hdmi_phy_txterm_bitfields
     {
-        unsigned short D_TX_TERM : 3; //!< [2:0] Digital Transmission Termination This bus defines the transmission termination (resistance) value, which is set by the HDMI controller. The formula for the resistance value is: R = 50 / (1 - 0.125 x d_tx_term) This equation is valid only when d_tx_term equals 0-6. 000: 50 Ω 001: 56.14 Ω 010: 66.67 Ω 011: 80 Ω 100: 100 Ω 101: 133.33 Ω 110: 200 Ω 111: Open circuit
+        unsigned short D_TX_TERM : 3; //!< [2:0] Digital Transmission Termination This bus defines the transmission termination (resistance) value, which is set by the HDMI controller.
         unsigned short RESERVED0 : 13; //!< [15:3] Reserved
     } B;
 } hw_hdmi_phy_txterm_t;
@@ -3367,7 +3357,7 @@ typedef union _hw_hdmi_phy_scopemode
     reg16_t U;
     struct _hw_hdmi_phy_scopemode_bitfields
     {
-        unsigned short SCOPE_SAMPLE_CNT : 10; //!< [9:0] Scope Sample Counter Indicates the number of samples that will be counted (should be multiple of the LFSR length). This count includes only the LSB bits; if the LFSR15 was used, you must program the new bits under the 0x24 register.
+        unsigned short SCOPE_SAMPLE_CNT : 10; //!< [9:0] Scope Sample Counter Indicates the number of samples that will be counted (should be multiple of the LFSR length).
         unsigned short SCOPE_ENB0 : 1; //!< [10] Scope Enable 0 This bit enables or disables the tracing of 1's on channel 0.
         unsigned short SCOPE_ENB1 : 1; //!< [11] Scope Enable 1 This bit enables or disables the tracing of 1's on channel 1.
         unsigned short SCOPE_ENB2 : 1; //!< [12] Scope Enable 2 This bit enables or disables the tracing of 1's on channel 2.
@@ -3562,7 +3552,7 @@ typedef union _hw_hdmi_phy_digtxmode
         unsigned short INVERT_DATA0 : 1; //!< [4] Inverter Data 0 This bit enables or disables the inverting feature for the transmitted pattern on channel 0.
         unsigned short INVERT_DATA1 : 1; //!< [5] Inverter Data 1 This bit enables or disables the inverting feature for the transmitted pattern on channel 1.
         unsigned short INVERT_DATA2 : 1; //!< [6] Inverter Data 2 This bit enables or disables the inverting feature for the transmitted pattern on channel 2.
-        unsigned short DTB_SELECT : 6; //!< [12:7] Debug Test Bus Select This field determines the pair of bits placed on the dtb[1:0] bus. These selected pairs of bits come from the control register. The values that appear on dtb[1:0] are the current values actually stored in the control register (not the override values) with the exception of I 2 C values, which are not stored in the control register. For information about the bit pairs, see dtb_select[6:0] .
+        unsigned short DTB_SELECT : 6; //!< [12:7] Debug Test Bus Select This field determines the pair of bits placed on the dtb[1:0] bus.
         unsigned short RESERVED0 : 3; //!< [15:13] Reserved
     } B;
 } hw_hdmi_phy_digtxmode_t;
@@ -3913,7 +3903,7 @@ typedef union _hw_hdmi_phy_scopecnt0
     reg16_t U;
     struct _hw_hdmi_phy_scopecnt0_bitfields
     {
-        unsigned short SCOPE_ONES_CNT0 : 16; //!< [15:0] Scope 1's Counter 0 This register carries the number of counted 1's on channel 0. If the LFSR15 was used to generate the scope patterns, you must read the MSB bits under 0x25 register.
+        unsigned short SCOPE_ONES_CNT0 : 16; //!< [15:0] Scope 1's Counter 0 This register carries the number of counted 1's on channel 0.
     } B;
 } hw_hdmi_phy_scopecnt0_t;
 #endif
@@ -3960,7 +3950,7 @@ typedef union _hw_hdmi_phy_scopecnt1
     reg16_t U;
     struct _hw_hdmi_phy_scopecnt1_bitfields
     {
-        unsigned short SCOPE_ONES_CNT1 : 16; //!< [15:0] Scope 1's Counter 1 This register carries the number of counted 1's on channel 1. If the LFSR15 was used to generate the scope patterns, you must read the MSB bits under 0x25 register.
+        unsigned short SCOPE_ONES_CNT1 : 16; //!< [15:0] Scope 1's Counter 1 This register carries the number of counted 1's on channel 1.
     } B;
 } hw_hdmi_phy_scopecnt1_t;
 #endif
@@ -4007,7 +3997,7 @@ typedef union _hw_hdmi_phy_scopecnt2
     reg16_t U;
     struct _hw_hdmi_phy_scopecnt2_bitfields
     {
-        unsigned short SCOPE_ONES_CNT2 : 16; //!< [15:0] Scope 1's Counter 2 This register carries the number of counted 1's on channel 2. If the LFSR15 was used to generate the scope patterns, you must read the MSB bits under 0x26 register.
+        unsigned short SCOPE_ONES_CNT2 : 16; //!< [15:0] Scope 1's Counter 2 This register carries the number of counted 1's on channel 2.
     } B;
 } hw_hdmi_phy_scopecnt2_t;
 #endif
@@ -4054,7 +4044,7 @@ typedef union _hw_hdmi_phy_scopecntclk
     reg16_t U;
     struct _hw_hdmi_phy_scopecntclk_bitfields
     {
-        unsigned short CK_SCOPE_ONES_CNT : 16; //!< [15:0] Clock Scope 1's Counter This register carries the number of counted 1's on the clock channel. If the LFSR15 was used to generate the scope patterns, you must read the MSB bits under 0x26 register.
+        unsigned short CK_SCOPE_ONES_CNT : 16; //!< [15:0] Clock Scope 1's Counter This register carries the number of counted 1's on the clock channel.
     } B;
 } hw_hdmi_phy_scopecntclk_t;
 #endif
@@ -4102,8 +4092,8 @@ typedef union _hw_hdmi_phy_scopesample
     reg16_t U;
     struct _hw_hdmi_phy_scopesample_bitfields
     {
-        unsigned short SCOPE_SAMPLE_CNT : 6; //!< [5:0] Scope Sample Counter Indicates the number of samples that will be counted (should be multiple of the LFSR length). These samples are the MSB bits only.
-        unsigned short SCOPE_SAMPLE_REP : 7; //!< [12:6] Scope Sample Repetition Number of repetitions made by the scope FSM. The total samples captured is scope_sample_rep x scope_sample_cnt.
+        unsigned short SCOPE_SAMPLE_CNT : 6; //!< [5:0] Scope Sample Counter Indicates the number of samples that will be counted (should be multiple of the LFSR length).
+        unsigned short SCOPE_SAMPLE_REP : 7; //!< [12:6] Scope Sample Repetition Number of repetitions made by the scope FSM.
         unsigned short RESERVED0 : 3; //!< [15:13] Reserved
     } B;
 } hw_hdmi_phy_scopesample_t;
@@ -4163,8 +4153,8 @@ typedef union _hw_hdmi_phy_scopecntmsb01
     reg16_t U;
     struct _hw_hdmi_phy_scopecntmsb01_bitfields
     {
-        unsigned short SCOPE_ONES_CNT0 : 8; //!< [7:0] Scope 1's Counter 0 This register carries the number of counted 1's on channel 0. These 1's are the MSB bits only.
-        unsigned short SCOPE_ONES_CNT1 : 5; //!< [12:8] Scope 1's Counter 1 This register carries the number of counted 1's on channel 1. These 1's are the MSB bits only.
+        unsigned short SCOPE_ONES_CNT0 : 8; //!< [7:0] Scope 1's Counter 0 This register carries the number of counted 1's on channel 0.
+        unsigned short SCOPE_ONES_CNT1 : 5; //!< [12:8] Scope 1's Counter 1 This register carries the number of counted 1's on channel 1.
         unsigned short RESERVED0 : 3; //!< [15:13] Reserved
     } B;
 } hw_hdmi_phy_scopecntmsb01_t;
@@ -4224,8 +4214,8 @@ typedef union _hw_hdmi_phy_scopecntmsb2ck
     reg16_t U;
     struct _hw_hdmi_phy_scopecntmsb2ck_bitfields
     {
-        unsigned short SCOPE_ONES_CNT2 : 6; //!< [5:0] Scope 1's Counter 2 This register carries the number of counted 1's on channel 2. These 1's are the MSB bits only.
-        unsigned short CK_SCOPE_ONES_CNT : 7; //!< [12:6] Clock Scope 1's Counter This register carries the number of counted 1's on the clock channel. These 1's are the MSB bits only.
+        unsigned short SCOPE_ONES_CNT2 : 6; //!< [5:0] Scope 1's Counter 2 This register carries the number of counted 1's on channel 2.
+        unsigned short CK_SCOPE_ONES_CNT : 7; //!< [12:6] Clock Scope 1's Counter This register carries the number of counted 1's on the clock channel.
         unsigned short RESERVED0 : 3; //!< [15:13] Reserved
     } B;
 } hw_hdmi_phy_scopecntmsb2ck_t;

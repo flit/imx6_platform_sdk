@@ -43,16 +43,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_VDOA_VDOAC - VDOA Control Register
@@ -75,7 +65,7 @@ typedef union _hw_vdoa_vdoac
         unsigned NF : 1; //!< [2] Number of frames - Determines whether to transfer 1 frame or three frames
         unsigned SYNC : 1; //!< [3] SYNC MODE - defines whether the VDOA will transfer a full frame (or 2 frames) continuously or will transfer a band at a time and wait for IPU signal to continue
         unsigned SO : 1; //!< [4] Scan Order
-        unsigned PFS : 1; //!< [5] Pixel Format Select - Pixel format of data written to / read from IPU. Note Data from VPU is always assumed to have partial interleaved 4:2:0 format
+        unsigned PFS : 1; //!< [5] Pixel Format Select - Pixel format of data written to / read from IPU.
         unsigned ISEL : 1; //!< [6] IPU SELECT - determines in sync mode which of the two sets of hand shake pins is used
         unsigned RESERVED0 : 25; //!< [31:7] Reserved
     } B;
@@ -279,7 +269,7 @@ typedef union _hw_vdoa_vdoasrr
     struct _hw_vdoa_vdoasrr_bitfields
     {
         unsigned SWRST : 1; //!< [0] Software reset - Finish outstanding AXI transfer and reset all internal registers the configuration registers are mnot cleared
-        unsigned START : 1; //!< [1] Start Transfer - Strat a VDOA data transfer according to all parameters. Note: During run this bit is read only In IDLE -
+        unsigned START : 1; //!< [1] Start Transfer - Strat a VDOA data transfer according to all parameters.
         unsigned RESERVED0 : 30; //!< [31:2] Reserved
     } B;
 } hw_vdoa_vdoasrr_t;
@@ -542,9 +532,9 @@ typedef union _hw_vdoa_vdoafp
     reg32_t U;
     struct _hw_vdoa_vdoafp_bitfields
     {
-        unsigned FW : 14; //!< [13:0] Number of pixels in one row, of the frame. Note the3 LSB are RO and will always be 0 (multiply of 8)
+        unsigned FW : 14; //!< [13:0] Number of pixels in one row, of the frame.
         unsigned RESERVED0 : 2; //!< [15:14] Reserved
-        unsigned FH : 13; //!< [28:16] Number of pixels in one column, of the frame. Note the 3 LSB are RO and will always be 0 (multiply of 8)
+        unsigned FH : 13; //!< [28:16] Number of pixels in one column, of the frame.
         unsigned RESERVED1 : 3; //!< [31:29] reserved
     } B;
 } hw_vdoa_vdoafp_t;
@@ -985,9 +975,9 @@ typedef union _hw_vdoa_vdoasl
     reg32_t U;
     struct _hw_vdoa_vdoasl_bitfields
     {
-        unsigned ISLY : 15; //!< [14:0] IPU Stride Line - Address vertical scaling factor in bytes for memory access. Also number of maximum bytes in the "Y" component row according to memory limitations. - Note for 4:2:2 format ISLY will be doubled since each pixel takes two bytes
+        unsigned ISLY : 15; //!< [14:0] IPU Stride Line - Address vertical scaling factor in bytes for memory access.
         unsigned RESERVED0 : 1; //!< [15] Reserved
-        unsigned VSLY : 14; //!< [29:16] VPU Stride Line - Address vertical scaling factor in bytes for memory access. Also number of maximum bytes in the "Y" component row according to memory limitations.
+        unsigned VSLY : 14; //!< [29:16] VPU Stride Line - Address vertical scaling factor in bytes for memory access.
         unsigned RESERVED1 : 2; //!< [31:30] Reserved
     } B;
 } hw_vdoa_vdoasl_t;

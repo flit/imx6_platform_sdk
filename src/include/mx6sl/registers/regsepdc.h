@@ -125,20 +125,10 @@
 //! @name Module base addresses
 //@{
 #ifndef REGS_EPDC_BASE
-#define HW_EPDC_INSTANCE_COUNT (1) //!< Number of instances of the EPDC module.
-#define REGS_EPDC_BASE (0x020f4000) //!< Base address for EPDC.
+#define HW_EPDC_INSTANCE_COUNT (0) //!< Number of instances of the EPDC module.
+#define REGS_EPDC_BASE (0x00000000) //!< Base address for EPDC.
 #endif
 //@}
-
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
 
 
 //-------------------------------------------------------------------------------------------
@@ -160,14 +150,14 @@ typedef union _hw_epdc_hw_epdc_ctrl
     reg32_t U;
     struct _hw_epdc_hw_epdc_ctrl_bitfields
     {
-        unsigned BURST_LEN_8 : 1; //!< [0] 0- EPDC display fifo logic will issue AXI bursts of length 16. When set to 1, the block will issue bursts of length 8.
+        unsigned BURST_LEN_8 : 1; //!< [0] 0- EPDC display fifo logic will issue AXI bursts of length 16.
         unsigned RESERVED0 : 3; //!< [3:1] Reserved.
-        unsigned LUT_DATA_SWIZZLE : 2; //!< [5:4] Specifies how to swap the bytes for the LUT data before store to LUTRAM. Supported configurations:
-        unsigned UPD_DATA_SWIZZLE : 2; //!< [7:6] Specifies how to swap the bytes for the UPD data before the WB construction. Plesae note this swizzle operate right after data fetch from bus, no matter it's aligned access or not. Supported configurations:
+        unsigned LUT_DATA_SWIZZLE : 2; //!< [5:4] Specifies how to swap the bytes for the LUT data before store to LUTRAM.
+        unsigned UPD_DATA_SWIZZLE : 2; //!< [7:6] Specifies how to swap the bytes for the UPD data before the WB construction.
         unsigned SRAM_POWERDOWN : 1; //!< [8] Enable Power-down of embedded SRAM memories
         unsigned RESERVED1 : 21; //!< [29:9] Reserved.
-        unsigned CLKGATE : 1; //!< [30] This bit must be set to zero for normal operation. When set to one it gates off the clocks to the block.
-        unsigned SFTRST : 1; //!< [31] Set this bit to zero to enable normal EPDC operation. Set this bit to one (default) to disable clocking with the EPDC and hold it in its reset (lowest power) state. This bit can be turned on and then off to reset the EPDC block to its default state.
+        unsigned CLKGATE : 1; //!< [30] This bit must be set to zero for normal operation.
+        unsigned SFTRST : 1; //!< [31] Set this bit to zero to enable normal EPDC operation.
     } B;
 } hw_epdc_hw_epdc_ctrl_t;
 #endif
@@ -352,7 +342,7 @@ typedef union _hw_epdc_hw_epdc_wvaddr
     reg32_t U;
     struct _hw_epdc_hw_epdc_wvaddr_bitfields
     {
-        unsigned ADDR : 32; //!< [31:0] Start address of waveform tables. This address needs to be aligned to a 64-bit word boundary.
+        unsigned ADDR : 32; //!< [31:0] Start address of waveform tables.
     } B;
 } hw_epdc_hw_epdc_wvaddr_t;
 #endif
@@ -412,7 +402,7 @@ typedef union _hw_epdc_hw_epdc_wb_addr
     reg32_t U;
     struct _hw_epdc_hw_epdc_wb_addr_bitfields
     {
-        unsigned ADDR : 32; //!< [31:0] Address for EPDC working buffer. This address must be a aligned to a 64-bit double-word boundary.
+        unsigned ADDR : 32; //!< [31:0] Address for EPDC working buffer.
     } B;
 } hw_epdc_hw_epdc_wb_addr_t;
 #endif
@@ -555,11 +545,11 @@ typedef union _hw_epdc_hw_epdc_format
     reg32_t U;
     struct _hw_epdc_hw_epdc_format_bitfields
     {
-        unsigned TFT_PIXEL_FORMAT : 2; //!< [1:0] EPDC TFT Pixel Format. This defines how many bits of the SDDO bus are required per pixel. This field must be consistent with the waveform and panel architecture.
+        unsigned TFT_PIXEL_FORMAT : 2; //!< [1:0] EPDC TFT Pixel Format.
         unsigned RESERVED0 : 6; //!< [7:2] Reserved.
-        unsigned BUF_PIXEL_FORMAT : 3; //!< [10:8] EPDC Input Buffer Pixel format. All update buffers are expected to have 8-bit grayscale pixels. This register defines which MSB's of those pixels are used. It must be noted that this format must match the waveform (e.g. P4N is not compatible with 3-bit waveforms)
+        unsigned BUF_PIXEL_FORMAT : 3; //!< [10:8] EPDC Input Buffer Pixel format.
         unsigned RESERVED1 : 5; //!< [15:11] Reserved.
-        unsigned DEFAULT_TFT_PIXEL : 8; //!< [23:16] Default TFT pixel value. This value is used as the source-driver voltage value (TFT-pixel) for either partial-updates where a pixel has not changed or for any part of the screen which is not being updated during active frame scans.
+        unsigned DEFAULT_TFT_PIXEL : 8; //!< [23:16] Default TFT pixel value.
         unsigned BUF_PIXEL_SCALE : 1; //!< [24] Selects method of conversion from 8-bit input
         unsigned RESERVED2 : 7; //!< [31:25] Reserved.
     } B;
@@ -713,11 +703,11 @@ typedef union _hw_epdc_hw_epdc_fifoctrl
     reg32_t U;
     struct _hw_epdc_hw_epdc_fifoctrl_bitfields
     {
-        unsigned FIFO_L_LEVEL : 8; //!< [7:0] Lower level value of FIFO watermark. When the pixel FIFO reaches this level or below, the priority elevation request is asserted.
-        unsigned FIFO_H_LEVEL : 8; //!< [15:8] Upper level value of FIFO watermark. Must be greater than FIFO_L_LEVEL. When the pixel FIFO reaches this level or above, the priority elevation request is negated
+        unsigned FIFO_L_LEVEL : 8; //!< [7:0] Lower level value of FIFO watermark.
+        unsigned FIFO_H_LEVEL : 8; //!< [15:8] Upper level value of FIFO watermark.
         unsigned FIFO_INIT_LEVEL : 8; //!< [23:16] This register sets the watermark for the pixel-fifo.
         unsigned RESERVED0 : 7; //!< [30:24] Reserved.
-        unsigned ENABLE_PRIORITY : 1; //!< [31] Enable watermark-based priority elevation mechanism. 1=Enabled, 0=Disabled. (Only applies to FIFO_H_LEVEL and FIFO_L_LEVEL)
+        unsigned ENABLE_PRIORITY : 1; //!< [31] Enable watermark-based priority elevation mechanism.
     } B;
 } hw_epdc_hw_epdc_fifoctrl_t;
 #endif
@@ -839,7 +829,7 @@ typedef union _hw_epdc_hw_epdc_upd_addr
     reg32_t U;
     struct _hw_epdc_hw_epdc_upd_addr_bitfields
     {
-        unsigned ADDR : 32; //!< [31:0] Address for incoming region update. This address points to update region which will be processed into the working buffer.
+        unsigned ADDR : 32; //!< [31:0] Address for incoming region update.
     } B;
 } hw_epdc_hw_epdc_upd_addr_t;
 #endif
@@ -1129,7 +1119,7 @@ typedef union _hw_epdc_hw_epdc_upd_ctrl
     struct _hw_epdc_hw_epdc_upd_ctrl_bitfields
     {
         unsigned UPDATE_MODE : 1; //!< [0] Update Mode
-        unsigned DRY_RUN : 1; //!< [1] Collision Detection. WB won't be updated in this mode, and lut_sel will be ignored, so actually you don't need to wait for LUT available to use this feature
+        unsigned DRY_RUN : 1; //!< [1] Collision Detection.
         unsigned AUTOWV : 1; //!< [2] 
         unsigned AUTOWV_PAUSE : 1; //!< [3] 
         unsigned RESERVED0 : 4; //!< [7:4] Reserved.
@@ -1320,8 +1310,8 @@ typedef union _hw_epdc_hw_epdc_upd_fixed
     reg32_t U;
     struct _hw_epdc_hw_epdc_upd_fixed_bitfields
     {
-        unsigned FIXCP : 8; //!< [7:0] CP value if fixecp_en is set to 1. Data in Y8 format.
-        unsigned FIXNP : 8; //!< [15:8] NP value if fixenp_en is set to 1. Data in Y8 format.
+        unsigned FIXCP : 8; //!< [7:0] CP value if fixecp_en is set to 1.
+        unsigned FIXNP : 8; //!< [15:8] NP value if fixenp_en is set to 1.
         unsigned RESERVED0 : 14; //!< [29:16] Reserved.
         unsigned FIXCP_EN : 1; //!< [30] If set to 1, current updated region has the CP value defined by FIXCP
         unsigned FIXNP_EN : 1; //!< [31] If set to 1, current updated region has the NP value defined by FIXNP
@@ -1440,7 +1430,7 @@ typedef union _hw_epdc_hw_epdc_temp
     reg32_t U;
     struct _hw_epdc_hw_epdc_temp_bitfields
     {
-        unsigned TEMPERATURE : 32; //!< [31:0] Temperature Value. This value is simply an index (not a temperature value). The index is used by the EPDC to access the correct temperature compensated waveform.
+        unsigned TEMPERATURE : 32; //!< [31:0] Temperature Value.
     } B;
 } hw_epdc_hw_epdc_temp_t;
 #endif
@@ -1585,18 +1575,18 @@ typedef union _hw_epdc_hw_epdc_tce_ctrl
     reg32_t U;
     struct _hw_epdc_hw_epdc_tce_ctrl_bitfields
     {
-        unsigned PIXELS_PER_SDCLK : 2; //!< [1:0] Number of TFT pixels per SDCLK period. Note that this value forms the division of the PIXLK to generate the SDCLK such that SDCLK = PIXCLK/PIXELS_PER_SDCLK. For dual-scan mode (DUAL_SCAN=1), this applies to 8-bit half of the 16-bit SDDO. It should be noted that when DDR_MODE is enabled, both edges of the clock have to be accounted for in this value, so for example with an 8-bit SDDO, 2-bit TFT pixel, this field should be set to EIGHT (four pixels on the pos-edge and 4-pixels on the neg-edge)
+        unsigned PIXELS_PER_SDCLK : 2; //!< [1:0] Number of TFT pixels per SDCLK period.
         unsigned SDDO_WIDTH : 1; //!< [2] Selects either 8 or 16 bit SDDO bus format
-        unsigned DUAL_SCAN : 1; //!< [3] Enables dual scan-mode. Note in this mode, SDDO_BUS_FORMAT=16BIT must be selected. and PIXELS_PER_CLK applies to each 8-bit segment of the SDDO bus.
+        unsigned DUAL_SCAN : 1; //!< [3] Enables dual scan-mode.
         unsigned SCAN_DIR_0 : 1; //!< [4] Determines scan direction for each half of the TFT panel
         unsigned SCAN_DIR_1 : 1; //!< [5] Determines scan direction for each half of the TFT panel
-        unsigned LVDS_MODE : 1; //!< [6] If set, the upper 8-bit of the SDDO bus are used for LVDS differential signalling. Note that this can only be used when SDDO_BUS_FORMAT is set to 16BIT, i.e. LVDS signaling is not supported with an 8-bit SDDO interface. Note that for LVDS_MODE, DDR_MODE must also be set.
-        unsigned LVDS_MODE_CE : 1; //!< [7] If set (together with LVDS_MODE=1), SDCE[9:5] shall be driven as the differential inverse of SDCE[4:0]. In this mode the EPDC only supports 5 CE lines.
-        unsigned DDR_MODE : 1; //!< [8] If set, SDDO data is driven on both positive and negative edges of SDCLK. Note that this mode is not supported when SDDO_BUS_FORMAT=16BIT and LVDS is not used. This must always be set when LVDS_MODE is set.
+        unsigned LVDS_MODE : 1; //!< [6] If set, the upper 8-bit of the SDDO bus are used for LVDS differential signalling.
+        unsigned LVDS_MODE_CE : 1; //!< [7] If set (together with LVDS_MODE=1), SDCE[9:5] shall be driven as the differential inverse of SDCE[4:0].
+        unsigned DDR_MODE : 1; //!< [8] If set, SDDO data is driven on both positive and negative edges of SDCLK.
         unsigned VCOM_MODE : 1; //!< [9] This field determines the method used to drive the VCOM signal.
         unsigned VCOM_VAL : 2; //!< [11:10] When VCOM_MODE = MANUAL, this value is used to manually set the VCOM value for the VCOM[1:0] pins
         unsigned RESERVED0 : 4; //!< [15:12] Reserved.
-        unsigned VSCAN_HOLDOFF : 9; //!< [24:16] This period (expressed in vertical lines), sets the portion of the vertical blanking available for new LUTs to be activated. The remainder of the blanking period is reserved for pre-filling the TCE pixel FIFOs. Increasing this value allows for multiple smaller updates to be intercepted by the current frame scan. This number should not exceed FRAME_END+FRAME_SYNC+FRAME_BEGIN. Increasing this value can improve the ability for any given update to intercept the next available frame-scan. Excessive values can result in TCE FIFO under-runs.
+        unsigned VSCAN_HOLDOFF : 9; //!< [24:16] This period (expressed in vertical lines), sets the portion of the vertical blanking available for new LUTs to be activated.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved.
     } B;
 } hw_epdc_hw_epdc_tce_ctrl_t;
@@ -1903,10 +1893,10 @@ typedef union _hw_epdc_hw_epdc_tce_sdcfg
     reg32_t U;
     struct _hw_epdc_hw_epdc_tce_sdcfg_bitfields
     {
-        unsigned PIXELS_PER_CE : 13; //!< [12:0] Number of pixels (outputs) per source-driver IC. Please note that HW_EPDC_RES[HORIZONTAL] must be an integer multiple of PINS_PER_CE.
-        unsigned SDDO_INVERT : 1; //!< [13] Setting this bit to 1 reverses the polarity of each SDDO bit so 0xAAAA in 16-bit mode for example becomes 0x5555. This setting can be made in addition to the SDDO_REFORMAT register setting.
+        unsigned PIXELS_PER_CE : 13; //!< [12:0] Number of pixels (outputs) per source-driver IC.
+        unsigned SDDO_INVERT : 1; //!< [13] Setting this bit to 1 reverses the polarity of each SDDO bit so 0xAAAA in 16-bit mode for example becomes 0x5555.
         unsigned SDDO_REFORMAT : 2; //!< [15:14] This register defines the various re-formatting options to enable more flexibility in the source-driver interface:
-        unsigned NUM_CE : 4; //!< [19:16] Number of source driver IC chip-enables. Must be 1-10
+        unsigned NUM_CE : 4; //!< [19:16] Number of source driver IC chip-enables.
         unsigned SDSHR : 1; //!< [20] Value for source-driver shift direction output port
         unsigned SDCLK_HOLD : 1; //!< [21] Setting this bit to 1 holds the SDCLK low during LINE_BEGIN
         unsigned RESERVED0 : 10; //!< [31:22] Reserved.
@@ -2077,8 +2067,8 @@ typedef union _hw_epdc_hw_epdc_tce_gdcfg
     reg32_t U;
     struct _hw_epdc_hw_epdc_tce_gdcfg_bitfields
     {
-        unsigned GDSP_MODE : 1; //!< [0] Selects method for driving GDSP pulse. When set to 0, GDSP is is always fixed to have a pulse width of one line-time. When set to 1, GDSP has a pulse-width determined by the FRAME_SYNC setting. Note that GDSP_MODE=1 is not compatible with the GDSP_OFFSET function
-        unsigned GDOE_MODE : 1; //!< [1] Selects method for driving GDOE signal. When set to 0, GDOE is driven at all times during the frame-scan except FRAME_SYNC. When set to 1, GDOE is driven as a delayed version of GDCLK delayed by HW_EPDC_TCE_TIMING3[GDOE_OFFSET].
+        unsigned GDSP_MODE : 1; //!< [0] Selects method for driving GDSP pulse.
+        unsigned GDOE_MODE : 1; //!< [1] Selects method for driving GDOE signal.
         unsigned RESERVED0 : 2; //!< [3:2] Reserved.
         unsigned GDRL : 1; //!< [4] Value for gate-driver right/left shift output port
         unsigned RESERVED1 : 11; //!< [15:5] Reserved.
@@ -2206,9 +2196,9 @@ typedef union _hw_epdc_hw_epdc_tce_hscan1
     reg32_t U;
     struct _hw_epdc_hw_epdc_tce_hscan1_bitfields
     {
-        unsigned LINE_SYNC : 12; //!< [11:0] Number of PIXCLK cycles for line sync duration. Note that this value encompasses the LINE_SYNC_WIDTH duration. This value must be programmed to a multiple of SDCLK cycles
+        unsigned LINE_SYNC : 12; //!< [11:0] Number of PIXCLK cycles for line sync duration.
         unsigned RESERVED0 : 4; //!< [15:12] Reserved.
-        unsigned LINE_SYNC_WIDTH : 12; //!< [27:16] Number of PIXCLK cycles for the SDLE active time. Note that this value cannot be larger than LINE_SYNC and must be greater than 0. Typically it is recommended to set this value to be the same as LINE_SYNC
+        unsigned LINE_SYNC_WIDTH : 12; //!< [27:16] Number of PIXCLK cycles for the SDLE active time.
         unsigned RESERVED1 : 4; //!< [31:28] Reserved.
     } B;
 } hw_epdc_hw_epdc_tce_hscan1_t;
@@ -2294,9 +2284,9 @@ typedef union _hw_epdc_hw_epdc_tce_hscan2
     reg32_t U;
     struct _hw_epdc_hw_epdc_tce_hscan2_bitfields
     {
-        unsigned LINE_BEGIN : 12; //!< [11:0] Number of PIXCLK cycles for line begin duration. This defines the interval between de-assertion of SDLE and assertion of the SDCE signals. This value must be programmed to a multiple of SDCLK cycles
+        unsigned LINE_BEGIN : 12; //!< [11:0] Number of PIXCLK cycles for line begin duration.
         unsigned RESERVED0 : 4; //!< [15:12] Reserved.
-        unsigned LINE_END : 12; //!< [27:16] Number of PIXCLK cycles for line end duration. This defines the duration from the de-assertion of SDCE and assertion of the next SDLE.
+        unsigned LINE_END : 12; //!< [27:16] Number of PIXCLK cycles for line end duration.
         unsigned RESERVED1 : 4; //!< [31:28] Reserved.
     } B;
 } hw_epdc_hw_epdc_tce_hscan2_t;
@@ -2604,11 +2594,11 @@ typedef union _hw_epdc_hw_epdc_tce_polarity
     reg32_t U;
     struct _hw_epdc_hw_epdc_tce_polarity_bitfields
     {
-        unsigned SDCE_POL : 1; //!< [0] 0 = Active Low, 1 = Active High. Applies to all 10 SDCE outputs
-        unsigned SDLE_POL : 1; //!< [1] 0 = Active Low, 1 = Active High. Applies to the SDLE output
-        unsigned SDOE_POL : 1; //!< [2] 0 = Active Low, 1 = Active High. Applies to the SDOE. Does not apply to SDOEZ and SDOED outputs
-        unsigned GDOE_POL : 1; //!< [3] 0 = Active Low, 1 = Active High. Applies to the GDOE output
-        unsigned GDSP_POL : 1; //!< [4] 0 = Active Low, 1 = Active High. Applies to the GDSP output
+        unsigned SDCE_POL : 1; //!< [0] 0 = Active Low, 1 = Active High.
+        unsigned SDLE_POL : 1; //!< [1] 0 = Active Low, 1 = Active High.
+        unsigned SDOE_POL : 1; //!< [2] 0 = Active Low, 1 = Active High.
+        unsigned GDOE_POL : 1; //!< [3] 0 = Active Low, 1 = Active High.
+        unsigned GDSP_POL : 1; //!< [4] 0 = Active Low, 1 = Active High.
         unsigned RESERVED0 : 27; //!< [31:5] Reserved.
     } B;
 } hw_epdc_hw_epdc_tce_polarity_t;
@@ -2873,8 +2863,8 @@ typedef union _hw_epdc_hw_epdc_tce_timing2
     reg32_t U;
     struct _hw_epdc_hw_epdc_tce_timing2_bitfields
     {
-        unsigned GDSP_OFFSET : 16; //!< [15:0] This register allows the user to shift the GDSP pulse by N PIXCLKs where N=1 to 65535. Note that GDSP will always have a pulse width equivalent to the line-clock timing. A value of 0 is not supported.
-        unsigned GDCLK_HP : 16; //!< [31:16] This register controls the GDCLK high-pulse width. It is expressed by N PIXCLKs where N=1 to 65535. Note that GDCLK will always have a period equal to the line-clock timing. A value of 0 is not supported. It is recommended that this value be set to at least a half line-clock time. For panels which use GDCLK to drive GDOE, this high-pulse width should be set to cover tha majority of the line timing
+        unsigned GDSP_OFFSET : 16; //!< [15:0] This register allows the user to shift the GDSP pulse by N PIXCLKs where N=1 to 65535.
+        unsigned GDCLK_HP : 16; //!< [31:16] This register controls the GDCLK high-pulse width.
     } B;
 } hw_epdc_hw_epdc_tce_timing2_t;
 #endif
@@ -3460,7 +3450,7 @@ typedef union _hw_epdc_hw_epdc_irq_mask
         unsigned WB_CMPLT_IRQ_EN : 1; //!< [16] Enable WB complete interrupt
         unsigned COL_IRQ_EN : 1; //!< [17] Enable collision detection interrupts for all LUTs
         unsigned TCE_UNDERRUN_IRQ_EN : 1; //!< [18] Enable pixel FIFO under-run condition detection.
-        unsigned FRAME_END_IRQ_EN : 1; //!< [19] If this bit is set, EPDC will assert the current frame end interrupt. This irq is only available during updating period.
+        unsigned FRAME_END_IRQ_EN : 1; //!< [19] If this bit is set, EPDC will assert the current frame end interrupt.
         unsigned BUS_ERROR_IRQ_EN : 1; //!< [20] Enable AXI BUS ERROR interrupt detection.
         unsigned TCE_IDLE_IRQ_EN : 1; //!< [21] Enable TCE Idle interrupt detection.
         unsigned UPD_DONE_IRQ_EN : 1; //!< [22] Enable UPD complete interrupt
@@ -3663,7 +3653,7 @@ typedef union _hw_epdc_hw_epdc_irq
     {
         unsigned RESERVED0 : 16; //!< [15:0] Reserved.
         unsigned WB_CMPLT_IRQ : 1; //!< [16] Working buffer process complete Interrupt
-        unsigned LUT_COL_IRQ : 1; //!< [17] Collision detection interrupt. Check HW_EPDC_STATUS_COL.
+        unsigned LUT_COL_IRQ : 1; //!< [17] Collision detection interrupt.
         unsigned TCE_UNDERRUN_IRQ : 1; //!< [18] Interrupt to signify that a pixel FIFO under-run has occured.
         unsigned FRAME_END_IRQ : 1; //!< [19] Interrupt to indicate EPDC has completed the current frame and is in the vertical blanking period.
         unsigned BUS_ERROR_IRQ : 1; //!< [20] Interrupt to indicate AXI BUS error occurs.
@@ -4155,13 +4145,13 @@ typedef union _hw_epdc_hw_epdc_status
     reg32_t U;
     struct _hw_epdc_hw_epdc_status_bitfields
     {
-        unsigned WB_BUSY : 1; //!< [0] Working buffer process is busy cannot accept new update requests. When WB_BUSY is 1, software should wait for the WB_CMPLT_IRQ interrupt. When this interrupt occurs WB_BUSY is cleared immediately. This is a real-time status of the process.
-        unsigned LUTS_BUSY : 1; //!< [1] Provides a summary status of LUTs. 1= All LUTs are busy, 0= LUTs are available
-        unsigned LUTS_UNDERRUN : 1; //!< [2] Provides a summary status of LUT fill. 1= not enough time for active luts read during blanking period before vscan_holdoff. 0=complete all active luts fill during blanking period before VSCAN_HOLDOFF.
+        unsigned WB_BUSY : 1; //!< [0] Working buffer process is busy cannot accept new update requests.
+        unsigned LUTS_BUSY : 1; //!< [1] Provides a summary status of LUTs.
+        unsigned LUTS_UNDERRUN : 1; //!< [2] Provides a summary status of LUT fill.
         unsigned RESERVED0 : 5; //!< [7:3] Reserved.
-        unsigned HISTOGRAM_NP : 5; //!< [12:8] Indicates which histogram matched the processed bitmap(NP). Bit[0] indicates that the bitmap pixels were fully contained within the HIST1 (single color ) histogram. Bit[1] indicates that the bitmap pixels were fully contained within the HIST2 (black / white ) histogram. Bit[2] indicates that the bitmap pixels were fully contained within the HIST4 (2-bit grayscale) histogram. Bit[3] indicates that the bitmap pixels were fully contained within the HIST8 (3-bit grayscale) histogram. Bit[4] indicates that the bitmap pixels were fully contained within the HIST16 (4-bit grayscale) histogram.
+        unsigned HISTOGRAM_NP : 5; //!< [12:8] Indicates which histogram matched the processed bitmap(NP).
         unsigned RESERVED1 : 3; //!< [15:13] Reserved.
-        unsigned HISTOGRAM_CP : 5; //!< [20:16] Indicates which histogram matched the existing bitmap(CP). Bit[0] indicates that the bitmap pixels were fully contained within the HIST1 (single color ) histogram. Bit[1] indicates that the bitmap pixels were fully contained within the HIST2 (black / white ) histogram. Bit[2] indicates that the bitmap pixels were fully contained within the HIST4 (2-bit grayscale) histogram. Bit[3] indicates that the bitmap pixels were fully contained within the HIST8 (3-bit grayscale) histogram. Bit[4] indicates that the bitmap pixels were fully contained within the HIST16 (4-bit grayscale) histogram.
+        unsigned HISTOGRAM_CP : 5; //!< [20:16] Indicates which histogram matched the existing bitmap(CP).
         unsigned RESERVED2 : 11; //!< [31:21] Reserved.
     } B;
 } hw_epdc_hw_epdc_status_t;
@@ -5903,9 +5893,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_0_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_0_0_t;
@@ -6321,9 +6311,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_1_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_1_0_t;
@@ -6739,9 +6729,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_2_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_2_0_t;
@@ -7157,9 +7147,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_3_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_3_0_t;
@@ -7575,9 +7565,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_4_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_4_0_t;
@@ -7993,9 +7983,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_5_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_5_0_t;
@@ -8411,9 +8401,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_6_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_6_0_t;
@@ -8829,9 +8819,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_7_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_7_0_t;
@@ -9247,9 +9237,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_8_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_8_0_t;
@@ -9665,9 +9655,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_9_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_9_0_t;
@@ -10083,9 +10073,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_10_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_10_0_t;
@@ -10501,9 +10491,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_11_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_11_0_t;
@@ -10919,9 +10909,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_12_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_12_0_t;
@@ -11337,9 +11327,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_13_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_13_0_t;
@@ -11755,9 +11745,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_14_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_14_0_t;
@@ -12173,9 +12163,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_15_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_15_0_t;
@@ -12591,9 +12581,9 @@ typedef union _hw_epdc_hw_epdc_pigeon_16_0
         unsigned EN : 1; //!< [0] enable pigeon mode on this signal
         unsigned POL : 1; //!< [1] polarity of signal output
         unsigned INC_SEL : 2; //!< [3:2] event to incrment local counter
-        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit. 0=aligne with data, positive value means delay, minus value mean ahead. Supported range depends on panel mode
+        unsigned OFFSET : 4; //!< [7:4] offset on pclk unit.
         unsigned MASK_CNT_SEL : 4; //!< [11:8] select global counters as mask condition, use together with MASK_CNT
-        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking. 0=disable
+        unsigned MASK_CNT : 12; //!< [23:12] When the global counter selected through MASK_CNT_SEL matches value in this reg, pigeon local counter start ticking.
         unsigned STATE_MASK : 8; //!< [31:24] state_mask = (FS|FB|FD|FE) and (LS|LB|LD|LE) , select any combination of scan states as reference point for local counter to start ticking
     } B;
 } hw_epdc_hw_epdc_pigeon_16_0_t;

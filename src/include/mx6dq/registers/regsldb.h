@@ -22,19 +22,9 @@
 //@{
 #ifndef REGS_LDB_BASE
 #define HW_LDB_INSTANCE_COUNT (1) //!< Number of instances of the LDB module.
-#define REGS_LDB_BASE (0x00000000) //!< Base address for LDB.
+#define REGS_LDB_BASE (0x020e0008) //!< Base address for LDB.
 #endif
 //@}
-
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
 
 
 //-------------------------------------------------------------------------------------------
@@ -56,18 +46,18 @@ typedef union _hw_ldb_ctrl
     {
         unsigned CH0_MODE : 2; //!< [1:0] LVDS channel 0 operation mode
         unsigned CH1_MODE : 2; //!< [3:2] LVDS channel 1 operation mode
-        unsigned SPLIT_MODE_EN : 1; //!< [4] Enable split mode. In this mode both channels should be enabled and working with the same DI (ch0_mode and ch1_mode should both be either '01' or '11')
-        unsigned DATA_WIDTH_CH0 : 1; //!< [5] Data width for LVDS channel 0. This bit must be set when using JEIDA standard (bit_mapping_ch0 is set)
+        unsigned SPLIT_MODE_EN : 1; //!< [4] Enable split mode.
+        unsigned DATA_WIDTH_CH0 : 1; //!< [5] Data width for LVDS channel 0.
         unsigned BIT_MAPPING_CH0 : 1; //!< [6] Data mapping for LVDS channel 0.
-        unsigned DATA_WIDTH_CH1 : 1; //!< [7] Data width for LVDS channel 1. This bit must be set when using JEIDA standard (bit_mapping_ch1 is set)
+        unsigned DATA_WIDTH_CH1 : 1; //!< [7] Data width for LVDS channel 1.
         unsigned BIT_MAPPING_CH1 : 1; //!< [8] Data mapping for LVDS channel 1.
         unsigned DI0_VS_POLARITY : 1; //!< [9] Vsync polarity for IPU's DI0 interface.
         unsigned DI1_VS_POLARITY : 1; //!< [10] Vsync polarity for IPU's DI1 interface.
         unsigned RESERVED0 : 4; //!< [14:11] Reserved
         unsigned BGREF_RRMODE : 1; //!< [15] Select reference resistor for bandgap
-        unsigned LVDS_CLK_SHIFT : 3; //!< [18:16] Shifts the LVDS output clock in relation to the data. Used for debug purposes only. In normal functional operation must be '000'
+        unsigned LVDS_CLK_SHIFT : 3; //!< [18:16] Shifts the LVDS output clock in relation to the data.
         unsigned RESERVED1 : 1; //!< [19] Reserved
-        unsigned COUNTER_RESET_VAL : 2; //!< [21:20] Reset value for the LDB counter which determines when the shift registers are loaded with data. Used for debug purposes only. In normal functional operation must be '00'
+        unsigned COUNTER_RESET_VAL : 2; //!< [21:20] Reset value for the LDB counter which determines when the shift registers are loaded with data.
         unsigned RESERVED2 : 10; //!< [31:22] Reserved
     } B;
 } hw_ldb_ctrl_t;

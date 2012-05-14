@@ -57,16 +57,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_CCM_CCR - CCM Control Register
@@ -86,14 +76,14 @@ typedef union _hw_ccm_ccr
     reg32_t U;
     struct _hw_ccm_ccr_bitfields
     {
-        unsigned OSCNT : 8; //!< [7:0] Oscillator ready counter value. These bits define value of 32KHz counter, that serve as counter for oscillator lock time. This is used for oscillator lock time. Current estimation is ~5ms. This counter will be used in ignition sequence and in wake from stop sequence if sbyos bit was defined, to notify that on chip oscillator output is ready for the dpll_ip to use and only then the gate in dpll_ip can be opened.
+        unsigned OSCNT : 8; //!< [7:0] Oscillator ready counter value.
         unsigned RESERVED0 : 4; //!< [11:8] Reserved
-        unsigned COSC_EN : 1; //!< [12] On chip oscillator enable bit - this bit value is reflected on the output cosc_en. The system will start with on chip oscillator enabled to supply source for the PLL's. Software can change this bit if a transition to the bypass PLL clocks was performed for all the PLLs. In cases that this bit is changed from '0' to '1' then CCM will enable the on chip oscillator and after counting oscnt ckil clock cycles it will notify that on chip oscillator is ready by a interrupt cosc_ready and by status bit cosc_ready. The cosc_en bit should be changed only when on chip oscillator is not chosen as the clock source.
+        unsigned COSC_EN : 1; //!< [12] On chip oscillator enable bit - this bit value is reflected on the output cosc_en.
         unsigned RESERVED1 : 3; //!< [15:13] Reserved
-        unsigned WB_COUNT : 3; //!< [18:16] Well Bias counter. Delay, defined by this value, counted by CKIL clock will be applied till well ties are enabled at exit from wait or stop low power mode. Counter will be used if wb_core_at_lpm or wb_per_at_lpm bits are set. Should be zeroed and reconfigured after exit from low power mode.
+        unsigned WB_COUNT : 3; //!< [18:16] Well Bias counter.
         unsigned RESERVED2 : 2; //!< [20:19] Reserved
-        unsigned REG_BYPASS_COUNT : 6; //!< [26:21] Counter for anatop_reg_bypass signal assertion after standby voltage request by pmic_vstby_req. Should be zeroed and reconfigured after exit from low power mode.
-        unsigned RBC_EN : 1; //!< [27] Enable for REG_BYPASS_COUNTER. If enabled, anatop_reg_bypass signal will be asserted after REG_BYPASS_COUNT clocks of CKIL, after standby voltage is requested. If standby voltage is not requested anatop_reg_bypass won't be asserted, event if counter is enabled.
+        unsigned REG_BYPASS_COUNT : 6; //!< [26:21] Counter for analog_reg_bypass signal assertion after standby voltage request by pmic_vstby_req.
+        unsigned RBC_EN : 1; //!< [27] Enable for REG_BYPASS_COUNTER.
         unsigned RESERVED3 : 4; //!< [31:28] Reserved
     } B;
 } hw_ccm_ccr_t;
@@ -178,7 +168,7 @@ typedef union _hw_ccm_ccr
 /* --- Register HW_CCM_CCR, field WB_COUNT[18:16] (RW)
  *
  * Well Bias counter. Delay, defined by this value, counted by CKIL clock will be applied till well
- * ties are enabled at exit from wait or stop low power mode. Counter will be used if wb_core_at_lpm
+ * bias is enabled at exit from wait or stop low power mode. Counter will be used if wb_core_at_lpm
  * or wb_per_at_lpm bits are set. Should be zeroed and reconfigured after exit from low power mode.
  *
  * Values:
@@ -204,7 +194,7 @@ typedef union _hw_ccm_ccr
 
 /* --- Register HW_CCM_CCR, field REG_BYPASS_COUNT[26:21] (RW)
  *
- * Counter for anatop_reg_bypass signal assertion after standby voltage request by pmic_vstby_req.
+ * Counter for analog_reg_bypass signal assertion after standby voltage request by pmic_vstby_req.
  * Should be zeroed and reconfigured after exit from low power mode.
  *
  * Values:
@@ -230,9 +220,9 @@ typedef union _hw_ccm_ccr
 
 /* --- Register HW_CCM_CCR, field RBC_EN[27] (RW)
  *
- * Enable for REG_BYPASS_COUNTER. If enabled, anatop_reg_bypass signal will be asserted after
+ * Enable for REG_BYPASS_COUNTER. If enabled, analog_reg_bypass signal will be asserted after
  * REG_BYPASS_COUNT clocks of CKIL, after standby voltage is requested. If standby voltage is not
- * requested anatop_reg_bypass won't be asserted, event if counter is enabled.
+ * requested analog_reg_bypass won't be asserted, event if counter is enabled.
  *
  * Values:
  * 0 - REG_BYPASS_COUNTER disabled
@@ -369,7 +359,7 @@ typedef union _hw_ccm_csr
     {
         unsigned REF_EN_B : 1; //!< [0] Status of the value of ref_en_b output of ccm
         unsigned RESERVED0 : 4; //!< [4:1] Reserved.
-        unsigned COSC_READY : 1; //!< [5] Status indication of on board oscillator. This bit will be asserted if on chip oscillator is enabled and on chip oscillator is not powered down, and if oscnt counter has finished counting.
+        unsigned COSC_READY : 1; //!< [5] Status indication of on board oscillator.
         unsigned RESERVED1 : 26; //!< [31:6] Reserved
     } B;
 } hw_ccm_csr_t;
@@ -441,11 +431,11 @@ typedef union _hw_ccm_ccsr
     reg32_t U;
     struct _hw_ccm_ccsr_bitfields
     {
-        unsigned PLL3_SW_CLK_SEL : 1; //!< [0] Selects source to generate pll3_sw_clk. This bit should only be used for testing purposes. Note: this bit will be ored with pll_bypass_en3 signal. If one of the sources requests to move to pll3 bypass clk (pll3_sw_clk=1 or pll_bypass_en3=1) then the pll3_sw_clk will be pll3 bypass clk. Only if both sources request pll3_main_clk (pll3_sw_clk=0 and pll_bypass_en3=0) then the pll3_sw_clk will be pll3_main_clk.
-        unsigned PLL2_SW_CLK_SEL : 1; //!< [1] Selects source to generate pll2_sw_clk. This bit should only be used for testing purposes. Note: this bit will be ored with pll_bypass_en2 signal. If one of the sources requests to move to pll2 bypass clk (pll2_sw_clk=1 or pll_bypass_en2=1) then the pll2_sw_clk will be pll2 bypass clk. Only if both sources request pll2_main_clk (pll2_sw_clk=0 and pll_bypass_en2=0) then the pll2_sw_clk will be pll2_main_clk.
-        unsigned PLL1_SW_CLK_SEL : 1; //!< [2] Selects source to generate pll1_sw_clk. Note: this bit will be ored with pll_bypass_en1 signal and dvfs_control signal. If one of the sources requests to move to step_clk (pll1_sw_clk=1 or pll_bypass_en1=1 or dvfs_control=1) then the pll1_sw_clk will be step_clk. Only if both sources request pll1_main_clk (pll1_sw_clk=0 and pll_bypass_en1=0 and dvfs_control=0) then the pll1_sw_clk will be pll1_main_clk.
+        unsigned PLL3_SW_CLK_SEL : 1; //!< [0] Selects source to generate pll3_sw_clk.
+        unsigned PLL2_SW_CLK_SEL : 1; //!< [1] Selects source to generate pll2_sw_clk.
+        unsigned PLL1_SW_CLK_SEL : 1; //!< [2] Selects source to generate pll1_sw_clk.
         unsigned RESERVED0 : 5; //!< [7:3] Reserved
-        unsigned STEP_SEL : 1; //!< [8] Selects the option to be chosen for the step frequency when shifting ARM frequency. this will control the step_clk. Note: this mux is allowed to be changed only if its output is not used, i.e. ARM uses the output of pll1, and step_clk is not used.
+        unsigned STEP_SEL : 1; //!< [8] Selects the option to be chosen for the step frequency when shifting ARM frequency.
         unsigned PDF_396M_DIS_MASK : 1; //!< [9] Mask of 396M PFD auto-disable.
         unsigned PDF_352M_DIS_MASK : 1; //!< [10] Mask of 352M PFD auto-disable.
         unsigned PDF_594M_DIS_MASK : 1; //!< [11] Mask of 594M PFD auto-disable.
@@ -779,7 +769,7 @@ typedef union _hw_ccm_cacrr
     reg32_t U;
     struct _hw_ccm_cacrr_bitfields
     {
-        unsigned ARM_PODF : 3; //!< [2:0] Divider for ARM clock root. Note: if arm_freq_shift_divider is set to '1' then any new write to arm_podf will be held until arm_clk_switch_req signal is asserted.
+        unsigned ARM_PODF : 3; //!< [2:0] Divider for ARM clock root.
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_ccm_cacrr_t;
@@ -853,18 +843,18 @@ typedef union _hw_ccm_cbcdr
     reg32_t U;
     struct _hw_ccm_cbcdr_bitfields
     {
-        unsigned PERIPH2_CLK2_PODF : 3; //!< [2:0] Divider for periph2_clk2 podf. Note: Divider should be updated when output clock is gated.
-        unsigned MMDC_CH1_AXI_PODF : 3; //!< [5:3] Divider for mmdc_ch1_axi podf. Note: This design implementation does not use MMDC_CH1_AXI_CLK_ROOT as a clock source to the MMDC. Only MMDC_CH0_AXI_CLK_ROOT is used.
+        unsigned PERIPH2_CLK2_PODF : 3; //!< [2:0] Divider for periph2_clk2 podf.
+        unsigned MMDC_CH1_AXI_PODF : 3; //!< [5:3] Divider for mmdc_ch1_axi podf.
         unsigned AXI_SEL : 1; //!< [6] AXI clock source select
         unsigned AXI_ALT_SEL : 1; //!< [7] AXI alternative clock select
-        unsigned IPG_PODF : 2; //!< [9:8] Divider for ipg podf. Note: IEEE_RTC module will not support ratio of 1:3 for ahb_clk:ipg_clk. In case IEEE_RTC is used, then those ratios should not be used. Note: SDMA module will not support ratio of 1:3 and 1:4 for ahb_clk:ipg_clk. In case SDMA is used, then those ratios should not be used.
-        unsigned AHB_PODF : 3; //!< [12:10] Divider for ahb podf. Note: any change of this divider might involve handshake with EMI and IPU. See CDHIPR register for the handshake busy bits.
+        unsigned IPG_PODF : 2; //!< [9:8] Divider for ipg podf.
+        unsigned AHB_PODF : 3; //!< [12:10] Divider for ahb podf.
         unsigned RESERVED0 : 3; //!< [15:13] Reserved
-        unsigned AXI_PODF : 3; //!< [18:16] Divider for axi podf. Note: any change of this divider might involve handshake with EMI and IPU. See CDHIPR register for the handshake busy bits.
+        unsigned AXI_PODF : 3; //!< [18:16] Divider for axi podf.
         unsigned MMDC_CH0_AXI_PODF : 3; //!< [21:19] Divider for mmdc_ch0_axi podf.
         unsigned RESERVED1 : 3; //!< [24:22] Reserved
-        unsigned PERIPH_CLK_SEL : 1; //!< [25] Selector for peripheral main clock (source of mmdc_ch0_axi_clk_root). Note: alternative clock source should be used when PLL is relocked. For PLL relock procedure pls refer PLL chapter
-        unsigned PERIPH2_CLK_SEL : 1; //!< [26] Selector for peripheral2 main clock (source of mmdc_ch1_axi_clk_root mmdc_root_axi_clk_root ).
+        unsigned PERIPH_CLK_SEL : 1; //!< [25] Selector for peripheral main clock (source of mmdc_ch0_axi_clk_root).
+        unsigned PERIPH2_CLK_SEL : 1; //!< [26] Selector for peripheral2 main clock (source of mmdc_ch1_axi_clk_root ).
         unsigned PERIPH_CLK2_PODF : 3; //!< [29:27] Divider for periph2 clock podf.
         unsigned RESERVED2 : 2; //!< [31:30] Reserved
     } B;
@@ -1146,7 +1136,7 @@ typedef union _hw_ccm_cbcdr
 
 /* --- Register HW_CCM_CBCDR, field PERIPH2_CLK_SEL[26] (RW)
  *
- * Selector for peripheral2 main clock (source of mmdc_ch1_axi_clk_root mmdc_root_axi_clk_root ).
+ * Selector for peripheral2 main clock (source of mmdc_ch1_axi_clk_root ).
  *
  * Values:
  * 0 - derive clock from pll2_sw_clk muxed clock source.
@@ -1235,9 +1225,9 @@ typedef union _hw_ccm_cbcmr
         unsigned PRE_PERIPH_CLK_SEL : 2; //!< [19:18] Selector for pre_periph clock multiplexer
         unsigned PERIPH2_CLK2_SEL : 1; //!< [20] Selector for periph2_clk2 clock multiplexer
         unsigned PRE_PERIPH2_CLK_SEL : 2; //!< [22:21] Selector for pre_periph2 clock multiplexer
-        unsigned GPU2D_CORE_CLK_PODF : 3; //!< [25:23] Divider for gpu2d_core clock. Note: Divider should be updated when output clock is gated.
-        unsigned GPU3D_CORE_PODF : 3; //!< [28:26] Divider for gpu3d_core clock. Note: Divider should be updated when output clock is gated.
-        unsigned GPU3D_SHADER_PODF : 3; //!< [31:29] Divider for gpu3d_shader clock. Note: Divider should be updated when output clock is gated.
+        unsigned GPU2D_CORE_CLK_PODF : 3; //!< [25:23] Divider for gpu2d_core clock.
+        unsigned GPU3D_CORE_PODF : 3; //!< [28:26] Divider for gpu3d_core clock.
+        unsigned GPU3D_SHADER_PODF : 3; //!< [31:29] Divider for gpu3d_shader clock.
     } B;
 } hw_ccm_cbcmr_t;
 #endif
@@ -1315,7 +1305,7 @@ typedef union _hw_ccm_cbcmr
  * Values:
  * 00 - derive clock from mmdc_ch0
  * 01 - derive clock from pll3
- * 10 - derive clock from 594M 528M PFD (Default)
+ * 10 - derive clock from 594M PFD (Default)
  * 11 - derive clock from 396M PFD
  */
 
@@ -1341,7 +1331,7 @@ typedef union _hw_ccm_cbcmr
  * Values:
  * 00 - derive clock from mmdc_ch0 clk
  * 01 - derive clock from pll3
- * 10 - derive clock from 594M 528M PFD
+ * 10 - derive clock from 594M PFD
  * 11 - derive clock from 720M PFD
  */
 
@@ -1441,7 +1431,7 @@ typedef union _hw_ccm_cbcmr
  * Values:
  * 00 - derive clock from AXI
  * 01 - derive clock from 396M PFD
- * 10 - derive clock from 352M 307M PFD (default)
+ * 10 - derive clock from 352M PFD (default)
  * 11 - Restricted
  */
 
@@ -1467,7 +1457,7 @@ typedef union _hw_ccm_cbcmr
  * Values:
  * 00 - derive clock from axi
  * 01 - derive clock from pll3
- * 10 - 352M 307M PFD
+ * 10 -  352M PFD
  * 11 - derive clock from 396M PFD
  */
 
@@ -1493,7 +1483,7 @@ typedef union _hw_ccm_cbcmr
  * Values:
  * 00 - derive clock from PLL2 main 528MHz clock
  * 01 - derive clock from 396MHz PLL2 PFD (default)
- * 10 - derive clock from 352M 307M PFD
+ * 10 - derive clock from 352M PFD
  * 11 - derive clock from 198MHz clock (divided 396MHz PLL2 PFD)
  */
 
@@ -1543,7 +1533,7 @@ typedef union _hw_ccm_cbcmr
  * Values:
  * 00 - derive clock from PLL2 main 528MHz clock
  * 01 - derive clock from 396MHz PLL2 PFD (default)
- * 10 - derive clock from 352M 307M PFD
+ * 10 - derive clock from 352M PFD
  * 11 - derive clock from 198MHz clock (divided 396MHz PLL2 PFD)
  */
 
@@ -1825,7 +1815,7 @@ typedef union _hw_ccm_cscmr1
  *
  * Values:
  * 0 - derive clock from 396M PFD
- * 1 - derive clock from 352M 307M PFD
+ * 1 - derive clock from 352M PFD
  */
 
 #define BP_CCM_CSCMR1_USDHC1_CLK_SEL      (16)      //!< Bit position for CCM_CSCMR1_USDHC1_CLK_SEL.
@@ -1849,7 +1839,7 @@ typedef union _hw_ccm_cscmr1
  *
  * Values:
  * 0 - derive clock from 396M PFD
- * 1 - derive clock from 352M 307M PFD
+ * 1 - derive clock from 352M PFD
  */
 
 #define BP_CCM_CSCMR1_USDHC2_CLK_SEL      (17)      //!< Bit position for CCM_CSCMR1_USDHC2_CLK_SEL.
@@ -1873,7 +1863,7 @@ typedef union _hw_ccm_cscmr1
  *
  * Values:
  * 0 - derive clock from 396M PFD
- * 1 - derive clock from 352M 307M PFD
+ * 1 - derive clock from 352M PFD
  */
 
 #define BP_CCM_CSCMR1_USDHC3_CLK_SEL      (18)      //!< Bit position for CCM_CSCMR1_USDHC3_CLK_SEL.
@@ -1897,7 +1887,7 @@ typedef union _hw_ccm_cscmr1
  *
  * Values:
  * 0 - derive clock from 396M PFD
- * 1 - derive clock from 352M 307M PFD
+ * 1 - derive clock from 352M PFD
  */
 
 #define BP_CCM_CSCMR1_USDHC4_CLK_SEL      (19)      //!< Bit position for CCM_CSCMR1_USDHC4_CLK_SEL.
@@ -1973,7 +1963,7 @@ typedef union _hw_ccm_cscmr1
  * 00 - derive clock from 396M PFD (default)
  * 01 - derive clock from PLL3
  * 10 - derive clock from AXI clk root
- * 11 - derive clock from 352M 307M PFD
+ * 11 - derive clock from 352M PFD
  */
 
 #define BP_CCM_CSCMR1_ACLK_EMI_SEL      (27)      //!< Bit position for CCM_CSCMR1_ACLK_EMI_SEL.
@@ -1999,7 +1989,7 @@ typedef union _hw_ccm_cscmr1
  * 00 - derive clock from AXI clk root (default)
  * 01 - derive clock from PLL3
  * 10 - derive clock from 396M PFD
- * 11 - derive clock from 352M 307M PFD
+ * 11 - derive clock from 352M PFD
  */
 
 #define BP_CCM_CSCMR1_ACLK_EMI_SLOW_SEL      (29)      //!< Bit position for CCM_CSCMR1_ACLK_EMI_SLOW_SEL.
@@ -2192,12 +2182,12 @@ typedef union _hw_ccm_cscdr1
     {
         unsigned UART_CLK_PODF : 6; //!< [5:0] Divider for uart clock podf.
         unsigned RESERVED0 : 5; //!< [10:6] Reserved.
-        unsigned USDHC1_PODF : 3; //!< [13:11] Divider for usdhc1 clock podf. Note: Divider should be updated when output clock is gated.
+        unsigned USDHC1_PODF : 3; //!< [13:11] Divider for usdhc1 clock podf.
         unsigned RESERVED1 : 2; //!< [15:14] Reserved
-        unsigned USDHC2_PODF : 3; //!< [18:16] Divider for usdhc2 clock. Note: Divider should be updated when output clock is gated.
-        unsigned USDHC3_PODF : 3; //!< [21:19] Divider for usdhc3 clock podf. Note: Divider should be updated when output clock is gated.
-        unsigned USDHC4_PODF : 3; //!< [24:22] Divider for esdhc4 clock pred. Note: Divider should be updated when output clock is gated.
-        unsigned VPU_AXI_PODF : 3; //!< [27:25] Divider for vpu axi clock podf. Note: Divider should be updated when output clock is gated.
+        unsigned USDHC2_PODF : 3; //!< [18:16] Divider for usdhc2 clock.
+        unsigned USDHC3_PODF : 3; //!< [21:19] Divider for usdhc3 clock podf.
+        unsigned USDHC4_PODF : 3; //!< [24:22] Divider for esdhc4 clock pred.
+        unsigned VPU_AXI_PODF : 3; //!< [27:25] Divider for vpu axi clock podf.
         unsigned RESERVED2 : 4; //!< [31:28] Reserved
     } B;
 } hw_ccm_cscdr1_t;
@@ -2414,11 +2404,11 @@ typedef union _hw_ccm_cs1cdr
     reg32_t U;
     struct _hw_ccm_cs1cdr_bitfields
     {
-        unsigned SSI1_CLK_PODF : 6; //!< [5:0] Divider for ssi1 clock podf. The input clock to this divider should be lower than 300Mhz, the predivider can be used to achieve this.
+        unsigned SSI1_CLK_PODF : 6; //!< [5:0] Divider for ssi1 clock podf.
         unsigned SSI1_CLK_PRED : 3; //!< [8:6] Divider for ssi1 clock pred.
         unsigned ESAI_CLK_PRED : 3; //!< [11:9] Divider for esai clock pred.
         unsigned RESERVED0 : 4; //!< [15:12] Reserved
-        unsigned SSI3_CLK_PODF : 6; //!< [21:16] Divider for ssi3 clock podf. The input clock to this divider should be lower than 300Mhz, the predivider can be used to achieve this.
+        unsigned SSI3_CLK_PODF : 6; //!< [21:16] Divider for ssi3 clock podf.
         unsigned SSI3_CLK_PRED : 3; //!< [24:22] Divider for ssi3 clock pred.
         unsigned ESAI_CLK_PODF : 3; //!< [27:25] Divider for esai clock podf.
         unsigned RESERVED1 : 4; //!< [31:28] Reserved
@@ -2633,7 +2623,7 @@ typedef union _hw_ccm_cs2cdr
     reg32_t U;
     struct _hw_ccm_cs2cdr_bitfields
     {
-        unsigned SSI2_CLK_PODF : 6; //!< [5:0] Divider for ssi2 clock podf. The input clock to this divider should be lower than 300Mhz, the predivider can be used to achieve this.
+        unsigned SSI2_CLK_PODF : 6; //!< [5:0] Divider for ssi2 clock podf.
         unsigned SSI2_CLK_PRED : 3; //!< [8:6] Divider for ssi2 clock pred.
         unsigned LDB_DI0_CLK_SEL : 3; //!< [11:9] Selector for ldb_di1 clock multiplexer
         unsigned LDB_DI1_CLK_SEL : 3; //!< [14:12] Selector for ldb_di1 clock multiplexer
@@ -2725,7 +2715,7 @@ typedef union _hw_ccm_cs2cdr
  *
  * Values:
  * 000 - pll5 clock
- * 001 - pll2 352M 307M PFD (default)
+ * 001 - pll2 352M PFD (default)
  * 010 - pll2 396M PFD
  * 011 - MMDC_CH1 clock
  * 100 - pll3 clock
@@ -2753,7 +2743,7 @@ typedef union _hw_ccm_cs2cdr
  *
  * Values:
  * 000 - pll5 clock
- * 001 - pll2 352M 307M PFD (default)
+ * 001 - pll2 352M PFD (default)
  * 010 - pll2 396M PFD
  * 011 - MMDC_CH1 clock
  * 100 - pll3 clock
@@ -2780,7 +2770,7 @@ typedef union _hw_ccm_cs2cdr
  * Selector for enfc clock multiplexer
  *
  * Values:
- * 00 - pll2 352M 307M PDF (Default)
+ * 00 - pll2 352M PDF (Default)
  * 01 - pll2 clock
  * 10 - pll3 clock
  * 11 - pll2 396M PFD
@@ -2876,14 +2866,14 @@ typedef union _hw_ccm_cdcdr
     {
         unsigned RESERVED0 : 7; //!< [6:0] Reserved
         unsigned SPDIF1_CLK_SEL : 2; //!< [8:7] Selector for spdif1 clock multiplexer
-        unsigned SPDIF1_CLK_PODF : 3; //!< [11:9] Divider for spdif1 clock podf. Note: Divider should be updated when output clock is gated.
-        unsigned SPDIF1_CLK_PRED : 3; //!< [14:12] Divider for spdif1 clock pred. Note: Divider should be updated when output clock is gated.
+        unsigned SPDIF1_CLK_PODF : 3; //!< [11:9] Divider for spdif1 clock podf.
+        unsigned SPDIF1_CLK_PRED : 3; //!< [14:12] Divider for spdif1 clock pred.
         unsigned RESERVED1 : 5; //!< [19:15] Reserved.
         unsigned SPDIF0_CLK_SEL : 2; //!< [21:20] Selector for spdif0 clock multiplexer
-        unsigned SPDIF0_CLK_PODF : 3; //!< [24:22] Divider for spdif0 clock podf. Note: Divider should be updated when output clock is gated.
-        unsigned SPDIF0_CLK_PRED : 3; //!< [27:25] Divider for spdif0 clock pred. Note: Divider should be updated when output clock is gated.
+        unsigned SPDIF0_CLK_PODF : 3; //!< [24:22] Divider for spdif0 clock podf.
+        unsigned SPDIF0_CLK_PRED : 3; //!< [27:25] Divider for spdif0 clock pred.
         unsigned HSI_TX_CLK_SEL : 1; //!< [28] Selector for hsi_tx clock multiplexer
-        unsigned HSI_TX_PODF : 3; //!< [31:29] Divider for hsi_tx clock podf. Note: Divider should be updated when output clock is gated.
+        unsigned HSI_TX_PODF : 3; //!< [31:29] Divider for hsi_tx clock podf.
     } B;
 } hw_ccm_cdcdr_t;
 #endif
@@ -3132,10 +3122,10 @@ typedef union _hw_ccm_chsccdr
     struct _hw_ccm_chsccdr_bitfields
     {
         unsigned IPU1_DI0_CLK_SEL : 3; //!< [2:0] Selector for ipu1 di0 root clock multiplexer
-        unsigned IPU1_DI0_PODF : 3; //!< [5:3] Divider for ipu1_di0 clock divider. Note: Divider should be updated when output clock is gated.
+        unsigned IPU1_DI0_PODF : 3; //!< [5:3] Divider for ipu1_di0 clock divider.
         unsigned IPU1_DI0_PRE_CLK_SEL : 3; //!< [8:6] Selector for ipu1 di0 root clock pre-multiplexer
         unsigned IPU1_DI1_CLK_SEL : 3; //!< [11:9] Selector for ipu1 di1 root clock multiplexer
-        unsigned IPU1_DI1_PODF : 3; //!< [14:12] Divider for ipu1_di clock divider. Note: Divider should be updated when output clock is gated.
+        unsigned IPU1_DI1_PODF : 3; //!< [14:12] Divider for ipu1_di clock divider.
         unsigned IPU1_DI1_PRE_CLK_SEL : 3; //!< [17:15] Selector for ipu1 di1 root clock pre-multiplexer
         unsigned RESERVED0 : 14; //!< [31:18] Reserved
     } B;
@@ -3226,7 +3216,7 @@ typedef union _hw_ccm_chsccdr
  * 000 - derive clock from mmdc_ch0 clock
  * 001 - derive clock from pll3
  * 010 - derive clock from pll5
- * 011 - derive clock from 352M 307M PFD
+ * 011 - derive clock from 352M PFD
  * 100 - derive clock from 396M PFD
  * 101 - derive clock from 540M PFD
  * 110-111 - Restricted
@@ -3313,7 +3303,7 @@ typedef union _hw_ccm_chsccdr
  * 000 - derive clock from mmdc_ch0 clock
  * 001 - derive clock from pll3
  * 010 - derive clock from pll5
- * 011 - derive clock from 352M 307M PFD
+ * 011 - derive clock from 352M PFD
  * 100 - derive clock from 396M PFD
  * 101 - derive clock from 540M PFD
  * 110-111 - Restricted
@@ -3354,13 +3344,13 @@ typedef union _hw_ccm_cscdr2
     struct _hw_ccm_cscdr2_bitfields
     {
         unsigned IPU2_DI0_CLK_SEL : 3; //!< [2:0] Selector for ipu2 di0 root clock multiplexer
-        unsigned IPU2_DI0_PODF : 3; //!< [5:3] Divider for ipu2_di0 clock divider. Note: Divider should be updated when output clock is gated.
+        unsigned IPU2_DI0_PODF : 3; //!< [5:3] Divider for ipu2_di0 clock divider.
         unsigned IPU2_DI0_PRE_CLK_SEL : 3; //!< [8:6] Selector for ipu2 di0 root clock pre-multiplexer
         unsigned IPU2_DI1_CLK_SEL : 3; //!< [11:9] Selector for ipu1 di2 root clock multiplexer
-        unsigned IPU2_DI1_PODF : 3; //!< [14:12] Divider for ipu2_di1 clock divider. Note: Divider should be updated when output clock is gated.
+        unsigned IPU2_DI1_PODF : 3; //!< [14:12] Divider for ipu2_di1 clock divider.
         unsigned IPU2_DI1_PRE_CLK_SEL : 3; //!< [17:15] Selector for ipu2 di1 root clock pre-multiplexer
         unsigned RESERVED0 : 1; //!< [18] Reserved
-        unsigned ECSPI_CLK_PODF : 6; //!< [24:19] Divider for ecspi clock podf. Note: Divider should be updated when output clock is gated. Note: The input clock to this divider should be lower than 300Mhz, the predivider can be used to achieve this.
+        unsigned ECSPI_CLK_PODF : 6; //!< [24:19] Divider for ecspi clock podf.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved.
     } B;
 } hw_ccm_cscdr2_t;
@@ -3450,7 +3440,7 @@ typedef union _hw_ccm_cscdr2
  * 000 - derive clock from mmdc_ch0 clock
  * 001 - derive clock from pll3 (default)
  * 010 - derive clock from pll5
- * 011 - derive clock from 352M 307M PFD
+ * 011 - derive clock from 352M PFD
  * 100 - derive clock from 396M PFD
  * 101 - derive clock from 540M PFD
  * 110-111 - Restricted
@@ -3537,7 +3527,7 @@ typedef union _hw_ccm_cscdr2
  * 000 - derive clock from mmdc_ch0 clock
  * 001 - derive clock from pll3
  * 010 - derive clock from pll5
- * 011 - derive clock from 352M 307M PFD
+ * 011 - derive clock from 352M PFD
  * 100 - derive clock from 396M PFD
  * 101 - derive clock from 540M PFD
  * 110-111 - Restricted
@@ -3605,9 +3595,9 @@ typedef union _hw_ccm_cscdr3
     {
         unsigned RESERVED0 : 9; //!< [8:0] Reserved
         unsigned IPU1_HSP_CLK_SEL : 2; //!< [10:9] Selector for ipu1_hsp clock multiplexer
-        unsigned IPU1_HSP_PODF : 3; //!< [13:11] Divider for ipu1_hsp clock. Note: Divider should be updated when output clock is gated.
+        unsigned IPU1_HSP_PODF : 3; //!< [13:11] Divider for ipu1_hsp clock.
         unsigned IPU2_HSP_CLK_SEL : 2; //!< [15:14] Selector for ipu2_hsp clock multiplexer
-        unsigned IPU2_HSP_PODF : 3; //!< [18:16] Divider for ipu2_hsp clock. Note: Divider should be updated when output clock is gated.
+        unsigned IPU2_HSP_PODF : 3; //!< [18:16] Divider for ipu2_hsp clock.
         unsigned RESERVED1 : 13; //!< [31:19] Reserved
     } B;
 } hw_ccm_cscdr3_t;
@@ -3796,28 +3786,7 @@ typedef union _hw_ccm_cwdr
  *
  * The figure below represents the CCM Divider Handshake In-Process Register (CDHIPR). The CDHIPR
  * register contains read only bits that indicate that CCM is in the process of updating dividers or
- * muxes that might need handshake with modules.  bit 16: This bit corresponds to the arm_podf
- * divider only if ARM dvfs operation is done through arm_podf change (arm_freq_shift_divider =
- * '1'). In this case, writing to arm_podf will commence only after assertion of arm_clk_switch_req
- * from GPC. During this period, bit 16 (arm_podf_busy) will assert to indicate that arm_podf is
- * during process of change. Software should not write new values to arm_podf during this period.
- * any reads of arm_podf during this period will result the next value of arm_podf and not the
- * actual dividers value. To read the actual dividers value , software should wait until
- * arm_podf_busy deasserts. Once the value of the indication bit changes from '1' to '0', ccm can
- * also generate interrupt, if its not masked (refer to CIMR). This bit will not assert if its not a
- * arm dvfs operation, i.e. if arm_freq_shift_divider = '0'. In this case the write to arm_podf will
- * commence once the divider is written with the new value.  bits [8-0]: The dividers in this group
- * are axi_a_podf, axi_b_podf, emi_slow_podf, ahb_podf and nfc_podf. The muxes control in this group
- * are periph_clk_sel and emi_clk_sel. For each of those dividers and muxes control, CDHIPR holds a
- * busy indication bit. If this bit is equal to 1, then ccm is in process of updating the divider or
- * mux. The corresponding bit will assert to '1' once the CBCDR register is updated and a handshake
- * is indeed needed for the update. The corresponding bit will deassert to '0' once the handshake
- * has completed and the divider or mux is loaded with the new values. Software reads of the divider
- * or mux control bits, during the time that these bits are 1, will represent the next value of the
- * divider or mux to be loaded. If software wants to read the actual divider value, it should wait
- * until the value of the indicator bit is equal 0. Once the value of the indication bit changes
- * from '1' to '0', ccm can also generate interrupt, if its not masked (refer to CIMR). The table
- * below provides its field descriptions.
+ * muxes that might need handshake with modules.
  */
 typedef union _hw_ccm_cdhipr
 {
@@ -4000,7 +3969,7 @@ typedef union _hw_ccm_ctor
         unsigned OBS_SPARE_OUTPUT_2_SEL : 4; //!< [3:0] Selection of the signal to be generated on obs_output_2 (output of CCM) for observability on the pads.
         unsigned OBS_SPARE_OUTPUT_1_SEL : 4; //!< [7:4] Selection of the signal to be generated on obs_output_1 (output of CCM) for observability on the pads.
         unsigned OBS_SPARE_OUTPUT_0_SEL : 5; //!< [12:8] Selection of the signal to be generated on obs_output_0 (output of CCM) for observability on the pads.
-        unsigned OBS_EN : 1; //!< [13] observability enable bit. this bit enables the output of the three observability muxes.
+        unsigned OBS_EN : 1; //!< [13] observability enable bit.
         unsigned RESERVED0 : 18; //!< [31:14] Reserved
     } B;
 } hw_ccm_ctor_t;
@@ -4201,27 +4170,27 @@ typedef union _hw_ccm_clpcr
     struct _hw_ccm_clpcr_bitfields
     {
         unsigned LPM : 2; //!< [1:0] Setting the low power mode that system will enter on next assertion of dsm_request signal.
-        unsigned BYPASS_PMIC_VFUNCTIONAL_READY : 1; //!< [2] By asserting this bit CCM will bypass waiting for pmic_vfunctional_ready signal when coming out of STOP mode. This should be used for PMIC's that don't support the pmic_vfunctional_ready signal.
+        unsigned BYPASS_PMIC_VFUNCTIONAL_READY : 1; //!< [2] By asserting this bit CCM will bypass waiting for pmic_vfunctional_ready signal when coming out of STOP mode.
         unsigned RESERVED0 : 2; //!< [4:3] Reserved
-        unsigned ARM_CLK_DIS_ON_LPM : 1; //!< [5] Define if ARM clocks (arm_clk, soc_mxclk, soc_pclk, soc_dbg_pclk, vl_wrck) will be disabled on wait mode. This is useful for debug mode, when the user still wants to simulate entering wait mode and still keep ARM clock functioning. Note: software should not enable ARM power gating in wait mode if this bit is cleared.
-        unsigned SBYOS : 1; //!< [6] Standby clock oscillator bit. This bit defines if cosc_pwrdown, which power down the on chip oscillator, will be asserted in stop mode. This bit is discarded if cosc_pwrdown='1' for the on chip oscillator.
-        unsigned DIS_REF_OSC : 1; //!< [7] dis_ref_osc - in run mode, software can manually control closing of external reference oscillator clock, i.e. generating '1' on ref_en_b signal. If software closed manually the external reference clock, then sbyos functionality will be bypassed. The manual closing of external reference oscilator should be performed only in case the reference oscilator is not the source of any clock generation. Note: When returning from stop mode, the PMIC_VSTBY_REQ will be deasserted (if it was asserted when entering stop mode), and CCM will wait for indication that functional voltage is ready (by sampling the assertion of pmic_vfuncional_ready) before continuing the process of exiting from stop mode. Please refer to stby_count bits.
-        unsigned VSTBY : 1; //!< [8] Voltage standby request bit. This bit defines if PMIC_VSTBY_REQ pin, which notifies external power management IC to move from functional voltage to standby voltage, will be asserted in stop mode.
-        unsigned STBY_COUNT : 2; //!< [10:9] Standby counter definition. These two bits define, in the case of stop exit (if vstby bit was set), the amount of time CCM will wait between PMIC_VSTBY_REQ negation and the check of assertion of PMIC_VFUNCIONAL_READY . *NOTE: clock cycles ratio depends on pmic_delay_scaler, defined by CGPR[0] bit.
-        unsigned COSC_PWRDOWN : 1; //!< [11] In run mode, software can manually control powering down of on chip oscillator, i.e. generating '1' on cosc_pwrdown signal. If software manually powered down the on chip oscillator, then sbyos functionality for on chip oscillator will be bypassed. The manual closing of onchip oscillator should be performed only in case the reference oscilator is not the source of all the clocks generation.
+        unsigned ARM_CLK_DIS_ON_LPM : 1; //!< [5] Define if ARM clocks (arm_clk, soc_mxclk, soc_pclk, soc_dbg_pclk, vl_wrck) will be disabled on wait mode.
+        unsigned SBYOS : 1; //!< [6] Standby clock oscillator bit.
+        unsigned DIS_REF_OSC : 1; //!< [7] dis_ref_osc - in run mode, software can manually control closing of external reference oscillator clock, i.e.
+        unsigned VSTBY : 1; //!< [8] Voltage standby request bit.
+        unsigned STBY_COUNT : 2; //!< [10:9] Standby counter definition.
+        unsigned COSC_PWRDOWN : 1; //!< [11] In run mode, software can manually control powering down of on chip oscillator, i.e.
         unsigned RESERVED1 : 4; //!< [15:12] Reserved
         unsigned WB_PER_AT_LPM : 1; //!< [16] Enable periphery charge pump for well biasing at low power mode (stop or wait)
         unsigned WB_CORE_AT_LPM : 1; //!< [17] Enable core charge pump for well biasing at low power mode (stop or wait)
         unsigned RESERVED2 : 1; //!< [18] Reserved
-        unsigned BYPASS_MMDC_CH0_LPM_HS : 1; //!< [19] Bypass handshake with mmdc_ch0 on next entrance to low power mode (wait or stop mode). CCM does not wait for the module's acknowledge. Handshake also will be bypassed, if CGR3 CG10 is set to gate fast mmdc_ch0 clock.
+        unsigned BYPASS_MMDC_CH0_LPM_HS : 1; //!< [19] Bypass handshake with mmdc_ch0 on next entrance to low power mode (wait or stop mode).
         unsigned RESERVED3 : 1; //!< [20] Reserved
-        unsigned BYPASS_MMDC_CH1_LPM_HS : 1; //!< [21] Bypass handshake with mmdc_ch1 on next entrance to low power mode (wait or stop mode). CCM does not wait for the module's acknowledge. Handshake also will be bypassed, if CGR3 CG10 is set to gate fast mmdc_ch1 clock.
+        unsigned BYPASS_MMDC_CH1_LPM_HS : 1; //!< [21] Bypass handshake with mmdc_ch1 on next entrance to low power mode (wait or stop mode).
         unsigned MASK_CORE0_WFI : 1; //!< [22] Mask WFI of core0 for entering low power mode Note: assertion of all bits[27:22] will generate low power mode request
         unsigned MASK_CORE1_WFI : 1; //!< [23] Mask WFI of core1 for entering low power mode Note: assertion of all bits[27:22] will generate low power mode request
         unsigned MASK_CORE2_WFI : 1; //!< [24] Mask WFI of core2 for entering low power mode Note: assertion of all bits[27:22] will generate low power mode request
         unsigned MASK_CORE3_WFI : 1; //!< [25] Mask WFI of core3 for entering low power mode Note: assertion of all bits[27:22] will generate low power mode request
         unsigned MASK_SCU_IDLE : 1; //!< [26] Mask SCU IDLE for entering low power mode Note: assertion of all bits[27:22] will generate low power mode request
-        unsigned MASK_L2CC_IDLE : 1; //!< [27] Mask L2CC IDLE for entering low power mode. Note: assertion of all bits[27:22] will generate low power mode request
+        unsigned MASK_L2CC_IDLE : 1; //!< [27] Mask L2CC IDLE for entering low power mode.
         unsigned RESERVED4 : 4; //!< [31:28] Reserved
     } B;
 } hw_ccm_clpcr_t;
@@ -4420,7 +4389,7 @@ typedef union _hw_ccm_clpcr
  *
  * Standby counter definition. These two bits define, in the case of stop exit (if vstby bit was
  * set), the amount of time CCM will wait between PMIC_VSTBY_REQ negation and the check of assertion
- * of PMIC_VFUNCIONAL_READY . *NOTE: clock cycles ratio depends on pmic_delay_scaler, defined by
+ * of PMIC_VFUNCTIONAL_READY . *NOTE: clock cycles ratio depends on pmic_delay_scaler, defined by
  * CGPR[0] bit.
  *
  * Values:
@@ -4745,7 +4714,7 @@ typedef union _hw_ccm_cisr
     {
         unsigned LRF_PLL : 1; //!< [0] Interrupt ipi_int_2 generated due to lock of all enabled and not bypaseed pll's
         unsigned RESERVED0 : 5; //!< [5:1] Reserved
-        unsigned COSC_READY : 1; //!< [6] Interrupt ipi_int_2 generated due to on board oscillator ready, i.e. oscnt has finished counting.
+        unsigned COSC_READY : 1; //!< [6] Interrupt ipi_int_2 generated due to on board oscillator ready, i.e.
         unsigned RESERVED1 : 10; //!< [16:7] Reserved
         unsigned AXI_PODF_LOADED : 1; //!< [17] Interrupt ipi_int_1 generated due to frequency change of axi_a_podf
         unsigned AXI_B_PODF_LOADED : 1; //!< [18] Interrupt ipi_int_1 generated due to frequency change of axi_b_podf
@@ -4755,7 +4724,7 @@ typedef union _hw_ccm_cisr
         unsigned PERIPH_CLK_SEL_LOADED : 1; //!< [22] Interrupt ipi_int_1 generated due to update of periph_clk_sel.
         unsigned MMDC_CH0_PODF_LOADED : 1; //!< [23] Interrupt ipi_int_1 generated due to update of mmdc_ch0_axi_podf.
         unsigned RESERVED2 : 2; //!< [25:24] Reserved
-        unsigned ARM_PODF_LOADED : 1; //!< [26] Interrupt ipi_int_1 generated due to frequency change of arm_podf. The interrupt will commence only if arm_podf is loaded during a arm dvfs operation.
+        unsigned ARM_PODF_LOADED : 1; //!< [26] Interrupt ipi_int_1 generated due to frequency change of arm_podf.
         unsigned RESERVED3 : 5; //!< [31:27] Reserved
     } B;
 } hw_ccm_cisr_t;
@@ -5590,13 +5559,13 @@ typedef union _hw_ccm_cgpr
     struct _hw_ccm_cgpr_bitfields
     {
         unsigned PMIC_DELAY_SCALER : 1; //!< [0] Defines clock dividion of clock for stby_count (pmic delay counter)
-        unsigned RESERVED0 : 1; //!< [1] Reserved for future use. Bits are connected to ccm output cgpr_dout[31-5]
+        unsigned RESERVED0 : 1; //!< [1] Reserved for future use.
         unsigned MMDC_EXT_CLK_DIS : 1; //!< [2] Disable external clock driver of MMDC during STOP mode
-        unsigned RESERVED1 : 1; //!< [3] Reserved for future use. Bits are connected to ccm output cgpr_dout[31-5]
-        unsigned EFUSE_PROG_SUPPLY_GATE : 1; //!< [4] Defines the value of the output signal cgpr_dout[4]. Gate of programe supply for efuse programing
+        unsigned RESERVED1 : 1; //!< [3] Reserved for future use.
+        unsigned EFUSE_PROG_SUPPLY_GATE : 1; //!< [4] Defines the value of the output signal cgpr_dout[4].
         unsigned RESERVED2 : 11; //!< [15:5] Reserved.
         unsigned FPL : 1; //!< [16] 
-        unsigned RESERVED3 : 15; //!< [31:17] Reserved for future use. Those bits are connected to ccm output cgpr_dout[31-17]
+        unsigned RESERVED3 : 15; //!< [31:17] Reserved for future use.
     } B;
 } hw_ccm_cgpr_t;
 #endif
@@ -5746,19 +5715,19 @@ typedef union _hw_ccm_ccgr0
     {
         unsigned CG0 : 2; //!< [1:0] aips_tz1 clocks (aips_tz1_clk_enable)
         unsigned CG1 : 2; //!< [3:2] aips_tz2 clocks (aips_tz2_clk_enable)
-        unsigned CG2 : 2; //!< [5:4] apbhdma hclk clock (apbhdma_hclk_enable) Reserved
-        unsigned CG3 : 2; //!< [7:6] asrc clock (asrc_clk_enable) Reserved
-        unsigned CG4 : 2; //!< [9:8] caam_secure_mem clock (caam_secure_mem_clk_enable) Reserved
-        unsigned CG5 : 2; //!< [11:10] caam_wrapper_aclk clock (caam_wrapper_aclk_enable) Reserved
-        unsigned CG6 : 2; //!< [13:12] caam_wrapper_ipg clock (caam_wrapper_ipg_enable) Reserved
-        unsigned CG7 : 2; //!< [15:14] can1 clock (can1_clk_enable) Reserved
-        unsigned CG8 : 2; //!< [17:16] can1_serial clock (can1_serial_clk_enable) Reserved
-        unsigned CG9 : 2; //!< [19:18] can2 clock (can2_clk_enable) Reserved
-        unsigned CG10 : 2; //!< [21:20] can2_serial clock (can2_serial_clk_enable) Reserved
+        unsigned CG2 : 2; //!< [5:4] apbhdma hclk clock (apbhdma_hclk_enable)
+        unsigned CG3 : 2; //!< [7:6] asrc clock (asrc_clk_enable)
+        unsigned CG4 : 2; //!< [9:8] caam_secure_mem clock (caam_secure_mem_clk_enable)
+        unsigned CG5 : 2; //!< [11:10] caam_wrapper_aclk clock (caam_wrapper_aclk_enable)
+        unsigned CG6 : 2; //!< [13:12] caam_wrapper_ipg clock (caam_wrapper_ipg_enable)
+        unsigned CG7 : 2; //!< [15:14] can1 clock (can1_clk_enable)
+        unsigned CG8 : 2; //!< [17:16] can1_serial clock (can1_serial_clk_enable)
+        unsigned CG9 : 2; //!< [19:18] can2 clock (can2_clk_enable)
+        unsigned CG10 : 2; //!< [21:20] can2_serial clock (can2_serial_clk_enable)
         unsigned CG11 : 2; //!< [23:22] CPU debug clocks (cheetah_dbg_clk_enable)
-        unsigned CG12 : 2; //!< [25:24] dcic 1 clocks (dcic1_clk_enable) Reserved
-        unsigned CG13 : 2; //!< [27:26] dcic2 clocks (dcic2_clk_enable) Reserved
-        unsigned CG14 : 2; //!< [29:28] dtcp clocks (dtcp_dtcp_clk_enable) Reserved
+        unsigned CG12 : 2; //!< [25:24] dcic 1 clocks (dcic1_clk_enable)
+        unsigned CG13 : 2; //!< [27:26] dcic2 clocks (dcic2_clk_enable)
+        unsigned CG14 : 2; //!< [29:28] dtcp clocks (dtcp_dtcp_clk_enable)
         unsigned CG15 : 2; //!< [31:30] Reserved
     } B;
 } hw_ccm_ccgr0_t;
@@ -5822,7 +5791,7 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG2[5:4] (RW)
  *
- * apbhdma hclk clock (apbhdma_hclk_enable) Reserved
+ * apbhdma hclk clock (apbhdma_hclk_enable)
  */
 
 #define BP_CCM_CCGR0_CG2      (4)      //!< Bit position for CCM_CCGR0_CG2.
@@ -5841,7 +5810,7 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG3[7:6] (RW)
  *
- * asrc clock (asrc_clk_enable) Reserved
+ * asrc clock (asrc_clk_enable)
  */
 
 #define BP_CCM_CCGR0_CG3      (6)      //!< Bit position for CCM_CCGR0_CG3.
@@ -5860,7 +5829,7 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG4[9:8] (RW)
  *
- * caam_secure_mem clock (caam_secure_mem_clk_enable) Reserved
+ * caam_secure_mem clock (caam_secure_mem_clk_enable)
  */
 
 #define BP_CCM_CCGR0_CG4      (8)      //!< Bit position for CCM_CCGR0_CG4.
@@ -5879,7 +5848,7 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG5[11:10] (RW)
  *
- * caam_wrapper_aclk clock (caam_wrapper_aclk_enable) Reserved
+ * caam_wrapper_aclk clock (caam_wrapper_aclk_enable)
  */
 
 #define BP_CCM_CCGR0_CG5      (10)      //!< Bit position for CCM_CCGR0_CG5.
@@ -5898,7 +5867,7 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG6[13:12] (RW)
  *
- * caam_wrapper_ipg clock (caam_wrapper_ipg_enable) Reserved
+ * caam_wrapper_ipg clock (caam_wrapper_ipg_enable)
  */
 
 #define BP_CCM_CCGR0_CG6      (12)      //!< Bit position for CCM_CCGR0_CG6.
@@ -5917,7 +5886,7 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG7[15:14] (RW)
  *
- * can1 clock (can1_clk_enable) Reserved
+ * can1 clock (can1_clk_enable)
  */
 
 #define BP_CCM_CCGR0_CG7      (14)      //!< Bit position for CCM_CCGR0_CG7.
@@ -5936,7 +5905,7 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG8[17:16] (RW)
  *
- * can1_serial clock (can1_serial_clk_enable) Reserved
+ * can1_serial clock (can1_serial_clk_enable)
  */
 
 #define BP_CCM_CCGR0_CG8      (16)      //!< Bit position for CCM_CCGR0_CG8.
@@ -5955,7 +5924,7 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG9[19:18] (RW)
  *
- * can2 clock (can2_clk_enable) Reserved
+ * can2 clock (can2_clk_enable)
  */
 
 #define BP_CCM_CCGR0_CG9      (18)      //!< Bit position for CCM_CCGR0_CG9.
@@ -5974,7 +5943,7 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG10[21:20] (RW)
  *
- * can2_serial clock (can2_serial_clk_enable) Reserved
+ * can2_serial clock (can2_serial_clk_enable)
  */
 
 #define BP_CCM_CCGR0_CG10      (20)      //!< Bit position for CCM_CCGR0_CG10.
@@ -6012,7 +5981,7 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG12[25:24] (RW)
  *
- * dcic 1 clocks (dcic1_clk_enable) Reserved
+ * dcic 1 clocks (dcic1_clk_enable)
  */
 
 #define BP_CCM_CCGR0_CG12      (24)      //!< Bit position for CCM_CCGR0_CG12.
@@ -6031,7 +6000,7 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG13[27:26] (RW)
  *
- * dcic2 clocks (dcic2_clk_enable) Reserved
+ * dcic2 clocks (dcic2_clk_enable)
  */
 
 #define BP_CCM_CCGR0_CG13      (26)      //!< Bit position for CCM_CCGR0_CG13.
@@ -6050,7 +6019,7 @@ typedef union _hw_ccm_ccgr0
 
 /* --- Register HW_CCM_CCGR0, field CG14[29:28] (RW)
  *
- * dtcp clocks (dtcp_dtcp_clk_enable) Reserved
+ * dtcp clocks (dtcp_dtcp_clk_enable)
  */
 
 #define BP_CCM_CCGR0_CG14      (28)      //!< Bit position for CCM_CCGR0_CG14.
@@ -6110,16 +6079,16 @@ typedef union _hw_ccm_ccgr1
         unsigned CG1 : 2; //!< [3:2] ecspi2 clocks (ecspi2_clk_enable)
         unsigned CG2 : 2; //!< [5:4] ecspi3 clocks (ecspi3_clk_enable)
         unsigned CG3 : 2; //!< [7:6] ecspi4 clocks (ecspi4_clk_enable)
-        unsigned CG4 : 2; //!< [9:8] ecspi5 clocks (ecspi5_clk_enable) Reserved
-        unsigned CG5 : 2; //!< [11:10] clock (enet_clk_enable) Reserved
+        unsigned CG4 : 2; //!< [9:8] ecspi5 clocks (ecspi5_clk_enable)
+        unsigned CG5 : 2; //!< [11:10] clock (enet_clk_enable)
         unsigned CG6 : 2; //!< [13:12] epit1 clocks (epit1_clk_enable)
         unsigned CG7 : 2; //!< [15:14] epit2 clocks (epit2_clk_enable)
-        unsigned CG8 : 2; //!< [17:16] esai clocks (esai_clk_enable) (extern_audio_clk_enable)
+        unsigned CG8 : 2; //!< [17:16] esai clocks (esai_clk_enable)
         unsigned CG9 : 2; //!< [19:18] Reserved
         unsigned CG10 : 2; //!< [21:20] gpt bus clock (gpt_clk_enable)
         unsigned CG11 : 2; //!< [23:22] gpt serial clock (gpt_serial_clk_enable)
-        unsigned CG12 : 2; //!< [25:24] gpu2d clock (gpu2d_clk_enable) mshc xmscki clock (mshc_xmscki_clk_enable)
-        unsigned CG13 : 2; //!< [27:26] gpu3d clock (gpu3d_clk_enable) gpu2d ovg clock (gpu2d_ovg_core_clk_enable)
+        unsigned CG12 : 2; //!< [25:24] gpu2d clock (gpu2d_clk_enable)
+        unsigned CG13 : 2; //!< [27:26] gpu3d clock (gpu3d_clk_enable)
         unsigned CG14 : 2; //!< [29:28] Reserved
         unsigned CG15 : 2; //!< [31:30] Reserved
     } B;
@@ -6222,7 +6191,7 @@ typedef union _hw_ccm_ccgr1
 
 /* --- Register HW_CCM_CCGR1, field CG4[9:8] (RW)
  *
- * ecspi5 clocks (ecspi5_clk_enable) Reserved
+ * ecspi5 clocks (ecspi5_clk_enable)
  */
 
 #define BP_CCM_CCGR1_CG4      (8)      //!< Bit position for CCM_CCGR1_CG4.
@@ -6241,7 +6210,7 @@ typedef union _hw_ccm_ccgr1
 
 /* --- Register HW_CCM_CCGR1, field CG5[11:10] (RW)
  *
- * clock (enet_clk_enable) Reserved
+ * clock (enet_clk_enable)
  */
 
 #define BP_CCM_CCGR1_CG5      (10)      //!< Bit position for CCM_CCGR1_CG5.
@@ -6298,7 +6267,7 @@ typedef union _hw_ccm_ccgr1
 
 /* --- Register HW_CCM_CCGR1, field CG8[17:16] (RW)
  *
- * esai clocks (esai_clk_enable) (extern_audio_clk_enable)
+ * esai clocks (esai_clk_enable)
  */
 
 #define BP_CCM_CCGR1_CG8      (16)      //!< Bit position for CCM_CCGR1_CG8.
@@ -6374,7 +6343,7 @@ typedef union _hw_ccm_ccgr1
 
 /* --- Register HW_CCM_CCGR1, field CG12[25:24] (RW)
  *
- * gpu2d clock (gpu2d_clk_enable) mshc xmscki clock (mshc_xmscki_clk_enable)
+ * gpu2d clock (gpu2d_clk_enable)
  */
 
 #define BP_CCM_CCGR1_CG12      (24)      //!< Bit position for CCM_CCGR1_CG12.
@@ -6393,7 +6362,7 @@ typedef union _hw_ccm_ccgr1
 
 /* --- Register HW_CCM_CCGR1, field CG13[27:26] (RW)
  *
- * gpu3d clock (gpu3d_clk_enable) gpu2d ovg clock (gpu2d_ovg_core_clk_enable)
+ * gpu3d clock (gpu3d_clk_enable)
  */
 
 #define BP_CCM_CCGR1_CG13      (26)      //!< Bit position for CCM_CCGR1_CG13.
@@ -6468,9 +6437,9 @@ typedef union _hw_ccm_ccgr2
     reg32_t U;
     struct _hw_ccm_ccgr2_bitfields
     {
-        unsigned CG0 : 2; //!< [1:0] hdmi_tx_iahbclk, hdmi_tx_ihclk clock (hdmi_tx_iahbclk_enable) Reserved
+        unsigned CG0 : 2; //!< [1:0] hdmi_tx_iahbclk, hdmi_tx_ihclk clock (hdmi_tx_iahbclk_enable)
         unsigned CG1 : 2; //!< [3:2] Reserved
-        unsigned CG2 : 2; //!< [5:4] hdmi_tx_isfrclk clock (hdmi_tx_isfrclk_enable) Reserved
+        unsigned CG2 : 2; //!< [5:4] hdmi_tx_isfrclk clock (hdmi_tx_isfrclk_enable)
         unsigned CG3 : 2; //!< [7:6] i2c1_serial clock (i2c1_serial_clk_enable)
         unsigned CG4 : 2; //!< [9:8] i2c2_serial clock (i2c2_serial_clk_enable)
         unsigned CG5 : 2; //!< [11:10] i2c3_serial clock (i2c3_serial_clk_enable)
@@ -6480,7 +6449,7 @@ typedef union _hw_ccm_ccgr2
         unsigned CG9 : 2; //!< [19:18] ipmux2 clock (ipmux2_clk_enable)
         unsigned CG10 : 2; //!< [21:20] ipmux3 clock (ipmux3_clk_enable)
         unsigned CG11 : 2; //!< [23:22] ipsync_ip2apb_tzasc1_ipg clocks (ipsync_ip2apb_tzasc1_ipg_master_clk_enable)
-        unsigned CG12 : 2; //!< [25:24] ipsync_vdoa_ipg clocks (ipsync_ip2apb_tzasc2_ipg clocks) Reserved
+        unsigned CG12 : 2; //!< [25:24] ipsync_vdoa_ipg clocks (ipsync_ip2apb_tzasc2_ipg clocks)
         unsigned CG13 : 2; //!< [27:26] ipsync_vdoa_ipg clocks (ipsync_vdoa_ipg_master_clk_enable)
         unsigned CG14 : 2; //!< [29:28] Reserved
         unsigned CG15 : 2; //!< [31:30] Reserved
@@ -6508,7 +6477,7 @@ typedef union _hw_ccm_ccgr2
 
 /* --- Register HW_CCM_CCGR2, field CG0[1:0] (RW)
  *
- * hdmi_tx_iahbclk, hdmi_tx_ihclk clock (hdmi_tx_iahbclk_enable) Reserved
+ * hdmi_tx_iahbclk, hdmi_tx_ihclk clock (hdmi_tx_iahbclk_enable)
  */
 
 #define BP_CCM_CCGR2_CG0      (0)      //!< Bit position for CCM_CCGR2_CG0.
@@ -6546,7 +6515,7 @@ typedef union _hw_ccm_ccgr2
 
 /* --- Register HW_CCM_CCGR2, field CG2[5:4] (RW)
  *
- * hdmi_tx_isfrclk clock (hdmi_tx_isfrclk_enable) Reserved
+ * hdmi_tx_isfrclk clock (hdmi_tx_isfrclk_enable)
  */
 
 #define BP_CCM_CCGR2_CG2      (4)      //!< Bit position for CCM_CCGR2_CG2.
@@ -6736,7 +6705,7 @@ typedef union _hw_ccm_ccgr2
 
 /* --- Register HW_CCM_CCGR2, field CG12[25:24] (RW)
  *
- * ipsync_vdoa_ipg clocks (ipsync_ip2apb_tzasc2_ipg clocks) Reserved
+ * ipsync_vdoa_ipg clocks (ipsync_ip2apb_tzasc2_ipg clocks)
  */
 
 #define BP_CCM_CCGR2_CG12      (24)      //!< Bit position for CCM_CCGR2_CG12.
@@ -6830,22 +6799,22 @@ typedef union _hw_ccm_ccgr3
     reg32_t U;
     struct _hw_ccm_ccgr3_bitfields
     {
-        unsigned CG0 : 2; //!< [1:0] ipu1_ipu clock (ipu1_ipu_clk_enable) csi core clock (csi_core_clk_enable)
-        unsigned CG1 : 2; //!< [3:2] ipu1_ipu_di0 clock (ipu1_ipu_di0_clk_enable) pxp axi clock (pxp_axi_clk_enable)
-        unsigned CG2 : 2; //!< [5:4] ipu1_ipu_di1 clock (ipu1_ipu_di1_clk_enable) epdc axi clock (epdc_axi_clk_enable)
-        unsigned CG3 : 2; //!< [7:6] ipu2_ipu clock (ipu2_ipu_clk_enable) epdc/lcdif/pxp clock (epdc_axi_clk_enable) lcdif axi clock (lcdif_axi_clk_enable)
-        unsigned CG4 : 2; //!< [9:8] ipu2_ipu_di0 clock (ipu2_ipu_di0_clk_enable) lcdif_pix clock (lcdif_pix_clk_enable)
-        unsigned CG5 : 2; //!< [11:10] ipu2_ipu_di1 clock (ipu2_ipu_di1_clk_enable) epdc_pix clock (epdc_pix_clk_enable)
-        unsigned CG6 : 2; //!< [13:12] ldb_di0 clock (ldb_di0_clk_enable) Reserved
-        unsigned CG7 : 2; //!< [15:14] ldb_di1 clock (ldb_di1_clk_enable) Reserved
-        unsigned CG8 : 2; //!< [17:16] mipi_core_cfg clock (mipi_core_cfg_clk_enable) Reserved
-        unsigned CG9 : 2; //!< [19:18] mlb clock (mlb_clk_enable) Reserved
+        unsigned CG0 : 2; //!< [1:0] ipu1_ipu clock (ipu1_ipu_clk_enable)
+        unsigned CG1 : 2; //!< [3:2] ipu1_ipu_di0 clock (ipu1_ipu_di0_clk_enable)
+        unsigned CG2 : 2; //!< [5:4] ipu1_ipu_di1 clock (ipu1_ipu_di1_clk_enable)
+        unsigned CG3 : 2; //!< [7:6] ipu2_ipu clock (ipu2_ipu_clk_enable)
+        unsigned CG4 : 2; //!< [9:8] ipu2_ipu_di0 clock (ipu2_ipu_di0_clk_enable)
+        unsigned CG5 : 2; //!< [11:10] ipu2_ipu_di1 clock (ipu2_ipu_di1_clk_enable)
+        unsigned CG6 : 2; //!< [13:12] ldb_di0 clock (ldb_di0_clk_enable)
+        unsigned CG7 : 2; //!< [15:14] ldb_di1 clock (ldb_di1_clk_enable)
+        unsigned CG8 : 2; //!< [17:16] mipi_core_cfg clock (mipi_core_cfg_clk_enable)
+        unsigned CG9 : 2; //!< [19:18] mlb clock (mlb_clk_enable)
         unsigned CG10 : 2; //!< [21:20] mmdc_core_aclk_fast_core_p0 clock (mmdc_core_aclk_fast_core_p0_enable)
-        unsigned CG11 : 2; //!< [23:22] mmdc_core_aclk_fast_core_p1 clock (mmdc_core_aclk_fast_core_p1_enable) Reserved
+        unsigned CG11 : 2; //!< [23:22] mmdc_core_aclk_fast_core_p1 clock (mmdc_core_aclk_fast_core_p1_enable)
         unsigned CG12 : 2; //!< [25:24] mmdc_core_ipg_clk_p0 clock (mmdc_core_ipg_clk_p0_enable)
         unsigned CG13 : 2; //!< [27:26] mmdc_core_ipg_clk_p1 clock (mmdc_core_ipg_clk_p1_enable)
         unsigned CG14 : 2; //!< [29:28] ocram clock (ocram_clk_enable)
-        unsigned CG15 : 2; //!< [31:30] openvgaxiclk clock (openvgaxiclk_clk_root_enable) Reserved
+        unsigned CG15 : 2; //!< [31:30] openvgaxiclk clock (openvgaxiclk_clk_root_enable)
     } B;
 } hw_ccm_ccgr3_t;
 #endif
@@ -6870,7 +6839,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG0[1:0] (RW)
  *
- * ipu1_ipu clock (ipu1_ipu_clk_enable) csi core clock (csi_core_clk_enable)
+ * ipu1_ipu clock (ipu1_ipu_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG0      (0)      //!< Bit position for CCM_CCGR3_CG0.
@@ -6889,7 +6858,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG1[3:2] (RW)
  *
- * ipu1_ipu_di0 clock (ipu1_ipu_di0_clk_enable) pxp axi clock (pxp_axi_clk_enable)
+ * ipu1_ipu_di0 clock (ipu1_ipu_di0_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG1      (2)      //!< Bit position for CCM_CCGR3_CG1.
@@ -6908,7 +6877,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG2[5:4] (RW)
  *
- * ipu1_ipu_di1 clock (ipu1_ipu_di1_clk_enable) epdc axi clock (epdc_axi_clk_enable)
+ * ipu1_ipu_di1 clock (ipu1_ipu_di1_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG2      (4)      //!< Bit position for CCM_CCGR3_CG2.
@@ -6927,8 +6896,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG3[7:6] (RW)
  *
- * ipu2_ipu clock (ipu2_ipu_clk_enable) epdc/lcdif/pxp clock (epdc_axi_clk_enable) lcdif axi clock
- * (lcdif_axi_clk_enable)
+ * ipu2_ipu clock (ipu2_ipu_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG3      (6)      //!< Bit position for CCM_CCGR3_CG3.
@@ -6947,7 +6915,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG4[9:8] (RW)
  *
- * ipu2_ipu_di0 clock (ipu2_ipu_di0_clk_enable) lcdif_pix clock (lcdif_pix_clk_enable)
+ * ipu2_ipu_di0 clock (ipu2_ipu_di0_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG4      (8)      //!< Bit position for CCM_CCGR3_CG4.
@@ -6966,7 +6934,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG5[11:10] (RW)
  *
- * ipu2_ipu_di1 clock (ipu2_ipu_di1_clk_enable) epdc_pix clock (epdc_pix_clk_enable)
+ * ipu2_ipu_di1 clock (ipu2_ipu_di1_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG5      (10)      //!< Bit position for CCM_CCGR3_CG5.
@@ -6985,7 +6953,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG6[13:12] (RW)
  *
- * ldb_di0 clock (ldb_di0_clk_enable) Reserved
+ * ldb_di0 clock (ldb_di0_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG6      (12)      //!< Bit position for CCM_CCGR3_CG6.
@@ -7004,7 +6972,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG7[15:14] (RW)
  *
- * ldb_di1 clock (ldb_di1_clk_enable) Reserved
+ * ldb_di1 clock (ldb_di1_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG7      (14)      //!< Bit position for CCM_CCGR3_CG7.
@@ -7023,7 +6991,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG8[17:16] (RW)
  *
- * mipi_core_cfg clock (mipi_core_cfg_clk_enable) Reserved
+ * mipi_core_cfg clock (mipi_core_cfg_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG8      (16)      //!< Bit position for CCM_CCGR3_CG8.
@@ -7042,7 +7010,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG9[19:18] (RW)
  *
- * mlb clock (mlb_clk_enable) Reserved
+ * mlb clock (mlb_clk_enable)
  */
 
 #define BP_CCM_CCGR3_CG9      (18)      //!< Bit position for CCM_CCGR3_CG9.
@@ -7080,7 +7048,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG11[23:22] (RW)
  *
- * mmdc_core_aclk_fast_core_p1 clock (mmdc_core_aclk_fast_core_p1_enable) Reserved
+ * mmdc_core_aclk_fast_core_p1 clock (mmdc_core_aclk_fast_core_p1_enable)
  */
 
 #define BP_CCM_CCGR3_CG11      (22)      //!< Bit position for CCM_CCGR3_CG11.
@@ -7156,7 +7124,7 @@ typedef union _hw_ccm_ccgr3
 
 /* --- Register HW_CCM_CCGR3, field CG15[31:30] (RW)
  *
- * openvgaxiclk clock (openvgaxiclk_clk_root_enable) Reserved
+ * openvgaxiclk clock (openvgaxiclk_clk_root_enable)
  */
 
 #define BP_CCM_CCGR3_CG15      (30)      //!< Bit position for CCM_CCGR3_CG15.
@@ -7193,13 +7161,13 @@ typedef union _hw_ccm_ccgr4
     reg32_t U;
     struct _hw_ccm_ccgr4_bitfields
     {
-        unsigned CG0 : 2; //!< [1:0] 125M clocks (125M_root_enable) Reserved
-        unsigned CG1 : 2; //!< [3:2] perfmon1 clocks (perfmon1_apb_clk_enable) Reserved.
-        unsigned CG2 : 2; //!< [5:4] perfmon2 clock (perfmon2_apb_clk_enable) Reserved.
-        unsigned CG3 : 2; //!< [7:6] perfmon3 clocks (perfmon3_apb_clk_enable) Reserved.
+        unsigned CG0 : 2; //!< [1:0] 125M clocks (125M_root_enable)
+        unsigned CG1 : 2; //!< [3:2] Reserved.
+        unsigned CG2 : 2; //!< [5:4] Reserved.
+        unsigned CG3 : 2; //!< [7:6] Reserved.
         unsigned CG4 : 2; //!< [9:8] pl301_mx6qfast1_s133 clock (pl301_mx6qfast1_s133clk_enable)
         unsigned CG5 : 2; //!< [11:10] Reserved
-        unsigned CG6 : 2; //!< [13:12] pl301_mx6qper1_bch clocks (pl301_mx6qper1_bchclk_enable) Reserved
+        unsigned CG6 : 2; //!< [13:12] pl301_mx6qper1_bch clocks (pl301_mx6qper1_bchclk_enable)
         unsigned CG7 : 2; //!< [15:14] pl301_mx6qper2_mainclk_enable (pl301_mx6qper2_mainclk_enable)
         unsigned CG8 : 2; //!< [17:16] pwm1 clocks (pwm1_clk_enable)
         unsigned CG9 : 2; //!< [19:18] pwm2 clocks (pwm2_clk_enable)
@@ -7233,7 +7201,7 @@ typedef union _hw_ccm_ccgr4
 
 /* --- Register HW_CCM_CCGR4, field CG0[1:0] (RW)
  *
- * 125M clocks (125M_root_enable) Reserved
+ * 125M clocks (125M_root_enable)
  */
 
 #define BP_CCM_CCGR4_CG0      (0)      //!< Bit position for CCM_CCGR4_CG0.
@@ -7252,7 +7220,7 @@ typedef union _hw_ccm_ccgr4
 
 /* --- Register HW_CCM_CCGR4, field CG1[3:2] (RW)
  *
- * perfmon1 clocks (perfmon1_apb_clk_enable) Reserved.
+ * Reserved.
  */
 
 #define BP_CCM_CCGR4_CG1      (2)      //!< Bit position for CCM_CCGR4_CG1.
@@ -7271,7 +7239,7 @@ typedef union _hw_ccm_ccgr4
 
 /* --- Register HW_CCM_CCGR4, field CG2[5:4] (RW)
  *
- * perfmon2 clock (perfmon2_apb_clk_enable) Reserved.
+ * Reserved.
  */
 
 #define BP_CCM_CCGR4_CG2      (4)      //!< Bit position for CCM_CCGR4_CG2.
@@ -7290,7 +7258,7 @@ typedef union _hw_ccm_ccgr4
 
 /* --- Register HW_CCM_CCGR4, field CG3[7:6] (RW)
  *
- * perfmon3 clocks (perfmon3_apb_clk_enable) Reserved.
+ * Reserved.
  */
 
 #define BP_CCM_CCGR4_CG3      (6)      //!< Bit position for CCM_CCGR4_CG3.
@@ -7347,7 +7315,7 @@ typedef union _hw_ccm_ccgr4
 
 /* --- Register HW_CCM_CCGR4, field CG6[13:12] (RW)
  *
- * pl301_mx6qper1_bch clocks (pl301_mx6qper1_bchclk_enable) Reserved
+ * pl301_mx6qper1_bch clocks (pl301_mx6qper1_bchclk_enable)
  */
 
 #define BP_CCM_CCGR4_CG6      (12)      //!< Bit position for CCM_CCGR4_CG6.

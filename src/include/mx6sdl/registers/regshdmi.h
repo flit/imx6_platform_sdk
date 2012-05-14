@@ -377,16 +377,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_HDMI_DESIGN_ID - Design Identification Register
@@ -407,7 +397,7 @@ typedef union _hw_hdmi_design_id
     reg8_t U;
     struct _hw_hdmi_design_id_bitfields
     {
-        unsigned char DESIGN_ID : 8; //!< [7:0] This is a 1 byte design ID code fixed by Freescale that Identifies the main revision of the HDMI TX controller. For example, HDMI TX 1.30a, DESIGN_ID = 11h; REVISION_ID = 0Ah
+        unsigned char DESIGN_ID : 8; //!< [7:0] This is a 1 byte design ID code fixed by Freescale that Identifies the main revision of the HDMI TX controller.
     } B;
 } hw_hdmi_design_id_t;
 #endif
@@ -456,7 +446,7 @@ typedef union _hw_hdmi_revision_id
     reg8_t U;
     struct _hw_hdmi_revision_id_bitfields
     {
-        unsigned char REVISION_ID : 8; //!< [7:0] This is a one byte revision ID code fixed by Freescale that Identifies the main revision of the HDMI TX controller. For example, HDMI TX 1.30a, DESIGN_ID = 12h; REVISION_ID = 0Ah
+        unsigned char REVISION_ID : 8; //!< [7:0] This is a one byte revision ID code fixed by Freescale that Identifies the main revision of the HDMI TX controller.
     } B;
 } hw_hdmi_revision_id_t;
 #endif
@@ -935,9 +925,9 @@ typedef union _hw_hdmi_ih_fc_stat0
     reg8_t U;
     struct _hw_hdmi_ih_fc_stat0_bitfields
     {
-        unsigned char NULL_ : 1; //!< [0] Active after successful transmission of an Null packet. Due to high number of audio sample packets transmitted, this interrupt is by default masked at frame composer.
+        unsigned char NULL_ : 1; //!< [0] Active after successful transmission of an Null packet.
         unsigned char ACR : 1; //!< [1] Active after successful transmission of an Audio Clock Regeneration (N/CTS transmission) packet.
-        unsigned char AUDS : 1; //!< [2] Active after successful transmission of an Audio Sample packet. Due to high number of audio sample packets transmitted, this interrupt is by default masked at frame composer.
+        unsigned char AUDS : 1; //!< [2] Active after successful transmission of an Audio Sample packet.
         unsigned char OBA : 1; //!< [3] Reserved
         unsigned char DST : 1; //!< [4] Reserved
         unsigned char HBR : 1; //!< [5] Active after successful transmission of an Audio HBR packet.
@@ -1417,7 +1407,7 @@ typedef union _hw_hdmi_ih_as_stat0
     {
         unsigned char AUD_FIFO_OVERFLOW : 1; //!< [0] Audio Sampler audio FIFO full indication.
         unsigned char AUD_FIFO_UNDERFLOW : 1; //!< [1] Audio Sampler audio FIFO empty indication.
-        unsigned char AUD_FIFO_UNDERFLOW_THR : 1; //!< [2] Audio Sampler audio FIFO empty threshold (four samples) indication. Only valid in HBR audio.
+        unsigned char AUD_FIFO_UNDERFLOW_THR : 1; //!< [2] Audio Sampler audio FIFO empty threshold (four samples) indication.
         unsigned char RESERVED0 : 5; //!< [7:3] Reserved
     } B;
 } hw_hdmi_ih_as_stat0_t;
@@ -1515,12 +1505,12 @@ typedef union _hw_hdmi_ih_phy_stat0
     reg8_t U;
     struct _hw_hdmi_ih_phy_stat0_bitfields
     {
-        unsigned char HDP : 1; //!< [0] HDMI Hot Plug Detect indication. You may need to mask or change polarity of this interrupt after it has become active.
-        unsigned char TX_PHY_LOCK : 1; //!< [1] TX PHY PLL lock indication. Please refer to PHY datasheet for more information. You may need to mask or change polarity of this interrupt after it has become active.
-        unsigned char RX_SENSE : 1; //!< [2] TX PHY RX_SENSE indication for driver 0. You may need to mask or change polarity of this interrupt after it has become active.
-        unsigned char RX_SENSE1 : 1; //!< [3] TX PHY RX_SENSE indication for driver 1. You may need to mask or change polarity of this interrupt after it has become active.
-        unsigned char RX_SENSE2 : 1; //!< [4] TX PHY RX_SENSE indication for driver 2. You may need to mask or change polarity of this interrupt after it has become active.
-        unsigned char RX_SENSE3 : 1; //!< [5] TX PHY RX_SENSE indication for driver 3. You may need to mask or change polarity of this interrupt after it has become active.
+        unsigned char HDP : 1; //!< [0] HDMI Hot Plug Detect indication.
+        unsigned char TX_PHY_LOCK : 1; //!< [1] TX PHY PLL lock indication.
+        unsigned char RX_SENSE : 1; //!< [2] TX PHY RX_SENSE indication for driver 0.
+        unsigned char RX_SENSE1 : 1; //!< [3] TX PHY RX_SENSE indication for driver 1.
+        unsigned char RX_SENSE2 : 1; //!< [4] TX PHY RX_SENSE indication for driver 2.
+        unsigned char RX_SENSE3 : 1; //!< [5] TX PHY RX_SENSE indication for driver 3.
         unsigned char RESERVED0 : 2; //!< [7:6] Reserved
     } B;
 } hw_hdmi_ih_phy_stat0_t;
@@ -3982,7 +3972,7 @@ typedef union _hw_hdmi_tx_invid0
     {
         unsigned char VIDEO_MAPPING : 5; //!< [4:0] video_mapping
         unsigned char RESERVED0 : 2; //!< [6:5] Reserved
-        unsigned char INTERNAL_DE_GENERATOR : 1; //!< [7] Internal data enable (DE) generator enable. If data enable is not available for the input video the user may set this bit to one to activate the internal data enable generator. This feature only works for input video modes that have native repetition (such as, all CEA videos). No desired pixel repetition can be used with this feature because these configurations only affect the Frame Composer and not this block.
+        unsigned char INTERNAL_DE_GENERATOR : 1; //!< [7] Internal data enable (DE) generator enable.
     } B;
 } hw_hdmi_tx_invid0_t;
 #endif
@@ -4308,7 +4298,7 @@ typedef union _hw_hdmi_tx_rcrdata0
     reg8_t U;
     struct _hw_hdmi_tx_rcrdata0_bitfields
     {
-        unsigned char RCRDATA : 8; //!< [7:0] rcrdata[7:0]. This register defines the value of rcrydata[7:0] when TX_INSTUFFING[1] (rcrdata_stuffing) is set to 1b.
+        unsigned char RCRDATA : 8; //!< [7:0] rcrdata[7:0].
     } B;
 } hw_hdmi_tx_rcrdata0_t;
 #endif
@@ -4368,7 +4358,7 @@ typedef union _hw_hdmi_tx_rcrdata1
     reg8_t U;
     struct _hw_hdmi_tx_rcrdata1_bitfields
     {
-        unsigned char RCRDATA : 8; //!< [7:0] rcrdata[15:8]. This register defines the value of rcrydata[15:8] when TX_INSTUFFING[1] (rcrdata_stuffing) is set to 1b.
+        unsigned char RCRDATA : 8; //!< [7:0] rcrdata[15:8].
     } B;
 } hw_hdmi_tx_rcrdata1_t;
 #endif
@@ -4428,7 +4418,7 @@ typedef union _hw_hdmi_tx_bcbdata0
     reg8_t U;
     struct _hw_hdmi_tx_bcbdata0_bitfields
     {
-        unsigned char BCBDATA : 8; //!< [7:0] bcbdata[7:0]. This register defines the value of bcbdata[7:0] when TX_INSTUFFING[2] (bcbdata_stuffing) is set to 1b.
+        unsigned char BCBDATA : 8; //!< [7:0] bcbdata[7:0].
     } B;
 } hw_hdmi_tx_bcbdata0_t;
 #endif
@@ -4488,7 +4478,7 @@ typedef union _hw_hdmi_tx_bcbdata1
     reg8_t U;
     struct _hw_hdmi_tx_bcbdata1_bitfields
     {
-        unsigned char BCBDATA : 8; //!< [7:0] bcbdata[15:8]. This register defines the value of bcbdata[15:8] when TX_INSTUFFING[2] (bcbdata_stuffing) is set to 1b.
+        unsigned char BCBDATA : 8; //!< [7:0] bcbdata[15:8].
     } B;
 } hw_hdmi_tx_bcbdata1_t;
 #endif
@@ -4548,7 +4538,7 @@ typedef union _hw_hdmi_vp_status
     reg8_t U;
     struct _hw_hdmi_vp_status_bitfields
     {
-        unsigned char PACKING_PHASE : 4; //!< [3:0] Read only register that holds the "packing phase" output by the Video packetizer block. For more information about "packing" video data, refer to the HDMI1.4a specification. The register is updated at tmds clock rate.
+        unsigned char PACKING_PHASE : 4; //!< [3:0] Read only register that holds the "packing phase" output by the Video packetizer block.
         unsigned char RESERVED0 : 4; //!< [7:4] Reserved
     } B;
 } hw_hdmi_vp_status_t;
@@ -4599,8 +4589,8 @@ typedef union _hw_hdmi_vp_pr_cd
     reg8_t U;
     struct _hw_hdmi_vp_pr_cd_bitfields
     {
-        unsigned char DESIRED_PR_FACTOR : 4; //!< [3:0] Desired pixel repetition factor configuration. The configured value sets H13T PHY PLL to multiply pixel clock by the factor in order to obtain the desired repetition clock. For the CEA modes some are already defined with pixel repetition in the input video. So for CEA modes this shall be always 0. Shall only be used if the user wants to do pixel repetition using H13TCTRL core. other Reserved. Not used.
-        unsigned char COLOR_DEPTH : 4; //!< [7:4] Color depth configuration: other Reserved. Not used.
+        unsigned char DESIRED_PR_FACTOR : 4; //!< [3:0] Desired pixel repetition factor configuration.
+        unsigned char COLOR_DEPTH : 4; //!< [7:4] Color depth configuration: other Reserved.
     } B;
 } hw_hdmi_vp_pr_cd_t;
 #endif
@@ -4706,10 +4696,10 @@ typedef union _hw_hdmi_vp_stuff
     {
         unsigned char PR_STUFFING : 1; //!< [0] Pixel repeater stuffing control
         unsigned char PP_STUFFING : 1; //!< [1] Pixel packing stuffing control
-        unsigned char YCC422_STUFFING : 1; //!< [2] YCC 422 remap stuffing control. For horizontal blanking:
-        unsigned char ICX_GOTO_P0_ST : 1; //!< [3] Reserved. Controls packing machine strategy.
-        unsigned char IFIX_PP_TO_LAST : 1; //!< [4] Reserved. Controls packing machine strategy.
-        unsigned char IDEFAULT_PHASE : 1; //!< [5] Controls the default phase packing machine used according to: "If the transmitted video format has timing such that the phase of the first pixel of every Video Data Period corresponds to pixel packing phase 0 (for example, 10P0, 12P0, 16P0), the Source may set the Default_Phase bit in the GCP. The Sink may use this bit to optimize it's filtering or handling of the PP field." (HDMI specification version 1.4a) This means that for10 bit mode the Htotal must be dividable by 4 and for 12 bit mode the Htotal must be dividable by 2.
+        unsigned char YCC422_STUFFING : 1; //!< [2] YCC 422 remap stuffing control.
+        unsigned char ICX_GOTO_P0_ST : 1; //!< [3] Reserved.
+        unsigned char IFIX_PP_TO_LAST : 1; //!< [4] Reserved.
+        unsigned char IDEFAULT_PHASE : 1; //!< [5] Controls the default phase packing machine used according to: "If the transmitted video format has timing such that the phase of the first pixel of every Video Data Period corresponds to pixel packing phase 0 (for example, 10P0, 12P0, 16P0), the Source may set the Default_Phase bit in the GCP.
         unsigned char RESERVED0 : 2; //!< [7:6] Reserved
     } B;
 } hw_hdmi_vp_stuff_t;
@@ -4957,10 +4947,10 @@ typedef union _hw_hdmi_vp_conf
     {
         unsigned char OUTPUT_SELECTOR : 2; //!< [1:0] Video packetizer output selection.
         unsigned char BYPASS_SELECT : 1; //!< [2] 
-        unsigned char YCC422_EN : 1; //!< [3] YCC 422 select enable. Disabling forces bypass module to output always zeros.
-        unsigned char PR_EN : 1; //!< [4] Pixel repeater enable. Disabling forces bypass module to output always zeros.
-        unsigned char PP_EN : 1; //!< [5] Pixel packing enable. Disabling forces bypass module to output always zeros.
-        unsigned char BYPASS_EN : 1; //!< [6] Bypass enable. Disabling forces bypass module to output always zeros.
+        unsigned char YCC422_EN : 1; //!< [3] YCC 422 select enable.
+        unsigned char PR_EN : 1; //!< [4] Pixel repeater enable.
+        unsigned char PP_EN : 1; //!< [5] Pixel packing enable.
+        unsigned char BYPASS_EN : 1; //!< [6] Bypass enable.
         unsigned char RESERVED0 : 1; //!< [7] Reserved
     } B;
 } hw_hdmi_vp_conf_t;
@@ -5330,7 +5320,7 @@ typedef union _hw_hdmi_fc_invidconf
     struct _hw_hdmi_fc_invidconf_bitfields
     {
         unsigned char IN_I_P : 1; //!< [0] Input video mode:
-        unsigned char R_V_BLANK_IN_OSC : 1; //!< [1] Used for CEA861-D modes with fractional Vblank (for example, modes 5, 6, 7, 10, 11, 20, 21, and 22. For more modes, refer to CEA861-D specification.
+        unsigned char R_V_BLANK_IN_OSC : 1; //!< [1] Used for CEA861-D modes with fractional Vblank (for example, modes 5, 6, 7, 10, 11, 20, 21, and 22.
         unsigned char RESERVED0 : 1; //!< [2] Reserved
         unsigned char DVI_MODEZ : 1; //!< [3] Active low
         unsigned char DE_IN_POLARITY : 1; //!< [4] Data enable input polarity
@@ -5543,7 +5533,7 @@ typedef union _hw_hdmi_fc_inhactiv0
     reg8_t U;
     struct _hw_hdmi_fc_inhactiv0_bitfields
     {
-        unsigned char H_IN_ACTIV : 8; //!< [7:0] Input video Horizontal active pixel region width. Number of Horizontal active pixels [0...8191].
+        unsigned char H_IN_ACTIV : 8; //!< [7:0] Input video Horizontal active pixel region width.
     } B;
 } hw_hdmi_fc_inhactiv0_t;
 #endif
@@ -5602,7 +5592,7 @@ typedef union _hw_hdmi_fc_inhactiv1
     reg8_t U;
     struct _hw_hdmi_fc_inhactiv1_bitfields
     {
-        unsigned char H_IN_ACTIV : 5; //!< [4:0] Input video Horizontal active pixel region width. Dependencies: Value after Reset: 0000b the higher bit of Horizontal active pixels; Number of Horizontal active pixels [0...8191].
+        unsigned char H_IN_ACTIV : 5; //!< [4:0] Input video Horizontal active pixel region width.
         unsigned char RESERVED0 : 3; //!< [7:5] Reserved
     } B;
 } hw_hdmi_fc_inhactiv1_t;
@@ -5663,7 +5653,7 @@ typedef union _hw_hdmi_fc_inhblank0
     reg8_t U;
     struct _hw_hdmi_fc_inhblank0_bitfields
     {
-        unsigned char H_IN_BLANK : 8; //!< [7:0] Input video Horizontal blanking pixel region width. Number of Horizontal blanking pixels [0...4095].
+        unsigned char H_IN_BLANK : 8; //!< [7:0] Input video Horizontal blanking pixel region width.
     } B;
 } hw_hdmi_fc_inhblank0_t;
 #endif
@@ -5723,7 +5713,7 @@ typedef union _hw_hdmi_fc_inhblank1
     reg8_t U;
     struct _hw_hdmi_fc_inhblank1_bitfields
     {
-        unsigned char H_IN_BLANK : 5; //!< [4:0] Input video Horizontal blanking pixel region width. Dependencies: Value after Reset: 0000b the higher bits of Horizontal blanking pixels; Number of Horizontal blanking pixels [0...8191].
+        unsigned char H_IN_BLANK : 5; //!< [4:0] Input video Horizontal blanking pixel region width.
         unsigned char RESERVED0 : 3; //!< [7:5] Reserved
     } B;
 } hw_hdmi_fc_inhblank1_t;
@@ -5784,7 +5774,7 @@ typedef union _hw_hdmi_fc_invactiv0
     reg8_t U;
     struct _hw_hdmi_fc_invactiv0_bitfields
     {
-        unsigned char V_IN_ACTIV : 8; //!< [7:0] Input video Vertical active pixel region width. Number of Vertical active lines [0...4095].
+        unsigned char V_IN_ACTIV : 8; //!< [7:0] Input video Vertical active pixel region width.
     } B;
 } hw_hdmi_fc_invactiv0_t;
 #endif
@@ -5843,7 +5833,7 @@ typedef union _hw_hdmi_fc_invactiv1
     reg8_t U;
     struct _hw_hdmi_fc_invactiv1_bitfields
     {
-        unsigned char V_IN_ACTIV : 5; //!< [4:0] Input video Vertical active pixel region width. Dependencies: Value after Reset: 0000b the higher 5 bits of Vertical active line; Number of Vertical active lines [0...8191].
+        unsigned char V_IN_ACTIV : 5; //!< [4:0] Input video Vertical active pixel region width.
         unsigned char RESERVED0 : 3; //!< [7:5] Reserved
     } B;
 } hw_hdmi_fc_invactiv1_t;
@@ -5904,7 +5894,7 @@ typedef union _hw_hdmi_fc_invblank
     reg8_t U;
     struct _hw_hdmi_fc_invblank_bitfields
     {
-        unsigned char V_IN_BLANK : 8; //!< [7:0] Input video Vertical blanking pixel region width. Number of Vertical blanking lines [0...255]. Value after Reset: 0x00
+        unsigned char V_IN_BLANK : 8; //!< [7:0] Input video Vertical blanking pixel region width.
     } B;
 } hw_hdmi_fc_invblank_t;
 #endif
@@ -5964,7 +5954,7 @@ typedef union _hw_hdmi_fc_hsyncindelay0
     reg8_t U;
     struct _hw_hdmi_fc_hsyncindelay0_bitfields
     {
-        unsigned char H_IN_DELAY : 8; //!< [7:0] Input video Hsync active edge delay. Integer number of pixel clock cycles from "de" non active edge of the last "de" valid period [0...4095].
+        unsigned char H_IN_DELAY : 8; //!< [7:0] Input video Hsync active edge delay.
     } B;
 } hw_hdmi_fc_hsyncindelay0_t;
 #endif
@@ -6024,7 +6014,7 @@ typedef union _hw_hdmi_fc_hsyncindelay1
     reg8_t U;
     struct _hw_hdmi_fc_hsyncindelay1_bitfields
     {
-        unsigned char H_IN_DELAY : 5; //!< [4:0] Input video Hsync active edge delay. Dependencies: Value after Reset: 0000b the higher 5 bits of delay; Integer number of pixel clock cycles from "de" non active edge of the last "de" valid period [0...8191].
+        unsigned char H_IN_DELAY : 5; //!< [4:0] Input video Hsync active edge delay.
         unsigned char RESERVED0 : 3; //!< [7:5] Reserved
     } B;
 } hw_hdmi_fc_hsyncindelay1_t;
@@ -6086,7 +6076,7 @@ typedef union _hw_hdmi_fc_hsyncinwidth0
     reg8_t U;
     struct _hw_hdmi_fc_hsyncinwidth0_bitfields
     {
-        unsigned char H_IN_WIDTH : 8; //!< [7:0] Input video Hsync active pulse width. Integer number of pixel clock cycles [0...511].
+        unsigned char H_IN_WIDTH : 8; //!< [7:0] Input video Hsync active pulse width.
     } B;
 } hw_hdmi_fc_hsyncinwidth0_t;
 #endif
@@ -6145,7 +6135,7 @@ typedef union _hw_hdmi_fc_hsyncinwidth1
     reg8_t U;
     struct _hw_hdmi_fc_hsyncinwidth1_bitfields
     {
-        unsigned char H_IN_WIDTH : 2; //!< [1:0] Input video Hsync active pulse width. Dependencies: Value after Reset after Reset: 0b Integer number of pixel clock cycles [0...1024].
+        unsigned char H_IN_WIDTH : 2; //!< [1:0] Input video Hsync active pulse width.
         unsigned char RESERVED0 : 6; //!< [7:2] Reserved
     } B;
 } hw_hdmi_fc_hsyncinwidth1_t;
@@ -6206,7 +6196,7 @@ typedef union _hw_hdmi_fc_vsyncindelay
     reg8_t U;
     struct _hw_hdmi_fc_vsyncindelay_bitfields
     {
-        unsigned char V_IN_DELAY : 8; //!< [7:0] Input video Vsync active edge delay. Integer number of Hsync pulses from "de" non active edge of the last "de" valid period. [0...255].
+        unsigned char V_IN_DELAY : 8; //!< [7:0] Input video Vsync active edge delay.
     } B;
 } hw_hdmi_fc_vsyncindelay_t;
 #endif
@@ -6327,7 +6317,7 @@ typedef union _hw_hdmi_fc_infreq0
     reg8_t U;
     struct _hw_hdmi_fc_infreq0_bitfields
     {
-        unsigned char INFREQ : 8; //!< [7:0] Video refresh rate in Hz*1E3 format. This registers are provided for debug and informative purposes. No data is written to this registers by the H13TCTRL and the data here written by software is not used in any way by the H13TCTRL.
+        unsigned char INFREQ : 8; //!< [7:0] Video refresh rate in Hz*1E3 format.
     } B;
 } hw_hdmi_fc_infreq0_t;
 #endif
@@ -6388,7 +6378,7 @@ typedef union _hw_hdmi_fc_infreq1
     reg8_t U;
     struct _hw_hdmi_fc_infreq1_bitfields
     {
-        unsigned char INFREQ : 8; //!< [7:0] Video refresh rate in Hz*1E3 format. This registers are provided for debug and informative purposes. No data is written to this registers by the H13TCTRL and the data here written by software is not used in any way by the H13TCTRL.
+        unsigned char INFREQ : 8; //!< [7:0] Video refresh rate in Hz*1E3 format.
     } B;
 } hw_hdmi_fc_infreq1_t;
 #endif
@@ -6449,7 +6439,7 @@ typedef union _hw_hdmi_fc_infreq2
     reg8_t U;
     struct _hw_hdmi_fc_infreq2_bitfields
     {
-        unsigned char INFREQ : 4; //!< [3:0] Video refresh rate in Hz*1E3 format. This registers are provided for debug and informative purposes. No data is written to this registers by the H13TCTRL and the data here written by software is not used in any way by the H13TCTRL. Value after Reset: 0000b
+        unsigned char INFREQ : 4; //!< [3:0] Video refresh rate in Hz*1E3 format.
         unsigned char RESERVED0 : 4; //!< [7:4] Reserved
     } B;
 } hw_hdmi_fc_infreq2_t;
@@ -6511,7 +6501,7 @@ typedef union _hw_hdmi_fc_ctrldur
     reg8_t U;
     struct _hw_hdmi_fc_ctrldur_bitfields
     {
-        unsigned char CTRLPERIODDURATION : 8; //!< [7:0] Configuration of the control period minimum duration (min. of 12 pixel clock cycles, refer to HDMI 1.4a specification). Integer number of pixel clocks cycles [0..255].
+        unsigned char CTRLPERIODDURATION : 8; //!< [7:0] Configuration of the control period minimum duration (min.
     } B;
 } hw_hdmi_fc_ctrldur_t;
 #endif
@@ -6571,7 +6561,7 @@ typedef union _hw_hdmi_fc_exctrldur
     reg8_t U;
     struct _hw_hdmi_fc_exctrldur_bitfields
     {
-        unsigned char EXCTRLPERIODDURATION : 8; //!< [7:0] Configuration of the extended control period minimum duration (min. of 32 pixel clock cycles, see HDMI 1.4a specification). Integer number of pixel clocks cycles [0..255].
+        unsigned char EXCTRLPERIODDURATION : 8; //!< [7:0] Configuration of the extended control period minimum duration (min.
     } B;
 } hw_hdmi_fc_exctrldur_t;
 #endif
@@ -6956,9 +6946,9 @@ typedef union _hw_hdmi_fc_gcp
     reg8_t U;
     struct _hw_hdmi_fc_gcp_bitfields
     {
-        unsigned char CLEAR_AVMUTE : 1; //!< [0] Value of "clear_avmute" in the GCP packet. Value after Reset: 0b
-        unsigned char SET_AVMUTE : 1; //!< [1] Value of "set_avmute" in the GCP packet. Value after Reset: 0b
-        unsigned char DEFAULT_PHASE : 1; //!< [2] Value of "default_phase" in the GCP packet. This data should be equal to the default phase used at Video packetizer packing machine. Value after Reset: 0b
+        unsigned char CLEAR_AVMUTE : 1; //!< [0] Value of "clear_avmute" in the GCP packet.
+        unsigned char SET_AVMUTE : 1; //!< [1] Value of "set_avmute" in the GCP packet.
+        unsigned char DEFAULT_PHASE : 1; //!< [2] Value of "default_phase" in the GCP packet.
         unsigned char RESERVED0 : 5; //!< [7:3] Reserved
     } B;
 } hw_hdmi_fc_gcp_t;
@@ -7065,7 +7055,7 @@ typedef union _hw_hdmi_fc_aviconf0
         unsigned char FC_AVICONF01 : 2; //!< [3:2] Bar information
         unsigned char FC_AVICONF02 : 2; //!< [5:4] Scan information
         unsigned char FC_AVICONF03 : 1; //!< [6] Active format present
-        unsigned char FC_AVICONF04 : 1; //!< [7] ?
+        unsigned char FC_AVICONF04 : 1; //!< [7] 
     } B;
 } hw_hdmi_fc_aviconf0_t;
 #endif
@@ -7166,7 +7156,7 @@ typedef union _hw_hdmi_fc_aviconf0
 
 /* --- Register HW_HDMI_FC_AVICONF0, field FC_AVICONF04[7] (RW)
  *
- * ?
+
  */
 
 #define BP_HDMI_FC_AVICONF0_FC_AVICONF04      (7)      //!< Bit position for HDMI_FC_AVICONF0_FC_AVICONF04.
@@ -9644,7 +9634,7 @@ typedef union _hw_hdmi_fc_audsstat
     reg8_t U;
     struct _hw_hdmi_fc_audsstat_bitfields
     {
-        unsigned char PACKET_SAMPPRS : 4; //!< [3:0] Shows the data sample present indication of the last Audio sample packet sent by the HDMI TX Controller. This register information is at tmds clock rate.
+        unsigned char PACKET_SAMPPRS : 4; //!< [3:0] Shows the data sample present indication of the last Audio sample packet sent by the HDMI TX Controller.
         unsigned char RESERVED0 : 4; //!< [7:4] Reserved
     } B;
 } hw_hdmi_fc_audsstat_t;
@@ -9693,7 +9683,7 @@ typedef union _hw_hdmi_fc_ctrlqhigh
     reg8_t U;
     struct _hw_hdmi_fc_ctrlqhigh_bitfields
     {
-        unsigned char ONHIGHATTENDED : 5; //!< [4:0] Configures the number of high priority packets or audio sample packets consecutively attended before checking low priority queue status. Integer number [0..31]
+        unsigned char ONHIGHATTENDED : 5; //!< [4:0] Configures the number of high priority packets or audio sample packets consecutively attended before checking low priority queue status.
         unsigned char RESERVED0 : 3; //!< [7:5] Reserved
     } B;
 } hw_hdmi_fc_ctrlqhigh_t;
@@ -9754,7 +9744,7 @@ typedef union _hw_hdmi_fc_ctrlqlow
     reg8_t U;
     struct _hw_hdmi_fc_ctrlqlow_bitfields
     {
-        unsigned char ONLOWATTENDED : 5; //!< [4:0] Configures the number of low priority packets or null packets consecutively attended before checking high priority queue status or audio sample availability. Integer number [0..31]
+        unsigned char ONLOWATTENDED : 5; //!< [4:0] Configures the number of low priority packets or null packets consecutively attended before checking high priority queue status or audio sample availability.
         unsigned char RESERVED0 : 3; //!< [7:5] Reserved
     } B;
 } hw_hdmi_fc_ctrlqlow_t;
@@ -11675,8 +11665,8 @@ typedef union _hw_hdmi_fc_prconf
     reg8_t U;
     struct _hw_hdmi_fc_prconf_bitfields
     {
-        unsigned char OUTPUT_PR_FACTOR : 4; //!< [3:0] Configures the video pixel repetition ratio to be sent on the AVI infoFrame. This value must be valid according to HDMI spec. The output_pr_factor = incoming_pr_factor(without the + 1 factor) * desired_pr_factor. other: Reserved. Not used.
-        unsigned char INCOMING_PR_FACTOR : 4; //!< [7:4] Configures the input video pixel repetition. A plus 1 factor should be added in this register configuration. For CEA modes this value should be extracted from the CEA spec for the video mode being inputted. When working in YCC422 video the actual repetition of the stream will be Incoming_pr_factor * (desired_pr_factor + 1). This calculation is done internally in the H13TCTRL and no HW overflow protection is available. Care must be taken to avoid this result passes the maximum number of 10 pixels repeated since no HDMI support is available for this in the spec and the H13TPHY does not support this higher repetition values. other: Reserved. Not used.
+        unsigned char OUTPUT_PR_FACTOR : 4; //!< [3:0] Configures the video pixel repetition ratio to be sent on the AVI infoFrame.
+        unsigned char INCOMING_PR_FACTOR : 4; //!< [7:4] Configures the input video pixel repetition.
     } B;
 } hw_hdmi_fc_prconf_t;
 #endif
@@ -15536,14 +15526,14 @@ typedef union _hw_hdmi_phy_conf0
     reg8_t U;
     struct _hw_hdmi_phy_conf0_bitfields
     {
-        unsigned char SELDIPIF : 1; //!< [0] Select interface control. Value after Reset: 0b
-        unsigned char SELDATAENPOL : 1; //!< [1] Select data enable polarity. Value after Reset: 1b
+        unsigned char SELDIPIF : 1; //!< [0] Select interface control.
+        unsigned char SELDATAENPOL : 1; //!< [1] Select data enable polarity.
         unsigned char GEN2_ENHPDRXSENSE : 1; //!< [2] PHY_Gen2 ENHPDRXSENSE signal Value after Reset: 1b
         unsigned char GEN2_TXPWRON : 1; //!< [3] PHY_Gen2 TXPWRON signal Value after Reset: 0b
         unsigned char GEN2_PDDQ : 1; //!< [4] PHY_Gen2 PDDQ signal Value after Reset: 0b
-        unsigned char SPARECTRL : 1; //!< [5] Reserved. Spare pin control. Value after Reset: 0b
-        unsigned char ENTMDS : 1; //!< [6] Enable TMDS drivers, bias, and TMDS digital logic. Value after Reset: 0b
-        unsigned char PDZ : 1; //!< [7] Power-down enable (active low 0b). Value after Reset: 0b
+        unsigned char SPARECTRL : 1; //!< [5] Reserved.
+        unsigned char ENTMDS : 1; //!< [6] Enable TMDS drivers, bias, and TMDS digital logic.
+        unsigned char PDZ : 1; //!< [7] Power-down enable (active low 0b).
     } B;
 } hw_hdmi_phy_conf0_t;
 #endif
@@ -15737,10 +15727,10 @@ typedef union _hw_hdmi_phy_tst0
     reg8_t U;
     struct _hw_hdmi_phy_tst0_bitfields
     {
-        unsigned char TESTCLK : 1; //!< [0] Test clock signal. Value after Reset: 0b
+        unsigned char TESTCLK : 1; //!< [0] Test clock signal.
         unsigned char RESERVED0 : 3; //!< [3:1] Reserved
-        unsigned char TESTEN : 1; //!< [4] Reserved. Spare control pins. Value after Reset: 0b
-        unsigned char TESTCLR : 1; //!< [5] Enable TMDS drivers, bias and tmds digital logic. Value after Reset: 0b
+        unsigned char TESTEN : 1; //!< [4] Reserved.
+        unsigned char TESTCLR : 1; //!< [5] Enable TMDS drivers, bias and tmds digital logic.
         unsigned char RESERVED1 : 2; //!< [7:6] Reserved
     } B;
 } hw_hdmi_phy_tst0_t;
@@ -15948,13 +15938,13 @@ typedef union _hw_hdmi_phy_stat0
     reg8_t U;
     struct _hw_hdmi_phy_stat0_bitfields
     {
-        unsigned char TX_PHY_LOCK : 1; //!< [0] Status bit. TX PHY PLL lock indication. Please refer to PHY datasheet for more information. User may need to mask or change polarity of this interrupt after it has became active.
-        unsigned char HPD : 1; //!< [1] Status bit. HDMI Hot Plug Detect indication. User may need to mask or change polarity of this interrupt after it has became active.
+        unsigned char TX_PHY_LOCK : 1; //!< [0] Status bit.
+        unsigned char HPD : 1; //!< [1] Status bit.
         unsigned char RESERVED0 : 2; //!< [3:2] Reserved
-        unsigned char RX_SENSE : 1; //!< [4] Status bit. TX PHY RX_SENSE indication for TMDS channel 0 driver. User may need to mask or change polarity of this interrupt after it has became active.
-        unsigned char RX_SENSE1 : 1; //!< [5] Status bit. TX PHY RX_SENSE indication for TMDS channel 1 driver. User may need to mask or change polarity of this interrupt after it has became active.
-        unsigned char RX_SENSE2 : 1; //!< [6] Status bit. TX PHY RX_SENSE indication for TMDS channel 2 driver. User may need to mask or change polarity of this interrupt after it has became active.
-        unsigned char RX_SENSE3 : 1; //!< [7] Status bit. TX PHY RX_SENSE indication for TMDS CLK driver. User may need to mask or change polarity of this interrupt after it has became active.
+        unsigned char RX_SENSE : 1; //!< [4] Status bit.
+        unsigned char RX_SENSE1 : 1; //!< [5] Status bit.
+        unsigned char RX_SENSE2 : 1; //!< [6] Status bit.
+        unsigned char RX_SENSE3 : 1; //!< [7] Status bit.
     } B;
 } hw_hdmi_phy_stat0_t;
 #endif
@@ -16893,8 +16883,8 @@ typedef union _hw_hdmi_phy_i2cm_int_addr
     reg8_t U;
     struct _hw_hdmi_phy_i2cm_int_addr_bitfields
     {
-        unsigned char DONE_STATUS : 1; //!< [0] Operation done status bit.Marks the end of a rd or write operation. Value after Reset: 0b
-        unsigned char DONE_INTERRUPT : 1; //!< [1] Operation done interrupt bit.{done_interrupt =(done_mask==0b)&& (done_status==done_pol)}. Value after Reset: 0b
+        unsigned char DONE_STATUS : 1; //!< [0] Operation done status bit.Marks the end of a rd or write operation.
+        unsigned char DONE_INTERRUPT : 1; //!< [1] Operation done interrupt bit.{done_interrupt =(done_mask==0b)&& (done_status==done_pol)}.
         unsigned char DONE_MASK : 1; //!< [2] Done interrupt mask signal Value after Reset: 0b
         unsigned char DONE_POL : 1; //!< [3] Done interrupt polarity configuration Value after Reset: 1b
         unsigned char RESERVED0 : 4; //!< [7:4] Reserved
@@ -17015,14 +17005,14 @@ typedef union _hw_hdmi_phy_i2cm_ctlint_addr
     reg8_t U;
     struct _hw_hdmi_phy_i2cm_ctlint_addr_bitfields
     {
-        unsigned char ARBITRATION_STATUS : 1; //!< [0] Arbitration error status bit. Error on master I2C protocol arbitration. Value after Reset: 0b
-        unsigned char ARBITRATION_INTERRUPT : 1; //!< [1] Arbitration error interrupt bit.{arbitration_interrupt = (arbitration_mask==0b)&& (arbitration_status==arbitration_pol)}. Value after Reset: 0b
-        unsigned char ARBITRATION_MASK : 1; //!< [2] Arbitration error interrupt mask signal. Value after Reset: 0b
-        unsigned char ARBITRATION_POL : 1; //!< [3] Arbitration error interrupt polarity configuration. Value after Reset: 1b
-        unsigned char NACK_STATUS : 1; //!< [4] Not acknowledge error status bit.Error on I2C not acknowledge. Value after Reset: 0b
-        unsigned char NACK_INTERRUPT : 1; //!< [5] Not acknowledge error interrupt bit.{nack_interrupt = nack_mask==0b) && (nack_status==nack_pol)}. Value after Reset: 0b
+        unsigned char ARBITRATION_STATUS : 1; //!< [0] Arbitration error status bit.
+        unsigned char ARBITRATION_INTERRUPT : 1; //!< [1] Arbitration error interrupt bit.{arbitration_interrupt = (arbitration_mask==0b)&& (arbitration_status==arbitration_pol)}.
+        unsigned char ARBITRATION_MASK : 1; //!< [2] Arbitration error interrupt mask signal.
+        unsigned char ARBITRATION_POL : 1; //!< [3] Arbitration error interrupt polarity configuration.
+        unsigned char NACK_STATUS : 1; //!< [4] Not acknowledge error status bit.Error on I2C not acknowledge.
+        unsigned char NACK_INTERRUPT : 1; //!< [5] Not acknowledge error interrupt bit.{nack_interrupt = nack_mask==0b) && (nack_status==nack_pol)}.
         unsigned char NACK_MASK : 1; //!< [6] Not acknowledge error interrupt mask signal Value after Reset: 0b
-        unsigned char NACK_POL : 1; //!< [7] Not acknowledge error interrupt polarity configuration. Value after Reset: 1b
+        unsigned char NACK_POL : 1; //!< [7] Not acknowledge error interrupt polarity configuration.
     } B;
 } hw_hdmi_phy_i2cm_ctlint_addr_t;
 #endif
@@ -17273,16 +17263,16 @@ typedef union _hw_hdmi_phy_i2cm_div_addr
  *
  * This register sets the I2C Master PHY software reset.   Address Offset: 0x302A  Size: 8 bits
  * Value after Reset: 0x01  Access: Read/Write   The following *CNT registers must be set before any
- * I2C bus transaction can take place to ensure proper I/O timing. For more information about the
- * SFR_CLK frequency configuration, see ."   The following are the I2C Master SCL clock settings:
- * SS: Standard Speed  FS: Fast Speed  HCNT: SCL High Level counter  LCNT: SCL Low Level counter
+ * I2C bus transaction can take place to ensure proper I/O timing.  The following are the I2C Master
+ * SCL clock settings:   SS: Standard Speed  FS: Fast Speed  HCNT: SCL High Level counter  LCNT: SCL
+ * Low Level counter
  */
 typedef union _hw_hdmi_phy_i2cm_softrstz_addr
 {
     reg8_t U;
     struct _hw_hdmi_phy_i2cm_softrstz_addr_bitfields
     {
-        unsigned char I2C_SOFTRST : 1; //!< [0] I2C Master PHY Software Reset. Active by writing a zero and auto cleared to one in the following cycle. Value after Reset: 1b
+        unsigned char I2C_SOFTRST : 1; //!< [0] I2C Master PHY Software Reset.
         unsigned char RESERVED0 : 7; //!< [7:1] Reserved
     } B;
 } hw_hdmi_phy_i2cm_softrstz_addr_t;
@@ -17997,7 +17987,7 @@ typedef union _hw_hdmi_aud_cts1
     reg8_t U;
     struct _hw_hdmi_aud_cts1_bitfields
     {
-        unsigned char AUDCTS : 8; //!< [7:0] HDMI Audio Clock Regenerator CTS calculated value. This value can be manually set using the CTS_manual (AUD_CTS3) mechanism.
+        unsigned char AUDCTS : 8; //!< [7:0] HDMI Audio Clock Regenerator CTS calculated value.
     } B;
 } hw_hdmi_aud_cts1_t;
 #endif
@@ -18058,7 +18048,7 @@ typedef union _hw_hdmi_aud_cts2
     reg8_t U;
     struct _hw_hdmi_aud_cts2_bitfields
     {
-        unsigned char AUDCTS : 8; //!< [7:0] HDMI Audio Clock Regenerator CTS calculated value. This value can be manually set using the CTS_manual (AUD_CTS3) mechanism.
+        unsigned char AUDCTS : 8; //!< [7:0] HDMI Audio Clock Regenerator CTS calculated value.
     } B;
 } hw_hdmi_aud_cts2_t;
 #endif
@@ -18119,7 +18109,7 @@ typedef union _hw_hdmi_aud_cts3
     reg8_t U;
     struct _hw_hdmi_aud_cts3_bitfields
     {
-        unsigned char AUDCTS : 4; //!< [3:0] HDMI Audio Clock Regenerator CTS calculated value. This value can be manually set using the CTS_manual (AUD_CTS3) mechanism.
+        unsigned char AUDCTS : 4; //!< [3:0] HDMI Audio Clock Regenerator CTS calculated value.
         unsigned char RESERVED0 : 4; //!< [7:4] Reserved
     } B;
 } hw_hdmi_aud_cts3_t;
@@ -18185,9 +18175,9 @@ typedef union _hw_hdmi_ahb_dma_conf0
         unsigned char BURST_MODE : 1; //!< [0] 
         unsigned char INCR_TYPE : 2; //!< [2:1] Forced size burst mode.
         unsigned char ENABLE_HLOCK : 1; //!< [3] Enable request of locked burst AHB mechanism.
-        unsigned char HBR : 1; //!< [4] HBR packets enable. The HDMI TX sends the HBR packets. This bit is enabled when the audio frequency is higher than 192 KHz. If this bit is enabled, the number of channels configured in AHB_DMA_CONF1 is always 8.
+        unsigned char HBR : 1; //!< [4] HBR packets enable.
         unsigned char RESERVED0 : 2; //!< [6:5] Reserved
-        unsigned char SW_FIFO_RST : 1; //!< [7] This is the software reset bit for the audio and FIFOs clear. Writing 0'b does not result in any action. Writing 1'b to this register resets all audio FIFOs. Reading from this register always returns 0'b.
+        unsigned char SW_FIFO_RST : 1; //!< [7] This is the software reset bit for the audio and FIFOs clear.
     } B;
 } hw_hdmi_ahb_dma_conf0_t;
 #endif
@@ -19349,10 +19339,10 @@ typedef union _hw_hdmi_ahb_dma_stat
         unsigned char STATFIFOFULL : 1; //!< [1] Status of audio FIFO full interrupt.
         unsigned char STATTHRFIFOEMPTY : 1; //!< [2] Status of audio FIFO empty when audio FIFO has less than four samples.
         unsigned char RESERVED0 : 1; //!< [3] Reserved
-        unsigned char STATERROR : 1; //!< [4] Status of error interrupt. Active when slave indicates error through the isresp[1:0].
-        unsigned char STATLOSTOWNERSHIP : 1; //!< [5] Status of master lost ownership when in burst transfer. Active when AHB master loses BUS ownership within the course of a burst transfer.
-        unsigned char STATRETRYSPLIT : 1; //!< [6] Status of retry/split interrupt. Active when AHB master receives a RETRY or SPLIT response from slave.
-        unsigned char STATDONE : 1; //!< [7] Status of DMA end of operation interrupt. Active when DMA engine reaches final_addr[15:0] or when stop DMA operation is activated.
+        unsigned char STATERROR : 1; //!< [4] Status of error interrupt.
+        unsigned char STATLOSTOWNERSHIP : 1; //!< [5] Status of master lost ownership when in burst transfer.
+        unsigned char STATRETRYSPLIT : 1; //!< [6] Status of retry/split interrupt.
+        unsigned char STATDONE : 1; //!< [7] Status of DMA end of operation interrupt.
     } B;
 } hw_hdmi_ahb_dma_stat_t;
 #endif
@@ -19473,10 +19463,10 @@ typedef union _hw_hdmi_ahb_dma_int
         unsigned char INTFIFOFULL : 1; //!< [1] Audio FIFO full interrupt.
         unsigned char INTTHRFIFOEMPTY : 1; //!< [2] Audio FIFO empty interrupt when audio FIFO has less than four samples.
         unsigned char RESERVED0 : 1; //!< [3] Reserved
-        unsigned char INTERROR : 1; //!< [4] Error interrupt. Active when slave indicates error through the isresp[1:0].
-        unsigned char INTLOSTOWNERSHIP : 1; //!< [5] Master lost ownership interrupt when in burst transfer. Active when AHB master loses BUS ownership within the course of a burst transfer.
-        unsigned char INTRETRYSPLIT : 1; //!< [6] Retry/split interrupt. Active when AHB master receives a RETRY or SPLIT response from slave.
-        unsigned char INTDONE : 1; //!< [7] DMA end of operation interrupt. Active when DMA engine reaches final_addr[15:0] or when stop DMA operation is activated.
+        unsigned char INTERROR : 1; //!< [4] Error interrupt.
+        unsigned char INTLOSTOWNERSHIP : 1; //!< [5] Master lost ownership interrupt when in burst transfer.
+        unsigned char INTRETRYSPLIT : 1; //!< [6] Retry/split interrupt.
+        unsigned char INTDONE : 1; //!< [7] DMA end of operation interrupt.
     } B;
 } hw_hdmi_ahb_dma_int_t;
 #endif
@@ -19597,10 +19587,10 @@ typedef union _hw_hdmi_ahb_dma_mask
         unsigned char FIFO_FULL_MASK : 1; //!< [1] Audio FIFO full interrupt mask.
         unsigned char FIFO_THREMPTY_MASK : 1; //!< [2] Audio FIFO empty interrupt mask when audio FIFO has less than four samples.
         unsigned char RESERVED0 : 1; //!< [3] Reserved
-        unsigned char ERROR_MASK : 1; //!< [4] Error interrupt mask. Active when slave indicates error through the isresp[1:0].
-        unsigned char LOSTOWNERSHIP_MASK : 1; //!< [5] Master lost ownership interrupt mask when in burst transfer. Active when AHB master loses BUS ownership within the course of a burst transfer.
-        unsigned char RETRYSPLIT_MASK : 1; //!< [6] Retry/split interrupt mask. Active when AHB master receives a RETRY or SPLIT response from slave.
-        unsigned char DONE_MASK : 1; //!< [7] DMA end of operation interrupt mask. Active when DMA engine reaches final_addr[15:0] or when stop DMA operation is activated.
+        unsigned char ERROR_MASK : 1; //!< [4] Error interrupt mask.
+        unsigned char LOSTOWNERSHIP_MASK : 1; //!< [5] Master lost ownership interrupt mask when in burst transfer.
+        unsigned char RETRYSPLIT_MASK : 1; //!< [6] Retry/split interrupt mask.
+        unsigned char DONE_MASK : 1; //!< [7] DMA end of operation interrupt mask.
     } B;
 } hw_hdmi_ahb_dma_mask_t;
 #endif
@@ -19781,10 +19771,10 @@ typedef union _hw_hdmi_ahb_dma_pol
         unsigned char FIFO_FULL_POLARITY : 1; //!< [1] Audio FIFO full interrupt mask.
         unsigned char FIFO_THRFIFOEMPTY_POLARITY : 1; //!< [2] Audio FIFO empty interrupt mask when audio FIFO has less than four samples.
         unsigned char RESERVED0 : 1; //!< [3] Reserved
-        unsigned char ERROR_POLARITY : 1; //!< [4] Error interrupt mask. Active when slave indicates error through the isresp[1:0].
-        unsigned char LOSTOWNERSHIP_POLARITY : 1; //!< [5] Master lost ownership interrupt mask when in burst transfer. Active when AHB master loses BUS ownership within the course of a burst transfer.
-        unsigned char RETRYSPLIT_POLARITY : 1; //!< [6] Retry/split interrupt mask. Active when AHB master receives a RETRY or SPLIT response from slave.
-        unsigned char DONE_POLARITY : 1; //!< [7] DMA end of operation interrupt mask. Active when DMA engine reaches final_addr[15:0] or when stop DMA operation is activated.
+        unsigned char ERROR_POLARITY : 1; //!< [4] Error interrupt mask.
+        unsigned char LOSTOWNERSHIP_POLARITY : 1; //!< [5] Master lost ownership interrupt mask when in burst transfer.
+        unsigned char RETRYSPLIT_POLARITY : 1; //!< [6] Retry/split interrupt mask.
+        unsigned char DONE_POLARITY : 1; //!< [7] DMA end of operation interrupt mask.
     } B;
 } hw_hdmi_ahb_dma_pol_t;
 #endif
@@ -20477,7 +20467,7 @@ typedef union _hw_hdmi_mc_clkdis
         unsigned char AUDCLK_DISABLE : 1; //!< [3] Audio Sampler clock synchronous disable signal.
         unsigned char CSCCLK_DISABLE : 1; //!< [4] Color Space Converter clock synchronous disable signal.
         unsigned char CECCLK_DISABLE : 1; //!< [5] CEC Engine clock synchronous disable signal.
-        unsigned char HDCPCLK_DISABLE : 1; //!< [6] HDCP clock synchronous disable signal. When active (1b) simultaneously bypasses HDCP.
+        unsigned char HDCPCLK_DISABLE : 1; //!< [6] HDCP clock synchronous disable signal.
         unsigned char RESERVED0 : 1; //!< [7] Reserved
     } B;
 } hw_hdmi_mc_clkdis_t;
@@ -20655,11 +20645,11 @@ typedef union _hw_hdmi_mc_swrstzreq
     reg8_t U;
     struct _hw_hdmi_mc_swrstzreq_bitfields
     {
-        unsigned char PIXELSWRST_REQ : 1; //!< [0] Pixel software reset request. Defaults back to 1b after reset request.
-        unsigned char TMDSSWRST_REQ : 1; //!< [1] TMDS software reset request. Defaults back to 1b after reset request.
+        unsigned char PIXELSWRST_REQ : 1; //!< [0] Pixel software reset request.
+        unsigned char TMDSSWRST_REQ : 1; //!< [1] TMDS software reset request.
         unsigned char PREPSWRST_REQ : 1; //!< [2] Pixel Repetition clock synchronous disable signal.
         unsigned char RESERVED0 : 3; //!< [5:3] Reserved
-        unsigned char CECSWRST_REQ : 1; //!< [6] CEC software reset request. Defaults back to 1b after reset request.
+        unsigned char CECSWRST_REQ : 1; //!< [6] CEC software reset request.
         unsigned char RESERVED1 : 1; //!< [7] Reserved
     } B;
 } hw_hdmi_mc_swrstzreq_t;
@@ -20901,11 +20891,11 @@ typedef union _hw_hdmi_mc_lockonclock
     reg8_t U;
     struct _hw_hdmi_mc_lockonclock_bitfields
     {
-        unsigned char CECCLK : 1; //!< [0] CEC clock status. Indicates that the clock is present in the system. Cleared by WR 1 to this position.
+        unsigned char CECCLK : 1; //!< [0] CEC clock status.
         unsigned char RESERVED0 : 3; //!< [3:1] Reserved.
-        unsigned char PREPCLK : 1; //!< [4] Pixel repetition clock status. Indicates that the clock is present in the system. Cleared by WR 1 to this position.
-        unsigned char TCLKTCLK : 1; //!< [5] TMDS clock status. Indicates that the clock is present in the system. Cleared by WR 1 to this position
-        unsigned char PCLK : 1; //!< [6] Pixel clock status. Indicates that the clock is present in the system. Cleared by WR 1 to this position.
+        unsigned char PREPCLK : 1; //!< [4] Pixel repetition clock status.
+        unsigned char TCLKTCLK : 1; //!< [5] TMDS clock status.
+        unsigned char PCLK : 1; //!< [6] Pixel clock status.
         unsigned char RESERVED1 : 1; //!< [7] Reserved.
     } B;
 } hw_hdmi_mc_lockonclock_t;
@@ -21088,7 +21078,7 @@ typedef union _hw_hdmi_csc_cfg
     reg8_t U;
     struct _hw_hdmi_csc_cfg_bitfields
     {
-        unsigned char DECMODE : 2; //!< [1:0] Chroma decimation configuration: decmode[1:0] Chroma decimation 00 decimation disabled 01 H d? z?=1 10 H d? z?=1/ 4?1/ 2 z?1?1/4 z?2 11 H d? z?Þ211=?5?12 z?2?22 z?4?39 z?6?65 z?8?109 z?10?204 z?12?648 z?14?1024 z?15?648 z?16?204 z?18?109 z?20?65 z?22?39 z?24?22 z?26?12 z?28?5 z?30 00 decimation disabled 01 H d (z) = 1 10 H d (Z)=1/4 + 1/2z -1 1+1/4z -2 11H d (z)x2 11 =-5+12z -2 +22z -4 +39z -8 +109z -10 -204z -12 +648z -14 +1024z -15 +648z -16 -204z -18 +109z -20 -65z -22 +39z -24 -22z -26 +12z -28 -5z -30
+        unsigned char DECMODE : 2; //!< [1:0] Chroma decimation configuration: decmode[1:0] Chroma decimation 00 decimation disabled 01 H d?
         unsigned char RESERVED0 : 2; //!< [3:2] Reserved
         unsigned char INTMODE : 2; //!< [5:4] Chroma interpolation configuration: 00 interpolation disabled 01 H u (z) = 1 + z -1 10 H u (z)=1/2 + Z -1 +1/2 z -2 11 interpolation disabled.
         unsigned char RESERVED1 : 2; //!< [7:6] Reserved
@@ -21168,8 +21158,8 @@ typedef union _hw_hdmi_csc_cfg
  *
  * Reset value: 0x00000001
  *
- * Address Offset: 0x4101  Size: 8 bits  Value after Reset: 0x01  Access: Read/Write      Separator
- * text   CSC Conversion Functions
+ * Address Offset: 0x4101  Size: 8 bits  Value after Reset: 0x01  Access: Read/Write       CSC
+ * Conversion Functions
  */
 typedef union _hw_hdmi_csc_scale
 {
@@ -23475,7 +23465,7 @@ typedef union _hw_hdmi_a_apiintstat
         unsigned char KSVACCESSINT : 1; //!< [0] Notifies that the KSV memory access as been guaranteed for Read-Write access.
         unsigned char KSVSHA1CALCINT : 1; //!< [1] Notifies that the HDCP13TCTRL core as updated a KSV list in memory that needs to be SHA1 verified.
         unsigned char KEEPOUTERRORINT : 1; //!< [2] Notifies that during the keep out window, the ctlout[3:0] bus was used besides control period.
-        unsigned char LOSTARBITRATION : 1; //!< [3] Notifies that the I2C lost the arbitration to communicate. Another master gained arbitration.
+        unsigned char LOSTARBITRATION : 1; //!< [3] Notifies that the I2C lost the arbitration to communicate.
         unsigned char I2CNACK : 1; //!< [4] Notifies that the I2C received a NACK from slave device.
         unsigned char RESERVED0 : 1; //!< [5] Reserved
         unsigned char HDCP_FAILED : 1; //!< [6] Notifies that the HDCP authentication process was failed.
@@ -23907,7 +23897,7 @@ typedef union _hw_hdmi_a_oesswcfg
     reg8_t U;
     struct _hw_hdmi_a_oesswcfg_bitfields
     {
-        unsigned char A_OESSWCFG : 8; //!< [7:0] Size of the window of opportunity for the OESS mode. The window of opportunity for the Original Encryption Status Signaling will start at the active edge of the Vertical synchronism and will stop after oesswindowoffset[7:0]*4 clock cycles of pixel clock (tmds). OESS utilizes only CTL3, and is only used during DVI protocol. This signaling is accomplished with a single high-going pulse, during the vertical blanking interval, of sufficient width that it may be distinguished from bit errors on the channel or any effects due to resynchronization events in the receiver. The transmitter must assert CTL3 for at least 8 pixel clocks (the transmitter is encouraged to utilize a wider pulse to enhance reliability, but no more than the entire Vsync timeframe), starting no closer than 128 pixel clocks from the end of the vertical blank interval.
+        unsigned char A_OESSWCFG : 8; //!< [7:0] Size of the window of opportunity for the OESS mode.
     } B;
 } hw_hdmi_a_oesswcfg_t;
 #endif
@@ -24214,7 +24204,7 @@ typedef union _hw_hdmi_hdcpreg_bksv0
     reg8_t U;
     struct _hw_hdmi_hdcpreg_bksv0_bitfields
     {
-        unsigned char HDCPREG_BKSV0 : 8; //!< [7:0] Contains the value of BKSV[7:0] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV). The BKSV registers contain the 40-bit BKSV value read by the HDCP transmitter from the HDCP receiver.
+        unsigned char HDCPREG_BKSV0 : 8; //!< [7:0] Contains the value of BKSV[7:0] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV).
     } B;
 } hw_hdmi_hdcpreg_bksv0_t;
 #endif
@@ -24265,7 +24255,7 @@ typedef union _hw_hdmi_hdcpreg_bksv1
     reg8_t U;
     struct _hw_hdmi_hdcpreg_bksv1_bitfields
     {
-        unsigned char HDCPREG_BKSV1 : 8; //!< [7:0] Contains the value of BKSV[15:8] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV). The BKSV registers contain the 40-bit BKSV value read by the HDCP transmitter from the HDCP receiver.
+        unsigned char HDCPREG_BKSV1 : 8; //!< [7:0] Contains the value of BKSV[15:8] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV).
     } B;
 } hw_hdmi_hdcpreg_bksv1_t;
 #endif
@@ -24316,7 +24306,7 @@ typedef union _hw_hdmi_hdcpreg_bksv2
     reg8_t U;
     struct _hw_hdmi_hdcpreg_bksv2_bitfields
     {
-        unsigned char HDCPREG_BKSV2 : 8; //!< [7:0] Contains the value of BKSV[23:16] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV). The BKSV registers contain the 40-bit BKSV value read by the HDCP transmitter from the HDCP receiver.
+        unsigned char HDCPREG_BKSV2 : 8; //!< [7:0] Contains the value of BKSV[23:16] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV).
     } B;
 } hw_hdmi_hdcpreg_bksv2_t;
 #endif
@@ -24367,7 +24357,7 @@ typedef union _hw_hdmi_hdcpreg_bksv3
     reg8_t U;
     struct _hw_hdmi_hdcpreg_bksv3_bitfields
     {
-        unsigned char HDCPREG_BKSV3 : 8; //!< [7:0] Contains the value of BKSV[31:24] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV). The BKSV registers contain the 40-bit BKSV value read by the HDCP transmitter from the HDCP receiver.
+        unsigned char HDCPREG_BKSV3 : 8; //!< [7:0] Contains the value of BKSV[31:24] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV).
     } B;
 } hw_hdmi_hdcpreg_bksv3_t;
 #endif
@@ -24418,7 +24408,7 @@ typedef union _hw_hdmi_hdcpreg_bksv4
     reg8_t U;
     struct _hw_hdmi_hdcpreg_bksv4_bitfields
     {
-        unsigned char HDCPREG_BKSV4 : 8; //!< [7:0] Contains the value of BKSV[39:32] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV). The BKSV registers contain the 40-bit BKSV value read by the HDCP transmitter from the HDCP receiver.
+        unsigned char HDCPREG_BKSV4 : 8; //!< [7:0] Contains the value of BKSV[39:32] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV).
     } B;
 } hw_hdmi_hdcpreg_bksv4_t;
 #endif
@@ -24474,7 +24464,7 @@ typedef union _hw_hdmi_hdcpreg_anconf
     reg8_t U;
     struct _hw_hdmi_hdcpreg_anconf_bitfields
     {
-        unsigned char OANBYPASS : 1; //!< [0] When oanbypass=1, the value of AN used in the HDCP engine comes from the registers HDCPREG_AN0 to HDCPREG_AN7. When oanbypass=0, the value of AN used in the HDCP engine comes from the random number input.
+        unsigned char OANBYPASS : 1; //!< [0] When oanbypass=1, the value of AN used in the HDCP engine comes from the registers HDCPREG_AN0 to HDCPREG_AN7.
         unsigned char RESERVED0 : 7; //!< [7:1] Reserved
     } B;
 } hw_hdmi_hdcpreg_anconf_t;
@@ -25172,10 +25162,10 @@ typedef union _hw_hdmi_cec_mask
     {
         unsigned char DONE_MASK : 1; //!< [0] The current transmission is successful (for initiator only).
         unsigned char EOM_MASK : 1; //!< [1] EOM is detected so that the received data is ready in the receiver data buffer (for follower only).
-        unsigned char NACK_MASK : 1; //!< [2] A frame is not acknowledged in a directly addressed message. Or a frame is negatively acknowledged in a broadcast message (for initiator only).
-        unsigned char ARB_LOST_MASK : 1; //!< [3] The initiator losses the CEC line arbitration to a second initiator. (specification CEC 9).
+        unsigned char NACK_MASK : 1; //!< [2] A frame is not acknowledged in a directly addressed message.
+        unsigned char ARB_LOST_MASK : 1; //!< [3] The initiator losses the CEC line arbitration to a second initiator.
         unsigned char ERROR_INIT_MASK : 1; //!< [4] An error is detected on cec line (for initiator only).
-        unsigned char ERROR_FOLL__MASK : 1; //!< [5] An error is notified by a follower. Abnormal logic data bit error (for follower).
+        unsigned char ERROR_FOLL__MASK : 1; //!< [5] An error is notified by a follower.
         unsigned char WAKEUP_MASK : 1; //!< [6] Follower wake-up signal mask
         unsigned char RESERVED0 : 1; //!< [7] Reserved
     } B;
@@ -25996,7 +25986,7 @@ typedef union _hw_hdmi_cec_lock
     reg8_t U;
     struct _hw_hdmi_cec_lock_bitfields
     {
-        unsigned char LOCKED_BUFFER : 1; //!< [0] When a frame is received, this bit would be active. The CEC controller answers to all the messages with NACK until the CPU writes it to '0'.
+        unsigned char LOCKED_BUFFER : 1; //!< [0] When a frame is received, this bit would be active.
         unsigned char RESERVED0 : 7; //!< [7:1] Reserved
     } B;
 } hw_hdmi_cec_lock_t;
@@ -26581,8 +26571,8 @@ typedef union _hw_hdmi_i2cm_int
     reg8_t U;
     struct _hw_hdmi_i2cm_int_bitfields
     {
-        unsigned char DONE_STATUS : 1; //!< [0] Operation done status bit. Marks the end of a rd or write operation.
-        unsigned char DONE_INTERRUPT : 1; //!< [1] Operation done interrupt bit. Only lasts for 1 SFR clock cycle and is auto cleaned after it. {done_interrupt = (done_mask==0b) && (done_status==done_pol)}.
+        unsigned char DONE_STATUS : 1; //!< [0] Operation done status bit.
+        unsigned char DONE_INTERRUPT : 1; //!< [1] Operation done interrupt bit.
         unsigned char DONE_MASK : 1; //!< [2] Done interrupt mask signal.
         unsigned char DONE_POL : 1; //!< [3] Done interrupt polarity configuration.
         unsigned char RESERVED0 : 4; //!< [7:4] Reserved
@@ -26703,12 +26693,12 @@ typedef union _hw_hdmi_i2cm_ctlint
     reg8_t U;
     struct _hw_hdmi_i2cm_ctlint_bitfields
     {
-        unsigned char ARBITRATION_STATUS : 1; //!< [0] Arbitration error status bit. Error on master I2C protocol arbitration.
-        unsigned char ARBITRATION_INTERRUPT : 1; //!< [1] Arbitration error interrupt bit. Only lasts for 1 SFR clock cycle and is auto cleaned after it. {arbitration_interrupt = (arbitration_mask==0b) && (arbitration_status==arbitration_pol)}.
+        unsigned char ARBITRATION_STATUS : 1; //!< [0] Arbitration error status bit.
+        unsigned char ARBITRATION_INTERRUPT : 1; //!< [1] Arbitration error interrupt bit.
         unsigned char ARBITRATION_MASK : 1; //!< [2] Arbitration error interrupt mask signal.
         unsigned char ARBITRATION_POL : 1; //!< [3] Arbitration error interrupt polarity configuration.
-        unsigned char NACK_STATUS : 1; //!< [4] Not acknowledge error status bit. Error on I2C not acknowledge.
-        unsigned char NACK_INTERRUPT : 1; //!< [5] Not acknowledge error interrupt bit. Only lasts for 1 SFR clock cycle and is auto cleaned after it. {nack_interrupt = (nack_mask==0b) && (nack_status==nack_pol)}.
+        unsigned char NACK_STATUS : 1; //!< [4] Not acknowledge error status bit.
+        unsigned char NACK_INTERRUPT : 1; //!< [5] Not acknowledge error interrupt bit.
         unsigned char NACK_MASK : 1; //!< [6] Not acknowledge error interrupt mask signal.
         unsigned char NACK_POL : 1; //!< [7] Not acknowledge error interrupt polarity configuration.
     } B;
@@ -27033,7 +27023,7 @@ typedef union _hw_hdmi_i2cm_softrstz
     reg8_t U;
     struct _hw_hdmi_i2cm_softrstz_bitfields
     {
-        unsigned char I2C_SOFTRST : 1; //!< [0] I2C Master Software Reset. Active by writing a zero and auto cleared to one in the following cycle. Value after Reset: 1b
+        unsigned char I2C_SOFTRST : 1; //!< [0] I2C Master Software Reset.
         unsigned char RESERVED0 : 7; //!< [7:1] Reserved
     } B;
 } hw_hdmi_i2cm_softrstz_t;
@@ -27089,15 +27079,14 @@ typedef union _hw_hdmi_i2cm_softrstz
  *
  * This register configures the segment pointer for extended RD/WR request.   Address Offset: 0x7E0A
  * Size: 8 bits  Value after Reset: 0x00  Access: Read/Write   The following *CNT registers must be
- * set before any I2C bus transaction can take place to ensure proper I/O timing. For more
- * information about the SFR_CLK frequency configuration, see ."
+ * set before any I2C bus transaction can take place to ensure proper I/O timing.
  */
 typedef union _hw_hdmi_i2cm_segptr
 {
     reg8_t U;
     struct _hw_hdmi_i2cm_segptr_bitfields
     {
-        unsigned char I2CM_SEGPTR : 8; //!< [7:0] I2CM_SEGPTR is used for EDID reading operations, particularly for the Extended Data Read Operation (See ") which is used for Enhanced DDC. This is all described in the VESA Enhanced Display Data Channel Standard v1.1 spec. (addresses A0h/A1h pairs and a segment pointer - 60h).
+        unsigned char I2CM_SEGPTR : 8; //!< [7:0] I2CM_SEGPTR is used for EDID reading operations, particularly for the Extended Data Read Operation (See ") which is used for Enhanced DDC.
     } B;
 } hw_hdmi_i2cm_segptr_t;
 #endif
@@ -27637,7 +27626,7 @@ typedef union _hw_hdmi_base_pointer_addr
     reg8_t U;
     struct _hw_hdmi_base_pointer_addr_bitfields
     {
-        unsigned char BASE_POINTER_BASE_ADDR : 7; //!< [6:0] Defines the base address for base pointer operation mode. They represent the address bits [14:8]
+        unsigned char BASE_POINTER_BASE_ADDR : 7; //!< [6:0] Defines the base address for base pointer operation mode.
         unsigned char EN_BASE_POINTER_ADDR : 1; //!< [7] Enables the base pointer operation mode.
     } B;
 } hw_hdmi_base_pointer_addr_t;

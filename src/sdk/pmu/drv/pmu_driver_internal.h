@@ -481,9 +481,9 @@ public:
 
 protected:
 
-    virtual uint32_t getTrigger() const { return HW_PMU_REG_CORE.B.REG0_TRIG; }
+    virtual uint32_t getTrigger() const { return HW_PMU_REG_CORE.B.REG0_TARG; }
     
-    virtual void setTrigger(uint32_t trigger) { HW_PMU_REG_CORE.B.REG0_TRIG = trigger; }
+    virtual void setTrigger(uint32_t trigger) { HW_PMU_REG_CORE.B.REG0_TARG = trigger; }
 
     virtual uint32_t getBrownout() const { return HW_PMU_MISC2.B.REG0_BO_OFFSET; }
 
@@ -526,9 +526,9 @@ public:
 
 protected:
 
-    virtual uint32_t getTrigger() const { return HW_PMU_REG_CORE.B.REG1_TRIG; }
+    virtual uint32_t getTrigger() const { return HW_PMU_REG_CORE.B.REG1_TARG; }
     
-    virtual void setTrigger(uint32_t trigger) { HW_PMU_REG_CORE.B.REG1_TRIG = trigger; }
+    virtual void setTrigger(uint32_t trigger) { HW_PMU_REG_CORE.B.REG1_TARG = trigger; }
 
     virtual uint32_t getBrownout() const { return HW_PMU_MISC2.B.REG1_BO_OFFSET; }
 
@@ -571,9 +571,9 @@ public:
 
 protected:
 
-    virtual uint32_t getTrigger() const { return HW_PMU_REG_CORE.B.REG2_TRIG; }
+    virtual uint32_t getTrigger() const { return HW_PMU_REG_CORE.B.REG2_TARG; }
     
-    virtual void setTrigger(uint32_t trigger) { HW_PMU_REG_CORE.B.REG2_TRIG = trigger; }
+    virtual void setTrigger(uint32_t trigger) { HW_PMU_REG_CORE.B.REG2_TARG = trigger; }
 
     virtual uint32_t getBrownout() const { return HW_PMU_MISC2.B.REG2_BO_OFFSET; }
 

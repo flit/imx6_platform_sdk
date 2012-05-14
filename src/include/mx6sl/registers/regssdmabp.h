@@ -32,16 +32,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_SDMABP_DC0PTR - Channel 0 Pointer
@@ -60,7 +50,7 @@ typedef union _hw_sdmabp_dc0ptr
     reg32_t U;
     struct _hw_sdmabp_dc0ptr_bitfields
     {
-        unsigned DC0PTR : 32; //!< [31:0] Channel 0 Pointer contains the 32-bit address, in BP memory, of the array of channel control blocks starting with the one for channel 0 (the control channel). This register should be initialized by the BP before it enables a channel (for example, channel 0). See the API document SDMA Scripts User Manual for the use of this register. The BP has a read/write access and the SDMA has a read-only access.
+        unsigned DC0PTR : 32; //!< [31:0] Channel 0 Pointer contains the 32-bit address, in BP memory, of the array of channel control blocks starting with the one for channel 0 (the control channel).
     } B;
 } hw_sdmabp_dc0ptr_t;
 #endif
@@ -123,7 +113,7 @@ typedef union _hw_sdmabp_intr
     reg32_t U;
     struct _hw_sdmabp_intr_bitfields
     {
-        unsigned DI : 32; //!< [31:0] The BP Interrupts register contains the 32 DI[i] bits. If any bit is set, it will cause an interrupt to the BP. This register is a "write-ones" register to the BP. When the BP sets a bit in this register, the corresponding DI[i] bit is cleared. The interrupt service routine should clear individual channel bits when their interrupts are serviced; failure to do so will cause continuous interrupts. The SDMA is responsible for setting the DI[i] bit corresponding to the current channel when the corresponding done instruction is executed.
+        unsigned DI : 32; //!< [31:0] The BP Interrupts register contains the 32 DI[i] bits.
     } B;
 } hw_sdmabp_intr_t;
 #endif
@@ -187,7 +177,7 @@ typedef union _hw_sdmabp_stop_stat
     reg32_t U;
     struct _hw_sdmabp_stop_stat_bitfields
     {
-        unsigned DE : 32; //!< [31:0] This 32-bit register gives access to the BP (DSP) Enable bits, DE. There is one bit for every channel. This register is a "write-ones" register to the BP. When the BP writes 1 in bit i of this register, it clears the DE[i] and DSTART[i] bits. Reading this register yields the current state of the DE[i] bits.
+        unsigned DE : 32; //!< [31:0] This 32-bit register gives access to the BP (DSP) Enable bits, DE.
     } B;
 } hw_sdmabp_stop_stat_t;
 #endif
@@ -249,7 +239,7 @@ typedef union _hw_sdmabp_dstart
     reg32_t U;
     struct _hw_sdmabp_dstart_bitfields
     {
-        unsigned DSTART : 32; //!< [31:0] The DSTART/DE registers are 32 bits wide with one bit for every channel. When a bit is written to 1, it enables the corresponding channel. Two physical registers are accessed with that address (DSTART and DE), which enables the BP to trigger a channel a second time before the first trigger was processed. This register is a "write-ones" register to the BP. Neither DSTART[i] bit can be set while the corresponding DE[i] bit is cleared. When the BP tries to set the DSTART[i] bit by writing a one (if the corresponding DE[i] bit is clear), the bit in the DSTART[i] register will remain cleared and the DE[i] bit will be set. If the corresponding DE[i] bit was already set, the DSTART[i] bit will be set. The next time the SDMA channel i attempts to clear the DE[i] bit by means of a done instruction, the bit in the DSTART[i] register will be cleared and the DE[i] bit will take the old value of the DSTART[i] bit. Reading this register yields the current state of the DSTART[i] bits. This mechanism enables the BP to pipeline two DSTART commands per channel.
+        unsigned DSTART : 32; //!< [31:0] The DSTART/DE registers are 32 bits wide with one bit for every channel.
     } B;
 } hw_sdmabp_dstart_t;
 #endif
@@ -306,7 +296,7 @@ typedef union _hw_sdmabp_evterr
     reg32_t U;
     struct _hw_sdmabp_evterr_bitfields
     {
-        unsigned CHNERR : 32; //!< [31:0] This register is used by the SDMA to warn the BP when an incoming DMA request was detected; it then triggers a channel that is already pending or being serviced, which may mean there is an overflow of data for that channel. An interrupt is sent to the BP if the corresponding channel bit is set in the INTRMASK register. This is a "write-ones" register for the scheduler. It is only able to set the flags. The flags are cleared when the register is read by the BP or during an SDMA reset. The CHNERR[i] bit is set when a DMA request that triggers channel i is received through the corresponding input pins and the EP[i] bit is already set. The EVTERR[i] bit is unaffected if the BP tries to set the EP[i] bit when that EP[i] bit is already set.
+        unsigned CHNERR : 32; //!< [31:0] This register is used by the SDMA to warn the BP when an incoming DMA request was detected; it then triggers a channel that is already pending or being serviced, which may mean there is an overflow of data for that channel.
     } B;
 } hw_sdmabp_evterr_t;
 #endif
@@ -360,7 +350,7 @@ typedef union _hw_sdmabp_intrmask
     reg32_t U;
     struct _hw_sdmabp_intrmask_bitfields
     {
-        unsigned DIMASK : 32; //!< [31:0] The Interrupt Mask Register contains 32 interrupt generation mask bits. If bit DIMASK[i] is set, the DI[i] bit is set and an interrupt is sent to the BP when a DMA request error is detected on channel i (for example, EVTERR[i] is set).
+        unsigned DIMASK : 32; //!< [31:0] The Interrupt Mask Register contains 32 interrupt generation mask bits.
     } B;
 } hw_sdmabp_intrmask_t;
 #endif
@@ -421,7 +411,7 @@ typedef union _hw_sdmabp_evterrdbg
     reg32_t U;
     struct _hw_sdmabp_evterrdbg_bitfields
     {
-        unsigned CHNERR : 32; //!< [31:0] This register is the same as EVTERR except reading it does not clear its contents. This address is meant to be used in debug mode. The BP OnCE may check this register value without modifying it.
+        unsigned CHNERR : 32; //!< [31:0] This register is the same as EVTERR except reading it does not clear its contents.
     } B;
 } hw_sdmabp_evterrdbg_t;
 #endif

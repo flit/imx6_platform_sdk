@@ -116,16 +116,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_MMDC_MDCTL - MMDC Core Control Register
@@ -137,7 +127,7 @@
  *
  * Reset value: 0x03110000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mdctl
 {
@@ -145,15 +135,15 @@ typedef union _hw_mmdc_mdctl
     struct _hw_mmdc_mdctl_bitfields
     {
         unsigned RESERVED0 : 16; //!< [15:0] Reserved
-        unsigned DSIZ : 2; //!< [17:16] DDR data bus size. This field determines the size of the data bus of the DDR memory
+        unsigned DSIZ : 2; //!< [17:16] DDR data bus size.
         unsigned RESERVED1 : 1; //!< [18] Reserved
-        unsigned BL : 1; //!< [19] Burst Length. This field determines the burst length of the DDR device. In DDR2/ LPDDR2 mode the MMDC supports burst length 4. In DDR3 mode the MMDC supports burst length 8.
-        unsigned COL : 3; //!< [22:20] Column Address Width. This field specifies the number of column addresses used by the memory array. It will determine how an incoming address will be decoded.
+        unsigned BL : 1; //!< [19] Burst Length.
+        unsigned COL : 3; //!< [22:20] Column Address Width.
         unsigned RESERVED2 : 1; //!< [23] Reserved
-        unsigned ROW : 3; //!< [26:24] Row Address Width. This field specifies the number of row addresses used by the memory array. It will affect the way an incoming address will be decoded. Settings 110-111 are reserved
+        unsigned ROW : 3; //!< [26:24] Row Address Width.
         unsigned RESERVED3 : 3; //!< [29:27] Reserved
-        unsigned SDE_1 : 1; //!< [30] MMDC Enable CS1. This bit enables/disables accesses from the MMDC toward Chip Select 1. The reset value of this bit is "0" (i.e No clocks and clock enable will be driven to the memory). At the enabling point the MMDC will perform an initialization process (including a delay on RESET and/or CKE) for both chip selects. The initialization length depends on the configured memory type.
-        unsigned SDE_0 : 1; //!< [31] MMDC Enable CS0. This bit enables/disables accesses from the MMDC toward Chip Select 0. The reset value of this bit is "0" (i.e No clocks and clock enable will be driven to the memory). At the enabling point the MMDC will perform an initialization process (including a delay on RESET and/or CKE) for both chip selects. The initialization length depends on the configured memory type.
+        unsigned SDE_1 : 1; //!< [30] MMDC Enable CS1.
+        unsigned SDE_0 : 1; //!< [31] MMDC Enable CS0.
     } B;
 } hw_mmdc_mdctl_t;
 #endif
@@ -183,8 +173,7 @@ typedef union _hw_mmdc_mdctl
  * Values:
  * 0 - 16-bit data bus
  * 1 - 32-bit data bus
- * 2 - 64-bit data bus
- * 3 - Reserved
+ * 2-3 - Reserved
  */
 
 #define BP_MMDC_MDCTL_DSIZ      (16)      //!< Bit position for MMDC_MDCTL_DSIZ.
@@ -204,8 +193,8 @@ typedef union _hw_mmdc_mdctl
 
 /* --- Register HW_MMDC_MDCTL, field BL[19] (RW)
  *
- * Burst Length. This field determines the burst length of the DDR device. In DDR2/ LPDDR2 mode the
- * MMDC supports burst length 4. In DDR3 mode the MMDC supports burst length 8.
+ * Burst Length. This field determines the burst length of the DDR device. In LPDDR2 mode the MMDC
+ * supports burst length 4. In DDR3 mode the MMDC supports burst length 8.
  *
  * Values:
  * 0 - Burst Length 4 is used
@@ -349,32 +338,31 @@ typedef union _hw_mmdc_mdctl
  *
  * Reset value: 0x00030012
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32   PRCT
- * field encoding        PRCT[2:0]    Precharge Timer        000    Disabled (Bit field reset value)
- * 001    2 clocks      010    4 clocks      011    8 clocks      100    16 clocks      101    32
- * clocks      110    64 clocks      111    128 clocks         PWDT field encoding        PWDT[3:0]
- * Power Down Time-out        0000    Disabled (bit field reset value)      0001    16 cycles
- * 0010    32 cycles      0011    64 cycles      0100    128 cycles      0101    256 cycles
- * 0110    512 cycles      0111    1024 cycles      1000    2048 cycles      1001    4096 cycles
- * 1010    8196 cycles      1011    16384 cycles      1100    32768 cycles      1101-1111
- * Reserved
+ * PRCT field encoding        PRCT[2:0]    Precharge Timer        000    Disabled (Bit field reset
+ * value)      001    2 clocks      010    4 clocks      011    8 clocks      100    16 clocks
+ * 101    32 clocks      110    64 clocks      111    128 clocks         PWDT field encoding
+ * PWDT[3:0]    Power Down Time-out        0000    Disabled (bit field reset value)      0001    16
+ * cycles      0010    32 cycles      0011    64 cycles      0100    128 cycles      0101    256
+ * cycles      0110    512 cycles      0111    1024 cycles      1000    2048 cycles      1001
+ * 4096 cycles      1010    8196 cycles      1011    16384 cycles      1100    32768 cycles
+ * 1101-1111    Reserved
  */
 typedef union _hw_mmdc_mdpdc
 {
     reg32_t U;
     struct _hw_mmdc_mdpdc_bitfields
     {
-        unsigned TCKSRE : 3; //!< [2:0] Valid clock cycles after self-refresh entry. This field determines the amount of clock cycles after self-refresh entry
-        unsigned TCKSRX : 3; //!< [5:3] Valid clock cycles before self-refresh exit. This field determines the amount of clock cycles before self-refresh exit
-        unsigned BOTH_CS_PD : 1; //!< [6] Parallel power down entry to both chip selects. When power down timer is used for both chip-selects (i.e PWDT_0 and PWDT1 don't equal "0") , then if this bit is enabled, the MMDC will enter power down only if the amount of idle cycles of both chip selects was obtained.
-        unsigned SLOW_PD : 1; //!< [7] Slow/fast power down. In DDR3 mode this field is referred to slow precharge power-down. In DDR2 mode this field is referred to slow active power-down. In LPDDR2 mode this field is not relevant. Memory should be configured the same.
-        unsigned PWDT_0 : 4; //!< [11:8] Power Down Timer - Chip Select 0. This field determines the amount of idle cycle for which chip select 0 will be automatically get into precharge/active power down. The amount of cycles are determined according to the PWDT Field Encoding table above.
-        unsigned PWDT_1 : 4; //!< [15:12] Power Down Timer - Chip Select 1. This field determines the amount of idle cycle for which chip select 1 will be automatically get into precharge/active power down. The amount of cycles are determined according to the PWDT Field Encoding table above.
-        unsigned TCKE : 3; //!< [18:16] CKE minimum pulse width. This field determines the minimum pulse width of CKE.
+        unsigned TCKSRE : 3; //!< [2:0] Valid clock cycles after self-refresh entry.
+        unsigned TCKSRX : 3; //!< [5:3] Valid clock cycles before self-refresh exit.
+        unsigned BOTH_CS_PD : 1; //!< [6] Parallel power down entry to both chip selects.
+        unsigned SLOW_PD : 1; //!< [7] Slow/fast power down.
+        unsigned PWDT_0 : 4; //!< [11:8] Power Down Timer - Chip Select 0.
+        unsigned PWDT_1 : 4; //!< [15:12] Power Down Timer - Chip Select 1.
+        unsigned TCKE : 3; //!< [18:16] CKE minimum pulse width.
         unsigned RESERVED0 : 5; //!< [23:19] Reserved
-        unsigned PRCT_0 : 3; //!< [26:24] Precharge Timer - Chip Select 0. This field determines the amount of idle cycle for which chip select 0 will be automatically precharged. The amount of cycles are determined according to the table below.
+        unsigned PRCT_0 : 3; //!< [26:24] Precharge Timer - Chip Select 0.
         unsigned RESERVED1 : 1; //!< [27] Reserved
-        unsigned PRCT_1 : 3; //!< [30:28] Precharge Timer - Chip Select 1. This field determines the amount of idle cycle for which chip select 1 will be automatically precharged. The amount of cycles are determined according to the PRCT Field Encoding table above.
+        unsigned PRCT_1 : 3; //!< [30:28] Precharge Timer - Chip Select 1.
         unsigned RESERVED2 : 1; //!< [31] Reserved
     } B;
 } hw_mmdc_mdpdc_t;
@@ -481,9 +469,8 @@ typedef union _hw_mmdc_mdpdc
 
 /* --- Register HW_MMDC_MDPDC, field SLOW_PD[7] (RW)
  *
- * Slow/fast power down. In DDR3 mode this field is referred to slow precharge power-down. In DDR2
- * mode this field is referred to slow active power-down. In LPDDR2 mode this field is not relevant.
- * Memory should be configured the same.
+ * Slow/fast power down. In DDR3 mode this field is referred to slow precharge power-down. In LPDDR2
+ * mode this field is not relevant. Memory should be configured the same.
  *
  * Values:
  * 0 - Fast mode.
@@ -625,8 +612,7 @@ typedef union _hw_mmdc_mdpdc
  *
  * Reset value: 0x12272000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32  For
- * further information see .
+ * For further information see .
  */
 typedef union _hw_mmdc_mdotc
 {
@@ -634,14 +620,14 @@ typedef union _hw_mmdc_mdotc
     struct _hw_mmdc_mdotc_bitfields
     {
         unsigned RESERVED0 : 4; //!< [3:0] Reserved
-        unsigned TODT_IDLE_OFF : 5; //!< [8:4] ODT turn off latency. This field determines the Idle period before turning memory ODT off. This field is not relevant in LPDDR2 mode.
+        unsigned TODT_IDLE_OFF : 5; //!< [8:4] ODT turn off latency.
         unsigned RESERVED1 : 3; //!< [11:9] Reserved
-        unsigned TODTLON : 3; //!< [14:12] ODT turn on latency. This field determines the delay between ODT signal and the associated RTT, where according to JEDEC standard it equals WL(write latency) - 2. Therefore, the value that is configured to tODTLon field should correspond the value that is configured to MDCGFG1[tCWL] In DDR2 this field is called 'tAOND' In LPDDR2 this field is not relevant.
+        unsigned TODTLON : 3; //!< [14:12] ODT turn on latency.
         unsigned RESERVED2 : 1; //!< [15] Reserved
-        unsigned TAXPD : 4; //!< [19:16] Asynchronous ODT to power down exit delay. In DDR3 should be set to tCWL-1 In DDR2 mode this field is referred to ODT power down exit latency. This field is not relevant in LPDDR2 mode.
-        unsigned TANPD : 4; //!< [23:20] Asynchronous ODT to power down entry delay. In DDR3 should be set to tCWL-1 In DDR2 mode this field is referred to ODT to power down entry latency. This field is not relevant in LPDDR2 mode.
-        unsigned TAONPD : 3; //!< [26:24] Asynchronous RTT turn-on delay (power down with DLL frozen). This field determines the time between termination cuircuit gets out of high impedance and begins to turn on till ODT resistance are fully on. In DDR2 mode his field is referred to ODT turn-on (power down mode) max value. This field is not relevant in LPDDR2 mode.
-        unsigned TAOFPD : 3; //!< [29:27] Asynchronous RTT turn-off delay (power down with DLL frozen). This field determines the time between termination cuircuit starts to turn off the ODT resistance till termination has reached high impedance. DDR2: ODT turn-off (power down mode) max value. This field is not relevant in LPDDR2 mode.
+        unsigned TAXPD : 4; //!< [19:16] Asynchronous ODT to power down exit delay.
+        unsigned TANPD : 4; //!< [23:20] Asynchronous ODT to power down entry delay.
+        unsigned TAONPD : 3; //!< [26:24] Asynchronous RTT turn-on delay (power down with DLL frozen).
+        unsigned TAOFPD : 3; //!< [29:27] Asynchronous RTT turn-off delay (power down with DLL frozen).
         unsigned RESERVED3 : 2; //!< [31:30] Reserved
     } B;
 } hw_mmdc_mdotc_t;
@@ -698,7 +684,7 @@ typedef union _hw_mmdc_mdotc
  * ODT turn on latency. This field determines the delay between ODT signal and the associated RTT,
  * where according to JEDEC standard it equals WL(write latency) - 2. Therefore, the value that is
  * configured to tODTLon field should correspond the value that is configured to MDCGFG1[tCWL] In
- * DDR2 this field is called 'tAOND' In LPDDR2 this field is not relevant.
+ * LPDDR2 this field is not relevant.
  *
  * Values:
  * 0x0 - - 0x1 Reserved
@@ -727,8 +713,8 @@ typedef union _hw_mmdc_mdotc
 
 /* --- Register HW_MMDC_MDOTC, field TAXPD[19:16] (RW)
  *
- * Asynchronous ODT to power down exit delay. In DDR3 should be set to tCWL-1 In DDR2 mode this
- * field is referred to ODT power down exit latency. This field is not relevant in LPDDR2 mode.
+ * Asynchronous ODT to power down exit delay. In DDR3 should be set to tCWL-1 This field is not
+ * relevant in LPDDR2 mode.
  *
  * Values:
  * 0x0 - 1 clock
@@ -755,8 +741,8 @@ typedef union _hw_mmdc_mdotc
 
 /* --- Register HW_MMDC_MDOTC, field TANPD[23:20] (RW)
  *
- * Asynchronous ODT to power down entry delay. In DDR3 should be set to tCWL-1 In DDR2 mode this
- * field is referred to ODT to power down entry latency. This field is not relevant in LPDDR2 mode.
+ * Asynchronous ODT to power down entry delay. In DDR3 should be set to tCWL-1 This field is not
+ * relevant in LPDDR2 mode.
  *
  * Values:
  * 0x0 - 1 clock
@@ -785,8 +771,7 @@ typedef union _hw_mmdc_mdotc
  *
  * Asynchronous RTT turn-on delay (power down with DLL frozen). This field determines the time
  * between termination cuircuit gets out of high impedance and begins to turn on till ODT resistance
- * are fully on. In DDR2 mode his field is referred to ODT turn-on (power down mode) max value. This
- * field is not relevant in LPDDR2 mode.
+ * are fully on. This field is not relevant in LPDDR2 mode.
  *
  * Values:
  * 0x0 - 1 cycle
@@ -814,8 +799,7 @@ typedef union _hw_mmdc_mdotc
  *
  * Asynchronous RTT turn-off delay (power down with DLL frozen). This field determines the time
  * between termination cuircuit starts to turn off the ODT resistance till termination has reached
- * high impedance. DDR2: ODT turn-off (power down mode) max value. This field is not relevant in
- * LPDDR2 mode.
+ * high impedance. This field is not relevant in LPDDR2 mode.
  *
  * Values:
  * 0x0 - 1 cycle
@@ -849,19 +833,19 @@ typedef union _hw_mmdc_mdotc
  *
  * Reset value: 0x323622d3
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mdcfg0
 {
     reg32_t U;
     struct _hw_mmdc_mdcfg0_bitfields
     {
-        unsigned TCL : 4; //!< [3:0] CAS Read Latency. In DDR3 mode this field is referred to CL. In LPDDR2 /DDR2 mode this field is referred to RL. In LPDDR2 mode only the RL/WL pairs are allowed as specified in MR2 register See DDR2 SDRAM Specification JESD79-2E (April 2008) , to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
-        unsigned TFAW : 5; //!< [8:4] Four Active Window (all banks). See DDR2 SDRAM Specification JESD79-2E (April 2008), to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
-        unsigned TXPDLL : 4; //!< [12:9] Exit precharge power down with DLL frozen to commands requiring DLL. This field is not relevant in LPDDR2 mode. In DDR2 mode this field is referred to the time from exit active power down to read commands(tXARD/tXARDS depending to memory configuration) See DDR2 SDRAM Specification JESD79-2E (April 2008) , to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
-        unsigned TXP : 3; //!< [15:13] Exit power down with DLL-on to any valid command. Exit power down with DLL-frozen to commands not requiring a locked DLL In DDR2 mode this field is referred to Exit precharge power down to any command. In LPDDR2 mode this field is referred to Exit power-down to next valid command delay. See DDR2 SDRAM Specification JESD79-2E (April 2008), to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
-        unsigned TXS : 8; //!< [23:16] Exit self refresh to non READ command. (Named tXSNR in DDR2 devices) In LPDDR2 it is called tXSR, self-refresh exit to next valid command delay. See DDR2 SDRAM Specification JESD79-2E (April 2008), to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
-        unsigned TRFC : 8; //!< [31:24] Refresh command to Active or Refresh command time. See DDR2 SDRAM Specification JESD79-2E (April 2008) , to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
+        unsigned TCL : 4; //!< [3:0] CAS Read Latency.
+        unsigned TFAW : 5; //!< [8:4] Four Active Window (all banks).
+        unsigned TXPDLL : 4; //!< [12:9] Exit precharge power down with DLL frozen to commands requiring DLL.
+        unsigned TXP : 3; //!< [15:13] Exit power down with DLL-on to any valid command.
+        unsigned TXS : 8; //!< [23:16] Exit self refresh to non READ command.
+        unsigned TRFC : 8; //!< [31:24] Refresh command to Active or Refresh command time.
     } B;
 } hw_mmdc_mdcfg0_t;
 #endif
@@ -886,7 +870,7 @@ typedef union _hw_mmdc_mdcfg0
 
 /* --- Register HW_MMDC_MDCFG0, field TCL[3:0] (RW)
  *
- * CAS Read Latency. In DDR3 mode this field is referred to CL. In LPDDR2 /DDR2 mode this field is
+ * CAS Read Latency. In DDR3 mode this field is referred to CL. In LPDDR2 mode this field is
  * referred to RL. In LPDDR2 mode only the RL/WL pairs are allowed as specified in MR2 register See
  * DDR2 SDRAM Specification JESD79-2E (April 2008) , to DDR3 SDRAM Specification JESD79-3E (July
  * 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of
@@ -953,11 +937,9 @@ typedef union _hw_mmdc_mdcfg0
 /* --- Register HW_MMDC_MDCFG0, field TXPDLL[12:9] (RW)
  *
  * Exit precharge power down with DLL frozen to commands requiring DLL. This field is not relevant
- * in LPDDR2 mode. In DDR2 mode this field is referred to the time from exit active power down to
- * read commands(tXARD/tXARDS depending to memory configuration) See DDR2 SDRAM Specification
- * JESD79-2E (April 2008) , to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM
- * Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February
- * 2010) for a detailed description of this parameter.
+ * in LPDDR2 mode. See DDR2 SDRAM Specification JESD79-2E (April 2008) , to DDR3 SDRAM Specification
+ * JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM
+ * Specification JESD209-2B (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * 0x0 - 1 clock
@@ -985,11 +967,10 @@ typedef union _hw_mmdc_mdcfg0
 /* --- Register HW_MMDC_MDCFG0, field TXP[15:13] (RW)
  *
  * Exit power down with DLL-on to any valid command. Exit power down with DLL-frozen to commands not
- * requiring a locked DLL In DDR2 mode this field is referred to Exit precharge power down to any
- * command. In LPDDR2 mode this field is referred to Exit power-down to next valid command delay.
- * See DDR2 SDRAM Specification JESD79-2E (April 2008), to DDR3 SDRAM Specification JESD79-3E (July
- * 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification
- * JESD209-2B (February 2010) for a detailed description of this parameter.
+ * requiring a locked DLL In LPDDR2 mode this field is referred to Exit power-down to next valid
+ * command delay. See DDR2 SDRAM Specification JESD79-2E (April 2008), to DDR3 SDRAM Specification
+ * JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM
+ * Specification JESD209-2B (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * 0x0 - 1 cycle
@@ -1015,11 +996,11 @@ typedef union _hw_mmdc_mdcfg0
 
 /* --- Register HW_MMDC_MDCFG0, field TXS[23:16] (RW)
  *
- * Exit self refresh to non READ command. (Named tXSNR in DDR2 devices) In LPDDR2 it is called tXSR,
- * self-refresh exit to next valid command delay. See DDR2 SDRAM Specification JESD79-2E (April
- * 2008), to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification
- * JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a
- * detailed description of this parameter.
+ * Exit self refresh to non READ command. In LPDDR2 it is called tXSR, self-refresh exit to next
+ * valid command delay. See DDR2 SDRAM Specification JESD79-2E (April 2008), to DDR3 SDRAM
+ * Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and
+ * LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this
+ * parameter.
  *
  * Values:
  * 0x0 - - 0x15 reserved
@@ -1084,23 +1065,23 @@ typedef union _hw_mmdc_mdcfg0
  *
  * Reset value: 0xb6b18a23
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mdcfg1
 {
     reg32_t U;
     struct _hw_mmdc_mdcfg1_bitfields
     {
-        unsigned TCWL : 3; //!< [2:0] CAS Write Latency. In DDR2 mode this field is referred to WL and equals RL-1. In DDR3 mode this field is referred to CWL. In LPDDR2 mode this field is referred to WL.
+        unsigned TCWL : 3; //!< [2:0] CAS Write Latency.
         unsigned RESERVED0 : 2; //!< [4:3] Reserved
-        unsigned TMRD : 4; //!< [8:5] Mode Register Set command cycle (all banks). In DDR3 mode this field shoud be set to max (tMRD,tMOD). In DDR2 mode this field is Set to tMRD. In LPDDR2 mode this field should be set to max(tMRR,tMRW) See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
-        unsigned TWR : 3; //!< [11:9] WRITE recovery time (same bank). See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
+        unsigned TMRD : 4; //!< [8:5] Mode Register Set command cycle (all banks).
+        unsigned TWR : 3; //!< [11:9] WRITE recovery time (same bank).
         unsigned RESERVED1 : 3; //!< [14:12] Reserved
-        unsigned TRPA : 1; //!< [15] Precharge-all command period. (This field is valid only for DDR2/ DDR3 memories) In LPDDR2 mode this parameter should be configured at tRPab_LP. See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
-        unsigned TRAS : 5; //!< [20:16] Active to Precharge command period (same bank). See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
-        unsigned TRC : 5; //!< [25:21] Active to Active or Refresh command period (same bank). (This field is valid only for DDR2/ DDR3 memories) In LPDDR2 mode this parameter should be configured at tRC_LP. See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
-        unsigned TRP : 3; //!< [28:26] Precharge command period (same bank). (This field is valid only for DDR2/ DDR3 memories) IIn LPDDR2 mode this parameter should be configured at tRPpb_LP. See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
-        unsigned TRCD : 3; //!< [31:29] Active command to internal read or write delay time (same bank). (This field is valid only for DDR2/ DDR3 memories) In LPDDR2 mode this parameter should be configured at tRCD_LP. See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
+        unsigned TRPA : 1; //!< [15] Precharge-all command period.
+        unsigned TRAS : 5; //!< [20:16] Active to Precharge command period (same bank).
+        unsigned TRC : 5; //!< [25:21] Active to Active or Refresh command period (same bank).
+        unsigned TRP : 3; //!< [28:26] Precharge command period (same bank).
+        unsigned TRCD : 3; //!< [31:29] Active command to internal read or write delay time (same bank).
     } B;
 } hw_mmdc_mdcfg1_t;
 #endif
@@ -1125,17 +1106,17 @@ typedef union _hw_mmdc_mdcfg1
 
 /* --- Register HW_MMDC_MDCFG1, field TCWL[2:0] (RW)
  *
- * CAS Write Latency. In DDR2 mode this field is referred to WL and equals RL-1. In DDR3 mode this
- * field is referred to CWL. In LPDDR2 mode this field is referred to WL.
+ * CAS Write Latency. In DDR3 mode this field is referred to CWL. In LPDDR2 mode this field is
+ * referred to WL.
  *
  * Values:
- * 0x0 - 2cycles ( DDR2/ DDR3) , 1 cycle (LPDDR2)
- * 0x1 - 3cycles ( DDR2/ DDR3) , 2 cycles (LPDDR2)
- * 0x2 - 4cycles ( DDR2/ DDR3) , 3 cycles (LPDDR2)
- * 0x3 - 5cycles ( DDR2/ DDR3) , 4 cycles (LPDDR2)
- * 0x4 - 6cycles ( DDR2/ DDR3) , 5 cycles (LPDDR2)
- * 0x5 - 7cycles ( DDR2/ DDR3) , 6 cycles (LPDDR2)
- * 0x6 - 8cycles ( DDR2/ DDR3) , 7 cycles (LPDDR2)
+ * 0x0 - 2cycles ( DDR3) , 1 cycle (LPDDR2)
+ * 0x1 - 3cycles ( DDR3) , 2 cycles (LPDDR2)
+ * 0x2 - 4cycles ( DDR3) , 3 cycles (LPDDR2)
+ * 0x3 - 5cycles ( DDR3) , 4 cycles (LPDDR2)
+ * 0x4 - 6cycles ( DDR3) , 5 cycles (LPDDR2)
+ * 0x5 - 7cycles ( DDR3) , 6 cycles (LPDDR2)
+ * 0x6 - 8cycles ( DDR3) , 7 cycles (LPDDR2)
  * 0x7 - Reserved
  */
 
@@ -1157,11 +1138,10 @@ typedef union _hw_mmdc_mdcfg1
 /* --- Register HW_MMDC_MDCFG1, field TMRD[8:5] (RW)
  *
  * Mode Register Set command cycle (all banks). In DDR3 mode this field shoud be set to max
- * (tMRD,tMOD). In DDR2 mode this field is Set to tMRD. In LPDDR2 mode this field should be set to
- * max(tMRR,tMRW) See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM
- * Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and
- * LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this
- * parameter.
+ * (tMRD,tMOD). In LPDDR2 mode this field should be set to max(tMRR,tMRW) See DDR2 SDRAM
+ * Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and
+ * LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B
+ * (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * 0x0 - 1 clock
@@ -1221,11 +1201,11 @@ typedef union _hw_mmdc_mdcfg1
 
 /* --- Register HW_MMDC_MDCFG1, field TRPA[15] (RW)
  *
- * Precharge-all command period. (This field is valid only for DDR2/ DDR3 memories) In LPDDR2 mode
- * this parameter should be configured at tRPab_LP. See DDR2 SDRAM Specification JESD79-2E (April
- * 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification
- * JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a
- * detailed description of this parameter.
+ * Precharge-all command period. (This field is valid only for DDR3 memories) In LPDDR2 mode this
+ * parameter should be configured at tRPab_LP. See DDR2 SDRAM Specification JESD79-2E (April 2008)
+ * and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B
+ * (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed
+ * description of this parameter.
  *
  * Values:
  * 0 - Will be equal to: tRP.
@@ -1279,7 +1259,7 @@ typedef union _hw_mmdc_mdcfg1
 
 /* --- Register HW_MMDC_MDCFG1, field TRC[25:21] (RW)
  *
- * Active to Active or Refresh command period (same bank). (This field is valid only for DDR2/ DDR3
+ * Active to Active or Refresh command period (same bank). (This field is valid only for DDR3
  * memories) In LPDDR2 mode this parameter should be configured at tRC_LP. See DDR2 SDRAM
  * Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and
  * LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B
@@ -1310,11 +1290,11 @@ typedef union _hw_mmdc_mdcfg1
 
 /* --- Register HW_MMDC_MDCFG1, field TRP[28:26] (RW)
  *
- * Precharge command period (same bank). (This field is valid only for DDR2/ DDR3 memories) IIn
- * LPDDR2 mode this parameter should be configured at tRPpb_LP. See DDR2 SDRAM Specification
- * JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM
- * Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February
- * 2010) for a detailed description of this parameter.
+ * Precharge command period (same bank). (This field is valid only for DDR3 memories) IIn LPDDR2
+ * mode this parameter should be configured at tRPpb_LP. See DDR2 SDRAM Specification JESD79-2E
+ * (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification
+ * JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a
+ * detailed description of this parameter.
  *
  * Values:
  * 0x0 - 1 clock
@@ -1345,10 +1325,10 @@ typedef union _hw_mmdc_mdcfg1
 /* --- Register HW_MMDC_MDCFG1, field TRCD[31:29] (RW)
  *
  * Active command to internal read or write delay time (same bank). (This field is valid only for
- * DDR2/ DDR3 memories) In LPDDR2 mode this parameter should be configured at tRCD_LP. See DDR2
- * SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010)
- * and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification
- * JESD209-2B (February 2010) for a detailed description of this parameter.
+ * DDR3 memories) In LPDDR2 mode this parameter should be configured at tRCD_LP. See DDR2 SDRAM
+ * Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and
+ * LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B
+ * (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * 0x0 - 1 clock
@@ -1386,18 +1366,18 @@ typedef union _hw_mmdc_mdcfg1
  *
  * Reset value: 0x00c70092
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mdcfg2
 {
     reg32_t U;
     struct _hw_mmdc_mdcfg2_bitfields
     {
-        unsigned TRRD : 3; //!< [2:0] Active to Active command period (all banks). See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
-        unsigned TWTR : 3; //!< [5:3] Internal WRITE to READ command delay (same bank). See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
-        unsigned TRTP : 3; //!< [8:6] Internal READ command to Precharge command delay (same bank). See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
+        unsigned TRRD : 3; //!< [2:0] Active to Active command period (all banks).
+        unsigned TWTR : 3; //!< [5:3] Internal WRITE to READ command delay (same bank).
+        unsigned TRTP : 3; //!< [8:6] Internal READ command to Precharge command delay (same bank).
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
-        unsigned TDLLK : 9; //!< [24:16] DLL locking time. In DDR2 mode this field is called tXSRD, exit self refresh to read command. This field is not relevant in LPDDR2 mode. See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
+        unsigned TDLLK : 9; //!< [24:16] DLL locking time.
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_mmdc_mdcfg2_t;
@@ -1522,17 +1502,16 @@ typedef union _hw_mmdc_mdcfg2
 
 /* --- Register HW_MMDC_MDCFG2, field TDLLK[24:16] (RW)
  *
- * DLL locking time. In DDR2 mode this field is called tXSRD, exit self refresh to read command.
- * This field is not relevant in LPDDR2 mode. See DDR2 SDRAM Specification JESD79-2E (April 2008)
- * and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B
- * (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed
- * description of this parameter.
+ * DLL locking time. This field is not relevant in LPDDR2 mode. See DDR2 SDRAM Specification
+ * JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM
+ * Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February
+ * 2010) for a detailed description of this parameter.
  *
  * Values:
  * 0x0 - 1 cycle.
  * 0x1 - 2 cycles.
  * 0x2 - 3 cycles.
- * 0xC7 - 200 cycles (JEDEC value for DDR2).
+ * 0xC7 - 200 cycles
  * 0x1FE - 511 cycles.
  * 0x1FF - 512 cycles (JEDEC value for DDR3).
  */
@@ -1562,7 +1541,7 @@ typedef union _hw_mmdc_mdcfg2
  *
  * Reset value: 0x00001600
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mdmisc
 {
@@ -1570,22 +1549,23 @@ typedef union _hw_mmdc_mdmisc
     struct _hw_mmdc_mdmisc_bitfields
     {
         unsigned RESERVED0 : 1; //!< [0] Reserved
-        unsigned RST : 1; //!< [1] Software Reset. When this bit is asserted then the internal FSMs and registers of the MMDC will be initialized. This bit once asserted gets deasserted automatically.
-        unsigned LPDDR2_2CH : 1; //!< [2] LPDDR2 2-channels mode. When this bit is set to "1" then dual channel mode is activated. This field should be cleared for DDR3 mode.
-        unsigned DDR_TYPE : 2; //!< [4:3] DDR TYPE. This field determines the type of the external DDR device.
-        unsigned DDR_4_BANK : 1; //!< [5] Number of banks per DDR device. When this bit is set to "1" then the MMDC will work with DDR device of 4 banks.
-        unsigned RALAT : 3; //!< [8:6] Read Additional Latency. This field determines the additional read latency which is added to CAS latency and internal delays for which the MMDC will retrieve the read data from the internal FIFO. This field is used to compensate on board/chip delays. In LPDDR2 mode 2 extra cycles will be added internally in order to compensate tDQSCK delay.
-        unsigned MIF3_MODE : 2; //!< [10:9] Command prediction working mode. This field determines the level of command prediction that will be used by the MMDC
-        unsigned LPDDR2_S2 : 1; //!< [11] LPDDR2 S2 device type indication. In case LPDDR2 device is used (DDR_TYPE = 0x1), this bit will indicate whether S2 or S4 device is used. This bit should be cleared in DDR3 mode
-        unsigned BI_ON : 1; //!< [12] Bank Interleaving On. This bit controls the organization of the bank, row and column address bits. For further information see .
-        unsigned RESERVED1 : 3; //!< [15:13] Reserved
-        unsigned WALAT : 2; //!< [17:16] Write Additional latency. In case the write-leveling calibration process indicates a delay around half cycle (between CK and the associated DQS) then this field must be configured accordingly. This field will add delay on the obe I/O control, which will compensate on the additional write leveling delay on DQS and prevent the DQS from being croped.
-        unsigned LHD : 1; //!< [18] Latency hiding disable. This is a debug feature. When set to "1" the MMDC will handle one read/write access at a time. Meaning that the MMDC pipe-line will be limitted to 1 open access (next AXI address phase will be acknowledged if the current AXI data phase had finished)
-        unsigned ADDR_MIRROR : 1; //!< [19] Address mirroring. This feature is not supported for LPDDR2 memories. But only for DDR2 or DDR3 memories. For further information see .
-        unsigned CALIB_PER_CS : 1; //!< [20] Number of chip-select for calibration process. This bit determines the chip-select index that the associated calibration is targetted to. Relevant for read, write, write leveling and read DQS gating calibrations
-        unsigned RESERVED2 : 9; //!< [29:21] Reserved
-        unsigned CS1_RDY : 1; //!< [30] External status device on CS1. This is a read-only status bit, that indicates whether the external memory is in wake-up period.
-        unsigned CS0_RDY : 1; //!< [31] External status device on CS0. This is a read-only status bit, that indicates whether the external memory is in wake-up period.
+        unsigned RST : 1; //!< [1] Software Reset.
+        unsigned RESERVED1 : 1; //!< [2] Reserved
+        unsigned DDR_TYPE : 2; //!< [4:3] DDR TYPE.
+        unsigned DDR_4_BANK : 1; //!< [5] Number of banks per DDR device.
+        unsigned RALAT : 3; //!< [8:6] Read Additional Latency.
+        unsigned MIF3_MODE : 2; //!< [10:9] Command prediction working mode.
+        unsigned LPDDR2_S2 : 1; //!< [11] LPDDR2 S2 device type indication.
+        unsigned BI_ON : 1; //!< [12] Bank Interleaving On.
+        unsigned RESERVED2 : 3; //!< [15:13] Reserved
+        unsigned WALAT : 2; //!< [17:16] Write Additional latency.
+        unsigned LHD : 1; //!< [18] Latency hiding disable.
+        unsigned ADDR_MIRROR : 1; //!< [19] Address mirroring.
+        unsigned CALIB_PER_CS : 1; //!< [20] Number of chip-select for calibration process.
+        unsigned CK1_GATING : 1; //!< [21] Gating the secondary DDR clock.
+        unsigned RESERVED3 : 8; //!< [29:22] Reserved
+        unsigned CS1_RDY : 1; //!< [30] External status device on CS1.
+        unsigned CS0_RDY : 1; //!< [31] External status device on CS0.
     } B;
 } hw_mmdc_mdmisc_t;
 #endif
@@ -1633,31 +1613,6 @@ typedef union _hw_mmdc_mdmisc
 #endif
 
 
-/* --- Register HW_MMDC_MDMISC, field LPDDR2_2CH[2] (RW)
- *
- * LPDDR2 2-channels mode. When this bit is set to "1" then dual channel mode is activated. This
- * field should be cleared for DDR3 mode.
- *
- * Values:
- * 0 - 1-channel mode (DDR3)
- * 1 - 2-channels mode (LPDDR2)
- */
-
-#define BP_MMDC_MDMISC_LPDDR2_2CH      (2)      //!< Bit position for MMDC_MDMISC_LPDDR2_2CH.
-#define BM_MMDC_MDMISC_LPDDR2_2CH      (0x00000004)  //!< Bit mask for MMDC_MDMISC_LPDDR2_2CH.
-
-//! @brief Get value of MMDC_MDMISC_LPDDR2_2CH from a register value.
-#define BG_MMDC_MDMISC_LPDDR2_2CH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_LPDDR2_2CH) >> BP_MMDC_MDMISC_LPDDR2_2CH)
-
-//! @brief Format value for bitfield MMDC_MDMISC_LPDDR2_2CH.
-#define BF_MMDC_MDMISC_LPDDR2_2CH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_LPDDR2_2CH) & BM_MMDC_MDMISC_LPDDR2_2CH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the LPDDR2_2CH field to a new value.
-#define BW_MMDC_MDMISC_LPDDR2_2CH(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_LPDDR2_2CH) | BF_MMDC_MDMISC_LPDDR2_2CH(v)))
-#endif
-
-
 /* --- Register HW_MMDC_MDMISC, field DDR_TYPE[4:3] (RW)
  *
  * DDR TYPE. This field determines the type of the external DDR device.
@@ -1665,9 +1620,7 @@ typedef union _hw_mmdc_mdmisc
  * Values:
  * 0x0 - DDR3 device is used. (Default)
  * 0x1 - LPDDR2 device is used.
- * 0x2 - DDR2 device is used.
  * 0x2 - Reserved.
- * 0x3 - Reserved.
  * 0x3 - Reserved.
  */
 
@@ -1879,8 +1832,8 @@ typedef union _hw_mmdc_mdmisc
 
 /* --- Register HW_MMDC_MDMISC, field ADDR_MIRROR[19] (RW)
  *
- * Address mirroring. This feature is not supported for LPDDR2 memories. But only for DDR2 or DDR3
- * memories. For further information see .
+ * Address mirroring. This feature is not supported for LPDDR2 memories. But only for DDR3 memories.
+ * For further information see .
  *
  * Values:
  * 0 - Address mirroring disabled.
@@ -1925,6 +1878,31 @@ typedef union _hw_mmdc_mdmisc
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CALIB_PER_CS field to a new value.
 #define BW_MMDC_MDMISC_CALIB_PER_CS(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_CALIB_PER_CS) | BF_MMDC_MDMISC_CALIB_PER_CS(v)))
+#endif
+
+
+/* --- Register HW_MMDC_MDMISC, field CK1_GATING[21] (RW)
+ *
+ * Gating the secondary DDR clock. When this bit is asserted then the MMDC will disable the
+ * secondary DDR clock
+ *
+ * Values:
+ * 0 - MMDC drives two clocks toward the DDR memory
+ * 1 - MMDC drives only one clock toward the DDR memory (CK0)
+ */
+
+#define BP_MMDC_MDMISC_CK1_GATING      (21)      //!< Bit position for MMDC_MDMISC_CK1_GATING.
+#define BM_MMDC_MDMISC_CK1_GATING      (0x00200000)  //!< Bit mask for MMDC_MDMISC_CK1_GATING.
+
+//! @brief Get value of MMDC_MDMISC_CK1_GATING from a register value.
+#define BG_MMDC_MDMISC_CK1_GATING(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_CK1_GATING) >> BP_MMDC_MDMISC_CK1_GATING)
+
+//! @brief Format value for bitfield MMDC_MDMISC_CK1_GATING.
+#define BF_MMDC_MDMISC_CK1_GATING(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDMISC_CK1_GATING) & BM_MMDC_MDMISC_CK1_GATING)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CK1_GATING field to a new value.
+#define BW_MMDC_MDMISC_CK1_GATING(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_CK1_GATING) | BF_MMDC_MDMISC_CK1_GATING(v)))
 #endif
 
 
@@ -1977,24 +1955,23 @@ typedef union _hw_mmdc_mdmisc
  * register will be interpreted as a command, and a read from this register will show the last
  * command that was executed.  Every write to this register will result in one special command, and
  * the IP bus will assert ips_xfr_wait as long as the special command is being carried out.
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
  */
 typedef union _hw_mmdc_mdscr
 {
     reg32_t U;
     struct _hw_mmdc_mdscr_bitfields
     {
-        unsigned CMD_BA : 3; //!< [2:0] Bank Address. This field determines the address of the bank within the selected chip-select where the command is targetted to.
-        unsigned CMD_CS : 1; //!< [3] Chip Select. This field determines which chip select the command is targeted to
-        unsigned CMD : 3; //!< [6:4] Command. This field contains the command to be executed. This field will be automatically cleared after the command will be send to the DDR memory.
+        unsigned CMD_BA : 3; //!< [2:0] Bank Address.
+        unsigned CMD_CS : 1; //!< [3] Chip Select.
+        unsigned CMD : 3; //!< [6:4] Command.
         unsigned RESERVED0 : 2; //!< [8:7] Reserved.
-        unsigned WL_EN : 1; //!< [9] DQS pads direction. This bit controls the DQS pads direction during write-leveling calibration process. Before starting the write-leveling calibration process this bit should be set to "1". It should be set to "0" when sending write leveling exit command. For further information see .
-        unsigned MRR_READ_DATA_VALID : 1; //!< [10] MRR read data valid. This field indicates that read data is valid at MDMRR register This field is relevant only for LPDDR2 mode
+        unsigned WL_EN : 1; //!< [9] DQS pads direction.
+        unsigned MRR_READ_DATA_VALID : 1; //!< [10] MRR read data valid.
         unsigned RESERVED1 : 3; //!< [13:11] Reserved
-        unsigned CON_ACK : 1; //!< [14] Configuration acknowledge. Whenever this bit is set, it is permitted to configure MMDC IP registers.
-        unsigned CON_REQ : 1; //!< [15] Configuration request. When this bit is set then the MMDC will clean the pending AXI accesses and will prevent from further AXI accesses to be acknowledged. This field guarantee safe configuration (or change configuration) of the MMDC while no access is in process and prevents an unexpected behaviour. After setting this bit, it is needed to poll on CON_ACK until it is set to "1". When CON_ACK is asserted then configuration is permitted. After configuration is completed then this bit must be deasserted in order to process further AXI accesses. This bit is asserted at the end of the reset sequence, meaning that the MMDC is waiting to configure and intialize the external memory before accepting any AXI accesses. Configuration request/acknowledge mechanism should be used for the following procedures: changing of timing parameters , during calibration process or driving commands via MDSCR[CMD]
-        unsigned CMD_ADDR_LSB : 8; //!< [23:16] Command/Address LSB. This field indicates the LSB of the command/Address In LPDDR2 this field indicates the MRR/MRW address
-        unsigned CMD_ADDR_MSB : 8; //!< [31:24] Command/Address MSB. This field indicates the MSB of the command/Address. In LPDDR2 this field indicates the MRW operand
+        unsigned CON_ACK : 1; //!< [14] Configuration acknowledge.
+        unsigned CON_REQ : 1; //!< [15] Configuration request.
+        unsigned CMD_ADDR_LSB : 8; //!< [23:16] Command/Address LSB.
+        unsigned CMD_ADDR_MSB : 8; //!< [31:24] Command/Address MSB.
     } B;
 } hw_mmdc_mdscr_t;
 #endif
@@ -2078,9 +2055,9 @@ typedef union _hw_mmdc_mdscr
  * 0x1 - Precharge all, command is sent independently of bank status (set correct CMD_CS). Will be issued
  *     even if banks are closed. Mainly used for init sequence purpose.
  * 0x2 - Auto-Refresh Command (set correct CMD_CS).
- * 0x3 - Load Mode Register Command ( DDR2/ DDR3, set correct CMD_CS, CMD_BA, CMD_ADDR_LSB, CMD_ADDR_MSB),
- *     MRW Command (LPDDR2, set correct CMD_CS, MR_OP, MR_ADDR)
- * 0x4 - ZQ calibration ( DDR2/ DDR3, set correct CMD_CS, {CMD_ADDR_MSB,CMD_ADDR_LSB} = 0x400 or 0x0 )
+ * 0x3 - Load Mode Register Command ( DDR3, set correct CMD_CS, CMD_BA, CMD_ADDR_LSB, CMD_ADDR_MSB), MRW
+ *     Command (LPDDR2, set correct CMD_CS, MR_OP, MR_ADDR)
+ * 0x4 - ZQ calibration ( DDR3, set correct CMD_CS, {CMD_ADDR_MSB,CMD_ADDR_LSB} = 0x400 or 0x0 )
  * 0x5 - Precharge all, only if banks open (set correct CMD_CS).
  * 0x6 - MRR command (LPDDR2, set correct CMD_CS, MR_ADDR)
  * 0x7 - Reserved
@@ -2263,18 +2240,17 @@ typedef union _hw_mmdc_mdscr
  * every refresh window. Because the memory device issues additional refresh commands for every
  * refresh it receives, the tREFI remains the same across the device, regardless of its number of
  * rows. This is particularly relevant in the tRFC parameter, which becomes bigger as the density
- * increases.  Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16,
- * LP2_2ch_x32
+ * increases.
  */
 typedef union _hw_mmdc_mdref
 {
     reg32_t U;
     struct _hw_mmdc_mdref_bitfields
     {
-        unsigned START_REF : 1; //!< [0] Manual start of refresh cycle. When this field is set to '1' the MMDC will start a refresh cycle immediately according to number of refresh commands that are configured in 'REFR' field. This bit returns to zero automatically.
+        unsigned START_REF : 1; //!< [0] Manual start of refresh cycle.
         unsigned RESERVED0 : 10; //!< [10:1] Reserved
-        unsigned REFR : 3; //!< [13:11] Refresh Rate. This field determines how many refresh commands will be issued every refresh cycle. After every refresh command the MMDC won't drive any command to the DDR device untill satisfying tRFC period
-        unsigned REF_SEL : 2; //!< [15:14] Refresh Selector. This bit selects the source of the clock that will trigger each refresh cycle:
+        unsigned REFR : 3; //!< [13:11] Refresh Rate.
+        unsigned REF_SEL : 2; //!< [15:14] Refresh Selector.
         unsigned REF_CNT : 16; //!< [31:16] Refresh Counter at DDR clock period If REF_SEL equals '2' a refresh cycle will begin every amount of DDR cycles configured in this field.
     } B;
 } hw_mmdc_mdref_t;
@@ -2422,19 +2398,18 @@ typedef union _hw_mmdc_mdref
  *
  * This register determines the delay between back to back read and write accesses. The register
  * reset values are set to the minimum required value. As the default values are set to achieve
- * optimal results, changing them is discouraged.  Supported Mode Of Operations:  For Channel 0: All
- * For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+ * optimal results, changing them is discouraged.
  */
 typedef union _hw_mmdc_mdrwd
 {
     reg32_t U;
     struct _hw_mmdc_mdrwd_bitfields
     {
-        unsigned RTR_DIFF : 3; //!< [2:0] Read to read delay for different chip-select. This field controls the delay between read to read commands toward different chip select. The total delay is calculated according to: BL/2 + RTR_DIFF
-        unsigned RTW_DIFF : 3; //!< [5:3] Read to write delay for different chip-select. This field controls the delay between read to write commands toward different chip select. The total delay is calculated according to: BL/2 + RTW_DIFF + (tCL - tCWL) + RALAT
-        unsigned WTW_DIFF : 3; //!< [8:6] Write to write delay for different chip-select. This field controls the delay between write to write commands toward different chip select. The total delay is calculated according to: BL/2 + WTW_DIFF
-        unsigned WTR_DIFF : 3; //!< [11:9] Write to read delay for different chip-select. This field controls the delay between write to read commands toward different chip select. The total delay is calculated according to: BL/2 + WTR_DIFF + (tCL-tCWL) + RALAT
-        unsigned RTW_SAME : 3; //!< [14:12] Read to write delay for the same chip-select. This field controls the delay between read to write commands toward the same chip select. The total delay is calculated according to: BL/2 + RTW_SAME + (tCL-tCWL) + RALAT
+        unsigned RTR_DIFF : 3; //!< [2:0] Read to read delay for different chip-select.
+        unsigned RTW_DIFF : 3; //!< [5:3] Read to write delay for different chip-select.
+        unsigned WTW_DIFF : 3; //!< [8:6] Write to write delay for different chip-select.
+        unsigned WTR_DIFF : 3; //!< [11:9] Write to read delay for different chip-select.
+        unsigned RTW_SAME : 3; //!< [14:12] Read to write delay for the same chip-select.
         unsigned RESERVED0 : 1; //!< [15] Reserved
         unsigned TDAI : 13; //!< [28:16] Device auto initialization period.(maximum) This field is relevant only to LPDDR2 mode
         unsigned RESERVED1 : 3; //!< [31:29] Reserved
@@ -2655,19 +2630,18 @@ typedef union _hw_mmdc_mdrwd
  *
  * Reset value: 0x009f0e0e
  *
- * This register defines delays that must be kept when MMDC exits reset.  Supported Mode Of
- * Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+ * This register defines delays that must be kept when MMDC exits reset.
  */
 typedef union _hw_mmdc_mdor
 {
     reg32_t U;
     struct _hw_mmdc_mdor_bitfields
     {
-        unsigned RST_TO_CKE : 6; //!< [5:0] DDR3: Time from SDE enable to CKE rise. In case that DDR reset# is low, will wait until it's high and thenwait this period until rising CKE. (JEDEC value is 500 us) In DDR2 mode this field is referred to to the time from SDE enable to CKE rise. (JEDEC value is 200 us) LPDDR2: Idle time ater first CKE assertion. (JEDEC value is 200 us) Each cycle in this field is 15.258 us.
+        unsigned RST_TO_CKE : 6; //!< [5:0] DDR3: Time from SDE enable to CKE rise.
         unsigned RESERVED0 : 2; //!< [7:6] Reserved
-        unsigned SDE_TO_RST : 6; //!< [13:8] DDR3: Time from SDE enable until DDR reset# is high. In DDR2/ LPDDR2 mode this field is not relevant . Each cycle in this field is 15.625 us.
+        unsigned SDE_TO_RST : 6; //!< [13:8] DDR3: Time from SDE enable until DDR reset# is high.
         unsigned RESERVED1 : 2; //!< [15:14] Reserved
-        unsigned TXPR : 8; //!< [23:16] DDR2/ DDR3: CKE HIGH to a valid command. This field is not relevant in LPDDR2 mode. According to DDR2 JEDEC standard this field supposes to be 400 ns. DDR3: As defined in timing parameter table.
+        unsigned TXPR : 8; //!< [23:16] DDR3: CKE HIGH to a valid command.
         unsigned RESERVED2 : 8; //!< [31:24] Reserved
     } B;
 } hw_mmdc_mdor_t;
@@ -2694,16 +2668,15 @@ typedef union _hw_mmdc_mdor
 /* --- Register HW_MMDC_MDOR, field RST_TO_CKE[5:0] (RW)
  *
  * DDR3: Time from SDE enable to CKE rise. In case that DDR reset# is low, will wait until it's high
- * and thenwait this period until rising CKE. (JEDEC value is 500 us) In DDR2 mode this field is
- * referred to to the time from SDE enable to CKE rise. (JEDEC value is 200 us) LPDDR2: Idle time
- * ater first CKE assertion. (JEDEC value is 200 us) Each cycle in this field is 15.258 us.
+ * and thenwait this period until rising CKE. (JEDEC value is 500 us) LPDDR2: Idle time ater first
+ * CKE assertion. (JEDEC value is 200 us) Each cycle in this field is 15.258 us.
  *
  * Values:
  * 0x0 - Reserved
  * 0x1 - Reserved
  * 0x2 - Reserved
  * 0x3 - 1 cycles
- * 0x10 - 14 cycles (JEDEC value for DDR2/ LPDDR2) - total of 200 us
+ * 0x10 - 14 cycles (JEDEC value for LPDDR2) - total of 200 us
  * 0x23 - 33 cycles (JEDEC value for DDR3) - total of 500 us
  * 0x3E - 60 cycles
  * 0x3F - 61 cycles
@@ -2726,8 +2699,8 @@ typedef union _hw_mmdc_mdor
 
 /* --- Register HW_MMDC_MDOR, field SDE_TO_RST[13:8] (RW)
  *
- * DDR3: Time from SDE enable until DDR reset# is high. In DDR2/ LPDDR2 mode this field is not
- * relevant . Each cycle in this field is 15.625 us.
+ * DDR3: Time from SDE enable until DDR reset# is high. In LPDDR2 mode this field is not relevant .
+ * Each cycle in this field is 15.625 us.
  *
  * Values:
  * 0x0 - Reserved
@@ -2757,8 +2730,8 @@ typedef union _hw_mmdc_mdor
 
 /* --- Register HW_MMDC_MDOR, field TXPR[23:16] (RW)
  *
- * DDR2/ DDR3: CKE HIGH to a valid command. This field is not relevant in LPDDR2 mode. According to
- * DDR2 JEDEC standard this field supposes to be 400 ns. DDR3: As defined in timing parameter table.
+ * DDR3: CKE HIGH to a valid command. This field is not relevant in LPDDR2 mode. DDR3: As defined in
+ * timing parameter table.
  *
  * Values:
  * 0x0 - Reserved
@@ -2795,8 +2768,7 @@ typedef union _hw_mmdc_mdor
  *
  * This register contains data that was collected after issuing MRR command. The data in this
  * register is valid only when MDSCR[MRR_READ_DATA_VALID] is set to "1".  This register is relevant
- * only in LPDDR2 mode. For further information see .  Supported Mode Of Operations:  For Channel 0:
- * LP2_2ch_x16, LP2_2ch_x32  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+ * only in LPDDR2 mode. For further information see .
  */
 typedef union _hw_mmdc_mdmrr
 {
@@ -2879,19 +2851,18 @@ typedef union _hw_mmdc_mdmrr
  *
  * Reset value: 0x00000000
  *
- * This register is relevant only for LPDDR2 mode.  Supported Mode Of Operations:  For Channel 0:
- * LP2_2ch_x16, LP2_2ch_x32  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+ * This register is relevant only for LPDDR2 mode.
  */
 typedef union _hw_mmdc_mdcfg3lp
 {
     reg32_t U;
     struct _hw_mmdc_mdcfg3lp_bitfields
     {
-        unsigned TRPAB_LP : 4; //!< [3:0] Precharge (all banks) command period. (This field is valid only for LPDDR2 memories)
-        unsigned TRPPB_LP : 4; //!< [7:4] Precharge (per bank) command period (same bank). (This field is valid only for LPDDR2 memories)
-        unsigned TRCD_LP : 4; //!< [11:8] Active command to internal read or write delay time (same bank). (This field is valid only for LPDDR2 memories)
+        unsigned TRPAB_LP : 4; //!< [3:0] Precharge (all banks) command period.
+        unsigned TRPPB_LP : 4; //!< [7:4] Precharge (per bank) command period (same bank).
+        unsigned TRCD_LP : 4; //!< [11:8] Active command to internal read or write delay time (same bank).
         unsigned RESERVED0 : 4; //!< [15:12] Reserved
-        unsigned RC_LP : 6; //!< [21:16] Active to Active or Refresh command period (same bank). (This field is valid only for LPDDR2 memories)
+        unsigned RC_LP : 6; //!< [21:16] Active to Active or Refresh command period (same bank).
         unsigned RESERVED1 : 10; //!< [31:22] Reserved
     } B;
 } hw_mmdc_mdcfg3lp_t;
@@ -3036,16 +3007,15 @@ typedef union _hw_mmdc_mdcfg3lp
  * Reset value: 0x00000000
  *
  * This register is relevant only for LPDDR2 mode. It is used to dynamically change certain values
- * depending on MR4 read result, which is based on memory temperature sensor result.  Supported Mode
- * of Operations:  For Channel 0: LP2_2ch_x16, LP2_2ch_x32  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+ * depending on MR4 read result, which is based on memory temperature sensor result.
  */
 typedef union _hw_mmdc_mdmr4
 {
     reg32_t U;
     struct _hw_mmdc_mdmr4_bitfields
     {
-        unsigned UPDATE_DE_REQ : 1; //!< [0] Update Derated Values Request. This read modify write field is automatically cleared after the request is issued.
-        unsigned UPDATE_DE_ACK : 1; //!< [1] Update Derated Values Acknowledge. This read only bit will be cleared upon UPDATE_DE_REQ assertion and will be set after the new values are taken.
+        unsigned UPDATE_DE_REQ : 1; //!< [0] Update Derated Values Request.
+        unsigned UPDATE_DE_ACK : 1; //!< [1] Update Derated Values Acknowledge.
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
         unsigned TRCD_DE : 1; //!< [4] tRCD derating value.
         unsigned TRC_DE : 1; //!< [5] tRC derating value.
@@ -3244,15 +3214,14 @@ typedef union _hw_mmdc_mdmr4
  * Reset value: 0x0000003f
  *
  * This register defines the partitioning between chip select 0 and chip select 1. For further
- * information see .  Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16,
- * LP2_2ch_x32
+ * information see .
  */
 typedef union _hw_mmdc_mdasp
 {
     reg32_t U;
     struct _hw_mmdc_mdasp_bitfields
     {
-        unsigned CS0_END : 7; //!< [6:0] CS0_END. Defines the absolute last address associated with CS0 with increments of 256Mb
+        unsigned CS0_END : 7; //!< [6:0] CS0_END.
         unsigned RESERVED0 : 25; //!< [31:7] Reserved
     } B;
 } hw_mmdc_mdasp_t;
@@ -3314,28 +3283,27 @@ typedef union _hw_mmdc_mdasp
  * Reset value: 0x809901a3
  *
  * This register determines the values of the weights used for the re-ordering arbitration engine.
- * For further information see .  Supported Mode Of Operations:  For Channel 0: All  For Channel 1:
- * LP2_2ch_x16, LP2_2ch_x32
+ * For further information see .
  */
 typedef union _hw_mmdc_maarcr
 {
     reg32_t U;
     struct _hw_mmdc_maarcr_bitfields
     {
-        unsigned ARCR_GUARD : 4; //!< [3:0] ARCR Guard. After an access reached the maximum dynamic score value, it will wait additional ARCR_GUARD arbitration cycles and then will gain the highest priority in the optimization/reordering mechanism.
-        unsigned ARCR_DYN_MAX : 4; //!< [7:4] ARCR Dynamic Maximum. ARCR_DYN_MAX is the maximum dynamic score value that each access inside the optimization/reordering mechanism can get.
-        unsigned ARCR_DYN_JMP : 4; //!< [11:8] ARCR Dynamic Jump. Each time an access wan't chosen by the optimization/reordering mechanism then its dynamic score will be incremented by ARCR_DYN_JMP value. Setting ARCR_DYN_JMP may cause starvation of low priority accesses ARCR_DYN_JMP must be smaller than ARCR_DYN_MAX Default ARCR_DYN_JMP value is 0x0001 - encoding 1
+        unsigned ARCR_GUARD : 4; //!< [3:0] ARCR Guard.
+        unsigned ARCR_DYN_MAX : 4; //!< [7:4] ARCR Dynamic Maximum.
+        unsigned ARCR_DYN_JMP : 4; //!< [11:8] ARCR Dynamic Jump.
         unsigned RESERVED0 : 4; //!< [15:12] Reserved
-        unsigned ARCR_ACC_HIT : 3; //!< [18:16] ARCR Access Hit Rate. This value will be added by the optimization/reordering mechanism to any pending access that has the same access type (read/write) as the previous access. Default value of is ARCR_ACC_HIT 0x0010 - encoding 2.
+        unsigned ARCR_ACC_HIT : 3; //!< [18:16] ARCR Access Hit Rate.
         unsigned RESERVED1 : 1; //!< [19] Reserved
-        unsigned ARCR_PAG_HIT : 3; //!< [22:20] ARCR Page Hit Rate. This value will be added by the optimization/reordering mechanism to any pending access that is targeted to an open DDR row. Default value of ARCR_PAG_HIT is 0x00100 - encoding 4.
+        unsigned ARCR_PAG_HIT : 3; //!< [22:20] ARCR Page Hit Rate.
         unsigned RESERVED2 : 1; //!< [23] Reserved
         unsigned ARCR_RCH_EN : 1; //!< [24] This bit defines whether Real time channel is activated and bypassed all other pending accesses, So accesses with QoS=='F' will be granted the highest prioritiy in the optimization/reordering mechanism Default value is 0x1 - encoding 1 (Enabled)
         unsigned RESERVED3 : 3; //!< [27:25] Reserved
         unsigned ARCR_EXC_ERR_EN : 1; //!< [28] This bit defines whether exclusive read/write access violation of AXI 6.2.4 rule result in SLV Error response or in OKAY response Default value is 0x1 - encoding 1(response is SLV Error)
         unsigned RESERVED4 : 1; //!< [29] Reserved
         unsigned ARCR_SEC_ERR_EN : 1; //!< [30] This bit defines whether security read/write access violation result in SLV Error response or in OKAY response Default value is 0x1 - encoding 1(response is SLV Error, rresp/bresp=2'b10)
-        unsigned ARCR_SEC_ERR_LOCK : 1; //!< [31] Once set, this bit locks ARCR_SEC_ERR_EN and prevents from its updating. This bit can be only cleared by reset Default value is 0x0 - encoding 0 (unlocked)
+        unsigned ARCR_SEC_ERR_LOCK : 1; //!< [31] Once set, this bit locks ARCR_SEC_ERR_EN and prevents from its updating.
     } B;
 } hw_mmdc_maarcr_t;
 #endif
@@ -3586,27 +3554,26 @@ typedef union _hw_mmdc_maarcr
  *
  * Reset value: 0x00011007
  *
- * The MAPSR determines the power saving features of MMDC. For further information see .  Supported
- * Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+ * The MAPSR determines the power saving features of MMDC. For further information see .
  */
 typedef union _hw_mmdc_mapsr
 {
     reg32_t U;
     struct _hw_mmdc_mapsr_bitfields
     {
-        unsigned PSD : 1; //!< [0] Automatic Power Saving Disable. When the value of PSD is "0" (i.e automatic power saving is enabled) then the PST is activated and MMDC will enter automatically to self-refresh while the number of idle cycle reached. This bit must be disabled (i.e set to "1") during calibration process
+        unsigned PSD : 1; //!< [0] Automatic Power Saving Disable.
         unsigned RESERVED0 : 3; //!< [3:1] Reserved.
-        unsigned PSS : 1; //!< [4] Power Saving Status. This read only bit indicates whether the MMDC is in automatic power saving mode.
+        unsigned PSS : 1; //!< [4] Power Saving Status.
         unsigned RIS : 1; //!< [5] Read Idle Status.This read only bit indicates whether read request buffer is idle (empty) or not.
         unsigned WIS : 1; //!< [6] Write Idle Status.This read only bit indicates whether write request buffer is idle (empty) or not.
         unsigned RESERVED1 : 1; //!< [7] Reserved.
-        unsigned PST : 8; //!< [15:8] Automatic Power saving timer. Valid only when PSD is set to "0". When the MMDC is idle for amount of cycles specified in that field then the DDR device will be entered automatically into self-refresh mode. The real value which is used is register-value multiplied by 64.
+        unsigned PST : 8; //!< [15:8] Automatic Power saving timer.
         unsigned RESERVED2 : 4; //!< [19:16] Reserved
-        unsigned LPMD : 1; //!< [20] General LPMD request. SW request for LPMD. Assertion of this bit will yield in self-refresh entry sequence
-        unsigned DVFS : 1; //!< [21] General DVFS request. SW request for DVFS. Assertion of this bit will yield in self-refresh entry sequence
+        unsigned LPMD : 1; //!< [20] General LPMD request.
+        unsigned DVFS : 1; //!< [21] General DVFS request.
         unsigned RESERVED3 : 2; //!< [23:22] Reserved
-        unsigned LPACK : 1; //!< [24] General low-power acknowledge. This read only bit indicates whether a low-power acknowledge was asserted and that MMDC is in self-refresh mode
-        unsigned DVACK : 1; //!< [25] General DVFS acknowledge. This read only bit indicates whether a dvfs acknowledge was asserted and that MMDC is in self-refresh mode
+        unsigned LPACK : 1; //!< [24] General low-power acknowledge.
+        unsigned DVACK : 1; //!< [25] General DVFS acknowledge.
         unsigned RESERVED4 : 6; //!< [31:26] Reserved
     } B;
 } hw_mmdc_mapsr_t;
@@ -3821,16 +3788,15 @@ typedef union _hw_mmdc_mapsr
  * Reset value: 0x00200000
  *
  * This register defines the ID to be monitored for exclusive accesses of monitor0 and monitor1. For
- * further information see .  Supported Mode Of Operations:  For Channel 0: All  For Channel 1:
- * LP2_2ch_x16, LP2_2ch_x32
+ * further information see .
  */
 typedef union _hw_mmdc_maexidr0
 {
     reg32_t U;
     struct _hw_mmdc_maexidr0_bitfields
     {
-        unsigned EXC_ID_MONITOR0 : 16; //!< [15:0] This feild defines ID for Exclusive monitor#0. Default value is 0x0000
-        unsigned EXC_ID_MONITOR1 : 16; //!< [31:16] This feild defines ID for Exclusive monitor#1. Default value is 0x0020
+        unsigned EXC_ID_MONITOR0 : 16; //!< [15:0] This feild defines ID for Exclusive monitor#0.
+        unsigned EXC_ID_MONITOR1 : 16; //!< [31:16] This feild defines ID for Exclusive monitor#1.
     } B;
 } hw_mmdc_maexidr0_t;
 #endif
@@ -3902,16 +3868,15 @@ typedef union _hw_mmdc_maexidr0
  * Reset value: 0x00600040
  *
  * This register defines the ID to be monitored for exclusive accesses of monitor2 and monitor3. For
- * further information see .  Supported Mode Of Operations:  For Channel 0: All  For Channel 1:
- * LP2_2ch_x16, LP2_2ch_x32
+ * further information see .
  */
 typedef union _hw_mmdc_maexidr1
 {
     reg32_t U;
     struct _hw_mmdc_maexidr1_bitfields
     {
-        unsigned EXC_ID_MONITOR2 : 16; //!< [15:0] This feild defines ID for Exclusive monitor#2. Default value is 0x0040
-        unsigned EXC_ID_MONITOR3 : 16; //!< [31:16] This feild defines ID for Exclusive monitor#3. Default value is 0x0060
+        unsigned EXC_ID_MONITOR2 : 16; //!< [15:0] This feild defines ID for Exclusive monitor#2.
+        unsigned EXC_ID_MONITOR3 : 16; //!< [31:16] This feild defines ID for Exclusive monitor#3.
     } B;
 } hw_mmdc_maexidr1_t;
 #endif
@@ -3982,20 +3947,20 @@ typedef union _hw_mmdc_maexidr1
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_madpcr0
 {
     reg32_t U;
     struct _hw_mmdc_madpcr0_bitfields
     {
-        unsigned DBG_EN : 1; //!< [0] Debug and Profiling Enable. Enable debug and profiling mechanism. When this bit is asserted then the MMDC will perform a profiling based on the ID that is configured to MADPCR1. Upon assertion of PRF_FRZ the profiling will be freezed and the profiling results will be sampled to the status registers (MADPSR0-MADPSR5). For further information see . default is "disable"
-        unsigned DBG_RST : 1; //!< [1] Debug and Profiling Reset. Reset all debug and profiling counters and components.
-        unsigned PRF_FRZ : 1; //!< [2] Profiling freeze. When this bit is assertted then the profilling mechanism will be freezed and the associated status registers ( MADPSR0-MADPSR5) will hold the the current profiling values.
-        unsigned CYC_OVF : 1; //!< [3] Total Profiling Cycles Count Overflow. When profiling mechanism is enabled (DBG_EN is set to "1") then this bit is asserted when overflow of CYC_COUNT occurred. Cleared by writing 1 to it.
+        unsigned DBG_EN : 1; //!< [0] Debug and Profiling Enable.
+        unsigned DBG_RST : 1; //!< [1] Debug and Profiling Reset.
+        unsigned PRF_FRZ : 1; //!< [2] Profiling freeze.
+        unsigned CYC_OVF : 1; //!< [3] Total Profiling Cycles Count Overflow.
         unsigned RESERVED0 : 4; //!< [7:4] Reserved.
-        unsigned SBS_EN : 1; //!< [8] Step By Step debug Enable. Enable step by step mode. Every time this mechanism is enabled then setting SBS to "1" will dispatch one pending AXI access to the DDR and in parallel its attributes will be observed in the status registes (MASBS0 and MASBS1). For further information see .
-        unsigned SBS : 1; //!< [9] Step By Step trigger. If SBS_EN is set to "1" then dispatching AXI pending access toward the DDR will done only if this bit is set to "1", otherewise no access will be dispatched toward the DDR. This bit is cleared when the pending access has been issued toward the DDR device.
+        unsigned SBS_EN : 1; //!< [8] Step By Step debug Enable.
+        unsigned SBS : 1; //!< [9] Step By Step trigger.
         unsigned RESERVED1 : 22; //!< [31:10] Reserved.
     } B;
 } hw_mmdc_madpcr0_t;
@@ -4182,15 +4147,15 @@ typedef union _hw_mmdc_madpcr0
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_madpcr1
 {
     reg32_t U;
     struct _hw_mmdc_madpcr1_bitfields
     {
-        unsigned PRF_AXI_ID : 16; //!< [15:0] Profiling AXI ID. AXI IDs that matches a bit-wise AND logic operation between PRF_AXI_ID and PRF_AXI_ID_MASK are chosen for profiling. Default value is 0x0, to choose any ID-s for profiling
-        unsigned PRF_AXI_ID_MASK : 16; //!< [31:16] Profiling AXI ID Mask. AXI ID bits which masked by this value are chosen for profiling.
+        unsigned PRF_AXI_ID : 16; //!< [15:0] Profiling AXI ID.
+        unsigned PRF_AXI_ID_MASK : 16; //!< [31:16] Profiling AXI ID Mask.
     } B;
 } hw_mmdc_madpcr1_t;
 #endif
@@ -4267,14 +4232,14 @@ typedef union _hw_mmdc_madpcr1
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_madpsr0
 {
     reg32_t U;
     struct _hw_mmdc_madpsr0_bitfields
     {
-        unsigned CYC_COUNT : 32; //!< [31:0] Total Profiling cycle Count. This field reflects the total cycle count in case the profiling mechanism is enabled from assertion of DBG_EN and until PRF_FRZ is asserted
+        unsigned CYC_COUNT : 32; //!< [31:0] Total Profiling cycle Count.
     } B;
 } hw_mmdc_madpsr0_t;
 #endif
@@ -4316,15 +4281,14 @@ typedef union _hw_mmdc_madpsr0
  * Reset value: 0x00000000
  *
  * The register reflects the total cycles during which the MMDC state machines were busy (both
- * writes and reads). This information can be used for DDR Utilization calculation.  Supported Mode
- * Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+ * writes and reads). This information can be used for DDR Utilization calculation.
  */
 typedef union _hw_mmdc_madpsr1
 {
     reg32_t U;
     struct _hw_mmdc_madpsr1_bitfields
     {
-        unsigned BUSY_COUNT : 32; //!< [31:0] Profiling Busy Cycles Count. This field reflects the total number of cycles where the MMDC read and write state machines were busy during the profiling period. Can be used for DDR utilization calculations
+        unsigned BUSY_COUNT : 32; //!< [31:0] Profiling Busy Cycles Count.
     } B;
 } hw_mmdc_madpsr1_t;
 #endif
@@ -4366,15 +4330,14 @@ typedef union _hw_mmdc_madpsr1
  *
  * Reset value: 0x00000000
  *
- * This register reflects the total number of read accesses (per AXI ID) toward MMDC.  Supported
- * Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+ * This register reflects the total number of read accesses (per AXI ID) toward MMDC.
  */
 typedef union _hw_mmdc_madpsr2
 {
     reg32_t U;
     struct _hw_mmdc_madpsr2_bitfields
     {
-        unsigned RD_ACC_COUNT : 32; //!< [31:0] Profiling Read Access Count. This register reflects the total number of read accesses (per AXI ID) toward MMDC.
+        unsigned RD_ACC_COUNT : 32; //!< [31:0] Profiling Read Access Count.
     } B;
 } hw_mmdc_madpsr2_t;
 #endif
@@ -4415,15 +4378,14 @@ typedef union _hw_mmdc_madpsr2
  *
  * Reset value: 0x00000000
  *
- * This register reflects the total number of write accesses (per AXI ID) toward MMDC.  Supported
- * Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+ * This register reflects the total number of write accesses (per AXI ID) toward MMDC.
  */
 typedef union _hw_mmdc_madpsr3
 {
     reg32_t U;
     struct _hw_mmdc_madpsr3_bitfields
     {
-        unsigned WR_ACC_COUNT : 32; //!< [31:0] Profiling Write Access Count. This register reflects the total number of write accesses (per AXI ID) toward MMDC.
+        unsigned WR_ACC_COUNT : 32; //!< [31:0] Profiling Write Access Count.
     } B;
 } hw_mmdc_madpsr3_t;
 #endif
@@ -4465,15 +4427,14 @@ typedef union _hw_mmdc_madpsr3
  * Reset value: 0x00000000
  *
  * This register reflects the total number of bytes that were transferred during read access (per
- * AXI ID) toward MMDC.  Supported Mode Of Operations:  For Channel 0: All  For Channel 1:
- * LP2_2ch_x16, LP2_2ch_x32
+ * AXI ID) toward MMDC.
  */
 typedef union _hw_mmdc_madpsr4
 {
     reg32_t U;
     struct _hw_mmdc_madpsr4_bitfields
     {
-        unsigned RD_BYTES_COUNT : 32; //!< [31:0] Profiling Read Bytes Count. This register reflects the total number of bytes that were transferred during read access (per AXI ID) toward MMDC.
+        unsigned RD_BYTES_COUNT : 32; //!< [31:0] Profiling Read Bytes Count.
     } B;
 } hw_mmdc_madpsr4_t;
 #endif
@@ -4515,15 +4476,14 @@ typedef union _hw_mmdc_madpsr4
  * Reset value: 0x00000000
  *
  * This register reflects the total number of bytes that were transferred during write access (per
- * AXI ID) toward MMDC.  Supported Mode Of Operations:  For Channel 0: All  For Channel 1:
- * LP2_2ch_x16, LP2_2ch_x32
+ * AXI ID) toward MMDC.
  */
 typedef union _hw_mmdc_madpsr5
 {
     reg32_t U;
     struct _hw_mmdc_madpsr5_bitfields
     {
-        unsigned WR_BYTES_COUNT : 32; //!< [31:0] Profiling Write Bytes Count. This register reflects the total number of bytes that were transferred during write access (per AXI ID) toward MMDC.
+        unsigned WR_BYTES_COUNT : 32; //!< [31:0] Profiling Write Bytes Count.
     } B;
 } hw_mmdc_madpsr5_t;
 #endif
@@ -4564,14 +4524,14 @@ typedef union _hw_mmdc_madpsr5
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_masbs0
 {
     reg32_t U;
     struct _hw_mmdc_masbs0_bitfields
     {
-        unsigned SBS_ADDR : 32; //!< [31:0] Step By Step Address. These bits reflect the address of the pending request in case of step by step mode.
+        unsigned SBS_ADDR : 32; //!< [31:0] Step By Step Address.
     } B;
 } hw_mmdc_masbs0_t;
 #endif
@@ -4612,22 +4572,22 @@ typedef union _hw_mmdc_masbs0
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_masbs1
 {
     reg32_t U;
     struct _hw_mmdc_masbs1_bitfields
     {
-        unsigned SBS_VLD : 1; //!< [0] Step By Step Valid. This bit reflects whether there is a pending request in case of step by step mode.
-        unsigned SBS_TYPE : 1; //!< [1] Step By Step Request Type. These bits reflect the type (read/write) of the pending request in case of step by step mode.
-        unsigned SBS_LOCK : 2; //!< [3:2] Step By Step Lock. These bits reflect the AXI LOCK of the pending request in case of step by step mode.
-        unsigned SBS_PROT : 3; //!< [6:4] Step By Step Protection. These bits reflect the AXI PROT of the pending request in case of step by step mode.
-        unsigned SBS_SIZE : 3; //!< [9:7] Step By Step Size. These bits reflect the AXI SIZE of the pending request in case of step by step mode.
-        unsigned SBS_BURST : 2; //!< [11:10] Step By Step Burst. These bits reflect the AXI BURST of the pending request in case of step by step mode.
-        unsigned SBS_BUFF : 1; //!< [12] Step By Step Buffered. This bit reflect the AXI CACHE[0] of the pending request in case of step by step mode. Relevant only for write requests
-        unsigned SBS_LEN : 3; //!< [15:13] Step By Step Length. These bits reflect the AXI LENGTH of the pending request in case of step by step mode.
-        unsigned SBS_AXI_ID : 16; //!< [31:16] Step By Step AXI ID. These bits reflect the AXI ID of the pending request in case of step by step mode.
+        unsigned SBS_VLD : 1; //!< [0] Step By Step Valid.
+        unsigned SBS_TYPE : 1; //!< [1] Step By Step Request Type.
+        unsigned SBS_LOCK : 2; //!< [3:2] Step By Step Lock.
+        unsigned SBS_PROT : 3; //!< [6:4] Step By Step Protection.
+        unsigned SBS_SIZE : 3; //!< [9:7] Step By Step Size.
+        unsigned SBS_BURST : 2; //!< [11:10] Step By Step Burst.
+        unsigned SBS_BUFF : 1; //!< [12] Step By Step Buffered.
+        unsigned SBS_LEN : 3; //!< [15:13] Step By Step Length.
+        unsigned SBS_AXI_ID : 16; //!< [31:16] Step By Step AXI ID.
     } B;
 } hw_mmdc_masbs1_t;
 #endif
@@ -4796,8 +4756,7 @@ typedef union _hw_mmdc_masbs1
  *
  * Reset value: 0x00000000
  *
- * This register is a general 32 bit read/write register.  Supported Mode Of Operations:  For
- * Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+ * This register is a general 32 bit read/write register.
  */
 typedef union _hw_mmdc_magenp
 {
@@ -4856,8 +4815,7 @@ typedef union _hw_mmdc_magenp
  *
  * Reset value: 0xa1380000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: This register is reserved for
- * channel 1.
+
  */
 typedef union _hw_mmdc_mpzqhwctrl
 {
@@ -4865,15 +4823,15 @@ typedef union _hw_mmdc_mpzqhwctrl
     struct _hw_mmdc_mpzqhwctrl_bitfields
     {
         unsigned ZQ_MODE : 2; //!< [1:0] ZQ calibration mode:
-        unsigned ZQ_HW_PER : 4; //!< [5:2] ZQ periodic calibration time. This field determines how often the periodic ZQ calibration is performed. This field is applied for both ZQ short calibration and ZQ automatic calibration process with i.MX ZQ calibration pad. Whenever this timer is expired then according to ZQ_MODE the ZQ automatic calibration process with the i.MX ZQ calibration pad will be issued and/or short/long command will be issued to the external DDR device. This field is ignored if ZQ_MODE equals "00"
-        unsigned ZQ_HW_PU_RES : 5; //!< [10:6] ZQ automatic calibration pull-up result. This field holds the pull-up resistor value calculated at the end of the ZQ automatic calibration process with the i.MX ZQ calibration pad.
-        unsigned ZQ_HW_PD_RES : 5; //!< [15:11] ZQ HW calibration pull-down result. This field holds the pull-down resistor value calculated at the end of the ZQ automatic calibration process with the i.MX ZQ calibration pad.
-        unsigned ZQ_HW_FOR : 1; //!< [16] Force ZQ automatic calibration process with the i.MX ZQ calibration pad. When this bit is asserted then the MMDC will issue one ZQ automatic calibration process with the i.MX ZQ calibration pad. It is the user responsibility to make sure that all the accesses to DDR will be finished before asserting this bit using CON_REQ/CON_ACK mechanism. HW will negate this bit upon completion of the ZQ calibration process. Upon negation of this bit the ZQ HW calibration pull-up and pull-down results (ZQ_HW_PU_RES and ZQ_HW_PD_RES respectively) are valid In order to enable this bit ZQ_MODE must be set to either "1" or "3"
-        unsigned TZQ_INIT : 3; //!< [19:17] Device ZQ long/init time. This field holds the number of cycles that are required by the external DDR device to perform ZQ long calibration right after reset. Upon driving the command to the DDR device then no further accesses will be issued to the DDR device till satisfying that time. In LPDDR2 the ZQ init time is taken from MPZQLP2CTL[ZQ_LP2_HW_ZQINIT] This field should not be update during ZQ calibration.
-        unsigned TZQ_OPER : 3; //!< [22:20] Device ZQ long/oper time. This field holds the number of cycles that are required by the external DDR device to perform ZQ long calibration except the first ZQ long command that is isued after reset. Upon driving the command to the DDR device then no further accesses will be issued to the DDR device till satisfying that time. In LPDDR2 the ZQ oper time is taken from MPZQLP2CTL[ZQ_LP2_HW_ZQCL] This field should not be update during ZQ calibration.
-        unsigned TZQ_CS : 3; //!< [25:23] Device ZQ short time. This field holds the number of cycles that are required by the external DDR device to perform ZQ short calibration. Upon driving the command to the DDR device then no further accesses will be issued to the DDR device till satisfying that time. In LPDDR2 the ZQ short time is taken from MPZQLP2CTL[ZQ_LP2_HW_ZQCS] This field should not be update during ZQ calibration.
+        unsigned ZQ_HW_PER : 4; //!< [5:2] ZQ periodic calibration time.
+        unsigned ZQ_HW_PU_RES : 5; //!< [10:6] ZQ automatic calibration pull-up result.
+        unsigned ZQ_HW_PD_RES : 5; //!< [15:11] ZQ HW calibration pull-down result.
+        unsigned ZQ_HW_FOR : 1; //!< [16] Force ZQ automatic calibration process with the i.MX ZQ calibration pad.
+        unsigned TZQ_INIT : 3; //!< [19:17] Device ZQ long/init time.
+        unsigned TZQ_OPER : 3; //!< [22:20] Device ZQ long/oper time.
+        unsigned TZQ_CS : 3; //!< [25:23] Device ZQ short time.
         unsigned RESERVED0 : 1; //!< [26] Reserved.
-        unsigned ZQ_EARLY_COMPARATOR_EN_TIMER : 5; //!< [31:27] ZQ early comparator enable timer. This timer defines the interval between the warming up of the comparator of the i.MX ZQ calibration pad and the begining of the ZQ calibration process with the pad
+        unsigned ZQ_EARLY_COMPARATOR_EN_TIMER : 5; //!< [31:27] ZQ early comparator enable timer.
     } B;
 } hw_mmdc_mpzqhwctrl_t;
 #endif
@@ -5155,19 +5113,19 @@ typedef union _hw_mmdc_mpzqhwctrl
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: This register is reserved.
+
  */
 typedef union _hw_mmdc_mpzqswctrl
 {
     reg32_t U;
     struct _hw_mmdc_mpzqswctrl_bitfields
     {
-        unsigned ZQ_SW_FOR : 1; //!< [0] ZQ SW calibration enable. This bit when asserted enables ZQ SW calibration. HW negates this bit upon completion of the ZQ SW calibration. Upon negation of this bit the ZQ SW calibration result (i.e ZQ_SW_RES) is valid
-        unsigned ZQ_SW_RES : 1; //!< [1] ZQ software calibration result. This bit reflects the ZQ calibration voltage comparator value.
+        unsigned ZQ_SW_FOR : 1; //!< [0] ZQ SW calibration enable.
+        unsigned ZQ_SW_RES : 1; //!< [1] ZQ software calibration result.
         unsigned ZQ_SW_PU_VAL : 5; //!< [6:2] ZQ software pull-up resistence.This field determines the value of the PU resistor during SW ZQ calibration.
         unsigned ZQ_SW_PD_VAL : 5; //!< [11:7] ZQ software pull-down resistence.This field determines the value of the PD resistor during SW ZQ calibration.
-        unsigned ZQ_SW_PD : 1; //!< [12] ZQ software PU/PD calibration. This bit determines the calibration stage (PU or PD).
-        unsigned USE_ZQ_SW_VAL : 1; //!< [13] Use SW ZQ configured value for I/O pads resistor controls. This bit selects whether ZQ SW value or ZQ HW value will be driven to the I/O pads resistor controls. By default this bit is cleared and MMDC drives the HW ZQ status bits on the resistor controls of the I/O pads. This bit should not be updated during ZQ calibration.
+        unsigned ZQ_SW_PD : 1; //!< [12] ZQ software PU/PD calibration.
+        unsigned USE_ZQ_SW_VAL : 1; //!< [13] Use SW ZQ configured value for I/O pads resistor controls.
         unsigned RESERVED0 : 2; //!< [15:14] Reserved
         unsigned ZQ_CMP_OUT_SMP : 2; //!< [17:16] Defines the amount of cycles between driving the ZQ signals to the ZQ pad and till sampling the comparator enable output while performing ZQ calibration process with the i.MX ZQ calibration pad
         unsigned RESERVED1 : 14; //!< [31:18] Reserved
@@ -5368,26 +5326,25 @@ typedef union _hw_mmdc_mpzqswctrl
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpwlgcr
 {
     reg32_t U;
     struct _hw_mmdc_mpwlgcr_bitfields
     {
-        unsigned HW_WL_EN : 1; //!< [0] Write-Leveling HW (automatic) enable. If this bit is asserted then the MMDC will perform the whole Write-Leveling sequence with the DDR device (assuming that Write-Leveling procedure is already enabled in the DDR device through MRS command). HW negates this bit upon completion of the HW write-leveling. Negation of this bit also points that the write-leveling HW calibration results are valid Before issuing the first DQS the MMDC counts 25 + 15 cycles automatically as required by the standard.
-        unsigned SW_WL_EN : 1; //!< [1] Write-Leveling SW enable. If this bit is asserted then the MMDC will perform one write-leveling iteration with the DDR device (assuming that Write-Leveling procedure is already enabled in the DDR device through MRS command). HW negate this bit upon completion of the SW write-leveling. Negation of this bit also points that the write-leveling SW calibration result is valid If this bit and the SW_WL_CNT_EN are enabled the MMDC counts 25 + 15 cycles before issuing the SW write-leveling DQS.
+        unsigned HW_WL_EN : 1; //!< [0] Write-Leveling HW (automatic) enable.
+        unsigned SW_WL_EN : 1; //!< [1] Write-Leveling SW enable.
         unsigned SW_WL_CNT_EN : 1; //!< [2] SW write-leveling count down enable.This bit when asserted set a certain delay of (25+15) cycles from the setting of SW_WL_EN and before driving the DQS to the DDR device.This bit should be asserted before the first SW write-leveling request and after issuing the write leveling MRS command
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned WL_SW_RES0 : 1; //!< [4] Byte0 write-leveling software result. This bit reflects the value that is driven by the DDR device on DQ0 during SW write-leveling.
-        unsigned WL_SW_RES1 : 1; //!< [5] Byte1 write-leveling software result. This bit reflects the value that is driven by the DDR device on DQ8 during SW write-leveling.
-        unsigned WL_SW_RES2 : 1; //!< [6] Byte2 write-leveling software result. This bit reflects the value that is driven by the DDR device on DQ16 during SW write-leveling.
-        unsigned WL_SW_RES3 : 1; //!< [7] Byte3 write-leveling software result. This bit reflects the value that is driven by the DDR device on DQ24 during SW write-leveling.
-        unsigned WL_HW_ERR0 : 1; //!< [8] Byte0 write-leveling HW calibration error. This bit is asserted when an error was found on byte0 during write-leveling HW calibration. This bit is valid only upon completion of the write-leveling HW calibration (i.e HW_WL_EN bit is de-asserted)
-        unsigned WL_HW_ERR1 : 1; //!< [9] Byte1 write-leveling HW calibration error. This bit is asserted when an error was found on byte1 during write-leveling HW calibration. This bit is valid only upon completion of the write-leveling HW calibration (i.e HW_WL_EN bit is de-asserted)
-        unsigned WL_HW_ERR2 : 1; //!< [10] Byte2 write-leveling HW calibration error. This bit is asserted when an error was found on byte2 during write-leveling HW calibration. This bit is valid only upon completion of the write-leveling HW calibration (i.e HW_WL_EN bit is de-asserted)
-        unsigned WL_HW_ERR3 : 1; //!< [11] Byte3 write-leveling HW calibration error. This bit is asserted when an error was found on byte3 during write-leveling HW calibration. This bit is valid only upon completion of the write-leveling HW calibration (i.e HW_WL_EN bit is de-asserted)
+        unsigned WL_SW_RES0 : 1; //!< [4] Byte0 write-leveling software result.
+        unsigned WL_SW_RES1 : 1; //!< [5] Byte1 write-leveling software result.
+        unsigned WL_SW_RES2 : 1; //!< [6] Byte2 write-leveling software result.
+        unsigned WL_SW_RES3 : 1; //!< [7] Byte3 write-leveling software result.
+        unsigned WL_HW_ERR0 : 1; //!< [8] Byte0 write-leveling HW calibration error.
+        unsigned WL_HW_ERR1 : 1; //!< [9] Byte1 write-leveling HW calibration error.
+        unsigned WL_HW_ERR2 : 1; //!< [10] Byte2 write-leveling HW calibration error.
+        unsigned WL_HW_ERR3 : 1; //!< [11] Byte3 write-leveling HW calibration error.
         unsigned RESERVED1 : 20; //!< [31:12] Reserved
     } B;
 } hw_mmdc_mpwlgcr_t;
@@ -5636,23 +5593,22 @@ typedef union _hw_mmdc_mpwlgcr
  *
  * Reset value: 0x00000000
  *
- * Supported Mode OF Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpwldectrl0
 {
     reg32_t U;
     struct _hw_mmdc_mpwldectrl0_bitfields
     {
-        unsigned WL_DL_ABS_OFFSET0 : 7; //!< [6:0] Absolute write-leveling delay offset for Byte 0. This field indicates the absolute delay between CK and write DQS of Byte0 with fractions of a clock period and up to half cycle. This value is process and frequency independent. The value of the delay can be calculated using the following equation (WR_DL_ABS_OFFSET1 / 256) * clock period When SW write-leveling is enabled (i.e SW_WL_EN = 1) then this value will be taken as is to the associated delay-line. When HW write-leveling is enabled (i.e HW_WL_EN = 1 ) then this value will indicate (status) the value that is taken to the associated delay-line at the end of the write-leveling calibration. The delay-line has a resolution that may vary between device to device, therefore is some cases an increment of the delay by 1 step may be smaller than the delay-line resolution.
+        unsigned WL_DL_ABS_OFFSET0 : 7; //!< [6:0] Absolute write-leveling delay offset for Byte 0.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned WL_HC_DEL0 : 1; //!< [8] Write leveling half cycle delay for Byte 0. This field indicates whether a delay of half cycle between CK and write DQS is added to the delay that is indicated in the associated WR_DL_ABS_OFFSET and WL_CYC_DEL. So the total delay is the sum of (WL_DL_ABS_OFFSET/256*cycle) + (WL_HC_DEL*half cycle) + (WL_CYC_DEL*cycle). When SW write-leveling is enabled (i.e SW_WL_EN = 1) then this value will be taken as is and will be added to the associated delay that is configured in WL_DL_OFFSET and WL_CYC_DEL. When HW write-leveling is enabled (i.e HW_WL_EN = 1 ) then this value will indicate (status) whether a delay of half cycle was added or not to the associated WL_DL_OFFSET and WL_CYC_DEL.
-        unsigned WL_CYC_DEL0 : 2; //!< [10:9] Write leveling cycle delay for Byte 0. This field indicates whether a delay of 1 or 2 cycles between CK and write DQS is added to the delay that is indicated in the associated WR_DL_ABS_OFFSET and WL_HC_DEL. So the total delay is the sum of (WL_DL_ABS_OFFSET/256*cycle) + (WL_HC_DEL*half cycle) + (WL_CYC_DEL*cycle). When both SW write-leveling is enabled (i.e SW_WL_EN = 1) or HW write-leveling is enabled (i.e HW_WL_EN = 1 ) then this value will be taken as is and will be added to the associated delay that is configured in WL_DL_OFFSET and WL_HC_DEL. Note that in HW write-leveling this field is not used for indication, as in WL_DL_OFFSET and WL_HC_DEL, but for configuration.
+        unsigned WL_HC_DEL0 : 1; //!< [8] Write leveling half cycle delay for Byte 0.
+        unsigned WL_CYC_DEL0 : 2; //!< [10:9] Write leveling cycle delay for Byte 0.
         unsigned RESERVED1 : 5; //!< [15:11] Reserved
-        unsigned WL_DL_ABS_OFFSET1 : 7; //!< [22:16] Absolute write-leveling delay offset for Byte 1. This field indicates the absolute delay between CK and write DQS of Byte1 with fractions of a clock period and up to half cycle. This value is process and frequency independent. The value of the delay can be calculated using the following equation (WR_DL_ABS_OFFSET1 / 256) * clock period When SW write-leveling is enabled (i.e SW_WL_EN = 1) then this value will be taken as is to the associated delay-line. When HW write-leveling is enabled (i.e HW_WL_EN = 1 ) then this value will indicate (status) the value that is taken to the associated delay-line at the end of the write-leveling calibration. The delay-line has a resolution that may vary between device to device, therefore is some cases an increment of the delay by 1 step may be smaller than the delay-line resolution.
+        unsigned WL_DL_ABS_OFFSET1 : 7; //!< [22:16] Absolute write-leveling delay offset for Byte 1.
         unsigned RESERVED2 : 1; //!< [23] Reserved
-        unsigned WL_HC_DEL1 : 1; //!< [24] Write leveling half cycle delay for Byte 1. This field indicates whether a delay of half cycle between CK and write DQS is added to the delay that is indicated in the associated WR_DL_ABS_OFFSET and WL_CYC_DEL. So the total delay is the sum of (WL_DL_ABS_OFFSET/256*cycle) + (WL_HC_DEL*half cycle) + (WL_CYC_DEL*cycle). When SW write-leveling is enabled (i.e SW_WL_EN = 1) then this value will be taken as is and will be added to the associated delay that is configured in WL_DL_OFFSET and WL_CYC_DEL. When HW write-leveling is enabled (i.e HW_WL_EN = 1 ) then this value will indicate (status) whether a delay of half cycle was added or not to the associated WL_DL_OFFSET and WL_CYC_DEL.
-        unsigned WL_CYC_DEL1 : 2; //!< [26:25] Write leveling cycle delay for Byte 1. This field indicates whether a delay of 1 or 2 cycles between CK and write DQS is added to the delay that is indicated in the associated WR_DL_ABS_OFFSET and WL_HC_DEL. So the total delay is the sum of (WL_DL_ABS_OFFSET/256*cycle) + (WL_HC_DEL*half cycle) + (WL_CYC_DEL*cycle). When both SW write-leveling is enabled (i.e SW_WL_EN = 1) or HW write-leveling is enabled (i.e HW_WL_EN = 1 ) then this value will be taken as is and will be added to the associated delay that is configured in WL_DL_OFFSET and WL_HC_DEL. Note that in HW write-leveling this field is not used for indication, as in WL_DL_OFFSET and WL_HC_DEL, but for configuration.
+        unsigned WL_HC_DEL1 : 1; //!< [24] Write leveling half cycle delay for Byte 1.
+        unsigned WL_CYC_DEL1 : 2; //!< [26:25] Write leveling cycle delay for Byte 1.
         unsigned RESERVED3 : 5; //!< [31:27] Reserved
     } B;
 } hw_mmdc_mpwldectrl0_t;
@@ -5868,22 +5824,22 @@ typedef union _hw_mmdc_mpwldectrl0
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpwldectrl1
 {
     reg32_t U;
     struct _hw_mmdc_mpwldectrl1_bitfields
     {
-        unsigned WL_DL_ABS_OFFSET2 : 7; //!< [6:0] Absolute write-leveling delay offset for Byte 2. This field indicates the absolute delay between CK and write DQS of Byte1 with fractions of a clock period and up to half cycle. This value is process and frequency independent. The value of the delay can be calculated using the following equation (WR_DL_ABS_OFFSET2 / 256) * clock period When SW write-leveling is enabled (i.e SW_WL_EN = 1) then this value will be taken as is to the associated delay-line. When HW write-leveling is enabled (i.e HW_WL_EN = 1 ) then this value will indicate (status) the value that is taken to the associated delay-line at the end of the write-leveling calibration. The delay-line has a resolution that may vary between device to device, therefore is some cases an increment of the delay by 1 step may be smaller than the delay-line resolution.
+        unsigned WL_DL_ABS_OFFSET2 : 7; //!< [6:0] Absolute write-leveling delay offset for Byte 2.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned WL_HC_DEL2 : 1; //!< [8] Write leveling half cycle delay for Byte 2. This field indicates whether a delay of half cycle between CK and write DQS is added to the delay that is indicated in the associated WR_DL_ABS_OFFSET and WL_CYC_DEL. So the total delay is the sum of (WL_DL_ABS_OFFSET/256*cycle) + (WL_HC_DEL*half cycle) + (WL_CYC_DEL*cycle). When SW write-leveling is enabled (i.e SW_WL_EN = 1) then this value will be taken as is and will be added to the associated delay that is configured in WL_DL_OFFSET and WL_CYC_DEL. When HW write-leveling is enabled (i.e HW_WL_EN = 1 ) then this value will indicate (status) whether a delay of half cycle was added or not to the associated WL_DL_OFFSET and WL_CYC_DEL.
-        unsigned WL_CYC_DEL2 : 2; //!< [10:9] Write leveling cycle delay for Byte 2. This field indicates whether a delay of 1 or 2 cycles between CK and write DQS is added to the delay that is indicated in the associated WR_DL_ABS_OFFSET and WL_HC_DEL. So the total delay is the sum of (WL_DL_ABS_OFFSET/256*cycle) + (WL_HC_DEL*half cycle) + (WL_CYC_DEL*cycle). When both SW write-leveling is enabled (i.e SW_WL_EN = 1) or HW write-leveling is enabled (i.e HW_WL_EN = 1 ) then this value will be taken as is and will be added to the associated delay that is configured in WL_DL_OFFSET and WL_HC_DEL. Note that in HW write-leveling this field is not used for indication, as in WL_DL_OFFSET and WL_HC_DEL, but for configuration.
+        unsigned WL_HC_DEL2 : 1; //!< [8] Write leveling half cycle delay for Byte 2.
+        unsigned WL_CYC_DEL2 : 2; //!< [10:9] Write leveling cycle delay for Byte 2.
         unsigned RESERVED1 : 5; //!< [15:11] Reserved
-        unsigned WL_DL_ABS_OFFSET3 : 7; //!< [22:16] Absolute write-leveling delay offset for Byte 3. This field indicates the absolute delay between CK and write DQS of Byte3 with fractions of a clock period and up to half cycle. This value is process and frequency independent. The value of the delay can be calculated using the following equation (WL_DL_ABS_OFFSET3 / 256) * clock period When SW write-leveling is enabled (i.e SW_WL_EN = 1) then this value will be taken as is to the associated delay-line. When HW write-leveling is enabled (i.e HW_WL_EN = 1 ) then this value will indicate (status) the value that is taken to the associated delay-line at the end of the write-leveling calibration. The delay-line has a resolution that may vary between device to device, therefore is some cases an increment of the delay by 1 step may be smaller than the delay-line resolution.
+        unsigned WL_DL_ABS_OFFSET3 : 7; //!< [22:16] Absolute write-leveling delay offset for Byte 3.
         unsigned RESERVED2 : 1; //!< [23] Reserved
-        unsigned WL_HC_DEL3 : 1; //!< [24] Write leveling half cycle delay for Byte 3. This field indicates whether a delay of half cycle between CK and write DQS is added to the delay that is indicated in the associated WL_DL_ABS_OFFSET and WL_CYC_DEL. So the total delay is the sum of (WL_DL_ABS_OFFSET/256*cycle) + (WL_HC_DEL*half cycle) + (WL_CYC_DEL*cycle). When SW write-leveling is enabled (i.e SW_WL_EN = 1) then this value will be taken as is and will be added to the associated delay that is configured in WL_DL_OFFSET and WL_CYC_DEL. When HW write-leveling is enabled (i.e HW_WL_EN = 1 ) then this value will indicate (status) whether a delay of half cycle was added or not to the associated WL_DL_OFFSET and WL_CYC_DEL.
-        unsigned WL_CYC_DEL3 : 2; //!< [26:25] Write leveling cycle delay for Byte 3. This field indicates whether a delay of 1 or 2 cycles between CK and write DQS is added to the delay that is indicated in the associated WL_DL_ABS_OFFSET and WL_HC_DEL. So the total delay is the sum of (WL_DL_ABS_OFFSET/256*cycle) + (WL_HC_DEL*half cycle) + (WL_CYC_DEL*cycle). When both SW write-leveling is enabled (i.e SW_WL_EN = 1) or HW write-leveling is enabled (i.e HW_WL_EN = 1 ) then this value will be taken as is and will be added to the associated delay that is configured in WL_DL_OFFSET and WL_HC_DEL. Note that in HW write-leveling this field is not used for indication, as in WL_DL_OFFSET and WL_HC_DEL, but for configuration.
+        unsigned WL_HC_DEL3 : 1; //!< [24] Write leveling half cycle delay for Byte 3.
+        unsigned WL_CYC_DEL3 : 2; //!< [26:25] Write leveling cycle delay for Byte 3.
         unsigned RESERVED3 : 5; //!< [31:27] Reserved
     } B;
 } hw_mmdc_mpwldectrl1_t;
@@ -6099,8 +6055,7 @@ typedef union _hw_mmdc_mpwldectrl1
  *
  * Reset value: 0x00000000
  *
- * This register holds the status of the four write leveling delay-lines.  Supported Mode Of
- * Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16, LP2_2ch_x32
+ * This register holds the status of the four write leveling delay-lines.
  */
 typedef union _hw_mmdc_mpwldlst
 {
@@ -6191,18 +6146,17 @@ typedef union _hw_mmdc_mpwldlst
  *
  * Reset value: 0x00000000
  *
- * In LPDDR2 mode this register should be cleared, so no termination will be activated  Supported
- * Mode Of Operations:  For Channel 0: DDR3_x16, DDR3_x32, DDR3_x64  For Channel 1: DDR3_x64
+ * In LPDDR2 mode this register should be cleared, so no termination will be activated
  */
 typedef union _hw_mmdc_mpodtctrl
 {
     reg32_t U;
     struct _hw_mmdc_mpodtctrl_bitfields
     {
-        unsigned ODT_WR_PAS_EN : 1; //!< [0] Inactive write CS ODT enable. The bit determines if ODT pin of the inactive CS will be asserted during write accesses.
-        unsigned ODT_WR_ACT_EN : 1; //!< [1] Active write CS ODT enable. The bit determines if ODT pin of the active CS will be asserted during write accesses.
-        unsigned ODT_RD_PAS_EN : 1; //!< [2] Inactive read CS ODT enable. The bit determines if ODT pin of the inactive CS will be asserted during read accesses.
-        unsigned ODT_RD_ACT_EN : 1; //!< [3] Active read CS ODT enable. The bit determines if ODT pin of the active CS will be asserted during read accesses.
+        unsigned ODT_WR_PAS_EN : 1; //!< [0] Inactive write CS ODT enable.
+        unsigned ODT_WR_ACT_EN : 1; //!< [1] Active write CS ODT enable.
+        unsigned ODT_RD_PAS_EN : 1; //!< [2] Inactive read CS ODT enable.
+        unsigned ODT_RD_ACT_EN : 1; //!< [3] Active read CS ODT enable.
         unsigned ODT0_INT_RES : 3; //!< [6:4] On chip ODT byte0 resistor - This field determines the Rtt_Nom of the on chip ODT byte0 resistor during read accesses.
         unsigned RESERVED0 : 1; //!< [7] Reserved
         unsigned ODT1_INT_RES : 3; //!< [10:8] On chip ODT byte1 resistor - This field determines the Rtt_Nom of the on chip ODT byte1 resistor during read accesses.
@@ -6340,13 +6294,13 @@ typedef union _hw_mmdc_mpodtctrl
  *
  * Values:
  * 000 - Rtt_Nom Disabled.
- * 001 - Rtt_Nom 120 Ohm /75 Ohm(ddr2)
- * 010 - Rtt_Nom 60 Ohm /150 Ohm(ddr2)
- * 011 - Rtt_Nom 40 Ohm /50 Ohm(ddr2)
- * 100 - Rtt_Nom 30 Ohm /37.5 Ohm(ddr2)
- * 101 - Rtt_Nom 24 Ohm /30 Ohm(ddr2)
- * 110 - Rtt_Nom 20 Ohm /25 Ohm(ddr2)
- * 111 - Rtt_Nom 17 Ohm /21 Ohm(ddr2)
+ * 001 - Rtt_Nom 120 Ohm
+ * 010 - Rtt_Nom 60 Ohm
+ * 011 - Rtt_Nom 40 Ohm
+ * 100 - Rtt_Nom 30 Ohm
+ * 101 - Rtt_Nom 24 Ohm
+ * 110 - Rtt_Nom 20 Ohm
+ * 111 - Rtt_Nom 17 Ohm
  */
 
 #define BP_MMDC_MPODTCTRL_ODT0_INT_RES      (4)      //!< Bit position for MMDC_MPODTCTRL_ODT0_INT_RES.
@@ -6371,13 +6325,13 @@ typedef union _hw_mmdc_mpodtctrl
  *
  * Values:
  * 0000 - Rtt_Nom Disabled.
- * 001 - Rtt_Nom 120 Ohm /75 Ohm(ddr2)
- * 010 - Rtt_Nom 60 Ohm /150 Ohm(ddr2)
- * 011 - Rtt_Nom 40 Ohm /50 Ohm(ddr2)
- * 100 - Rtt_Nom 30 Ohm /37.5 Ohm(ddr2)
- * 101 - Rtt_Nom 24 Ohm /30 Ohm(ddr2)
- * 110 - Rtt_Nom 20 Ohm /25 Ohm(ddr2)
- * 111 - Rtt_Nom 17 Ohm /21 Ohm(ddr2)
+ * 001 - Rtt_Nom 120 Ohm
+ * 010 - Rtt_Nom 60 Ohm
+ * 011 - Rtt_Nom 40 Ohm
+ * 100 - Rtt_Nom 30 Ohm
+ * 101 - Rtt_Nom 24 Ohm
+ * 110 - Rtt_Nom 20 Ohm
+ * 111 - Rtt_Nom 17 Ohm
  */
 
 #define BP_MMDC_MPODTCTRL_ODT1_INT_RES      (8)      //!< Bit position for MMDC_MPODTCTRL_ODT1_INT_RES.
@@ -6402,13 +6356,13 @@ typedef union _hw_mmdc_mpodtctrl
  *
  * Values:
  * 000 - Rtt_Nom Disabled.
- * 001 - Rtt_Nom 120 Ohm /75 Ohm(ddr2)
- * 010 - Rtt_Nom 60 Ohm /150 Ohm(ddr2)
- * 011 - Rtt_Nom 40 Ohm /50 Ohm(ddr2)
- * 100 - Rtt_Nom 30 Ohm /37.5 Ohm(ddr2)
- * 101 - Rtt_Nom 24 Ohm /30 Ohm(ddr2)
- * 110 - Rtt_Nom 20 Ohm /25 Ohm(ddr2)
- * 111 - Rtt_Nom 17 Ohm /21 Ohm(ddr2)
+ * 001 - Rtt_Nom 120 Ohm
+ * 010 - Rtt_Nom 60 Ohm
+ * 011 - Rtt_Nom 40 Ohm
+ * 100 - Rtt_Nom 30 Ohm
+ * 101 - Rtt_Nom 24 Ohm
+ * 110 - Rtt_Nom 20 Ohm
+ * 111 - Rtt_Nom 17 Ohm
  */
 
 #define BP_MMDC_MPODTCTRL_ODT2_INT_RES      (12)      //!< Bit position for MMDC_MPODTCTRL_ODT2_INT_RES.
@@ -6433,13 +6387,13 @@ typedef union _hw_mmdc_mpodtctrl
  *
  * Values:
  * 000 - Rtt_Nom Disabled.
- * 001 - Rtt_Nom 120 Ohm /75 Ohm(ddr2)
- * 010 - Rtt_Nom 60 Ohm /150 Ohm(ddr2)
- * 011 - Rtt_Nom 40 Ohm /50 Ohm(ddr2)
- * 100 - Rtt_Nom 30 Ohm /37.5 Ohm(ddr2)
- * 101 - Rtt_Nom 24 Ohm /30 Ohm(ddr2)
- * 110 - Rtt_Nom 20 Ohm /25 Ohm(ddr2)
- * 111 - Rtt_Nom 17 Ohm /21 Ohm(ddr2)
+ * 001 - Rtt_Nom 120 Ohm
+ * 010 - Rtt_Nom 60 Ohm
+ * 011 - Rtt_Nom 40 Ohm
+ * 100 - Rtt_Nom 30 Ohm
+ * 101 - Rtt_Nom 24 Ohm
+ * 110 - Rtt_Nom 20 Ohm
+ * 111 - Rtt_Nom 17 Ohm
  */
 
 #define BP_MMDC_MPODTCTRL_ODT3_INT_RES      (16)      //!< Bit position for MMDC_MPODTCTRL_ODT3_INT_RES.
@@ -6469,29 +6423,28 @@ typedef union _hw_mmdc_mpodtctrl
  *
  * This register is used to add fine-tuning adjustment to every bit in the read DQ byte0 relative to
  * the read DQS. This delay is in addition to the read data calibration. If operating in 64-bit
- * mode, there is an identical register that is mapped at the second base address.  Supported Mode
- * Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16, LP2_2ch_x32
+ * mode, there is an identical register that is mapped at the second base address.
  */
 typedef union _hw_mmdc_mprddqby0dl
 {
     reg32_t U;
     struct _hw_mmdc_mprddqby0dl_bitfields
     {
-        unsigned RD_DQ0_DEL : 3; //!< [2:0] Read dqs0 to dq0 delay fine-tuning. This field holds the number of delay units that are added to dq0 relative to dqs0.
+        unsigned RD_DQ0_DEL : 3; //!< [2:0] Read dqs0 to dq0 delay fine-tuning.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned RD_DQ1_DEL : 3; //!< [6:4] Read dqs0 to dq1 delay fine-tuning. This field holds the number of delay units that are added to dq1 relative to dqs0.
+        unsigned RD_DQ1_DEL : 3; //!< [6:4] Read dqs0 to dq1 delay fine-tuning.
         unsigned RESERVED1 : 1; //!< [7] Reserved
-        unsigned RD_DQ2_DEL : 3; //!< [10:8] Read dqs0 to dq2 delay fine-tuning. This field holds the number of delay units that are added to dq2 relative to dqs0.
+        unsigned RD_DQ2_DEL : 3; //!< [10:8] Read dqs0 to dq2 delay fine-tuning.
         unsigned RESERVED2 : 1; //!< [11] Reserved
-        unsigned RD_DQ3_DEL : 3; //!< [14:12] Read dqs0 to dq3 delay fine-tuning. This field holds the number of delay units that are added to dq3 relative to dqs0.
+        unsigned RD_DQ3_DEL : 3; //!< [14:12] Read dqs0 to dq3 delay fine-tuning.
         unsigned RESERVED3 : 1; //!< [15] Reserved
-        unsigned RD_DQ4_DEL : 3; //!< [18:16] Read dqs0 to dq4 delay fine-tuning. This field holds the number of delay units that are added to dq4 relative to dqs0.
+        unsigned RD_DQ4_DEL : 3; //!< [18:16] Read dqs0 to dq4 delay fine-tuning.
         unsigned RESERVED4 : 1; //!< [19] Reserved
-        unsigned RD_DQ5_DEL : 3; //!< [22:20] Read dqs0 to dq5 delay fine-tuning. This field holds the number of delay units that are added to dq5 relative to dqs0.
+        unsigned RD_DQ5_DEL : 3; //!< [22:20] Read dqs0 to dq5 delay fine-tuning.
         unsigned RESERVED5 : 1; //!< [23] Reserved
-        unsigned RD_DQ6_DEL : 3; //!< [26:24] Read dqs0 to dq6 delay fine-tuning. This field holds the number of delay units that are added to dq6 relative to dqs0.
+        unsigned RD_DQ6_DEL : 3; //!< [26:24] Read dqs0 to dq6 delay fine-tuning.
         unsigned RESERVED6 : 1; //!< [27] Reserved
-        unsigned RD_DQ7_DEL : 3; //!< [30:28] Read dqs0 to dq7 delay fine-tuning. This field holds the number of delay units that are added to dq7 relative to dqs0.
+        unsigned RD_DQ7_DEL : 3; //!< [30:28] Read dqs0 to dq7 delay fine-tuning.
         unsigned RESERVED7 : 1; //!< [31] Reserved
     } B;
 } hw_mmdc_mprddqby0dl_t;
@@ -6774,29 +6727,28 @@ typedef union _hw_mmdc_mprddqby0dl
  * Reset value: 0x00000000
  *
  * This register is used to add fine-tuning adjustment to every bit in the read DQ byte1 relative to
- * the read DQS  Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64,
- * LP2_2ch_x16, LP2_2ch_x32
+ * the read DQS
  */
 typedef union _hw_mmdc_mprddqby1dl
 {
     reg32_t U;
     struct _hw_mmdc_mprddqby1dl_bitfields
     {
-        unsigned RD_DQ8_DEL : 3; //!< [2:0] Read dqs1 to dq8 delay fine-tuning. This field holds the number of delay units that are added to dq8 relative to dqs1.
+        unsigned RD_DQ8_DEL : 3; //!< [2:0] Read dqs1 to dq8 delay fine-tuning.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned RD_DQ9_DEL : 3; //!< [6:4] Read dqs1 to dq9 delay fine-tuning. This field holds the number of delay units that are added to dq9 relative to dqs1.
+        unsigned RD_DQ9_DEL : 3; //!< [6:4] Read dqs1 to dq9 delay fine-tuning.
         unsigned RESERVED1 : 1; //!< [7] Reserved
-        unsigned RD_DQ10_DEL : 3; //!< [10:8] Read dqs1 to dq10 delay fine-tuning. This field holds the number of delay units that are added to dq10 relative to dqs1.
+        unsigned RD_DQ10_DEL : 3; //!< [10:8] Read dqs1 to dq10 delay fine-tuning.
         unsigned RESERVED2 : 1; //!< [11] Reserved
-        unsigned RD_DQ11_DEL : 3; //!< [14:12] Read dqs1 to dq11 delay fine-tuning. This field holds the number of delay units that are added to dq11 relative to dqs1.
+        unsigned RD_DQ11_DEL : 3; //!< [14:12] Read dqs1 to dq11 delay fine-tuning.
         unsigned RESERVED3 : 1; //!< [15] Reserved
-        unsigned RD_DQ12_DEL : 3; //!< [18:16] Read dqs1 to dq12 delay fine-tuning. This field holds the number of delay units that are added to dq12 relative to dqs1.
+        unsigned RD_DQ12_DEL : 3; //!< [18:16] Read dqs1 to dq12 delay fine-tuning.
         unsigned RESERVED4 : 1; //!< [19] Reserved
-        unsigned RD_DQ13_DEL : 3; //!< [22:20] Read dqs1 to dq13 delay fine-tuning. This field holds the number of delay units that are added to dq13 relative to dqs1.
+        unsigned RD_DQ13_DEL : 3; //!< [22:20] Read dqs1 to dq13 delay fine-tuning.
         unsigned RESERVED5 : 1; //!< [23] Reserved
-        unsigned RD_DQ14_DEL : 3; //!< [26:24] Read dqs1 to dq14 delay fine-tuning. This field holds the number of delay units that are added to dq14 relative to dqs1.
+        unsigned RD_DQ14_DEL : 3; //!< [26:24] Read dqs1 to dq14 delay fine-tuning.
         unsigned RESERVED6 : 1; //!< [27] Reserved
-        unsigned RD_DQ15_DEL : 3; //!< [30:28] Read dqs1 to dq15 delay fine-tuning. This field holds the number of delay units that are added to dq15 relative to dqs1.
+        unsigned RD_DQ15_DEL : 3; //!< [30:28] Read dqs1 to dq15 delay fine-tuning.
         unsigned RESERVED7 : 1; //!< [31] Reserved
     } B;
 } hw_mmdc_mprddqby1dl_t;
@@ -7079,29 +7031,28 @@ typedef union _hw_mmdc_mprddqby1dl
  * Reset value: 0x00000000
  *
  * This register is used to add fine-tuning adjustment to every bit in the read DQ byte2 relative to
- * the read DQS  Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64,
- * LP2_2ch_x32
+ * the read DQS
  */
 typedef union _hw_mmdc_mprddqby2dl
 {
     reg32_t U;
     struct _hw_mmdc_mprddqby2dl_bitfields
     {
-        unsigned RD_DQ16_DEL : 3; //!< [2:0] Read dqs2 to dq16 delay fine-tuning. This field holds the number of delay units that are added to dq16 relative to dqs2.
+        unsigned RD_DQ16_DEL : 3; //!< [2:0] Read dqs2 to dq16 delay fine-tuning.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned RD_DQ17_DEL : 3; //!< [6:4] Read dqs2 to dq17 delay fine-tuning. This field holds the number of delay units that are added to dq17 relative to dqs2.
+        unsigned RD_DQ17_DEL : 3; //!< [6:4] Read dqs2 to dq17 delay fine-tuning.
         unsigned RESERVED1 : 1; //!< [7] Reserved
-        unsigned RD_DQ18_DEL : 3; //!< [10:8] Read dqs2 to dq18 delay fine-tuning. This field holds the number of delay units that are added to dq18 relative to dqs2.
+        unsigned RD_DQ18_DEL : 3; //!< [10:8] Read dqs2 to dq18 delay fine-tuning.
         unsigned RESERVED2 : 1; //!< [11] Reserved
-        unsigned RD_DQ19_DEL : 3; //!< [14:12] Read dqs2 to dq19 delay fine-tuning. This field holds the number of delay units that are added to dq19 relative to dqs2.
+        unsigned RD_DQ19_DEL : 3; //!< [14:12] Read dqs2 to dq19 delay fine-tuning.
         unsigned RESERVED3 : 1; //!< [15] Reserved
-        unsigned RD_DQ20_DEL : 3; //!< [18:16] Read dqs2 to dq20 delay fine-tuning. This field holds the number of delay units that are added to dq20 relative to dqs2.
+        unsigned RD_DQ20_DEL : 3; //!< [18:16] Read dqs2 to dq20 delay fine-tuning.
         unsigned RESERVED4 : 1; //!< [19] Reserved
-        unsigned RD_DQ21_DEL : 3; //!< [22:20] Read dqs2 to dq21 delay fine-tuning. This field holds the number of delay units that are added to dq21 relative to dqs2.
+        unsigned RD_DQ21_DEL : 3; //!< [22:20] Read dqs2 to dq21 delay fine-tuning.
         unsigned RESERVED5 : 1; //!< [23] Reserved
-        unsigned RD_DQ22_DEL : 3; //!< [26:24] Read dqs2 to dq22 delay fine-tuning. This field holds the number of delay units that are added to dq22 relative to dqs2.
+        unsigned RD_DQ22_DEL : 3; //!< [26:24] Read dqs2 to dq22 delay fine-tuning.
         unsigned RESERVED6 : 1; //!< [27] Reserved
-        unsigned RD_DQ23_DEL : 3; //!< [30:28] Read dqs2 to dq23 delay fine-tuning. This field holds the number of delay units that are added to dq23 relative to dqs2.
+        unsigned RD_DQ23_DEL : 3; //!< [30:28] Read dqs2 to dq23 delay fine-tuning.
         unsigned RESERVED7 : 1; //!< [31] Reserved
     } B;
 } hw_mmdc_mprddqby2dl_t;
@@ -7385,28 +7336,28 @@ typedef union _hw_mmdc_mprddqby2dl
  *
  * This register is used to add fine-tuning adjustment to every bit in the read DQ byte3 relative to
  * the read DQS.  The bit assignments and the bit field descriptions for the register are shown
- * below.  Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x32
+ * below.
  */
 typedef union _hw_mmdc_mprddqby3dl
 {
     reg32_t U;
     struct _hw_mmdc_mprddqby3dl_bitfields
     {
-        unsigned RD_DQ24_DEL : 3; //!< [2:0] Read dqs3 to dq24 delay fine-tuning. This field holds the number of delay units that are added to dq24 relative to dqs3.
+        unsigned RD_DQ24_DEL : 3; //!< [2:0] Read dqs3 to dq24 delay fine-tuning.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned RD_DQ25_DEL : 3; //!< [6:4] Read dqs3 to dq25 delay fine-tuning. This field holds the number of delay units that are added to dq25 relative to dqs3.
+        unsigned RD_DQ25_DEL : 3; //!< [6:4] Read dqs3 to dq25 delay fine-tuning.
         unsigned RESERVED1 : 1; //!< [7] Reserved
-        unsigned RD_DQ26_DEL : 3; //!< [10:8] Read dqs3 to dq26 delay fine-tuning. This field holds the number of delay units that are added to dq26 relative to dqs3.
+        unsigned RD_DQ26_DEL : 3; //!< [10:8] Read dqs3 to dq26 delay fine-tuning.
         unsigned RESERVED2 : 1; //!< [11] Reserved
-        unsigned RD_DQ27_DEL : 3; //!< [14:12] Read dqs3 to dq27 delay fine-tuning. This field holds the number of delay units that are added to dq27 relative to dqs3.
+        unsigned RD_DQ27_DEL : 3; //!< [14:12] Read dqs3 to dq27 delay fine-tuning.
         unsigned RESERVED3 : 1; //!< [15] Reserved
-        unsigned RD_DQ28_DEL : 3; //!< [18:16] Read dqs3 to dq28 delay fine-tuning. This field holds the number of delay units that are added to dq28 relative to dqs3.
+        unsigned RD_DQ28_DEL : 3; //!< [18:16] Read dqs3 to dq28 delay fine-tuning.
         unsigned RESERVED4 : 1; //!< [19] Reserved
-        unsigned RD_DQ29_DEL : 3; //!< [22:20] Read dqs3 to dq29 delay fine-tuning. This field holds the number of delay units that are added to dq29 relative to dqs3.
+        unsigned RD_DQ29_DEL : 3; //!< [22:20] Read dqs3 to dq29 delay fine-tuning.
         unsigned RESERVED5 : 1; //!< [23] Reserved
-        unsigned RD_DQ30_DEL : 3; //!< [26:24] Read dqs3 to dq30 delay fine-tuning. This field holds the number of delay units that are added to dq30 relative to dqs3.
+        unsigned RD_DQ30_DEL : 3; //!< [26:24] Read dqs3 to dq30 delay fine-tuning.
         unsigned RESERVED6 : 1; //!< [27] Reserved
-        unsigned RD_DQ31_DEL : 3; //!< [30:28] Read dqs3 to dq31 delay fine-tuning. This field holds the number of delay units that are added to dq31 relative to dqs3.
+        unsigned RD_DQ31_DEL : 3; //!< [30:28] Read dqs3 to dq31 delay fine-tuning.
         unsigned RESERVED7 : 1; //!< [31] Reserved
     } B;
 } hw_mmdc_mprddqby3dl_t;
@@ -7689,30 +7640,29 @@ typedef union _hw_mmdc_mprddqby3dl
  * Reset value: 0x00000000
  *
  * This register is used to add fine-tuning adjustment to every bit in the write DQ byte0 relative
- * to the write DQS  Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64,
- * LP2_2ch_x16, LP2_2ch_x32
+ * to the write DQS
  */
 typedef union _hw_mmdc_mpwrdqby0dl
 {
     reg32_t U;
     struct _hw_mmdc_mpwrdqby0dl_bitfields
     {
-        unsigned WR_DQ0_DEL : 2; //!< [1:0] Write dq0 delay fine-tuning. This field holds the number of delay units that are added to dq0 relative to dqs0.
+        unsigned WR_DQ0_DEL : 2; //!< [1:0] Write dq0 delay fine-tuning.
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
-        unsigned WR_DQ1_DEL : 2; //!< [5:4] Write dq1 delay fine-tuning. This field holds the number of delay units that are added to dq1 relative to dqs0.
+        unsigned WR_DQ1_DEL : 2; //!< [5:4] Write dq1 delay fine-tuning.
         unsigned RESERVED1 : 2; //!< [7:6] Reserved
-        unsigned WR_DQ2_DEL : 2; //!< [9:8] Write dq2 delay fine-tuning. This field holds the number of delay units that are added to dq2 relative to dqs0.
+        unsigned WR_DQ2_DEL : 2; //!< [9:8] Write dq2 delay fine-tuning.
         unsigned RESERVED2 : 2; //!< [11:10] Reserved
-        unsigned WR_DQ3_DEL : 2; //!< [13:12] Write dq3 delay fine-tuning. This field holds the number of delay units that are added to dq3 relative to dqs0.
+        unsigned WR_DQ3_DEL : 2; //!< [13:12] Write dq3 delay fine-tuning.
         unsigned RESERVED3 : 2; //!< [15:14] Reserved
-        unsigned WR_DQ4_DEL : 2; //!< [17:16] Write dq4 delay fine-tuning. This field holds the number of delay units that are added to dq4 relative to dqs0.
+        unsigned WR_DQ4_DEL : 2; //!< [17:16] Write dq4 delay fine-tuning.
         unsigned RESERVED4 : 2; //!< [19:18] Reserved
-        unsigned WR_DQ5_DEL : 2; //!< [21:20] Write dq5 delay fine-tuning. This field holds the number of delay units that are added to dq5 relative to dqs0.
+        unsigned WR_DQ5_DEL : 2; //!< [21:20] Write dq5 delay fine-tuning.
         unsigned RESERVED5 : 2; //!< [23:22] Reserved
-        unsigned WR_DQ6_DEL : 2; //!< [25:24] Write dq6 delay fine-tuning. This field holds the number of delay units that are added to dq6 relative to dqs0.
+        unsigned WR_DQ6_DEL : 2; //!< [25:24] Write dq6 delay fine-tuning.
         unsigned RESERVED6 : 2; //!< [27:26] Reserved
-        unsigned WR_DQ7_DEL : 2; //!< [29:28] Write dq7 delay fine-tuning. This field holds the number of delay units that are added to dq7 relative to dqs0.
-        unsigned WR_DM0_DEL : 2; //!< [31:30] Write dm0 delay fine-tuning. This field holds the number of delay units that are added to dm0 relative to dqs0.
+        unsigned WR_DQ7_DEL : 2; //!< [29:28] Write dq7 delay fine-tuning.
+        unsigned WR_DM0_DEL : 2; //!< [31:30] Write dm0 delay fine-tuning.
     } B;
 } hw_mmdc_mpwrdqby0dl_t;
 #endif
@@ -7989,30 +7939,29 @@ typedef union _hw_mmdc_mpwrdqby0dl
  * Reset value: 0x00000000
  *
  * This register is used to add fine-tuning adjustment to every bit in the write DQ byte1 relative
- * to the write DQS  Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64,
- * LP2_2ch_x16, LP2_2ch_x32
+ * to the write DQS
  */
 typedef union _hw_mmdc_mpwrdqby1dl
 {
     reg32_t U;
     struct _hw_mmdc_mpwrdqby1dl_bitfields
     {
-        unsigned WR_DQ8_DEL : 2; //!< [1:0] Write dq8 delay fine-tuning. This field holds the number of delay units that are added to dq8 relative to dqs1.
+        unsigned WR_DQ8_DEL : 2; //!< [1:0] Write dq8 delay fine-tuning.
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
-        unsigned WR_DQ9_DEL : 2; //!< [5:4] Write dq9 delay fine-tuning. This field holds the number of delay units that are added to dq9 relative to dqs1.
+        unsigned WR_DQ9_DEL : 2; //!< [5:4] Write dq9 delay fine-tuning.
         unsigned RESERVED1 : 2; //!< [7:6] Reserved
-        unsigned WR_DQ10_DEL : 2; //!< [9:8] Write dq10 delay fine-tuning. This field holds the number of delay units that are added to dq10 relative to dqs1.
+        unsigned WR_DQ10_DEL : 2; //!< [9:8] Write dq10 delay fine-tuning.
         unsigned RESERVED2 : 2; //!< [11:10] Reserved
-        unsigned WR_DQ11_DEL : 2; //!< [13:12] Write dq11 delay fine-tuning. This field holds the number of delay units that are added to dq11 relative to dqs1.
+        unsigned WR_DQ11_DEL : 2; //!< [13:12] Write dq11 delay fine-tuning.
         unsigned RESERVED3 : 2; //!< [15:14] Reserved
-        unsigned WR_DQ12_DEL : 2; //!< [17:16] Write dq12 delay fine-tuning. This field holds the number of delay units that are added to dq12 relative to dqs1.
+        unsigned WR_DQ12_DEL : 2; //!< [17:16] Write dq12 delay fine-tuning.
         unsigned RESERVED4 : 2; //!< [19:18] Reserved
-        unsigned WR_DQ13_DEL : 2; //!< [21:20] Write dq13 delay fine-tuning. This field holds the number of delay units that are added to dq13 relative to dqs1.
+        unsigned WR_DQ13_DEL : 2; //!< [21:20] Write dq13 delay fine-tuning.
         unsigned RESERVED5 : 2; //!< [23:22] Reserved
-        unsigned WR_DQ14_DEL : 2; //!< [25:24] Write dq14 delay fine-tuning. This field holds the number of delay units that are added to dq14 relative to dqs1.
+        unsigned WR_DQ14_DEL : 2; //!< [25:24] Write dq14 delay fine-tuning.
         unsigned RESERVED6 : 2; //!< [27:26] Reserved
-        unsigned WR_DQ15_DEL : 2; //!< [29:28] Write dq15 delay fine-tuning. This field holds the number of delay units that are added to dq15 relative to dqs1.
-        unsigned WR_DM1_DEL : 2; //!< [31:30] Write dm1 delay fine-tuning. This field holds the number of delay units that are added to dm1 relative to dqs1.
+        unsigned WR_DQ15_DEL : 2; //!< [29:28] Write dq15 delay fine-tuning.
+        unsigned WR_DM1_DEL : 2; //!< [31:30] Write dm1 delay fine-tuning.
     } B;
 } hw_mmdc_mpwrdqby1dl_t;
 #endif
@@ -8289,30 +8238,29 @@ typedef union _hw_mmdc_mpwrdqby1dl
  * Reset value: 0x00000000
  *
  * This register is used to add fine-tuning adjustment to every bit in the write DQ byte2 relative
- * to the write DQS  Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64,
- * LP2_2ch_x32
+ * to the write DQS
  */
 typedef union _hw_mmdc_mpwrdqby2dl
 {
     reg32_t U;
     struct _hw_mmdc_mpwrdqby2dl_bitfields
     {
-        unsigned WR_DQ16_DEL : 2; //!< [1:0] Write dq16 delay fine tuning. This field holds the number of delay units that are added to dq16 relative to dqs2.
+        unsigned WR_DQ16_DEL : 2; //!< [1:0] Write dq16 delay fine tuning.
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
-        unsigned WR_DQ17_DEL : 2; //!< [5:4] Write dq17 delay fine tuning. This field holds the number of delay units that are added to dq17 relative to dqs2.
+        unsigned WR_DQ17_DEL : 2; //!< [5:4] Write dq17 delay fine tuning.
         unsigned RESERVED1 : 2; //!< [7:6] Reserved
-        unsigned WR_DQ18_DEL : 2; //!< [9:8] Write dq18 delay fine tuning. This field holds the number of delay units that are added to dq18 relative to dqs2.
+        unsigned WR_DQ18_DEL : 2; //!< [9:8] Write dq18 delay fine tuning.
         unsigned RESERVED2 : 2; //!< [11:10] Reserved
-        unsigned WR_DQ19_DEL : 2; //!< [13:12] Write dq19 delay fine tuning. This field holds the number of delay units that are added to dq19 relative to dqs2.
+        unsigned WR_DQ19_DEL : 2; //!< [13:12] Write dq19 delay fine tuning.
         unsigned RESERVED3 : 2; //!< [15:14] Reserved
-        unsigned WR_DQ20_DEL : 2; //!< [17:16] Write dq20 delay fine tuning. This field holds the number of delay units that are added to dq20 relative to dqs2.
+        unsigned WR_DQ20_DEL : 2; //!< [17:16] Write dq20 delay fine tuning.
         unsigned RESERVED4 : 2; //!< [19:18] Reserved
-        unsigned WR_DQ21_DEL : 2; //!< [21:20] Write dq21 delay fine tuning. This field holds the number of delay units that are added to dq21 relative to dqs2.
+        unsigned WR_DQ21_DEL : 2; //!< [21:20] Write dq21 delay fine tuning.
         unsigned RESERVED5 : 2; //!< [23:22] Reserved
-        unsigned WR_DQ22_DEL : 2; //!< [25:24] Write dq22 delay fine tuning. This field holds the number of delay units that are added to dq22 relative to dqs2.
+        unsigned WR_DQ22_DEL : 2; //!< [25:24] Write dq22 delay fine tuning.
         unsigned RESERVED6 : 2; //!< [27:26] Reserved
-        unsigned WR_DQ23_DEL : 2; //!< [29:28] Write dq23 delay fine tuning. This field holds the number of delay units that are added to dq23 relative to dqs2.
-        unsigned WR_DM2_DEL : 2; //!< [31:30] Write dm2 delay fine-tuning. This field holds the number of delay units that are added to dm2 relative to dqs2.
+        unsigned WR_DQ23_DEL : 2; //!< [29:28] Write dq23 delay fine tuning.
+        unsigned WR_DM2_DEL : 2; //!< [31:30] Write dm2 delay fine-tuning.
     } B;
 } hw_mmdc_mpwrdqby2dl_t;
 #endif
@@ -8589,30 +8537,29 @@ typedef union _hw_mmdc_mpwrdqby2dl
  * Reset value: 0x00000000
  *
  * This register is used to add fine-tuning adjustment to every bit in the write DQ byte3 relative
- * to the write DQS  Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64,
- * LP2_2ch_x32
+ * to the write DQS
  */
 typedef union _hw_mmdc_mpwrdqby3dl
 {
     reg32_t U;
     struct _hw_mmdc_mpwrdqby3dl_bitfields
     {
-        unsigned WR_DQ24_DEL : 2; //!< [1:0] Write dq24 delay fine tuning. This field holds the number of delay units that are added to dq24 relative to dqs3.
+        unsigned WR_DQ24_DEL : 2; //!< [1:0] Write dq24 delay fine tuning.
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
-        unsigned WR_DQ25_DEL : 2; //!< [5:4] Write dq25 delay fine tuning. This field holds the number of delay units that are added to dq25 relative to dqs3.
+        unsigned WR_DQ25_DEL : 2; //!< [5:4] Write dq25 delay fine tuning.
         unsigned RESERVED1 : 2; //!< [7:6] Reserved
-        unsigned WR_DQ26_DEL : 2; //!< [9:8] Write dq26 delay fine tuning. This field holds the number of delay units that are added to dq26 relative to dqs3.
+        unsigned WR_DQ26_DEL : 2; //!< [9:8] Write dq26 delay fine tuning.
         unsigned RESERVED2 : 2; //!< [11:10] Reserved
-        unsigned WR_DQ27_DEL : 2; //!< [13:12] Write dq27 delay fine tuning. This field holds the number of delay units that are added to dq27 relative to dqs3.
+        unsigned WR_DQ27_DEL : 2; //!< [13:12] Write dq27 delay fine tuning.
         unsigned RESERVED3 : 2; //!< [15:14] Reserved
-        unsigned WR_DQ28_DEL : 2; //!< [17:16] Write dq28 delay fine tuning. This field holds the number of delay units that are added to dq28 relative to dqs3.
+        unsigned WR_DQ28_DEL : 2; //!< [17:16] Write dq28 delay fine tuning.
         unsigned RESERVED4 : 2; //!< [19:18] Reserved
-        unsigned WR_DQ29_DEL : 2; //!< [21:20] Write dq29 delay fine tuning. This field holds the number of delay units that are added to dq29 relative to dqs3.
+        unsigned WR_DQ29_DEL : 2; //!< [21:20] Write dq29 delay fine tuning.
         unsigned RESERVED5 : 2; //!< [23:22] Reserved
-        unsigned WR_DQ30_DEL : 2; //!< [25:24] Write dq30 delay fine tuning. This field holds the number of delay units that are added to dq30 relative to dqs3.
+        unsigned WR_DQ30_DEL : 2; //!< [25:24] Write dq30 delay fine tuning.
         unsigned RESERVED6 : 2; //!< [27:26] Reserved
-        unsigned WR_DQ31_DEL : 2; //!< [29:28] Write dq31 delay fine tuning. This field holds the number of delay units that are added to dq31 relative to dqs3.
-        unsigned WR_DM3_DEL : 2; //!< [31:30] Write dm3 delay fine tuning. This field holds the number of delay units that are added to dm3 relative to dqs3.
+        unsigned WR_DQ31_DEL : 2; //!< [29:28] Write dq31 delay fine tuning.
+        unsigned WR_DM3_DEL : 2; //!< [31:30] Write dm3 delay fine tuning.
     } B;
 } hw_mmdc_mpwrdqby3dl_t;
 #endif
@@ -8888,26 +8835,25 @@ typedef union _hw_mmdc_mpwrdqby3dl
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: DDR3_x16, DDR3_x32, DDR3_x64  For Channel 1:
- * DDR3_x64
+
  */
 typedef union _hw_mmdc_mpdgctrl0
 {
     reg32_t U;
     struct _hw_mmdc_mpdgctrl0_bitfields
     {
-        unsigned DG_DL_ABS_OFFSET0 : 7; //!< [6:0] Absolute read DQS gating delay offset for Byte0. This field indicates the absolute delay between read DQS gate and the middle of the read DQS preamble of Byte0 with fractions of a clock period and up to half cycle.The fraction is process and frequency independent. The delay of the delay-line would be (DG_DL_ABS_OFFSET0 / 256)* fast_clk. This field can also bit written by HW. Upon completion of the automatic read DQS gating calibration this field gets the value of the 7 LSB of ((HW_DG_LOW0 + HW_DG_UP0) /2). Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
+        unsigned DG_DL_ABS_OFFSET0 : 7; //!< [6:0] Absolute read DQS gating delay offset for Byte0.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned DG_HC_DEL0 : 4; //!< [11:8] Read DQS gating half cycles delay for Byte0 (Channel 0 register) and Byte4 in 64-bit mode (Channel 1 register) . This field indicates the delay in half cycles between read DQS gate and the middle of the read DQS preamble of Byte0/4. This delay is added to the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW1 + HW_DG_UP1) /2).
-        unsigned HW_DG_ERR : 1; //!< [12] HW DQS gating error. This bit valid is asserted when an error was found during the read DQS gating HW calibration process. Error can occur when no valid value was found during HW calibration. This bit is valid only after HW_DG_EN is de-asserted.
+        unsigned DG_HC_DEL0 : 4; //!< [11:8] Read DQS gating half cycles delay for Byte0 .
+        unsigned HW_DG_ERR : 1; //!< [12] HW DQS gating error.
         unsigned RESERVED1 : 3; //!< [15:13] Reserved
-        unsigned DG_DL_ABS_OFFSET1 : 7; //!< [22:16] Absolute read DQS gating delay offset for Byte1. This field indicates the absolute delay between read DQS gate and the middle of the read DQS preamble of Byte1 with fractions of a clock period and up to half cycle.The fraction is process and frequency independent. The delay of the delay-line would be (DG_DL_ABS_OFFSET1 / 256)* fast_clk. This field can also bit written by HW. Upon completion of the automatic read DQS gating calibration this field gets the value of the 7 LSB of ((HW_DG_LOW1 + HW_DG_UP1) /2). Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
-        unsigned DG_EXT_UP : 1; //!< [23] DG extend upper boundary. By default the upper boundary of DQS gating HW calibration is set according to first failing comparison after at least one passing comparison. If this bit is asserted then the upper boundary is set accroding to the last passing comparison.
-        unsigned DG_HC_DEL1 : 4; //!< [27:24] Read DQS gating half cycles delay for Byte1 (channel 0 register) and Byte5 in 64-bit mode (channel 1 register) . This field indicates the delay in half cycles between read DQS gate and the middle of the read DQS preamble of Byte1. This delay is added to the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW1 + HW_DG_UP1) /2).
-        unsigned HW_DG_EN : 1; //!< [28] Enable automatic read DQS gating calibration. If this bit is asserted then the MMDC performs automatic read DQS gating calibration. HW negates this bit upon completion of the automatic read DQS gating. Note: Before issuing the first read command the MMDC counts 12 cycles. In LPDDR2 mode automatic (HW) read DQS gating should be disabled and Pull-up/pull-down resistors on DQS/DQS# should be enabled while ODT resistors must be disconnected.
-        unsigned DG_DIS : 1; //!< [29] Read DQS gating disable. If this bit is asserted then the MMDC disables the read DQS gating mechnism. If this bits is asserted (read DQS gating is disabled) then pulll-up and pull-down resistors suppose to be used on DQS and DQS# respectively
-        unsigned DG_CMP_CYC : 1; //!< [30] Read DQS gating sample cycle. If this bit is asserted then the MMDC waits 32 cycles before comparing the read data, Otherwise it waits 16 DDR cycles.
-        unsigned RST_RD_FIFO : 1; //!< [31] Reset Read Data FIFO and associated pointers. If this bit is asserted then the MMDC resets the read data FIFO and the associated pointers. This bit is self cleared after the FIFO reset is done.
+        unsigned DG_DL_ABS_OFFSET1 : 7; //!< [22:16] Absolute read DQS gating delay offset for Byte1.
+        unsigned DG_EXT_UP : 1; //!< [23] DG extend upper boundary.
+        unsigned DG_HC_DEL1 : 4; //!< [27:24] Read DQS gating half cycles delay for Byte1 .
+        unsigned HW_DG_EN : 1; //!< [28] Enable automatic read DQS gating calibration.
+        unsigned DG_DIS : 1; //!< [29] Read DQS gating disable.
+        unsigned DG_CMP_CYC : 1; //!< [30] Read DQS gating sample cycle.
+        unsigned RST_RD_FIFO : 1; //!< [31] Reset Read Data FIFO and associated pointers.
     } B;
 } hw_mmdc_mpdgctrl0_t;
 #endif
@@ -8957,12 +8903,12 @@ typedef union _hw_mmdc_mpdgctrl0
 
 /* --- Register HW_MMDC_MPDGCTRL0, field DG_HC_DEL0[11:8] (RW)
  *
- * Read DQS gating half cycles delay for Byte0 (Channel 0 register) and Byte4 in 64-bit mode
- * (Channel 1 register) . This field indicates the delay in half cycles between read DQS gate and
- * the middle of the read DQS preamble of Byte0/4. This delay is added to the delay that is
- * genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is
- * (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read
- * DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW1 + HW_DG_UP1) /2).
+ * Read DQS gating half cycles delay for Byte0 . This field indicates the delay in half cycles
+ * between read DQS gate and the middle of the read DQS preamble of Byte0/4. This delay is added to
+ * the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating
+ * delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the
+ * automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW1 +
+ * HW_DG_UP1) /2).
  *
  * Values:
  * 0000 - 0 cycles delay.
@@ -9054,12 +9000,12 @@ typedef union _hw_mmdc_mpdgctrl0
 
 /* --- Register HW_MMDC_MPDGCTRL0, field DG_HC_DEL1[27:24] (RW)
  *
- * Read DQS gating half cycles delay for Byte1 (channel 0 register) and Byte5 in 64-bit mode
- * (channel 1 register) . This field indicates the delay in half cycles between read DQS gate and
- * the middle of the read DQS preamble of Byte1. This delay is added to the delay that is genearted
- * by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle
- * + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration
- * this field gets the value of the 4 MSB of ((HW_DG_LOW1 + HW_DG_UP1) /2).
+ * Read DQS gating half cycles delay for Byte1 . This field indicates the delay in half cycles
+ * between read DQS gate and the middle of the read DQS preamble of Byte1. This delay is added to
+ * the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating
+ * delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the
+ * automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW1 +
+ * HW_DG_UP1) /2).
  *
  * Values:
  * 0000 - 0 cycles delay.
@@ -9179,21 +9125,20 @@ typedef union _hw_mmdc_mpdgctrl0
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: DDR3_x16, DDR3_x32, DDR3_x64  For Channel 1:
- * DDR3_x64
+
  */
 typedef union _hw_mmdc_mpdgctrl1
 {
     reg32_t U;
     struct _hw_mmdc_mpdgctrl1_bitfields
     {
-        unsigned DG_DL_ABS_OFFSET2 : 7; //!< [6:0] Absolute read DQS gating delay offset for Byte2. This field indicates the absolute delay between read DQS gate and the middle of the read DQS preamble of Byte2 with fractions of a clock period and up to half cycle.The fraction is process and frequency independent. The delay of the delay-line would be (DG_DL_ABS_OFFSET2 / 256)* fast_clk. This field can also bit written by HW. Upon completion of the automatic read DQS gating calibration this field gets the value of the 7 LSB of ((HW_DG_LOW2 + HW_DG_UP2) /2). Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
+        unsigned DG_DL_ABS_OFFSET2 : 7; //!< [6:0] Absolute read DQS gating delay offset for Byte2.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned DG_HC_DEL2 : 4; //!< [11:8] Read DQS gating half cycles delay for Byte2 (Channel 0 register) and Byte6 for 64-bit mode(channel 1 register) . This field indicates the delay in half cycles between read DQS gate and the middle of the read DQS preamble of Byte2/5. This delay is added to the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW2 + HW_DG_UP2) /2).
+        unsigned DG_HC_DEL2 : 4; //!< [11:8] Read DQS gating half cycles delay for Byte2 .
         unsigned RESERVED1 : 4; //!< [15:12] Reserved
-        unsigned DG_DL_ABS_OFFSET3 : 7; //!< [22:16] Absolute read DQS gating delay offset for Byte3. This field indicates the absolute delay between read DQS gate and the middle of the read DQS preamble of Byte3 with fractions of a clock period and up to half cycle.The fraction is process and frequency independent. The delay of the delay-line would be (DG_DL_ABS_OFFSET3 / 256)* fast_clk. This field can also bit written by HW. Upon completion of the automatic read DQS gating calibration this field gets the value of the 7 LSB of ((HW_DG_LOW3 + HW_DG_UP3) /2). Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
+        unsigned DG_DL_ABS_OFFSET3 : 7; //!< [22:16] Absolute read DQS gating delay offset for Byte3.
         unsigned RESERVED2 : 1; //!< [23] Reserved
-        unsigned DG_HC_DEL3 : 4; //!< [27:24] Read DQS gating half cycles delay for Byte3 (Channel 0 register) and Byte7 for 64-bit data (Channel 1 register) . This field indicates the delay in half cycles between read DQS gate and the middle of the read DQS preamble of Byte3/7. This delay is added to the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW3 + HW_DG_UP3) /2).
+        unsigned DG_HC_DEL3 : 4; //!< [27:24] Read DQS gating half cycles delay for Byte3 .
         unsigned RESERVED3 : 4; //!< [31:28] Reserved
     } B;
 } hw_mmdc_mpdgctrl1_t;
@@ -9244,12 +9189,12 @@ typedef union _hw_mmdc_mpdgctrl1
 
 /* --- Register HW_MMDC_MPDGCTRL1, field DG_HC_DEL2[11:8] (RW)
  *
- * Read DQS gating half cycles delay for Byte2 (Channel 0 register) and Byte6 for 64-bit
- * mode(channel 1 register) . This field indicates the delay in half cycles between read DQS gate
- * and the middle of the read DQS preamble of Byte2/5. This delay is added to the delay that is
- * genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is
- * (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read
- * DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW2 + HW_DG_UP2) /2).
+ * Read DQS gating half cycles delay for Byte2 . This field indicates the delay in half cycles
+ * between read DQS gate and the middle of the read DQS preamble of Byte2/5. This delay is added to
+ * the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating
+ * delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the
+ * automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW2 +
+ * HW_DG_UP2) /2).
  *
  * Values:
  * 0000 - 0 cycles delay.
@@ -9302,12 +9247,12 @@ typedef union _hw_mmdc_mpdgctrl1
 
 /* --- Register HW_MMDC_MPDGCTRL1, field DG_HC_DEL3[27:24] (RW)
  *
- * Read DQS gating half cycles delay for Byte3 (Channel 0 register) and Byte7 for 64-bit data
- * (Channel 1 register) . This field indicates the delay in half cycles between read DQS gate and
- * the middle of the read DQS preamble of Byte3/7. This delay is added to the delay that is
- * genearted by the read DQS1 gating delay-line, So the total read DQS gating delay is
- * (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the automatic read
- * DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW3 + HW_DG_UP3) /2).
+ * Read DQS gating half cycles delay for Byte3 . This field indicates the delay in half cycles
+ * between read DQS gate and the middle of the read DQS preamble of Byte3/7. This delay is added to
+ * the delay that is genearted by the read DQS1 gating delay-line, So the total read DQS gating
+ * delay is (DG_HC_DEL#)*0.5*cycle + (DG_DL_ABS_OFFSET#)*1/256*cycle Upon completion of the
+ * automatic read DQS gating calibration this field gets the value of the 4 MSB of ((HW_DG_LOW3 +
+ * HW_DG_UP3) /2).
  *
  * Values:
  * 0000 - 0 cycles delay.
@@ -9343,8 +9288,7 @@ typedef union _hw_mmdc_mpdgctrl1
  *
  * Reset value: 0x00000000
  *
- * This register holds the status of the 4 dqs gating delay-lines.  Supported Mode Of Operations:
- * For Channel 0: DDR3_x16, DDR3_x32, DDR3_x64  For Channel 1: DDR3_x64
+ * This register holds the status of the 4 dqs gating delay-lines.
  */
 typedef union _hw_mmdc_mpdgdlst0
 {
@@ -9437,21 +9381,20 @@ typedef union _hw_mmdc_mpdgdlst0
  *
  * This register controls read delay-lines functionality; it determines DQS delay relative to the
  * associated DQ read access. The delay-line compensates for process variations and produces a
- * constant delay regardless of the process, temperature and voltage.  Supported Mode Of Operations:
- * For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16, LP2_2ch_x32
+ * constant delay regardless of the process, temperature and voltage.
  */
 typedef union _hw_mmdc_mprddlctl
 {
     reg32_t U;
     struct _hw_mmdc_mprddlctl_bitfields
     {
-        unsigned RD_DL_ABS_OFFSET0 : 7; //!< [6:0] Absolute read delay offset for Byte0. This field indicates the absolute delay between read DQS strobe and the read data of Byte0 with fractions of a clock period and up to half cycle. The fraction is process and frequency independent. The delay of the delay-line would be (RD_DL_ABS_OFFSET0 / 256) * fast_clk. So for the default value of 64 we get a quarter cycle delay. This field can also bit written by HW. Upon completion of the read delay-line HW calibration this field gets the value of (HW_RD_DL_LOW0 + HW_RD_DL_UP0) /2 Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
+        unsigned RD_DL_ABS_OFFSET0 : 7; //!< [6:0] Absolute read delay offset for Byte0.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned RD_DL_ABS_OFFSET1 : 7; //!< [14:8] Absolute read delay offset for Byte1. This field indicates the absolute delay between read DQS strobe and the read data of Byte1 with fractions of a clock period and up to half cycle. The fraction is process and frequency independent. The delay of the delay-line would be (RD_DL_ABS_OFFSET1 / 256) * fast_clk. So for the default value of 64 we get a quarter cycle delay. This field can also bit written by HW. Upon completion of the read delay-line HW calibration this field gets the value of (HW_RD_DL_LOW1 + HW_RD_DL_UP1) /2 Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
+        unsigned RD_DL_ABS_OFFSET1 : 7; //!< [14:8] Absolute read delay offset for Byte1.
         unsigned RESERVED1 : 1; //!< [15] Reserved
-        unsigned RD_DL_ABS_OFFSET2 : 7; //!< [22:16] Absolute read delay offset for Byte2. This field indicates the absolute delay between read DQS strobe and the read data of Byte2 with fractions of a clock period and up to half cycle. The fraction is process and frequency independent. The delay of the delay-line would be (RD_DL_ABS_OFFSET2 / 256) * fast_clk. So for the default value of 64 we get a quarter cycle delay. This field can also bit written by HW. Upon completion of the read delay-line HW calibration this field gets the value of (HW_RD_DL_LOW2 + HW_RD_DL_UP2) /2 Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
+        unsigned RD_DL_ABS_OFFSET2 : 7; //!< [22:16] Absolute read delay offset for Byte2.
         unsigned RESERVED2 : 1; //!< [23] Reserved
-        unsigned RD_DL_ABS_OFFSET3 : 7; //!< [30:24] Absolute read delay offset for Byte3. This field indicates the absolute delay between read DQS strobe and the read data of Byte3 with fractions of a clock period and up to half cycle. The fraction is process and frequency independent. The delay of the delay-line would be (RD_DL_ABS_OFFSET3 / 256) * fast_clk. So for the default value of 64 we get a quarter cycle delay. This field can also bit written by HW. Upon completion of the read delay-line HW calibration this field gets the value of (HW_RD_DL_LOW3 + HW_RD_DL_UP3) /2 Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
+        unsigned RD_DL_ABS_OFFSET3 : 7; //!< [30:24] Absolute read delay offset for Byte3.
         unsigned RESERVED3 : 1; //!< [31] Reserved
     } B;
 } hw_mmdc_mprddlctl_t;
@@ -9589,8 +9532,7 @@ typedef union _hw_mmdc_mprddlctl
  *
  * Reset value: 0x00000000
  *
- * This register holds the status of the 4 read delay-lines.  Supported Mode Of Operations:  For
- * Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16, LP2_2ch_x32
+ * This register holds the status of the 4 read delay-lines.
  */
 typedef union _hw_mmdc_mprddlst
 {
@@ -9679,21 +9621,20 @@ typedef union _hw_mmdc_mprddlst
  *
  * This register controls write delay-lines functionality, it determines DQ/DM delay relative to the
  * associated DQS in write access. The delay-line compensates for process variations, and produces a
- * constant delay regardless of the process, temperature and voltage.  Supported Mode Of Operations:
- * For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16, LP2_2ch_x32
+ * constant delay regardless of the process, temperature and voltage.
  */
 typedef union _hw_mmdc_mpwrdlctl
 {
     reg32_t U;
     struct _hw_mmdc_mpwrdlctl_bitfields
     {
-        unsigned WR_DL_ABS_OFFSET0 : 7; //!< [6:0] Absolute write delay offset for Byte0. This field indicates the absolute delay between write DQS strobe and the write data of Byte3 with fractions of a clock period and up to half cycle. The fraction is process and frequency independent. The delay of the delay-line would be (WR_DL_ABS_OFFSET0 / 256) * fast_clk. So for the default value of 64 we get a quarter cycle delay. This field can also bit written by HW. Upon completion of the write delay-line HW calibration this field gets the value of (HW_WR_DL_LOW0 + HW_WR_DL_UP0) /2 Note that not all changes of this value will affect the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
+        unsigned WR_DL_ABS_OFFSET0 : 7; //!< [6:0] Absolute write delay offset for Byte0.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned WR_DL_ABS_OFFSET1 : 7; //!< [14:8] Absolute write delay offset for Byte1. This field indicates the absolute delay between write DQS strobe and the write data of Byte1 with fractions of a clock period and up to half cycle. The fraction is process and frequency independent. The delay of the delay-line would be (WR_DL_ABS_OFFSET1 / 256) * fast_clk. So for the default value of 64 we get a quarter cycle delay. This field can also bit written by HW. Upon completion of the write delay-line HW calibration this field gets the value of (HW_WR_DL_LOW1 + HW_WR_DL_UP1) /2 Note that not all changes of this value will affect the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
+        unsigned WR_DL_ABS_OFFSET1 : 7; //!< [14:8] Absolute write delay offset for Byte1.
         unsigned RESERVED1 : 1; //!< [15] Reserved
-        unsigned WR_DL_ABS_OFFSET2 : 7; //!< [22:16] Absolute write delay offset for Byte2. This field indicates the absolute delay between write DQS strobe and the write data of Byte2 with fractions of a clock period and up to half cycle. The fraction is process and frequency independent. The delay of the delay-line would be (WR_DL_ABS_OFFSET2/ 256) * fast_clk. So for the default value of 64 we get a quarter cycle delay. This field can also bit written by HW. Upon completion of the write delay-line HW calibration this field gets the value of (HW_WR_DL_LOW2 + HW_WR_DL_UP2) /2 Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
+        unsigned WR_DL_ABS_OFFSET2 : 7; //!< [22:16] Absolute write delay offset for Byte2.
         unsigned RESERVED2 : 1; //!< [23] Reserved
-        unsigned WR_DL_ABS_OFFSET3 : 7; //!< [30:24] Absolute write delay offset for Byte3. This field indicates the absolute delay between write DQS strobe and the write data of Byte3 with fractions of a clock period and up to half cycle. The fraction is process and frequency independent. The delay of the delay-line would be (WR_DL_ABS_OFFSET3 / 256) * fast_clk. So for the default value of 64 we get a quarter cycle delay. This field can also bit written by HW. Upon completion of the write delay-line HW calibration this field gets the value of (HW_WR_DL_LOW3 + HW_WR_DL_UP3) /2 Note that not all changes will have effect on the actual delay. If the requested change is smaller than the delay-line resolution, then no change will occur.
+        unsigned WR_DL_ABS_OFFSET3 : 7; //!< [30:24] Absolute write delay offset for Byte3.
         unsigned RESERVED3 : 1; //!< [31] Reserved
     } B;
 } hw_mmdc_mpwrdlctl_t;
@@ -9831,8 +9772,7 @@ typedef union _hw_mmdc_mpwrdlctl
  *
  * Reset value: 0x00000000
  *
- * This register holds the status of the 4 write delay-line.  Supported Mode Of Operations:  For
- * Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16, LP2_2ch_x32
+ * This register holds the status of the 4 write delay-line.
  */
 typedef union _hw_mmdc_mpwrdlst
 {
@@ -9919,8 +9859,7 @@ typedef union _hw_mmdc_mpwrdlst
  *
  * Reset value: 0x00000000
  *
- * This register controls the fine tuning of the primary clock (CK0).  Supported Mode Of Operations:
- * For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+ * This register controls the fine tuning of the primary clock (CK0).
  */
 typedef union _hw_mmdc_mpsdctrl
 {
@@ -9928,8 +9867,9 @@ typedef union _hw_mmdc_mpsdctrl
     struct _hw_mmdc_mpsdctrl_bitfields
     {
         unsigned RESERVED0 : 8; //!< [7:0] Reserved
-        unsigned SDCLK0_DEL : 2; //!< [9:8] DDR clock0 delay fine tuning. This field holds the number of delay units that are added to DDR clock (CK0). Note: In case of LPDDR2 2-ch mode this registers controls the fine tuning of the clock that is driven to channel0 In case of DDR3 the fine tuning of the secondary clock is controlled by 0x021B_4858[SDCLK]
-        unsigned RESERVED1 : 22; //!< [31:10] Reserved
+        unsigned SDCLK0_DEL : 2; //!< [9:8] DDR clock0 delay fine tuning.
+        unsigned SDCLK1_DEL : 2; //!< [11:10] DDR clock1 delay fine tuning.
+        unsigned RESERVED1 : 20; //!< [31:12] Reserved
     } B;
 } hw_mmdc_mpsdctrl_t;
 #endif
@@ -9955,9 +9895,7 @@ typedef union _hw_mmdc_mpsdctrl
 /* --- Register HW_MMDC_MPSDCTRL, field SDCLK0_DEL[9:8] (RW)
  *
  * DDR clock0 delay fine tuning. This field holds the number of delay units that are added to DDR
- * clock (CK0). Note: In case of LPDDR2 2-ch mode this registers controls the fine tuning of the
- * clock that is driven to channel0 In case of DDR3 the fine tuning of the secondary clock is
- * controlled by 0x021B_4858[SDCLK]
+ * clock (CK0).
  *
  * Values:
  * 00 - No change in DDR clock0 delay
@@ -9981,6 +9919,33 @@ typedef union _hw_mmdc_mpsdctrl
 #endif
 
 
+/* --- Register HW_MMDC_MPSDCTRL, field SDCLK1_DEL[11:10] (RW)
+ *
+ * DDR clock1 delay fine tuning. This field holds the number of delay units that are added to DDR
+ * clock1 (CK1).
+ *
+ * Values:
+ * 00 - No change in DDR clock delay
+ * 01 - Add DDR clock delay of 1 delay unit.
+ * 10 - Add DDR clock delay of 2 delay units.
+ * 11 - Add DDR clock delay of 3 delay units.
+ */
+
+#define BP_MMDC_MPSDCTRL_SDCLK1_DEL      (10)      //!< Bit position for MMDC_MPSDCTRL_SDCLK1_DEL.
+#define BM_MMDC_MPSDCTRL_SDCLK1_DEL      (0x00000c00)  //!< Bit mask for MMDC_MPSDCTRL_SDCLK1_DEL.
+
+//! @brief Get value of MMDC_MPSDCTRL_SDCLK1_DEL from a register value.
+#define BG_MMDC_MPSDCTRL_SDCLK1_DEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSDCTRL_SDCLK1_DEL) >> BP_MMDC_MPSDCTRL_SDCLK1_DEL)
+
+//! @brief Format value for bitfield MMDC_MPSDCTRL_SDCLK1_DEL.
+#define BF_MMDC_MPSDCTRL_SDCLK1_DEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MPSDCTRL_SDCLK1_DEL) & BM_MMDC_MPSDCTRL_SDCLK1_DEL)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SDCLK1_DEL field to a new value.
+#define BW_MMDC_MPSDCTRL_SDCLK1_DEL(x, v)   (HW_MMDC_MPSDCTRL_WR(x, (HW_MMDC_MPSDCTRL_RD(x) & ~BM_MMDC_MPSDCTRL_SDCLK1_DEL) | BF_MMDC_MPSDCTRL_SDCLK1_DEL(v)))
+#endif
+
+
 //-------------------------------------------------------------------------------------------
 // HW_MMDC_MPZQLP2CTL - MMDC ZQ LPDDR2 HW Control Register
 //-------------------------------------------------------------------------------------------
@@ -9992,18 +9957,16 @@ typedef union _hw_mmdc_mpsdctrl
  * Reset value: 0x1b5f0109
  *
  * This register controls the idle time that takes the LPDDR2 device to perform ZQ calibration
- * Supported Mode Of Operations:  For Channel 0: LP2_2ch_x16, LP2_2ch_x32  For Channel 1:
- * LP2_2ch_x16, LP2_2ch_x32
  */
 typedef union _hw_mmdc_mpzqlp2ctl
 {
     reg32_t U;
     struct _hw_mmdc_mpzqlp2ctl_bitfields
     {
-        unsigned ZQ_LP2_HW_ZQINIT : 9; //!< [8:0] This register defines the period in cycles that it takes the memory device to perform a Init ZQ calibration. This is the period of time that the MMDC has to wait after sending a init ZQ calibration and before sending other commands.
+        unsigned ZQ_LP2_HW_ZQINIT : 9; //!< [8:0] This register defines the period in cycles that it takes the memory device to perform a Init ZQ calibration.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
-        unsigned ZQ_LP2_HW_ZQCL : 8; //!< [23:16] This register defines the period in cycles that it takes the memory device to perform a long ZQ calibration. This is the period of time that the MMDC has to wait after sending a Short ZQ calibration and before sending other commands.
-        unsigned ZQ_LP2_HW_ZQCS : 7; //!< [30:24] This register defines the period in cycles that it takes the memory device to perform a Short ZQ calibration. This is the period of time that the MMDC has to wait after sending a long ZQ calibration and before sending other commands. This delay will also be used if ZQ reset is sent.
+        unsigned ZQ_LP2_HW_ZQCL : 8; //!< [23:16] This register defines the period in cycles that it takes the memory device to perform a long ZQ calibration.
+        unsigned ZQ_LP2_HW_ZQCS : 7; //!< [30:24] This register defines the period in cycles that it takes the memory device to perform a Short ZQ calibration.
         unsigned RESERVED1 : 1; //!< [31] Reserved
     } B;
 } hw_mmdc_mpzqlp2ctl_t;
@@ -10126,20 +10089,19 @@ typedef union _hw_mmdc_mpzqlp2ctl
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mprddlhwctl
 {
     reg32_t U;
     struct _hw_mmdc_mprddlhwctl_bitfields
     {
-        unsigned HW_RD_DL_ERR0 : 1; //!< [0] Automatic (HW) read calibration error of Byte0. If this bit is asserted then it indicates that an error was found during the HW calibration process of read delay-line 0. In case this bit is zero at the end of the calibration process then the boundary results can be found at MPRDDLHWST0 register. This bit is valid only after HW_RD_DL_EN is de-asserted.
-        unsigned HW_RD_DL_ERR1 : 1; //!< [1] Automatic (HW) read calibration error of Byte1. If this bit is asserted then it indicates that an error was found during the HW calibration process of read delay-line 1. In case this bit is zero at the end of the calibration process then the boundary results can be found at MPRDDLHWST0 register. This bit is valid only after HW_RD_DL_EN is de-asserted.
-        unsigned HW_RD_DL_ERR2 : 1; //!< [2] Automatic (HW) read calibration error of Byte2. If this bit is asserted then it indicates that an error was found during the HW calibration process of read delay-line 2. In case this bit is zero at the end of the calibration process then the boundary results can be found at MPRDDLHWST1 register. This bit is valid only after HW_RD_DL_EN is de-asserted.
-        unsigned HW_RD_DL_ERR3 : 1; //!< [3] Automatic (HW) read calibration error of Byte3. If this bit is asserted then it indicates that an error was found during the HW calibration process of read delay-line 3. In case this bit is zero at the end of the calibration process then the boundary results can be found at MPRDDLHWST1 register. This bit is valid only after HW_RD_DL_EN is de-asserted.
-        unsigned HW_RD_DL_EN : 1; //!< [4] Enable automatic (HW) read calibration. If this bit is asserted then the MMDC will perform an automatic read calibration. HW should negate this bit upon completion of the calibration. Negation of this bit also points that the read calibration results are valid Note: Before issuing the first read command MMDC counts 12 cycles.
-        unsigned HW_RD_DL_CMP_CYC : 1; //!< [5] Automatic (HW) read sample cycle. If this bit is asserted then the MMDC will compare the read data 32 cycles after the MMDC sent the read command enable pulse else it compares the data after 16 cycles.
+        unsigned HW_RD_DL_ERR0 : 1; //!< [0] Automatic (HW) read calibration error of Byte0.
+        unsigned HW_RD_DL_ERR1 : 1; //!< [1] Automatic (HW) read calibration error of Byte1.
+        unsigned HW_RD_DL_ERR2 : 1; //!< [2] Automatic (HW) read calibration error of Byte2.
+        unsigned HW_RD_DL_ERR3 : 1; //!< [3] Automatic (HW) read calibration error of Byte3.
+        unsigned HW_RD_DL_EN : 1; //!< [4] Enable automatic (HW) read calibration.
+        unsigned HW_RD_DL_CMP_CYC : 1; //!< [5] Automatic (HW) read sample cycle.
         unsigned RESERVED0 : 26; //!< [31:6] Reserved
     } B;
 } hw_mmdc_mprddlhwctl_t;
@@ -10300,20 +10262,19 @@ typedef union _hw_mmdc_mprddlhwctl
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpwrdlhwctl
 {
     reg32_t U;
     struct _hw_mmdc_mpwrdlhwctl_bitfields
     {
-        unsigned HW_WR_DL_ERR0 : 1; //!< [0] Automatic (HW) write calibration error of Byte0. If this bit is asserted then it indicates that an error was found during the HW calibration process of write delay-line 0. In case this bit is zero at the end of the calibration process then the boundary results can be found at MPWRDLHWST0 register. This bit is valid only after HW_WR_DL_EN is de-asserted.
-        unsigned HW_WR_DL_ERR1 : 1; //!< [1] Automatic (HW) write calibration error of Byte1. If this bit is asserted then it indicates that an error was found during the HW calibration process of write delay-line 1. In case this bit is zero at the end of the calibration process then the boundary results can be found at MPWRDLHWST0 register. This bit is valid only after HW_WR_DL_EN is de-asserted.
-        unsigned HW_WR_DL_ERR2 : 1; //!< [2] Automatic (HW) write calibration error of Byte2. If this bit is asserted then it indicates that an error was found during the HW calibration process of write delay-line 2. T In case this bit is zero at the end of the calibration process then the boundary results can be found at MPWRDLHWST1 register. This bit is valid only after HW_WR_DL_EN is de-asserted.
-        unsigned HW_WR_DL_ERR3 : 1; //!< [3] Automatic (HW) write calibration error of Byte3. If this bit is asserted then it indicates that an error was found during the HW calibration process of write delay-line 3. In case this bit is zero at the end of the calibration process then the boundary results can be found at MPWRDLHWST1 register. This bit is valid only after HW_WR_DL_EN is de-asserted.
-        unsigned HW_WR_DL_EN : 1; //!< [4] Enable automatic (HW) write calibration. If this bit is asserted then the MMDC will perform an automatic write calibration. HW should negate this bit upon completion of the calibration. Negation of this bit also indicates that the write calibration results are valid Note: Before issuing the first read command MMDC counts 12 cycles.
-        unsigned HW_WR_DL_CMP_CYC : 1; //!< [5] Write sample cycle. If this bit is asserted then the MMDC will compare the data 32 cycles after the MMDC sent the read command enable pulse else it compares the data after 16 cycles.
+        unsigned HW_WR_DL_ERR0 : 1; //!< [0] Automatic (HW) write calibration error of Byte0.
+        unsigned HW_WR_DL_ERR1 : 1; //!< [1] Automatic (HW) write calibration error of Byte1.
+        unsigned HW_WR_DL_ERR2 : 1; //!< [2] Automatic (HW) write calibration error of Byte2.
+        unsigned HW_WR_DL_ERR3 : 1; //!< [3] Automatic (HW) write calibration error of Byte3.
+        unsigned HW_WR_DL_EN : 1; //!< [4] Enable automatic (HW) write calibration.
+        unsigned HW_WR_DL_CMP_CYC : 1; //!< [5] Write sample cycle.
         unsigned RESERVED0 : 26; //!< [31:6] Reserved
     } B;
 } hw_mmdc_mpwrdlhwctl_t;
@@ -10465,21 +10426,20 @@ typedef union _hw_mmdc_mpwrdlhwctl
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mprddlhwst0
 {
     reg32_t U;
     struct _hw_mmdc_mprddlhwst0_bitfields
     {
-        unsigned HW_RD_DL_LOW0 : 7; //!< [6:0] Automatic (HW) read calibration result of the lower boundary of Byte0. This field holds the automatic (HW) read calibration result of the lower boundary of Byte0.
+        unsigned HW_RD_DL_LOW0 : 7; //!< [6:0] Automatic (HW) read calibration result of the lower boundary of Byte0.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned HW_RD_DL_UP0 : 7; //!< [14:8] Automatic (HW) read calibration result of the upper boundary of Byte0. This field holds the automatic (HW) read calibration result of the upper boundary of Byte0.
+        unsigned HW_RD_DL_UP0 : 7; //!< [14:8] Automatic (HW) read calibration result of the upper boundary of Byte0.
         unsigned RESERVED1 : 1; //!< [15] Reserved
-        unsigned HW_RD_DL_LOW1 : 7; //!< [22:16] Automatic (HW) read calibration result of the lower boundary of Byte1. This field holds the automatic (HW) read calibration result of the lower boundary of Byte1
+        unsigned HW_RD_DL_LOW1 : 7; //!< [22:16] Automatic (HW) read calibration result of the lower boundary of Byte1.
         unsigned RESERVED2 : 1; //!< [23] Reserved
-        unsigned HW_RD_DL_UP1 : 7; //!< [30:24] Automatic (HW) read calibration result of the upper boundary of Byte1. This field holds the automatic (HW) read calibration result of the upper boundary of Byte1
+        unsigned HW_RD_DL_UP1 : 7; //!< [30:24] Automatic (HW) read calibration result of the upper boundary of Byte1.
         unsigned RESERVED3 : 1; //!< [31] Reserved
     } B;
 } hw_mmdc_mprddlhwst0_t;
@@ -10557,21 +10517,20 @@ typedef union _hw_mmdc_mprddlhwst0
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mprddlhwst1
 {
     reg32_t U;
     struct _hw_mmdc_mprddlhwst1_bitfields
     {
-        unsigned HW_RD_DL_LOW2 : 7; //!< [6:0] Automatic (HW) read calibration result of the lower boundary of Byte2. This field holds the automatic (HW) read calibration result of the lower boundary of Byte2.
+        unsigned HW_RD_DL_LOW2 : 7; //!< [6:0] Automatic (HW) read calibration result of the lower boundary of Byte2.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned HW_RD_DL_UP2 : 7; //!< [14:8] Automatic (HW) read calibration result of the upper boundary of Byte2. This field holds the automatic (HW) read calibration result of the upper boundary of Byte2.
+        unsigned HW_RD_DL_UP2 : 7; //!< [14:8] Automatic (HW) read calibration result of the upper boundary of Byte2.
         unsigned RESERVED1 : 1; //!< [15] Reserved
-        unsigned HW_RD_DL_LOW3 : 7; //!< [22:16] Automatic (HW) read calibration result of the lower boundary of Byte3. This field holds the automatic (HW) read calibration result of the lower boundary of Byte3
+        unsigned HW_RD_DL_LOW3 : 7; //!< [22:16] Automatic (HW) read calibration result of the lower boundary of Byte3.
         unsigned RESERVED2 : 1; //!< [23] Reserved
-        unsigned HW_RD_DL_UP3 : 7; //!< [30:24] Automatic (HW) read calibration result of the upper boundary of Byte3. This field holds the automatic (HW) read calibration result of the upper boundary of Byte3
+        unsigned HW_RD_DL_UP3 : 7; //!< [30:24] Automatic (HW) read calibration result of the upper boundary of Byte3.
         unsigned RESERVED3 : 1; //!< [31] Reserved
     } B;
 } hw_mmdc_mprddlhwst1_t;
@@ -10649,21 +10608,20 @@ typedef union _hw_mmdc_mprddlhwst1
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpwrdlhwst0
 {
     reg32_t U;
     struct _hw_mmdc_mpwrdlhwst0_bitfields
     {
-        unsigned HW_WR_DL_LOW0 : 7; //!< [6:0] Automatic (HW) write calibration result of the lower boundary of Byte0. This field holds the automatic (HW) write calibration result of the lower boundary of Byte0.
+        unsigned HW_WR_DL_LOW0 : 7; //!< [6:0] Automatic (HW) write calibration result of the lower boundary of Byte0.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned HW_WR_DL_UP0 : 7; //!< [14:8] Automatic (HW) write calibration result of the upper boundary of Byte0. This field holds the automatic (HW) write calibration result of the upper boundary of Byte0.
+        unsigned HW_WR_DL_UP0 : 7; //!< [14:8] Automatic (HW) write calibration result of the upper boundary of Byte0.
         unsigned RESERVED1 : 1; //!< [15] Reserved
-        unsigned HW_WR_DL_LOW1 : 7; //!< [22:16] Automatic (HW) write calibration result of the lower boundary of Byte1. This field holds the automatic (HW) write calibration result of the lower boundary of Byte1.
+        unsigned HW_WR_DL_LOW1 : 7; //!< [22:16] Automatic (HW) write calibration result of the lower boundary of Byte1.
         unsigned RESERVED2 : 1; //!< [23] Reserved
-        unsigned HW_WR_DL_UP1 : 7; //!< [30:24] Aautomatic (HW) write utomatic (HW) write calibration result of the upper boundary of Byte1. This field holds the automatic (HW) write calibration result of the upper boundary of Byte1.
+        unsigned HW_WR_DL_UP1 : 7; //!< [30:24] Aautomatic (HW) write utomatic (HW) write calibration result of the upper boundary of Byte1.
         unsigned RESERVED3 : 1; //!< [31] Reserved
     } B;
 } hw_mmdc_mpwrdlhwst0_t;
@@ -10741,20 +10699,20 @@ typedef union _hw_mmdc_mpwrdlhwst0
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpwrdlhwst1
 {
     reg32_t U;
     struct _hw_mmdc_mpwrdlhwst1_bitfields
     {
-        unsigned HW_WR_DL_LOW2 : 7; //!< [6:0] Automatic (HW) write calibration result of the lower boundary of Byte2. This field holds the automatic (HW) write calibration result of the lower boundary of Byte2.
+        unsigned HW_WR_DL_LOW2 : 7; //!< [6:0] Automatic (HW) write calibration result of the lower boundary of Byte2.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned HW_WR_DL_UP2 : 7; //!< [14:8] Automatic (HW) write calibration result of the upper boundary of Byte2. This field holds the automatic (HW) write calibration result of the upper boundary of Byte2.
+        unsigned HW_WR_DL_UP2 : 7; //!< [14:8] Automatic (HW) write calibration result of the upper boundary of Byte2.
         unsigned RESERVED1 : 1; //!< [15] Reserved
-        unsigned HW_WR_DL_LOW3 : 7; //!< [22:16] Automatic (HW) write calibration result of the lower boundary of Byte3. This field holds the automatic (HW) write calibration result of the lower boundary of Byte3.
+        unsigned HW_WR_DL_LOW3 : 7; //!< [22:16] Automatic (HW) write calibration result of the lower boundary of Byte3.
         unsigned RESERVED2 : 1; //!< [23] Reserved
-        unsigned HW_WR_DL_UP3 : 7; //!< [30:24] Automatic (HW) write calibration result of the upper boundary of Byte3. This field holds the automatic (HW) write calibration result of the upper boundary of Byte3.
+        unsigned HW_WR_DL_UP3 : 7; //!< [30:24] Automatic (HW) write calibration result of the upper boundary of Byte3.
         unsigned RESERVED3 : 1; //!< [31] Reserved
     } B;
 } hw_mmdc_mpwrdlhwst1_t;
@@ -10832,18 +10790,17 @@ typedef union _hw_mmdc_mpwrdlhwst1
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpwlhwerr
 {
     reg32_t U;
     struct _hw_mmdc_mpwlhwerr_bitfields
     {
-        unsigned HW_WL0_DQ : 8; //!< [7:0] HW write-leveling calibration result of Byte0. This field holds the results for all the 8 write-leveling steps of Byte0. i.e bit 0 holds the result of the write-leveling calibration of 0 delay, bit 1holds the result of the write-leveling calibration of 1/8delay till bit 7 that holds the result of the write-leveling calibration of 7/8 delay
-        unsigned HW_WL1_DQ : 8; //!< [15:8] HW write-leveling calibration result of Byte1. This field holds the results for all the 8 write-leveling steps of Byte1. i.e bit 0 holds the result of the write-leveling calibration of 0 delay, bit 1holds the result of the write-leveling calibration of 1/8delay till bit 7 that holds the result of the write-leveling calibration of 7/8 delay
-        unsigned HW_WL2_DQ : 8; //!< [23:16] HW write-leveling calibration result of Byte2. This field holds the results for all the 8 write-leveling steps of Byte2. i.e bit 0 holds the result of the write-leveling calibration of 0 delay, bit 1holds the result of the write-leveling calibration of 1/8delay till bit 7 that holds the result of the write-leveling calibration of 7/8 delay
-        unsigned HW_WL3_DQ : 8; //!< [31:24] HW write-leveling calibration result of Byte3. This field holds the results for all the 8 write-leveling steps of Byte3. i.e bit 0 holds the result of the write-leveling calibration of 0 delay, bit 1holds the result of the write-leveling calibration of 1/8delay till bit 7 that holdsthe result of the write-leveling calibration of 7/8 delay
+        unsigned HW_WL0_DQ : 8; //!< [7:0] HW write-leveling calibration result of Byte0.
+        unsigned HW_WL1_DQ : 8; //!< [15:8] HW write-leveling calibration result of Byte1.
+        unsigned HW_WL2_DQ : 8; //!< [23:16] HW write-leveling calibration result of Byte2.
+        unsigned HW_WL3_DQ : 8; //!< [31:24] HW write-leveling calibration result of Byte3.
     } B;
 } hw_mmdc_mpwlhwerr_t;
 #endif
@@ -10932,17 +10889,16 @@ typedef union _hw_mmdc_mpwlhwerr
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: DDR3_x16, DDR3_x32, DDR3_x64  For Channel 1:
- * DDR3_x64
+
  */
 typedef union _hw_mmdc_mpdghwst0
 {
     reg32_t U;
     struct _hw_mmdc_mpdghwst0_bitfields
     {
-        unsigned HW_DG_LOW0 : 11; //!< [10:0] HW DQS gating calibration result of the lower boundary of Byte0. This field holds the HW DQS gating calibration result of the lower boundary of Byte0.
+        unsigned HW_DG_LOW0 : 11; //!< [10:0] HW DQS gating calibration result of the lower boundary of Byte0.
         unsigned RESERVED0 : 5; //!< [15:11] Reserved
-        unsigned HW_DG_UP0 : 11; //!< [26:16] HW DQS gating calibration result of the upper boundary of Byte0. This field holds the HW DQS gating calibration result of the upper boundary of Byte0.
+        unsigned HW_DG_UP0 : 11; //!< [26:16] HW DQS gating calibration result of the upper boundary of Byte0.
         unsigned RESERVED1 : 5; //!< [31:27] Reserved
     } B;
 } hw_mmdc_mpdghwst0_t;
@@ -10996,17 +10952,16 @@ typedef union _hw_mmdc_mpdghwst0
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: DDR3_x16, DDR3_x32, DDR3_x64  For Channel 1:
- * DDR3_x64
+
  */
 typedef union _hw_mmdc_mpdghwst1
 {
     reg32_t U;
     struct _hw_mmdc_mpdghwst1_bitfields
     {
-        unsigned HW_DG_LOW1 : 11; //!< [10:0] HW DQS gating calibration result of the lower boundary of Byte1. This field holds the HW DQS gating calibration result of the lower boundary of Byte1.
+        unsigned HW_DG_LOW1 : 11; //!< [10:0] HW DQS gating calibration result of the lower boundary of Byte1.
         unsigned RESERVED0 : 5; //!< [15:11] Reserved
-        unsigned HW_DG_UP1 : 11; //!< [26:16] HW DQS gating calibration result of the upper boundary of Byte1. This field holds the HW DQS gating calibration result of the upper boundary of Byte1.
+        unsigned HW_DG_UP1 : 11; //!< [26:16] HW DQS gating calibration result of the upper boundary of Byte1.
         unsigned RESERVED1 : 5; //!< [31:27] Reserved
     } B;
 } hw_mmdc_mpdghwst1_t;
@@ -11060,17 +11015,16 @@ typedef union _hw_mmdc_mpdghwst1
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: DDR3_x16, DDR3_x32, DDR3_x64  For Channel 1:
- * DDR3_x64
+
  */
 typedef union _hw_mmdc_mpdghwst2
 {
     reg32_t U;
     struct _hw_mmdc_mpdghwst2_bitfields
     {
-        unsigned HW_DG_LOW2 : 11; //!< [10:0] HW DQS gating calibration result of the lower boundary of Byte2. This field holds the HW DQS gating calibration result of the lower boundary of Byte2.
+        unsigned HW_DG_LOW2 : 11; //!< [10:0] HW DQS gating calibration result of the lower boundary of Byte2.
         unsigned RESERVED0 : 5; //!< [15:11] Reserved
-        unsigned HW_DG_UP2 : 11; //!< [26:16] HW DQS gating calibration result of the upper boundary of Byte2. This field holds the HW DQS gating calibration result of the upper boundary of Byte2.
+        unsigned HW_DG_UP2 : 11; //!< [26:16] HW DQS gating calibration result of the upper boundary of Byte2.
         unsigned RESERVED1 : 5; //!< [31:27] Reserved
     } B;
 } hw_mmdc_mpdghwst2_t;
@@ -11124,17 +11078,16 @@ typedef union _hw_mmdc_mpdghwst2
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: DDR3_x16, DDR3_x32, DDR3_x64  For Channel 1:
- * DDR3_x64
+
  */
 typedef union _hw_mmdc_mpdghwst3
 {
     reg32_t U;
     struct _hw_mmdc_mpdghwst3_bitfields
     {
-        unsigned HW_DG_LOW3 : 11; //!< [10:0] HW DQS gating calibration result of the lower boundary of Byte3. This field holds the HW DQS gating calibration result of the lower boundary of Byte3.
+        unsigned HW_DG_LOW3 : 11; //!< [10:0] HW DQS gating calibration result of the lower boundary of Byte3.
         unsigned RESERVED0 : 5; //!< [15:11] Reserved
-        unsigned HW_DG_UP3 : 11; //!< [26:16] HW DQS gating calibration result of the upper boundary of Byte3. This field holds the HW DQS gating calibration result of the upper boundary of Byte3.
+        unsigned HW_DG_UP3 : 11; //!< [26:16] HW DQS gating calibration result of the upper boundary of Byte3.
         unsigned RESERVED1 : 5; //!< [31:27] Reserved
     } B;
 } hw_mmdc_mpdghwst3_t;
@@ -11191,16 +11144,15 @@ typedef union _hw_mmdc_mpdghwst3
  * This register holds the MMDC pre-defined compare value that will be used during automatic read,
  * read DQS gating and write calibration process. The compare value can be the MPR value (as defined
  * in the JEDEC) or can be programmed by the PDV1 and PDV2 fields. In case of DDR3 (BL=8) the MMDC
- * will duplicate PDV1,PDV2 and drive that data on Beat4-7 of the same byte  Supported Mode Of
- * Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+ * will duplicate PDV1,PDV2 and drive that data on Beat4-7 of the same byte
  */
 typedef union _hw_mmdc_mppdcmpr1
 {
     reg32_t U;
     struct _hw_mmdc_mppdcmpr1_bitfields
     {
-        unsigned PDV1 : 16; //!< [15:0] MMDC Pre defined comapre value2. This field holds the 2 LSB of the data that will be driven to the DDR device during automatic read, read DQS gating and write calibrations in case MPR(DDR3)/ DQ calibration (LPDDR2) mode are disabled (MPR_CMP is disabled). Upon read access during the calibration the MMDC will compare the read data with the data that is stored in this field. Before issuing the read access, the MMDC will invert the value of this field and drive it to the associated entry in the read comparison FIFO.
-        unsigned PDV2 : 16; //!< [31:16] MMDC Pre defined comapre value2. This field holds the 2 MSB of the data that will be driven to the DDR device during automatic read, read DQS gating and write calibrations in case MPR(DDR3)/ DQ calibration (LPDDR2) mode are disabled (MPR_CMP is disabled). Upon read access during the calibration the MMDC will compare the read data with the data that is stored in this field. Note : Before issue the read access the MMDC will invert the value of this field and drive it to the associate entry in the read comparison FIFO. For further information see Section 19.14.3.1.2, "Calibration with pre-defined value , Section 19.14.4.1.2, "Calibration with pre-defined value and Section 19.14.5.1, "HW (automatic) Write Calibraion
+        unsigned PDV1 : 16; //!< [15:0] MMDC Pre defined comapre value2.
+        unsigned PDV2 : 16; //!< [31:16] MMDC Pre defined comapre value2.
     } B;
 } hw_mmdc_mppdcmpr1_t;
 #endif
@@ -11283,18 +11235,18 @@ typedef union _hw_mmdc_mppdcmpr1
  *
  * Reset value: 0x00400000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mppdcmpr2
 {
     reg32_t U;
     struct _hw_mmdc_mppdcmpr2_bitfields
     {
-        unsigned MPR_CMP : 1; //!< [0] MPR(DDR3)/DQ calibration (LPDDR2) comapre enable. This bit indicates whether the MMDC will compare the read data during automatic read and read DQS calibration processes to the pre-defined patterns that are driven by the DDR deivce (READ_LEVEL_PATTERN as defined by JEDEC) or general pre-defined value that are stored in PDV1 and PDV2. When this bit is disabled data is compared to the data of the pre defined compare value field For further information see and .
-        unsigned MPR_FULL_CMP : 1; //!< [1] MPR(DDR3)/DQ calibration (LPDDR2) full compare enable. In case MPR(DDR3)/DQ calibration(LPDDR2) modes are used during the calibration process (MPR_CMP is asserted) then this field indicates whether the MMDC will compare all the bits of the data that is read from the DDR device to the MPR pre-defined pattern. When this bit is de-asserted only LSB of each byte is compared.
-        unsigned READ_LEVEL_PATTERN : 1; //!< [2] MPR(DDR3)/DQ calibration(LPDDR2) read compare pattern. In case MPR(DDR3)/DQ calibration(LPDDR2) modes are used during the calibration process (MPR_CMP is asserted) then this field indicates the read pattern for the comparison.
+        unsigned MPR_CMP : 1; //!< [0] MPR(DDR3)/DQ calibration (LPDDR2) comapre enable.
+        unsigned MPR_FULL_CMP : 1; //!< [1] MPR(DDR3)/DQ calibration (LPDDR2) full compare enable.
+        unsigned READ_LEVEL_PATTERN : 1; //!< [2] MPR(DDR3)/DQ calibration(LPDDR2) read compare pattern.
         unsigned RESERVED0 : 13; //!< [15:3] Reserved
-        unsigned CA_DL_ABS_OFFSET : 7; //!< [22:16] Absolute CA (Command/Address of LPDDRR2) offset. This field indicates the absolute delay between CA (Command/Address) bus and the DDR clock (CK) with fractions of a clock period and up to half cycle. The fraction is process and frequency independent. The delay of the delay-line would be (CA_DL_ABS_OFFSET / 256) * fast_clk. So for the default value of 64 we get a quarter cycle delay.
+        unsigned CA_DL_ABS_OFFSET : 7; //!< [22:16] Absolute CA (Command/Address of LPDDRR2) offset.
         unsigned RESERVED1 : 1; //!< [23] Reserved
         unsigned PHY_CA_DL_UNIT : 7; //!< [30:24] This field reflects the number of delay units that are actually used by CA (Command/Address of LPDDR2) delay-line
         unsigned RESERVED2 : 1; //!< [31] Reserved
@@ -11435,20 +11387,19 @@ typedef union _hw_mmdc_mppdcmpr2
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpswdar0
 {
     reg32_t U;
     struct _hw_mmdc_mpswdar0_bitfields
     {
-        unsigned SW_DUMMY_WR : 1; //!< [0] SW dummy write. When this bit is asserted the MMDC will generate internally write access without intervention of the system toward bank 0, row 0, column 0, while the data is driven from MPPDCMPR1[PDV1] and MPPDCMPR1[PDV2]. The bit is de-asserted automatically upon completion of the access.
-        unsigned SW_DUMMY_RD : 1; //!< [1] SW dummy read. When this bit is asserted the MMDC will generate internally read access without intervention of the system toward bank 0, row 0, column 0. If MPR_CMP = 1then the read data will be compared to MPPDCMPR2[READ_LEVEL_PATTERN] . If MPR_CMP =0 then the read data will be compared to MPPDCMPR1[PDV1], MPPDCMPR1[PDV2]. Upon completion of the access this bit is de-asserted automatically and the read data and comparison results are valid at MPSWDAR0[SW_DUM_CMP#] and MPSWDRDR0-MPSWDRDR7 respectively.
-        unsigned SW_DUM_CMP0 : 1; //!< [2] SW dummy read byte0 compare results. This bit indicates the result of the read data comparison of Byte0 at the completion of SW_DUMMY_RD. This bit is valid only when SW_DUMMY_RD is de-assrted.
-        unsigned SW_DUM_CMP1 : 1; //!< [3] SW dummy read byte1 compare results. This bit indicates the result of the read data comparison of Byte1 at the completion of SW_DUMMY_RD. This bit is valid only when SW_DUMMY_RD is de-assrted.
-        unsigned SW_DUM_CMP2 : 1; //!< [4] SW dummy read byte2 compare results. This bit indicates the result of the read data comparison of Byte2 at the completion of SW_DUMMY_RD. This bit is valid only when SW_DUMMY_RD is de-assrted.
-        unsigned SW_DUM_CMP3 : 1; //!< [5] SW dummy read byte3 compare results. This bit indicates the result of the read data comparison of Byte3 at the completion of SW_DUMMY_RD. This bit is valid only when SW_DUMMY_RD is de-assrted.
+        unsigned SW_DUMMY_WR : 1; //!< [0] SW dummy write.
+        unsigned SW_DUMMY_RD : 1; //!< [1] SW dummy read.
+        unsigned SW_DUM_CMP0 : 1; //!< [2] SW dummy read byte0 compare results.
+        unsigned SW_DUM_CMP1 : 1; //!< [3] SW dummy read byte1 compare results.
+        unsigned SW_DUM_CMP2 : 1; //!< [4] SW dummy read byte2 compare results.
+        unsigned SW_DUM_CMP3 : 1; //!< [5] SW dummy read byte3 compare results.
         unsigned RESERVED0 : 26; //!< [31:6] Reserved
     } B;
 } hw_mmdc_mpswdar0_t;
@@ -11596,15 +11547,14 @@ typedef union _hw_mmdc_mpswdar0
  *
  * Reset value: 0xffffffff
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpswdrdr0
 {
     reg32_t U;
     struct _hw_mmdc_mpswdrdr0_bitfields
     {
-        unsigned DUM_RD0 : 32; //!< [31:0] Dummy read data0. This field holds the first data that is read from the DDR during SW dummy read access (i.e when SW_DUMMY_RD = 1). This field is valid only when SW_DUMMY_RD is de-assrted
+        unsigned DUM_RD0 : 32; //!< [31:0] Dummy read data0.
     } B;
 } hw_mmdc_mpswdrdr0_t;
 #endif
@@ -11645,15 +11595,14 @@ typedef union _hw_mmdc_mpswdrdr0
  *
  * Reset value: 0xffffffff
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpswdrdr1
 {
     reg32_t U;
     struct _hw_mmdc_mpswdrdr1_bitfields
     {
-        unsigned DUM_RD1 : 32; //!< [31:0] Dummy read data1. This field holds the second data that is read from the DDR during SW dummy read access (i.e when SW_DUMMY_RD = 1). This field is valid only when SW_DUMMY_RD is de-assrted
+        unsigned DUM_RD1 : 32; //!< [31:0] Dummy read data1.
     } B;
 } hw_mmdc_mpswdrdr1_t;
 #endif
@@ -11694,15 +11643,14 @@ typedef union _hw_mmdc_mpswdrdr1
  *
  * Reset value: 0xffffffff
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpswdrdr2
 {
     reg32_t U;
     struct _hw_mmdc_mpswdrdr2_bitfields
     {
-        unsigned DUM_RD2 : 32; //!< [31:0] Dummy read data2. This field holds the third data that is read from the DDR during SW dummy read access (i.e when SW_DUMMY_RD = 1). This field is valid only when SW_DUMMY_RD is de-assrted.
+        unsigned DUM_RD2 : 32; //!< [31:0] Dummy read data2.
     } B;
 } hw_mmdc_mpswdrdr2_t;
 #endif
@@ -11743,15 +11691,14 @@ typedef union _hw_mmdc_mpswdrdr2
  *
  * Reset value: 0xffffffff
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpswdrdr3
 {
     reg32_t U;
     struct _hw_mmdc_mpswdrdr3_bitfields
     {
-        unsigned DUM_RD3 : 32; //!< [31:0] Dummy read data3. This field holds the forth data that is read from the DDR during SW dummy read access (i.e when SW_DUMMY_RD = 1). This field is valid only when SW_DUMMY_RD is de-assrted.
+        unsigned DUM_RD3 : 32; //!< [31:0] Dummy read data3.
     } B;
 } hw_mmdc_mpswdrdr3_t;
 #endif
@@ -11792,15 +11739,14 @@ typedef union _hw_mmdc_mpswdrdr3
  *
  * Reset value: 0xffffffff
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpswdrdr4
 {
     reg32_t U;
     struct _hw_mmdc_mpswdrdr4_bitfields
     {
-        unsigned DUM_RD4 : 32; //!< [31:0] Dummy read data4. This field holds the fifth data (only in case of burst length 8 (BL =1 )) that is read from the DDR during SW dummy read access (i.e when SW_DUMMY_RD = 1). This field is valid only when SW_DUMMY_RD is de-assrted.
+        unsigned DUM_RD4 : 32; //!< [31:0] Dummy read data4.
     } B;
 } hw_mmdc_mpswdrdr4_t;
 #endif
@@ -11842,15 +11788,14 @@ typedef union _hw_mmdc_mpswdrdr4
  *
  * Reset value: 0xffffffff
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpswdrdr5
 {
     reg32_t U;
     struct _hw_mmdc_mpswdrdr5_bitfields
     {
-        unsigned DUM_RD5 : 32; //!< [31:0] Dummy read data5. This field holds the sixth data (only in case of burst length 8 (BL =1 )) that is read from the DDR during SW dummy read access (i.e when SW_DUMMY_RD = 1). This field is valid only when SW_DUMMY_RD is de-assrted.
+        unsigned DUM_RD5 : 32; //!< [31:0] Dummy read data5.
     } B;
 } hw_mmdc_mpswdrdr5_t;
 #endif
@@ -11892,15 +11837,14 @@ typedef union _hw_mmdc_mpswdrdr5
  *
  * Reset value: 0xffffffff
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpswdrdr6
 {
     reg32_t U;
     struct _hw_mmdc_mpswdrdr6_bitfields
     {
-        unsigned DUM_RD6 : 32; //!< [31:0] Dummy read data6. This field holds the seventh data (only in case of burst length 8 (BL =1 )) that is read from the DDR during SW dummy read access (i.e when SW_DUMMY_RD = 1). This field is valid only when SW_DUMMY_RD is de-assrted.
+        unsigned DUM_RD6 : 32; //!< [31:0] Dummy read data6.
     } B;
 } hw_mmdc_mpswdrdr6_t;
 #endif
@@ -11942,15 +11886,14 @@ typedef union _hw_mmdc_mpswdrdr6
  *
  * Reset value: 0xffffffff
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: DDR3_x64, LP2_2ch_x16,
- * LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpswdrdr7
 {
     reg32_t U;
     struct _hw_mmdc_mpswdrdr7_bitfields
     {
-        unsigned DUM_RD7 : 32; //!< [31:0] Dummy read data7. This field holds the eigth data (only in case of burst length 8 (BL =1 )) that is read from the DDR during SW dummy read access (i.e when SW_DUMMY_RD = 1). This field is valid only when SW_DUMMY_RD is de-assrted.
+        unsigned DUM_RD7 : 32; //!< [31:0] Dummy read data7.
     } B;
 } hw_mmdc_mpswdrdr7_t;
 #endif
@@ -11992,18 +11935,18 @@ typedef union _hw_mmdc_mpswdrdr7
  *
  * Reset value: 0x00000000
  *
- * Supported Mode Of Operations:  For Channel 0: All  For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+
  */
 typedef union _hw_mmdc_mpmur0
 {
     reg32_t U;
     struct _hw_mmdc_mpmur0_bitfields
     {
-        unsigned MU_BYP_VAL : 10; //!< [9:0] Number of delay units for measurement bypass. This field is used in debug mode and holds the number of delay units that will be used by the delay-lines when MU_BYP_EN is asserted.
-        unsigned MU_BYP_EN : 1; //!< [10] Measure unit bypass enable. This field is used in debug mode and when it is asserted then the delay-lines will use the number of delay units that are indicated at MU_BYP_VAL, otherwise the delay-lines will use the number of delay units that was measured by the measurement unit and are indicated at MU_UNIT_DEL_NUM
-        unsigned FRC_MSR : 1; //!< [11] Force measuement on delay-lines. When this bit is asserted then a measurement process will be performed, where at the completion of the process the delay-lines will issue the desired delay. Upon completion of the measurement process the measure unit and the delay-lines will return to functional more. This bit is self cleared. This bit should be used only during manual (SW) calibration and not while the DDR is functional (being accessed). After initial calibration is done the hardware performs periodic measurements to track any operating conditions changes. Hence, force measurements (FRC_MSR) should not be used. See for more information. User should make sure that there is no active accesses to/from DDR before asserting this bit.
+        unsigned MU_BYP_VAL : 10; //!< [9:0] Number of delay units for measurement bypass.
+        unsigned MU_BYP_EN : 1; //!< [10] Measure unit bypass enable.
+        unsigned FRC_MSR : 1; //!< [11] Force measuement on delay-lines.
         unsigned RESERVED0 : 4; //!< [15:12] Reserved
-        unsigned MU_UNIT_DEL_NUM : 10; //!< [25:16] Number of delay units measured per cycle. This field is used in debug mode and holds the number of delay units that were measured by the measure unit per DDR clock cycle. The delay-lines that are used in every calibration process use that number for generating the desired delay.
+        unsigned MU_UNIT_DEL_NUM : 10; //!< [25:16] Number of delay units measured per cycle.
         unsigned RESERVED1 : 6; //!< [31:26] Reserved
     } B;
 } hw_mmdc_mpmur0_t;
@@ -12129,24 +12072,23 @@ typedef union _hw_mmdc_mpmur0
  * Reset value: 0x00000000
  *
  * This register is used to add fine-tuning adjustment to the CA (command/Address of LPDDR2 bus)
- * relative to the DDR clock  Supported Mode Of Operations:  For Channel 0: LP2_2ch_x16, LP2_2ch_x32
- * For Channel 1: LP2_2ch_x16, LP2_2ch_x32
+ * relative to the DDR clock
  */
 typedef union _hw_mmdc_mpwrcadl
 {
     reg32_t U;
     struct _hw_mmdc_mpwrcadl_bitfields
     {
-        unsigned WR_CA0_DEL : 2; //!< [1:0] CA (Command/Address LPDDR2 bus) bit 0 delay fine tuning. This field holds the number of delay units that are added to CA (Command/Address bus) bit 0 relative to the clock.
-        unsigned WR_CA1_DEL : 2; //!< [3:2] CA (Command/Address LPDDR2 bus) bit 1 delay fine tuning. This field holds the number of delay units that are added to CA (Command/Address bus) bit 1 relative to the clock.
-        unsigned WR_CA2_DEL : 2; //!< [5:4] CA (Command/Address LPDDR2 bus) bit 2 delay fine tuning. This field holds the number of delay units that are added to CA (Command/Address bus) bit 2 relative to the clock.
-        unsigned WR_CA3_DEL : 2; //!< [7:6] CA (Command/Address LPDDR2 bus) bit 3 delay fine tuning. This field holds the number of delay units that are added to CA (Command/Address bus) bit 3 relative to the clock.
-        unsigned WR_CA4_DEL : 2; //!< [9:8] CA (Command/Address LPDDR2 bus) bit 4 delay fine tuning. This field holds the number of delay units that are added to CA (Command/Address bus) bit 4 relative to the clock.
-        unsigned WR_CA5_DEL : 2; //!< [11:10] CA (Command/Address LPDDR2 bus) bit 5 delay fine tuning. This field holds the number of delay units that are added to CA (Command/Address bus) bit 5 relative to the clock.
-        unsigned WR_CA6_DEL : 2; //!< [13:12] CA (Command/Address LPDDR2 bus) bit 6 delay fine tuning. This field holds the number of delay units that are added to CA (Command/Address bus) bit 6 relative to the clock.
-        unsigned WR_CA7_DEL : 2; //!< [15:14] CA (Command/Address LPDDR2 bus) bit 7 delay fine tuning. This field holds the number of delay units that are added to CA (Command/Address bus) bit 7 relative to the clock.
-        unsigned WR_CA8_DEL : 2; //!< [17:16] CA (Command/Address LPDDR2 bus) bit 8 delay fine tuning. This field holds the number of delay units that are added to CA (Command/Address bus) bit 8 relative to the clock.
-        unsigned WR_CA9_DEL : 2; //!< [19:18] CA (Command/Address LPDDR2 bus) bit 9 delay fine tuning. This field holds the number of delay units that are added to CA (Command/Address bus) bit 9 relative to the clock.
+        unsigned WR_CA0_DEL : 2; //!< [1:0] CA (Command/Address LPDDR2 bus) bit 0 delay fine tuning.
+        unsigned WR_CA1_DEL : 2; //!< [3:2] CA (Command/Address LPDDR2 bus) bit 1 delay fine tuning.
+        unsigned WR_CA2_DEL : 2; //!< [5:4] CA (Command/Address LPDDR2 bus) bit 2 delay fine tuning.
+        unsigned WR_CA3_DEL : 2; //!< [7:6] CA (Command/Address LPDDR2 bus) bit 3 delay fine tuning.
+        unsigned WR_CA4_DEL : 2; //!< [9:8] CA (Command/Address LPDDR2 bus) bit 4 delay fine tuning.
+        unsigned WR_CA5_DEL : 2; //!< [11:10] CA (Command/Address LPDDR2 bus) bit 5 delay fine tuning.
+        unsigned WR_CA6_DEL : 2; //!< [13:12] CA (Command/Address LPDDR2 bus) bit 6 delay fine tuning.
+        unsigned WR_CA7_DEL : 2; //!< [15:14] CA (Command/Address LPDDR2 bus) bit 7 delay fine tuning.
+        unsigned WR_CA8_DEL : 2; //!< [17:16] CA (Command/Address LPDDR2 bus) bit 8 delay fine tuning.
+        unsigned WR_CA9_DEL : 2; //!< [19:18] CA (Command/Address LPDDR2 bus) bit 9 delay fine tuning.
         unsigned RESERVED0 : 12; //!< [31:20] Reserved
     } B;
 } hw_mmdc_mpwrcadl_t;
@@ -12452,25 +12394,24 @@ typedef union _hw_mmdc_mpwrcadl
  *
  * This register is used to control the duty cycle of the DQS and the primary clock (CK0) .
  * Programming of that register is permitted by entering the DDR device into self-refresh mode
- * through LPMD/DVFS mechanism  Supported Mode Of Operations:  For Channel 0: All  For Channel 1:
- * DDR3_x64, LP2_2ch_x16, LP2_2ch_x32
+ * through LPMD/DVFS mechanism
  */
 typedef union _hw_mmdc_mpdccr
 {
     reg32_t U;
     struct _hw_mmdc_mpdccr_bitfields
     {
-        unsigned WR_DQS0_FT_DCC : 3; //!< [2:0] Write DQS duty cycle fine tuning control of Byte0. This field controls the duty cycle of write DQS of Byte0 Note all the other options are not allowed
-        unsigned WR_DQS1_FT_DCC : 3; //!< [5:3] Write DQS duty cycle fine tuning control of Byte1. This field controls the duty cycle of write DQS of Byte1 Note all the other options are not allowed
-        unsigned WR_DQS2_FT_DCC : 3; //!< [8:6] Write DQS duty cycle fine tuning control of Byte1. This field controls the duty cycle of write DQS of Byte1 Note all the other options are not allowed
-        unsigned WR_DQS3_FT_DCC : 3; //!< [11:9] Write DQS duty cycle fine tuning control of Byte0. This field controls the duty cycle of write DQS of Byte0 Note all the other options are not allowed
-        unsigned CK_FT0_DCC : 3; //!< [14:12] Primary duty cycle fine tuning control of DDR clock. This field controls the duty cycle of the DDR clock Note all the other options are not allowed
+        unsigned WR_DQS0_FT_DCC : 3; //!< [2:0] Write DQS duty cycle fine tuning control of Byte0.
+        unsigned WR_DQS1_FT_DCC : 3; //!< [5:3] Write DQS duty cycle fine tuning control of Byte1.
+        unsigned WR_DQS2_FT_DCC : 3; //!< [8:6] Write DQS duty cycle fine tuning control of Byte1.
+        unsigned WR_DQS3_FT_DCC : 3; //!< [11:9] Write DQS duty cycle fine tuning control of Byte0.
+        unsigned CK_FT0_DCC : 3; //!< [14:12] Primary duty cycle fine tuning control of DDR clock.
         unsigned RESERVED0 : 1; //!< [15] Reserved
-        unsigned CK_FT1_DCC : 3; //!< [18:16] Secondary duty cycle fine tuning control of DDR clock. This field controls the duty cycle of the DDR clock and is cascaded to CK_FT0_DCC Note all the other options are not allowed
-        unsigned RD_DQS0_FT_DCC : 3; //!< [21:19] Read DQS duty cycle fine tuning control of Byte0. This field controls the duty cycle of read DQS of Byte0 Note all the other options are not allowed
-        unsigned RD_DQS1_FT_DCC : 3; //!< [24:22] Read DQS duty cycle fine tuning control of Byte1. This field controls the duty cycle of read DQS of Byte1 Note all the other options are not allowed
-        unsigned RD_DQS2_FT_DCC : 3; //!< [27:25] Read DQS duty cycle fine tuning control of Byte2. This field controls the duty cycle of read DQS of Byte2 Note all the other options are not allowed
-        unsigned RD_DQS3_FT_DCC : 3; //!< [30:28] Read DQS duty cycle fine tuning control of Byte3. This field controls the duty cycle of read DQS of Byte3 Note all the other options are not allowed
+        unsigned CK_FT1_DCC : 3; //!< [18:16] Secondary duty cycle fine tuning control of DDR clock.
+        unsigned RD_DQS0_FT_DCC : 3; //!< [21:19] Read DQS duty cycle fine tuning control of Byte0.
+        unsigned RD_DQS1_FT_DCC : 3; //!< [24:22] Read DQS duty cycle fine tuning control of Byte1.
+        unsigned RD_DQS2_FT_DCC : 3; //!< [27:25] Read DQS duty cycle fine tuning control of Byte2.
+        unsigned RD_DQS3_FT_DCC : 3; //!< [30:28] Read DQS duty cycle fine tuning control of Byte3.
         unsigned RESERVED1 : 1; //!< [31] reserved
     } B;
 } hw_mmdc_mpdccr_t;

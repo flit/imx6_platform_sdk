@@ -41,16 +41,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_SRC_SCR - SRC Control Register
@@ -69,27 +59,27 @@ typedef union _hw_src_scr
     reg32_t U;
     struct _hw_src_scr_bitfields
     {
-        unsigned WARM_RESET_ENABLE : 1; //!< [0] Warm reset enable bit. Warm reset will be enabled only if warm_reset_enable bit is set. Otherwise all warm reset sources will generate cold reset.
-        unsigned SW_GPU_RST : 1; //!< [1] Software reset for gpu this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared. Software can determine that the reset has finished once this bit is cleared. Software can also configure SRC to generate interrutp once the software has finished. Please referto SISR register for details. the reset process will involve 8 gpu cycles before negating the gpu reset, to allow reset assertion to propagate into gpu.
-        unsigned SW_VPU_RST : 1; //!< [2] Software reset for vpu this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared. Software can determine that the reset has finished once this bit is cleared. Software can also configure SRC to generate interrutp once the software has finished. Please referto SISR register for details. the reset process will involve 8 vpu cycles before negating the vpu reset, to allow reset assertion to propagate into vpu.
-        unsigned SW_IPU1_RST : 1; //!< [3] Software reset for ipu1 Note: this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared. Software can determine that the reset has finished once this bit is cleared. Software can also configure SRC to generate interrutp once the software has finished. Please referto SISR register for details.
-        unsigned SW_OPEN_VG_RST : 1; //!< [4] Software reset for open_vg this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared. Software can determine that the reset has finished once this bit is cleared. Software can also configure SRC to generate interrutp once the software has finished. Please referto SISR register for details. the reset process will involve 8 open_vg cycles before negating the open_vg reset, to allow reset assertion to propagate into open_vg.
-        unsigned WARM_RST_BYPASS_COUNT : 2; //!< [6:5] Defines the ckil cycles to count before bypassing the emi acknowledge for warm reset. If the emi acknowledge will not be asserted before this counter has elapsed, then a cold reset will be initiated.
-        unsigned MASK_WDOG_RST : 4; //!< [10:7] Mask wdog_rst_b source. If these 4 bits are coded from A to 5 then, wdog_rst_b input to SRC will be masked and wdog_rst_b will not create reset to the IC. During the time the WDOG event is masked using SRC logic, it is likely that WDOG Reset Status Register (WRSR) bit 1 (which indicates WDOG timeout event) will get asserted. SW / OS developer must prepare for this case. Re-enable WDOG is possible, by un-mask it in SRC, though it must be preceded by servicing the WDOG. However, for the case that the event has been asserted, the status bit (WRSR bit-1) will remain asserted, regardless of servicing the WDOG module. (HW reset is the only mean to cause de-assertion of that bit). any other code will be coded to 1010 i.e. wdog_rst_b is not masked
-        unsigned WEIM_RST : 1; //!< [11] WEIM reset is needed in order to reconfigure the weim chip select. The software reset bit must de-asserted. The weim chip select configuration should be updated. The software bit must be re-asserted since this is not self-refresh.
-        unsigned SW_IPU2_RST : 1; //!< [12] Software reset for ipu2 this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared. Software can determine that the reset has finished once this bit is cleared. Software can also configure SRC to generate interrutp once the software has finished. Please referto SISR register for details.
-        unsigned CORE0_RST : 1; //!< [13] Software reset for core0 only. this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared.
-        unsigned CORE1_RST : 1; //!< [14] Software reset for core1 only. this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared.
-        unsigned CORE2_RST : 1; //!< [15] Software reset for core2 only. this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared.
-        unsigned CORE3_RST : 1; //!< [16] Software reset for core3 only. this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared.
-        unsigned CORE0_DBG_RST : 1; //!< [17] Software reset for core0 debug only. this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared.
-        unsigned CORE1_DBG_RST : 1; //!< [18] Software reset for core1 debug only. this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared.
-        unsigned CORE2_DBG_RST : 1; //!< [19] Software reset for core2 debug only. this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared.
-        unsigned CORE3_DBG_RST : 1; //!< [20] Software reset for core3 debug only. this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared.
-        unsigned CORES_DBG_RST : 1; //!< [21] Software reset for debug of arm platform only. this is a self clearing bit. Once it is set to 1, the reset process will begin, and once it finishes, this bit will be self cleared.
-        unsigned CORE1_ENABLE : 1; //!< [22] CPU core1 enable. core0 cannot be disabled
-        unsigned CORE2_ENABLE : 1; //!< [23] CPU core2 enable. core0 cannot be disabled
-        unsigned CORE3_ENABLE : 1; //!< [24] CPU core3 enable. core0 cannot be disabled
+        unsigned WARM_RESET_ENABLE : 1; //!< [0] Warm reset enable bit.
+        unsigned SW_GPU_RST : 1; //!< [1] Software reset for gpu this is a self clearing bit.
+        unsigned SW_VPU_RST : 1; //!< [2] Software reset for vpu this is a self clearing bit.
+        unsigned SW_IPU1_RST : 1; //!< [3] Software reset for ipu1 Note: this is a self clearing bit.
+        unsigned SW_OPEN_VG_RST : 1; //!< [4] Software reset for open_vg this is a self clearing bit.
+        unsigned WARM_RST_BYPASS_COUNT : 2; //!< [6:5] Defines the ckil cycles to count before bypassing the emi acknowledge for warm reset.
+        unsigned MASK_WDOG_RST : 4; //!< [10:7] Mask wdog_rst_b source.
+        unsigned WEIM_RST : 1; //!< [11] WEIM reset is needed in order to reconfigure the weim chip select.
+        unsigned SW_IPU2_RST : 1; //!< [12] Software reset for ipu2 this is a self clearing bit.
+        unsigned CORE0_RST : 1; //!< [13] Software reset for core0 only.
+        unsigned CORE1_RST : 1; //!< [14] Software reset for core1 only.
+        unsigned CORE2_RST : 1; //!< [15] Software reset for core2 only.
+        unsigned CORE3_RST : 1; //!< [16] Software reset for core3 only.
+        unsigned CORE0_DBG_RST : 1; //!< [17] Software reset for core0 debug only.
+        unsigned CORE1_DBG_RST : 1; //!< [18] Software reset for core1 debug only.
+        unsigned CORE2_DBG_RST : 1; //!< [19] Software reset for core2 debug only.
+        unsigned CORE3_DBG_RST : 1; //!< [20] Software reset for core3 debug only.
+        unsigned CORES_DBG_RST : 1; //!< [21] Software reset for debug of arm platform only.
+        unsigned CORE1_ENABLE : 1; //!< [22] CPU core1 enable.
+        unsigned CORE2_ENABLE : 1; //!< [23] CPU core2 enable.
+        unsigned CORE3_ENABLE : 1; //!< [24] CPU core3 enable.
         unsigned DBG_RST_MSK_PG : 1; //!< [25] Do not assert debug resets after power gating event of cpu
         unsigned RESERVED0 : 6; //!< [31:26] Reserved
     } B;
@@ -792,13 +782,13 @@ typedef union _hw_src_srsr
     {
         unsigned IPP_RESET_B : 1; //!< [0] Indicates whether reset was the result of ipp_reset_b pin (Power-up sequence)
         unsigned RESERVED0 : 1; //!< [1] Reserved.
-        unsigned CSU_RESET_B : 1; //!< [2] Indicates whether the reset was the result of the csu_reset_b input. If case the csu_reset_b occured during a warm reset process, during the phase that ipg_clk is not available yet, then the occurance of csu reset will not be reflected in this bit.
+        unsigned CSU_RESET_B : 1; //!< [2] Indicates whether the reset was the result of the csu_reset_b input.
         unsigned IPP_USER_RESET_B : 1; //!< [3] Indicates whether the reset was the result of the ipp_user_reset_b qulified reset.
-        unsigned WDOG_RST_B : 1; //!< [4] IC Watchdog Time-out reset. Indicates whether the reset was the result of the watchdog time-out event.
-        unsigned JTAG_RST_B : 1; //!< [5] HIGH - Z JTAG reset. Indicates whether the reset was the result of HIGH-Z reset reset from JTAG. Connections at chip-level: jtag_rst_b -> sjc_ieee_reset_b
-        unsigned JTAG_SW_RST : 1; //!< [6] JTAG SW reset. Indicates whether the reset was the result of software reset from JTAG. Connections at chip-level: jtag_sw_rst -> sjc_gpccr_reg_2_b
+        unsigned WDOG_RST_B : 1; //!< [4] IC Watchdog Time-out reset.
+        unsigned JTAG_RST_B : 1; //!< [5] HIGH - Z JTAG reset.
+        unsigned JTAG_SW_RST : 1; //!< [6] JTAG SW reset.
         unsigned RESERVED1 : 9; //!< [15:7] Reserved
-        unsigned WARM_BOOT : 1; //!< [16] Warm boot indication gives software capability to notify that warm boot was initiated by software. This indicates to the software that it saved the needed info in the memory before initiating the warm reset. In this case , software will set this bit to '1', before initiating the warm reset. The warm_boot bit should be used as indication only after a warm_reset sequence. Software should clear this bit after warm_reset to indicate that next warm_reset is not done with warm_boot. Please refer to for details on warm_reset.
+        unsigned WARM_BOOT : 1; //!< [16] Warm boot indication gives software capability to notify that warm boot was initiated by software.
         unsigned RESERVED2 : 15; //!< [31:17] Reserved
     } B;
 } hw_src_srsr_t;
@@ -1022,10 +1012,10 @@ typedef union _hw_src_sisr
         unsigned IPU1_PASSED_RESET : 1; //!< [2] Interrupt generated to indicate that ipu passed software reset and is ready to be used
         unsigned OPEN_VG_PASSED_RESET : 1; //!< [3] Interrupt generated to indicate that open_vg passed software reset and is ready to be used
         unsigned IPU2_PASSED_RESET : 1; //!< [4] Interrupt generated to indicate that ipu2 passed software reset and is ready to be used
-        unsigned CORE0_WDOG_RST_REQ : 1; //!< [5] Wdog reset request from CPU core0. Read-only status bit.
-        unsigned CORE1_WDOG_RST_REQ : 1; //!< [6] Wdog reset request from CPU core1. Read-only status bit.
-        unsigned CORE2_WDOG_RST_REQ : 1; //!< [7] Wdog reset request from CPU core2. Read-only status bit.
-        unsigned CORE3_WDOG_RST_REQ : 1; //!< [8] Wdog reset request from CPU core3. Read-only status bit.
+        unsigned CORE0_WDOG_RST_REQ : 1; //!< [5] Wdog reset request from CPU core0.
+        unsigned CORE1_WDOG_RST_REQ : 1; //!< [6] Wdog reset request from CPU core1.
+        unsigned CORE2_WDOG_RST_REQ : 1; //!< [7] Wdog reset request from CPU core2.
+        unsigned CORE3_WDOG_RST_REQ : 1; //!< [8] Wdog reset request from CPU core3.
         unsigned RESERVED0 : 23; //!< [31:9] Reserved
     } B;
 } hw_src_sisr_t;
@@ -1772,7 +1762,7 @@ typedef union _hw_src_gpr9
     reg32_t U;
     struct _hw_src_gpr9_bitfields
     {
-        unsigned RESERVED0 : 32; //!< [31:0] Read/write bits, for general purpose. this register is reseted only by POR reset.
+        unsigned RESERVED0 : 32; //!< [31:0] Read/write bits, for general purpose.
     } B;
 } hw_src_gpr9_t;
 #endif
@@ -1813,7 +1803,7 @@ typedef union _hw_src_gpr10
     reg32_t U;
     struct _hw_src_gpr10_bitfields
     {
-        unsigned RESERVED0 : 32; //!< [31:0] Read/write bits, for general purpose. this register is reseted only by POR reset.
+        unsigned RESERVED0 : 32; //!< [31:0] Read/write bits, for general purpose.
     } B;
 } hw_src_gpr10_t;
 #endif

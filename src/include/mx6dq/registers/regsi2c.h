@@ -44,16 +44,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_I2C_IADR - I2C Address Register
@@ -73,7 +63,7 @@ typedef union _hw_i2c_iadr
     struct _hw_i2c_iadr_bitfields
     {
         unsigned short RESERVED0 : 1; //!< [0] Reserved
-        unsigned short ADR : 7; //!< [7:1] Slave address. Contains the specific slave address to be used by the I2C. Slave mode is the default I2C mode for an address match on the bus. The I2C_IADR holds the address the I2C responds to when addressed as a slave. The slave address is not the address sent on the bus during the address transfer. The register is not reset by a software reset.
+        unsigned short ADR : 7; //!< [7:1] Slave address.
         unsigned short RESERVED1 : 8; //!< [15:8] Reserved
     } B;
 } hw_i2c_iadr_t;
@@ -147,7 +137,7 @@ typedef union _hw_i2c_ifdr
     reg16_t U;
     struct _hw_i2c_ifdr_bitfields
     {
-        unsigned short IC : 6; //!< [5:0] I2C clock rate. Pre scales the clock for bit-rate selection. Due to potentially slow SCL and SDA rise and fall times, bus signals are sampled at the prescaler frequency. The serial bit clock frequency is equal to IPG_CLK_ROOT PG_CLK_PATREF divided by the divider shown in the I2C Data I/O Register. The IC value should not be changed during the data transfer, however, it can be changed before REPEAT START or START programming sequence in I2C. The I2C protocol supports bit rates up to 400 kbps. The IC bits need to be programmed in accordance with this constraint.
+        unsigned short IC : 6; //!< [5:0] I2C clock rate.
         unsigned short RESERVED0 : 10; //!< [15:6] Reserved
     } B;
 } hw_i2c_ifdr_t;
@@ -175,10 +165,10 @@ typedef union _hw_i2c_ifdr
  *
  * I2C clock rate. Pre scales the clock for bit-rate selection. Due to potentially slow SCL and SDA
  * rise and fall times, bus signals are sampled at the prescaler frequency. The serial bit clock
- * frequency is equal to IPG_CLK_ROOT PG_CLK_PATREF divided by the divider shown in the I2C Data I/O
- * Register. The IC value should not be changed during the data transfer, however, it can be changed
- * before REPEAT START or START programming sequence in I2C. The I2C protocol supports bit rates up
- * to 400 kbps. The IC bits need to be programmed in accordance with this constraint.
+ * frequency is equal to IPG_CLK_ROOT divided by the divider shown in the I2C Data I/O Register. The
+ * IC value should not be changed during the data transfer, however, it can be changed before REPEAT
+ * START or START programming sequence in I2C. The I2C protocol supports bit rates up to 400 kbps.
+ * The IC bits need to be programmed in accordance with this constraint.
  */
 
 #define BP_I2C_IFDR_IC      (0)      //!< Bit position for I2C_IFDR_IC.
@@ -214,12 +204,12 @@ typedef union _hw_i2c_i2cr
     struct _hw_i2c_i2cr_bitfields
     {
         unsigned short RESERVED0 : 2; //!< [1:0] Reserved
-        unsigned short RSTA : 1; //!< [2] Repeat start. Always reads as 0. Attempting a repeat start without bus mastership causes loss of arbitration.
-        unsigned short TXAK : 1; //!< [3] Transmit acknowledge enable. Specifies the value driven onto SDA during acknowledge cycles for both master and slave receivers. Writing TXAK applies only when the I2C bus is a receiver.
-        unsigned short MTX : 1; //!< [4] Transmit/receive mode select bit. Selects the direction of master and slave transfers.
-        unsigned short MSTA : 1; //!< [5] Master/slave mode select bit. If the master loses arbitration, MSTA is cleared without generating a STOP signal. Module clock should be on for writing to the MSTA bit. The MSTA bit is cleared by software to generate a STOP condition; it can also be cleared by hardware when the I2C loses the bus arbitration.
-        unsigned short IIEN : 1; //!< [6] I2C interrupt enable. If data is written during the START condition, that is, just after setting the I2C_I2CR[MSTA] and I2C_I2CR[MTX] bits, then the ICF bit is cleared at the falling edge of SCLK after START. If data is written after the START condition and falling edge of SCLK, then ICF bit is cleared as soon as data is written.
-        unsigned short IEN : 1; //!< [7] I2C enable. Also controls the software reset of the entire I2C. Resetting the bit generates an internal reset to the block. If the block is enabled in the middle of a byte transfer, slave mode ignores the current bus transfer and starts operating when the next start condition is detected. Master mode is not aware that the bus is busy so initiating a start cycle may corrupt the current bus cycle, ultimately causing either the current master or the I2C to lose arbitration. After which, bus operation returns to normal.
+        unsigned short RSTA : 1; //!< [2] Repeat start.
+        unsigned short TXAK : 1; //!< [3] Transmit acknowledge enable.
+        unsigned short MTX : 1; //!< [4] Transmit/receive mode select bit.
+        unsigned short MSTA : 1; //!< [5] Master/slave mode select bit.
+        unsigned short IIEN : 1; //!< [6] I2C interrupt enable.
+        unsigned short IEN : 1; //!< [7] I2C enable.
         unsigned short RESERVED1 : 8; //!< [15:8] Reserved
     } B;
 } hw_i2c_i2cr_t;
@@ -415,14 +405,14 @@ typedef union _hw_i2c_i2sr
     reg16_t U;
     struct _hw_i2c_i2sr_bitfields
     {
-        unsigned short RXAK : 1; //!< [0] Received acknowledge. This is the value received of the SDA input for the acknowledge bit during a bus cycle.
-        unsigned short IIF : 1; //!< [1] I2C interrupt. Must be cleared by the software by writing a "0" to it in the interrupt routine. The software cannot set the bit.
-        unsigned short SRW : 1; //!< [2] Slave read/write. When the I2C is addressed as a slave, IAAS is set, and the slave read/write bit (SRW) indicates the value of the R/W command bit of the calling address sent from the master. SRW is valid only when a complete transfer has occurred, no other transfers have been initiated, and the I2C is a slave and has an address match.
+        unsigned short RXAK : 1; //!< [0] Received acknowledge.
+        unsigned short IIF : 1; //!< [1] I2C interrupt.
+        unsigned short SRW : 1; //!< [2] Slave read/write.
         unsigned short RESERVED0 : 1; //!< [3] Reserved
-        unsigned short IAL : 1; //!< [4] Arbitration lost. Set by hardware in the following circumstances (IAL must be cleared by software by writing a "0" to it at the start of the interrupt service routine): SDA input sampled low when the master drives high during an address or data-transmit cycle. SDA input sampled low when the master drives high during the acknowledge bit of a data-receive cycle. For the above two cases, the bit is set at the falling edge of 9th SCL clock during the ACK cycle. A start cycle is attempted when the bus is busy. A repeated start cycle is requested in slave mode. A stop condition is detected when the master did not request it. Software cannot set the bit.
-        unsigned short IBB : 1; //!< [5] I2C bus busy bit. Indicates the status of the bus. When I2C is enabled (I2C_I2CR[IEN] = 1), it continuously polls the bus data (SDAK) and clock (SCLK) signals to determine a START or STOP condition.
-        unsigned short IAAS : 1; //!< [6] I2C addressed as a slave bit. The ARM platform is interrupted if the interrupt enable (I2C_I2CR[IIEN]) is set. The ARM platform must check the slave read/write bit (SRW) and set its TX/RX mode accordingly. Writing to I2C_I2CR clears this bit.
-        unsigned short ICF : 1; //!< [7] Data transferring bit. While one byte of data is transferred, ICF is cleared.
+        unsigned short IAL : 1; //!< [4] Arbitration lost.
+        unsigned short IBB : 1; //!< [5] I2C bus busy bit.
+        unsigned short IAAS : 1; //!< [6] I2C addressed as a slave bit.
+        unsigned short ICF : 1; //!< [7] Data transferring bit.
         unsigned short RESERVED1 : 8; //!< [15:8] Reserved
     } B;
 } hw_i2c_i2sr_t;
@@ -612,7 +602,7 @@ typedef union _hw_i2c_i2dr
     reg16_t U;
     struct _hw_i2c_i2dr_bitfields
     {
-        unsigned short DATA : 8; //!< [7:0] Data Byte. Holds the last data byte received or the next data byte to be transferred. Software writes the next data byte to be transmitted or reads the data byte received. The core-written value in I2C_I2DR cannot be read back by the core. Only data written by the I2C bus side can be read. I2DR is implemented by 2 different registers. One register is written by IP interface and the data written is transmitted on I2C bus, other register is written by the data received from I2C and read by IP interface.
+        unsigned short DATA : 8; //!< [7:0] Data Byte.
         unsigned short RESERVED0 : 8; //!< [15:8] Reserved
     } B;
 } hw_i2c_i2dr_t;
@@ -641,9 +631,7 @@ typedef union _hw_i2c_i2dr
  * Data Byte. Holds the last data byte received or the next data byte to be transferred. Software
  * writes the next data byte to be transmitted or reads the data byte received. The core-written
  * value in I2C_I2DR cannot be read back by the core. Only data written by the I2C bus side can be
- * read. I2DR is implemented by 2 different registers. One register is written by IP interface and
- * the data written is transmitted on I2C bus, other register is written by the data received from
- * I2C and read by IP interface.
+ * read.
  */
 
 #define BP_I2C_I2DR_DATA      (0)      //!< Bit position for I2C_I2DR_DATA.

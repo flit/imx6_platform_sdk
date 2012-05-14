@@ -44,16 +44,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_DCIC_DCICC - DCIC Control Register
@@ -72,7 +62,7 @@ typedef union _hw_dcic_dcicc
     reg32_t U;
     struct _hw_dcic_dcicc_bitfields
     {
-        unsigned IC_EN : 1; //!< [0] Integrity Check enable. Main enable switch.
+        unsigned IC_EN : 1; //!< [0] Integrity Check enable.
         unsigned RESERVED0 : 3; //!< [3:1] Reserved
         unsigned DE_POL : 1; //!< [4] DATA_EN_IN signal polarity.
         unsigned HSYNC_POL : 1; //!< [5] HSYNC_IN signal polarity.
@@ -238,10 +228,10 @@ typedef union _hw_dcic_dcicic
     reg32_t U;
     struct _hw_dcic_dcicic_bitfields
     {
-        unsigned EI_MASK : 1; //!< [0] Error Interrupt mask. Can be changed only while FREEZE_MASK = 0.
-        unsigned FI_MASK : 1; //!< [1] Functional Interrupt mask. Can be changed only while FREEZE_MASK = 0.
+        unsigned EI_MASK : 1; //!< [0] Error Interrupt mask.
+        unsigned FI_MASK : 1; //!< [1] Functional Interrupt mask.
         unsigned RESERVED0 : 1; //!< [2] Reserved
-        unsigned FREEZE_MASK : 1; //!< [3] Disable change of interrupt masks. "Sticky" bit which can be set once and cleared by reset only.
+        unsigned FREEZE_MASK : 1; //!< [3] Disable change of interrupt masks.
         unsigned RESERVED1 : 12; //!< [15:4] Reserved
         unsigned EXT_SIG_EN : 1; //!< [16] External controller mismatch indication signal.
         unsigned RESERVED2 : 15; //!< [31:17] Reserved
@@ -380,9 +370,9 @@ typedef union _hw_dcic_dcics
     reg32_t U;
     struct _hw_dcic_dcics_bitfields
     {
-        unsigned ROI_MATCH_STAT : 16; //!< [15:0] Each set bit of this field indicates there was a mismatch at appropriate ROIs signature during the last frame. Valid only for active ROIs. Write "1" to clear.
-        unsigned EI_STAT : 1; //!< [16] Error Interrupt status. Result of "OR" operation on ROI_MATCH_STAT[15:0] bits. Cleared when these bits are clear.
-        unsigned FI_STAT : 1; //!< [17] Functional Interrupt status. Write "1" to clear.
+        unsigned ROI_MATCH_STAT : 16; //!< [15:0] Each set bit of this field indicates there was a mismatch at appropriate ROIs signature during the last frame.
+        unsigned EI_STAT : 1; //!< [16] Error Interrupt status.
+        unsigned FI_STAT : 1; //!< [17] Functional Interrupt status.
         unsigned RESERVED0 : 14; //!< [31:18] Reserved
     } B;
 } hw_dcic_dcics_t;
@@ -493,7 +483,7 @@ typedef union _hw_dcic_dcicrc
         unsigned RESERVED0 : 3; //!< [15:13] Reserved
         unsigned START_OFFSET_Y : 12; //!< [27:16] Row number of ROIs upper-left corner (Y coordinate) Range: 0 to 2^ 12 -1
         unsigned RESERVED1 : 2; //!< [29:28] Reserved
-        unsigned ROI_FREEZE : 1; //!< [30] When set, the only parameter of ROI #m that can be changed is reference signature. "Sticky" bit - can be set once and cleared by reset only.
+        unsigned ROI_FREEZE : 1; //!< [30] When set, the only parameter of ROI #m that can be changed is reference signature.
         unsigned ROI_EN : 1; //!< [31] ROI #m tracking enable
     } B;
 } hw_dcic_dcicrc_t;
@@ -761,7 +751,7 @@ typedef union _hw_dcic_dcicrcs
     reg32_t U;
     struct _hw_dcic_dcicrcs_bitfields
     {
-        unsigned CALCULATED_SIGNATURE : 32; //!< [31:0] 32-bit actual signature (CRC calculation result) for ROI #m during the last frame. Updated automatically at the beginning of a next frame.
+        unsigned CALCULATED_SIGNATURE : 32; //!< [31:0] 32-bit actual signature (CRC calculation result) for ROI #m during the last frame.
     } B;
 } hw_dcic_dcicrcs_t;
 #endif

@@ -51,16 +51,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_ECSPI_RXDATA - Receive Data Register
@@ -72,7 +62,7 @@
  *
  * Reset value: 0x00000000
  *
- * The Receive Data register (ECSPI_RXDATA) is a read-only register that forms the top word of the 8
+ * The Receive Data register (ECSPI_RXDATA) is a read-only register that forms the top word of the
  * 64 x 32 receive FIFO. This register holds the data received from an external SPI device during a
  * data transaction. Only word-sized read operations are allowed.
  */
@@ -81,7 +71,7 @@ typedef union _hw_ecspi_rxdata
     reg32_t U;
     struct _hw_ecspi_rxdata_bitfields
     {
-        unsigned ECSPI_RXDATA : 32; //!< [31:0] Receive Data. This register holds the top word of the receive data FIFO. The FIFO is advanced for each read of this register. The data read is undefined when the Receive Data Ready (RR) bit in the Interrupt Control/Status register is cleared. Zeros are read when ECSPI is disabled.
+        unsigned ECSPI_RXDATA : 32; //!< [31:0] Receive Data.
     } B;
 } hw_ecspi_rxdata_t;
 #endif
@@ -124,17 +114,17 @@ typedef union _hw_ecspi_rxdata
  * Reset value: 0x00000000
  *
  * The Transmit Data (ECSPI_TXDATA) register is a write-only data register that forms the bottom
- * word of the 8  64 x 32 TXFIFO. The TXFIFO can be written to as long as it is not full, even when
- * the SPI Exchange bit (XCH) in ECSPI_CONREG is set. This allows software to write to the TXFIFO
- * during a SPI data exchange process. Writes to this register are ignored when the ECSPI is
- * disabled (ECSPI_CONREG[EN] bit is cleared).
+ * word of the 64 x 32 TXFIFO. The TXFIFO can be written to as long as it is not full, even when the
+ * SPI Exchange bit (XCH) in ECSPI_CONREG is set. This allows software to write to the TXFIFO during
+ * a SPI data exchange process. Writes to this register are ignored when the ECSPI is disabled
+ * (ECSPI_CONREG[EN] bit is cleared).
  */
 typedef union _hw_ecspi_txdata
 {
     reg32_t U;
     struct _hw_ecspi_txdata_bitfields
     {
-        unsigned ECSPI_TXDATA : 32; //!< [31:0] Transmit Data. This register holds the top word of data loaded into the FIFO. Data written to this register must be a word operation. The number of bits actually transmitted is determined by the BIT_COUNT field of the corresponding SPI Control register. If this field contains more bits than the number specified by BIT_COUNT, the extra bits are ignored. For example, to transfer 10 bits of data, a 32-bit word must be written to this register. Bits 9-0 are shifted out and bits 31-10 are ignored. When the ECSPI is operating in Slave mode, zeros are shifted out when the FIFO is empty. Zeros are read when ECSPI is disabled.
+        unsigned ECSPI_TXDATA : 32; //!< [31:0] Transmit Data.
     } B;
 } hw_ecspi_txdata_t;
 #endif
@@ -183,25 +173,24 @@ typedef union _hw_ecspi_txdata
  *
  * Reset value: 0x00000000
  *
- * The Control Register (CONREG)  (ECSPI_CONREG) allows software to enable the ECSPI , configure its
- * operating modes, specify the divider value, phase, and polarity of the clock, configure the Chip
- * Select (SS) and SPI_RDY control signal, and define the transfer length.
+ * The Control Register (ECSPI_CONREG) allows software to enable the ECSPI , configure its operating
+ * modes, specify the divider value, and SPI_RDY control signal, and define the transfer length.
  */
 typedef union _hw_ecspi_conreg
 {
     reg32_t U;
     struct _hw_ecspi_conreg_bitfields
     {
-        unsigned EN : 1; //!< [0] SPI Block Enable Control. This bit enables the ECSPI. This bit must be set before writing to other registers or initiating an exchange. Writing zero to this bit disables the block and resets the internal logic with the exception of the ECSPI_CONREG. The block's internal clocks are gated off whenever the block is disabled.
-        unsigned HT : 1; //!< [1] Hardware Trigger Enable. This bit is used in master mode only. It enables hardware trigger (HT) mode.
-        unsigned XCH : 1; //!< [2] SPI Exchange Bit. This bit applies only when the module is configured in Master mode (MODE = 1). This bit applies only to channels configured in Master mode (CHANNEL MODE = 1). If the Start Mode Control (SMC) bit is cleared, writing a 1 to this bit starts one SPI burst or multiple SPI bursts according to the SPI SS Wave Form Select (SS_CTL). The XCH bit remains set while either the data exchange is in progress, or when the ECSPI is waiting for an active input if SPIRDY is enabled through DRCTL. This bit is cleared automatically when all data in the TXFIFO and the shift register has been shifted out.
-        unsigned SMC : 1; //!< [3] Start Mode Control. This bit applies only when the module is configured in Master mode (MODE = 1). This bit applies only to channels configured in Master mode (CHANNEL MODE = 1). It controls how the ECSPI starts a SPI burst, either through the SPI exchange bit, or immediately when the TXFIFO is written to.
-        unsigned CHANNEL_MODE : 4; //!< [7:4] SPI CHANNEL MODE selects the mode for each SPI channel. CHANNEL MODE[3] is for SPI channel 3. CHANNEL MODE[2] is for SPI channel 2. CHANNEL MODE[1] is for SPI channel 1. CHANNEL MODE[0] is for SPI channel 0.
-        unsigned POST_DIVIDER : 4; //!< [11:8] SPI Post Divider. ECSPI uses a two-stage divider to generate the SPI clock. This field defines the post-divider of the reference clock using the equation: 2 n .
-        unsigned PRE_DIVIDER : 4; //!< [15:12] SPI Pre Divider. ECSPI uses a two-stage divider to generate the SPI clock. This field defines the pre-divider of the reference clock.
-        unsigned DRCTL : 2; //!< [17:16] SPI Data Ready Control. This field selects the utilization of the SPI_RDY signal in master mode. ECSPI checks this field before it starts an SPI burst.
-        unsigned CHANNEL_SELECT : 2; //!< [19:18] SPI CHANNEL SELECT bits. Select one of four external SPI Master/Slave Devices. In master mode, these two bits select the external slave devices by asserting the Chip Select (SSn) outputs. Only the selected Chip Select (SSn) signal can be active at a given time; the remaining three signals will be negated.
-        unsigned BURST_LENGTH : 12; //!< [31:20] Burst Length. This field defines the length of a SPI burst to be transferred. The Chip Select (SS) will remain asserted until all bits in a SPI burst are shifted out. A maximum of 2^12 bits can be transferred in a single SPI burst. In master mode, it controls the number of bits per SPI burst. Since the shift register always loads 32-bit data from transmit FIFO, only the n least-significant (n = BURST LENGTH + 1) will be shifted out. The remaining bits will be ignored. In slave mode, only when SS_CTL is cleared, this field will take effect in the transfer. Number of Valid Bits in a SPI burst.
+        unsigned EN : 1; //!< [0] SPI Block Enable Control.
+        unsigned HT : 1; //!< [1] Hardware Trigger Enable.
+        unsigned XCH : 1; //!< [2] SPI Exchange Bit.
+        unsigned SMC : 1; //!< [3] Start Mode Control.
+        unsigned CHANNEL_MODE : 4; //!< [7:4] SPI CHANNEL MODE selects the mode for each SPI channel.
+        unsigned POST_DIVIDER : 4; //!< [11:8] SPI Post Divider.
+        unsigned PRE_DIVIDER : 4; //!< [15:12] SPI Pre Divider.
+        unsigned DRCTL : 2; //!< [17:16] SPI Data Ready Control.
+        unsigned CHANNEL_SELECT : 2; //!< [19:18] SPI CHANNEL SELECT bits.
+        unsigned BURST_LENGTH : 12; //!< [31:20] Burst Length.
     } B;
 } hw_ecspi_conreg_t;
 #endif
@@ -278,13 +267,12 @@ typedef union _hw_ecspi_conreg
 
 /* --- Register HW_ECSPI_CONREG, field XCH[2] (RW)
  *
- * SPI Exchange Bit. This bit applies only when the module is configured in Master mode (MODE = 1).
- * This bit applies only to channels configured in Master mode (CHANNEL MODE = 1). If the Start Mode
- * Control (SMC) bit is cleared, writing a 1 to this bit starts one SPI burst or multiple SPI bursts
- * according to the SPI SS Wave Form Select (SS_CTL). The XCH bit remains set while either the data
- * exchange is in progress, or when the ECSPI is waiting for an active input if SPIRDY is enabled
- * through DRCTL. This bit is cleared automatically when all data in the TXFIFO and the shift
- * register has been shifted out.
+ * SPI Exchange Bit. This bit applies only to channels configured in Master mode (CHANNEL MODE = 1).
+ * If the Start Mode Control (SMC) bit is cleared, writing a 1 to this bit starts one SPI burst or
+ * multiple SPI bursts according to the SPI SS Wave Form Select (SS_CTL). The XCH bit remains set
+ * while either the data exchange is in progress, or when the ECSPI is waiting for an active input
+ * if SPIRDY is enabled through DRCTL. This bit is cleared automatically when all data in the TXFIFO
+ * and the shift register has been shifted out.
  *
  * Values:
  * 0 - Idle.
@@ -308,10 +296,9 @@ typedef union _hw_ecspi_conreg
 
 /* --- Register HW_ECSPI_CONREG, field SMC[3] (RW)
  *
- * Start Mode Control. This bit applies only when the module is configured in Master mode (MODE =
- * 1). This bit applies only to channels configured in Master mode (CHANNEL MODE = 1). It controls
- * how the ECSPI starts a SPI burst, either through the SPI exchange bit, or immediately when the
- * TXFIFO is written to.
+ * Start Mode Control. This bit applies only to channels configured in Master mode (CHANNEL MODE =
+ * 1). It controls how the ECSPI starts a SPI burst, either through the SPI exchange bit, or
+ * immediately when the TXFIFO is written to.
  *
  * Values:
  * 0 - SPI Exchange Bit (XCH) controls when a SPI burst can start. Setting the XCH bit will start a SPI
@@ -529,13 +516,13 @@ typedef union _hw_ecspi_configreg
     reg32_t U;
     struct _hw_ecspi_configreg_bitfields
     {
-        unsigned SCLK_PHA : 4; //!< [3:0] SPI Clock/Data Phase Control. This field controls the clock/data phase relationship. See for more information. SCLK PHA[3] is for SPI channel 3. SCLK PHA[2] is for SPI channel 2. SCLK PHA[1] is for SPI channel 1. SCLK PHA[0] is for SPI channel 0.
-        unsigned SCLK_POL : 4; //!< [7:4] SPI Clock Polarity Control. This field controls the polarity of the SCLK signal. See for more information. SCLK POL[3] is for SPI channel 3. SCLK POL[2] is for SPI channel 2. SCLK POL[1] is for SPI channel 1. SCLK POL[0] is for SPI channel 0.
-        unsigned SS_CTL : 4; //!< [11:8] SPI SS Wave Form Select. In master mode, this field controls the output wave form of the Chip Select (SS) signal when the SMC (Start Mode Control) bit is cleared. The SS_CTL are ignored if the SMC bit is set. SS CTL[3] is for SPI channel 3. SS CTL[2] is for SPI channel 2. SS CTL[1] is for SPI channel 1. SS CTL[0] is for SPI channel 0. In slave mode, this bit controls when the SPI burst is completed. 1 An SPI burst is completed by the Chip Select (SS) signal edges. (SSPOL = 0: rising edge; SSPOL = 1: falling edge) The RXFIFO is advanced whenever a Chip Select (SS) signal edge is detected or the shift register contains 32-bits of valid data.
-        unsigned SS_POL : 4; //!< [15:12] SPI SS Polarity Select. In both Master and Slave modes, this field selects the polarity of the Chip Select (SS) signal. SS POL[3] is for SPI channel 3. SS POL[2] is for SPI channel 2. SS POL[1] is for SPI channel 1. SS POL[0] is for SPI channel 0.
-        unsigned DATA_CTL : 4; //!< [19:16] DATA CTL. This field controls inactive state of the data line for each SPI channel. DATA CTL[3] is for SPI channel 3. DATA CTL[2] is for SPI channel 2. DATA CTL[1] is for SPI channel 1. DATA CTL[0] is for SPI channel 0.
-        unsigned SCLK_CTL : 4; //!< [23:20] SCLK CTL. This field controls the inactive state of SCLK for each SPI channel. SCLK CTL[3] is for SPI channel 3. SCLK CTL[2] is for SPI channel 2. SCLK CTL[1] is for SPI channel 1. SCLK CTL[0] is for SPI channel 0.
-        unsigned HT_LENGTH : 5; //!< [28:24] HT LENGTH. This field defines the message length in HT Mode. The length in bits of one message is (HT LENGTH + 1).
+        unsigned SCLK_PHA : 4; //!< [3:0] SPI Clock/Data Phase Control.
+        unsigned SCLK_POL : 4; //!< [7:4] SPI Clock Polarity Control.
+        unsigned SS_CTL : 4; //!< [11:8] SPI SS Wave Form Select.
+        unsigned SS_POL : 4; //!< [15:12] SPI SS Polarity Select.
+        unsigned DATA_CTL : 4; //!< [19:16] DATA CTL.
+        unsigned SCLK_CTL : 4; //!< [23:20] SCLK CTL.
+        unsigned HT_LENGTH : 5; //!< [28:24] HT LENGTH.
         unsigned RESERVED0 : 3; //!< [31:29] Reserved
     } B;
 } hw_ecspi_configreg_t;
@@ -765,14 +752,14 @@ typedef union _hw_ecspi_intreg
     reg32_t U;
     struct _hw_ecspi_intreg_bitfields
     {
-        unsigned TEEN : 1; //!< [0] TXFIFO Empty Interrupt enable. This bit enables the TXFIFO Empty Interrupt.
-        unsigned TDREN : 1; //!< [1] TXFIFO Data Request Interrupt enable. This bit enables the TXFIFO Data Request Interrupt when the number of data entries in the TXFIFO is less than or equal to TX THRESHOLD.
-        unsigned TFEN : 1; //!< [2] TXFIFO Full Interrupt enable. This bit enables the TXFIFO Full Interrupt.
-        unsigned RREN : 1; //!< [3] RXFIFO Ready Interrupt enable. This bit enables the RXFIFO Ready Interrupt.
-        unsigned RDREN : 1; //!< [4] RXFIFO Data Request Interrupt enable. This bit enables the RXFIFO Data Request Interrupt when the number of data entries in the RXFIFO is greater than RX THRESHOLD.
-        unsigned RFEN : 1; //!< [5] RXFIFO Full Interrupt enable. This bit enables the RXFIFO Full Interrupt.
-        unsigned ROEN : 1; //!< [6] RXFIFO Overflow Interrupt enable. This bit enables the RXFIFO Overflow Interrupt.
-        unsigned TCEN : 1; //!< [7] Transfer Completed Interrupt enable. This bit enables the Transfer Completed Interrupt.
+        unsigned TEEN : 1; //!< [0] TXFIFO Empty Interrupt enable.
+        unsigned TDREN : 1; //!< [1] TXFIFO Data Request Interrupt enable.
+        unsigned TFEN : 1; //!< [2] TXFIFO Full Interrupt enable.
+        unsigned RREN : 1; //!< [3] RXFIFO Ready Interrupt enable.
+        unsigned RDREN : 1; //!< [4] RXFIFO Data Request Interrupt enable.
+        unsigned RFEN : 1; //!< [5] RXFIFO Full Interrupt enable.
+        unsigned ROEN : 1; //!< [6] RXFIFO Overflow Interrupt enable.
+        unsigned TCEN : 1; //!< [7] Transfer Completed Interrupt enable.
         unsigned RESERVED0 : 24; //!< [31:8] Reserved
     } B;
 } hw_ecspi_intreg_t;
@@ -1010,16 +997,16 @@ typedef union _hw_ecspi_dmareg
     reg32_t U;
     struct _hw_ecspi_dmareg_bitfields
     {
-        unsigned TX_THRESHOLD : 6; //!< [5:0] TX THRESHOLD. This field defines the FIFO threshold that triggers a TX DMA/INT request. A TX DMA/INT request is issued when the number of data entries in the TXFIFO is greater than TX THRESHOLD.
+        unsigned TX_THRESHOLD : 6; //!< [5:0] TX THRESHOLD.
         unsigned RESERVED0 : 1; //!< [6] Reserved
-        unsigned TEDEN : 1; //!< [7] TXFIFO Empty DMA Request Enable. This bit enables/disables the TXFIFO Empty DMA Request.
+        unsigned TEDEN : 1; //!< [7] TXFIFO Empty DMA Request Enable.
         unsigned RESERVED1 : 8; //!< [15:8] Reserved
-        unsigned RX_THRESHOLD : 6; //!< [21:16] RX THRESHOLD. This field defines the FIFO threshold that triggers a RX DMA/INT request. A RX DMA/INT request is issued when the number of data entries in the RXFIFO is greater than RX THRESHOLD.
+        unsigned RX_THRESHOLD : 6; //!< [21:16] RX THRESHOLD.
         unsigned RESERVED2 : 1; //!< [22] Reserved
-        unsigned RXDEN : 1; //!< [23] RXFIFO DMA Request Enable. This bit enables/disables the RXFIFO DMA Request.
-        unsigned RX_DMA_LENGTH : 6; //!< [29:24] RX DMA LENGTH. This field defines the burst length of a DMA operation. Applies only when RXTDEN is set.
+        unsigned RXDEN : 1; //!< [23] RXFIFO DMA Request Enable.
+        unsigned RX_DMA_LENGTH : 6; //!< [29:24] RX DMA LENGTH.
         unsigned RESERVED3 : 1; //!< [30] Reserved
-        unsigned RXTDEN : 1; //!< [31] RXFIFO TAIL DMA Request Enable. This bit enables an internal counter that is increased at each read of the RXFIFO. This counter is cleared automatically when it reaches RX DMA LENGTH. If the number of words remaining in the RXFIFO is greater than or equal to RX DMA LENGTH, a DMA request is generated even if it is less than or equal to RX THRESHOLD.
+        unsigned RXTDEN : 1; //!< [31] RXFIFO TAIL DMA Request Enable.
     } B;
 } hw_ecspi_dmareg_t;
 #endif
@@ -1197,14 +1184,14 @@ typedef union _hw_ecspi_statreg
     reg32_t U;
     struct _hw_ecspi_statreg_bitfields
     {
-        unsigned TE : 1; //!< [0] TXFIFO Empty. This bit is set if the TXFIFO is empty.
+        unsigned TE : 1; //!< [0] TXFIFO Empty.
         unsigned TDR : 1; //!< [1] TXFIFO Data Request.
-        unsigned TF : 1; //!< [2] TXFIFO Full. This bit is set when if the TXFIFO is full.
-        unsigned RR : 1; //!< [3] RXFIFO Ready. This bit is set when one or more words are stored in the RXFIFO.
+        unsigned TF : 1; //!< [2] TXFIFO Full.
+        unsigned RR : 1; //!< [3] RXFIFO Ready.
         unsigned RDR : 1; //!< [4] RXFIFO Data Request.
-        unsigned RF : 1; //!< [5] RXFIFO Full. This bit is set when the RXFIFO is full.
-        unsigned RO : 1; //!< [6] RXFIFO Overflow. When set, this bit indicates that RXFIFO has overflowed. Writing 1 to this bit clears it.
-        unsigned TC : 1; //!< [7] Transfer Completed Status bit. Writing 1 to this bit clears it.
+        unsigned RF : 1; //!< [5] RXFIFO Full.
+        unsigned RO : 1; //!< [6] RXFIFO Overflow.
+        unsigned TC : 1; //!< [7] Transfer Completed Status bit.
         unsigned RESERVED0 : 24; //!< [31:8] Reserved
     } B;
 } hw_ecspi_statreg_t;
@@ -1389,8 +1376,7 @@ typedef union _hw_ecspi_statreg
  * The Sample Period Control Register (ECSPI_PERIODREG) provides software a way to insert delays
  * (wait states) between consecutive SPI transfers. Control bits in this register select the clock
  * source for the sample period counter and the delay count indicating the number of wait states to
- * be inserted between data transfers.   The delay counts apply only when the module is configured
- * in Master mode (CONREG[MODE] = 1).  The delay counts apply only when the current channel is
+ * be inserted between data transfers.   The delay counts apply only when the current channel is
  * operating in Master mode (ECSPI_CONREG[CHANNEL MODE] = 1).ECSPI_PERIODREG also contains the CSD
  * CTRL field used to insert a delay between the Chip Select's active edge and the first SPI Clock
  * edge.
@@ -1400,9 +1386,9 @@ typedef union _hw_ecspi_periodreg
     reg32_t U;
     struct _hw_ecspi_periodreg_bitfields
     {
-        unsigned SAMPLE_PERIOD : 15; //!< [14:0] Sample Period Control. These bits control the number of wait states to be inserted in data transfers. During the idle clocks, the state of the SS output will operate according to the SS_CTL control field in the ECSPI_CONREG register.
-        unsigned CSRC : 1; //!< [15] Clock Source Control. This bit selects the clock source for the sample period counter.
-        unsigned CSD_CTL : 6; //!< [21:16] Chip Select Delay Control bits. This field defines how many SPI clocks will be inserted between the chip select's active edge and the first SPI clock edge. The range is from 0 to 63.
+        unsigned SAMPLE_PERIOD : 15; //!< [14:0] Sample Period Control.
+        unsigned CSRC : 1; //!< [15] Clock Source Control.
+        unsigned CSD_CTL : 6; //!< [21:16] Chip Select Delay Control bits.
         unsigned RESERVED0 : 10; //!< [31:22] Reserved
     } B;
 } hw_ecspi_periodreg_t;
@@ -1510,19 +1496,19 @@ typedef union _hw_ecspi_periodreg
  * Reset value: 0x00000000
  *
  * The Test Control Register (ECSPI_TESTREG) provides software a mechanism to internally connect the
- * receive and transmit devices of the ECSPI  , define the data latch delay  , and monitor the
- * contents of the receive and transmit FIFOs.
+ * receive and transmit devices of the ECSPI  , and monitor the contents of the receive and transmit
+ * FIFOs.
  */
 typedef union _hw_ecspi_testreg
 {
     reg32_t U;
     struct _hw_ecspi_testreg_bitfields
     {
-        unsigned TXCNT : 7; //!< [6:0] TXFIFO Counter. This field indicates the number of words in the TXFIFO.
+        unsigned TXCNT : 7; //!< [6:0] TXFIFO Counter.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned RXCNT : 7; //!< [14:8] RXFIFO Counter. This field indicates the number of words in the RXFIFO.
+        unsigned RXCNT : 7; //!< [14:8] RXFIFO Counter.
         unsigned RESERVED1 : 16; //!< [30:15] Reserved.
-        unsigned LBC : 1; //!< [31] Loop Back Control. This bit is used in Master mode only. When this bit is set, the ECSPI connects the transmitter and receiver sections internally, and the data shifted out from the most-significant bit of the shift register is looped back into the least-significant bit of the Shift register. In this way, a self-test of the complete transmit/receive path can be made. The output pins are not affected, and the input pins are ignored.
+        unsigned LBC : 1; //!< [31] Loop Back Control.
     } B;
 } hw_ecspi_testreg_t;
 #endif
@@ -1630,7 +1616,7 @@ typedef union _hw_ecspi_msgdata
     reg32_t U;
     struct _hw_ecspi_msgdata_bitfields
     {
-        unsigned ECSPI_MSGDATA : 32; //!< [31:0] ECSPI_MSGDATA holds the top word of MSG Data FIFO. The MSG Data FIFO is advanced for each write of this register. The data read is zero. The data written to this register is stored in the MSG Data FIFO.
+        unsigned ECSPI_MSGDATA : 32; //!< [31:0] ECSPI_MSGDATA holds the top word of MSG Data FIFO.
     } B;
 } hw_ecspi_msgdata_t;
 #endif

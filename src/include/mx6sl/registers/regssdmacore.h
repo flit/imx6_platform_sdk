@@ -46,16 +46,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_SDMACORE_MC0PTR - ARM platform Channel 0 Pointer
@@ -122,7 +112,7 @@ typedef union _hw_sdmacore_ccptr
     reg32_t U;
     struct _hw_sdmacore_ccptr_bitfields
     {
-        unsigned CCPTR : 16; //!< [15:0] Contains the start address of the context data for the current channel: Its value is CONTEXT_BASE + 24* CCR or CONTEXT_BASE + 32* CCR where CONTEXT_BASE = 0x0800. The value 24 or 32 is selected according to the programmed channel scratch RAM size in the register shown in .
+        unsigned CCPTR : 16; //!< [15:0] Contains the start address of the context data for the current channel: Its value is CONTEXT_BASE + 24* CCR or CONTEXT_BASE + 32* CCR where CONTEXT_BASE = 0x0800.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmacore_ccptr_t;
@@ -172,7 +162,7 @@ typedef union _hw_sdmacore_ccr
     reg32_t U;
     struct _hw_sdmacore_ccr_bitfields
     {
-        unsigned CCR : 5; //!< [4:0] Contains the number of the current running channel whose context is installed. In the case that the SDMA has finished running the channel and has entered sleep state, CCR will indicate the previous running channel. The PST bits in the OSTAT register indicate when the SDMA is in sleep state.
+        unsigned CCR : 5; //!< [4:0] Contains the number of the current running channel whose context is installed.
         unsigned RESERVED0 : 27; //!< [31:5] Reserved
     } B;
 } hw_sdmacore_ccr_t;
@@ -288,7 +278,7 @@ typedef union _hw_sdmacore_events
     reg32_t U;
     struct _hw_sdmacore_events_bitfields
     {
-        unsigned EVENTS : 32; //!< [31:0] Reflects the status of the SDMA's external DMA requests. It is meant to allow any channel to monitor the states of these SDMA inputs. This register displays EVENTS 0-31. The EVENTS2 register displays events 32-47.
+        unsigned EVENTS : 32; //!< [31:0] Reflects the status of the SDMA's external DMA requests.
     } B;
 } hw_sdmacore_events_t;
 #endif
@@ -337,7 +327,7 @@ typedef union _hw_sdmacore_ccpri
     reg32_t U;
     struct _hw_sdmacore_ccpri_bitfields
     {
-        unsigned CCPRI : 3; //!< [2:0] Contains the 3-bit priority of the channel whose context is installed. It is 0 when no channel is running. 1-7 current channel priority
+        unsigned CCPRI : 3; //!< [2:0] Contains the 3-bit priority of the channel whose context is installed.
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmacore_ccpri_t;
@@ -390,7 +380,7 @@ typedef union _hw_sdmacore_ncpri
     reg32_t U;
     struct _hw_sdmacore_ncpri_bitfields
     {
-        unsigned NCPRI : 3; //!< [2:0] Contains the 3-bit priority of the channel the scheduler has selected to run next. It is 0 when no other channel is pending.
+        unsigned NCPRI : 3; //!< [2:0] Contains the 3-bit priority of the channel the scheduler has selected to run next.
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_sdmacore_ncpri_t;
@@ -439,7 +429,7 @@ typedef union _hw_sdmacore_ecount
     reg32_t U;
     struct _hw_sdmacore_ecount_bitfields
     {
-        unsigned ECOUNT : 16; //!< [15:0] The event cell counter contains the number of times minus one that an event detection must occur before generating a debug request. This register should be written before any attempt to use the event detection counter during an event detection process. The counter is cleared on a JTAG reset.
+        unsigned ECOUNT : 16; //!< [15:0] The event cell counter contains the number of times minus one that an event detection must occur before generating a debug request.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmacore_ecount_t;
@@ -503,13 +493,13 @@ typedef union _hw_sdmacore_ectl
     struct _hw_sdmacore_ectl_bitfields
     {
         unsigned ATS : 2; //!< [1:0] The access type select bits define the memory access type required on the SDMA memory bus.
-        unsigned AATC : 2; //!< [3:2] The Address A Trigger Condition (AATC) controls the operations performed by address comparator A. All operations are performed on unsigned values. This comparator A outputs the addressA condition.
-        unsigned ABTC : 2; //!< [5:4] The Address B Trigger Condition (ABTC) controls the operations performed by address comparator B. All operations are performed on unsigned values. This comparator B outputs the addressB condition.
-        unsigned ATC : 2; //!< [7:6] The address trigger condition bits select how the two address conditions (addressA and addressB) are combined to define the global address matching condition. The supported combinations are described, as follows.
-        unsigned DTC : 2; //!< [9:8] The data trigger condition bits define when data is considered matching after comparison with the data register of the event detection unit. The operations are performed on unsigned values.
-        unsigned ECTC : 2; //!< [11:10] The event cell trigger condition bits select the combination of address and data matching conditions that generate the final address/data condition. During program execution, if this event cell trigger condition goes to 1, a debug request is sent to the SDMA. The EN bit must be set to enable the debug request generation.
-        unsigned CNT : 1; //!< [12] Event Counter Enable. The event counter enable bit determines if the cell counter is used during the event detection. In order to use the event counter during an event detection process, the event cell counter register should be loaded with a value equal to the number of times minus one that an event occurs before a debug request is sent. After every event detection, the counter is decreased. When the counter reaches the value 0, the event detection cell sends a debug request to the core. The event counter register should be written and the EN bit should be set before each new event detection process uses the event counter.
-        unsigned EN : 1; //!< [13] Event Cell Enable. If the EN bit is set, the event cell is allowed to generate debug requests (the cell is awakened). If it is cleared, the event detection unit is disabled and no hardware breakpoint is generated, but matching conditions are still reflected on the emulation pin.
+        unsigned AATC : 2; //!< [3:2] The Address A Trigger Condition (AATC) controls the operations performed by address comparator A.
+        unsigned ABTC : 2; //!< [5:4] The Address B Trigger Condition (ABTC) controls the operations performed by address comparator B.
+        unsigned ATC : 2; //!< [7:6] The address trigger condition bits select how the two address conditions (addressA and addressB) are combined to define the global address matching condition.
+        unsigned DTC : 2; //!< [9:8] The data trigger condition bits define when data is considered matching after comparison with the data register of the event detection unit.
+        unsigned ECTC : 2; //!< [11:10] The event cell trigger condition bits select the combination of address and data matching conditions that generate the final address/data condition.
+        unsigned CNT : 1; //!< [12] Event Counter Enable.
+        unsigned EN : 1; //!< [13] Event Cell Enable.
         unsigned RESERVED0 : 18; //!< [31:14] Reserved
     } B;
 } hw_sdmacore_ectl_t;
@@ -772,7 +762,7 @@ typedef union _hw_sdmacore_eaa
     reg32_t U;
     struct _hw_sdmacore_eaa_bitfields
     {
-        unsigned EAA : 16; //!< [15:0] Event Cell Address Register A computes an address A condition. It is cleared on a JTAG reset.
+        unsigned EAA : 16; //!< [15:0] Event Cell Address Register A computes an address A condition.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmacore_eaa_t;
@@ -832,7 +822,7 @@ typedef union _hw_sdmacore_eab
     reg32_t U;
     struct _hw_sdmacore_eab_bitfields
     {
-        unsigned EAB : 16; //!< [15:0] Event Cell Address Register B computes an address B condition. It is cleared on a JTAG reset.
+        unsigned EAB : 16; //!< [15:0] Event Cell Address Register B computes an address B condition.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmacore_eab_t;
@@ -892,7 +882,7 @@ typedef union _hw_sdmacore_eam
     reg32_t U;
     struct _hw_sdmacore_eam_bitfields
     {
-        unsigned EAM : 16; //!< [15:0] The Event Cell Address Mask contains a user-defined address mask value. This mask is applied to the address value latched from the memory address bus before performing the address comparison. There is a common address mask value for both address comparators. If bit i of this register is set, then bit i of the address value latched from the memory bus does not influence the result of the address comparison. The register is cleared on a JTAG reset.
+        unsigned EAM : 16; //!< [15:0] The Event Cell Address Mask contains a user-defined address mask value.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmacore_eam_t;
@@ -956,7 +946,7 @@ typedef union _hw_sdmacore_ed
     reg32_t U;
     struct _hw_sdmacore_ed_bitfields
     {
-        unsigned ED : 32; //!< [31:0] The event cell data register contains a user defined data value. This data value is an input for the data comparator which generates the data condition. It is cleared on a JTAG reset.
+        unsigned ED : 32; //!< [31:0] The event cell data register contains a user defined data value.
     } B;
 } hw_sdmacore_ed_t;
 #endif
@@ -1016,7 +1006,7 @@ typedef union _hw_sdmacore_edm
     reg32_t U;
     struct _hw_sdmacore_edm_bitfields
     {
-        unsigned EDM : 32; //!< [31:0] The event cell data mask register contains the user-defined data mask value. This mask is applied to the data value latched from the memory bus before performing the data comparison. Setting bit i of the event cell data mask register means that bit i of the data value latched from the address bus does not influence the result of the data comparison. The data mask is cleared on a JTAG reset.
+        unsigned EDM : 32; //!< [31:0] The event cell data mask register contains the user-defined data mask value.
     } B;
 } hw_sdmacore_edm_t;
 #endif
@@ -1079,7 +1069,7 @@ typedef union _hw_sdmacore_rtb
     reg32_t U;
     struct _hw_sdmacore_rtb_bitfields
     {
-        unsigned RTB : 32; //!< [31:0] The Real Time Buffer register stores and retrieves run time information without putting the SDMA in debug mode. Writing to that register triggers a pulse on a specific real-time debug pin whose connection depends on the chip implementation. The RTB value can be accessed by the OnCE under ARM platform or JTAG control using the rbuffer command.
+        unsigned RTB : 32; //!< [31:0] The Real Time Buffer register stores and retrieves run time information without putting the SDMA in debug mode.
     } B;
 } hw_sdmacore_rtb_t;
 #endif
@@ -1143,7 +1133,7 @@ typedef union _hw_sdmacore_tb
     {
         unsigned CHFADDR : 14; //!< [13:0] The change of flow address is the address where the change of flow is taken when executing a change of flow instruction.
         unsigned TADDR : 14; //!< [27:14] The target address is the address taken after the execution of the change of flow instruction.
-        unsigned TBF : 1; //!< [28] The Trace Buffer Flag is set when the buffer contains the addresses of a valid change of flow. The contents of the buffer should be ignored otherwise.
+        unsigned TBF : 1; //!< [28] The Trace Buffer Flag is set when the buffer contains the addresses of a valid change of flow.
         unsigned RESERVED0 : 3; //!< [31:29] Reserved
     } B;
 } hw_sdmacore_tb_t;
@@ -1220,14 +1210,14 @@ typedef union _hw_sdmacore_ostat
     reg32_t U;
     struct _hw_sdmacore_ostat_bitfields
     {
-        unsigned ECDR : 3; //!< [2:0] Event Cell Debug Request. If the debug request comes from the event cell, the reason for entering debug mode is given by the EDR bits. The encoding of the EDR bits is useful to find out more precisely why the debug request was generated. A debug request from an event cell is generated for a specific combination of the addressA, addressB, and data conditions; the value of those fields is given by the EDR bits. If all three bits of the EDR are reset, then it did not generate any debug request. If the cell did generate a debug request, then at least one EDR bit is set; the meaning of the encoding is as follows:
+        unsigned ECDR : 3; //!< [2:0] Event Cell Debug Request.
         unsigned RESERVED0 : 4; //!< [6:3] Reserved
         unsigned MST : 1; //!< [7] This flag is raised when the OnCE is controlled from the ARM platform peripheral interface.
         unsigned SWB : 1; //!< [8] This flag is raised when the SDMA has entered debug mode after a software breakpoint.
         unsigned ODR : 1; //!< [9] This flag is raised when the SDMA has entered debug mode after a OnCE debug request.
         unsigned EDR : 1; //!< [10] This flag is raised when the SDMA has entered debug mode after an external debug request.
-        unsigned RCV : 1; //!< [11] After each write access to the real time buffer (RTB), the RCV bit is set. This bit is cleared after execution of an rbuffer command and on a JTAG reset.
-        unsigned PST : 4; //!< [15:12] The Processor Status bits reflect the state of the SDMA RISC engine. The "Program" state is the usual instruction execution cycle. The "Data" state is inserted when there are wait-states during a load or a store on the data bus (ld or st). The "Change of Flow" state is the second cycle of any instruction that breaks the sequence of instructions (jumps and channel-switching instructions). The "Change of Flow in Loop" state is used when an error causes a hardware loop exit. The "Debug" state means the SDMA is in debug mode. The "Functional Unit" state is inserted when there are wait-states during a load or a store on the functional units bus (ldf or stf). In "Sleep" modes, no script is running (this is the RISC engine idle state). The "after Reset" is slightly different because no context restoring phase will happen when a channel is triggered: The script located at address 0 will be executed (boot operation). The "in Sleep" states are the same as above except they do not have any corresponding channel. They are used when entering debug mode after reset; the reason is that it is necessary to return to the "Sleep after Reset" state when leaving debug mode.
+        unsigned RCV : 1; //!< [11] After each write access to the real time buffer (RTB), the RCV bit is set.
+        unsigned PST : 4; //!< [15:12] The Processor Status bits reflect the state of the SDMA RISC engine.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmacore_ostat_t;
@@ -1390,8 +1380,8 @@ typedef union _hw_sdmacore_mchn0addr
     reg32_t U;
     struct _hw_sdmacore_mchn0addr_bitfields
     {
-        unsigned CHN0ADDR : 14; //!< [13:0] Contains the address of the channel 0 routine programmed by the ARM platform; it is loaded into a general register at the very start of the boot and the SDMA jumps to the address it contains. By default, it points to the standard boot routine in ROM.
-        unsigned SMSZ : 1; //!< [14] The bit 14 (Scratch Memory Size) determines if scratch memory must be available after every channel context. After reset, it is equal to 0, which defines a RAM space of 24 words for each channel. All of this area stores the channel context. By setting this bit, 32 words are reserved for every channel context, which gives eight additional words that can be used by the channel script to store any type of data. Those words are never erased by the context switching mechanism.
+        unsigned CHN0ADDR : 14; //!< [13:0] Contains the address of the channel 0 routine programmed by the ARM platform; it is loaded into a general register at the very start of the boot and the SDMA jumps to the address it contains.
+        unsigned SMSZ : 1; //!< [14] The bit 14 (Scratch Memory Size) determines if scratch memory must be available after every channel context.
         unsigned RESERVED0 : 17; //!< [31:15] Reserved
     } B;
 } hw_sdmacore_mchn0addr_t;
@@ -1462,7 +1452,7 @@ typedef union _hw_sdmacore_endianness
     reg32_t U;
     struct _hw_sdmacore_endianness_bitfields
     {
-        unsigned APEND : 1; //!< [0] APEND indicates the endian mode of the Peripheral and Burst DMA2 and Burst DMA interfaces. This bit is tied to logic '1' indicating little-endian mode.
+        unsigned APEND : 1; //!< [0] APEND indicates the endian mode of the Peripheral and Burst DMA interfaces.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved.
     } B;
 } hw_sdmacore_endianness_t;
@@ -1484,8 +1474,8 @@ typedef union _hw_sdmacore_endianness
 
 /* --- Register HW_SDMACORE_ENDIANNESS, field APEND[0] (RO)
  *
- * APEND indicates the endian mode of the Peripheral and Burst DMA2 and Burst DMA interfaces. This
- * bit is tied to logic '1' indicating little-endian mode.
+ * APEND indicates the endian mode of the Peripheral and Burst DMA interfaces. This bit is tied to
+ * logic '1' indicating little-endian mode.
  *
  * Values:
  * 0 - - ARM platform is in big-endian mode
@@ -1516,7 +1506,7 @@ typedef union _hw_sdmacore_sdma_lock
     reg32_t U;
     struct _hw_sdmacore_sdma_lock_bitfields
     {
-        unsigned LOCK : 1; //!< [0] The LOCK bit reports the value of the LOCK bit in the SDMA_LOCK status register. SDMA software may use this value to determine if certain operations such as loading of new scripts is allowed.
+        unsigned LOCK : 1; //!< [0] The LOCK bit reports the value of the LOCK bit in the SDMA_LOCK status register.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_sdmacore_sdma_lock_t;
@@ -1570,7 +1560,7 @@ typedef union _hw_sdmacore_events2
     reg32_t U;
     struct _hw_sdmacore_events2_bitfields
     {
-        unsigned EVENTS : 16; //!< [15:0] Reflects the status of the SDMA's external DMA requests. It is meant to allow any channel to monitor the states of these SDMA inputs. This register displays EVENTS 32-47. The separate EVENTS register displays events 0-31.
+        unsigned EVENTS : 16; //!< [15:0] Reflects the status of the SDMA's external DMA requests.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_sdmacore_events2_t;

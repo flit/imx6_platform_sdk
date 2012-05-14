@@ -55,16 +55,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_GPIO_DR - GPIO data register
@@ -92,7 +82,7 @@ typedef union _hw_gpio_dr
     reg32_t U;
     struct _hw_gpio_dr_bitfields
     {
-        unsigned DR : 32; //!< [31:0] Data bits. This register defines the value of the GPIO output when the signal is configured as an output (GDIR[n]=1). Writes to this register are stored in a register. Reading GPIO_DR returns the value stored in the register if the signal is configured as an output (GDIR[n]=1), or the input signal's value if configured as an input (GDIR[n]=0). The I/O multiplexer must be configured to GPIO mode for the GPIO_DR value to connect with the signal. Reading the data register with the input path disabled always returns a zero value.
+        unsigned DR : 32; //!< [31:0] Data bits.
     } B;
 } hw_gpio_dr_t;
 #endif
@@ -159,7 +149,7 @@ typedef union _hw_gpio_gdir
     reg32_t U;
     struct _hw_gpio_gdir_bitfields
     {
-        unsigned GDIR : 32; //!< [31:0] GPIO direction bits. Bit n of this register defines the direction of the GPIO[n] signal. GPIO_GDIR affects only the direction of the I/O signal when the corresponding bit in the I/O MUX is configured for GPIO.
+        unsigned GDIR : 32; //!< [31:0] GPIO direction bits.
     } B;
 } hw_gpio_gdir_t;
 #endif
@@ -221,14 +211,14 @@ typedef union _hw_gpio_gdir
  * GPIO_PSR is a read-only register. Each bit stores the value of the corresponding input signal (as
  * configured in the IOMUX). This register is clocked with the ipg_clk_s clock, meaning that the
  * input signal is sampled only when accessing this location. Two wait states are required any time
- * this register is accessed for synchronization.  PSR[i]-pad sample
+ * this register is accessed for synchronization.
  */
 typedef union _hw_gpio_psr
 {
     reg32_t U;
     struct _hw_gpio_psr_bitfields
     {
-        unsigned PSR : 32; //!< [31:0] GPIO pad status bits (status bits). Reading GPIO_PSR returns the state of the corresponding input signal. Settings: The I/O multiplexer must be configured to GPIO mode for GPIO_PSR to reflect the state of the corresponding signal. [What happens if the IOMUX is not configured to GPIO mode? Does it return 0?-- cpt]
+        unsigned PSR : 32; //!< [31:0] GPIO pad status bits (status bits).
     } B;
 } hw_gpio_psr_t;
 #endif
@@ -251,8 +241,7 @@ typedef union _hw_gpio_psr
  *
  * GPIO pad status bits (status bits). Reading GPIO_PSR returns the state of the corresponding input
  * signal. Settings: The I/O multiplexer must be configured to GPIO mode for GPIO_PSR to reflect the
- * state of the corresponding signal. [What happens if the IOMUX is not configured to GPIO mode?
- * Does it return 0?-- cpt]
+ * state of the corresponding signal.
  */
 
 #define BP_GPIO_PSR_PSR      (0)      //!< Bit position for GPIO_PSR_PSR.
@@ -279,22 +268,22 @@ typedef union _hw_gpio_icr1
     reg32_t U;
     struct _hw_gpio_icr1_bitfields
     {
-        unsigned ICR0 : 2; //!< [1:0] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR1 : 2; //!< [3:2] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR2 : 2; //!< [5:4] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR3 : 2; //!< [7:6] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR4 : 2; //!< [9:8] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR5 : 2; //!< [11:10] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR6 : 2; //!< [13:12] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR7 : 2; //!< [15:14] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR8 : 2; //!< [17:16] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR9 : 2; //!< [19:18] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR10 : 2; //!< [21:20] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR11 : 2; //!< [23:22] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR12 : 2; //!< [25:24] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR13 : 2; //!< [27:26] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR14 : 2; //!< [29:28] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR15 : 2; //!< [31:30] Interrupt configuration 1 fields. This register controls the active condition of the interrupt function for lines 15 to 0. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR0 : 2; //!< [1:0] Interrupt configuration 1 fields.
+        unsigned ICR1 : 2; //!< [3:2] Interrupt configuration 1 fields.
+        unsigned ICR2 : 2; //!< [5:4] Interrupt configuration 1 fields.
+        unsigned ICR3 : 2; //!< [7:6] Interrupt configuration 1 fields.
+        unsigned ICR4 : 2; //!< [9:8] Interrupt configuration 1 fields.
+        unsigned ICR5 : 2; //!< [11:10] Interrupt configuration 1 fields.
+        unsigned ICR6 : 2; //!< [13:12] Interrupt configuration 1 fields.
+        unsigned ICR7 : 2; //!< [15:14] Interrupt configuration 1 fields.
+        unsigned ICR8 : 2; //!< [17:16] Interrupt configuration 1 fields.
+        unsigned ICR9 : 2; //!< [19:18] Interrupt configuration 1 fields.
+        unsigned ICR10 : 2; //!< [21:20] Interrupt configuration 1 fields.
+        unsigned ICR11 : 2; //!< [23:22] Interrupt configuration 1 fields.
+        unsigned ICR12 : 2; //!< [25:24] Interrupt configuration 1 fields.
+        unsigned ICR13 : 2; //!< [27:26] Interrupt configuration 1 fields.
+        unsigned ICR14 : 2; //!< [29:28] Interrupt configuration 1 fields.
+        unsigned ICR15 : 2; //!< [31:30] Interrupt configuration 1 fields.
     } B;
 } hw_gpio_icr1_t;
 #endif
@@ -783,22 +772,22 @@ typedef union _hw_gpio_icr2
     reg32_t U;
     struct _hw_gpio_icr2_bitfields
     {
-        unsigned ICR16 : 2; //!< [1:0] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR17 : 2; //!< [3:2] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR18 : 2; //!< [5:4] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR19 : 2; //!< [7:6] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR20 : 2; //!< [9:8] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR21 : 2; //!< [11:10] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR22 : 2; //!< [13:12] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR23 : 2; //!< [15:14] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR24 : 2; //!< [17:16] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR25 : 2; //!< [19:18] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR26 : 2; //!< [21:20] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR27 : 2; //!< [23:22] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR28 : 2; //!< [25:24] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR29 : 2; //!< [27:26] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR30 : 2; //!< [29:28] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
-        unsigned ICR31 : 2; //!< [31:30] Interrupt configuration 2 fields. This register controls the active condition of the interrupt function for lines 31 to 16. Settings: Bits ICRn[1:0] determine the interrupt condition for signal n as follows:
+        unsigned ICR16 : 2; //!< [1:0] Interrupt configuration 2 fields.
+        unsigned ICR17 : 2; //!< [3:2] Interrupt configuration 2 fields.
+        unsigned ICR18 : 2; //!< [5:4] Interrupt configuration 2 fields.
+        unsigned ICR19 : 2; //!< [7:6] Interrupt configuration 2 fields.
+        unsigned ICR20 : 2; //!< [9:8] Interrupt configuration 2 fields.
+        unsigned ICR21 : 2; //!< [11:10] Interrupt configuration 2 fields.
+        unsigned ICR22 : 2; //!< [13:12] Interrupt configuration 2 fields.
+        unsigned ICR23 : 2; //!< [15:14] Interrupt configuration 2 fields.
+        unsigned ICR24 : 2; //!< [17:16] Interrupt configuration 2 fields.
+        unsigned ICR25 : 2; //!< [19:18] Interrupt configuration 2 fields.
+        unsigned ICR26 : 2; //!< [21:20] Interrupt configuration 2 fields.
+        unsigned ICR27 : 2; //!< [23:22] Interrupt configuration 2 fields.
+        unsigned ICR28 : 2; //!< [25:24] Interrupt configuration 2 fields.
+        unsigned ICR29 : 2; //!< [27:26] Interrupt configuration 2 fields.
+        unsigned ICR30 : 2; //!< [29:28] Interrupt configuration 2 fields.
+        unsigned ICR31 : 2; //!< [31:30] Interrupt configuration 2 fields.
     } B;
 } hw_gpio_icr2_t;
 #endif
@@ -1286,7 +1275,7 @@ typedef union _hw_gpio_imr
     reg32_t U;
     struct _hw_gpio_imr_bitfields
     {
-        unsigned IMR : 32; //!< [31:0] Interrupt Mask bits. This register is used to enable or disable the interrupt function on each of the 32 GPIO signals. Settings: Bit IMR[n] (n=0...31) controls interrupt n as follows:
+        unsigned IMR : 32; //!< [31:0] Interrupt Mask bits.
     } B;
 } hw_gpio_imr_t;
 #endif
@@ -1355,7 +1344,7 @@ typedef union _hw_gpio_isr
     reg32_t U;
     struct _hw_gpio_isr_bitfields
     {
-        unsigned ISR : 32; //!< [31:0] Interrupt status bits - Bit n of this register is asserted (active high) when the active condition (as determined by the corresponding ICR bit) is detected on the GPIO input and is waiting for service. The value of this register is independent of the value in GPIO_IMR. When the active condition has been detected, the corresponding bit remains set until cleared by software. Status flags are cleared by writing a 1 to the corresponding bit position.
+        unsigned ISR : 32; //!< [31:0] Interrupt status bits - Bit n of this register is asserted (active high) when the active condition (as determined by the corresponding ICR bit) is detected on the GPIO input and is waiting for service.
     } B;
 } hw_gpio_isr_t;
 #endif
@@ -1414,15 +1403,14 @@ typedef union _hw_gpio_isr
  * GPIO_EDGE_SEL may be used to override the ICR registers' configuration. If the GPIO_EDGE_SEL bit
  * is set, then a rising edge or falling edge in the corresponding signal generates an interrupt.
  * This register provides backward compatibility. On reset all bits are cleared (ICR is not
- * overridden). [Is this single EDGE_SEL register valid for all the GPIO's on the SoC? If so, should
- * mention this -- CThron]
+ * overridden).
  */
 typedef union _hw_gpio_edge_sel
 {
     reg32_t U;
     struct _hw_gpio_edge_sel_bitfields
     {
-        unsigned GPIO_EDGE_SEL : 32; //!< [31:0] Edge select. When GPIO_EDGE_SEL[ n ] is set, the GPIO disregards the ICR[ n ] setting, and detects any edge on the corresponding input signal.
+        unsigned GPIO_EDGE_SEL : 32; //!< [31:0] Edge select.
     } B;
 } hw_gpio_edge_sel_t;
 #endif

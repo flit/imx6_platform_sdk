@@ -47,16 +47,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_PWM_PWMCR - PWM Control Register
@@ -76,20 +66,20 @@ typedef union _hw_pwm_pwmcr
     reg32_t U;
     struct _hw_pwm_pwmcr_bitfields
     {
-        unsigned EN : 1; //!< [0] PWM Enable. This bit enables the PWM. If this bit is not enabled, the clock prescaler and the counter is reset. When the PWM is enabled, it begins a new period, the output pin is set to start a new period while the prescaler and counter are released and counting begins.
-        unsigned REPEAT : 2; //!< [2:1] Sample Repeat. This bit field determines the number of times each sample from the FIFO is to be used.
-        unsigned SWR : 1; //!< [3] Software Reset. PWM is reset when this bit is set to 1. It is a self clearing bit. A write 1 to this bit is a single wait state write cycle. When the block is in reset state this bit is set and is cleared when the reset procedure is over. Setting this bit resets all the registers to their reset values except for the STOPEN, DOZEN, WAITEN, and DBGEN bits in this control register Technically, the previous tagging isn't correct as "DBGEN" should be tagged as feature="pwm_debug_yes".-JC .
-        unsigned PRESCALER : 12; //!< [15:4] Counter Clock Prescaler Value. This bit field determines the value by which the clock will be divided before it goes to the counter.
-        unsigned CLKSRC : 2; //!< [17:16] Select Clock Source. These bits determine which clock input will be selected for running the counter. After reset the system functional clock is selected. The input clock can also be turned off if these bits are set to 00. This field value should only be changed when the PWM is disabled
-        unsigned POUTC : 2; //!< [19:18] PWM Output Configuration. This bit field determines the mode of PWM output on the output pin.
-        unsigned HCTR : 1; //!< [20] Half-word Data Swap Control. This bit determines which half word data from the 32-bit IP Bus interface is written into the lower 16 bits of the sample register.
-        unsigned BCTR : 1; //!< [21] Byte Data Swap Control. This bit determines the byte ordering of the 16-bit data when it goes into the FIFO from the sample register.
-        unsigned DBGEN : 1; //!< [22] Debug Mode Enable. This bit keeps the PWM functional in debug mode. When this bit is cleared, the input clock is gated off in debug mode. This bit is not affected by software reset. It is cleared by hardware reset.
-        unsigned WAITEN : 1; //!< [23] Wait Mode Enable. This bit keeps the PWM functional in wait mode. When this bit is cleared, the input clock is gated off in wait mode. This bit is not affected by software reset. It is cleared by hardware reset.
-        unsigned DOZEN : 1; //!< [24] Doze Mode Enable. This bit keeps the PWM functional in doze mode. When this bit is cleared, the input clock is gated off in doze mode. This bit is not affected by software reset. It is cleared by hardware reset.
-        unsigned STOPEN : 1; //!< [25] Stop Mode Enable. This bit keeps the PWM functional while in stop mode. When this bit is cleared, the input clock is gated off in stop mode. This bit is not affected by software reset. It is cleared by hardware reset.
-        unsigned FWM : 2; //!< [27:26] FIFO Water Mark. These bits are used to set the data level at which the FIFO empty flag will be set and the corresponding interrupt generated
-        unsigned RESERVED0 : 4; //!< [31:28] Reserved. These reserved bits are always read as zero.
+        unsigned EN : 1; //!< [0] PWM Enable.
+        unsigned REPEAT : 2; //!< [2:1] Sample Repeat.
+        unsigned SWR : 1; //!< [3] Software Reset.
+        unsigned PRESCALER : 12; //!< [15:4] Counter Clock Prescaler Value.
+        unsigned CLKSRC : 2; //!< [17:16] Select Clock Source.
+        unsigned POUTC : 2; //!< [19:18] PWM Output Configuration.
+        unsigned HCTR : 1; //!< [20] Half-word Data Swap Control.
+        unsigned BCTR : 1; //!< [21] Byte Data Swap Control.
+        unsigned DBGEN : 1; //!< [22] Debug Mode Enable.
+        unsigned WAITEN : 1; //!< [23] Wait Mode Enable.
+        unsigned DOZEN : 1; //!< [24] Doze Mode Enable.
+        unsigned STOPEN : 1; //!< [25] Stop Mode Enable.
+        unsigned FWM : 2; //!< [27:26] FIFO Water Mark.
+        unsigned RESERVED0 : 4; //!< [31:28] Reserved.
     } B;
 } hw_pwm_pwmcr_t;
 #endif
@@ -116,7 +106,11 @@ typedef union _hw_pwm_pwmcr
  *
  * PWM Enable. This bit enables the PWM. If this bit is not enabled, the clock prescaler and the
  * counter is reset. When the PWM is enabled, it begins a new period, the output pin is set to start
- * a new period while the prescaler and counter are released and counting begins.
+ * a new period while the prescaler and counter are released and counting begins. To make the PWM
+ * work with softreset and disable/enable, users can do software reset by seting the SWR bit, wait
+ * software reset done, configure the registers, and then enable the PWM by setting this bit to "1"
+ * Users can also disable/enable the PWM if PWM would like to be stopped and resumed with same
+ * registers configurations .
  *
  * Values:
  * 0 - PWM disabled
@@ -170,9 +164,7 @@ typedef union _hw_pwm_pwmcr
  * Software Reset. PWM is reset when this bit is set to 1. It is a self clearing bit. A write 1 to
  * this bit is a single wait state write cycle. When the block is in reset state this bit is set and
  * is cleared when the reset procedure is over. Setting this bit resets all the registers to their
- * reset values except for the STOPEN, DOZEN, WAITEN, and DBGEN bits in this control register
- * Technically, the previous tagging isn't correct as "DBGEN" should be tagged as
- * feature="pwm_debug_yes".-JC .
+ * reset values except for the STOPEN, DOZEN, WAITEN, and DBGEN bits in this control register .
  *
  * Values:
  * 0 - PWM is out of reset
@@ -229,8 +221,8 @@ typedef union _hw_pwm_pwmcr
  * Values:
  * 00 - Clock is off
  * 01 - ipg_clk
- * 10 - ipg_clk_highfreq Clock is off
- * 11 - ipg_clk_32k Clock is off
+ * 10 - ipg_clk_highfreq
+ * 11 - ipg_clk_32k
  */
 
 #define BP_PWM_PWMCR_CLKSRC      (16)      //!< Bit position for PWM_PWMCR_CLKSRC.
@@ -475,12 +467,12 @@ typedef union _hw_pwm_pwmsr
     reg32_t U;
     struct _hw_pwm_pwmsr_bitfields
     {
-        unsigned FIFOAV : 3; //!< [2:0] FIFO Available. These read-only bits indicate the data level remaining in the FIFO. An attempted write to these bits will not affect their value and no transfer error is generated.
-        unsigned FE : 1; //!< [3] FIFO Empty Status Bit. This bit indicates the FIFO data level in comparison to the water level set by FWM field in the control register.
-        unsigned ROV : 1; //!< [4] Roll-over Status. This bit shows that a roll-over event has occurred.
-        unsigned CMP : 1; //!< [5] Compare Status. This bit shows that a compare event has occurred.
-        unsigned FWE : 1; //!< [6] FIFO Write Error Status. This bit shows that an attempt has been made to write FIFO when it is full.
-        unsigned RESERVED0 : 25; //!< [31:7] Reserved. These reserved bits are always read as zero.
+        unsigned FIFOAV : 3; //!< [2:0] FIFO Available.
+        unsigned FE : 1; //!< [3] FIFO Empty Status Bit.
+        unsigned ROV : 1; //!< [4] Roll-over Status.
+        unsigned CMP : 1; //!< [5] Compare Status.
+        unsigned FWE : 1; //!< [6] FIFO Write Error Status.
+        unsigned RESERVED0 : 25; //!< [31:7] Reserved.
     } B;
 } hw_pwm_pwmsr_t;
 #endif
@@ -642,10 +634,10 @@ typedef union _hw_pwm_pwmir
     reg32_t U;
     struct _hw_pwm_pwmir_bitfields
     {
-        unsigned FIE : 1; //!< [0] FIFO Empty Interrupt Enable. This bit controls the generation of the FIFO Empty interrupt.
-        unsigned RIE : 1; //!< [1] Roll-over Interrupt Enable. This bit controls the generation of the Rollover interrupt.
-        unsigned CIE : 1; //!< [2] Compare Interrupt Enable. This bit controls the generation of the Compare interrupt.
-        unsigned RESERVED0 : 29; //!< [31:3] Reserved. These reserved bits are always read as zero.
+        unsigned FIE : 1; //!< [0] FIFO Empty Interrupt Enable.
+        unsigned RIE : 1; //!< [1] Roll-over Interrupt Enable.
+        unsigned CIE : 1; //!< [2] Compare Interrupt Enable.
+        unsigned RESERVED0 : 29; //!< [31:3] Reserved.
     } B;
 } hw_pwm_pwmir_t;
 #endif
@@ -751,21 +743,20 @@ typedef union _hw_pwm_pwmir
  * Reset value: 0x00000000
  *
  * The PWM sample register (PWM_PWMSAR) is the input to the FIFO. 16-bit words are loaded into the
- * FIFO. The FIFO can be written and read when the PWM is disabled The FIFO can be written at any
- * time, but can be read only when the PWM is enabled. The PWM will run at the last set duty-cycle
- * setting if all the values of the FIFO has been utilized, until the FIFO is reloaded or the PWM is
- * disabled. When a new value is written, the duty cycle changes after the current period is over.
- * A value of zero in the sample register will result in the ipp_pwm_pwmo output signal always being
- * low/high (POUTC = 00 it will be low and POUTC = 01 it will be high), and no output waveform will
- * be produced. If the value in this register is higher than the PERIOD + 1, the output will never
- * be set/reset depending on POUTC value.
+ * FIFO. The FIFO can be written at any time, but can be read only when the PWM is enabled. The PWM
+ * will run at the last set duty-cycle setting if all the values of the FIFO has been utilized,
+ * until the FIFO is reloaded or the PWM is disabled. When a new value is written, the duty cycle
+ * changes after the current period is over.  A value of zero in the sample register will result in
+ * the ipp_pwm_pwmo output signal always being low/high (POUTC = 00 it will be low and POUTC = 01 it
+ * will be high), and no output waveform will be produced. If the value in this register is higher
+ * than the PERIOD + 1, the output will never be set/reset depending on POUTC value.
  */
 typedef union _hw_pwm_pwmsar
 {
     reg32_t U;
     struct _hw_pwm_pwmsar_bitfields
     {
-        unsigned SAMPLE : 16; //!< [15:0] Sample Value. This is the input to the 4x16 FIFO. The value in this register denotes the value of the sample being currently used.
+        unsigned SAMPLE : 16; //!< [15:0] Sample Value.
         unsigned RESERVED0 : 16; //!< [31:16] These are reserved bits and writing a value will not affect the functionality of PWM and are always read as zero.
     } B;
 } hw_pwm_pwmsar_t;
@@ -832,7 +823,7 @@ typedef union _hw_pwm_pwmpr
     reg32_t U;
     struct _hw_pwm_pwmpr_bitfields
     {
-        unsigned PERIOD : 16; //!< [15:0] Period Value. These bits determine the Period of the count cycle. The counter counts up to [Period Value] +1 and is then reset to 0x0000.
+        unsigned PERIOD : 16; //!< [15:0] Period Value.
         unsigned RESERVED0 : 16; //!< [31:16] These are reserved bits and writing a value will not affect the functionality of PWM and are always read as zero.
     } B;
 } hw_pwm_pwmpr_t;
@@ -894,7 +885,7 @@ typedef union _hw_pwm_pwmcnr
     reg32_t U;
     struct _hw_pwm_pwmcnr_bitfields
     {
-        unsigned COUNT : 16; //!< [15:0] Counter Value. These bits are the counter register value and denotes the current count state the counter register is in.
+        unsigned COUNT : 16; //!< [15:0] Counter Value.
         unsigned RESERVED0 : 16; //!< [31:16] These are reserved bits and writing a value will not affect the functionality of PWM and are always read as zero.
     } B;
 } hw_pwm_pwmcnr_t;

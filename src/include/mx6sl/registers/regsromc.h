@@ -53,16 +53,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_ROMC_ROMPATCH0D - ROMC Data Registers
@@ -89,7 +79,7 @@ typedef union _hw_romc_rompatch0d
     reg32_t U;
     struct _hw_romc_rompatch0d_bitfields
     {
-        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored within these registers do not affect the writes to the memory system. They are selected over the read data from ROM when a data fix event occurs. If any part of the 1-word data fix is read, then the entire word is replaced. Therefore, a byte or half-word read will cause the ROMC to replace the entire word. The word is word address aligned.
+        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations.
     } B;
 } hw_romc_rompatch0d_t;
 #endif
@@ -160,7 +150,7 @@ typedef union _hw_romc_rompatch1d
     reg32_t U;
     struct _hw_romc_rompatch1d_bitfields
     {
-        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored within these registers do not affect the writes to the memory system. They are selected over the read data from ROM when a data fix event occurs. If any part of the 1-word data fix is read, then the entire word is replaced. Therefore, a byte or half-word read will cause the ROMC to replace the entire word. The word is word address aligned.
+        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations.
     } B;
 } hw_romc_rompatch1d_t;
 #endif
@@ -231,7 +221,7 @@ typedef union _hw_romc_rompatch2d
     reg32_t U;
     struct _hw_romc_rompatch2d_bitfields
     {
-        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored within these registers do not affect the writes to the memory system. They are selected over the read data from ROM when a data fix event occurs. If any part of the 1-word data fix is read, then the entire word is replaced. Therefore, a byte or half-word read will cause the ROMC to replace the entire word. The word is word address aligned.
+        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations.
     } B;
 } hw_romc_rompatch2d_t;
 #endif
@@ -302,7 +292,7 @@ typedef union _hw_romc_rompatch3d
     reg32_t U;
     struct _hw_romc_rompatch3d_bitfields
     {
-        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored within these registers do not affect the writes to the memory system. They are selected over the read data from ROM when a data fix event occurs. If any part of the 1-word data fix is read, then the entire word is replaced. Therefore, a byte or half-word read will cause the ROMC to replace the entire word. The word is word address aligned.
+        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations.
     } B;
 } hw_romc_rompatch3d_t;
 #endif
@@ -373,7 +363,7 @@ typedef union _hw_romc_rompatch4d
     reg32_t U;
     struct _hw_romc_rompatch4d_bitfields
     {
-        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored within these registers do not affect the writes to the memory system. They are selected over the read data from ROM when a data fix event occurs. If any part of the 1-word data fix is read, then the entire word is replaced. Therefore, a byte or half-word read will cause the ROMC to replace the entire word. The word is word address aligned.
+        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations.
     } B;
 } hw_romc_rompatch4d_t;
 #endif
@@ -444,7 +434,7 @@ typedef union _hw_romc_rompatch5d
     reg32_t U;
     struct _hw_romc_rompatch5d_bitfields
     {
-        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored within these registers do not affect the writes to the memory system. They are selected over the read data from ROM when a data fix event occurs. If any part of the 1-word data fix is read, then the entire word is replaced. Therefore, a byte or half-word read will cause the ROMC to replace the entire word. The word is word address aligned.
+        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations.
     } B;
 } hw_romc_rompatch5d_t;
 #endif
@@ -515,7 +505,7 @@ typedef union _hw_romc_rompatch6d
     reg32_t U;
     struct _hw_romc_rompatch6d_bitfields
     {
-        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored within these registers do not affect the writes to the memory system. They are selected over the read data from ROM when a data fix event occurs. If any part of the 1-word data fix is read, then the entire word is replaced. Therefore, a byte or half-word read will cause the ROMC to replace the entire word. The word is word address aligned.
+        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations.
     } B;
 } hw_romc_rompatch6d_t;
 #endif
@@ -586,7 +576,7 @@ typedef union _hw_romc_rompatch7d
     reg32_t U;
     struct _hw_romc_rompatch7d_bitfields
     {
-        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations. The values stored within these registers do not affect the writes to the memory system. They are selected over the read data from ROM when a data fix event occurs. If any part of the 1-word data fix is read, then the entire word is replaced. Therefore, a byte or half-word read will cause the ROMC to replace the entire word. The word is word address aligned.
+        unsigned DATAX : 32; //!< [31:0] Data Fix Registers - Stores the data used for 1-word data fix operations.
     } B;
 } hw_romc_rompatch7d_t;
 #endif
@@ -655,7 +645,7 @@ typedef union _hw_romc_rompatchcntl
     {
         unsigned DATAFIX : 8; //!< [7:0] Data Fix Enable - Controls the use of the first 8 address comparators for 1-word data fix or for code patch routine.
         unsigned RESERVED0 : 21; //!< [28:8] Reserved
-        unsigned DIS : 1; //!< [29] ROMC Disable -- This bit, when set, disables all ROMC operations. This bit is used to enable secure operations.
+        unsigned DIS : 1; //!< [29] ROMC Disable -- This bit, when set, disables all ROMC operations.
         unsigned RESERVED1 : 2; //!< [31:30] Reserved
     } B;
 } hw_romc_rompatchcntl_t;
@@ -865,8 +855,8 @@ typedef union _hw_romc_rompatch0a
     reg32_t U;
     struct _hw_romc_rompatch0a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch0a_t;
@@ -960,8 +950,8 @@ typedef union _hw_romc_rompatch1a
     reg32_t U;
     struct _hw_romc_rompatch1a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch1a_t;
@@ -1055,8 +1045,8 @@ typedef union _hw_romc_rompatch2a
     reg32_t U;
     struct _hw_romc_rompatch2a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch2a_t;
@@ -1150,8 +1140,8 @@ typedef union _hw_romc_rompatch3a
     reg32_t U;
     struct _hw_romc_rompatch3a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch3a_t;
@@ -1245,8 +1235,8 @@ typedef union _hw_romc_rompatch4a
     reg32_t U;
     struct _hw_romc_rompatch4a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch4a_t;
@@ -1340,8 +1330,8 @@ typedef union _hw_romc_rompatch5a
     reg32_t U;
     struct _hw_romc_rompatch5a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch5a_t;
@@ -1435,8 +1425,8 @@ typedef union _hw_romc_rompatch6a
     reg32_t U;
     struct _hw_romc_rompatch6a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch6a_t;
@@ -1530,8 +1520,8 @@ typedef union _hw_romc_rompatch7a
     reg32_t U;
     struct _hw_romc_rompatch7a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch7a_t;
@@ -1625,8 +1615,8 @@ typedef union _hw_romc_rompatch8a
     reg32_t U;
     struct _hw_romc_rompatch8a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch8a_t;
@@ -1720,8 +1710,8 @@ typedef union _hw_romc_rompatch9a
     reg32_t U;
     struct _hw_romc_rompatch9a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch9a_t;
@@ -1815,8 +1805,8 @@ typedef union _hw_romc_rompatch10a
     reg32_t U;
     struct _hw_romc_rompatch10a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch10a_t;
@@ -1910,8 +1900,8 @@ typedef union _hw_romc_rompatch11a
     reg32_t U;
     struct _hw_romc_rompatch11a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch11a_t;
@@ -2005,8 +1995,8 @@ typedef union _hw_romc_rompatch12a
     reg32_t U;
     struct _hw_romc_rompatch12a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch12a_t;
@@ -2100,8 +2090,8 @@ typedef union _hw_romc_rompatch13a
     reg32_t U;
     struct _hw_romc_rompatch13a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch13a_t;
@@ -2195,8 +2185,8 @@ typedef union _hw_romc_rompatch14a
     reg32_t U;
     struct _hw_romc_rompatch14a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch14a_t;
@@ -2290,8 +2280,8 @@ typedef union _hw_romc_rompatch15a
     reg32_t U;
     struct _hw_romc_rompatch15a_bitfields
     {
-        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch. If this watchpoint is selected to be a data fix, then this bit is ignored as all data fixes are 1-word data fixes.
-        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched. All 16 registers can be used for code patch address comparison. Only the first 8 registers can be used for a 1-word data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
+        unsigned THUMBX : 1; //!< [0] THUMB Comparator Select - Indicates that this address will trigger a THUMB opcode patch or an ARM opcode patch.
+        unsigned ADDRX : 22; //!< [22:1] Address Comparator Registers - Indicates the memory address to be watched.
         unsigned RESERVED0 : 9; //!< [31:23] Reserved
     } B;
 } hw_romc_rompatch15a_t;
@@ -2380,9 +2370,9 @@ typedef union _hw_romc_rompatchsr
     reg32_t U;
     struct _hw_romc_rompatchsr_bitfields
     {
-        unsigned SOURCE : 6; //!< [5:0] ROMC Source Number - Binary encoding of the number of the address comparator which has an address match in the most recent patch event on ROMC AHB. If multiple matches occurred, the highest priority source number is used.
+        unsigned SOURCE : 6; //!< [5:0] ROMC Source Number - Binary encoding of the number of the address comparator which has an address match in the most recent patch event on ROMC AHB.
         unsigned RESERVED0 : 11; //!< [16:6] Reserved
-        unsigned SW : 1; //!< [17] ROMC AHB Multiple Address Comparator matches Indicator - Indicates that multiple address comparator matches occurred. Writing a 1 to this bit will clear this it.
+        unsigned SW : 1; //!< [17] ROMC AHB Multiple Address Comparator matches Indicator - Indicates that multiple address comparator matches occurred.
         unsigned RESERVED1 : 14; //!< [31:18] Reserved
     } B;
 } hw_romc_rompatchsr_t;

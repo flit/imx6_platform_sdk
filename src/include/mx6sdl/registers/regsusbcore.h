@@ -144,16 +144,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_USBC_UOG_ID - Identification register
@@ -172,7 +162,7 @@ typedef union _hw_usbc_uog_id
     reg32_t U;
     struct _hw_usbc_uog_id_bitfields
     {
-        unsigned ID : 6; //!< [5:0] Configuration number. This number is set to 0x05 and indicates that the peripheral is USB 2.0 High-Speed core.
+        unsigned ID : 6; //!< [5:0] Configuration number.
         unsigned RESERVED0 : 2; //!< [7:6] Reserved
         unsigned NID : 6; //!< [13:8] Complement version of ID
         unsigned RESERVED1 : 2; //!< [15:14] Reserved
@@ -250,9 +240,9 @@ typedef union _hw_usbc_uog_hwgeneral
     struct _hw_usbc_uog_hwgeneral_bitfields
     {
         unsigned RESERVED0 : 4; //!< [3:0] Reserved
-        unsigned PHYW : 2; //!< [5:4] Data width of the transciever connected to the controller core. PHYW bit reset value: '11b' for OTG controller core, '00b' for Host-only controller core. PHYW bit reset value is '10b'. PHYW bit reset value is '01b'.
-        unsigned PHYM : 3; //!< [8:6] Transciever type PHYM bit reset value is '0111b'. PHYM bit reset value: '0000b' for OTG controller core, '0111b' for Host-only controller core. PHYM bit reset value: '0000b' for OTG controller core, '0100b' for Host-only controller core.
-        unsigned SM : 2; //!< [10:9] Serial interface mode capability SM bit reset value is '10b' SM bit reset value is '00b'
+        unsigned PHYW : 2; //!< [5:4] Data width of the transciever connected to the controller core.
+        unsigned PHYM : 3; //!< [8:6] Transciever type PHYM bit reset value: '0000b' for OTG controller core, '0100b' for Host-only controller core.
+        unsigned SM : 2; //!< [10:9] Serial interface mode capability SM bit reset value is '00b'
         unsigned RESERVED1 : 21; //!< [31:11] Reserved
     } B;
 } hw_usbc_uog_hwgeneral_t;
@@ -274,13 +264,11 @@ typedef union _hw_usbc_uog_hwgeneral
 
 /* --- Register HW_USBC_UOG_HWGENERAL, field PHYW[5:4] (RO)
  *
- * Data width of the transciever connected to the controller core. PHYW bit reset value: '11b' for
- * OTG controller core, '00b' for Host-only controller core. PHYW bit reset value is '10b'. PHYW bit
- * reset value is '01b'.
+ * Data width of the transciever connected to the controller core. PHYW bit reset value is '01b'.
  *
  * Values:
- * 00 -  8 bit wide data bus  Software non-programmable  60MHz clock from the transciever
- * 01 -  16 bit wide data bus  Software non-programmable  30MHz clock from the transciever
+ * 00 -  8 bit wide data bus  Software non-programmable
+ * 01 -  16 bit wide data bus  Software non-programmable
  * 10 -  Reset to 8 bit wide data bus  Software programmable
  * 11 -  Reset to 16 bit wide data bus  Software programmable
  */
@@ -294,9 +282,8 @@ typedef union _hw_usbc_uog_hwgeneral
 
 /* --- Register HW_USBC_UOG_HWGENERAL, field PHYM[8:6] (RO)
  *
- * Transciever type PHYM bit reset value is '0111b'. PHYM bit reset value: '0000b' for OTG
- * controller core, '0111b' for Host-only controller core. PHYM bit reset value: '0000b' for OTG
- * controller core, '0100b' for Host-only controller core.
+ * Transciever type PHYM bit reset value: '0000b' for OTG controller core, '0100b' for Host-only
+ * controller core.
  *
  * Values:
  * 000 - UTMI/UMTI+
@@ -322,7 +309,7 @@ typedef union _hw_usbc_uog_hwgeneral
 
 /* --- Register HW_USBC_UOG_HWGENERAL, field SM[10:9] (RO)
  *
- * Serial interface mode capability SM bit reset value is '10b' SM bit reset value is '00b'
+ * Serial interface mode capability SM bit reset value is '00b'
  *
  * Values:
  * 00 - No Serial Engine, always use parallel signalling.
@@ -348,15 +335,15 @@ typedef union _hw_usbc_uog_hwgeneral
  *
  * Reset value: 0x10020001
  *
- * Host hardware parameters as defined in System Level Issues and Core Configuration.
+
  */
 typedef union _hw_usbc_uog_hwhost
 {
     reg32_t U;
     struct _hw_usbc_uog_hwhost_bitfields
     {
-        unsigned HC : 1; //!< [0] Host Capable. Indicating whether host operation mode is supported or not.
-        unsigned NPORT : 3; //!< [3:1] The Nmber of downstream ports supported by the host controller is (NPORT+1). When these bits value is '000', it indicates a single-port host controller.
+        unsigned HC : 1; //!< [0] Host Capable.
+        unsigned NPORT : 3; //!< [3:1] The Nmber of downstream ports supported by the host controller is (NPORT+1).
         unsigned RESERVED0 : 28; //!< [31:4] Reserved
     } B;
 } hw_usbc_uog_hwhost_t;
@@ -414,16 +401,15 @@ typedef union _hw_usbc_uog_hwhost
  *
  * Reset value: 0x00000011
  *
- * Device hardware parameters as defined in System Level Issues and Core Configuration.  This
- * register is only available in OTG core.
+ * This register is only available in OTG core.
  */
 typedef union _hw_usbc_uog_hwdevice
 {
     reg32_t U;
     struct _hw_usbc_uog_hwdevice_bitfields
     {
-        unsigned DC : 1; //!< [0] Device Capable. Indicating whether device operation mode is supported or not.
-        unsigned DEVEP : 5; //!< [5:1] Device Endpoint Number OTG controller core has 8 Endpoints.
+        unsigned DC : 1; //!< [0] Device Capable.
+        unsigned DEVEP : 5; //!< [5:1] Device Endpoint Number
         unsigned RESERVED0 : 26; //!< [31:6] Reserved
     } B;
 } hw_usbc_uog_hwdevice_t;
@@ -461,7 +447,7 @@ typedef union _hw_usbc_uog_hwdevice
 
 /* --- Register HW_USBC_UOG_HWDEVICE, field DEVEP[5:1] (RO)
  *
- * Device Endpoint Number OTG controller core has 8 Endpoints.
+ * Device Endpoint Number
  */
 
 #define BP_USBC_UOG_HWDEVICE_DEVEP      (1)      //!< Bit position for USBC_UOG_HWDEVICE_DEVEP.
@@ -480,16 +466,16 @@ typedef union _hw_usbc_uog_hwdevice
  *
  * Reset value: 0x80080b08
  *
- * TX buffer hardware parameters are as defined in System Level Issues and Core Configuration.
+
  */
 typedef union _hw_usbc_uog_hwtxbuf
 {
     reg32_t U;
     struct _hw_usbc_uog_hwtxbuf_bitfields
     {
-        unsigned TXBURST : 8; //!< [7:0] Default burst size for memory to TX buffer transfer. This is reset value of TXPBURST bits in USB core regsiter USB_n_BURSTSIZE. Please see .
+        unsigned TXBURST : 8; //!< [7:0] Default burst size for memory to TX buffer transfer.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved
-        unsigned TXCHANADD : 8; //!< [23:16] TX FIFO Buffer size is: (2^TXCHANADD) * 4 Bytes. These bits are set to '08h', so buffer size is 256*4 Bytes. For the OTG controller operating in device mode, this is the FIFO buffer size per endpoint. As the OTG controller has 8 TX endpoint, there are 8 of these buffers. For the OTG controller operating in host mode, or for Host-only controller, the entire buffer memory is used as a single TX buffer. Therefore, there is only 1 of this buffer
+        unsigned TXCHANADD : 8; //!< [23:16] TX FIFO Buffer size is: (2^TXCHANADD) * 4 Bytes.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uog_hwtxbuf_t;
@@ -546,15 +532,15 @@ typedef union _hw_usbc_uog_hwtxbuf
  *
  * Reset value: 0x00000808
  *
- * RX FIFO buffer hardware parameters are as defined in System Level Issues and Core Configuration.
+
  */
 typedef union _hw_usbc_uog_hwrxbuf
 {
     reg32_t U;
     struct _hw_usbc_uog_hwrxbuf_bitfields
     {
-        unsigned RXBURST : 8; //!< [7:0] Default burst size for memory to RX buffer transfer. This is reset value of RXPBURST bits in USB core regsiter USB_n_BURSTSIZE. Please see .
-        unsigned RXADD : 8; //!< [15:8] Buffer total size for all receive endpoints is (2^RXADD). RX Buffer size is: (2^RXADD) * 4 Bytes. These bits are set to '08h', so buffer size is 256*4 Bytes. There is a single Receive FIFO buffer in the USB controller. The buffer is shared for all endpoints for the OTG controller in device mode.
+        unsigned RXBURST : 8; //!< [7:0] Default burst size for memory to RX buffer transfer.
+        unsigned RXADD : 8; //!< [15:8] Buffer total size for all receive endpoints is (2^RXADD).
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_usbc_uog_hwrxbuf_t;
@@ -617,7 +603,7 @@ typedef union _hw_usbc_uog_gptimer0ld
     reg32_t U;
     struct _hw_usbc_uog_gptimer0ld_bitfields
     {
-        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'. This value represents the time in microseconds minus 1 for the timer duration. Example: for a one millisecond timer, load 1000-1=999 or 0x0003E7. Max value is 0xFFFFFF or 16.777215 seconds.
+        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uog_gptimer0ld_t;
@@ -685,7 +671,7 @@ typedef union _hw_usbc_uog_gptimer0ctrl
     reg32_t U;
     struct _hw_usbc_uog_gptimer0ctrl_bitfields
     {
-        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter. This field is the count value of the countdown timer.
+        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter.
         unsigned GPTMODE : 1; //!< [24] General Purpose Timer Mode In one shot mode, the timer will count down to zero, generate an interrupt, and stop until the counter is reset by software; In repeat mode, the timer will count down to zero, generate an interrupt and automatically reload the counter value from GPTLD bits to start again.
         unsigned RESERVED0 : 5; //!< [29:25] Reserved
         unsigned GPTRST : 1; //!< [30] General Purpose Timer Reset
@@ -823,7 +809,7 @@ typedef union _hw_usbc_uog_gptimer1ld
     reg32_t U;
     struct _hw_usbc_uog_gptimer1ld_bitfields
     {
-        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'. This value represents the time in microseconds minus 1 for the timer duration. Example: for a one millisecond timer, load 1000-1=999 or 0x0003E7. Max value is 0xFFFFFF or 16.777215 seconds.
+        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uog_gptimer1ld_t;
@@ -891,8 +877,8 @@ typedef union _hw_usbc_uog_gptimer1ctrl
     reg32_t U;
     struct _hw_usbc_uog_gptimer1ctrl_bitfields
     {
-        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter. This field is the count value of the countdown timer.
-        unsigned GPTMODE : 1; //!< [24] General Purpose Timer Mode In one shot mode, the timer will count down to zero, generate an interrupt, and stop until the counter is reset by software. In repeat mode, the timer will count down to zero, generate an interrupt and automatically reload the counter value from GPTLD bits to start again.
+        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter.
+        unsigned GPTMODE : 1; //!< [24] General Purpose Timer Mode In one shot mode, the timer will count down to zero, generate an interrupt, and stop until the counter is reset by software.
         unsigned RESERVED0 : 5; //!< [29:25] Reserved
         unsigned GPTRST : 1; //!< [30] General Purpose Timer Reset
         unsigned GPTRUN : 1; //!< [31] General Purpose Timer Run GPTCNT bits are not effected when setting or clearing this bit.
@@ -1029,7 +1015,7 @@ typedef union _hw_usbc_uog_sbuscfg
     reg32_t U;
     struct _hw_usbc_uog_sbuscfg_bitfields
     {
-        unsigned AHBBRST : 3; //!< [2:0] AHB master interface Burst configuration These bits control AHB master transfer type sequence (or priority). This register overrides n_BURSTSIZE register when its value is not zero.
+        unsigned AHBBRST : 3; //!< [2:0] AHB master interface Burst configuration These bits control AHB master transfer type sequence (or priority).
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_usbc_uog_sbuscfg_t;
@@ -1102,7 +1088,7 @@ typedef union _hw_usbc_uog_caplength
     reg8_t U;
     struct _hw_usbc_uog_caplength_bitfields
     {
-        unsigned char CAPLENGTH : 8; //!< [7:0] These bits are used as an offset to add to register base to find the beginning of the Operational Register. Default value is '40h'.
+        unsigned char CAPLENGTH : 8; //!< [7:0] These bits are used as an offset to add to register base to find the beginning of the Operational Register.
     } B;
 } hw_usbc_uog_caplength_t;
 #endif
@@ -1200,15 +1186,15 @@ typedef union _hw_usbc_uog_hcsparams
     reg32_t U;
     struct _hw_usbc_uog_hcsparams_bitfields
     {
-        unsigned N_PORTS : 4; //!< [3:0] Number of downstream ports. This field specifies the number of physical downstream ports implemented on this host controller. The value of this field determines how many port registers are addressable in the Operational Register. Valid values are in the range of 1h to Fh. A zero in this field is undefined. These bits are always set to '0001b' because all controller cores are Single-Port Host.
-        unsigned PPC : 1; //!< [4] Port Power Control This field indicates whether the host controller implementation includes port power control. A one indicates the ports have port power switches. A zero indicates the ports do not have port power switches. The value of this field affects the functionality of the Port Power field in each port status and control register
+        unsigned N_PORTS : 4; //!< [3:0] Number of downstream ports.
+        unsigned PPC : 1; //!< [4] Port Power Control This field indicates whether the host controller implementation includes port power control.
         unsigned RESERVED0 : 3; //!< [7:5] Reserved
-        unsigned N_PCC : 4; //!< [11:8] Number of Ports per Companion Controller This field indicates the number of ports supported per internal Companion Controller. It is used to indicate the port routing configuration to the system software. For example, if N_PORTS has a value of 6 and N_CC has a value of 2 then N_PCC could have a value of 3. The convention is that the first N_PCC ports are assumed to be routed to companion controller 1, the next N_PCC ports to companion controller 2, etc. In the previous example, the N_PCC could have been 4, where the first 4 are routed to companion controller 1 and the last two are routed to companion controller 2. The number in this field must be consistent with N_PORTS and N_CC. These bits are '0000b' in all controller core.
-        unsigned N_CC : 4; //!< [15:12] Number of Companion Controller (N_CC). This field indicates the number of companion controllers associated with this USB2.0 host controller. These bits are '0000b' in all controller core.
-        unsigned PI : 1; //!< [16] Port Indicators (P INDICATOR) This bit indicates whether the ports support port indicator control. When set to one, the port status and control registers include a read/writeable field for controlling the state of the port indicator This bit is "1b" in all controller core.
+        unsigned N_PCC : 4; //!< [11:8] Number of Ports per Companion Controller This field indicates the number of ports supported per internal Companion Controller.
+        unsigned N_CC : 4; //!< [15:12] Number of Companion Controller (N_CC).
+        unsigned PI : 1; //!< [16] Port Indicators (P INDICATOR) This bit indicates whether the ports support port indicator control.
         unsigned RESERVED1 : 3; //!< [19:17] Reserved
-        unsigned N_PTT : 4; //!< [23:20] Number of Ports per Transaction Translator (N_PTT). Default value '0000b' This field indicates the number of ports assigned to each transaction translator within the USB2.0 host controller. These bits would be set to equal N_PORTS for Multi-Port Host, and '0000b' for Single-Port Host.
-        unsigned N_TT : 4; //!< [27:24] Number of Transaction Translators (N_TT). Default value '0000b' This field indicates the number of embedded transaction translators associated with the USB2.0 host controller. These bits would be set to '0001b' for Multi-Port Host, and '0000b' for Single-Port Host.
+        unsigned N_PTT : 4; //!< [23:20] Number of Ports per Transaction Translator (N_PTT).
+        unsigned N_TT : 4; //!< [27:24] Number of Transaction Translators (N_TT).
         unsigned RESERVED2 : 4; //!< [31:28] Reserved
     } B;
 } hw_usbc_uog_hcsparams_t;
@@ -1350,11 +1336,11 @@ typedef union _hw_usbc_uog_hccparams
     struct _hw_usbc_uog_hccparams_bitfields
     {
         unsigned ADC : 1; //!< [0] 64-bit Addressing Capability This bit is set '0b' in all controller core, no 64-bit addressing capability is supported.
-        unsigned PFL : 1; //!< [1] Programmable Frame List Flag If this bit is set to zero, then the system software must use a frame list length of 1024 elements with this host controller. The USBCMD register Frame List Size field is a read-only register and must be set to zero. If set to a one, then the system software can specify and use a smaller frame list and configure the host controller via the USBCMD register Frame List Size field. The frame list must always be aligned on a 4K-page boundary. This requirement ensures that the frame list is always physically contiguous. This bit is set '1b' in all controller core.
-        unsigned ASP : 1; //!< [2] Asynchronous Schedule Park Capability If this bit is set to a one, then the host controller supports the park feature for high-speed queue heads in the Asynchronous Schedule. The feature can be disabled or enabled and set to a specific level by using the Asynchronous Schedule Park Mode Enable and Asynchronous Schedule Park Mode Count fields in the USBCMD register. This bit is set '1b' in all controller core. ASP bit reset value: '00b' for OTG controller core, '11b' for Host-only controller core.
+        unsigned PFL : 1; //!< [1] Programmable Frame List Flag If this bit is set to zero, then the system software must use a frame list length of 1024 elements with this host controller.
+        unsigned ASP : 1; //!< [2] Asynchronous Schedule Park Capability If this bit is set to a one, then the host controller supports the park feature for high-speed queue heads in the Asynchronous Schedule.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned IST : 4; //!< [7:4] Isochronous Scheduling Threshold. This field indicates, relative to the current position of the executing host controller, where software can reliably update the isochronous schedule. When bit [7] is zero, the value of the least significant 3 bits indicates the number of micro-frames a host controller can hold a set of isochronous data structures (one or more) before flushing the state. When bit [7] is a one, then host software assumes the host controller may cache an isochronous data structure for an entire frame. These bits are set '00h' in all controller core.
-        unsigned EECP : 8; //!< [15:8] EHCI Extended Capabilities Pointer. This field indicates the existence of a capabilities list. A value of 00h indicates no extended capabilities are implemented. A non-zero value in this register indicates the offset in PCI configuration space of the first EHCI extended capability. The pointer value must be 40h or greater if implemented to maintain the consistency of the PCI header defined for this class of device. These bits are set '00h' in all controller core.
+        unsigned IST : 4; //!< [7:4] Isochronous Scheduling Threshold.
+        unsigned EECP : 8; //!< [15:8] EHCI Extended Capabilities Pointer.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_usbc_uog_hccparams_t;
@@ -1408,9 +1394,8 @@ typedef union _hw_usbc_uog_hccparams
  * Asynchronous Schedule Park Capability If this bit is set to a one, then the host controller
  * supports the park feature for high-speed queue heads in the Asynchronous Schedule. The feature
  * can be disabled or enabled and set to a specific level by using the Asynchronous Schedule Park
- * Mode Enable and Asynchronous Schedule Park Mode Count fields in the USBCMD register. This bit is
- * set '1b' in all controller core. ASP bit reset value: '00b' for OTG controller core, '11b' for
- * Host-only controller core.
+ * Mode Enable and Asynchronous Schedule Park Mode Count fields in the USBCMD register. ASP bit
+ * reset value: '00b' for OTG controller core, '11b' for Host-only controller core.
  */
 
 #define BP_USBC_UOG_HCCPARAMS_ASP      (2)      //!< Bit position for USBC_UOG_HCCPARAMS_ASP.
@@ -1516,7 +1501,7 @@ typedef union _hw_usbc_uog_dccparams
     reg32_t U;
     struct _hw_usbc_uog_dccparams_bitfields
     {
-        unsigned DEN : 5; //!< [4:0] Device Endpoint Number This field indicates the number of endpoints built into the device controller. If this controller is not device capable, then this field will be zero. Valid values are 0 - 15.
+        unsigned DEN : 5; //!< [4:0] Device Endpoint Number This field indicates the number of endpoints built into the device controller.
         unsigned RESERVED0 : 2; //!< [6:5] Reserved
         unsigned DC : 1; //!< [7] Device Capable When this bit is 1, this controller is capable of operating as a USB 2.0 device.
         unsigned HC : 1; //!< [8] Host Capable When this bit is 1, this controller is capable of operating as an EHCI compatible USB 2.0 host controller.
@@ -1593,21 +1578,21 @@ typedef union _hw_usbc_uog_usbcmd
     reg32_t U;
     struct _hw_usbc_uog_usbcmd_bitfields
     {
-        unsigned RS : 1; //!< [0] Run/Stop (RS) - Read/Write. Default 0b. 1=Run. 0=Stop. Host operation mode: When set to '1b', the Controller proceeds with the execution of the schedule. The Controller continues execution as long as this bit is set to a one. When this bit is set to 0, the Host Controller completes the current transaction on the USB and then halts. The HC Halted bit in the status register indicates when the Controller has finished the transaction and has entered the stopped state. Software should not write a one to this field unless the controller is in the Halted state (that is, HCHalted in the USBSTS register is a one). Device operation mode: Writing a one to this bit will cause the controller to enable a pull-up on D+ and initiate an attach event. This control bit is not directly connected to the pull-up enable, as the pull-up will become disabled upon transitioning into high-speed mode. Software should use this bit to prevent an attach event before the controller has been properly initialized. Writing a 0 to this will cause a detach event.
-        unsigned RST : 1; //!< [1] Controller Reset (RESET) - Read/Write. Software uses this bit to reset the controller. This bit is set to zero by the Host/Device Controller when the reset process is complete. Software cannot terminate the reset process early by writing a zero to this register. Host operation mode: When software writes a one to this bit, the Controller resets its internal pipelines, timers, counters, state machines etc. to their initial value. Any transaction currently in progress on USB is immediately terminated. A USB reset is not driven on downstream ports. Software should not set this bit to a one when the HCHalted bit in the USBSTS register is a zero. Attempting to reset an actively running host controller will result in undefined behavior. Device operation mode: When software writes a one to this bit, the Controller resets its internal pipelines, timers, counters, state machines etc. to their initial value. Writing a one to this bit when the device is in the attached state is not recommended, because the effect on an attached host is undefined. In order to ensure that the device is not in an attached state before initiating a device controller reset, all primed endpoints should be flushed and the USBCMD Run/Stop bit should be set to 0.
+        unsigned RS : 1; //!< [0] Run/Stop (RS) - Read/Write.
+        unsigned RST : 1; //!< [1] Controller Reset (RESET) - Read/Write.
         unsigned FS : 2; //!< [3:2] See description at bit 15
-        unsigned PSE : 1; //!< [4] Periodic Schedule Enable- Read/Write. Default 0b. This bit controls whether the host controller skips processing the Periodic Schedule. Only the host controller uses this bit. Values Meaning
-        unsigned ASE : 1; //!< [5] Asynchronous Schedule Enable - Read/Write. Default 0b. This bit controls whether the host controller skips processing the Asynchronous Schedule. Only the host controller uses this bit. Values Meaning
-        unsigned IAA : 1; //!< [6] Interrupt on Async Advance Doorbell - Read/Write. This bit is used as a doorbell by software to tell the host controller to issue an interrupt the next time it advances asynchronous schedule. Software must write a 1 to this bit to ring the doorbell. When the host controller has evicted all appropriate cached schedule states, it sets the Interrupt on Async Advance status bit in the USBSTS register. If the Interrupt on Sync Advance Enable bit in the USBINTR register is one, then the host controller will assert an interrupt at the next interrupt threshold. The host controller sets this bit to zero after it has set the Interrupt on Sync Advance status bit in the USBSTS register to one. Software should not write a one to this bit when the asynchronous schedule is inactive. Doing so will yield undefined results. This bit is only used in host mode. Writing a one to this bit when device mode is selected will have undefined results.
+        unsigned PSE : 1; //!< [4] Periodic Schedule Enable- Read/Write.
+        unsigned ASE : 1; //!< [5] Asynchronous Schedule Enable - Read/Write.
+        unsigned IAA : 1; //!< [6] Interrupt on Async Advance Doorbell - Read/Write.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned ASP : 2; //!< [9:8] Asynchronous Schedule Park Mode Count - Read/Write. If the Asynchronous Park Capability bit in the HCCPARAMS register is a one, then this field defaults to 3h and is R/W. Otherwise it defaults to zero and is Read-Only. It contains a count of the number of successive transactions the host controller is allowed to execute from a high-speed queue head on the Asynchronous schedule before continuing traversal of the Asynchronous schedule. Valid values are 1h to 3h. Software must not write a zero to this bit when Park Mode Enable is a one as this will result in undefined behavior. This field is set to 3h in all controller core.
+        unsigned ASP : 2; //!< [9:8] Asynchronous Schedule Park Mode Count - Read/Write.
         unsigned RESERVED1 : 1; //!< [10] Reserved
-        unsigned ASPE : 1; //!< [11] Asynchronous Schedule Park Mode Enable - Read/Write. If the Asynchronous Park Capability bit in the HCCPARAMS register is a one, then this bit defaults to a 1h and is R/W. Otherwise the bit must be a zero and is RO. Software uses this bit to enable or disable Park mode. When this bit is one, Park mode is enabled. When this bit is a zero, Park mode is disabled. This field is set to '1b' in this implementation. ASPE bit reset value: '0b' for OTG controller core, '1b' for Host-only controller core.
+        unsigned ASPE : 1; //!< [11] Asynchronous Schedule Park Mode Enable - Read/Write.
         unsigned RESERVED2 : 1; //!< [12] Reserved
-        unsigned SUTW : 1; //!< [13] Setup TripWire - Read/Write. [device mode only] This bit is used as a semaphore to ensure that the setup data payload of 8 bytes is extracted from a QH by the DCD without being corrupted. If the setup lockout mode is off (SLOM bit in USB core register n_USBMODE, see ) then there is a hazard when new setup data arrives while the DCD is copying the setup data payload from the QH for a previous setup packet. This bit is set and cleared by software. This bit would also be cleared by hardware when a hazard detected. For more information on the use of this bit, see the Device Operational Model section of the USB-HS OTG High-Speed USB On-The-Go DEV reference manual.
-        unsigned ATDTW : 1; //!< [14] Add dTD TripWire - Read/Write. [device mode only] This bit is used as a semaphore to ensure proper addition of a new dTD to an active (primed) endpoint's linked list. This bit is set and cleared by software. This bit would also be cleared by hardware when state machine is hazard region for which adding a dTD to a primed endpoint may go unrecognized. For more information on the use of this bit, see the Device Operational Model section of the USB-HS OTG High-Speed USB On-The-Go DEV reference manual.
-        unsigned FS1 : 1; //!< [15] See also bits 3-2 Frame List Size - (Read/Write or Read Only). [host mode only] This field is Read/Write only if Programmable Frame List Flag in the HCCPARAMS registers is set to one. This field specifies the size of the frame list that controls which bits in the Frame Index Register should be used for the Frame List Current index. This field is made up from USBCMD bits 15, 3 and 2. Value Meaning
-        unsigned ITC : 8; //!< [23:16] Interrupt Threshold Control -Read/Write. The system software uses this field to set the maximum rate at which the host/device controller will issue interrupts. ITC contains the maximum interrupt interval measured in micro-frames. Valid values are shown below. Value Maximum Interrupt Interval
+        unsigned SUTW : 1; //!< [13] Setup TripWire - Read/Write.
+        unsigned ATDTW : 1; //!< [14] Add dTD TripWire - Read/Write.
+        unsigned FS1 : 1; //!< [15] See also bits 3-2 Frame List Size - (Read/Write or Read Only).
+        unsigned ITC : 8; //!< [23:16] Interrupt Threshold Control -Read/Write.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uog_usbcmd_t;
@@ -1821,9 +1806,8 @@ typedef union _hw_usbc_uog_usbcmd
  * Asynchronous Schedule Park Mode Enable - Read/Write. If the Asynchronous Park Capability bit in
  * the HCCPARAMS register is a one, then this bit defaults to a 1h and is R/W. Otherwise the bit
  * must be a zero and is RO. Software uses this bit to enable or disable Park mode. When this bit is
- * one, Park mode is enabled. When this bit is a zero, Park mode is disabled. This field is set to
- * '1b' in this implementation. ASPE bit reset value: '0b' for OTG controller core, '1b' for Host-
- * only controller core.
+ * one, Park mode is enabled. When this bit is a zero, Park mode is disabled. ASPE bit reset value:
+ * '0b' for OTG controller core, '1b' for Host-only controller core.
  */
 
 #define BP_USBC_UOG_USBCMD_ASPE      (11)      //!< Bit position for USBC_UOG_USBCMD_ASPE.
@@ -1847,8 +1831,7 @@ typedef union _hw_usbc_uog_usbcmd
  * the setup lockout mode is off (SLOM bit in USB core register n_USBMODE, see ) then there is a
  * hazard when new setup data arrives while the DCD is copying the setup data payload from the QH
  * for a previous setup packet. This bit is set and cleared by software. This bit would also be
- * cleared by hardware when a hazard detected. For more information on the use of this bit, see the
- * Device Operational Model section of the USB-HS OTG High-Speed USB On-The-Go DEV reference manual.
+ * cleared by hardware when a hazard detected.
  */
 
 #define BP_USBC_UOG_USBCMD_SUTW      (13)      //!< Bit position for USBC_UOG_USBCMD_SUTW.
@@ -1870,9 +1853,7 @@ typedef union _hw_usbc_uog_usbcmd
  * Add dTD TripWire - Read/Write. [device mode only] This bit is used as a semaphore to ensure
  * proper addition of a new dTD to an active (primed) endpoint's linked list. This bit is set and
  * cleared by software. This bit would also be cleared by hardware when state machine is hazard
- * region for which adding a dTD to a primed endpoint may go unrecognized. For more information on
- * the use of this bit, see the Device Operational Model section of the USB-HS OTG High-Speed USB
- * On-The-Go DEV reference manual.
+ * region for which adding a dTD to a primed endpoint may go unrecognized.
  */
 
 #define BP_USBC_UOG_USBCMD_ATDTW      (14)      //!< Bit position for USBC_UOG_USBCMD_ATDTW.
@@ -1974,26 +1955,26 @@ typedef union _hw_usbc_uog_usbsts
     reg32_t U;
     struct _hw_usbc_uog_usbsts_bitfields
     {
-        unsigned UI : 1; //!< [0] USB Interrupt (USBINT) - R/WC. This bit is set by the Host/Device Controller when the cause of an interrupt is a completion of a USB transaction where the Transfer Descriptor (TD) has an interrupt on complete (IOC) bit set. This bit is also set by the Host/Device Controller when a short packet is detected. A short packet is when the actual number of bytes received was less than the expected number of bytes.
-        unsigned UEI : 1; //!< [1] USB Error Interrupt (USBERRINT) - R/WC. When completion of a USB transaction results in an error condition, this bit is set by the Host/Device Controller. This bit is set along with the USBINT bit, if the TD on which the error interrupt occurred also had its interrupt on complete (IOC) bit set See Section (Reference Host Operation Model: Transfer/Transaction Based Interrupt - i.e. 4.15.1 in EHCI Enhanced Host Controller Interface Specification for Universal Serial Bus, Revision 0.95, November 2000, Intel Corporation. http://www.intel.com) for a complete list of host error interrupt conditions. See section Device Error Matrix in the USB-HS OTG High-Speed USB On-The-Go DEV reference manual. The device controller detects resume signaling only.
-        unsigned PCI : 1; //!< [2] Port Change Detect - R/WC. The Host Controller sets this bit to a one when on any port a Connect Status occurs, a Port Enable/Disable Change occurs, or the Force Port Resume bit is set as the result of a J-K transition on the suspended port. The Device Controller sets this bit to a one when the port controller enters the full or high-speed operational state. When the port controller exits the full or high-speed operation states due to Reset or Suspend events, the notification mechanisms are the USB Reset Received bit and the DCSuspend bits respectively.
-        unsigned FRI : 1; //!< [3] Frame List Rollover - R/WC. The Host Controller sets this bit to a one when the Frame List Index rolls over from its maximum value to zero. The exact value at which the rollover occurs depends on the frame list size. For example. If the frame list size (as programmed in the Frame List Size field of the USB_n_USBCMD register) is 1024, the Frame Index Register rolls over every time FRINDEX [13] toggles. Similarly, if the size is 512, the Host Controller sets this bit to a one every time FHINDEX [12] toggles. Only used in host operation mode.
-        unsigned SEI : 1; //!< [4] System Error- R/WC. This bit is will be set to '1b' when an Error response is seen to a read on the system interface.
-        unsigned AAI : 1; //!< [5] Interrupt on Async Advance - R/WC. System software can force the host controller to issue an interrupt the next time the host controller advances the asynchronous schedule by writing a one to the Interrupt on Async Advance Doorbell bit in the n_USBCMD register. This status bit indicates the assertion of that interrupt source. Only used in host operation mode.
-        unsigned URI : 1; //!< [6] USB Reset Received - R/WC. When the device controller detects a USB Reset and enters the default state, this bit will be set to a one. Software can write a 1 to this bit to clear the USB Reset Received status bit. Only used in device operation mode.
-        unsigned SRI : 1; //!< [7] SOF Received - R/WC. When the device controller detects a Start Of (micro) Frame, this bit will be set to a one. When a SOF is extremely late, the device controller will automatically set this bit to indicate that an SOF was expected. Therefore, this bit will be set roughly every 1ms in device FS mode and every 125ms in HS mode and will be synchronized to the actual SOF that is received. Because the device controller is initialized to FS before connect, this bit will be set at an interval of 1ms during the prelude to connect and chirp. In host mode, this bit will be set every 125us and can be used by host controller driver as a time base. Software writes a 1 to this bit to clear it.
-        unsigned SLI : 1; //!< [8] DCSuspend - R/WC. When a controller enters a suspend state from an active state, this bit will be set to a one. The device controller clears the bit upon exiting from a suspend state. Only used in device operation mode.
+        unsigned UI : 1; //!< [0] USB Interrupt (USBINT) - R/WC.
+        unsigned UEI : 1; //!< [1] USB Error Interrupt (USBERRINT) - R/WC.
+        unsigned PCI : 1; //!< [2] Port Change Detect - R/WC.
+        unsigned FRI : 1; //!< [3] Frame List Rollover - R/WC.
+        unsigned SEI : 1; //!< [4] System Error- R/WC.
+        unsigned AAI : 1; //!< [5] Interrupt on Async Advance - R/WC.
+        unsigned URI : 1; //!< [6] USB Reset Received - R/WC.
+        unsigned SRI : 1; //!< [7] SOF Received - R/WC.
+        unsigned SLI : 1; //!< [8] DCSuspend - R/WC.
         unsigned RESERVED0 : 1; //!< [9] Reserved
-        unsigned ULPII : 1; //!< [10] ULPI Interrupt - R/WC. This bit will be set '1b' by hardware when there is an event completion in ULPI viewport. This bit is usable only if the controller support UPLI interface mode.
+        unsigned ULPII : 1; //!< [10] ULPI Interrupt - R/WC.
         unsigned RESERVED1 : 1; //!< [11] Reserved
-        unsigned HCH : 1; //!< [12] HCHaIted - Read Only. This bit is a zero whenever the Run/Stop bit is a one. The Controller sets this bit to one after it has stopped executing because of the Run/Stop bit being set to 0, either by software or by the Controller hardware (for example, an internal error). Only used in the host operation mode. Default value is '0b' for OTG core, and '1b' for Host1/Host2/Host3 core. This is because OTG core is not operating as host in default. Please see CM bit in USB_n_USBMODE register. HCH bit reset value: '0b' for OTG controller core, '1b' for Host-only controller core.
-        unsigned RCL : 1; //!< [13] Reclamation - Read Only. This is a read-only status bit used to detect an empty asynchronous schedule. Only used in the host operation mode.
-        unsigned PS : 1; //!< [14] Periodic Schedule Status - Read Only. This bit reports the current real status of the Periodic Schedule. When set to zero the periodic schedule is disabled, and if set to one the status is enabled. The Host Controller is not required to immediately disable or enable the Periodic Schedule when software transitions the Periodic Schedule Enable bit in the USBCMD register. When this bit and the Periodic Schedule Enable bit are the same value, the Periodic Schedule is either enabled (1) or disabled (0). Only used in the host operation mode.
-        unsigned AS : 1; //!< [15] Asynchronous Schedule Status - Read Only. This bit reports the current real status of the Asynchronous Schedule. When set to zero the asynchronous schedule status is disabled and if set to one the status is enabled. The Host Controller is not required to immediately disable or enable the Asynchronous Schedule when software transitions the Asynchronous Schedule Enable bit in the USBCMD register. When this bit and the Asynchronous Schedule Enable bit are the same value, the Asynchronous Schedule is either enabled (1) or disabled (0). Only used in the host operation mode.
-        unsigned NAKI : 1; //!< [16] NAK Interrupt Bit--RO. This bit is set by hardware when for a particular endpoint both the TX/RX Endpoint NAK bit and corresponding TX/RX Endpoint NAK Enable bit are set. This bit is automatically cleared by hardware when all Enabled TX/RX Endpoint NAK bits are cleared.
+        unsigned HCH : 1; //!< [12] HCHaIted - Read Only.
+        unsigned RCL : 1; //!< [13] Reclamation - Read Only.
+        unsigned PS : 1; //!< [14] Periodic Schedule Status - Read Only.
+        unsigned AS : 1; //!< [15] Asynchronous Schedule Status - Read Only.
+        unsigned NAKI : 1; //!< [16] NAK Interrupt Bit--RO.
         unsigned RESERVED2 : 7; //!< [23:17] Reserved
-        unsigned TI0 : 1; //!< [24] General Purpose Timer Interrupt 0(GPTINT0)--R/WC. This bit is set when the counter in the GPTIMER0CTRL register transitions to zero, writing a one to this bit clears it.
-        unsigned TI1 : 1; //!< [25] General Purpose Timer Interrupt 1(GPTINT1)--R/WC. This bit is set when the counter in the GPTIMER1CTRL register transitions to zero, writing a one to this bit will clear it.
+        unsigned TI0 : 1; //!< [24] General Purpose Timer Interrupt 0(GPTINT0)--R/WC.
+        unsigned TI1 : 1; //!< [25] General Purpose Timer Interrupt 1(GPTINT1)--R/WC.
         unsigned RESERVED3 : 6; //!< [31:26] Reserved
     } B;
 } hw_usbc_uog_usbsts_t;
@@ -2045,11 +2026,7 @@ typedef union _hw_usbc_uog_usbsts
  * USB Error Interrupt (USBERRINT) - R/WC. When completion of a USB transaction results in an error
  * condition, this bit is set by the Host/Device Controller. This bit is set along with the USBINT
  * bit, if the TD on which the error interrupt occurred also had its interrupt on complete (IOC) bit
- * set See Section (Reference Host Operation Model: Transfer/Transaction Based Interrupt - i.e.
- * 4.15.1 in EHCI Enhanced Host Controller Interface Specification for Universal Serial Bus,
- * Revision 0.95, November 2000, Intel Corporation. http://www.intel.com) for a complete list of
- * host error interrupt conditions. See section Device Error Matrix in the USB-HS OTG High-Speed USB
- * On-The-Go DEV reference manual. The device controller detects resume signaling only.
+ * set The device controller detects resume signaling only.
  */
 
 #define BP_USBC_UOG_USBSTS_UEI      (1)      //!< Bit position for USBC_UOG_USBSTS_UEI.
@@ -2413,14 +2390,14 @@ typedef union _hw_usbc_uog_usbintr
         unsigned UE : 1; //!< [0] USB Interrupt Enalbe When this bit is one and the UI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned UEE : 1; //!< [1] USB Error Interrupt Enable When this bit is one and the UEI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned PCE : 1; //!< [2] Port Change Detect Interrupt Enable When this bit is one and the PCI bit in n_USBSTS register is a one the controller will issue an interrupt.
-        unsigned FRE : 1; //!< [3] Frame List Rollover Interrupt Enable When this bit is one and the FRI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in host operation mode.
-        unsigned SEE : 1; //!< [4] System Error Interrupt Enable When this bit is one and the SEI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in host operation mode.
-        unsigned AAE : 1; //!< [5] Async Advance Interrupt Enable When this bit is one and the AAI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in host operation mode.
-        unsigned URE : 1; //!< [6] USB Reset Interrupt Enable When this bit is one and the URI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in device operation mode.
+        unsigned FRE : 1; //!< [3] Frame List Rollover Interrupt Enable When this bit is one and the FRI bit in n_USBSTS register is a one the controller will issue an interrupt.
+        unsigned SEE : 1; //!< [4] System Error Interrupt Enable When this bit is one and the SEI bit in n_USBSTS register is a one the controller will issue an interrupt.
+        unsigned AAE : 1; //!< [5] Async Advance Interrupt Enable When this bit is one and the AAI bit in n_USBSTS register is a one the controller will issue an interrupt.
+        unsigned URE : 1; //!< [6] USB Reset Interrupt Enable When this bit is one and the URI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned SRE : 1; //!< [7] SOF Received Interrupt Enable When this bit is one and the SRI bit in n_USBSTS register is a one the controller will issue an interrupt.
-        unsigned SLE : 1; //!< [8] Sleep Interrupt Enable When this bit is one and the SLI bit in n_n_USBSTS register is a one the controller will issue an interrupt. Only used in device operation mode.
+        unsigned SLE : 1; //!< [8] Sleep Interrupt Enable When this bit is one and the SLI bit in n_n_USBSTS register is a one the controller will issue an interrupt.
         unsigned RESERVED0 : 1; //!< [9] Reserved
-        unsigned ULPIE : 1; //!< [10] ULPI Interrupt Enable When this bit is one and the UPLII bit in n_USBSTS register is a one the controller will issue an interrupt. This bit is usable only if the controller support UPLI interface mode.
+        unsigned ULPIE : 1; //!< [10] ULPI Interrupt Enable When this bit is one and the UPLII bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned RESERVED1 : 5; //!< [15:11] These bits are reserved and should be set to zero.
         unsigned NAKE : 1; //!< [16] NAK Interrupt Enable When this bit is one and the NAKI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned RESERVED2 : 1; //!< [17] Reserved
@@ -2783,7 +2760,7 @@ typedef union _hw_usbc_uog_frindex
     reg32_t U;
     struct _hw_usbc_uog_frindex_bitfields
     {
-        unsigned FRINDEX : 14; //!< [13:0] Frame Index. The value, in this register, increments at the end of each time frame (micro-frame). Bits [N: 3] are used for the Frame List current index. This means that each location of the frame list is accessed 8 times (frames or micro-frames) before moving to the next index. The following illustrates values of N based on the value of the Frame List Size field in the USBCMD register, when used in host mode. USBCMD [Frame List Size] Number Elements N In device mode the value is the current frame number of the last frame transmitted. It is not used as an index. In either mode bits 2:0 indicate the current microframe.
+        unsigned FRINDEX : 14; //!< [13:0] Frame Index.
         unsigned RESERVED0 : 18; //!< [31:14] Reserved
     } B;
 } hw_usbc_uog_frindex_t;
@@ -2866,7 +2843,7 @@ typedef union _hw_usbc_uog_periodiclistbase
     struct _hw_usbc_uog_periodiclistbase_bitfields
     {
         unsigned RESERVED0 : 12; //!< [11:0] Reserved
-        unsigned BASEADR : 20; //!< [31:12] Base Address (Low). These bits correspond to memory address signals [31:12], respectively. Only used by the host controller.
+        unsigned BASEADR : 20; //!< [31:12] Base Address (Low).
     } B;
 } hw_usbc_uog_periodiclistbase_t;
 #endif
@@ -2929,7 +2906,7 @@ typedef union _hw_usbc_uog_asynclistaddr
     struct _hw_usbc_uog_asynclistaddr_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved
-        unsigned ASYBASE : 27; //!< [31:5] Link Pointer Low (LPL). These bits correspond to memory address signals [31:5], respectively. This field may only reference a Queue Head (QH). Only used by the host controller.
+        unsigned ASYBASE : 27; //!< [31:5] Link Pointer Low (LPL).
     } B;
 } hw_usbc_uog_asynclistaddr_t;
 #endif
@@ -2990,8 +2967,8 @@ typedef union _hw_usbc_uog_burstsize
     reg32_t U;
     struct _hw_usbc_uog_burstsize_bitfields
     {
-        unsigned RXPBURST : 8; //!< [7:0] Programmable RX Burst Size. Default value is determined by TXBURST bits in n_HWRXBUF. This register represents the maximum length of a the burst in 32-bit words while moving data from the USB bus to system memory.
-        unsigned TXPBURST : 9; //!< [16:8] Programmable TX Burst Size. Default value is determined by TXBURST bits in n_HWTXBUF. This register represents the maximum length of a the burst in 32-bit words while moving data from system memory to the USB bus.
+        unsigned RXPBURST : 8; //!< [7:0] Programmable RX Burst Size.
+        unsigned TXPBURST : 9; //!< [16:8] Programmable TX Burst Size.
         unsigned RESERVED0 : 15; //!< [31:17] Reserved
     } B;
 } hw_usbc_uog_burstsize_t;
@@ -3092,10 +3069,10 @@ typedef union _hw_usbc_uog_txfilltuning
     reg32_t U;
     struct _hw_usbc_uog_txfilltuning_bitfields
     {
-        unsigned TXSCHOH : 8; //!< [7:0] Scheduler Overhead. (Read/Write) [Default = 0] This register adds an additional fixed offset to the schedule time estimator described above as Tff. As an approximation, the value chosen for this register should limit the number of back-off events captured in the TXSCHHEALTH to less than 10 per second in a highly utilized bus. Choosing a value that is too high for this register is not desired as it can needlessly reduce USB utilization. The time unit represented in this register is 1.267us when a device is connected in High-Speed Mode. The time unit represented in this register is 6.333us when a device is connected in Low/Full Speed Mode. Default value is '08h' for OTG controller core, and '00h' for Host-only controller core.
-        unsigned TXSCHHEALTH : 5; //!< [12:8] Scheduler Health Counter. (Read/Write To Clear) This register increments when the host controller fails to fill the TX latency FIFO to the level programmed by TXFIFOTHRES before running out of time to send the packet before the next Start-Of-Frame. This health counter measures the number of times this occurs to provide feedback to selecting a proper TXSCHOH. Writing to this register will clear the counter and this counter will max. at 31. Default value is '08h' for OTG controller core, and '00h' for Host-only controller core.
+        unsigned TXSCHOH : 8; //!< [7:0] Scheduler Overhead.
+        unsigned TXSCHHEALTH : 5; //!< [12:8] Scheduler Health Counter.
         unsigned RESERVED0 : 3; //!< [15:13] Reserved
-        unsigned TXFIFOTHRES : 6; //!< [21:16] FIFO Burst Threshold. (Read/Write) This register controls the number of data bursts that are posted to the TX latency FIFO in host mode before the packet begins on to the bus. The minimum value is 2 and this value should be a low as possible to maximize USB performance. A higher value can be used in systems with unpredictable latency and/or insufficient bandwidth where the FIFO may underrun because the data transferred from the latency FIFO to USB occurs before it can be replenished from system memory. This value is ignored if the Stream Disable bit in USB_n_USBMODE register is set. Default value is '00h' for OTG controller core, and '02h' for Host-only controller core.
+        unsigned TXFIFOTHRES : 6; //!< [21:16] FIFO Burst Threshold.
         unsigned RESERVED1 : 10; //!< [31:22] Reserved
     } B;
 } hw_usbc_uog_txfilltuning_t;
@@ -3212,9 +3189,9 @@ typedef union _hw_usbc_uog_endptnak
     reg32_t U;
     struct _hw_usbc_uog_endptnak_bitfields
     {
-        unsigned EPRN : 8; //!< [7:0] RX Endpoint NAK - R/WC. Each RX endpoint has 1 bit in this field. The bit is set when the device sends a NAK handshake on a received OUT or PING token for the corresponding endpoint. Bit [N] - Endpoint #[N], N is 0-7
+        unsigned EPRN : 8; //!< [7:0] RX Endpoint NAK - R/WC.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved
-        unsigned EPTN : 8; //!< [23:16] TX Endpoint NAK - R/WC. Each TX endpoint has 1 bit in this field. The bit is set when the device sends a NAK handshake on a received IN token for the corresponding endpoint. Bit [N] - Endpoint #[N], N is 0-7
+        unsigned EPTN : 8; //!< [23:16] TX Endpoint NAK - R/WC.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uog_endptnak_t;
@@ -3297,9 +3274,9 @@ typedef union _hw_usbc_uog_endptnaken
     reg32_t U;
     struct _hw_usbc_uog_endptnaken_bitfields
     {
-        unsigned EPRNE : 8; //!< [7:0] RX Endpoint NAK Enable - R/W. Each bit is an enable bit for the corresponding RX Endpoint NAK bit. If this bit is set and the corresponding RX Endpoint NAK bit is set, the NAK Interrupt bit is set. Bit [N] - Endpoint #[N], N is 0-7
+        unsigned EPRNE : 8; //!< [7:0] RX Endpoint NAK Enable - R/W.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved
-        unsigned EPTNE : 8; //!< [23:16] TX Endpoint NAK Enable - R/W. Each bit is an enable bit for the corresponding TX Endpoint NAK bit. If this bit is set and the corresponding TX Endpoint NAK bit is set, the NAK Interrupt bit is set. Bit [N] - Endpoint #[N], N is 0-7
+        unsigned EPTNE : 8; //!< [23:16] TX Endpoint NAK Enable - R/W.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uog_endptnaken_t;
@@ -3382,7 +3359,7 @@ typedef union _hw_usbc_uog_configflag
     reg32_t U;
     struct _hw_usbc_uog_configflag_bitfields
     {
-        unsigned CF : 1; //!< [0] Configure Flag Host software sets this bit as the last action in its process of configuring the Host Controller. This bit controls the default port-routing control logic.
+        unsigned CF : 1; //!< [0] Configure Flag Host software sets this bit as the last action in its process of configuring the Host Controller.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_usbc_uog_configflag_t;
@@ -3451,31 +3428,31 @@ typedef union _hw_usbc_uog_portsc1
     reg32_t U;
     struct _hw_usbc_uog_portsc1_bitfields
     {
-        unsigned CCS : 1; //!< [0] Current Connect Status-Read Only. In Host Mode: 1=Device is present on port. 0=No device is present. Default = 0. This value reflects the current state of the port, and may not correspond directly to the event that caused the Connect Status Change bit (Bit 1) to be set. This field is zero if Port Power( ) is zero in host mode. In Device Mode: 1=Attached. 0=Not Attached. Default=0. A one indicates that the device successfully attached and is operating in either high speed or full speed as indicated by the High Speed Port bit in this register. A zero indicates that the device did not attach successfully or was forcibly disconnected by the software writing a zero to the Run bit in the USBCMD register. It does not state the device being disconnected or suspended.
-        unsigned CSC : 1; //!< [1] Connect Status Change-R/WC. 1 =Change in Current Connect Status. 0=No change. Default 0. In Host Mode: Indicates a change has occurred in the port's Current Connect Status. The host/device controller sets this bit for all changes to the port device connect status, even if system software has not cleared an existing connect status change. For example, the insertion status changes twice before system software has cleared the changed condition, hub hardware will be 'setting' an already-set bit (that is, the bit will remain set). Software clears this bit by writing a one to it. This field is zero if Port Power( ) is zero in host mode. In Device Mode: This bit is undefined in device controller mode.
-        unsigned PE : 1; //!< [2] Port Enabled/Disabled-Read/Write. 1=Enable. 0=Disable. Default 0. In Host Mode: Ports can only be enabled by the host controller as a part of the reset and enable. Software cannot enable a port by writing a one to this field. Ports can be disabled by either a fault condition (disconnect event or other fault condition) or by the host software. Note that the bit status does not change until the port state actually changes. There may be a delay in disabling or enabling a port due to other host controller and bus events. When the port is disabled, (0b) downstream propagation of data is blocked except for reset. This field is zero if Port Power( ) is zero in host mode. In Device Mode: The device port is always enabled, so this bit is always '1b'.
-        unsigned PEC : 1; //!< [3] Port Enable/Disable Change-R/WC. 1=Port enabled/disabled status has changed. 0=No change. Default = 0. In Host Mode: For the root hub, this bit is set to a one only when a port is disabled due to disconnect on the port or due to the appropriate conditions existing at the EOF2 point (See Chapter 11 of the USB Specification). Software clears this by writing a one to it. This field is zero if Port Power( ) is zero. In Device mode: The device port is always enabled, so this bit is always '0b'.
-        unsigned OCA : 1; //!< [4] Over-current Active-Read Only. Default 0. This bit will automatically transition from one to zero when the over current condition is removed. For host/OTG implementations the user can provide over-current detection to the vbus_pwr_fault input for this condition. For device-only implementations this bit shall always be 0.
-        unsigned OCC : 1; //!< [5] Over-current Change-R/WC. Default=0. This bit is set '1b' by hardware when there is a change to Over-current Active. Software can clear this bit by writing a one to this bit position. For host/OTG implementations the user can provide over-current detection to the vbus_pwr_fault input for this condition. For device-only implementations this bit shall always be 0.
-        unsigned FPR : 1; //!< [6] Force Port Resume -Read/Write. 1= Resume detected/driven on port. 0=No resume (K-state) detected/driven on port. Default = 0. In Host Mode: Software sets this bit to one to drive resume signaling. The Host Controller sets this bit to one if a J-to-K transition is detected while the port is in the Suspend state. When this bit transitions to a one because a J-to-K transition is detected, the Port Change Detect bit in the USBSTS register is also set to one. This bit will automatically change to zero after the resume sequence is complete. This behavior is different from EHCI where the host controller driver is required to set this bit to a zero after the resume duration is timed in the driver. Note that when the Host controller owns the port, the resume sequence follows the defined sequence documented in the USB Specification Revision 2.0. The resume signaling (Full-speed 'K') is driven on the port as long as this bit remains a one. This bit will remain a one until the port has switched to the high-speed idle. Writing a zero has no effect because the port controller will time the resume operation clear the bit the port control state switches to HS or FS idle. This field is zero if Port Power( ) is zero in host mode. This bit is not-EHCI compatible. In Device mode: After the device has been in Suspend State for 5ms or more, software must set this bit to one to drive resume signaling before clearing. The Device Controller will set this bit to one if a J-to-K transition is detected while the port is in the Suspend state. The bit will be cleared when the device returns to normal operation. Also, when this bit wil be cleared because a K-to-J transition detected, the Port Change Detect bit in the USBSTS register is also set to one.
-        unsigned SUSP : 1; //!< [7] Suspend - Read/Write or Read Only. Default = 0b. 1=Port in suspend state. 0=Port not in suspend state. In Host Mode: Read/Write. Port Enabled Bit and Suspend bit of this register define the port states as follows: Bits [Port Enabled, Suspend] Port State 0x Disable 10 Enable 11 Suspend When in suspend state, downstream propagation of data is blocked on this port, except for port reset. The blocking occurs at the end of the current transaction if a transaction was in progress when this bit was written to 1. In the suspend state, the port is sensitive to resume detection. Note that the bit status does not change until the port is suspended and that there may be a delay in suspending a port if there is a transaction currently in progress on the The host controller will unconditionally set this bit to zero when software sets the Force Port Resume bit to zero. The host controller ignores a write of zero to this bit. If host software sets this bit to a one when the port is not enabled (that is, Port enabled bit is a zero) the results are undefined. This field is zero if Port Power( ) is zero in host mode. In Device Mode: Read Only. In device mode this bit is a read only status bit.
-        unsigned PR : 1; //!< [8] Port Reset - Read/Write or Read Only. Default = 0b. In Host Mode: Read/Write. 1=Port is in Reset. 0=Port is not in Reset. Default 0. When software writes a one to this bit the bus-reset sequence as defined in the USB Specification Revision 2.0 is started. This bit will automatically change to zero after the reset sequence is complete. This behavior is different from EHCI where the host controller driver is required to set this bit to a zero after the reset duration is timed in the driver. In Device Mode: This bit is a read only status bit. Device reset from the USB bus is also indicated in the USBSTS register. This field is zero if Port Power( ) is zero.
-        unsigned HSP : 1; //!< [9] High-Speed Port - Read Only. Default = 0b. When the bit is one, the host/device connected to the port is in high-speed mode and if set to zero, the host/device connected to the port is not in a high-speed mode. HSP is redundant with PSPD(bit 27, 26) but remained for compatibility.
-        unsigned LS : 2; //!< [11:10] Line Status-Read Only. These bits reflect the current logical levels of the D+ (bit 11) and D- (bit 10) signal lines. In host mode, the use of linestate by the host controller driver is not necessary (unlike EHCI), because the port controller state machine and the port routing manage the connection of LS and FS. In device mode, the use of linestate by the device controller driver is not necessary. The encoding of the bits are: Bits [11:10] Meaning
-        unsigned PP : 1; //!< [12] Port Power (PP)-Read/Write or Read Only. The function of this bit depends on the value of the Port Power Switching (PPC) field in the HCSPARAMS register. The behavior is as follows: PPC PP Operation 0 1b Read Only - Host controller does not have port power control switches. Each port is hard-wired to power. 1 1b/0b - Read/Write. Host/OTG controller requires port power control switches. This bit represents the current setting of the switch (0=off, 1=on). When power is not available on a port (that is, PP equals a 0), the port is non-functional and will not report attaches, detaches, etc. When an over-current condition is detected on a powered port and PPC is a one, the PP bit in each affected port may be transitional by the host controller driver from a one to a zero (removing power from the port). This feature is implemented in all controller cores (PPC = 1).
-        unsigned PO : 1; //!< [13] Port Owner-Read/Write. Default = 0. This bit unconditionally goes to a 0 when the configured bit in the CONFIGFLAG register makes a 0 to 1 transition. This bit unconditionally goes to 1 whenever the Configured bit is zero System software uses this field to release ownership of the port to a selected host controller (in the event that the attached device is not a high-speed device). Software writes a one to this bit when the attached device is not a high-speed device. A one in this bit means that an internal companion controller owns and controls the port. Port owner handoff is not supported in all controller cores, therefore this bit will always be 0.
-        unsigned PIC : 2; //!< [15:14] Port Indicator Control - Read/Write. Default = Ob. Writing to this field has no effect if the P_INDICATOR bit in the HCSPARAMS register is a zero. Refer to the USB Specification Revision 2.0 for a description on how these bits are to be used. This field is zero if Port Power is zero. Bit Value Meaning
-        unsigned PTC : 4; //!< [19:16] Port Test Control - Read/Write. Default = 0000b. Refer to for the operational model for using these test modes and the USB Specification Revision 2.0, Chapter 7 for details on each test mode. The FORCE_ENABLE_FS and FORCE ENABLE_LS are extensions to the test mode support specified in the EHCI specification. Writing the PTC field to any of the FORCE_ENABLE_{HS/FS/LS} values will force the port into the connected and enabled state at the selected speed. Writing the PTC field back to TEST_MODE_DISABLE will allow the port state machines to progress normally from that point. Low speed operations are not supported as a peripheral device. Any other value than zero indicates that the port is operating in test mode. Value Specific Test
-        unsigned WKCN : 1; //!< [20] Wake on Connect Enable (WKCNNT_E) - Read/Write. Default=0b. Writing this bit to a one enables the port to be sensitive to device connects as wake-up events. This field is zero if Port Power( ) is zero or in device mode.
-        unsigned WKDC : 1; //!< [21] Wake on Disconnect Enable (WKDSCNNT_E) - Read/Write. Default=0b. Writing this bit to a one enables the port to be sensitive to device disconnects as wake-up events. This field is zero if Port Power( ) is zero or in device mode.
-        unsigned WKOC : 1; //!< [22] Wake on Over-current Enable (WKOC_E) - Read/Write. Default = 0b. Writing this bit to a one enables the port to be sensitive to over-current conditions as wake-up events. This field is zero if Port Power( ) is zero.
-        unsigned PHCD : 1; //!< [23] PHY Low Power Suspend - Clock Disable (PLPSCD) - Read/Write. Default = 0b. When this bit is set to '1b', the PHY clock is disabled. Reading this bit will indicate the status of the PHY clock. The PHY clock cannot be disabled if it is being used as the system clock. In device mode, The PHY can be put into Low Power Suspend when the device is not running (USBCMD Run/Stop=0b) or the host has signaled suspend (PORTSC1 SUSPEND=1b). PHY Low power suspend will be cleared automatically when the host initials resume. Before forcing a resume from the device, the device controller driver must clear this bit. In host mode, the PHY can be put into Low Power Suspend when the downstream device has been put into suspend mode or when no downstream device is connected. Low power suspend is completely under the control of software.
-        unsigned PFSC : 1; //!< [24] Port Force Full Speed Connect - Read/Write. Default = 0b. When this bit is set to '1b', the port will be forced to only connect at Full Speed, It disables the chirp sequence that allows the port to identify itself as High Speed.
+        unsigned CCS : 1; //!< [0] Current Connect Status-Read Only.
+        unsigned CSC : 1; //!< [1] Connect Status Change-R/WC.
+        unsigned PE : 1; //!< [2] Port Enabled/Disabled-Read/Write.
+        unsigned PEC : 1; //!< [3] Port Enable/Disable Change-R/WC.
+        unsigned OCA : 1; //!< [4] Over-current Active-Read Only.
+        unsigned OCC : 1; //!< [5] Over-current Change-R/WC.
+        unsigned FPR : 1; //!< [6] Force Port Resume -Read/Write.
+        unsigned SUSP : 1; //!< [7] Suspend - Read/Write or Read Only.
+        unsigned PR : 1; //!< [8] Port Reset - Read/Write or Read Only.
+        unsigned HSP : 1; //!< [9] High-Speed Port - Read Only.
+        unsigned LS : 2; //!< [11:10] Line Status-Read Only.
+        unsigned PP : 1; //!< [12] Port Power (PP)-Read/Write or Read Only.
+        unsigned PO : 1; //!< [13] Port Owner-Read/Write.
+        unsigned PIC : 2; //!< [15:14] Port Indicator Control - Read/Write.
+        unsigned PTC : 4; //!< [19:16] Port Test Control - Read/Write.
+        unsigned WKCN : 1; //!< [20] Wake on Connect Enable (WKCNNT_E) - Read/Write.
+        unsigned WKDC : 1; //!< [21] Wake on Disconnect Enable (WKDSCNNT_E) - Read/Write.
+        unsigned WKOC : 1; //!< [22] Wake on Over-current Enable (WKOC_E) - Read/Write.
+        unsigned PHCD : 1; //!< [23] PHY Low Power Suspend - Clock Disable (PLPSCD) - Read/Write.
+        unsigned PFSC : 1; //!< [24] Port Force Full Speed Connect - Read/Write.
         unsigned PTS : 1; //!< [25] See description at bits 31-30
-        unsigned PSPD : 2; //!< [27:26] Port Speed - Read Only. This register field indicates the speed at which the port is operating. For HS mode operation in the host controller and HS/FS operation in the device controller the port routing steers data to the Protocol engine. For FS and LS mode operation in the host controller, the port routing steers data to the Protocol Engine w/ Embedded Transaction Translator.
-        unsigned PTW : 1; //!< [28] Parallel Transceiver Width - Read/Write. This register bit is used in conjunction with the configuration constant VUSB_HS_PHY8_16 to control whether the data bus width of the UTMI transceiver interface. If VUSB_HS_PHY8_16 is set for 0 or 1 then this bit is read only. If VUSB_HS_PHY8_16 is 2 or 3 then this bit is read/write. This bit is reset to 1 if VUSB_HS_PHY8_16 selects a default UTMI interface width of 16-bits else it is reset to 0. Writing this bit to 0 selects the 8-bit [60MHz] UTMI interface. Writing this bit to 1 selects the 16-bit [30MHz] UTMI interface. This bit has no effect if the Serial interfaces are selected. This bit is not defined in the EHCI specification. VUSB_HS_PHY16_8 parameter: For Elvis, OTG: 3, Host1/Host2/Host3: 0; For Rita, OTG/Host1/Host2/Host3: 3; For Arik, OTG/Host1/Host2/Host3: 1; Parallel Transceiver Width This bit has no effect if serial interface engine is used. These register bits are implementation dependent. For OTG controller core: it is Read/Write. Reset value is '1b'; For Host1/Host2/Host3 controller core, it is Read-Only. Reset value is '0b'. For OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '1b'. For OTG/Host1/Host2/Host3 core, it is Read-Only. Reset value is '1b'. For OTG1/OTG2/Host1 core, it is Read-Only. Reset value is '1b'.
-        unsigned STS : 1; //!< [29] Serial Transceiver Select - Read/Write. This register bit is used in conjunction with the configuration constant VUSB_HS_PHY_SERIAL to control whether the parallel or serial transceiver interface is selected for FS and LS operation. The Serial Interface Engine can be used in combination with the UTMI+ or ULPI physical interface to provide FS/LS signaling instead of the parallel interface. If VUSB_HS_PHY_SERIAL is set for 0 or 1 then this bit is read only. If VUSB_HS_PHY_SERIAL is 3 or 4 then this bit is read/write. This bit has no effect unless Parallel Transceiver Select is set to UTMI+ or ULPI. The Serial/1.1 physical interface will use the Serial Interface Engine for FS/LS signaling regardless of this bit value. Note: This bit is reserved for future operation and is a placeholder adding dynamic use of the serial engine in accord with UMTI+ and ULPI characterization logic. This bit is not defined in the EHCI specification VUSB_HS_PHY_SERIAL parameter: For Elivs,OTG/Host1/Host2/Host3 core: 2 For Rita, OTG/Host1/Host2/Host3 core: 2 For Arik, OTG/Host1/Host2/Host3 core: 0 Serial Transceiver Select - Read/Write Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface Engine is selected 0 Parallel Interface signals is selected Serial Interface Engine can be used in combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the parallel interface signals. When this bit is set '1b', serial interface engine will be used instead of parallel interface signals. This bit has no effect unless PTS bits is set to select UTMI+/ULPI interface. The Serial/USB1.1 PHY/IC-USB will use the serial interface engine for FS/LS signaling regardless of this bit value.
-        unsigned PTS1 : 2; //!< [31:30] Parallel Transceiver Select - Read/Write. This register bit pair is used in conjunction with the configuration constant VUSB_HS_PHY_TYPE to control which parallel transceiver interface is selected. If VUSB_HS_PHY_TYPE is set for 0,1,2, 3, 8 or 10 then this bit is read only. If VUSB_HS_PHY_TYPE is 4,5, 6, 7, 9 or 11then this bit is read/write. Bit field {bit25, bit30, bit31} is reset to: "000b" if VUSB_HS_PHY_TYPE = 0,4 - UTMI/UTMI+ "001b" if VUSB_HS_PHY_TYPE = 1,5 - Reserved "010b" if VUSB_HS_PHY_TYPE = 2,6 - ULPI "011b" if VUSB_HS_PHY_TYPE = 3,7,8,9 - Serial/1.1 PHY/IC USB(FS Only) "100b" if VUSB_HS_PHY_TYPE = 10,11 - UTMI for HSIC PHY This bit is not defined in the EHCI specification. VUSB_HS_PHY_TYPE parameter: For Elvis, OTG/Host core: 7; For Rita, OTG core: 0, Host core: 7 For Arik, OTG core: 0, Host core: 4 Bit field { bit31, bit30}: "00b" UTMI/UTMI+ "01b" Reserved "10b" ULPI "11b" Serial/USB 1.1 PHY/IC-USB (FS Only) Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit31, bi30). For OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '11b'. Parallel Transceiver Select (bit25, bit31, bi30). For OTG core, it's Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it's Read/Write. Reset value is 011b. Parallel Transceiver Select (bit25, bit31, bi30). For OTG core, it is Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it is Read/Write. Reset value is 000b. All USB port interface modes are listed in this field description, but not all are supported. For detail feature of each controller core, please see . The behaviour is unknown when unsupported interface mode is selected.
+        unsigned PSPD : 2; //!< [27:26] Port Speed - Read Only.
+        unsigned PTW : 1; //!< [28] Parallel Transceiver Width This bit has no effect if serial interface engine is used.
+        unsigned STS : 1; //!< [29] Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface Engine is selected 0 Parallel Interface signals is selected Serial Interface Engine can be used in combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the parallel interface signals.
+        unsigned PTS1 : 2; //!< [31:30] Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit25, bit31, bi30).
     } B;
 } hw_usbc_uog_portsc1_t;
 #endif
@@ -3596,9 +3573,7 @@ typedef union _hw_usbc_uog_portsc1
 /* --- Register HW_USBC_UOG_PORTSC1, field OCA[4] (RO)
  *
  * Over-current Active-Read Only. Default 0. This bit will automatically transition from one to zero
- * when the over current condition is removed. For host/OTG implementations the user can provide
- * over-current detection to the vbus_pwr_fault input for this condition. For device-only
- * implementations this bit shall always be 0.
+ * when the over current condition is removed.
  *
  * Values:
  * 0 - This port does not have an over-current condition.
@@ -3615,9 +3590,7 @@ typedef union _hw_usbc_uog_portsc1
 /* --- Register HW_USBC_UOG_PORTSC1, field OCC[5] (RW)
  *
  * Over-current Change-R/WC. Default=0. This bit is set '1b' by hardware when there is a change to
- * Over-current Active. Software can clear this bit by writing a one to this bit position. For
- * host/OTG implementations the user can provide over-current detection to the vbus_pwr_fault input
- * for this condition. For device-only implementations this bit shall always be 0.
+ * Over-current Active. Software can clear this bit by writing a one to this bit position.
  */
 
 #define BP_USBC_UOG_PORTSC1_OCC      (5)      //!< Bit position for USBC_UOG_PORTSC1_OCC.
@@ -4033,10 +4006,6 @@ typedef union _hw_usbc_uog_portsc1
 /* --- Register HW_USBC_UOG_PORTSC1, field PSPD[27:26] (RW)
  *
  * Port Speed - Read Only. This register field indicates the speed at which the port is operating.
- * For HS mode operation in the host controller and HS/FS operation in the device controller the
- * port routing steers data to the Protocol engine. For FS and LS mode operation in the host
- * controller, the port routing steers data to the Protocol Engine w/ Embedded Transaction
- * Translator.
  *
  * Values:
  * 00 - Full Speed
@@ -4062,21 +4031,8 @@ typedef union _hw_usbc_uog_portsc1
 
 /* --- Register HW_USBC_UOG_PORTSC1, field PTW[28] (RW)
  *
- * Parallel Transceiver Width - Read/Write. This register bit is used in conjunction with the
- * configuration constant VUSB_HS_PHY8_16 to control whether the data bus width of the UTMI
- * transceiver interface. If VUSB_HS_PHY8_16 is set for 0 or 1 then this bit is read only. If
- * VUSB_HS_PHY8_16 is 2 or 3 then this bit is read/write. This bit is reset to 1 if VUSB_HS_PHY8_16
- * selects a default UTMI interface width of 16-bits else it is reset to 0. Writing this bit to 0
- * selects the 8-bit [60MHz] UTMI interface. Writing this bit to 1 selects the 16-bit [30MHz] UTMI
- * interface. This bit has no effect if the Serial interfaces are selected. This bit is not defined
- * in the EHCI specification. VUSB_HS_PHY16_8 parameter: For Elvis, OTG: 3, Host1/Host2/Host3: 0;
- * For Rita, OTG/Host1/Host2/Host3: 3; For Arik, OTG/Host1/Host2/Host3: 1; Parallel Transceiver
- * Width This bit has no effect if serial interface engine is used. These register bits are
- * implementation dependent. For OTG controller core: it is Read/Write. Reset value is '1b'; For
- * Host1/Host2/Host3 controller core, it is Read-Only. Reset value is '0b'. For
- * OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '1b'. For OTG/Host1/Host2/Host3
- * core, it is Read-Only. Reset value is '1b'. For OTG1/OTG2/Host1 core, it is Read-Only. Reset
- * value is '1b'.
+ * Parallel Transceiver Width This bit has no effect if serial interface engine is used. For
+ * OTG/Host1/Host2/Host3 core, it is Read-Only. Reset value is '1b'.
  *
  * Values:
  * 0 - Select the 8-bit UTMI interface [60MHz]
@@ -4100,25 +4056,13 @@ typedef union _hw_usbc_uog_portsc1
 
 /* --- Register HW_USBC_UOG_PORTSC1, field STS[29] (RW)
  *
- * Serial Transceiver Select - Read/Write. This register bit is used in conjunction with the
- * configuration constant VUSB_HS_PHY_SERIAL to control whether the parallel or serial transceiver
- * interface is selected for FS and LS operation. The Serial Interface Engine can be used in
- * combination with the UTMI+ or ULPI physical interface to provide FS/LS signaling instead of the
- * parallel interface. If VUSB_HS_PHY_SERIAL is set for 0 or 1 then this bit is read only. If
- * VUSB_HS_PHY_SERIAL is 3 or 4 then this bit is read/write. This bit has no effect unless Parallel
- * Transceiver Select is set to UTMI+ or ULPI. The Serial/1.1 physical interface will use the Serial
- * Interface Engine for FS/LS signaling regardless of this bit value. Note: This bit is reserved for
- * future operation and is a placeholder adding dynamic use of the serial engine in accord with
- * UMTI+ and ULPI characterization logic. This bit is not defined in the EHCI specification
- * VUSB_HS_PHY_SERIAL parameter: For Elivs,OTG/Host1/Host2/Host3 core: 2 For Rita,
- * OTG/Host1/Host2/Host3 core: 2 For Arik, OTG/Host1/Host2/Host3 core: 0 Serial Transceiver Select -
- * Read/Write Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface
- * Engine is selected 0 Parallel Interface signals is selected Serial Interface Engine can be used
- * in combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the
- * parallel interface signals. When this bit is set '1b', serial interface engine will be used
- * instead of parallel interface signals. This bit has no effect unless PTS bits is set to select
- * UTMI+/ULPI interface. The Serial/USB1.1 PHY/IC-USB will use the serial interface engine for FS/LS
- * signaling regardless of this bit value.
+ * Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface Engine is
+ * selected 0 Parallel Interface signals is selected Serial Interface Engine can be used in
+ * combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the parallel
+ * interface signals. When this bit is set '1b', serial interface engine will be used instead of
+ * parallel interface signals. This bit has no effect unless PTS bits is set to select UTMI+/ULPI
+ * interface. The Serial/USB1.1 PHY/IC-USB will use the serial interface engine for FS/LS signaling
+ * regardless of this bit value.
  */
 
 #define BP_USBC_UOG_PORTSC1_STS      (29)      //!< Bit position for USBC_UOG_PORTSC1_STS.
@@ -4137,25 +4081,12 @@ typedef union _hw_usbc_uog_portsc1
 
 /* --- Register HW_USBC_UOG_PORTSC1, field PTS1[31:30] (RW)
  *
- * Parallel Transceiver Select - Read/Write. This register bit pair is used in conjunction with the
- * configuration constant VUSB_HS_PHY_TYPE to control which parallel transceiver interface is
- * selected. If VUSB_HS_PHY_TYPE is set for 0,1,2, 3, 8 or 10 then this bit is read only. If
- * VUSB_HS_PHY_TYPE is 4,5, 6, 7, 9 or 11then this bit is read/write. Bit field {bit25, bit30,
- * bit31} is reset to: "000b" if VUSB_HS_PHY_TYPE = 0,4 - UTMI/UTMI+ "001b" if VUSB_HS_PHY_TYPE =
- * 1,5 - Reserved "010b" if VUSB_HS_PHY_TYPE = 2,6 - ULPI "011b" if VUSB_HS_PHY_TYPE = 3,7,8,9 -
- * Serial/1.1 PHY/IC USB(FS Only) "100b" if VUSB_HS_PHY_TYPE = 10,11 - UTMI for HSIC PHY This bit is
- * not defined in the EHCI specification. VUSB_HS_PHY_TYPE parameter: For Elvis, OTG/Host core: 7;
- * For Rita, OTG core: 0, Host core: 7 For Arik, OTG core: 0, Host core: 4 Bit field { bit31,
- * bit30}: "00b" UTMI/UTMI+ "01b" Reserved "10b" ULPI "11b" Serial/USB 1.1 PHY/IC-USB (FS Only) Bit
- * field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB 1.1
- * PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit31, bi30). For
- * OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '11b'. Parallel Transceiver Select
- * (bit25, bit31, bi30). For OTG core, it's Read-Only. Reset value is 000b. For Host1/Host2/Host3
- * core, it's Read/Write. Reset value is 011b. Parallel Transceiver Select (bit25, bit31, bi30). For
- * OTG core, it is Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it is Read/Write.
- * Reset value is 000b. All USB port interface modes are listed in this field description, but not
- * all are supported. For detail feature of each controller core, please see . The behaviour is
- * unknown when unsupported interface mode is selected.
+ * Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB
+ * 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit25, bit31, bi30). For OTG
+ * core, it is Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it is Read/Write. Reset
+ * value is 000b. All USB port interface modes are listed in this field description, but not all are
+ * supported. For detail feature of each controller core, please see . The behaviour is unknown when
+ * unsupported interface mode is selected.
  */
 
 #define BP_USBC_UOG_PORTSC1_PTS1      (30)      //!< Bit position for USBC_UOG_PORTSC1_PTS1.
@@ -4193,34 +4124,34 @@ typedef union _hw_usbc_uog_otgsc
     reg32_t U;
     struct _hw_usbc_uog_otgsc_bitfields
     {
-        unsigned VD : 1; //!< [0] VBUS_Discharge - Read/Write. Setting this bit causes VBus to discharge through a resistor.
-        unsigned VC : 1; //!< [1] VBUS Charge - Read/Write. Setting this bit causes the VBus line to be charged. This is used for VBus pulsing during SRP.
+        unsigned VD : 1; //!< [0] VBUS_Discharge - Read/Write.
+        unsigned VC : 1; //!< [1] VBUS Charge - Read/Write.
         unsigned RESERVED0 : 1; //!< [2] Reserved
-        unsigned OT : 1; //!< [3] OTG Termination - Read/Write. This bit must be set when the OTG device is in device mode, this controls the pulldown on DM.
-        unsigned DP : 1; //!< [4] Data Pulsing - Read/Write. Setting this bit causes the pullup on DP to be asserted for data pulsing during SRP.
-        unsigned IDPU : 1; //!< [5] ID Pullup - Read/Write This bit provide control over the ID pull-up resister; 0 = off, 1 = on [default]. When this bit is 0, the ID input will not be sampled.
+        unsigned OT : 1; //!< [3] OTG Termination - Read/Write.
+        unsigned DP : 1; //!< [4] Data Pulsing - Read/Write.
+        unsigned IDPU : 1; //!< [5] ID Pullup - Read/Write This bit provide control over the ID pull-up resister; 0 = off, 1 = on [default].
         unsigned RESERVED1 : 2; //!< [7:6] Reserved
-        unsigned ID : 1; //!< [8] USB ID - Read Only. 0 = A device, 1 = B device
-        unsigned AVV : 1; //!< [9] A VBus Valid - Read Only. Indicates VBus is above the A VBus valid threshold.
-        unsigned ASV : 1; //!< [10] A Session Valid - Read Only. Indicates VBus is above the A session valid threshold.
-        unsigned BSV : 1; //!< [11] B Session Valid - Read Only. Indicates VBus is above the B session valid threshold.
-        unsigned BSE : 1; //!< [12] B Session End - Read Only. Indicates VBus is below the B session end threshold.
-        unsigned _1MST : 1; //!< [13] 1 millisecond timer toggle - Read Only. This bit toggles once per millisecond.
-        unsigned DPS : 1; //!< [14] Data Bus Pulsing Status - Read Only. A '1' indicates data bus pulsing is being detected on the port.
+        unsigned ID : 1; //!< [8] USB ID - Read Only.
+        unsigned AVV : 1; //!< [9] A VBus Valid - Read Only.
+        unsigned ASV : 1; //!< [10] A Session Valid - Read Only.
+        unsigned BSV : 1; //!< [11] B Session Valid - Read Only.
+        unsigned BSE : 1; //!< [12] B Session End - Read Only.
+        unsigned _1MST : 1; //!< [13] 1 millisecond timer toggle - Read Only.
+        unsigned DPS : 1; //!< [14] Data Bus Pulsing Status - Read Only.
         unsigned RESERVED2 : 1; //!< [15] Reserved
-        unsigned IDIS : 1; //!< [16] USB ID Interrupt Status - Read/Write. This bit is set when a change on the ID input has been detected. Software must write a one to clear this bit.
-        unsigned AVVIS : 1; //!< [17] A VBus Valid Interrupt Status - Read/Write to Clear. This bit is set when VBus has either risen above or fallen below the VBus valid threshold (4.4 VDC) on an A device. Software must write a one to clear this bit.
-        unsigned ASVIS : 1; //!< [18] A Session Valid Interrupt Status - Read/Write to Clear. This bit is set when VBus has either risen above or fallen below the A session valid threshold (0.8 VDC). Software must write a one to clear this bit.
-        unsigned BSVIS : 1; //!< [19] B Session Valid Interrupt Status - Read/Write to Clear. This bit is set when VBus has either risen above or fallen below the B session valid threshold (0.8 VDC). Software must write a one to clear this bit.
-        unsigned BSEIS : 1; //!< [20] B Session End Interrupt Status - Read/Write to Clear. This bit is set when VBus has fallen below the B session end threshold. Software must write a one to clear this bit
-        unsigned _1MSS : 1; //!< [21] 1 millisecond timer Interrupt Status - Read/Write to Clear. This bit is set once every millisecond. Software must write a one to clear this bit.
-        unsigned DPIS : 1; //!< [22] Data Pulse Interrupt Status - Read/Write to Clear. This bit is set when data bus pulsing occurs on DP or DM. Data bus pulsing is only detected when USBMODE.CM = Host (11) and PORTSC1(0)[PP] = 0. Software must write a one to clear this bit.
+        unsigned IDIS : 1; //!< [16] USB ID Interrupt Status - Read/Write.
+        unsigned AVVIS : 1; //!< [17] A VBus Valid Interrupt Status - Read/Write to Clear.
+        unsigned ASVIS : 1; //!< [18] A Session Valid Interrupt Status - Read/Write to Clear.
+        unsigned BSVIS : 1; //!< [19] B Session Valid Interrupt Status - Read/Write to Clear.
+        unsigned BSEIS : 1; //!< [20] B Session End Interrupt Status - Read/Write to Clear.
+        unsigned _1MSS : 1; //!< [21] 1 millisecond timer Interrupt Status - Read/Write to Clear.
+        unsigned DPIS : 1; //!< [22] Data Pulse Interrupt Status - Read/Write to Clear.
         unsigned RESERVED3 : 1; //!< [23] Reserved
-        unsigned IDIE : 1; //!< [24] USB ID Interrupt Enable - Read/Write. Setting this bit enables the USB ID interrupt.
-        unsigned AVVIE : 1; //!< [25] A VBus Valid Interrupt Enable - Read/Write. Setting this bit enables the A VBus valid interrupt.
-        unsigned ASVIE : 1; //!< [26] A Session Valid Interrupt Enable - Read/Write. Setting this bit enables the A session valid interrupt.
-        unsigned BSVIE : 1; //!< [27] B Session Valid Interrupt Enable - Read/Write. Setting this bit enables the B session valid interrupt.
-        unsigned BSEIE : 1; //!< [28] B Session End Interrupt Enable - Read/Write. Setting this bit enables the B session end interrupt.
+        unsigned IDIE : 1; //!< [24] USB ID Interrupt Enable - Read/Write.
+        unsigned AVVIE : 1; //!< [25] A VBus Valid Interrupt Enable - Read/Write.
+        unsigned ASVIE : 1; //!< [26] A Session Valid Interrupt Enable - Read/Write.
+        unsigned BSVIE : 1; //!< [27] B Session Valid Interrupt Enable - Read/Write.
+        unsigned BSEIE : 1; //!< [28] B Session End Interrupt Enable - Read/Write.
         unsigned _1MSE : 1; //!< [29] 1 millisecond timer Interrupt Enable - Read/Write
         unsigned DPIE : 1; //!< [30] Data Pulse Interrupt Enable
         unsigned RESERVED4 : 1; //!< [31] Reserved
@@ -4720,10 +4651,10 @@ typedef union _hw_usbc_uog_usbmode
     reg32_t U;
     struct _hw_usbc_uog_usbmode_bitfields
     {
-        unsigned CM : 2; //!< [1:0] Controller Mode - R/WO. Controller mode is defaulted to the proper mode for host only and device only implementations. For those designs that contain both host & device capability, the controller defaults to an idle state and needs to be initialized to the desired operating mode after reset. For combination host/device controllers, this register can only be written once after reset. If it is necessary to switch modes, software must reset the controller by writing to the RESET bit in the USBCMD register before reprogramming this register. For OTG controller core, reset value is '00b'. For Host-only controller core, reset value is '11b'.
-        unsigned ES : 1; //!< [2] Endian Select - Read/Write. This bit can change the byte alignment of the transfer buffers to match the host microprocessor. The bit fields in the microprocessor interface and the data structures are unaffected by the value of this bit because they are based upon the 32-bit word. Bit Meaning
-        unsigned SLOM : 1; //!< [3] Setup Lockout Mode. In device mode, this bit controls behavior of the setup lock mechanism. See .
-        unsigned SDIS : 1; //!< [4] Stream Disable Mode. (0 - Inactive [default]; 1 - Active) Device Mode: Setting to a '1' disables double priming on both RX and TX for low bandwidth systems. This mode ensures that when the RX and TX buffers are sufficient to contain an entire packet that the standard double buffering scheme is disabled to prevent overruns/underruns in bandwidth limited systems. Note: In High Speed Mode, all packets received are responded to with a NYET handshake when stream disable is active. Host Mode: Setting to a '1' ensures that overruns/underruns of the latency FIFO are eliminated for low bandwidth systems where the RX and TX buffers are sufficient to contain the entire packet. Enabling stream disable also has the effect of ensuring the TX latency is filled to capacity before the packet is launched onto the USB. Time duration to pre-fill the FIFO becomes significant when stream disable is active. See and TXTTFILLTUNING [MPH Only] to characterize the adjustments needed for the scheduler when using this feature. The use of this feature substantially limits of the overall USB performance that can be achieved.
+        unsigned CM : 2; //!< [1:0] Controller Mode - R/WO.
+        unsigned ES : 1; //!< [2] Endian Select - Read/Write.
+        unsigned SLOM : 1; //!< [3] Setup Lockout Mode.
+        unsigned SDIS : 1; //!< [4] Stream Disable Mode.
         unsigned RESERVED0 : 11; //!< [15:5] Reserved.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
@@ -4878,7 +4809,7 @@ typedef union _hw_usbc_uog_endptsetupstat
     reg32_t U;
     struct _hw_usbc_uog_endptsetupstat_bitfields
     {
-        unsigned ENDPTSETUPSTAT : 16; //!< [15:0] Setup Endpoint Status. For every setup transaction that is received, a corresponding bit in this register is set to one. Software must clear or acknowledge the setup transfer by writing a one to a respective bit after it has read the setup data from Queue head. The response to a setup packet as in the order of operations and total response time is crucial to limit bus time outs while the setup lock our mechanism is engaged. See in the Device Operational Model. This register is only used in device mode.
+        unsigned ENDPTSETUPSTAT : 16; //!< [15:0] Setup Endpoint Status.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_usbc_uog_endptsetupstat_t;
@@ -4949,9 +4880,9 @@ typedef union _hw_usbc_uog_endptprime
     reg32_t U;
     struct _hw_usbc_uog_endptprime_bitfields
     {
-        unsigned PERB : 8; //!< [7:0] Prime Endpoint Receive Buffer - R/WS. For each endpoint, a corresponding bit is used to request a buffer prepare for a receive operation for when a USB host initiates a USB OUT transaction. Software should write a one to the corresponding bit whenever posting a new transfer descriptor to an endpoint queue head. Hardware automatically uses this bit to begin parsing for a new transfer descriptor from the queue head and prepare a receive buffer. Hardware clears this bit when the associated endpoint(s) is (are) successfully primed. These bits are momentarily set by hardware during hardware re-priming operations when a dTD is retired, and the dQH is updated. PERB[N] - Endpoint #N, N is in 0..7
+        unsigned PERB : 8; //!< [7:0] Prime Endpoint Receive Buffer - R/WS.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved
-        unsigned PETB : 8; //!< [23:16] Prime Endpoint Transmit Buffer - R/WS. For each endpoint a corresponding bit is used to request that a buffer is prepared for a transmit operation in order to respond to a USB IN/INTERRUPT transaction. Software should write a one to the corresponding bit when posting a new transfer descriptor to an endpoint queue head. Hardware automatically uses this bit to begin parsing for a new transfer descriptor from the queue head and prepare a transmit buffer. Hardware clears this bit when the associated endpoint(s) is (are) successfully primed. These bits are momentarily set by hardware during hardware re-priming operations when a dTD is retired, and the dQH is updated. PETB[N] - Endpoint #N, N is in 0..7
+        unsigned PETB : 8; //!< [23:16] Prime Endpoint Transmit Buffer - R/WS.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uog_endptprime_t;
@@ -5044,9 +4975,9 @@ typedef union _hw_usbc_uog_endptflush
     reg32_t U;
     struct _hw_usbc_uog_endptflush_bitfields
     {
-        unsigned FERB : 8; //!< [7:0] Flush Endpoint Receive Buffer - R/WS. Writing one to a bit(s) causes the assocUOGiated endpoint(s) to clear any primed buffers. If a packet is in progress for one of the associated endpoints, then that transfer continues until completion. Hardware clears this register after the endpoint flush operation is successful. FERB[N] - Endpoint #N, N is in 0..7
+        unsigned FERB : 8; //!< [7:0] Flush Endpoint Receive Buffer - R/WS.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved
-        unsigned FETB : 8; //!< [23:16] Flush Endpoint Transmit Buffer - R/WS. Writing one to a bit(s) in this register causes the associated endpoint(s) to clear any primed buffers. If a packet is in progress for one of the associated endpoints, then that transfer continues until completion. Hardware clears this register after the endpoint flush operation is successful. FETB[N] - Endpoint #N, N is in 0..7
+        unsigned FETB : 8; //!< [23:16] Flush Endpoint Transmit Buffer - R/WS.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uog_endptflush_t;
@@ -5131,9 +5062,9 @@ typedef union _hw_usbc_uog_endptstat
     reg32_t U;
     struct _hw_usbc_uog_endptstat_bitfields
     {
-        unsigned ERBR : 8; //!< [7:0] Endpoint Receive Buffer Ready -- Read Only. One bit for each endpoint indicates status of the respective endpoint buffer. This bit is set to a one by the hardware as a response to receiving a command from a corresponding bit in the ENDPRIME register. There is always a delay between setting a bit in the ENDPRIME register and endpoint indicating ready. This delay time varies based upon the current USB traffic and the number of bits set in the ENDPRIME register. Buffer ready is cleared by USB reset, by the USB DMA system, or through the ENDPTFLUSH register. These bits are momentarily cleared by hardware during hardware endpoint re-priming operations when a dTD is retired, and the dQH is updated. ERBR[N] - Endpoint #N, N is in 0..7
+        unsigned ERBR : 8; //!< [7:0] Endpoint Receive Buffer Ready -- Read Only.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved
-        unsigned ETBR : 8; //!< [23:16] Endpoint Transmit Buffer Ready -- Read Only. One bit for each endpoint indicates status of the respective endpoint buffer. This bit is set to one by the hardware as a response to receiving a command from a corresponding bit in the ENDPTPRIME register. There is always a delay between setting a bit in the ENDPTPRIME register and endpoint indicating ready. This delay time varies based upon the current USB traffic and the number of bits set in the ENDPRIME register. Buffer ready is cleared by USB reset, by the USB DMA system, or through the ENDPTFLUSH register. These bits are momentarily cleared by hardware during hardware endpoint re-priming operations when a dTD is retired, and the dQH is updated. ETBR[N] - Endpoint #N, N is in 0..7
+        unsigned ETBR : 8; //!< [23:16] Endpoint Transmit Buffer Ready -- Read Only.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uog_endptstat_t;
@@ -5206,9 +5137,9 @@ typedef union _hw_usbc_uog_endptcomplete
     reg32_t U;
     struct _hw_usbc_uog_endptcomplete_bitfields
     {
-        unsigned ERCE : 8; //!< [7:0] Endpoint Receive Complete Event - RW/C. Each bit indicates a received event (OUT/SETUP) occurred and software should read the corresponding endpoint queue to determine the transfer status. If the corresponding IOC bit is set in the Transfer Descriptor, then this bit is set simultaneously with the USBINT . Writing one clears the corresponding bit in this register. ERCE[N] - Endpoint #N, N is in 0..7
+        unsigned ERCE : 8; //!< [7:0] Endpoint Receive Complete Event - RW/C.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved
-        unsigned ETCE : 8; //!< [23:16] Endpoint Transmit Complete Event - R/WC. Each bit indicates a transmit event (IN/INTERRUPT) occurred and software should read the corresponding endpoint queue to determine the endpoint status. If the corresponding IOC bit is set in the Transfer Descriptor, then this bit is set simultaneously with the USBINT . Writing one clears the corresponding bit in this register. ETCE[N] - Endpoint #N, N is in 0..7
+        unsigned ETCE : 8; //!< [23:16] Endpoint Transmit Complete Event - R/WC.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uog_endptcomplete_t;
@@ -5295,13 +5226,13 @@ typedef union _hw_usbc_uog_endptctrl0
     reg32_t U;
     struct _hw_usbc_uog_endptctrl0_bitfields
     {
-        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK. [Default] 1 End Point Stalled Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues returning STALL until the bit is cleared by software or it is automatically cleared upon receipt of a new SETUP request.
+        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK.
         unsigned RESERVED0 : 1; //!< [1] Reserved
         unsigned RXT : 2; //!< [3:2] RX Endpoint Type - Read/Write 00 Control Endpoint0 is fixed as a Control End Point.
         unsigned RESERVED1 : 3; //!< [6:4] Reserved
         unsigned RXE : 1; //!< [7] RX Endpoint Enable 1 Enabled Endpoint0 is always enabled.
         unsigned RESERVED2 : 8; //!< [15:8] Reserved
-        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK [Default] 1 End Point Stalled Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues returning STALL until the bit is cleared by software or it is automatically cleared upon receipt of a new SETUP request.
+        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK [Default] 1 End Point Stalled Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host.
         unsigned RESERVED3 : 1; //!< [17] Reserved
         unsigned TXT : 2; //!< [19:18] TX Endpoint Type - Read/Write 00 - Control Endpoint0 is fixed as a Control End Point.
         unsigned RESERVED4 : 3; //!< [22:20] Reserved
@@ -5470,19 +5401,19 @@ typedef union _hw_usbc_uog_endptctrl1
     reg32_t U;
     struct _hw_usbc_uog_endptctrl1_bitfields
     {
-        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK. [Default] 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt a SETUP request if this Endpoint is configured as a Control Endpoint, Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above.
+        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK.
         unsigned RXD : 1; //!< [1] RX Endpoint Data Sink - Read/Write - TBD 0 Dual Port Memory Buffer/DMA Engine [Default] Should always be written as zero.
         unsigned RXT : 2; //!< [3:2] RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
         unsigned RESERVED0 : 1; //!< [4] Reserved.
-        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always accept data packet regardless of their data PID.
+        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero.
         unsigned RXR : 1; //!< [6] RX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the host and device.
         unsigned RXE : 1; //!< [7] RX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED1 : 8; //!< [15:8] Reserved
-        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt of a SETUP request if this Endpoint is configured as a Control Endpoint. Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above. For CONTROL type endpoint, there is a slight delay (50 clocks max) between the ENDPTSETUPSTAT begin cleared and hardware continuing to clear this bit. In most systems, it is unlikely the DCD software will observe this delay. Take care that the STALL bit is not set immediately after writing a '1' to it. Please follow this procedure: continually write this STALL bit until it is set or until a new setup has ben received by checking the associated ENDPTSETUPSTAT bit.
+        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint.
         unsigned TXD : 1; //!< [17] TX Endpoint Data Source - Read/Write 0 Dual Port Memory Buffer/DMA Engine [DEFAULT] Should always be written as 0.
         unsigned TXT : 2; //!< [19:18] TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
         unsigned RESERVED2 : 1; //!< [20] Reserved
-        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled. [Default] 1 PID Sequencing Disabled. This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
+        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled.
         unsigned TXR : 1; //!< [22] TX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the Host and device.
         unsigned TXE : 1; //!< [23] TX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
@@ -5784,19 +5715,19 @@ typedef union _hw_usbc_uog_endptctrl2
     reg32_t U;
     struct _hw_usbc_uog_endptctrl2_bitfields
     {
-        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK. [Default] 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt a SETUP request if this Endpoint is configured as a Control Endpoint, Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above.
+        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK.
         unsigned RXD : 1; //!< [1] RX Endpoint Data Sink - Read/Write - TBD 0 Dual Port Memory Buffer/DMA Engine [Default] Should always be written as zero.
         unsigned RXT : 2; //!< [3:2] RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
         unsigned RESERVED0 : 1; //!< [4] Reserved.
-        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always accept data packet regardless of their data PID.
+        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero.
         unsigned RXR : 1; //!< [6] RX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the host and device.
         unsigned RXE : 1; //!< [7] RX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED1 : 8; //!< [15:8] Reserved
-        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt of a SETUP request if this Endpoint is configured as a Control Endpoint. Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above. For CONTROL type endpoint, there is a slight delay (50 clocks max) between the ENDPTSETUPSTAT begin cleared and hardware continuing to clear this bit. In most systems, it is unlikely the DCD software will observe this delay. Take care that the STALL bit is not set immediately after writing a '1' to it. Please follow this procedure: continually write this STALL bit until it is set or until a new setup has ben received by checking the associated ENDPTSETUPSTAT bit.
+        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint.
         unsigned TXD : 1; //!< [17] TX Endpoint Data Source - Read/Write 0 Dual Port Memory Buffer/DMA Engine [DEFAULT] Should always be written as 0.
         unsigned TXT : 2; //!< [19:18] TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
         unsigned RESERVED2 : 1; //!< [20] Reserved
-        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled. [Default] 1 PID Sequencing Disabled. This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
+        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled.
         unsigned TXR : 1; //!< [22] TX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the Host and device.
         unsigned TXE : 1; //!< [23] TX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
@@ -6098,19 +6029,19 @@ typedef union _hw_usbc_uog_endptctrl3
     reg32_t U;
     struct _hw_usbc_uog_endptctrl3_bitfields
     {
-        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK. [Default] 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt a SETUP request if this Endpoint is configured as a Control Endpoint, Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above.
+        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK.
         unsigned RXD : 1; //!< [1] RX Endpoint Data Sink - Read/Write - TBD 0 Dual Port Memory Buffer/DMA Engine [Default] Should always be written as zero.
         unsigned RXT : 2; //!< [3:2] RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
         unsigned RESERVED0 : 1; //!< [4] Reserved.
-        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always accept data packet regardless of their data PID.
+        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero.
         unsigned RXR : 1; //!< [6] RX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the host and device.
         unsigned RXE : 1; //!< [7] RX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED1 : 8; //!< [15:8] Reserved
-        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt of a SETUP request if this Endpoint is configured as a Control Endpoint. Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above. For CONTROL type endpoint, there is a slight delay (50 clocks max) between the ENDPTSETUPSTAT begin cleared and hardware continuing to clear this bit. In most systems, it is unlikely the DCD software will observe this delay. Take care that the STALL bit is not set immediately after writing a '1' to it. Please follow this procedure: continually write this STALL bit until it is set or until a new setup has ben received by checking the associated ENDPTSETUPSTAT bit.
+        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint.
         unsigned TXD : 1; //!< [17] TX Endpoint Data Source - Read/Write 0 Dual Port Memory Buffer/DMA Engine [DEFAULT] Should always be written as 0.
         unsigned TXT : 2; //!< [19:18] TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
         unsigned RESERVED2 : 1; //!< [20] Reserved
-        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled. [Default] 1 PID Sequencing Disabled. This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
+        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled.
         unsigned TXR : 1; //!< [22] TX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the Host and device.
         unsigned TXE : 1; //!< [23] TX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
@@ -6412,19 +6343,19 @@ typedef union _hw_usbc_uog_endptctrl4
     reg32_t U;
     struct _hw_usbc_uog_endptctrl4_bitfields
     {
-        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK. [Default] 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt a SETUP request if this Endpoint is configured as a Control Endpoint, Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above.
+        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK.
         unsigned RXD : 1; //!< [1] RX Endpoint Data Sink - Read/Write - TBD 0 Dual Port Memory Buffer/DMA Engine [Default] Should always be written as zero.
         unsigned RXT : 2; //!< [3:2] RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
         unsigned RESERVED0 : 1; //!< [4] Reserved.
-        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always accept data packet regardless of their data PID.
+        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero.
         unsigned RXR : 1; //!< [6] RX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the host and device.
         unsigned RXE : 1; //!< [7] RX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED1 : 8; //!< [15:8] Reserved
-        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt of a SETUP request if this Endpoint is configured as a Control Endpoint. Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above. For CONTROL type endpoint, there is a slight delay (50 clocks max) between the ENDPTSETUPSTAT begin cleared and hardware continuing to clear this bit. In most systems, it is unlikely the DCD software will observe this delay. Take care that the STALL bit is not set immediately after writing a '1' to it. Please follow this procedure: continually write this STALL bit until it is set or until a new setup has ben received by checking the associated ENDPTSETUPSTAT bit.
+        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint.
         unsigned TXD : 1; //!< [17] TX Endpoint Data Source - Read/Write 0 Dual Port Memory Buffer/DMA Engine [DEFAULT] Should always be written as 0.
         unsigned TXT : 2; //!< [19:18] TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
         unsigned RESERVED2 : 1; //!< [20] Reserved
-        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled. [Default] 1 PID Sequencing Disabled. This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
+        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled.
         unsigned TXR : 1; //!< [22] TX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the Host and device.
         unsigned TXE : 1; //!< [23] TX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
@@ -6726,19 +6657,19 @@ typedef union _hw_usbc_uog_endptctrl5
     reg32_t U;
     struct _hw_usbc_uog_endptctrl5_bitfields
     {
-        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK. [Default] 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt a SETUP request if this Endpoint is configured as a Control Endpoint, Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above.
+        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK.
         unsigned RXD : 1; //!< [1] RX Endpoint Data Sink - Read/Write - TBD 0 Dual Port Memory Buffer/DMA Engine [Default] Should always be written as zero.
         unsigned RXT : 2; //!< [3:2] RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
         unsigned RESERVED0 : 1; //!< [4] Reserved.
-        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always accept data packet regardless of their data PID.
+        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero.
         unsigned RXR : 1; //!< [6] RX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the host and device.
         unsigned RXE : 1; //!< [7] RX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED1 : 8; //!< [15:8] Reserved
-        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt of a SETUP request if this Endpoint is configured as a Control Endpoint. Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above. For CONTROL type endpoint, there is a slight delay (50 clocks max) between the ENDPTSETUPSTAT begin cleared and hardware continuing to clear this bit. In most systems, it is unlikely the DCD software will observe this delay. Take care that the STALL bit is not set immediately after writing a '1' to it. Please follow this procedure: continually write this STALL bit until it is set or until a new setup has ben received by checking the associated ENDPTSETUPSTAT bit.
+        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint.
         unsigned TXD : 1; //!< [17] TX Endpoint Data Source - Read/Write 0 Dual Port Memory Buffer/DMA Engine [DEFAULT] Should always be written as 0.
         unsigned TXT : 2; //!< [19:18] TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
         unsigned RESERVED2 : 1; //!< [20] Reserved
-        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled. [Default] 1 PID Sequencing Disabled. This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
+        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled.
         unsigned TXR : 1; //!< [22] TX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the Host and device.
         unsigned TXE : 1; //!< [23] TX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
@@ -7040,19 +6971,19 @@ typedef union _hw_usbc_uog_endptctrl6
     reg32_t U;
     struct _hw_usbc_uog_endptctrl6_bitfields
     {
-        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK. [Default] 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt a SETUP request if this Endpoint is configured as a Control Endpoint, Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above.
+        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK.
         unsigned RXD : 1; //!< [1] RX Endpoint Data Sink - Read/Write - TBD 0 Dual Port Memory Buffer/DMA Engine [Default] Should always be written as zero.
         unsigned RXT : 2; //!< [3:2] RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
         unsigned RESERVED0 : 1; //!< [4] Reserved.
-        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always accept data packet regardless of their data PID.
+        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero.
         unsigned RXR : 1; //!< [6] RX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the host and device.
         unsigned RXE : 1; //!< [7] RX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED1 : 8; //!< [15:8] Reserved
-        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt of a SETUP request if this Endpoint is configured as a Control Endpoint. Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above. For CONTROL type endpoint, there is a slight delay (50 clocks max) between the ENDPTSETUPSTAT begin cleared and hardware continuing to clear this bit. In most systems, it is unlikely the DCD software will observe this delay. Take care that the STALL bit is not set immediately after writing a '1' to it. Please follow this procedure: continually write this STALL bit until it is set or until a new setup has ben received by checking the associated ENDPTSETUPSTAT bit.
+        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint.
         unsigned TXD : 1; //!< [17] TX Endpoint Data Source - Read/Write 0 Dual Port Memory Buffer/DMA Engine [DEFAULT] Should always be written as 0.
         unsigned TXT : 2; //!< [19:18] TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
         unsigned RESERVED2 : 1; //!< [20] Reserved
-        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled. [Default] 1 PID Sequencing Disabled. This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
+        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled.
         unsigned TXR : 1; //!< [22] TX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the Host and device.
         unsigned TXE : 1; //!< [23] TX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
@@ -7354,19 +7285,19 @@ typedef union _hw_usbc_uog_endptctrl7
     reg32_t U;
     struct _hw_usbc_uog_endptctrl7_bitfields
     {
-        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK. [Default] 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt a SETUP request if this Endpoint is configured as a Control Endpoint, Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above.
+        unsigned RXS : 1; //!< [0] RX Endpoint Stall - Read/Write 0 End Point OK.
         unsigned RXD : 1; //!< [1] RX Endpoint Data Sink - Read/Write - TBD 0 Dual Port Memory Buffer/DMA Engine [Default] Should always be written as zero.
         unsigned RXT : 2; //!< [3:2] RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
         unsigned RESERVED0 : 1; //!< [4] Reserved.
-        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always accept data packet regardless of their data PID.
+        unsigned RXI : 1; //!< [5] RX Data Toggle Inhibit 0 Disabled [Default] 1 Enabled This bit is only used for test and should always be written as zero.
         unsigned RXR : 1; //!< [6] RX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the host and device.
         unsigned RXE : 1; //!< [7] RX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED1 : 8; //!< [15:8] Reserved
-        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint. It is cleared automatically upon receipt of a SETUP request if this Endpoint is configured as a Control Endpoint. Software can write a one to this bit to force the endpoint to return a STALL handshake to the Host. It continues to returning STALL until this bit is either cleared by software or automatically cleared as above. For CONTROL type endpoint, there is a slight delay (50 clocks max) between the ENDPTSETUPSTAT begin cleared and hardware continuing to clear this bit. In most systems, it is unlikely the DCD software will observe this delay. Take care that the STALL bit is not set immediately after writing a '1' to it. Please follow this procedure: continually write this STALL bit until it is set or until a new setup has ben received by checking the associated ENDPTSETUPSTAT bit.
+        unsigned TXS : 1; //!< [16] TX Endpoint Stall - Read/Write 0 End Point OK 1 End Point Stalled This bit is set automatically upon receipt of a SETUP request if this Endpoint is not configured as a Control Endpoint.
         unsigned TXD : 1; //!< [17] TX Endpoint Data Source - Read/Write 0 Dual Port Memory Buffer/DMA Engine [DEFAULT] Should always be written as 0.
         unsigned TXT : 2; //!< [19:18] TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
         unsigned RESERVED2 : 1; //!< [20] Reserved
-        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled. [Default] 1 PID Sequencing Disabled. This bit is only used for test and should always be written as zero. Writing a one to this bit causes this endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
+        unsigned TXI : 1; //!< [21] TX Data Toggle Inhibit 0 PID Sequencing Enabled.
         unsigned TXR : 1; //!< [22] TX Data Toggle Reset (WS) Write 1 - Reset PID Sequence Whenever a configuration event is received for this Endpoint, software must write a one to this bit in order to synchronize the data PID's between the Host and device.
         unsigned TXE : 1; //!< [23] TX Endpoint Enable 0 Disabled [Default] 1 Enabled An Endpoint should be enabled only after it has been configured.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
@@ -7664,7 +7595,7 @@ typedef union _hw_usbc_uh1_id
     reg32_t U;
     struct _hw_usbc_uh1_id_bitfields
     {
-        unsigned ID : 6; //!< [5:0] Configuration number. This number is set to 0x05 and indicates that the peripheral is USB 2.0 High-Speed core.
+        unsigned ID : 6; //!< [5:0] Configuration number.
         unsigned RESERVED0 : 2; //!< [7:6] Reserved
         unsigned NID : 6; //!< [13:8] Complement version of ID
         unsigned RESERVED1 : 2; //!< [15:14] Reserved
@@ -7742,9 +7673,9 @@ typedef union _hw_usbc_uh1_hwgeneral
     struct _hw_usbc_uh1_hwgeneral_bitfields
     {
         unsigned RESERVED0 : 4; //!< [3:0] Reserved
-        unsigned PHYW : 2; //!< [5:4] Data width of the transciever connected to the controller core. PHYW bit reset value: '11b' for OTG controller core, '00b' for Host-only controller core. PHYW bit reset value is '10b'. PHYW bit reset value is '01b'.
-        unsigned PHYM : 3; //!< [8:6] Transciever type PHYM bit reset value is '0111b'. PHYM bit reset value: '0000b' for OTG controller core, '0111b' for Host-only controller core. PHYM bit reset value: '0000b' for OTG controller core, '0100b' for Host-only controller core.
-        unsigned SM : 2; //!< [10:9] Serial interface mode capability SM bit reset value is '10b' SM bit reset value is '00b'
+        unsigned PHYW : 2; //!< [5:4] Data width of the transciever connected to the controller core.
+        unsigned PHYM : 3; //!< [8:6] Transciever type PHYM bit reset value: '0000b' for OTG controller core, '0100b' for Host-only controller core.
+        unsigned SM : 2; //!< [10:9] Serial interface mode capability SM bit reset value is '00b'
         unsigned RESERVED1 : 21; //!< [31:11] Reserved
     } B;
 } hw_usbc_uh1_hwgeneral_t;
@@ -7766,13 +7697,11 @@ typedef union _hw_usbc_uh1_hwgeneral
 
 /* --- Register HW_USBC_UH1_HWGENERAL, field PHYW[5:4] (RO)
  *
- * Data width of the transciever connected to the controller core. PHYW bit reset value: '11b' for
- * OTG controller core, '00b' for Host-only controller core. PHYW bit reset value is '10b'. PHYW bit
- * reset value is '01b'.
+ * Data width of the transciever connected to the controller core. PHYW bit reset value is '01b'.
  *
  * Values:
- * 00 -  8 bit wide data bus  Software non-programmable  60MHz clock from the transciever
- * 01 -  16 bit wide data bus  Software non-programmable  30MHz clock from the transciever
+ * 00 -  8 bit wide data bus  Software non-programmable
+ * 01 -  16 bit wide data bus  Software non-programmable
  * 10 -  Reset to 8 bit wide data bus  Software programmable
  * 11 -  Reset to 16 bit wide data bus  Software programmable
  */
@@ -7786,9 +7715,8 @@ typedef union _hw_usbc_uh1_hwgeneral
 
 /* --- Register HW_USBC_UH1_HWGENERAL, field PHYM[8:6] (RO)
  *
- * Transciever type PHYM bit reset value is '0111b'. PHYM bit reset value: '0000b' for OTG
- * controller core, '0111b' for Host-only controller core. PHYM bit reset value: '0000b' for OTG
- * controller core, '0100b' for Host-only controller core.
+ * Transciever type PHYM bit reset value: '0000b' for OTG controller core, '0100b' for Host-only
+ * controller core.
  *
  * Values:
  * 000 - UTMI/UMTI+
@@ -7814,7 +7742,7 @@ typedef union _hw_usbc_uh1_hwgeneral
 
 /* --- Register HW_USBC_UH1_HWGENERAL, field SM[10:9] (RO)
  *
- * Serial interface mode capability SM bit reset value is '10b' SM bit reset value is '00b'
+ * Serial interface mode capability SM bit reset value is '00b'
  *
  * Values:
  * 00 - No Serial Engine, always use parallel signalling.
@@ -7840,15 +7768,15 @@ typedef union _hw_usbc_uh1_hwgeneral
  *
  * Reset value: 0x10020001
  *
- * Host hardware parameters as defined in System Level Issues and Core Configuration.
+
  */
 typedef union _hw_usbc_uh1_hwhost
 {
     reg32_t U;
     struct _hw_usbc_uh1_hwhost_bitfields
     {
-        unsigned HC : 1; //!< [0] Host Capable. Indicating whether host operation mode is supported or not.
-        unsigned NPORT : 3; //!< [3:1] The Nmber of downstream ports supported by the host controller is (NPORT+1). When these bits value is '000', it indicates a single-port host controller.
+        unsigned HC : 1; //!< [0] Host Capable.
+        unsigned NPORT : 3; //!< [3:1] The Nmber of downstream ports supported by the host controller is (NPORT+1).
         unsigned RESERVED0 : 28; //!< [31:4] Reserved
     } B;
 } hw_usbc_uh1_hwhost_t;
@@ -7906,16 +7834,16 @@ typedef union _hw_usbc_uh1_hwhost
  *
  * Reset value: 0x80080b08
  *
- * TX buffer hardware parameters are as defined in System Level Issues and Core Configuration.
+
  */
 typedef union _hw_usbc_uh1_hwtxbuf
 {
     reg32_t U;
     struct _hw_usbc_uh1_hwtxbuf_bitfields
     {
-        unsigned TXBURST : 8; //!< [7:0] Default burst size for memory to TX buffer transfer. This is reset value of TXPBURST bits in USB core regsiter USB_n_BURSTSIZE. Please see .
+        unsigned TXBURST : 8; //!< [7:0] Default burst size for memory to TX buffer transfer.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved
-        unsigned TXCHANADD : 8; //!< [23:16] TX FIFO Buffer size is: (2^TXCHANADD) * 4 Bytes. These bits are set to '08h', so buffer size is 256*4 Bytes. For the OTG controller operating in device mode, this is the FIFO buffer size per endpoint. As the OTG controller has 8 TX endpoint, there are 8 of these buffers. For the OTG controller operating in host mode, or for Host-only controller, the entire buffer memory is used as a single TX buffer. Therefore, there is only 1 of this buffer
+        unsigned TXCHANADD : 8; //!< [23:16] TX FIFO Buffer size is: (2^TXCHANADD) * 4 Bytes.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uh1_hwtxbuf_t;
@@ -7972,15 +7900,15 @@ typedef union _hw_usbc_uh1_hwtxbuf
  *
  * Reset value: 0x00000808
  *
- * RX FIFO buffer hardware parameters are as defined in System Level Issues and Core Configuration.
+
  */
 typedef union _hw_usbc_uh1_hwrxbuf
 {
     reg32_t U;
     struct _hw_usbc_uh1_hwrxbuf_bitfields
     {
-        unsigned RXBURST : 8; //!< [7:0] Default burst size for memory to RX buffer transfer. This is reset value of RXPBURST bits in USB core regsiter USB_n_BURSTSIZE. Please see .
-        unsigned RXADD : 8; //!< [15:8] Buffer total size for all receive endpoints is (2^RXADD). RX Buffer size is: (2^RXADD) * 4 Bytes. These bits are set to '08h', so buffer size is 256*4 Bytes. There is a single Receive FIFO buffer in the USB controller. The buffer is shared for all endpoints for the OTG controller in device mode.
+        unsigned RXBURST : 8; //!< [7:0] Default burst size for memory to RX buffer transfer.
+        unsigned RXADD : 8; //!< [15:8] Buffer total size for all receive endpoints is (2^RXADD).
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_usbc_uh1_hwrxbuf_t;
@@ -8043,7 +7971,7 @@ typedef union _hw_usbc_uh1_gptimer0ld
     reg32_t U;
     struct _hw_usbc_uh1_gptimer0ld_bitfields
     {
-        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'. This value represents the time in microseconds minus 1 for the timer duration. Example: for a one millisecond timer, load 1000-1=999 or 0x0003E7. Max value is 0xFFFFFF or 16.777215 seconds.
+        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uh1_gptimer0ld_t;
@@ -8111,7 +8039,7 @@ typedef union _hw_usbc_uh1_gptimer0ctrl
     reg32_t U;
     struct _hw_usbc_uh1_gptimer0ctrl_bitfields
     {
-        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter. This field is the count value of the countdown timer.
+        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter.
         unsigned GPTMODE : 1; //!< [24] General Purpose Timer Mode In one shot mode, the timer will count down to zero, generate an interrupt, and stop until the counter is reset by software; In repeat mode, the timer will count down to zero, generate an interrupt and automatically reload the counter value from GPTLD bits to start again.
         unsigned RESERVED0 : 5; //!< [29:25] Reserved
         unsigned GPTRST : 1; //!< [30] General Purpose Timer Reset
@@ -8249,7 +8177,7 @@ typedef union _hw_usbc_uh1_gptimer1ld
     reg32_t U;
     struct _hw_usbc_uh1_gptimer1ld_bitfields
     {
-        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'. This value represents the time in microseconds minus 1 for the timer duration. Example: for a one millisecond timer, load 1000-1=999 or 0x0003E7. Max value is 0xFFFFFF or 16.777215 seconds.
+        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uh1_gptimer1ld_t;
@@ -8317,8 +8245,8 @@ typedef union _hw_usbc_uh1_gptimer1ctrl
     reg32_t U;
     struct _hw_usbc_uh1_gptimer1ctrl_bitfields
     {
-        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter. This field is the count value of the countdown timer.
-        unsigned GPTMODE : 1; //!< [24] General Purpose Timer Mode In one shot mode, the timer will count down to zero, generate an interrupt, and stop until the counter is reset by software. In repeat mode, the timer will count down to zero, generate an interrupt and automatically reload the counter value from GPTLD bits to start again.
+        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter.
+        unsigned GPTMODE : 1; //!< [24] General Purpose Timer Mode In one shot mode, the timer will count down to zero, generate an interrupt, and stop until the counter is reset by software.
         unsigned RESERVED0 : 5; //!< [29:25] Reserved
         unsigned GPTRST : 1; //!< [30] General Purpose Timer Reset
         unsigned GPTRUN : 1; //!< [31] General Purpose Timer Run GPTCNT bits are not effected when setting or clearing this bit.
@@ -8455,7 +8383,7 @@ typedef union _hw_usbc_uh1_sbuscfg
     reg32_t U;
     struct _hw_usbc_uh1_sbuscfg_bitfields
     {
-        unsigned AHBBRST : 3; //!< [2:0] AHB master interface Burst configuration These bits control AHB master transfer type sequence (or priority). This register overrides n_BURSTSIZE register when its value is not zero.
+        unsigned AHBBRST : 3; //!< [2:0] AHB master interface Burst configuration These bits control AHB master transfer type sequence (or priority).
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_usbc_uh1_sbuscfg_t;
@@ -8528,7 +8456,7 @@ typedef union _hw_usbc_uh1_caplength
     reg8_t U;
     struct _hw_usbc_uh1_caplength_bitfields
     {
-        unsigned char CAPLENGTH : 8; //!< [7:0] These bits are used as an offset to add to register base to find the beginning of the Operational Register. Default value is '40h'.
+        unsigned char CAPLENGTH : 8; //!< [7:0] These bits are used as an offset to add to register base to find the beginning of the Operational Register.
     } B;
 } hw_usbc_uh1_caplength_t;
 #endif
@@ -8626,15 +8554,15 @@ typedef union _hw_usbc_uh1_hcsparams
     reg32_t U;
     struct _hw_usbc_uh1_hcsparams_bitfields
     {
-        unsigned N_PORTS : 4; //!< [3:0] Number of downstream ports. This field specifies the number of physical downstream ports implemented on this host controller. The value of this field determines how many port registers are addressable in the Operational Register. Valid values are in the range of 1h to Fh. A zero in this field is undefined. These bits are always set to '0001b' because all controller cores are Single-Port Host.
-        unsigned PPC : 1; //!< [4] Port Power Control This field indicates whether the host controller implementation includes port power control. A one indicates the ports have port power switches. A zero indicates the ports do not have port power switches. The value of this field affects the functionality of the Port Power field in each port status and control register
+        unsigned N_PORTS : 4; //!< [3:0] Number of downstream ports.
+        unsigned PPC : 1; //!< [4] Port Power Control This field indicates whether the host controller implementation includes port power control.
         unsigned RESERVED0 : 3; //!< [7:5] Reserved
-        unsigned N_PCC : 4; //!< [11:8] Number of Ports per Companion Controller This field indicates the number of ports supported per internal Companion Controller. It is used to indicate the port routing configuration to the system software. For example, if N_PORTS has a value of 6 and N_CC has a value of 2 then N_PCC could have a value of 3. The convention is that the first N_PCC ports are assumed to be routed to companion controller 1, the next N_PCC ports to companion controller 2, etc. In the previous example, the N_PCC could have been 4, where the first 4 are routed to companion controller 1 and the last two are routed to companion controller 2. The number in this field must be consistent with N_PORTS and N_CC. These bits are '0000b' in all controller core.
-        unsigned N_CC : 4; //!< [15:12] Number of Companion Controller (N_CC). This field indicates the number of companion controllers associated with this USB2.0 host controller. These bits are '0000b' in all controller core.
-        unsigned PI : 1; //!< [16] Port Indicators (P INDICATOR) This bit indicates whether the ports support port indicator control. When set to one, the port status and control registers include a read/writeable field for controlling the state of the port indicator This bit is "1b" in all controller core.
+        unsigned N_PCC : 4; //!< [11:8] Number of Ports per Companion Controller This field indicates the number of ports supported per internal Companion Controller.
+        unsigned N_CC : 4; //!< [15:12] Number of Companion Controller (N_CC).
+        unsigned PI : 1; //!< [16] Port Indicators (P INDICATOR) This bit indicates whether the ports support port indicator control.
         unsigned RESERVED1 : 3; //!< [19:17] Reserved
-        unsigned N_PTT : 4; //!< [23:20] Number of Ports per Transaction Translator (N_PTT). Default value '0000b' This field indicates the number of ports assigned to each transaction translator within the USB2.0 host controller. These bits would be set to equal N_PORTS for Multi-Port Host, and '0000b' for Single-Port Host.
-        unsigned N_TT : 4; //!< [27:24] Number of Transaction Translators (N_TT). Default value '0000b' This field indicates the number of embedded transaction translators associated with the USB2.0 host controller. These bits would be set to '0001b' for Multi-Port Host, and '0000b' for Single-Port Host.
+        unsigned N_PTT : 4; //!< [23:20] Number of Ports per Transaction Translator (N_PTT).
+        unsigned N_TT : 4; //!< [27:24] Number of Transaction Translators (N_TT).
         unsigned RESERVED2 : 4; //!< [31:28] Reserved
     } B;
 } hw_usbc_uh1_hcsparams_t;
@@ -8776,11 +8704,11 @@ typedef union _hw_usbc_uh1_hccparams
     struct _hw_usbc_uh1_hccparams_bitfields
     {
         unsigned ADC : 1; //!< [0] 64-bit Addressing Capability This bit is set '0b' in all controller core, no 64-bit addressing capability is supported.
-        unsigned PFL : 1; //!< [1] Programmable Frame List Flag If this bit is set to zero, then the system software must use a frame list length of 1024 elements with this host controller. The USBCMD register Frame List Size field is a read-only register and must be set to zero. If set to a one, then the system software can specify and use a smaller frame list and configure the host controller via the USBCMD register Frame List Size field. The frame list must always be aligned on a 4K-page boundary. This requirement ensures that the frame list is always physically contiguous. This bit is set '1b' in all controller core.
-        unsigned ASP : 1; //!< [2] Asynchronous Schedule Park Capability If this bit is set to a one, then the host controller supports the park feature for high-speed queue heads in the Asynchronous Schedule. The feature can be disabled or enabled and set to a specific level by using the Asynchronous Schedule Park Mode Enable and Asynchronous Schedule Park Mode Count fields in the USBCMD register. This bit is set '1b' in all controller core. ASP bit reset value: '00b' for OTG controller core, '11b' for Host-only controller core.
+        unsigned PFL : 1; //!< [1] Programmable Frame List Flag If this bit is set to zero, then the system software must use a frame list length of 1024 elements with this host controller.
+        unsigned ASP : 1; //!< [2] Asynchronous Schedule Park Capability If this bit is set to a one, then the host controller supports the park feature for high-speed queue heads in the Asynchronous Schedule.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned IST : 4; //!< [7:4] Isochronous Scheduling Threshold. This field indicates, relative to the current position of the executing host controller, where software can reliably update the isochronous schedule. When bit [7] is zero, the value of the least significant 3 bits indicates the number of micro-frames a host controller can hold a set of isochronous data structures (one or more) before flushing the state. When bit [7] is a one, then host software assumes the host controller may cache an isochronous data structure for an entire frame. These bits are set '00h' in all controller core.
-        unsigned EECP : 8; //!< [15:8] EHCI Extended Capabilities Pointer. This field indicates the existence of a capabilities list. A value of 00h indicates no extended capabilities are implemented. A non-zero value in this register indicates the offset in PCI configuration space of the first EHCI extended capability. The pointer value must be 40h or greater if implemented to maintain the consistency of the PCI header defined for this class of device. These bits are set '00h' in all controller core.
+        unsigned IST : 4; //!< [7:4] Isochronous Scheduling Threshold.
+        unsigned EECP : 8; //!< [15:8] EHCI Extended Capabilities Pointer.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_usbc_uh1_hccparams_t;
@@ -8834,9 +8762,8 @@ typedef union _hw_usbc_uh1_hccparams
  * Asynchronous Schedule Park Capability If this bit is set to a one, then the host controller
  * supports the park feature for high-speed queue heads in the Asynchronous Schedule. The feature
  * can be disabled or enabled and set to a specific level by using the Asynchronous Schedule Park
- * Mode Enable and Asynchronous Schedule Park Mode Count fields in the USBCMD register. This bit is
- * set '1b' in all controller core. ASP bit reset value: '00b' for OTG controller core, '11b' for
- * Host-only controller core.
+ * Mode Enable and Asynchronous Schedule Park Mode Count fields in the USBCMD register. ASP bit
+ * reset value: '00b' for OTG controller core, '11b' for Host-only controller core.
  */
 
 #define BP_USBC_UH1_HCCPARAMS_ASP      (2)      //!< Bit position for USBC_UH1_HCCPARAMS_ASP.
@@ -8894,21 +8821,21 @@ typedef union _hw_usbc_uh1_usbcmd
     reg32_t U;
     struct _hw_usbc_uh1_usbcmd_bitfields
     {
-        unsigned RS : 1; //!< [0] Run/Stop (RS) - Read/Write. Default 0b. 1=Run. 0=Stop. Host operation mode: When set to '1b', the Controller proceeds with the execution of the schedule. The Controller continues execution as long as this bit is set to a one. When this bit is set to 0, the Host Controller completes the current transaction on the USB and then halts. The HC Halted bit in the status register indicates when the Controller has finished the transaction and has entered the stopped state. Software should not write a one to this field unless the controller is in the Halted state (that is, HCHalted in the USBSTS register is a one). Device operation mode: Writing a one to this bit will cause the controller to enable a pull-up on D+ and initiate an attach event. This control bit is not directly connected to the pull-up enable, as the pull-up will become disabled upon transitioning into high-speed mode. Software should use this bit to prevent an attach event before the controller has been properly initialized. Writing a 0 to this will cause a detach event.
-        unsigned RST : 1; //!< [1] Controller Reset (RESET) - Read/Write. Software uses this bit to reset the controller. This bit is set to zero by the Host/Device Controller when the reset process is complete. Software cannot terminate the reset process early by writing a zero to this register. Host operation mode: When software writes a one to this bit, the Controller resets its internal pipelines, timers, counters, state machines etc. to their initial value. Any transaction currently in progress on USB is immediately terminated. A USB reset is not driven on downstream ports. Software should not set this bit to a one when the HCHalted bit in the USBSTS register is a zero. Attempting to reset an actively running host controller will result in undefined behavior. Device operation mode: When software writes a one to this bit, the Controller resets its internal pipelines, timers, counters, state machines etc. to their initial value. Writing a one to this bit when the device is in the attached state is not recommended, because the effect on an attached host is undefined. In order to ensure that the device is not in an attached state before initiating a device controller reset, all primed endpoints should be flushed and the USBCMD Run/Stop bit should be set to 0.
+        unsigned RS : 1; //!< [0] Run/Stop (RS) - Read/Write.
+        unsigned RST : 1; //!< [1] Controller Reset (RESET) - Read/Write.
         unsigned FS : 2; //!< [3:2] See description at bit 15
-        unsigned PSE : 1; //!< [4] Periodic Schedule Enable- Read/Write. Default 0b. This bit controls whether the host controller skips processing the Periodic Schedule. Only the host controller uses this bit. Values Meaning
-        unsigned ASE : 1; //!< [5] Asynchronous Schedule Enable - Read/Write. Default 0b. This bit controls whether the host controller skips processing the Asynchronous Schedule. Only the host controller uses this bit. Values Meaning
-        unsigned IAA : 1; //!< [6] Interrupt on Async Advance Doorbell - Read/Write. This bit is used as a doorbell by software to tell the host controller to issue an interrupt the next time it advances asynchronous schedule. Software must write a 1 to this bit to ring the doorbell. When the host controller has evicted all appropriate cached schedule states, it sets the Interrupt on Async Advance status bit in the USBSTS register. If the Interrupt on Sync Advance Enable bit in the USBINTR register is one, then the host controller will assert an interrupt at the next interrupt threshold. The host controller sets this bit to zero after it has set the Interrupt on Sync Advance status bit in the USBSTS register to one. Software should not write a one to this bit when the asynchronous schedule is inactive. Doing so will yield undefined results. This bit is only used in host mode. Writing a one to this bit when device mode is selected will have undefined results.
+        unsigned PSE : 1; //!< [4] Periodic Schedule Enable- Read/Write.
+        unsigned ASE : 1; //!< [5] Asynchronous Schedule Enable - Read/Write.
+        unsigned IAA : 1; //!< [6] Interrupt on Async Advance Doorbell - Read/Write.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned ASP : 2; //!< [9:8] Asynchronous Schedule Park Mode Count - Read/Write. If the Asynchronous Park Capability bit in the HCCPARAMS register is a one, then this field defaults to 3h and is R/W. Otherwise it defaults to zero and is Read-Only. It contains a count of the number of successive transactions the host controller is allowed to execute from a high-speed queue head on the Asynchronous schedule before continuing traversal of the Asynchronous schedule. Valid values are 1h to 3h. Software must not write a zero to this bit when Park Mode Enable is a one as this will result in undefined behavior. This field is set to 3h in all controller core.
+        unsigned ASP : 2; //!< [9:8] Asynchronous Schedule Park Mode Count - Read/Write.
         unsigned RESERVED1 : 1; //!< [10] Reserved
-        unsigned ASPE : 1; //!< [11] Asynchronous Schedule Park Mode Enable - Read/Write. If the Asynchronous Park Capability bit in the HCCPARAMS register is a one, then this bit defaults to a 1h and is R/W. Otherwise the bit must be a zero and is RO. Software uses this bit to enable or disable Park mode. When this bit is one, Park mode is enabled. When this bit is a zero, Park mode is disabled. This field is set to '1b' in this implementation. ASPE bit reset value: '0b' for OTG controller core, '1b' for Host-only controller core.
+        unsigned ASPE : 1; //!< [11] Asynchronous Schedule Park Mode Enable - Read/Write.
         unsigned RESERVED2 : 1; //!< [12] Reserved
-        unsigned SUTW : 1; //!< [13] Setup TripWire - Read/Write. [device mode only] This bit is used as a semaphore to ensure that the setup data payload of 8 bytes is extracted from a QH by the DCD without being corrupted. If the setup lockout mode is off (SLOM bit in USB core register n_USBMODE, see ) then there is a hazard when new setup data arrives while the DCD is copying the setup data payload from the QH for a previous setup packet. This bit is set and cleared by software. This bit would also be cleared by hardware when a hazard detected. For more information on the use of this bit, see the Device Operational Model section of the USB-HS OTG High-Speed USB On-The-Go DEV reference manual.
-        unsigned ATDTW : 1; //!< [14] Add dTD TripWire - Read/Write. [device mode only] This bit is used as a semaphore to ensure proper addition of a new dTD to an active (primed) endpoint's linked list. This bit is set and cleared by software. This bit would also be cleared by hardware when state machine is hazard region for which adding a dTD to a primed endpoint may go unrecognized. For more information on the use of this bit, see the Device Operational Model section of the USB-HS OTG High-Speed USB On-The-Go DEV reference manual.
-        unsigned FS1 : 1; //!< [15] See also bits 3-2 Frame List Size - (Read/Write or Read Only). [host mode only] This field is Read/Write only if Programmable Frame List Flag in the HCCPARAMS registers is set to one. This field specifies the size of the frame list that controls which bits in the Frame Index Register should be used for the Frame List Current index. This field is made up from USBCMD bits 15, 3 and 2. Value Meaning
-        unsigned ITC : 8; //!< [23:16] Interrupt Threshold Control -Read/Write. The system software uses this field to set the maximum rate at which the host/device controller will issue interrupts. ITC contains the maximum interrupt interval measured in micro-frames. Valid values are shown below. Value Maximum Interrupt Interval
+        unsigned SUTW : 1; //!< [13] Setup TripWire - Read/Write.
+        unsigned ATDTW : 1; //!< [14] Add dTD TripWire - Read/Write.
+        unsigned FS1 : 1; //!< [15] See also bits 3-2 Frame List Size - (Read/Write or Read Only).
+        unsigned ITC : 8; //!< [23:16] Interrupt Threshold Control -Read/Write.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uh1_usbcmd_t;
@@ -9122,9 +9049,8 @@ typedef union _hw_usbc_uh1_usbcmd
  * Asynchronous Schedule Park Mode Enable - Read/Write. If the Asynchronous Park Capability bit in
  * the HCCPARAMS register is a one, then this bit defaults to a 1h and is R/W. Otherwise the bit
  * must be a zero and is RO. Software uses this bit to enable or disable Park mode. When this bit is
- * one, Park mode is enabled. When this bit is a zero, Park mode is disabled. This field is set to
- * '1b' in this implementation. ASPE bit reset value: '0b' for OTG controller core, '1b' for Host-
- * only controller core.
+ * one, Park mode is enabled. When this bit is a zero, Park mode is disabled. ASPE bit reset value:
+ * '0b' for OTG controller core, '1b' for Host-only controller core.
  */
 
 #define BP_USBC_UH1_USBCMD_ASPE      (11)      //!< Bit position for USBC_UH1_USBCMD_ASPE.
@@ -9148,8 +9074,7 @@ typedef union _hw_usbc_uh1_usbcmd
  * the setup lockout mode is off (SLOM bit in USB core register n_USBMODE, see ) then there is a
  * hazard when new setup data arrives while the DCD is copying the setup data payload from the QH
  * for a previous setup packet. This bit is set and cleared by software. This bit would also be
- * cleared by hardware when a hazard detected. For more information on the use of this bit, see the
- * Device Operational Model section of the USB-HS OTG High-Speed USB On-The-Go DEV reference manual.
+ * cleared by hardware when a hazard detected.
  */
 
 #define BP_USBC_UH1_USBCMD_SUTW      (13)      //!< Bit position for USBC_UH1_USBCMD_SUTW.
@@ -9171,9 +9096,7 @@ typedef union _hw_usbc_uh1_usbcmd
  * Add dTD TripWire - Read/Write. [device mode only] This bit is used as a semaphore to ensure
  * proper addition of a new dTD to an active (primed) endpoint's linked list. This bit is set and
  * cleared by software. This bit would also be cleared by hardware when state machine is hazard
- * region for which adding a dTD to a primed endpoint may go unrecognized. For more information on
- * the use of this bit, see the Device Operational Model section of the USB-HS OTG High-Speed USB
- * On-The-Go DEV reference manual.
+ * region for which adding a dTD to a primed endpoint may go unrecognized.
  */
 
 #define BP_USBC_UH1_USBCMD_ATDTW      (14)      //!< Bit position for USBC_UH1_USBCMD_ATDTW.
@@ -9275,26 +9198,26 @@ typedef union _hw_usbc_uh1_usbsts
     reg32_t U;
     struct _hw_usbc_uh1_usbsts_bitfields
     {
-        unsigned UI : 1; //!< [0] USB Interrupt (USBINT) - R/WC. This bit is set by the Host/Device Controller when the cause of an interrupt is a completion of a USB transaction where the Transfer Descriptor (TD) has an interrupt on complete (IOC) bit set. This bit is also set by the Host/Device Controller when a short packet is detected. A short packet is when the actual number of bytes received was less than the expected number of bytes.
-        unsigned UEI : 1; //!< [1] USB Error Interrupt (USBERRINT) - R/WC. When completion of a USB transaction results in an error condition, this bit is set by the Host/Device Controller. This bit is set along with the USBINT bit, if the TD on which the error interrupt occurred also had its interrupt on complete (IOC) bit set See Section (Reference Host Operation Model: Transfer/Transaction Based Interrupt - i.e. 4.15.1 in EHCI Enhanced Host Controller Interface Specification for Universal Serial Bus, Revision 0.95, November 2000, Intel Corporation. http://www.intel.com) for a complete list of host error interrupt conditions. See section Device Error Matrix in the USB-HS OTG High-Speed USB On-The-Go DEV reference manual. The device controller detects resume signaling only.
-        unsigned PCI : 1; //!< [2] Port Change Detect - R/WC. The Host Controller sets this bit to a one when on any port a Connect Status occurs, a Port Enable/Disable Change occurs, or the Force Port Resume bit is set as the result of a J-K transition on the suspended port. The Device Controller sets this bit to a one when the port controller enters the full or high-speed operational state. When the port controller exits the full or high-speed operation states due to Reset or Suspend events, the notification mechanisms are the USB Reset Received bit and the DCSuspend bits respectively.
-        unsigned FRI : 1; //!< [3] Frame List Rollover - R/WC. The Host Controller sets this bit to a one when the Frame List Index rolls over from its maximum value to zero. The exact value at which the rollover occurs depends on the frame list size. For example. If the frame list size (as programmed in the Frame List Size field of the USB_n_USBCMD register) is 1024, the Frame Index Register rolls over every time FRINDEX [13] toggles. Similarly, if the size is 512, the Host Controller sets this bit to a one every time FHINDEX [12] toggles. Only used in host operation mode.
-        unsigned SEI : 1; //!< [4] System Error- R/WC. This bit is will be set to '1b' when an Error response is seen to a read on the system interface.
-        unsigned AAI : 1; //!< [5] Interrupt on Async Advance - R/WC. System software can force the host controller to issue an interrupt the next time the host controller advances the asynchronous schedule by writing a one to the Interrupt on Async Advance Doorbell bit in the n_USBCMD register. This status bit indicates the assertion of that interrupt source. Only used in host operation mode.
-        unsigned URI : 1; //!< [6] USB Reset Received - R/WC. When the device controller detects a USB Reset and enters the default state, this bit will be set to a one. Software can write a 1 to this bit to clear the USB Reset Received status bit. Only used in device operation mode.
-        unsigned SRI : 1; //!< [7] SOF Received - R/WC. When the device controller detects a Start Of (micro) Frame, this bit will be set to a one. When a SOF is extremely late, the device controller will automatically set this bit to indicate that an SOF was expected. Therefore, this bit will be set roughly every 1ms in device FS mode and every 125ms in HS mode and will be synchronized to the actual SOF that is received. Because the device controller is initialized to FS before connect, this bit will be set at an interval of 1ms during the prelude to connect and chirp. In host mode, this bit will be set every 125us and can be used by host controller driver as a time base. Software writes a 1 to this bit to clear it.
-        unsigned SLI : 1; //!< [8] DCSuspend - R/WC. When a controller enters a suspend state from an active state, this bit will be set to a one. The device controller clears the bit upon exiting from a suspend state. Only used in device operation mode.
+        unsigned UI : 1; //!< [0] USB Interrupt (USBINT) - R/WC.
+        unsigned UEI : 1; //!< [1] USB Error Interrupt (USBERRINT) - R/WC.
+        unsigned PCI : 1; //!< [2] Port Change Detect - R/WC.
+        unsigned FRI : 1; //!< [3] Frame List Rollover - R/WC.
+        unsigned SEI : 1; //!< [4] System Error- R/WC.
+        unsigned AAI : 1; //!< [5] Interrupt on Async Advance - R/WC.
+        unsigned URI : 1; //!< [6] USB Reset Received - R/WC.
+        unsigned SRI : 1; //!< [7] SOF Received - R/WC.
+        unsigned SLI : 1; //!< [8] DCSuspend - R/WC.
         unsigned RESERVED0 : 1; //!< [9] Reserved
-        unsigned ULPII : 1; //!< [10] ULPI Interrupt - R/WC. This bit will be set '1b' by hardware when there is an event completion in ULPI viewport. This bit is usable only if the controller support UPLI interface mode.
+        unsigned ULPII : 1; //!< [10] ULPI Interrupt - R/WC.
         unsigned RESERVED1 : 1; //!< [11] Reserved
-        unsigned HCH : 1; //!< [12] HCHaIted - Read Only. This bit is a zero whenever the Run/Stop bit is a one. The Controller sets this bit to one after it has stopped executing because of the Run/Stop bit being set to 0, either by software or by the Controller hardware (for example, an internal error). Only used in the host operation mode. Default value is '0b' for OTG core, and '1b' for Host1/Host2/Host3 core. This is because OTG core is not operating as host in default. Please see CM bit in USB_n_USBMODE register. HCH bit reset value: '0b' for OTG controller core, '1b' for Host-only controller core.
-        unsigned RCL : 1; //!< [13] Reclamation - Read Only. This is a read-only status bit used to detect an empty asynchronous schedule. Only used in the host operation mode.
-        unsigned PS : 1; //!< [14] Periodic Schedule Status - Read Only. This bit reports the current real status of the Periodic Schedule. When set to zero the periodic schedule is disabled, and if set to one the status is enabled. The Host Controller is not required to immediately disable or enable the Periodic Schedule when software transitions the Periodic Schedule Enable bit in the USBCMD register. When this bit and the Periodic Schedule Enable bit are the same value, the Periodic Schedule is either enabled (1) or disabled (0). Only used in the host operation mode.
-        unsigned AS : 1; //!< [15] Asynchronous Schedule Status - Read Only. This bit reports the current real status of the Asynchronous Schedule. When set to zero the asynchronous schedule status is disabled and if set to one the status is enabled. The Host Controller is not required to immediately disable or enable the Asynchronous Schedule when software transitions the Asynchronous Schedule Enable bit in the USBCMD register. When this bit and the Asynchronous Schedule Enable bit are the same value, the Asynchronous Schedule is either enabled (1) or disabled (0). Only used in the host operation mode.
-        unsigned NAKI : 1; //!< [16] NAK Interrupt Bit--RO. This bit is set by hardware when for a particular endpoint both the TX/RX Endpoint NAK bit and corresponding TX/RX Endpoint NAK Enable bit are set. This bit is automatically cleared by hardware when all Enabled TX/RX Endpoint NAK bits are cleared.
+        unsigned HCH : 1; //!< [12] HCHaIted - Read Only.
+        unsigned RCL : 1; //!< [13] Reclamation - Read Only.
+        unsigned PS : 1; //!< [14] Periodic Schedule Status - Read Only.
+        unsigned AS : 1; //!< [15] Asynchronous Schedule Status - Read Only.
+        unsigned NAKI : 1; //!< [16] NAK Interrupt Bit--RO.
         unsigned RESERVED2 : 7; //!< [23:17] Reserved
-        unsigned TI0 : 1; //!< [24] General Purpose Timer Interrupt 0(GPTINT0)--R/WC. This bit is set when the counter in the GPTIMER0CTRL register transitions to zero, writing a one to this bit clears it.
-        unsigned TI1 : 1; //!< [25] General Purpose Timer Interrupt 1(GPTINT1)--R/WC. This bit is set when the counter in the GPTIMER1CTRL register transitions to zero, writing a one to this bit will clear it.
+        unsigned TI0 : 1; //!< [24] General Purpose Timer Interrupt 0(GPTINT0)--R/WC.
+        unsigned TI1 : 1; //!< [25] General Purpose Timer Interrupt 1(GPTINT1)--R/WC.
         unsigned RESERVED3 : 6; //!< [31:26] Reserved
     } B;
 } hw_usbc_uh1_usbsts_t;
@@ -9346,11 +9269,7 @@ typedef union _hw_usbc_uh1_usbsts
  * USB Error Interrupt (USBERRINT) - R/WC. When completion of a USB transaction results in an error
  * condition, this bit is set by the Host/Device Controller. This bit is set along with the USBINT
  * bit, if the TD on which the error interrupt occurred also had its interrupt on complete (IOC) bit
- * set See Section (Reference Host Operation Model: Transfer/Transaction Based Interrupt - i.e.
- * 4.15.1 in EHCI Enhanced Host Controller Interface Specification for Universal Serial Bus,
- * Revision 0.95, November 2000, Intel Corporation. http://www.intel.com) for a complete list of
- * host error interrupt conditions. See section Device Error Matrix in the USB-HS OTG High-Speed USB
- * On-The-Go DEV reference manual. The device controller detects resume signaling only.
+ * set The device controller detects resume signaling only.
  */
 
 #define BP_USBC_UH1_USBSTS_UEI      (1)      //!< Bit position for USBC_UH1_USBSTS_UEI.
@@ -9714,14 +9633,14 @@ typedef union _hw_usbc_uh1_usbintr
         unsigned UE : 1; //!< [0] USB Interrupt Enalbe When this bit is one and the UI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned UEE : 1; //!< [1] USB Error Interrupt Enable When this bit is one and the UEI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned PCE : 1; //!< [2] Port Change Detect Interrupt Enable When this bit is one and the PCI bit in n_USBSTS register is a one the controller will issue an interrupt.
-        unsigned FRE : 1; //!< [3] Frame List Rollover Interrupt Enable When this bit is one and the FRI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in host operation mode.
-        unsigned SEE : 1; //!< [4] System Error Interrupt Enable When this bit is one and the SEI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in host operation mode.
-        unsigned AAE : 1; //!< [5] Async Advance Interrupt Enable When this bit is one and the AAI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in host operation mode.
-        unsigned URE : 1; //!< [6] USB Reset Interrupt Enable When this bit is one and the URI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in device operation mode.
+        unsigned FRE : 1; //!< [3] Frame List Rollover Interrupt Enable When this bit is one and the FRI bit in n_USBSTS register is a one the controller will issue an interrupt.
+        unsigned SEE : 1; //!< [4] System Error Interrupt Enable When this bit is one and the SEI bit in n_USBSTS register is a one the controller will issue an interrupt.
+        unsigned AAE : 1; //!< [5] Async Advance Interrupt Enable When this bit is one and the AAI bit in n_USBSTS register is a one the controller will issue an interrupt.
+        unsigned URE : 1; //!< [6] USB Reset Interrupt Enable When this bit is one and the URI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned SRE : 1; //!< [7] SOF Received Interrupt Enable When this bit is one and the SRI bit in n_USBSTS register is a one the controller will issue an interrupt.
-        unsigned SLE : 1; //!< [8] Sleep Interrupt Enable When this bit is one and the SLI bit in n_n_USBSTS register is a one the controller will issue an interrupt. Only used in device operation mode.
+        unsigned SLE : 1; //!< [8] Sleep Interrupt Enable When this bit is one and the SLI bit in n_n_USBSTS register is a one the controller will issue an interrupt.
         unsigned RESERVED0 : 1; //!< [9] Reserved
-        unsigned ULPIE : 1; //!< [10] ULPI Interrupt Enable When this bit is one and the UPLII bit in n_USBSTS register is a one the controller will issue an interrupt. This bit is usable only if the controller support UPLI interface mode.
+        unsigned ULPIE : 1; //!< [10] ULPI Interrupt Enable When this bit is one and the UPLII bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned RESERVED1 : 5; //!< [15:11] These bits are reserved and should be set to zero.
         unsigned NAKE : 1; //!< [16] NAK Interrupt Enable When this bit is one and the NAKI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned RESERVED2 : 1; //!< [17] Reserved
@@ -10084,7 +10003,7 @@ typedef union _hw_usbc_uh1_frindex
     reg32_t U;
     struct _hw_usbc_uh1_frindex_bitfields
     {
-        unsigned FRINDEX : 14; //!< [13:0] Frame Index. The value, in this register, increments at the end of each time frame (micro-frame). Bits [N: 3] are used for the Frame List current index. This means that each location of the frame list is accessed 8 times (frames or micro-frames) before moving to the next index. The following illustrates values of N based on the value of the Frame List Size field in the USBCMD register, when used in host mode. USBCMD [Frame List Size] Number Elements N In device mode the value is the current frame number of the last frame transmitted. It is not used as an index. In either mode bits 2:0 indicate the current microframe.
+        unsigned FRINDEX : 14; //!< [13:0] Frame Index.
         unsigned RESERVED0 : 18; //!< [31:14] Reserved
     } B;
 } hw_usbc_uh1_frindex_t;
@@ -10167,7 +10086,7 @@ typedef union _hw_usbc_uh1_periodiclistbase
     struct _hw_usbc_uh1_periodiclistbase_bitfields
     {
         unsigned RESERVED0 : 12; //!< [11:0] Reserved
-        unsigned BASEADR : 20; //!< [31:12] Base Address (Low). These bits correspond to memory address signals [31:12], respectively. Only used by the host controller.
+        unsigned BASEADR : 20; //!< [31:12] Base Address (Low).
     } B;
 } hw_usbc_uh1_periodiclistbase_t;
 #endif
@@ -10230,7 +10149,7 @@ typedef union _hw_usbc_uh1_asynclistaddr
     struct _hw_usbc_uh1_asynclistaddr_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved
-        unsigned ASYBASE : 27; //!< [31:5] Link Pointer Low (LPL). These bits correspond to memory address signals [31:5], respectively. This field may only reference a Queue Head (QH). Only used by the host controller.
+        unsigned ASYBASE : 27; //!< [31:5] Link Pointer Low (LPL).
     } B;
 } hw_usbc_uh1_asynclistaddr_t;
 #endif
@@ -10291,8 +10210,8 @@ typedef union _hw_usbc_uh1_burstsize
     reg32_t U;
     struct _hw_usbc_uh1_burstsize_bitfields
     {
-        unsigned RXPBURST : 8; //!< [7:0] Programmable RX Burst Size. Default value is determined by TXBURST bits in n_HWRXBUF. This register represents the maximum length of a the burst in 32-bit words while moving data from the USB bus to system memory.
-        unsigned TXPBURST : 9; //!< [16:8] Programmable TX Burst Size. Default value is determined by TXBURST bits in n_HWTXBUF. This register represents the maximum length of a the burst in 32-bit words while moving data from system memory to the USB bus.
+        unsigned RXPBURST : 8; //!< [7:0] Programmable RX Burst Size.
+        unsigned TXPBURST : 9; //!< [16:8] Programmable TX Burst Size.
         unsigned RESERVED0 : 15; //!< [31:17] Reserved
     } B;
 } hw_usbc_uh1_burstsize_t;
@@ -10393,10 +10312,10 @@ typedef union _hw_usbc_uh1_txfilltuning
     reg32_t U;
     struct _hw_usbc_uh1_txfilltuning_bitfields
     {
-        unsigned TXSCHOH : 8; //!< [7:0] Scheduler Overhead. (Read/Write) [Default = 0] This register adds an additional fixed offset to the schedule time estimator described above as Tff. As an approximation, the value chosen for this register should limit the number of back-off events captured in the TXSCHHEALTH to less than 10 per second in a highly utilized bus. Choosing a value that is too high for this register is not desired as it can needlessly reduce USB utilization. The time unit represented in this register is 1.267us when a device is connected in High-Speed Mode. The time unit represented in this register is 6.333us when a device is connected in Low/Full Speed Mode. Default value is '08h' for OTG controller core, and '00h' for Host-only controller core.
-        unsigned TXSCHHEALTH : 5; //!< [12:8] Scheduler Health Counter. (Read/Write To Clear) This register increments when the host controller fails to fill the TX latency FIFO to the level programmed by TXFIFOTHRES before running out of time to send the packet before the next Start-Of-Frame. This health counter measures the number of times this occurs to provide feedback to selecting a proper TXSCHOH. Writing to this register will clear the counter and this counter will max. at 31. Default value is '08h' for OTG controller core, and '00h' for Host-only controller core.
+        unsigned TXSCHOH : 8; //!< [7:0] Scheduler Overhead.
+        unsigned TXSCHHEALTH : 5; //!< [12:8] Scheduler Health Counter.
         unsigned RESERVED0 : 3; //!< [15:13] Reserved
-        unsigned TXFIFOTHRES : 6; //!< [21:16] FIFO Burst Threshold. (Read/Write) This register controls the number of data bursts that are posted to the TX latency FIFO in host mode before the packet begins on to the bus. The minimum value is 2 and this value should be a low as possible to maximize USB performance. A higher value can be used in systems with unpredictable latency and/or insufficient bandwidth where the FIFO may underrun because the data transferred from the latency FIFO to USB occurs before it can be replenished from system memory. This value is ignored if the Stream Disable bit in USB_n_USBMODE register is set. Default value is '00h' for OTG controller core, and '02h' for Host-only controller core.
+        unsigned TXFIFOTHRES : 6; //!< [21:16] FIFO Burst Threshold.
         unsigned RESERVED1 : 10; //!< [31:22] Reserved
     } B;
 } hw_usbc_uh1_txfilltuning_t;
@@ -10513,7 +10432,7 @@ typedef union _hw_usbc_uh1_configflag
     reg32_t U;
     struct _hw_usbc_uh1_configflag_bitfields
     {
-        unsigned CF : 1; //!< [0] Configure Flag Host software sets this bit as the last action in its process of configuring the Host Controller. This bit controls the default port-routing control logic.
+        unsigned CF : 1; //!< [0] Configure Flag Host software sets this bit as the last action in its process of configuring the Host Controller.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_usbc_uh1_configflag_t;
@@ -10582,31 +10501,31 @@ typedef union _hw_usbc_uh1_portsc1
     reg32_t U;
     struct _hw_usbc_uh1_portsc1_bitfields
     {
-        unsigned CCS : 1; //!< [0] Current Connect Status-Read Only. In Host Mode: 1=Device is present on port. 0=No device is present. Default = 0. This value reflects the current state of the port, and may not correspond directly to the event that caused the Connect Status Change bit (Bit 1) to be set. This field is zero if Port Power( ) is zero in host mode. In Device Mode: 1=Attached. 0=Not Attached. Default=0. A one indicates that the device successfully attached and is operating in either high speed or full speed as indicated by the High Speed Port bit in this register. A zero indicates that the device did not attach successfully or was forcibly disconnected by the software writing a zero to the Run bit in the USBCMD register. It does not state the device being disconnected or suspended.
-        unsigned CSC : 1; //!< [1] Connect Status Change-R/WC. 1 =Change in Current Connect Status. 0=No change. Default 0. In Host Mode: Indicates a change has occurred in the port's Current Connect Status. The host/device controller sets this bit for all changes to the port device connect status, even if system software has not cleared an existing connect status change. For example, the insertion status changes twice before system software has cleared the changed condition, hub hardware will be 'setting' an already-set bit (that is, the bit will remain set). Software clears this bit by writing a one to it. This field is zero if Port Power( ) is zero in host mode. In Device Mode: This bit is undefined in device controller mode.
-        unsigned PE : 1; //!< [2] Port Enabled/Disabled-Read/Write. 1=Enable. 0=Disable. Default 0. In Host Mode: Ports can only be enabled by the host controller as a part of the reset and enable. Software cannot enable a port by writing a one to this field. Ports can be disabled by either a fault condition (disconnect event or other fault condition) or by the host software. Note that the bit status does not change until the port state actually changes. There may be a delay in disabling or enabling a port due to other host controller and bus events. When the port is disabled, (0b) downstream propagation of data is blocked except for reset. This field is zero if Port Power( ) is zero in host mode. In Device Mode: The device port is always enabled, so this bit is always '1b'.
-        unsigned PEC : 1; //!< [3] Port Enable/Disable Change-R/WC. 1=Port enabled/disabled status has changed. 0=No change. Default = 0. In Host Mode: For the root hub, this bit is set to a one only when a port is disabled due to disconnect on the port or due to the appropriate conditions existing at the EOF2 point (See Chapter 11 of the USB Specification). Software clears this by writing a one to it. This field is zero if Port Power( ) is zero. In Device mode: The device port is always enabled, so this bit is always '0b'.
-        unsigned OCA : 1; //!< [4] Over-current Active-Read Only. Default 0. This bit will automatically transition from one to zero when the over current condition is removed. For host/OTG implementations the user can provide over-current detection to the vbus_pwr_fault input for this condition. For device-only implementations this bit shall always be 0.
-        unsigned OCC : 1; //!< [5] Over-current Change-R/WC. Default=0. This bit is set '1b' by hardware when there is a change to Over-current Active. Software can clear this bit by writing a one to this bit position. For host/OTG implementations the user can provide over-current detection to the vbus_pwr_fault input for this condition. For device-only implementations this bit shall always be 0.
-        unsigned FPR : 1; //!< [6] Force Port Resume -Read/Write. 1= Resume detected/driven on port. 0=No resume (K-state) detected/driven on port. Default = 0. In Host Mode: Software sets this bit to one to drive resume signaling. The Host Controller sets this bit to one if a J-to-K transition is detected while the port is in the Suspend state. When this bit transitions to a one because a J-to-K transition is detected, the Port Change Detect bit in the USBSTS register is also set to one. This bit will automatically change to zero after the resume sequence is complete. This behavior is different from EHCI where the host controller driver is required to set this bit to a zero after the resume duration is timed in the driver. Note that when the Host controller owns the port, the resume sequence follows the defined sequence documented in the USB Specification Revision 2.0. The resume signaling (Full-speed 'K') is driven on the port as long as this bit remains a one. This bit will remain a one until the port has switched to the high-speed idle. Writing a zero has no effect because the port controller will time the resume operation clear the bit the port control state switches to HS or FS idle. This field is zero if Port Power( ) is zero in host mode. This bit is not-EHCI compatible. In Device mode: After the device has been in Suspend State for 5ms or more, software must set this bit to one to drive resume signaling before clearing. The Device Controller will set this bit to one if a J-to-K transition is detected while the port is in the Suspend state. The bit will be cleared when the device returns to normal operation. Also, when this bit wil be cleared because a K-to-J transition detected, the Port Change Detect bit in the USBSTS register is also set to one.
-        unsigned SUSP : 1; //!< [7] Suspend - Read/Write or Read Only. Default = 0b. 1=Port in suspend state. 0=Port not in suspend state. In Host Mode: Read/Write. Port Enabled Bit and Suspend bit of this register define the port states as follows: Bits [Port Enabled, Suspend] Port State 0x Disable 10 Enable 11 Suspend When in suspend state, downstream propagation of data is blocked on this port, except for port reset. The blocking occurs at the end of the current transaction if a transaction was in progress when this bit was written to 1. In the suspend state, the port is sensitive to resume detection. Note that the bit status does not change until the port is suspended and that there may be a delay in suspending a port if there is a transaction currently in progress on the The host controller will unconditionally set this bit to zero when software sets the Force Port Resume bit to zero. The host controller ignores a write of zero to this bit. If host software sets this bit to a one when the port is not enabled (that is, Port enabled bit is a zero) the results are undefined. This field is zero if Port Power( ) is zero in host mode. In Device Mode: Read Only. In device mode this bit is a read only status bit.
-        unsigned PR : 1; //!< [8] Port Reset - Read/Write or Read Only. Default = 0b. In Host Mode: Read/Write. 1=Port is in Reset. 0=Port is not in Reset. Default 0. When software writes a one to this bit the bus-reset sequence as defined in the USB Specification Revision 2.0 is started. This bit will automatically change to zero after the reset sequence is complete. This behavior is different from EHCI where the host controller driver is required to set this bit to a zero after the reset duration is timed in the driver. In Device Mode: This bit is a read only status bit. Device reset from the USB bus is also indicated in the USBSTS register. This field is zero if Port Power( ) is zero.
-        unsigned HSP : 1; //!< [9] High-Speed Port - Read Only. Default = 0b. When the bit is one, the host/device connected to the port is in high-speed mode and if set to zero, the host/device connected to the port is not in a high-speed mode. HSP is redundant with PSPD(bit 27, 26) but remained for compatibility.
-        unsigned LS : 2; //!< [11:10] Line Status-Read Only. These bits reflect the current logical levels of the D+ (bit 11) and D- (bit 10) signal lines. In host mode, the use of linestate by the host controller driver is not necessary (unlike EHCI), because the port controller state machine and the port routing manage the connection of LS and FS. In device mode, the use of linestate by the device controller driver is not necessary. The encoding of the bits are: Bits [11:10] Meaning
-        unsigned PP : 1; //!< [12] Port Power (PP)-Read/Write or Read Only. The function of this bit depends on the value of the Port Power Switching (PPC) field in the HCSPARAMS register. The behavior is as follows: PPC PP Operation 0 1b Read Only - Host controller does not have port power control switches. Each port is hard-wired to power. 1 1b/0b - Read/Write. Host/OTG controller requires port power control switches. This bit represents the current setting of the switch (0=off, 1=on). When power is not available on a port (that is, PP equals a 0), the port is non-functional and will not report attaches, detaches, etc. When an over-current condition is detected on a powered port and PPC is a one, the PP bit in each affected port may be transitional by the host controller driver from a one to a zero (removing power from the port). This feature is implemented in all controller cores (PPC = 1).
-        unsigned PO : 1; //!< [13] Port Owner-Read/Write. Default = 0. This bit unconditionally goes to a 0 when the configured bit in the CONFIGFLAG register makes a 0 to 1 transition. This bit unconditionally goes to 1 whenever the Configured bit is zero System software uses this field to release ownership of the port to a selected host controller (in the event that the attached device is not a high-speed device). Software writes a one to this bit when the attached device is not a high-speed device. A one in this bit means that an internal companion controller owns and controls the port. Port owner handoff is not supported in all controller cores, therefore this bit will always be 0.
-        unsigned PIC : 2; //!< [15:14] Port Indicator Control - Read/Write. Default = Ob. Writing to this field has no effect if the P_INDICATOR bit in the HCSPARAMS register is a zero. Refer to the USB Specification Revision 2.0 for a description on how these bits are to be used. This field is zero if Port Power is zero. Bit Value Meaning
-        unsigned PTC : 4; //!< [19:16] Port Test Control - Read/Write. Default = 0000b. Refer to for the operational model for using these test modes and the USB Specification Revision 2.0, Chapter 7 for details on each test mode. The FORCE_ENABLE_FS and FORCE ENABLE_LS are extensions to the test mode support specified in the EHCI specification. Writing the PTC field to any of the FORCE_ENABLE_{HS/FS/LS} values will force the port into the connected and enabled state at the selected speed. Writing the PTC field back to TEST_MODE_DISABLE will allow the port state machines to progress normally from that point. Low speed operations are not supported as a peripheral device. Any other value than zero indicates that the port is operating in test mode. Value Specific Test
-        unsigned WKCN : 1; //!< [20] Wake on Connect Enable (WKCNNT_E) - Read/Write. Default=0b. Writing this bit to a one enables the port to be sensitive to device connects as wake-up events. This field is zero if Port Power( ) is zero or in device mode.
-        unsigned WKDC : 1; //!< [21] Wake on Disconnect Enable (WKDSCNNT_E) - Read/Write. Default=0b. Writing this bit to a one enables the port to be sensitive to device disconnects as wake-up events. This field is zero if Port Power( ) is zero or in device mode.
-        unsigned WKOC : 1; //!< [22] Wake on Over-current Enable (WKOC_E) - Read/Write. Default = 0b. Writing this bit to a one enables the port to be sensitive to over-current conditions as wake-up events. This field is zero if Port Power( ) is zero.
-        unsigned PHCD : 1; //!< [23] PHY Low Power Suspend - Clock Disable (PLPSCD) - Read/Write. Default = 0b. When this bit is set to '1b', the PHY clock is disabled. Reading this bit will indicate the status of the PHY clock. The PHY clock cannot be disabled if it is being used as the system clock. In device mode, The PHY can be put into Low Power Suspend when the device is not running (USBCMD Run/Stop=0b) or the host has signaled suspend (PORTSC1 SUSPEND=1b). PHY Low power suspend will be cleared automatically when the host initials resume. Before forcing a resume from the device, the device controller driver must clear this bit. In host mode, the PHY can be put into Low Power Suspend when the downstream device has been put into suspend mode or when no downstream device is connected. Low power suspend is completely under the control of software.
-        unsigned PFSC : 1; //!< [24] Port Force Full Speed Connect - Read/Write. Default = 0b. When this bit is set to '1b', the port will be forced to only connect at Full Speed, It disables the chirp sequence that allows the port to identify itself as High Speed.
+        unsigned CCS : 1; //!< [0] Current Connect Status-Read Only.
+        unsigned CSC : 1; //!< [1] Connect Status Change-R/WC.
+        unsigned PE : 1; //!< [2] Port Enabled/Disabled-Read/Write.
+        unsigned PEC : 1; //!< [3] Port Enable/Disable Change-R/WC.
+        unsigned OCA : 1; //!< [4] Over-current Active-Read Only.
+        unsigned OCC : 1; //!< [5] Over-current Change-R/WC.
+        unsigned FPR : 1; //!< [6] Force Port Resume -Read/Write.
+        unsigned SUSP : 1; //!< [7] Suspend - Read/Write or Read Only.
+        unsigned PR : 1; //!< [8] Port Reset - Read/Write or Read Only.
+        unsigned HSP : 1; //!< [9] High-Speed Port - Read Only.
+        unsigned LS : 2; //!< [11:10] Line Status-Read Only.
+        unsigned PP : 1; //!< [12] Port Power (PP)-Read/Write or Read Only.
+        unsigned PO : 1; //!< [13] Port Owner-Read/Write.
+        unsigned PIC : 2; //!< [15:14] Port Indicator Control - Read/Write.
+        unsigned PTC : 4; //!< [19:16] Port Test Control - Read/Write.
+        unsigned WKCN : 1; //!< [20] Wake on Connect Enable (WKCNNT_E) - Read/Write.
+        unsigned WKDC : 1; //!< [21] Wake on Disconnect Enable (WKDSCNNT_E) - Read/Write.
+        unsigned WKOC : 1; //!< [22] Wake on Over-current Enable (WKOC_E) - Read/Write.
+        unsigned PHCD : 1; //!< [23] PHY Low Power Suspend - Clock Disable (PLPSCD) - Read/Write.
+        unsigned PFSC : 1; //!< [24] Port Force Full Speed Connect - Read/Write.
         unsigned PTS : 1; //!< [25] See description at bits 31-30
-        unsigned PSPD : 2; //!< [27:26] Port Speed - Read Only. This register field indicates the speed at which the port is operating. For HS mode operation in the host controller and HS/FS operation in the device controller the port routing steers data to the Protocol engine. For FS and LS mode operation in the host controller, the port routing steers data to the Protocol Engine w/ Embedded Transaction Translator.
-        unsigned PTW : 1; //!< [28] Parallel Transceiver Width - Read/Write. This register bit is used in conjunction with the configuration constant VUSB_HS_PHY8_16 to control whether the data bus width of the UTMI transceiver interface. If VUSB_HS_PHY8_16 is set for 0 or 1 then this bit is read only. If VUSB_HS_PHY8_16 is 2 or 3 then this bit is read/write. This bit is reset to 1 if VUSB_HS_PHY8_16 selects a default UTMI interface width of 16-bits else it is reset to 0. Writing this bit to 0 selects the 8-bit [60MHz] UTMI interface. Writing this bit to 1 selects the 16-bit [30MHz] UTMI interface. This bit has no effect if the Serial interfaces are selected. This bit is not defined in the EHCI specification. VUSB_HS_PHY16_8 parameter: For Elvis, OTG: 3, Host1/Host2/Host3: 0; For Rita, OTG/Host1/Host2/Host3: 3; For Arik, OTG/Host1/Host2/Host3: 1; Parallel Transceiver Width This bit has no effect if serial interface engine is used. These register bits are implementation dependent. For OTG controller core: it is Read/Write. Reset value is '1b'; For Host1/Host2/Host3 controller core, it is Read-Only. Reset value is '0b'. For OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '1b'. For OTG/Host1/Host2/Host3 core, it is Read-Only. Reset value is '1b'. For OTG1/OTG2/Host1 core, it is Read-Only. Reset value is '1b'.
-        unsigned STS : 1; //!< [29] Serial Transceiver Select - Read/Write. This register bit is used in conjunction with the configuration constant VUSB_HS_PHY_SERIAL to control whether the parallel or serial transceiver interface is selected for FS and LS operation. The Serial Interface Engine can be used in combination with the UTMI+ or ULPI physical interface to provide FS/LS signaling instead of the parallel interface. If VUSB_HS_PHY_SERIAL is set for 0 or 1 then this bit is read only. If VUSB_HS_PHY_SERIAL is 3 or 4 then this bit is read/write. This bit has no effect unless Parallel Transceiver Select is set to UTMI+ or ULPI. The Serial/1.1 physical interface will use the Serial Interface Engine for FS/LS signaling regardless of this bit value. Note: This bit is reserved for future operation and is a placeholder adding dynamic use of the serial engine in accord with UMTI+ and ULPI characterization logic. This bit is not defined in the EHCI specification VUSB_HS_PHY_SERIAL parameter: For Elivs,OTG/Host1/Host2/Host3 core: 2 For Rita, OTG/Host1/Host2/Host3 core: 2 For Arik, OTG/Host1/Host2/Host3 core: 0 Serial Transceiver Select - Read/Write Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface Engine is selected 0 Parallel Interface signals is selected Serial Interface Engine can be used in combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the parallel interface signals. When this bit is set '1b', serial interface engine will be used instead of parallel interface signals. This bit has no effect unless PTS bits is set to select UTMI+/ULPI interface. The Serial/USB1.1 PHY/IC-USB will use the serial interface engine for FS/LS signaling regardless of this bit value.
-        unsigned PTS1 : 2; //!< [31:30] Parallel Transceiver Select - Read/Write. This register bit pair is used in conjunction with the configuration constant VUSB_HS_PHY_TYPE to control which parallel transceiver interface is selected. If VUSB_HS_PHY_TYPE is set for 0,1,2, 3, 8 or 10 then this bit is read only. If VUSB_HS_PHY_TYPE is 4,5, 6, 7, 9 or 11then this bit is read/write. Bit field {bit25, bit30, bit31} is reset to: "000b" if VUSB_HS_PHY_TYPE = 0,4 - UTMI/UTMI+ "001b" if VUSB_HS_PHY_TYPE = 1,5 - Reserved "010b" if VUSB_HS_PHY_TYPE = 2,6 - ULPI "011b" if VUSB_HS_PHY_TYPE = 3,7,8,9 - Serial/1.1 PHY/IC USB(FS Only) "100b" if VUSB_HS_PHY_TYPE = 10,11 - UTMI for HSIC PHY This bit is not defined in the EHCI specification. VUSB_HS_PHY_TYPE parameter: For Elvis, OTG/Host core: 7; For Rita, OTG core: 0, Host core: 7 For Arik, OTG core: 0, Host core: 4 Bit field { bit31, bit30}: "00b" UTMI/UTMI+ "01b" Reserved "10b" ULPI "11b" Serial/USB 1.1 PHY/IC-USB (FS Only) Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit31, bi30). For OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '11b'. Parallel Transceiver Select (bit25, bit31, bi30). For OTG core, it's Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it's Read/Write. Reset value is 011b. Parallel Transceiver Select (bit25, bit31, bi30). For OTG core, it is Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it is Read/Write. Reset value is 000b. All USB port interface modes are listed in this field description, but not all are supported. For detail feature of each controller core, please see . The behaviour is unknown when unsupported interface mode is selected.
+        unsigned PSPD : 2; //!< [27:26] Port Speed - Read Only.
+        unsigned PTW : 1; //!< [28] Parallel Transceiver Width This bit has no effect if serial interface engine is used.
+        unsigned STS : 1; //!< [29] Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface Engine is selected 0 Parallel Interface signals is selected Serial Interface Engine can be used in combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the parallel interface signals.
+        unsigned PTS1 : 2; //!< [31:30] Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit25, bit31, bi30).
     } B;
 } hw_usbc_uh1_portsc1_t;
 #endif
@@ -10727,9 +10646,7 @@ typedef union _hw_usbc_uh1_portsc1
 /* --- Register HW_USBC_UH1_PORTSC1, field OCA[4] (RO)
  *
  * Over-current Active-Read Only. Default 0. This bit will automatically transition from one to zero
- * when the over current condition is removed. For host/OTG implementations the user can provide
- * over-current detection to the vbus_pwr_fault input for this condition. For device-only
- * implementations this bit shall always be 0.
+ * when the over current condition is removed.
  *
  * Values:
  * 0 - This port does not have an over-current condition.
@@ -10746,9 +10663,7 @@ typedef union _hw_usbc_uh1_portsc1
 /* --- Register HW_USBC_UH1_PORTSC1, field OCC[5] (RW)
  *
  * Over-current Change-R/WC. Default=0. This bit is set '1b' by hardware when there is a change to
- * Over-current Active. Software can clear this bit by writing a one to this bit position. For
- * host/OTG implementations the user can provide over-current detection to the vbus_pwr_fault input
- * for this condition. For device-only implementations this bit shall always be 0.
+ * Over-current Active. Software can clear this bit by writing a one to this bit position.
  */
 
 #define BP_USBC_UH1_PORTSC1_OCC      (5)      //!< Bit position for USBC_UH1_PORTSC1_OCC.
@@ -11164,10 +11079,6 @@ typedef union _hw_usbc_uh1_portsc1
 /* --- Register HW_USBC_UH1_PORTSC1, field PSPD[27:26] (RW)
  *
  * Port Speed - Read Only. This register field indicates the speed at which the port is operating.
- * For HS mode operation in the host controller and HS/FS operation in the device controller the
- * port routing steers data to the Protocol engine. For FS and LS mode operation in the host
- * controller, the port routing steers data to the Protocol Engine w/ Embedded Transaction
- * Translator.
  *
  * Values:
  * 00 - Full Speed
@@ -11193,21 +11104,8 @@ typedef union _hw_usbc_uh1_portsc1
 
 /* --- Register HW_USBC_UH1_PORTSC1, field PTW[28] (RW)
  *
- * Parallel Transceiver Width - Read/Write. This register bit is used in conjunction with the
- * configuration constant VUSB_HS_PHY8_16 to control whether the data bus width of the UTMI
- * transceiver interface. If VUSB_HS_PHY8_16 is set for 0 or 1 then this bit is read only. If
- * VUSB_HS_PHY8_16 is 2 or 3 then this bit is read/write. This bit is reset to 1 if VUSB_HS_PHY8_16
- * selects a default UTMI interface width of 16-bits else it is reset to 0. Writing this bit to 0
- * selects the 8-bit [60MHz] UTMI interface. Writing this bit to 1 selects the 16-bit [30MHz] UTMI
- * interface. This bit has no effect if the Serial interfaces are selected. This bit is not defined
- * in the EHCI specification. VUSB_HS_PHY16_8 parameter: For Elvis, OTG: 3, Host1/Host2/Host3: 0;
- * For Rita, OTG/Host1/Host2/Host3: 3; For Arik, OTG/Host1/Host2/Host3: 1; Parallel Transceiver
- * Width This bit has no effect if serial interface engine is used. These register bits are
- * implementation dependent. For OTG controller core: it is Read/Write. Reset value is '1b'; For
- * Host1/Host2/Host3 controller core, it is Read-Only. Reset value is '0b'. For
- * OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '1b'. For OTG/Host1/Host2/Host3
- * core, it is Read-Only. Reset value is '1b'. For OTG1/OTG2/Host1 core, it is Read-Only. Reset
- * value is '1b'.
+ * Parallel Transceiver Width This bit has no effect if serial interface engine is used. For
+ * OTG/Host1/Host2/Host3 core, it is Read-Only. Reset value is '1b'.
  *
  * Values:
  * 0 - Select the 8-bit UTMI interface [60MHz]
@@ -11231,25 +11129,13 @@ typedef union _hw_usbc_uh1_portsc1
 
 /* --- Register HW_USBC_UH1_PORTSC1, field STS[29] (RW)
  *
- * Serial Transceiver Select - Read/Write. This register bit is used in conjunction with the
- * configuration constant VUSB_HS_PHY_SERIAL to control whether the parallel or serial transceiver
- * interface is selected for FS and LS operation. The Serial Interface Engine can be used in
- * combination with the UTMI+ or ULPI physical interface to provide FS/LS signaling instead of the
- * parallel interface. If VUSB_HS_PHY_SERIAL is set for 0 or 1 then this bit is read only. If
- * VUSB_HS_PHY_SERIAL is 3 or 4 then this bit is read/write. This bit has no effect unless Parallel
- * Transceiver Select is set to UTMI+ or ULPI. The Serial/1.1 physical interface will use the Serial
- * Interface Engine for FS/LS signaling regardless of this bit value. Note: This bit is reserved for
- * future operation and is a placeholder adding dynamic use of the serial engine in accord with
- * UMTI+ and ULPI characterization logic. This bit is not defined in the EHCI specification
- * VUSB_HS_PHY_SERIAL parameter: For Elivs,OTG/Host1/Host2/Host3 core: 2 For Rita,
- * OTG/Host1/Host2/Host3 core: 2 For Arik, OTG/Host1/Host2/Host3 core: 0 Serial Transceiver Select -
- * Read/Write Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface
- * Engine is selected 0 Parallel Interface signals is selected Serial Interface Engine can be used
- * in combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the
- * parallel interface signals. When this bit is set '1b', serial interface engine will be used
- * instead of parallel interface signals. This bit has no effect unless PTS bits is set to select
- * UTMI+/ULPI interface. The Serial/USB1.1 PHY/IC-USB will use the serial interface engine for FS/LS
- * signaling regardless of this bit value.
+ * Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface Engine is
+ * selected 0 Parallel Interface signals is selected Serial Interface Engine can be used in
+ * combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the parallel
+ * interface signals. When this bit is set '1b', serial interface engine will be used instead of
+ * parallel interface signals. This bit has no effect unless PTS bits is set to select UTMI+/ULPI
+ * interface. The Serial/USB1.1 PHY/IC-USB will use the serial interface engine for FS/LS signaling
+ * regardless of this bit value.
  */
 
 #define BP_USBC_UH1_PORTSC1_STS      (29)      //!< Bit position for USBC_UH1_PORTSC1_STS.
@@ -11268,25 +11154,12 @@ typedef union _hw_usbc_uh1_portsc1
 
 /* --- Register HW_USBC_UH1_PORTSC1, field PTS1[31:30] (RW)
  *
- * Parallel Transceiver Select - Read/Write. This register bit pair is used in conjunction with the
- * configuration constant VUSB_HS_PHY_TYPE to control which parallel transceiver interface is
- * selected. If VUSB_HS_PHY_TYPE is set for 0,1,2, 3, 8 or 10 then this bit is read only. If
- * VUSB_HS_PHY_TYPE is 4,5, 6, 7, 9 or 11then this bit is read/write. Bit field {bit25, bit30,
- * bit31} is reset to: "000b" if VUSB_HS_PHY_TYPE = 0,4 - UTMI/UTMI+ "001b" if VUSB_HS_PHY_TYPE =
- * 1,5 - Reserved "010b" if VUSB_HS_PHY_TYPE = 2,6 - ULPI "011b" if VUSB_HS_PHY_TYPE = 3,7,8,9 -
- * Serial/1.1 PHY/IC USB(FS Only) "100b" if VUSB_HS_PHY_TYPE = 10,11 - UTMI for HSIC PHY This bit is
- * not defined in the EHCI specification. VUSB_HS_PHY_TYPE parameter: For Elvis, OTG/Host core: 7;
- * For Rita, OTG core: 0, Host core: 7 For Arik, OTG core: 0, Host core: 4 Bit field { bit31,
- * bit30}: "00b" UTMI/UTMI+ "01b" Reserved "10b" ULPI "11b" Serial/USB 1.1 PHY/IC-USB (FS Only) Bit
- * field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB 1.1
- * PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit31, bi30). For
- * OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '11b'. Parallel Transceiver Select
- * (bit25, bit31, bi30). For OTG core, it's Read-Only. Reset value is 000b. For Host1/Host2/Host3
- * core, it's Read/Write. Reset value is 011b. Parallel Transceiver Select (bit25, bit31, bi30). For
- * OTG core, it is Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it is Read/Write.
- * Reset value is 000b. All USB port interface modes are listed in this field description, but not
- * all are supported. For detail feature of each controller core, please see . The behaviour is
- * unknown when unsupported interface mode is selected.
+ * Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB
+ * 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit25, bit31, bi30). For OTG
+ * core, it is Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it is Read/Write. Reset
+ * value is 000b. All USB port interface modes are listed in this field description, but not all are
+ * supported. For detail feature of each controller core, please see . The behaviour is unknown when
+ * unsupported interface mode is selected.
  */
 
 #define BP_USBC_UH1_PORTSC1_PTS1      (30)      //!< Bit position for USBC_UH1_PORTSC1_PTS1.
@@ -11320,10 +11193,10 @@ typedef union _hw_usbc_uh1_usbmode
     reg32_t U;
     struct _hw_usbc_uh1_usbmode_bitfields
     {
-        unsigned CM : 2; //!< [1:0] Controller Mode - R/WO. Controller mode is defaulted to the proper mode for host only and device only implementations. For those designs that contain both host & device capability, the controller defaults to an idle state and needs to be initialized to the desired operating mode after reset. For combination host/device controllers, this register can only be written once after reset. If it is necessary to switch modes, software must reset the controller by writing to the RESET bit in the USBCMD register before reprogramming this register. For OTG controller core, reset value is '00b'. For Host-only controller core, reset value is '11b'.
-        unsigned ES : 1; //!< [2] Endian Select - Read/Write. This bit can change the byte alignment of the transfer buffers to match the host microprocessor. The bit fields in the microprocessor interface and the data structures are unaffected by the value of this bit because they are based upon the 32-bit word. Bit Meaning
-        unsigned SLOM : 1; //!< [3] Setup Lockout Mode. In device mode, this bit controls behavior of the setup lock mechanism. See .
-        unsigned SDIS : 1; //!< [4] Stream Disable Mode. (0 - Inactive [default]; 1 - Active) Device Mode: Setting to a '1' disables double priming on both RX and TX for low bandwidth systems. This mode ensures that when the RX and TX buffers are sufficient to contain an entire packet that the standard double buffering scheme is disabled to prevent overruns/underruns in bandwidth limited systems. Note: In High Speed Mode, all packets received are responded to with a NYET handshake when stream disable is active. Host Mode: Setting to a '1' ensures that overruns/underruns of the latency FIFO are eliminated for low bandwidth systems where the RX and TX buffers are sufficient to contain the entire packet. Enabling stream disable also has the effect of ensuring the TX latency is filled to capacity before the packet is launched onto the USB. Time duration to pre-fill the FIFO becomes significant when stream disable is active. See and TXTTFILLTUNING [MPH Only] to characterize the adjustments needed for the scheduler when using this feature. The use of this feature substantially limits of the overall USB performance that can be achieved.
+        unsigned CM : 2; //!< [1:0] Controller Mode - R/WO.
+        unsigned ES : 1; //!< [2] Endian Select - Read/Write.
+        unsigned SLOM : 1; //!< [3] Setup Lockout Mode.
+        unsigned SDIS : 1; //!< [4] Stream Disable Mode.
         unsigned RESERVED0 : 11; //!< [15:5] Reserved.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
@@ -11478,7 +11351,7 @@ typedef union _hw_usbc_uh2_id
     reg32_t U;
     struct _hw_usbc_uh2_id_bitfields
     {
-        unsigned ID : 6; //!< [5:0] Configuration number. This number is set to 0x05 and indicates that the peripheral is USB 2.0 High-Speed core.
+        unsigned ID : 6; //!< [5:0] Configuration number.
         unsigned RESERVED0 : 2; //!< [7:6] Reserved
         unsigned NID : 6; //!< [13:8] Complement version of ID
         unsigned RESERVED1 : 2; //!< [15:14] Reserved
@@ -11556,9 +11429,9 @@ typedef union _hw_usbc_uh2_hwgeneral
     struct _hw_usbc_uh2_hwgeneral_bitfields
     {
         unsigned RESERVED0 : 4; //!< [3:0] Reserved
-        unsigned PHYW : 2; //!< [5:4] Data width of the transciever connected to the controller core. PHYW bit reset value: '11b' for OTG controller core, '00b' for Host-only controller core. PHYW bit reset value is '10b'. PHYW bit reset value is '01b'.
-        unsigned PHYM : 3; //!< [8:6] Transciever type PHYM bit reset value is '0111b'. PHYM bit reset value: '0000b' for OTG controller core, '0111b' for Host-only controller core. PHYM bit reset value: '0000b' for OTG controller core, '0100b' for Host-only controller core.
-        unsigned SM : 2; //!< [10:9] Serial interface mode capability SM bit reset value is '10b' SM bit reset value is '00b'
+        unsigned PHYW : 2; //!< [5:4] Data width of the transciever connected to the controller core.
+        unsigned PHYM : 3; //!< [8:6] Transciever type PHYM bit reset value: '0000b' for OTG controller core, '0100b' for Host-only controller core.
+        unsigned SM : 2; //!< [10:9] Serial interface mode capability SM bit reset value is '00b'
         unsigned RESERVED1 : 21; //!< [31:11] Reserved
     } B;
 } hw_usbc_uh2_hwgeneral_t;
@@ -11580,13 +11453,11 @@ typedef union _hw_usbc_uh2_hwgeneral
 
 /* --- Register HW_USBC_UH2_HWGENERAL, field PHYW[5:4] (RO)
  *
- * Data width of the transciever connected to the controller core. PHYW bit reset value: '11b' for
- * OTG controller core, '00b' for Host-only controller core. PHYW bit reset value is '10b'. PHYW bit
- * reset value is '01b'.
+ * Data width of the transciever connected to the controller core. PHYW bit reset value is '01b'.
  *
  * Values:
- * 00 -  8 bit wide data bus  Software non-programmable  60MHz clock from the transciever
- * 01 -  16 bit wide data bus  Software non-programmable  30MHz clock from the transciever
+ * 00 -  8 bit wide data bus  Software non-programmable
+ * 01 -  16 bit wide data bus  Software non-programmable
  * 10 -  Reset to 8 bit wide data bus  Software programmable
  * 11 -  Reset to 16 bit wide data bus  Software programmable
  */
@@ -11600,9 +11471,8 @@ typedef union _hw_usbc_uh2_hwgeneral
 
 /* --- Register HW_USBC_UH2_HWGENERAL, field PHYM[8:6] (RO)
  *
- * Transciever type PHYM bit reset value is '0111b'. PHYM bit reset value: '0000b' for OTG
- * controller core, '0111b' for Host-only controller core. PHYM bit reset value: '0000b' for OTG
- * controller core, '0100b' for Host-only controller core.
+ * Transciever type PHYM bit reset value: '0000b' for OTG controller core, '0100b' for Host-only
+ * controller core.
  *
  * Values:
  * 000 - UTMI/UMTI+
@@ -11628,7 +11498,7 @@ typedef union _hw_usbc_uh2_hwgeneral
 
 /* --- Register HW_USBC_UH2_HWGENERAL, field SM[10:9] (RO)
  *
- * Serial interface mode capability SM bit reset value is '10b' SM bit reset value is '00b'
+ * Serial interface mode capability SM bit reset value is '00b'
  *
  * Values:
  * 00 - No Serial Engine, always use parallel signalling.
@@ -11654,15 +11524,15 @@ typedef union _hw_usbc_uh2_hwgeneral
  *
  * Reset value: 0x10020001
  *
- * Host hardware parameters as defined in System Level Issues and Core Configuration.
+
  */
 typedef union _hw_usbc_uh2_hwhost
 {
     reg32_t U;
     struct _hw_usbc_uh2_hwhost_bitfields
     {
-        unsigned HC : 1; //!< [0] Host Capable. Indicating whether host operation mode is supported or not.
-        unsigned NPORT : 3; //!< [3:1] The Nmber of downstream ports supported by the host controller is (NPORT+1). When these bits value is '000', it indicates a single-port host controller.
+        unsigned HC : 1; //!< [0] Host Capable.
+        unsigned NPORT : 3; //!< [3:1] The Nmber of downstream ports supported by the host controller is (NPORT+1).
         unsigned RESERVED0 : 28; //!< [31:4] Reserved
     } B;
 } hw_usbc_uh2_hwhost_t;
@@ -11720,16 +11590,16 @@ typedef union _hw_usbc_uh2_hwhost
  *
  * Reset value: 0x80080b08
  *
- * TX buffer hardware parameters are as defined in System Level Issues and Core Configuration.
+
  */
 typedef union _hw_usbc_uh2_hwtxbuf
 {
     reg32_t U;
     struct _hw_usbc_uh2_hwtxbuf_bitfields
     {
-        unsigned TXBURST : 8; //!< [7:0] Default burst size for memory to TX buffer transfer. This is reset value of TXPBURST bits in USB core regsiter USB_n_BURSTSIZE. Please see .
+        unsigned TXBURST : 8; //!< [7:0] Default burst size for memory to TX buffer transfer.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved
-        unsigned TXCHANADD : 8; //!< [23:16] TX FIFO Buffer size is: (2^TXCHANADD) * 4 Bytes. These bits are set to '08h', so buffer size is 256*4 Bytes. For the OTG controller operating in device mode, this is the FIFO buffer size per endpoint. As the OTG controller has 8 TX endpoint, there are 8 of these buffers. For the OTG controller operating in host mode, or for Host-only controller, the entire buffer memory is used as a single TX buffer. Therefore, there is only 1 of this buffer
+        unsigned TXCHANADD : 8; //!< [23:16] TX FIFO Buffer size is: (2^TXCHANADD) * 4 Bytes.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uh2_hwtxbuf_t;
@@ -11786,15 +11656,15 @@ typedef union _hw_usbc_uh2_hwtxbuf
  *
  * Reset value: 0x00000808
  *
- * RX FIFO buffer hardware parameters are as defined in System Level Issues and Core Configuration.
+
  */
 typedef union _hw_usbc_uh2_hwrxbuf
 {
     reg32_t U;
     struct _hw_usbc_uh2_hwrxbuf_bitfields
     {
-        unsigned RXBURST : 8; //!< [7:0] Default burst size for memory to RX buffer transfer. This is reset value of RXPBURST bits in USB core regsiter USB_n_BURSTSIZE. Please see .
-        unsigned RXADD : 8; //!< [15:8] Buffer total size for all receive endpoints is (2^RXADD). RX Buffer size is: (2^RXADD) * 4 Bytes. These bits are set to '08h', so buffer size is 256*4 Bytes. There is a single Receive FIFO buffer in the USB controller. The buffer is shared for all endpoints for the OTG controller in device mode.
+        unsigned RXBURST : 8; //!< [7:0] Default burst size for memory to RX buffer transfer.
+        unsigned RXADD : 8; //!< [15:8] Buffer total size for all receive endpoints is (2^RXADD).
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_usbc_uh2_hwrxbuf_t;
@@ -11857,7 +11727,7 @@ typedef union _hw_usbc_uh2_gptimer0ld
     reg32_t U;
     struct _hw_usbc_uh2_gptimer0ld_bitfields
     {
-        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'. This value represents the time in microseconds minus 1 for the timer duration. Example: for a one millisecond timer, load 1000-1=999 or 0x0003E7. Max value is 0xFFFFFF or 16.777215 seconds.
+        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uh2_gptimer0ld_t;
@@ -11925,7 +11795,7 @@ typedef union _hw_usbc_uh2_gptimer0ctrl
     reg32_t U;
     struct _hw_usbc_uh2_gptimer0ctrl_bitfields
     {
-        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter. This field is the count value of the countdown timer.
+        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter.
         unsigned GPTMODE : 1; //!< [24] General Purpose Timer Mode In one shot mode, the timer will count down to zero, generate an interrupt, and stop until the counter is reset by software; In repeat mode, the timer will count down to zero, generate an interrupt and automatically reload the counter value from GPTLD bits to start again.
         unsigned RESERVED0 : 5; //!< [29:25] Reserved
         unsigned GPTRST : 1; //!< [30] General Purpose Timer Reset
@@ -12063,7 +11933,7 @@ typedef union _hw_usbc_uh2_gptimer1ld
     reg32_t U;
     struct _hw_usbc_uh2_gptimer1ld_bitfields
     {
-        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'. This value represents the time in microseconds minus 1 for the timer duration. Example: for a one millisecond timer, load 1000-1=999 or 0x0003E7. Max value is 0xFFFFFF or 16.777215 seconds.
+        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uh2_gptimer1ld_t;
@@ -12131,8 +12001,8 @@ typedef union _hw_usbc_uh2_gptimer1ctrl
     reg32_t U;
     struct _hw_usbc_uh2_gptimer1ctrl_bitfields
     {
-        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter. This field is the count value of the countdown timer.
-        unsigned GPTMODE : 1; //!< [24] General Purpose Timer Mode In one shot mode, the timer will count down to zero, generate an interrupt, and stop until the counter is reset by software. In repeat mode, the timer will count down to zero, generate an interrupt and automatically reload the counter value from GPTLD bits to start again.
+        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter.
+        unsigned GPTMODE : 1; //!< [24] General Purpose Timer Mode In one shot mode, the timer will count down to zero, generate an interrupt, and stop until the counter is reset by software.
         unsigned RESERVED0 : 5; //!< [29:25] Reserved
         unsigned GPTRST : 1; //!< [30] General Purpose Timer Reset
         unsigned GPTRUN : 1; //!< [31] General Purpose Timer Run GPTCNT bits are not effected when setting or clearing this bit.
@@ -12269,7 +12139,7 @@ typedef union _hw_usbc_uh2_sbuscfg
     reg32_t U;
     struct _hw_usbc_uh2_sbuscfg_bitfields
     {
-        unsigned AHBBRST : 3; //!< [2:0] AHB master interface Burst configuration These bits control AHB master transfer type sequence (or priority). This register overrides n_BURSTSIZE register when its value is not zero.
+        unsigned AHBBRST : 3; //!< [2:0] AHB master interface Burst configuration These bits control AHB master transfer type sequence (or priority).
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_usbc_uh2_sbuscfg_t;
@@ -12342,7 +12212,7 @@ typedef union _hw_usbc_uh2_caplength
     reg8_t U;
     struct _hw_usbc_uh2_caplength_bitfields
     {
-        unsigned char CAPLENGTH : 8; //!< [7:0] These bits are used as an offset to add to register base to find the beginning of the Operational Register. Default value is '40h'.
+        unsigned char CAPLENGTH : 8; //!< [7:0] These bits are used as an offset to add to register base to find the beginning of the Operational Register.
     } B;
 } hw_usbc_uh2_caplength_t;
 #endif
@@ -12440,15 +12310,15 @@ typedef union _hw_usbc_uh2_hcsparams
     reg32_t U;
     struct _hw_usbc_uh2_hcsparams_bitfields
     {
-        unsigned N_PORTS : 4; //!< [3:0] Number of downstream ports. This field specifies the number of physical downstream ports implemented on this host controller. The value of this field determines how many port registers are addressable in the Operational Register. Valid values are in the range of 1h to Fh. A zero in this field is undefined. These bits are always set to '0001b' because all controller cores are Single-Port Host.
-        unsigned PPC : 1; //!< [4] Port Power Control This field indicates whether the host controller implementation includes port power control. A one indicates the ports have port power switches. A zero indicates the ports do not have port power switches. The value of this field affects the functionality of the Port Power field in each port status and control register
+        unsigned N_PORTS : 4; //!< [3:0] Number of downstream ports.
+        unsigned PPC : 1; //!< [4] Port Power Control This field indicates whether the host controller implementation includes port power control.
         unsigned RESERVED0 : 3; //!< [7:5] Reserved
-        unsigned N_PCC : 4; //!< [11:8] Number of Ports per Companion Controller This field indicates the number of ports supported per internal Companion Controller. It is used to indicate the port routing configuration to the system software. For example, if N_PORTS has a value of 6 and N_CC has a value of 2 then N_PCC could have a value of 3. The convention is that the first N_PCC ports are assumed to be routed to companion controller 1, the next N_PCC ports to companion controller 2, etc. In the previous example, the N_PCC could have been 4, where the first 4 are routed to companion controller 1 and the last two are routed to companion controller 2. The number in this field must be consistent with N_PORTS and N_CC. These bits are '0000b' in all controller core.
-        unsigned N_CC : 4; //!< [15:12] Number of Companion Controller (N_CC). This field indicates the number of companion controllers associated with this USB2.0 host controller. These bits are '0000b' in all controller core.
-        unsigned PI : 1; //!< [16] Port Indicators (P INDICATOR) This bit indicates whether the ports support port indicator control. When set to one, the port status and control registers include a read/writeable field for controlling the state of the port indicator This bit is "1b" in all controller core.
+        unsigned N_PCC : 4; //!< [11:8] Number of Ports per Companion Controller This field indicates the number of ports supported per internal Companion Controller.
+        unsigned N_CC : 4; //!< [15:12] Number of Companion Controller (N_CC).
+        unsigned PI : 1; //!< [16] Port Indicators (P INDICATOR) This bit indicates whether the ports support port indicator control.
         unsigned RESERVED1 : 3; //!< [19:17] Reserved
-        unsigned N_PTT : 4; //!< [23:20] Number of Ports per Transaction Translator (N_PTT). Default value '0000b' This field indicates the number of ports assigned to each transaction translator within the USB2.0 host controller. These bits would be set to equal N_PORTS for Multi-Port Host, and '0000b' for Single-Port Host.
-        unsigned N_TT : 4; //!< [27:24] Number of Transaction Translators (N_TT). Default value '0000b' This field indicates the number of embedded transaction translators associated with the USB2.0 host controller. These bits would be set to '0001b' for Multi-Port Host, and '0000b' for Single-Port Host.
+        unsigned N_PTT : 4; //!< [23:20] Number of Ports per Transaction Translator (N_PTT).
+        unsigned N_TT : 4; //!< [27:24] Number of Transaction Translators (N_TT).
         unsigned RESERVED2 : 4; //!< [31:28] Reserved
     } B;
 } hw_usbc_uh2_hcsparams_t;
@@ -12590,11 +12460,11 @@ typedef union _hw_usbc_uh2_hccparams
     struct _hw_usbc_uh2_hccparams_bitfields
     {
         unsigned ADC : 1; //!< [0] 64-bit Addressing Capability This bit is set '0b' in all controller core, no 64-bit addressing capability is supported.
-        unsigned PFL : 1; //!< [1] Programmable Frame List Flag If this bit is set to zero, then the system software must use a frame list length of 1024 elements with this host controller. The USBCMD register Frame List Size field is a read-only register and must be set to zero. If set to a one, then the system software can specify and use a smaller frame list and configure the host controller via the USBCMD register Frame List Size field. The frame list must always be aligned on a 4K-page boundary. This requirement ensures that the frame list is always physically contiguous. This bit is set '1b' in all controller core.
-        unsigned ASP : 1; //!< [2] Asynchronous Schedule Park Capability If this bit is set to a one, then the host controller supports the park feature for high-speed queue heads in the Asynchronous Schedule. The feature can be disabled or enabled and set to a specific level by using the Asynchronous Schedule Park Mode Enable and Asynchronous Schedule Park Mode Count fields in the USBCMD register. This bit is set '1b' in all controller core. ASP bit reset value: '00b' for OTG controller core, '11b' for Host-only controller core.
+        unsigned PFL : 1; //!< [1] Programmable Frame List Flag If this bit is set to zero, then the system software must use a frame list length of 1024 elements with this host controller.
+        unsigned ASP : 1; //!< [2] Asynchronous Schedule Park Capability If this bit is set to a one, then the host controller supports the park feature for high-speed queue heads in the Asynchronous Schedule.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned IST : 4; //!< [7:4] Isochronous Scheduling Threshold. This field indicates, relative to the current position of the executing host controller, where software can reliably update the isochronous schedule. When bit [7] is zero, the value of the least significant 3 bits indicates the number of micro-frames a host controller can hold a set of isochronous data structures (one or more) before flushing the state. When bit [7] is a one, then host software assumes the host controller may cache an isochronous data structure for an entire frame. These bits are set '00h' in all controller core.
-        unsigned EECP : 8; //!< [15:8] EHCI Extended Capabilities Pointer. This field indicates the existence of a capabilities list. A value of 00h indicates no extended capabilities are implemented. A non-zero value in this register indicates the offset in PCI configuration space of the first EHCI extended capability. The pointer value must be 40h or greater if implemented to maintain the consistency of the PCI header defined for this class of device. These bits are set '00h' in all controller core.
+        unsigned IST : 4; //!< [7:4] Isochronous Scheduling Threshold.
+        unsigned EECP : 8; //!< [15:8] EHCI Extended Capabilities Pointer.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_usbc_uh2_hccparams_t;
@@ -12648,9 +12518,8 @@ typedef union _hw_usbc_uh2_hccparams
  * Asynchronous Schedule Park Capability If this bit is set to a one, then the host controller
  * supports the park feature for high-speed queue heads in the Asynchronous Schedule. The feature
  * can be disabled or enabled and set to a specific level by using the Asynchronous Schedule Park
- * Mode Enable and Asynchronous Schedule Park Mode Count fields in the USBCMD register. This bit is
- * set '1b' in all controller core. ASP bit reset value: '00b' for OTG controller core, '11b' for
- * Host-only controller core.
+ * Mode Enable and Asynchronous Schedule Park Mode Count fields in the USBCMD register. ASP bit
+ * reset value: '00b' for OTG controller core, '11b' for Host-only controller core.
  */
 
 #define BP_USBC_UH2_HCCPARAMS_ASP      (2)      //!< Bit position for USBC_UH2_HCCPARAMS_ASP.
@@ -12708,21 +12577,21 @@ typedef union _hw_usbc_uh2_usbcmd
     reg32_t U;
     struct _hw_usbc_uh2_usbcmd_bitfields
     {
-        unsigned RS : 1; //!< [0] Run/Stop (RS) - Read/Write. Default 0b. 1=Run. 0=Stop. Host operation mode: When set to '1b', the Controller proceeds with the execution of the schedule. The Controller continues execution as long as this bit is set to a one. When this bit is set to 0, the Host Controller completes the current transaction on the USB and then halts. The HC Halted bit in the status register indicates when the Controller has finished the transaction and has entered the stopped state. Software should not write a one to this field unless the controller is in the Halted state (that is, HCHalted in the USBSTS register is a one). Device operation mode: Writing a one to this bit will cause the controller to enable a pull-up on D+ and initiate an attach event. This control bit is not directly connected to the pull-up enable, as the pull-up will become disabled upon transitioning into high-speed mode. Software should use this bit to prevent an attach event before the controller has been properly initialized. Writing a 0 to this will cause a detach event.
-        unsigned RST : 1; //!< [1] Controller Reset (RESET) - Read/Write. Software uses this bit to reset the controller. This bit is set to zero by the Host/Device Controller when the reset process is complete. Software cannot terminate the reset process early by writing a zero to this register. Host operation mode: When software writes a one to this bit, the Controller resets its internal pipelines, timers, counters, state machines etc. to their initial value. Any transaction currently in progress on USB is immediately terminated. A USB reset is not driven on downstream ports. Software should not set this bit to a one when the HCHalted bit in the USBSTS register is a zero. Attempting to reset an actively running host controller will result in undefined behavior. Device operation mode: When software writes a one to this bit, the Controller resets its internal pipelines, timers, counters, state machines etc. to their initial value. Writing a one to this bit when the device is in the attached state is not recommended, because the effect on an attached host is undefined. In order to ensure that the device is not in an attached state before initiating a device controller reset, all primed endpoints should be flushed and the USBCMD Run/Stop bit should be set to 0.
+        unsigned RS : 1; //!< [0] Run/Stop (RS) - Read/Write.
+        unsigned RST : 1; //!< [1] Controller Reset (RESET) - Read/Write.
         unsigned FS : 2; //!< [3:2] See description at bit 15
-        unsigned PSE : 1; //!< [4] Periodic Schedule Enable- Read/Write. Default 0b. This bit controls whether the host controller skips processing the Periodic Schedule. Only the host controller uses this bit. Values Meaning
-        unsigned ASE : 1; //!< [5] Asynchronous Schedule Enable - Read/Write. Default 0b. This bit controls whether the host controller skips processing the Asynchronous Schedule. Only the host controller uses this bit. Values Meaning
-        unsigned IAA : 1; //!< [6] Interrupt on Async Advance Doorbell - Read/Write. This bit is used as a doorbell by software to tell the host controller to issue an interrupt the next time it advances asynchronous schedule. Software must write a 1 to this bit to ring the doorbell. When the host controller has evicted all appropriate cached schedule states, it sets the Interrupt on Async Advance status bit in the USBSTS register. If the Interrupt on Sync Advance Enable bit in the USBINTR register is one, then the host controller will assert an interrupt at the next interrupt threshold. The host controller sets this bit to zero after it has set the Interrupt on Sync Advance status bit in the USBSTS register to one. Software should not write a one to this bit when the asynchronous schedule is inactive. Doing so will yield undefined results. This bit is only used in host mode. Writing a one to this bit when device mode is selected will have undefined results.
+        unsigned PSE : 1; //!< [4] Periodic Schedule Enable- Read/Write.
+        unsigned ASE : 1; //!< [5] Asynchronous Schedule Enable - Read/Write.
+        unsigned IAA : 1; //!< [6] Interrupt on Async Advance Doorbell - Read/Write.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned ASP : 2; //!< [9:8] Asynchronous Schedule Park Mode Count - Read/Write. If the Asynchronous Park Capability bit in the HCCPARAMS register is a one, then this field defaults to 3h and is R/W. Otherwise it defaults to zero and is Read-Only. It contains a count of the number of successive transactions the host controller is allowed to execute from a high-speed queue head on the Asynchronous schedule before continuing traversal of the Asynchronous schedule. Valid values are 1h to 3h. Software must not write a zero to this bit when Park Mode Enable is a one as this will result in undefined behavior. This field is set to 3h in all controller core.
+        unsigned ASP : 2; //!< [9:8] Asynchronous Schedule Park Mode Count - Read/Write.
         unsigned RESERVED1 : 1; //!< [10] Reserved
-        unsigned ASPE : 1; //!< [11] Asynchronous Schedule Park Mode Enable - Read/Write. If the Asynchronous Park Capability bit in the HCCPARAMS register is a one, then this bit defaults to a 1h and is R/W. Otherwise the bit must be a zero and is RO. Software uses this bit to enable or disable Park mode. When this bit is one, Park mode is enabled. When this bit is a zero, Park mode is disabled. This field is set to '1b' in this implementation. ASPE bit reset value: '0b' for OTG controller core, '1b' for Host-only controller core.
+        unsigned ASPE : 1; //!< [11] Asynchronous Schedule Park Mode Enable - Read/Write.
         unsigned RESERVED2 : 1; //!< [12] Reserved
-        unsigned SUTW : 1; //!< [13] Setup TripWire - Read/Write. [device mode only] This bit is used as a semaphore to ensure that the setup data payload of 8 bytes is extracted from a QH by the DCD without being corrupted. If the setup lockout mode is off (SLOM bit in USB core register n_USBMODE, see ) then there is a hazard when new setup data arrives while the DCD is copying the setup data payload from the QH for a previous setup packet. This bit is set and cleared by software. This bit would also be cleared by hardware when a hazard detected. For more information on the use of this bit, see the Device Operational Model section of the USB-HS OTG High-Speed USB On-The-Go DEV reference manual.
-        unsigned ATDTW : 1; //!< [14] Add dTD TripWire - Read/Write. [device mode only] This bit is used as a semaphore to ensure proper addition of a new dTD to an active (primed) endpoint's linked list. This bit is set and cleared by software. This bit would also be cleared by hardware when state machine is hazard region for which adding a dTD to a primed endpoint may go unrecognized. For more information on the use of this bit, see the Device Operational Model section of the USB-HS OTG High-Speed USB On-The-Go DEV reference manual.
-        unsigned FS1 : 1; //!< [15] See also bits 3-2 Frame List Size - (Read/Write or Read Only). [host mode only] This field is Read/Write only if Programmable Frame List Flag in the HCCPARAMS registers is set to one. This field specifies the size of the frame list that controls which bits in the Frame Index Register should be used for the Frame List Current index. This field is made up from USBCMD bits 15, 3 and 2. Value Meaning
-        unsigned ITC : 8; //!< [23:16] Interrupt Threshold Control -Read/Write. The system software uses this field to set the maximum rate at which the host/device controller will issue interrupts. ITC contains the maximum interrupt interval measured in micro-frames. Valid values are shown below. Value Maximum Interrupt Interval
+        unsigned SUTW : 1; //!< [13] Setup TripWire - Read/Write.
+        unsigned ATDTW : 1; //!< [14] Add dTD TripWire - Read/Write.
+        unsigned FS1 : 1; //!< [15] See also bits 3-2 Frame List Size - (Read/Write or Read Only).
+        unsigned ITC : 8; //!< [23:16] Interrupt Threshold Control -Read/Write.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uh2_usbcmd_t;
@@ -12936,9 +12805,8 @@ typedef union _hw_usbc_uh2_usbcmd
  * Asynchronous Schedule Park Mode Enable - Read/Write. If the Asynchronous Park Capability bit in
  * the HCCPARAMS register is a one, then this bit defaults to a 1h and is R/W. Otherwise the bit
  * must be a zero and is RO. Software uses this bit to enable or disable Park mode. When this bit is
- * one, Park mode is enabled. When this bit is a zero, Park mode is disabled. This field is set to
- * '1b' in this implementation. ASPE bit reset value: '0b' for OTG controller core, '1b' for Host-
- * only controller core.
+ * one, Park mode is enabled. When this bit is a zero, Park mode is disabled. ASPE bit reset value:
+ * '0b' for OTG controller core, '1b' for Host-only controller core.
  */
 
 #define BP_USBC_UH2_USBCMD_ASPE      (11)      //!< Bit position for USBC_UH2_USBCMD_ASPE.
@@ -12962,8 +12830,7 @@ typedef union _hw_usbc_uh2_usbcmd
  * the setup lockout mode is off (SLOM bit in USB core register n_USBMODE, see ) then there is a
  * hazard when new setup data arrives while the DCD is copying the setup data payload from the QH
  * for a previous setup packet. This bit is set and cleared by software. This bit would also be
- * cleared by hardware when a hazard detected. For more information on the use of this bit, see the
- * Device Operational Model section of the USB-HS OTG High-Speed USB On-The-Go DEV reference manual.
+ * cleared by hardware when a hazard detected.
  */
 
 #define BP_USBC_UH2_USBCMD_SUTW      (13)      //!< Bit position for USBC_UH2_USBCMD_SUTW.
@@ -12985,9 +12852,7 @@ typedef union _hw_usbc_uh2_usbcmd
  * Add dTD TripWire - Read/Write. [device mode only] This bit is used as a semaphore to ensure
  * proper addition of a new dTD to an active (primed) endpoint's linked list. This bit is set and
  * cleared by software. This bit would also be cleared by hardware when state machine is hazard
- * region for which adding a dTD to a primed endpoint may go unrecognized. For more information on
- * the use of this bit, see the Device Operational Model section of the USB-HS OTG High-Speed USB
- * On-The-Go DEV reference manual.
+ * region for which adding a dTD to a primed endpoint may go unrecognized.
  */
 
 #define BP_USBC_UH2_USBCMD_ATDTW      (14)      //!< Bit position for USBC_UH2_USBCMD_ATDTW.
@@ -13089,26 +12954,26 @@ typedef union _hw_usbc_uh2_usbsts
     reg32_t U;
     struct _hw_usbc_uh2_usbsts_bitfields
     {
-        unsigned UI : 1; //!< [0] USB Interrupt (USBINT) - R/WC. This bit is set by the Host/Device Controller when the cause of an interrupt is a completion of a USB transaction where the Transfer Descriptor (TD) has an interrupt on complete (IOC) bit set. This bit is also set by the Host/Device Controller when a short packet is detected. A short packet is when the actual number of bytes received was less than the expected number of bytes.
-        unsigned UEI : 1; //!< [1] USB Error Interrupt (USBERRINT) - R/WC. When completion of a USB transaction results in an error condition, this bit is set by the Host/Device Controller. This bit is set along with the USBINT bit, if the TD on which the error interrupt occurred also had its interrupt on complete (IOC) bit set See Section (Reference Host Operation Model: Transfer/Transaction Based Interrupt - i.e. 4.15.1 in EHCI Enhanced Host Controller Interface Specification for Universal Serial Bus, Revision 0.95, November 2000, Intel Corporation. http://www.intel.com) for a complete list of host error interrupt conditions. See section Device Error Matrix in the USB-HS OTG High-Speed USB On-The-Go DEV reference manual. The device controller detects resume signaling only.
-        unsigned PCI : 1; //!< [2] Port Change Detect - R/WC. The Host Controller sets this bit to a one when on any port a Connect Status occurs, a Port Enable/Disable Change occurs, or the Force Port Resume bit is set as the result of a J-K transition on the suspended port. The Device Controller sets this bit to a one when the port controller enters the full or high-speed operational state. When the port controller exits the full or high-speed operation states due to Reset or Suspend events, the notification mechanisms are the USB Reset Received bit and the DCSuspend bits respectively.
-        unsigned FRI : 1; //!< [3] Frame List Rollover - R/WC. The Host Controller sets this bit to a one when the Frame List Index rolls over from its maximum value to zero. The exact value at which the rollover occurs depends on the frame list size. For example. If the frame list size (as programmed in the Frame List Size field of the USB_n_USBCMD register) is 1024, the Frame Index Register rolls over every time FRINDEX [13] toggles. Similarly, if the size is 512, the Host Controller sets this bit to a one every time FHINDEX [12] toggles. Only used in host operation mode.
-        unsigned SEI : 1; //!< [4] System Error- R/WC. This bit is will be set to '1b' when an Error response is seen to a read on the system interface.
-        unsigned AAI : 1; //!< [5] Interrupt on Async Advance - R/WC. System software can force the host controller to issue an interrupt the next time the host controller advances the asynchronous schedule by writing a one to the Interrupt on Async Advance Doorbell bit in the n_USBCMD register. This status bit indicates the assertion of that interrupt source. Only used in host operation mode.
-        unsigned URI : 1; //!< [6] USB Reset Received - R/WC. When the device controller detects a USB Reset and enters the default state, this bit will be set to a one. Software can write a 1 to this bit to clear the USB Reset Received status bit. Only used in device operation mode.
-        unsigned SRI : 1; //!< [7] SOF Received - R/WC. When the device controller detects a Start Of (micro) Frame, this bit will be set to a one. When a SOF is extremely late, the device controller will automatically set this bit to indicate that an SOF was expected. Therefore, this bit will be set roughly every 1ms in device FS mode and every 125ms in HS mode and will be synchronized to the actual SOF that is received. Because the device controller is initialized to FS before connect, this bit will be set at an interval of 1ms during the prelude to connect and chirp. In host mode, this bit will be set every 125us and can be used by host controller driver as a time base. Software writes a 1 to this bit to clear it.
-        unsigned SLI : 1; //!< [8] DCSuspend - R/WC. When a controller enters a suspend state from an active state, this bit will be set to a one. The device controller clears the bit upon exiting from a suspend state. Only used in device operation mode.
+        unsigned UI : 1; //!< [0] USB Interrupt (USBINT) - R/WC.
+        unsigned UEI : 1; //!< [1] USB Error Interrupt (USBERRINT) - R/WC.
+        unsigned PCI : 1; //!< [2] Port Change Detect - R/WC.
+        unsigned FRI : 1; //!< [3] Frame List Rollover - R/WC.
+        unsigned SEI : 1; //!< [4] System Error- R/WC.
+        unsigned AAI : 1; //!< [5] Interrupt on Async Advance - R/WC.
+        unsigned URI : 1; //!< [6] USB Reset Received - R/WC.
+        unsigned SRI : 1; //!< [7] SOF Received - R/WC.
+        unsigned SLI : 1; //!< [8] DCSuspend - R/WC.
         unsigned RESERVED0 : 1; //!< [9] Reserved
-        unsigned ULPII : 1; //!< [10] ULPI Interrupt - R/WC. This bit will be set '1b' by hardware when there is an event completion in ULPI viewport. This bit is usable only if the controller support UPLI interface mode.
+        unsigned ULPII : 1; //!< [10] ULPI Interrupt - R/WC.
         unsigned RESERVED1 : 1; //!< [11] Reserved
-        unsigned HCH : 1; //!< [12] HCHaIted - Read Only. This bit is a zero whenever the Run/Stop bit is a one. The Controller sets this bit to one after it has stopped executing because of the Run/Stop bit being set to 0, either by software or by the Controller hardware (for example, an internal error). Only used in the host operation mode. Default value is '0b' for OTG core, and '1b' for Host1/Host2/Host3 core. This is because OTG core is not operating as host in default. Please see CM bit in USB_n_USBMODE register. HCH bit reset value: '0b' for OTG controller core, '1b' for Host-only controller core.
-        unsigned RCL : 1; //!< [13] Reclamation - Read Only. This is a read-only status bit used to detect an empty asynchronous schedule. Only used in the host operation mode.
-        unsigned PS : 1; //!< [14] Periodic Schedule Status - Read Only. This bit reports the current real status of the Periodic Schedule. When set to zero the periodic schedule is disabled, and if set to one the status is enabled. The Host Controller is not required to immediately disable or enable the Periodic Schedule when software transitions the Periodic Schedule Enable bit in the USBCMD register. When this bit and the Periodic Schedule Enable bit are the same value, the Periodic Schedule is either enabled (1) or disabled (0). Only used in the host operation mode.
-        unsigned AS : 1; //!< [15] Asynchronous Schedule Status - Read Only. This bit reports the current real status of the Asynchronous Schedule. When set to zero the asynchronous schedule status is disabled and if set to one the status is enabled. The Host Controller is not required to immediately disable or enable the Asynchronous Schedule when software transitions the Asynchronous Schedule Enable bit in the USBCMD register. When this bit and the Asynchronous Schedule Enable bit are the same value, the Asynchronous Schedule is either enabled (1) or disabled (0). Only used in the host operation mode.
-        unsigned NAKI : 1; //!< [16] NAK Interrupt Bit--RO. This bit is set by hardware when for a particular endpoint both the TX/RX Endpoint NAK bit and corresponding TX/RX Endpoint NAK Enable bit are set. This bit is automatically cleared by hardware when all Enabled TX/RX Endpoint NAK bits are cleared.
+        unsigned HCH : 1; //!< [12] HCHaIted - Read Only.
+        unsigned RCL : 1; //!< [13] Reclamation - Read Only.
+        unsigned PS : 1; //!< [14] Periodic Schedule Status - Read Only.
+        unsigned AS : 1; //!< [15] Asynchronous Schedule Status - Read Only.
+        unsigned NAKI : 1; //!< [16] NAK Interrupt Bit--RO.
         unsigned RESERVED2 : 7; //!< [23:17] Reserved
-        unsigned TI0 : 1; //!< [24] General Purpose Timer Interrupt 0(GPTINT0)--R/WC. This bit is set when the counter in the GPTIMER0CTRL register transitions to zero, writing a one to this bit clears it.
-        unsigned TI1 : 1; //!< [25] General Purpose Timer Interrupt 1(GPTINT1)--R/WC. This bit is set when the counter in the GPTIMER1CTRL register transitions to zero, writing a one to this bit will clear it.
+        unsigned TI0 : 1; //!< [24] General Purpose Timer Interrupt 0(GPTINT0)--R/WC.
+        unsigned TI1 : 1; //!< [25] General Purpose Timer Interrupt 1(GPTINT1)--R/WC.
         unsigned RESERVED3 : 6; //!< [31:26] Reserved
     } B;
 } hw_usbc_uh2_usbsts_t;
@@ -13160,11 +13025,7 @@ typedef union _hw_usbc_uh2_usbsts
  * USB Error Interrupt (USBERRINT) - R/WC. When completion of a USB transaction results in an error
  * condition, this bit is set by the Host/Device Controller. This bit is set along with the USBINT
  * bit, if the TD on which the error interrupt occurred also had its interrupt on complete (IOC) bit
- * set See Section (Reference Host Operation Model: Transfer/Transaction Based Interrupt - i.e.
- * 4.15.1 in EHCI Enhanced Host Controller Interface Specification for Universal Serial Bus,
- * Revision 0.95, November 2000, Intel Corporation. http://www.intel.com) for a complete list of
- * host error interrupt conditions. See section Device Error Matrix in the USB-HS OTG High-Speed USB
- * On-The-Go DEV reference manual. The device controller detects resume signaling only.
+ * set The device controller detects resume signaling only.
  */
 
 #define BP_USBC_UH2_USBSTS_UEI      (1)      //!< Bit position for USBC_UH2_USBSTS_UEI.
@@ -13528,14 +13389,14 @@ typedef union _hw_usbc_uh2_usbintr
         unsigned UE : 1; //!< [0] USB Interrupt Enalbe When this bit is one and the UI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned UEE : 1; //!< [1] USB Error Interrupt Enable When this bit is one and the UEI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned PCE : 1; //!< [2] Port Change Detect Interrupt Enable When this bit is one and the PCI bit in n_USBSTS register is a one the controller will issue an interrupt.
-        unsigned FRE : 1; //!< [3] Frame List Rollover Interrupt Enable When this bit is one and the FRI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in host operation mode.
-        unsigned SEE : 1; //!< [4] System Error Interrupt Enable When this bit is one and the SEI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in host operation mode.
-        unsigned AAE : 1; //!< [5] Async Advance Interrupt Enable When this bit is one and the AAI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in host operation mode.
-        unsigned URE : 1; //!< [6] USB Reset Interrupt Enable When this bit is one and the URI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in device operation mode.
+        unsigned FRE : 1; //!< [3] Frame List Rollover Interrupt Enable When this bit is one and the FRI bit in n_USBSTS register is a one the controller will issue an interrupt.
+        unsigned SEE : 1; //!< [4] System Error Interrupt Enable When this bit is one and the SEI bit in n_USBSTS register is a one the controller will issue an interrupt.
+        unsigned AAE : 1; //!< [5] Async Advance Interrupt Enable When this bit is one and the AAI bit in n_USBSTS register is a one the controller will issue an interrupt.
+        unsigned URE : 1; //!< [6] USB Reset Interrupt Enable When this bit is one and the URI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned SRE : 1; //!< [7] SOF Received Interrupt Enable When this bit is one and the SRI bit in n_USBSTS register is a one the controller will issue an interrupt.
-        unsigned SLE : 1; //!< [8] Sleep Interrupt Enable When this bit is one and the SLI bit in n_n_USBSTS register is a one the controller will issue an interrupt. Only used in device operation mode.
+        unsigned SLE : 1; //!< [8] Sleep Interrupt Enable When this bit is one and the SLI bit in n_n_USBSTS register is a one the controller will issue an interrupt.
         unsigned RESERVED0 : 1; //!< [9] Reserved
-        unsigned ULPIE : 1; //!< [10] ULPI Interrupt Enable When this bit is one and the UPLII bit in n_USBSTS register is a one the controller will issue an interrupt. This bit is usable only if the controller support UPLI interface mode.
+        unsigned ULPIE : 1; //!< [10] ULPI Interrupt Enable When this bit is one and the UPLII bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned RESERVED1 : 5; //!< [15:11] These bits are reserved and should be set to zero.
         unsigned NAKE : 1; //!< [16] NAK Interrupt Enable When this bit is one and the NAKI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned RESERVED2 : 1; //!< [17] Reserved
@@ -13898,7 +13759,7 @@ typedef union _hw_usbc_uh2_frindex
     reg32_t U;
     struct _hw_usbc_uh2_frindex_bitfields
     {
-        unsigned FRINDEX : 14; //!< [13:0] Frame Index. The value, in this register, increments at the end of each time frame (micro-frame). Bits [N: 3] are used for the Frame List current index. This means that each location of the frame list is accessed 8 times (frames or micro-frames) before moving to the next index. The following illustrates values of N based on the value of the Frame List Size field in the USBCMD register, when used in host mode. USBCMD [Frame List Size] Number Elements N In device mode the value is the current frame number of the last frame transmitted. It is not used as an index. In either mode bits 2:0 indicate the current microframe.
+        unsigned FRINDEX : 14; //!< [13:0] Frame Index.
         unsigned RESERVED0 : 18; //!< [31:14] Reserved
     } B;
 } hw_usbc_uh2_frindex_t;
@@ -13981,7 +13842,7 @@ typedef union _hw_usbc_uh2_periodiclistbase
     struct _hw_usbc_uh2_periodiclistbase_bitfields
     {
         unsigned RESERVED0 : 12; //!< [11:0] Reserved
-        unsigned BASEADR : 20; //!< [31:12] Base Address (Low). These bits correspond to memory address signals [31:12], respectively. Only used by the host controller.
+        unsigned BASEADR : 20; //!< [31:12] Base Address (Low).
     } B;
 } hw_usbc_uh2_periodiclistbase_t;
 #endif
@@ -14044,7 +13905,7 @@ typedef union _hw_usbc_uh2_asynclistaddr
     struct _hw_usbc_uh2_asynclistaddr_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved
-        unsigned ASYBASE : 27; //!< [31:5] Link Pointer Low (LPL). These bits correspond to memory address signals [31:5], respectively. This field may only reference a Queue Head (QH). Only used by the host controller.
+        unsigned ASYBASE : 27; //!< [31:5] Link Pointer Low (LPL).
     } B;
 } hw_usbc_uh2_asynclistaddr_t;
 #endif
@@ -14105,8 +13966,8 @@ typedef union _hw_usbc_uh2_burstsize
     reg32_t U;
     struct _hw_usbc_uh2_burstsize_bitfields
     {
-        unsigned RXPBURST : 8; //!< [7:0] Programmable RX Burst Size. Default value is determined by TXBURST bits in n_HWRXBUF. This register represents the maximum length of a the burst in 32-bit words while moving data from the USB bus to system memory.
-        unsigned TXPBURST : 9; //!< [16:8] Programmable TX Burst Size. Default value is determined by TXBURST bits in n_HWTXBUF. This register represents the maximum length of a the burst in 32-bit words while moving data from system memory to the USB bus.
+        unsigned RXPBURST : 8; //!< [7:0] Programmable RX Burst Size.
+        unsigned TXPBURST : 9; //!< [16:8] Programmable TX Burst Size.
         unsigned RESERVED0 : 15; //!< [31:17] Reserved
     } B;
 } hw_usbc_uh2_burstsize_t;
@@ -14207,10 +14068,10 @@ typedef union _hw_usbc_uh2_txfilltuning
     reg32_t U;
     struct _hw_usbc_uh2_txfilltuning_bitfields
     {
-        unsigned TXSCHOH : 8; //!< [7:0] Scheduler Overhead. (Read/Write) [Default = 0] This register adds an additional fixed offset to the schedule time estimator described above as Tff. As an approximation, the value chosen for this register should limit the number of back-off events captured in the TXSCHHEALTH to less than 10 per second in a highly utilized bus. Choosing a value that is too high for this register is not desired as it can needlessly reduce USB utilization. The time unit represented in this register is 1.267us when a device is connected in High-Speed Mode. The time unit represented in this register is 6.333us when a device is connected in Low/Full Speed Mode. Default value is '08h' for OTG controller core, and '00h' for Host-only controller core.
-        unsigned TXSCHHEALTH : 5; //!< [12:8] Scheduler Health Counter. (Read/Write To Clear) This register increments when the host controller fails to fill the TX latency FIFO to the level programmed by TXFIFOTHRES before running out of time to send the packet before the next Start-Of-Frame. This health counter measures the number of times this occurs to provide feedback to selecting a proper TXSCHOH. Writing to this register will clear the counter and this counter will max. at 31. Default value is '08h' for OTG controller core, and '00h' for Host-only controller core.
+        unsigned TXSCHOH : 8; //!< [7:0] Scheduler Overhead.
+        unsigned TXSCHHEALTH : 5; //!< [12:8] Scheduler Health Counter.
         unsigned RESERVED0 : 3; //!< [15:13] Reserved
-        unsigned TXFIFOTHRES : 6; //!< [21:16] FIFO Burst Threshold. (Read/Write) This register controls the number of data bursts that are posted to the TX latency FIFO in host mode before the packet begins on to the bus. The minimum value is 2 and this value should be a low as possible to maximize USB performance. A higher value can be used in systems with unpredictable latency and/or insufficient bandwidth where the FIFO may underrun because the data transferred from the latency FIFO to USB occurs before it can be replenished from system memory. This value is ignored if the Stream Disable bit in USB_n_USBMODE register is set. Default value is '00h' for OTG controller core, and '02h' for Host-only controller core.
+        unsigned TXFIFOTHRES : 6; //!< [21:16] FIFO Burst Threshold.
         unsigned RESERVED1 : 10; //!< [31:22] Reserved
     } B;
 } hw_usbc_uh2_txfilltuning_t;
@@ -14327,7 +14188,7 @@ typedef union _hw_usbc_uh2_configflag
     reg32_t U;
     struct _hw_usbc_uh2_configflag_bitfields
     {
-        unsigned CF : 1; //!< [0] Configure Flag Host software sets this bit as the last action in its process of configuring the Host Controller. This bit controls the default port-routing control logic.
+        unsigned CF : 1; //!< [0] Configure Flag Host software sets this bit as the last action in its process of configuring the Host Controller.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_usbc_uh2_configflag_t;
@@ -14396,31 +14257,31 @@ typedef union _hw_usbc_uh2_portsc1
     reg32_t U;
     struct _hw_usbc_uh2_portsc1_bitfields
     {
-        unsigned CCS : 1; //!< [0] Current Connect Status-Read Only. In Host Mode: 1=Device is present on port. 0=No device is present. Default = 0. This value reflects the current state of the port, and may not correspond directly to the event that caused the Connect Status Change bit (Bit 1) to be set. This field is zero if Port Power( ) is zero in host mode. In Device Mode: 1=Attached. 0=Not Attached. Default=0. A one indicates that the device successfully attached and is operating in either high speed or full speed as indicated by the High Speed Port bit in this register. A zero indicates that the device did not attach successfully or was forcibly disconnected by the software writing a zero to the Run bit in the USBCMD register. It does not state the device being disconnected or suspended.
-        unsigned CSC : 1; //!< [1] Connect Status Change-R/WC. 1 =Change in Current Connect Status. 0=No change. Default 0. In Host Mode: Indicates a change has occurred in the port's Current Connect Status. The host/device controller sets this bit for all changes to the port device connect status, even if system software has not cleared an existing connect status change. For example, the insertion status changes twice before system software has cleared the changed condition, hub hardware will be 'setting' an already-set bit (that is, the bit will remain set). Software clears this bit by writing a one to it. This field is zero if Port Power( ) is zero in host mode. In Device Mode: This bit is undefined in device controller mode.
-        unsigned PE : 1; //!< [2] Port Enabled/Disabled-Read/Write. 1=Enable. 0=Disable. Default 0. In Host Mode: Ports can only be enabled by the host controller as a part of the reset and enable. Software cannot enable a port by writing a one to this field. Ports can be disabled by either a fault condition (disconnect event or other fault condition) or by the host software. Note that the bit status does not change until the port state actually changes. There may be a delay in disabling or enabling a port due to other host controller and bus events. When the port is disabled, (0b) downstream propagation of data is blocked except for reset. This field is zero if Port Power( ) is zero in host mode. In Device Mode: The device port is always enabled, so this bit is always '1b'.
-        unsigned PEC : 1; //!< [3] Port Enable/Disable Change-R/WC. 1=Port enabled/disabled status has changed. 0=No change. Default = 0. In Host Mode: For the root hub, this bit is set to a one only when a port is disabled due to disconnect on the port or due to the appropriate conditions existing at the EOF2 point (See Chapter 11 of the USB Specification). Software clears this by writing a one to it. This field is zero if Port Power( ) is zero. In Device mode: The device port is always enabled, so this bit is always '0b'.
-        unsigned OCA : 1; //!< [4] Over-current Active-Read Only. Default 0. This bit will automatically transition from one to zero when the over current condition is removed. For host/OTG implementations the user can provide over-current detection to the vbus_pwr_fault input for this condition. For device-only implementations this bit shall always be 0.
-        unsigned OCC : 1; //!< [5] Over-current Change-R/WC. Default=0. This bit is set '1b' by hardware when there is a change to Over-current Active. Software can clear this bit by writing a one to this bit position. For host/OTG implementations the user can provide over-current detection to the vbus_pwr_fault input for this condition. For device-only implementations this bit shall always be 0.
-        unsigned FPR : 1; //!< [6] Force Port Resume -Read/Write. 1= Resume detected/driven on port. 0=No resume (K-state) detected/driven on port. Default = 0. In Host Mode: Software sets this bit to one to drive resume signaling. The Host Controller sets this bit to one if a J-to-K transition is detected while the port is in the Suspend state. When this bit transitions to a one because a J-to-K transition is detected, the Port Change Detect bit in the USBSTS register is also set to one. This bit will automatically change to zero after the resume sequence is complete. This behavior is different from EHCI where the host controller driver is required to set this bit to a zero after the resume duration is timed in the driver. Note that when the Host controller owns the port, the resume sequence follows the defined sequence documented in the USB Specification Revision 2.0. The resume signaling (Full-speed 'K') is driven on the port as long as this bit remains a one. This bit will remain a one until the port has switched to the high-speed idle. Writing a zero has no effect because the port controller will time the resume operation clear the bit the port control state switches to HS or FS idle. This field is zero if Port Power( ) is zero in host mode. This bit is not-EHCI compatible. In Device mode: After the device has been in Suspend State for 5ms or more, software must set this bit to one to drive resume signaling before clearing. The Device Controller will set this bit to one if a J-to-K transition is detected while the port is in the Suspend state. The bit will be cleared when the device returns to normal operation. Also, when this bit wil be cleared because a K-to-J transition detected, the Port Change Detect bit in the USBSTS register is also set to one.
-        unsigned SUSP : 1; //!< [7] Suspend - Read/Write or Read Only. Default = 0b. 1=Port in suspend state. 0=Port not in suspend state. In Host Mode: Read/Write. Port Enabled Bit and Suspend bit of this register define the port states as follows: Bits [Port Enabled, Suspend] Port State 0x Disable 10 Enable 11 Suspend When in suspend state, downstream propagation of data is blocked on this port, except for port reset. The blocking occurs at the end of the current transaction if a transaction was in progress when this bit was written to 1. In the suspend state, the port is sensitive to resume detection. Note that the bit status does not change until the port is suspended and that there may be a delay in suspending a port if there is a transaction currently in progress on the The host controller will unconditionally set this bit to zero when software sets the Force Port Resume bit to zero. The host controller ignores a write of zero to this bit. If host software sets this bit to a one when the port is not enabled (that is, Port enabled bit is a zero) the results are undefined. This field is zero if Port Power( ) is zero in host mode. In Device Mode: Read Only. In device mode this bit is a read only status bit.
-        unsigned PR : 1; //!< [8] Port Reset - Read/Write or Read Only. Default = 0b. In Host Mode: Read/Write. 1=Port is in Reset. 0=Port is not in Reset. Default 0. When software writes a one to this bit the bus-reset sequence as defined in the USB Specification Revision 2.0 is started. This bit will automatically change to zero after the reset sequence is complete. This behavior is different from EHCI where the host controller driver is required to set this bit to a zero after the reset duration is timed in the driver. In Device Mode: This bit is a read only status bit. Device reset from the USB bus is also indicated in the USBSTS register. This field is zero if Port Power( ) is zero.
-        unsigned HSP : 1; //!< [9] High-Speed Port - Read Only. Default = 0b. When the bit is one, the host/device connected to the port is in high-speed mode and if set to zero, the host/device connected to the port is not in a high-speed mode. HSP is redundant with PSPD(bit 27, 26) but remained for compatibility.
-        unsigned LS : 2; //!< [11:10] Line Status-Read Only. These bits reflect the current logical levels of the D+ (bit 11) and D- (bit 10) signal lines. In host mode, the use of linestate by the host controller driver is not necessary (unlike EHCI), because the port controller state machine and the port routing manage the connection of LS and FS. In device mode, the use of linestate by the device controller driver is not necessary. The encoding of the bits are: Bits [11:10] Meaning
-        unsigned PP : 1; //!< [12] Port Power (PP)-Read/Write or Read Only. The function of this bit depends on the value of the Port Power Switching (PPC) field in the HCSPARAMS register. The behavior is as follows: PPC PP Operation 0 1b Read Only - Host controller does not have port power control switches. Each port is hard-wired to power. 1 1b/0b - Read/Write. Host/OTG controller requires port power control switches. This bit represents the current setting of the switch (0=off, 1=on). When power is not available on a port (that is, PP equals a 0), the port is non-functional and will not report attaches, detaches, etc. When an over-current condition is detected on a powered port and PPC is a one, the PP bit in each affected port may be transitional by the host controller driver from a one to a zero (removing power from the port). This feature is implemented in all controller cores (PPC = 1).
-        unsigned PO : 1; //!< [13] Port Owner-Read/Write. Default = 0. This bit unconditionally goes to a 0 when the configured bit in the CONFIGFLAG register makes a 0 to 1 transition. This bit unconditionally goes to 1 whenever the Configured bit is zero System software uses this field to release ownership of the port to a selected host controller (in the event that the attached device is not a high-speed device). Software writes a one to this bit when the attached device is not a high-speed device. A one in this bit means that an internal companion controller owns and controls the port. Port owner handoff is not supported in all controller cores, therefore this bit will always be 0.
-        unsigned PIC : 2; //!< [15:14] Port Indicator Control - Read/Write. Default = Ob. Writing to this field has no effect if the P_INDICATOR bit in the HCSPARAMS register is a zero. Refer to the USB Specification Revision 2.0 for a description on how these bits are to be used. This field is zero if Port Power is zero. Bit Value Meaning
-        unsigned PTC : 4; //!< [19:16] Port Test Control - Read/Write. Default = 0000b. Refer to for the operational model for using these test modes and the USB Specification Revision 2.0, Chapter 7 for details on each test mode. The FORCE_ENABLE_FS and FORCE ENABLE_LS are extensions to the test mode support specified in the EHCI specification. Writing the PTC field to any of the FORCE_ENABLE_{HS/FS/LS} values will force the port into the connected and enabled state at the selected speed. Writing the PTC field back to TEST_MODE_DISABLE will allow the port state machines to progress normally from that point. Low speed operations are not supported as a peripheral device. Any other value than zero indicates that the port is operating in test mode. Value Specific Test
-        unsigned WKCN : 1; //!< [20] Wake on Connect Enable (WKCNNT_E) - Read/Write. Default=0b. Writing this bit to a one enables the port to be sensitive to device connects as wake-up events. This field is zero if Port Power( ) is zero or in device mode.
-        unsigned WKDC : 1; //!< [21] Wake on Disconnect Enable (WKDSCNNT_E) - Read/Write. Default=0b. Writing this bit to a one enables the port to be sensitive to device disconnects as wake-up events. This field is zero if Port Power( ) is zero or in device mode.
-        unsigned WKOC : 1; //!< [22] Wake on Over-current Enable (WKOC_E) - Read/Write. Default = 0b. Writing this bit to a one enables the port to be sensitive to over-current conditions as wake-up events. This field is zero if Port Power( ) is zero.
-        unsigned PHCD : 1; //!< [23] PHY Low Power Suspend - Clock Disable (PLPSCD) - Read/Write. Default = 0b. When this bit is set to '1b', the PHY clock is disabled. Reading this bit will indicate the status of the PHY clock. The PHY clock cannot be disabled if it is being used as the system clock. In device mode, The PHY can be put into Low Power Suspend when the device is not running (USBCMD Run/Stop=0b) or the host has signaled suspend (PORTSC1 SUSPEND=1b). PHY Low power suspend will be cleared automatically when the host initials resume. Before forcing a resume from the device, the device controller driver must clear this bit. In host mode, the PHY can be put into Low Power Suspend when the downstream device has been put into suspend mode or when no downstream device is connected. Low power suspend is completely under the control of software.
-        unsigned PFSC : 1; //!< [24] Port Force Full Speed Connect - Read/Write. Default = 0b. When this bit is set to '1b', the port will be forced to only connect at Full Speed, It disables the chirp sequence that allows the port to identify itself as High Speed.
+        unsigned CCS : 1; //!< [0] Current Connect Status-Read Only.
+        unsigned CSC : 1; //!< [1] Connect Status Change-R/WC.
+        unsigned PE : 1; //!< [2] Port Enabled/Disabled-Read/Write.
+        unsigned PEC : 1; //!< [3] Port Enable/Disable Change-R/WC.
+        unsigned OCA : 1; //!< [4] Over-current Active-Read Only.
+        unsigned OCC : 1; //!< [5] Over-current Change-R/WC.
+        unsigned FPR : 1; //!< [6] Force Port Resume -Read/Write.
+        unsigned SUSP : 1; //!< [7] Suspend - Read/Write or Read Only.
+        unsigned PR : 1; //!< [8] Port Reset - Read/Write or Read Only.
+        unsigned HSP : 1; //!< [9] High-Speed Port - Read Only.
+        unsigned LS : 2; //!< [11:10] Line Status-Read Only.
+        unsigned PP : 1; //!< [12] Port Power (PP)-Read/Write or Read Only.
+        unsigned PO : 1; //!< [13] Port Owner-Read/Write.
+        unsigned PIC : 2; //!< [15:14] Port Indicator Control - Read/Write.
+        unsigned PTC : 4; //!< [19:16] Port Test Control - Read/Write.
+        unsigned WKCN : 1; //!< [20] Wake on Connect Enable (WKCNNT_E) - Read/Write.
+        unsigned WKDC : 1; //!< [21] Wake on Disconnect Enable (WKDSCNNT_E) - Read/Write.
+        unsigned WKOC : 1; //!< [22] Wake on Over-current Enable (WKOC_E) - Read/Write.
+        unsigned PHCD : 1; //!< [23] PHY Low Power Suspend - Clock Disable (PLPSCD) - Read/Write.
+        unsigned PFSC : 1; //!< [24] Port Force Full Speed Connect - Read/Write.
         unsigned PTS : 1; //!< [25] See description at bits 31-30
-        unsigned PSPD : 2; //!< [27:26] Port Speed - Read Only. This register field indicates the speed at which the port is operating. For HS mode operation in the host controller and HS/FS operation in the device controller the port routing steers data to the Protocol engine. For FS and LS mode operation in the host controller, the port routing steers data to the Protocol Engine w/ Embedded Transaction Translator.
-        unsigned PTW : 1; //!< [28] Parallel Transceiver Width - Read/Write. This register bit is used in conjunction with the configuration constant VUSB_HS_PHY8_16 to control whether the data bus width of the UTMI transceiver interface. If VUSB_HS_PHY8_16 is set for 0 or 1 then this bit is read only. If VUSB_HS_PHY8_16 is 2 or 3 then this bit is read/write. This bit is reset to 1 if VUSB_HS_PHY8_16 selects a default UTMI interface width of 16-bits else it is reset to 0. Writing this bit to 0 selects the 8-bit [60MHz] UTMI interface. Writing this bit to 1 selects the 16-bit [30MHz] UTMI interface. This bit has no effect if the Serial interfaces are selected. This bit is not defined in the EHCI specification. VUSB_HS_PHY16_8 parameter: For Elvis, OTG: 3, Host1/Host2/Host3: 0; For Rita, OTG/Host1/Host2/Host3: 3; For Arik, OTG/Host1/Host2/Host3: 1; Parallel Transceiver Width This bit has no effect if serial interface engine is used. These register bits are implementation dependent. For OTG controller core: it is Read/Write. Reset value is '1b'; For Host1/Host2/Host3 controller core, it is Read-Only. Reset value is '0b'. For OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '1b'. For OTG/Host1/Host2/Host3 core, it is Read-Only. Reset value is '1b'. For OTG1/OTG2/Host1 core, it is Read-Only. Reset value is '1b'.
-        unsigned STS : 1; //!< [29] Serial Transceiver Select - Read/Write. This register bit is used in conjunction with the configuration constant VUSB_HS_PHY_SERIAL to control whether the parallel or serial transceiver interface is selected for FS and LS operation. The Serial Interface Engine can be used in combination with the UTMI+ or ULPI physical interface to provide FS/LS signaling instead of the parallel interface. If VUSB_HS_PHY_SERIAL is set for 0 or 1 then this bit is read only. If VUSB_HS_PHY_SERIAL is 3 or 4 then this bit is read/write. This bit has no effect unless Parallel Transceiver Select is set to UTMI+ or ULPI. The Serial/1.1 physical interface will use the Serial Interface Engine for FS/LS signaling regardless of this bit value. Note: This bit is reserved for future operation and is a placeholder adding dynamic use of the serial engine in accord with UMTI+ and ULPI characterization logic. This bit is not defined in the EHCI specification VUSB_HS_PHY_SERIAL parameter: For Elivs,OTG/Host1/Host2/Host3 core: 2 For Rita, OTG/Host1/Host2/Host3 core: 2 For Arik, OTG/Host1/Host2/Host3 core: 0 Serial Transceiver Select - Read/Write Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface Engine is selected 0 Parallel Interface signals is selected Serial Interface Engine can be used in combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the parallel interface signals. When this bit is set '1b', serial interface engine will be used instead of parallel interface signals. This bit has no effect unless PTS bits is set to select UTMI+/ULPI interface. The Serial/USB1.1 PHY/IC-USB will use the serial interface engine for FS/LS signaling regardless of this bit value.
-        unsigned PTS1 : 2; //!< [31:30] Parallel Transceiver Select - Read/Write. This register bit pair is used in conjunction with the configuration constant VUSB_HS_PHY_TYPE to control which parallel transceiver interface is selected. If VUSB_HS_PHY_TYPE is set for 0,1,2, 3, 8 or 10 then this bit is read only. If VUSB_HS_PHY_TYPE is 4,5, 6, 7, 9 or 11then this bit is read/write. Bit field {bit25, bit30, bit31} is reset to: "000b" if VUSB_HS_PHY_TYPE = 0,4 - UTMI/UTMI+ "001b" if VUSB_HS_PHY_TYPE = 1,5 - Reserved "010b" if VUSB_HS_PHY_TYPE = 2,6 - ULPI "011b" if VUSB_HS_PHY_TYPE = 3,7,8,9 - Serial/1.1 PHY/IC USB(FS Only) "100b" if VUSB_HS_PHY_TYPE = 10,11 - UTMI for HSIC PHY This bit is not defined in the EHCI specification. VUSB_HS_PHY_TYPE parameter: For Elvis, OTG/Host core: 7; For Rita, OTG core: 0, Host core: 7 For Arik, OTG core: 0, Host core: 4 Bit field { bit31, bit30}: "00b" UTMI/UTMI+ "01b" Reserved "10b" ULPI "11b" Serial/USB 1.1 PHY/IC-USB (FS Only) Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit31, bi30). For OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '11b'. Parallel Transceiver Select (bit25, bit31, bi30). For OTG core, it's Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it's Read/Write. Reset value is 011b. Parallel Transceiver Select (bit25, bit31, bi30). For OTG core, it is Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it is Read/Write. Reset value is 000b. All USB port interface modes are listed in this field description, but not all are supported. For detail feature of each controller core, please see . The behaviour is unknown when unsupported interface mode is selected.
+        unsigned PSPD : 2; //!< [27:26] Port Speed - Read Only.
+        unsigned PTW : 1; //!< [28] Parallel Transceiver Width This bit has no effect if serial interface engine is used.
+        unsigned STS : 1; //!< [29] Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface Engine is selected 0 Parallel Interface signals is selected Serial Interface Engine can be used in combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the parallel interface signals.
+        unsigned PTS1 : 2; //!< [31:30] Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit25, bit31, bi30).
     } B;
 } hw_usbc_uh2_portsc1_t;
 #endif
@@ -14541,9 +14402,7 @@ typedef union _hw_usbc_uh2_portsc1
 /* --- Register HW_USBC_UH2_PORTSC1, field OCA[4] (RO)
  *
  * Over-current Active-Read Only. Default 0. This bit will automatically transition from one to zero
- * when the over current condition is removed. For host/OTG implementations the user can provide
- * over-current detection to the vbus_pwr_fault input for this condition. For device-only
- * implementations this bit shall always be 0.
+ * when the over current condition is removed.
  *
  * Values:
  * 0 - This port does not have an over-current condition.
@@ -14560,9 +14419,7 @@ typedef union _hw_usbc_uh2_portsc1
 /* --- Register HW_USBC_UH2_PORTSC1, field OCC[5] (RW)
  *
  * Over-current Change-R/WC. Default=0. This bit is set '1b' by hardware when there is a change to
- * Over-current Active. Software can clear this bit by writing a one to this bit position. For
- * host/OTG implementations the user can provide over-current detection to the vbus_pwr_fault input
- * for this condition. For device-only implementations this bit shall always be 0.
+ * Over-current Active. Software can clear this bit by writing a one to this bit position.
  */
 
 #define BP_USBC_UH2_PORTSC1_OCC      (5)      //!< Bit position for USBC_UH2_PORTSC1_OCC.
@@ -14978,10 +14835,6 @@ typedef union _hw_usbc_uh2_portsc1
 /* --- Register HW_USBC_UH2_PORTSC1, field PSPD[27:26] (RW)
  *
  * Port Speed - Read Only. This register field indicates the speed at which the port is operating.
- * For HS mode operation in the host controller and HS/FS operation in the device controller the
- * port routing steers data to the Protocol engine. For FS and LS mode operation in the host
- * controller, the port routing steers data to the Protocol Engine w/ Embedded Transaction
- * Translator.
  *
  * Values:
  * 00 - Full Speed
@@ -15007,21 +14860,8 @@ typedef union _hw_usbc_uh2_portsc1
 
 /* --- Register HW_USBC_UH2_PORTSC1, field PTW[28] (RW)
  *
- * Parallel Transceiver Width - Read/Write. This register bit is used in conjunction with the
- * configuration constant VUSB_HS_PHY8_16 to control whether the data bus width of the UTMI
- * transceiver interface. If VUSB_HS_PHY8_16 is set for 0 or 1 then this bit is read only. If
- * VUSB_HS_PHY8_16 is 2 or 3 then this bit is read/write. This bit is reset to 1 if VUSB_HS_PHY8_16
- * selects a default UTMI interface width of 16-bits else it is reset to 0. Writing this bit to 0
- * selects the 8-bit [60MHz] UTMI interface. Writing this bit to 1 selects the 16-bit [30MHz] UTMI
- * interface. This bit has no effect if the Serial interfaces are selected. This bit is not defined
- * in the EHCI specification. VUSB_HS_PHY16_8 parameter: For Elvis, OTG: 3, Host1/Host2/Host3: 0;
- * For Rita, OTG/Host1/Host2/Host3: 3; For Arik, OTG/Host1/Host2/Host3: 1; Parallel Transceiver
- * Width This bit has no effect if serial interface engine is used. These register bits are
- * implementation dependent. For OTG controller core: it is Read/Write. Reset value is '1b'; For
- * Host1/Host2/Host3 controller core, it is Read-Only. Reset value is '0b'. For
- * OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '1b'. For OTG/Host1/Host2/Host3
- * core, it is Read-Only. Reset value is '1b'. For OTG1/OTG2/Host1 core, it is Read-Only. Reset
- * value is '1b'.
+ * Parallel Transceiver Width This bit has no effect if serial interface engine is used. For
+ * OTG/Host1/Host2/Host3 core, it is Read-Only. Reset value is '1b'.
  *
  * Values:
  * 0 - Select the 8-bit UTMI interface [60MHz]
@@ -15045,25 +14885,13 @@ typedef union _hw_usbc_uh2_portsc1
 
 /* --- Register HW_USBC_UH2_PORTSC1, field STS[29] (RW)
  *
- * Serial Transceiver Select - Read/Write. This register bit is used in conjunction with the
- * configuration constant VUSB_HS_PHY_SERIAL to control whether the parallel or serial transceiver
- * interface is selected for FS and LS operation. The Serial Interface Engine can be used in
- * combination with the UTMI+ or ULPI physical interface to provide FS/LS signaling instead of the
- * parallel interface. If VUSB_HS_PHY_SERIAL is set for 0 or 1 then this bit is read only. If
- * VUSB_HS_PHY_SERIAL is 3 or 4 then this bit is read/write. This bit has no effect unless Parallel
- * Transceiver Select is set to UTMI+ or ULPI. The Serial/1.1 physical interface will use the Serial
- * Interface Engine for FS/LS signaling regardless of this bit value. Note: This bit is reserved for
- * future operation and is a placeholder adding dynamic use of the serial engine in accord with
- * UMTI+ and ULPI characterization logic. This bit is not defined in the EHCI specification
- * VUSB_HS_PHY_SERIAL parameter: For Elivs,OTG/Host1/Host2/Host3 core: 2 For Rita,
- * OTG/Host1/Host2/Host3 core: 2 For Arik, OTG/Host1/Host2/Host3 core: 0 Serial Transceiver Select -
- * Read/Write Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface
- * Engine is selected 0 Parallel Interface signals is selected Serial Interface Engine can be used
- * in combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the
- * parallel interface signals. When this bit is set '1b', serial interface engine will be used
- * instead of parallel interface signals. This bit has no effect unless PTS bits is set to select
- * UTMI+/ULPI interface. The Serial/USB1.1 PHY/IC-USB will use the serial interface engine for FS/LS
- * signaling regardless of this bit value.
+ * Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface Engine is
+ * selected 0 Parallel Interface signals is selected Serial Interface Engine can be used in
+ * combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the parallel
+ * interface signals. When this bit is set '1b', serial interface engine will be used instead of
+ * parallel interface signals. This bit has no effect unless PTS bits is set to select UTMI+/ULPI
+ * interface. The Serial/USB1.1 PHY/IC-USB will use the serial interface engine for FS/LS signaling
+ * regardless of this bit value.
  */
 
 #define BP_USBC_UH2_PORTSC1_STS      (29)      //!< Bit position for USBC_UH2_PORTSC1_STS.
@@ -15082,25 +14910,12 @@ typedef union _hw_usbc_uh2_portsc1
 
 /* --- Register HW_USBC_UH2_PORTSC1, field PTS1[31:30] (RW)
  *
- * Parallel Transceiver Select - Read/Write. This register bit pair is used in conjunction with the
- * configuration constant VUSB_HS_PHY_TYPE to control which parallel transceiver interface is
- * selected. If VUSB_HS_PHY_TYPE is set for 0,1,2, 3, 8 or 10 then this bit is read only. If
- * VUSB_HS_PHY_TYPE is 4,5, 6, 7, 9 or 11then this bit is read/write. Bit field {bit25, bit30,
- * bit31} is reset to: "000b" if VUSB_HS_PHY_TYPE = 0,4 - UTMI/UTMI+ "001b" if VUSB_HS_PHY_TYPE =
- * 1,5 - Reserved "010b" if VUSB_HS_PHY_TYPE = 2,6 - ULPI "011b" if VUSB_HS_PHY_TYPE = 3,7,8,9 -
- * Serial/1.1 PHY/IC USB(FS Only) "100b" if VUSB_HS_PHY_TYPE = 10,11 - UTMI for HSIC PHY This bit is
- * not defined in the EHCI specification. VUSB_HS_PHY_TYPE parameter: For Elvis, OTG/Host core: 7;
- * For Rita, OTG core: 0, Host core: 7 For Arik, OTG core: 0, Host core: 4 Bit field { bit31,
- * bit30}: "00b" UTMI/UTMI+ "01b" Reserved "10b" ULPI "11b" Serial/USB 1.1 PHY/IC-USB (FS Only) Bit
- * field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB 1.1
- * PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit31, bi30). For
- * OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '11b'. Parallel Transceiver Select
- * (bit25, bit31, bi30). For OTG core, it's Read-Only. Reset value is 000b. For Host1/Host2/Host3
- * core, it's Read/Write. Reset value is 011b. Parallel Transceiver Select (bit25, bit31, bi30). For
- * OTG core, it is Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it is Read/Write.
- * Reset value is 000b. All USB port interface modes are listed in this field description, but not
- * all are supported. For detail feature of each controller core, please see . The behaviour is
- * unknown when unsupported interface mode is selected.
+ * Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB
+ * 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit25, bit31, bi30). For OTG
+ * core, it is Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it is Read/Write. Reset
+ * value is 000b. All USB port interface modes are listed in this field description, but not all are
+ * supported. For detail feature of each controller core, please see . The behaviour is unknown when
+ * unsupported interface mode is selected.
  */
 
 #define BP_USBC_UH2_PORTSC1_PTS1      (30)      //!< Bit position for USBC_UH2_PORTSC1_PTS1.
@@ -15134,10 +14949,10 @@ typedef union _hw_usbc_uh2_usbmode
     reg32_t U;
     struct _hw_usbc_uh2_usbmode_bitfields
     {
-        unsigned CM : 2; //!< [1:0] Controller Mode - R/WO. Controller mode is defaulted to the proper mode for host only and device only implementations. For those designs that contain both host & device capability, the controller defaults to an idle state and needs to be initialized to the desired operating mode after reset. For combination host/device controllers, this register can only be written once after reset. If it is necessary to switch modes, software must reset the controller by writing to the RESET bit in the USBCMD register before reprogramming this register. For OTG controller core, reset value is '00b'. For Host-only controller core, reset value is '11b'.
-        unsigned ES : 1; //!< [2] Endian Select - Read/Write. This bit can change the byte alignment of the transfer buffers to match the host microprocessor. The bit fields in the microprocessor interface and the data structures are unaffected by the value of this bit because they are based upon the 32-bit word. Bit Meaning
-        unsigned SLOM : 1; //!< [3] Setup Lockout Mode. In device mode, this bit controls behavior of the setup lock mechanism. See .
-        unsigned SDIS : 1; //!< [4] Stream Disable Mode. (0 - Inactive [default]; 1 - Active) Device Mode: Setting to a '1' disables double priming on both RX and TX for low bandwidth systems. This mode ensures that when the RX and TX buffers are sufficient to contain an entire packet that the standard double buffering scheme is disabled to prevent overruns/underruns in bandwidth limited systems. Note: In High Speed Mode, all packets received are responded to with a NYET handshake when stream disable is active. Host Mode: Setting to a '1' ensures that overruns/underruns of the latency FIFO are eliminated for low bandwidth systems where the RX and TX buffers are sufficient to contain the entire packet. Enabling stream disable also has the effect of ensuring the TX latency is filled to capacity before the packet is launched onto the USB. Time duration to pre-fill the FIFO becomes significant when stream disable is active. See and TXTTFILLTUNING [MPH Only] to characterize the adjustments needed for the scheduler when using this feature. The use of this feature substantially limits of the overall USB performance that can be achieved.
+        unsigned CM : 2; //!< [1:0] Controller Mode - R/WO.
+        unsigned ES : 1; //!< [2] Endian Select - Read/Write.
+        unsigned SLOM : 1; //!< [3] Setup Lockout Mode.
+        unsigned SDIS : 1; //!< [4] Stream Disable Mode.
         unsigned RESERVED0 : 11; //!< [15:5] Reserved.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
@@ -15292,7 +15107,7 @@ typedef union _hw_usbc_uh3_id
     reg32_t U;
     struct _hw_usbc_uh3_id_bitfields
     {
-        unsigned ID : 6; //!< [5:0] Configuration number. This number is set to 0x05 and indicates that the peripheral is USB 2.0 High-Speed core.
+        unsigned ID : 6; //!< [5:0] Configuration number.
         unsigned RESERVED0 : 2; //!< [7:6] Reserved
         unsigned NID : 6; //!< [13:8] Complement version of ID
         unsigned RESERVED1 : 2; //!< [15:14] Reserved
@@ -15370,9 +15185,9 @@ typedef union _hw_usbc_uh3_hwgeneral
     struct _hw_usbc_uh3_hwgeneral_bitfields
     {
         unsigned RESERVED0 : 4; //!< [3:0] Reserved
-        unsigned PHYW : 2; //!< [5:4] Data width of the transciever connected to the controller core. PHYW bit reset value: '11b' for OTG controller core, '00b' for Host-only controller core. PHYW bit reset value is '10b'. PHYW bit reset value is '01b'.
-        unsigned PHYM : 3; //!< [8:6] Transciever type PHYM bit reset value is '0111b'. PHYM bit reset value: '0000b' for OTG controller core, '0111b' for Host-only controller core. PHYM bit reset value: '0000b' for OTG controller core, '0100b' for Host-only controller core.
-        unsigned SM : 2; //!< [10:9] Serial interface mode capability SM bit reset value is '10b' SM bit reset value is '00b'
+        unsigned PHYW : 2; //!< [5:4] Data width of the transciever connected to the controller core.
+        unsigned PHYM : 3; //!< [8:6] Transciever type PHYM bit reset value: '0000b' for OTG controller core, '0100b' for Host-only controller core.
+        unsigned SM : 2; //!< [10:9] Serial interface mode capability SM bit reset value is '00b'
         unsigned RESERVED1 : 21; //!< [31:11] Reserved
     } B;
 } hw_usbc_uh3_hwgeneral_t;
@@ -15394,13 +15209,11 @@ typedef union _hw_usbc_uh3_hwgeneral
 
 /* --- Register HW_USBC_UH3_HWGENERAL, field PHYW[5:4] (RO)
  *
- * Data width of the transciever connected to the controller core. PHYW bit reset value: '11b' for
- * OTG controller core, '00b' for Host-only controller core. PHYW bit reset value is '10b'. PHYW bit
- * reset value is '01b'.
+ * Data width of the transciever connected to the controller core. PHYW bit reset value is '01b'.
  *
  * Values:
- * 00 -  8 bit wide data bus  Software non-programmable  60MHz clock from the transciever
- * 01 -  16 bit wide data bus  Software non-programmable  30MHz clock from the transciever
+ * 00 -  8 bit wide data bus  Software non-programmable
+ * 01 -  16 bit wide data bus  Software non-programmable
  * 10 -  Reset to 8 bit wide data bus  Software programmable
  * 11 -  Reset to 16 bit wide data bus  Software programmable
  */
@@ -15414,9 +15227,8 @@ typedef union _hw_usbc_uh3_hwgeneral
 
 /* --- Register HW_USBC_UH3_HWGENERAL, field PHYM[8:6] (RO)
  *
- * Transciever type PHYM bit reset value is '0111b'. PHYM bit reset value: '0000b' for OTG
- * controller core, '0111b' for Host-only controller core. PHYM bit reset value: '0000b' for OTG
- * controller core, '0100b' for Host-only controller core.
+ * Transciever type PHYM bit reset value: '0000b' for OTG controller core, '0100b' for Host-only
+ * controller core.
  *
  * Values:
  * 000 - UTMI/UMTI+
@@ -15442,7 +15254,7 @@ typedef union _hw_usbc_uh3_hwgeneral
 
 /* --- Register HW_USBC_UH3_HWGENERAL, field SM[10:9] (RO)
  *
- * Serial interface mode capability SM bit reset value is '10b' SM bit reset value is '00b'
+ * Serial interface mode capability SM bit reset value is '00b'
  *
  * Values:
  * 00 - No Serial Engine, always use parallel signalling.
@@ -15468,15 +15280,15 @@ typedef union _hw_usbc_uh3_hwgeneral
  *
  * Reset value: 0x10020001
  *
- * Host hardware parameters as defined in System Level Issues and Core Configuration.
+
  */
 typedef union _hw_usbc_uh3_hwhost
 {
     reg32_t U;
     struct _hw_usbc_uh3_hwhost_bitfields
     {
-        unsigned HC : 1; //!< [0] Host Capable. Indicating whether host operation mode is supported or not.
-        unsigned NPORT : 3; //!< [3:1] The Nmber of downstream ports supported by the host controller is (NPORT+1). When these bits value is '000', it indicates a single-port host controller.
+        unsigned HC : 1; //!< [0] Host Capable.
+        unsigned NPORT : 3; //!< [3:1] The Nmber of downstream ports supported by the host controller is (NPORT+1).
         unsigned RESERVED0 : 28; //!< [31:4] Reserved
     } B;
 } hw_usbc_uh3_hwhost_t;
@@ -15534,16 +15346,16 @@ typedef union _hw_usbc_uh3_hwhost
  *
  * Reset value: 0x80080b08
  *
- * TX buffer hardware parameters are as defined in System Level Issues and Core Configuration.
+
  */
 typedef union _hw_usbc_uh3_hwtxbuf
 {
     reg32_t U;
     struct _hw_usbc_uh3_hwtxbuf_bitfields
     {
-        unsigned TXBURST : 8; //!< [7:0] Default burst size for memory to TX buffer transfer. This is reset value of TXPBURST bits in USB core regsiter USB_n_BURSTSIZE. Please see .
+        unsigned TXBURST : 8; //!< [7:0] Default burst size for memory to TX buffer transfer.
         unsigned RESERVED0 : 8; //!< [15:8] Reserved
-        unsigned TXCHANADD : 8; //!< [23:16] TX FIFO Buffer size is: (2^TXCHANADD) * 4 Bytes. These bits are set to '08h', so buffer size is 256*4 Bytes. For the OTG controller operating in device mode, this is the FIFO buffer size per endpoint. As the OTG controller has 8 TX endpoint, there are 8 of these buffers. For the OTG controller operating in host mode, or for Host-only controller, the entire buffer memory is used as a single TX buffer. Therefore, there is only 1 of this buffer
+        unsigned TXCHANADD : 8; //!< [23:16] TX FIFO Buffer size is: (2^TXCHANADD) * 4 Bytes.
         unsigned RESERVED1 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uh3_hwtxbuf_t;
@@ -15600,15 +15412,15 @@ typedef union _hw_usbc_uh3_hwtxbuf
  *
  * Reset value: 0x00000808
  *
- * RX FIFO buffer hardware parameters are as defined in System Level Issues and Core Configuration.
+
  */
 typedef union _hw_usbc_uh3_hwrxbuf
 {
     reg32_t U;
     struct _hw_usbc_uh3_hwrxbuf_bitfields
     {
-        unsigned RXBURST : 8; //!< [7:0] Default burst size for memory to RX buffer transfer. This is reset value of RXPBURST bits in USB core regsiter USB_n_BURSTSIZE. Please see .
-        unsigned RXADD : 8; //!< [15:8] Buffer total size for all receive endpoints is (2^RXADD). RX Buffer size is: (2^RXADD) * 4 Bytes. These bits are set to '08h', so buffer size is 256*4 Bytes. There is a single Receive FIFO buffer in the USB controller. The buffer is shared for all endpoints for the OTG controller in device mode.
+        unsigned RXBURST : 8; //!< [7:0] Default burst size for memory to RX buffer transfer.
+        unsigned RXADD : 8; //!< [15:8] Buffer total size for all receive endpoints is (2^RXADD).
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_usbc_uh3_hwrxbuf_t;
@@ -15671,7 +15483,7 @@ typedef union _hw_usbc_uh3_gptimer0ld
     reg32_t U;
     struct _hw_usbc_uh3_gptimer0ld_bitfields
     {
-        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'. This value represents the time in microseconds minus 1 for the timer duration. Example: for a one millisecond timer, load 1000-1=999 or 0x0003E7. Max value is 0xFFFFFF or 16.777215 seconds.
+        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uh3_gptimer0ld_t;
@@ -15739,7 +15551,7 @@ typedef union _hw_usbc_uh3_gptimer0ctrl
     reg32_t U;
     struct _hw_usbc_uh3_gptimer0ctrl_bitfields
     {
-        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter. This field is the count value of the countdown timer.
+        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter.
         unsigned GPTMODE : 1; //!< [24] General Purpose Timer Mode In one shot mode, the timer will count down to zero, generate an interrupt, and stop until the counter is reset by software; In repeat mode, the timer will count down to zero, generate an interrupt and automatically reload the counter value from GPTLD bits to start again.
         unsigned RESERVED0 : 5; //!< [29:25] Reserved
         unsigned GPTRST : 1; //!< [30] General Purpose Timer Reset
@@ -15877,7 +15689,7 @@ typedef union _hw_usbc_uh3_gptimer1ld
     reg32_t U;
     struct _hw_usbc_uh3_gptimer1ld_bitfields
     {
-        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'. This value represents the time in microseconds minus 1 for the timer duration. Example: for a one millisecond timer, load 1000-1=999 or 0x0003E7. Max value is 0xFFFFFF or 16.777215 seconds.
+        unsigned GPTLD : 24; //!< [23:0] General Purpose Timer Load Value These bit fields are loaded to GPTCNT bits when GPTRST bit is set '1b'.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uh3_gptimer1ld_t;
@@ -15945,8 +15757,8 @@ typedef union _hw_usbc_uh3_gptimer1ctrl
     reg32_t U;
     struct _hw_usbc_uh3_gptimer1ctrl_bitfields
     {
-        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter. This field is the count value of the countdown timer.
-        unsigned GPTMODE : 1; //!< [24] General Purpose Timer Mode In one shot mode, the timer will count down to zero, generate an interrupt, and stop until the counter is reset by software. In repeat mode, the timer will count down to zero, generate an interrupt and automatically reload the counter value from GPTLD bits to start again.
+        unsigned GPTCNT : 24; //!< [23:0] General Purpose Timer Counter.
+        unsigned GPTMODE : 1; //!< [24] General Purpose Timer Mode In one shot mode, the timer will count down to zero, generate an interrupt, and stop until the counter is reset by software.
         unsigned RESERVED0 : 5; //!< [29:25] Reserved
         unsigned GPTRST : 1; //!< [30] General Purpose Timer Reset
         unsigned GPTRUN : 1; //!< [31] General Purpose Timer Run GPTCNT bits are not effected when setting or clearing this bit.
@@ -16083,7 +15895,7 @@ typedef union _hw_usbc_uh3_sbuscfg
     reg32_t U;
     struct _hw_usbc_uh3_sbuscfg_bitfields
     {
-        unsigned AHBBRST : 3; //!< [2:0] AHB master interface Burst configuration These bits control AHB master transfer type sequence (or priority). This register overrides n_BURSTSIZE register when its value is not zero.
+        unsigned AHBBRST : 3; //!< [2:0] AHB master interface Burst configuration These bits control AHB master transfer type sequence (or priority).
         unsigned RESERVED0 : 29; //!< [31:3] Reserved
     } B;
 } hw_usbc_uh3_sbuscfg_t;
@@ -16156,7 +15968,7 @@ typedef union _hw_usbc_uh3_caplength
     reg8_t U;
     struct _hw_usbc_uh3_caplength_bitfields
     {
-        unsigned char CAPLENGTH : 8; //!< [7:0] These bits are used as an offset to add to register base to find the beginning of the Operational Register. Default value is '40h'.
+        unsigned char CAPLENGTH : 8; //!< [7:0] These bits are used as an offset to add to register base to find the beginning of the Operational Register.
     } B;
 } hw_usbc_uh3_caplength_t;
 #endif
@@ -16254,15 +16066,15 @@ typedef union _hw_usbc_uh3_hcsparams
     reg32_t U;
     struct _hw_usbc_uh3_hcsparams_bitfields
     {
-        unsigned N_PORTS : 4; //!< [3:0] Number of downstream ports. This field specifies the number of physical downstream ports implemented on this host controller. The value of this field determines how many port registers are addressable in the Operational Register. Valid values are in the range of 1h to Fh. A zero in this field is undefined. These bits are always set to '0001b' because all controller cores are Single-Port Host.
-        unsigned PPC : 1; //!< [4] Port Power Control This field indicates whether the host controller implementation includes port power control. A one indicates the ports have port power switches. A zero indicates the ports do not have port power switches. The value of this field affects the functionality of the Port Power field in each port status and control register
+        unsigned N_PORTS : 4; //!< [3:0] Number of downstream ports.
+        unsigned PPC : 1; //!< [4] Port Power Control This field indicates whether the host controller implementation includes port power control.
         unsigned RESERVED0 : 3; //!< [7:5] Reserved
-        unsigned N_PCC : 4; //!< [11:8] Number of Ports per Companion Controller This field indicates the number of ports supported per internal Companion Controller. It is used to indicate the port routing configuration to the system software. For example, if N_PORTS has a value of 6 and N_CC has a value of 2 then N_PCC could have a value of 3. The convention is that the first N_PCC ports are assumed to be routed to companion controller 1, the next N_PCC ports to companion controller 2, etc. In the previous example, the N_PCC could have been 4, where the first 4 are routed to companion controller 1 and the last two are routed to companion controller 2. The number in this field must be consistent with N_PORTS and N_CC. These bits are '0000b' in all controller core.
-        unsigned N_CC : 4; //!< [15:12] Number of Companion Controller (N_CC). This field indicates the number of companion controllers associated with this USB2.0 host controller. These bits are '0000b' in all controller core.
-        unsigned PI : 1; //!< [16] Port Indicators (P INDICATOR) This bit indicates whether the ports support port indicator control. When set to one, the port status and control registers include a read/writeable field for controlling the state of the port indicator This bit is "1b" in all controller core.
+        unsigned N_PCC : 4; //!< [11:8] Number of Ports per Companion Controller This field indicates the number of ports supported per internal Companion Controller.
+        unsigned N_CC : 4; //!< [15:12] Number of Companion Controller (N_CC).
+        unsigned PI : 1; //!< [16] Port Indicators (P INDICATOR) This bit indicates whether the ports support port indicator control.
         unsigned RESERVED1 : 3; //!< [19:17] Reserved
-        unsigned N_PTT : 4; //!< [23:20] Number of Ports per Transaction Translator (N_PTT). Default value '0000b' This field indicates the number of ports assigned to each transaction translator within the USB2.0 host controller. These bits would be set to equal N_PORTS for Multi-Port Host, and '0000b' for Single-Port Host.
-        unsigned N_TT : 4; //!< [27:24] Number of Transaction Translators (N_TT). Default value '0000b' This field indicates the number of embedded transaction translators associated with the USB2.0 host controller. These bits would be set to '0001b' for Multi-Port Host, and '0000b' for Single-Port Host.
+        unsigned N_PTT : 4; //!< [23:20] Number of Ports per Transaction Translator (N_PTT).
+        unsigned N_TT : 4; //!< [27:24] Number of Transaction Translators (N_TT).
         unsigned RESERVED2 : 4; //!< [31:28] Reserved
     } B;
 } hw_usbc_uh3_hcsparams_t;
@@ -16404,11 +16216,11 @@ typedef union _hw_usbc_uh3_hccparams
     struct _hw_usbc_uh3_hccparams_bitfields
     {
         unsigned ADC : 1; //!< [0] 64-bit Addressing Capability This bit is set '0b' in all controller core, no 64-bit addressing capability is supported.
-        unsigned PFL : 1; //!< [1] Programmable Frame List Flag If this bit is set to zero, then the system software must use a frame list length of 1024 elements with this host controller. The USBCMD register Frame List Size field is a read-only register and must be set to zero. If set to a one, then the system software can specify and use a smaller frame list and configure the host controller via the USBCMD register Frame List Size field. The frame list must always be aligned on a 4K-page boundary. This requirement ensures that the frame list is always physically contiguous. This bit is set '1b' in all controller core.
-        unsigned ASP : 1; //!< [2] Asynchronous Schedule Park Capability If this bit is set to a one, then the host controller supports the park feature for high-speed queue heads in the Asynchronous Schedule. The feature can be disabled or enabled and set to a specific level by using the Asynchronous Schedule Park Mode Enable and Asynchronous Schedule Park Mode Count fields in the USBCMD register. This bit is set '1b' in all controller core. ASP bit reset value: '00b' for OTG controller core, '11b' for Host-only controller core.
+        unsigned PFL : 1; //!< [1] Programmable Frame List Flag If this bit is set to zero, then the system software must use a frame list length of 1024 elements with this host controller.
+        unsigned ASP : 1; //!< [2] Asynchronous Schedule Park Capability If this bit is set to a one, then the host controller supports the park feature for high-speed queue heads in the Asynchronous Schedule.
         unsigned RESERVED0 : 1; //!< [3] Reserved
-        unsigned IST : 4; //!< [7:4] Isochronous Scheduling Threshold. This field indicates, relative to the current position of the executing host controller, where software can reliably update the isochronous schedule. When bit [7] is zero, the value of the least significant 3 bits indicates the number of micro-frames a host controller can hold a set of isochronous data structures (one or more) before flushing the state. When bit [7] is a one, then host software assumes the host controller may cache an isochronous data structure for an entire frame. These bits are set '00h' in all controller core.
-        unsigned EECP : 8; //!< [15:8] EHCI Extended Capabilities Pointer. This field indicates the existence of a capabilities list. A value of 00h indicates no extended capabilities are implemented. A non-zero value in this register indicates the offset in PCI configuration space of the first EHCI extended capability. The pointer value must be 40h or greater if implemented to maintain the consistency of the PCI header defined for this class of device. These bits are set '00h' in all controller core.
+        unsigned IST : 4; //!< [7:4] Isochronous Scheduling Threshold.
+        unsigned EECP : 8; //!< [15:8] EHCI Extended Capabilities Pointer.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_usbc_uh3_hccparams_t;
@@ -16462,9 +16274,8 @@ typedef union _hw_usbc_uh3_hccparams
  * Asynchronous Schedule Park Capability If this bit is set to a one, then the host controller
  * supports the park feature for high-speed queue heads in the Asynchronous Schedule. The feature
  * can be disabled or enabled and set to a specific level by using the Asynchronous Schedule Park
- * Mode Enable and Asynchronous Schedule Park Mode Count fields in the USBCMD register. This bit is
- * set '1b' in all controller core. ASP bit reset value: '00b' for OTG controller core, '11b' for
- * Host-only controller core.
+ * Mode Enable and Asynchronous Schedule Park Mode Count fields in the USBCMD register. ASP bit
+ * reset value: '00b' for OTG controller core, '11b' for Host-only controller core.
  */
 
 #define BP_USBC_UH3_HCCPARAMS_ASP      (2)      //!< Bit position for USBC_UH3_HCCPARAMS_ASP.
@@ -16522,21 +16333,21 @@ typedef union _hw_usbc_uh3_usbcmd
     reg32_t U;
     struct _hw_usbc_uh3_usbcmd_bitfields
     {
-        unsigned RS : 1; //!< [0] Run/Stop (RS) - Read/Write. Default 0b. 1=Run. 0=Stop. Host operation mode: When set to '1b', the Controller proceeds with the execution of the schedule. The Controller continues execution as long as this bit is set to a one. When this bit is set to 0, the Host Controller completes the current transaction on the USB and then halts. The HC Halted bit in the status register indicates when the Controller has finished the transaction and has entered the stopped state. Software should not write a one to this field unless the controller is in the Halted state (that is, HCHalted in the USBSTS register is a one). Device operation mode: Writing a one to this bit will cause the controller to enable a pull-up on D+ and initiate an attach event. This control bit is not directly connected to the pull-up enable, as the pull-up will become disabled upon transitioning into high-speed mode. Software should use this bit to prevent an attach event before the controller has been properly initialized. Writing a 0 to this will cause a detach event.
-        unsigned RST : 1; //!< [1] Controller Reset (RESET) - Read/Write. Software uses this bit to reset the controller. This bit is set to zero by the Host/Device Controller when the reset process is complete. Software cannot terminate the reset process early by writing a zero to this register. Host operation mode: When software writes a one to this bit, the Controller resets its internal pipelines, timers, counters, state machines etc. to their initial value. Any transaction currently in progress on USB is immediately terminated. A USB reset is not driven on downstream ports. Software should not set this bit to a one when the HCHalted bit in the USBSTS register is a zero. Attempting to reset an actively running host controller will result in undefined behavior. Device operation mode: When software writes a one to this bit, the Controller resets its internal pipelines, timers, counters, state machines etc. to their initial value. Writing a one to this bit when the device is in the attached state is not recommended, because the effect on an attached host is undefined. In order to ensure that the device is not in an attached state before initiating a device controller reset, all primed endpoints should be flushed and the USBCMD Run/Stop bit should be set to 0.
+        unsigned RS : 1; //!< [0] Run/Stop (RS) - Read/Write.
+        unsigned RST : 1; //!< [1] Controller Reset (RESET) - Read/Write.
         unsigned FS : 2; //!< [3:2] See description at bit 15
-        unsigned PSE : 1; //!< [4] Periodic Schedule Enable- Read/Write. Default 0b. This bit controls whether the host controller skips processing the Periodic Schedule. Only the host controller uses this bit. Values Meaning
-        unsigned ASE : 1; //!< [5] Asynchronous Schedule Enable - Read/Write. Default 0b. This bit controls whether the host controller skips processing the Asynchronous Schedule. Only the host controller uses this bit. Values Meaning
-        unsigned IAA : 1; //!< [6] Interrupt on Async Advance Doorbell - Read/Write. This bit is used as a doorbell by software to tell the host controller to issue an interrupt the next time it advances asynchronous schedule. Software must write a 1 to this bit to ring the doorbell. When the host controller has evicted all appropriate cached schedule states, it sets the Interrupt on Async Advance status bit in the USBSTS register. If the Interrupt on Sync Advance Enable bit in the USBINTR register is one, then the host controller will assert an interrupt at the next interrupt threshold. The host controller sets this bit to zero after it has set the Interrupt on Sync Advance status bit in the USBSTS register to one. Software should not write a one to this bit when the asynchronous schedule is inactive. Doing so will yield undefined results. This bit is only used in host mode. Writing a one to this bit when device mode is selected will have undefined results.
+        unsigned PSE : 1; //!< [4] Periodic Schedule Enable- Read/Write.
+        unsigned ASE : 1; //!< [5] Asynchronous Schedule Enable - Read/Write.
+        unsigned IAA : 1; //!< [6] Interrupt on Async Advance Doorbell - Read/Write.
         unsigned RESERVED0 : 1; //!< [7] Reserved
-        unsigned ASP : 2; //!< [9:8] Asynchronous Schedule Park Mode Count - Read/Write. If the Asynchronous Park Capability bit in the HCCPARAMS register is a one, then this field defaults to 3h and is R/W. Otherwise it defaults to zero and is Read-Only. It contains a count of the number of successive transactions the host controller is allowed to execute from a high-speed queue head on the Asynchronous schedule before continuing traversal of the Asynchronous schedule. Valid values are 1h to 3h. Software must not write a zero to this bit when Park Mode Enable is a one as this will result in undefined behavior. This field is set to 3h in all controller core.
+        unsigned ASP : 2; //!< [9:8] Asynchronous Schedule Park Mode Count - Read/Write.
         unsigned RESERVED1 : 1; //!< [10] Reserved
-        unsigned ASPE : 1; //!< [11] Asynchronous Schedule Park Mode Enable - Read/Write. If the Asynchronous Park Capability bit in the HCCPARAMS register is a one, then this bit defaults to a 1h and is R/W. Otherwise the bit must be a zero and is RO. Software uses this bit to enable or disable Park mode. When this bit is one, Park mode is enabled. When this bit is a zero, Park mode is disabled. This field is set to '1b' in this implementation. ASPE bit reset value: '0b' for OTG controller core, '1b' for Host-only controller core.
+        unsigned ASPE : 1; //!< [11] Asynchronous Schedule Park Mode Enable - Read/Write.
         unsigned RESERVED2 : 1; //!< [12] Reserved
-        unsigned SUTW : 1; //!< [13] Setup TripWire - Read/Write. [device mode only] This bit is used as a semaphore to ensure that the setup data payload of 8 bytes is extracted from a QH by the DCD without being corrupted. If the setup lockout mode is off (SLOM bit in USB core register n_USBMODE, see ) then there is a hazard when new setup data arrives while the DCD is copying the setup data payload from the QH for a previous setup packet. This bit is set and cleared by software. This bit would also be cleared by hardware when a hazard detected. For more information on the use of this bit, see the Device Operational Model section of the USB-HS OTG High-Speed USB On-The-Go DEV reference manual.
-        unsigned ATDTW : 1; //!< [14] Add dTD TripWire - Read/Write. [device mode only] This bit is used as a semaphore to ensure proper addition of a new dTD to an active (primed) endpoint's linked list. This bit is set and cleared by software. This bit would also be cleared by hardware when state machine is hazard region for which adding a dTD to a primed endpoint may go unrecognized. For more information on the use of this bit, see the Device Operational Model section of the USB-HS OTG High-Speed USB On-The-Go DEV reference manual.
-        unsigned FS1 : 1; //!< [15] See also bits 3-2 Frame List Size - (Read/Write or Read Only). [host mode only] This field is Read/Write only if Programmable Frame List Flag in the HCCPARAMS registers is set to one. This field specifies the size of the frame list that controls which bits in the Frame Index Register should be used for the Frame List Current index. This field is made up from USBCMD bits 15, 3 and 2. Value Meaning
-        unsigned ITC : 8; //!< [23:16] Interrupt Threshold Control -Read/Write. The system software uses this field to set the maximum rate at which the host/device controller will issue interrupts. ITC contains the maximum interrupt interval measured in micro-frames. Valid values are shown below. Value Maximum Interrupt Interval
+        unsigned SUTW : 1; //!< [13] Setup TripWire - Read/Write.
+        unsigned ATDTW : 1; //!< [14] Add dTD TripWire - Read/Write.
+        unsigned FS1 : 1; //!< [15] See also bits 3-2 Frame List Size - (Read/Write or Read Only).
+        unsigned ITC : 8; //!< [23:16] Interrupt Threshold Control -Read/Write.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
     } B;
 } hw_usbc_uh3_usbcmd_t;
@@ -16750,9 +16561,8 @@ typedef union _hw_usbc_uh3_usbcmd
  * Asynchronous Schedule Park Mode Enable - Read/Write. If the Asynchronous Park Capability bit in
  * the HCCPARAMS register is a one, then this bit defaults to a 1h and is R/W. Otherwise the bit
  * must be a zero and is RO. Software uses this bit to enable or disable Park mode. When this bit is
- * one, Park mode is enabled. When this bit is a zero, Park mode is disabled. This field is set to
- * '1b' in this implementation. ASPE bit reset value: '0b' for OTG controller core, '1b' for Host-
- * only controller core.
+ * one, Park mode is enabled. When this bit is a zero, Park mode is disabled. ASPE bit reset value:
+ * '0b' for OTG controller core, '1b' for Host-only controller core.
  */
 
 #define BP_USBC_UH3_USBCMD_ASPE      (11)      //!< Bit position for USBC_UH3_USBCMD_ASPE.
@@ -16776,8 +16586,7 @@ typedef union _hw_usbc_uh3_usbcmd
  * the setup lockout mode is off (SLOM bit in USB core register n_USBMODE, see ) then there is a
  * hazard when new setup data arrives while the DCD is copying the setup data payload from the QH
  * for a previous setup packet. This bit is set and cleared by software. This bit would also be
- * cleared by hardware when a hazard detected. For more information on the use of this bit, see the
- * Device Operational Model section of the USB-HS OTG High-Speed USB On-The-Go DEV reference manual.
+ * cleared by hardware when a hazard detected.
  */
 
 #define BP_USBC_UH3_USBCMD_SUTW      (13)      //!< Bit position for USBC_UH3_USBCMD_SUTW.
@@ -16799,9 +16608,7 @@ typedef union _hw_usbc_uh3_usbcmd
  * Add dTD TripWire - Read/Write. [device mode only] This bit is used as a semaphore to ensure
  * proper addition of a new dTD to an active (primed) endpoint's linked list. This bit is set and
  * cleared by software. This bit would also be cleared by hardware when state machine is hazard
- * region for which adding a dTD to a primed endpoint may go unrecognized. For more information on
- * the use of this bit, see the Device Operational Model section of the USB-HS OTG High-Speed USB
- * On-The-Go DEV reference manual.
+ * region for which adding a dTD to a primed endpoint may go unrecognized.
  */
 
 #define BP_USBC_UH3_USBCMD_ATDTW      (14)      //!< Bit position for USBC_UH3_USBCMD_ATDTW.
@@ -16903,26 +16710,26 @@ typedef union _hw_usbc_uh3_usbsts
     reg32_t U;
     struct _hw_usbc_uh3_usbsts_bitfields
     {
-        unsigned UI : 1; //!< [0] USB Interrupt (USBINT) - R/WC. This bit is set by the Host/Device Controller when the cause of an interrupt is a completion of a USB transaction where the Transfer Descriptor (TD) has an interrupt on complete (IOC) bit set. This bit is also set by the Host/Device Controller when a short packet is detected. A short packet is when the actual number of bytes received was less than the expected number of bytes.
-        unsigned UEI : 1; //!< [1] USB Error Interrupt (USBERRINT) - R/WC. When completion of a USB transaction results in an error condition, this bit is set by the Host/Device Controller. This bit is set along with the USBINT bit, if the TD on which the error interrupt occurred also had its interrupt on complete (IOC) bit set See Section (Reference Host Operation Model: Transfer/Transaction Based Interrupt - i.e. 4.15.1 in EHCI Enhanced Host Controller Interface Specification for Universal Serial Bus, Revision 0.95, November 2000, Intel Corporation. http://www.intel.com) for a complete list of host error interrupt conditions. See section Device Error Matrix in the USB-HS OTG High-Speed USB On-The-Go DEV reference manual. The device controller detects resume signaling only.
-        unsigned PCI : 1; //!< [2] Port Change Detect - R/WC. The Host Controller sets this bit to a one when on any port a Connect Status occurs, a Port Enable/Disable Change occurs, or the Force Port Resume bit is set as the result of a J-K transition on the suspended port. The Device Controller sets this bit to a one when the port controller enters the full or high-speed operational state. When the port controller exits the full or high-speed operation states due to Reset or Suspend events, the notification mechanisms are the USB Reset Received bit and the DCSuspend bits respectively.
-        unsigned FRI : 1; //!< [3] Frame List Rollover - R/WC. The Host Controller sets this bit to a one when the Frame List Index rolls over from its maximum value to zero. The exact value at which the rollover occurs depends on the frame list size. For example. If the frame list size (as programmed in the Frame List Size field of the USB_n_USBCMD register) is 1024, the Frame Index Register rolls over every time FRINDEX [13] toggles. Similarly, if the size is 512, the Host Controller sets this bit to a one every time FHINDEX [12] toggles. Only used in host operation mode.
-        unsigned SEI : 1; //!< [4] System Error- R/WC. This bit is will be set to '1b' when an Error response is seen to a read on the system interface.
-        unsigned AAI : 1; //!< [5] Interrupt on Async Advance - R/WC. System software can force the host controller to issue an interrupt the next time the host controller advances the asynchronous schedule by writing a one to the Interrupt on Async Advance Doorbell bit in the n_USBCMD register. This status bit indicates the assertion of that interrupt source. Only used in host operation mode.
-        unsigned URI : 1; //!< [6] USB Reset Received - R/WC. When the device controller detects a USB Reset and enters the default state, this bit will be set to a one. Software can write a 1 to this bit to clear the USB Reset Received status bit. Only used in device operation mode.
-        unsigned SRI : 1; //!< [7] SOF Received - R/WC. When the device controller detects a Start Of (micro) Frame, this bit will be set to a one. When a SOF is extremely late, the device controller will automatically set this bit to indicate that an SOF was expected. Therefore, this bit will be set roughly every 1ms in device FS mode and every 125ms in HS mode and will be synchronized to the actual SOF that is received. Because the device controller is initialized to FS before connect, this bit will be set at an interval of 1ms during the prelude to connect and chirp. In host mode, this bit will be set every 125us and can be used by host controller driver as a time base. Software writes a 1 to this bit to clear it.
-        unsigned SLI : 1; //!< [8] DCSuspend - R/WC. When a controller enters a suspend state from an active state, this bit will be set to a one. The device controller clears the bit upon exiting from a suspend state. Only used in device operation mode.
+        unsigned UI : 1; //!< [0] USB Interrupt (USBINT) - R/WC.
+        unsigned UEI : 1; //!< [1] USB Error Interrupt (USBERRINT) - R/WC.
+        unsigned PCI : 1; //!< [2] Port Change Detect - R/WC.
+        unsigned FRI : 1; //!< [3] Frame List Rollover - R/WC.
+        unsigned SEI : 1; //!< [4] System Error- R/WC.
+        unsigned AAI : 1; //!< [5] Interrupt on Async Advance - R/WC.
+        unsigned URI : 1; //!< [6] USB Reset Received - R/WC.
+        unsigned SRI : 1; //!< [7] SOF Received - R/WC.
+        unsigned SLI : 1; //!< [8] DCSuspend - R/WC.
         unsigned RESERVED0 : 1; //!< [9] Reserved
-        unsigned ULPII : 1; //!< [10] ULPI Interrupt - R/WC. This bit will be set '1b' by hardware when there is an event completion in ULPI viewport. This bit is usable only if the controller support UPLI interface mode.
+        unsigned ULPII : 1; //!< [10] ULPI Interrupt - R/WC.
         unsigned RESERVED1 : 1; //!< [11] Reserved
-        unsigned HCH : 1; //!< [12] HCHaIted - Read Only. This bit is a zero whenever the Run/Stop bit is a one. The Controller sets this bit to one after it has stopped executing because of the Run/Stop bit being set to 0, either by software or by the Controller hardware (for example, an internal error). Only used in the host operation mode. Default value is '0b' for OTG core, and '1b' for Host1/Host2/Host3 core. This is because OTG core is not operating as host in default. Please see CM bit in USB_n_USBMODE register. HCH bit reset value: '0b' for OTG controller core, '1b' for Host-only controller core.
-        unsigned RCL : 1; //!< [13] Reclamation - Read Only. This is a read-only status bit used to detect an empty asynchronous schedule. Only used in the host operation mode.
-        unsigned PS : 1; //!< [14] Periodic Schedule Status - Read Only. This bit reports the current real status of the Periodic Schedule. When set to zero the periodic schedule is disabled, and if set to one the status is enabled. The Host Controller is not required to immediately disable or enable the Periodic Schedule when software transitions the Periodic Schedule Enable bit in the USBCMD register. When this bit and the Periodic Schedule Enable bit are the same value, the Periodic Schedule is either enabled (1) or disabled (0). Only used in the host operation mode.
-        unsigned AS : 1; //!< [15] Asynchronous Schedule Status - Read Only. This bit reports the current real status of the Asynchronous Schedule. When set to zero the asynchronous schedule status is disabled and if set to one the status is enabled. The Host Controller is not required to immediately disable or enable the Asynchronous Schedule when software transitions the Asynchronous Schedule Enable bit in the USBCMD register. When this bit and the Asynchronous Schedule Enable bit are the same value, the Asynchronous Schedule is either enabled (1) or disabled (0). Only used in the host operation mode.
-        unsigned NAKI : 1; //!< [16] NAK Interrupt Bit--RO. This bit is set by hardware when for a particular endpoint both the TX/RX Endpoint NAK bit and corresponding TX/RX Endpoint NAK Enable bit are set. This bit is automatically cleared by hardware when all Enabled TX/RX Endpoint NAK bits are cleared.
+        unsigned HCH : 1; //!< [12] HCHaIted - Read Only.
+        unsigned RCL : 1; //!< [13] Reclamation - Read Only.
+        unsigned PS : 1; //!< [14] Periodic Schedule Status - Read Only.
+        unsigned AS : 1; //!< [15] Asynchronous Schedule Status - Read Only.
+        unsigned NAKI : 1; //!< [16] NAK Interrupt Bit--RO.
         unsigned RESERVED2 : 7; //!< [23:17] Reserved
-        unsigned TI0 : 1; //!< [24] General Purpose Timer Interrupt 0(GPTINT0)--R/WC. This bit is set when the counter in the GPTIMER0CTRL register transitions to zero, writing a one to this bit clears it.
-        unsigned TI1 : 1; //!< [25] General Purpose Timer Interrupt 1(GPTINT1)--R/WC. This bit is set when the counter in the GPTIMER1CTRL register transitions to zero, writing a one to this bit will clear it.
+        unsigned TI0 : 1; //!< [24] General Purpose Timer Interrupt 0(GPTINT0)--R/WC.
+        unsigned TI1 : 1; //!< [25] General Purpose Timer Interrupt 1(GPTINT1)--R/WC.
         unsigned RESERVED3 : 6; //!< [31:26] Reserved
     } B;
 } hw_usbc_uh3_usbsts_t;
@@ -16974,11 +16781,7 @@ typedef union _hw_usbc_uh3_usbsts
  * USB Error Interrupt (USBERRINT) - R/WC. When completion of a USB transaction results in an error
  * condition, this bit is set by the Host/Device Controller. This bit is set along with the USBINT
  * bit, if the TD on which the error interrupt occurred also had its interrupt on complete (IOC) bit
- * set See Section (Reference Host Operation Model: Transfer/Transaction Based Interrupt - i.e.
- * 4.15.1 in EHCI Enhanced Host Controller Interface Specification for Universal Serial Bus,
- * Revision 0.95, November 2000, Intel Corporation. http://www.intel.com) for a complete list of
- * host error interrupt conditions. See section Device Error Matrix in the USB-HS OTG High-Speed USB
- * On-The-Go DEV reference manual. The device controller detects resume signaling only.
+ * set The device controller detects resume signaling only.
  */
 
 #define BP_USBC_UH3_USBSTS_UEI      (1)      //!< Bit position for USBC_UH3_USBSTS_UEI.
@@ -17342,14 +17145,14 @@ typedef union _hw_usbc_uh3_usbintr
         unsigned UE : 1; //!< [0] USB Interrupt Enalbe When this bit is one and the UI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned UEE : 1; //!< [1] USB Error Interrupt Enable When this bit is one and the UEI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned PCE : 1; //!< [2] Port Change Detect Interrupt Enable When this bit is one and the PCI bit in n_USBSTS register is a one the controller will issue an interrupt.
-        unsigned FRE : 1; //!< [3] Frame List Rollover Interrupt Enable When this bit is one and the FRI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in host operation mode.
-        unsigned SEE : 1; //!< [4] System Error Interrupt Enable When this bit is one and the SEI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in host operation mode.
-        unsigned AAE : 1; //!< [5] Async Advance Interrupt Enable When this bit is one and the AAI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in host operation mode.
-        unsigned URE : 1; //!< [6] USB Reset Interrupt Enable When this bit is one and the URI bit in n_USBSTS register is a one the controller will issue an interrupt. Only used in device operation mode.
+        unsigned FRE : 1; //!< [3] Frame List Rollover Interrupt Enable When this bit is one and the FRI bit in n_USBSTS register is a one the controller will issue an interrupt.
+        unsigned SEE : 1; //!< [4] System Error Interrupt Enable When this bit is one and the SEI bit in n_USBSTS register is a one the controller will issue an interrupt.
+        unsigned AAE : 1; //!< [5] Async Advance Interrupt Enable When this bit is one and the AAI bit in n_USBSTS register is a one the controller will issue an interrupt.
+        unsigned URE : 1; //!< [6] USB Reset Interrupt Enable When this bit is one and the URI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned SRE : 1; //!< [7] SOF Received Interrupt Enable When this bit is one and the SRI bit in n_USBSTS register is a one the controller will issue an interrupt.
-        unsigned SLE : 1; //!< [8] Sleep Interrupt Enable When this bit is one and the SLI bit in n_n_USBSTS register is a one the controller will issue an interrupt. Only used in device operation mode.
+        unsigned SLE : 1; //!< [8] Sleep Interrupt Enable When this bit is one and the SLI bit in n_n_USBSTS register is a one the controller will issue an interrupt.
         unsigned RESERVED0 : 1; //!< [9] Reserved
-        unsigned ULPIE : 1; //!< [10] ULPI Interrupt Enable When this bit is one and the UPLII bit in n_USBSTS register is a one the controller will issue an interrupt. This bit is usable only if the controller support UPLI interface mode.
+        unsigned ULPIE : 1; //!< [10] ULPI Interrupt Enable When this bit is one and the UPLII bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned RESERVED1 : 5; //!< [15:11] These bits are reserved and should be set to zero.
         unsigned NAKE : 1; //!< [16] NAK Interrupt Enable When this bit is one and the NAKI bit in n_USBSTS register is a one the controller will issue an interrupt.
         unsigned RESERVED2 : 1; //!< [17] Reserved
@@ -17712,7 +17515,7 @@ typedef union _hw_usbc_uh3_frindex
     reg32_t U;
     struct _hw_usbc_uh3_frindex_bitfields
     {
-        unsigned FRINDEX : 14; //!< [13:0] Frame Index. The value, in this register, increments at the end of each time frame (micro-frame). Bits [N: 3] are used for the Frame List current index. This means that each location of the frame list is accessed 8 times (frames or micro-frames) before moving to the next index. The following illustrates values of N based on the value of the Frame List Size field in the USBCMD register, when used in host mode. USBCMD [Frame List Size] Number Elements N In device mode the value is the current frame number of the last frame transmitted. It is not used as an index. In either mode bits 2:0 indicate the current microframe.
+        unsigned FRINDEX : 14; //!< [13:0] Frame Index.
         unsigned RESERVED0 : 18; //!< [31:14] Reserved
     } B;
 } hw_usbc_uh3_frindex_t;
@@ -17795,7 +17598,7 @@ typedef union _hw_usbc_uh3_periodiclistbase
     struct _hw_usbc_uh3_periodiclistbase_bitfields
     {
         unsigned RESERVED0 : 12; //!< [11:0] Reserved
-        unsigned BASEADR : 20; //!< [31:12] Base Address (Low). These bits correspond to memory address signals [31:12], respectively. Only used by the host controller.
+        unsigned BASEADR : 20; //!< [31:12] Base Address (Low).
     } B;
 } hw_usbc_uh3_periodiclistbase_t;
 #endif
@@ -17858,7 +17661,7 @@ typedef union _hw_usbc_uh3_asynclistaddr
     struct _hw_usbc_uh3_asynclistaddr_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved
-        unsigned ASYBASE : 27; //!< [31:5] Link Pointer Low (LPL). These bits correspond to memory address signals [31:5], respectively. This field may only reference a Queue Head (QH). Only used by the host controller.
+        unsigned ASYBASE : 27; //!< [31:5] Link Pointer Low (LPL).
     } B;
 } hw_usbc_uh3_asynclistaddr_t;
 #endif
@@ -17919,8 +17722,8 @@ typedef union _hw_usbc_uh3_burstsize
     reg32_t U;
     struct _hw_usbc_uh3_burstsize_bitfields
     {
-        unsigned RXPBURST : 8; //!< [7:0] Programmable RX Burst Size. Default value is determined by TXBURST bits in n_HWRXBUF. This register represents the maximum length of a the burst in 32-bit words while moving data from the USB bus to system memory.
-        unsigned TXPBURST : 9; //!< [16:8] Programmable TX Burst Size. Default value is determined by TXBURST bits in n_HWTXBUF. This register represents the maximum length of a the burst in 32-bit words while moving data from system memory to the USB bus.
+        unsigned RXPBURST : 8; //!< [7:0] Programmable RX Burst Size.
+        unsigned TXPBURST : 9; //!< [16:8] Programmable TX Burst Size.
         unsigned RESERVED0 : 15; //!< [31:17] Reserved
     } B;
 } hw_usbc_uh3_burstsize_t;
@@ -18021,10 +17824,10 @@ typedef union _hw_usbc_uh3_txfilltuning
     reg32_t U;
     struct _hw_usbc_uh3_txfilltuning_bitfields
     {
-        unsigned TXSCHOH : 8; //!< [7:0] Scheduler Overhead. (Read/Write) [Default = 0] This register adds an additional fixed offset to the schedule time estimator described above as Tff. As an approximation, the value chosen for this register should limit the number of back-off events captured in the TXSCHHEALTH to less than 10 per second in a highly utilized bus. Choosing a value that is too high for this register is not desired as it can needlessly reduce USB utilization. The time unit represented in this register is 1.267us when a device is connected in High-Speed Mode. The time unit represented in this register is 6.333us when a device is connected in Low/Full Speed Mode. Default value is '08h' for OTG controller core, and '00h' for Host-only controller core.
-        unsigned TXSCHHEALTH : 5; //!< [12:8] Scheduler Health Counter. (Read/Write To Clear) This register increments when the host controller fails to fill the TX latency FIFO to the level programmed by TXFIFOTHRES before running out of time to send the packet before the next Start-Of-Frame. This health counter measures the number of times this occurs to provide feedback to selecting a proper TXSCHOH. Writing to this register will clear the counter and this counter will max. at 31. Default value is '08h' for OTG controller core, and '00h' for Host-only controller core.
+        unsigned TXSCHOH : 8; //!< [7:0] Scheduler Overhead.
+        unsigned TXSCHHEALTH : 5; //!< [12:8] Scheduler Health Counter.
         unsigned RESERVED0 : 3; //!< [15:13] Reserved
-        unsigned TXFIFOTHRES : 6; //!< [21:16] FIFO Burst Threshold. (Read/Write) This register controls the number of data bursts that are posted to the TX latency FIFO in host mode before the packet begins on to the bus. The minimum value is 2 and this value should be a low as possible to maximize USB performance. A higher value can be used in systems with unpredictable latency and/or insufficient bandwidth where the FIFO may underrun because the data transferred from the latency FIFO to USB occurs before it can be replenished from system memory. This value is ignored if the Stream Disable bit in USB_n_USBMODE register is set. Default value is '00h' for OTG controller core, and '02h' for Host-only controller core.
+        unsigned TXFIFOTHRES : 6; //!< [21:16] FIFO Burst Threshold.
         unsigned RESERVED1 : 10; //!< [31:22] Reserved
     } B;
 } hw_usbc_uh3_txfilltuning_t;
@@ -18141,7 +17944,7 @@ typedef union _hw_usbc_uh3_configflag
     reg32_t U;
     struct _hw_usbc_uh3_configflag_bitfields
     {
-        unsigned CF : 1; //!< [0] Configure Flag Host software sets this bit as the last action in its process of configuring the Host Controller. This bit controls the default port-routing control logic.
+        unsigned CF : 1; //!< [0] Configure Flag Host software sets this bit as the last action in its process of configuring the Host Controller.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_usbc_uh3_configflag_t;
@@ -18210,31 +18013,31 @@ typedef union _hw_usbc_uh3_portsc1
     reg32_t U;
     struct _hw_usbc_uh3_portsc1_bitfields
     {
-        unsigned CCS : 1; //!< [0] Current Connect Status-Read Only. In Host Mode: 1=Device is present on port. 0=No device is present. Default = 0. This value reflects the current state of the port, and may not correspond directly to the event that caused the Connect Status Change bit (Bit 1) to be set. This field is zero if Port Power( ) is zero in host mode. In Device Mode: 1=Attached. 0=Not Attached. Default=0. A one indicates that the device successfully attached and is operating in either high speed or full speed as indicated by the High Speed Port bit in this register. A zero indicates that the device did not attach successfully or was forcibly disconnected by the software writing a zero to the Run bit in the USBCMD register. It does not state the device being disconnected or suspended.
-        unsigned CSC : 1; //!< [1] Connect Status Change-R/WC. 1 =Change in Current Connect Status. 0=No change. Default 0. In Host Mode: Indicates a change has occurred in the port's Current Connect Status. The host/device controller sets this bit for all changes to the port device connect status, even if system software has not cleared an existing connect status change. For example, the insertion status changes twice before system software has cleared the changed condition, hub hardware will be 'setting' an already-set bit (that is, the bit will remain set). Software clears this bit by writing a one to it. This field is zero if Port Power( ) is zero in host mode. In Device Mode: This bit is undefined in device controller mode.
-        unsigned PE : 1; //!< [2] Port Enabled/Disabled-Read/Write. 1=Enable. 0=Disable. Default 0. In Host Mode: Ports can only be enabled by the host controller as a part of the reset and enable. Software cannot enable a port by writing a one to this field. Ports can be disabled by either a fault condition (disconnect event or other fault condition) or by the host software. Note that the bit status does not change until the port state actually changes. There may be a delay in disabling or enabling a port due to other host controller and bus events. When the port is disabled, (0b) downstream propagation of data is blocked except for reset. This field is zero if Port Power( ) is zero in host mode. In Device Mode: The device port is always enabled, so this bit is always '1b'.
-        unsigned PEC : 1; //!< [3] Port Enable/Disable Change-R/WC. 1=Port enabled/disabled status has changed. 0=No change. Default = 0. In Host Mode: For the root hub, this bit is set to a one only when a port is disabled due to disconnect on the port or due to the appropriate conditions existing at the EOF2 point (See Chapter 11 of the USB Specification). Software clears this by writing a one to it. This field is zero if Port Power( ) is zero. In Device mode: The device port is always enabled, so this bit is always '0b'.
-        unsigned OCA : 1; //!< [4] Over-current Active-Read Only. Default 0. This bit will automatically transition from one to zero when the over current condition is removed. For host/OTG implementations the user can provide over-current detection to the vbus_pwr_fault input for this condition. For device-only implementations this bit shall always be 0.
-        unsigned OCC : 1; //!< [5] Over-current Change-R/WC. Default=0. This bit is set '1b' by hardware when there is a change to Over-current Active. Software can clear this bit by writing a one to this bit position. For host/OTG implementations the user can provide over-current detection to the vbus_pwr_fault input for this condition. For device-only implementations this bit shall always be 0.
-        unsigned FPR : 1; //!< [6] Force Port Resume -Read/Write. 1= Resume detected/driven on port. 0=No resume (K-state) detected/driven on port. Default = 0. In Host Mode: Software sets this bit to one to drive resume signaling. The Host Controller sets this bit to one if a J-to-K transition is detected while the port is in the Suspend state. When this bit transitions to a one because a J-to-K transition is detected, the Port Change Detect bit in the USBSTS register is also set to one. This bit will automatically change to zero after the resume sequence is complete. This behavior is different from EHCI where the host controller driver is required to set this bit to a zero after the resume duration is timed in the driver. Note that when the Host controller owns the port, the resume sequence follows the defined sequence documented in the USB Specification Revision 2.0. The resume signaling (Full-speed 'K') is driven on the port as long as this bit remains a one. This bit will remain a one until the port has switched to the high-speed idle. Writing a zero has no effect because the port controller will time the resume operation clear the bit the port control state switches to HS or FS idle. This field is zero if Port Power( ) is zero in host mode. This bit is not-EHCI compatible. In Device mode: After the device has been in Suspend State for 5ms or more, software must set this bit to one to drive resume signaling before clearing. The Device Controller will set this bit to one if a J-to-K transition is detected while the port is in the Suspend state. The bit will be cleared when the device returns to normal operation. Also, when this bit wil be cleared because a K-to-J transition detected, the Port Change Detect bit in the USBSTS register is also set to one.
-        unsigned SUSP : 1; //!< [7] Suspend - Read/Write or Read Only. Default = 0b. 1=Port in suspend state. 0=Port not in suspend state. In Host Mode: Read/Write. Port Enabled Bit and Suspend bit of this register define the port states as follows: Bits [Port Enabled, Suspend] Port State 0x Disable 10 Enable 11 Suspend When in suspend state, downstream propagation of data is blocked on this port, except for port reset. The blocking occurs at the end of the current transaction if a transaction was in progress when this bit was written to 1. In the suspend state, the port is sensitive to resume detection. Note that the bit status does not change until the port is suspended and that there may be a delay in suspending a port if there is a transaction currently in progress on the The host controller will unconditionally set this bit to zero when software sets the Force Port Resume bit to zero. The host controller ignores a write of zero to this bit. If host software sets this bit to a one when the port is not enabled (that is, Port enabled bit is a zero) the results are undefined. This field is zero if Port Power( ) is zero in host mode. In Device Mode: Read Only. In device mode this bit is a read only status bit.
-        unsigned PR : 1; //!< [8] Port Reset - Read/Write or Read Only. Default = 0b. In Host Mode: Read/Write. 1=Port is in Reset. 0=Port is not in Reset. Default 0. When software writes a one to this bit the bus-reset sequence as defined in the USB Specification Revision 2.0 is started. This bit will automatically change to zero after the reset sequence is complete. This behavior is different from EHCI where the host controller driver is required to set this bit to a zero after the reset duration is timed in the driver. In Device Mode: This bit is a read only status bit. Device reset from the USB bus is also indicated in the USBSTS register. This field is zero if Port Power( ) is zero.
-        unsigned HSP : 1; //!< [9] High-Speed Port - Read Only. Default = 0b. When the bit is one, the host/device connected to the port is in high-speed mode and if set to zero, the host/device connected to the port is not in a high-speed mode. HSP is redundant with PSPD(bit 27, 26) but remained for compatibility.
-        unsigned LS : 2; //!< [11:10] Line Status-Read Only. These bits reflect the current logical levels of the D+ (bit 11) and D- (bit 10) signal lines. In host mode, the use of linestate by the host controller driver is not necessary (unlike EHCI), because the port controller state machine and the port routing manage the connection of LS and FS. In device mode, the use of linestate by the device controller driver is not necessary. The encoding of the bits are: Bits [11:10] Meaning
-        unsigned PP : 1; //!< [12] Port Power (PP)-Read/Write or Read Only. The function of this bit depends on the value of the Port Power Switching (PPC) field in the HCSPARAMS register. The behavior is as follows: PPC PP Operation 0 1b Read Only - Host controller does not have port power control switches. Each port is hard-wired to power. 1 1b/0b - Read/Write. Host/OTG controller requires port power control switches. This bit represents the current setting of the switch (0=off, 1=on). When power is not available on a port (that is, PP equals a 0), the port is non-functional and will not report attaches, detaches, etc. When an over-current condition is detected on a powered port and PPC is a one, the PP bit in each affected port may be transitional by the host controller driver from a one to a zero (removing power from the port). This feature is implemented in all controller cores (PPC = 1).
-        unsigned PO : 1; //!< [13] Port Owner-Read/Write. Default = 0. This bit unconditionally goes to a 0 when the configured bit in the CONFIGFLAG register makes a 0 to 1 transition. This bit unconditionally goes to 1 whenever the Configured bit is zero System software uses this field to release ownership of the port to a selected host controller (in the event that the attached device is not a high-speed device). Software writes a one to this bit when the attached device is not a high-speed device. A one in this bit means that an internal companion controller owns and controls the port. Port owner handoff is not supported in all controller cores, therefore this bit will always be 0.
-        unsigned PIC : 2; //!< [15:14] Port Indicator Control - Read/Write. Default = Ob. Writing to this field has no effect if the P_INDICATOR bit in the HCSPARAMS register is a zero. Refer to the USB Specification Revision 2.0 for a description on how these bits are to be used. This field is zero if Port Power is zero. Bit Value Meaning
-        unsigned PTC : 4; //!< [19:16] Port Test Control - Read/Write. Default = 0000b. Refer to for the operational model for using these test modes and the USB Specification Revision 2.0, Chapter 7 for details on each test mode. The FORCE_ENABLE_FS and FORCE ENABLE_LS are extensions to the test mode support specified in the EHCI specification. Writing the PTC field to any of the FORCE_ENABLE_{HS/FS/LS} values will force the port into the connected and enabled state at the selected speed. Writing the PTC field back to TEST_MODE_DISABLE will allow the port state machines to progress normally from that point. Low speed operations are not supported as a peripheral device. Any other value than zero indicates that the port is operating in test mode. Value Specific Test
-        unsigned WKCN : 1; //!< [20] Wake on Connect Enable (WKCNNT_E) - Read/Write. Default=0b. Writing this bit to a one enables the port to be sensitive to device connects as wake-up events. This field is zero if Port Power( ) is zero or in device mode.
-        unsigned WKDC : 1; //!< [21] Wake on Disconnect Enable (WKDSCNNT_E) - Read/Write. Default=0b. Writing this bit to a one enables the port to be sensitive to device disconnects as wake-up events. This field is zero if Port Power( ) is zero or in device mode.
-        unsigned WKOC : 1; //!< [22] Wake on Over-current Enable (WKOC_E) - Read/Write. Default = 0b. Writing this bit to a one enables the port to be sensitive to over-current conditions as wake-up events. This field is zero if Port Power( ) is zero.
-        unsigned PHCD : 1; //!< [23] PHY Low Power Suspend - Clock Disable (PLPSCD) - Read/Write. Default = 0b. When this bit is set to '1b', the PHY clock is disabled. Reading this bit will indicate the status of the PHY clock. The PHY clock cannot be disabled if it is being used as the system clock. In device mode, The PHY can be put into Low Power Suspend when the device is not running (USBCMD Run/Stop=0b) or the host has signaled suspend (PORTSC1 SUSPEND=1b). PHY Low power suspend will be cleared automatically when the host initials resume. Before forcing a resume from the device, the device controller driver must clear this bit. In host mode, the PHY can be put into Low Power Suspend when the downstream device has been put into suspend mode or when no downstream device is connected. Low power suspend is completely under the control of software.
-        unsigned PFSC : 1; //!< [24] Port Force Full Speed Connect - Read/Write. Default = 0b. When this bit is set to '1b', the port will be forced to only connect at Full Speed, It disables the chirp sequence that allows the port to identify itself as High Speed.
+        unsigned CCS : 1; //!< [0] Current Connect Status-Read Only.
+        unsigned CSC : 1; //!< [1] Connect Status Change-R/WC.
+        unsigned PE : 1; //!< [2] Port Enabled/Disabled-Read/Write.
+        unsigned PEC : 1; //!< [3] Port Enable/Disable Change-R/WC.
+        unsigned OCA : 1; //!< [4] Over-current Active-Read Only.
+        unsigned OCC : 1; //!< [5] Over-current Change-R/WC.
+        unsigned FPR : 1; //!< [6] Force Port Resume -Read/Write.
+        unsigned SUSP : 1; //!< [7] Suspend - Read/Write or Read Only.
+        unsigned PR : 1; //!< [8] Port Reset - Read/Write or Read Only.
+        unsigned HSP : 1; //!< [9] High-Speed Port - Read Only.
+        unsigned LS : 2; //!< [11:10] Line Status-Read Only.
+        unsigned PP : 1; //!< [12] Port Power (PP)-Read/Write or Read Only.
+        unsigned PO : 1; //!< [13] Port Owner-Read/Write.
+        unsigned PIC : 2; //!< [15:14] Port Indicator Control - Read/Write.
+        unsigned PTC : 4; //!< [19:16] Port Test Control - Read/Write.
+        unsigned WKCN : 1; //!< [20] Wake on Connect Enable (WKCNNT_E) - Read/Write.
+        unsigned WKDC : 1; //!< [21] Wake on Disconnect Enable (WKDSCNNT_E) - Read/Write.
+        unsigned WKOC : 1; //!< [22] Wake on Over-current Enable (WKOC_E) - Read/Write.
+        unsigned PHCD : 1; //!< [23] PHY Low Power Suspend - Clock Disable (PLPSCD) - Read/Write.
+        unsigned PFSC : 1; //!< [24] Port Force Full Speed Connect - Read/Write.
         unsigned PTS : 1; //!< [25] See description at bits 31-30
-        unsigned PSPD : 2; //!< [27:26] Port Speed - Read Only. This register field indicates the speed at which the port is operating. For HS mode operation in the host controller and HS/FS operation in the device controller the port routing steers data to the Protocol engine. For FS and LS mode operation in the host controller, the port routing steers data to the Protocol Engine w/ Embedded Transaction Translator.
-        unsigned PTW : 1; //!< [28] Parallel Transceiver Width - Read/Write. This register bit is used in conjunction with the configuration constant VUSB_HS_PHY8_16 to control whether the data bus width of the UTMI transceiver interface. If VUSB_HS_PHY8_16 is set for 0 or 1 then this bit is read only. If VUSB_HS_PHY8_16 is 2 or 3 then this bit is read/write. This bit is reset to 1 if VUSB_HS_PHY8_16 selects a default UTMI interface width of 16-bits else it is reset to 0. Writing this bit to 0 selects the 8-bit [60MHz] UTMI interface. Writing this bit to 1 selects the 16-bit [30MHz] UTMI interface. This bit has no effect if the Serial interfaces are selected. This bit is not defined in the EHCI specification. VUSB_HS_PHY16_8 parameter: For Elvis, OTG: 3, Host1/Host2/Host3: 0; For Rita, OTG/Host1/Host2/Host3: 3; For Arik, OTG/Host1/Host2/Host3: 1; Parallel Transceiver Width This bit has no effect if serial interface engine is used. These register bits are implementation dependent. For OTG controller core: it is Read/Write. Reset value is '1b'; For Host1/Host2/Host3 controller core, it is Read-Only. Reset value is '0b'. For OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '1b'. For OTG/Host1/Host2/Host3 core, it is Read-Only. Reset value is '1b'. For OTG1/OTG2/Host1 core, it is Read-Only. Reset value is '1b'.
-        unsigned STS : 1; //!< [29] Serial Transceiver Select - Read/Write. This register bit is used in conjunction with the configuration constant VUSB_HS_PHY_SERIAL to control whether the parallel or serial transceiver interface is selected for FS and LS operation. The Serial Interface Engine can be used in combination with the UTMI+ or ULPI physical interface to provide FS/LS signaling instead of the parallel interface. If VUSB_HS_PHY_SERIAL is set for 0 or 1 then this bit is read only. If VUSB_HS_PHY_SERIAL is 3 or 4 then this bit is read/write. This bit has no effect unless Parallel Transceiver Select is set to UTMI+ or ULPI. The Serial/1.1 physical interface will use the Serial Interface Engine for FS/LS signaling regardless of this bit value. Note: This bit is reserved for future operation and is a placeholder adding dynamic use of the serial engine in accord with UMTI+ and ULPI characterization logic. This bit is not defined in the EHCI specification VUSB_HS_PHY_SERIAL parameter: For Elivs,OTG/Host1/Host2/Host3 core: 2 For Rita, OTG/Host1/Host2/Host3 core: 2 For Arik, OTG/Host1/Host2/Host3 core: 0 Serial Transceiver Select - Read/Write Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface Engine is selected 0 Parallel Interface signals is selected Serial Interface Engine can be used in combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the parallel interface signals. When this bit is set '1b', serial interface engine will be used instead of parallel interface signals. This bit has no effect unless PTS bits is set to select UTMI+/ULPI interface. The Serial/USB1.1 PHY/IC-USB will use the serial interface engine for FS/LS signaling regardless of this bit value.
-        unsigned PTS1 : 2; //!< [31:30] Parallel Transceiver Select - Read/Write. This register bit pair is used in conjunction with the configuration constant VUSB_HS_PHY_TYPE to control which parallel transceiver interface is selected. If VUSB_HS_PHY_TYPE is set for 0,1,2, 3, 8 or 10 then this bit is read only. If VUSB_HS_PHY_TYPE is 4,5, 6, 7, 9 or 11then this bit is read/write. Bit field {bit25, bit30, bit31} is reset to: "000b" if VUSB_HS_PHY_TYPE = 0,4 - UTMI/UTMI+ "001b" if VUSB_HS_PHY_TYPE = 1,5 - Reserved "010b" if VUSB_HS_PHY_TYPE = 2,6 - ULPI "011b" if VUSB_HS_PHY_TYPE = 3,7,8,9 - Serial/1.1 PHY/IC USB(FS Only) "100b" if VUSB_HS_PHY_TYPE = 10,11 - UTMI for HSIC PHY This bit is not defined in the EHCI specification. VUSB_HS_PHY_TYPE parameter: For Elvis, OTG/Host core: 7; For Rita, OTG core: 0, Host core: 7 For Arik, OTG core: 0, Host core: 4 Bit field { bit31, bit30}: "00b" UTMI/UTMI+ "01b" Reserved "10b" ULPI "11b" Serial/USB 1.1 PHY/IC-USB (FS Only) Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit31, bi30). For OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '11b'. Parallel Transceiver Select (bit25, bit31, bi30). For OTG core, it's Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it's Read/Write. Reset value is 011b. Parallel Transceiver Select (bit25, bit31, bi30). For OTG core, it is Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it is Read/Write. Reset value is 000b. All USB port interface modes are listed in this field description, but not all are supported. For detail feature of each controller core, please see . The behaviour is unknown when unsupported interface mode is selected.
+        unsigned PSPD : 2; //!< [27:26] Port Speed - Read Only.
+        unsigned PTW : 1; //!< [28] Parallel Transceiver Width This bit has no effect if serial interface engine is used.
+        unsigned STS : 1; //!< [29] Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface Engine is selected 0 Parallel Interface signals is selected Serial Interface Engine can be used in combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the parallel interface signals.
+        unsigned PTS1 : 2; //!< [31:30] Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit25, bit31, bi30).
     } B;
 } hw_usbc_uh3_portsc1_t;
 #endif
@@ -18355,9 +18158,7 @@ typedef union _hw_usbc_uh3_portsc1
 /* --- Register HW_USBC_UH3_PORTSC1, field OCA[4] (RO)
  *
  * Over-current Active-Read Only. Default 0. This bit will automatically transition from one to zero
- * when the over current condition is removed. For host/OTG implementations the user can provide
- * over-current detection to the vbus_pwr_fault input for this condition. For device-only
- * implementations this bit shall always be 0.
+ * when the over current condition is removed.
  *
  * Values:
  * 0 - This port does not have an over-current condition.
@@ -18374,9 +18175,7 @@ typedef union _hw_usbc_uh3_portsc1
 /* --- Register HW_USBC_UH3_PORTSC1, field OCC[5] (RW)
  *
  * Over-current Change-R/WC. Default=0. This bit is set '1b' by hardware when there is a change to
- * Over-current Active. Software can clear this bit by writing a one to this bit position. For
- * host/OTG implementations the user can provide over-current detection to the vbus_pwr_fault input
- * for this condition. For device-only implementations this bit shall always be 0.
+ * Over-current Active. Software can clear this bit by writing a one to this bit position.
  */
 
 #define BP_USBC_UH3_PORTSC1_OCC      (5)      //!< Bit position for USBC_UH3_PORTSC1_OCC.
@@ -18792,10 +18591,6 @@ typedef union _hw_usbc_uh3_portsc1
 /* --- Register HW_USBC_UH3_PORTSC1, field PSPD[27:26] (RW)
  *
  * Port Speed - Read Only. This register field indicates the speed at which the port is operating.
- * For HS mode operation in the host controller and HS/FS operation in the device controller the
- * port routing steers data to the Protocol engine. For FS and LS mode operation in the host
- * controller, the port routing steers data to the Protocol Engine w/ Embedded Transaction
- * Translator.
  *
  * Values:
  * 00 - Full Speed
@@ -18821,21 +18616,8 @@ typedef union _hw_usbc_uh3_portsc1
 
 /* --- Register HW_USBC_UH3_PORTSC1, field PTW[28] (RW)
  *
- * Parallel Transceiver Width - Read/Write. This register bit is used in conjunction with the
- * configuration constant VUSB_HS_PHY8_16 to control whether the data bus width of the UTMI
- * transceiver interface. If VUSB_HS_PHY8_16 is set for 0 or 1 then this bit is read only. If
- * VUSB_HS_PHY8_16 is 2 or 3 then this bit is read/write. This bit is reset to 1 if VUSB_HS_PHY8_16
- * selects a default UTMI interface width of 16-bits else it is reset to 0. Writing this bit to 0
- * selects the 8-bit [60MHz] UTMI interface. Writing this bit to 1 selects the 16-bit [30MHz] UTMI
- * interface. This bit has no effect if the Serial interfaces are selected. This bit is not defined
- * in the EHCI specification. VUSB_HS_PHY16_8 parameter: For Elvis, OTG: 3, Host1/Host2/Host3: 0;
- * For Rita, OTG/Host1/Host2/Host3: 3; For Arik, OTG/Host1/Host2/Host3: 1; Parallel Transceiver
- * Width This bit has no effect if serial interface engine is used. These register bits are
- * implementation dependent. For OTG controller core: it is Read/Write. Reset value is '1b'; For
- * Host1/Host2/Host3 controller core, it is Read-Only. Reset value is '0b'. For
- * OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '1b'. For OTG/Host1/Host2/Host3
- * core, it is Read-Only. Reset value is '1b'. For OTG1/OTG2/Host1 core, it is Read-Only. Reset
- * value is '1b'.
+ * Parallel Transceiver Width This bit has no effect if serial interface engine is used. For
+ * OTG/Host1/Host2/Host3 core, it is Read-Only. Reset value is '1b'.
  *
  * Values:
  * 0 - Select the 8-bit UTMI interface [60MHz]
@@ -18859,25 +18641,13 @@ typedef union _hw_usbc_uh3_portsc1
 
 /* --- Register HW_USBC_UH3_PORTSC1, field STS[29] (RW)
  *
- * Serial Transceiver Select - Read/Write. This register bit is used in conjunction with the
- * configuration constant VUSB_HS_PHY_SERIAL to control whether the parallel or serial transceiver
- * interface is selected for FS and LS operation. The Serial Interface Engine can be used in
- * combination with the UTMI+ or ULPI physical interface to provide FS/LS signaling instead of the
- * parallel interface. If VUSB_HS_PHY_SERIAL is set for 0 or 1 then this bit is read only. If
- * VUSB_HS_PHY_SERIAL is 3 or 4 then this bit is read/write. This bit has no effect unless Parallel
- * Transceiver Select is set to UTMI+ or ULPI. The Serial/1.1 physical interface will use the Serial
- * Interface Engine for FS/LS signaling regardless of this bit value. Note: This bit is reserved for
- * future operation and is a placeholder adding dynamic use of the serial engine in accord with
- * UMTI+ and ULPI characterization logic. This bit is not defined in the EHCI specification
- * VUSB_HS_PHY_SERIAL parameter: For Elivs,OTG/Host1/Host2/Host3 core: 2 For Rita,
- * OTG/Host1/Host2/Host3 core: 2 For Arik, OTG/Host1/Host2/Host3 core: 0 Serial Transceiver Select -
- * Read/Write Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface
- * Engine is selected 0 Parallel Interface signals is selected Serial Interface Engine can be used
- * in combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the
- * parallel interface signals. When this bit is set '1b', serial interface engine will be used
- * instead of parallel interface signals. This bit has no effect unless PTS bits is set to select
- * UTMI+/ULPI interface. The Serial/USB1.1 PHY/IC-USB will use the serial interface engine for FS/LS
- * signaling regardless of this bit value.
+ * Serial Transceiver Select - Read Only Serial Transceiver Select 1 Serial Interface Engine is
+ * selected 0 Parallel Interface signals is selected Serial Interface Engine can be used in
+ * combination with UTMI+/ULPI physical interface to provide FS/LS signaling instead of the parallel
+ * interface signals. When this bit is set '1b', serial interface engine will be used instead of
+ * parallel interface signals. This bit has no effect unless PTS bits is set to select UTMI+/ULPI
+ * interface. The Serial/USB1.1 PHY/IC-USB will use the serial interface engine for FS/LS signaling
+ * regardless of this bit value.
  */
 
 #define BP_USBC_UH3_PORTSC1_STS      (29)      //!< Bit position for USBC_UH3_PORTSC1_STS.
@@ -18896,25 +18666,12 @@ typedef union _hw_usbc_uh3_portsc1
 
 /* --- Register HW_USBC_UH3_PORTSC1, field PTS1[31:30] (RW)
  *
- * Parallel Transceiver Select - Read/Write. This register bit pair is used in conjunction with the
- * configuration constant VUSB_HS_PHY_TYPE to control which parallel transceiver interface is
- * selected. If VUSB_HS_PHY_TYPE is set for 0,1,2, 3, 8 or 10 then this bit is read only. If
- * VUSB_HS_PHY_TYPE is 4,5, 6, 7, 9 or 11then this bit is read/write. Bit field {bit25, bit30,
- * bit31} is reset to: "000b" if VUSB_HS_PHY_TYPE = 0,4 - UTMI/UTMI+ "001b" if VUSB_HS_PHY_TYPE =
- * 1,5 - Reserved "010b" if VUSB_HS_PHY_TYPE = 2,6 - ULPI "011b" if VUSB_HS_PHY_TYPE = 3,7,8,9 -
- * Serial/1.1 PHY/IC USB(FS Only) "100b" if VUSB_HS_PHY_TYPE = 10,11 - UTMI for HSIC PHY This bit is
- * not defined in the EHCI specification. VUSB_HS_PHY_TYPE parameter: For Elvis, OTG/Host core: 7;
- * For Rita, OTG core: 0, Host core: 7 For Arik, OTG core: 0, Host core: 4 Bit field { bit31,
- * bit30}: "00b" UTMI/UTMI+ "01b" Reserved "10b" ULPI "11b" Serial/USB 1.1 PHY/IC-USB (FS Only) Bit
- * field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB 1.1
- * PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit31, bi30). For
- * OTG/Host1/Host2/Host3 core, it is Read/Write. Reset value is '11b'. Parallel Transceiver Select
- * (bit25, bit31, bi30). For OTG core, it's Read-Only. Reset value is 000b. For Host1/Host2/Host3
- * core, it's Read/Write. Reset value is 011b. Parallel Transceiver Select (bit25, bit31, bi30). For
- * OTG core, it is Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it is Read/Write.
- * Reset value is 000b. All USB port interface modes are listed in this field description, but not
- * all are supported. For detail feature of each controller core, please see . The behaviour is
- * unknown when unsupported interface mode is selected.
+ * Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB
+ * 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit25, bit31, bi30). For OTG
+ * core, it is Read-Only. Reset value is 000b. For Host1/Host2/Host3 core, it is Read/Write. Reset
+ * value is 000b. All USB port interface modes are listed in this field description, but not all are
+ * supported. For detail feature of each controller core, please see . The behaviour is unknown when
+ * unsupported interface mode is selected.
  */
 
 #define BP_USBC_UH3_PORTSC1_PTS1      (30)      //!< Bit position for USBC_UH3_PORTSC1_PTS1.
@@ -18948,10 +18705,10 @@ typedef union _hw_usbc_uh3_usbmode
     reg32_t U;
     struct _hw_usbc_uh3_usbmode_bitfields
     {
-        unsigned CM : 2; //!< [1:0] Controller Mode - R/WO. Controller mode is defaulted to the proper mode for host only and device only implementations. For those designs that contain both host & device capability, the controller defaults to an idle state and needs to be initialized to the desired operating mode after reset. For combination host/device controllers, this register can only be written once after reset. If it is necessary to switch modes, software must reset the controller by writing to the RESET bit in the USBCMD register before reprogramming this register. For OTG controller core, reset value is '00b'. For Host-only controller core, reset value is '11b'.
-        unsigned ES : 1; //!< [2] Endian Select - Read/Write. This bit can change the byte alignment of the transfer buffers to match the host microprocessor. The bit fields in the microprocessor interface and the data structures are unaffected by the value of this bit because they are based upon the 32-bit word. Bit Meaning
-        unsigned SLOM : 1; //!< [3] Setup Lockout Mode. In device mode, this bit controls behavior of the setup lock mechanism. See .
-        unsigned SDIS : 1; //!< [4] Stream Disable Mode. (0 - Inactive [default]; 1 - Active) Device Mode: Setting to a '1' disables double priming on both RX and TX for low bandwidth systems. This mode ensures that when the RX and TX buffers are sufficient to contain an entire packet that the standard double buffering scheme is disabled to prevent overruns/underruns in bandwidth limited systems. Note: In High Speed Mode, all packets received are responded to with a NYET handshake when stream disable is active. Host Mode: Setting to a '1' ensures that overruns/underruns of the latency FIFO are eliminated for low bandwidth systems where the RX and TX buffers are sufficient to contain the entire packet. Enabling stream disable also has the effect of ensuring the TX latency is filled to capacity before the packet is launched onto the USB. Time duration to pre-fill the FIFO becomes significant when stream disable is active. See and TXTTFILLTUNING [MPH Only] to characterize the adjustments needed for the scheduler when using this feature. The use of this feature substantially limits of the overall USB performance that can be achieved.
+        unsigned CM : 2; //!< [1:0] Controller Mode - R/WO.
+        unsigned ES : 1; //!< [2] Endian Select - Read/Write.
+        unsigned SLOM : 1; //!< [3] Setup Lockout Mode.
+        unsigned SDIS : 1; //!< [4] Stream Disable Mode.
         unsigned RESERVED0 : 11; //!< [15:5] Reserved.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;

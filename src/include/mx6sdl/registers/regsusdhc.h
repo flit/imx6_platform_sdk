@@ -70,16 +70,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_USDHC_DS_ADDR - DMA System Address
@@ -99,7 +89,7 @@ typedef union _hw_usdhc_ds_addr
     struct _hw_usdhc_ds_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved
-        unsigned DS_ADDR : 30; //!< [31:2] DMA System Address: This register contains the 32-bit system memory address for a DMA transfer. Since the address must be word (4 bytes) align, the least 2 bits are reserved, always 0. When the uSDHC stops a DMA transfer, this register points to the system address of the next contiguous data position. It can be accessed only when no transaction is executing (i.e. after a transaction has stopped). Read operation during transfers may return an invalid value. The Host Driver shall initialize this register before starting a DMA transaction. After DMA has stopped, the system address of the next contiguous data position can be read from this register. This register is protected during a data transfer. When data lines are active, write to this register is ignored. The Host driver shall wait, until the DLA bit in the Present State register is cleared, before writing to this register. The uSDHC internal DMA does not support a virtual memory system. It only supports continuous physical memory access. And due to AHB burst limitations, if the burst must cross the 1 KB boundary, uSDHC will automatically change SEQ burst type to NSEQ. Since this register supports dynamic address reflecting, when TC bit is set, it automatically alters the value of internal address counter, so SW cannot change this register when TC bit is set. Such restriction is also listed in .
+        unsigned DS_ADDR : 30; //!< [31:2] DMA System Address: This register contains the 32-bit system memory address for a DMA transfer.
     } B;
 } hw_usdhc_ds_addr_t;
 #endif
@@ -173,9 +163,9 @@ typedef union _hw_usdhc_blk_att
     reg32_t U;
     struct _hw_usdhc_blk_att_bitfields
     {
-        unsigned BLKSIZE : 13; //!< [12:0] Transfer Block Size: This register specifies the block size for block data transfers. Values ranging from 1 byte up to the maximum buffer size can be set. It can be accessed only when no transaction is executing (i.e. after a transaction has stopped). Read operations during transfers may return an invalid value, and write operations will be ignored.
+        unsigned BLKSIZE : 13; //!< [12:0] Transfer Block Size: This register specifies the block size for block data transfers.
         unsigned RESERVED0 : 3; //!< [15:13] Reserved
-        unsigned BLKCNT : 16; //!< [31:16] Blocks Count For Current Transfer: This register is enabled when the Block Count Enable bit in the Transfer Mode register is set to 1 and is valid only for multiple block transfers. For single block transfer, this register will always read as 1. The Host Driver shall set this register to a value between 1 and the maximum block count. The uSDHC decrements the block count after each block transfer and stops when the count reaches zero. Setting the block count to 0 results in no data blocks being transferred. This register should be accessed only when no transaction is executing (i.e. after transactions are stopped). During data transfer, read operations on this register may return an invalid value and write operations are ignored. When saving transfer content as a result of a Suspend command, the number of blocks yet to be transferred can be determined by reading this register. The reading of this register should be applied after transfer is paused by stop at block gap operation and before sending the command marked as suspend. This is because when Suspend command is sent out, uSDHC will regard the current transfer is aborted and change BLKCNT register back to its original value instead of keeping the dynamical indicator of remained block count. When restoring transfer content prior to issuing a Resume command, the Host Driver shall restore the previously saved block count. Although the BLKCNT field is 0 after reset, the read of reset value is 0x1. This is because when MSBSEL bit is 鈥?鈥? indicating a single block transfer, the read value of BLKCNT is always 1.
+        unsigned BLKCNT : 16; //!< [31:16] Blocks Count For Current Transfer: This register is enabled when the Block Count Enable bit in the Transfer Mode register is set to 1 and is valid only for multiple block transfers.
     } B;
 } hw_usdhc_blk_att_t;
 #endif
@@ -389,10 +379,10 @@ typedef union _hw_usdhc_cmd_xfr_typ
         unsigned RESERVED0 : 16; //!< [15:0] Reserved
         unsigned RSPTYP : 2; //!< [17:16] Response Type Select:
         unsigned RESERVED1 : 1; //!< [18] Reserved
-        unsigned CCCEN : 1; //!< [19] Command CRC Check Enable: If this bit is set to 1, the uSDHC shall check the CRC field in the response. If an error is detected, it is reported as a Command CRC Error. If this bit is set to 0, the CRC field is not checked. The number of bits checked by the CRC field value changes according to the length of the response. (Refer to RSPTYP[1:0] and .)
-        unsigned CICEN : 1; //!< [20] Command Index Check Enable: If this bit is set to 1, the uSDHC will check the Index field in the response to see if it has the same value as the command index. If it is not, it is reported as a Command Index Error. If this bit is set to 0, the Index field is not checked.
-        unsigned DPSEL : 1; //!< [21] Data Present Select: This bit is set to 1 to indicate that data is present and shall be transferred using the DAT line. It is set to 0 for the following: Commands using only the CMD line (e.g. CMD52). Commands with no data transfer, but using the busy signal on DAT[0] line (R1b or R5b e.g. CMD38) Note: In resume command, this bit shall be set, and other bits in this register shall be set the same as when the transfer was initially launched. When the Write Protect switch is on, (i.e. the WPSPL bit is active as '0'), any command with a write operation will be ignored. That is to say, when this bit is set, while the DTDSEL bit is 0, writes to the register Transfer Type are ignored.
-        unsigned CMDTYP : 2; //!< [23:22] Command Type: There are three types of special commands: Suspend, Resume and Abort. These bits shall be set to 00b for all other commands. Suspend Command: If the Suspend command succeeds, the uSDHC shall assume that the card bus has been released and that it is possible to issue the next command which uses the DAT line. Since the uSDHC does not monitor the content of command response, it does not know if the Suspend command succeeded or not. It is the Host Driver's responsibility to check the status of the Suspend command and send another command marked as Suspend to inform the uSDHC that a Suspend command was successfully issued. Refer to for more details. After the end bit of command is sent, the uSDHC de-asserts Read Wait for read transactions and stops checking busy for write transactions. In 4-bit mode, the interrupt cycle starts. If the Suspend command fails, the uSDHC will maintain its current state, and the Host Driver shall restart the transfer by setting the Continue Request bit in the Protocol Control register. Resume Command: The Host Driver re-starts the data transfer by restoring the registers saved before sending the Suspend Command and then sends the Resume Command. The uSDHC will check for a pending busy state before starting write transfers. Abort Command: If this command is set when executing a read transfer, the uSDHC will stop reads to the buffer. If this command is set when executing a write transfer, the uSDHC will stop driving the DAT line. After issuing the Abort command, the Host Driver should issue a software reset (Abort Transaction).
+        unsigned CCCEN : 1; //!< [19] Command CRC Check Enable: If this bit is set to 1, the uSDHC shall check the CRC field in the response.
+        unsigned CICEN : 1; //!< [20] Command Index Check Enable: If this bit is set to 1, the uSDHC will check the Index field in the response to see if it has the same value as the command index.
+        unsigned DPSEL : 1; //!< [21] Data Present Select: This bit is set to 1 to indicate that data is present and shall be transferred using the DAT line.
+        unsigned CMDTYP : 2; //!< [23:22] Command Type: There are three types of special commands: Suspend, Resume and Abort.
         unsigned CMDINX : 6; //!< [29:24] Command Index: These bits shall be set to the command number that is specified in bits 45-40 of the Command-Format in the SD Memory Card Physical Layer Specification and SDIO Card Specification.
         unsigned RESERVED2 : 2; //!< [31:30] Reserved
     } B;
@@ -825,7 +815,7 @@ typedef union _hw_usdhc_data_buff_acc_port
     reg32_t U;
     struct _hw_usdhc_data_buff_acc_port_bitfields
     {
-        unsigned DATCONT : 32; //!< [31:0] Data Content: The Buffer Data Port register is for 32-bit data access by the ARM platform or the external DMA. When the internal DMA is enabled, any write to this register is ignored, and any read from this register will always yield 0s.
+        unsigned DATCONT : 32; //!< [31:0] Data Content: The Buffer Data Port register is for 32-bit data access by the ARM platform or the external DMA.
     } B;
 } hw_usdhc_data_buff_acc_port_t;
 #endif
@@ -891,27 +881,27 @@ typedef union _hw_usdhc_pres_state
     reg32_t U;
     struct _hw_usdhc_pres_state_bitfields
     {
-        unsigned CIHB : 1; //!< [0] Command Inhibit (CMD): If this status bit is 0, it indicates that the CMD line is not in use and the uSDHC can issue a SD/MMC Command using the CMD line. This bit is set also immediately after the Transfer Type register is written. This bit is cleared when the command response is received. Even if the Command Inhibit (DAT) is set to 1, Commands using only the CMD line can be issued if this bit is 0. Changing from 1 to 0 generates a Command Complete interrupt in the Interrupt Status register. If the uSDHC cannot issue the command because of a command conflict error (Refer to Command CRC Error) or because of a Command Not Issued By Auto CMD12 Error, this bit will remain 1 and the Command Complete is not set. The Status of issuing an Auto CMD12 does not show on this bit.
-        unsigned CDIHB : 1; //!< [1] Command Inhibit (DAT): This status bit is generated if either the DAT Line Active or the Read Transfer Active is set to 1. If this bit is 0, it indicates that the uSDHC can issue the next SD/MMC Command. Commands with a busy signal belong to Command Inhibit (DAT) (e.g. R1b, R5b type). Except in the case when the command busy is finished, changing from 1 to 0 generates a Transfer Complete interrupt in the Interrupt Status register. Note: The SD Host Driver can save registers for a suspend transaction after this bit has changed from 1 to 0.
-        unsigned DLA : 1; //!< [2] Data Line Active This status bit indicates whether one of the DAT lines on the SD Bus is in use. In the case of read transactions: This status indicates if a read transfer is executing on the SD Bus. Changes in this value from 1 to 0, between data blocks, generates a Block Gap Event interrupt in the Interrupt Status register. This bit will be set in either of the following cases: After the end bit of the read command. When writing a 1 to the Continue Request bit in the Protocol Control register to restart a read transfer. This bit will be cleared in either of the following cases: (1) When the end bit of the last data block is sent from the SD Bus to the uSDHC. (2) When the Read Wait state is stopped by a Suspend command and the DAT2 line is released. The uSDHC will wait at the next block gap by driving Read Wait at the start of the interrupt cycle. If the Read Wait signal is already driven (data buffer cannot receive data), the uSDHC can wait for a current block gap by continuing to drive the Read Wait signal. It is necessary to support Read Wait in order to use the suspend / resume function. This bit will remain 1 during Read Wait. In the case of write transactions: This status indicates that a write transfer is executing on the SD Bus. Changes in this value from 1 to 0 generate a Transfer Complete interrupt in the Interrupt Status register. This bit will be set in either of the following cases: After the end bit of the write command. When writing to 1 to the Continue Request bit in the Protocol Control register to continue a write transfer. This bit will be cleared in either of the following cases: When the SD card releases Write Busy of the last data block, the uSDHC will also detect if the output is not busy. If the SD card does not drive the busy signal after the CRC status is received, the uSDHC shall assume the card drive "Not Busy". When the SD card releases write busy, prior to waiting for write transfer, and as a result of a Stop At Block Gap Request. In the case of command with busy pending: This status indicates that a busy state follows the command and the data line is in use. This bit will be cleared when the DAT0 line is released.
-        unsigned SDSTB : 1; //!< [3] SD Clock Stable This status bit indicates that the internal card clock is stable. This bit is for the Host Driver to poll clock status when changing the clock frequency. It is recommended to clear FRC_SDCLK_ON bit in System Control register to remove glitch on the card clock when the frequency is changing. Before changing clock divisor value(SDCLKFS or DVS), Host Driver should make sure the SDSTB bit is high.
-        unsigned IPGOFF : 1; //!< [4] ipg_clk Gated Off Internally: This status bit indicates that the ipg_clk is internally gated off. This bit is for the Host Driver to debug.
-        unsigned HCKOFF : 1; //!< [5] hclk Gated Off Internally: This status bit indicates that the hclk is internally gated off. This bit is for the Host Driver to debug during a data transfer.
-        unsigned PEROFF : 1; //!< [6] ipg_perclk Gated Off Internally: This status bit indicates that the ipg_perclk is internally gated off. This bit is for the Host Driver to debug transaction on the SD bus. When IPG_CLK_SOFT_EN is cleared, ipg_perclk will be gated off, otherwise ipg_perclk will be always active.
-        unsigned SDOFF : 1; //!< [7] SD Clock Gated Off Internally: This status bit indicates that the SD Clock is internally gated off, because of buffer over/under-run or read pause without read wait assertion, or the driver set FRC_SDCLK_ON bit is 0 to stop the SD clock in idle status. Set IPG_PERCLK_SOFT_EN and CARD_CLK_SOFT_EN to 0 also gate off SD clock. This bit is for the Host Driver to debug data transaction on the SD bus.
-        unsigned WTA : 1; //!< [8] Write Transfer Active: This status bit indicates a write transfer is active. If this bit is 0, it means no valid write data exists in the uSDHC. This bit is set in either of the following cases: After the end bit of the write command. When writing 1 to the Continue Request bit in the Protocol Control register to restart a write transfer. This bit is cleared in either of the following cases: After getting the CRC status of the last data block as specified by the transfer count (Single and Multiple). After getting the CRC status of any block where data transmission is about to be stopped by a Stop At Block Gap Request. During a write transaction, a Block Gap Event interrupt is generated when this bit is changed to 0, as result of the Stop At Block Gap Request being set. This status is useful for the Host Driver in determining when to issue commands during Write Busy state.
-        unsigned RTA : 1; //!< [9] Read Transfer Active: This status bit is used for detecting completion of a read transfer. This bit is set for either of the following conditions: After the end bit of the read command. When writing a 1 to the Continue Request bit in the Protocol Control register to restart a read transfer. A Transfer Complete interrupt is generated when this bit changes to 0. This bit is cleared for either of the following conditions: When the last data block as specified by block length is transferred to the System, i.e. all data are read away from uSDHC internal buffer. When all valid data blocks have been transferred from uSDHC internal buffer to the System and no current block transfers are being sent as a result of the Stop At Block Gap Request being set to 1.
-        unsigned BWEN : 1; //!< [10] Buffer Write Enable: This status bit is used for non-DMA write transfers. The uSDHC implements an internal buffer to transfer data efficiently. This read only flag indicates if space is available for write data. If this bit is 1, valid data greater than the watermark level can be written to the buffer. A change of this bit from 1 to 0 occurs when some writes to the buffer(write DATPORT(Base + 0x20)) are made and the buffer hasn't valid space greater than the watermake level. . A change of this bit from 0 to 1 occurs when the buffer can hold valid data greater than the write watermark level and the Buffer Write Ready interrupt is generated and enabled.
-        unsigned BREN : 1; //!< [11] Buffer Read Enable: This status bit is used for non-DMA read transfers. The uSDHC implements an internal buffer to transfer data efficiently. This read only flag indicates that valid data exists in the host side buffer. If this bit is high, valid data greater than the watermark level exist in the buffer. A change of this bit from 1 to 0 occurs when some reads from the buffer(read DATPORT(Base + 0x20)) are made and the buffer hasn't valid data greater than the watermake level. A change of this bit from 0 to1 occurs when there is enough valid data ready in the buffer and the Buffer Read Ready interrupt has been generated and enabled.
-        unsigned RTR : 1; //!< [12] Re-Tuning Request: (only for SD3.0 SDR104 mode) Host Controller may request Host Driver to execute re-tuning sequence by setting this bit when the data window is shifted by temperature drift and a tuned sampling point does not have a good margin to receive correct data. This bit is cleared when a command is issued with setting Execute Tuning bit in MIXER_CTRL register. Changing of this bit from 0 to 1 generates Re-Tuning Event. Refer to Interrupt status registers for more delail. This bit isn't set to 1 if Sampling Clock Select in the MIXER_CTRL register is set to 0 (using fixed sampling clock).
+        unsigned CIHB : 1; //!< [0] Command Inhibit (CMD): If this status bit is 0, it indicates that the CMD line is not in use and the uSDHC can issue a SD/MMC Command using the CMD line.
+        unsigned CDIHB : 1; //!< [1] Command Inhibit (DAT): This status bit is generated if either the DAT Line Active or the Read Transfer Active is set to 1.
+        unsigned DLA : 1; //!< [2] Data Line Active This status bit indicates whether one of the DAT lines on the SD Bus is in use.
+        unsigned SDSTB : 1; //!< [3] SD Clock Stable This status bit indicates that the internal card clock is stable.
+        unsigned IPGOFF : 1; //!< [4] ipg_clk Gated Off Internally: This status bit indicates that the ipg_clk is internally gated off.
+        unsigned HCKOFF : 1; //!< [5] hclk Gated Off Internally: This status bit indicates that the hclk is internally gated off.
+        unsigned PEROFF : 1; //!< [6] ipg_perclk Gated Off Internally: This status bit indicates that the ipg_perclk is internally gated off.
+        unsigned SDOFF : 1; //!< [7] SD Clock Gated Off Internally: This status bit indicates that the SD Clock is internally gated off, because of buffer over/under-run or read pause without read wait assertion, or the driver set FRC_SDCLK_ON bit is 0 to stop the SD clock in idle status.
+        unsigned WTA : 1; //!< [8] Write Transfer Active: This status bit indicates a write transfer is active.
+        unsigned RTA : 1; //!< [9] Read Transfer Active: This status bit is used for detecting completion of a read transfer.
+        unsigned BWEN : 1; //!< [10] Buffer Write Enable: This status bit is used for non-DMA write transfers.
+        unsigned BREN : 1; //!< [11] Buffer Read Enable: This status bit is used for non-DMA read transfers.
+        unsigned RTR : 1; //!< [12] Re-Tuning Request: (only for SD3.0 SDR104 mode) Host Controller may request Host Driver to execute re-tuning sequence by setting this bit when the data window is shifted by temperature drift and a tuned sampling point does not have a good margin to receive correct data.
         unsigned RESERVED0 : 3; //!< [15:13] Reserved
-        unsigned CINST : 1; //!< [16] Card Inserted: This bit indicates whether a card has been inserted. The uSDHC debounces this signal so that the Host Driver will not need to wait for it to stabilize. Changing from a 0 to 1 generates a Card Insertion interrupt in the Interrupt Status register. Changing from a 1 to 0 generates a Card Removal interrupt in the Interrupt Status register. A write to the Force Event Register does not effect this bit. The Software Reset For All in the System Control register does not effect this bit.A software reset does not effect this bit.
+        unsigned CINST : 1; //!< [16] Card Inserted: This bit indicates whether a card has been inserted.
         unsigned RESERVED1 : 1; //!< [17] Reserved
-        unsigned CDPL : 1; //!< [18] Card Detect Pin Level: This bit reflects the inverse value of the CD# pin for the card socket. Debouncing is not performed on this bit. This bit may be valid, but is not guaranteed, because of propagation delay. Use of this bit is limited to testing since it must be debounced by software. A software reset does not effect this bit. A write to the Force Event Register does not effect this bit. The reset value is effected by the external card detection pin. This bit shows the value on the CD# pin (i.e. when a card is inserted in the socket, it is 0 on the CD# input, and consequently the CDPL reads 1.)
-        unsigned WPSPL : 1; //!< [19] Write Protect Switch Pin Level: The Write Protect Switch is supported for memory and combo cards.This bit reflects the inverted value of the WP pin of the card socket. A software reset does not affect this bit. The reset value is effected by the external write protect switch. If the WP pin is not used, it should be tied low, so that the reset value of this bit is high and write is enabled.
+        unsigned CDPL : 1; //!< [18] Card Detect Pin Level: This bit reflects the inverse value of the CD# pin for the card socket.
+        unsigned WPSPL : 1; //!< [19] Write Protect Switch Pin Level: The Write Protect Switch is supported for memory and combo cards.This bit reflects the inverted value of the WP pin of the card socket.
         unsigned RESERVED2 : 3; //!< [22:20] Reserved
-        unsigned CLSL : 1; //!< [23] CMD Line Signal Level: This status is used to check the CMD line level to recover from errors, and for debugging. The reset value is effected by the external pull-up/pull-down resistor, by default, the read value of this bit after reset is 1'b1, when the command line is pulled up.
-        unsigned DLSL : 8; //!< [31:24] DAT[7:0] Line Signal Level: This status is used to check the DAT line level to recover from errors, and for debugging.This is especially useful in detecting the busy signal level from DAT[0]. The reset value is effected by the external pull-up/pull-down resistors. By default, the read value of this bit field after reset is 8'b11110111, when DAT[3] is pulled down and the other lines are pulled up. DAT[7]: Data 7 line signal level DAT[6]: Data 6 line signal level DAT[5]: Data 5 line signal level DAT[4]: Data 4 line signal level DAT[3]: Data 3 line signal level DAT[2]: Data 2 line signal level DAT[1]: Data 1 line signal level DAT[0]: Data 0 line signal level
+        unsigned CLSL : 1; //!< [23] CMD Line Signal Level: This status is used to check the CMD line level to recover from errors, and for debugging.
+        unsigned DLSL : 8; //!< [31:24] DAT[7:0] Line Signal Level: This status is used to check the DAT line level to recover from errors, and for debugging.This is especially useful in detecting the busy signal level from DAT[0].
     } B;
 } hw_usdhc_pres_state_t;
 #endif
@@ -1342,26 +1332,26 @@ typedef union _hw_usdhc_prot_ctrl
     reg32_t U;
     struct _hw_usdhc_prot_ctrl_bitfields
     {
-        unsigned LCTL : 1; //!< [0] LED Control: This bit, fully controlled by the Host Driver, is used to caution the user not to remove the card while the card is being accessed. If the software is going to issue multiple SD commands, this bit can be set during all these transactions. It is not necessary to change for each transaction. When the software issues multiple SD commands, setting the bit once before the first command is sufficient: it is not necessary to reset the bit between commands.
-        unsigned DTW : 2; //!< [2:1] Data Transfer Width: This bit selects the data width of the SD bus for a data transfer. The Host Driver shall set it to match the data width of the card. Possible Data transfer Width is 1-bit, 4-bits or 8-bits.
-        unsigned D3CD : 1; //!< [3] DAT3 as Card Detection Pin: If this bit is set, DAT3 should be pulled down to act as a card detection pin. Be cautious when using this feature, because DAT3 is also a chip-select for the SPI mode. A pull-down on this pin and CMD0 may set the card into the SPI mode, which the uSDHC does not support.
-        unsigned EMODE : 2; //!< [5:4] Endian Mode: The uSDHC supports all four endian modes in data transfer. Refer to " for more details.
+        unsigned LCTL : 1; //!< [0] LED Control: This bit, fully controlled by the Host Driver, is used to caution the user not to remove the card while the card is being accessed.
+        unsigned DTW : 2; //!< [2:1] Data Transfer Width: This bit selects the data width of the SD bus for a data transfer.
+        unsigned D3CD : 1; //!< [3] DAT3 as Card Detection Pin: If this bit is set, DAT3 should be pulled down to act as a card detection pin.
+        unsigned EMODE : 2; //!< [5:4] Endian Mode: The uSDHC supports all four endian modes in data transfer.
         unsigned CDTL : 1; //!< [6] Card Detect Test Level: This is bit is enabled while the Card Detection Signal Selection is set to 1 and it indicates card insertion.
         unsigned CDSS : 1; //!< [7] Card Detect Signal Selection: This bit selects the source for the card detection.
         unsigned DMASEL : 2; //!< [9:8] DMA Select: This field is valid while DMA (SDMA or ADMA) is enabled and selects the DMA operation.
         unsigned RESERVED0 : 6; //!< [15:10] Reserved
-        unsigned SABGREQ : 1; //!< [16] Stop At Block Gap Request: This bit is used to stop executing a transaction at the next block gap for both DMA and non-DMA transfers. Until the Transfer Complete is set to 1, indicating a transfer completion, the Host Driver shall leave this bit set to 1. Clearing both the Stop At Block Gap Request and Continue Request does not cause the transaction to restart. Read Wait is used to stop the read transaction at the block gap. The uSDHC will honor the Stop At Block Gap Request for write transfers, but for read transfers it requires that the SDIO card support Read Wait. Therefore, the Host Driver shall not set this bit during read transfers unless the SDIO card supports Read Wait and has set the Read Wait Control to 1, otherwise the uSDHC will stop the SD bus clock to pause the read operation during block gap. In the case of write transfers in which the Host Driver writes data to the Data Port register, the Host Driver shall set this bit after all block data is written. If this bit is set to 1, the Host Driver shall not write data to the Data Port register after a block is sent. Once this bit is set, the Host Driver shall not clear this bit before the Transfer Complete bit in Interrupt Status Register is set, otherwise the uSDHCs behavior is undefined. This bit effects Read Transfer Active, Write Transfer Active, DAT Line Active and Command Inhibit (DAT) in the Present State register.
-        unsigned CREQ : 1; //!< [17] Continue Request: This bit is used to restart a transaction which was stopped using the Stop At Block Gap Request. When a Suspend operation is not accepted by the card, it is also by setting this bit to restart the paused transfer. To cancel stop at the block gap, set Stop At Block Gap Request to 0 and set this bit to 1 to restart the transfer. The uSDHC automatically clears this bit, therefore it is not necessary for the Host Driver to set this bit to 0. If both Stop At Block Gap Request and this bit are 1, the continue request is ignored.
-        unsigned RWCTL : 1; //!< [18] Read Wait Control: The read wait function is optional for SDIO cards. If the card supports read wait, set this bit to enable use of the read wait protocol to stop read data using the DAT[2] line. Otherwise the uSDHC has to stop the SD Clock to hold read data, which restricts commands generation. When the Host Driver detects an SDIO card insertion, it shall set this bit according to the CCCR of the card. If the card does not support read wait, this bit shall never be set to 1, otherwise DAT line conflicts may occur. If this bit is set to 0, stop at block gap during read operation is also supported, but the uSDHC will stop the SD Clock to pause reading operation.
-        unsigned IABG : 1; //!< [19] Interrupt At Block Gap: This bit is valid only in 4-bit mode, of the SDIO card, and selects a sample point in the interrupt cycle. Setting to 1 enables interrupt detection at the block gap for a multiple block transfer. Setting to 0 disables interrupt detection during a multiple block transfer. If the SDIO card can't signal an interrupt during a multiple block transfer, this bit should be set to 0 to avoid an inadvertent interrupt. When the Host Driver detects an SDIO card insertion, it shall set this bit according to the CCCR of the card.
-        unsigned RD_DONE_NO_8CLK : 1; //!< [20] Read done no 8 clock: According to the SD/MMC spec, for read data transaction, 8 clocks are needed after the end bit of the last data block. So, by default(RD_DONE_NO_8CLK=0), 8 clocks will be active after the end bit of the last read data transaction. However, this 8 clocks should not be active if user wants to use stop at block gap(include the auto stop at block gap in boot mode) feature for read and the RWCTL bit(bit18) is not enabled. In this case, software should set RD_DONE_NO_8CLK to avoid this 8 clocks. Otherwise, the device may send extra data to uSDHC while uSDHC ignores these data. In a summary, this bit should be set only if the use case needs to use stop at block gap feature while the device can't support the read wait feature.
-        unsigned RD_WAIT_POINT : 3; //!< [23:21] Read wait point : This is only for debug purpose. As a Host controller, uSDHC should pause the SDHC_CLK or assert the DAT[2](if read wait feature is supported by the device) to avoid the device to send extra data. The SDHC_CLK should be paused or the DAT[2] should be asserted in two clock cycles after the end bit of the last transaction. Meanwhile, because the uSDHC controller has async FIFO between the card interface and the internal state machine, we need this "Read wait point" configuration to overcome the latency which is introduced by this async FIFO. The default value is 0x4, which should be accurately overcome the latency.
-        unsigned WECINT : 1; //!< [24] Wakeup Event Enable On Card Interrupt: This bit enables a wakeup event, via a Card Interrupt, in the Interrupt Status register. This bit can be set to 1 if FN_WUS (Wake Up Support) in CIS is set to 1. When this bit is set, the Card Interrupt Status and the uSDHC interrupt can be asserted without CLK toggling. When the wakeup feature is not enabled, the CLK must be active in order to assert the Card Interrupt Status and the uSDHC interrupt.
-        unsigned WECINS : 1; //!< [25] Wakeup Event Enable On SD Card Insertion: This bit enables a wakeup event, via a Card Insertion, in the Interrupt Status register. FN_WUS (Wake Up Support) in CIS does not effect this bit. When this bit is set, the Card Insertion Status and the uSDHC interrupt can be asserted without CLK toggling. When the wakeup feature is not enabled, the CLK must be active in order to assert the Card Insertion Status and the uSDHC interrupt.
-        unsigned WECRM : 1; //!< [26] Wakeup Event Enable On SD Card Removal: This bit enables a wakeup event, via a Card Removal, in the Interrupt Status register. FN_WUS (Wake Up Support) in CIS does not effect this bit. When this bit is set, the Card Removal Status and the uSDHC interrupt can be asserted without CLK toggling. When the wakeup feature is not enabled, the CLK must be active in order to assert the Card Removal Status and the uSDHC interrupt.
-        unsigned BURST_LEN_EN : 3; //!< [29:27] BURST length enable for INCR, INCR4/INCR8/INCR16, INCR4-WRAP/INCR8-WRAP/INCR16-WRAP This is used to enable/disable the burst length for the external AHB2AXI bridge. It's useful especially for INCR transfer because without burst length indicator, the AHB2AXI bridge doesn't know the burst length in advance. Without burst length indicator, AHB INCR transfers can only be converted to SINGLEs in AXI side.
-        unsigned NON_EXACT_BLK_RD : 1; //!< [30] Current block read is non-exact block read. It's only used for SDIO.
-        unsigned RD_NO8CLK_EN : 1; //!< [31] Only for debug. enable S/W RD_DONE_NO_8CLK bit
+        unsigned SABGREQ : 1; //!< [16] Stop At Block Gap Request: This bit is used to stop executing a transaction at the next block gap for both DMA and non-DMA transfers.
+        unsigned CREQ : 1; //!< [17] Continue Request: This bit is used to restart a transaction which was stopped using the Stop At Block Gap Request.
+        unsigned RWCTL : 1; //!< [18] Read Wait Control: The read wait function is optional for SDIO cards.
+        unsigned IABG : 1; //!< [19] Interrupt At Block Gap: This bit is valid only in 4-bit mode, of the SDIO card, and selects a sample point in the interrupt cycle.
+        unsigned RD_DONE_NO_8CLK : 1; //!< [20] Read done no 8 clock: According to the SD/MMC spec, for read data transaction, 8 clocks are needed after the end bit of the last data block.
+        unsigned RD_WAIT_POINT : 3; //!< [23:21] Read wait point : This is only for debug purpose.
+        unsigned WECINT : 1; //!< [24] Wakeup Event Enable On Card Interrupt: This bit enables a wakeup event, via a Card Interrupt, in the Interrupt Status register.
+        unsigned WECINS : 1; //!< [25] Wakeup Event Enable On SD Card Insertion: This bit enables a wakeup event, via a Card Insertion, in the Interrupt Status register.
+        unsigned WECRM : 1; //!< [26] Wakeup Event Enable On SD Card Removal: This bit enables a wakeup event, via a Card Removal, in the Interrupt Status register.
+        unsigned BURST_LEN_EN : 3; //!< [29:27] BURST length enable for INCR, INCR4/INCR8/INCR16, INCR4-WRAP/INCR8-WRAP/INCR16-WRAP This is used to enable/disable the burst length for the external AHB2AXI bridge.
+        unsigned NON_EXACT_BLK_RD : 1; //!< [30] Current block read is non-exact block read.
+        unsigned RD_NO8CLK_EN : 1; //!< [31] Only for debug.
     } B;
 } hw_usdhc_prot_ctrl_t;
 #endif
@@ -1921,7 +1911,7 @@ typedef union _hw_usdhc_prot_ctrl
  *
  * Reset value: 0x0080800f
  *
- * .
+
  */
 typedef union _hw_usdhc_sys_ctrl
 {
@@ -1932,16 +1922,16 @@ typedef union _hw_usdhc_sys_ctrl
         unsigned HCKEN : 1; //!< [1] HCLK Enable: It's not implemented in uSDHC IP.
         unsigned PEREN : 1; //!< [2] Perpherial Clock Enable It's not implemented in uSDHC IP.
         unsigned SDCLKEN : 1; //!< [3] SD Clock Enable It's not implemented in uSDHC IP.
-        unsigned DVS : 4; //!< [7:4] Divisor: This register is used to provide a more exact divisor to generate the desired SD clock frequency. Note the divider can even support odd divisor without deterioration of duty cycle. Before changing clock divisor value(SDCLKFS or DVS), Host Driver should make sure the SDSTB bit is high. The setting are as following:
-        unsigned SDCLKFS : 8; //!< [15:8] SDCLK Frequency Select: This register is used to select the frequency of the SDCLK pin. The frequency is not programmed directly, rather this register holds the prescaler (this register) and divisor (next register) of the Base Clock Frequency register. I n Single Data Rate mode(DDR_EN bit of MIXERCTRL is '0') Only the following settings are allowed: 80h) Base clock divided by 256 40h) Base clock divided by 128 20h) Base clock divided by 64 10h) Base clock divided by 32 08h) Base clock divided by 16 04h) Base clock divided by 8 02h) Base clock divided by 4 01h) Base clock divided by 2 00h) Base clock divided by 1 W hile in Dual Data Rate mode(DDR_EN bit of MIXERCTRL is '1') Only the following settings are allowed: 80h) Base clock divided by 512 40h) Base clock divided by 256 20h) Base clock divided by 128 10h) Base clock divided by 64 08h) Base clock divided by 32 04h) Base clock divided by 16 02h) Base clock divided by 8 01h) Base clock divided by 4 00h) Base clock divided by 2 W hen S/W changes the DDR_EN bit, SDCLKFS may need to be changed also ! In Single Data Rate mode, setting 00h bypasses the frequency prescaler of the SD Clock. Multiple bits must not be set, or the behavior of this prescaler is undefined. The two default divider values can be calculated by the frequency of ipg_perclk and the following Divisor bits. The frequency of SDCLK is set by the following formula: Clock Frequency = (Base Clock) / (prescaler x divisor) For example, in Single Data Rate mode, if the Base Clock Frequency is 96 MHz, and the target frequency is 25 MHz, then choosing the prescaler value of 01h and divisor value of 1h will yield 24 MHz, which is the nearest frequency less than or equal to the target. Similarly, to approach a clock value of 400 kHz, the prescaler value of 08h and divisor value of eh yields the exact clock value of 400 kHz. The reset value of this bit field is 80h, so if the input Base Clock (ipg_perclk) is about 96 MHz, the default SD Clock after reset is 375 kHz. According to the SD Physical Specification Version 1.1 and the SDIO Card Specification Version 1.2, the maximum SD Clock frequency is 50 MHz and shall never exceed this limit. B efore changing clock divisor value(SDCLKFS or DVS), Host Driver should make sure the SDSTB bit is high. If setting SDCLKFS and DVS can generate same clock frequency,(For example, in SDR mode, SDCLKFS = 01h is same as DVS = 01h.) SDCLKFS is highly recommended.
-        unsigned DTOCV : 4; //!< [19:16] Data Timeout Counter Value: This value determines the interval by which DAT line timeouts are detected. Refer to the Data Timeout Error bit in the Interrupt Status register for information on factors that dictate time-out generation. Time-out clock frequency will be generated by dividing the base clock SDCLK value by this value. The Host Driver can clear the Data Timeout Error Status Enable (in the Interrupt Status Enable register) to prevent inadvertent time-out events.
+        unsigned DVS : 4; //!< [7:4] Divisor: This register is used to provide a more exact divisor to generate the desired SD clock frequency.
+        unsigned SDCLKFS : 8; //!< [15:8] SDCLK Frequency Select: This register is used to select the frequency of the SDCLK pin.
+        unsigned DTOCV : 4; //!< [19:16] Data Timeout Counter Value: This value determines the interval by which DAT line timeouts are detected.
         unsigned RESERVED0 : 2; //!< [21:20] Reserved
-        unsigned RST_FIFO : 1; //!< [22] Reset the Async FIFO: Reset the Async FIFO between card interface and the internal logic. It's only used for debugging. Software should not tough it.
+        unsigned RST_FIFO : 1; //!< [22] Reset the Async FIFO: Reset the Async FIFO between card interface and the internal logic.
         unsigned IPP_RST_N : 1; //!< [23] This register's value will be output to CARD from pad directly for hardware reset of the card if card support this feature.
-        unsigned RSTA : 1; //!< [24] Software Reset For ALL: This reset effects the entire Host Controller except for the card detection circuit. Register bits of type ROC, RW, RW1C, RWAC are cleared. During its initialization, the Host Driver shall set this bit to 1 to reset the uSDHC. The uSDHC shall reset this bit to 0 when the capabilities registers are valid and the Host Driver can read them. Additional use of Software Reset For All does not affect the value of the Capabilities registers. After this bit is set, it is recommended that the Host Driver reset the external card and re-initialize it. In tuning process, after every CMD19 is finished, this bit will be set to resett the uSDHC.
-        unsigned RSTC : 1; //!< [25] Software Reset For CMD Line: Only part of the command circuit is reset. The following registers and bits are cleared by this bit: Present State register Command Inhibit (CMD) Interrupt Status register Command Complete
-        unsigned RSTD : 1; //!< [26] Software Reset For DAT Line: Only part of the data circuit is reset. DMA circuit is also reset. The following registers and bits are cleared by this bit: Data Port register Buffer is cleared and initialized.Present State register Buffer Read Enable Buffer Write Enable Read Transfer Active Write Transfer Active DAT Line Active Command Inhibit (DAT) Protocol Control register Continue Request Stop At Block Gap Request Interrupt Status register Buffer Read Ready Buffer Write Ready DMA Interrupt Block Gap Event Transfer Complete
-        unsigned INITA : 1; //!< [27] Initialization Active: When this bit is set, 80 SD-Clocks are sent to the card. After the 80 clocks are sent, this bit is self cleared. This bit is very useful during the card power-up period when 74 SD-Clocks are needed and the clock auto gating feature is enabled. Writing 1 to this bit when this bit is already 1 has no effect. Writing 0 to this bit at any time has no effect. When either of the CIHB and CDIHB bits in the Present State Register are set, writing 1 to this bit is ignored (i.e. when command line or data lines are active, write to this bit is not allowed). On the otherhand, when this bit is set, i.e., during intialization active period, it is allowed to issue command, and the command bit stream will appear on the CMD pad after all 80 clock cycles are done. So when this command ends, the driver can make sure the 80 clock cycles are sent out. This is very useful when the driver needs send 80 cycles to the card and does not want to wait till this bit is self cleared.
+        unsigned RSTA : 1; //!< [24] Software Reset For ALL: This reset effects the entire Host Controller except for the card detection circuit.
+        unsigned RSTC : 1; //!< [25] Software Reset For CMD Line: Only part of the command circuit is reset.
+        unsigned RSTD : 1; //!< [26] Software Reset For DAT Line: Only part of the data circuit is reset.
+        unsigned INITA : 1; //!< [27] Initialization Active: When this bit is set, 80 SD-Clocks are sent to the card.
         unsigned RESERVED1 : 4; //!< [31:28] Reserved
     } B;
 } hw_usdhc_sys_ctrl_t;
@@ -2188,8 +2178,7 @@ typedef union _hw_usdhc_sys_ctrl
  * this bit to 0 when the capabilities registers are valid and the Host Driver can read them.
  * Additional use of Software Reset For All does not affect the value of the Capabilities registers.
  * After this bit is set, it is recommended that the Host Driver reset the external card and re-
- * initialize it. In tuning process, after every CMD19 is finished, this bit will be set to resett
- * the uSDHC.
+ * initialize it.
  *
  * Values:
  * 0 - No Reset
@@ -2313,33 +2302,33 @@ typedef union _hw_usdhc_int_status
     reg32_t U;
     struct _hw_usdhc_int_status_bitfields
     {
-        unsigned CC : 1; //!< [0] Command Complete: This bit is set when you receive the end bit of the command response (except Auto CMD12). Refer to the Command Inhibit (CMD) in the Present State register. This bit will be not asserted in tuning process.
-        unsigned TC : 1; //!< [1] Transfer Complete: This bit is set when a read or write transfer is completed. In the case of a Read Transaction: This bit is set at the falling edge of the Read Transfer Active Status. There are two cases in which this interrupt is generated. The first is when a data transfer is completed as specified by the data length (after the last data has been read to the Host System). The second is when data has stopped at the block gap and completed the data transfer by setting the Stop At Block Gap Request bit in the Protocol Control register (after valid data has been read to the Host System). In the case of a Write Transaction: This bit is set at the falling edge of the DAT Line Active Status. There are two cases in which this interrupt is generated. The first is when the last data is written to the SD card as specified by the data length and the busy signal is released. The second is when data transfers are stopped at the block gap, by setting the Stop At Block Gap Request bit in the Protocol Control register, and the data transfers are completed. (after valid data is written to the SD card and the busy signal released). This bit will be not asserted in tuning process.
-        unsigned BGE : 1; //!< [2] Block Gap Event: If the Stop At Block Gap Request bit in the Protocol Control register is set, this bit is set when a read or write transaction is stopped at a block gap. If Stop At Block Gap Request is not set to 1, this bit is not set to 1. In the case of a Read Transaction: This bit is set at the falling edge of the DAT Line Active Status (When the transaction is stopped at SD Bus timing). The Read Wait must be supported in order to use this function. In the case of Write Transaction: This bit is set at the falling edge of Write Transfer Active Status (After getting CRC status at SD Bus timing).
-        unsigned DINT : 1; //!< [3] DMA Interrupt: Occurs only when the internal DMA finishes the data transfer successfully. Whenever errors occur during data transfer, this bit will not be set. Instead, the DMAE bit will be set. Either Simple DMA or ADMA finishes data transferring, this bit will be set.
-        unsigned BWR : 1; //!< [4] Buffer Write Ready: This status bit is set if the Buffer Write Enable bit, in the Present State register, changes from 0 to 1. Refer to the Buffer Write Enable bit in the Present State register for additional information.
-        unsigned BRR : 1; //!< [5] Buffer Read Ready: This status bit is set if the Buffer Read Enable bit, in the Present State register, changes from 0 to 1. Refer to the Buffer Read Enable bit in the Present State register for additional information. This bit indicates that cmd19 is finished in tuning process.
-        unsigned CINS : 1; //!< [6] Card Insertion: This status bit is set if the Card Inserted bit in the Present State register changes from 0 to 1. When the Host Driver writes this bit to 1 to clear this status, the status of the Card Inserted in the Present State register should be confirmed. Because the card state may possibly be changed when the Host Driver clears this bit and the interrupt event may not be generated. When this bit is cleared, it will be set again if a card is inserted. In order to leave it cleared, clear the Card Inserted Status Enable bit in Interrupt Status Enable register.
-        unsigned CRM : 1; //!< [7] Card Removal: This status bit is set if the Card Inserted bit in the Present State register changes from 1 to 0. When the Host Driver writes this bit to 1 to clear this status, the status of the Card Inserted in the Present State register should be confirmed. Because the card state may possibly be changed when the Host Driver clears this bit and the interrupt event may not be generated. When this bit is cleared, it will be set again if no card is inserted. In order to leave it cleared, clear the Card Removal Status Enable bit in Interrupt Status Enable register.
-        unsigned CINT : 1; //!< [8] Card Interrupt: This status bit is set when an interrupt signal is detected from the external card. In 1-bit mode, the uSDHC will detect the Card Interrupt without the SD Clock to support wakeup. In 4-bit mode, the card interrupt signal is sampled during the interrupt cycle, so the interrupt from card can only be sampled during interrupt cycle, introducing some delay between the interrupt signal from the SDIO card and the interrupt to the Host System. Writing this bit to 1 can clear this bit, but as the interrupt factor from the SDIO card does not clear, this bit is set again. In order to clear this bit, it is required to reset the interrupt factor from the external card followed by a writing 1 to this bit. When this status has been set, and the Host Driver needs to service this interrupt, the Card Interrupt Signal Enable in the Interrupt Signal Enable register should be 0 to stop driving the interrupt signal to the Host System. After completion of the card interrupt service (It should reset the interrupt factors in the SDIO card and the interrupt signal may not be asserted), write 1 to clear this bit, set the Card Interrupt Signal Enable to 1, and start sampling the interrupt signal again.
+        unsigned CC : 1; //!< [0] Command Complete: This bit is set when you receive the end bit of the command response (except Auto CMD12).
+        unsigned TC : 1; //!< [1] Transfer Complete: This bit is set when a read or write transfer is completed.
+        unsigned BGE : 1; //!< [2] Block Gap Event: If the Stop At Block Gap Request bit in the Protocol Control register is set, this bit is set when a read or write transaction is stopped at a block gap.
+        unsigned DINT : 1; //!< [3] DMA Interrupt: Occurs only when the internal DMA finishes the data transfer successfully.
+        unsigned BWR : 1; //!< [4] Buffer Write Ready: This status bit is set if the Buffer Write Enable bit, in the Present State register, changes from 0 to 1.
+        unsigned BRR : 1; //!< [5] Buffer Read Ready: This status bit is set if the Buffer Read Enable bit, in the Present State register, changes from 0 to 1.
+        unsigned CINS : 1; //!< [6] Card Insertion: This status bit is set if the Card Inserted bit in the Present State register changes from 0 to 1.
+        unsigned CRM : 1; //!< [7] Card Removal: This status bit is set if the Card Inserted bit in the Present State register changes from 1 to 0.
+        unsigned CINT : 1; //!< [8] Card Interrupt: This status bit is set when an interrupt signal is detected from the external card.
         unsigned RESERVED0 : 3; //!< [11:9] Reserved
-        unsigned RTE : 1; //!< [12] Re-Tuning Event: (only for SD3.0 SDR104 mode) This status is set if Re-Tuning Request in the Present State register changes from 0 to 1. Host Controller requests Host Driver to perform re-tuning for next data transfer. Current data transfer (not large block count) can be completed without re-tuning.
+        unsigned RTE : 1; //!< [12] Re-Tuning Event: (only for SD3.0 SDR104 mode) This status is set if Re-Tuning Request in the Present State register changes from 0 to 1.
         unsigned RESERVED1 : 1; //!< [13] Reserved
-        unsigned TP : 1; //!< [14] Tuning Pass:(only for SD3.0 SDR104 mode) Current CMD19 transfer is done successfully. That is, current sampling point is correct.
+        unsigned TP : 1; //!< [14] Tuning Pass:(only for SD3.0 SDR104 mode) Current CMD19 transfer is done successfully.
         unsigned RESERVED2 : 1; //!< [15] Reserved
-        unsigned CTOE : 1; //!< [16] Command Timeout Error: Occurs only if no response is returned within 64 SDCLK cycles from the end bit of the command. If the uSDHC detects a CMD line conflict, in which case a Command CRC Error shall also be set (as shown in ), this bit shall be set without waiting for 64 SDCLK cycles. This is because the command will be aborted by the uSDHC. This bit will be not asserted in tuning process.
-        unsigned CCE : 1; //!< [17] Command CRC Error: Command CRC Error is generated in two cases. If a response is returned and the Command Timeout Error is set to 0 (indicating no time-out), this bit is set when detecting a CRC error in the command response. The uSDHC detects a CMD line conflict by monitoring the CMD line when a command is issued. If the uSDHC drives the CMD line to 1, but detects 0 on the CMD line at the next SDCLK edge, then the uSDHC shall abort the command (Stop driving CMD line) and set this bit to 1. The Command Timeout Error shall also be set to 1 to distinguish CMD line conflict. This bit will be not asserted in tuning process.
-        unsigned CEBE : 1; //!< [18] Command End Bit Error: Occurs when detecting that the end bit of a command response is 0. This bit will be not asserted in tuning process.
-        unsigned CIE : 1; //!< [19] Command Index Error: Occurs if a Command Index error occurs in the command response. This bit will be not asserted in tuning process.
-        unsigned DTOE : 1; //!< [20] Data Timeout Error: Occurs when detecting one of following time-out conditions. Busy time-out for R1b,R5b type Busy time-out after Write CRC status Read Data time-out. This bit will be not asserted in tuning process.
-        unsigned DCE : 1; //!< [21] Data CRC Error: Occurs when detecting a CRC error when transferring read data, which uses the DAT line, or when detecting the Write CRC status having a value other than 010. This bit will be not asserted in tuning process.
-        unsigned DEBE : 1; //!< [22] Data End Bit Error: Occurs either when detecting 0 at the end bit position of read data, which uses the DAT line, or at the end bit position of the CRC. This bit will be not asserted in tuning process.
+        unsigned CTOE : 1; //!< [16] Command Timeout Error: Occurs only if no response is returned within 64 SDCLK cycles from the end bit of the command.
+        unsigned CCE : 1; //!< [17] Command CRC Error: Command CRC Error is generated in two cases.
+        unsigned CEBE : 1; //!< [18] Command End Bit Error: Occurs when detecting that the end bit of a command response is 0.
+        unsigned CIE : 1; //!< [19] Command Index Error: Occurs if a Command Index error occurs in the command response.
+        unsigned DTOE : 1; //!< [20] Data Timeout Error: Occurs when detecting one of following time-out conditions.
+        unsigned DCE : 1; //!< [21] Data CRC Error: Occurs when detecting a CRC error when transferring read data, which uses the DAT line, or when detecting the Write CRC status having a value other than 010.
+        unsigned DEBE : 1; //!< [22] Data End Bit Error: Occurs either when detecting 0 at the end bit position of read data, which uses the DAT line, or at the end bit position of the CRC.
         unsigned RESERVED3 : 1; //!< [23] Reserved
-        unsigned AC12E : 1; //!< [24] Auto CMD12 Error: Occurs when detecting that one of the bits in the Auto CMD12 Error Status register has changed from 0 to 1. This bit is set to 1, not only when the errors in Auto CMD12 occur, but also when the Auto CMD12 is not executed due to the previous command error.
+        unsigned AC12E : 1; //!< [24] Auto CMD12 Error: Occurs when detecting that one of the bits in the Auto CMD12 Error Status register has changed from 0 to 1.
         unsigned RESERVED4 : 1; //!< [25] Reserved
-        unsigned TNE : 1; //!< [26] Tuning Error: (only for SD3.0 SDR104 mode) This bit is set when an unrecoverable error is detected in a tuning circuit. By detecting Tuning Error, Host Driver needs to abort a command executeing and perform tuning.
+        unsigned TNE : 1; //!< [26] Tuning Error: (only for SD3.0 SDR104 mode) This bit is set when an unrecoverable error is detected in a tuning circuit.
         unsigned RESERVED5 : 1; //!< [27] Reserved
-        unsigned DMAE : 1; //!< [28] DMA Error: Occurs when an Internal DMA transfer has failed. This bit is set to 1, when some error occurs in the data transfer. This error can be caused by either Simple DMA or ADMA, depending on which DMA is in use. The value in DMA System Address register is the next fetch address where the error occurs. Since any error corrupts the whole data block, the Host Driver shall re-start the transfer from the corrupted block boundary. The address of the block boundary can be calculated either from the current DS_ADDR value or from the remaining number of blocks and the block size.
+        unsigned DMAE : 1; //!< [28] DMA Error: Occurs when an Internal DMA transfer has failed.
         unsigned RESERVED6 : 3; //!< [31:29] Reserved
     } B;
 } hw_usdhc_int_status_t;
@@ -2366,8 +2355,7 @@ typedef union _hw_usdhc_int_status
 /* --- Register HW_USDHC_INT_STATUS, field CC[0] (W1C)
  *
  * Command Complete: This bit is set when you receive the end bit of the command response (except
- * Auto CMD12). Refer to the Command Inhibit (CMD) in the Present State register. This bit will be
- * not asserted in tuning process.
+ * Auto CMD12). Refer to the Command Inhibit (CMD) in the Present State register.
  *
  * Values:
  * 0 - Command not complete
@@ -2403,7 +2391,7 @@ typedef union _hw_usdhc_int_status
  * busy signal is released. The second is when data transfers are stopped at the block gap, by
  * setting the Stop At Block Gap Request bit in the Protocol Control register, and the data
  * transfers are completed. (after valid data is written to the SD card and the busy signal
- * released). This bit will be not asserted in tuning process.
+ * released).
  *
  * Values:
  * 0 - Transfer not complete
@@ -2511,7 +2499,7 @@ typedef union _hw_usdhc_int_status
  *
  * Buffer Read Ready: This status bit is set if the Buffer Read Enable bit, in the Present State
  * register, changes from 0 to 1. Refer to the Buffer Read Enable bit in the Present State register
- * for additional information. This bit indicates that cmd19 is finished in tuning process.
+ * for additional information.
  *
  * Values:
  * 0 - Not ready to read buffer
@@ -2679,8 +2667,7 @@ typedef union _hw_usdhc_int_status
  * Command Timeout Error: Occurs only if no response is returned within 64 SDCLK cycles from the end
  * bit of the command. If the uSDHC detects a CMD line conflict, in which case a Command CRC Error
  * shall also be set (as shown in ), this bit shall be set without waiting for 64 SDCLK cycles. This
- * is because the command will be aborted by the uSDHC. This bit will be not asserted in tuning
- * process.
+ * is because the command will be aborted by the uSDHC.
  *
  * Values:
  * 0 - No Error
@@ -2709,8 +2696,7 @@ typedef union _hw_usdhc_int_status
  * error in the command response. The uSDHC detects a CMD line conflict by monitoring the CMD line
  * when a command is issued. If the uSDHC drives the CMD line to 1, but detects 0 on the CMD line at
  * the next SDCLK edge, then the uSDHC shall abort the command (Stop driving CMD line) and set this
- * bit to 1. The Command Timeout Error shall also be set to 1 to distinguish CMD line conflict. This
- * bit will be not asserted in tuning process.
+ * bit to 1. The Command Timeout Error shall also be set to 1 to distinguish CMD line conflict.
  *
  * Values:
  * 0 - No Error
@@ -2734,8 +2720,7 @@ typedef union _hw_usdhc_int_status
 
 /* --- Register HW_USDHC_INT_STATUS, field CEBE[18] (W1C)
  *
- * Command End Bit Error: Occurs when detecting that the end bit of a command response is 0. This
- * bit will be not asserted in tuning process.
+ * Command End Bit Error: Occurs when detecting that the end bit of a command response is 0.
  *
  * Values:
  * 0 - No Error
@@ -2759,8 +2744,7 @@ typedef union _hw_usdhc_int_status
 
 /* --- Register HW_USDHC_INT_STATUS, field CIE[19] (W1C)
  *
- * Command Index Error: Occurs if a Command Index error occurs in the command response. This bit
- * will be not asserted in tuning process.
+ * Command Index Error: Occurs if a Command Index error occurs in the command response.
  *
  * Values:
  * 0 - No Error
@@ -2785,8 +2769,7 @@ typedef union _hw_usdhc_int_status
 /* --- Register HW_USDHC_INT_STATUS, field DTOE[20] (W1C)
  *
  * Data Timeout Error: Occurs when detecting one of following time-out conditions. Busy time-out for
- * R1b,R5b type Busy time-out after Write CRC status Read Data time-out. This bit will be not
- * asserted in tuning process.
+ * R1b,R5b type Busy time-out after Write CRC status Read Data time-out.
  *
  * Values:
  * 0 - No Error
@@ -2811,8 +2794,7 @@ typedef union _hw_usdhc_int_status
 /* --- Register HW_USDHC_INT_STATUS, field DCE[21] (W1C)
  *
  * Data CRC Error: Occurs when detecting a CRC error when transferring read data, which uses the DAT
- * line, or when detecting the Write CRC status having a value other than 010. This bit will be not
- * asserted in tuning process.
+ * line, or when detecting the Write CRC status having a value other than 010.
  *
  * Values:
  * 0 - No Error
@@ -2837,8 +2819,7 @@ typedef union _hw_usdhc_int_status
 /* --- Register HW_USDHC_INT_STATUS, field DEBE[22] (W1C)
  *
  * Data End Bit Error: Occurs either when detecting 0 at the end bit position of read data, which
- * uses the DAT line, or at the end bit position of the CRC. This bit will be not asserted in tuning
- * process.
+ * uses the DAT line, or at the end bit position of the CRC.
  *
  * Values:
  * 0 - No Error
@@ -2968,7 +2949,7 @@ typedef union _hw_usdhc_int_status_en
         unsigned BRRSEN : 1; //!< [5] Buffer Read Ready Status Enable:
         unsigned CINSSEN : 1; //!< [6] Card Insertion Status Enable:
         unsigned CRMSEN : 1; //!< [7] Card Removal Status Enable:
-        unsigned CINTSEN : 1; //!< [8] Card Interrupt Status Enable: If this bit is set to 0, the uSDHC will clear the interrupt request to the System. The Card Interrupt detection is stopped when this bit is cleared and restarted when this bit is set to 1. The Host Driver should clear the Card Interrupt Status Enable before servicing the Card Interrupt and should set this bit again after all interrupt requests from the card are cleared to prevent inadvertent interrupts.
+        unsigned CINTSEN : 1; //!< [8] Card Interrupt Status Enable: If this bit is set to 0, the uSDHC will clear the interrupt request to the System.
         unsigned RESERVED0 : 3; //!< [11:9] Reserved
         unsigned RTESEN : 1; //!< [12] Re-Tuning Event Status Enable
         unsigned RESERVED1 : 1; //!< [13] Reserved
@@ -4121,8 +4102,8 @@ typedef union _hw_usdhc_autocmd12_err_status
     reg32_t U;
     struct _hw_usdhc_autocmd12_err_status_bitfields
     {
-        unsigned AC12NE : 1; //!< [0] Auto CMD12 Not Executed: If memory multiple block data transfer is not started, due to a command error, this bit is not set because it is not necessary to issue an Auto CMD12. Setting this bit to 1 means the uSDHC cannot issue the Auto CMD12 to stop a memory multiple block data transfer due to some error. If this bit is set to 1, other error status bits (1-4) have no meaning.
-        unsigned AC12TOE : 1; //!< [1] Auto CMD12 Timeout Error: Occurs if no response is returned within 64 SDCLK cycles from the end bit of the command. If this bit is set to1, the other error status bits (2-4) have no meaning.
+        unsigned AC12NE : 1; //!< [0] Auto CMD12 Not Executed: If memory multiple block data transfer is not started, due to a command error, this bit is not set because it is not necessary to issue an Auto CMD12.
+        unsigned AC12TOE : 1; //!< [1] Auto CMD12 Timeout Error: Occurs if no response is returned within 64 SDCLK cycles from the end bit of the command.
         unsigned AC12EBE : 1; //!< [2] Auto CMD12 End Bit Error: Occurs when detecting that the end bit of command response is 0 which should be 1.
         unsigned AC12CE : 1; //!< [3] Auto CMD12 CRC Error: Occurs when detecting a CRC error in the command response.
         unsigned AC12IE : 1; //!< [4] Auto CMD12 Index Error: Occurs if the Command Index error occurs in response to a command.
@@ -4269,12 +4250,12 @@ typedef union _hw_usdhc_host_ctrl_cap
     struct _hw_usdhc_host_ctrl_cap_bitfields
     {
         unsigned RESERVED0 : 16; //!< [15:0] Reserved
-        unsigned MBL : 3; //!< [18:16] Max Block Length: This value indicates the maximum block size that the Host Driver can read and write to the buffer in the uSDHC. The buffer shall transfer block size without wait cycles.
+        unsigned MBL : 3; //!< [18:16] Max Block Length: This value indicates the maximum block size that the Host Driver can read and write to the buffer in the uSDHC.
         unsigned RESERVED1 : 1; //!< [19] Reserved
         unsigned ADMAS : 1; //!< [20] ADMA Support: This bit indicates whether the uSDHC supports the ADMA feature.
         unsigned HSS : 1; //!< [21] High Speed Support: This bit indicates whether the uSDHC supports High Speed mode and the Host System can supply a SD Clock frequency from 25 MHz to 50 MHz.
         unsigned DMAS : 1; //!< [22] DMA Support: This bit indicates whether the uSDHC is capable of using the internal DMA to transfer data between system memory and the data buffer directly.
-        unsigned SRS : 1; //!< [23] Suspend / Resume Support: This bit indicates whether the uSDHC supports Suspend / Resume functionality. If this bit is 0, the Suspend and Resume mechanism, as well as the Read Wait, are not supported, and the Host Driver shall not issue either Suspend or Resume commands.
+        unsigned SRS : 1; //!< [23] Suspend / Resume Support: This bit indicates whether the uSDHC supports Suspend / Resume functionality.
         unsigned VS33 : 1; //!< [24] Voltage Support 3.3V: This bit shall depend on the Host System ability.
         unsigned VS30 : 1; //!< [25] Voltage Support 3.0V: This bit shall depend on the Host System ability.
         unsigned VS18 : 1; //!< [26] Voltage Support 1.8V: This bit shall depend on the Host System ability.
@@ -4451,11 +4432,11 @@ typedef union _hw_usdhc_wtmk_lvl
     reg32_t U;
     struct _hw_usdhc_wtmk_lvl_bitfields
     {
-        unsigned RD_WML : 8; //!< [7:0] Read Watermark Level: The number of words used as the watermark level (FIFO threshold) in a DMA read operation. Also the number of words as a sequence of read bursts in back-to-back mode. The maximum legal value for the read water mark level is 128.
-        unsigned RD_BRST_LEN : 5; //!< [12:8] Read Burst Length: Due to system restriction, the actual burst length may not exceed 16. The number of words the uSDHC reads in a single burst. The read burst length must be less than or equal to the read watermark level, and all bursts within a watermark level transfer will be in back-to-back mode. On reset, this field will be 8. Writing 0 to this field will result in '01000' (i.e. it is not able to clear this field).
+        unsigned RD_WML : 8; //!< [7:0] Read Watermark Level: The number of words used as the watermark level (FIFO threshold) in a DMA read operation.
+        unsigned RD_BRST_LEN : 5; //!< [12:8] Read Burst Length: Due to system restriction, the actual burst length may not exceed 16.
         unsigned RESERVED0 : 3; //!< [15:13] Reserved
-        unsigned WR_WML : 8; //!< [23:16] Write Watermark Level: The number of words used as the watermark level (FIFO threshold) in a DMA write operation. Also the number of words as a sequence of write bursts in back-to-back mode. The maximum legal value for the write watermark level is 128.
-        unsigned WR_BRST_LEN : 5; //!< [28:24] Write Burst Length: Due to system restriction, the actual burst length may not exceed 16. The number of words the uSDHC writes in a single burst. The write burst length must be less than or equal to the write watermark level, and all bursts within a watermark level transfer will be in back-to-back mode. On reset, this field will be 8. Writing 0 to this field will result in '01000' (i.e. it is not able to clear this field).
+        unsigned WR_WML : 8; //!< [23:16] Write Watermark Level: The number of words used as the watermark level (FIFO threshold) in a DMA write operation.
+        unsigned WR_BRST_LEN : 5; //!< [28:24] Write Burst Length: Due to system restriction, the actual burst length may not exceed 16.
         unsigned RESERVED1 : 3; //!< [31:29] Reserved
     } B;
 } hw_usdhc_wtmk_lvl_t;
@@ -4590,23 +4571,23 @@ typedef union _hw_usdhc_mix_ctrl
     reg32_t U;
     struct _hw_usdhc_mix_ctrl_bitfields
     {
-        unsigned DMAEN : 1; //!< [0] DMA Enable: This bit enables DMA functionality. If this bit is set to 1, a DMA operation shall begin when the Host Driver sets the DPSEL bit of this register. Whether the Simple DMA, or the Advanced DMA, is active depends on the DMA Select field of the Protocol Control register.
-        unsigned BCEN : 1; //!< [1] Block Count Enable: This bit is used to enable the Block Count register, which is only relevant for multiple block transfers. When this bit is 0, the internal counter for block is disabled, which is useful in executing an infinite transfer.
-        unsigned AC12EN : 1; //!< [2] Auto CMD12 Enable: Multiple block transfers for memory require a CMD12 to stop the transaction. When this bit is set to 1, the uSDHC will issue a CMD12 automatically when the last block transfer has completed. The Host Driver shall not set this bit to issue commands that do not require CMD12 to stop a multiple block data transfer. In particular, secure commands defined in File Security Specification (see reference list) do not require CMD12. In single block transfer, the uSDHC will ignore this bit no matter if it is set or not.
+        unsigned DMAEN : 1; //!< [0] DMA Enable: This bit enables DMA functionality.
+        unsigned BCEN : 1; //!< [1] Block Count Enable: This bit is used to enable the Block Count register, which is only relevant for multiple block transfers.
+        unsigned AC12EN : 1; //!< [2] Auto CMD12 Enable: Multiple block transfers for memory require a CMD12 to stop the transaction.
         unsigned DDR_EN : 1; //!< [3] Dual Data Rate mode selection
-        unsigned DTDSEL : 1; //!< [4] Data Transfer Direction Select: This bit defines the direction of DAT line data transfers. The bit is set to 1 by the Host Driver to transfer data from the SD card to the uSDHC and is set to 0 for all other commands.
-        unsigned MSBSEL : 1; //!< [5] Multi / Single Block Select: This bit enables multiple block DAT line data transfers. For any other commands, this bit shall be set to 0. If this bit is 0, it is not necessary to set the Block Count register. (Refer to ).
-        unsigned NIBBLE_POS : 1; //!< [6] In DDR 4 bit mode nibble position indictation. 0- the sequence is 'odd high nibble -> even high nibble -> odd low nibble -> even low nibble'; 1- the sequence is 'odd high nibble -> odd low nibble -> even high nibble -> even low nibble'.
+        unsigned DTDSEL : 1; //!< [4] Data Transfer Direction Select: This bit defines the direction of DAT line data transfers.
+        unsigned MSBSEL : 1; //!< [5] Multi / Single Block Select: This bit enables multiple block DAT line data transfers.
+        unsigned NIBBLE_POS : 1; //!< [6] In DDR 4 bit mode nibble position indictation.
         unsigned AC23EN : 1; //!< [7] Auto CMD23 Enable When this bit is set to 1, the Host Controller issues a CMD23 automatically before issuing a command specified in the Command Register.
         unsigned RESERVED0 : 14; //!< [21:8] Reserved
-        unsigned EXE_TUNE : 1; //!< [22] Execute Tuning: (Only used for SD3.0, SDR104 mode) This bit is set to 1 to indicate the Host Driver is starting tuning procedure. Tuning procedure is aborted by writing 0. When std_tuning_en is 0, this bit is set to 1 to indicate the Host Driver is starting tuning procedure. Tuning procedure is aborted by writing 0.
-        unsigned SMP_CLK_SEL : 1; //!< [23] Tuned clock or Fixed clock is used to sample data/cmd (Only used for SD3.0, SDR104 mode) When std_tuning_en is 0, this bit is used to select Tuned clock or Fixed clock to sample data/cmd (Only used for SD3.0, SDR104 mode)
+        unsigned EXE_TUNE : 1; //!< [22] Execute Tuning: (Only used for SD3.0, SDR104 mode) This bit is set to 1 to indicate the Host Driver is starting tuning procedure.
+        unsigned SMP_CLK_SEL : 1; //!< [23] Tuned clock or Fixed clock is used to sample data/cmd (Only used for SD3.0, SDR104 mode)
         unsigned AUTO_TUNE_EN : 1; //!< [24] Auto tuning enable (Only used for SD3.0, SDR104 mode)
         unsigned FBCLK_SEL : 1; //!< [25] Feedback clock source selection (Only used for SD3.0, SDR104 mode)
         unsigned RESERVED1 : 3; //!< [28:26] Reserved
-        unsigned AC12_RD_POINT : 1; //!< [29] Only for debug. It's used to control when to send Auto CMD12 after multi-block read. 1 send Auto CMD12 8 cycles after CRC is checked successfully 0 send Auto CMD12 right after CRC is checked successfully
-        unsigned CMD_DMY_WAIT_CFG : 1; //!< [30] Only for debug. It's also used to control the number of dummy clock cycles after each command when CMD_DMY_EN bit is enabled. CMD_DMY_EN = 0, CMD_DMY_WAIT_CFG = x : 12 dummy clocks after each command CMD_DMY_EN = 1, CMD_DMY_WAIT_CFG = 0: 20 dummy clocks after each command CMD_DMY_EN = 1, CMD_DMY_WAIT_CFG = 1: 31 dummy clocks after each command
-        unsigned CMD_DMY_EN : 1; //!< [31] Only for debug. It's used to control the number of dummy clock cycles after each command.
+        unsigned AC12_RD_POINT : 1; //!< [29] Only for debug.
+        unsigned CMD_DMY_WAIT_CFG : 1; //!< [30] Only for debug.
+        unsigned CMD_DMY_EN : 1; //!< [31] Only for debug.
     } B;
 } hw_usdhc_mix_ctrl_t;
 #endif
@@ -4825,9 +4806,7 @@ typedef union _hw_usdhc_mix_ctrl
 /* --- Register HW_USDHC_MIX_CTRL, field EXE_TUNE[22] (RW)
  *
  * Execute Tuning: (Only used for SD3.0, SDR104 mode) This bit is set to 1 to indicate the Host
- * Driver is starting tuning procedure. Tuning procedure is aborted by writing 0. When std_tuning_en
- * is 0, this bit is set to 1 to indicate the Host Driver is starting tuning procedure. Tuning
- * procedure is aborted by writing 0.
+ * Driver is starting tuning procedure. Tuning procedure is aborted by writing 0.
  *
  * Values:
  * 0 - Not Tuned or Tuning Completed
@@ -4851,9 +4830,7 @@ typedef union _hw_usdhc_mix_ctrl
 
 /* --- Register HW_USDHC_MIX_CTRL, field SMP_CLK_SEL[23] (RW)
  *
- * Tuned clock or Fixed clock is used to sample data/cmd (Only used for SD3.0, SDR104 mode) When
- * std_tuning_en is 0, this bit is used to select Tuned clock or Fixed clock to sample data/cmd
- * (Only used for SD3.0, SDR104 mode)
+ * Tuned clock or Fixed clock is used to sample data/cmd (Only used for SD3.0, SDR104 mode)
  *
  * Values:
  * 0 - Fixed clock is used to sample data/cmd
@@ -5032,7 +5009,7 @@ typedef union _hw_usdhc_force_event
         unsigned RESERVED4 : 1; //!< [27] Reserved
         unsigned FEVTDMAE : 1; //!< [28] Force Event DMA Error: Forces the DMAE bit of Interrupt Status Register to be set
         unsigned RESERVED5 : 2; //!< [30:29] Reserved
-        unsigned FEVTCINT : 1; //!< [31] Force Event Card Interrupt: Writing 1 to this bit generates a short low-level pulse on the internal DAT[1] line, as if a self clearing interrupt was received from the external card. If enabled, the CINT bit will be set and the interrupt service routine may treat this interrupt as a normal interrupt from the external card.
+        unsigned FEVTCINT : 1; //!< [31] Force Event Card Interrupt: Writing 1 to this bit generates a short low-level pulse on the internal DAT[1] line, as if a self clearing interrupt was received from the external card.
     } B;
 } hw_usdhc_force_event_t;
 #endif
@@ -5332,7 +5309,7 @@ typedef union _hw_usdhc_adma_err_status
     reg32_t U;
     struct _hw_usdhc_adma_err_status_bitfields
     {
-        unsigned ADMAES : 2; //!< [1:0] ADMA Error State (when ADMA Error is occurred.): This field indicates the state of the ADMA when an error has occurred during an ADMA data transfer. Refer to for more details.
+        unsigned ADMAES : 2; //!< [1:0] ADMA Error State (when ADMA Error is occurred.): This field indicates the state of the ADMA when an error has occurred during an ADMA data transfer.
         unsigned ADMALME : 1; //!< [2] ADMA Length Mismatch Error: This error occurs in the following 2 cases: While the Block Count Enable is being set, the total data length specified by the Descriptor table is different from that specified by the Block Count and Block Length Total data length can not be divided by the block length
         unsigned ADMADCE : 1; //!< [3] ADMA Descritor Error: This error occurs when invalid descriptor fetched by ADMA:
         unsigned RESERVED0 : 28; //!< [31:4] Reserved
@@ -5419,7 +5396,7 @@ typedef union _hw_usdhc_adma_sys_addr
     struct _hw_usdhc_adma_sys_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved
-        unsigned ADS_ADDR : 30; //!< [31:2] ADMA System Address: This register holds the word address of the executing command in the Descriptor table. At the start of ADMA, the Host Driver shall set the start address of the Descriptor table. The ADMA engine increments this register address whenever fetching a Descriptor command. When the ADMA is stopped at the Block Gap, this register indicates the address of the next executable Descriptor command. When the ADMA Error Interrupt is generated, this register shall hold the valid Descriptor address depending on the ADMA state. The lower 2 bits of this register is tied to '0' so the ADMA address is always word aligned. Since this register supports dynamic address reflecting, when TC bit is set, it automatically alters the value of internal address counter, so SW cannot change this register when TC bit is set. Such restriction is also listed in .
+        unsigned ADS_ADDR : 30; //!< [31:2] ADMA System Address: This register holds the word address of the executing command in the Descriptor table.
     } B;
 } hw_usdhc_adma_sys_addr_t;
 #endif
@@ -5487,17 +5464,17 @@ typedef union _hw_usdhc_dll_ctrl
     reg32_t U;
     struct _hw_usdhc_dll_ctrl_bitfields
     {
-        unsigned DLL_CTRL_ENABLE : 1; //!< [0] Set this bit to 1 to enable the DLL and delay chain; otherwise; set to 0 to bypasses DLL. Note that using the slave delay line override feature with SLV_OVERRIDE and SLV_OVERRIDE VAL, the DLL does not need to be enabled
-        unsigned DLL_CTRL_RESET : 1; //!< [1] Setting this bit to 1 force a reset on DLL. This will cause the DLL to lose lock and re-calibrate to detect an ref_clock half period phase shift. This signal is used by the DLL as edge-sensitive, so in order to create a subsequent reset, RESET must be taken low and then asserted again
-        unsigned DLL_CTRL_SLV_FORCE_UPD : 1; //!< [2] Setting this bit to 1, forces the slave delay line to update to the DLL calibrated value immediately. The slave delay line shall update automatically based on the SLV_UPDATE_INT interval or when a DLL lock condition is sensed. Subsequent forcing of the slave-line update can only occur if SLV_FORCE_UP is set back to 0 and then asserted again (edge triggered). Be sure to use it when uSDHC is idle. This function may not work when uSDHC is working on data/cmd/response.
-        unsigned DLL_CTRL_SLV_DLY_TARGET : 4; //!< [6:3] The delay target for the uSDHC loopback read clock can be programmed in 1/16th increments of an ref_clock half-period. The delay is ((DLL_CTRL_SLV_DLY_TARGET[6:0] +1)* ref_clock/2)/16 So the input read-clock can be delayed relative input data from (ref_clock/2)/16 to ref_clock*4
-        unsigned DLL_CTRL_GATE_UPDATE : 1; //!< [7] Set this bit to 1 to force DLL not update from now on.Since when clock_in exists, glitches might appear during update. This bit is used by software if we met such kind of condition. Set it to 0 to let DLL update automatically
-        unsigned DLL_CTRL_SLV_OVERRIDE : 1; //!< [8] Set this bit to 1 to Enable manual override for slave delay chain using SLV_OVERRIDE_VAL; to set 0 to disable manual override. This feature does not require the DLL to tbe enabled using the ENABLE bit. In fact to reduce power, if SLV_OVERRIDE is used, it is recommended to disable the DLL with ENABLE=0
-        unsigned DLL_CTRL_SLV_OVERRIDE_VAL : 7; //!< [15:9] When SLV_OVERRIDE=1 This field is used to select 1 of 128 physical taps manually. A value of 0 selects tap 1, and a value of 0x7f selects tap 128.
+        unsigned DLL_CTRL_ENABLE : 1; //!< [0] Set this bit to 1 to enable the DLL and delay chain; otherwise; set to 0 to bypasses DLL.
+        unsigned DLL_CTRL_RESET : 1; //!< [1] Setting this bit to 1 force a reset on DLL.
+        unsigned DLL_CTRL_SLV_FORCE_UPD : 1; //!< [2] Setting this bit to 1, forces the slave delay line to update to the DLL calibrated value immediately.
+        unsigned DLL_CTRL_SLV_DLY_TARGET : 4; //!< [6:3] The delay target for the uSDHC loopback read clock can be programmed in 1/16th increments of an ref_clock half-period.
+        unsigned DLL_CTRL_GATE_UPDATE : 1; //!< [7] Set this bit to 1 to force DLL not update from now on.Since when clock_in exists, glitches might appear during update.
+        unsigned DLL_CTRL_SLV_OVERRIDE : 1; //!< [8] Set this bit to 1 to Enable manual override for slave delay chain using SLV_OVERRIDE_VAL; to set 0 to disable manual override.
+        unsigned DLL_CTRL_SLV_OVERRIDE_VAL : 7; //!< [15:9] When SLV_OVERRIDE=1 This field is used to select 1 of 128 physical taps manually.
         unsigned DLL_CTRL_SLV_DLY_TARGET1 : 3; //!< [18:16] Refer to DLL_CTRL_SLV_DLY_TARGET[3:0] below.
         unsigned RESERVED0 : 1; //!< [19] Reserved
-        unsigned DLL_CTRL_SLV_UPDATE_INT : 8; //!< [27:20] slave delay line update interval. If default 0 is used, it means 256 cycles of ref_clock. A value of 0x0f results in 15 cycles and so on. Note that software can always cause an update of the slave-delay line using the SLV_FORCE_UPDATE register. Note that the slave delay line will also update automatically when the reference DLL transitions to a locked state (from an un-locked state).
-        unsigned DLL_CTRL_REF_UPDATE_INT : 4; //!< [31:28] DLL control loop update interval. The interval cycle is (2 + REF_UPDATE_INT) * ref_clock. By default, the DLL control loop shall update every two ref_clock cycles. It should be noted that increasing the reference delay-line update interval reduces the ability of the DLL to adjust to fast changes in conditions that may effect the delay (such as voltage and temperature)
+        unsigned DLL_CTRL_SLV_UPDATE_INT : 8; //!< [27:20] slave delay line update interval.
+        unsigned DLL_CTRL_REF_UPDATE_INT : 4; //!< [31:28] DLL control loop update interval.
     } B;
 } hw_usdhc_dll_ctrl_t;
 #endif
@@ -5751,10 +5728,10 @@ typedef union _hw_usdhc_dll_status
     reg32_t U;
     struct _hw_usdhc_dll_status_bitfields
     {
-        unsigned DLL_STS_SLV_LOCK : 1; //!< [0] Slave delay-line lock status. This signifies that a valid calibration has been set to the slave-delay line and that the slave-delay line is implementing the programmed delay value
-        unsigned DLL_STS_REF_LOCK : 1; //!< [1] Reference DLL lock status. This signifies that the DLL has detected and locked to a half-phase ref_clock shift, allowing the slave delay-line to perform programmed clock delays
-        unsigned DLL_STS_SLV_SEL : 7; //!< [8:2] Slave delay line select status. This is the instant value generated from reference chain. Since only when ref_lock is detected can the reference chain get updated, this value should be the right value next be update to the slave line when reference is locked.
-        unsigned DLL_STS_REF_SEL : 7; //!< [15:9] Reference delay line select taps. Be noted this is encoded by 7 bits for 127taps.
+        unsigned DLL_STS_SLV_LOCK : 1; //!< [0] Slave delay-line lock status.
+        unsigned DLL_STS_REF_LOCK : 1; //!< [1] Reference DLL lock status.
+        unsigned DLL_STS_SLV_SEL : 7; //!< [8:2] Slave delay line select status.
+        unsigned DLL_STS_REF_SEL : 7; //!< [15:9] Reference delay line select taps.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_usdhc_dll_status_t;
@@ -5844,11 +5821,11 @@ typedef union _hw_usdhc_clk_tune_ctrl_status
         unsigned DLY_CELL_SET_POST : 4; //!< [3:0] Set the number of delay cells on the feedback clock between CLK_OUT and CLK_POST.
         unsigned DLY_CELL_SET_OUT : 4; //!< [7:4] Set the number of delay cells on the feedback clock between CLK_PRE and CLK_OUT.
         unsigned DLY_CELL_SET_PRE : 7; //!< [14:8] Set the number of delay cells on the feedback clock between the feedback clock and CLK_PRE.
-        unsigned NXT_ERR : 1; //!< [15] NXT error which means the number of delay cells added on the feedback clock is too large. It's valid only when SMP_CLK_SEL of Mix control register(bit23 of 0x48) is enabled.
+        unsigned NXT_ERR : 1; //!< [15] NXT error which means the number of delay cells added on the feedback clock is too large.
         unsigned TAP_SEL_POST : 4; //!< [19:16] Reflect the number of delay cells added on the feedback clock between CLK_OUT and CLK_POST.
         unsigned TAP_SEL_OUT : 4; //!< [23:20] Reflect the number of delay cells added on the feedback clock between CLK_PRE and CLK_OUT.
-        unsigned TAP_SEL_PRE : 7; //!< [30:24] Reflect the number of delay cells added on the feedback clock between the feedback clock and CLK_PRE. When AUTO_TUNE_EN(bit24 of 0x48) is disabled, TAP_SEL_PRE is always equal to DLY_CELL_SET_PRE. When AUTO_TUNE_EN(bit24 of 0x48) is enabled, TAP_SEL_PRE will be updated automatically according to the status of the auto tuning circuit to adjust the sample clock phase.
-        unsigned PRE_ERR : 1; //!< [31] PRE error which means the number of delay cells added on the feedback clock is too small. It's valid only when SMP_CLK_SEL of Mix control register(bit23 of 0x48) is enabled.
+        unsigned TAP_SEL_PRE : 7; //!< [30:24] Reflect the number of delay cells added on the feedback clock between the feedback clock and CLK_PRE.
+        unsigned PRE_ERR : 1; //!< [31] PRE error which means the number of delay cells added on the feedback clock is too small.
     } B;
 } hw_usdhc_clk_tune_ctrl_status_t;
 #endif
@@ -6006,27 +5983,27 @@ typedef union _hw_usdhc_vend_spec
     reg32_t U;
     struct _hw_usdhc_vend_spec_bitfields
     {
-        unsigned EXT_DMA_EN : 1; //!< [0] External DMA Request Enable Enable the request to external DMA. When the internal DMA (either Simple DMA or Advanced DMA) is not in use, and this bit is set, uSDHC will send out DMA request when the internal buffer is ready. This bit is particularly useful when transferring data by ARM platform polling mode, and it is not allowed to send out the external DMA request. By default, this bit is set.
-        unsigned VSELECT : 1; //!< [1] Voltage Selection Change the value of output signal VSELECT, to control the voltage on pads for external card. There must be a control circuit out of uSDHC to change the voltage on pads.
-        unsigned CONFLICT_CHK_EN : 1; //!< [2] It's not implemented in uSDHC IP. Conflict check enable.
+        unsigned EXT_DMA_EN : 1; //!< [0] External DMA Request Enable Enable the request to external DMA.
+        unsigned VSELECT : 1; //!< [1] Voltage Selection Change the value of output signal VSELECT, to control the voltage on pads for external card.
+        unsigned CONFLICT_CHK_EN : 1; //!< [2] It's not implemented in uSDHC IP.
         unsigned AC12_WR_CHKBUSY_EN : 1; //!< [3] Check busy enable after auto CMD12 for write data packet
-        unsigned DAT3_CD_POL : 1; //!< [4] This bit only uses for debugging. Polarity of Dat3 pin when it's used as card detection:
-        unsigned CD_POL : 1; //!< [5] This bit only uses for debugging. Polarity of the CD pin:
-        unsigned WP_POL : 1; //!< [6] This bit only uses for debugging. Polarity of the WP pin:
-        unsigned CLKONJ_IN_ABORT : 1; //!< [7] This bit only uses for debugging. Force CLK output active when sending Abort command:
+        unsigned DAT3_CD_POL : 1; //!< [4] This bit only uses for debugging.
+        unsigned CD_POL : 1; //!< [5] This bit only uses for debugging.
+        unsigned WP_POL : 1; //!< [6] This bit only uses for debugging.
+        unsigned CLKONJ_IN_ABORT : 1; //!< [7] This bit only uses for debugging.
         unsigned FRC_SDCLK_ON : 1; //!< [8] Force CLK output active:
-        unsigned AC12_ISNOT_ABORT : 1; //!< [9] This bit only uses for debugging. Auto CMD12 is not a abort command:
-        unsigned DDREN_ACT_ATONCE : 1; //!< [10] This bit only uses for debugging. DDR_EN setting take active at once:
+        unsigned AC12_ISNOT_ABORT : 1; //!< [9] This bit only uses for debugging.
+        unsigned DDREN_ACT_ATONCE : 1; //!< [10] This bit only uses for debugging.
         unsigned IPG_CLK_SOFT_EN : 1; //!< [11] IPG_CLK software enable
-        unsigned HCLK_SOFT_EN : 1; //!< [12] Please note, hardware auto-enables the AHB clock when the internal DMA is enabled even if HCLK_SOFT_EN is 0. AHB clock software enable
+        unsigned HCLK_SOFT_EN : 1; //!< [12] Please note, hardware auto-enables the AHB clock when the internal DMA is enabled even if HCLK_SOFT_EN is 0.
         unsigned IPG_PERCLK_SOFT_EN : 1; //!< [13] ipg_perclk software enable
         unsigned CARD_CLK_SOFT_EN : 1; //!< [14] card clock software enable
         unsigned CRC_CHK_DIS : 1; //!< [15] CRC check disable
-        unsigned INT_ST_VAL : 8; //!< [23:16] Internal State Value Internal state value, reflecting the corresponding state value selected by Debug Select field. This field is read-only and write to this field does not have effect.
+        unsigned INT_ST_VAL : 8; //!< [23:16] Internal State Value Internal state value, reflecting the corresponding state value selected by Debug Select field.
         unsigned DBG_SEL : 4; //!< [27:24] Debug Select Select the internal sub-module to show its internal state value.
-        unsigned CMD_OE_PRE_EN : 1; //!< [28] Only for debug. Control the assert point of CMD_OE signal
-        unsigned AC12_RD_CHKBUSY_EN : 1; //!< [29] Only for debug. Auto CMD12 to terminate multi-block read needs to check busy or not
-        unsigned CARD_DET_IN_IDLE_ENJ : 1; //!< [30] Only for debug. Card detection is only detected during data line idle.
+        unsigned CMD_OE_PRE_EN : 1; //!< [28] Only for debug.
+        unsigned AC12_RD_CHKBUSY_EN : 1; //!< [29] Only for debug.
+        unsigned CARD_DET_IN_IDLE_ENJ : 1; //!< [30] Only for debug.
         unsigned RESERVED0 : 1; //!< [31] Reserved
     } B;
 } hw_usdhc_vend_spec_t;
@@ -6557,10 +6534,10 @@ typedef union _hw_usdhc_mmc_boot
         unsigned BOOT_ACK : 1; //!< [4] Boot ack mode select 0: no ack 1: ack
         unsigned BOOT_MODE : 1; //!< [5] Boot mode select 0: normal boot 1: alternative boot
         unsigned BOOT_EN : 1; //!< [6] Boot mode enable 0: fast boot disable 1: fast boot enable
-        unsigned AUTO_SABG_EN : 1; //!< [7] When boot, enable auto stop at block gap function. This function will be triggered, and host will stop at block gap when received card block cnt is equal to (BLK_CNT - BOOT_BLK_CNT).
-        unsigned DISABLE_TIME_OUT : 1; //!< [8] Please note, when this bit is set, there is no timeout check no matter boot_en is set or not. Disable time out.
+        unsigned AUTO_SABG_EN : 1; //!< [7] When boot, enable auto stop at block gap function.
+        unsigned DISABLE_TIME_OUT : 1; //!< [8] Please note, when this bit is set, there is no timeout check no matter boot_en is set or not.
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
-        unsigned BOOT_BLK_CNT : 16; //!< [31:16] The value defines the Stop At Block Gap value of automatic mode. When received card block cnt is equal to (BLK_CNT - BOOT_BLK_CNT) and AUTO_SABG_EN is 1, then Stop At Block Gap. Here, BLK_CNT is defined in the Block Atrributes Register, bit31-16 of 0x04.
+        unsigned BOOT_BLK_CNT : 16; //!< [31:16] The value defines the Stop At Block Gap value of automatic mode.
     } B;
 } hw_usdhc_mmc_boot_t;
 #endif
@@ -6755,14 +6732,14 @@ typedef union _hw_usdhc_vend_spec2
     reg32_t U;
     struct _hw_usdhc_vend_spec2_bitfields
     {
-        unsigned SDR104_TIMING_DIS : 1; //!< [0] Timeout counter test. This bit only uses for debugging.
-        unsigned SDR104_OE_DIS : 1; //!< [1] CMD_OE/DAT_OE logic generation test. This bit only uses for debugging.
-        unsigned SDR104_NSD_DIS : 1; //!< [2] Interrupt window after abort command is sent. This bit only uses for debugging.
-        unsigned CARD_INT_D3_TEST : 1; //!< [3] Card interrupt detection test. This bit only uses for debugging.
-        unsigned TUNING_8BIT_EN : 1; //!< [4] Enable the auto tuning circuit to check the DAT[7:0]. It's used with the TUNING_1bit_EN together.
-        unsigned TUNING_1BIT_EN : 1; //!< [5] Enable the auto tuning circuit to check the DAT0 only. It's used with the TUNING_8bit_EN together.
+        unsigned SDR104_TIMING_DIS : 1; //!< [0] Timeout counter test.
+        unsigned SDR104_OE_DIS : 1; //!< [1] CMD_OE/DAT_OE logic generation test.
+        unsigned SDR104_NSD_DIS : 1; //!< [2] Interrupt window after abort command is sent.
+        unsigned CARD_INT_D3_TEST : 1; //!< [3] Card interrupt detection test.
+        unsigned TUNING_8BIT_EN : 1; //!< [4] Enable the auto tuning circuit to check the DAT[7:0].
+        unsigned TUNING_1BIT_EN : 1; //!< [5] Enable the auto tuning circuit to check the DAT0 only.
         unsigned TUNING_CMD_EN : 1; //!< [6] Enable the auto tuning circuit to check the CMD line.
-        unsigned CARD_INT_AUTO_CLR_DIS : 1; //!< [7] Disable the feature to clear the Card interrupt status bit when Card Interrupt status enable bit is cleared. This bit only uses for debugging.
+        unsigned CARD_INT_AUTO_CLR_DIS : 1; //!< [7] Disable the feature to clear the Card interrupt status bit when Card Interrupt status enable bit is cleared.
         unsigned RESERVED0 : 24; //!< [31:8] Reserved
     } B;
 } hw_usdhc_vend_spec2_t;
@@ -6995,8 +6972,8 @@ typedef union _hw_usdhc_host_ctrl_ver
     reg32_t U;
     struct _hw_usdhc_host_ctrl_ver_bitfields
     {
-        unsigned SVN : 8; //!< [7:0] Specification Version Number: These status bits indicate the Host Controller Specification Version. 00 SD Host Specification Version 1.0 03 SD Host Specification Version 3.0, supports Test Event Register and ADMA. All others) Reserved
-        unsigned VVN : 8; //!< [15:8] Vendor Version Number: These status bits are reserved for the vendor version number. The Host Driver shall not use this status. 01 Freescale uSDHC Version 1.1 others) Reserved
+        unsigned SVN : 8; //!< [7:0] Specification Version Number: These status bits indicate the Host Controller Specification Version.
+        unsigned VVN : 8; //!< [15:8] Vendor Version Number: These status bits are reserved for the vendor version number.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_usdhc_host_ctrl_ver_t;

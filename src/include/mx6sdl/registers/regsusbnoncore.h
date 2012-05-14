@@ -33,16 +33,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_USBNC_USB_OTG_CTRL - USB OTG Control Register
@@ -67,16 +57,16 @@ typedef union _hw_usbnc_usb_otg_ctrl
         unsigned OVER_CUR_DIS : 1; //!< [7] Disable OTG Overcurrent Detection
         unsigned OVER_CUR_POL : 1; //!< [8] OTG Polarity of Overcurrent The polarity of OTG port overcurrent event
         unsigned PWR_POL : 1; //!< [9] OTG Power Polarity This bit should be set according to power switch's enable polarity.
-        unsigned WIE : 1; //!< [10] OTG Wake-up Interrupt Enable This bit enables or disables the OTG wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
-        unsigned RESET : 1; //!< [11] Force OTG UTMI PHY Reset This bit is used to force a reset to the UTMI PHY. For Freescale test only. During normal operation, S/W should use USBCMD.RST bit to reset the UTMI PHY
-        unsigned SUSPENDM : 1; //!< [12] Force OTG UTMI PHY Suspend. For Freescale test only. This bit is used to put PHY into low-power suspend mode. During normal operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend mode.
+        unsigned WIE : 1; //!< [10] OTG Wake-up Interrupt Enable This bit enables or disables the OTG wake-up interrupt.
+        unsigned RESET : 1; //!< [11] Force OTG UTMI PHY Reset This bit is used to force a reset to the UTMI PHY.
+        unsigned SUSPENDM : 1; //!< [12] Force OTG UTMI PHY Suspend.
         unsigned UTMI_ON_CLOCK : 1; //!< [13] Force OTG UTMI PHY clock output on even if suspend mode.
         unsigned WKUP_SW_EN : 1; //!< [14] OTG Software Wake-up Enable
         unsigned WKUP_SW : 1; //!< [15] OTG Software Wake-up
         unsigned WKUP_ID_EN : 1; //!< [16] OTG Wake-up on ID change enable
         unsigned WKUP_VBUS_EN : 1; //!< [17] OTG wake-up on VBUS change enable
         unsigned RESERVED1 : 13; //!< [30:18] Reserved
-        unsigned WIR : 1; //!< [31] OTG Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the OTG port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
+        unsigned WIR : 1; //!< [31] OTG Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the OTG port.
     } B;
 } hw_usbnc_usb_otg_ctrl_t;
 #endif
@@ -408,16 +398,16 @@ typedef union _hw_usbnc_usb_uh1_ctrl
         unsigned OVER_CUR_DIS : 1; //!< [7] Disable Host 1 Overcurrent Detection
         unsigned OVER_CUR_POL : 1; //!< [8] Host 1 Polarity of Overcurrent The polarity of Host 1 port overcurrent event
         unsigned PWR_POL : 1; //!< [9] Host1 Power Polarity This bit should be set according to the power switch's enable polarity.
-        unsigned WIE : 1; //!< [10] Host 1 Wake-up Interrupt Enable This bit enables or disables the Host 1 wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
-        unsigned RESET : 1; //!< [11] Force Host 1 UTMI PHY Reset. For Freescale test only. This bit is used to force a reset to the UTMI PHY. During normal operation, S/W should use USBCMD.RST bit to reset the UTMI PHY
-        unsigned SUSPENDM : 1; //!< [12] Force Host 1 UTMI PHY Suspend. For Freescale test only. This bit is used to put PHY into low-power suspend mode. During normal operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend mode.
+        unsigned WIE : 1; //!< [10] Host 1 Wake-up Interrupt Enable This bit enables or disables the Host 1 wake-up interrupt.
+        unsigned RESET : 1; //!< [11] Force Host 1 UTMI PHY Reset.
+        unsigned SUSPENDM : 1; //!< [12] Force Host 1 UTMI PHY Suspend.
         unsigned UTMI_ON_CLOCK : 1; //!< [13] Force Host 1 UTMI PHY clock output on even if in low-power suspend mode.
         unsigned WKUP_SW_EN : 1; //!< [14] Host 1 Software Wake-up Enable
         unsigned WKUP_SW : 1; //!< [15] Host 1 Software Wake-up
         unsigned WKUP_ID_EN : 1; //!< [16] Host 1 Wake-up on ID change enable
         unsigned WKUP_VBUS_EN : 1; //!< [17] Host 1 wake-up on VBUS change enable
         unsigned RESERVED1 : 13; //!< [30:18] Reserved
-        unsigned WIR : 1; //!< [31] Host 1 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the OTG port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
+        unsigned WIR : 1; //!< [31] Host 1 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the OTG port.
     } B;
 } hw_usbnc_usb_uh1_ctrl_t;
 #endif
@@ -746,14 +736,14 @@ typedef union _hw_usbnc_usb_uh2_ctrl
     struct _hw_usbnc_usb_uh2_ctrl_bitfields
     {
         unsigned RESERVED0 : 10; //!< [9:0] Reserved
-        unsigned WIE : 1; //!< [10] Host 2 Wake-up Interrupt Enable This bit enables or disables the Host 2 wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
-        unsigned RESET : 1; //!< [11] Force Host 2 UTMI PHY Reset This bit is used to force a reset to the UTMI PHY. During normal operation, S/W should set USBCMD.RST bit to reset the UTMI PHY For Freescale test only.
-        unsigned SUSPENDM : 1; //!< [12] Force Host 2 UTMI PHY Suspend This bit is used to put PHY into suspend mode. During normal operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend mode. For Freescale test only.
+        unsigned WIE : 1; //!< [10] Host 2 Wake-up Interrupt Enable This bit enables or disables the Host 2 wake-up interrupt.
+        unsigned RESET : 1; //!< [11] Force Host 2 UTMI PHY Reset This bit is used to force a reset to the UTMI PHY.
+        unsigned SUSPENDM : 1; //!< [12] Force Host 2 UTMI PHY Suspend This bit is used to put PHY into suspend mode.
         unsigned _480M_CLK_ON : 1; //!< [13] Force OTG UTMI PHY 480M clock output on when Host 2 is not in suspend mode.
         unsigned WKUP_SW_EN : 1; //!< [14] Host 2 Software Wake-up Enable
         unsigned WKUP_SW : 1; //!< [15] Host 2 Software Wake-up
         unsigned RESERVED1 : 15; //!< [30:16] Reserved
-        unsigned WIR : 1; //!< [31] Host 2 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the Host 2 port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
+        unsigned WIR : 1; //!< [31] Host 2 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the Host 2 port.
     } B;
 } hw_usbnc_usb_uh2_ctrl_t;
 #endif
@@ -962,14 +952,14 @@ typedef union _hw_usbnc_usb_uh3_ctrl
     struct _hw_usbnc_usb_uh3_ctrl_bitfields
     {
         unsigned RESERVED0 : 10; //!< [9:0] Reserved0
-        unsigned WIE : 1; //!< [10] Host 3 Wake-up Interrupt Enable This bit enables or disables the Host 3 wake-up interrupt. Disabling the interrupt also clears the Interrupt request bit. Wake-up interrupt enable should be turned off after receiving a wake-up interrupt and turned on again prior to going in suspend mode
-        unsigned RESET : 1; //!< [11] Force Host 3 UTMI PHY Reset This bit is used to force a reset to the UTMI PHY. During normal operation, S/W should set USBCMD.RST bit to reset the UTMI PHY For Freescale test only.
-        unsigned SUSPENDM : 1; //!< [12] Force Host 3 UTMI PHY Suspend This bit is used to put PHY into suspend mode. During normal operation, S/W should set bits SUSP and PHCD in USB core register PORTSC1 to put PHY into suspend mode. For Freescale test only.
+        unsigned WIE : 1; //!< [10] Host 3 Wake-up Interrupt Enable This bit enables or disables the Host 3 wake-up interrupt.
+        unsigned RESET : 1; //!< [11] Force Host 3 UTMI PHY Reset This bit is used to force a reset to the UTMI PHY.
+        unsigned SUSPENDM : 1; //!< [12] Force Host 3 UTMI PHY Suspend This bit is used to put PHY into suspend mode.
         unsigned _480M_CLK_ON : 1; //!< [13] Force OTG UTMI PHY 480M clock output on when Host 3 is not in suspend mode.
         unsigned WKUP_SW_EN : 1; //!< [14] Host 3 Software Wake-up Enable
         unsigned WKUP_SW : 1; //!< [15] Host 3 Software Wake-up
         unsigned RESERVED1 : 15; //!< [30:16] Reserved
-        unsigned WIR : 1; //!< [31] Host 3 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the OTG port. This bit is cleared by disabling the wake-up interrupt (clearing bit "OWIE").
+        unsigned WIR : 1; //!< [31] Host 3 Wake-up Interrupt Request This bit indicates that a wake-up interrupt request is received on the OTG port.
     } B;
 } hw_usbnc_usb_uh3_ctrl_t;
 #endif

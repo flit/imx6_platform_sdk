@@ -42,16 +42,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_SPDIF_SCR - SPDIF Configuration Register
@@ -77,8 +67,8 @@ typedef union _hw_spdif_scr
         unsigned DMA_TX_EN : 1; //!< [8] DMA Transmit Request Enable (Tx FIFO empty)
         unsigned DMA_RX_EN : 1; //!< [9] DMA Receive Request Enable (RX FIFO full)
         unsigned TXFIFO_CTRL : 2; //!< [11:10] 
-        unsigned SOFT_RESET : 1; //!< [12] When write 1 to this bit, it will cause SPDIF software reset. The software reset will last 8 cycles. When in the reset process, return 1 when read. else return 0 when read.
-        unsigned LOW_POWER : 1; //!< [13] When write 1 to this bit, it will cause SPDIF enter low-power mode. return 1 when SPDIF in Low-Power mode.
+        unsigned SOFT_RESET : 1; //!< [12] When write 1 to this bit, it will cause SPDIF software reset.
+        unsigned LOW_POWER : 1; //!< [13] When write 1 to this bit, it will cause SPDIF enter low-power mode.
         unsigned RESERVED1 : 1; //!< [14] Reserved
         unsigned TXFIFOEMPTY_SEL : 2; //!< [16:15] 
         unsigned TXAUTOSYNC : 1; //!< [17] 
@@ -699,18 +689,18 @@ typedef union _hw_spdif_sie
     reg32_t U;
     struct _hw_spdif_sie_bitfields
     {
-        unsigned RXFIFOFUL : 1; //!< [0] SPDIF Rx FIFO full, can't be cleared with reg. IntClear. To clear it, read from Rx FIFO.
-        unsigned TXEM : 1; //!< [1] SPDIF Tx FIFO empty, can't be cleared with reg. IntClear. To clear it, write toTx FIFO.
+        unsigned RXFIFOFUL : 1; //!< [0] SPDIF Rx FIFO full, can't be cleared with reg.
+        unsigned TXEM : 1; //!< [1] SPDIF Tx FIFO empty, can't be cleared with reg.
         unsigned LOCKLOSS : 1; //!< [2] SPDIF receiver loss of lock
         unsigned RXFIFORESYN : 1; //!< [3] Rx FIFO resync
         unsigned RXFIFOUNOV : 1; //!< [4] Rx FIFO underrun/overrun
         unsigned UQERR : 1; //!< [5] U/Q Channel framing error
         unsigned UQSYNC : 1; //!< [6] U/Q Channel sync found
         unsigned QRXOV : 1; //!< [7] Q Channel receive register overrun
-        unsigned QRXFUL : 1; //!< [8] Q Channel receive register full, can't be cleared with reg. IntClear. To clear it, read from Q Rx reg.
+        unsigned QRXFUL : 1; //!< [8] Q Channel receive register full, can't be cleared with reg.
         unsigned URXOV : 1; //!< [9] U Channel receive register overrun
-        unsigned URXFUL : 1; //!< [10] U Channel receive register full, can't be cleared with reg. IntClear. To clear it, read from U Rx reg.
-        unsigned RESERVED0 : 3; //!< [13:11] Reserved. Return zeros when read
+        unsigned URXFUL : 1; //!< [10] U Channel receive register full, can't be cleared with reg.
+        unsigned RESERVED0 : 3; //!< [13:11] Reserved.
         unsigned BITERR : 1; //!< [14] SPDIF receiver found parity bit error
         unsigned SYMERR : 1; //!< [15] SPDIF receiver found illegal symbol
         unsigned VALNOGOOD : 1; //!< [16] SPDIF validity flag no good
@@ -1115,18 +1105,18 @@ typedef union _hw_spdif_sis
     reg32_t U;
     struct _hw_spdif_sis_bitfields
     {
-        unsigned RXFIFOFUL : 1; //!< [0] SPDIF Rx FIFO full, can't be cleared with reg. IntClear. To clear it, read from Rx FIFO.
-        unsigned TXEM : 1; //!< [1] SPDIF Tx FIFO empty, can't be cleared with reg. IntClear. To clear it, write toTx FIFO.
+        unsigned RXFIFOFUL : 1; //!< [0] SPDIF Rx FIFO full, can't be cleared with reg.
+        unsigned TXEM : 1; //!< [1] SPDIF Tx FIFO empty, can't be cleared with reg.
         unsigned LOCKLOSS : 1; //!< [2] SPDIF receiver loss of lock
         unsigned RXFIFORESYN : 1; //!< [3] Rx FIFO resync
         unsigned RXFIFOUNOV : 1; //!< [4] Rx FIFO underrun/overrun
         unsigned UQERR : 1; //!< [5] U/Q Channel framing error
         unsigned UQSYNC : 1; //!< [6] U/Q Channel sync found
         unsigned QRXOV : 1; //!< [7] Q Channel receive register overrun
-        unsigned QRXFUL : 1; //!< [8] Q Channel receive register full, can't be cleared with reg. IntClear. To clear it, read from Q Rx reg.
+        unsigned QRXFUL : 1; //!< [8] Q Channel receive register full, can't be cleared with reg.
         unsigned URXOV : 1; //!< [9] U Channel receive register overrun
-        unsigned URXFUL : 1; //!< [10] U Channel receive register full, can't be cleared with reg. IntClear. To clear it, read from U Rx reg.
-        unsigned RESERVED0 : 3; //!< [13:11] Reserved. Return zeros when read
+        unsigned URXFUL : 1; //!< [10] U Channel receive register full, can't be cleared with reg.
+        unsigned RESERVED0 : 3; //!< [13:11] Reserved.
         unsigned BITERR : 1; //!< [14] SPDIF receiver found parity bit error
         unsigned SYMERR : 1; //!< [15] SPDIF receiver found illegal symbol
         unsigned VALNOGOOD : 1; //!< [16] SPDIF validity flag no good
@@ -1736,7 +1726,7 @@ typedef union _hw_spdif_stl
     reg32_t U;
     struct _hw_spdif_stl_bitfields
     {
-        unsigned TXDATALEFT : 24; //!< [23:0] SPDIF transmit left channel data. It is write-only, and always returns zeros when read
+        unsigned TXDATALEFT : 24; //!< [23:0] SPDIF transmit left channel data.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] This is a 24-bit register the upper byte is unimplemented.
     } B;
 } hw_spdif_stl_t;
@@ -1798,7 +1788,7 @@ typedef union _hw_spdif_str
     reg32_t U;
     struct _hw_spdif_str_bitfields
     {
-        unsigned TXDATARIGHT : 24; //!< [23:0] SPDIF transmit right channel data. It is write-only, and always returns zeros when read
+        unsigned TXDATARIGHT : 24; //!< [23:0] SPDIF transmit right channel data.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] This is a 24-bit register the upper byte is unimplemented.
     } B;
 } hw_spdif_str_t;
@@ -1860,7 +1850,7 @@ typedef union _hw_spdif_stcsch
     reg32_t U;
     struct _hw_spdif_stcsch_bitfields
     {
-        unsigned TXCCHANNELCONS_H : 24; //!< [23:0] SPDIF transmit Cons. C channel data, contains first 24 bits without interpretation. When read, it returns the latest data written by the processor
+        unsigned TXCCHANNELCONS_H : 24; //!< [23:0] SPDIF transmit Cons.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_spdif_stcsch_t;
@@ -1932,7 +1922,7 @@ typedef union _hw_spdif_stcscl
     reg32_t U;
     struct _hw_spdif_stcscl_bitfields
     {
-        unsigned TXCCHANNELCONS_L : 24; //!< [23:0] SPDIF transmit Cons. C channel data, contains next 24 bits without interpretation. When read, it returns the latest data written by the processor
+        unsigned TXCCHANNELCONS_L : 24; //!< [23:0] SPDIF transmit Cons.
         unsigned UNIMPLEMENTED : 8; //!< [31:24] 
     } B;
 } hw_spdif_stcscl_t;

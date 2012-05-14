@@ -102,16 +102,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_PCIE_PHY_IDCODE_LO - Register ID Low 16 bits
@@ -296,10 +286,10 @@ typedef union _hw_pcie_phy_rtune_debug
     struct _hw_pcie_phy_rtune_debug_bitfields
     {
         unsigned short FLIP_COMP : 1; //!< [0] Inverts Analog Comparator Output.
-        unsigned short MAN_TUNE : 1; //!< [1] Write a 1 to perform a manual tuning specified by the TYPE field. Starting a manual tune while a tune is currently running can cause unpredictable results. For use only when you know what the part is doing (with respect to resistor tuning). Write a 1 to perform an operation. Subsequent writes with the bit set will trigger the operation. No need to clear (0) the bit between writes.
-        unsigned short SET_VAL : 1; //!< [2] Sets value. Write a 1 to manually write the register specified by the TYPE field to the value in the VALUE field.
+        unsigned short MAN_TUNE : 1; //!< [1] Write a 1 to perform a manual tuning specified by the TYPE field.
+        unsigned short SET_VAL : 1; //!< [2] Sets value.
         unsigned short TYPE : 2; //!< [4:3] Type of manual tuning or register read/write to execute.
-        unsigned short VALUE : 10; //!< [14:5] Value to use when triggering SET_VAL field. Only the 6 LSB's are used when setting Rx cal or Tx cal values.
+        unsigned short VALUE : 10; //!< [14:5] Value to use when triggering SET_VAL field.
         unsigned short RESERVED0 : 1; //!< [15] Reserved
     } B;
 } hw_pcie_phy_rtune_debug_t;
@@ -514,9 +504,9 @@ typedef union _hw_pcie_phy_ss_freq
     reg16_t U;
     struct _hw_pcie_phy_ss_freq_bitfields
     {
-        unsigned short FREQ_CNT_INIT : 7; //!< [6:0] Initial frequency counter value. Spread spectrum clocking must be enabled to read from or write to this register.
-        unsigned short FREQ_PK : 7; //!< [13:7] Peak frequency value (for changing direction). Spread spectrum clocking must be enabled to read from or write to this register.
-        unsigned short FREQ_OVRD : 1; //!< [14] Frequency register override. Spread spectrum clocking must be enabled to read from or write to this register. Must be set for PHASE writes to stick.
+        unsigned short FREQ_CNT_INIT : 7; //!< [6:0] Initial frequency counter value.
+        unsigned short FREQ_PK : 7; //!< [13:7] Peak frequency value (for changing direction).
+        unsigned short FREQ_OVRD : 1; //!< [14] Frequency register override.
         unsigned short RESERVED0 : 1; //!< [15] Reserved
     } B;
 } hw_pcie_phy_ss_freq_t;
@@ -2116,7 +2106,7 @@ typedef union _hw_pcie_phy_scope_enables
     struct _hw_pcie_phy_scope_enables_bitfields
     {
         unsigned short XOR_EN : 1; //!< [0] Uses scope_xor input for count values.
-        unsigned short MASK_EN : 1; //!< [1] Enables scope_mask input for tracking count values. Clears registers when deasserted.
+        unsigned short MASK_EN : 1; //!< [1] Enables scope_mask input for tracking count values.
         unsigned short MASK_SATURATION_MODE : 1; //!< [2] Method of mask saturation.
         unsigned short RESERVED0 : 13; //!< [15:3] Reserved.
     } B;
@@ -2249,7 +2239,7 @@ typedef union _hw_pcie_phy_scope_count
     reg16_t U;
     struct _hw_pcie_phy_scope_count_bitfields
     {
-        unsigned short COUNT : 16; //!< [15:0] A write to this register starts the counting process. The value of FFFF indicates counting still in progress. If in MASK mode, asserting MASK_EN also starts the counting
+        unsigned short COUNT : 16; //!< [15:0] A write to this register starts the counting process.
     } B;
 } hw_pcie_phy_scope_count_t;
 #endif
@@ -2300,7 +2290,7 @@ typedef union _hw_pcie_phy_scope_ctl
     struct _hw_pcie_phy_scope_ctl_bitfields
     {
         unsigned short MASK_SATURATION : 1; //!< [0] When asserted, mask registers have saturated.
-        unsigned short COUNT : 1; //!< [1] A write to this register starts the counting process. The value of FFFF indicates counting still in progress. If in MASK mode, asserting MASK_EN also starts the counting
+        unsigned short COUNT : 1; //!< [1] A write to this register starts the counting process.
         unsigned short RESERVED0 : 14; //!< [15:2] Reserved.
     } B;
 } hw_pcie_phy_scope_ctl_t;
@@ -2365,7 +2355,7 @@ typedef union _hw_pcie_phy_scope_mask_000
     reg16_t U;
     struct _hw_pcie_phy_scope_mask_000_bitfields
     {
-        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register. Scope must be enabled to read from or write to this register.
+        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register.
     } B;
 } hw_pcie_phy_scope_mask_000_t;
 #endif
@@ -2415,7 +2405,7 @@ typedef union _hw_pcie_phy_scope_mask_001
     reg16_t U;
     struct _hw_pcie_phy_scope_mask_001_bitfields
     {
-        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register. Scope must be enabled to read from or write to this register.
+        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register.
     } B;
 } hw_pcie_phy_scope_mask_001_t;
 #endif
@@ -2465,7 +2455,7 @@ typedef union _hw_pcie_phy_scope_mask_010
     reg16_t U;
     struct _hw_pcie_phy_scope_mask_010_bitfields
     {
-        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register. Scope must be enabled to read from or write to this register.
+        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register.
     } B;
 } hw_pcie_phy_scope_mask_010_t;
 #endif
@@ -2515,7 +2505,7 @@ typedef union _hw_pcie_phy_scope_mask_011
     reg16_t U;
     struct _hw_pcie_phy_scope_mask_011_bitfields
     {
-        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register. Scope must be enabled to read from or write to this register.
+        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register.
     } B;
 } hw_pcie_phy_scope_mask_011_t;
 #endif
@@ -2565,7 +2555,7 @@ typedef union _hw_pcie_phy_scope_mask_100
     reg16_t U;
     struct _hw_pcie_phy_scope_mask_100_bitfields
     {
-        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register. Scope must be enabled to read from or write to this register.
+        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register.
     } B;
 } hw_pcie_phy_scope_mask_100_t;
 #endif
@@ -2615,7 +2605,7 @@ typedef union _hw_pcie_phy_scope_mask_101
     reg16_t U;
     struct _hw_pcie_phy_scope_mask_101_bitfields
     {
-        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register. Scope must be enabled to read from or write to this register.
+        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register.
     } B;
 } hw_pcie_phy_scope_mask_101_t;
 #endif
@@ -2665,7 +2655,7 @@ typedef union _hw_pcie_phy_scope_mask_110
     reg16_t U;
     struct _hw_pcie_phy_scope_mask_110_bitfields
     {
-        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register. Scope must be enabled to read from or write to this register.
+        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register.
     } B;
 } hw_pcie_phy_scope_mask_110_t;
 #endif
@@ -2715,7 +2705,7 @@ typedef union _hw_pcie_phy_scope_mask_111
     reg16_t U;
     struct _hw_pcie_phy_scope_mask_111_bitfields
     {
-        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register. Scope must be enabled to read from or write to this register.
+        unsigned short MASK_VAL_N : 16; //!< [15:0] Starting count value of mask register.
     } B;
 } hw_pcie_phy_scope_mask_111_t;
 #endif
@@ -5429,7 +5419,7 @@ typedef union _hw_pcie_phy_tx_debug
         unsigned short DTB_SEL : 3; //!< [2:0] Selects data to drive on DTB 0.
         unsigned short DETECT_RX_ALWAYS : 1; //!< [3] Always signal 1 for rx_detect ignoring analog
         unsigned short RXDET_MEAS_TIME : 8; //!< [11:4] Time to wait for rxdet measurement (* 8 refclk cycles)
-        unsigned short CM_LFPS_EN : 1; //!< [12] Use LFPS to reach Common Mode. Let VCMHOLD circuit drive it is cleared.
+        unsigned short CM_LFPS_EN : 1; //!< [12] Use LFPS to reach Common Mode.
         unsigned short RESERVED0 : 3; //!< [15:13] Reserved.
     } B;
 } hw_pcie_phy_tx_debug_t;
@@ -5918,7 +5908,7 @@ typedef union _hw_pcie_phy_rx_lbert_ctl
     struct _hw_pcie_phy_rx_lbert_ctl_bitfields
     {
         unsigned short MODE : 3; //!< [2:0] Pattern to match When changing modes, you must first change to disabled.
-        unsigned short SYNC : 1; //!< [3] Synchronize pattern matcher LFSR with incoming data A write of a one to this bit will reset the error counter and start a synchronization of the PM. There is no need to write this back to zero to run normally.
+        unsigned short SYNC : 1; //!< [3] Synchronize pattern matcher LFSR with incoming data A write of a one to this bit will reset the error counter and start a synchronization of the PM.
         unsigned short RESERVED0 : 12; //!< [15:4] Reserved
     } B;
 } hw_pcie_phy_rx_lbert_ctl_t;
@@ -5995,8 +5985,8 @@ typedef union _hw_pcie_phy_rx_lbert_err
     reg16_t U;
     struct _hw_pcie_phy_rx_lbert_err_bitfields
     {
-        unsigned short COUNT : 15; //!< [14:0] A read of this register, or a sync of the PM resets the error count. Current error count If OV14 field is active, then multiply count by 128
-        unsigned short OV14 : 1; //!< [15] If active, multiply COUNT by 128. If OV14=1 and COUNT=2^15-1, signals overflow of counter
+        unsigned short COUNT : 15; //!< [14:0] A read of this register, or a sync of the PM resets the error count.
+        unsigned short OV14 : 1; //!< [15] If active, multiply COUNT by 128.
     } B;
 } hw_pcie_phy_rx_lbert_err_t;
 #endif
@@ -6060,7 +6050,7 @@ typedef union _hw_pcie_phy_rx_scope_ctl
     reg16_t U;
     struct _hw_pcie_phy_rx_scope_ctl_bitfields
     {
-        unsigned short MODE : 3; //!< [2:0] Sampling mode of counters. WORD is 20 bits.
+        unsigned short MODE : 3; //!< [2:0] Sampling mode of counters.
         unsigned short RESERVED0 : 13; //!< [15:3] Reserved
     } B;
 } hw_pcie_phy_rx_scope_ctl_t;
@@ -6119,7 +6109,7 @@ typedef union _hw_pcie_phy_rx_scope_phase
     struct _hw_pcie_phy_rx_scope_phase_bitfields
     {
         unsigned short SAMPLE_PHASE : 6; //!< [5:0] Sampling Phase
-        unsigned short UPDATE : 1; //!< [6] Update Sampling phase. Write a 1.
+        unsigned short UPDATE : 1; //!< [6] Update Sampling phase.
         unsigned short SCOPE_SEL : 1; //!< [7] Select sampling mode.
         unsigned short SCOPE_DELAY : 2; //!< [9:8] How many clocks to delay the analog scope_data.
         unsigned short BASE : 5; //!< [14:10] which bit to sample when MODE = 1 or 4
@@ -6298,7 +6288,7 @@ typedef union _hw_pcie_phy_rx_cdr_ctl
     reg16_t U;
     struct _hw_pcie_phy_rx_cdr_ctl_bitfields
     {
-        unsigned short PHDET_EN : 2; //!< [1:0] Enables phase detecter. top bit is odd slicers, bottom is even
+        unsigned short PHDET_EN : 2; //!< [1:0] Enables phase detecter.
         unsigned short PHDET_EDGE : 2; //!< [3:2] Edges to use for phase detection.
         unsigned short PHDET_POL : 1; //!< [4] Reverse polarity of phase error
         unsigned short OVRD_DPLL_GAIN : 1; //!< [5] Override PHUG and FRUG values
@@ -6640,7 +6630,7 @@ typedef union _hw_pcie_phy_rx_cdr_lock_vec_ovrd
         unsigned short LOCK_VECTOR : 8; //!< [7:0] Override value for the locked_vector.
         unsigned short LOCK_VECTOR_EN : 1; //!< [8] Override value for the locked_vector output completion.
         unsigned short LOCK_VECTOR_OVRD : 1; //!< [9] Override enable for the rx_eq outputs.
-        unsigned short ADAP_POLARITY : 1; //!< [10] If asserted invert default adaptation adjustment for equalization. IF early decrease equalization. Normal mode is to decrease.
+        unsigned short ADAP_POLARITY : 1; //!< [10] If asserted invert default adaptation adjustment for equalization.
         unsigned short ADAP_CTR_LEVEL : 5; //!< [15:11] Amount of earlies that increment the adaptation counter (times 16).
     } B;
 } hw_pcie_phy_rx_cdr_lock_vec_ovrd_t;
@@ -7070,8 +7060,8 @@ typedef union _hw_pcie_phy_rx_atb1
         unsigned short MEAS_GD : 1; //!< [3] Enables sensing of local gd in Rx; ties gd to atb_sense_m.
         unsigned short EN_ATB_VRF : 1; //!< [4] Enables sensing of vref_rx on atb_sense_p.
         unsigned short EN_ATB_VLOS : 1; //!< [5] Enables sensing of LOS reference voltage on atb_sense_p.
-        unsigned short VLOS_MIN : 1; //!< [6] Sets LOS reference voltage. (VLOS_MAX, VLOS_MIN): (1,1): None (1,0): Maximum (0,1): Minimum (0,0): Nominal
-        unsigned short VLOS_MAX : 1; //!< [7] Sets LOS reference voltage. (VLOS_MAX, VLOS_MIN): (1,1): None (1,0): Maximum (0,1): Minimum (0,0): Nominal
+        unsigned short VLOS_MIN : 1; //!< [6] Sets LOS reference voltage.
+        unsigned short VLOS_MAX : 1; //!< [7] Sets LOS reference voltage.
         unsigned short RESERVED0 : 8; //!< [15:8] Reserved
     } B;
 } hw_pcie_phy_rx_atb1_t;
@@ -7808,7 +7798,7 @@ typedef union _hw_pcie_phy_tx_txdrv_cntrl
         unsigned short VCM_HOLD_REG : 1; //!< [4] Register override for tx_vcm_hold; selected when ovrd_vcm_hold is high; controls the TX common mode hold circuitry.
         unsigned short OVRD_PULL_UP : 1; //!< [5] Selects loval value of pull_up_reg instead of tx_pull_up.
         unsigned short PULL_UP_REG : 1; //!< [6] Register override for tx_pull_up; selected when ovrd_pull_up is high; causes calibrated TX bits to pull up in common mode fashion, unless pull_dn_reg is high.
-        unsigned short PULL_DN_REG : 1; //!< [7] Register bit that causes the calibrated Tx bits to pull down in common mode fashion. If pull_dn_reg and tx_pull_up are both high, then pull_dn_reg wins (takes precedence" ).
+        unsigned short PULL_DN_REG : 1; //!< [7] Register bit that causes the calibrated Tx bits to pull down in common mode fashion.
         unsigned short RESERVED0 : 8; //!< [15:8] Reserved
     } B;
 } hw_pcie_phy_tx_txdrv_cntrl_t;

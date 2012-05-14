@@ -26,16 +26,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_XTALOSC24M_MISC0 - Miscellaneous Register 0
@@ -54,21 +44,21 @@ typedef union _hw_xtalosc24m_misc0
     reg32_t U;
     struct _hw_xtalosc24m_misc0_bitfields
     {
-        unsigned REFTOP_PWD : 1; //!< [0] Control bit to power-down the analog bandgap reference circuitry. Not related to oscillator. A note of caution, the bandgap is necessary for correct operation of most of the LDO, pll, and other analog functions on the die.
+        unsigned REFTOP_PWD : 1; //!< [0] Control bit to power-down the analog bandgap reference circuitry.
         unsigned RESERVED0 : 2; //!< [2:1] Reserved
-        unsigned REFTOP_SELFBIASOFF : 1; //!< [3] Control bit to disable the self-bias circuit in the analog bandgap. The self-bias circuit is used by the bandgap during startup. This bit should be set after the bandgap has stabilized and is necessary for best noise performance of analog blocks using the outputs of the bandgap. Not related to oscillator. Value should be returned to zero before removing vddhigh_in or asserting bit 0 of this register (REFTOP_PWD) to assure proper restart of the circuit.
+        unsigned REFTOP_SELFBIASOFF : 1; //!< [3] Control bit to disable the self-bias circuit in the analog bandgap.
         unsigned REFTOP_VBGADJ : 3; //!< [6:4] Not related to oscillator.
-        unsigned REFTOP_VBGUP : 1; //!< [7] Status bit which signals that the analog bandgap voltage is up and stable. 1- Stable. Not related to oscillator.
+        unsigned REFTOP_VBGUP : 1; //!< [7] Status bit which signals that the analog bandgap voltage is up and stable.
         unsigned RESERVED1 : 4; //!< [11:8] Reserved
-        unsigned STOP_MODE_CONFIG : 1; //!< [12] Configure the analog behavior in stop mode. 0 - all analog except rtc powered down on stop mode assertion; 1 - certain analog functions such as certain regulators left up. Not related to oscillator.
+        unsigned STOP_MODE_CONFIG : 1; //!< [12] Configure the analog behavior in stop mode.
         unsigned RESERVED2 : 1; //!< [13] Reserved.
-        unsigned OSC_I : 2; //!< [15:14] This bit field determines the bias current in the 24MHz oscillator. The idea is to start up with the highest bias current which can be decreased after startup if determined to be acceptable.
-        unsigned OSC_XTALOK : 1; //!< [16] Status bit which signals that the output of the 24MHz crystal oscillator is stable. Generated from a timer and active detection of the actual frequency.
+        unsigned OSC_I : 2; //!< [15:14] This bit field determines the bias current in the 24MHz oscillator.
+        unsigned OSC_XTALOK : 1; //!< [16] Status bit which signals that the output of the 24MHz crystal oscillator is stable.
         unsigned OSC_XTALOK_EN : 1; //!< [17] Enable bit
-        unsigned WBCP_VPW_THRESH : 2; //!< [19:18] This signal alters the voltage that the pwell is charged pumped to. Not related to oscillator.
-        unsigned RESERVED3 : 5; //!< [24:20] Reserved. These bits should always be set to zero.
-        unsigned CLKGATE_CTRL : 1; //!< [25] This bit allows disabling the clock gate (always un-gated) for the xtal 24MHz clock that clocks the digital logic in the analog block. Do not change the field during a low power event. This is not a field that the user would normally need to modify
-        unsigned CLKGATE_DELAY : 3; //!< [28:26] This field specifies the delay between powering up the XTAL 24MHz clock and release the clock to the digital logic inside the analog block. Do not change the field during a low power event. This is not a field that the user would normally need to modify
+        unsigned WBCP_VPW_THRESH : 2; //!< [19:18] This signal alters the voltage that the pwell is charged pumped to.
+        unsigned RESERVED3 : 5; //!< [24:20] Reserved.
+        unsigned CLKGATE_CTRL : 1; //!< [25] This bit allows disabling the clock gate (always un-gated) for the xtal 24MHz clock that clocks the digital logic in the analog block.
+        unsigned CLKGATE_DELAY : 3; //!< [28:26] This field specifies the delay between powering up the XTAL 24MHz clock and release the clock to the digital logic inside the analog block.
         unsigned RESERVED4 : 3; //!< [31:29] Reserved
     } B;
 } hw_xtalosc24m_misc0_t;
@@ -150,10 +140,10 @@ typedef union _hw_xtalosc24m_misc0
  * 001 - VBG+0.78%
  * 010 - VBG+1.56%
  * 011 - VBG+2.34%
- * 100 - VBG+0.78%
- * 101 - VBG+1.56%
- * 110 - VBG+2.34%
- * 111 - VBG+3.12%
+ * 100 - VBG-0.78%
+ * 101 - VBG-1.56%
+ * 110 - VBG-2.34%
+ * 111 - VBG-3.12%
  */
 
 #define BP_XTALOSC24M_MISC0_REFTOP_VBGADJ      (4)      //!< Bit position for XTALOSC24M_MISC0_REFTOP_VBGADJ.

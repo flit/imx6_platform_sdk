@@ -35,16 +35,6 @@
 #endif
 //@}
 
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
-
 
 //-------------------------------------------------------------------------------------------
 // HW_GPC_CNTR - GPC Interface control register
@@ -63,8 +53,8 @@ typedef union _hw_gpc_cntr
     reg32_t U;
     struct _hw_gpc_cntr_bitfields
     {
-        unsigned GPU_VPU_PDN_REQ : 1; //!< [0] GPU /VPU Power Down request. Self-cleared bit. * Note: Power switch for GPU /VPU power domain is controlled by anatop configuration, not GPU /VPU PGC signals
-        unsigned GPU_VPU_PUP_REQ : 1; //!< [1] GPU /VPU Power Up request. Self-cleared bit. * Note: Power switch for GPU /VPU power domain is controlled by anatop configuration, not GPU /VPU PGC signals
+        unsigned GPU_VPU_PDN_REQ : 1; //!< [0] GPU Power Down request.
+        unsigned GPU_VPU_PUP_REQ : 1; //!< [1] GPU Power Up request.
         unsigned RESERVED0 : 14; //!< [15:2] Reserved.
         unsigned DVFS0CR : 1; //!< [16] DVFS0 (ARM) Change request (bit is read-only)
         unsigned RESERVED1 : 4; //!< [20:17] Reserved.
@@ -94,12 +84,12 @@ typedef union _hw_gpc_cntr
 
 /* --- Register HW_GPC_CNTR, field GPU_VPU_PDN_REQ[0] (RW)
  *
- * GPU /VPU Power Down request. Self-cleared bit. * Note: Power switch for GPU /VPU power domain is
- * controlled by anatop configuration, not GPU /VPU PGC signals
+ * GPU Power Down request. Self-cleared bit. * Note: Power switch for GPU power domain is controlled
+ * by ANALOG configuration, not GPU PGC signals
  *
  * Values:
  * 0 - no request
- * 1 - Request Power Down sequence to start for GPU /VPU
+ * 1 - Request Power Down sequence to start for GPU
  */
 
 #define BP_GPC_CNTR_GPU_VPU_PDN_REQ      (0)      //!< Bit position for GPC_CNTR_GPU_VPU_PDN_REQ.
@@ -119,12 +109,12 @@ typedef union _hw_gpc_cntr
 
 /* --- Register HW_GPC_CNTR, field GPU_VPU_PUP_REQ[1] (RW)
  *
- * GPU /VPU Power Up request. Self-cleared bit. * Note: Power switch for GPU /VPU power domain is
- * controlled by anatop configuration, not GPU /VPU PGC signals
+ * GPU Power Up request. Self-cleared bit. * Note: Power switch for GPU power domain is controlled
+ * by ANALOG configuration, not GPU PGC signals
  *
  * Values:
  * 0 - no request
- * 1 - Request Power Up sequence to start for GPU /VPU
+ * 1 - Request Power Up sequence to start for GPU
  */
 
 #define BP_GPC_CNTR_GPU_VPU_PUP_REQ      (1)      //!< Bit position for GPC_CNTR_GPU_VPU_PUP_REQ.
@@ -200,7 +190,7 @@ typedef union _hw_gpc_pgr
     struct _hw_gpc_pgr_bitfields
     {
         unsigned RESERVED0 : 29; //!< [28:0] Reserved
-        unsigned DRCIC : 2; //!< [30:29] Debug ref cir in mux control Note: DPTC_LP should be programmed to ref_cir_0 only
+        unsigned DRCIC : 2; //!< [30:29] Debug ref cir in mux control
         unsigned RESERVED1 : 1; //!< [31] Reserved
     } B;
 } hw_gpc_pgr_t;
@@ -226,7 +216,7 @@ typedef union _hw_gpc_pgr
 
 /* --- Register HW_GPC_PGR, field DRCIC[30:29] (RW)
  *
- * Debug ref cir in mux control Note: DPTC_LP should be programmed to ref_cir_0 only
+ * Debug ref cir in mux control
  *
  * Values:
  * 00 - ccm_cosr_1_clk_in

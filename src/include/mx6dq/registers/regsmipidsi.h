@@ -48,19 +48,9 @@
 //@{
 #ifndef REGS_MIPI_DSI_BASE
 #define HW_MIPI_DSI_INSTANCE_COUNT (1) //!< Number of instances of the MIPI_DSI module.
-#define REGS_MIPI_DSI_BASE (0x020e0000) //!< Base address for MIPI_DSI.
+#define REGS_MIPI_DSI_BASE (0x021e0000) //!< Base address for MIPI_DSI.
 #endif
 //@}
-
-// Typecast macro for C or asm. In C, the cast is applied, while in asm it is excluded. This is
-// used to simplify macro definitions below.
-#ifndef __REG_VALUE_TYPE
-#ifndef __LANGUAGE_ASM__
-#define __REG_VALUE_TYPE(v, t) ((t)(v))
-#else
-#define __REG_VALUE_TYPE(v, t) (v)
-#endif
-#endif
 
 
 //-------------------------------------------------------------------------------------------
@@ -663,8 +653,8 @@ typedef union _hw_mipi_dsi_dbis_cmdsize
     reg32_t U;
     struct _hw_mipi_dsi_dbis_cmdsize_bitfields
     {
-        unsigned WR_CMD_SIZE : 16; //!< [15:0] Configures the size of the DCS write memory commands. Size of DSI packet payload is the actual payload size minus 1 since the DCS command is in the DSI packet payload.
-        unsigned ALLOWED_CMD_SIZE : 16; //!< [31:16] Configures the maximum allowed size of a DCS write memory command. This register is used to partition a write memory command into several write memory continues. It is only used if bit 'partitioning_en' is disabled. Size of DSI packet payload is the actual payload size minus 1 since the DCS command is in the DSI packet payload.
+        unsigned WR_CMD_SIZE : 16; //!< [15:0] Configures the size of the DCS write memory commands.
+        unsigned ALLOWED_CMD_SIZE : 16; //!< [31:16] Configures the maximum allowed size of a DCS write memory command.
     } B;
 } hw_mipi_dsi_dbis_cmdsize_t;
 #endif
@@ -907,7 +897,7 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
     struct _hw_mipi_dsi_vid_mode_cfg_bitfields
     {
         unsigned EN_VIDEO_MODE : 1; //!< [0] Enables DPI Video mode transmission
-        unsigned VID_MODE_TYPE : 2; //!< [2:1] Selects video mode transmission type. 0: Non-burst with Sync pulses; 1: Non-burst with Sync events; 2-3: Burst with Sync pulses.
+        unsigned VID_MODE_TYPE : 2; //!< [2:1] Selects video mode transmission type.
         unsigned EN_LP_VSA : 1; //!< [3] Enables return to Low Power inside VSA period when timing allows
         unsigned EN_LP_VBP : 1; //!< [4] Enables return to Low Power inside VBP period when timing allows
         unsigned EN_LP_VFP : 1; //!< [5] Enables return to Low Power inside VFP period when timing allows
@@ -1167,8 +1157,8 @@ typedef union _hw_mipi_dsi_vid_pkt_cfg
     reg32_t U;
     struct _hw_mipi_dsi_vid_pkt_cfg_bitfields
     {
-        unsigned VID_PKT_SIZE : 11; //!< [10:0] Configures the number of pixel on a single video packet. (If using 18 bit mode and not enabling loosely packet stream this value must be a multiple of 4)
-        unsigned NUM_CHUNKS : 10; //!< [20:11] Configures the number of chunks to be transmitted during a Line period. (A chunk is a video packet or a null packet)
+        unsigned VID_PKT_SIZE : 11; //!< [10:0] Configures the number of pixel on a single video packet.
+        unsigned NUM_CHUNKS : 10; //!< [20:11] Configures the number of chunks to be transmitted during a Line period.
         unsigned NULL_PKT_SIZE : 10; //!< [30:21] Configures the number of bytes in a null packet
         unsigned RESERVED0 : 1; //!< [31] Reserved
     } B;
@@ -1991,7 +1981,7 @@ typedef union _hw_mipi_dsi_gen_hdr
     reg32_t U;
     struct _hw_mipi_dsi_gen_hdr_bitfields
     {
-        unsigned GEN_HTYPE : 8; //!< [7:0] Configures the packet type to be transmitted through the generic interface. Writing to this register triggers packet transmission (Payload must be written in advance)
+        unsigned GEN_HTYPE : 8; //!< [7:0] Configures the packet type to be transmitted through the generic interface.
         unsigned GEN_HDATA : 16; //!< [23:8] Configures the packet data to be transmitted through the generic interface
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
@@ -2072,7 +2062,7 @@ typedef union _hw_mipi_dsi_gen_pld_data
     reg32_t U;
     struct _hw_mipi_dsi_gen_pld_data_bitfields
     {
-        unsigned GEN_PLD_DATA : 32; //!< [31:0] This register contains the input/output generic packet data. Write access to it writes the content of the packet payload. Read access reads the incoming generic read data
+        unsigned GEN_PLD_DATA : 32; //!< [31:0] This register contains the input/output generic packet data.
     } B;
 } hw_mipi_dsi_gen_pld_data_t;
 #endif
@@ -2454,7 +2444,7 @@ typedef union _hw_mipi_dsi_to_cnt_cfg0
     struct _hw_mipi_dsi_to_cnt_cfg0_bitfields
     {
         unsigned HSTX_TO_CNT : 16; //!< [15:0] Configures the time out counter that will trigger a High Speed Transmission Time Out Contention Detection (Measured in TO_CLK_DIVISION cycles)
-        unsigned LPRX_TO_CNT : 16; //!< [31:16] Configures the time out counter that will trigger a Low Power Reception Time Out Contention Detection. (Measured in TO_CLK_DIVISION cycles)
+        unsigned LPRX_TO_CNT : 16; //!< [31:16] Configures the time out counter that will trigger a Low Power Reception Time Out Contention Detection.
     } B;
 } hw_mipi_dsi_to_cnt_cfg0_t;
 #endif
@@ -4908,8 +4898,8 @@ typedef union _hw_mipi_dsi_phy_tst_ctrl0
     reg32_t U;
     struct _hw_mipi_dsi_phy_tst_ctrl0_bitfields
     {
-        unsigned PHY_TESTCLR : 1; //!< [0] PHY test interface clear. When active performs vendor specific interface initialization (Active High)
-        unsigned PHY_TESTCLK : 1; //!< [1] PHY test interface strobe signal. Used to clock TESTDIN bus into the D-PHY. In conjunction with TESTEN signal controls the operation selection
+        unsigned PHY_TESTCLR : 1; //!< [0] PHY test interface clear.
+        unsigned PHY_TESTCLK : 1; //!< [1] PHY test interface strobe signal.
         unsigned RESERVED0 : 30; //!< [31:2] Reserved
     } B;
 } hw_mipi_dsi_phy_tst_ctrl0_t;

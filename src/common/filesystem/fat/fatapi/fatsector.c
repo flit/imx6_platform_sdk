@@ -22,7 +22,7 @@
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h" 
+#include "bootsecoffset.h" 
 /*----------------------------------------------------------------------------
 >  Function Name: int32_t FATsectorno(int32_t DeviceNum,int32_t clusterno,int32_t *FATNtryOffsetInBytes)
 

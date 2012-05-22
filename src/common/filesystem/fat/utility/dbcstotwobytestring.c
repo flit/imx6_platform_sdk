@@ -24,7 +24,7 @@
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h" 
+#include "bootsecoffset.h" 
 /*----------------------------------------------------------------------------
 >  Function Name:  void DBCStoTwoByteString(uint8_t *filename,uint8_t *string,int32_t length,int32_t index)
 

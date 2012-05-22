@@ -193,7 +193,7 @@ RtStatus_t CreateDirectory(int32_t HandleNumber,uint8_t *Filepath,int32_t length
     TempBytePosInSector= Handle[HandleNumber].BytePosInSector;
     TempSectorPosInCluster = Handle[HandleNumber].SectorPosInCluster;
     TempDirSector = Handle[HandleNumber].DirSector;
-    TempDirOffset = Handle[HandleNumber].DirOffset;
+    TempDirOffset = Handle[HandleNumber].diroffset;
     TempFileSize  =  Handle[HandleNumber].FileSize;
 
     if (stringtype == kUTF16Encoding)     //check for kUTF16Encoding or kDBCSEncoding
@@ -274,7 +274,7 @@ RtStatus_t CreateDirectory(int32_t HandleNumber,uint8_t *Filepath,int32_t length
     Handle[HandleNumber].BytePosInSector = TempBytePosInSector;
     Handle[HandleNumber].SectorPosInCluster = TempSectorPosInCluster;
     Handle[HandleNumber].DirSector = TempDirSector;
-    Handle[HandleNumber].DirOffset = TempDirOffset;
+    Handle[HandleNumber].diroffset = TempDirOffset;
     Handle[HandleNumber].FileSize = TempFileSize;
     LeaveNonReentrantSection();
 

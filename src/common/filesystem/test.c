@@ -27,8 +27,8 @@
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h" 
-#include "DirOffset.h" 
+#include "bootsecoffset.h" 
+#include "diroffset.h" 
 
 /*----------------------------------------------------------------------------
 >  Function Name: int32_t Fopen(uint8_t *filepath,uint8_t *mode)
@@ -37,3 +37,4 @@
 
    Inputs:        1) Pointer to file name
                   2) Mode 
+ -----------------------------------------------------------------------------*/

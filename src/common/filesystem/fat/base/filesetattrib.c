@@ -50,7 +50,7 @@ RtStatus_t filesetattrib(int32_t HandleNumber,int32_t dirattribute)
 	}
 
     if((Retval = FSWriteSector(Handle[HandleNumber].Device,Handle[HandleNumber].DirSector,
-    (DIR_ATTRIBUTEOFFSET + Handle[HandleNumber].DirOffset),(uint8_t *)&dirattribute,0,2,WRITE_TYPE_RANDOM)) <0)
+    (DIR_ATTRIBUTEOFFSET + Handle[HandleNumber].diroffset),(uint8_t *)&dirattribute,0,2,WRITE_TYPE_RANDOM)) <0)
 	{
 	    LeaveNonReentrantSection();
 		return Retval;

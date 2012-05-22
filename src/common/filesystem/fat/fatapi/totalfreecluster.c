@@ -26,7 +26,7 @@
 //#include <os\os_dmi_api.h>
 #include "sectordef.h"
 #include "platform.h"
-#include "BootSecOffset.h"
+#include "bootsecoffset.h"
 
 // Defines
 

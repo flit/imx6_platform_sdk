@@ -22,7 +22,7 @@
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include <error.h>
 #include "platform.h"
-#include "BootSecOffset.h" 
+#include "bootsecoffset.h" 
 /*----------------------------------------------------------------------------
 >  Function Name:  RtStatus_t Strcpy(uint8_t *filepath, uint8_t *file_path1,int32_t length, int32_t index)
 

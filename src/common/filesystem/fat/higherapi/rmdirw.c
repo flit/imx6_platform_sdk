@@ -23,8 +23,8 @@
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h" 
-#include "DirOffset.h" 
+#include "bootsecoffset.h" 
+#include "diroffset.h" 
 
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t Rmdirw(uint8_t *filepath)
@@ -100,7 +100,7 @@ RtStatus_t Rmdirw(uint8_t *filepath)
     
     /* store the handle for deleting records */
     dirsector =  Handle[HandleNumber].DirSector;
-    diroffset =  Handle[HandleNumber].DirOffset;
+    diroffset =  Handle[HandleNumber].diroffset;
     dirStartcluster =  Handle[HandleNumber].StartingCluster;
     Currentsector = Handle[HandleNumber].CurrentSector;
     Byteposinsec = Handle[HandleNumber].BytePosInSector;  
@@ -124,7 +124,7 @@ RtStatus_t Rmdirw(uint8_t *filepath)
 	}
     /* Go one directory level up (directory to delete) */
 	Handle[HandleNumber].DirSector= dirsector;
-	Handle[HandleNumber].DirOffset = diroffset;
+	Handle[HandleNumber].diroffset = diroffset;
 	Handle[HandleNumber].StartingCluster= dirStartcluster;
     Handle[HandleNumber].CurrentSector = Currentsector;
 	Handle[HandleNumber].CurrentCluster = dirStartcluster;

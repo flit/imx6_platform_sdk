@@ -22,7 +22,7 @@
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h" 
+#include "bootsecoffset.h" 
 /*----------------------------------------------------------------------------
 >  Function Name:  RtStatus_t Setcwd(uint8_t *filepath, uint8_t *gCworkingDir,int32_t index,int32_t length)
 

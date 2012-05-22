@@ -29,8 +29,8 @@
 #include "error.h"
 #include "filesystem/fsapi.h"
 #include "platform.h"
-#include "BootSecOffset.h" 
-#include "DirOffset.h" 
+#include "bootsecoffset.h" 
+#include "diroffset.h" 
 
 ///////////////////////////////////////////////////////////////////////////////
 // Variables

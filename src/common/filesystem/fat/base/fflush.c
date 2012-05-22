@@ -71,7 +71,7 @@ RtStatus_t  Fflush(int32_t HandleNumber)
         return RetValue;
     }
 
-    fsizeoffset  =  (DIR_FILESIZEOFFSET + Handle[HandleNumber].DirOffset)/sizeof(uint32_t);
+    fsizeoffset  =  (DIR_FILESIZEOFFSET + Handle[HandleNumber].diroffset)/sizeof(uint32_t);
     filesizeread =  *(readBuffer + fsizeoffset);
     
     FSReleaseSector(cacheToken);
@@ -86,7 +86,7 @@ RtStatus_t  Fflush(int32_t HandleNumber)
         }
     
         if((RetValue = FSWriteSector(Handle[HandleNumber].Device,Handle[HandleNumber].DirSector,
-                                   DIR_FILESIZEOFFSET + Handle[HandleNumber].DirOffset,(uint8_t *)&Handle[HandleNumber].FileSize,
+                                   DIR_FILESIZEOFFSET + Handle[HandleNumber].diroffset,(uint8_t *)&Handle[HandleNumber].FileSize,
                                    0,4,WRITE_TYPE_RANDOM)) <0)
         {
             ddi_ldl_pop_media_task();

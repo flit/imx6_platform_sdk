@@ -69,7 +69,7 @@ RtStatus_t filegetdate(int32_t HandleNumber,int32_t crt_mod_date_time_para,DIR_D
 	    LeaveNonReentrantSection();
 		return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
 	}
-    date_time = FSGetWord((uint8_t*)buf,(offset + Handle[HandleNumber].DirOffset));
+    date_time = FSGetWord((uint8_t*)buf,(offset + Handle[HandleNumber].diroffset));
     FSReleaseSector(cacheToken);
     LeaveNonReentrantSection();
 

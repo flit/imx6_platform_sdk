@@ -24,7 +24,7 @@
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
-#include "DIrOffset.h"
+#include "diroffset.h"
 
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t CreateDirRecord(uint8_t *filepath,int32_t HandleNumber,int32_t ClusterNumber,

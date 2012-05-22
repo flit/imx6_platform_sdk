@@ -96,7 +96,7 @@ RtStatus_t filesetdate(uint8_t *FilePath,int32_t crt_mod_date_time_para,DIR_DATE
     }
 
     if((Retval = FSWriteSector(Handle[HandleNumber].Device,Handle[HandleNumber].DirSector,
-    (offset + Handle[HandleNumber].DirOffset),(uint8_t *)&date_time,0,2,WRITE_TYPE_RANDOM)) <0)
+    (offset + Handle[HandleNumber].diroffset),(uint8_t *)&date_time,0,2,WRITE_TYPE_RANDOM)) <0)
         return Retval;
 
     Freehandle(HandleNumber);

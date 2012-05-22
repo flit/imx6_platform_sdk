@@ -46,7 +46,7 @@ RtStatus_t FastOpen(int64_t Key, uint8_t *mode)
     uint8_t  *buf;
     int32_t ClusterNumber,DirSector;
     FileSystemModeTypes_t Mode;
-    int32_t attribute,Device,DirOffset;
+    int32_t attribute,Device,diroffset;
     RtStatus_t Retval;
     uint32_t cacheToken;
 
@@ -88,8 +88,8 @@ RtStatus_t FastOpen(int64_t Key, uint8_t *mode)
     Device = (int32_t)(( (Key >> 44) & 0x000000000000000F));
     Handle[HandleNumber].Device = Device;
     DirSector = (Key & 0xFFFFFFFF);
-    DirOffset =  (int32_t)((Key >> 32) & 0xFFF);
-    Handle[HandleNumber].DirOffset = DirOffset;
+    diroffset =  (int32_t)((Key >> 32) & 0xFFF);
+    Handle[HandleNumber].diroffset = diroffset;
     Handle[HandleNumber].DirSector = DirSector;
     
         
@@ -121,11 +121,11 @@ RtStatus_t FastOpen(int64_t Key, uint8_t *mode)
             return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
         }
         
-        ClusterNumber = ((int32_t)(FSGetWord((uint8_t*)buf,DIR_FSTCLUSLOOFFSET+DirOffset))|((int32_t)FSGetWord((uint8_t*)buf,DIR_FSTCLUSHIOFFSET+DirOffset)<<16));
+        ClusterNumber = ((int32_t)(FSGetWord((uint8_t*)buf,DIR_FSTCLUSLOOFFSET+diroffset))|((int32_t)FSGetWord((uint8_t*)buf,DIR_FSTCLUSHIOFFSET+diroffset)<<16));
         Handle[HandleNumber].CurrentCluster = ClusterNumber;
         Handle[HandleNumber].StartingCluster = ClusterNumber;
-        Handle[HandleNumber].FileSize = FSGetDWord((uint8_t *)buf,DIR_FILESIZEOFFSET+DirOffset);
-        attribute =  FSGetByte((uint8_t *)buf,DIR_ATTRIBUTEOFFSET+DirOffset);
+        Handle[HandleNumber].FileSize = FSGetDWord((uint8_t *)buf,DIR_FILESIZEOFFSET+diroffset);
+        attribute =  FSGetByte((uint8_t *)buf,DIR_ATTRIBUTEOFFSET+diroffset);
 
         FSReleaseSector(cacheToken);
         

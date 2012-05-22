@@ -23,7 +23,7 @@
 #include "filesystem/fsapi.h" // includes "filesystem/filesystem.h"
 #include <string.h>
 #include "platform.h"
-#include "BootSecOffset.h" 
+#include "bootsecoffset.h" 
 
 #include "drivers/media/ddi_media.h" 
 // g_bFrameworkExternalDriveOrFsInit true means FsDriveInit done for frameworks 

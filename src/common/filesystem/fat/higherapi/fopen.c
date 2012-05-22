@@ -22,8 +22,8 @@
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h" 
-#include "DirOffset.h" 
+#include "bootsecoffset.h" 
+#include "diroffset.h" 
 
 /*----------------------------------------------------------------------------
 >  Function Name: int32_t Fopen(uint8_t *filepath,uint8_t *mode)
@@ -190,12 +190,12 @@ int32_t Fopen(uint8_t *filepath,uint8_t *mode)
                     clusterhi = 0;
 			 
                     if((Retval = FSWriteSector(Handle[HandleNumber].Device,Handle[HandleNumber].DirSector,
-		                 (Handle[HandleNumber].DirOffset+DIR_FSTCLUSLOOFFSET),
+		                 (Handle[HandleNumber].diroffset+DIR_FSTCLUSLOOFFSET),
 		                 (uint8_t*)&clusterlo,0,2,WRITE_TYPE_RANDOM)) <0)
                         return Retval;
 			 
                     if((Retval = FSWriteSector(Handle[HandleNumber].Device,Handle[HandleNumber].DirSector,
-			             (Handle[HandleNumber].DirOffset+DIR_FSTCLUSHIOFFSET),
+			             (Handle[HandleNumber].diroffset+DIR_FSTCLUSHIOFFSET),
 			             (uint8_t*)&clusterhi,0,2,WRITE_TYPE_RANDOM)) <0)
                         return Retval;              
 				

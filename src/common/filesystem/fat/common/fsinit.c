@@ -36,7 +36,7 @@
 int32_t g_FSinitErrorCode = 0;
 HandleTable_t * Handle;
 FileSystemMediaTable_t * MediaTable;
-FileSpecs_t * FileSpec;
+FileSpecs_t * filespec;
 
 /*----------------------------------------------------------------------------
 
@@ -68,7 +68,7 @@ RtStatus_t  FSInit
     // Assign pointers
     MediaTable =  (FileSystemMediaTable_t *)&bufy[0];
     Handle = (HandleTable_t *)&bufy[maxdevices*sizeof(FileSystemMediaTable_t)];
-    FileSpec = (FileSpecs_t *)&bufy[maxdevices*sizeof(FileSystemMediaTable_t) +
+    filespec = (FileSpecs_t *)&bufy[maxdevices*sizeof(FileSystemMediaTable_t) +
                                    maxhandles*sizeof(HandleTable_t)];
 
     // Now initialize the handle table to 0.

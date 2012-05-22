@@ -22,11 +22,11 @@
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
-#include "FileSpec.h"
+#include "filespec.h"
 /*----------------------------------------------------------------------------
 		Extern Declarations
 ----------------------------------------------------------------------------*/
-extern FileSpecs_t* FileSpec;
+extern FileSpecs_t* filespec;
 extern RtStatus_t FindNext(int32_t HandleNumber,FindData_t *_finddata);
 extern int32_t StringCompare(uint8_t *Buffer,uint8_t *DestBufffer,int32_t StringLength,int32_t Offset);
 /*----------------------------------------------------------------------------
@@ -76,8 +76,8 @@ RtStatus_t FindFirst(FindData_t *_finddata,uint8_t *FileName)
 	    Buffer[i] = FSGetByte(FileName,i);
 	}
 
-    FileSpec[HandleNumber].DirAttribute=_finddata->attrib;
-	FileSpec[HandleNumber].FileExtension[0]=0;
+    filespec[HandleNumber].DirAttribute=_finddata->attrib;
+	filespec[HandleNumber].FileExtension[0]=0;
     Ptr = CharacterSearch(Buffer,'.');
     if(Ptr)
     {
@@ -87,7 +87,7 @@ RtStatus_t FindFirst(FindData_t *_finddata,uint8_t *FileName)
 		    *Ptr1=0;
 		for(i=0; i <4; i++)
 		{
-			FileSpec[HandleNumber].FileExtension[i] = FSGetByte(Ptr,i+1);
+			filespec[HandleNumber].FileExtension[i] = FSGetByte(Ptr,i+1);
 		}
 		Ptr[0]=0;
     }
@@ -99,9 +99,9 @@ RtStatus_t FindFirst(FindData_t *_finddata,uint8_t *FileName)
 
 	for(i=0; i < 9; i++)
 	{
-		FileSpec[HandleNumber].FileName[i] = FSGetByte(Buffer,i);
+		filespec[HandleNumber].FileName[i] = FSGetByte(Buffer,i);
 	}
-    FileSpec[HandleNumber].gCurrentRecord=_finddata->startrecord;
+    filespec[HandleNumber].gCurrentRecord=_finddata->startrecord;
 
 	if(!(FindNext(HandleNumber,_finddata)))
 	    return (RtStatus_t)HandleNumber;

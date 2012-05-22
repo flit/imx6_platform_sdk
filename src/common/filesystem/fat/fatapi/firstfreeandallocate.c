@@ -22,7 +22,7 @@
 #include <error.h>
 #include <filesystem/fsapi.h>
 #include "platform.h"
-#include "BootSecOffset.h" 
+#include "bootsecoffset.h" 
 #include <filesystem/filesystem.h>
 #include <drivers/media/ddi_media.h>
 

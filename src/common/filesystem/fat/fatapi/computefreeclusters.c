@@ -22,7 +22,7 @@
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h" 
+#include "bootsecoffset.h" 
 //#include "components/telemetry/tss_logtext.h"
 
 // Define as 0 by default or 1 to see Compute Free Clx result and error codes on tss

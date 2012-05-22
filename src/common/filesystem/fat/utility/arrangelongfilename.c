@@ -22,8 +22,8 @@
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h" 
-#include "DirOffset.h" 
+#include "bootsecoffset.h" 
+#include "diroffset.h" 
 /*----------------------------------------------------------------------------
 >  Function Name:  RtStatus_t ArrangeLongFileName(int32_t HandleNumber,uint8_t *filename,int32_t count, int32_t chksum)
 

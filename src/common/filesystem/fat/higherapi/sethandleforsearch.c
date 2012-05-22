@@ -22,8 +22,8 @@
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h" 
-#include "DirOffset.h" 
+#include "bootsecoffset.h" 
+#include "diroffset.h" 
  
 /*----------------------------------------------------------------------------
 >  Function Name: int32_t SetHandleforsearch(int32_t HandleNumber,uint8_t *filepath,int32_t stringtype,int32_t *index)

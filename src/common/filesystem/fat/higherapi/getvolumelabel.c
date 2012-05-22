@@ -22,8 +22,8 @@
 //#include "extern.h"
 #include "error.h"
 #include "platform.h"
-#include "BootSecOffset.h"
-#include "DirOffset.h"
+#include "bootsecoffset.h"
+#include "diroffset.h"
 //#include "dirrecord.h"
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "fat_internal.h"

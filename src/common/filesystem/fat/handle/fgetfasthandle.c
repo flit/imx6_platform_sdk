@@ -50,7 +50,7 @@ int64_t FgetFastHandle(int32_t HandleNumber)
 	}
 	else
 	{
-		FastHandle = (((int64_t)Handle[HandleNumber].Device << 44) | ((int64_t)Handle[HandleNumber].DirOffset << 32) | Handle[HandleNumber].DirSector);
+		FastHandle = (((int64_t)Handle[HandleNumber].Device << 44) | ((int64_t)Handle[HandleNumber].diroffset << 32) | Handle[HandleNumber].DirSector);
 	}
 	
     return FastHandle;

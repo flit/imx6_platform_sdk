@@ -141,7 +141,7 @@ FileSystemModeTypes_t IsHandleWriteAllocated(int32_t HandleNumber)
 		        {
                     if(Handle[HandleNumber].DirSector == Handle[i].DirSector)
                     {
-                        if(Handle[HandleNumber].DirOffset == Handle[i].DirOffset)
+                        if(Handle[HandleNumber].diroffset == Handle[i].diroffset)
                             if(Handle[i].Mode & WRITE_MODE)
 					        {
                  	            LeaveNonReentrantSection();
@@ -186,7 +186,7 @@ int32_t Searchfreehandleallocate(void)
 		    Handle[i].FileSize=0;
 		    Handle[i].Mode=0;
 		    Handle[i].DirSector=0;
-		    Handle[i].DirOffset=0;
+		    Handle[i].diroffset=0;
 		    SeekPoint_InitializeBuffer(i);
 	        LeaveNonReentrantSection();
             return i;
@@ -231,7 +231,7 @@ RtStatus_t Isfileopen(int32_t HandleNumber)
                 {
                     if(Handle[HandleNumber].CurrentSector == Handle[i].DirSector)
                     {
-                        if(Handle[HandleNumber].BytePosInSector == Handle[i].DirOffset)
+                        if(Handle[HandleNumber].BytePosInSector == Handle[i].diroffset)
                             return ERROR_OS_FILESYSTEM_FILE_OPEN;
                     }                             
                 }
@@ -270,7 +270,7 @@ RtStatus_t IsCurrWorkDir(int32_t HandleNumber)
 	{
         if(Handle[HandleNumber].DirSector == Handle[CWD_HANDLE].DirSector)
         {
-            if(Handle[HandleNumber].DirOffset == Handle[CWD_HANDLE].DirOffset)
+            if(Handle[HandleNumber].diroffset == Handle[CWD_HANDLE].diroffset)
             {
     	        LeaveNonReentrantSection();
 		  	    return ERROR_OS_FILESYSTEM_CURRENT_WORK_DIR;
@@ -369,7 +369,7 @@ RtStatus_t UpdateHandle(int32_t HandleNumber,int32_t clusterno)
     if((HandleNumber <0) || (HandleNumber >=maxhandles))
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
 
-    Handle[HandleNumber].DirOffset = Handle[HandleNumber].BytePosInSector;
+    Handle[HandleNumber].diroffset = Handle[HandleNumber].BytePosInSector;
     Handle[HandleNumber].DirSector = Handle[HandleNumber].CurrentSector;
     Handle[HandleNumber].StartingCluster=clusterno;
     Handle[HandleNumber].CurrentCluster = clusterno;

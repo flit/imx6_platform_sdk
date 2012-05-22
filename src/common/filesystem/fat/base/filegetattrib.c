@@ -55,7 +55,7 @@ RtStatus_t filegetattrib(uint8_t *FilePath)
     	    LeaveNonReentrantSection();
 		return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
 	}
-    dirattribute = FSGetByte((uint8_t*)buf,(DIR_ATTRIBUTEOFFSET + Handle[HandleNumber].DirOffset));
+    dirattribute = FSGetByte((uint8_t*)buf,(DIR_ATTRIBUTEOFFSET + Handle[HandleNumber].diroffset));
     FSReleaseSector(cacheToken);
 	LeaveNonReentrantSection();
     

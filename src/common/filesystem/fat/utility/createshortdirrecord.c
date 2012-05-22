@@ -24,7 +24,7 @@
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
-#include "DIrOffset.h"
+#include "diroffset.h"
 
 void GetDateTime(int32_t *date,int32_t *time)
 {

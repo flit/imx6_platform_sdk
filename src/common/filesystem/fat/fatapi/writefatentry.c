@@ -22,7 +22,7 @@
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h" 
+#include "bootsecoffset.h" 
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t  WriteFATentry(int32_t DeviceNum,
     int32_t FATsector,int32_t FATNtryoffset,int32_t clusterno,int32_t writentry)

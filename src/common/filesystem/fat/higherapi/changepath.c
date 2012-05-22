@@ -22,8 +22,8 @@
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h"
-#include "DirOffset.h"
+#include "bootsecoffset.h"
+#include "diroffset.h"
 #include <stdlib.h>
 
 #undef FS_USE_MALLOC    // fix for sdk-4470

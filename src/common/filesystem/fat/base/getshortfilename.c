@@ -42,7 +42,7 @@ RtStatus_t GetShortfilename(int64_t Key,uint8_t *Buffer)
 {
     int32_t HandleNumber;
     uint8_t *buf;
-    int32_t DirSector,DirOffset;
+    int32_t DirSector,diroffset;
     uint8_t NameBuffer[36];
     int32_t byte;
     int32_t offset=0,offset_dest=0,j;
@@ -55,8 +55,8 @@ RtStatus_t GetShortfilename(int64_t Key,uint8_t *Buffer)
     
    	Handle[HandleNumber].Device = (int32_t)(( (Key >> 44) & 0x000000000000000F));
     DirSector = (Key & 0x00FFFFFFFF);
-    DirOffset =	 (int32_t)((Key >> 32)& 0xFFF);
-    Handle[HandleNumber].DirOffset = DirOffset;
+    diroffset =	 (int32_t)((Key >> 32)& 0xFFF);
+    Handle[HandleNumber].diroffset = diroffset;
     Handle[HandleNumber].DirSector = DirSector;
     
 	EnterNonReentrantSection();
@@ -67,7 +67,7 @@ RtStatus_t GetShortfilename(int64_t Key,uint8_t *Buffer)
 		return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
 	}
 	
-    memcpy(NameBuffer, buf + DirOffset, DIRRECORDSIZE);
+    memcpy(NameBuffer, buf + diroffset, DIRRECORDSIZE);
     
     FSReleaseSector(cacheToken);
     LeaveNonReentrantSection();

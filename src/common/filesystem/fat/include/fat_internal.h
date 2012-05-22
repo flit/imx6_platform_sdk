@@ -16,7 +16,7 @@ extern int32_t g_FSinitErrorCode;
 extern int32_t gCurrentRecord;
 extern HandleTable_t *Handle;
 extern FileSystemMediaTable_t *MediaTable;
-extern FileSpecs_t * FileSpec;
+extern FileSpecs_t * filespec;
 extern uint8_t gCurrentWorkingdirectory[];
 extern const uint8_t Short_NameRes_Ch[];
 extern const uint8_t Long_NameRes_Ch[];

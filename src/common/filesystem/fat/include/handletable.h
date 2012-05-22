@@ -28,7 +28,7 @@ int32_t CurrentSector;
 int32_t BytePosInSector;
 uint8_t SectorPosInCluster;
 int32_t DirSector;
-int32_t DirOffset;
+int32_t diroffset;
 int32_t ErrorCode;
 int32_t FileSize;
 int32_t SeekPointsClusters[NUM_SEEKPOINTS_CACHED]; 

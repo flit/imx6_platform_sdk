@@ -22,8 +22,8 @@ Notes:
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h"
-#include "DirOffset.h"
+#include "bootsecoffset.h"
+#include "diroffset.h"
 #include "sectordef.h"
 #include "drivers/media/media_cache.h"
 

@@ -23,11 +23,11 @@
 #include "platform.h"
 #include "fat_internal.h"
 #include "diroffset.h"
-#include "FileSpec.h"
+#include "filespec.h"
 /*----------------------------------------------------------------------------
 		Extern Declarations
 ----------------------------------------------------------------------------*/
-extern FileSpecs_t* FileSpec;
+extern FileSpecs_t* filespec;
 /*----------------------------------------------------------------------------
 		Global Declarations
 ----------------------------------------------------------------------------*/
@@ -61,7 +61,7 @@ RtStatus_t FindNext(int32_t HandleNumber,FindData_t *_finddata)
 
 	while(1)
 	{
-		if((key = ReadDirectoryRecord(HandleNumber,FileSpec[HandleNumber].gCurrentRecord++,Buffer))<=0)
+		if((key = ReadDirectoryRecord(HandleNumber,filespec[HandleNumber].gCurrentRecord++,Buffer))<=0)
 			return	ERROR_OS_FILESYSTEM_NO_MATCHING_RECORD;
 
 		// Check for Long File name
@@ -80,9 +80,9 @@ RtStatus_t FindNext(int32_t HandleNumber,FindData_t *_finddata)
 			{   // Check for kanji fix
 				if(Byte==0x05)
 				    PutByte(Buffer,0xe5,0);
-				if(!(RetValue = StringCompare(Buffer,FileSpec[HandleNumber].FileName,Strlength(FileSpec[HandleNumber].FileName),0)))
+				if(!(RetValue = StringCompare(Buffer,filespec[HandleNumber].FileName,Strlength(filespec[HandleNumber].FileName),0)))
 				{
-					if(!(RetValue = StringCompare(Buffer,FileSpec[HandleNumber].FileExtension,Strlength(FileSpec[HandleNumber].FileExtension),8)))
+					if(!(RetValue = StringCompare(Buffer,filespec[HandleNumber].FileExtension,Strlength(filespec[HandleNumber].FileExtension),8)))
 					{
 					    for(i=0; i < 8; i++)
 						{
@@ -106,7 +106,7 @@ RtStatus_t FindNext(int32_t HandleNumber,FindData_t *_finddata)
 						}
 						PutByte(_finddata->name,0,i);
 						_finddata->attrib = FSGetByte(Buffer,DIR_ATTRIBUTEOFFSET);
-						_finddata->startrecord = FileSpec[HandleNumber].gCurrentRecord;
+						_finddata->startrecord = filespec[HandleNumber].gCurrentRecord;
 						_finddata->FileSize = FSGetDWord(Buffer,DIR_FILESIZEOFFSET);
 						_finddata->Key = key;
 					Return = SUCCESS;

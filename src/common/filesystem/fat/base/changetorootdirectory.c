@@ -22,8 +22,8 @@
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h" 
-#include "DirOffset.h" 
+#include "bootsecoffset.h" 
+#include "diroffset.h" 
 
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t ChangeToRootdirectory(int32_t HandleNumber)
@@ -66,7 +66,7 @@ RtStatus_t ChangeToRootdirectory(int32_t HandleNumber)
 	Handle[HandleNumber].BytePosInSector=0;
 	Handle[HandleNumber].SectorPosInCluster=0;
 	Handle[HandleNumber].DirSector=0;
-	Handle[HandleNumber].DirOffset=0;
+	Handle[HandleNumber].diroffset=0;
 	Handle[HandleNumber].FileSize=0;
 
 	return SUCCESS;

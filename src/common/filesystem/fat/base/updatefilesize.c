@@ -67,7 +67,7 @@ RtStatus_t UpdateFileSize(int32_t HandleNumber,int32_t DeleteContentFlag)
 					{
 						if(Handle[HandleNumber].DirSector == Handle[i].DirSector)
 						{
-							if(Handle[HandleNumber].DirOffset == Handle[i].DirOffset)
+							if(Handle[HandleNumber].diroffset == Handle[i].diroffset)
 								Handle[i].FileSize = Handle[HandleNumber].FileSize;
 
 						}

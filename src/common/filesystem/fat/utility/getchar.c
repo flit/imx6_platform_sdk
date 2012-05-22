@@ -23,7 +23,7 @@
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
-#include "BootSecOffset.h" 
+#include "bootsecoffset.h" 
 
 /*----------------------------------------------------------------------------
 >  Function Name:  int32_t GetChar(uint8_t *Buffer,int32_t *offset)

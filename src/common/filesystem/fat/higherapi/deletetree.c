@@ -22,8 +22,8 @@
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
-#include "FileSpec.h"
-#include "DirOffset.h"
+#include "filespec.h"
+#include "diroffset.h"
 
 /*----------------------------------------------------------------------------
 		Extern Declarations

@@ -19,7 +19,7 @@
 #ifndef _TYPES_H
 #define _TYPES_H
 
-#include <stdint.h>
+#include <stdint.h>  //sdk_types.h"
 #include <stdbool.h>
 #include "assert.h"
 //! \brief TBD
@@ -43,12 +43,12 @@ typedef struct
 
 //! \brief TBD
 #if !defined(FALSE)
-#define FALSE false
+//#define FALSE false
 #endif
 
 //! \brief TBD
 #if !defined(TRUE)
-#define TRUE  true
+//#define TRUE  true
 #endif
 
 //! \brief TBD

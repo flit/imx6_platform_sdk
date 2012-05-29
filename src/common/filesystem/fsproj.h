@@ -73,6 +73,7 @@ __attribute__ ((aligned(4)))
 #endif
 //! \brief Y memory buffer.
 extern uint8_t bufy[];
+extern uint8_t read_buf[];
 
 #endif  //_FS_PROJ_H
 ///////////////////////////////////////////////////////////////////////////////

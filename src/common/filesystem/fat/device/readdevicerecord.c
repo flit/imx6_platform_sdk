@@ -166,7 +166,8 @@ RtStatus_t Readdevicerecord(int32_t DeviceNum,int32_t SectorNum)
  
     /* First data sector after reserved sectors, primary and secondary FAT table and 
     Root directory sectors */
-    MediaTable[ DeviceNum].FIRSTDataSector = MediaTable[ DeviceNum].RsvdSectors + (MediaTable[ DeviceNum].NoOfFATs * MediaTable[DeviceNum].FATSize) + MediaTable[DeviceNum].RootDirSectors;
+    MediaTable[ DeviceNum].FIRSTDataSector = MediaTable[ DeviceNum].RsvdSectors + (MediaTable[ DeviceNum].NoOfFATs * MediaTable[DeviceNum].FATSize) + MediaTable[DeviceNum].RootDirSectors
+    + SectorNum; // Modified by Ray
   
     /* To determine FATtype find total no of clusters on the volume */
     DataSec = MediaTable[ DeviceNum].TotalSectors - (MediaTable[ DeviceNum].RsvdSectors + 
@@ -223,7 +224,9 @@ RtStatus_t Readdevicerecord(int32_t DeviceNum,int32_t SectorNum)
        and primary and secondary FAT table */
     else if( (MediaTable[DeviceNum].FATType == FAT12) ||  (MediaTable[DeviceNum].FATType == FAT16) )
     {
-        MediaTable[DeviceNum].FirRootdirsec = MediaTable[DeviceNum].RsvdSectors +  (MediaTable[DeviceNum].NoOfFATs * MediaTable[DeviceNum].FATSize);
+    	/*Mod by Ray*/
+        MediaTable[DeviceNum].FirRootdirsec = MediaTable[DeviceNum].RsvdSectors +  (MediaTable[DeviceNum].NoOfFATs * MediaTable[DeviceNum].FATSize)
+        + SectorNum;
     }
        
     return SUCCESS;

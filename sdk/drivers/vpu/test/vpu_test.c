@@ -14,7 +14,7 @@
 #include "vpu_util.h"
 
 tFile files[10];
-
+uint32_t usdhc_base_addr = SD_PORT_BASE_ADDR;
 tVolume *V;
 vpu_resource_t vpu_resource = { 0 };
 struct decode *gDecInstance[MAX_NUM_INSTANCE];
@@ -42,7 +42,7 @@ int vpu_test(void)
     /* initialize SD card and FAT driver */
     enable_L1_cache();
 
-    card_init(SD_PORT_BASE_ADDR, 4);    //SD card must work in 4-bit mode
+    card_init(usdhc_base_addr, 4);    //SD card must work in 4-bit mode
     /* used in the FAT driver if a card is present and initialized */
     g_bFrameworkExternalDriveOrFsInit = 1;
 

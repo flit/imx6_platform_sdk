@@ -310,7 +310,7 @@ extern void enable_L1_cache(void);
 extern int ips_hannstar_xga_yuv_stream(int ipu_index);
 extern void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
                                   uint32_t buffer_addr);
-extern void ipu_channel_buf_ready(int ipu_index, int channel, int buf);
+extern void ipu_channel_buf_ready(int32_t ipu_index, int32_t channel, int32_t buf);
 
 static inline int is_mx6q_mjpg(int fmt)
 {

@@ -18,10 +18,10 @@ extern sdma_script_info_t script_info;
 static sdma_reg_p sdma_base;
 static sdma_env_p sdma_envp;
 
-static int sdma_initialized = FALSE;
+static int32_t sdma_initialized = FALSE;
 
 /*---------------------------------------- static functions --------------------------------------------*/
-static void set_channel_override(int channel, int hostovr, int dspovr, int evtovr)
+static void set_channel_override(int32_t channel, int32_t hostovr, int32_t dspovr, int32_t evtovr)
 {
     if (hostovr == TRUE)
         sdma_base->hostovr |= (1 << channel);
@@ -39,18 +39,18 @@ static void set_channel_override(int channel, int hostovr, int dspovr, int evtov
         sdma_base->evtovr &= ~(1 << channel);
 }
 
-static int sdma_load_init_script(unsigned int sdma_dst, unsigned int ram_src, unsigned int count)
+static int32_t sdma_load_init_script(uint32_t sdma_dst, uint32_t ram_src, uint32_t count)
 {
     sdma_base->chnpri[0] = SDMA_CHANNEL_PRIORITY_HIGH;
 
     /* Set up buffer descriptor */
     sdma_envp->chan0BD.mode = (SDMA_CMD_C0_SET_PM << SDMA_BD_MODE_CMD_SHIFT)
         | SDMA_FLAGS_BUSY | (SDMA_BD_MODE_CNT_MASK & (count >> 1));
-    sdma_envp->chan0BD.buf_addr = (unsigned int)ram_src;
+    sdma_envp->chan0BD.buf_addr = (uint32_t)ram_src;
     sdma_envp->chan0BD.ext_buf_addr = sdma_dst;
 
     /* Set current BD pointer therefore could be reused */
-    sdma_envp->sdma_ccb[0].currentBDptr = (unsigned int)&sdma_envp->chan0BD;
+    sdma_envp->sdma_ccb[0].currentBDptr = (uint32_t)&sdma_envp->chan0BD;
 
     /* Start channel 0 - start DMA transfer */
     if (SDMA_RETV_FAIL == sdma_channel_start(0)) {
@@ -74,7 +74,7 @@ static int sdma_load_init_script(unsigned int sdma_dst, unsigned int ram_src, un
     return TRUE;
 }
 
-static int sdma_write_channel_context(unsigned char channel, unsigned int source_addr)
+static int32_t sdma_write_channel_context(unsigned char channel, uint32_t source_addr)
 {
     /* Enable channel 0 */
     sdma_base->chnpri[0] = SDMA_CHANNEL_PRIORITY_HIGH;
@@ -82,10 +82,10 @@ static int sdma_write_channel_context(unsigned char channel, unsigned int source
     /* Setup BD, extended buffer not used */
     sdma_envp->chan0BD.mode = ((((channel << 3) | SDMA_CMD_C0_SETCTX) << SDMA_BD_MODE_CMD_SHIFT) |
                                SDMA_FLAGS_BUSY | (sizeof(sdma_channel_context_t) / 4));
-    sdma_envp->chan0BD.buf_addr = (unsigned int)source_addr;
+    sdma_envp->chan0BD.buf_addr = (uint32_t)source_addr;
 
     /* Reset current BD pointer since it would be incremented after each transfer */
-    sdma_envp->sdma_ccb[0].currentBDptr = (unsigned int)&sdma_envp->chan0BD;
+    sdma_envp->sdma_ccb[0].currentBDptr = (uint32_t)&sdma_envp->chan0BD;
 
     /* Start channel 0 - start DMA transfer */
     if (SDMA_RETV_FAIL == sdma_channel_start(0)) {
@@ -109,11 +109,11 @@ static int sdma_write_channel_context(unsigned char channel, unsigned int source
     return TRUE;
 }
 
-static int validate_buffer_descriptor(sdma_bd_p bdp, unsigned int *num_bd)
+static int32_t validate_buffer_descriptor(sdma_bd_p bdp, uint32_t *num_bd)
 {
-    unsigned int idx = 0;
+    uint32_t idx = 0;
 
-    while (idx < (unsigned int)SDMA_NUM_BUF_DESC) {
+    while (idx < (uint32_t)SDMA_NUM_BUF_DESC) {
         if ((bdp[idx].mode & SDMA_FLAGS_CONT) == 0) {
             break;
         }
@@ -129,7 +129,7 @@ static int validate_buffer_descriptor(sdma_bd_p bdp, unsigned int *num_bd)
     return FALSE;
 }
 
-static void sdma_channel_default_isr(unsigned int channel)
+static void sdma_channel_default_isr(uint32_t channel)
 {
     printf("Channel%d interupt.\n", channel);
 }
@@ -138,9 +138,9 @@ static sdma_channel_isr sdma_channel_isr_list[SDMA_NUM_CHANNELS] = { NULL };
 
 static void sdma_interrupt_handler(void)
 {
-    unsigned int int_flag = sdma_base->intr;
+    uint32_t int_flag = sdma_base->intr;
 
-    unsigned int i;
+    uint32_t i;
     for (i = 0; i < 32; i++) {
         if (int_flag & (0x01 << i)) {
             if (NULL != sdma_channel_isr_list[i]) {
@@ -166,10 +166,10 @@ static void sdma_interrupt_handler(void)
  * @return   0 on success, -1 when fail to download RAM scripts to SDMA RAM,
  *           -2 when environment pointer is NULL
  */
-int sdma_init(unsigned int *env_buf, unsigned int base_addr)
+int32_t sdma_init(uint32_t *env_buf, uint32_t base_addr)
 {
     sdma_env_p envp = (sdma_env_p) env_buf;
-    int idx;
+    int32_t idx;
 
     if (sdma_initialized == TRUE) {
         return SDMA_RETV_SUCCESS;
@@ -184,9 +184,9 @@ int sdma_init(unsigned int *env_buf, unsigned int base_addr)
 
     sdma_base->reset = SDMA_REG_RESET_BIT_RESET | SDMA_REG_RESET_BIT_RESCHED;   //Reset SDMA controller
     sdma_base->config = SDMA_REG_CONFIG_VAL_ACR_TWICE;  //AP DMA/SDMA clock ratio: 2:1
-    sdma_base->mc0ptr = (unsigned int)sdma_envp->sdma_ccb;  //Set CCB base address
+    sdma_base->mc0ptr = (uint32_t)sdma_envp->sdma_ccb;  //Set CCB base address
 
-    sdma_envp->sdma_ccb[0].baseBDptr = (unsigned int)&sdma_envp->chan0BD;
+    sdma_envp->sdma_ccb[0].baseBDptr = (uint32_t)&sdma_envp->chan0BD;
 
 #ifdef SDMA_SCRATCH_ENABLE
     sdma_base->chn0addr |= SDMA_REG_CHN0ADDR_BIT_SMSZ;  //Enable scratch area
@@ -201,7 +201,7 @@ int sdma_init(unsigned int *env_buf, unsigned int base_addr)
 
     /* Download RAM script code to SDMA RAM region */
     if (FALSE ==
-        sdma_load_init_script(SDMA_RAMSCRIPT_CODE_START, (unsigned int)script_info.ram_code,
+        sdma_load_init_script(SDMA_RAMSCRIPT_CODE_START, (uint32_t)script_info.ram_code,
                               script_info.ram_code_size << 1)) {
         return SDMA_RETV_FAIL;
     }
@@ -220,7 +220,7 @@ int sdma_init(unsigned int *env_buf, unsigned int base_addr)
  */
 void sdma_deinit(void)
 {
-    int idx;
+    int32_t idx;
 
     /* Stop and free all channels */
     for (idx = 0; idx < SDMA_NUM_CHANNELS; idx++) {
@@ -253,7 +253,7 @@ void sdma_deinit(void)
  * @param channel:   the number of the channel to start
  * @return   0 on success, -1 when channel number is out of range(0-31) or channel is free
  */
-int sdma_channel_start(unsigned int channel)
+int32_t sdma_channel_start(uint32_t channel)
 {
     if (channel >= SDMA_NUM_CHANNELS) {
         return SDMA_RETV_FAIL;
@@ -276,7 +276,7 @@ int sdma_channel_start(unsigned int channel)
  * @param   channel:  the number of the channel to start
  * @return   0 on success, -1 when channel number out of range(0-31)
  */
-int sdma_channel_stop(unsigned int channel)
+int32_t sdma_channel_stop(uint32_t channel)
 {
     if (channel >= SDMA_NUM_CHANNELS) {
         return SDMA_RETV_FAIL;
@@ -320,9 +320,9 @@ int sdma_channel_stop(unsigned int channel)
  *    -6: too many buffer descriptors in table(>64)
  *    -7: SDMA is not initialized yet
  */
-int sdma_channel_request(sdma_chan_desc_p cdp, sdma_bd_p bdp)
+int32_t sdma_channel_request(sdma_chan_desc_p cdp, sdma_bd_p bdp)
 {
-    int channel, idx;
+    int32_t channel, idx;
 
     if (sdma_initialized == FALSE) {
         return SDMA_RETV_NOT_INITED;
@@ -337,7 +337,7 @@ int sdma_channel_request(sdma_chan_desc_p cdp, sdma_bd_p bdp)
         return SDMA_RETV_PRIORITY;
     }
 
-    unsigned int bd_num;
+    uint32_t bd_num;
     if (FALSE == validate_buffer_descriptor(bdp, &bd_num)) {
         return SDMA_RETV_BD_VALIDATE;
     }
@@ -383,15 +383,15 @@ int sdma_channel_request(sdma_chan_desc_p cdp, sdma_bd_p bdp)
     }
 
     /* Load channel context to SDMA context region */
-    if (FALSE == sdma_write_channel_context(channel, (unsigned int)&sdma_envp->chan_cnxt)) {
+    if (FALSE == sdma_write_channel_context(channel, (uint32_t)&sdma_envp->chan_cnxt)) {
         return SDMA_RETV_SET_CONTEXT;
     }
 
     sdma_envp->sdma_bd_num[channel] = bd_num;
 
     /* Setup BD pointer */
-    sdma_envp->sdma_ccb[channel].baseBDptr = (unsigned int)bdp;
-    sdma_envp->sdma_ccb[channel].currentBDptr = (unsigned int)bdp;
+    sdma_envp->sdma_ccb[channel].baseBDptr = (uint32_t)bdp;
+    sdma_envp->sdma_ccb[channel].currentBDptr = (uint32_t)bdp;
 
     sdma_envp->sdma_bdp[channel] = bdp;
 
@@ -409,9 +409,9 @@ int sdma_channel_request(sdma_chan_desc_p cdp, sdma_bd_p bdp)
  * @return   0 on success, -1 when channel number not in range(0-31) or
  *           SDMA not initialized yet
  */
-int sdma_channel_release(unsigned int channel)
+int32_t sdma_channel_release(uint32_t channel)
 {
-    int idx;
+    int32_t idx;
 
     if (sdma_initialized == FALSE) {
         return SDMA_RETV_FAIL;
@@ -461,10 +461,10 @@ int sdma_channel_release(unsigned int channel)
  *
  * @return   0 on success, -1 when failed 
  */
-unsigned int sdma_channel_status(unsigned int channel, unsigned int *status)
+uint32_t sdma_channel_status(uint32_t channel, uint32_t *status)
 {
-    unsigned int i;
-    unsigned int st = 0;
+    uint32_t i;
+    uint32_t st = 0;
 
     if (channel >= SDMA_NUM_CHANNELS) {
         return SDMA_RETV_FAIL;
@@ -497,13 +497,13 @@ unsigned int sdma_channel_status(unsigned int channel, unsigned int *status)
  *
  * @return   0 on success, -1 when failed 
  */
-int sdma_lookup_script(script_name_e script, unsigned int *addr)
+int32_t sdma_lookup_script(script_name_e script, uint32_t *addr)
 {
     if (script >= SDMA_NUM_SCRIPTS) {
         return SDMA_RETV_FAIL;
     }
 
-    unsigned int i;
+    uint32_t i;
     for (i = 0; i < SDMA_NUM_SCRIPTS; i++) {
         if (script_info.script_maps[i].script_index == script)
             break;
@@ -527,7 +527,7 @@ void sdma_setup_interrupt(void)
 {
     register_interrupt_routine(IMX_INT_SDMA, sdma_interrupt_handler);
 
-    unsigned int i;
+    uint32_t i;
     for (i = 0; i < SDMA_NUM_CHANNELS; i++) {
         sdma_channel_isr_list[i] = sdma_channel_default_isr;
     }
@@ -544,7 +544,7 @@ void sdma_setup_interrupt(void)
  *           -1 if invalid channel number
  *           -2 if isr is NULL
  */
-int sdma_channel_isr_attach(unsigned int channel, sdma_channel_isr isr)
+int32_t sdma_channel_isr_attach(uint32_t channel, sdma_channel_isr isr)
 {
     if (channel >= SDMA_NUM_CHANNELS) {
         return SDMA_RETV_FAIL;

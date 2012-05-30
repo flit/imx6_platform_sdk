@@ -19,13 +19,13 @@
  * @param	ic_enable:	enable IC
  * @param	irt_enable:	enable IRT
  */
-void ipu_ic_enable(int ipu_index, int ic_enable, int irt_enable)
+void ipu_ic_enable(int32_t ipu_index, int32_t ic_enable, int32_t irt_enable)
 {
     ipu_write_field(ipu_index, IPU_IPU_CONF__IC_EN, ic_enable);
     ipu_write_field(ipu_index, IPU_IPU_CONF__IRT_EN, irt_enable);
 }
 
-void ipu_ic_rotation_config(int ipu_index, int taskType, int rot, int hf, int vf)
+void ipu_ic_rotation_config(int32_t ipu_index, int32_t taskType, int32_t rot, int32_t hf, int32_t vf)
 {
     switch (taskType) {
     case PP_TASK:
@@ -62,9 +62,9 @@ void ipu_ic_rotation_config(int ipu_index, int taskType, int rot, int hf, int vf
     }
 }
 
-void ipu_ic_resize_config(int ipu_index, int taskType, ipu_res_info_t res_info)
+void ipu_ic_resize_config(int32_t ipu_index, int32_t taskType, ipu_res_info_t res_info)
 {
-    int resCoff = 0, downsCoff = 0;
+    int32_t resCoff = 0, downsCoff = 0;
 
     switch (taskType) {
     case PrP_ENC_TASK:
@@ -150,10 +150,10 @@ void ipu_ic_resize_config(int ipu_index, int taskType, ipu_res_info_t res_info)
 /*
 * this function is used to calculate the params for resizing
 */
-int ipu_ic_calc_resize_coeffs(int in_size, int out_size, int *resize_coeff, int *downsize_coeff)
+int32_t ipu_ic_calc_resize_coeffs(int32_t in_size, int32_t out_size, int32_t *resize_coeff, int32_t *downsize_coeff)
 {
-    int tempSize;
-    int tempDownsize;
+    int32_t tempSize;
+    int32_t tempDownsize;
 
     /* Cannot downsize more than 8:1 */
     if ((out_size << 3) < in_size)
@@ -187,12 +187,12 @@ int ipu_ic_calc_resize_coeffs(int in_size, int out_size, int *resize_coeff, int 
 /*
 * this function is used to set the resizing parameters
 */
-int ipu_ic_config_resize_rate(int ipu_index, char *task_type, unsigned int res_vert,
-                              unsigned int down_vert, unsigned int res_horiz,
-                              unsigned int down_horiz)
+int32_t ipu_ic_config_resize_rate(int32_t ipu_index, char *task_type, uint32_t res_vert,
+                              uint32_t down_vert, uint32_t res_horiz,
+                              uint32_t down_horiz)
 {
-    unsigned int val;
-    unsigned int ipu_base_addr = 0;
+    uint32_t val;
+    uint32_t ipu_base_addr = 0;
 
     if (ipu_index == 1)
         ipu_base_addr = IPU1_CTRL_BASE_ADDR;
@@ -220,7 +220,7 @@ int ipu_ic_config_resize_rate(int ipu_index, char *task_type, unsigned int res_v
 * local alpha with per-pixel or from separate buffer can be used
 * global alpha can be used also.
 */
-int ipu_ic_combine_config(int ipu_index, ic_comb_params_t comb_params)
+int32_t ipu_ic_combine_config(int32_t ipu_index, ic_comb_params_t comb_params)
 {
     switch (comb_params.taskType) {
     case PrP_VF_TASK:
@@ -260,7 +260,7 @@ int ipu_ic_combine_config(int ipu_index, ic_comb_params_t comb_params)
 /*
 * this function is used to config the color space conversion task in the IC
 */
-int ipu_ic_csc_config(int ipu_index, int csc_set_index, ic_csc_params_t csc_params)
+int32_t ipu_ic_csc_config(int32_t ipu_index, int32_t csc_set_index, ic_csc_params_t csc_params)
 {
     unsigned int param;
     unsigned int ipu_base_addr = 0;
@@ -433,7 +433,7 @@ int ipu_ic_csc_config(int ipu_index, int csc_set_index, ic_csc_params_t csc_para
 /*
 * enable ipu tasks, such as preprocessing/post-processing task
 */
-int ipu_ic_task_enable(int ipu_index, int task_type, int task, int enable)
+int32_t ipu_ic_task_enable(int32_t ipu_index, int32_t task_type, int32_t task, int32_t enable)
 {
     switch (task_type) {
     case PrP_ENC_TASK:

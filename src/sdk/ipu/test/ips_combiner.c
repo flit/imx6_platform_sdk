@@ -17,7 +17,7 @@
 #include "ipu_common.h"
 #include "ips_test.h"
 
-int ips_combiner_test(ips_dev_panel_t * panel)
+int32_t ips_combiner_test(ips_dev_panel_t * panel)
 {
     uint32_t ipu_index = 1;     // use ipu 1
     uint32_t fg_width = 600, fg_height = 100;

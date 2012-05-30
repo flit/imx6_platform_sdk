@@ -9,13 +9,13 @@
 #include "cfi_flash.h"
 
 extern flash_info_t flash_info[];
-extern int flash_real_protect(flash_info_t *, int, int);
-extern int write_buff(flash_info_t *, uint8_t *, uint32_t, uint32_t);
+extern int32_t flash_real_protect(flash_info_t *, int32_t, int32_t);
+extern int32_t write_buff(flash_info_t *, uint8_t *, uint32_t, uint32_t);
 
 static flash_info_t *addr2info(uint32_t addr)
 {
     flash_info_t *info;
-    int i;
+    int32_t i;
 
     for (i = 0, info = &flash_info[0]; i < CFG_MAX_FLASH_BANKS; ++i, ++info) {
         if (info->flash_id != FLASH_UNKNOWN && addr >= info->start[0] &&
@@ -27,11 +27,11 @@ static flash_info_t *addr2info(uint32_t addr)
     return (0);
 }
 
-void flash_protect(int flag, uint32_t from, uint32_t to, flash_info_t * info)
+void flash_protect(int32_t flag, uint32_t from, uint32_t to, flash_info_t * info)
 {
     uint32_t b_end = info->start[0] + info->size - 1;
     short s_end = info->sector_count - 1;
-    int i;
+    int32_t i;
 
     flash_print("flash_protect %s: from 0x%8x to 0x%8x\n",
                 (flag & FLAG_PROTECT_SET) ? "ON" :
@@ -70,9 +70,9 @@ void flash_protect(int flag, uint32_t from, uint32_t to, flash_info_t * info)
     }
 }
 
-int flash_write(uint8_t * src, uint32_t addr, uint32_t cnt)
+int32_t flash_write(uint8_t * src, uint32_t addr, uint32_t cnt)
 {
-    int i;
+    int32_t i;
     uint32_t end = addr + cnt - 1;
     flash_info_t *info_first = addr2info(addr);
     flash_info_t *info_last = addr2info(end);
@@ -115,7 +115,7 @@ int flash_write(uint8_t * src, uint32_t addr, uint32_t cnt)
     return (ERR_OK);
 }
 
-void flash_perror(int err)
+void flash_perror(int32_t err)
 {
     switch (err) {
     case ERR_OK:
@@ -150,12 +150,12 @@ void flash_perror(int err)
     }
 }
 
-int flash_fill_sect_ranges(uint32_t addr_first, uint32_t addr_last, int *s_first, int *s_last,
-                           int *s_count)
+int32_t flash_fill_sect_ranges(uint32_t addr_first, uint32_t addr_last, int32_t *s_first, int32_t *s_last,
+                           int32_t *s_count)
 {
     flash_info_t *info;
     uint32_t bank;
-    int rcode = 0;
+    int32_t rcode = 0;
 
     *s_count = 0;
 
@@ -167,7 +167,7 @@ int flash_fill_sect_ranges(uint32_t addr_first, uint32_t addr_last, int *s_first
     for (bank = 0, info = &flash_info[0];
          (bank < CFG_MAX_FLASH_BANKS) && (addr_first <= addr_last); ++bank, ++info) {
         uint32_t b_end;
-        int sect;
+        int32_t sect;
         short s_end;
 
         if (info->flash_id == FLASH_UNKNOWN) {
@@ -225,12 +225,12 @@ int flash_fill_sect_ranges(uint32_t addr_first, uint32_t addr_last, int *s_first
     return rcode;
 }
 
-int flash_sects_protect(int p, int *s_first, int *s_last)
+int32_t flash_sects_protect(int32_t p, int32_t *s_first, int32_t *s_last)
 {
     flash_info_t *info;
     uint32_t bank;
-    int protected, i;
-    int rcode = OK;
+    int32_t protected, i;
+    int32_t rcode = OK;
 
     protected = 0;
 
@@ -254,12 +254,12 @@ int flash_sects_protect(int p, int *s_first, int *s_last)
     return rcode;
 }
 
-int flash_sects_erase(int *s_first, int *s_last)
+int32_t flash_sects_erase(int32_t *s_first, int32_t *s_last)
 {
     flash_info_t *info;
     uint32_t bank;
-    int erased = 0;
-    int rcode = 0;
+    int32_t erased = 0;
+    int32_t rcode = 0;
 
     for (bank = 0, info = &flash_info[0];
          (bank < CFG_MAX_FLASH_BANKS) && (rcode == 0); ++bank, ++info) {

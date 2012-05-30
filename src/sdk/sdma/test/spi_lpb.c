@@ -17,8 +17,8 @@
 #define SPI_LOOPBACK_TEST_BUF_SZ 	1024
 
 /* Uncacheable & unbufferable area start */
-static unsigned int src_buf[SPI_LOOPBACK_TEST_BUF_SZ];
-static unsigned int dst_buf[SPI_LOOPBACK_TEST_BUF_SZ];
+static uint32_t src_buf[SPI_LOOPBACK_TEST_BUF_SZ];
+static uint32_t dst_buf[SPI_LOOPBACK_TEST_BUF_SZ];
 
 static char env_buffer[SDMA_ENV_BUF_SIZE];
 static sdma_bd_t bd[2];
@@ -77,13 +77,13 @@ int ecspi_app_test(void)
 
     /* Initialize SDMA */
     printf("Initialize SDMA environment.\n");
-    if (SDMA_RETV_SUCCESS != sdma_init((unsigned int *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
+    if (SDMA_RETV_SUCCESS != sdma_init((uint32_t *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
         printf("SDMA initialization failed.\n");
         return FALSE;
     }
 
     /* CSPI Tx DMA setup */
-    unsigned int script_addr;
+    uint32_t script_addr;
     if (SDMA_RETV_SUCCESS != sdma_lookup_script(SDMA_MCU_2_APP, &script_addr)) {
         printf("Invalid script.\n");
         return FALSE;
@@ -95,12 +95,12 @@ int ecspi_app_test(void)
     cd[0].priority = SDMA_CHANNEL_PRIORITY_LOW;
     cd[0].gpr[0] = cd[0].dma_mask[1];
     cd[0].gpr[1] = cd[0].dma_mask[0];
-    cd[0].gpr[6] = (unsigned int)&cspi2_reg_base->txdata;
+    cd[0].gpr[6] = (uint32_t)&cspi2_reg_base->txdata;
     cd[0].gpr[7] = 16;
 
     /* buffer descriptor */
     bd[0].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | (SPI_LOOPBACK_TEST_BUF_SZ << 2);
-    bd[0].buf_addr = (unsigned int)src_buf;
+    bd[0].buf_addr = (uint32_t)src_buf;
     bd[0].ext_buf_addr = 0;
 
     /* CSPI Rx DMA setup */
@@ -115,12 +115,12 @@ int ecspi_app_test(void)
     cd[1].priority = SDMA_CHANNEL_PRIORITY_LOW;
     cd[1].gpr[0] = cd[1].dma_mask[1];
     cd[1].gpr[1] = cd[1].dma_mask[0];
-    cd[1].gpr[6] = (unsigned int)&cspi2_reg_base->rxdata;
+    cd[1].gpr[6] = (uint32_t)&cspi2_reg_base->rxdata;
     cd[1].gpr[7] = 16;
 
     /* buffer descriptor */
     bd[1].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | (SPI_LOOPBACK_TEST_BUF_SZ << 2);
-    bd[1].buf_addr = (unsigned int)dst_buf;
+    bd[1].buf_addr = (uint32_t)dst_buf;
     bd[1].ext_buf_addr = 0;
 
     /* Open Tx & Rx channels */
@@ -138,7 +138,7 @@ int ecspi_app_test(void)
 
     /* CSPI peripheral configuration */
     cspi2_reg_base->conreg = 0; //Reset module
-    *(volatile unsigned int *)(CCM_BASE_ADDR + 0x78) |= 0x0C000000; //Turn on clock gate
+    *(volatile uint32_t *)(CCM_BASE_ADDR + 0x78) |= 0x0C000000; //Turn on clock gate
     cspi2_reg_base->conreg = ECSPI_CONREG_EN;
 
     cspi2_reg_base->testreg = ECSPI_TESTREG_LBC;
@@ -153,7 +153,7 @@ int ecspi_app_test(void)
     sdma_channel_start(channel[1]);
 
     /* Wait for channels complete */
-    unsigned int status;
+    uint32_t status;
     do {
         sdma_channel_status(channel[0], &status);
     } while (!(status & SDMA_CHANNEL_STATUS_DONE));
@@ -204,13 +204,13 @@ int ecspi_shp_test(void)
 
     /* Initialize SDMA */
     printf("Initialize SDMA environment.\n");
-    if (SDMA_RETV_SUCCESS != sdma_init((unsigned int *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
+    if (SDMA_RETV_SUCCESS != sdma_init((uint32_t *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
         printf("SDMA initialization failed.\n");
         return FALSE;
     }
 
     /* CSPI Tx DMA setup */
-    unsigned int script_addr;
+    uint32_t script_addr;
     if (SDMA_RETV_SUCCESS != sdma_lookup_script(SDMA_MCU_2_SHP, &script_addr)) {
         printf("Invalid script.\n");
         return FALSE;
@@ -222,12 +222,12 @@ int ecspi_shp_test(void)
     cd[0].priority = SDMA_CHANNEL_PRIORITY_LOW;
     cd[0].gpr[0] = cd[0].dma_mask[1];
     cd[0].gpr[1] = cd[0].dma_mask[0];
-    cd[0].gpr[6] = (unsigned int)&cspi1_reg_base->txdata;
+    cd[0].gpr[6] = (uint32_t)&cspi1_reg_base->txdata;
     cd[0].gpr[7] = 16;
 
     /* buffer descriptor */
     bd[0].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | (SPI_LOOPBACK_TEST_BUF_SZ << 2);
-    bd[0].buf_addr = (unsigned int)src_buf;
+    bd[0].buf_addr = (uint32_t)src_buf;
     bd[0].ext_buf_addr = 0;
 
     /* CSPI Rx DMA setup */
@@ -242,12 +242,12 @@ int ecspi_shp_test(void)
     cd[1].priority = SDMA_CHANNEL_PRIORITY_LOW;
     cd[1].gpr[0] = cd[1].dma_mask[1];
     cd[1].gpr[1] = cd[1].dma_mask[0];
-    cd[1].gpr[6] = (unsigned int)&cspi1_reg_base->rxdata;
+    cd[1].gpr[6] = (uint32_t)&cspi1_reg_base->rxdata;
     cd[1].gpr[7] = 16;
 
     /* buffer descriptor */
     bd[1].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | (SPI_LOOPBACK_TEST_BUF_SZ << 2);
-    bd[1].buf_addr = (unsigned int)dst_buf;
+    bd[1].buf_addr = (uint32_t)dst_buf;
     bd[1].ext_buf_addr = 0;
 
     /* Open Tx & Rx channels */
@@ -264,7 +264,7 @@ int ecspi_shp_test(void)
     printf("Start channel for transfer...\n");
 
     /* CSPI peripheral configuration */
-    *(volatile unsigned int *)(CCM_BASE_ADDR + 0x78) |= 0x0C000000; //Turn on clock gate
+    *(volatile uint32_t *)(CCM_BASE_ADDR + 0x78) |= 0x0C000000; //Turn on clock gate
     cspi1_reg_base->conreg = 0; //Reset module
     cspi1_reg_base->conreg = ECSPI_CONREG_EN;
 
@@ -279,7 +279,7 @@ int ecspi_shp_test(void)
     sdma_channel_start(channel[0]);
     sdma_channel_start(channel[1]);
 
-    unsigned int status;
+    uint32_t status;
     do {
         sdma_channel_status(channel[0], &status);
     } while (!(status & SDMA_CHANNEL_STATUS_DONE));

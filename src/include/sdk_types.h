@@ -14,7 +14,7 @@
 #ifndef __SDK_TYPES_H__
 #define __SDK_TYPES_H__
 
-#define USE_STDINT 0
+#define USE_STDINT 1
 
 #include <stdbool.h>
 

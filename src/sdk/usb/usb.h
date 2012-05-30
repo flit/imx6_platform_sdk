@@ -47,7 +47,7 @@ typedef enum usbPeriodicListType {
 
 typedef struct usb_module
 {
-	int8_t              *moduleName;
+	char                *moduleName;
 	usbRegisters_t      *moduleBaseAddress;
 	enum usbController  controllerID;
 	enum usbPhyType     phyType;				              // UTMI, ULPI, Serial, HSIC

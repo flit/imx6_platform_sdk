@@ -87,7 +87,7 @@ typedef struct {
     uint32_t nbd;           //number of buffer descriptors
 } sdma_chan_desc_t, *sdma_chan_desc_p;
 
-typedef void (*sdma_channel_isr) (unsigned int);
+typedef void (*sdma_channel_isr) (uint32_t);
 
 /*--------------------------------- functions -------------------------------------*/
 int32_t sdma_init(uint32_t *, uint32_t);

@@ -22,7 +22,7 @@ extern void ipu_iomux_config(void);
 
 int32_t mipi_csi2_test(void)
 {
-    int ipu_index = 1;
+    int32_t ipu_index = 1;
     ips_dev_panel_t *panel;
 
     printf("Runing mipi csi-2 test.\n");

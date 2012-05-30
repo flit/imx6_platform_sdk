@@ -20,8 +20,8 @@
 #define RX_FIFO_WATERMARK_LEVEL 16
 
 /* Uncacheable & unbufferable area start */
-static unsigned int tx_buf[UART_LOOPBACK_TEST_BUF_SZ];
-static unsigned int rx_buf[UART_LOOPBACK_TEST_BUF_SZ];
+static uint32_t tx_buf[UART_LOOPBACK_TEST_BUF_SZ];
+static uint32_t rx_buf[UART_LOOPBACK_TEST_BUF_SZ];
 
 static char env_buffer[SDMA_ENV_BUF_SIZE];
 static sdma_bd_t bd[2];
@@ -88,7 +88,7 @@ static hw_module_t uart5_sdma_test = {
     UART_REF_FREQ,
 };
 
-static void uart_loopback_init(struct hw_module *port, unsigned int baudrate)
+static void uart_loopback_init(struct hw_module *port, uint32_t baudrate)
 {
     /* Initialize the clock frequency - in i.MX6DQ/SDL, all UART port uses the same source clock */
     port->freq = get_peri_clock(UART1_BAUD);
@@ -128,12 +128,12 @@ int uart_app_test(void)
 
     /* Initialize SDMA */
     printf("Initialize SDMA environment.\n");
-    if (SDMA_RETV_SUCCESS != sdma_init((unsigned int *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
+    if (SDMA_RETV_SUCCESS != sdma_init((uint32_t *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
         printf("SDMA initialization failed.\n");
         return FALSE;
     }
 
-    unsigned int script_addr;
+    uint32_t script_addr;
     if (SDMA_RETV_SUCCESS != sdma_lookup_script(SDMA_MCU_2_APP, &script_addr)) {
         printf("Invalid script.\n");
         return FALSE;
@@ -154,7 +154,7 @@ int uart_app_test(void)
 
     /* Setup buffer descriptors */
     bd[0].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | SDMA_FLAGS_BW8 | sizeof(tx_buf);
-    bd[0].buf_addr = (unsigned int)tx_buf;
+    bd[0].buf_addr = (uint32_t)tx_buf;
 
     /* Open channel */
     printf("Open SDMA channel for transmit.\n");
@@ -184,7 +184,7 @@ int uart_app_test(void)
 
     /* Setup buffer descriptor */
     bd[1].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | SDMA_FLAGS_BW8 | sizeof(rx_buf);
-    bd[1].buf_addr = (unsigned int)rx_buf;
+    bd[1].buf_addr = (uint32_t)rx_buf;
 
     /* Open channel */
     printf("Open SDMA channel for receive.\n");
@@ -202,7 +202,7 @@ int uart_app_test(void)
     uart_loopback_init(&uart5_sdma_test, 115200);
 
     /* Wait channels stop */
-    unsigned int status;
+    uint32_t status;
     do {
         sdma_channel_status(channel[0], &status);
     } while (!(status & SDMA_CHANNEL_STATUS_DONE));
@@ -258,13 +258,13 @@ int uart_shp_test(void)
 
     /* Initialize SDMA */
     printf("Initialize SDMA environment.\n");
-    if (SDMA_RETV_SUCCESS != sdma_init((unsigned int *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
+    if (SDMA_RETV_SUCCESS != sdma_init((uint32_t *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
         printf("SDMA initialization failed.\n");
         return FALSE;
     }
 
     /* Setup channel descriptor */
-    unsigned int script_addr;
+    uint32_t script_addr;
     if (SDMA_RETV_SUCCESS != sdma_lookup_script(SDMA_MCU_2_SHP, &script_addr)) {
         printf("Invalid script.\n");
         return FALSE;
@@ -292,7 +292,7 @@ int uart_shp_test(void)
 
     /* Setup buffer descriptors */
     bd[0].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | SDMA_FLAGS_BW8 | sizeof(tx_buf);
-    bd[0].buf_addr = (unsigned int)tx_buf;
+    bd[0].buf_addr = (uint32_t)tx_buf;
 
     /* Open channel */
     printf("Open SDMA channel for transmit.\n");
@@ -330,7 +330,7 @@ int uart_shp_test(void)
 
     /* Setup buffer descriptors */
     bd[1].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | SDMA_FLAGS_BW8 | sizeof(rx_buf);
-    bd[1].buf_addr = (unsigned int)rx_buf;
+    bd[1].buf_addr = (uint32_t)rx_buf;
 
     /* Open channel */
     printf("Open SDMA channel for receive.\n");
@@ -350,7 +350,7 @@ int uart_shp_test(void)
     uart_loopback_init(&uart1_sdma_test, 115200);
 #endif
     /* Wait channels stop */
-    unsigned int status;
+    uint32_t status;
     do {
         sdma_channel_status(channel[0], &status);
     } while (!(status & SDMA_CHANNEL_STATUS_DONE));
@@ -382,9 +382,9 @@ int uart_shp_test(void)
     return TRUE;
 }
 
-unsigned int trans_done = FALSE;
+uint32_t trans_done = FALSE;
 
-void uart5_trans_isr(unsigned int channel)
+void uart5_trans_isr(uint32_t channel)
 {
     printf("\ninterrupt occured in channel%d\n\n", channel);
     trans_done = TRUE;
@@ -415,12 +415,12 @@ int uart_app_interrupt_test(void)
 
     /* Initialize SDMA */
     printf("Initialize SDMA environment.\n");
-    if (SDMA_RETV_SUCCESS != sdma_init((unsigned int *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
+    if (SDMA_RETV_SUCCESS != sdma_init((uint32_t *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
         printf("SDMA initialization failed.\n");
         return FALSE;
     }
 
-    unsigned int script_addr;
+    uint32_t script_addr;
     if (SDMA_RETV_SUCCESS != sdma_lookup_script(SDMA_MCU_2_APP, &script_addr)) {
         printf("Invalid script.\n");
         return FALSE;
@@ -441,7 +441,7 @@ int uart_app_interrupt_test(void)
 
     /* Setup buffer descriptors */
     bd[0].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | SDMA_FLAGS_BW8 | sizeof(tx_buf);
-    bd[0].buf_addr = (unsigned int)tx_buf;
+    bd[0].buf_addr = (uint32_t)tx_buf;
 
     /* Open channel */
     printf("Open SDMA channel for transmit.\n");
@@ -472,7 +472,7 @@ int uart_app_interrupt_test(void)
     /* Setup buffer descriptor */
     bd[1].mode =
         SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | SDMA_FLAGS_INTR | SDMA_FLAGS_BW8 | sizeof(rx_buf);
-    bd[1].buf_addr = (unsigned int)rx_buf;
+    bd[1].buf_addr = (uint32_t)rx_buf;
 
     /* Open channel */
     printf("Open SDMA channel for receive.\n");

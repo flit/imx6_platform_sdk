@@ -25,13 +25,13 @@
 
 typedef struct {
     const char *name;
-    int (*test) (ips_dev_panel_t *);
+    int32_t (*test) (ips_dev_panel_t *);
 } ipu_test_t;
 
-int ips_display_test(ips_dev_panel_t * panel);
-int ips_csc_test(ips_dev_panel_t * panel);
-int ips_combiner_test(ips_dev_panel_t * panel);
-int ips_rotate_test(ips_dev_panel_t * panel);
-int ips_resize_test(ips_dev_panel_t * panel);
+int32_t ips_display_test(ips_dev_panel_t * panel);
+int32_t ips_csc_test(ips_dev_panel_t * panel);
+int32_t ips_combiner_test(ips_dev_panel_t * panel);
+int32_t ips_rotate_test(ips_dev_panel_t * panel);
+int32_t ips_resize_test(ips_dev_panel_t * panel);
 
 #endif

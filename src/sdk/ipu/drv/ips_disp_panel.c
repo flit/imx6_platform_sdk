@@ -13,21 +13,21 @@
 
 #include "ipu_common.h"
 
-static int claa_wvga_panel_init(int *arg)
+static int32_t claa_wvga_panel_init(int32_t *arg)
 {
     return true;
 }
 
-static int claa_wvga_panel_deinit(void)
+static int32_t claa_wvga_panel_deinit(void)
 {
     return true;
 }
 
 extern void ldb_iomux_config(void);
-extern void ldb_clock_config(int freq, int ipu_index);
+extern void ldb_clock_config(int32_t freq, int32_t ipu_index);
 extern void lvds_power_on(void);
 
-static int hannstar_lvds_panel_init(int *ipu_index)
+static int32_t hannstar_lvds_panel_init(int32_t *ipu_index)
 {
     ldb_iomux_config();
     ldb_clock_config(65000000, *ipu_index);
@@ -39,14 +39,14 @@ static int hannstar_lvds_panel_init(int *ipu_index)
     return true;
 }
 
-static int hannstar_lvds_panel_deinit(void)
+static int32_t hannstar_lvds_panel_deinit(void)
 {
     return true;
 }
 
 extern void hdmi_pgm_iomux(void);
-extern void hdmi_clock_set(int ipu_index, unsigned int pclk);
-static int hdmi_1080p60_init(int *ipu_index)
+extern void hdmi_clock_set(int32_t ipu_index, uint32_t pclk);
+static int32_t hdmi_1080p60_init(int32_t *ipu_index)
 {
     hdmi_pgm_iomux();
     hdmi_clock_set(*ipu_index, 148500000);
@@ -54,12 +54,12 @@ static int hdmi_1080p60_init(int *ipu_index)
     return true;
 }
 
-static int hdmi_1080p60_deinit(void)
+static int32_t hdmi_1080p60_deinit(void)
 {
     return true;
 }
 
-static int hdmi_720p60_init(int *ipu_index)
+static int32_t hdmi_720p60_init(int32_t *ipu_index)
 {
     hdmi_pgm_iomux();
     hdmi_clock_set(*ipu_index, 74250000);
@@ -67,13 +67,13 @@ static int hdmi_720p60_init(int *ipu_index)
     return true;
 }
 
-static int hdmi_720p60_deinit(void)
+static int32_t hdmi_720p60_deinit(void)
 {
     return true;
 }
 extern void ipu_iomux_config(void);
 extern void sii9022_power_on(void);
-static int sii9022_1080p60_init(int *ipu_index)
+static int32_t sii9022_1080p60_init(int32_t *ipu_index)
 {
     /*sii9022 is connected to the parallel interface */
     ipu_iomux_config();
@@ -82,7 +82,7 @@ static int sii9022_1080p60_init(int *ipu_index)
     return true;
 }
 
-static int sii9022_1080p60_deinit(void)
+static int32_t sii9022_1080p60_deinit(void)
 {
     return true;
 }
@@ -91,7 +91,7 @@ extern void mipi_backlight_en(void);
 extern void mipi_display_reset(void);
 extern void mipi_clock_set(void);
 
-static int mipi_display_init(int *ipu_index)
+static int32_t mipi_display_init(int32_t *ipu_index)
 {
     mipi_backlight_en();
     mipi_display_reset();
@@ -99,7 +99,7 @@ static int mipi_display_init(int *ipu_index)
     return true;
 }
 
-static int mipi_display_deinit(void)
+static int32_t mipi_display_deinit(void)
 {
     return true;
 }

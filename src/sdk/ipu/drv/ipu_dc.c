@@ -88,8 +88,8 @@ void ipu_dc_config(uint32_t ipu_index, uint32_t channel, uint32_t di, uint32_t w
 * config the write channel for display.
 * different channels linked to different display port
 */
-int ipu_dc_write_channel_config(int ipu_index, int dma_channel, int disp_port, int link_di_index,
-                                int field_mode_enable)
+int32_t ipu_dc_write_channel_config(int32_t ipu_index, int32_t dma_channel, int32_t disp_port, int32_t link_di_index,
+                                int32_t field_mode_enable)
 {
     switch (dma_channel) {
     case 23:
@@ -138,7 +138,7 @@ int ipu_dc_write_channel_config(int ipu_index, int dma_channel, int disp_port, i
 /*
 *  config the display port in the DC
 */
-int ipu_dc_display_config(int ipu_index, int display_port, int type, int increment, int strideline)
+int32_t ipu_dc_display_config(int32_t ipu_index, int32_t display_port, int32_t type, int32_t increment, int32_t strideline)
 {
     switch (display_port) {
     case 0:
@@ -168,9 +168,9 @@ int ipu_dc_display_config(int ipu_index, int display_port, int type, int increme
     return true;
 }
 
-int ipu_dc_map(int ipu_index, int map, int format)
+int32_t ipu_dc_map(int32_t ipu_index, int32_t map, int32_t format)
 {
-    int offset[3], mask[3];
+    int32_t offset[3], mask[3];
 
     switch (format) {
     case DCMAP_RGB565:
@@ -268,12 +268,12 @@ int ipu_dc_map(int ipu_index, int map, int format)
 /*
 * microcode configuration, refer to ipuv3 spec
 */
-void ipu_dc_microcode_config(int ipu_index, dc_microcode_t microcode)
+void ipu_dc_microcode_config(int32_t ipu_index, dc_microcode_t microcode)
 {
-    unsigned int LowWord = 0;
-    unsigned int HighWord = 0;
-    unsigned int opcode_fixed;
-    unsigned int ipu_base_addr = 0;
+    uint32_t LowWord = 0;
+    uint32_t HighWord = 0;
+    uint32_t opcode_fixed;
+    uint32_t ipu_base_addr = 0;
 
     if (ipu_index == 1)
         ipu_base_addr = IPU1_CTRL_BASE_ADDR;
@@ -561,9 +561,9 @@ void ipu_dc_microcode_config(int ipu_index, dc_microcode_t microcode)
 /*
 * microcode event configuration, to handle different event
 */
-void ipu_dc_microcode_event(int ipu_index, int channel, int event, int priority, int address)
+void ipu_dc_microcode_event(int32_t ipu_index, int32_t channel, int32_t event, int32_t priority, int32_t address)
 {
-    int channel_offset = (channel >= 5) ? (0x5C + (channel - 5) * 0x1C) : channel * 0x1C;
+    int32_t channel_offset = (channel >= 5) ? (0x5C + (channel - 5) * 0x1C) : channel * 0x1C;
 
     switch (event) {
     case NL:

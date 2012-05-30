@@ -46,7 +46,7 @@ static uint32_t get_timer(uint32_t base)
     return timer_counter;
 }
 
-static uint8_t *flash_make_addr(flash_info_t * info, int sect, uint32_t offset)
+static uint8_t *flash_make_addr(flash_info_t * info, int32_t sect, uint32_t offset)
 {
     return ((uint8_t *) (info->start[sect] +
                          (offset * offset_multiply[info->portwidth][info->chipwidth])));
@@ -64,7 +64,7 @@ static uint8_t flash_read_uint8_t(flash_info_t * info, uint32_t offset)
 #endif
 }
 
-static uint16_t flash_read_uint16_t(flash_info_t * info, int sect, uint32_t offset)
+static uint16_t flash_read_uint16_t(flash_info_t * info, int32_t sect, uint32_t offset)
 {
     uint8_t *addr;
     uint16_t retval;
@@ -80,7 +80,7 @@ static uint16_t flash_read_uint16_t(flash_info_t * info, int sect, uint32_t offs
     return retval;
 }
 
-static uint32_t flash_read_long(flash_info_t * info, int sect, uint32_t offset)
+static uint32_t flash_read_long(flash_info_t * info, int32_t sect, uint32_t offset)
 {
     uint8_t *addr;
     uint32_t retval;
@@ -100,7 +100,7 @@ static uint32_t flash_read_long(flash_info_t * info, int sect, uint32_t offset)
 
 static flash_info_t *flash_get_info(uint32_t base)
 {
-    int i;
+    int32_t i;
     flash_info_t *info;
 
     for (i = 0; i < CFG_MAX_FLASH_BANKS; i++) {
@@ -114,7 +114,7 @@ static flash_info_t *flash_get_info(uint32_t base)
 
 static void flash_make_cmd(flash_info_t * info, uint8_t cmd, void *cmdbuf)
 {
-    int i;
+    int32_t i;
 
 #if defined(__LITTLE_ENDIAN)
     uint16_t stmpw;
@@ -167,9 +167,9 @@ static void flash_add_byte(flash_info_t * info, cfiword_t * cword, uint8_t c)
     }
 }
 
-static int find_sector(flash_info_t * info, uint32_t addr)
+static int32_t find_sector(flash_info_t * info, uint32_t addr)
 {
-    int sector;
+    int32_t sector;
 
     for (sector = info->sector_count - 1; sector >= 0; sector--) {
         if (addr >= info->start[sector])
@@ -178,7 +178,7 @@ static int find_sector(flash_info_t * info, uint32_t addr)
     return sector;
 }
 
-static void flash_write_cmd(flash_info_t * info, int sect, uint32_t offset, uint8_t cmd)
+static void flash_write_cmd(flash_info_t * info, int32_t sect, uint32_t offset, uint8_t cmd)
 {
 
     cfiptr_t addr;
@@ -196,16 +196,16 @@ static void flash_write_cmd(flash_info_t * info, int sect, uint32_t offset, uint
     }
 }
 
-static void flash_unlock_seq(flash_info_t * info, int sect)
+static void flash_unlock_seq(flash_info_t * info, int32_t sect)
 {
     flash_write_cmd(info, sect, AMD_ADDR_START, AMD_CMD_UNLOCK_START);
     flash_write_cmd(info, sect, AMD_ADDR_ACK, AMD_CMD_UNLOCK_ACK);
 }
 
-static int flash_isequal(flash_info_t * info, cfiptr_t cptr, uint8_t cmd)
+static int32_t flash_isequal(flash_info_t * info, cfiptr_t cptr, uint8_t cmd)
 {
     cfiword_t cword;
-    int retval;
+    int32_t retval;
 
     flash_make_cmd(info, cmd, &cword);
 
@@ -224,10 +224,10 @@ static int flash_isequal(flash_info_t * info, cfiptr_t cptr, uint8_t cmd)
     return retval;
 }
 
-static int flash_isset(flash_info_t * info, cfiptr_t cptr, uint8_t cmd)
+static int32_t flash_isset(flash_info_t * info, cfiptr_t cptr, uint8_t cmd)
 {
     cfiword_t cword;
-    int retval = 0;
+    int32_t retval = 0;
 
     flash_make_cmd(info, cmd, &cword);
     switch (info->portwidth) {
@@ -242,7 +242,7 @@ static int flash_isset(flash_info_t * info, cfiptr_t cptr, uint8_t cmd)
 }
 
 #ifdef POLLING_AMD_DQ7
-static int Data_Polling_Check(flash_info_t * info, cfiptr_t cptr, cfiword_t * cword)
+static int32_t Data_Polling_Check(flash_info_t * info, cfiptr_t cptr, cfiword_t * cword)
 {
     uint8_t read_data = 0, polling_data = 0;
 
@@ -284,10 +284,10 @@ static int Data_Polling_Check(flash_info_t * info, cfiptr_t cptr, cfiword_t * cw
 }
 #endif
 
-static int flash_toggle(flash_info_t * info, cfiptr_t cptr, uint8_t cmd)
+static int32_t flash_toggle(flash_info_t * info, cfiptr_t cptr, uint8_t cmd)
 {
     cfiword_t cword;
-    int retval;
+    int32_t retval;
 
     flash_make_cmd(info, cmd, &cword);
     switch (info->portwidth) {
@@ -304,9 +304,9 @@ static int flash_toggle(flash_info_t * info, cfiptr_t cptr, uint8_t cmd)
     return retval;
 }
 
-static int flash_is_busy(flash_info_t * info, cfiptr_t cptr, cfiword_t * cword)
+static int32_t flash_is_busy(flash_info_t * info, cfiptr_t cptr, cfiword_t * cword)
 {
-    int retval;
+    int32_t retval;
 
     switch (info->vendor) {
     case CFI_CMDSET_INTEL_STANDARD:
@@ -327,9 +327,9 @@ static int flash_is_busy(flash_info_t * info, cfiptr_t cptr, cfiword_t * cword)
     return retval;
 }
 
-static int flash_time_out(flash_info_t * info, cfiptr_t cptr)
+static int32_t flash_time_out(flash_info_t * info, cfiptr_t cptr)
 {
-    int retval;
+    int32_t retval;
 
     switch (info->vendor) {
     case CFI_CMDSET_AMD_STANDARD:
@@ -342,7 +342,7 @@ static int flash_time_out(flash_info_t * info, cfiptr_t cptr)
     return retval;
 }
 
-static int flash_status_check_orig(flash_info_t * info, cfiptr_t cptr, cfiword_t * cword,
+static int32_t flash_status_check_orig(flash_info_t * info, cfiptr_t cptr, cfiword_t * cword,
                                    uint32_t tout, char *prompt)
 {
     uint32_t start;
@@ -364,12 +364,12 @@ static int flash_status_check_orig(flash_info_t * info, cfiptr_t cptr, cfiword_t
     return ERR_OK;
 }
 
-static int flash_status_check(flash_info_t * info, cfiptr_t cptr, cfiword_t * cword, uint32_t tout,
+static int32_t flash_status_check(flash_info_t * info, cfiptr_t cptr, cfiword_t * cword, uint32_t tout,
                               char *prompt)
 {
-    int rc = 0;
-    int ready = 0;
-    int retry;
+    int32_t rc = 0;
+    int32_t ready = 0;
+    int32_t retry;
     uint16_t data, lastdata;
 
     retry = ERASE_POLL_LIMIT;
@@ -398,10 +398,10 @@ static int flash_status_check(flash_info_t * info, cfiptr_t cptr, cfiword_t * cw
     return rc;
 }
 
-static int flash_full_status_check(flash_info_t * info, cfiptr_t cptr, cfiword_t * cword,
+static int32_t flash_full_status_check(flash_info_t * info, cfiptr_t cptr, cfiword_t * cword,
                                    uint32_t tout, char *prompt)
 {
-    int retcode;
+    int32_t retcode;
 
     retcode = flash_status_check(info, cptr, cword, tout, prompt);
     switch (info->vendor) {
@@ -439,7 +439,7 @@ static int flash_full_status_check(flash_info_t * info, cfiptr_t cptr, cfiword_t
     return retcode;
 }
 
-static int flash_detect_cfi(flash_info_t * info)
+static int32_t flash_detect_cfi(flash_info_t * info)
 {
     cfiptr_t cptr1, cptr2, cptr3;
 
@@ -463,17 +463,17 @@ static int flash_detect_cfi(flash_info_t * info)
     return 0;
 }
 
-static uint32_t flash_get_size(uint32_t base, int banknum)
+static uint32_t flash_get_size(uint32_t base, int32_t banknum)
 {
     flash_info_t *info = &flash_info[banknum];
-    int i, j;
-    int sect_cnt;
+    int32_t i, j;
+    int32_t sect_cnt;
     uint32_t sector;
     uint32_t tmp;
-    int size_ratio;
+    int32_t size_ratio;
     uint8_t num_erase_regions;
-    int erase_region_size;
-    int erase_region_count;
+    int32_t erase_region_size;
+    int32_t erase_region_count;
     cfiptr_t cptr;
 
     info->start[0] = base;
@@ -553,12 +553,12 @@ static uint32_t flash_get_size(uint32_t base, int banknum)
     return (info->size);
 }
 
-static int flash_write_cfiword(flash_info_t * info, uint32_t dest, cfiword_t * cword)
+static int32_t flash_write_cfiword(flash_info_t * info, uint32_t dest, cfiword_t * cword)
 {
 
     cfiptr_t ctladdr;
     cfiptr_t cptr;
-    int flag, retcode;
+    int32_t flag, retcode;
 
     ctladdr.cp = flash_make_addr(info, 0, 0);
     cptr.cp = (uint8_t *) dest;
@@ -605,11 +605,11 @@ static int flash_write_cfiword(flash_info_t * info, uint32_t dest, cfiword_t * c
 
 #ifdef CFG_FLASH_USE_BUFFER_WRITE
 
-static int flash_write_cfibuffer(flash_info_t * info, uint32_t dest, uint8_t * cp, int len)
+static int32_t flash_write_cfibuffer(flash_info_t * info, uint32_t dest, uint8_t * cp, int32_t len)
 {
-    int sector;
-    int cnt;
-    int retcode;
+    int32_t sector;
+    int32_t cnt;
+    int32_t retcode;
     cfiptr_t src;
     cfiptr_t dst;
     cfiword_t cword;
@@ -715,7 +715,7 @@ void flash_reset(uint32_t flash_base_address)
 uint32_t flash_init(uint32_t flash_base_addr)
 {
     uint32_t size = 0;
-    int i;
+    int32_t i;
 
     bank_base[0] = flash_base_addr;
     for (i = 0; i < CFG_MAX_FLASH_BANKS; ++i) {
@@ -751,13 +751,13 @@ uint32_t flash_init(uint32_t flash_base_addr)
     return (size);
 }
 
-int flash_erase(flash_info_t * info, int s_first, int s_last)
+int32_t flash_erase(flash_info_t * info, int32_t s_first, int32_t s_last)
 {
-    int rcode = 0;
-    int prot;
+    int32_t rcode = 0;
+    int32_t prot;
     cfiword_t cword;
     cfiptr_t cptr;
-    int sect;
+    int32_t sect;
 
     cword.c = 0xff;
 
@@ -830,7 +830,7 @@ int flash_erase(flash_info_t * info, int s_first, int s_last)
 
 void flash_print_info(flash_info_t * info)
 {
-    int i;
+    int32_t i;
 
     if (info->flash_id != FLASH_MAN_CFI) {
         printf("missing or unknown FLASH type\n");
@@ -876,9 +876,9 @@ void flash_print_info(flash_info_t * info)
 
     for (i = 0; i < info->sector_count; ++i) {
 #ifdef CFG_FLASH_EMPTY_INFO
-        int k;
-        int size;
-        int erased;
+        int32_t k;
+        int32_t size;
+        int32_t erased;
         uint32_t *flash;
 
         /* Check if whole sector is erased */
@@ -910,17 +910,17 @@ void flash_print_info(flash_info_t * info)
     return;
 }
 
-int write_buff(flash_info_t * info, uint8_t * src, uint32_t addr, uint32_t cnt)
+int32_t write_buff(flash_info_t * info, uint8_t * src, uint32_t addr, uint32_t cnt)
 {
     uint32_t wp;
     uint32_t cp;
-    int aln;
+    int32_t aln;
     cfiword_t cword;
-    int i, rc;
-    int byte_idx;
+    int32_t i, rc;
+    int32_t byte_idx;
 
 #ifdef CFG_FLASH_USE_BUFFER_WRITE
-    int buffered_size;
+    int32_t buffered_size;
 #endif
     /* get lower aligned address */
     wp = (addr & ~(info->portwidth - 1));
@@ -1022,9 +1022,9 @@ int write_buff(flash_info_t * info, uint8_t * src, uint32_t addr, uint32_t cnt)
 
 #ifdef CFG_FLASH_PROTECTION
 
-int flash_real_protect(flash_info_t * info, int sector, int prot)
+int32_t flash_real_protect(flash_info_t * info, int32_t sector, int32_t prot)
 {
-    int retcode = 0;
+    int32_t retcode = 0;
     cfiword_t cword;
     cfiptr_t cptr;
 
@@ -1044,7 +1044,7 @@ int flash_real_protect(flash_info_t * info, int sector, int prot)
 
         info->protect[sector] = prot;
         if (prot == 0) {
-            int i;
+            int32_t i;
 
             for (i = 0; i < info->sector_count; i++) {
                 if (info->protect[i])
@@ -1055,7 +1055,7 @@ int flash_real_protect(flash_info_t * info, int sector, int prot)
     return retcode;
 }
 
-void flash_read_user_serial(flash_info_t * info, void *buffer, int offset, int len)
+void flash_read_user_serial(flash_info_t * info, void *buffer, int32_t offset, int32_t len)
 {
     uint8_t *src, *dst = buffer;
 
@@ -1065,7 +1065,7 @@ void flash_read_user_serial(flash_info_t * info, void *buffer, int offset, int l
     flash_write_cmd(info, 0, 0, info->cmd_reset);
 }
 
-void flash_read_factory_serial(flash_info_t * info, void *buffer, int offset, int len)
+void flash_read_factory_serial(flash_info_t * info, void *buffer, int32_t offset, int32_t len)
 {
     uint8_t *src;
 

@@ -419,8 +419,8 @@ typedef struct {
     uint32_t vsync_pol;
     uint32_t drdy_pol;
     uint32_t data_pol;
-     int32_t(*panel_init) (int *arg);
-     int32_t(*panel_deinit) (void);
+    int32_t(*panel_init) (int32_t *arg);
+    int32_t(*panel_deinit) (void);
 } ips_dev_panel_t;
 
 typedef struct {

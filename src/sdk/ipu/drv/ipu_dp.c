@@ -37,13 +37,13 @@ void ipu_dp_config(uint32_t ipu_index, uint32_t csc_type, uint32_t dual_disp, ui
  */
 void ipu_dp_csc_config(uint32_t ipu_index, uint32_t dp, uint32_t csc_type)
 {
-    unsigned int ipu_base_addr = 0;
+    uint32_t ipu_base_addr = 0;
     int32_t(*coef)[3];
 
     /*  Y = R *  .299 + G *  .587 + B *  .114;
        U = R * -.169 + G * -.332 + B *  .500 + 128.;
        V = R *  .500 + G * -.419 + B * -.0813 + 128.; */
-    int rgb2yuv_coef[5][3] = {
+    int32_t rgb2yuv_coef[5][3] = {
         {0x04D, 0x096, 0x01D},
         {0x3D5, 0x3AB, 0x080},
         {0x080, 0x395, 0x3EB},
@@ -54,7 +54,7 @@ void ipu_dp_csc_config(uint32_t ipu_index, uint32_t dp, uint32_t csc_type)
     /* R = (1.164 * (Y - 16)) + (1.596 * (Cr - 128));
        G = (1.164 * (Y - 16)) - (0.392 * (Cb - 128)) - (0.813 * (Cr - 128));
        B = (1.164 * (Y - 16)) + (2.017 * (Cb - 128); */
-    int yuv2rgb_coef[5][3] = {
+    int32_t yuv2rgb_coef[5][3] = {
         {0x4A, 0x0, 0x66},
         {0x4A, 0x3E7, 0x3CC},   //4A 3E7 3CC
         {0x4A, 0x81, 0x0},      //4A 81 0

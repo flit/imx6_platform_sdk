@@ -15,8 +15,8 @@
 #define MEM2MEM_TEST_BUF_SZ 		1024*8
 
 /* Uncacheable & unbufferable area startes */
-static unsigned int src_buf[2][MEM2MEM_TEST_BUF_SZ];
-static unsigned int dst_buf[2][MEM2MEM_TEST_BUF_SZ];
+static uint32_t src_buf[2][MEM2MEM_TEST_BUF_SZ];
+static uint32_t dst_buf[2][MEM2MEM_TEST_BUF_SZ];
 
 static sdma_bd_t bd[2];
 static char env_buffer[SDMA_ENV_BUF_SIZE];
@@ -43,12 +43,12 @@ int mem_2_mem_test(void)
 
     /* Initialize SDMA */
     printf("Initialize SDMA environment.\n");
-    if (SDMA_RETV_SUCCESS != sdma_init((unsigned int *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
+    if (SDMA_RETV_SUCCESS != sdma_init((uint32_t *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
         printf("SDMA initialization failed.\n");
         return FALSE;
     }
 
-    unsigned int script_addr;
+    uint32_t script_addr;
     if (SDMA_RETV_SUCCESS != sdma_lookup_script(SDMA_AP_2_AP, &script_addr)) {
         printf("Invalid script.\n");
         return FALSE;
@@ -62,12 +62,12 @@ int mem_2_mem_test(void)
 
     /* Setup buffer descriptors */
     bd[0].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_CONT | (MEM2MEM_TEST_BUF_SZ << 2);
-    bd[0].buf_addr = (unsigned int)src_buf[0];
-    bd[0].ext_buf_addr = (unsigned int)dst_buf[0];
+    bd[0].buf_addr = (uint32_t)src_buf[0];
+    bd[0].ext_buf_addr = (uint32_t)dst_buf[0];
 
     bd[1].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | (MEM2MEM_TEST_BUF_SZ << 2);
-    bd[1].buf_addr = (unsigned int)src_buf[1];
-    bd[1].ext_buf_addr = (unsigned int)dst_buf[1];
+    bd[1].buf_addr = (uint32_t)src_buf[1];
+    bd[1].ext_buf_addr = (uint32_t)dst_buf[1];
 
     /* Open channel */
     printf("Open SDMA channel for transfer.\n");
@@ -81,11 +81,11 @@ int mem_2_mem_test(void)
     printf("Channel %d opened, starting transfer...\n", channel);
     sdma_channel_start(channel);
 
-    unsigned int perf_cnt = 0;
+    uint32_t perf_cnt = 0;
 
     StartPerfCounter();
     /* Wait channel stop */
-    unsigned int status;
+    uint32_t status;
     do {
         sdma_channel_status(channel, &status);
     } while (!(status & SDMA_CHANNEL_STATUS_DONE));

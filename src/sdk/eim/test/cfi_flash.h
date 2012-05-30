@@ -177,17 +177,17 @@ typedef struct {
 /* Drivers */
 extern uint32_t flash_init(uint32_t);
 extern void flash_reset(uint32_t);
-extern int flash_erase(flash_info_t *, int, int);
+extern int32_t flash_erase(flash_info_t *, int32_t, int32_t);
 extern void flash_print_info(flash_info_t *);
-extern void flash_read_user_serial(flash_info_t *, void *, int, int);
-extern void flash_read_factory_serial(flash_info_t *, void *, int, int);
+extern void flash_read_user_serial(flash_info_t *, void *, int32_t, int32_t);
+extern void flash_read_factory_serial(flash_info_t *, void *, int32_t, int32_t);
 
 /* APIs */
-extern void flash_perror(int);
-extern int flash_sects_erase(int *, int *);
-extern int flash_sects_protect(int, int *, int *);
-extern int flash_write(uint8_t *, uint32_t, uint32_t);
-extern void flash_protect(int, uint32_t, uint32_t, flash_info_t *);
-extern int flash_fill_sect_ranges(uint32_t, uint32_t, int *, int *, int *);
+extern void flash_perror(int32_t);
+extern int32_t flash_sects_erase(int32_t *, int32_t *);
+extern int32_t flash_sects_protect(int32_t, int32_t *, int32_t *);
+extern int32_t flash_write(uint8_t *, uint32_t, uint32_t);
+extern void flash_protect(int32_t, uint32_t, uint32_t, flash_info_t *);
+extern int32_t flash_fill_sect_ranges(uint32_t, uint32_t, int32_t *, int32_t *, int32_t *);
 
 #endif

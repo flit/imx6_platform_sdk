@@ -233,7 +233,7 @@ static int rx_bytes(uint8_t * data, uint32_t instance, int sz)
     return 0;
 }
 
-int32_t i2c_xfer(const imx_i2c_request_t *rq, int dir)
+int i2c_xfer(const imx_i2c_request_t *rq, int dir)
 {
     uint32_t reg;
     uint32_t ret = 0;

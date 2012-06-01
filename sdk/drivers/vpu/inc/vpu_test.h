@@ -7,10 +7,10 @@
 
 #ifndef _VPU_TEST_H_
 #define _VPU_TEST_H_
+#include <filesystem/fsapi.h>
 #include "hardware.h"
 #include "vpu_lib.h"
 #include "vpu_io.h"
-#include "fat_driver.h"
 #include "vpu_util.h"
 #include "ipu/inc/ipu_common.h"
 #include "vdoa/inc/vdoa.h"
@@ -68,12 +68,12 @@ enum {
 };
 
 struct frame_buf {
-    int addrY;
-    int addrCb;
-    int addrCr;
-    int strideY;
-    int strideC;
-    int mvColBuf;
+    int32_t addrY;
+    int32_t addrCb;
+    int32_t addrCr;
+    int32_t strideY;
+    int32_t strideC;
+    int32_t mvColBuf;
     vpu_mem_desc desc;
 };
 
@@ -86,75 +86,75 @@ struct v4l_buf {
 #define MAX_BUF_NUM	32
 #define QUEUE_SIZE	(MAX_BUF_NUM + 1)
 struct ipu_queue {
-    int list[MAX_BUF_NUM + 1];
-    int head;
-    int tail;
+    int32_t list[MAX_BUF_NUM + 1];
+    int32_t head;
+    int32_t tail;
 };
 
 struct ipu_buf {
-    int ipu_paddr;
+    int32_t ipu_paddr;
     void *ipu_vaddr;
-    int field;
+    int32_t field;
 };
 
 struct capture_testbuffer {
     size_t offset;
-    unsigned int length;
+    uint32_t length;
 };
 
 struct rot {
-    int rot_en;
-    int ipu_rot_en;
-    int rot_angle;
+    int32_t rot_en;
+    int32_t ipu_rot_en;
+    int32_t rot_angle;
 };
 
 #define MAX_PATH	256
 struct cmd_line {
-    tFile *input;               /* Input file name */
+    int32_t input;              /* Input file name */
     uint32_t input_mem_addr;    /*active if the input is stored in memory */
-    tFile *output;              /* Output file name */
+    int32_t output;             /* Output file name */
     uint32_t output_mem_addr;
-    int src_scheme;
-    int dst_scheme;
-    int src_fd;
-    int dst_fd;
-    int width;
-    int height;
-    int enc_width;
-    int enc_height;
-    int loff;
-    int toff;
-    int format;
-    int deblock_en;
-    int dering_en;
-    int rot_en;
-    int ipu_rot_en;
-    int rot_angle;
-    int mirror;
-    int chromaInterleave;
-    int bitrate;
-    int gop;
-    int save_enc_hdr;
-    int count;
-    int prescan;
-    int bs_mode;
+    int32_t src_scheme;
+    int32_t dst_scheme;
+    int32_t src_fd;
+    int32_t dst_fd;
+    int32_t width;
+    int32_t height;
+    int32_t enc_width;
+    int32_t enc_height;
+    int32_t loff;
+    int32_t toff;
+    int32_t format;
+    int32_t deblock_en;
+    int32_t dering_en;
+    int32_t rot_en;
+    int32_t ipu_rot_en;
+    int32_t rot_angle;
+    int32_t mirror;
+    int32_t chromaInterleave;
+    int32_t bitrate;
+    int32_t gop;
+    int32_t save_enc_hdr;
+    int32_t count;
+    int32_t prescan;
+    int32_t bs_mode;
     char *nbuf;                 /* network buffer */
-    int nlen;                   /* remaining data in network buffer */
-    int noffset;                /* offset into network buffer */
-    int seq_no;                 /* seq numbering to detect skipped frames */
+    int32_t nlen;                   /* remaining data in network buffer */
+    int32_t noffset;                /* offset into network buffer */
+    int32_t seq_no;                 /* seq numbering to detect skipped frames */
     uint16_t port;              /* udp port number */
     uint16_t complete;          /* wait for the requested buf to be filled completely */
-    int iframe;
-    int mp4_h264Class;
+    int32_t iframe;
+    int32_t mp4_h264Class;
     char vdi_motion;            /* VDI motion algorithm */
-    int fps;
-    int mapType;
-    int read_mode;
+    int32_t fps;
+    int32_t mapType;
+    int32_t read_mode;
 };
 
 typedef struct {
     const char *name;
-    int (*test) (void *arg);
+    int32_t (*test) (void *arg);
 } vpu_test_t;
 
 struct decode {
@@ -163,25 +163,25 @@ struct decode {
     PhysicalAddress phy_ps_buf;
     PhysicalAddress phy_slice_buf;
     PhysicalAddress phy_vp8_mbparam_buf;
-    int phy_slicebuf_size;
-    int phy_vp8_mbparam_size;
+    int32_t phy_slicebuf_size;
+    int32_t phy_vp8_mbparam_size;
     uint32_t virt_bsbuf_addr;
-    int picwidth;
-    int picheight;
-    int stride;
-    int mjpg_fmt;
-    int regfbcount;
-    int minfbcount;
-    int rot_buf_count;
-    int extrafb;
+    int32_t picwidth;
+    int32_t picheight;
+    int32_t stride;
+    int32_t mjpg_fmt;
+    int32_t regfbcount;
+    int32_t minfbcount;
+    int32_t rot_buf_count;
+    int32_t extrafb;
     FrameBuffer *fb;
     struct frame_buf **pfbpool;
     struct vpu_display *disp;
     vpu_mem_desc *mvcol_memdesc;
     Rect picCropRect;
-    int reorderEnable;
-    int tiled2LinearEnable;
-    int totalFrameDecoded;
+    int32_t reorderEnable;
+    int32_t tiled2LinearEnable;
+    int32_t totalFrameDecoded;
     DecReportInfo mbInfo;
     DecReportInfo mvInfo;
     DecReportInfo frameBufStat;
@@ -194,22 +194,22 @@ struct encode {
     EncHandle handle;           /* Encoder handle */
     PhysicalAddress phy_bsbuf_addr; /* Physical bitstream buffer */
     uint32_t virt_bsbuf_addr;   /* Virtual bitstream buffer */
-    int enc_picwidth;           /* Encoded Picture width */
-    int enc_picheight;          /* Encoded Picture height */
-    int src_picwidth;           /* Source Picture width */
-    int src_picheight;          /* Source Picture height */
-    int totalfb;                /* Total number of framebuffers allocated */
-    int src_fbid;               /* Index of frame buffer that contains YUV image */
+    int32_t enc_picwidth;           /* Encoded Picture width */
+    int32_t enc_picheight;          /* Encoded Picture height */
+    int32_t src_picwidth;           /* Source Picture width */
+    int32_t src_picheight;          /* Source Picture height */
+    int32_t totalfb;                /* Total number of framebuffers allocated */
+    int32_t src_fbid;               /* Index of frame buffer that contains YUV image */
     FrameBuffer *fb;            /* frame buffer base given to encoder */
     struct frame_buf **pfbpool; /* allocated fb pointers are stored here */
     ExtBufCfg scratchBuf;
-    int mp4_dataPartitionEnable;
-    int ringBufferEnable;
-    int mjpg_fmt;
-    int mvc_paraset_refresh_en;
-    int mvc_extension;
-    int linear2TiledEnable;
-    int minFrameBufferCount;
+    int32_t mp4_dataPartitionEnable;
+    int32_t ringBufferEnable;
+    int32_t mjpg_fmt;
+    int32_t mvc_paraset_refresh_en;
+    int32_t mvc_extension;
+    int32_t linear2TiledEnable;
+    int32_t minFrameBufferCount;
 
     EncReportInfo mbInfo;
     EncReportInfo mvInfo;
@@ -223,10 +223,10 @@ struct encode {
 typedef struct {
     struct frame_buf *frames[MAX_FIFO_SIZE];
     uint32_t id[MAX_FIFO_SIZE];
-    int wrptr;
-    int rdptr;
-    int size;
-    int full;
+    int32_t wrptr;
+    int32_t rdptr;
+    int32_t size;
+    int32_t full;
     uint32_t popCnt;
 } vdec_frame_buffer_t;
 
@@ -242,77 +242,71 @@ typedef struct {
 } vpu_frame_timer_t;
 
 extern uint32_t usdhc_busy;
-extern tFile files[10];
-extern tVolume *V;
 extern struct decode *gDecInstance[];
 extern struct encode *gEncInstance[];
 extern vdec_frame_buffer_t gDecFifo[];
 extern uint32_t gBsBuffer[];
-extern int gCurrentActiveInstance;
-extern int gTotalActiveInstance;
+extern int32_t gCurrentActiveInstance;
+extern int32_t gTotalActiveInstance;
 extern vpu_resource_t *vpu_hw_map;
 extern hw_module_t hw_vpu;
 extern hw_module_t hw_epit2;
-extern int disp_clr_index[];
-extern int multi_instance;
+extern int32_t disp_clr_index[];
+extern int32_t multi_instance;
 extern bs_mem_t bsmem;
-extern int ipu_initialized[];
+extern int32_t ipu_initialized[];
 
 void framebuf_init(void);
-int vpu_stream_read(struct cmd_line *cmd, char *buf, int n);
-int vpu_stream_write(struct cmd_line *cmd, char *buf, int n);
-void get_arg(char *buf, int *argc, char *argv[]);
-int open_files(struct cmd_line *cmd);
+int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n);
+int32_t vpu_stream_write(struct cmd_line *cmd, char *buf, int32_t n);
+void get_arg(char *buf, int32_t *argc, char *argv[]);
+int32_t open_files(struct cmd_line *cmd);
 void close_files(struct cmd_line *cmd);
-int check_params(struct cmd_line *cmd, int op);
+int32_t check_params(struct cmd_line *cmd, int32_t op);
 char *skip_unwanted(char *ptr);
-int parse_options(char *buf, struct cmd_line *cmd, int *mode);
-int card_xfer_result(int base_address, int *result);
-struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int height, int mvCol);
-struct frame_buf *tiled_framebuf_alloc(int stdMode, int format, int strideY, int height, int mvCol,
-                                       int mapType);
+int32_t parse_options(char *buf, struct cmd_line *cmd, int32_t *mode);
+struct frame_buf *framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY, int32_t height, int32_t mvCol);
+struct frame_buf *tiled_framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY, int32_t height, int32_t mvCol,
+                                       int32_t mapType);
 void framebuf_free(struct frame_buf *fb);
-int encoder_open(struct encode *enc);
+int32_t encoder_open(struct encode *enc);
 void encoder_close(struct encode *enc);
-int encoder_configure(struct encode *enc);
-int encoder_allocate_framebuffer(struct encode *enc);
+int32_t encoder_configure(struct encode *enc);
+int32_t encoder_allocate_framebuffer(struct encode *enc);
 void encoder_free_framebuffer(struct encode *enc);
 
-int decoder_open(struct decode *dec);
+int32_t decoder_open(struct decode *dec);
 void decoder_close(struct decode *dec);
-int decoder_parse(struct decode *dec);
-int decoder_allocate_framebuffer(struct decode *dec);
+int32_t decoder_parse(struct decode *dec);
+int32_t decoder_allocate_framebuffer(struct decode *dec);
 void decoder_free_framebuffer(struct decode *dec);
-int video_data_cmp(unsigned char *src, unsigned char *dst, int size);
-int decoder_setup(void *arg);
-int encoder_setup(void *arg);
-int ipu_refresh(int ipu_index, uint32_t buffer);
+int32_t video_data_cmp(unsigned char *src, unsigned char *dst, int32_t size);
+int32_t decoder_setup(void *arg);
+int32_t encoder_setup(void *arg);
+int32_t ipu_refresh(uint32_t ipu_index, uint32_t buffer);
 void config_system_parameters(void);
-int fat_read_from_usdhc(uint32_t sd_addr, uint32_t sd_size, void *buffer, int fast_flag);
-void init_fat32_device(void *blkreq_func);
-int fat_search_files(char *ext, int num);
-void dec_fifo_init(vdec_frame_buffer_t * fifo, int size);
-int dec_fifo_push(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t id);
-int dec_fifo_pop(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t * id);
-int dec_fifo_is_empty(vdec_frame_buffer_t * fifo);
-int dec_fifo_is_full(vdec_frame_buffer_t * fifo);
+void dec_fifo_init(vdec_frame_buffer_t * fifo, int32_t size);
+int32_t dec_fifo_push(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t id);
+int32_t dec_fifo_pop(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t * id);
+int32_t dec_fifo_is_empty(vdec_frame_buffer_t * fifo);
+int32_t dec_fifo_is_full(vdec_frame_buffer_t * fifo);
 void decoder_frame_display(void);
-int decode_test(void *arg);
-int encode_test(void *arg);
-int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
+int32_t decode_test(void *arg);
+int32_t encode_test(void *arg);
+int32_t dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
                       uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
-                      uint32_t bs_pa_startaddr, int defaultsize);
-extern int config_hdmi_si9022(int ipu_index, int ipu_di);
-extern void hdmi_1080P60_video_output(int ipu_index, int ipu_di);
-extern int ips_hdmi_1080P60_stream(int ipu_index);
-extern void hdmi_720P60_video_output(int ipu_index, int ipu_di);
+                      uint32_t bs_pa_startaddr, int32_t defaultsize);
+extern int32_t config_hdmi_si9022(int32_t ipu_index, int32_t ipu_di);
+extern void hdmi_1080P60_video_output(int32_t ipu_index, int32_t ipu_di);
+extern int32_t ips_hdmi_1080P60_stream(int32_t ipu_index);
+extern void hdmi_720P60_video_output(int32_t ipu_index, int32_t ipu_di);
 extern void enable_L1_cache(void);
-extern int ips_hannstar_xga_yuv_stream(int ipu_index);
+extern int32_t ips_hannstar_xga_yuv_stream(int32_t ipu_index);
 extern void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
                                   uint32_t buffer_addr);
 extern void ipu_channel_buf_ready(int32_t ipu_index, int32_t channel, int32_t buf);
 
-static inline int is_mx6q_mjpg(int fmt)
+static inline int32_t is_mx6q_mjpg(int32_t fmt)
 {
     if (cpu_is_mx6q() && (fmt == STD_MJPG))
         return true;

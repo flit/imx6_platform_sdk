@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "vpu_test.h"
 
-static int fb_index;
+static int32_t fb_index;
 static struct frame_buf *fbarray[NUM_FRAME_BUFS];
 static struct frame_buf fbpool[NUM_FRAME_BUFS];
 vdec_frame_buffer_t gDecFifo[NUM_FRAME_BUFS];
@@ -19,7 +19,7 @@ uint32_t gBsBuffer[NUM_FRAME_BUFS];
 
 void framebuf_init(void)
 {
-    int i;
+    int32_t i;
 
     for (i = 0; i < NUM_FRAME_BUFS; i++) {
         fbarray[i] = &fbpool[i];
@@ -50,7 +50,7 @@ void put_framebuf(struct frame_buf *fb)
     fbarray[fb_index] = fb;
 }
 
-void dec_fifo_init(vdec_frame_buffer_t * fifo, int size)
+void dec_fifo_init(vdec_frame_buffer_t * fifo, int32_t size)
 {
     fifo->size = size;
     fifo->wrptr = 0;
@@ -59,18 +59,18 @@ void dec_fifo_init(vdec_frame_buffer_t * fifo, int size)
     fifo->popCnt = 0;
 }
 
-int dec_fifo_is_full(vdec_frame_buffer_t * fifo)
+int32_t dec_fifo_is_full(vdec_frame_buffer_t * fifo)
 {
     return (fifo->full);
 }
 
-int dec_fifo_is_empty(vdec_frame_buffer_t * fifo)
+int32_t dec_fifo_is_empty(vdec_frame_buffer_t * fifo)
 {
     return ((fifo->rdptr == fifo->wrptr) && !(fifo->full));
 }
 
 /*one frame is in-queued*/
-int dec_fifo_push(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t id)
+int32_t dec_fifo_push(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t id)
 {
     if (fifo->full)
         return -1;
@@ -88,7 +88,7 @@ int dec_fifo_push(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t
 }
 
 /*one frame is dequeued*/
-int dec_fifo_pop(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t * id)
+int32_t dec_fifo_pop(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t * id)
 {
     if ((fifo->rdptr == fifo->wrptr) && !(fifo->full))
         return -1;
@@ -105,11 +105,11 @@ int dec_fifo_pop(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t 
     return 0;
 }
 
-struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int height, int mvCol)
+struct frame_buf *framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY, int32_t height, int32_t mvCol)
 {
     struct frame_buf *fb;
-    int err;
-    int divX, divY;
+    int32_t err;
+    int32_t divX, divY;
 
     fb = get_framebuf();
     if (fb == NULL)
@@ -149,15 +149,15 @@ struct frame_buf *framebuf_alloc(int stdMode, int format, int strideY, int heigh
     return fb;
 }
 
-struct frame_buf *tiled_framebuf_alloc(int stdMode, int format, int strideY, int height, int mvCol,
-                                       int mapType)
+struct frame_buf *tiled_framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY, int32_t height, int32_t mvCol,
+                                       int32_t mapType)
 {
     struct frame_buf *fb;
-    int err, align;
-    int divX, divY;
+    int32_t err, align;
+    int32_t divX, divY;
     uint32_t lum_top_base, lum_bot_base, chr_top_base, chr_bot_base;
     uint32_t lum_top_20bits, lum_bot_20bits, chr_top_20bits, chr_bot_20bits;
-    int luma_top_size, luma_bot_size, chroma_top_size, chroma_bot_size;
+    int32_t luma_top_size, luma_bot_size, chroma_top_size, chroma_bot_size;
 
     fb = get_framebuf();
     if (fb == NULL)

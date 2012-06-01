@@ -14,10 +14,14 @@
 #include "timer/epit.h"
 
 bs_mem_t bsmem;
-int gCurrentActiveInstance = 0;
-int gTotalActiveInstance = 0;
+int32_t gCurrentActiveInstance = 0;
+int32_t gTotalActiveInstance = 0;
 
-static int isInterlacedMPEG4 = 0;
+static int32_t isInterlacedMPEG4 = 0;
+
+//uint8_t in_dec_file_1[] = "indir/fslclip_h264.mp4";
+uint8_t in_dec_file_1[] = "indir/fslclip.mp4";
+uint8_t in_dec_file_2[] = "indir/fslclip_h264.mp4";
 
 #define FRAME_TO_DECODE 10000
 #define HDMI_RESOLUTION_720P60
@@ -26,15 +30,15 @@ static int isInterlacedMPEG4 = 0;
 /*
  * Fill the bitstream to VPU ring buffer
  */
-int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
+int32_t dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
                       uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
-                      uint32_t bs_pa_startaddr, int defaultsize)
+                      uint32_t bs_pa_startaddr, int32_t defaultsize)
 {
     RetCode ret;
     PhysicalAddress pa_read_ptr, pa_write_ptr;
     uint32_t target_addr, space;
-    int size;
-    int nread, room;
+    int32_t size;
+    int32_t nread, room;
 
     ret = VPU_DecGetBitstreamBuffer(handle, &pa_read_ptr, &pa_write_ptr, &space);
     if (ret != RETCODE_SUCCESS) {
@@ -94,14 +98,14 @@ int dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
     return nread;
 }
 
-int decoder_start(struct decode *dec)
+int32_t decoder_start(struct decode *dec)
 {
     DecHandle handle = dec->handle;
-    int rot_en = dec->cmdl->rot_en, rot_stride, fwidth, fheight;
-    int rot_angle = dec->cmdl->rot_angle;
-    int dering_en = dec->cmdl->dering_en;
-    int mirror;
-    int tiled2LinearEnable = dec->tiled2LinearEnable;
+    int32_t rot_en = dec->cmdl->rot_en, rot_stride, fwidth, fheight;
+    int32_t rot_angle = dec->cmdl->rot_angle;
+    int32_t dering_en = dec->cmdl->dering_en;
+    int32_t mirror;
+    int32_t tiled2LinearEnable = dec->tiled2LinearEnable;
     //DecOutputInfo outinfo = {0};
 
     fwidth = ((dec->picwidth + 15) & ~15);
@@ -138,7 +142,7 @@ int decoder_start(struct decode *dec)
 
 void decoder_free_framebuffer(struct decode *dec)
 {
-    int i, totalfb;
+    int32_t i, totalfb;
 
     totalfb = dec->regfbcount + dec->extrafb;
 
@@ -158,19 +162,19 @@ void decoder_free_framebuffer(struct decode *dec)
     return;
 }
 
-int decoder_allocate_framebuffer(struct decode *dec)
+int32_t decoder_allocate_framebuffer(struct decode *dec)
 {
     DecBufInfo bufinfo;
-    int i, regfbcount = dec->regfbcount, totalfb;
-    int dst_scheme = dec->cmdl->dst_scheme, rot_en = dec->cmdl->rot_en;
-    int deblock_en = dec->cmdl->deblock_en;
-    int dering_en = dec->cmdl->dering_en;
-    int tiled2LinearEnable = dec->tiled2LinearEnable;
+    int32_t i, regfbcount = dec->regfbcount, totalfb;
+    int32_t dst_scheme = dec->cmdl->dst_scheme, rot_en = dec->cmdl->rot_en;
+    int32_t deblock_en = dec->cmdl->deblock_en;
+    int32_t dering_en = dec->cmdl->dering_en;
+    int32_t tiled2LinearEnable = dec->tiled2LinearEnable;
     RetCode ret;
     DecHandle handle = dec->handle;
     FrameBuffer *fb;
     struct frame_buf **pfbpool;
-    int stride;
+    int32_t stride;
 
     if (rot_en || dering_en || tiled2LinearEnable) {
         /*
@@ -284,11 +288,11 @@ int decoder_allocate_framebuffer(struct decode *dec)
     return -1;
 }
 
-int decoder_parse(struct decode *dec)
+int32_t decoder_parse(struct decode *dec)
 {
     DecInitialInfo initinfo = { 0 };
     DecHandle handle = dec->handle;
-    int align, profile, level, extended_fbcount;
+    int32_t align, profile, level, extended_fbcount;
     RetCode ret;
 
     /* Parse bitstream and get width/height/framerate etc */
@@ -307,8 +311,8 @@ int decoder_parse(struct decode *dec)
                      initinfo.profile, initinfo.level, initinfo.interlace);
 
             if (initinfo.aspectRateInfo) {
-                int aspect_ratio_idc;
-                int sar_width, sar_height;
+                int32_t aspect_ratio_idc;
+                int32_t sar_width, sar_height;
 
                 if ((initinfo.aspectRateInfo >> 16) == 0) {
                     aspect_ratio_idc = (initinfo.aspectRateInfo & 0xFF);
@@ -526,7 +530,7 @@ int decoder_parse(struct decode *dec)
     return 0;
 }
 
-int decoder_open(struct decode *dec)
+int32_t decoder_open(struct decode *dec)
 {
     RetCode ret;
     DecHandle handle = { 0 };
@@ -584,11 +588,11 @@ void decoder_close(struct decode *dec)
 
 void decoder_frame_display(void)
 {
-    int i = 0;
+    int32_t i = 0;
     struct frame_buf *display_buffer = NULL;
     uint32_t id;
 
-    static int vdoa_tx = 0;
+    static int32_t vdoa_tx = 0;
     for (i = 0; i < MAX_NUM_INSTANCE; i++) {
         if (vpu_hw_map->codecInstPool[i].inUse && vpu_hw_map->codecInstPool[i].initDone) {
             if (dec_fifo_pop(&gDecFifo[i], &display_buffer, &id) != -1) {
@@ -628,14 +632,14 @@ hw_module_t hw_epit2 = {
     &epit_isr,
 };
 
-int decoder_setup(void *arg)
+int32_t decoder_setup(void *arg)
 {
     struct cmd_line *cmdl;
     vpu_mem_desc mem_desc = { 0 };
     vpu_mem_desc ps_mem_desc = { 0 };
     vpu_mem_desc slice_mem_desc = { 0 };
     struct decode *dec;
-    int ret, fillsize = 0;
+    int32_t ret, fillsize = 0;
 
     cmdl = (struct cmd_line *)arg;
 
@@ -740,17 +744,19 @@ int decoder_setup(void *arg)
     free(dec);
     return ret;
 }
-int decode_test(void *arg)
+
+int32_t decode_test(void *arg)
 {
-    int err, i, temp = 0;
-    int primary_disp = 0;
+    int32_t err, i, temp = 0;
+    int32_t primary_disp = 0;
     uint8_t revchar = (uint8_t) 0xFF;
     DecOutputInfo outinfo;
     DecParam decparam = { 0 };
-    int bs_read_mode = 0;
-    int active_inst_num = 0;
-    int map_type = LINEAR_FRAME_MAP;
+    int32_t bs_read_mode = 0;
+    int32_t active_inst_num = 0;
+    int32_t map_type = LINEAR_FRAME_MAP;
     struct cmd_line *cmdl;
+    int32_t file_in_1 = 0, file_in_2 = 0;
 
     printf("please select decoder instance:(1 or 2)\n");
     printf("\t1 - Single decoder with single display\n");
@@ -764,7 +770,11 @@ int decode_test(void *arg)
     switch (revchar) {
     case '1':
         multi_instance = 0;
-        err = fat_search_files("264", 1);
+        if ((file_in_1 = Fopen(in_dec_file_1, (uint8_t *) "r")) < 0)
+        {
+            printf("Can't open the file: %s !\n", in_dec_file_1);
+            err = 1;
+        }
         printf("please choose the display device: (1 for Hannstar LVDS panel, or 2 for HDMI)\n");
         revchar = 0xFF;
         do {
@@ -778,16 +788,24 @@ int decode_test(void *arg)
         break;
     case '2':
         multi_instance = 1;
-        err = fat_search_files("264", 2);
+        if ((file_in_2 = Fopen(in_dec_file_2, (uint8_t *) "r")) < 0)
+        {
+            printf("Can't open the file: %s !\n", in_dec_file_2);
+            err = 1;
+        }
         primary_disp = 1;
         break;
     default:
         printf("Wrong Input! select 1 as default!\n");
         multi_instance = 0;
-        err = fat_search_files("264", 1);
+        if ((file_in_1 = Fopen(in_dec_file_1, (uint8_t *) "r")) < 0)
+        {
+            printf("Can't open the file: %s !\n", in_dec_file_1);
+            err = 1;
+        }
     }
-    if (err == 0) {
-        printf("No specified media files found on the fat32 system!!\n");
+    if (err == 1) {
+        printf("Problem to open specified media files the fat32 system!!\n");
         return 0;
     }
     printf("please select decoder instance:(1 or 2)\n");
@@ -800,11 +818,11 @@ int decode_test(void *arg)
 
     switch (revchar) {
     case '1':
-        bs_read_mode = FILE_READ_LOOP;
+        bs_read_mode = 0;   // TO_DEFINE
         break;
     case '2':
     default:
-        bs_read_mode = FILE_READ_NORMAL;
+        bs_read_mode = 0;   // TO_DEFINE
         break;
     }
     printf("Enable VDOA?(y or n)\n");
@@ -837,7 +855,7 @@ int decode_test(void *arg)
         return -1;
     }
     /*set the decoder command args */
-    cmdl->input = &files[0];    /* Input file name */
+    cmdl->input = file_in_1;    /* Input file name */
     cmdl->format = STD_AVC;
     cmdl->src_scheme = PATH_FILE;
     cmdl->dst_scheme = PATH_MEM;
@@ -863,7 +881,7 @@ int decode_test(void *arg)
             return -1;
         }
         /*set the decoder command args */
-        cmdl->input = &files[1];    /* Input file name */
+        cmdl->input = file_in_2;    /* Input file name */
         cmdl->format = STD_AVC;
         cmdl->src_scheme = PATH_FILE;
         cmdl->dst_scheme = PATH_MEM;
@@ -885,7 +903,7 @@ int decode_test(void *arg)
     //enable_interrupt(hw_epit2.irq_id, CPU_0, 0);
 
     while (1) {
-        static int inst = 0;
+        static int32_t inst = 0;
         if (active_inst_num == 0)
             break;
         /*get the next active instance */
@@ -953,5 +971,11 @@ int decode_test(void *arg)
             vpu_hw_map->codecInstPool[i].initDone = 0;
         }
     }
+
+    if(file_in_1 != 0)
+        Fclose(file_in_1);
+    if(file_in_2 != 0)
+        Fclose(file_in_2);
+
     return 0;
 }

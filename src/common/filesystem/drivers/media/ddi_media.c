@@ -81,7 +81,7 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
 	/*Note by Ray: in this function, intialize the uSDHC controller*/
     retval = card_init(usdhc_base_addr, 8);
     /*now enable the INTERRUPT mode of usdhc */
-    SDHC_INTR_mode = 0;
+    SDHC_INTR_mode = 1;
     SDHC_ADMA_mode = 0;
 	
     if (retval == 1) {

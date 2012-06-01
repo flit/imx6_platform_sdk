@@ -19,7 +19,7 @@
 #ifndef _TYPES_H
 #define _TYPES_H
 
-#include <stdint.h>  //sdk_types.h"
+#include <stdint.h>
 #include <stdbool.h>
 #include "assert.h"
 //! \brief TBD

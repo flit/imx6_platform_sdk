@@ -33,7 +33,7 @@ hw_module_t arm_core = {
     792000000,
 };
 
-#if  defined(BOARD_EVB)
+#if  defined(BOARD_SABRE_LITE)
 // UART2 is the serial debug/console port for sabre_lite board
 hw_module_t g_debug_uart = {
     "UART2 for debug",

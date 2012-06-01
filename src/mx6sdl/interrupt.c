@@ -36,14 +36,14 @@ void IRQ_HDLR(void)
     uint32_t vectNum;
 
     /* vectNum = RESERVED[31:13] | CPUID[12:10] | INTERRUPT_ID[9:0] */
-    vectNum = read_irq_ack();   /* send ack and get ID source */
+    vectNum = gic_read_irq_ack();   /* send ack and get ID source */
     if (vectNum & 0x0200) {     /* Check that INT_ID isn't 1023 or 1022 (spurious interrupt) */
-        write_end_of_irq(vectNum);  /* send end of irq */
+        gic_write_end_of_irq(vectNum);  /* send end of irq */
     } else {
         /* copy the local value to the global image of CPUID */
         g_vectNum[(vectNum >> 10) & 0x7] = vectNum & 0x1FF;
         g_interrupt_handlers[vectNum & 0x1FF] ();   /* jump to ISR in the look up table */
-        write_end_of_irq(vectNum);  /* send end of irq */
+        gic_write_end_of_irq(vectNum);  /* send end of irq */
     }
 }
 
@@ -70,17 +70,16 @@ void enableALL_interrupts_non_secure(void)
 
 void disable_interrupt(uint32_t irq_id, uint32_t cpu_id)
 {
-    disable_irq_id(irq_id);
-    disable_interrupt_target_cpu(irq_id, cpu_id);
+    gic_enable_irq(irq_id, false);
+    gic_set_cpu_target(irq_id, cpu_id, false);
 }
 
 void enable_interrupt(uint32_t irq_id, uint32_t cpu_id, uint32_t priority)
 {
-    enable_irq_id(irq_id);
-    set_irq_priority(irq_id, priority);
-    /* set IRQ as non-secure */
-    set_interrupt_as_nonsecure(irq_id);
-    enable_interrupt_target_cpu(irq_id, cpu_id);
+    gic_set_irq_priority(irq_id, priority);
+    gic_set_irq_security(irq_id, false);    // set IRQ as non-secure
+    gic_set_cpu_target(irq_id, cpu_id, true);
+    gic_enable_irq(irq_id, true);
 }
 
 // set funcISR as the ISR function for the source ID #

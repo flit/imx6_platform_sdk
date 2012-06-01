@@ -30,6 +30,11 @@ extern void enable_neon_fpu(void);
  */
 int main(void)
 {
+    // Enable interrupts.
+    gic_set_cpu_priority_mask(0xff);
+    gic_cpu_enable(true);
+    gic_enable(true);
+    
     enable_neon_fpu();
 
 #if defined(BOARD_EVB)||defined(BOARD_SMART_DEVICE)

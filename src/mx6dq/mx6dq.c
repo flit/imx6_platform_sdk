@@ -104,7 +104,8 @@ extern void usdhc_test(void);
 extern void hdmi_test(void);
 extern void audio_test(void);
 extern void i2c_test(void);
-extern void gic_test(void);
+extern void gic_sgi_test(void);
+extern void gic_multicore_test(void);
 extern int sata_test(void);
 extern void snvs_rtc_test(void);
 extern void snvs_srtc_test(void);
@@ -167,11 +168,13 @@ void ALL_test(void)
         tempmon_test();
         uart_test();
         usdhc_test();
+        
+        gic_sgi_test();
 
         /* GIC test can only be executed once, and requires a board reset */
         if (gic_test_done == 0) {
             gic_test_done = 0xFF;
-            gic_test();
+            gic_multicore_test();
         }
 #ifdef BOARD_SABRE_AI
     /* need to be here */

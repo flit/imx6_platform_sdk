@@ -57,5 +57,7 @@ peripherals present on the i.MX6 Series SoCs.
 
 @defgroup diag_pmu PMU
 
+@defgroup gic GIC
+
  */
 

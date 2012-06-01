@@ -4,31 +4,49 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
+#ifndef __GIC_H__
+#define __GIC_H__
 
-#ifndef GIC_H_
-#define GIC_H_
+#include "sdk_types.h"
 
-// ------------------------------------------------------------
-// GIC
-// ------------------------------------------------------------
+//! @addtogroup gic
+//! @{
 
-// GIC Interrupt Distributor Functions
-void enable_GIC(void);
-void disable_GIC(void);
-void set_interrupt_as_nonsecure(uint32_t irq_id);
-void set_interrupt_as_secure(uint32_t irq_id);
-void enable_irq_id(uint32_t irq_id);
-void disable_irq_id(uint32_t irq_id);
-void set_irq_priority(uint32_t irq_id, uint32_t priority);
-void enable_interrupt_target_cpu(uint32_t irq_id, uint32_t target_cpu);
-void disable_interrupt_target_cpu(uint32_t irq_id, uint32_t target_cpu);
-void send_sgi(uint32_t irq_id, uint32_t target_cpu, uint32_t filter);
+////////////////////////////////////////////////////////////////////////////////
+// API
+////////////////////////////////////////////////////////////////////////////////
 
-// GIC CPU Interface Functions
-void enable_gic_processor_interface(void);
-void disable_gic_processor_interface(void);
-void set_cpu_priority_mask(uint32_t priority);
-uint32_t read_irq_ack(void);
-void write_end_of_irq(uint32_t irq_id);
+#if defined(__cplusplus)
+extern "C" {
+#endif
 
-#endif /*GIC_H_ */
+
+//! @name GIC Interrupt Distributor Functions
+//@{
+void gic_enable(bool enableIt);
+void gic_set_irq_security(uint32_t irqID, bool isSecure);
+void gic_enable_irq(uint32_t irqID, bool isEnabled);
+void gic_set_cpu_target(uint32_t irqID, uint32_t cpuMask, bool enableIt);
+void gic_set_irq_priority(uint32_t irq_id, uint32_t priority);
+void gic_send_sgi(uint32_t irq_id, uint32_t target_cpu, uint32_t filter);
+//@}
+
+//! @name GIC CPU Interface Functions
+//@{
+void gic_cpu_enable(bool enableIt);
+void gic_set_cpu_priority_mask(uint32_t priority);
+uint32_t gic_read_irq_ack(void);
+void gic_write_end_of_irq(uint32_t irq_id);
+//@}
+
+
+#if defined(__cplusplus)
+}
+#endif
+
+//! @}
+
+#endif // __GIC_H__
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

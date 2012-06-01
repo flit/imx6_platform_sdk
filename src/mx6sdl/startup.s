@@ -24,7 +24,7 @@
 	.equ I_Bit, 0x80 @ /* when I bit is set EQU IRQ is disabled */
 	.equ F_Bit, 0x40 @ /* when F bit is set EQU FIQ is disabled */
 
-	@ exception vector adddress holders in iRAM for iMX6Quad/Dual
+	@ exception vector adddress holders at top of OCRAM for iMX6Quad/Dual
 	.equ IRQ_MEM_ADDR, 0x0093fff4
 	.equ FIQ_MEM_ADDR, 0x0093fff8
     
@@ -75,8 +75,8 @@ startup_imx6x:
    
     @ check cpu id - cpu0 is primary cpu
     cmp r5, #0
-    bleq primary_cpu_init	
-    blne secondary_cpus_init	
+    bxne r4     @ for secondary cpus, jump to argument function pointer passed in by ROM 
+/*    blne secondary_cpus_init	*/
 
 primary_cpu_init:
     @@  set-up exception vectors, update ISR jump addresses    
@@ -94,23 +94,29 @@ primary_cpu_init:
     stmltia r1!,{r3}
     blt     1b
    
-    mov r0, #0xFF	   @ 0xFF is lowest priority level
-    bl set_cpu_priority_mask
+ /*   mov r0, #0xFF	   @ 0xFF is lowest priority level
+    bl gic_set_cpu_priority_mask
    
-    bl enable_gic_processor_interface
-    bl enable_GIC
-   
+    mov r0, #1
+    bl gic_cpu_enable
+    
+    mov r0, #1
+    bl gic_enable
+*/   
     @ branch to c library entry point 
     ldr     r12, =main               /* save this in register for possible long jump */
     bx      r12                         /* branch to __main */ 
-
+/*
 secondary_cpus_init:
     @bl secondary_cpus_init  @ debug endless loop
     mov r0, #0xFF	   @ 0xFF is lowest priority level
-    bl set_cpu_priority_mask
-    bl enable_gic_processor_interface   
+    bl gic_set_cpu_priority_mask
+
+    mov r0, #1
+    bl gic_cpu_enable
+
     bx r4		       @ jump to argument function pointer passed in by ROM 
-	
+*/	
     .endfunc    @ startup_imx6x()
 
     .end

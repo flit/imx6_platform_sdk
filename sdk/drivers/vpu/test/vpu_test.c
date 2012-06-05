@@ -13,7 +13,7 @@
 #include "vpu_debug.h"
 #include "vpu_util.h"
 
-uint32_t usdhc_base_addr = SD_PORT_BASE_ADDR;
+uint32_t g_usdhc_base_addr = SD_PORT_BASE_ADDR;
 vpu_resource_t vpu_resource = { 0 };
 struct decode *gDecInstance[MAX_NUM_INSTANCE];
 struct encode *gEncInstance[MAX_NUM_INSTANCE];
@@ -51,7 +51,6 @@ int vpu_test(void)
     /*init the drive */
     FSDriveInit(0);
     SetCWDHandle(0);
-
 
     gCurrentActiveInstance = 0;
 

@@ -19,7 +19,7 @@
 #include "drivers/media/ddi_media.h"
 #include "usdhc/inc/usdhc_ifc.h"
 
-extern uint32_t usdhc_base_addr;
+extern uint32_t g_usdhc_base_addr;
 
 inline void ddi_ldl_push_media_task(const char * taskName) {}
 inline void ddi_ldl_pop_media_task(void) {}
@@ -79,7 +79,7 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
     MediaCacheParamBlock_t pb = {0};
 
 	/*Note by Ray: in this function, intialize the uSDHC controller*/
-    retval = card_init(usdhc_base_addr, 8);
+    retval = card_init(g_usdhc_base_addr, 8);
     /*now enable the INTERRUPT mode of usdhc */
     SDHC_INTR_mode = 1;
     SDHC_ADMA_mode = 0;

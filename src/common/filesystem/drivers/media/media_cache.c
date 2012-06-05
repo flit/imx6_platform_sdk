@@ -5,31 +5,42 @@
  * Freescale Semiconductor, Inc.
  */
 
+#include <types.h>
+#include <stdio.h>
 #include "drivers/media/media_cache.h"
 #include "../../../../sdk/usdhc/inc/usdhc_ifc.h"
 
-extern uint32_t usdhc_base_addr;
+extern uint32_t g_usdhc_base_addr;
 extern uint8_t read_buf[];
 
 RtStatus_t media_cache_init(uint8_t * cacheBuffer, uint32_t cacheBufferLength){return 0;}
 RtStatus_t media_cache_shutdown(void){return 0;}
 RtStatus_t media_cache_read(MediaCacheParamBlock_t * pb)
 {
-    int status =
-        card_data_read(usdhc_base_addr, (int *)read_buf, pb->requestSectorCount * 512,
+    int status, result;
+        
+    status = card_data_read(g_usdhc_base_addr, (int *)read_buf, pb->requestSectorCount*512,
                        pb->sector*512);
-    if (status == 1) {
-        return 1;
+    printf("d %X l %X o %X\n",read_buf,pb->requestSectorCount*512,pb->sector*512);
+
+    if (status == FAIL) {
+        printf("%d: SD/MMC data read failed.\n", __LINE__);
+        return -1;
     }
     pb->buffer = read_buf;
-	#if 0
-    while (1) {
-        int usdhc_status = 0;
-        card_xfer_result(usdhc_base_addr, &usdhc_status);
-        if (usdhc_status == 1)
-            break;              //wait untill the SD read finished!
+
+    /* Wait for transfer complete */
+    if (SDHC_INTR_mode == 0) {
+        do {
+            card_xfer_result(g_usdhc_base_addr, &result);
+        } while (result == 0);
+
+        if (result == 2) {
+            printf("%d: Error status caught.\n", __LINE__);
+            return -1;
+        }
     }
-	#endif
+
 	return 0;
 }
 
@@ -45,7 +56,7 @@ RtStatus_t media_cache_write(MediaCacheParamBlock_t * pb)
     pb.mode = writeType;
     pb.weight = GetSectorWeight(deviceNumber, sectorNumber);
     pb.flags = kMediaCacheFlag_ApplyWeight;
-		card_data_write(usdhc_base_addr, (int *)pb->buffer, pb->requestSectorCount * 512,
+		card_data_write(g_usdhc_base_addr, (int *)pb->buffer, pb->requestSectorCount * 512,
                        pb->sector*512);
 #endif
 

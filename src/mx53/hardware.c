@@ -1603,7 +1603,7 @@ void hdmi_power_on(void)
 /****************************************************************/
 void hdmi_pgm_iomux(void){}
 
-void sii9022_power_on(void){}
+void ext_hdmi_transmitter_power_on(void){}
 
 unsigned int spdif_get_tx_clk_freq(void){
     return 0;

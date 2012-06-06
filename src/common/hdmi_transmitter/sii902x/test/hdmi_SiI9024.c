@@ -54,14 +54,14 @@ int sil9024_reg_check(unsigned int reg, unsigned char data_input, unsigned char 
     return ret_val;
 }
 
-extern int ips_sii9022_1080P60_stream(int ipu_index);
+extern int ips_ext_hdmi_transmitter_1080P60_stream(int ipu_index);
 int config_hdmi_si9022(int ipu_index, int di_port)
 {
     int retVal = 0;
     int hdmi_mode = SHDMI_1080P60;
     int hpd_time_ms = 300;
 
-    ips_sii9022_1080P60_stream(ipu_index);
+    ips_ext_hdmi_transmitter_1080P60_stream(ipu_index);
 
     /*config SiI9024 HDMI Tx through I2C */
     hdmi_i2c_base = I2C3_BASE_ADDR;

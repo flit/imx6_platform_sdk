@@ -516,7 +516,7 @@ void hdmi_pgm_iomux(void)
 /*!
  * HDMI power up
  */
-void sii9022_power_on(void)
+void ext_hdmi_transmitter_power_on(void)
 {
     /*3.3V for core, default is on */
     /*5V for IO, default is on */

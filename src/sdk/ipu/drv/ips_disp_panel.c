@@ -72,17 +72,17 @@ static int32_t hdmi_720p60_deinit(void)
     return true;
 }
 extern void ipu_iomux_config(void);
-extern void sii9022_power_on(void);
-static int32_t sii9022_1080p60_init(int32_t *ipu_index)
+extern void ext_hdmi_transmitter_power_on(void);
+static int32_t ext_hdmi_transmitter_1080p60_init(int32_t *ipu_index)
 {
-    /*sii9022 is connected to the parallel interface */
+    /*ext_hdmi_transmitter is connected to the parallel interface */
     ipu_iomux_config();
-    sii9022_power_on();
+    ext_hdmi_transmitter_power_on();
     hdmi_clock_set(*ipu_index, 148500000);
     return true;
 }
 
-static int32_t sii9022_1080p60_deinit(void)
+static int32_t ext_hdmi_transmitter_1080p60_deinit(void)
 {
     return true;
 }
@@ -231,8 +231,8 @@ ips_dev_panel_t disp_dev_list[] = {
      1,                         // vync polarity
      1,                         // drdy polarity
      0,                         // data polarity
-     &sii9022_1080p60_init,
-     &sii9022_1080p60_deinit,
+     &ext_hdmi_transmitter_1080p60_init,
+     &ext_hdmi_transmitter_1080p60_deinit,
      }
     ,
     {

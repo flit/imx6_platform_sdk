@@ -183,7 +183,7 @@ int32_t ips_hdmi_1080P60_stream(int32_t ipu_index)
  * SII9022 1080P60 display stream
  * @param	ipu_index:	ipu index
  */
-int32_t ips_sii9022_1080P60_stream(int32_t ipu_index)
+int32_t ips_ext_hdmi_transmitter_1080P60_stream(int32_t ipu_index)
 {
     uint32_t disp_mem = CH23_EBA1;
     ips_dev_panel_t *panel;

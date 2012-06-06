@@ -129,8 +129,8 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 
 # Exclude mx53 stuff
 - configs/mx53*
-- src/mx53/
-- src/include/mx53/
+- sdk/mx53/
+- sdk/include/mx53/
 
 # Exclude perfmon
 - perfmon_imx.h

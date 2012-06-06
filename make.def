@@ -18,7 +18,7 @@ OUTPUT_BIN = $(PROJ_OUT)/bin/$(IMAGENAME).bin
 OUTPUT_TXT = $(PROJ_OUT)/bin/$(IMAGENAME).txt
 OUTPUT_ELF = $(PROJ_OUT)/bin/$(IMAGENAME).elf
 MAP_FILE = $(PROJ_OUT)/bin/$(IMAGENAME).map
-LD_FILE = $(PROJ_DIR)/src/$(TARGET)/$(TARGET).ld
+LD_FILE = $(PROJ_DIR)/sdk/$(TARGET)/$(TARGET).ld
 
 CP = cp
 RM = rm -rf
@@ -131,10 +131,10 @@ CPP_FLAGS = $(C_FLAGS_WARNINGS) $(ARM_FLAGS) $(COMMON_C_FLAGS) $(OPTIMIZATION_FL
 CPP_FLAGS += -fno-exceptions -fno-rtti
 
 C_INCLUDES = \
-    -I$(PROJ_DIR)/src/include  \
-    -I$(PROJ_DIR)/src/sdk \
-    -I$(PROJ_DIR)/src/include/$(TARGET)/ \
-    -I$(PROJ_DIR)/src/$(TARGET)/$(BOARD)_rev_$(BOARD_REVISION)/ \
+    -I$(PROJ_DIR)/sdk/include  \
+    -I$(PROJ_DIR)/sdk/drivers \
+    -I$(PROJ_DIR)/sdk/include/$(TARGET)/ \
+    -I$(PROJ_DIR)/sdk/$(TARGET)/$(BOARD)_rev_$(BOARD_REVISION)/ \
     -I. \
     -I../inc
 
@@ -142,7 +142,7 @@ A_FLAGS 		=
 A_INCLUDES += \
     -I$(PROJ_DIR) \
     -I$(PROJ_DIR)/include \
-    -I$(PROJ_DIR)/src/include \
-    -I$(PROJ_DIR)/src/include/$(TARGET)/ \
+    -I$(PROJ_DIR)/sdk/include \
+    -I$(PROJ_DIR)/sdk/include/$(TARGET)/ \
     -I.
 A_DEFINES 	=

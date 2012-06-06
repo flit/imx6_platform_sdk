@@ -136,7 +136,7 @@ fi
 
 sdk_dir=$PWD
 
-while [ ! -f tools/gen_make.pl -o ! -d src/init ]; do
+while [ ! -f tools/gen_make.pl -o ! -d sdk/init ]; do
     if [ "$sdk_dir" = / ]; then
         echo "Couldn't find root of project tree. Script must be executed from root of project tree"
         echo

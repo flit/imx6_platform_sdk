@@ -25,7 +25,7 @@ export TARGET_BIN_DIR
 
 include make.def
 
-SUB_DIRS := src
+SUB_DIRS := sdk
 
 .PHONY: default clean build_dir #bin
 default: build_dir $(SUB_DIRS) $(OUTPUT_ELF) $(OUTPUT_BIN) # all bin

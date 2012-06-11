@@ -507,7 +507,7 @@ void hdmi_tx_phydtb_pgm_iomux(void)
  */
 void hdmi_pgm_iomux(void)
 {
-	ipu_iomux_config();
+    ipu_iomux_config();
     hdmi_tx_cec_pgm_iomux();
     hdmi_tx_ddc_pgm_iomux();
     hdmi_tx_phydtb_pgm_iomux();
@@ -567,7 +567,7 @@ void can_iomux_config(uint32_t module_base_add)
 void csi_port0_iomux_config(void)
 {
     uint32_t tmpVal;
- 
+
     /* config CSI0_PIXCLK pad for ipu instance CSI0_PIXCLK port */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_PIXCLK, ALT0);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_PIXCLK, 0x130B0);
@@ -689,7 +689,7 @@ void pcie_clk_setup(uint32_t enable)
         // enable pll
         HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE);
         // wait the pll locked
-        while (!HW_CCM_ANALOG_PLL_ENET.B.LOCK);
+        while (!HW_CCM_ANALOG_PLL_ENET.B.LOCK) ;
         // Disable bypass
         HW_CCM_ANALOG_PLL_ENET_CLR(BM_CCM_ANALOG_PLL_ENET_BYPASS);
         // enable pci-e ref clk
@@ -744,4 +744,92 @@ void pcie_card_rst(void)
     hal_delay_us(200 * 1000);
 
     max7310_set_gpio_output(0, 2, 1);
+}
+
+/*!
+ * This function enables Vbus for the given USB port\n
+ * The procedure to enable Vbus depends on both the Chip and board hardware\n
+ *
+ * @param port      USB module to initialize
+ */
+void usbEnableVbus(usb_module_t * port)
+{
+
+    switch (port->controllerID) {
+    case OTG:
+#ifdef BOARD_SABRE_AI
+        // Vbus control is on I2C port expander C1 for the ARD board.
+        max7310_set_gpio_output(MAX7310_I2C_ID2, 1, 1);
+#endif
+#ifdef BOARD_EVB
+        reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D22, ALT5);
+        gpio_dir_config(GPIO_PORT3, 22, GPIO_GDIR_OUTPUT);
+        gpio_write_data(GPIO_PORT3, 22, GPIO_HIGH_LEVEL);
+#endif
+
+        break;
+    case Host1:
+#ifdef BOARD_SABRE_AI
+        // Vbus control is on I2C port expander B7 for the ARD board.
+        max7310_set_gpio_output(MAX7310_I2C_ID1, 7, 1);
+#endif
+
+#ifdef BOARD_EVB
+        reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D31, ALT5);
+        gpio_dir_config(GPIO_PORT3, 31, GPIO_GDIR_OUTPUT);
+        gpio_write_data(GPIO_PORT3, 31, GPIO_HIGH_LEVEL);
+#endif
+
+        break;
+    case Host2:
+#ifdef BOARD_EVB
+
+#endif
+        break;
+    case Host3:
+        // Nothing to be done here.
+        break;
+    default:
+        // no such controller
+        break;
+    }
+}
+
+/*!
+ * This function disables Vbus for the given USB port\n
+ * The procedure to enable Vbus depends on both the Chip and board hardware\n
+ * This implementation is for the MX6q Sabre-AI board\n
+ *
+ * @param port      USB module to initialize
+ */
+void usbDisableVbus(usb_module_t * port)
+{
+    switch (port->controllerID) {
+    case OTG:
+#ifdef BOARD_SABRE_AI
+        max7310_set_gpio_output(MAX7310_I2C_ID2, 1, 0);
+#endif
+#ifdef BOARD_EVB
+        gpio_write_data(GPIO_PORT3, 22, GPIO_LOW_LEVEL);
+#endif
+        break;
+    case Host1:
+#ifdef BOARD_SABRE_AI
+        max7310_set_gpio_output(MAX7310_I2C_ID1, 7, 0);
+#endif
+#ifdef BOARD_EVB
+        gpio_write_data(GPIO_PORT3, 31, GPIO_LOW_LEVEL);
+#endif
+    case Host2:
+#ifdef BOARD_EVB
+
+#endif
+        break;
+    case Host3:
+        // Nothing to be done here.
+        break;
+    default:
+        // no such controller
+        break;
+    }
 }

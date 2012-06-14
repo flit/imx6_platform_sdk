@@ -72,6 +72,22 @@ disable_strict_align_check:
     pop {r0, pc}
   .endfunc
 
+  .global disable_L1_cache
+  .func disable_L1_cache
+disable_L1_cache:
+    push	{r0-r6, lr}
+
+	mrc p15, 0, r0, c1, c0, 0
+	bic r0, r0, #(0x1<<12) 
+	bic r0, r0, #(0x1<<11) 
+	bic r0, r0, #(0x1<<2) 
+	bic r0, r0, #(0x1<<0) 
+	mcr p15, 0, r0, c1, c0, 0
+
+    pop {r0-r6, pc}
+
+  .endfunc
+  
   .global enable_L1_cache
   .func enable_L1_cache
 enable_L1_cache:

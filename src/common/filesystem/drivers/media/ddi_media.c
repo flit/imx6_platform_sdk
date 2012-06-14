@@ -25,7 +25,8 @@ inline void ddi_ldl_push_media_task(const char * taskName) {}
 inline void ddi_ldl_pop_media_task(void) {}
 inline unsigned ddi_ldl_get_media_task_count(void) { return 0; }
 inline unsigned ddi_ldl_get_media_task_stack(const char ** tasks, unsigned maxTasks) { return 0; }
-
+//#define UNUSED_NOW
+#ifdef UNUSED_NOW
 /* start sector */
 uint32_t g_u32MbrStartSector = 0;
 
@@ -166,7 +167,7 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
 
     return SUCCESS;
 }
-
+#endif
 unsigned MediaGetCount(void){return 0;}
 RtStatus_t MediaGetInfoSize(unsigned mediaNumber, uint32_t selector, uint32_t * propertySize){return 0;}
 RtStatus_t MediaSetInfo(unsigned mediaNumber, uint32_t selector, const void * value){return 0;}

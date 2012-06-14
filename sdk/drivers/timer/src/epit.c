@@ -31,6 +31,34 @@ void epit_reload_counter(struct hw_module *port, uint32_t load_val)
 }
 
 /*!
+ * @brief Get the counter value.
+ * 
+ *
+ * @param   port Pointer to the EPIT module structure.
+ * @return  Value of the counter register.
+ */
+uint32_t epit_get_counter_value(struct hw_module *port)
+{
+    struct mx_epit *pepit = (struct mx_epit *)port->base;
+
+    return pepit->epitcnr;
+}
+
+/*!
+ * @brief Set the output compare register.
+ * 
+ *
+ * @param   port Pointer to the EPIT module structure.
+ * @param   Value of the compare register.
+ */
+void epit_set_compare_event(struct hw_module *port, uint32_t compare_val)
+{
+    struct mx_epit *pepit = (struct mx_epit *)port->base;
+
+    pepit->epitcmpr = compare_val;
+}
+
+/*!
  * @brief Get the output compare status flag and clear it if set.
  * 
  * This function can typically be used for polling method, but
@@ -95,8 +123,10 @@ void epit_counter_enable(struct hw_module *port, uint32_t load_val, uint32_t irq
 {
     struct mx_epit *pepit = (struct mx_epit *)port->base;
 
-    /* set the load register especially if RLD=reload_mode=SET_AND_FORGET=1 */
-    pepit->epitlr = load_val;
+    /* set the load register especially if RLD=reload_mode=SET_AND_FORGET=1
+       and if the value is different from 0 which is the lowest counter value */
+    if(load_val != 0)
+        pepit->epitlr = load_val;
 
     /* ensure to start the counter in a proper state
        by clearing possible remaining compare event */
@@ -182,6 +212,8 @@ void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
     /* finally write the control register */
     pepit->epitcr = control_reg_tmp;
 
-    /* initialize the load register especially if RLD=reload_mode=SET_AND_FORGET=1 */
-    pepit->epitlr = load_val;
+    /* initialize the load register especially if RLD=reload_mode=SET_AND_FORGET=1 
+       and if the value is different from 0 which is the lowest counter value */
+    if(load_val != 0)
+        pepit->epitlr = load_val;
 }

@@ -410,7 +410,7 @@ typedef enum sata_phy_ref_clk {
     OSC_25MHZ,
     OSC_50MHZ,
     FUSE_USB_PHY_CLK,
-    ANATOP_ENET_PLL,
+    CCM_PLL_ENET,
     OSC_UNKNOWN = -1,
 } sata_phy_ref_clk_t;
 

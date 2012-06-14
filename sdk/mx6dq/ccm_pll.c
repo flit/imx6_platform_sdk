@@ -256,7 +256,7 @@ void ldb_clock_config(int freq, int ipu_index)
     if (freq == 65000000)       //for XGA resolution
     {
         /*config pll3 PFD1 to 455M. pll3 is 480M */
-        writel(0x1311130C, ANATOP_BASE_ADDR + 0xF0);
+	BW_CCM_ANALOG_PFD_480_PFD1_FRAC(19);
 
         if (ipu_index == 1) {
             /*set ldb_di0_clk_sel to PLL3 PFD1 */
@@ -299,20 +299,6 @@ void hdmi_clock_set(int ipu_index, uint32_t pclk)
     uint32_t regval = 0;
 
     if (pclk == 74250000) {
-#if 0
-        writel(750000, ANATOP_BASE_ADDR + 0xB0);    //set the nominator
-        writel(1000000, ANATOP_BASE_ADDR + 0xC0);   //set the denominator
-        writel(0x00012018, ANATOP_BASE_ADDR + 0xA0);    //bypass VIDPLL
-        while (!(readl(ANATOP_BASE_ADDR + 0xA0) & 0x80000000)) ;    //waiting for the pll lock
-
-        writel(0x00010000, ANATOP_BASE_ADDR + 0xA8);    //disable bypass VIDPLL
-
-        /*clk output from 594M VIDPLL */
-        regval = readl(CCM_CHSCCDR) & (~0x1FF);
-        writel(regval | 0xB8, CCM_CHSCCDR);
-        regval = readl(CCM_CSCDR2) & (~0x1FF);
-        writel(regval | 0xB8, CCM_CSCDR2);
-#else
         if (ipu_index == 1) {
             /*clk output from 540M PFD1 of PLL3 */
             regval = reg32_read(CCM_CHSCCDR) & (~0x1FF);
@@ -324,28 +310,9 @@ void hdmi_clock_set(int ipu_index, uint32_t pclk)
         }
 
         /*config PFD1 of PLL3 to be 445MHz */
-        reg32_write(ANATOP_BASE_ADDR + 0xF8, 0x00003F00);
-        reg32_write(ANATOP_BASE_ADDR + 0xF4, 0x00001300);
-#endif
+        BW_CCM_ANALOG_PFD_480_PFD1_FRAC(0x13);
+
     } else if (pclk == 148500000) {
-#if 0
-        writel(500000, ANATOP_BASE_ADDR + 0xB0);    //set the nominator
-        writel(1000000, ANATOP_BASE_ADDR + 0xC0);   //set the denominator
-        writel(0x00012031, ANATOP_BASE_ADDR + 0xA0);    //bypass VIDPLL
-
-        while (!(readl(ANATOP_BASE_ADDR + 0xA0) & 0x80000000)) ;    //waiting for the pll lock
-
-        writel(0x00010000, ANATOP_BASE_ADDR + 0xA8);    //disable bypass VIDPLL
-
-        /*clk output from 1188M VIDPLL */
-        if (ipu_index == 1) {
-            regval = readl(CCM_CHSCCDR) & (~0x1FF);
-            writel(regval | 0xB8, CCM_CHSCCDR);
-        } else {
-            regval = readl(CCM_CSCDR2) & (~0x1FF);
-            writel(regval | 0xB8, CCM_CSCDR2);
-        }
-#else
         if (ipu_index == 1) {
             /*clk output from 540M PFD1 of PLL3 */
             regval = reg32_read(CCM_CHSCCDR) & (~0x1FF);
@@ -356,9 +323,8 @@ void hdmi_clock_set(int ipu_index, uint32_t pclk)
             reg32_write(CCM_CSCDR2, regval | 0x168);
         }
         /*config PFD1 of PLL3 to be 445MHz */
-        reg32_write(ANATOP_BASE_ADDR + 0xF8, 0x00003F00);
-        reg32_write(ANATOP_BASE_ADDR + 0xF4, 0x00001300);
-#endif
+	BW_CCM_ANALOG_PFD_480_PFD1_FRAC(0x10);
+	
     } else {
         printf("the hdmi pixel clock is not supported!\n");
     }
@@ -429,7 +395,7 @@ void sata_clock_disable(void)
  */
 void sata_get_phy_src_clk(sata_phy_ref_clk_t * phy_ref_clk)
 {
-    *phy_ref_clk = ANATOP_ENET_PLL;
+    *phy_ref_clk = CCM_PLL_ENET;
 }
 
 /*!
@@ -514,4 +480,40 @@ void ccm_enter_low_power(lp_modes_t lp_mode)
              "isb;");
 
     return;
+}
+
+void mipi_clock_set(void)
+{
+	BW_CCM_ANALOG_PFD_480_PFD1_FRAC(0x10);
+}
+
+void mipi_csi2_clock_set(void)
+{
+    /*set VIDPLL(PLL5) to 596MHz */
+    HW_CCM_ANALOG_PLL_VIDEO_WR(0x00002018);	
+    HW_CCM_ANALOG_PLL_VIDEO_NUM_WR(0x00000000);
+    HW_CCM_ANALOG_PLL_VIDEO_DENOM_WR(0x00000001);
+    while(!(HW_CCM_ANALOG_PLL_VIDEO_RD() & 0x80000000)); //waiting for PLL lock
+    HW_CCM_ANALOG_PLL_VIDEO_CLR(0x00010000); //disable bypass VIDPLL
+	
+    /*select CSI0_MCLK osc_clk 24MHz, CKO1 output drives cko2 clock */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_MCLK, ALT3);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, 0x1B0B0);
+    reg32_write(CCM_CCOSR, 0x10e0180);
+}
+
+void gpu_clock_config(void)
+{
+    HW_CCM_ANALOG_PLL_VIDEO_NUM_WR(0xFF0D6C3);
+    HW_CCM_ANALOG_PLL_VIDEO_WR(0x12002);
+    while(!(HW_CCM_ANALOG_PLL_VIDEO_RD() & 0x80000000)); //waiting for PLL lock
+    HW_CCM_ANALOG_PLL_VIDEO_WR(0x80002002);
+
+    //ldb_di0_clk select PLL5
+    reg32_write(CCM_CS2CDR, reg32_read(CCM_CS2CDR) & 0xfffff1ff);
+
+    reg32_write(IOMUXC_GPR3, (reg32_read(IOMUXC_GPR3) & 0xfffffcff) | 0x80);    // ipu_mux
+    reg32_write(CCM_CHSCCDR, reg32_read(CCM_CHSCCDR) | 0x3);    // ipu1_di0_clk_sel: ldb_di0_clk
+    reg32_write(CCM_CSCMR2, reg32_read(CCM_CSCMR2) | 0xc00);    // ldb_di0 divided by 3.5
+    reg32_write(CCM_CSCDR2, reg32_read(CCM_CSCDR2) | 0x603);
 }

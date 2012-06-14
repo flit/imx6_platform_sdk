@@ -23,6 +23,7 @@ extern uint8_t uart_getchar(struct hw_module *port);
 
 extern void lvds_power_on(void);
 extern void ipu_iomux_config(void);
+extern void gpu_clock_config(void);
 
 int width = GPU_DEMO_WIDTH;
 int height = GPU_DEMO_HEIGHT;
@@ -84,18 +85,7 @@ int gpu_test(void)
 
     lvds_power_on();
 
-    //configure the video PLL
-    reg32_write(ANATOP_BASE_ADDR + 0xb0, 0xFF0D6C3);
-    reg32_write(ANATOP_BASE_ADDR + 0xa0, 0x12002);
-    while (!(reg32_read(ANATOP_BASE_ADDR + 0xa0) & 0x80000000)) ;
-    reg32_write(ANATOP_BASE_ADDR + 0xa0, 0x80002002);
-    //ldb_di0_clk select PLL5
-    reg32_write(CCM_CS2CDR, reg32_read(CCM_CS2CDR) & 0xfffff1ff);
-
-    reg32_write(IOMUXC_GPR3, (reg32_read(IOMUXC_GPR3) & 0xfffffcff) | 0x80);    // ipu_mux
-    reg32_write(CCM_CHSCCDR, reg32_read(CCM_CHSCCDR) | 0x3);    // ipu1_di0_clk_sel: ldb_di0_clk
-    reg32_write(CCM_CSCMR2, reg32_read(CCM_CSCMR2) | 0xc00);    // ldb_di0 divided by 3.5
-    reg32_write(CCM_CSCDR2, reg32_read(CCM_CSCDR2) | 0x603);
+    gpu_clock_config();
 
     ipu_setup_xga(0x24000000, 1, width, height, 0x18000000, 0x18800000, 0, 0, 1);
 

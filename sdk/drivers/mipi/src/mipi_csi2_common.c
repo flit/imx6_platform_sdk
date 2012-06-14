@@ -23,6 +23,7 @@ extern void mipi_cam_power_on(void);
 extern void mipi_ipu_csi_config(void);
 extern void mipi_sensor_config(unsigned int i2c_base);
 extern char receive_char(void);
+extern void mipi_csi2_clock_set(void);
 
 static void mipi_sensor_i2c_init(unsigned int base, unsigned int baud)
 {
@@ -189,20 +190,6 @@ void i2c2_sensor_on(unsigned int i2c_base)
     mipi_sensor_write_reg(i2c_base, 0x483b, 0x33);  //mipi  reset;
     mipi_sensor_write_reg(i2c_base, 0x3007, 0xff);  //sleep;
 
-}
-void mipi_csi2_clock_set(void)
-{
-    /*set VIDPLL(PLL5) to 596MHz */
-    reg32_write(ANATOP_BASE_ADDR + 0xA0, 0x00002018);   // interger  = 24
-    reg32_write(ANATOP_BASE_ADDR + 0xB0, 0x00000000);   // num = 0
-    reg32_write(ANATOP_BASE_ADDR + 0xC0, 0x00000001);   // denom = 1, any value is okay
-    while (!(reg32_read(ANATOP_BASE_ADDR + 0xA0) & 0x80000000)) ;   // wait for PLL lock
-    reg32_write(ANATOP_BASE_ADDR + 0xA8, 0x00010000);
-
-    /*select CSI0_MCLK osc_clk 24MHz, CKO1 output drives cko2 clock */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_MCLK, ALT3);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, 0x1B0B0);
-    reg32_write(CCM_CCOSR, 0x10e0180);
 }
 
 int32_t mipi_csi2_set_lanes(uint32_t lanes)

@@ -441,12 +441,6 @@ void mipi_display_reset(void)
 #endif
 }
 
-void mipi_clock_set(void)
-{
-    /*change back to default value, why?? */
-    reg32_write(ANATOP_BASE_ADDR + 0xF8, 0x00003F00);
-    reg32_write(ANATOP_BASE_ADDR + 0xF4, 0x00001000);
-}
 
 /* dummy empty function for camera_test
  * camera power is always on for MX6SDL SMD board*/

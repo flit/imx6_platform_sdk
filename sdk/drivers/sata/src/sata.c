@@ -710,7 +710,7 @@ static void sata_clock_init(sata_phy_ref_clk_t * phyclk)
         PRINT(1, "+SATADBGMSG: SATA PHY Clock 25MHz Osc\n");
     } else if (clk_val == FUSE_USB_PHY_CLK) {
         PRINT(1, "+SATADBGMSG: SATA PHY Clock <= USB PHY1\n");
-    } else if (clk_val == ANATOP_ENET_PLL) {
+    } else if (clk_val == CCM_PLL_ENET) {
         PRINT(1, "+SATADBGMSG: SATA PHY Clock <= ANATOP ENET PLL\n");
     }
 

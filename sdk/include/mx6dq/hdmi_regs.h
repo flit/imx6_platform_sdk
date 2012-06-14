@@ -16,11 +16,6 @@
 
 #include "soc_memory_map.h"
 
-// ANALOG registers
-#define HW_ANADIG_PLL_VIDEO         ANATOP_BASE_ADDR + 0x0a0
-#define HW_ANADIG_PLL_VIDEO_NUM     ANATOP_BASE_ADDR + 0x0b0
-#define HW_ANADIG_PLL_VIDEO_DENUM   ANATOP_BASE_ADDR + 0x0c0
-
 // HDMI PHY REGISTERS
 #define CREGS_PLL_DIV_ADDR              0x06
 #define CREGS_PLL_GMP_CNTRL_ADDR        0x15

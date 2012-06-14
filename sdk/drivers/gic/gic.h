@@ -26,7 +26,7 @@ extern "C" {
 void gic_enable(bool enableIt);
 void gic_set_irq_security(uint32_t irqID, bool isSecure);
 void gic_enable_irq(uint32_t irqID, bool isEnabled);
-void gic_set_cpu_target(uint32_t irqID, uint32_t cpuMask, bool enableIt);
+void gic_set_cpu_target(uint32_t irqID, unsigned cpuNumber, bool enableIt);
 void gic_set_irq_priority(uint32_t irq_id, uint32_t priority);
 void gic_send_sgi(uint32_t irq_id, uint32_t target_cpu, uint32_t filter);
 //@}

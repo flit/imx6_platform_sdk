@@ -4,6 +4,7 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
+#include <assert.h>
 #include "gic/gic.h"
 #include "gic_registers.h"
 #include "cortex_a9.h"
@@ -112,9 +113,13 @@ void gic_set_irq_priority(uint32_t ID, uint32_t priority)
     gicd->IPRIORITYRn[ID] = priority & 0xff;
 }
 
-void gic_set_cpu_target(uint32_t irqID, uint32_t cpuMask, bool enableIt)
+void gic_set_cpu_target(uint32_t irqID, unsigned cpuNumber, bool enableIt)
 {
+    // Make sure the CPU number is valid.
+    assert(cpuNumber <= 7);
+    
     gicd_t * gicd = gic_get_gicd();
+    uint8_t cpuMask = 1 << cpuNumber;
     
     // Like the priority registers, the target registers are byte accessible, and the register
     // struct has the them as a byte array, so we can just index directly by the

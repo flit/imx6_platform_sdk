@@ -9,7 +9,6 @@
 #define _FLASH_H_
 
 #include "sdk.h"
-#include "flash_id.h"
 
 #define flash_print printf
 
@@ -33,6 +32,8 @@
 #define FLASH_CFI_X8		0x00
 #define FLASH_CFI_X16		0x01
 #define FLASH_CFI_X8X16		0x02
+
+#define FLASH_UNKNOWN   0xFFFF
 
 #define CFI_FLASH_SHIFT_WIDTH	3
 

@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "drivers/media/media_cache.h"
-#include "../../../../sdk/usdhc/inc/usdhc_ifc.h"
+#include "usdhc/inc/usdhc_ifc.h"
 
 extern uint32_t g_usdhc_base_addr;
 extern uint8_t read_buf[];

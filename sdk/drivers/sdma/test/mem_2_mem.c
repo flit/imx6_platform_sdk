@@ -12,11 +12,15 @@
 #include "sdma_test.h"
 #include "hardware.h"
 
+#define DDR_2_DDR	0
+
 #define MEM2MEM_TEST_BUF_SZ 		1024*8
 
+#if DDR_2_DDR
 /* Uncacheable & unbufferable area startes */
 static uint32_t src_buf[2][MEM2MEM_TEST_BUF_SZ];
 static uint32_t dst_buf[2][MEM2MEM_TEST_BUF_SZ];
+#endif
 
 static sdma_bd_t bd[2];
 static char env_buffer[SDMA_ENV_BUF_SIZE];
@@ -26,24 +30,43 @@ int mem_2_mem_test(void)
 {
     int idx, channel;
     sdma_chan_desc_t chan_desc;
+    uint32_t *src_buf_p[2], *dst_buf_p[2];
 
     printf("Memory to memory test starts.\n");
 
-    MEM_VIRTUAL_2_PHYSICAL(src_buf, sizeof(src_buf), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
-    MEM_VIRTUAL_2_PHYSICAL(dst_buf, sizeof(dst_buf), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+#if DDR_2_DDR
+    src_buf_p[0] = (uint32_t *) & src_buf[0][0];
+    src_buf_p[1] = (uint32_t *) & src_buf[1][0];
+    dst_buf_p[0] = (uint32_t *) & dst_buf[0][0];
+    dst_buf_p[1] = (uint32_t *) & dst_buf[1][0];
+#else
+    src_buf_p[0] = (uint32_t *) IRAM_BASE_ADDR;
+    src_buf_p[1] = (uint32_t *) (IRAM_BASE_ADDR + MEM2MEM_TEST_BUF_SZ * 4);
+    dst_buf_p[0] = (uint32_t *) (IRAM_BASE_ADDR + MEM2MEM_TEST_BUF_SZ * 4 * 2);
+    dst_buf_p[1] = (uint32_t *) (IRAM_BASE_ADDR + MEM2MEM_TEST_BUF_SZ * 4 * 3);
+#endif
+
+    MEM_VIRTUAL_2_PHYSICAL(src_buf_p[0], sizeof(MEM2MEM_TEST_BUF_SZ * 4),
+                           MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(src_buf_p[1], sizeof(MEM2MEM_TEST_BUF_SZ * 4),
+                           MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(dst_buf_p[0], sizeof(MEM2MEM_TEST_BUF_SZ * 4),
+                           MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
+    MEM_VIRTUAL_2_PHYSICAL(dst_buf_p[1], sizeof(MEM2MEM_TEST_BUF_SZ * 4),
+                           MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
     MEM_VIRTUAL_2_PHYSICAL(env_buf, sizeof(env_buffer), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
     MEM_VIRTUAL_2_PHYSICAL(bd, sizeof(bd), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
 
     /* Initialize buffer for testing */
-    memset(src_buf[0], 0x5A, MEM2MEM_TEST_BUF_SZ * 4);
-    memset(src_buf[1], 0xA5, MEM2MEM_TEST_BUF_SZ * 4);
+    memset(src_buf_p[0], 0x5A, MEM2MEM_TEST_BUF_SZ * 4);
+    memset(src_buf_p[1], 0xA5, MEM2MEM_TEST_BUF_SZ * 4);
 
-    memset(dst_buf[0], 0x00, MEM2MEM_TEST_BUF_SZ * 4);
-    memset(dst_buf[1], 0x00, MEM2MEM_TEST_BUF_SZ * 4);
+    memset(dst_buf_p[0], 0x00, MEM2MEM_TEST_BUF_SZ * 4);
+    memset(dst_buf_p[1], 0x00, MEM2MEM_TEST_BUF_SZ * 4);
 
     /* Initialize SDMA */
     printf("Initialize SDMA environment.\n");
-    if (SDMA_RETV_SUCCESS != sdma_init((uint32_t *)env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
+    if (SDMA_RETV_SUCCESS != sdma_init((uint32_t *) env_buffer, SDMA_IPS_HOST_BASE_ADDR)) {
         printf("SDMA initialization failed.\n");
         return FALSE;
     }
@@ -62,12 +85,12 @@ int mem_2_mem_test(void)
 
     /* Setup buffer descriptors */
     bd[0].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_CONT | (MEM2MEM_TEST_BUF_SZ << 2);
-    bd[0].buf_addr = (uint32_t)src_buf[0];
-    bd[0].ext_buf_addr = (uint32_t)dst_buf[0];
+    bd[0].buf_addr = (uint32_t) src_buf_p[0];
+    bd[0].ext_buf_addr = (uint32_t) dst_buf_p[0];
 
     bd[1].mode = SDMA_FLAGS_BUSY | SDMA_FLAGS_WRAP | (MEM2MEM_TEST_BUF_SZ << 2);
-    bd[1].buf_addr = (uint32_t)src_buf[1];
-    bd[1].ext_buf_addr = (uint32_t)dst_buf[1];
+    bd[1].buf_addr = (uint32_t) src_buf_p[1];
+    bd[1].ext_buf_addr = (uint32_t) dst_buf_p[1];
 
     /* Open channel */
     printf("Open SDMA channel for transfer.\n");
@@ -91,7 +114,7 @@ int mem_2_mem_test(void)
     } while (!(status & SDMA_CHANNEL_STATUS_DONE));
     perf_cnt = StopPerfCounter();
 
-    float interval = ((float)(perf_cnt)) / ((float)GetCPUFreq());
+    float interval = ((float)(perf_cnt)) / ((float)get_main_clock(CPU_CLK));
     float speed = (float)(MEM2MEM_TEST_BUF_SZ * 2 * 4) / 1024.0f / interval;
     printf("mem-2-mem speed: %d KB/s\n", (int)speed);
 
@@ -104,13 +127,13 @@ int mem_2_mem_test(void)
     /* Check data transfered */
     printf("Verify data transfered.\n");
     for (idx = 0; idx < MEM2MEM_TEST_BUF_SZ; idx++) {
-        if (src_buf[0][idx] != dst_buf[0][idx]) {
-            printf("Word %d mismatch: 0x%x, 0x%x\n", idx + 1, src_buf[0][idx], dst_buf[0][idx]);
+        if (*src_buf_p[0]++ != *dst_buf_p[0]++) {
+            printf("Word %d mismatch: 0x%x, 0x%x\n", idx + 1, *src_buf_p[0], *dst_buf_p[0]);
             return FALSE;
         }
 
-        if (src_buf[1][idx] != dst_buf[1][idx]) {
-            printf("Word %d mismatch: 0x%x, 0x%x\n", idx + 1, src_buf[1][idx], dst_buf[1][idx]);
+        if (*src_buf_p[1]++ != *dst_buf_p[1]++) {
+            printf("Word %d mismatch: 0x%x, 0x%x\n", idx + 1, *src_buf_p[1], *dst_buf_p[1]);
             return FALSE;
         }
     }

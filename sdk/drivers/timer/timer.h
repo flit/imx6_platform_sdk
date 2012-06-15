@@ -11,19 +11,25 @@
  * @ingroup diag_timer
  */
 
-#ifndef __TIME_H__
-#define __TIME_H__
+#ifndef __TIMER_H__
+#define __TIMER_H__
 
 #include "sdk.h"
+
+////////////////////////////////////////////////////////////////////////////////
+// Constants
+////////////////////////////////////////////////////////////////////////////////
 
 /* these defines are common to EPIT and GPT modules */
 #define WAIT_MODE_EN    1
 #define STOP_MODE_EN    2
+
 #define CLKSRC_OFF      0x0 // clock source is OFF
 #define CLKSRC_IPG_CLK  0x1 // clock source is peripheral clock
 #define CLKSRC_PER_CLK  0x2 // clock source is high-freq reference clock
 #define CLKSRC_CLKIN    0x3 // clock source is external from a CLKIN input
 #define CLKSRC_CKIL     0x3 // clock source is low-freq reference clock
+
 /* list of output modes supported by the EPIT and GPT */
 #define OUTPUT_CMP_DISABLE  0x0 // output disconnected from pad
 #define OUTPUT_CMP_TOGGLE   0x1 // output toggle mode
@@ -31,7 +37,34 @@
 #define OUTPUT_CMP_SET      0x3 // output set high mode
 #define OUTPUT_CMP_LOWPULSE 0x4 // output set high mode
 
+////////////////////////////////////////////////////////////////////////////////
+// API
+////////////////////////////////////////////////////////////////////////////////
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
+/*!
+ * @brief Delay for a given number of microseconds.
+ *
+ * @param usecs Delay in microseconds.
+ */
 void hal_delay_us(uint32_t usecs);
+
+/*!
+ * Init function used of the EPIT timer used for delay.
+ */
 void system_time_init(void);
 
-#endif /* __TIME_H__ */
+//! @brief 
+uint64_t time_get_microseconds();
+
+#if defined(__cplusplus)
+}
+#endif
+
+#endif // __TIMER_H__
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

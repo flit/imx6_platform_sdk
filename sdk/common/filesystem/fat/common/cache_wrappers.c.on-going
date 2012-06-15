@@ -21,6 +21,7 @@
 //#include <arm_ghs.h>
 #include "usdhc/inc/usdhc_ifc.h"
 #include <assert.h>
+#include "timer/timer.h"
 
 extern uint32_t g_usdhc_base_addr;
 
@@ -91,8 +92,10 @@ RtStatus_t FSEraseSector(int32_t deviceNumber, int32_t sectorNumber)
 extern uint8_t g_cache_buf[];
 extern uint32_t g_start_sector;
 
+uint64_t g_last_time = 0;
+
 /* enable only one option, not both */
-#define RAM_FS
+//#define RAM_FS
 //#define NON_CACHED
 
 int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t writeType, uint32_t * token)
@@ -103,8 +106,12 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
     uint32_t actualSectorNumber = sectorNumber;
     uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
     uint32_t sectorNum, sector_offset = 0;
+    uint64_t current_time;
 
 //   printf("s %X \n",actualSectorNumber);
+    current_time = time_get_microseconds();
+    printf("t=%lld\n",current_time - g_last_time);
+    g_last_time = current_time;
 
     // Handle FAT cache.
     bool isFat = IsFATSector(deviceNumber, sectorNumber);

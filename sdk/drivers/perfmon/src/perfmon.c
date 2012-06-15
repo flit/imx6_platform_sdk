@@ -233,7 +233,7 @@ void perfmon_interrupt_routine(void)
  */
 void perfmon_setup_interrupt(perfmon_id_e id, uint8_t state)
 {
-    if (state == ENABLE) {
+    if (state == TRUE) {
         /* register the IRQ sub-routine */
         register_interrupt_routine(perfmon_list[id].irq_id, &perfmon_interrupt_routine);
         /* enable the IRQ */
@@ -268,7 +268,7 @@ void perfmon_open(perfmon_id_e id)
     last_stats[id] = malloc(sizeof(perfmon_res_t));
 
     /* configure the interrupt */
-    perfmon_setup_interrupt(id, ENABLE);
+    perfmon_setup_interrupt(id, TRUE);
 
     return;
 }
@@ -286,7 +286,7 @@ void perfmon_close(perfmon_id_e id)
     reg32_write(base + HW_PERFMON_CTRL_SET,
                 BM_PERFMON_CTRL_SFTRST | BM_PERFMON_CTRL_CLKGATE);
 
-    perfmon_setup_interrupt(id, DISABLE);
+    perfmon_setup_interrupt(id, FALSE);
 
     /* switch off the clock */
     clock_gating_config(base, CLOCK_OFF);

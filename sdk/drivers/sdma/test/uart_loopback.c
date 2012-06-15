@@ -102,7 +102,7 @@ static void uart_loopback_init(struct hw_module *port, uint32_t baudrate)
     uart_set_FIFO_mode(port, RX_FIFO, RX_FIFO_WATERMARK_LEVEL, DMA_MODE);
 
     /* Enable loopback mode */
-    uart_set_loopback_mode(port, ENABLE);
+    uart_set_loopback_mode(port, TRUE);
 
     return;
 }

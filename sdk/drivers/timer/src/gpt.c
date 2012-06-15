@@ -200,7 +200,7 @@ void gpt_counter_enable(struct hw_module *port, uint32_t irq_mode)
  */
 void gpt_setup_interrupt(struct hw_module *port, uint8_t state)
 {
-    if (state == ENABLE) {    
+    if (state == TRUE) {    
         /* register the IRQ sub-routine */
         register_interrupt_routine(port->irq_id, port->irq_subroutine);
         /* enable the IRQ */

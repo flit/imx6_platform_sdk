@@ -116,7 +116,7 @@ void epit_tick_test(void)
     g_tick_timer.freq = get_main_clock(IPG_CLK);
     epit_init(&g_tick_timer, CLKSRC_IPG_CLK, g_tick_timer.freq/1000000,
               SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
-    epit_setup_interrupt(&g_tick_timer, ENABLE);
+    epit_setup_interrupt(&g_tick_timer, TRUE);
     epit_counter_enable(&g_tick_timer, 10000, IRQ_MODE);
 
     while ((counter/100) != max_duration) {

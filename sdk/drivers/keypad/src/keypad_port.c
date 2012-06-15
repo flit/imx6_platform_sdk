@@ -182,7 +182,7 @@ void kpp_interrupt_routine(void)
  */
 void kpp_setup_interrupt(uint8_t state)
 {
-    if (state == ENABLE) {    
+    if (state == TRUE) {    
         /* clear status flags and synchronizer chains */
         writew(0xF, KPP_KPSR);
         /* register the IRQ sub-routine */
@@ -225,7 +225,7 @@ void kpp_open(uint8_t kpp_col, uint8_t kpp_row)
     writew(0xF, KPP_KPSR);
 
     /* set up the interrupt */
-    kpp_setup_interrupt(ENABLE);
+    kpp_setup_interrupt(TRUE);
 }
 
 /*!
@@ -236,5 +236,5 @@ void kpp_close(void)
 {
     /* disable the interrupts */
     disable_irq(KDIE | KRIE);
-    kpp_setup_interrupt(DISABLE);
+    kpp_setup_interrupt(FALSE);
 }

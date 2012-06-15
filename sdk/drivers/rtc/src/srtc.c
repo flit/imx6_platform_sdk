@@ -52,7 +52,7 @@ static struct snvs_srtc_module_ snvs_srtc_module = {
  */
 void snvs_srtc_setup_interrupt(struct hw_module *port, uint8_t state)
 {
-    if (state == ENABLE) {    
+    if (state == TRUE) {    
         /* register the IRQ sub-routine */
         register_interrupt_routine(port->irq_id, port->irq_subroutine);
         /* enable the IRQ */
@@ -73,18 +73,18 @@ void snvs_srtc_interrupt_handler(void)
     volatile struct mx_snvs *psnvs = 
         (volatile struct mx_snvs *)snvs_srtc_module.port->base;
 
-    snvs_srtc_setup_interrupt(snvs_srtc_module.port, DISABLE);
+    snvs_srtc_setup_interrupt(snvs_srtc_module.port, FALSE);
 
     if((psnvs->lpsr & LPSR_LPTA) && (snvs_srtc_module.onetime_timer_callback != NULL))
     {
         psnvs->lpsr &= ~LPSR_LPTA;
         snvs_srtc_module.onetime_timer_callback();
         snvs_srtc_module.onetime_timer_callback = NULL;
-        snvs_srtc_alarm(snvs_srtc_module.port, DISABLE);
+        snvs_srtc_alarm(snvs_srtc_module.port, FALSE);
     }   
     else
     {
-        snvs_srtc_setup_interrupt(snvs_srtc_module.port, ENABLE);
+        snvs_srtc_setup_interrupt(snvs_srtc_module.port, TRUE);
     }
 }
 
@@ -100,10 +100,10 @@ void srtc_init(void)
     snvs_init(snvs_srtc_module.port);
 
     /* Start SRTC counter */
-    snvs_srtc_counter(snvs_srtc_module.port, ENABLE);
+    snvs_srtc_counter(snvs_srtc_module.port, TRUE);
 
     /* Keep time alarm disabled */
-    snvs_srtc_alarm(snvs_srtc_module.port, DISABLE);
+    snvs_srtc_alarm(snvs_srtc_module.port, FALSE);
 }
 
 /*!
@@ -112,11 +112,11 @@ void srtc_init(void)
 void srtc_deinit(void)
 {
     /* Disable the interrupt */
-    snvs_srtc_setup_interrupt(snvs_srtc_module.port, DISABLE);
+    snvs_srtc_setup_interrupt(snvs_srtc_module.port, FALSE);
 
     /* Disable the counter */
-    snvs_srtc_counter(snvs_srtc_module.port, DISABLE);
-    snvs_srtc_alarm(snvs_srtc_module.port, DISABLE);
+    snvs_srtc_counter(snvs_srtc_module.port, FALSE);
+    snvs_srtc_alarm(snvs_srtc_module.port, FALSE);
 
     /* Deinitialize SNVS */
     snvs_deinit(snvs_srtc_module.port);
@@ -131,7 +131,7 @@ void srtc_deinit(void)
 void srtc_setup_onetime_timer(uint32_t timeout, funct_t callback)
 {
     /* Disables the interrupt */
-    snvs_srtc_setup_interrupt(snvs_srtc_module.port, DISABLE);
+    snvs_srtc_setup_interrupt(snvs_srtc_module.port, FALSE);
 
     /* Clear the SRTC counter */
     snvs_srtc_set_counter(snvs_srtc_module.port, 0);
@@ -143,5 +143,5 @@ void srtc_setup_onetime_timer(uint32_t timeout, funct_t callback)
     snvs_srtc_module.onetime_timer_callback = callback;
 
     /* Reanable the interrupt */
-    snvs_srtc_setup_interrupt(snvs_srtc_module.port, ENABLE);
+    snvs_srtc_setup_interrupt(snvs_srtc_module.port, TRUE);
 }

@@ -30,9 +30,6 @@
 #define TRUE        1
 #define FALSE       0
 
-#define ENABLE      (1)
-#define DISABLE     (0)
-
 #define NONE_CHAR   (0xFF)
 
 //! @name Min/max macros

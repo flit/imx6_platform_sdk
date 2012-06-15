@@ -49,7 +49,7 @@ void snvs_rtc_interrupt_handler(void)
     volatile struct mx_snvs *psnvs = 
         (volatile struct mx_snvs *)snvs_rtc_module.port->base;
 
-    snvs_rtc_setup_interrupt(snvs_rtc_module.port, DISABLE);
+    snvs_rtc_setup_interrupt(snvs_rtc_module.port, FALSE);
 
     if(psnvs->hpsr & HPSR_HPTA)
     {
@@ -57,7 +57,7 @@ void snvs_rtc_interrupt_handler(void)
         {
             snvs_rtc_module.onetime_timer_callback();
             snvs_rtc_module.onetime_timer_callback = NULL;
-            snvs_rtc_alarm(snvs_rtc_module.port, DISABLE);
+            snvs_rtc_alarm(snvs_rtc_module.port, FALSE);
         }
     }   
     if(psnvs->hpsr & HPSR_PI)
@@ -66,7 +66,7 @@ void snvs_rtc_interrupt_handler(void)
             snvs_rtc_module.periodic_timer_callback();
     }
     if(snvs_rtc_module.periodic_timer_callback || snvs_rtc_module.onetime_timer_callback)
-        snvs_rtc_setup_interrupt(snvs_rtc_module.port, ENABLE);
+        snvs_rtc_setup_interrupt(snvs_rtc_module.port, TRUE);
 }
 
 
@@ -80,7 +80,7 @@ void snvs_rtc_interrupt_handler(void)
  */
 void snvs_rtc_setup_interrupt(struct hw_module *port, uint8_t state)
 {
-    if (state == ENABLE) {    
+    if (state == TRUE) {    
         /* register the IRQ sub-routine */
         register_interrupt_routine(port->irq_id, port->irq_subroutine);
         /* enable the IRQ */
@@ -106,14 +106,14 @@ void rtc_init(void)
     snvs_init(snvs_rtc_module.port);
 
     /* Start rtc counter */
-    snvs_rtc_counter(snvs_rtc_module.port, ENABLE);
+    snvs_rtc_counter(snvs_rtc_module.port, TRUE);
 
     /* Keeps alarms disabled */
-    snvs_rtc_alarm(snvs_rtc_module.port, DISABLE);
-    snvs_rtc_periodic_interrupt(snvs_rtc_module.port, 0, DISABLE);
+    snvs_rtc_alarm(snvs_rtc_module.port, FALSE);
+    snvs_rtc_periodic_interrupt(snvs_rtc_module.port, 0, FALSE);
 
     /* Enable interrupt */
-    snvs_rtc_setup_interrupt(snvs_rtc_module.port, ENABLE);
+    snvs_rtc_setup_interrupt(snvs_rtc_module.port, TRUE);
 }
 
 /*!
@@ -122,14 +122,14 @@ void rtc_init(void)
 void rtc_deinit(void)
 {
     /* Disable the interrupt */
-    snvs_rtc_setup_interrupt(snvs_rtc_module.port, DISABLE);
+    snvs_rtc_setup_interrupt(snvs_rtc_module.port, FALSE);
     snvs_rtc_module.onetime_timer_callback = NULL;
     snvs_rtc_module.periodic_timer_callback = NULL;
     
     /* Disable the counter and alarms*/
-    snvs_rtc_counter(snvs_rtc_module.port, DISABLE);
-    snvs_rtc_alarm(snvs_rtc_module.port, DISABLE);
-    snvs_rtc_periodic_interrupt(snvs_rtc_module.port, 0, DISABLE);
+    snvs_rtc_counter(snvs_rtc_module.port, FALSE);
+    snvs_rtc_alarm(snvs_rtc_module.port, FALSE);
+    snvs_rtc_periodic_interrupt(snvs_rtc_module.port, 0, FALSE);
     /* Deinitialize SNVS */
     snvs_deinit(snvs_rtc_module.port);
 }
@@ -143,7 +143,7 @@ void rtc_deinit(void)
 void rtc_setup_onetime_timer(uint64_t timeout, funct_t callback)
 {
     /* Disables interrupt */
-    snvs_rtc_setup_interrupt(snvs_rtc_module.port, DISABLE);
+    snvs_rtc_setup_interrupt(snvs_rtc_module.port, FALSE);
 
     /* Set secure real time counter to 0 */
     snvs_rtc_set_counter(snvs_rtc_module.port, 0);
@@ -155,7 +155,7 @@ void rtc_setup_onetime_timer(uint64_t timeout, funct_t callback)
     snvs_rtc_module.onetime_timer_callback = callback;
 
     /* Enable the interrupt */
-    snvs_rtc_setup_interrupt(snvs_rtc_module.port, ENABLE);
+    snvs_rtc_setup_interrupt(snvs_rtc_module.port, TRUE);
 }
 
 /*!
@@ -167,20 +167,20 @@ void rtc_setup_onetime_timer(uint64_t timeout, funct_t callback)
 void rtc_setup_periodic_timer(uint32_t periodic_bit, funct_t callback)
 {
     /* Disable interrupt */
-    snvs_rtc_setup_interrupt(snvs_rtc_module.port, DISABLE);
+    snvs_rtc_setup_interrupt(snvs_rtc_module.port, FALSE);
     
     /* Disable periodic interrupt */
-    snvs_rtc_periodic_interrupt(snvs_rtc_module.port, 0, DISABLE);
+    snvs_rtc_periodic_interrupt(snvs_rtc_module.port, 0, FALSE);
 
     /* Set the callback pointer */
     snvs_rtc_module.periodic_timer_callback = callback;
 
     /* Enable counter and periodic interrupt */
-    snvs_rtc_counter(snvs_rtc_module.port, ENABLE);
-    snvs_rtc_periodic_interrupt(snvs_rtc_module.port, periodic_bit, ENABLE);
+    snvs_rtc_counter(snvs_rtc_module.port, TRUE);
+    snvs_rtc_periodic_interrupt(snvs_rtc_module.port, periodic_bit, TRUE);
 
     /* Enable interrupt */
-    snvs_rtc_setup_interrupt(snvs_rtc_module.port, ENABLE);
+    snvs_rtc_setup_interrupt(snvs_rtc_module.port, TRUE);
 }
 
 /*!
@@ -189,14 +189,14 @@ void rtc_setup_periodic_timer(uint32_t periodic_bit, funct_t callback)
 void rtc_disable_periodic_timer(void)
 {
     /* Disable interrupts */
-    snvs_rtc_setup_interrupt(snvs_rtc_module.port, DISABLE);
+    snvs_rtc_setup_interrupt(snvs_rtc_module.port, FALSE);
 
     /* Disable RTC periodic interrupt */
-    snvs_rtc_periodic_interrupt(snvs_rtc_module.port, 0, DISABLE);
+    snvs_rtc_periodic_interrupt(snvs_rtc_module.port, 0, FALSE);
 
     /* Remove callback */
     snvs_rtc_module.periodic_timer_callback = NULL;
 
     /* Reenable interrupts */
-    snvs_rtc_setup_interrupt(snvs_rtc_module.port, ENABLE);
+    snvs_rtc_setup_interrupt(snvs_rtc_module.port, TRUE);
 }

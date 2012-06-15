@@ -61,9 +61,9 @@ int32_t uart_test(void)
     /* Set the IRQ mode for the Rx FIFO */
     uart_set_FIFO_mode(&uart_port, RX_FIFO, 1, IRQ_MODE);
     /* Enable loopback mode */
-    uart_set_loopback_mode(&uart_port, ENABLE);
+    uart_set_loopback_mode(&uart_port, TRUE);
     /* Set the ISR and enable the interrupts for UART3 */
-    uart_setup_interrupt(&uart_port, ENABLE);
+    uart_setup_interrupt(&uart_port, TRUE);
 
     do {
         g_wait_for_irq = 1;
@@ -75,7 +75,7 @@ int32_t uart_test(void)
         if (sel == 'x') {
             printf("\nTest exit.\n");
             /* Disable the interrupts for UART3 */
-            uart_setup_interrupt(&uart_port, DISABLE);
+            uart_setup_interrupt(&uart_port, FALSE);
             break;
         }
 

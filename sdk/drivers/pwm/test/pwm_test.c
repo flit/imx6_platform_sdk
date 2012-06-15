@@ -49,7 +49,7 @@ static void pwm_launch_test(void)
     }
 
     /* Setup interrupt for FIFO empty */
-    pwm_setup_interrupt(&pwm1, ENABLE, PWMIR_MASK_FIE);
+    pwm_setup_interrupt(&pwm1, TRUE, PWMIR_MASK_FIE);
 
     printf("PWM output start.\n");
 
@@ -63,7 +63,7 @@ static void pwm_launch_test(void)
     pwm_disable(&pwm1);
 
     /* Disable PWM interrupt */
-    pwm_setup_interrupt(&pwm1, DISABLE, PWMIR_MASK_FIE);
+    pwm_setup_interrupt(&pwm1, FALSE, PWMIR_MASK_FIE);
 }
 
 int pwm_test(void)

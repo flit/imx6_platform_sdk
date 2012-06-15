@@ -40,7 +40,7 @@ static int sd_get_rca(int base_address)
     }
 
     /* Configure CMD3 */
-    card_cmd_config(&cmd, CMD3, NO_ARG, READ, RESPONSE_48, DATA_PRESENT_NONE, ENABLE, ENABLE);
+    card_cmd_config(&cmd, CMD3, NO_ARG, READ, RESPONSE_48, DATA_PRESENT_NONE, TRUE, TRUE);
 
     usdhc_printf("Send CMD3.\n");
 
@@ -85,7 +85,7 @@ static int sd_set_bus_width(int base_address, int bus_width)
     }
 
     /* Configure CMD55 */
-    card_cmd_config(&cmd, CMD55, address, READ, RESPONSE_48, DATA_PRESENT_NONE, ENABLE, ENABLE);
+    card_cmd_config(&cmd, CMD55, address, READ, RESPONSE_48, DATA_PRESENT_NONE, TRUE, TRUE);
 
     usdhc_printf("Send CMD55.\n");
 
@@ -99,8 +99,8 @@ static int sd_set_bus_width(int base_address, int bus_width)
             bus_width = bus_width >> ONE;
 
             /* Configure ACMD6 */
-            card_cmd_config(&cmd, ACMD6, bus_width, READ, RESPONSE_48, DATA_PRESENT_NONE, ENABLE,
-                            ENABLE);
+            card_cmd_config(&cmd, ACMD6, bus_width, READ, RESPONSE_48, DATA_PRESENT_NONE, TRUE,
+                            TRUE);
 
             usdhc_printf("Send CMD6.\n");
 
@@ -177,7 +177,7 @@ int sd_voltage_validation(int base_address)
 
     while (loop < SD_IF_CMD_ARG_COUNT) {
         card_cmd_config(&cmd, CMD8, sd_if_cmd_arg[loop], READ, RESPONSE_48, DATA_PRESENT_NONE,
-                        ENABLE, ENABLE);
+                        TRUE, TRUE);
         if (host_send_cmd(base_address, &cmd) == FAIL) {
             loop++;
 
@@ -215,14 +215,14 @@ int sd_voltage_validation(int base_address)
     usdhc_printf("Send ACMD41.\n");
 
     while ((loop < SD_VOLT_VALID_COUNT) && (status == FAIL)) {
-        card_cmd_config(&cmd, CMD55, ZERO, READ, RESPONSE_48, DATA_PRESENT_NONE, ENABLE, ENABLE);
+        card_cmd_config(&cmd, CMD55, ZERO, READ, RESPONSE_48, DATA_PRESENT_NONE, TRUE, TRUE);
 
         if (host_send_cmd(base_address, &cmd) == FAIL) {
             usdhc_printf("Send CMD55 failed.\n");
             break;
         } else {
-            card_cmd_config(&cmd, ACMD41, ocr_value, READ, RESPONSE_48, DATA_PRESENT_NONE, DISABLE,
-                            DISABLE);
+            card_cmd_config(&cmd, ACMD41, ocr_value, READ, RESPONSE_48, DATA_PRESENT_NONE, FALSE,
+                            FALSE);
 
             if (host_send_cmd(base_address, &cmd) == FAIL) {
                 usdhc_printf("Send ACMD41 failed.\n");

@@ -81,7 +81,7 @@ void pwm_setup_interrupt(struct hw_module *port, uint8_t state, uint8_t mask)
 {
     pwm_reg_p reg_base = (pwm_reg_p) port->base;
 
-    if (state == ENABLE) {
+    if (state == TRUE) {
         /* Disable the IRQ first */
         disable_interrupt(port->irq_id, CPU_0);
 

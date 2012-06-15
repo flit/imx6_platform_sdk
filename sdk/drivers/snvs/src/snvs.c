@@ -27,7 +27,7 @@ void snvs_rtc_counter(struct hw_module *port, uint8_t state)
     volatile struct mx_snvs *psnvs = 
         (volatile struct mx_snvs *)port->base;
 
-    if( state == ENABLE )
+    if( state == TRUE )
     {
         /* Set RTC_EN bit in hpcr register */
         psnvs->hpcr |= HPCR_RTC_EN;
@@ -56,7 +56,7 @@ void snvs_rtc_alarm(struct hw_module *port, uint8_t state)
 {
     volatile struct mx_snvs *psnvs = (volatile struct mx_snvs *)port->base;
 
-    if( state == ENABLE )
+    if( state == TRUE )
     {
         /* Set HPTA_EN bit of hpcr register */
         psnvs->hpcr |= HPCR_HPTA_EN;
@@ -88,7 +88,7 @@ void snvs_rtc_periodic_interrupt(struct hw_module *port, uint8_t freq, uint8_t s
 {
     volatile struct mx_snvs *psnvs = (volatile struct mx_snvs *)port->base;
 
-    if( state == ENABLE )
+    if( state == TRUE )
     {
         if( freq > 15 )
             freq = 15;
@@ -126,14 +126,14 @@ void snvs_rtc_set_counter(struct hw_module *port, uint64_t count)
     volatile struct mx_snvs *psnvs = (volatile struct mx_snvs *)port->base;
 
     /* Disable RTC */
-    snvs_rtc_counter(port, DISABLE);
+    snvs_rtc_counter(port, FALSE);
 
     /* Program the counter */ 
     psnvs->hprtclr = (uint32_t)count;
     psnvs->hprtcmr = (uint32_t)(count >> 32);
 
     /* Reenable RTC */
-    snvs_rtc_counter(port, ENABLE);
+    snvs_rtc_counter(port, TRUE);
 }
 
 /*!
@@ -149,14 +149,14 @@ void snvs_rtc_set_alarm_timeout(struct hw_module *port, uint64_t timeout)
     volatile struct mx_snvs *psnvs = (volatile struct mx_snvs *)port->base;
 
     /* Disable alarm */
-    snvs_rtc_alarm(port, DISABLE);
+    snvs_rtc_alarm(port, FALSE);
 
     /* Program time alarm registers */
     psnvs->hptalr = (uint32_t)timeout;
     psnvs->hptamr = (uint32_t)(timeout >> 32);
 
     /* Reenable alarm */
-    snvs_rtc_alarm(port, ENABLE);
+    snvs_rtc_alarm(port, TRUE);
 }
 
 /*!
@@ -171,7 +171,7 @@ void snvs_srtc_counter(struct hw_module *port, uint8_t state)
     volatile struct mx_snvs *psnvs = (volatile struct mx_snvs *)port->base;
 
 
-    if(state == ENABLE)
+    if(state == TRUE)
     {
         psnvs->lpcr |= LPCR_RTC_EN;
         while((psnvs->lpcr & LPCR_RTC_EN) == 0);
@@ -194,7 +194,7 @@ void snvs_srtc_alarm(struct hw_module *port, uint8_t state)
 {
     volatile struct mx_snvs *psnvs = (volatile struct mx_snvs *)port->base;
 
-    if(state == ENABLE)
+    if(state == TRUE)
     {
         psnvs->lpcr |= LPCR_LPTA_EN;
         while((psnvs->lpcr & LPCR_LPTA_EN) == 0);
@@ -219,14 +219,14 @@ void snvs_srtc_set_counter(struct hw_module *port, uint64_t count)
     volatile struct mx_snvs *psnvs = (volatile struct mx_snvs *)port->base;
 
     /* Disable RTC */
-    snvs_srtc_counter(port, DISABLE);
+    snvs_srtc_counter(port, FALSE);
 
     /* Program the counter */ 
     psnvs->lpsrtclr = (uint32_t)count;
     psnvs->lpsrtcmr = (uint32_t)(count >> 32);
 
     /* Reenable RTC */
-    snvs_srtc_counter(port, ENABLE);
+    snvs_srtc_counter(port, TRUE);
 }
 
 /*!
@@ -241,13 +241,13 @@ void snvs_srtc_set_alarm_timeout(struct hw_module *port, uint32_t timeout)
     volatile struct mx_snvs *psnvs = (volatile struct mx_snvs *)port->base;
 
     /* Disable alarm */
-    snvs_srtc_alarm(port, DISABLE);
+    snvs_srtc_alarm(port, FALSE);
 
     /* Program time alarm register */
     psnvs->lptar = timeout;
 
     /* Reenable alarm */
-    snvs_srtc_alarm(port, ENABLE);
+    snvs_srtc_alarm(port, TRUE);
 }
 
 /*!

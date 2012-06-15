@@ -40,10 +40,10 @@ void power_modes_test(void)
     g_tick_timer.freq = get_main_clock(IPG_CLK);
     epit_init(&g_tick_timer, CLKSRC_CKIL, 33,
               SET_AND_FORGET, 5000, WAIT_MODE_EN | STOP_MODE_EN);
-    epit_setup_interrupt(&g_tick_timer, ENABLE);
+    epit_setup_interrupt(&g_tick_timer, TRUE);
 
     /* allow the EPIT2 interrupt source to wake up the processor */
-    ccm_set_lpm_wakeup_source(g_tick_timer.irq_id, ENABLE);
+    ccm_set_lpm_wakeup_source(g_tick_timer.irq_id, TRUE);
 
     /************* WAIT MODE *************************/
     printf("Entering wait state. The EPIT will wake up the core in ~5s.\n");

@@ -33,7 +33,7 @@ static int mmc_set_rca(int base_address)
 
     /* Configure CMD3 */
     card_cmd_config(&cmd, CMD3, (usdhc_device[port].rca << RCA_SHIFT), READ, RESPONSE_48,
-                    DATA_PRESENT_NONE, ENABLE, ENABLE);
+                    DATA_PRESENT_NONE, TRUE, TRUE);
 
     usdhc_printf("Send CMD3.\n");
 
@@ -66,7 +66,7 @@ static int mmc_set_bus_width(int base_address, int bus_width)
 
     /* Configure MMC Switch Command */
     card_cmd_config(&cmd, CMD6, MMC_SWITCH_SETBW_ARG(bus_width), READ,
-                    RESPONSE_48, DATA_PRESENT_NONE, ENABLE, ENABLE);
+                    RESPONSE_48, DATA_PRESENT_NONE, TRUE, TRUE);
 
     usdhc_printf("Send CMD6.\n");
 
@@ -136,8 +136,8 @@ int mmc_voltage_validation(int base_address)
 
     while ((count < MMC_VOLT_VALID_COUNT) && (status == FAIL)) {
         /* Configure CMD1 */
-        card_cmd_config(&cmd, CMD1, ocr_val, READ, RESPONSE_48, DATA_PRESENT_NONE, DISABLE,
-                        DISABLE);
+        card_cmd_config(&cmd, CMD1, ocr_val, READ, RESPONSE_48, DATA_PRESENT_NONE, FALSE,
+                        FALSE);
 
         /* Send CMD1 */
         if (host_send_cmd(base_address, &cmd) == FAIL) {

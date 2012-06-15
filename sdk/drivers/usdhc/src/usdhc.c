@@ -64,10 +64,10 @@ usdhc_inst_t usdhc_device[USDHC_NUMBER_PORTS] = {
 };
 
 /* Whether to enable ADMA */
-int SDHC_ADMA_mode = DISABLE;
+int SDHC_ADMA_mode = FALSE;
 
 /* Whether to enable Interrupt */
-int SDHC_INTR_mode = DISABLE;
+int SDHC_INTR_mode = FALSE;
 
 /********************************************* Static Function ******************************************/
 static int card_software_reset(int base_address)
@@ -76,7 +76,7 @@ static int card_software_reset(int base_address)
     int response = FAIL;
 
     /* Configure CMD0 */
-    card_cmd_config(&cmd, CMD0, NO_ARG, READ, RESPONSE_NONE, DATA_PRESENT_NONE, DISABLE, DISABLE);
+    card_cmd_config(&cmd, CMD0, NO_ARG, READ, RESPONSE_NONE, DATA_PRESENT_NONE, FALSE, FALSE);
 
     usdhc_printf("Send CMD0.\n");
 
@@ -169,7 +169,7 @@ int card_get_csd(int base_address)
 
     /* Configure CMD9 for MMC/SD card */
     mxcmci_cmd_config(&cmd, CMD9, card_address, READ, RESPONSE_136,
-                      DATA_PRESENT_NONE, ENABLE, DISABLE);
+                      DATA_PRESENT_NONE, TRUE, FALSE);
 
     if (host_send_cmd(base_address, &cmd) == SUCCESS) {
         response.format = RESPONSE_136;
@@ -199,20 +199,20 @@ void card_cmd_config(command_t * cmd, int index, int argument, xfer_type_t trans
     cmd->crc_check = crc;
     cmd->cmdindex_check = cmdindex;
     cmd->dma_enable = FALSE;
-    cmd->block_count_enable_check = DISABLE;
+    cmd->block_count_enable_check = FALSE;
     cmd->multi_single_block = SINGLE;
-    cmd->acmd12_enable = DISABLE;
-    cmd->ddren = DISABLE;
+    cmd->acmd12_enable = FALSE;
+    cmd->ddren = FALSE;
 
     /* Multi Block R/W Setting */
     if ((CMD18 == index) || (CMD25 == index)) {
-        if (SDHC_ADMA_mode == ENABLE) {
+        if (SDHC_ADMA_mode == TRUE) {
             cmd->dma_enable = TRUE;
         }
 
-        cmd->block_count_enable_check = ENABLE;
+        cmd->block_count_enable_check = TRUE;
         cmd->multi_single_block = MULTIPLE;
-        cmd->acmd12_enable = ENABLE;
+        cmd->acmd12_enable = TRUE;
     }
 }
 
@@ -223,7 +223,7 @@ int card_get_cid(int base_address)
     command_response_t response;
 
     /* Configure CMD2 */
-    card_cmd_config(&cmd, CMD2, NO_ARG, READ, RESPONSE_136, DATA_PRESENT_NONE, ENABLE, DISABLE);
+    card_cmd_config(&cmd, CMD2, NO_ARG, READ, RESPONSE_136, DATA_PRESENT_NONE, TRUE, FALSE);
 
     usdhc_printf("Send CMD2.\n");
 
@@ -253,7 +253,7 @@ int card_enter_trans(int base_address)
 
     /* Configure CMD7 */
     card_cmd_config(&cmd, CMD7, card_address, READ, RESPONSE_48_CHECK_BUSY,
-                    DATA_PRESENT_NONE, ENABLE, ENABLE);
+                    DATA_PRESENT_NONE, TRUE, TRUE);
 
     usdhc_printf("Send CMD7.\n");
 
@@ -282,7 +282,7 @@ int card_trans_status(int base_address)
 
     /* Configure CMD13 */
     card_cmd_config(&cmd, CMD13, card_address, READ, RESPONSE_48,
-                    DATA_PRESENT_NONE, ENABLE, ENABLE);
+                    DATA_PRESENT_NONE, TRUE, TRUE);
 
     usdhc_printf("Send CMD13.\n");
 
@@ -321,7 +321,7 @@ int card_set_blklen(int base_address, int len)
     int status = FAIL;
 
     /* Configure CMD16 */
-    card_cmd_config(&cmd, CMD16, len, READ, RESPONSE_48, DATA_PRESENT_NONE, ENABLE, ENABLE);
+    card_cmd_config(&cmd, CMD16, len, READ, RESPONSE_48, DATA_PRESENT_NONE, TRUE, TRUE);
 
     usdhc_printf("Send CMD16.\n");
 
@@ -349,7 +349,7 @@ int card_data_read(int base_address, int *dst_ptr, int length, int offset)
                  length, port + 1, offset, (int)dst_ptr);
 
     /* Get sector number */
-    if (SDHC_ADMA_mode == ENABLE) {
+    if (SDHC_ADMA_mode == TRUE) {
         /* For DMA mode, length should be sector aligned */
         if ((length % BLK_LEN) != 0) {
             length = length + BLK_LEN - (length % BLK_LEN);
@@ -383,12 +383,12 @@ int card_data_read(int base_address, int *dst_ptr, int length, int offset)
     host_cfg_block(base_address, BLK_LEN, sector, ESDHC_BLKATTR_WML_BLOCK);
 
     /* If DMA mode enabled, configure BD chain */
-    if (SDHC_ADMA_mode == ENABLE) {
+    if (SDHC_ADMA_mode == TRUE) {
         host_setup_adma(base_address, dst_ptr, length);
     }
 
     /* Use CMD18 for multi-block read */
-    card_cmd_config(&cmd, CMD18, offset, READ, RESPONSE_48, DATA_PRESENT, ENABLE, ENABLE);
+    card_cmd_config(&cmd, CMD18, offset, READ, RESPONSE_48, DATA_PRESENT, TRUE, TRUE);
 
     usdhc_printf("card_data_read: Send CMD18.\n");
 
@@ -398,7 +398,7 @@ int card_data_read(int base_address, int *dst_ptr, int length, int offset)
         return FAIL;
     } else {
         /* In polling IO mode, manually read data from Rx FIFO */
-        if (SDHC_ADMA_mode == DISABLE) {
+        if (SDHC_ADMA_mode == FALSE) {
             usdhc_printf("Non-DMA mode, read data from FIFO.\n");
 
             if (host_data_read(base_address, dst_ptr, length, ESDHC_BLKATTR_WML_BLOCK) == FAIL) {
@@ -429,7 +429,7 @@ int card_data_write(int base_address, int *src_ptr, int length, int offset)
                  length, port + 1, offset, (int)src_ptr);
 
     /* Get sector number */
-    if (SDHC_ADMA_mode == ENABLE) {
+    if (SDHC_ADMA_mode == TRUE) {
         /* For DMA mode, length should be sector aligned */
         if ((length % BLK_LEN) != 0) {
             length = length + BLK_LEN - (length % BLK_LEN);
@@ -460,12 +460,12 @@ int card_data_write(int base_address, int *src_ptr, int length, int offset)
     host_cfg_block(base_address, BLK_LEN, sector, ESDHC_BLKATTR_WML_BLOCK << ESDHC_WML_WRITE_SHIFT);
 
     /* If DMA mode enabled, configure BD chain */
-    if (SDHC_ADMA_mode == ENABLE) {
+    if (SDHC_ADMA_mode == TRUE) {
         host_setup_adma(base_address, src_ptr, length);
     }
 
     /* Use CMD25 for multi-block write */
-    card_cmd_config(&cmd, CMD25, offset, WRITE, RESPONSE_48, DATA_PRESENT, ENABLE, ENABLE);
+    card_cmd_config(&cmd, CMD25, offset, WRITE, RESPONSE_48, DATA_PRESENT, TRUE, TRUE);
 
     usdhc_printf("card_data_write: Send CMD25.\n");
 
@@ -474,7 +474,7 @@ int card_data_write(int base_address, int *src_ptr, int length, int offset)
         printf("Fail to send CMD25.\n");
         return FAIL;
     } else {
-        if (SDHC_ADMA_mode == DISABLE) {
+        if (SDHC_ADMA_mode == FALSE) {
             usdhc_printf("Non-DMA mode, write to FIFO.\n");
 
             if (host_data_write(base_address, src_ptr, length, ESDHC_BLKATTR_WML_BLOCK) == FAIL) {

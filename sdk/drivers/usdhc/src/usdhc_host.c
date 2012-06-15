@@ -78,7 +78,7 @@ static void usdhc_cmd_cfg(int base_address, command_t * cmd)
     esdhc_base->protocol_control &= ~ESDHC_PRTCTL_DMAS_MASK;
 
     /* If ADMA mode enabled and command with DMA, enable ADMA2 */
-    if ((cmd->dma_enable == ENABLE) && (SDHC_ADMA_mode == ENABLE)) {
+    if ((cmd->dma_enable == TRUE) && (SDHC_ADMA_mode == TRUE)) {
         esdhc_base->protocol_control |= ESDHC_PRTCTL_ADMA2_VAL;
     }
 
@@ -263,7 +263,7 @@ int host_send_cmd(int base_address, command_t * cmd)
     esdhc_base->interrupt_status |= ESDHC_STATUS_END_CMD_RESP_TIME_MSK;
 
     /* Enable interrupt when sending DMA commands */
-    if ((SDHC_INTR_mode == ENABLE) && (cmd->dma_enable == TRUE)) {
+    if ((SDHC_INTR_mode == TRUE) && (cmd->dma_enable == TRUE)) {
         int idx = card_get_port(base_address);
 
         /* Set interrupt flag to busy */
@@ -279,7 +279,7 @@ int host_send_cmd(int base_address, command_t * cmd)
     /* If DMA Enabled */
     if (cmd->dma_enable == TRUE) {
         /* Return in interrupt mode */
-        if (SDHC_INTR_mode == ENABLE) {
+        if (SDHC_INTR_mode == TRUE) {
             return SUCCESS;
         }
 

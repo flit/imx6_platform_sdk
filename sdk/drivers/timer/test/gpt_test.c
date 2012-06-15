@@ -95,7 +95,7 @@ void gpt_out_compare_test(void)
        clock of 1MHz => 1us per count */
     gpt_init(&gpt_timer, CLKSRC_IPG_CLK, gpt_timer.freq/1000000,
               RESTART_MODE, WAIT_MODE_EN | STOP_MODE_EN);
-    gpt_setup_interrupt(&gpt_timer, ENABLE);
+    gpt_setup_interrupt(&gpt_timer, TRUE);
 
     /* set a first compare event after 1s */
     gpt_set_compare_event(&gpt_timer, CMP_OUTPUT3, OUTPUT_CMP_DISABLE, 1000000);
@@ -168,7 +168,7 @@ void gpt_in_capture_test(void)
        clock of 1MHz => 1us per count */
     gpt_init(&gpt_timer, CLKSRC_IPG_CLK, 1,
               RESTART_MODE, WAIT_MODE_EN | STOP_MODE_EN);
-    gpt_setup_interrupt(&gpt_timer, ENABLE);
+    gpt_setup_interrupt(&gpt_timer, TRUE);
 
     /* set the capture mode to falling edge on CAPIN2 */
     gpt_set_capture_event(&gpt_timer, CAP_INPUT2, INPUT_CAP_FALLING_EDGE);

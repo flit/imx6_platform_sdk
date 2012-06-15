@@ -131,7 +131,7 @@ void uart_set_loopback_mode(struct hw_module *port, uint8_t state)
 {
     volatile struct imx_uart *puart = (volatile struct imx_uart *)port->base;
 
-    if (state == ENABLE)
+    if (state == TRUE)
         puart->uts |= UART_UTS_LOOP;
     else
         puart->uts &= ~UART_UTS_LOOP;
@@ -146,7 +146,7 @@ void uart_set_loopback_mode(struct hw_module *port, uint8_t state)
  */
 void uart_setup_interrupt(struct hw_module *port, uint8_t state)
 {
-    if (state == ENABLE) {
+    if (state == TRUE) {
         /* register the IRQ sub-routine */
         register_interrupt_routine(port->irq_id, port->irq_subroutine);
         /* enable the IRQ */

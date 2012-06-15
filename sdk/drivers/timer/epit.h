@@ -47,6 +47,8 @@ void epit_setup_interrupt(struct hw_module *port, uint8_t state);
 void epit_counter_enable(struct hw_module *port, uint32_t load_val, uint32_t irq_mode);
 void epit_counter_disable(struct hw_module *port);
 uint32_t epit_get_compare_event(struct hw_module *port);
+void epit_set_compare_event(struct hw_module *port, uint32_t compare_val);
+uint32_t epit_get_counter_value(struct hw_module *port);
 void epit_reload_counter(struct hw_module *port, uint32_t load_val);
 
 /* EPIT Registers list */

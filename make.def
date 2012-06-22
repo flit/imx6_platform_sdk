@@ -7,7 +7,7 @@
 
 # The following are defines for the GCC tool chain
 CC = arm-none-eabi-gcc
-CPP = arm-none-eabi-g++
+CXX = arm-none-eabi-g++
 AS = arm-none-eabi-as
 AR = arm-none-eabi-ar
 LN = arm-none-eabi-ld
@@ -127,8 +127,8 @@ C_FLAGS = $(C_FLAGS_WARNINGS) $(ARM_FLAGS) $(COMMON_C_FLAGS) $(OPTIMIZATION_FLAG
 C_FLAGS += -std=gnu99 -fgnu89-inline
 
 # C++ flags. Disable exceptions and RTTI.
-CPP_FLAGS = $(C_FLAGS_WARNINGS) $(ARM_FLAGS) $(COMMON_C_FLAGS) $(OPTIMIZATION_FLAGS)
-CPP_FLAGS += -fno-exceptions -fno-rtti
+CXX_FLAGS = $(C_FLAGS_WARNINGS) $(ARM_FLAGS) $(COMMON_C_FLAGS) $(OPTIMIZATION_FLAGS)
+CXX_FLAGS += -fno-exceptions -fno-rtti
 
 C_INCLUDES = \
     -I$(PROJ_DIR)/sdk/include  \

@@ -2759,6 +2759,45 @@ RetCode VPU_DecClrDispFlag(DecHandle handle, int32_t index)
     return RETCODE_SUCCESS;
 }
 
+static int BitCount(uint32_t u32)
+{
+    uint32_t tmp = u32 - ((u32 >> 1) & 033333333333) - ((u32 >> 2) & 011111111111);
+    tmp = ((tmp + (tmp >> 3)) & 030707070707);
+    tmp = (tmp + (tmp >> 6));
+    tmp = (tmp + (tmp >> 12) + (tmp >> 24)) & 077;
+
+    return ((int)tmp);
+}
+
+/*!
+ * check the VPU decoder buffer status. if there is avaible buffer for output,
+ * VPU can start to decode the next frame, or else, skip this loop and wait 
+ * untill available.
+ */
+RetCode VPU_DecBufferCheck(DecHandle handle)
+{
+    CodecInst *pCodecInst;
+    DecInfo *pDecInfo;
+    RetCode ret;
+    int val;
+
+    ret = CheckDecInstanceValidity(handle);
+    if (ret != RETCODE_SUCCESS)
+        return ret;
+
+    pCodecInst = handle;
+    pDecInfo = &pCodecInst->CodecInfo.decInfo;
+
+    /*Note: the maximum buffer number is less than 32. */
+    val = ((1 << pDecInfo->numFrameBuffers) - 1) & (~pCodecInst->ctxRegs[CTX_BIT_FRM_DIS_FLG]);
+    val = BitCount(val);
+    if (val <= 2)
+        return RETCODE_FAILURE;
+    else
+        return RETCODE_SUCCESS;
+
+}
+
 /*!
  * @brief Give command to the decoder.
  *

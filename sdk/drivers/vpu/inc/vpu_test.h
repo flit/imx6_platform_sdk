@@ -67,6 +67,12 @@ enum {
     MODE400 = 4
 };
 
+enum {
+    VPLAY_FREE_RUN = 0,
+    VPLAY_25FPS = 25,
+    VPLAY_30FPS = 30,
+};
+
 struct frame_buf {
     int32_t addrY;
     int32_t addrCb;
@@ -304,6 +310,7 @@ extern void enable_L1_cache(void);
 extern int32_t ips_hannstar_xga_yuv_stream(int32_t ipu_index);
 extern void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
                                   uint32_t buffer_addr);
+extern int32_t ipu_idmac_chan_cur_buff(uint32_t ipu_index, uint32_t channel);
 extern void ipu_channel_buf_ready(int32_t ipu_index, int32_t channel, int32_t buf);
 
 static inline int32_t is_mx6q_mjpg(int32_t fmt)

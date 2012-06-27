@@ -95,7 +95,8 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 # Exclude the extraction directory.
 - ${ReleaseDirName}/
 
-#- doc/html/
+# Remove documentation source files.
+- doc/*.docx
 
 # excludes based on file extension
 - *.o
@@ -117,6 +118,7 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 - *.$$$
 - .DS_Store
 - *.pyc
+- *.tmp
 
 - .git
 - .gitignore
@@ -131,6 +133,8 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 - configs/mx53*
 - sdk/mx53/
 - sdk/include/mx53/
+- sdk/common/pmic/
+- MX53_TO2_DDR3_LCB_SMD_ARDb_v1.3.inc
 
 # Exclude perfmon
 - perfmon_imx.h

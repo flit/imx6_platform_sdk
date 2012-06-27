@@ -698,6 +698,7 @@ RetCode VPU_DecStartOneFrame(DecHandle handle, DecParam * param);
 RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info);
 RetCode VPU_DecBitBufferFlush(DecHandle handle);
 RetCode VPU_DecClrDispFlag(DecHandle handle, int index);
+RetCode VPU_DecBufferCheck(DecHandle handle);
 RetCode VPU_DecGiveCommand(DecHandle handle, CodecCommand cmd, void *parameter);
 RetCode VPU_EnableInterrupt(int sel);
 RetCode VPU_ClearInterrupt(void);

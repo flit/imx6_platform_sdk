@@ -18,6 +18,7 @@ int gCurrentActiveInstance = 0;
 int gTotalActiveInstance = 0;
 
 static int isInterlacedMPEG4 = 0;
+static int isFrameDrop[MAX_NUM_INSTANCE];
 
 #define FRAME_TO_DECODE 10000
 #define HDMI_RESOLUTION_720P60
@@ -608,12 +609,15 @@ void decoder_frame_display(void)
                 } else {
                     ipu_refresh(i % 2 + 1, display_buffer->addrY);  // totally support two instance, inst0 on ipu1, inst2 on ipu2
                 }
+            } else {
+                isFrameDrop[i]++;   // time stamp reached but no frame available to display
             }
         }
     }
 }
 
-void epit_isr(void)
+int counter = 0;
+void epit_isr_frame_control(void)
 {
     epit_get_compare_event(&hw_epit2);
     decoder_frame_display();
@@ -625,7 +629,7 @@ hw_module_t hw_epit2 = {
     EPIT2_BASE_ADDR,
     32768,
     IMX_INT_EPIT2,
-    &epit_isr,
+    &epit_isr_frame_control,
 };
 
 int decoder_setup(void *arg)
@@ -742,15 +746,20 @@ int decoder_setup(void *arg)
 }
 int decode_test(void *arg)
 {
-    int err, i, temp = 0;
+    int err, i = 0, temp = 0;
     int primary_disp = 0;
     uint8_t revchar = (uint8_t) 0xFF;
     DecOutputInfo outinfo;
     DecParam decparam = { 0 };
     int bs_read_mode = 0;
+    int vplay_mode = VPLAY_30FPS;
     int active_inst_num = 0;
     int map_type = LINEAR_FRAME_MAP;
     struct cmd_line *cmdl;
+
+    while (i < MAX_NUM_INSTANCE) {
+        isFrameDrop[i++] = 0;   //initialize the frame drop flag
+    }
 
     printf("please select decoder instance:(1 or 2)\n");
     printf("\t1 - Single decoder with single display\n");
@@ -830,7 +839,7 @@ int decode_test(void *arg)
 #else
         hdmi_720P60_video_output(1, 0);
 #endif
-	}
+    }
     cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
     if (cmdl == NULL) {
         err_msg("Failed to allocate command structure\n");
@@ -881,8 +890,13 @@ int decode_test(void *arg)
 
     printf("Now start decoding test ... \n");
 
-    //register_interrupt_routine(hw_epit2.irq_id, hw_epit2.irq_subroutine);
-    //enable_interrupt(hw_epit2.irq_id, CPU_0, 0);
+    if (vplay_mode != VPLAY_FREE_RUN) { /*Frame control used */
+        hw_epit2.freq = get_main_clock(IPG_CLK);
+        epit_init(&hw_epit2, CLKSRC_IPG_CLK, hw_epit2.freq / 1000000, 39 + SET_AND_FORGET, 0, 0);
+        register_interrupt_routine(hw_epit2.irq_id, hw_epit2.irq_subroutine);
+        epit_setup_interrupt(&hw_epit2, TRUE);
+        epit_counter_enable(&hw_epit2, 1000000 / vplay_mode, IRQ_MODE);
+    }
 
     while (1) {
         static int inst = 0;
@@ -905,7 +919,8 @@ int decode_test(void *arg)
         decparam.skipframeNum = 0;
         decparam.iframeSearchEnable = 0;
 
-        if (!VPU_IsBusy() && !dec_fifo_is_full(&gDecFifo[inst])) {
+        if (!VPU_IsBusy() && !dec_fifo_is_full(&gDecFifo[inst]) &&
+            (VPU_DecBufferCheck(gDecInstance[inst]->handle) == RETCODE_SUCCESS)) {
             VPU_DecStartOneFrame(gDecInstance[inst]->handle, &decparam);
             while (VPU_IsBusy()) {
                 /*If there is enough space, read the bitstream from the SD card to the bitstream buffer */
@@ -929,7 +944,13 @@ int decode_test(void *arg)
                 active_inst_num--;
             }
         }
-        decoder_frame_display();
+
+        if (vplay_mode == VPLAY_FREE_RUN) {
+            decoder_frame_display();
+        } else if (isFrameDrop[inst]) {
+            decoder_frame_display();
+            isFrameDrop[inst]--;
+        }
     }
 
 /*release all the buffers*/
@@ -952,6 +973,10 @@ int decode_test(void *arg)
             disp_clr_index[i] = -1;
             vpu_hw_map->codecInstPool[i].initDone = 0;
         }
+    }
+
+    if (vplay_mode != VPLAY_FREE_RUN) { /*disable the timer for frame control */
+        epit_counter_disable(&hw_epit2);
     }
     return 0;
 }

@@ -302,11 +302,11 @@ int32_t ipu_idmac_chan_cur_buff(uint32_t ipu_index, uint32_t channel)
     int32_t idx, offset, cur_buf = 0;
     idx = channel / 32;
     offset = channel % 32;
-    if (ipu_index == 0) {
+    if (ipu_index == 1) {
         cur_buf =
             (readl(IPU1_CTRL_BASE_ADDR + IPU_IPU_CUR_BUF_0__ADDR + 4 * idx) & (1 << offset)) >>
             offset;
-    } else if (ipu_index == 1) {
+    } else if (ipu_index == 2) {
         cur_buf =
             (readl(IPU2_CTRL_BASE_ADDR + IPU_IPU_CUR_BUF_0__ADDR + 4 * idx) & (1 << offset)) >>
             offset;

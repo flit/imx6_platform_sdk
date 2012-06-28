@@ -21,7 +21,7 @@ static int32_t isInterlacedMPEG4 = 0;
 static int32_t isFrameDrop[MAX_NUM_INSTANCE];
 
 //uint8_t in_dec_file_1[] = "indir/fslclip_h264.mp4";
-uint8_t in_dec_file_1[] = "indir/fslclip.mp4";
+uint8_t in_dec_file_1[] = "indir/fslclip.264";
 uint8_t in_dec_file_2[] = "indir/fslclip_h264.mp4";
 
 #define FRAME_TO_DECODE 10000

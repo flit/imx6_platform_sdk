@@ -11,6 +11,8 @@
 #include "vpu_test.h"
 #include "vpu_debug.h"
 
+extern RtStatus_t Fread_multi_sectors(int32_t, uint8_t *, int32_t);
+
 int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
 {
     if (cmd->src_scheme == PATH_MEM) {
@@ -29,7 +31,7 @@ int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
         card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
         if (usdhc_status != 1)
             return -1;          //now SD card is busy
-        res = Fread(cmd->input, (uint8_t *)buf, n);
+        res = Fread_multi_sectors(cmd->input, (uint8_t *)buf, n);
 
         if (res < n) {
             for (i = 0; i < (n - res); i++)

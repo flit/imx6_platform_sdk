@@ -13,6 +13,10 @@
 #include "vpu_debug.h"
 #include "vpu_util.h"
 
+extern void print_media_fat_info(uint32_t);
+
+#define DeviceNum 0
+
 uint32_t g_usdhc_base_addr = SD_PORT_BASE_ADDR;
 vpu_resource_t vpu_resource = { 0 };
 struct decode *gDecInstance[MAX_NUM_INSTANCE];
@@ -49,8 +53,10 @@ int vpu_test(void)
         printf("Fail to initialize the filesystem\n");
     }
     /*init the drive */
-    FSDriveInit(0);
-    SetCWDHandle(0);
+    FSDriveInit(DeviceNum);
+    SetCWDHandle(DeviceNum);
+
+    print_media_fat_info(DeviceNum);
 
     gCurrentActiveInstance = 0;
 

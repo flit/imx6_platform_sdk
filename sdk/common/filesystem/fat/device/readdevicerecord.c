@@ -57,7 +57,7 @@ RtStatus_t Readdevicerecord(int32_t DeviceNum,int32_t SectorNum)
 { 
     int64_t     DataSec;
     int32_t     *buf;
-    int32_t         shift,temp;
+    int32_t     shift,temp;
     uint32_t    cacheToken;
     uint16_t    fsInfoSector;
     RtStatus_t  rtStatus;
@@ -166,8 +166,7 @@ RtStatus_t Readdevicerecord(int32_t DeviceNum,int32_t SectorNum)
  
     /* First data sector after reserved sectors, primary and secondary FAT table and 
     Root directory sectors */
-    MediaTable[ DeviceNum].FIRSTDataSector = MediaTable[ DeviceNum].RsvdSectors + (MediaTable[ DeviceNum].NoOfFATs * MediaTable[DeviceNum].FATSize) + MediaTable[DeviceNum].RootDirSectors
-    + SectorNum; // Modified by Ray
+    MediaTable[ DeviceNum].FIRSTDataSector = MediaTable[ DeviceNum].RsvdSectors + (MediaTable[ DeviceNum].NoOfFATs * MediaTable[DeviceNum].FATSize) + MediaTable[DeviceNum].RootDirSectors;
   
     /* To determine FATtype find total no of clusters on the volume */
     DataSec = MediaTable[ DeviceNum].TotalSectors - (MediaTable[ DeviceNum].RsvdSectors + 
@@ -205,7 +204,7 @@ RtStatus_t Readdevicerecord(int32_t DeviceNum,int32_t SectorNum)
 
         /* Add a fix here for the Win98 support */
         EnterNonReentrantSection();
- 
+
         /* Write undertermined FSinfo size into the FAT, so that we can force the Win98 
            to compute for free cluster count. This operation should not affect Win2000, WinXP */
         DataSec = 0xFFFFFFFFFFFF;       /* To save some memory let's reuse this variable */
@@ -224,11 +223,12 @@ RtStatus_t Readdevicerecord(int32_t DeviceNum,int32_t SectorNum)
        and primary and secondary FAT table */
     else if( (MediaTable[DeviceNum].FATType == FAT12) ||  (MediaTable[DeviceNum].FATType == FAT16) )
     {
-    	/*Mod by Ray*/
-        MediaTable[DeviceNum].FirRootdirsec = MediaTable[DeviceNum].RsvdSectors +  (MediaTable[DeviceNum].NoOfFATs * MediaTable[DeviceNum].FATSize)
-        + SectorNum;
+        MediaTable[DeviceNum].FirRootdirsec = MediaTable[DeviceNum].RsvdSectors +  (MediaTable[DeviceNum].NoOfFATs * MediaTable[DeviceNum].FATSize);
     }
-       
+
+    /* Modified for i.MX SDK */
+    Computefreecluster(DeviceNum);
+
     return SUCCESS;
 }
 

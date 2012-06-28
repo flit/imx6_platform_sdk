@@ -49,9 +49,9 @@ REENTRANT int32_t FirstfreeAndallocate(int32_t DeviceNum)
     {
 	    return ERROR_OS_FILESYSTEM_MAX_DEVICES_EXCEEDED;
     }
-    
+
     ddi_ldl_push_media_task("FirstfreeAndallocate");
-  
+
     if((FATsectorNo = FATsectorno(DeviceNum,(MediaTable[ DeviceNum].NextFreeCluster+1),&FATntryoffset)) <0)
     {
         ddi_ldl_pop_media_task();
@@ -64,7 +64,7 @@ REENTRANT int32_t FirstfreeAndallocate(int32_t DeviceNum)
         return ERROR_OS_FILESYSTEM_INVALID_CLUSTER_NO;
     }
 
-   	if (MediaTable[DeviceNum].TotalFreeClusters == 0)
+    if (MediaTable[DeviceNum].TotalFreeClusters == 0)
     {
         ddi_ldl_pop_media_task();
     	   return (ERROR_OS_FILESYSTEM_NO_FREE_CLUSTER);

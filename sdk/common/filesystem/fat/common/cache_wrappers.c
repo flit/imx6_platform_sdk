@@ -51,10 +51,86 @@ static bool IsFATSector(uint32_t drive, uint32_t sector)
 //     return IsFATSector(drive, sector) ? kMediaCacheWeight_High : kMediaCacheWeight_Medium;
 // }
 
+/* enable only one option, not both */
+//#define RAM_FS
+//#define NON_CACHED
+
+#define RAM_FS_ADDR 0x11000000
+
+#define BYTES_PER_SECTOR 512
+#define NUM_OF_SECTOR    1024
+#define CACHE_SIZE NUM_OF_SECTOR*BYTES_PER_SECTOR
+uint8_t g_cache_buf[CACHE_SIZE];
+uint32_t g_start_sector = 0xFFFFFFFF;
+
+void print_media_fat_info(uint32_t DeviceNum)
+{
+    printf("BytesPerSector = %X\n",     MediaTable[DeviceNum].BytesPerSector);
+    printf("SectorsPerCluster = %X\n",  MediaTable[DeviceNum].SectorsPerCluster);
+    printf("RsvdSectors = %X\n",        MediaTable[DeviceNum].RsvdSectors);
+    printf("NoOfFATs = %X\n",           MediaTable[DeviceNum].NoOfFATs);
+    printf("MaxRootDirEntries = %X\n",  MediaTable[DeviceNum].MaxRootDirEntries);
+    printf("TotalSectors = %X\n",       MediaTable[DeviceNum].TotalSectors);
+    printf("FATSize = %X\n",            MediaTable[DeviceNum].FATSize);
+    printf("RootdirCluster = %X\n",     MediaTable[DeviceNum].RootdirCluster);
+    printf("NextFreeCluster = %X\n",    MediaTable[DeviceNum].NextFreeCluster);
+    printf("TotalFreeClusters = %X\n",  MediaTable[DeviceNum].TotalFreeClusters);
+    printf("RootDirSectors = %X\n",     MediaTable[DeviceNum].RootDirSectors);
+    printf("FIRSTDataSector = %X\n",    MediaTable[DeviceNum].FIRSTDataSector);
+    printf("FATType = %X\n",            MediaTable[DeviceNum].FATType);
+    printf("TotalNoofclusters = %X\n",  MediaTable[DeviceNum].TotalNoofclusters);
+    printf("ClusterMask = %X\n",        MediaTable[DeviceNum].ClusterMask);
+    printf("ClusterShift = %X\n",       MediaTable[DeviceNum].ClusterShift);
+    printf("SectorShift = %X\n",        MediaTable[DeviceNum].SectorShift);
+    printf("SectorMask = %X\n",         MediaTable[DeviceNum].SectorMask);
+    printf("DevicePresent = %X\n",      MediaTable[DeviceNum].DevicePresent);
+    printf("FirRootdirsec = %X\n",      MediaTable[DeviceNum].FirRootdirsec);
+    printf("FSInfoSector = %X\n",       MediaTable[DeviceNum].FSInfoSector);
+}
+
 RtStatus_t FSWriteSector(int32_t deviceNumber, int32_t sectorNumber, int32_t destOffset, uint8_t * sourceBuffer, int32_t sourceOffset, int32_t numBytesToWrite, int32_t writeType)
 {
-//    assert(false);
-    return SUCCESS;
+    assert(deviceNumber == 0);
+    RtStatus_t status;
+    uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
+    uint8_t * buffer;
+
+#ifndef RAM_FS
+printf("s %X l %X d %X of %X\n",sourceBuffer + sourceOffset, numBytesToWrite, sectorNumber * sectorSize, destOffset);
+    if(destOffset != 0)
+    {
+        buffer = (uint8_t *)malloc(sectorSize);
+
+        status = card_data_read(g_usdhc_base_addr, (int *)buffer, sectorSize, sectorNumber * sectorSize);
+
+        memcpy((uint8_t *)(buffer + destOffset), (uint8_t *)(sourceBuffer + sourceOffset), numBytesToWrite);
+
+//        status = card_data_write(g_usdhc_base_addr, (int *)buffer, sectorSize, sectorNumber * sectorSize);
+
+        // Let go of the sector buffer.
+        free(buffer);
+    }
+    else
+//        status = card_data_write(g_usdhc_base_addr, (int *)(sourceBuffer + sourceOffset), numBytesToWrite, sectorNumber * sectorSize);
+        status = SUCCESS;
+#else
+    buffer = (uint8_t *) RAM_FS_ADDR;
+    printf("s %X l %X d %X of %X\n",sourceBuffer + sourceOffset, numBytesToWrite, sectorNumber * sectorSize, destOffset);
+    if(numBytesToWrite < 21)
+    {
+        uint8_t cnt;
+        for(cnt = 0;cnt < numBytesToWrite;cnt++)
+            printf("%02X",*(uint8_t *)(sourceBuffer + cnt));
+        printf("\n");
+        for(cnt = 0;cnt < numBytesToWrite;cnt++)
+            printf("%02X",*(uint8_t *)(sourceBuffer + sourceOffset + cnt));
+        printf("\n");
+    }
+    memcpy((uint8_t *)(buffer + (sectorNumber * sectorSize) + destOffset), (uint8_t *)(sourceBuffer + sourceOffset), numBytesToWrite);
+    status = SUCCESS;
+#endif
+
+    return status;
 }
 
 // used by Fwrite_BypassCache(), used by StorWriteObjectData()
@@ -85,29 +161,21 @@ RtStatus_t FSEraseSector(int32_t deviceNumber, int32_t sectorNumber)
     return status;
 }
 
-#define BYTES_PER_SECTOR 512
-#define NUM_OF_SECTOR    1024
-#define CACHE_SIZE NUM_OF_SECTOR*BYTES_PER_SECTOR
-extern uint8_t g_cache_buf[];
-extern uint32_t g_start_sector;
-
-/* enable only one option, not both */
-#define RAM_FS
-//#define NON_CACHED
-
 int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t writeType, uint32_t * token)
 {
     assert(deviceNumber == 0);
 
     int status = 0;
-    uint32_t actualSectorNumber = sectorNumber;
+    uint32_t actualSectorNumber = sectorNumber + g_u32MbrStartSector;
     uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
-    uint32_t sectorNum, sector_offset = 0;
-
-//   printf("s %X \n",actualSectorNumber);
+    uint32_t sectorNum;
+#ifndef NON_CACHED
+    uint32_t sector_offset = 0;
+#endif
+//    printf("s %X\n",actualSectorNumber * sectorSize);
 
     // Handle FAT cache.
-    bool isFat = IsFATSector(deviceNumber, sectorNumber);
+    bool isFat = IsFATSector(deviceNumber, actualSectorNumber);
     if (isFat && g_fatCache.isValid && g_fatCache.sector == actualSectorNumber)
     {
         *token = 0;
@@ -127,30 +195,32 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
         /* Not a fat sector, allocate a new buffer that
            is released by FSReleaseSector() */
 #ifdef NON_CACHED
-           buffer = (uint8_t *)malloc(CACHE_SIZE);
+            buffer = (uint8_t *)malloc(sectorSize);
 #else
            if((actualSectorNumber < (g_start_sector + NUM_OF_SECTOR))
-                         && (actualSectorNumber > g_start_sector))
-            sector_offset = actualSectorNumber - g_start_sector;
+                        && (actualSectorNumber > g_start_sector))
+                sector_offset = actualSectorNumber - g_start_sector;
+
         buffer = g_cache_buf;
         sectorNum = NUM_OF_SECTOR;
 #endif /* NON_CACHED */
-        }
+    }
+
 #ifndef RAM_FS
+    #ifdef NON_CACHED
+    status = card_data_read(g_usdhc_base_addr, (int *)buffer, sectorSize,
+                       actualSectorNumber * sectorSize);
+    #else
     if((g_start_sector == 0xFFFFFFFF) || (actualSectorNumber > (g_start_sector + NUM_OF_SECTOR))
                                       || (actualSectorNumber < g_start_sector))
     {
         status = card_data_read(g_usdhc_base_addr, (int *)buffer, sectorNum * sectorSize,
                        actualSectorNumber * sectorSize);
-//        printf("l %X o %X\n",sectorNum * sectorSize,actualSectorNumber * sectorSize);
 
         g_start_sector = actualSectorNumber;
     }
+    #endif /* NON_CACHED */
 #endif /* RAM_FS */
-#ifdef NON_CACHED
-    status = card_data_read(g_usdhc_base_addr, (int *)buffer, sectorSize,
-                       actualSectorNumber * sectorSize);
-#endif /* NON_CACHED */
     // Give the caller the token so they can release the cache entry.
     if ((status == 0) && token)
     {
@@ -162,28 +232,16 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
         else
             *token = (uint32_t)buffer;
 
-//        printf("add %X so %X\n",(int32_t)(buffer+(sector_offset * sectorSize)),sector_offset);
-
 #ifndef RAM_FS
-//        uint32_t i;
-//        for(i=0;i<0x200;i++)
-//            printf("%01X",*(uint8_t *)(buffer + (sector_offset * sectorSize) + i));
-//        printf("\n");
-#ifdef NON_CACHED
+    #ifdef NON_CACHED
         return (int32_t *) (buffer);
-#else
+    #else
         return (int32_t *) (buffer + (sector_offset * sectorSize));
-#endif /* NON_CACHED */
-
+    #endif /* NON_CACHED */
 #else
         /* hardcoded address in DDR, that's only for test purpose !!! */
-        buffer = (uint8_t *) 0x11000000;
-//       uint32_t i;
-//       for(i=0;i<0x200;i++)
-//            printf("%01X",*(uint8_t *)(buffer + (sectorNumber * sectorSize) + i));
-//        printf("\n");
-//        printf("add %X\n",(int32_t)(buffer + (sectorNumber * sectorSize)));
-        return (int32_t *) (buffer + (sectorNumber * sectorSize));
+        buffer = (uint8_t *) RAM_FS_ADDR;
+        return (int32_t *) (buffer + (actualSectorNumber * sectorSize));
 #endif /* RAM_FS */
     }
     else
@@ -284,7 +342,7 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
 	/*Note by Ray: in this function, intialize the uSDHC controller*/
     retval = card_init(g_usdhc_base_addr, 8);
     /*now enable the INTERRUPT mode of usdhc */
-    SDHC_INTR_mode = 1;
+    SDHC_INTR_mode = 0;
     SDHC_ADMA_mode = 0;
     if (retval == 1) {
         return 1;
@@ -351,14 +409,14 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
             FSReleaseSector(token);
             return retval;
         }
+
+        FSReleaseSector(token);
     }
     else
     {
         /* it usually ends here */
         g_u32MbrStartSector = pbsOffset;
     }
-
-    FSReleaseSector(token);
 
     // Get Total Sectors from PBS (first look at small 2-byte count field at 0x13&0x14)
     u32PbsTotalSectors = pSectorData[0x13] + (pSectorData[0x14] << 8);

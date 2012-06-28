@@ -45,7 +45,6 @@ int32_t Computefreecluster(int32_t DeviceNumber)
 {
     int32_t totalfreeclusters;
 
-
     if(MediaTable[DeviceNumber].DevicePresent)
     {
         if((totalfreeclusters= Totalfreecluster(DeviceNumber))<0)
@@ -75,8 +74,4 @@ int32_t Computefreecluster(int32_t DeviceNumber)
     }
 
     return SUCCESS;
-   
 }
-
-
-

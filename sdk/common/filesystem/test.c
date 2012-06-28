@@ -13,30 +13,25 @@
 #include "fat_internal.h"
 #include <error.h>
 #include <filesystem/fsapi.h>   //! \todo malinclusion
+#include <string.h>
+#include <stdlib.h>
 
-uint8_t ReadBuffer[2048];
-uint8_t testfile[] = "subdir/fsproj.h";
+uint8_t readfile[] = "indir/fsproj.h";
+uint8_t writefile[] = "outdir/fsproj.h";
 
- ////////////////////////////////////////////////////////////////////////////////
-//
-//>  Name:           TestFopenwRead
-//
-//   Type:           Function
-//
-//   Description:    Test the read mode for function Fopenw which Supports the UCS3 format.                   
-//   Inputs:         none 
-//
-//   Outputs:        none
-//                   
-//   Notes:          This function is same as fopen except that passed name is in UCS3 format.
-//                   if file does not exist,it will return error.
-//<                  In this mode we can only read from the file
-//////////////////////////////////////////////////////////////////////////////////
+#define TEST_FILE_SIZE 2048
+#define DeviceNum 0
+
+extern RtStatus_t Fread_multi_sectors(int32_t, uint8_t *, int32_t);
+extern void print_media_fat_info(uint32_t);
+
 int fat_test(void)
 {
     int count = 0;
     int TestResult = 0;
-    int32_t fout;
+    int32_t fin;
+    uint8_t *ReadBuffer;
+    uint32_t ClusterSize = 0, FileSize = 0;
 
     printf("FSInit				");
     if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {
@@ -47,35 +42,40 @@ int fat_test(void)
     }
 
     /*init the drive */
-    FSDriveInit(0);
+    FSDriveInit(DeviceNum);
+    SetCWDHandle(DeviceNum);
 
-    SetCWDHandle(0);
+    print_media_fat_info(DeviceNum);
 
-    if ((fout = Fopen(testfile, (uint8_t *) "r")) < 0)
+    if ((fin = Fopen(readfile, (uint8_t *) "r")) < 0)
     {
-        printf("Can't open the file: %s !\n", testfile);
+        printf("Can't open the file: %s !\n", readfile);
         return ERROR_GENERIC;
     }
 
-    printf("File %s opened!\n", testfile);
+    FileSize = GetFileSize(fin);
+    printf("File %s of size %d opened!\n", readfile, FileSize);
 
-    while (1) {
-        if ((count = Fread(fout, ReadBuffer, 2048)) < 0) {
-            Fclose(fout);
-            return ERROR_GENERIC;
-        } else if (count < 2048) {
-            ReadBuffer[count] = '\0';
-            printf("%s\n", ReadBuffer);
-            break;
+    ClusterSize = MediaTable[DeviceNum].SectorsPerCluster * MediaTable[DeviceNum].BytesPerSector;
+    ReadBuffer = (uint8_t *) malloc(FileSize+1);
+    printf("%X\n", ReadBuffer);
+    memset(ReadBuffer,'\0',FileSize+1);
 
-        } else {
-            printf("%s\n", ReadBuffer);
-        }
+
+    if ((count = Fread_multi_sectors(fin, ReadBuffer, FileSize)) < 0)
+    {
+        Fclose(fin);
+        return ERROR_GENERIC;
+    }
+    else
+    {
+        printf("%s\n", ReadBuffer);
     }
 
     printf("\n*****************File Reading End********************\n");
 
-    Fclose(fout);
+    free(ReadBuffer);
+    Fclose(fin);
     FlushCache();
     return 0;
 }

@@ -16,8 +16,8 @@ extern uint8_t read_buf[];
 
 #define BYTES_PER_SECTOR 512
 #define CACHE_SIZE 1024*BYTES_PER_SECTOR
-uint8_t g_cache_buf[CACHE_SIZE];
-uint32_t g_start_sector = 0xFFFFFFFF;
+extern uint8_t g_cache_buf[];
+extern uint32_t g_start_sector;
 
 uint8_t g_fat_sector_cache_buf[512];
 uint8_t g_fat_loc = 0;

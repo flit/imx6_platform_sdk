@@ -80,8 +80,7 @@ int32_t  FSDriveInit(int32_t DeviceNumber)
     // and confirm the PBS signature.  However,
     // At this point the PBS has been verified by FSDataDriveInit(), so there is no need to check it
     // again with FileSystemPresent(DeviceNumber)
-    /* this uses the found start sector in FSDataDriveInit() */ 
-    if ((RetValue= Readdevicerecord(DeviceNumber,g_u32MbrStartSector))!=0)
+    if ((RetValue= Readdevicerecord(DeviceNumber,BOOTSECTOR))!=0)
     {
         if(RetValue == INVALID_FILESYSTEM)
         {

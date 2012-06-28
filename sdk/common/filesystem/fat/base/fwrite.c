@@ -25,6 +25,7 @@
 #include "diroffset.h"
 //#include <os\fsapi.h> 
 #include "fs_steering.h"   
+#include <stdlib.h>
 //#include "components/telemetry/tss_logtext.h"
 
 /*----------------------------------------------------------------------------
@@ -62,7 +63,7 @@ RtStatus_t Fwrite_FAT(int32_t HandleNumber,
     int32_t Device,BytesPerSector,RemainBytesInSector,Mode;
     int32_t BuffOffset=0,clusterno;
     int32_t RemainBytesToWrite = NumBytesToWrite, FileSize=0;
-        
+printf("Fw1\n");      
     if((HandleNumber < 0) || (HandleNumber >= maxhandles))
     {
         // Error - ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED
@@ -70,22 +71,22 @@ RtStatus_t Fwrite_FAT(int32_t HandleNumber,
     }
     if(NumBytesToWrite <= 0)
         return 0;
-         
+
     Device = Handle[HandleNumber].Device;
     BytesPerSector = MediaTable[Device].BytesPerSector;
-
+printf("Fw2\n");
     if((RetValue = Handleactive(HandleNumber)) < 0)
     {
         Handle[HandleNumber].ErrorCode = RetValue;
         return 0;
     }    
-    
+printf("Fw3\n");
     if(((Handle[HandleNumber].Mode)& WRITE_MODE)!=WRITE_MODE )
     {
         Handle[HandleNumber].ErrorCode = ERROR_OS_FILESYSTEM_INVALID_MODE;
         return 0;
     }
-    
+printf("Fw4\n");
     ddi_ldl_push_media_task("Fwrite_FAT");
 
     /* If zero length file is opened, its starting cluster is zero, so we have to
@@ -100,10 +101,10 @@ RtStatus_t Fwrite_FAT(int32_t HandleNumber,
         Handle[HandleNumber].StartingCluster    = clusterno;
         Handle[HandleNumber].CurrentCluster    = clusterno;
         Handle[HandleNumber].CurrentSector= Firstsectorofcluster(Device,clusterno);
-      
+printf("Fw5\n");
         clusterlo = clusterno & 0x00ffff;
         clusterhi = (int32_t)( (clusterno >> 16 ) & 0x00ffff);
-     
+
         //! todo - check this - RetValue wasn't being set previously.
         //if((RetValue = myFSWriteSector(Device,
         if((RetValue = FSWriteSector(Device,
@@ -116,7 +117,7 @@ RtStatus_t Fwrite_FAT(int32_t HandleNumber,
             ddi_ldl_pop_media_task();
             return RetValue;
         }
-        
+printf("Fw6\n");
         //if((RetValue = myFSWriteSector(Device,
         if((RetValue = FSWriteSector(Device,
                                Handle[HandleNumber].DirSector,
@@ -139,7 +140,7 @@ RtStatus_t Fwrite_FAT(int32_t HandleNumber,
     {
         FileSize = GET_FILE_SIZE(HandleNumber);
     }
-    
+printf("Fw7\n");
     //In append mode seek to the end of file and write at the end
     if(((Handle[HandleNumber].Mode)& APPEND_MODE)==APPEND_MODE )
     {

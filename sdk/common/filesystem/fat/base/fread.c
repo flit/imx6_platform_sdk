@@ -55,22 +55,22 @@ RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRe
     int32_t Device,BuffOffset=0,BytesToCopy;
     int32_t RemainBytesInSector,BytesPerSector;
     uint32_t cacheToken;
-    
+
     if((HandleNumber < 0) || (HandleNumber >= maxhandles))
     {
         // Error - ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED 
         return 0;
     }
-    
+
     Device = Handle[HandleNumber].Device;
-	BytesPerSector = MediaTable[Device].BytesPerSector;
-    
+    BytesPerSector = MediaTable[Device].BytesPerSector;
+
     if((RetValue = Handleactive(HandleNumber)) < 0)
     {
         Handle[HandleNumber].ErrorCode = RetValue;
         return 0;
     }    
-    
+
     if((Handle[HandleNumber].Mode & READ_MODE)!=READ_MODE )
     {
         Handle[HandleNumber].ErrorCode = ERROR_OS_FILESYSTEM_INVALID_MODE;
@@ -85,15 +85,15 @@ RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRe
     else
     {
         FileSize = GET_FILE_SIZE(HandleNumber);
-	}
-    
+    }
+
     if(FileSize < (NumBytesToRead + Handle[HandleNumber].CurrentOffset))
-	{
+    {
         Handle[HandleNumber].ErrorCode = ERROR_OS_FILESYSTEM_EOF;
         NumBytesToRead = FileSize - Handle[HandleNumber].CurrentOffset;
-	}
+    }
 
-	RemainBytesToRead = NumBytesToRead;
+    RemainBytesToRead = NumBytesToRead;
     if (RemainBytesToRead<0)
     {
         return 0;
@@ -112,26 +112,26 @@ RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRe
 
     while(RemainBytesToRead >0)
     {
-		if ((RemainBytesInSector != 0) && (RemainBytesToRead > RemainBytesInSector))
-		{
-			BytesToCopy	= RemainBytesInSector;
-			RemainBytesInSector = 0;
-		}
-		else
+        if ((RemainBytesInSector != 0) && (RemainBytesToRead > RemainBytesInSector))
+        {
+            BytesToCopy	= RemainBytesInSector;
+            RemainBytesInSector = 0;
+        }
+        else
 		{	
             BytesToCopy = RemainBytesToRead;
-			if(BytesToCopy > BytesPerSector)
-	        {
-	            BytesToCopy = BytesPerSector;
-	        }
-		}
+            if(BytesToCopy > BytesPerSector)
+            {
+                BytesToCopy = BytesPerSector;
+            }
+        }
 
         if ((RetValue = UpdateHandleOffsets(HandleNumber)))
         {
             Handle[HandleNumber].ErrorCode = RetValue;
             ddi_ldl_pop_media_task();
             return (NumBytesToRead-RemainBytesToRead);
-        }    
+        }
 
 	    EnterNonReentrantSection();
         if((buf = (uint8_t *)FSReadSector(Device,Handle[HandleNumber].CurrentSector,WRITE_TYPE_RANDOM, &cacheToken))==(uint8_t *)0)
@@ -139,6 +139,7 @@ RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRe
             Handle[HandleNumber].ErrorCode = ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
 		    LeaveNonReentrantSection();
             ddi_ldl_pop_media_task();
+
             return NumBytesToRead-RemainBytesToRead;  // READSECTOR_FAIL return here in 2.6 version fixes mmc eject bug 7183.
 		}
 
@@ -159,4 +160,46 @@ RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRe
 
     // Force to RtStatus - all errors are negative so this will still work.
     return (RtStatus_t) NumBytesToRead;
+}
+
+RtStatus_t Fread_multi_sectors(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRead)
+{
+    uint32_t clusterSize, sectorSize, NumBytesRead = 0;
+    uint32_t Device, count, i, res;
+    uint8_t *buffer;
+
+    Device = Handle[HandleNumber].Device;
+    sectorSize = MediaTable[Device].BytesPerSector;
+    clusterSize = sectorSize * MediaTable[Device].SectorsPerCluster;
+
+    buffer = (uint8_t *)malloc(NumBytesToRead);
+
+    if(NumBytesToRead <= sectorSize)
+    {
+        while(NumBytesRead == 0)
+            NumBytesRead = Fread_FAT(HandleNumber, (uint8_t *)buffer, NumBytesToRead);
+    }
+    else
+    {
+        count = (uint32_t) NumBytesToRead / sectorSize ;
+        if((uint32_t) NumBytesToRead % sectorSize)
+            count++;
+
+//        printf("%X cnt %X\n",NumBytesToRead, count);
+        i=0;
+        while(i<count)
+        {
+            res = Fread_FAT(HandleNumber, (uint8_t *)(buffer + sectorSize * i), sectorSize);
+            NumBytesRead += res;
+            if (res != 0)
+                i++;
+//            printf("res %X \n",res);
+        }
+    }
+
+    memcpy((uint8_t *)Buffer, (uint8_t *)buffer, NumBytesRead);
+
+    free(buffer);
+
+    return (RtStatus_t) NumBytesRead;
 }

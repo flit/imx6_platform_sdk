@@ -31,8 +31,11 @@ int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
         card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
         if (usdhc_status != 1)
             return -1;          //now SD card is busy
-        res = Fread_multi_sectors(cmd->input, (uint8_t *)buf, n);
-
+#if 0                           //Ray: do not expose the multi-sec read API to user
+        res = Fread_multi_sectors(cmd->input, (uint8_t *) buf, n);
+#else
+        res = Fread_FAT(cmd->input, (uint8_t *) buf, n);
+#endif
         if (res < n) {
             for (i = 0; i < (n - res); i++)
                 reg8_write(buf + res + i, 0x0);

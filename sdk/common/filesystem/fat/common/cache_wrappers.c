@@ -256,6 +256,25 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
 
 }
 
+/*! Note by Ray: multiple sectors reading is only for big data chunks, ignoring the FAT table fetching
+ *	the buffer is reused from outside allocation, so need to use the token for further memory recycling.
+ */
+int32_t * FSReadMultiSectors(int32_t deviceNumber, int32_t sectorNumber, int32_t writeType, 
+	uint8_t *buffer, int size)
+{
+    assert(deviceNumber == 0);
+
+    int status = 0;
+    uint32_t actualSectorNumber = sectorNumber + g_u32MbrStartSector;
+    uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
+
+    status = card_data_read(g_usdhc_base_addr, (int *)buffer, size,
+                       actualSectorNumber * sectorSize);
+
+	return (int32_t *) (buffer);
+}
+
+
 // used by Fread_BypassCache(), used by StorReadObjectData()
 int32_t * FSReadSector_BypassCache(int32_t deviceNumber, int32_t sectorNumber, int32_t writeType, uint8_t *pBuffer, uint32_t * token)
 {

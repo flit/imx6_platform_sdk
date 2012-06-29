@@ -110,6 +110,7 @@ RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRe
 
     RemainBytesInSector = BytesPerSector - Handle[HandleNumber].BytePosInSector;
 
+#if 0 // Ray : replace the single sector read with multiple sectors read	
     while(RemainBytesToRead >0)
     {
         if ((RemainBytesInSector != 0) && (RemainBytesToRead > RemainBytesInSector))
@@ -155,7 +156,113 @@ RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRe
 
         BuffOffset+=BytesToCopy;
     }
-    
+#else
+    while(RemainBytesToRead >0)
+    {
+        if (((RemainBytesInSector != 0) && (RemainBytesToRead > RemainBytesInSector)) || 
+			(RemainBytesToRead <= BytesPerSector))
+        {
+        	/*if the start point of the data is not aligned to sector, read a single sector and get the data*/
+			if(((RemainBytesInSector != 0) && (RemainBytesToRead > RemainBytesInSector))) {
+				BytesToCopy	= RemainBytesInSector;
+				RemainBytesInSector = 0;
+			} else {
+			    BytesToCopy = RemainBytesToRead;	
+			}
+
+	        if ((RetValue = UpdateHandleOffsets(HandleNumber)))
+	        {
+	            Handle[HandleNumber].ErrorCode = RetValue;
+	            ddi_ldl_pop_media_task();
+	            return (NumBytesToRead-RemainBytesToRead);
+	        }
+
+		    EnterNonReentrantSection();
+	        if((buf = (uint8_t *)FSReadSector(Device,Handle[HandleNumber].CurrentSector,WRITE_TYPE_RANDOM, &cacheToken))==(uint8_t *)0)
+			{
+	            Handle[HandleNumber].ErrorCode = ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
+			    LeaveNonReentrantSection();
+	            ddi_ldl_pop_media_task();
+
+	            return NumBytesToRead-RemainBytesToRead;  // READSECTOR_FAIL return here in 2.6 version fixes mmc eject bug 7183.
+			}
+
+	        RemainBytesToRead -= BytesToCopy;
+
+	        memcpy(Buffer + BuffOffset, buf + Handle[HandleNumber].BytePosInSector, BytesToCopy);
+	        
+	        FSReleaseSector(cacheToken);
+		    LeaveNonReentrantSection();
+
+	        Handle[HandleNumber].CurrentOffset += BytesToCopy;
+	        Handle[HandleNumber].BytePosInSector += BytesToCopy;
+
+	        BuffOffset+=BytesToCopy;			
+        } else {
+			/*Multiple sectors read for large chunk of data*/	
+			int sectorNum = 0, sectorStart = 0;
+			int prevSectorPos = 0, prevSectorIndex = 0, sectorToBeRead = 0, prevClusterIndex = 0;
+			BytesToCopy = RemainBytesToRead - RemainBytesToRead % BytesPerSector; // need to aligned to sector
+			sectorNum = BytesToCopy / BytesPerSector;
+
+			prevSectorIndex = Handle[HandleNumber].CurrentSector;
+			prevClusterIndex = Handle[HandleNumber].CurrentCluster;
+			while(sectorNum--)
+			{
+				Handle[HandleNumber].BytePosInSector = BytesPerSector; //always aligned to sector
+	
+				if ((RetValue = UpdateHandleOffsets(HandleNumber))) // increase the sector address by 1
+				{
+					Handle[HandleNumber].ErrorCode = RetValue;
+					ddi_ldl_pop_media_task();
+					return (NumBytesToRead-RemainBytesToRead);
+				}		
+
+				if(sectorStart == 0)
+				sectorStart = Handle[HandleNumber].CurrentSector;
+
+				if(prevSectorIndex + 1 == Handle[HandleNumber].CurrentSector) /*adjacent sectors*/
+				{
+					sectorToBeRead ++;
+					prevSectorIndex = Handle[HandleNumber].CurrentSector;
+					prevClusterIndex = Handle[HandleNumber].CurrentCluster;
+					prevSectorPos = Handle[HandleNumber].SectorPosInCluster;
+				} else { 
+					/*backwards to the previous sector index, if the sector is not continous in physical address.*/
+					Handle[HandleNumber].CurrentSector = prevSectorIndex;
+					Handle[HandleNumber].CurrentCluster = prevClusterIndex;	
+					Handle[HandleNumber].SectorPosInCluster = prevSectorPos;
+					break;
+				}
+			}		
+
+			BytesToCopy = sectorToBeRead * BytesPerSector;
+	
+			EnterNonReentrantSection();
+		
+			/*reuse the buffer to avoid extra memory copy*/
+			if((buf = (uint8_t *)FSReadMultiSectors(Device,sectorStart,WRITE_TYPE_RANDOM, 
+					(uint8_t *)(Buffer + BuffOffset), BytesToCopy))==(uint8_t *)0)
+			{
+				Handle[HandleNumber].ErrorCode = ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
+				LeaveNonReentrantSection();
+				ddi_ldl_pop_media_task();
+
+				return NumBytesToRead-RemainBytesToRead;  // READSECTOR_FAIL return here in 2.6 version fixes mmc eject bug 7183.
+			}
+
+			RemainBytesToRead -= BytesToCopy;
+
+			Handle[HandleNumber].CurrentOffset += BytesToCopy;
+
+			Handle[HandleNumber].BytePosInSector = BytesPerSector; //always aligned to sector
+
+			LeaveNonReentrantSection();
+
+			BuffOffset+=BytesToCopy;			
+        }
+    }
+#endif	
     ddi_ldl_pop_media_task();
 
     // Force to RtStatus - all errors are negative so this will still work.

@@ -12,6 +12,16 @@
 #include "registers/regsccm.h"
 #include "registers/regsgpc.h"
 
+const uint32_t PLL1_OUTPUT = 792000000;
+const uint32_t PLL2_OUTPUT[] = { 528000000, 396000000, 352000000, 198000000, 594000000 };
+const uint32_t PLL3_OUTPUT[] = { 480000000, 720000000, 540000000, 508235294, 454736842 };
+const uint32_t PLL4_OUTPUT = 650000000;
+const uint32_t PLL5_OUTPUT = 650000000;
+
+////////////////////////////////////////////////////////////////////////////////
+// Code
+////////////////////////////////////////////////////////////////////////////////
+
 /* In i.MX6SDL, PLLs don't need to be configured. Default values cover most use cases. */
 void prog_pll(void)
 {
@@ -100,14 +110,20 @@ uint32_t get_peri_clock(peri_clocks_t clock)
 {
     uint32_t ret_val = 0;
 
-    switch (clock) {
+    switch (clock)
+    {
         case UART1_BAUD:
         case UART2_BAUD:
         case UART3_BAUD:
         case UART4_BAUD:
-            /* UART source clock is a fixed PLL3 / 6 */
+            // UART source clock is a fixed PLL3 / 6
             ret_val = PLL3_OUTPUT[0] / 6 / (HW_CCM_CSCDR1.B.UART_CLK_PODF + 1);
             break;
+    
+        case RAWNAND_CLK:
+            ret_val = PLL3_OUTPUT[0] / (HW_CCM_CS2CDR.B.ENFC_CLK_PRED + 1) /( HW_CCM_CS2CDR.B.ENFC_CLK_PODF + 1);
+            break;
+    
         default:
             break;
     }
@@ -251,7 +267,6 @@ void ldb_clock_config(int freq, int ipu_index)
     if (freq == 65000000)       //for XGA resolution
     {
         /*config pll3 PFD1 to 455M. pll3 is 480M */
-        //writel(0x1311130C, ANATOP_BASE_ADDR + 0xF0);
 	BW_CCM_ANALOG_PFD_480_PFD1_FRAC(19);
 
         if (ipu_index == 1) {
@@ -326,19 +341,25 @@ void hdmi_clock_set(int ipu_index, uint32_t pclk)
     }
 }
 
-
+//! @brief Configure and enable the GPMI and BCH clocks.
+//!
+//! The GPMI clock is selected to be sourced from the main PLL3 clock (480 MHz), then
+//! divided by 4 and again by 1. The resulting clock is 120 MHz.
 void gpmi_nand_clk_setup(void)
 {
     HW_CCM_ANALOG_PFD_528_CLR(BM_CCM_ANALOG_PFD_528_PFD2_CLKGATE);
 
+    // Gate clocks before adjusting dividers.
     clock_gating_config(GPMI_BASE_ADDR, CLOCK_OFF);
 
-    *(volatile uint32_t *)(CCM_CS2CDR) &= ~(0x00030000);
-    *(volatile uint32_t *)(CCM_CS2CDR) |= 0x00020000;
-    *(volatile uint32_t *)(CCM_CS2CDR) &= ~(0x07fc0000);
-    *(volatile uint32_t *)(CCM_CS2CDR) |= ((uint32_t) (4 << 18) | (3 << 21));
+    HW_CCM_CS2CDR.B.ENFC_CLK_SEL = 2; // Select pll3 clock (480 MHz)
+    HW_CCM_CS2CDR.B.ENFC_CLK_PRED = 3; // Divide by 4
+    HW_CCM_CS2CDR.B.ENFC_CLK_PODF = 0; // Divide by 1
 
+    // Ungate clocks.
     clock_gating_config(GPMI_BASE_ADDR, CLOCK_ON);
+    
+    HW_CCM_CCGR0.B.CG2 = CLOCK_ON; // apbhdma_hclk_enable
 }
 
 void esai_clk_sel_gate_on()
@@ -368,9 +389,10 @@ void sata_clock_enable(void)
     //enable SATA_CLK in CCGR5
     clock_gating_config(SATA_BASE_ADDR, CLOCK_ON);
 
-    //enable ENET_PLL (PLL8) in ANADIG. done in freq_populate()
+    //enable ENET_PLL (PLL8). done in freq_populate()
     //enale SATA_CLK in the ENET_PLL register
     HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_100M);
+    
     //config ENET PLL div_select for SATA - 100MHz
     HW_CCM_ANALOG_PLL_ENET.B.DIV_SELECT = 0x2; // 0b10-100MHz
 }
@@ -383,7 +405,7 @@ void sata_clock_disable(void)
     //disable SATA_CLK in CCGR5.
     clock_gating_config(SATA_BASE_ADDR, CLOCK_OFF);
 
-    //disable ENET_PLL (PLL8) in ANADIG
+    //disable ENET_PLL (PLL8)
     HW_CCM_ANALOG_PLL_ENET_CLR(BM_CCM_ANALOG_PLL_ENET_ENABLE_100M);
 }
 
@@ -482,7 +504,6 @@ void ccm_enter_low_power(lp_modes_t lp_mode)
     return;
 }
 
-
 void mipi_clock_set(void)
 {
     BW_CCM_ANALOG_PFD_480_PFD1_FRAC(0x10);
@@ -518,3 +539,7 @@ void gpu_clock_config(void)
     reg32_write(CCM_CSCMR2, reg32_read(CCM_CSCMR2) | 0xc00);    // ldb_di0 divided by 3.5
     reg32_write(CCM_CSCDR2, reg32_read(CCM_CSCDR2) | 0x603);
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// End of file
+////////////////////////////////////////////////////////////////////////////////

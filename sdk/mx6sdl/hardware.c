@@ -678,19 +678,14 @@ void pcie_clk_setup(uint32_t enable)
         reg32_write(CCM_CCGR4, val);
 
         // clear the powerdown bit
-//         reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 12);
         HW_CCM_ANALOG_PLL_ENET_CLR(BM_CCM_ANALOG_PLL_ENET_POWERDOWN);
         // enable pll
-//         reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 13);
         HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE);
         // wait the pll locked
-//         while (!(reg32_read(HW_ANADIG_PLL_ETH_CTRL) & (0x01 << 31))) ;
         while (!HW_CCM_ANALOG_PLL_ENET.B.LOCK) ;
         // Disable bypass
-//         reg32clrbit(HW_ANADIG_PLL_ETH_CTRL, 16);
         HW_CCM_ANALOG_PLL_ENET_CLR(BM_CCM_ANALOG_PLL_ENET_BYPASS);
         // enable pci-e ref clk
-//         reg32setbit(HW_ANADIG_PLL_ETH_CTRL, 19);
         HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_125M);
     }
 }

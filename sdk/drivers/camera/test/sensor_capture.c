@@ -14,8 +14,8 @@
 #include <stdio.h>
 #include "ipu/inc/ipu_common.h"
 #include "camera_def.h"
-
-extern void ipu_iomux_config(void);
+#include "iomux_config.h"
+#include "registers/regsipu.h"
 
 /*!
  * camera sensor display and capture test.
@@ -34,7 +34,7 @@ int32_t sensor_capture(void)
     panel->panel_init(&ipu_index);
 
     /*step 2: setup IPU: from csi to display */
-    ipu_iomux_config();
+    ipu1_iomux_config();
     ipu_sw_reset(ipu_index, 1000);
     ipu_capture_setup(ipu_index, 640, 480, panel);
 

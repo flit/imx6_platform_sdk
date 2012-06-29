@@ -20,7 +20,7 @@
 #include "registers/regsccmanalog.h"
 
 #include "hardware.h"
-
+#include "usb_regs.h"
 /*!
  * This function enables the clocks needed for USB operation.
  * @param port

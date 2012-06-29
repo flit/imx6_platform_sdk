@@ -39,7 +39,7 @@ void can_init(struct hw_module *port, uint32_t max_mb)
     int i;
 
     /* configure the I/O for the port */
-    can_iomux_config(port->base);
+    hw_can_iomux_config(port->instance);
 
     can_sw_reset(port);         //software reset
 

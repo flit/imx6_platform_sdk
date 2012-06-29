@@ -13,8 +13,9 @@
 
 #include <stdio.h>
 #include "ips_test.h"
+#include "iomux_config.h"
+#include "registers/regsipu.h"
 
-extern void ipu_iomux_config(void);
 static ipu_test_t ipu_tests[] = {
     {"IPU SINGLE DISPLAY TEST", ips_display_test},
     {"IPU COMBINE DISPLAY TEST", ips_combiner_test},
@@ -33,7 +34,7 @@ int32_t ipu_test(void)
 
     printf("\nStart IPU test\n");
     printf("Note that the Display test is using the Hannstar LVDS panel pluged into LVDS0\n");
-    ipu_iomux_config();
+    ipu1_iomux_config();
 
     /*enable panel */
     panel = search_panel("HannStar XGA LVDS");

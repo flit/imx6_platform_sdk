@@ -7,6 +7,7 @@
 #include "ecspi.h"
 #include "hardware.h"
 #include "ecspi_ifc.h"
+#include "iomux_config.h"
 
 /*-------------------------------------------- Static Variable --------------------------------------------*/
 static uint32_t ecspi_addr_table[NUM_OF_ECSPI] = {
@@ -136,7 +137,7 @@ int ecspi_open(dev_ecspi_e dev, param_ecspi_t param)
     /* Configure clock gating here if necessary */
 
     /* Configure IO signals */
-    ecspi_iomux_cfg((uint32_t) base);
+    ecspi_iomux_config((uint32_t)(dev + 1));
 
     /* Configure eCSPI registers */
     ecspi_configure(base, param);

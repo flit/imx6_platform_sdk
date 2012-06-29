@@ -14,6 +14,8 @@
 #include "gpu/inc/gpu_test_common.h"
 #include "gpu/inc/sdk_gpu_utilities.h"
 #include "gpu/inc/texture.h"
+#include "iomux_config.h"
+#include "registers/regsipu.h"
 
 #define GPU_DEMO_WIDTH  	1024
 #define GPU_DEMO_HEIGHT 	768
@@ -22,7 +24,6 @@ extern hw_module_t g_debug_uart;
 extern uint8_t uart_getchar(struct hw_module *port);
 
 extern void lvds_power_on(void);
-extern void ipu_iomux_config(void);
 extern void gpu_clock_config(void);
 
 int width = GPU_DEMO_WIDTH;
@@ -65,7 +66,7 @@ int gpu_test(void)
     new_half_height.f = ((float)height) / 2.0f;
     neg_new_half_height.f = -new_half_height.f;
 
-    ipu_iomux_config();
+    ipu1_iomux_config();
 
     // enable GPU to access MMDC
     val = reg32_read(CSU_BASE_ADDR + 0x64);

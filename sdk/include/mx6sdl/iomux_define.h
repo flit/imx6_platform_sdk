@@ -10,6 +10,9 @@
 #ifndef _IOMUX_DEFINE_H_
 #define _IOMUX_DEFINE_H_
 
+//TODO: FIX THIS
+#define HW_IPU1 1
+
 // IOMUXC_SW_MUX_CTL_PAD_*
 // SION
 #define SION_DISABLED 0x0

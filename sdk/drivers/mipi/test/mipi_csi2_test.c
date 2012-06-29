@@ -12,13 +12,15 @@
  * @ingroup diag_mipi
  */
 
-#include "mipi_common.h"
-#include "hardware.h"
-#include "ipu/inc/ipu_common.h"
 #include <stdio.h>
 
+#include "hardware.h"
+#include "mipi_common.h"
+#include "ipu/inc/ipu_common.h"
+#include "iomux_config.h"
+#include "registers/regsipu.h"
+
 extern void mipi_csi2_config(void);
-extern void ipu_iomux_config(void);
 
 int32_t mipi_csi2_test(void)
 {
@@ -26,7 +28,7 @@ int32_t mipi_csi2_test(void)
     ips_dev_panel_t *panel;
 
     printf("Runing mipi csi-2 test.\n");
-    ipu_iomux_config();
+    ipu1_iomux_config();
     ipu_sw_reset(ipu_index, 1000);
 
     panel = search_panel("HannStar XGA LVDS");

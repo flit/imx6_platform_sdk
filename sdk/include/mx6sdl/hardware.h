@@ -37,7 +37,7 @@
 #include "snvs/snvs.h"
 #include "hdmi_regs.h"
 #include "buffers.h"
-#include "usb_regs.h"
+//#include "usb_regs.h"
 #include "usb/usb.h"
 #include "keypad/keypad_port.h"
 
@@ -234,8 +234,6 @@ enum display_type {
     DISP_DEV_TV,
 };
 
-void uart_iomux_config(uint32_t module_base_add);
-void i2c_iomux_config(uint32_t module_base);
 void freq_populate(void);
 void show_freq(void);
 uint32_t get_freq(uint32_t module_base);
@@ -246,10 +244,7 @@ void reset_usb_hub(void);
 void usb_clock_enable(void);
 void imx_enet_setup(void);
 void gpmi_nand_clk_setup(void);
-void usdhc_iomux_config(uint32_t);
-void ecspi_iomux_cfg(uint32_t);
-void can_iomux_config(uint32_t module_base_add);
-
+void hw_can_iomux_config(uint32_t module_instance);
 extern hw_module_t g_debug_uart;
 extern hw_module_t g_system_timer;
 
@@ -268,20 +263,25 @@ extern int32_t is_input_char(uint8_t);
 
 extern void camera_power_on(void);
 extern void csi_port0_iomux_config(void);
-/* Board ID */
+
+//! @name Board ID
+//@{
 #define BOARD_ID_DEFAULT                0x0
 #define BOARD_ID_MX6SDL_SABRE_AI         0x1
 #define BOARD_ID_MX6SDL_SMART_DEVICE     0x2
 #define BOARD_ID_MX6SDL_EVB              0x3
 #define BOARD_ID_MX6SDL_SABRE_LITE       0x4
+//@}
 
-/* Board version */
+//! @name Board version
+//@{
 #define BOARD_VERSION_DEFAULT	0x0
 #define BOARD_VERSION_1	0x1
 #define BOARD_VERSION_2	0x2
 #define BOARD_VERSION_3	0x1
 #define BOARD_VERSION_4	0x2
 #define BOARD_VERSION_5	0x1
+//@}
 
 #if defined(BOARD_VERSION2)
 #define BOARD_VERSION_ID        BOARD_VERSION_2

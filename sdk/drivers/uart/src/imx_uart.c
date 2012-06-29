@@ -175,7 +175,7 @@ void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
     volatile struct imx_uart *puart = (volatile struct imx_uart *)port->base;
 
    /* configure the I/O for the port */
-    uart_iomux_config(port->base);
+    uart_iomux_config(port->instance);
 
     /* enable the source clocks to the UART port */
     clock_gating_config(port->base, CLOCK_ON);

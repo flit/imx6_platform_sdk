@@ -37,7 +37,7 @@
 #include "snvs/snvs.h"
 #include "hdmi_regs.h"
 #include "buffers.h"
-#include "usb_regs.h"
+//#include "usb_regs.h"
 #include "usb/usb.h"
 #include "keypad/keypad_port.h"
 
@@ -234,8 +234,6 @@ enum display_type {
     DISP_DEV_TV,
 };
 
-void uart_iomux_config(uint32_t module_base_add);
-void i2c_iomux_config(uint32_t module_base);
 void freq_populate(void);
 void show_freq(void);
 uint32_t get_freq(uint32_t module_base);
@@ -246,10 +244,7 @@ void reset_usb_hub(void);
 void usb_clock_enable(void);
 void imx_enet_setup(void);
 void gpmi_nand_clk_setup(void);
-void usdhc_iomux_config(uint32_t);
-void ecspi_iomux_cfg(uint32_t);
-void can_iomux_config(uint32_t module_base_add);
-
+void hw_can_iomux_config(uint32_t module_instance);
 extern hw_module_t g_debug_uart;
 extern hw_module_t g_system_timer;
 

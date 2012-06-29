@@ -14,6 +14,8 @@
 
 #include <math.h>
 #include "registers/regsccmanalog.h"
+#include "registers/regsflexcan.h"
+#include "registers/regsipu.h"
 #include "registers/regspmu.h"
 #include "hardware.h"
 
@@ -238,113 +240,6 @@ void board_init(void)
 }
 
 /*!
- *
- * Complementary code related to IOMUX configuration
- *
- */
-
-/*!
- * That function calls the board dependent UART IOMUX configuration functions.
- */
-void uart_iomux_config(uint32_t module_base_add)
-{
-    switch (module_base_add) {
-    case UART1_BASE_ADDR:
-        uart1_iomux_config();
-        break;
-    case UART2_BASE_ADDR:
-        uart2_iomux_config();
-        break;
-    case UART3_BASE_ADDR:
-        uart3_iomux_config();
-        break;
-    case UART4_BASE_ADDR:
-        uart4_iomux_config();
-        break;
-    case UART5_BASE_ADDR:
-        uart5_iomux_config();
-        break;
-    default:
-        break;
-    }
-}
-
-/*!
- * That function calls the board dependent I2C IOMUX configuration functions.
- */
-void i2c_iomux_config(uint32_t module_base)
-{
-    switch (module_base) {
-    case I2C1_BASE_ADDR:
-        i2c1_iomux_config();
-        break;
-    case I2C2_BASE_ADDR:
-        i2c2_iomux_config();
-        break;
-    case I2C3_BASE_ADDR:
-        i2c3_iomux_config();
-        break;
-    default:
-        break;
-    }
-}
-
-/*!
- * uSDHC pin mux and pad configure
- */
-void usdhc_iomux_config(uint32_t base_address)
-{
-    switch (base_address) {
-    case USDHC1_BASE_ADDR:
-        usdhc1_iomux_config();
-        break;
-    case USDHC2_BASE_ADDR:
-        usdhc2_iomux_config();
-        break;
-    case USDHC3_BASE_ADDR:
-        usdhc3_iomux_config();
-        break;
-    case USDHC4_BASE_ADDR:
-        usdhc4_iomux_config();
-        break;
-    default:
-        break;
-    }
-}
-
-/*!
- * eCSPI pin mux and pad configure
- */
-void ecspi_iomux_cfg(uint32_t base_address)
-{
-    switch (base_address) {
-    case ECSPI1_BASE_ADDR:
-        ecspi1_iomux_config();
-        break;
-    case ECSPI2_BASE_ADDR:
-        ecspi2_iomux_config();
-        break;
-    case ECSPI3_BASE_ADDR:
-        ecspi3_iomux_config();
-        break;
-    case ECSPI4_BASE_ADDR:
-        ecspi4_iomux_config();
-        break;
-    default:
-        break;
-    }
-}
-
-/*!
- * configure the iomux pins for ipu display interface 0
- * choose ipu1 as the source.
- */
-void ipu_iomux_config(void)
-{
-    ipu1_iomux_config();
-}
-
-/*!
  * Provide the LVDS power through GPIO pins
  */
 void lvds_power_on(void)
@@ -501,6 +396,7 @@ void hdmi_tx_phydtb_pgm_iomux(void)
  */
 void hdmi_pgm_iomux(void)
 {
+    ipu1_iomux_config();
     hdmi_tx_cec_pgm_iomux();
     hdmi_tx_ddc_pgm_iomux();
     hdmi_tx_phydtb_pgm_iomux();
@@ -518,7 +414,7 @@ void ext_hdmi_transmitter_power_on(void)
 /*!
  * board dependent IOMUX configuration functions
  */
-void can_iomux_config(uint32_t module_base_add)
+void hw_can_iomux_config(uint32_t module_instance)
 {
 
 #ifdef BOARD_SABRE_AI
@@ -529,31 +425,32 @@ void can_iomux_config(uint32_t module_base_add)
     max7310_set_gpio_output(1, 6, GPIO_HIGH_LEVEL); //expander b, io6 
 #endif
 
-    switch (module_base_add) {
-    case CAN1_BASE_ADDR:
-        can1_iomux_config();
+    can_iomux_config(module_instance);
+
 #ifdef BOARD_SABRE_AI
-        /* Select CAN, ENET_CAN1_STEER(PORT_EXP_B3) */
-        max7310_set_gpio_output(1, 3, GPIO_HIGH_LEVEL); //expander b, io3 
-        /* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */
-        /* active low input */
-        writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_GPIO_4);
-        gpio_dir_config(GPIO_PORT1, 4, GPIO_GDIR_INPUT);
-#endif
-        break;
-    case CAN2_BASE_ADDR:
-        can2_iomux_config();
-#ifdef BOARD_SABRE_AI
-        /* Select ALT5 mode of SD4_DAT3 for GPIO2_11 - CAN2_NERR_B */
-        /* active low input */
-        writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
-        gpio_dir_config(GPIO_PORT2, 11, GPIO_GDIR_INPUT);
-#endif
-        break;
-    default:
-        printf("ERR: invalid CAN base address for iomux config\n");
-        break;
+    switch (module_instance)
+    {
+    	case HW_FLEXCAN1:
+			/* Select CAN, ENET_CAN1_STEER(PORT_EXP_B3) */
+			max7310_set_gpio_output(1, 3, GPIO_HIGH_LEVEL); //expander b, io3
+			/* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */
+			/* active low input */
+			writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_GPIO_4);
+			gpio_dir_config(GPIO_PORT1, 4, GPIO_GDIR_INPUT);
+			break;
+
+    	case HW_FLEXCAN2:
+			/* Select ALT5 mode of SD4_DAT3 for GPIO2_11 - CAN2_NERR_B */
+			/* active low input */
+			writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
+			gpio_dir_config(GPIO_PORT2, 11, GPIO_GDIR_INPUT);
+			break;
+
+    	default:
+			printf("ERR: invalid FLEXCAN instance for iomux config\n");
+			break;
     }
+#endif
 }
 
 /*IOMUX configuration for CSI port0*/
@@ -648,7 +545,7 @@ void SGTL5000PowerUp_and_clockinit(void)
  */
 int esai_codec_power_on(void)
 {
-    //No need to do anything for mx6sdl_ard
+    //No need to do anything for BOARD_SABRE_AI
     return 0;
 }
 

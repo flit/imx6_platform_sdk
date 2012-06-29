@@ -12,6 +12,8 @@
  */
 
 #include "ipu_common.h"
+#include "iomux_config.h"
+#include "registers/regsipu.h"
 
 static int32_t claa_wvga_panel_init(int32_t *arg)
 {
@@ -71,12 +73,12 @@ static int32_t hdmi_720p60_deinit(void)
 {
     return true;
 }
-extern void ipu_iomux_config(void);
+
 extern void ext_hdmi_transmitter_power_on(void);
 static int32_t ext_hdmi_transmitter_1080p60_init(int32_t *ipu_index)
 {
     /*ext_hdmi_transmitter is connected to the parallel interface */
-    ipu_iomux_config();
+    ipu1_iomux_config();
     ext_hdmi_transmitter_power_on();
     hdmi_clock_set(*ipu_index, 148500000);
     return true;

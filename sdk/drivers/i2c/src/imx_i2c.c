@@ -16,6 +16,7 @@
 #include "hardware.h"
 #include "i2c/imx_i2c.h"
 #include "imx_i2c_internal.h"
+#include "registers/regsi2c.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Constants
@@ -397,14 +398,13 @@ int i2c_init(uint32_t base, uint32_t baud)
 {
     uint32_t src_clk, divider;
     uint8_t index;
+    int instance = REGS_I2C_INSTANCE(base);
 
     // enable the source clocks to the I2C port 
     clock_gating_config(base, CLOCK_ON);
 
     // Set iomux configuration 
-    i2c_iomux_config(base);
-    
-    int instance = REGS_I2C_INSTANCE(base);
+    i2c_iomux_config(instance);
 
     // reset I2C 
     HW_I2C_I2CR_WR(instance, 0);

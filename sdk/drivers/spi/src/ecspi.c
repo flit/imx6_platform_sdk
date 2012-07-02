@@ -137,7 +137,7 @@ int ecspi_open(dev_ecspi_e dev, param_ecspi_t param)
     /* Configure clock gating here if necessary */
 
     /* Configure IO signals */
-    ecspi_iomux_config((uint32_t)(dev + 1));
+    ecspi_iomux_config((int)(dev + 1));
 
     /* Configure eCSPI registers */
     ecspi_configure(base, param);

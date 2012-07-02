@@ -12,6 +12,7 @@
 #include "usdhc.h"
 #include "hardware.h"
 #include "usdhc_host.h"
+#include "registers/regsusdhc.h"
 
 extern int SDHC_ADMA_mode;
 extern int SDHC_INTR_mode;
@@ -227,7 +228,7 @@ void host_init(int base_address)
     /* Enable Clock Gating */
 
     /* IOMUX Configuration */
-    usdhc_iomux_config((unsigned int)base_address);
+    usdhc_iomux_config(REGS_USDHC_INSTANCE(base_address));
 }
 
 void host_init_active(int base_address)

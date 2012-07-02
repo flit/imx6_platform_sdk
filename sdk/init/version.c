@@ -26,7 +26,7 @@ void print_ver(char *chip, char *brd, char *brd_rev)
 {
     printf("\n\n\n\n");
     printf("**************************************************************************\n");
-    printf("    Diagnostics Suite (%s) for %s %s %s\n", version_s, chip, brd, brd_rev);
+    printf("    Platform SDK (%s) for %s %s %s\n", version_s, chip, brd, brd_rev);
     printf("    Build: %s, %s\n", __DATE__, __TIME__);
     printf("    Freescale Semiconductor, Inc.\n");
     printf("**************************************************************************\n\n");

@@ -23,7 +23,6 @@ extern int init_dma_data(int sample_rate, int ch);
 extern const unsigned char gAudio_sample[];
 void init_hdmi_interrupt(void);
 void hdmi_tx_ISR(void);
-void hdmi_source_select(int ipu_index, int disp_port);
 
 /*! ------------------------------------------------------------
  * HDMI TX Video Test (force output of FSL logo)

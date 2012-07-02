@@ -146,7 +146,7 @@ typedef enum {
 typedef struct {
     uint32_t strideY;
     uint32_t strideC;
-    int myIndex;
+    int32_t myIndex;
     PhysicalAddress bufY;
     PhysicalAddress bufCb;
     PhysicalAddress bufCr;
@@ -176,9 +176,9 @@ typedef enum {
 } ChromaFormat;
 
 typedef struct {
-    int DbkOffsetA;
-    int DbkOffsetB;
-    int DbkOffsetEnable;
+    int32_t DbkOffsetA;
+    int32_t DbkOffsetB;
+    int32_t DbkOffsetEnable;
 } DbkOffset;
 
 /* VP8 specific display information */
@@ -197,88 +197,88 @@ typedef struct {
     CodStd bitstreamFormat;
     PhysicalAddress bitstreamBuffer;
     uint8_t *pBitStream;
-    int bitstreamBufferSize;
-    int qpReport;
-    int mp4DeblkEnable;
-    int reorderEnable;
-    int chromaInterleave;
-    int filePlayEnable;         /* Not used on mx6 */
-    int picWidth;
-    int picHeight;
-    int avcExtension;           /* Not used on none mx6 */
-    int dynamicAllocEnable;     /* Not used on mx6 */
-    int streamStartByteOffset;
-    int mjpg_thumbNailDecEnable;    /* Not used on mx6 */
+    int32_t bitstreamBufferSize;
+    int32_t qpReport;
+    int32_t mp4DeblkEnable;
+    int32_t reorderEnable;
+    int32_t chromaInterleave;
+    int32_t filePlayEnable;         /* Not used on mx6 */
+    int32_t picWidth;
+    int32_t picHeight;
+    int32_t avcExtension;           /* Not used on none mx6 */
+    int32_t dynamicAllocEnable;     /* Not used on mx6 */
+    int32_t streamStartByteOffset;
+    int32_t mjpg_thumbNailDecEnable;    /* Not used on mx6 */
     PhysicalAddress psSaveBuffer;
-    int psSaveBufferSize;
-    int mp4Class;
+    int32_t psSaveBufferSize;
+    int32_t mp4Class;
 
-    int mapType;
-    int tiled2LinearEnable;
-    int bitstreamMode;
-    int jpgLineBufferMode;      /* mx6 */
+    int32_t mapType;
+    int32_t tiled2LinearEnable;
+    int32_t bitstreamMode;
+    int32_t jpgLineBufferMode;      /* mx6 */
 
 } DecOpenParam;
 
 typedef struct {
-    int frameBufStatBufSize;    /* Size of buffer to save Frame Buffer Status */
-    int mbInfoBufSize;          /* Size of buffer to save Mb information for Error Concealment  */
-    int mvInfoBufSize;          /* Size of buffer to save Motion vector information */
+    int32_t frameBufStatBufSize;    /* Size of buffer to save Frame Buffer Status */
+    int32_t mbInfoBufSize;          /* Size of buffer to save Mb information for Error Concealment  */
+    int32_t mvInfoBufSize;          /* Size of buffer to save Motion vector information */
 } DecReportBufSize;
 
 typedef struct {
     uint8_t *pHeader;
-    int headerSize;
+    int32_t headerSize;
 } JpegHeaderBufInfo;
 
 typedef struct {
-    int picWidth;
-    int picHeight;
+    int32_t picWidth;
+    int32_t picHeight;
     uint32_t frameRateInfo;     /* Not used on mx6 */
     uint32_t frameRateRes;      /* Not used on none mx6 */
     uint32_t frameRateDiv;      /* Not used on none mx6 */
 
     Rect picCropRect;
 
-    int mp4_dataPartitionEnable;
-    int mp4_reversibleVlcEnable;
-    int mp4_shortVideoHeader;
-    int h263_annexJEnable;
+    int32_t mp4_dataPartitionEnable;
+    int32_t mp4_reversibleVlcEnable;
+    int32_t mp4_shortVideoHeader;
+    int32_t h263_annexJEnable;
 
-    int minFrameBufferCount;
-    int frameBufDelay;
-    int nextDecodedIdxNum;
-    int normalSliceSize;
-    int worstSliceSize;
-    int mjpg_thumbNailEnable;
-    int mjpg_sourceFormat;
+    int32_t minFrameBufferCount;
+    int32_t frameBufDelay;
+    int32_t nextDecodedIdxNum;
+    int32_t normalSliceSize;
+    int32_t worstSliceSize;
+    int32_t mjpg_thumbNailEnable;
+    int32_t mjpg_sourceFormat;
 
-    int streamInfoObtained;
-    int profile;
-    int level;
-    int interlace;
-    int constraint_set_flag[4];
-    int direct8x8Flag;
-    int vc1_psf;
-    int aspectRateInfo;
+    int32_t streamInfoObtained;
+    int32_t profile;
+    int32_t level;
+    int32_t interlace;
+    int32_t constraint_set_flag[4];
+    int32_t direct8x8Flag;
+    int32_t vc1_psf;
+    int32_t aspectRateInfo;
     uint32_t errorcode;
 
-    int bitRate;
+    int32_t bitRate;
     Vp8ScaleInfo vp8ScaleInfo;
-    int mjpg_ecsPtr;
+    int32_t mjpg_ecsPtr;
 
     DecReportBufSize reportBufSize;
 } DecInitialInfo;
 
 typedef struct {
     PhysicalAddress bufferBase;
-    int bufferSize;
+    int32_t bufferSize;
 } ExtBufCfg;
 
 typedef struct {
-    int sliceMode;
-    int sliceSizeMode;
-    int sliceSize;
+    int32_t sliceMode;
+    int32_t sliceSizeMode;
+    int32_t sliceSize;
 } EncSliceMode;
 typedef struct {
     PhysicalAddress subSampBaseAMvc;
@@ -288,13 +288,13 @@ typedef struct {
 
 typedef struct {
     PhysicalAddress sliceSaveBuffer;
-    int sliceSaveBufferSize;
+    int32_t sliceSaveBufferSize;
 } DecAvcSliceBufInfo;
 
 typedef struct {
-    int maxMbX;
-    int maxMbY;
-    int maxMbNum;
+    int32_t maxMbX;
+    int32_t maxMbY;
+    int32_t maxMbNum;
 } DecMaxFrmInfo;
 
 typedef struct {
@@ -310,17 +310,17 @@ typedef enum {
 } ExtParaType;
 
 typedef struct {
-    int prescanEnable;          /* Not used on mx6 */
-    int prescanMode;            /* Not used on mx6 */
-    int dispReorderBuf;
-    int iframeSearchEnable;
-    int skipframeMode;
-    int skipframeNum;
-    int chunkSize;              /* Not used on mx6 */
-    int picStartByteOffset;     /* Not used on mx6 */
+    int32_t prescanEnable;          /* Not used on mx6 */
+    int32_t prescanMode;            /* Not used on mx6 */
+    int32_t dispReorderBuf;
+    int32_t iframeSearchEnable;
+    int32_t skipframeMode;
+    int32_t skipframeNum;
+    int32_t chunkSize;              /* Not used on mx6 */
+    int32_t picStartByteOffset;     /* Not used on mx6 */
     PhysicalAddress picStreamBufferAddr;    /* Not used on mx6 */
-    int mjpegScaleDownRatioWidth;   /* mx6 */
-    int mjpegScaleDownRatioHeight;  /* mx6 */
+    int32_t mjpegScaleDownRatioWidth;   /* mx6 */
+    int32_t mjpegScaleDownRatioHeight;  /* mx6 */
 
     PhysicalAddress phyJpgChunkBase;
     unsigned char *virtJpgChunkBase;
@@ -328,15 +328,15 @@ typedef struct {
 } DecParam;
 
 typedef struct {
-    int enable;
-    int size;
+    int32_t enable;
+    int32_t size;
     union {
-        int mvNumPerMb;
-        int userDataNum;
+        int32_t mvNumPerMb;
+        int32_t userDataNum;
     };
     union {
-        int reserved;
-        int userDataBufFull;
+        int32_t reserved;
+        int32_t userDataBufFull;
     };
     uint8_t *addr;
 } DecReportInfo;
@@ -352,8 +352,8 @@ typedef struct {
 
 /* MVC specific picture information */
 typedef struct {
-    int viewIdxDisplay;
-    int viewIdxDecoded;
+    int32_t viewIdxDisplay;
+    int32_t viewIdxDecoded;
 } MvcPicInfo;
 
 /* AVC specific SEI information (frame packing arrangement SEI) */
@@ -379,39 +379,39 @@ typedef struct {
 } AvcFpaSei;
 
 typedef struct {
-    int indexFrameDisplay;
-    int indexFrameDecoded;
-    int NumDecFrameBuf;
-    int picType;
-    int picTypeFirst;           /* Not used on none mx6 */
-    int idrFlg;                 /* Not used on none mx6 */
-    int numOfErrMBs;
+    int32_t indexFrameDisplay;
+    int32_t indexFrameDecoded;
+    int32_t NumDecFrameBuf;
+    int32_t picType;
+    int32_t picTypeFirst;           /* Not used on none mx6 */
+    int32_t idrFlg;                 /* Not used on none mx6 */
+    int32_t numOfErrMBs;
     uint32_t *qpInfo;           /* Not used on mx5 and mx6 */
-    int hScaleFlag;
-    int vScaleFlag;
-    int indexFrameRangemap;
-    int prescanresult;          /* Not used on mx6 */
-    int notSufficientPsBuffer;
-    int notSufficientSliceBuffer;
-    int decodingSuccess;
-    int interlacedFrame;
-    int mp4PackedPBframe;
-    int h264Npf;
+    int32_t hScaleFlag;
+    int32_t vScaleFlag;
+    int32_t indexFrameRangemap;
+    int32_t prescanresult;          /* Not used on mx6 */
+    int32_t notSufficientPsBuffer;
+    int32_t notSufficientSliceBuffer;
+    int32_t decodingSuccess;
+    int32_t interlacedFrame;
+    int32_t mp4PackedPBframe;
+    int32_t h264Npf;
 
-    int pictureStructure;
-    int topFieldFirst;
-    int repeatFirstField;
+    int32_t pictureStructure;
+    int32_t topFieldFirst;
+    int32_t repeatFirstField;
     union {
-        int progressiveFrame;
-        int vc1_repeatFrame;
+        int32_t progressiveFrame;
+        int32_t vc1_repeatFrame;
     };
-    int fieldSequence;
+    int32_t fieldSequence;
 
-    int decPicHeight;
-    int decPicWidth;
+    int32_t decPicHeight;
+    int32_t decPicWidth;
     Rect decPicCrop;
 
-    int aspectRateInfo;
+    int32_t aspectRateInfo;
     uint32_t frameRateRes;      /* Not used on none mx6 */
     uint32_t frameRateDiv;      /* Not used on none mx6 */
     Vp8ScaleInfo vp8ScaleInfo;
@@ -419,9 +419,9 @@ typedef struct {
     MvcPicInfo mvcPicInfo;      /* Not used on none mx6 */
     AvcFpaSei avcFpaSei;
 
-    int frameStartPos;          /* Not used on none mx6 */
-    int frameEndPos;            /* Not used on none mx6 */
-    int consumedByte;           /* Not used on none mx6 */
+    int32_t frameStartPos;          /* Not used on none mx6 */
+    int32_t frameEndPos;            /* Not used on none mx6 */
+    int32_t consumedByte;           /* Not used on none mx6 */
 
     DecReportInfo mbInfo;       /* Not used on mx6 */
     DecReportInfo mvInfo;       /* Not used on mx6 */
@@ -434,48 +434,48 @@ typedef struct CodecInst EncInst;
 typedef EncInst *EncHandle;
 
 typedef struct {
-    int mp4_dataPartitionEnable;
-    int mp4_reversibleVlcEnable;
-    int mp4_intraDcVlcThr;
-    int mp4_hecEnable;
-    int mp4_verid;
+    int32_t mp4_dataPartitionEnable;
+    int32_t mp4_reversibleVlcEnable;
+    int32_t mp4_intraDcVlcThr;
+    int32_t mp4_hecEnable;
+    int32_t mp4_verid;
 } EncMp4Param;
 
 typedef struct {
-    int h263_annexIEnable;
-    int h263_annexJEnable;
-    int h263_annexKEnable;
-    int h263_annexTEnable;
+    int32_t h263_annexIEnable;
+    int32_t h263_annexJEnable;
+    int32_t h263_annexKEnable;
+    int32_t h263_annexTEnable;
 } EncH263Param;
 
 typedef struct {
-    int avc_constrainedIntraPredFlag;
-    int avc_disableDeblk;
-    int avc_deblkFilterOffsetAlpha;
-    int avc_deblkFilterOffsetBeta;
-    int avc_chromaQpOffset;
-    int avc_audEnable;
-    int avc_fmoEnable;
-    int avc_fmoSliceNum;
-    int avc_fmoType;
-    int avc_fmoSliceSaveBufSize;
-    int avc_frameCroppingFlag;
-    int avc_frameCropLeft;
-    int avc_frameCropRight;
-    int avc_frameCropTop;
-    int avc_frameCropBottom;
-    int mvc_extension;
-    int interview_en;
-    int paraset_refresh_en;
-    int prefix_nal_en;
+    int32_t avc_constrainedIntraPredFlag;
+    int32_t avc_disableDeblk;
+    int32_t avc_deblkFilterOffsetAlpha;
+    int32_t avc_deblkFilterOffsetBeta;
+    int32_t avc_chromaQpOffset;
+    int32_t avc_audEnable;
+    int32_t avc_fmoEnable;
+    int32_t avc_fmoSliceNum;
+    int32_t avc_fmoType;
+    int32_t avc_fmoSliceSaveBufSize;
+    int32_t avc_frameCroppingFlag;
+    int32_t avc_frameCropLeft;
+    int32_t avc_frameCropRight;
+    int32_t avc_frameCropTop;
+    int32_t avc_frameCropBottom;
+    int32_t mvc_extension;
+    int32_t interview_en;
+    int32_t paraset_refresh_en;
+    int32_t prefix_nal_en;
 } EncAvcParam;
 
 typedef struct {
-    int mjpg_sourceFormat;
-    int mjpg_restartInterval;
-    int mjpg_thumbNailEnable;
-    int mjpg_thumbNailWidth;
-    int mjpg_thumbNailHeight;
+    int32_t mjpg_sourceFormat;
+    int32_t mjpg_restartInterval;
+    int32_t mjpg_thumbNailEnable;
+    int32_t mjpg_thumbNailWidth;
+    int32_t mjpg_thumbNailHeight;
     uint8_t *mjpg_hufTable;
     uint8_t *mjpg_qMatTable;
 
@@ -491,28 +491,28 @@ typedef struct {
     uint32_t bitstreamBufferSize;
     CodStd bitstreamFormat;
 
-    int picWidth;
-    int picHeight;
+    int32_t picWidth;
+    int32_t picHeight;
     uint32_t frameRateInfo;
-    int bitRate;
-    int initialDelay;
-    int vbvBufferSize;
-    int enableAutoSkip;
-    int gopSize;
-    int linear2TiledEnable;
-    int mapType;
+    int32_t bitRate;
+    int32_t initialDelay;
+    int32_t vbvBufferSize;
+    int32_t enableAutoSkip;
+    int32_t gopSize;
+    int32_t linear2TiledEnable;
+    int32_t mapType;
 
     EncSliceMode slicemode;
-    int intraRefresh;
+    int32_t intraRefresh;
 
-    int sliceReport;
-    int mbReport;
-    int mbQpReport;
+    int32_t sliceReport;
+    int32_t mbReport;
+    int32_t mbQpReport;
 
-    int rcIntraQp;
-    int chromaInterleave;
-    int dynamicAllocEnable;     /* Not used for mx6 */
-    int ringBufferEnable;
+    int32_t rcIntraQp;
+    int32_t chromaInterleave;
+    int32_t dynamicAllocEnable;     /* Not used for mx6 */
+    int32_t ringBufferEnable;
 
     union {
         EncMp4Param mp4Param;
@@ -521,59 +521,59 @@ typedef struct {
         EncMjpgParam mjpgParam;
     } EncStdParam;
 
-    int userQpMin;
-    int userQpMax;
-    int userQpMinEnable;
-    int userQpMaxEnable;
+    int32_t userQpMin;
+    int32_t userQpMax;
+    int32_t userQpMinEnable;
+    int32_t userQpMaxEnable;
 
     uint32_t userGamma;
-    int RcIntervalMode;         /* 0:normal, 1:frame_level, 2:slice_level, 3: user defined Mb_level */
-    int MbInterval;             /* use when RcintervalMode is 3 */
-    int avcIntra16x16OnlyModeEnable;
+    int32_t RcIntervalMode;         /* 0:normal, 1:frame_level, 2:slice_level, 3: user defined Mb_level */
+    int32_t MbInterval;             /* use when RcintervalMode is 3 */
+    int32_t avcIntra16x16OnlyModeEnable;
 
-    int MESearchRange;          // 3: 16x16, 2:32x16, 1:64x32, 0:128x64, H.263(Short Header : always 3)
-    int MEUseZeroPmv;           // 0: PMV_ENABLE, 1: PMV_DISABLE
-    int IntraCostWeight;        // Additional weight of Intra Cost for mode decision to reduce Intra MB density
+    int32_t MESearchRange;          // 3: 16x16, 2:32x16, 1:64x32, 0:128x64, H.263(Short Header : always 3)
+    int32_t MEUseZeroPmv;           // 0: PMV_ENABLE, 1: PMV_DISABLE
+    int32_t IntraCostWeight;        // Additional weight of Intra Cost for mode decision to reduce Intra MB density
 } EncOpenParam;
 
 typedef struct {
-    int sliceInfoBufSize;       /* Slice Info */
-    int mbInfoBufSize;          /* Mb Param for Error Concealment */
-    int mvInfoBufSize;          /* Motion vector */
+    int32_t sliceInfoBufSize;       /* Slice Info */
+    int32_t mbInfoBufSize;          /* Mb Param for Error Concealment */
+    int32_t mvInfoBufSize;          /* Motion vector */
 } EncReportBufSize;
 
 typedef struct {
-    int minFrameBufferCount;
+    int32_t minFrameBufferCount;
     EncReportBufSize reportBufSize;
 } EncInitialInfo;
 
 typedef struct {
     FrameBuffer *sourceFrame;
-    int encTopOffset;
-    int encLeftOffset;
-    int forceIPicture;
-    int skipPicture;
-    int quantParam;
+    int32_t encTopOffset;
+    int32_t encLeftOffset;
+    int32_t forceIPicture;
+    int32_t skipPicture;
+    int32_t quantParam;
     PhysicalAddress picStreamBufferAddr;
-    int picStreamBufferSize;
-    int enableAutoSkip;
+    int32_t picStreamBufferSize;
+    int32_t enableAutoSkip;
 } EncParam;
 
 typedef struct {
-    int enable;
-    int type;
-    int size;
+    int32_t enable;
+    int32_t type;
+    int32_t size;
     uint8_t *addr;
 } EncReportInfo;
 
 typedef struct {
     PhysicalAddress bitstreamBuffer;
     uint32_t bitstreamSize;
-    int bitstreamWrapAround;
-    int skipEncoded;
-    int picType;
-    int numOfSlices;
-    int reconFrameIndex;
+    int32_t bitstreamWrapAround;
+    int32_t skipEncoded;
+    int32_t picType;
+    int32_t numOfSlices;
+    int32_t reconFrameIndex;
 
     uint32_t *pSliceInfo;
     uint32_t *pMBInfo;
@@ -587,20 +587,20 @@ typedef struct {
 typedef struct {
     uint32_t *paraSet;
     uint8_t *pParaSet;
-    int size;
+    int32_t size;
 } EncParamSet;
 
 typedef struct {
     PhysicalAddress searchRamAddr;
-    int SearchRamSize;
+    int32_t SearchRamSize;
 } SearchRamParam;
 
 typedef struct {
     PhysicalAddress buf;
-    int size;
-    int headerType;
-    int userProfileLevelEnable;
-    int userProfileLevelIndication;
+    int32_t size;
+    int32_t headerType;
+    int32_t userProfileLevelEnable;
+    int32_t userProfileLevelIndication;
 } EncHeaderParam;
 
 typedef enum {
@@ -631,10 +631,10 @@ typedef struct {
  * The library version convention:
  */
 typedef struct vpu_versioninfo {
-    int fw_major;               /* firmware major version */
-    int fw_minor;               /* firmware minor version */
-    int fw_release;             /* firmware release version */
-    int fw_code;                /* firmware checkin code number */
+    int32_t fw_major;               /* firmware major version */
+    int32_t fw_minor;               /* firmware minor version */
+    int32_t fw_release;             /* firmware release version */
+    int32_t fw_code;                /* firmware checkin code number */
 } vpu_versioninfo;
 
 #define VPU_FW_VERSION(major, minor, release)	 \
@@ -643,7 +643,7 @@ typedef struct vpu_versioninfo {
 #define VPU_LIB_VERSION(major, minor, release)	 \
 	(((major) << 12) + ((minor) << 8) + (release))
 
-extern unsigned int system_rev;
+extern uint32_t system_rev;
 
 #define CHIP_REV_1_0            	0x10
 #define CHIP_REV_2_0			0x20
@@ -655,7 +655,7 @@ extern unsigned int system_rev;
 #define mxc_cpu_is_rev(rev)     \
         ((mxc_cpu_rev() == rev) ? 1 : ((mxc_cpu_rev() < rev) ? -1 : 2))
 #define MXC_REV(type)                           \
-static inline int type## _rev (int rev)         \
+static inline int32_t type## _rev (int32_t rev)         \
 {                                               \
         return (type() ? mxc_cpu_is_rev(rev) : 0);      \
 }
@@ -674,7 +674,7 @@ RetCode VPU_EncOpen(EncHandle *, EncOpenParam *);
 RetCode VPU_EncClose(EncHandle);
 RetCode VPU_EncGetInitialInfo(EncHandle, EncInitialInfo *);
 RetCode VPU_EncRegisterFrameBuffer(EncHandle handle, FrameBuffer * bufArray,
-                                   int num, int frameBufStride, int sourceBufStride,
+                                   int32_t num, int32_t frameBufStride, int32_t sourceBufStride,
                                    PhysicalAddress subSampBaseA, PhysicalAddress subSampBaseB,
                                    EncExtBufInfo * pBufInfo);
 RetCode VPU_EncGetBitstreamBuffer(EncHandle handle, PhysicalAddress * prdPrt,
@@ -686,10 +686,10 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *parameter);
 
 RetCode VPU_DecOpen(DecHandle *, DecOpenParam *);
 RetCode VPU_DecClose(DecHandle);
-RetCode VPU_DecSetEscSeqInit(DecHandle handle, int escape);
+RetCode VPU_DecSetEscSeqInit(DecHandle handle, int32_t escape);
 RetCode VPU_DecGetInitialInfo(DecHandle handle, DecInitialInfo * info);
 RetCode VPU_DecRegisterFrameBuffer(DecHandle handle,
-                                   FrameBuffer * bufArray, int num, int stride,
+                                   FrameBuffer * bufArray, int32_t num, int32_t stride,
                                    DecBufInfo * pBufInfo);
 RetCode VPU_DecGetBitstreamBuffer(DecHandle handle, PhysicalAddress * paRdPtr,
                                   PhysicalAddress * paWrPtr, uint32_t * size);
@@ -697,15 +697,15 @@ RetCode VPU_DecUpdateBitstreamBuffer(DecHandle handle, uint32_t size);
 RetCode VPU_DecStartOneFrame(DecHandle handle, DecParam * param);
 RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info);
 RetCode VPU_DecBitBufferFlush(DecHandle handle);
-RetCode VPU_DecClrDispFlag(DecHandle handle, int index);
+RetCode VPU_DecClrDispFlag(DecHandle handle, int32_t index);
 RetCode VPU_DecBufferCheck(DecHandle handle);
 RetCode VPU_DecGiveCommand(DecHandle handle, CodecCommand cmd, void *parameter);
-RetCode VPU_EnableInterrupt(int sel);
+RetCode VPU_EnableInterrupt(int32_t sel);
 RetCode VPU_ClearInterrupt(void);
-int VPU_IsBusy(void);
-int jpu_IsBusy(void);
-int VPU_WaitForInt(int timeout_in_ms);
-RetCode VPU_SWReset(int forcedReset);
+int32_t VPU_IsBusy(void);
+int32_t jpu_IsBusy(void);
+int32_t VPU_WaitForInt(int32_t timeout_in_ms);
+RetCode VPU_SWReset(int32_t forcedReset);
 int VPU_GetXY2AXIAddr(DecHandle handle, int ycbcr, int posY, int posX, int stride,
                       unsigned int addrY, unsigned int addrCb, unsigned int addrCr);
 

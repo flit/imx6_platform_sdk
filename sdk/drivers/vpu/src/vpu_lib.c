@@ -32,7 +32,7 @@
 #define IMAGE_ENDIAN			0
 #define STREAM_ENDIAN			0
 
-unsigned int system_rev = 0x61 << 12;
+uint32_t system_rev = 0x61 << 12;
 extern const unsigned short bit_code[];
 
 /* If a frame is started, pendingInst is set to the proper instance. */
@@ -45,7 +45,7 @@ uint32_t *virt_paraBuf2;
 extern vpu_mem_desc bit_work_addr;
 extern vpu_resource_t *vpu_hw_map;
 
-static int decoded_pictype[32];
+static int32_t decoded_pictype[32];
 
 /*!
  * @brief
@@ -56,16 +56,16 @@ static int decoded_pictype[32];
  * @li 0: VPU hardware is idle.
  * @li Non-zero value: VPU hardware is busy processing a frame.
  */
-int VPU_IsBusy()
+int32_t VPU_IsBusy()
 {
-    int vpu_busy;
+    int32_t vpu_busy;
 
     vpu_busy = VpuReadReg(BIT_BUSY_FLAG);
 
     return vpu_busy != 0;
 }
 
-int VPU_WaitForInt(int timeout_in_ms)
+int32_t VPU_WaitForInt(int32_t timeout_in_ms)
 {
     hal_delay_us(timeout_in_ms * 10);
 
@@ -81,7 +81,7 @@ int VPU_WaitForInt(int timeout_in_ms)
  */
 RetCode VPU_Init(void)
 {
-    int i, err;
+    int32_t i, err;
     volatile uint32_t data;
     PhysicalAddress tempBuffer, codeBuffer, paraBuffer;
 
@@ -153,9 +153,9 @@ void VPU_UnInit(void)
     IOSystemShutdown();
 }
 
-RetCode VPU_SWReset(int forcedReset)
+RetCode VPU_SWReset(int32_t forcedReset)
 {
-    volatile int i;
+    volatile int32_t i;
     uint32_t cmd;
 
     if (forcedReset == 0) {
@@ -253,7 +253,7 @@ RetCode VPU_EncOpen(EncHandle * pHandle, EncOpenParam * pop)
 {
     CodecInst *pCodecInst;
     EncInfo *pEncInfo;
-    int instIdx;
+    int32_t instIdx;
     RetCode ret;
     uint32_t val;
 
@@ -404,10 +404,10 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
     CodecInst *pCodecInst;
     EncInfo *pEncInfo;
     EncOpenParam *pEncOP;
-    int picWidth;
-    int picHeight;
+    int32_t picWidth;
+    int32_t picHeight;
     uint32_t data, *tableBuf;
-    int i;
+    int32_t i;
     SetIramParam iramParam;
     RetCode ret;
 
@@ -651,13 +651,13 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
  * @li RETCODE_INVALID_STRIDE stride is smaller than the picture width.
  */
 RetCode VPU_EncRegisterFrameBuffer(EncHandle handle, FrameBuffer * bufArray,
-                                   int num, int frameBufStride, int sourceBufStride,
+                                   int32_t num, int32_t frameBufStride, int32_t sourceBufStride,
                                    PhysicalAddress subSampBaseA, PhysicalAddress subSampBaseB,
                                    EncExtBufInfo * pBufInfo)
 {
     CodecInst *pCodecInst;
     EncInfo *pEncInfo;
-    int i;
+    int32_t i;
     uint32_t val;
     RetCode ret;
 
@@ -794,7 +794,7 @@ RetCode VPU_EncGetBitstreamBuffer(EncHandle handle,
     EncInfo *pEncInfo;
     PhysicalAddress rdPtr;
     PhysicalAddress wrPtr;
-    int instIndex;
+    int32_t instIndex;
     uint32_t room;
     RetCode ret;
 
@@ -844,7 +844,7 @@ RetCode VPU_EncUpdateBitstreamBuffer(EncHandle handle, uint32_t size)
     PhysicalAddress wrPtr;
     PhysicalAddress rdPtr;
     RetCode ret;
-    int room = 0, instIndex;
+    int32_t room = 0, instIndex;
 
     ret = CheckEncInstanceValidity(handle);
     if (ret != RETCODE_SUCCESS)
@@ -1165,7 +1165,7 @@ RetCode VPU_EncGetOutputInfo(EncHandle handle, EncOutputInfo * info)
     info->reconFrameIndex = VpuReadReg(RET_ENC_PIC_FRAME_IDX);
 
     if (pEncInfo->encReportMBInfo.enable) {
-        int size = 0;
+        int32_t size = 0;
         uint32_t tempBuf[2];
         uint8_t *dst_addr = NULL, *src_addr = NULL;
         uint32_t virt_addr = pEncInfo->picParaBaseMem.virt_uaddr;
@@ -1184,7 +1184,7 @@ RetCode VPU_EncGetOutputInfo(EncHandle handle, EncOutputInfo * info)
     }
 
     if (pEncInfo->encReportMVInfo.enable) {
-        int size = 0;
+        int32_t size = 0;
         uint32_t tempBuf[2];
         uint8_t *dst_addr = NULL, *src_addr = NULL;
         uint32_t virt_addr = pEncInfo->picParaBaseMem.virt_uaddr;
@@ -1204,7 +1204,7 @@ RetCode VPU_EncGetOutputInfo(EncHandle handle, EncOutputInfo * info)
     }
 
     if (pEncInfo->encReportSliceInfo.enable) {
-        int size = 0;
+        int32_t size = 0;
         uint32_t tempBuf[2];
         uint8_t *dst_addr = NULL, *src_addr = NULL;
         uint32_t virt_addr = pEncInfo->picParaBaseMem.virt_uaddr;
@@ -1302,13 +1302,13 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
 
     case SET_ROTATION_ANGLE:
         {
-            int angle;
+            int32_t angle;
 
             if (param == 0) {
                 return RETCODE_INVALID_PARAM;
             }
 
-            angle = *(int *)param;
+            angle = *(int32_t *)param;
             if (angle != 0 && angle != 90 && angle != 180 && angle != 270) {
                 return RETCODE_INVALID_PARAM;
             }
@@ -1443,7 +1443,7 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
 
     case ENC_SET_GOP_NUMBER:
         {
-            int *pGopNumber = (int *)param;
+            int32_t *pGopNumber = (int32_t *)param;
             if (pCodecInst->codecMode != MP4_ENC && pCodecInst->codecMode != AVC_ENC) {
                 return RETCODE_INVALID_COMMAND;
             }
@@ -1459,7 +1459,7 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
 
     case ENC_SET_INTRA_QP:
         {
-            int *pIntraQp = (int *)param;
+            int32_t *pIntraQp = (int32_t *)param;
             if (pCodecInst->codecMode != MP4_ENC && pCodecInst->codecMode != AVC_ENC) {
                 return RETCODE_INVALID_COMMAND;
             }
@@ -1481,7 +1481,7 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
 
     case ENC_SET_BITRATE:
         {
-            int *pBitrate = (int *)param;
+            int32_t *pBitrate = (int32_t *)param;
             if (pCodecInst->codecMode != MP4_ENC && pCodecInst->codecMode != AVC_ENC) {
                 return RETCODE_INVALID_COMMAND;
             }
@@ -1497,7 +1497,7 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
 
     case ENC_SET_FRAME_RATE:
         {
-            int *pFramerate = (int *)param;
+            int32_t *pFramerate = (int32_t *)param;
             if (pCodecInst->codecMode != MP4_ENC && pCodecInst->codecMode != AVC_ENC) {
                 return RETCODE_INVALID_COMMAND;
             }
@@ -1513,7 +1513,7 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
 
     case ENC_SET_INTRA_MB_REFRESH_NUMBER:
         {
-            int *pIntraRefreshNum = (int *)param;
+            int32_t *pIntraRefreshNum = (int32_t *)param;
 
             SetIntraRefreshNum(handle, (uint32_t *) pIntraRefreshNum);
 
@@ -1641,7 +1641,7 @@ RetCode VPU_DecOpen(DecHandle * pHandle, DecOpenParam * pop)
 {
     CodecInst *pCodecInst;
     DecInfo *pDecInfo;
-    int instIdx, i;
+    int32_t instIdx, i;
     uint32_t val;
     RetCode ret;
 
@@ -1810,7 +1810,7 @@ RetCode VPU_DecClose(DecHandle handle)
     return RETCODE_SUCCESS;
 }
 
-RetCode VPU_DecSetEscSeqInit(DecHandle handle, int escape)
+RetCode VPU_DecSetEscSeqInit(DecHandle handle, int32_t escape)
 {
     CodecInst *pCodecInst;
     RetCode ret;
@@ -2060,12 +2060,12 @@ RetCode VPU_DecGetInitialInfo(DecHandle handle, DecInitialInfo * info)
  * @li RETCODE_INVALID_STRIDE stride is less than the picture width.
  */
 RetCode VPU_DecRegisterFrameBuffer(DecHandle handle,
-                                   FrameBuffer * bufArray, int num, int stride,
+                                   FrameBuffer * bufArray, int32_t num, int32_t stride,
                                    DecBufInfo * pBufInfo)
 {
     CodecInst *pCodecInst;
     DecInfo *pDecInfo;
-    int i;
+    int32_t i;
     RetCode ret;
     uint32_t val;
 
@@ -2192,7 +2192,7 @@ RetCode VPU_DecGetBitstreamBuffer(DecHandle handle,
     DecInfo *pDecInfo;
     PhysicalAddress rdPtr;
     PhysicalAddress wrPtr;
-    int instIndex;
+    int32_t instIndex;
     uint32_t room;
     RetCode ret;
 
@@ -2244,7 +2244,7 @@ RetCode VPU_DecUpdateBitstreamBuffer(DecHandle handle, uint32_t size)
     PhysicalAddress wrPtr;
     PhysicalAddress rdPtr;
     RetCode ret;
-    int room = 0, instIndex;
+    int32_t room = 0, instIndex;
     uint32_t val = 0;
 
     ret = CheckDecInstanceValidity(handle);
@@ -2514,7 +2514,7 @@ RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info)
     if (cpu_is_mx6q()) {
         info->frameStartPos = VpuReadReg(BIT_BYTE_POS_FRAME_START);
         info->frameEndPos = VpuReadReg(BIT_BYTE_POS_FRAME_END);
-        if (info->frameEndPos > (int)pDecInfo->streamBufEndAddr) {
+        if (info->frameEndPos > (int32_t)pDecInfo->streamBufEndAddr) {
             info->consumedByte = pDecInfo->streamBufEndAddr - info->frameStartPos;
             info->consumedByte += info->frameEndPos - pDecInfo->streamBufStartAddr;
         } else
@@ -2731,12 +2731,12 @@ RetCode VPU_DecBitBufferFlush(DecHandle handle)
     return RETCODE_SUCCESS;
 }
 
-RetCode VPU_DecClrDispFlag(DecHandle handle, int index)
+RetCode VPU_DecClrDispFlag(DecHandle handle, int32_t index)
 {
     CodecInst *pCodecInst;
     DecInfo *pDecInfo;
     RetCode ret;
-    int val;
+    int32_t val;
 
     ret = CheckDecInstanceValidity(handle);
     if (ret != RETCODE_SUCCESS)
@@ -2877,13 +2877,13 @@ RetCode VPU_DecGiveCommand(DecHandle handle, CodecCommand cmd, void *param)
 
     case SET_ROTATION_ANGLE:
         {
-            int angle;
-            int height, width;
+            int32_t angle;
+            int32_t height, width;
 
             if (param == 0) {
                 return RETCODE_INVALID_PARAM;
             }
-            angle = *(int *)param;
+            angle = *(int32_t *)param;
             if (angle != 0 && angle != 90 && angle != 180 && angle != 270) {
                 return RETCODE_INVALID_PARAM;
             }
@@ -2921,12 +2921,12 @@ RetCode VPU_DecGiveCommand(DecHandle handle, CodecCommand cmd, void *param)
 
     case SET_ROTATOR_STRIDE:
         {
-            int stride;
+            int32_t stride;
 
             if (param == 0) {
                 return RETCODE_INVALID_PARAM;
             }
-            stride = *(int *)param;
+            stride = *(int32_t *)param;
             if (stride % 8 != 0 || stride == 0) {
                 return RETCODE_INVALID_STRIDE;
             }
@@ -3053,7 +3053,7 @@ RetCode VPU_DecGiveCommand(DecHandle handle, CodecCommand cmd, void *param)
     return RETCODE_SUCCESS;
 }
 
-RetCode VPU_EnableInterrupt(int sel)
+RetCode VPU_EnableInterrupt(int32_t sel)
 {
     VpuWriteReg(BIT_INT_ENABLE, 1 << sel);
 

@@ -12,16 +12,19 @@
 #include "hardware.h"
 #include "vpu_debug.h"
 #include "vpu_util.h"
-#include "usdhc/inc/usdhc_ifc.h"
 
-tFile files[10];
+extern void print_media_fat_info(uint32_t);
 
-tVolume *V;
+#define DeviceNum 0
+
+uint32_t g_usdhc_base_addr = SD_PORT_BASE_ADDR;
 vpu_resource_t vpu_resource = { 0 };
 struct decode *gDecInstance[MAX_NUM_INSTANCE];
 struct encode *gEncInstance[MAX_NUM_INSTANCE];
-int disp_clr_index[MAX_NUM_INSTANCE];
-int multi_instance = 1;
+int32_t disp_clr_index[MAX_NUM_INSTANCE];
+int32_t multi_instance = 1;
+
+bool g_bFrameworkExternalDriveOrFsInit = 0;
 
 static vpu_test_t vpu_tests[] = {
     {"VPU DECODER TEST", decode_test},
@@ -30,10 +33,10 @@ static vpu_test_t vpu_tests[] = {
 
 int vpu_test(void)
 {
-    int err = 0, i = 0;
+    int32_t err = 0, i = 0;
     vpu_versioninfo ver;
     uint8_t revchar;
-    int test_num = sizeof(vpu_tests) / sizeof(vpu_test_t);
+    int32_t test_num = sizeof(vpu_tests) / sizeof(vpu_test_t);
 
     /*instance attached to display interface */
     config_system_parameters();
@@ -41,10 +44,19 @@ int vpu_test(void)
     /* initialize SD card and FAT driver */
     enable_L1_cache();
 
-    card_init(SD_PORT_BASE_ADDR, 4);    //SD card must work in 4-bit mode
+    /* used in the FAT driver if a card is present and initialized */
+    g_bFrameworkExternalDriveOrFsInit = 1;
 
-    /*uSDHC working in POLLING mode */
-    init_fat32_device((void *)fat_read_from_usdhc);
+    /* FAT filesystem setup from SD card */
+    if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {
+        err = -1;
+        printf("Fail to initialize the filesystem\n");
+    }
+    /*init the drive */
+    FSDriveInit(DeviceNum);
+    SetCWDHandle(DeviceNum);
+
+    print_media_fat_info(DeviceNum);
 
     gCurrentActiveInstance = 0;
 

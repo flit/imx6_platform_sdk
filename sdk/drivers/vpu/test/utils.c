@@ -11,51 +11,19 @@
 #include "vpu_test.h"
 #include "vpu_debug.h"
 
-int fat_read_from_usdhc(uint32_t sd_addr, uint32_t sd_size, void *buffer, int fast_flag)
-{
-    card_data_read(SD_PORT_BASE_ADDR, buffer, sd_size, sd_addr);
-    return 1;
-}
+extern RtStatus_t Fread_multi_sectors(int32_t, uint8_t *, int32_t);
 
-void init_fat32_device(void *blkreq_func)
-{
-    /*in initilization stage, set the usdhc to polling mode */
-    SDHC_INTR_mode = 0;
-    SDHC_ADMA_mode = 1;
-
-    V = (tVolume *) FAT_DRIVER_BUFFER;
-
-    V->blkreq = blkreq_func;
-    V->buffer = (char *)(FAT_DRIVER_BUFFER + 0x00100000);
-
-    fat_mount(V);
-}
-
-int fat_search_files(char *ext, int num)
-{
-    int fnum, i;
-    fnum = fat_scan_root(V, files, num, 1, ext);
-    if (fnum == 0)
-        return 0;
-    for (i = 0; i < num; i++) {
-        printf("File %d is %s\n", i, files[i].fname);
-        fat_open_file(V, &(files[i]));
-        files[i].file_size &= 0xfff80000;
-    }
-    return num;
-}
-
-int vpu_stream_read(struct cmd_line *cmd, char *buf, int n)
+int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
 {
     if (cmd->src_scheme == PATH_MEM) {
-        int bs_left = (bsmem.bs_end - bsmem.bs_start) - bsmem.bs_offset;
-        int copy_size = (bs_left > n) ? n : bs_left;
+        int32_t bs_left = (bsmem.bs_end - bsmem.bs_start) - bsmem.bs_offset;
+        int32_t copy_size = (bs_left > n) ? n : bs_left;
         /*bitstream is stored in memory */
         memcpy(buf, (void *)(bsmem.bs_start + bsmem.bs_offset), copy_size);
         bsmem.bs_offset += copy_size;
         return copy_size;
     } else if (cmd->src_scheme == PATH_FILE) {
-        int res, i;
+        int32_t res, i;
 
         /* if SD is currently busy, it means that the other video instance has requested a buffer fill, */
         /* return without doing anything, the video driver will request a buffer fill again next frame */
@@ -63,7 +31,7 @@ int vpu_stream_read(struct cmd_line *cmd, char *buf, int n)
         card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
         if (usdhc_status != 1)
             return -1;          //now SD card is busy
-        res = fat_read_file(V, cmd->input, (char *)buf, n, cmd->read_mode);
+        res = Fread_FAT(cmd->input, (uint8_t *) buf, n);
 
         if (res < n) {
             for (i = 0; i < (n - res); i++)
@@ -76,7 +44,7 @@ int vpu_stream_read(struct cmd_line *cmd, char *buf, int n)
 
 }
 
-int vpu_stream_write(struct cmd_line *cmd, char *buf, int n)
+int32_t vpu_stream_write(struct cmd_line *cmd, char *buf, int32_t n)
 {
     if (cmd->dst_scheme == PATH_MEM) {
         memcpy((void *)bsmem.bs_end, buf, n);
@@ -87,7 +55,7 @@ int vpu_stream_write(struct cmd_line *cmd, char *buf, int n)
     return n;
 }
 
-int ipu_refresh(int ipu_index, uint32_t buffer)
+int32_t ipu_refresh(uint32_t ipu_index, uint32_t buffer)
 {
     ipu_dma_update_buffer(ipu_index, 23, 0, buffer);
     ipu_channel_buf_ready(ipu_index, 23, 0);
@@ -105,9 +73,9 @@ void config_system_parameters(void)
 }
 
 #ifdef __NOT_USED__
-int video_data_cmp(unsigned char *src, unsigned char *dst, int size)
+int32_t video_data_cmp(unsigned char *src, unsigned char *dst, int32_t size)
 {
-    int i = 0;
+    int32_t i = 0;
     for (i = 0; i < size; i++) {
         if (src[i] != dst[i]) {
             err_msg("comparision failed at %d\n", i);
@@ -130,7 +98,7 @@ void epit2_config(void)
     vtimer.timer_start = reg32_read(EPIT2_BASE_ADDR + EPIT_EPITCNR_OFFSET);
 }
 
-int get_timer_stamp(int periodic)
+int32_t get_timer_stamp(int32_t periodic)
 {
     uint32_t val = reg32_read(EPIT2_BASE_ADDR + EPIT_EPITCNR_OFFSET);
     if (val < vtimer.timer_start) {

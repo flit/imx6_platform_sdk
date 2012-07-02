@@ -404,29 +404,29 @@ RtStatus_t Cleardevicerecord(int32_t DeviceNum)
 //                   Note: Will only return success case of MEDIA_MMC_VALID after the app 
 //                         has init the external drive's FS.
 ////////////////////////////////////////////////////////////////////////////////
-media_mmc_status_t ExternalMMCMediaPresent(void)
-{
-    media_mmc_status_t Status = MEDIA_MMC_NOT_PRESENT;
-
-    // Note: In some apps that don't enable the sdk os media framework to init the FS, 
-    //   g_bFrameworkExternalDriveOrFsInit true just means that media & drive are init.
-    // We'd prefer a check of the FsDriveInit & computefreeclusters status. 
-    if( g_bFrameworkExternalDriveOrFsInit ) 
-    {   
-        // External Drive was init. 
-        // Did FsInit and FsDriveInit run and succeed?
-        if (FSFATType(DATA_DRIVE_ID_EXTERNAL) != FAT_TYPE_INVALID)
-        {
-            Status = MEDIA_MMC_VALID;
-        }
-        else
-        {   // Drive is init and removable media is present but FS is invalid.
-            Status = MEDIA_MMC_INVALID;
-        }
-    }
-
-    return(Status);
-}
+// media_mmc_status_t ExternalMMCMediaPresent(void)
+// {
+//     media_mmc_status_t Status = MEDIA_MMC_NOT_PRESENT;
+// 
+//     // Note: In some apps that don't enable the sdk os media framework to init the FS, 
+//     //   g_bFrameworkExternalDriveOrFsInit true just means that media & drive are init.
+//     // We'd prefer a check of the FsDriveInit & computefreeclusters status. 
+//     if( g_bFrameworkExternalDriveOrFsInit ) 
+//     {   
+//         // External Drive was init. 
+//         // Did FsInit and FsDriveInit run and succeed?
+//         if (FSFATType(DATA_DRIVE_ID_EXTERNAL) != FAT_TYPE_INVALID)
+//         {
+//             Status = MEDIA_MMC_VALID;
+//         }
+//         else
+//         {   // Drive is init and removable media is present but FS is invalid.
+//             Status = MEDIA_MMC_INVALID;
+//         }
+//     }
+// 
+//     return(Status);
+// }
 
 
 

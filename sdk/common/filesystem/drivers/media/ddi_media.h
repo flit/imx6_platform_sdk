@@ -821,18 +821,18 @@ RtStatus_t DriveShutdown(DriveTag_t tag);
 //! Set this macro to 1 to enable media task tracking.
 #define DDI_LDL_ENABLE_MEDIA_TASKS 0
 
-//#if DEBUG && DDI_LDL_ENABLE_MEDIA_TASKS
+#if DEBUG && DDI_LDL_ENABLE_MEDIA_TASKS
 void ddi_ldl_push_media_task(const char * taskName);
 void ddi_ldl_pop_media_task(void);
 unsigned ddi_ldl_get_media_task_count(void);
 unsigned ddi_ldl_get_media_task_stack(const char ** tasks, unsigned maxTasks);
-//#else
+#else
 // moved to ddi_media.c to quickly fix build multiple definitions issue !
-//inline void ddi_ldl_push_media_task(const char * taskName) {}
-//inline void ddi_ldl_pop_media_task(void) {}
-//inline unsigned ddi_ldl_get_media_task_count(void) { return 0; }
-//inline unsigned ddi_ldl_get_media_task_stack(const char ** tasks, unsigned maxTasks) { return 0; }
-//#endif
+static inline void ddi_ldl_push_media_task(const char * taskName) {}
+static inline void ddi_ldl_pop_media_task(void) {}
+static inline unsigned ddi_ldl_get_media_task_count(void) { return 0; }
+static inline unsigned ddi_ldl_get_media_task_stack(const char ** tasks, unsigned maxTasks) { return 0; }
+#endif
 //@}
 
 #ifdef __cplusplus

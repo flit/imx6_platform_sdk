@@ -73,9 +73,10 @@ RtStatus_t Fremove(const uint8_t *filepath)
     {
         BOOL protected = false;
         // Check for Write Protected media
-        DriveGetInfo( Handle[HandleNumber].Device,
-                      kDriveInfoIsWriteProtected,
-                     (void*)&protected );
+        //! @todo Bring bach write protected media check.
+//         DriveGetInfo( Handle[HandleNumber].Device,
+//                       kDriveInfoIsWriteProtected,
+//                      (void*)&protected );
         if( protected )
        	{	 
             Freehandle( HandleNumber );

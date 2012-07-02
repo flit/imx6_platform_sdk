@@ -24,8 +24,6 @@ struct encode *gEncInstance[MAX_NUM_INSTANCE];
 int32_t disp_clr_index[MAX_NUM_INSTANCE];
 int32_t multi_instance = 1;
 
-bool g_bFrameworkExternalDriveOrFsInit = 0;
-
 static vpu_test_t vpu_tests[] = {
     {"VPU DECODER TEST", decode_test},
     {"VPU ENCODER TEST", encode_test},
@@ -43,9 +41,6 @@ int vpu_test(void)
 
     /* initialize SD card and FAT driver */
     enable_L1_cache();
-
-    /* used in the FAT driver if a card is present and initialized */
-    g_bFrameworkExternalDriveOrFsInit = 1;
 
     /* FAT filesystem setup from SD card */
     if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {

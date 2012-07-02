@@ -96,7 +96,7 @@ RtStatus_t  Fflush(int32_t HandleNumber)
 
     if(i32WriteFlag==1)
     {
-        if ((RetValue = DriveFlush(Handle[HandleNumber].Device)) != SUCCESS)
+        if ((RetValue = FSFlushDriveCache(Handle[HandleNumber].Device)) != SUCCESS)
         {
             ddi_ldl_pop_media_task();
             return RetValue;

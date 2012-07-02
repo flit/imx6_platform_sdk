@@ -27,6 +27,9 @@ Notes:
 #include "sectordef.h"
 #include "drivers/media/media_cache.h"
 
+RtStatus_t media_cache_pinned_write(MediaCacheParamBlock_t * pb){return 0;}
+RtStatus_t media_cache_release(uint32_t token){return 0;}
+
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t DeleteContent(int32_t HandleNumber,int32_t bUseVestigialClusterEraser)
 

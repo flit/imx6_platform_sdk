@@ -40,7 +40,7 @@ uint32_t g_u32MbrStartSector = 0;
 //! \brief Determines if a sector is within the first FAT.
 static bool IsFATSector(uint32_t drive, uint32_t sector)
 {
-    uint32_t start = MediaTable[drive].RsvdSectors;
+    uint32_t start = MediaTable[drive].RsvdSectors + g_u32MbrStartSector;
     uint32_t end = start + MediaTable[drive].FATSize;
     return (sector >= start) && (sector < end); 
 }
@@ -53,7 +53,6 @@ static bool IsFATSector(uint32_t drive, uint32_t sector)
 
 /* enable only one option, not both */
 //#define RAM_FS
-//#define NON_CACHED
 
 #define RAM_FS_ADDR 0x11000000
 
@@ -169,18 +168,15 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
     uint32_t actualSectorNumber = sectorNumber + g_u32MbrStartSector;
     uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
     uint32_t sectorNum;
-#ifndef NON_CACHED
-    uint32_t sector_offset = 0;
-#endif
-//    printf("s %X\n",actualSectorNumber * sectorSize);
 
     // Handle FAT cache.
-    bool isFat = IsFATSector(deviceNumber, actualSectorNumber);
+    bool isFat = false;
+	isFat = IsFATSector(deviceNumber, actualSectorNumber);
     if (isFat && g_fatCache.isValid && g_fatCache.sector == actualSectorNumber)
     {
         *token = 0;
         return (int32_t *) g_fatCache.buffer;
-    }
+    } 
 
     uint8_t * buffer;
     if (isFat)
@@ -194,32 +190,12 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
     {
         /* Not a fat sector, allocate a new buffer that
            is released by FSReleaseSector() */
-#ifdef NON_CACHED
-            buffer = (uint8_t *)malloc(sectorSize);
-#else
-           if((actualSectorNumber < (g_start_sector + NUM_OF_SECTOR))
-                        && (actualSectorNumber > g_start_sector))
-                sector_offset = actualSectorNumber - g_start_sector;
-
-        buffer = g_cache_buf;
-        sectorNum = NUM_OF_SECTOR;
-#endif /* NON_CACHED */
+		buffer = (uint8_t *)malloc(sectorSize);
     }
 
 #ifndef RAM_FS
-    #ifdef NON_CACHED
     status = card_data_read(g_usdhc_base_addr, (int *)buffer, sectorSize,
                        actualSectorNumber * sectorSize);
-    #else
-    if((g_start_sector == 0xFFFFFFFF) || (actualSectorNumber > (g_start_sector + NUM_OF_SECTOR))
-                                      || (actualSectorNumber < g_start_sector))
-    {
-        status = card_data_read(g_usdhc_base_addr, (int *)buffer, sectorNum * sectorSize,
-                       actualSectorNumber * sectorSize);
-
-        g_start_sector = actualSectorNumber;
-    }
-    #endif /* NON_CACHED */
 #endif /* RAM_FS */
     // Give the caller the token so they can release the cache entry.
     if ((status == 0) && token)
@@ -233,11 +209,7 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
             *token = (uint32_t)buffer;
 
 #ifndef RAM_FS
-    #ifdef NON_CACHED
         return (int32_t *) (buffer);
-    #else
-        return (int32_t *) (buffer + (sector_offset * sectorSize));
-    #endif /* NON_CACHED */
 #else
         /* hardcoded address in DDR, that's only for test purpose !!! */
         buffer = (uint8_t *) RAM_FS_ADDR;
@@ -267,6 +239,7 @@ int32_t * FSReadMultiSectors(int32_t deviceNumber, int32_t sectorNumber, int32_t
     int status = 0;
     uint32_t actualSectorNumber = sectorNumber + g_u32MbrStartSector;
     uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
+//   printf("+s 0x%X to 0x%X, size 0x%X\n",actualSectorNumber * sectorSize, actualSectorNumber * sectorSize + size, size);
 
     status = card_data_read(g_usdhc_base_addr, (int *)buffer, size,
                        actualSectorNumber * sectorSize);
@@ -285,9 +258,7 @@ RtStatus_t FSReleaseSector(uint32_t token)
 {
     if (token)
     {
-#ifdef NON_CACHED
         free((void *)token);
-#endif
     }
     return SUCCESS;
 }

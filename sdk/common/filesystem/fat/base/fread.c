@@ -110,53 +110,6 @@ RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRe
 
     RemainBytesInSector = BytesPerSector - Handle[HandleNumber].BytePosInSector;
 
-#if 0 // Ray : replace the single sector read with multiple sectors read	
-    while(RemainBytesToRead >0)
-    {
-        if ((RemainBytesInSector != 0) && (RemainBytesToRead > RemainBytesInSector))
-        {
-            BytesToCopy	= RemainBytesInSector;
-            RemainBytesInSector = 0;
-        }
-        else
-		{	
-            BytesToCopy = RemainBytesToRead;
-            if(BytesToCopy > BytesPerSector)
-            {
-                BytesToCopy = BytesPerSector;
-            }
-        }
-
-        if ((RetValue = UpdateHandleOffsets(HandleNumber)))
-        {
-            Handle[HandleNumber].ErrorCode = RetValue;
-            ddi_ldl_pop_media_task();
-            return (NumBytesToRead-RemainBytesToRead);
-        }
-
-	    EnterNonReentrantSection();
-        if((buf = (uint8_t *)FSReadSector(Device,Handle[HandleNumber].CurrentSector,WRITE_TYPE_RANDOM, &cacheToken))==(uint8_t *)0)
-		{
-            Handle[HandleNumber].ErrorCode = ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
-		    LeaveNonReentrantSection();
-            ddi_ldl_pop_media_task();
-
-            return NumBytesToRead-RemainBytesToRead;  // READSECTOR_FAIL return here in 2.6 version fixes mmc eject bug 7183.
-		}
-
-        RemainBytesToRead -= BytesToCopy;
-
-        memcpy(Buffer + BuffOffset, buf + Handle[HandleNumber].BytePosInSector, BytesToCopy);
-        
-        FSReleaseSector(cacheToken);
-	    LeaveNonReentrantSection();
-
-        Handle[HandleNumber].CurrentOffset += BytesToCopy;
-        Handle[HandleNumber].BytePosInSector += BytesToCopy;
-
-        BuffOffset+=BytesToCopy;
-    }
-#else
     while(RemainBytesToRead >0)
     {
         if (((RemainBytesInSector != 0) && (RemainBytesToRead > RemainBytesInSector)) || 
@@ -262,7 +215,7 @@ RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRe
 			BuffOffset+=BytesToCopy;			
         }
     }
-#endif	
+
     ddi_ldl_pop_media_task();
 
     // Force to RtStatus - all errors are negative so this will still work.

@@ -29,7 +29,7 @@
 #include "bootsecoffset.h"
 
 // Defines
-
+#define FS_CACHE_SIZE 1024*1024
 // Use the stub blank version by default. Debug tool only for active error analysis.
 //#define MODULE_ASSERT(a)  assert(a)
 #define MODULE_ASSERT(a)
@@ -84,6 +84,14 @@ int32_t Totalfreecluster(int32_t DeviceNum)
         LeaveNonReentrantSection();
 
         FAToffset = 8;
+
+		/* Use dynamic allocation for data cache */
+		uint8_t *buf = (uint8_t *)malloc(FS_CACHE_SIZE);
+		if(buf == NULL)
+		{
+			return ERROR_OS_FILESYSTEM_MEMORY;
+		}
+		int cache_offset = 0;
         for (clusterNum = 2 ; clusterNum <= MediaTable[DeviceNum].TotalNoofclusters  ; clusterNum++)
         {
             FATentry  = FSGetDWord((uint8_t*)pu8LocalBuf,FAToffset);
@@ -103,22 +111,28 @@ int32_t Totalfreecluster(int32_t DeviceNum)
                 FATsectorNo++;
 
                 EnterNonReentrantSection();
-                if((buf = (uint8_t*)FSReadSector(DeviceNum, FATsectorNo,WRITE_TYPE_RANDOM, &cacheToken))==(uint8_t *)0)
-                {
-                    MODULE_ASSERT(false);
+				if(cache_offset == 0) {
+                	if((buf = (uint8_t*)FSReadMultiSectors(DeviceNum, FATsectorNo, WRITE_TYPE_RANDOM, buf, FS_CACHE_SIZE))==(uint8_t *)0)
+                	{
+                    	MODULE_ASSERT(false);
 //                    os_dmi_MemFree( pu8LocalBuf );
-                    free(pu8LocalBuf);
-                    LeaveNonReentrantSection();
-                    return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
-                }
+                    	free(pu8LocalBuf);
+                    	LeaveNonReentrantSection();
+                    	return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
+                	}
+				}
+		  
                 // copy from cached buffer to local buffer so we can free the mutex protecting the file system(cache)
-                memcpy( pu8LocalBuf, buf, iSectorSize );
-                FSReleaseSector(cacheToken);
+                memcpy( pu8LocalBuf, buf + cache_offset, iSectorSize );
+				cache_offset += MediaTable[DeviceNum].BytesPerSector;
+				if(cache_offset == FS_CACHE_SIZE)
+					cache_offset = 0; //wrap back to head
                 LeaveNonReentrantSection();
             }
         }
 //        os_dmi_MemFree( pu8LocalBuf );
-        free(pu8LocalBuf);
+        free(pu8LocalBuf);	
+		free(buf); // release the cache buffer
     }
     else
     {

@@ -950,8 +950,9 @@ int32_t decode_test(void *arg)
 
             VPU_DecGetOutputInfo(gDecInstance[inst]->handle, &outinfo);
 
-            gDecInstance[inst]->totalFrameDecoded++;
             if (outinfo.indexFrameDisplay >= 0) {
+				gDecInstance[inst]->totalFrameDecoded++;
+		
                 /*push the decoded frame into fifo */
                 dec_fifo_push(&gDecFifo[inst],
                               &(gDecInstance[inst]->pfbpool[outinfo.indexFrameDisplay]),

@@ -104,8 +104,13 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
     // First, extract the assumed start sector. We don't want to set the g_u32MbrStartSector
     // global yet, because ReadSector() uses MediaRead(), which offsets based on that global's
     // value. Thus, we'd get a double offset when trying to read the PBS.
-    pbsOffset = pSectorData[0x1c6] + (pSectorData[0x1c7] << 8) + (pSectorData[0x1c8] << 16) + (pSectorData[0x1c9] << 24);
-
+	/* Check the first sector is DBR or MBR. for removable disk there might be no MBR section */
+	if((pSectorData[0x00] == 0xEB) && (pSectorData[0x02] == 0x90)) // JMP NOP indicates this is DBR
+	{
+		pbsOffset = 0x0;
+	} else {
+		pbsOffset = pSectorData[0x1c6] + (pSectorData[0x1c7] << 8) + (pSectorData[0x1c8] << 16) + (pSectorData[0x1c9] << 24);
+	}
     // Now read what may be the first sector of the first partition
     pb.sector = pbsOffset;
     retval = media_cache_read(&pb);

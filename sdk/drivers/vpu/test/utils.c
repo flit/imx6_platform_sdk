@@ -23,7 +23,7 @@ int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
         bsmem.bs_offset += copy_size;
         return copy_size;
     } else if (cmd->src_scheme == PATH_FILE) {
-        int32_t res, i;
+        int32_t res;
 
         /* if SD is currently busy, it means that the other video instance has requested a buffer fill, */
         /* return without doing anything, the video driver will request a buffer fill again next frame */
@@ -32,10 +32,10 @@ int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
         if (usdhc_status != 1)
             return -1;          //now SD card is busy
         res = Fread_FAT(cmd->input, (uint8_t *) buf, n);
-
         if (res < n) {
-            for (i = 0; i < (n - res); i++)
-                reg8_write(buf + res + i, 0x0);
+            memset(buf + res, 0x0, n - res);
+            if (cmd->read_mode == ENDLESS_LOOP_PLAY)
+                Fseek(cmd->input, 0, 0);    //seek to start
         }
 
         return res;
@@ -44,7 +44,7 @@ int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
 
 }
 
-int32_t vpu_stream_write(struct cmd_line *cmd, char *buf, int32_t n)
+int32_t vpu_stream_write(struct cmd_line * cmd, char *buf, int32_t n)
 {
     if (cmd->dst_scheme == PATH_MEM) {
         memcpy((void *)bsmem.bs_end, buf, n);

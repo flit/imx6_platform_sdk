@@ -20,6 +20,11 @@
 #define NUM_FRAME_BUFS	64
 #define FB_INDEX_MASK		(NUM_FRAME_BUFS - 1)
 
+enum {
+    ENDLESS_LOOP_PLAY,
+    VIDEO_FILE_PLAY,
+};
+
 #if defined(BOARD_SMART_DEVICE)
 #define SD_PORT_BASE_ADDR	USDHC3_BASE_ADDR
 #else
@@ -145,9 +150,9 @@ struct cmd_line {
     int32_t prescan;
     int32_t bs_mode;
     char *nbuf;                 /* network buffer */
-    int32_t nlen;                   /* remaining data in network buffer */
-    int32_t noffset;                /* offset into network buffer */
-    int32_t seq_no;                 /* seq numbering to detect skipped frames */
+    int32_t nlen;               /* remaining data in network buffer */
+    int32_t noffset;            /* offset into network buffer */
+    int32_t seq_no;             /* seq numbering to detect skipped frames */
     uint16_t port;              /* udp port number */
     uint16_t complete;          /* wait for the requested buf to be filled completely */
     int32_t iframe;
@@ -160,7 +165,7 @@ struct cmd_line {
 
 typedef struct {
     const char *name;
-    int32_t (*test) (void *arg);
+     int32_t(*test) (void *arg);
 } vpu_test_t;
 
 struct decode {
@@ -200,12 +205,12 @@ struct encode {
     EncHandle handle;           /* Encoder handle */
     PhysicalAddress phy_bsbuf_addr; /* Physical bitstream buffer */
     uint32_t virt_bsbuf_addr;   /* Virtual bitstream buffer */
-    int32_t enc_picwidth;           /* Encoded Picture width */
-    int32_t enc_picheight;          /* Encoded Picture height */
-    int32_t src_picwidth;           /* Source Picture width */
-    int32_t src_picheight;          /* Source Picture height */
-    int32_t totalfb;                /* Total number of framebuffers allocated */
-    int32_t src_fbid;               /* Index of frame buffer that contains YUV image */
+    int32_t enc_picwidth;       /* Encoded Picture width */
+    int32_t enc_picheight;      /* Encoded Picture height */
+    int32_t src_picwidth;       /* Source Picture width */
+    int32_t src_picheight;      /* Source Picture height */
+    int32_t totalfb;            /* Total number of framebuffers allocated */
+    int32_t src_fbid;           /* Index of frame buffer that contains YUV image */
     FrameBuffer *fb;            /* frame buffer base given to encoder */
     struct frame_buf **pfbpool; /* allocated fb pointers are stored here */
     ExtBufCfg scratchBuf;
@@ -265,15 +270,16 @@ extern int32_t ipu_initialized[];
 void framebuf_init(void);
 int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n);
 int32_t vpu_stream_write(struct cmd_line *cmd, char *buf, int32_t n);
-void get_arg(char *buf, int32_t *argc, char *argv[]);
+void get_arg(char *buf, int32_t * argc, char *argv[]);
 int32_t open_files(struct cmd_line *cmd);
 void close_files(struct cmd_line *cmd);
 int32_t check_params(struct cmd_line *cmd, int32_t op);
 char *skip_unwanted(char *ptr);
-int32_t parse_options(char *buf, struct cmd_line *cmd, int32_t *mode);
-struct frame_buf *framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY, int32_t height, int32_t mvCol);
-struct frame_buf *tiled_framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY, int32_t height, int32_t mvCol,
-                                       int32_t mapType);
+int32_t parse_options(char *buf, struct cmd_line *cmd, int32_t * mode);
+struct frame_buf *framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY, int32_t height,
+                                 int32_t mvCol);
+struct frame_buf *tiled_framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY,
+                                       int32_t height, int32_t mvCol, int32_t mapType);
 void framebuf_free(struct frame_buf *fb);
 int32_t encoder_open(struct encode *enc);
 void encoder_close(struct encode *enc);
@@ -300,8 +306,8 @@ void decoder_frame_display(void);
 int32_t decode_test(void *arg);
 int32_t encode_test(void *arg);
 int32_t dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
-                      uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
-                      uint32_t bs_pa_startaddr, int32_t defaultsize);
+                          uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
+                          uint32_t bs_pa_startaddr, int32_t defaultsize);
 extern int32_t config_hdmi_si9022(int32_t ipu_index, int32_t ipu_di);
 extern void hdmi_1080P60_video_output(int32_t ipu_index, int32_t ipu_di);
 extern int32_t ips_hdmi_1080P60_stream(int32_t ipu_index);

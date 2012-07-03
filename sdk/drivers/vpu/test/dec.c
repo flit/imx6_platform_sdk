@@ -32,8 +32,8 @@ uint8_t in_dec_file_2[] = "indir/fslclip_h264.mp4";
  * Fill the bitstream to VPU ring buffer
  */
 int32_t dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
-                      uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
-                      uint32_t bs_pa_startaddr, int32_t defaultsize)
+                          uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
+                          uint32_t bs_pa_startaddr, int32_t defaultsize)
 {
     RetCode ret;
     PhysicalAddress pa_read_ptr, pa_write_ptr;
@@ -99,7 +99,7 @@ int32_t dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
     return nread;
 }
 
-int32_t decoder_start(struct decode *dec)
+int32_t decoder_start(struct decode * dec)
 {
     DecHandle handle = dec->handle;
     int32_t rot_en = dec->cmdl->rot_en, rot_stride, fwidth, fheight;
@@ -163,7 +163,7 @@ void decoder_free_framebuffer(struct decode *dec)
     return;
 }
 
-int32_t decoder_allocate_framebuffer(struct decode *dec)
+int32_t decoder_allocate_framebuffer(struct decode * dec)
 {
     DecBufInfo bufinfo;
     int32_t i, regfbcount = dec->regfbcount, totalfb;
@@ -289,7 +289,7 @@ int32_t decoder_allocate_framebuffer(struct decode *dec)
     return -1;
 }
 
-int32_t decoder_parse(struct decode *dec)
+int32_t decoder_parse(struct decode * dec)
 {
     DecInitialInfo initinfo = { 0 };
     DecHandle handle = dec->handle;
@@ -531,7 +531,7 @@ int32_t decoder_parse(struct decode *dec)
     return 0;
 }
 
-int32_t decoder_open(struct decode *dec)
+int32_t decoder_open(struct decode * dec)
 {
     RetCode ret;
     DecHandle handle = { 0 };
@@ -779,8 +779,7 @@ int32_t decode_test(void *arg)
     switch (revchar) {
     case '1':
         multi_instance = 0;
-        if ((file_in_1 = Fopen(in_dec_file_1, (uint8_t *) "r")) < 0)
-        {
+        if ((file_in_1 = Fopen(in_dec_file_1, (uint8_t *) "r")) < 0) {
             printf("Can't open the file: %s !\n", in_dec_file_1);
             err = 1;
         }
@@ -797,8 +796,7 @@ int32_t decode_test(void *arg)
         break;
     case '2':
         multi_instance = 1;
-        if ((file_in_2 = Fopen(in_dec_file_2, (uint8_t *) "r")) < 0)
-        {
+        if ((file_in_2 = Fopen(in_dec_file_2, (uint8_t *) "r")) < 0) {
             printf("Can't open the file: %s !\n", in_dec_file_2);
             err = 1;
         }
@@ -807,8 +805,7 @@ int32_t decode_test(void *arg)
     default:
         printf("Wrong Input! select 1 as default!\n");
         multi_instance = 0;
-        if ((file_in_1 = Fopen(in_dec_file_1, (uint8_t *) "r")) < 0)
-        {
+        if ((file_in_1 = Fopen(in_dec_file_1, (uint8_t *) "r")) < 0) {
             printf("Can't open the file: %s !\n", in_dec_file_1);
             err = 1;
         }
@@ -827,11 +824,11 @@ int32_t decode_test(void *arg)
 
     switch (revchar) {
     case '1':
-        bs_read_mode = 0;   // TO_DEFINE
+        bs_read_mode = ENDLESS_LOOP_PLAY;
         break;
     case '2':
     default:
-        bs_read_mode = 0;   // TO_DEFINE
+        bs_read_mode = VIDEO_FILE_PLAY;
         break;
     }
     printf("Enable VDOA?(y or n)\n");
@@ -951,8 +948,8 @@ int32_t decode_test(void *arg)
             VPU_DecGetOutputInfo(gDecInstance[inst]->handle, &outinfo);
 
             if (outinfo.indexFrameDisplay >= 0) {
-				gDecInstance[inst]->totalFrameDecoded++;
-		
+                gDecInstance[inst]->totalFrameDecoded++;
+
                 /*push the decoded frame into fifo */
                 dec_fifo_push(&gDecFifo[inst],
                               &(gDecInstance[inst]->pfbpool[outinfo.indexFrameDisplay]),
@@ -994,9 +991,9 @@ int32_t decode_test(void *arg)
         }
     }
 
-    if(file_in_1 != 0)
+    if (file_in_1 != 0)
         Fclose(file_in_1);
-    if(file_in_2 != 0)
+    if (file_in_2 != 0)
         Fclose(file_in_2);
 
     if (vplay_mode != VPLAY_FREE_RUN) { /*disable the timer for frame control */

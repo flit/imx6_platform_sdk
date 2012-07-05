@@ -97,6 +97,7 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 
 # Remove documentation source files.
 - doc/*.docx
+- doc/html
 
 # excludes based on file extension
 - *.o
@@ -119,6 +120,7 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 - .DS_Store
 - *.pyc
 - *.tmp
+- ._*
 
 - .git
 - .gitignore
@@ -128,6 +130,10 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 
 # exclude generated makefiles
 - makefile
+
+# exclude mx6sl stuff from this release
+- **/mx6sl/
+- mx6sl.*
 
 # Exclude mx53 stuff
 - configs/mx53*
@@ -139,6 +145,12 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 # Exclude perfmon
 - perfmon_imx.h
 - **/perfmon/
+
+# Exclude some stmp fs stuff
+- sdk/common/filesystem/drivers/media/*.c
+
+# Exclude Silicon Image sources
+- sdk/common/hdmi_transmitter
 
 # Exclude some stuff in tools
 - tools/src-format
@@ -183,7 +195,7 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 #
 echo "Starting rsync..."
 #rsync -v -arcv --ignore-existing --exclude-from=$ExcludesFile --files-from=- $SdkRootDir/ $DestDir/ < $IncludesFile
-rsync -v -arcv --ignore-existing --exclude-from=$ExcludesFile $SdkRootDir/ $DestDir/
+rsync -v -arcv --ignore-existing --exclude-from=${ExcludesFile} ${SdkRootDir}/ ${DestDir}/
 
 rsync_result=$?
 if [ $rsync_result != 0 ]; then
@@ -207,7 +219,7 @@ if [ $bArchive == $ARCHIVE ]; then
     pushd $ReleaseDir
 
     # construct archive file names
-    tarball_sdk="platform_sdk_${Version}_release.tgz"
+    tarball_sdk="platform_sdk_${Version}_release.tar.gz"
     zip_sdk="platform_sdk_${Version}_release.zip"
 
     # tar/gz everything

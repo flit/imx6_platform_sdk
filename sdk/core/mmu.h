@@ -99,4 +99,19 @@ union ARM_MMU_FIRST_LEVEL_DESCRIPTOR {
       }                                                                   \
     } while(0)
 
+#if defined(__cplusplus)
+extern "C" {
 #endif
+
+/*!
+ * system memory arrangement, including IRAM and DRAM
+ */
+void system_memory_arrange(void);
+
+#if defined(__cplusplus)
+}
+#endif
+
+
+#endif // _MMU_H_
+

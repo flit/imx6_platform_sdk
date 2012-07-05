@@ -22,12 +22,6 @@ const uint32_t PLL5_OUTPUT = 650000000;
 // Code
 ////////////////////////////////////////////////////////////////////////////////
 
-/* In i.MX6DQ, PLLs don't need to be configured. Default values cover most use cases. */
-void prog_pll(void)
-{
-/* Nothing to do here but keep compatibility with i.MX53 */
-}
-
 void ccm_init(void)
 {
     // ETHNET

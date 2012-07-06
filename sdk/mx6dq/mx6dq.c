@@ -15,6 +15,8 @@
 #include <stdio.h>
 #include "hardware.h"
 #include "version.h"
+#include "cortex_a9.h"
+#include "mmu.h"
 
 int32_t board_id = 0;
 int32_t board_rev = 0;
@@ -189,3 +191,31 @@ void ALL_test(void)
     }
 }
 #endif /* ALL_TEST_ENABLE */
+
+/*!
+ * main function that decides which tests to run and prompts the user before
+ * running test.
+ * @return      should never return because ARM is at WFI (low power mode in the end)
+ */
+int main(void)
+{
+    // Enable interrupts.
+    gic_set_cpu_priority_mask(0xff);
+    gic_cpu_enable(true);
+    gic_enable(true);
+    
+    enable_neon_fpu();
+
+#if defined(BOARD_EVB)||defined(BOARD_SMART_DEVICE)
+    system_memory_arrange();
+    disable_strict_align_check();
+#endif
+
+    platform_init();
+
+    SDK_TEST();
+
+    _sys_exit(0);
+
+    return 0;
+}

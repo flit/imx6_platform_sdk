@@ -137,7 +137,13 @@ C_INCLUDES = \
     -I$(PROJ_DIR)/sdk/include/$(TARGET) \
     -I$(PROJ_DIR)/sdk/$(TARGET)/$(BOARD)_rev_$(BOARD_REVISION) \
     -I. \
-    -I../inc
+    -I../inc \
+    -I$(PROJ_DIR)/sdk/common/ \
+    -I$(PROJ_DIR)/sdk/common/filesystem/ \
+    -I$(PROJ_DIR)/sdk/common/filesystem/include \
+    -I$(PROJ_DIR)/sdk/common/filesystem/fat/include \
+    -I$(PROJ_DIR)/sdk/core \
+    -I$(PROJ_DIR)/sdk/utility
 
 A_FLAGS 		=
 A_INCLUDES += \

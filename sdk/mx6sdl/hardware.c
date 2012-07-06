@@ -428,27 +428,26 @@ void hw_can_iomux_config(uint32_t module_instance)
     can_iomux_config(module_instance);
 
 #ifdef BOARD_SABRE_AI
-    switch (module_instance)
-    {
-    	case HW_FLEXCAN1:
-			/* Select CAN, ENET_CAN1_STEER(PORT_EXP_B3) */
-			max7310_set_gpio_output(1, 3, GPIO_HIGH_LEVEL); //expander b, io3
-			/* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */
-			/* active low input */
-			writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_GPIO_4);
-			gpio_dir_config(GPIO_PORT1, 4, GPIO_GDIR_INPUT);
-			break;
+    switch (module_instance) {
+    case HW_FLEXCAN1:
+        /* Select CAN, ENET_CAN1_STEER(PORT_EXP_B3) */
+        max7310_set_gpio_output(1, 3, GPIO_HIGH_LEVEL); //expander b, io3
+        /* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */
+        /* active low input */
+        writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_GPIO_4);
+        gpio_dir_config(GPIO_PORT1, 4, GPIO_GDIR_INPUT);
+        break;
 
-    	case HW_FLEXCAN2:
-			/* Select ALT5 mode of SD4_DAT3 for GPIO2_11 - CAN2_NERR_B */
-			/* active low input */
-			writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
-			gpio_dir_config(GPIO_PORT2, 11, GPIO_GDIR_INPUT);
-			break;
+    case HW_FLEXCAN2:
+        /* Select ALT5 mode of SD4_DAT3 for GPIO2_11 - CAN2_NERR_B */
+        /* active low input */
+        writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
+        gpio_dir_config(GPIO_PORT2, 11, GPIO_GDIR_INPUT);
+        break;
 
-    	default:
-			printf("ERR: invalid FLEXCAN instance for iomux config\n");
-			break;
+    default:
+        printf("ERR: invalid FLEXCAN instance for iomux config\n");
+        break;
     }
 #endif
 }
@@ -651,7 +650,7 @@ void usbEnableVbus(usb_module_t * port)
         // Vbus control is on I2C port expander C1 for the ARD board.
         max7310_set_gpio_output(MAX7310_I2C_ID2, 1, 1);
 #endif
-#ifdef BOARD_EVB
+#if defined(BOARD_EVB) || defined(BOARD_SMART_DEVICE)
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D22, ALT5);
         gpio_dir_config(GPIO_PORT3, 22, GPIO_GDIR_OUTPUT);
         gpio_write_data(GPIO_PORT3, 22, GPIO_HIGH_LEVEL);
@@ -668,6 +667,11 @@ void usbEnableVbus(usb_module_t * port)
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D31, ALT5);
         gpio_dir_config(GPIO_PORT3, 31, GPIO_GDIR_OUTPUT);
         gpio_write_data(GPIO_PORT3, 31, GPIO_HIGH_LEVEL);
+#endif
+#ifdef BOARD_SMART_DEVICE
+        reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D30, ALT5);
+        gpio_dir_config(GPIO_PORT3, 30, GPIO_GDIR_OUTPUT);
+        gpio_write_data(GPIO_PORT3, 30, GPIO_HIGH_LEVEL);
 #endif
 
         break;
@@ -699,7 +703,7 @@ void usbDisableVbus(usb_module_t * port)
 #ifdef BOARD_SABRE_AI
         max7310_set_gpio_output(MAX7310_I2C_ID2, 1, 0);
 #endif
-#ifdef BOARD_EVB
+#if defined(BOARD_EVB) || defined(BOARD_SMART_DEVICE)
         gpio_write_data(GPIO_PORT3, 22, GPIO_LOW_LEVEL);
 #endif
         break;
@@ -709,6 +713,9 @@ void usbDisableVbus(usb_module_t * port)
 #endif
 #ifdef BOARD_EVB
         gpio_write_data(GPIO_PORT3, 31, GPIO_LOW_LEVEL);
+#endif
+#ifdef BOARD_SMART_DEVICE
+        gpio_write_data(GPIO_PORT3, 30, GPIO_LOW_LEVEL);
 #endif
     case Host2:
 #ifdef BOARD_EVB

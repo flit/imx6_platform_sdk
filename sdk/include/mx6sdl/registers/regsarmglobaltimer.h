@@ -27,11 +27,10 @@
 //! @name Module base addresses
 //@{
 #ifndef REGS_ARMGLOBALTIMER_BASE
-#define HW_ARMGLOBALTIMER_INSTANCE_COUNT (0) //!< Number of instances of the ARMGLOBALTIMER module.
-#define REGS_ARMGLOBALTIMER_BASE (0x00000000) //!< Base address for ARMGLOBALTIMER.
+#define HW_ARMGLOBALTIMER_INSTANCE_COUNT (0)    //!< Number of instances of the ARMGLOBALTIMER module.
+#define REGS_ARMGLOBALTIMER_BASE (0x00a00000)   //!< Base address for ARMGLOBALTIMER.
 #endif
 //@}
-
 
 //-------------------------------------------------------------------------------------------
 // HW_ARMGLOBALTIMER_COUNTER0 - Global Timer Counter Registers
@@ -46,12 +45,10 @@
  * There are two timer counter registers. They are the lower 32-bit timer counter at offset 0x00 and
  * the upper 32-bit timer counter at offset 0x04.
  */
-typedef union _hw_armglobaltimer_counter0
-{
+typedef union _hw_armglobaltimer_counter0 {
     reg32_t U;
-    struct _hw_armglobaltimer_counter0_bitfields
-    {
-        unsigned VALUE : 32; //!< [31:0] 32-bits of the counter value.
+    struct _hw_armglobaltimer_counter0_bitfields {
+        unsigned VALUE:32;      //!< [31:0] 32-bits of the counter value.
     } B;
 } hw_armglobaltimer_counter0_t;
 #endif
@@ -79,7 +76,7 @@ typedef union _hw_armglobaltimer_counter0
  * 32-bits of the counter value.
  */
 
-#define BP_ARMGLOBALTIMER_COUNTER0_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COUNTER0_VALUE.
+#define BP_ARMGLOBALTIMER_COUNTER0_VALUE      (0)   //!< Bit position for ARMGLOBALTIMER_COUNTER0_VALUE.
 #define BM_ARMGLOBALTIMER_COUNTER0_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COUNTER0_VALUE.
 
 //! @brief Get value of ARMGLOBALTIMER_COUNTER0_VALUE from a register value.
@@ -106,12 +103,10 @@ typedef union _hw_armglobaltimer_counter0
  * There are two timer counter registers. They are the lower 32-bit timer counter at offset 0x00 and
  * the upper 32-bit timer counter at offset 0x04.
  */
-typedef union _hw_armglobaltimer_counter1
-{
+typedef union _hw_armglobaltimer_counter1 {
     reg32_t U;
-    struct _hw_armglobaltimer_counter1_bitfields
-    {
-        unsigned VALUE : 32; //!< [31:0] 32-bits of the counter value.
+    struct _hw_armglobaltimer_counter1_bitfields {
+        unsigned VALUE:32;      //!< [31:0] 32-bits of the counter value.
     } B;
 } hw_armglobaltimer_counter1_t;
 #endif
@@ -139,7 +134,7 @@ typedef union _hw_armglobaltimer_counter1
  * 32-bits of the counter value.
  */
 
-#define BP_ARMGLOBALTIMER_COUNTER1_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COUNTER1_VALUE.
+#define BP_ARMGLOBALTIMER_COUNTER1_VALUE      (0)   //!< Bit position for ARMGLOBALTIMER_COUNTER1_VALUE.
 #define BM_ARMGLOBALTIMER_COUNTER1_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COUNTER1_VALUE.
 
 //! @brief Get value of ARMGLOBALTIMER_COUNTER1_VALUE from a register value.
@@ -165,18 +160,16 @@ typedef union _hw_armglobaltimer_counter1
  *
  * Configuration and control of the Global Timer.
  */
-typedef union _hw_armglobaltimer_control
-{
+typedef union _hw_armglobaltimer_control {
     reg32_t U;
-    struct _hw_armglobaltimer_control_bitfields
-    {
-        unsigned TIMER_ENABLE : 1; //!< [0] Timer enable.
-        unsigned COMP_ENABLE : 1; //!< [1] This bit is banked per Cortex-A9 processor.
-        unsigned IRQ_ENABLE : 1; //!< [2] This bit is banked per Cortex-A9 processor.
-        unsigned AUTO_INCREMENT : 1; //!< [3] This bit is banked per Cortex-A9 processor.
-        unsigned RESERVED0 : 4; //!< [7:4] Reserved
-        unsigned PRESCALER : 8; //!< [15:8] The prescaler modifies the clock period for the decrementing event for the Counter Register.
-        unsigned RESERVED1 : 16; //!< [31:16] Reserved.
+    struct _hw_armglobaltimer_control_bitfields {
+        unsigned TIMER_ENABLE:1;    //!< [0] Timer enable.
+        unsigned COMP_ENABLE:1; //!< [1] This bit is banked per Cortex-A9 processor.
+        unsigned IRQ_ENABLE:1;  //!< [2] This bit is banked per Cortex-A9 processor.
+        unsigned AUTO_INCREMENT:1;  //!< [3] This bit is banked per Cortex-A9 processor.
+        unsigned RESERVED0:4;   //!< [7:4] Reserved
+        unsigned PRESCALER:8;   //!< [15:8] The prescaler modifies the clock period for the decrementing event for the Counter Register.
+        unsigned RESERVED1:16;  //!< [31:16] Reserved.
     } B;
 } hw_armglobaltimer_control_t;
 #endif
@@ -208,8 +201,8 @@ typedef union _hw_armglobaltimer_control
  * ENABLED = 1 - Timer is enabled and the counter increments normally.
  */
 
-#define BP_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE      (0)      //!< Bit position for ARMGLOBALTIMER_CONTROL_TIMER_ENABLE.
-#define BM_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE      (0x00000001)  //!< Bit mask for ARMGLOBALTIMER_CONTROL_TIMER_ENABLE.
+#define BP_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE      (0) //!< Bit position for ARMGLOBALTIMER_CONTROL_TIMER_ENABLE.
+#define BM_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE      (0x00000001)    //!< Bit mask for ARMGLOBALTIMER_CONTROL_TIMER_ENABLE.
 
 //! @brief Get value of ARMGLOBALTIMER_CONTROL_TIMER_ENABLE from a register value.
 #define BG_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE) >> BP_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE)
@@ -222,8 +215,8 @@ typedef union _hw_armglobaltimer_control
 #define BW_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE(v)   (HW_ARMGLOBALTIMER_CONTROL_WR((HW_ARMGLOBALTIMER_CONTROL_RD() & ~BM_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE) | BF_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE(v)))
 #endif
 
-#define BV_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE__DISABLED (0x0) //!< Timer is disabled and the counter does not increment. All registers can still be read and written.
-#define BV_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE__ENABLED (0x1) //!< Timer is enabled and the counter increments normally.
+#define BV_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE__DISABLED (0x0)  //!< Timer is disabled and the counter does not increment. All registers can still be read and written.
+#define BV_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE__ENABLED (0x1)   //!< Timer is enabled and the counter increments normally.
 
 /* --- Register HW_ARMGLOBALTIMER_CONTROL, field COMP_ENABLE[1] (RW)
  *
@@ -236,8 +229,8 @@ typedef union _hw_armglobaltimer_control
  * ENABLED = 1 - Comparison is enabled.
  */
 
-#define BP_ARMGLOBALTIMER_CONTROL_COMP_ENABLE      (1)      //!< Bit position for ARMGLOBALTIMER_CONTROL_COMP_ENABLE.
-#define BM_ARMGLOBALTIMER_CONTROL_COMP_ENABLE      (0x00000002)  //!< Bit mask for ARMGLOBALTIMER_CONTROL_COMP_ENABLE.
+#define BP_ARMGLOBALTIMER_CONTROL_COMP_ENABLE      (1)  //!< Bit position for ARMGLOBALTIMER_CONTROL_COMP_ENABLE.
+#define BM_ARMGLOBALTIMER_CONTROL_COMP_ENABLE      (0x00000002) //!< Bit mask for ARMGLOBALTIMER_CONTROL_COMP_ENABLE.
 
 //! @brief Get value of ARMGLOBALTIMER_CONTROL_COMP_ENABLE from a register value.
 #define BG_ARMGLOBALTIMER_CONTROL_COMP_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ARMGLOBALTIMER_CONTROL_COMP_ENABLE) >> BP_ARMGLOBALTIMER_CONTROL_COMP_ENABLE)
@@ -250,8 +243,8 @@ typedef union _hw_armglobaltimer_control
 #define BW_ARMGLOBALTIMER_CONTROL_COMP_ENABLE(v)   (HW_ARMGLOBALTIMER_CONTROL_WR((HW_ARMGLOBALTIMER_CONTROL_RD() & ~BM_ARMGLOBALTIMER_CONTROL_COMP_ENABLE) | BF_ARMGLOBALTIMER_CONTROL_COMP_ENABLE(v)))
 #endif
 
-#define BV_ARMGLOBALTIMER_CONTROL_COMP_ENABLE__DISABLED (0x0) //!< Comparison is disabled.
-#define BV_ARMGLOBALTIMER_CONTROL_COMP_ENABLE__ENABLED (0x1) //!< Comparison is enabled.
+#define BV_ARMGLOBALTIMER_CONTROL_COMP_ENABLE__DISABLED (0x0)   //!< Comparison is disabled.
+#define BV_ARMGLOBALTIMER_CONTROL_COMP_ENABLE__ENABLED (0x1)    //!< Comparison is enabled.
 
 /* --- Register HW_ARMGLOBALTIMER_CONTROL, field IRQ_ENABLE[2] (RW)
  *
@@ -263,7 +256,7 @@ typedef union _hw_armglobaltimer_control
  * ENABLED = 1 - Interrupts are enabled.
  */
 
-#define BP_ARMGLOBALTIMER_CONTROL_IRQ_ENABLE      (2)      //!< Bit position for ARMGLOBALTIMER_CONTROL_IRQ_ENABLE.
+#define BP_ARMGLOBALTIMER_CONTROL_IRQ_ENABLE      (2)   //!< Bit position for ARMGLOBALTIMER_CONTROL_IRQ_ENABLE.
 #define BM_ARMGLOBALTIMER_CONTROL_IRQ_ENABLE      (0x00000004)  //!< Bit mask for ARMGLOBALTIMER_CONTROL_IRQ_ENABLE.
 
 //! @brief Get value of ARMGLOBALTIMER_CONTROL_IRQ_ENABLE from a register value.
@@ -277,7 +270,7 @@ typedef union _hw_armglobaltimer_control
 #define BW_ARMGLOBALTIMER_CONTROL_IRQ_ENABLE(v)   (HW_ARMGLOBALTIMER_CONTROL_WR((HW_ARMGLOBALTIMER_CONTROL_RD() & ~BM_ARMGLOBALTIMER_CONTROL_IRQ_ENABLE) | BF_ARMGLOBALTIMER_CONTROL_IRQ_ENABLE(v)))
 #endif
 
-#define BV_ARMGLOBALTIMER_CONTROL_IRQ_ENABLE__DISABLED (0x0) //!< Interrupts are disabled.
+#define BV_ARMGLOBALTIMER_CONTROL_IRQ_ENABLE__DISABLED (0x0)    //!< Interrupts are disabled.
 #define BV_ARMGLOBALTIMER_CONTROL_IRQ_ENABLE__ENABLED (0x1) //!< Interrupts are enabled.
 
 /* --- Register HW_ARMGLOBALTIMER_CONTROL, field AUTO_INCREMENT[3] (RW)
@@ -292,7 +285,7 @@ typedef union _hw_armglobaltimer_control
  *     updates.
  */
 
-#define BP_ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT      (3)      //!< Bit position for ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT.
+#define BP_ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT      (3)   //!< Bit position for ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT.
 #define BM_ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT      (0x00000008)  //!< Bit mask for ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT.
 
 //! @brief Get value of ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT from a register value.
@@ -306,7 +299,7 @@ typedef union _hw_armglobaltimer_control
 #define BW_ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT(v)   (HW_ARMGLOBALTIMER_CONTROL_WR((HW_ARMGLOBALTIMER_CONTROL_RD() & ~BM_ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT) | BF_ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT(v)))
 #endif
 
-#define BV_ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT__SINGLE_SHOT_MODE (0x0) //!< When the counter reaches the comparator value, sets the event flag. It is the responsibility of software to update the comparator value to get more events.
+#define BV_ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT__SINGLE_SHOT_MODE (0x0)    //!< When the counter reaches the comparator value, sets the event flag. It is the responsibility of software to update the comparator value to get more events.
 #define BV_ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT__AUTO_INCREMENT_MODE (0x1) //!< Each time the counter reaches the comparator value, the comparator register is incremented with the auto-increment register, so that more events can be set periodically without any software updates.
 
 /* --- Register HW_ARMGLOBALTIMER_CONTROL, field PRESCALER[15:8] (RW)
@@ -314,8 +307,8 @@ typedef union _hw_armglobaltimer_control
  * The prescaler modifies the clock period for the decrementing event for the Counter Register.
  */
 
-#define BP_ARMGLOBALTIMER_CONTROL_PRESCALER      (8)      //!< Bit position for ARMGLOBALTIMER_CONTROL_PRESCALER.
-#define BM_ARMGLOBALTIMER_CONTROL_PRESCALER      (0x0000ff00)  //!< Bit mask for ARMGLOBALTIMER_CONTROL_PRESCALER.
+#define BP_ARMGLOBALTIMER_CONTROL_PRESCALER      (8)    //!< Bit position for ARMGLOBALTIMER_CONTROL_PRESCALER.
+#define BM_ARMGLOBALTIMER_CONTROL_PRESCALER      (0x0000ff00)   //!< Bit mask for ARMGLOBALTIMER_CONTROL_PRESCALER.
 
 //! @brief Get value of ARMGLOBALTIMER_CONTROL_PRESCALER from a register value.
 #define BG_ARMGLOBALTIMER_CONTROL_PRESCALER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ARMGLOBALTIMER_CONTROL_PRESCALER) >> BP_ARMGLOBALTIMER_CONTROL_PRESCALER)
@@ -340,13 +333,11 @@ typedef union _hw_armglobaltimer_control
  *
  * This is a banked register for all Cortex-A9 processors present.
  */
-typedef union _hw_armglobaltimer_irqstatus
-{
+typedef union _hw_armglobaltimer_irqstatus {
     reg32_t U;
-    struct _hw_armglobaltimer_irqstatus_bitfields
-    {
-        unsigned EVENT_FLAG : 1; //!< [0] The event flag is a sticky bit that is automatically set when the Counter Register reaches the Comparator Register value.
-        unsigned RESERVED0 : 31; //!< [31:1] Reserved.
+    struct _hw_armglobaltimer_irqstatus_bitfields {
+        unsigned EVENT_FLAG:1;  //!< [0] The event flag is a sticky bit that is automatically set when the Counter Register reaches the Comparator Register value.
+        unsigned RESERVED0:31;  //!< [31:1] Reserved.
     } B;
 } hw_armglobaltimer_irqstatus_t;
 #endif
@@ -377,8 +368,8 @@ typedef union _hw_armglobaltimer_irqstatus
  * to 1.
  */
 
-#define BP_ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG      (0)      //!< Bit position for ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG.
-#define BM_ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG      (0x00000001)  //!< Bit mask for ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG.
+#define BP_ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG      (0) //!< Bit position for ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG.
+#define BM_ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG      (0x00000001)    //!< Bit mask for ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG.
 
 //! @brief Get value of ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG from a register value.
 #define BG_ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG) >> BP_ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG)
@@ -404,12 +395,10 @@ typedef union _hw_armglobaltimer_irqstatus
  * There are two timer counter registers. They are the lower 32-bit timer counter at offset 0x00 and
  * the upper 32-bit timer counter at offset 0x04.
  */
-typedef union _hw_armglobaltimer_comparator0
-{
+typedef union _hw_armglobaltimer_comparator0 {
     reg32_t U;
-    struct _hw_armglobaltimer_comparator0_bitfields
-    {
-        unsigned VALUE : 32; //!< [31:0] 32-bits of the comparator value.
+    struct _hw_armglobaltimer_comparator0_bitfields {
+        unsigned VALUE:32;      //!< [31:0] 32-bits of the comparator value.
     } B;
 } hw_armglobaltimer_comparator0_t;
 #endif
@@ -437,8 +426,8 @@ typedef union _hw_armglobaltimer_comparator0
  * 32-bits of the comparator value.
  */
 
-#define BP_ARMGLOBALTIMER_COMPARATOR0_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COMPARATOR0_VALUE.
-#define BM_ARMGLOBALTIMER_COMPARATOR0_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COMPARATOR0_VALUE.
+#define BP_ARMGLOBALTIMER_COMPARATOR0_VALUE      (0)    //!< Bit position for ARMGLOBALTIMER_COMPARATOR0_VALUE.
+#define BM_ARMGLOBALTIMER_COMPARATOR0_VALUE      (0xffffffff)   //!< Bit mask for ARMGLOBALTIMER_COMPARATOR0_VALUE.
 
 //! @brief Get value of ARMGLOBALTIMER_COMPARATOR0_VALUE from a register value.
 #define BG_ARMGLOBALTIMER_COMPARATOR0_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ARMGLOBALTIMER_COMPARATOR0_VALUE) >> BP_ARMGLOBALTIMER_COMPARATOR0_VALUE)
@@ -464,12 +453,10 @@ typedef union _hw_armglobaltimer_comparator0
  * There are two timer counter registers. They are the lower 32-bit timer counter at offset 0x00 and
  * the upper 32-bit timer counter at offset 0x04.
  */
-typedef union _hw_armglobaltimer_comparator1
-{
+typedef union _hw_armglobaltimer_comparator1 {
     reg32_t U;
-    struct _hw_armglobaltimer_comparator1_bitfields
-    {
-        unsigned VALUE : 32; //!< [31:0] 32-bits of the comparator value.
+    struct _hw_armglobaltimer_comparator1_bitfields {
+        unsigned VALUE:32;      //!< [31:0] 32-bits of the comparator value.
     } B;
 } hw_armglobaltimer_comparator1_t;
 #endif
@@ -497,8 +484,8 @@ typedef union _hw_armglobaltimer_comparator1
  * 32-bits of the comparator value.
  */
 
-#define BP_ARMGLOBALTIMER_COMPARATOR1_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COMPARATOR1_VALUE.
-#define BM_ARMGLOBALTIMER_COMPARATOR1_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COMPARATOR1_VALUE.
+#define BP_ARMGLOBALTIMER_COMPARATOR1_VALUE      (0)    //!< Bit position for ARMGLOBALTIMER_COMPARATOR1_VALUE.
+#define BM_ARMGLOBALTIMER_COMPARATOR1_VALUE      (0xffffffff)   //!< Bit mask for ARMGLOBALTIMER_COMPARATOR1_VALUE.
 
 //! @brief Get value of ARMGLOBALTIMER_COMPARATOR1_VALUE from a register value.
 #define BG_ARMGLOBALTIMER_COMPARATOR1_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ARMGLOBALTIMER_COMPARATOR1_VALUE) >> BP_ARMGLOBALTIMER_COMPARATOR1_VALUE)
@@ -528,12 +515,10 @@ typedef union _hw_armglobaltimer_comparator1
  * so that a new event can be set periodically.  The global timer is not affected and goes on
  * incrementing.
  */
-typedef union _hw_armglobaltimer_autoincrement
-{
+typedef union _hw_armglobaltimer_autoincrement {
     reg32_t U;
-    struct _hw_armglobaltimer_autoincrement_bitfields
-    {
-        unsigned VALUE : 32; //!< [31:0] 32-bit auto-increment value.
+    struct _hw_armglobaltimer_autoincrement_bitfields {
+        unsigned VALUE:32;      //!< [31:0] 32-bit auto-increment value.
     } B;
 } hw_armglobaltimer_autoincrement_t;
 #endif
@@ -561,8 +546,8 @@ typedef union _hw_armglobaltimer_autoincrement
  * 32-bit auto-increment value.
  */
 
-#define BP_ARMGLOBALTIMER_AUTOINCREMENT_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_AUTOINCREMENT_VALUE.
-#define BM_ARMGLOBALTIMER_AUTOINCREMENT_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_AUTOINCREMENT_VALUE.
+#define BP_ARMGLOBALTIMER_AUTOINCREMENT_VALUE      (0)  //!< Bit position for ARMGLOBALTIMER_AUTOINCREMENT_VALUE.
+#define BM_ARMGLOBALTIMER_AUTOINCREMENT_VALUE      (0xffffffff) //!< Bit mask for ARMGLOBALTIMER_AUTOINCREMENT_VALUE.
 
 //! @brief Get value of ARMGLOBALTIMER_AUTOINCREMENT_VALUE from a register value.
 #define BG_ARMGLOBALTIMER_AUTOINCREMENT_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ARMGLOBALTIMER_AUTOINCREMENT_VALUE) >> BP_ARMGLOBALTIMER_AUTOINCREMENT_VALUE)
@@ -575,22 +560,20 @@ typedef union _hw_armglobaltimer_autoincrement
 #define BW_ARMGLOBALTIMER_AUTOINCREMENT_VALUE(v)   (HW_ARMGLOBALTIMER_AUTOINCREMENT_WR((HW_ARMGLOBALTIMER_AUTOINCREMENT_RD() & ~BM_ARMGLOBALTIMER_AUTOINCREMENT_VALUE) | BF_ARMGLOBALTIMER_AUTOINCREMENT_VALUE(v)))
 #endif
 
-
 /*!
  * @brief All ARMGLOBALTIMER module registers.
  */
 #ifndef __LANGUAGE_ASM__
 #pragma pack(1)
-typedef struct _hw_armglobaltimer
-{
+typedef struct _hw_armglobaltimer {
     reg32_t _reserved0[128];
     volatile hw_armglobaltimer_counter0_t COUNTER0; //!< Global Timer Counter Registers
     volatile hw_armglobaltimer_counter1_t COUNTER1; //!< Global Timer Counter Registers
-    volatile hw_armglobaltimer_control_t CONTROL; //!< Global Timer Control Register
-    volatile hw_armglobaltimer_irqstatus_t IRQSTATUS; //!< Global Timer Interrupt Status Register
-    volatile hw_armglobaltimer_comparator0_t COMPARATOR0; //!< Global Timer Comparator Value Registers
-    volatile hw_armglobaltimer_comparator1_t COMPARATOR1; //!< Global Timer Comparator Value Registers
-    volatile hw_armglobaltimer_autoincrement_t AUTOINCREMENT; //!< Global Timer Auto-increment Register
+    volatile hw_armglobaltimer_control_t CONTROL;   //!< Global Timer Control Register
+    volatile hw_armglobaltimer_irqstatus_t IRQSTATUS;   //!< Global Timer Interrupt Status Register
+    volatile hw_armglobaltimer_comparator0_t COMPARATOR0;   //!< Global Timer Comparator Value Registers
+    volatile hw_armglobaltimer_comparator1_t COMPARATOR1;   //!< Global Timer Comparator Value Registers
+    volatile hw_armglobaltimer_autoincrement_t AUTOINCREMENT;   //!< Global Timer Auto-increment Register
 } hw_armglobaltimer_t;
 #pragma pack()
 
@@ -600,6 +583,5 @@ typedef struct _hw_armglobaltimer
 #define HW_ARMGLOBALTIMER     (*(volatile hw_armglobaltimer_t *) REGS_ARMGLOBALTIMER_BASE)
 
 #endif
-
 
 #endif // __HW_ARMGLOBALTIMER_REGISTERS_H__

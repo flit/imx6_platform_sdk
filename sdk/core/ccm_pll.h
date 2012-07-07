@@ -8,122 +8,25 @@
 #ifndef _CCM_PLL_H_
 #define _CCM_PLL_H_
 
-#include "registers.h"
+#include "sdk_types.h"
 
-//#########################################
-//# CCM peripheral defines
-//#########################################
-#define CCM_CCR     CCM_BASE_ADDR+CCM_CCR_OFFSET
-#define CCM_CCDR    CCM_BASE_ADDR+CCM_CCDR_OFFSET
-#define CCM_CSR     CCM_BASE_ADDR+CCM_CSR_OFFSET
-#define CCM_CCSR    CCM_BASE_ADDR+CCM_CCSR_OFFSET
-#define CCM_CACRR   CCM_BASE_ADDR+CCM_CACRR_OFFSET
-#define CCM_CBCDR   CCM_BASE_ADDR+CCM_CBCDR_OFFSET
-#define CCM_CBCMR   CCM_BASE_ADDR+CCM_CBCMR_OFFSET
-#define CCM_CSCMR1  CCM_BASE_ADDR+CCM_CSCMR1_OFFSET
-#define CCM_CSCMR2  CCM_BASE_ADDR+CCM_CSCMR2_OFFSET
-#define CCM_CSCDR1  CCM_BASE_ADDR+CCM_CSCDR1_OFFSET
-#define CCM_CS1CDR  CCM_BASE_ADDR+CCM_CS1CDR_OFFSET
-#define CCM_CS2CDR  CCM_BASE_ADDR+CCM_CS2CDR_OFFSET
-#define CCM_CDCDR   CCM_BASE_ADDR+CCM_CDCDR_OFFSET
-#define CCM_CHSCCDR CCM_BASE_ADDR+CCM_CHSCCDR_OFFSET
-#define CCM_CSCDR2  CCM_BASE_ADDR+CCM_CSCDR2_OFFSET
-#define CCM_CSCDR3  CCM_BASE_ADDR+CCM_CSCDR3_OFFSET
-#define CCM_CSCDR4  CCM_BASE_ADDR+CCM_CSCDR4_OFFSET
-#define CCM_CWDR    CCM_BASE_ADDR+CCM_CWDR_OFFSET
-#define CCM_CDHIPR  CCM_BASE_ADDR+CCM_CDHIPR_OFFSET
-#define CCM_CDCR    CCM_BASE_ADDR+CCM_CDCR_OFFSET
-#define CCM_CTOR    CCM_BASE_ADDR+CCM_CTOR_OFFSET
-#define CCM_CLPCR   CCM_BASE_ADDR+CCM_CLPCR_OFFSET
-#define CCM_CISR    CCM_BASE_ADDR+CCM_CISR_OFFSET
-#define CCM_CIMR    CCM_BASE_ADDR+CCM_CIMR_OFFSET
-#define CCM_CCOSR   CCM_BASE_ADDR+CCM_CCOSR_OFFSET
-#define CCM_CGPR    CCM_BASE_ADDR+CCM_CGPR_OFFSET
-#define CCM_CCGR0   CCM_BASE_ADDR+CCM_CCGR0_OFFSET
-#define CCM_CCGR1   CCM_BASE_ADDR+CCM_CCGR1_OFFSET
-#define CCM_CCGR2   CCM_BASE_ADDR+CCM_CCGR2_OFFSET
-#define CCM_CCGR3   CCM_BASE_ADDR+CCM_CCGR3_OFFSET
-#define CCM_CCGR4   CCM_BASE_ADDR+CCM_CCGR4_OFFSET
-#define CCM_CCGR5   CCM_BASE_ADDR+CCM_CCGR5_OFFSET
-#define CCM_CCGR6   CCM_BASE_ADDR+CCM_CCGR6_OFFSET
-#define CCM_CCGR7   CCM_BASE_ADDR+CCM_CCGR7_OFFSET
-
-#define CCM_CCGRx_CG15_MASK         (0x3 << 30)
-#define CCM_CCGRx_CG14_MASK         (0x3 << 28)
-#define CCM_CCGRx_CG13_MASK         (0x3 << 26)
-#define CCM_CCGRx_CG12_MASK         (0x3 << 24)
-#define CCM_CCGRx_CG11_MASK         (0x3 << 22)
-#define CCM_CCGRx_CG10_MASK         (0x3 << 20)
-#define CCM_CCGRx_CG9_MASK          (0x3 << 18)
-#define CCM_CCGRx_CG8_MASK          (0x3 << 16)
-#define CCM_CCGRx_CG5_MASK          (0x3 << 10)
-#define CCM_CCGRx_CG4_MASK          (0x3 << 8)
-#define CCM_CCGRx_CG3_MASK          (0x3 << 6)
-#define CCM_CCGRx_CG2_MASK          (0x3 << 4)
-#define CCM_CCGRx_CG1_MASK          (0x3 << 2)
-#define CCM_CCGRx_CG0_MASK          (0x3 << 0)
-
-#define CCM_CCGRx_CG15_OFFSET       30
-#define CCM_CCGRx_CG14_OFFSET       28
-#define CCM_CCGRx_CG13_OFFSET       26
-#define CCM_CCGRx_CG12_OFFSET       24
-#define CCM_CCGRx_CG11_OFFSET       22
-#define CCM_CCGRx_CG10_OFFSET       20
-#define CCM_CCGRx_CG9_OFFSET        18
-#define CCM_CCGRx_CG8_OFFSET        16
-#define CCM_CCGRx_CG7_OFFSET        14
-#define CCM_CCGRx_CG6_OFFSET        12
-#define CCM_CCGRx_CG5_OFFSET        10
-#define CCM_CCGRx_CG4_OFFSET        8
-#define CCM_CCGRx_CG3_OFFSET        6
-#define CCM_CCGRx_CG2_OFFSET        4
-#define CCM_CCGRx_CG1_OFFSET        2
-#define CCM_CCGRx_CG0_OFFSET        0
-
-#define CCM_CMEOR   CCM_BASE_ADDR+CCM_CMEOR_OFFSET
-
-//#########################################
-//# CCM peripheral defines used by prog_pll.c and hardware.c
-//#########################################
-#define CLKCTL_CCGR1        CCM_CCGR1_OFFSET
-#define CLKCTL_CSCMR1       CCM_CSCMR1_OFFSET
-#define CLKCTL_CSCDR1       CCM_CSCDR1_OFFSET
-#define CLKCTL_CBCMR        CCM_CBCMR_OFFSET
-#define CLKCTL_CBCDR        CCM_CBCDR_OFFSET
-#define CLKCTL_CCSR         CCM_CCSR_OFFSET
-#define CLKCTL_CDHIPR       CCM_CDHIPR_OFFSET
-#define CLKCTL_CACRR        CCM_CACRR_OFFSET
-#define CLKCTL_CSCDR2       CCM_CSCDR2_OFFSET
-#define CLKCTL_CS1CDR       CCM_CS1CDR_OFFSET
-#define CLKCTL_CS2CDR       CCM_CS2CDR_OFFSET
-
-#define CLKCTL_CSCMR2       CCM_CSCMR2_OFFSET
-
-#define PLL1_BASE_ADDR      DPLLIP1_BASE_ADDR
-#define PLL2_BASE_ADDR      DPLLIP2_BASE_ADDR
-#define PLL3_BASE_ADDR      DPLLIP3_BASE_ADDR
-#define PLL4_BASE_ADDR      DPLLIP4_BASE_ADDR
-
-#define PLL_DP_CTL          DPLLIP_DP_CTL_OFFSET
-#define PLL_DP_CONFIG       DPLLIP_DP_CONFIG_OFFSET
-#define PLL_DP_OP           DPLLIP_DP_OP_OFFSET
-#define PLL_DP_MFD          DPLLIP_DP_MFD_OFFSET
-#define PLL_DP_MFN          DPLLIP_DP_MFN_OFFSET
-#define PLL_DP_MFNMINUS     DPLLIP_DP_MFNMINUS_OFFSET
-#define PLL_DP_MFNPLUS      DPLLIP_DP_MFNPLUS_OFFSET
-#define PLL_DP_HFS_OP       DPLLIP_DP_HFS_OP_OFFSET
-#define PLL_DP_HFS_MFD      DPLLIP_DP_HFS_MFD_OFFSET
-#define PLL_DP_HFS_MFN      DPLLIP_DP_HFS_MFN_OFFSET
-#define PLL_DP_TOGC         DPLLIP_DP_MFN_TOGC_OFFSET
-#define PLL_DP_DESTAT       DPLLIP_DP_DESTAT_OFFSET
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
 
 #define CLK_SRC_32K         32768
 
-/* x=0..15 - CG0 to CG15 */
+//! @brief Create a clock gate bit mask value.
+//! @param x 0..15, for CG0 to CG15
 #define CG(x) (3 << (x*2))
-#define CLOCK_ON        0x3
-#define CLOCK_ON_RUN    0x1
-#define CLOCK_OFF       0x0
+
+//! @brief Constants for CCM CCGR register fields.
+enum _clock_gate_constants
+{
+    CLOCK_ON = 0x3, //!< Clock always on in both run and stop modes.
+    CLOCK_ON_RUN = 0x1, //!< Clock on only in run mode.
+    CLOCK_OFF = 0x0 //!< Clocked gated off.
+};
 
 //! @brief Low power mdoes.
 typedef enum _lp_modes {
@@ -176,6 +79,14 @@ extern const uint32_t PLL3_OUTPUT[];
 extern const uint32_t PLL4_OUTPUT;
 extern const uint32_t PLL5_OUTPUT;
 
+////////////////////////////////////////////////////////////////////////////////
+// API
+////////////////////////////////////////////////////////////////////////////////
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 //! @brief Set/unset clock gating for a peripheral.
 //! @param   base_address configure clock gating for that module from the base address.
 //! @param   gating_mode clock gating mode: CLOCK_ON or CLOCK_OFF.
@@ -201,4 +112,11 @@ void ccm_enter_low_power(lp_modes_t lp_mode);
 //! @param   doEnable Pass true to unmask the source ID.
 void ccm_set_lpm_wakeup_source(uint32_t irq_id, bool doEnable);
 
+#if defined(__cplusplus)
+}
 #endif
+
+#endif
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

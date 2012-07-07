@@ -6,6 +6,7 @@
  */
 #include "sata/imx_sata.h"
 #include "atapi.h"
+#include "registers/regsccm.h"
 
 ///////////////////////////////////////////////////////////////////
 //                      Macro Definitions                        //
@@ -666,7 +667,7 @@ IMPORTANT NOTES:
 ==============================================================================*/
 static void sata_clock_init(sata_phy_ref_clk_t * phyclk)
 {
-    u32 v;
+//     u32 v;
     sata_phy_ref_clk_t clk_val = *phyclk;
 
     /*Enable SATA module clock */
@@ -681,21 +682,18 @@ static void sata_clock_init(sata_phy_ref_clk_t * phyclk)
         writel(0x184, IOMUXC_SW_PAD_CTL_PAD_GPIO_3);
 
         /*Set CLKO2 to ddr_clk_root,300MHz */
-        writel(~(0x1F << 16), CCM_CCOSR);
-        writel((0x9 << 16), CCM_CCOSR); //DDR
+//         writel(~(0x1F << 16), CCM_CCOSR);
+//         writel((0x9 << 16), CCM_CCOSR); //DDR
+        HW_CCM_CCOSR.B.CKO2_SEL = 9; // 125M_clk_root
 
         /*Set CLKO2 Divider as 3 to get 100MHz */
-        v = readl(CCM_CCOSR);
-        v |= (0x2 << 21);       //div3
-        writel(v, CCM_CCOSR);
+        HW_CCM_CCOSR.B.CKO2_DIV = 2; // div 3
 
         /*Enable CLKO2 */
-        v = readl(CCM_CCOSR);
-        v |= (0x1 << 24);
-        writel(v, CCM_CCOSR);
+        HW_CCM_CCOSR.B.CKO2_EN = 1;
 
         PRINT(0, "+SATADBGMSG: SATA PHY Clock 100MHz Div of CLKO2\n");
-        PRINT(0, "+SATADBGMSG: CCOSR = 0x%08x\n", readl(CCM_CCOSR));
+        PRINT(0, "+SATADBGMSG: CCOSR = 0x%08x\n", HW_CCM_CCOSR_RD());
 
         sata_phy_config_mpll(7, 0, 2, 6, 2);
         PRINT(1, "+SATADBGMSG: SATA PHY Clock 100MHz divided DDR clock\n");

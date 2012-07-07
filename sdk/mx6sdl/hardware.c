@@ -17,6 +17,7 @@
 #include "registers/regsflexcan.h"
 #include "registers/regsipu.h"
 #include "registers/regspmu.h"
+#include "registers/regsccm.h"
 #include "hardware.h"
 
 #define ON 1
@@ -559,20 +560,11 @@ unsigned int spdif_get_tx_clk_freq(void)
     return 30000000;
 }
 
-uint32_t GetCPUFreq(void)
-{
-    return 1000000000;
-}
-
 void pcie_clk_setup(uint32_t enable)
 {
-    uint32_t val;
-
     if (enable) {
         // gate on pci-e clks
-        val = reg32_read(CCM_CCGR4);
-        val |= 0x3 << 0;
-        reg32_write(CCM_CCGR4, val);
+        HW_CCM_CCGR4.B.CG0 = CLOCK_ON;
 
         // clear the powerdown bit
         HW_CCM_ANALOG_PLL_ENET_CLR(BM_CCM_ANALOG_PLL_ENET_POWERDOWN);

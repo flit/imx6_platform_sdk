@@ -108,7 +108,6 @@ extern void audio_test(void);
 extern void i2c_test(void);
 extern void gic_sgi_test(void);
 extern void gic_multicore_test(void);
-extern int sata_test(void);
 extern void snvs_rtc_test(void);
 extern void snvs_srtc_test(void);
 extern void flexcan_test(void);
@@ -137,7 +136,6 @@ void ALL_test(void)
 #if defined(BOARD_EVB) || defined(BOARD_SABRE_AI)
         mipi_test();
 #endif /* BOARD_EVB || BOARD_SABRE_AI */
-        sata_test();
         sdma_test();
         snvs_rtc_test();
         snvs_srtc_test();
@@ -149,7 +147,7 @@ void ALL_test(void)
         tempmon_test();
         uart_test();
         usdhc_test();
-        
+
         gic_sgi_test();
 
         /* GIC test can only be executed once, and requires a board reset */
@@ -173,7 +171,7 @@ int main(void)
     gic_set_cpu_priority_mask(0xff);
     gic_cpu_enable(true);
     gic_enable(true);
-    
+
     enable_neon_fpu();
 
 #if defined(BOARD_EVB)||defined(BOARD_SMART_DEVICE)

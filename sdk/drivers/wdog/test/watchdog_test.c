@@ -14,7 +14,20 @@ static void watchdog_reset(void)
 {
     watchdog_reg_p base = (watchdog_reg_p) WDOG1_BASE_ADDR;
     char stop_feeding;
+    uint8_t ch;
     int i = 0;
+
+    printf("\n---- Running WatchDog test. Type 'y' to continue.\n");
+
+    do {
+        ch = getchar();
+    } while (ch == (uint8_t) 0xFF);
+
+    if ((ch != 'Y') && (ch != 'y')) {
+        printf("\nTest exit.\n");
+        return;
+    }
+
     printf("Power reset...\n");
 
     /* Init Watchdog */

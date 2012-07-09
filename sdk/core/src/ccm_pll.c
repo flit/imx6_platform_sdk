@@ -505,12 +505,12 @@ void mipi_csi2_clock_set(void)
 
     //select CSI0_MCLK osc_clk 24MHz, CKO1 output drives cko2 clock 
     HW_IOMUXC_SW_MUX_CTL_PAD_CSI0_MCLK_WR(BV_FLD(IOMUXC_SW_MUX_CTL_PAD_CSI0_MCLK, MUX_MODE, ALT3));
-    HW_IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK_WR(BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, DSE, 40 OHM) |
-                                          BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, SPEED, 100 MHZ) |
+    HW_IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK_WR(BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, DSE, 40OHM) |
+                                          BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, SPEED, 100MHZ) |
                                           BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, PKE, ENABLED) |
                                           BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, PUE, PULL) |
                                           BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, PUS,
-                                                 100 KOHM_PU) |
+                                                 100KOHM_PU) |
                                           BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, HYS, ENABLED));
     HW_CCM_CCOSR_WR(BF_CCM_CCOSR_CKO1_SEL(0) | BF_CCM_CCOSR_CKO1_DIV(0) | BF_CCM_CCOSR_CKO1_EN(1) | BF_CCM_CCOSR_CKO1_CKO2_SEL(1) | // select cko2 for cko1 output
                     BF_CCM_CCOSR_CKO2_SEL(0xe) |    // osc_clk

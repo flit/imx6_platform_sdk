@@ -116,6 +116,7 @@ extern void tempmon_test(void);
 extern int vpu_test(void);
 extern int gpmi_test(void);
 extern int mipi_test();
+extern void usb_test(void);
 
 void ALL_test(void)
 {
@@ -147,7 +148,9 @@ void ALL_test(void)
         tempmon_test();
         uart_test();
         usdhc_test();
-
+#ifdef BOARD_SMART_DEVICE
+		usb_test();
+#endif
         gic_sgi_test();
 
         /* GIC test can only be executed once, and requires a board reset */

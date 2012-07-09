@@ -5,12 +5,15 @@
  * Freescale Semiconductor, Inc.
 */
 
-// For now this must come before hardware.h due to conflict with ENABLE macro.
-#include "registers/regsccmanalog.h"
-
 #include "hardware.h"
 #include "registers/regsccm.h"
+#include "registers/regsccmanalog.h"
 #include "registers/regsgpc.h"
+#include "registers/regsiomuxc.h"
+
+////////////////////////////////////////////////////////////////////////////////
+// Variables
+////////////////////////////////////////////////////////////////////////////////
 
 const uint32_t PLL1_OUTPUT = 792000000;
 const uint32_t PLL2_OUTPUT[] = { 528000000, 396000000, 352000000, 198000000, 594000000 };
@@ -30,7 +33,7 @@ void ccm_init(void)
     HW_CCM_ANALOG_PLL_ENET_CLR(BM_CCM_ANALOG_PLL_ENET_BYPASS);
     HW_CCM_ANALOG_PLL_ENET.B.DIV_SELECT = 0x3;
 
-    /* Ungate clocks that are not enabled in a driver - need to be updated */
+    // Ungate clocks that are not enabled in a driver - need to be updated 
     HW_CCM_CCGR0_WR(0xffffffff);
     HW_CCM_CCGR1_WR(0xFFCC0FFF);    // EPIT, ESAI, GPT enabled by driver
     HW_CCM_CCGR2_WR(0xFFFFF03F);    // I2C enabled by driver
@@ -71,35 +74,36 @@ uint32_t get_main_clock(main_clocks_t clock)
     uint32_t ret_val = 0;
     uint32_t pre_periph_clk_sel = HW_CCM_CBCMR.B.PRE_PERIPH_CLK_SEL;
 
-    switch (clock) {
-    case CPU_CLK:
-        ret_val = PLL1_OUTPUT;
-        break;
-    case AXI_CLK:
-        ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AXI_PODF + 1);
-        break;
-    case MMDC_CH0_AXI_CLK:
-        ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.MMDC_CH0_AXI_PODF + 1);
-        break;
-    case AHB_CLK:
-        ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AHB_PODF + 1);
-        break;
-    case IPG_CLK:
-        ret_val =
-            PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AHB_PODF +
-                                               1) / (HW_CCM_CBCDR.B.IPG_PODF + 1);
-        break;
-    case IPG_PER_CLK:
-        ret_val =
-            PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AHB_PODF +
-                                               1) / (HW_CCM_CBCDR.B.IPG_PODF +
-                                                     1) / (HW_CCM_CSCMR1.B.PERCLK_PODF + 1);
-        break;
-    case MMDC_CH1_AXI_CLK:
-        ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.MMDC_CH1_AXI_PODF + 1);
-        break;
-    default:
-        break;
+    switch (clock)
+    {
+        case CPU_CLK:
+            ret_val = PLL1_OUTPUT;
+            break;
+        case AXI_CLK:
+            ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AXI_PODF + 1);
+            break;
+        case MMDC_CH0_AXI_CLK:
+            ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.MMDC_CH0_AXI_PODF + 1);
+            break;
+        case AHB_CLK:
+            ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AHB_PODF + 1);
+            break;
+        case IPG_CLK:
+            ret_val =
+                PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AHB_PODF +
+                                                   1) / (HW_CCM_CBCDR.B.IPG_PODF + 1);
+            break;
+        case IPG_PER_CLK:
+            ret_val =
+                PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AHB_PODF +
+                                                   1) / (HW_CCM_CBCDR.B.IPG_PODF +
+                                                         1) / (HW_CCM_CSCMR1.B.PERCLK_PODF + 1);
+            break;
+        case MMDC_CH1_AXI_CLK:
+            ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.MMDC_CH1_AXI_PODF + 1);
+            break;
+        default:
+            break;
     }
 
     return ret_val;
@@ -132,9 +136,9 @@ uint32_t get_peri_clock(peri_clocks_t clock)
 
 /*!
  * Set/unset clock gating for a peripheral.
- * @param   ccm_ccgrx - address of the clock gating register: CCM_CCGR1,...
- * @param   cgx_offset - offset of the clock gating field: CG(x).
- * @param   gating_mode - clock gating mode: CLOCK_ON or CLOCK_OFF.
+ * @param   ccm_ccgrx Address of the clock gating register: CCM_CCGR1,...
+ * @param   cgx_offset Offset of the clock gating field: CG(x).
+ * @param   gating_mode Clock gating mode: CLOCK_ON or CLOCK_OFF.
  */
 void ccm_ccgr_config(uint32_t ccm_ccgrx, uint32_t cgx_offset, uint32_t gating_mode)
 {
@@ -146,197 +150,194 @@ void ccm_ccgr_config(uint32_t ccm_ccgrx, uint32_t cgx_offset, uint32_t gating_mo
 
 void clock_gating_config(uint32_t base_address, uint32_t gating_mode)
 {
-    uint32_t ccm_ccgrx = 0, cgx_offset = 0;
+    uint32_t ccm_ccgrx = 0;
+    uint32_t cgx_offset = 0;
 
     switch (base_address) {
-    case UART1_BASE_ADDR:
-    case UART2_BASE_ADDR:
-    case UART3_BASE_ADDR:
-    case UART4_BASE_ADDR:
-    case UART5_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR5;
-        cgx_offset = CG(13) | CG(12);
-        break;
-    case SSI3_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR5;
-        cgx_offset = CG(11);
-        break;
-    case SSI2_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR5;
-        cgx_offset = CG(10);
-        break;
-    case SSI1_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR5;
-        cgx_offset = CG(9);
-        break;
-    case SPDIF_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR5;
-        cgx_offset = CG(7);
-        break;
-    case SPBA_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR5;
-        cgx_offset = CG(6);
-        break;
-    case SDMA_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR5;
-        cgx_offset = CG(3);
-        break;
-    case SATA_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR5;
-        cgx_offset = CG(2);
-        break;
-    case EPIT1_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR1;
-        cgx_offset = CG(6);
-        break;
-    case EPIT2_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR1;
-        cgx_offset = CG(7);
-        break;
-    case GPT_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR1;
-        cgx_offset = CG(10);
-        break;
-    case I2C1_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR2;
-        cgx_offset = CG(3);
-        break;
-    case I2C2_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR2;
-        cgx_offset = CG(4);
-        break;
-    case I2C3_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR2;
-        cgx_offset = CG(5);
-        break;
-    case PERFMON1_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR4;
-        cgx_offset = CG(1);
-        /* specific bit 16 to enable */
-        writel((gating_mode & 0x1) << 16, IOMUXC_GPR11);
-        break;
-    case PERFMON2_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR4;
-        cgx_offset = CG(2);
-        /* specific bit 16 to enable */
-        writel((gating_mode & 0x1) << 16, IOMUXC_GPR11);
-        break;
-    case PERFMON3_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR4;
-        cgx_offset = CG(3);
-        /* specific bit 16 to enable */
-        writel((gating_mode & 0x1) << 16, IOMUXC_GPR11);
-        break;
-    case GPMI_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR4;
-        cgx_offset = CG(15) | CG(14) | CG(13) | CG(12);
-        break;
-    case ESAI1_BASE_ADDR:
-        ccm_ccgrx = CCM_CCGR1;
-        cgx_offset = CG(8);
-        break;
-    default:
-        break;
+        case UART1_BASE_ADDR:
+        case UART2_BASE_ADDR:
+        case UART3_BASE_ADDR:
+        case UART4_BASE_ADDR:
+        case UART5_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(13) | CG(12);
+            break;
+        case SSI3_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(11);
+            break;
+        case SSI2_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(10);
+            break;
+        case SSI1_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(9);
+            break;
+        case SPDIF_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(7);
+            break;
+        case SPBA_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(6);
+            break;
+        case SDMA_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(3);
+            break;
+        case SATA_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(2);
+            break;
+        case EPIT1_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR1_ADDR;
+            cgx_offset = CG(6);
+            break;
+        case EPIT2_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR1_ADDR;
+            cgx_offset = CG(7);
+            break;
+        case GPT_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR1_ADDR;
+            cgx_offset = CG(10);
+            break;
+        case I2C1_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR2_ADDR;
+            cgx_offset = CG(3);
+            break;
+        case I2C2_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR2_ADDR;
+            cgx_offset = CG(4);
+            break;
+        case I2C3_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR2_ADDR;
+            cgx_offset = CG(5);
+            break;
+        case PERFMON1_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR4_ADDR;
+            cgx_offset = CG(1);
+            // specific bit 16 to enable 
+            HW_IOMUXC_GPR11_WR((gating_mode & 0x1) << 16);
+            break;
+        case PERFMON2_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR4_ADDR;
+            cgx_offset = CG(2);
+            // specific bit 16 to enable 
+            HW_IOMUXC_GPR11_WR((gating_mode & 0x1) << 16);
+            break;
+        case PERFMON3_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR4_ADDR;
+            cgx_offset = CG(3);
+            // specific bit 16 to enable 
+            HW_IOMUXC_GPR11_WR((gating_mode & 0x1) << 16);
+            break;
+        case GPMI_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR4_ADDR;
+            cgx_offset = CG(15) | CG(14) | CG(13) | CG(12);
+            break;
+        case ESAI1_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR1_ADDR;
+            cgx_offset = CG(8);
+            break;
+        default:
+            break;
     }
 
-    /* apply changes only if a valid address was found */
+    // apply changes only if a valid address was found 
     if (ccm_ccgrx != 0)
+    {
         ccm_ccgr_config(ccm_ccgrx, cgx_offset, gating_mode);
+    }
 }
 
 /*!
- * config ipu hsp clk to default 264MHz
+ * @brief Configure ipu 1 and 2 hsp clk to default 264MHz
  *
  * ipu_hsp_clk is derived from mmdc_ch0 divided by 2.
  */
 void ipu_hsp_clk_config(void)
 {
-    /*clk_sel from mmdc_ch0, podf=1 */
-    writel(0x00010800, CCM_CSCDR3);
+    // clk_sel from mmdc_ch0, podf=1
+    HW_CCM_CSCDR3_WR(   BF_CCM_CSCDR3_IPU1_HSP_CLK_SEL(0)
+                        | BF_CCM_CSCDR3_IPU1_HSP_PODF(1)
+#if CHIP_MX6DQ
+                        | BF_CCM_CSCDR3_IPU2_HSP_CLK_SEL(0)
+                        | BF_CCM_CSCDR3_IPU2_HSP_PODF(1)
+#endif // CHIP_MX6DQ
+                        );
 }
 
 /*!
- * config ldb clock as per the display resolution
+ * @brief Configure ldb clock as per the display resolution.
  *
  * ldb clock is derived from PLL5, ldb on ipu1
  */
 void ldb_clock_config(int freq, int ipu_index)
 {
-    uint32_t regval = 0;
     if (freq == 65000000)       //for XGA resolution
     {
-        /*config pll3 PFD1 to 455M. pll3 is 480M */
+        //config pll3 PFD1 to 455M. pll3 is 480M 
         BW_CCM_ANALOG_PFD_480_PFD1_FRAC(19);
 
-        if (ipu_index == 1) {
-            /*set ldb_di0_clk_sel to PLL3 PFD1 */
-            regval = readl(CCM_CS2CDR) & (~0x7E00);
-            regval |= 0x3600;
-            writel(regval, CCM_CS2CDR);
+        // set ldb_di0_clk_sel to PLL3 PFD1
+        HW_CCM_CS2CDR.B.LDB_DI0_CLK_SEL = 3;
+        HW_CCM_CS2CDR.B.LDB_DI1_CLK_SEL = 3;
 
-            /*set clk_div to 7 */
-            regval = readl(CCM_CSCMR2) & (~0xC00);
-            regval |= 0xC00;
-            writel(regval, CCM_CSCMR2);
+        // set clk_div to 7
+        HW_CCM_CSCMR2.B.LDB_DI0_IPU_DIV = 1;
+        HW_CCM_CSCMR2.B.LDB_DI1_IPU_DIV = 1;
 
-            /*set ipu1_di0_clk_sel from ldb_di0_clk */
-            regval = readl(CCM_CHSCCDR) & (~0x0E07);
-            regval |= 0x0603;
-            writel(regval, CCM_CHSCCDR);
-        } else {
-            /*set ldb_di0_clk_sel to PLL3 PFD1 */
-            regval = readl(CCM_CS2CDR) & (~0x7E00);
-            regval |= 0x3600;
-            writel(regval, CCM_CS2CDR);
-
-            /*set clk_div to 7 */
-            regval = readl(CCM_CSCMR2) & (~0xC00);
-            regval |= 0xC00;
-            writel(regval, CCM_CSCMR2);
-
-            /*set ipu2_di0_clk_sel from ldb_di0_clk */
-            regval = readl(CCM_CSCDR2) & (~0x0E07);
-            regval |= 0x0603;
-            writel(regval, CCM_CSCDR2);
+        if (ipu_index == 1)
+        {
+            //set ipu1_di0_clk_sel from ldb_di0_clk 
+            HW_CCM_CHSCCDR.B.IPU1_DI0_CLK_SEL = 3; // ldb_di0_clk
+            HW_CCM_CHSCCDR.B.IPU1_DI1_CLK_SEL = 3; // ldb_di0_clk
         }
-    } else {
+#if CHIP_MX6DQ
+        else
+        {
+            //set ipu2_di0_clk_sel from ldb_di0_clk 
+            HW_CCM_CSCDR2.B.IPU2_DI0_CLK_SEL = 3;
+            HW_CCM_CSCDR2.B.IPU2_DI1_CLK_SEL = 3;
+        }
+#endif // CHIP_MX6DQ
+    }
+    else
+    {
         printf("The frequency %d for LDB is not supported yet.", freq);
     }
 }
 
 void hdmi_clock_set(int ipu_index, uint32_t pclk)
 {
-    uint32_t regval = 0;
+    switch (pclk)
+    {
+        case 74250000:
+        case 148500000:
+            if (ipu_index == 1)
+            {
+                //clk output from 540M PFD1 of PLL3 
+                HW_CCM_CHSCCDR.B.IPU1_DI0_CLK_SEL = 0; // derive clock from divided pre-muxed ipu1 di0 clock
+                HW_CCM_CHSCCDR.B.IPU1_DI0_PODF = 5; // div by 6
+                HW_CCM_CHSCCDR.B.IPU1_DI0_PRE_CLK_SEL = 5; // derive clock from 540M PFD
+            }
+#if CHIP_MX6DQ
+            else
+            {
+                //clk output from 540M PFD1 of PLL3 
+                HW_CCM_CSCDR2.B.IPU2_DI0_CLK_SEL = 0; // derive clock from divided pre-muxed ipu1 di0 clock
+                HW_CCM_CSCDR2.B.IPU2_DI0_PODF = 5; // div by 6
+                HW_CCM_CSCDR2.B.IPU2_DI0_PRE_CLK_SEL = 5; // derive clock from 540M PFD
+            }
+    
+            //config PFD1 of PLL3 to be 445MHz 
+            BW_CCM_ANALOG_PFD_480_PFD1_FRAC(0x13);
+            break;
+#endif // CHIP_MX6DQ
 
-    if (pclk == 74250000) {
-        if (ipu_index == 1) {
-            /*clk output from 540M PFD1 of PLL3 */
-            regval = reg32_read(CCM_CHSCCDR) & (~0x1FF);
-            reg32_write(CCM_CHSCCDR, regval | 0x168);
-        } else {
-            /*clk output from 540M PFD1 of PLL3 */
-            regval = reg32_read(CCM_CSCDR2) & (~0x1FF);
-            reg32_write(CCM_CSCDR2, regval | 0x168);
-        }
-
-        /*config PFD1 of PLL3 to be 445MHz */
-        BW_CCM_ANALOG_PFD_480_PFD1_FRAC(0x13);
-
-    } else if (pclk == 148500000) {
-        if (ipu_index == 1) {
-            /*clk output from 540M PFD1 of PLL3 */
-            regval = reg32_read(CCM_CHSCCDR) & (~0x1FF);
-            reg32_write(CCM_CHSCCDR, regval | 0x168);
-        } else {
-            /*clk output from 540M PFD1 of PLL3 */
-            regval = reg32_read(CCM_CSCDR2) & (~0x1FF);
-            reg32_write(CCM_CSCDR2, regval | 0x168);
-        }
-        /*config PFD1 of PLL3 to be 445MHz */
-        BW_CCM_ANALOG_PFD_480_PFD1_FRAC(0x10);
-	
-    } else {
-        printf("the hdmi pixel clock is not supported!\n");
+        default:
+            printf("the hdmi pixel clock is not supported!\n");
     }
 }
 
@@ -363,17 +364,13 @@ void gpmi_nand_clk_setup(void)
 
 void esai_clk_sel_gate_on()
 {
-    uint32_t val = 0;
-    val = readl(CCM_CSCMR2);
-    val &= ~(0x03 << 19);
-    val |= 0x01 << 19;          //source from PLL3_508
-    writel(val, CCM_CSCMR2);
+    HW_CCM_CSCMR2.B.ESAI_CLK_SEL = 1; // source from PLL3_508
 
     clock_gating_config(ESAI1_BASE_ADDR, CLOCK_ON);
 }
 
 /*!
- * SATA related clocks enable function
+ * @brief SATA related clocks enable function
  */
 void sata_clock_enable(void)
 {
@@ -397,7 +394,7 @@ void sata_clock_enable(void)
 }
 
 /*!
- * SATA related clocks dis function
+ * @brief SATA related clocks dis function
  */
 void sata_clock_disable(void)
 {
@@ -409,7 +406,7 @@ void sata_clock_disable(void)
 }
 
 /*!
- * SATA related function to get the PHY source clock
+ * @brief SATA related function to get the PHY source clock
  */
 void sata_get_phy_src_clk(sata_phy_ref_clk_t * phy_ref_clk)
 {
@@ -417,26 +414,17 @@ void sata_get_phy_src_clk(sata_phy_ref_clk_t * phy_ref_clk)
 }
 
 /*!
- * SPDIF clock configuration
+ * @brief SPDIF clock configuration
+ *
  * Use the default setting as follow:
  * CDCDR[spdif0_clk_sel](PLL3)->CDCDR[spdif0_clk_pred](div2)->CDCDR[spdif0_clk_podf](div8)-> spdif0_clk_root, so
  * the freqency of spdif0_clk should be 480/2/8 = 30MHz.
  */
 void spdif_clk_cfg(void)
 {
-    unsigned int val;
-
-    val = readl(CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
-    //CDCDR[spdif0_clk_sel](PLL3)
-    val &= ~(0x03 << 20);
-    val |= 0x03 << 20;
-    //CDCDR[spdif0_clk_pred](div2)
-    val &= ~(0x07 << 25);
-    val |= 0x01 << 25;
-    //CDCDR[spdif0_clk_podf](div8)
-    val &= ~(0x07 << 22);
-    val |= 0x07 << 22;
-    writel(val, CCM_BASE_ADDR + CCM_CDCDR_OFFSET);
+    HW_CCM_CDCDR.B.SPDIF0_CLK_SEL = 3; // PLL3
+    HW_CCM_CDCDR.B.SPDIF0_CLK_PODF = 7; // div 8
+    HW_CCM_CDCDR.B.SPDIF0_CLK_PRED = 1; // div 2
 
     clock_gating_config(SPDIF_BASE_ADDR, CLOCK_ON);
 
@@ -445,30 +433,31 @@ void spdif_clk_cfg(void)
 
 void ccm_set_lpm_wakeup_source(uint32_t irq_id, bool doEnable)
 {
-    uint32_t reg_offset = 0, bit_offset = 0;
+    uint32_t reg_offset = 0;
+    uint32_t bit_offset = 0;
     uint32_t gpc_imr = 0;
 
-    /* calculate the offset of the register handling that interrupt ID */
-    /* ID starts at 32, so for instance ID=89 is handled by IMR2 because
-       the integer part of the division is reg_offset = 2 */
+    // calculate the offset of the register handling that interrupt ID
+    // ID starts at 32, so for instance ID=89 is handled by IMR2 because
+    // the integer part of the division is reg_offset = 2
     reg_offset = (irq_id / 32);
-    /* and the rest of the previous division is used to calculate the bit
-       offset in the register, so for ID=89 this is bit_offset = 25 */
+    // and the rest of the previous division is used to calculate the bit
+    // offset in the register, so for ID=89 this is bit_offset = 25
     bit_offset = irq_id - 32 * reg_offset;
 
-    /* get the current value of the corresponding GPC_IMRx register */
-    gpc_imr = readl(GPC_BASE_ADDR + GPC_IMR1_OFFSET + (reg_offset - 1) * 4);
+    // get the current value of the corresponding GPC_IMRx register
+    gpc_imr = readl(HW_GPC_IMR1_ADDR + (reg_offset - 1) * 4);
 
     if (doEnable) {
-        /* clear the corresponding bit to unmask the interrupt source */
+        // clear the corresponding bit to unmask the interrupt source 
         gpc_imr &= ~(1 << bit_offset);
-        /* write the new mask */
-        writel(gpc_imr, GPC_BASE_ADDR + GPC_IMR1_OFFSET + (reg_offset - 1) * 4);
+        // write the new mask 
+        writel(gpc_imr, HW_GPC_IMR1_ADDR + (reg_offset - 1) * 4);
     } else {
-        /* set the corresponding bit to mask the interrupt source */
+        // set the corresponding bit to mask the interrupt source 
         gpc_imr |= (1 << bit_offset);
-        /* write the new mask */
-        writel(gpc_imr, GPC_BASE_ADDR + GPC_IMR1_OFFSET + (reg_offset - 1) * 4);
+        // write the new mask 
+        writel(gpc_imr, HW_GPC_IMR1_ADDR + (reg_offset - 1) * 4);
     }
 }
 
@@ -476,25 +465,27 @@ void ccm_enter_low_power(lp_modes_t lp_mode)
 {
     uint32_t ccm_clpcr = 0;
 
-    /* if MMDC channel 1 is not used, the handshake must be masked */
-    /* enable the well-biased mode - set disable core clock in wait - set
-       disable oscillator in stop */
+    // if MMDC channel 1 is not used, the handshake must be masked 
+    // enable the well-biased mode - set disable core clock in wait - set
+    // disable oscillator in stop
     ccm_clpcr = BM_CCM_CLPCR_BYPASS_MMDC_CH1_LPM_HS |
         BM_CCM_CLPCR_WB_CORE_AT_LPM |
         BM_CCM_CLPCR_SBYOS | BM_CCM_CLPCR_ARM_CLK_DIS_ON_LPM | lp_mode;
 
     if (lp_mode == STOP_MODE)
-        /* enable peripherals well-biased */
+    {
+        // enable peripherals well-biased 
         ccm_clpcr |= BM_CCM_CLPCR_WB_PER_AT_LPM;
+    }
 
     HW_CCM_CLPCR_WR(ccm_clpcr);
 
     __asm(
-             /* data synchronization barrier (caches, TLB maintenance, ...) */
+             // data synchronization barrier (caches, TLB maintenance, ...) 
              "dsb;"
-             /* wait for interrupt instruction */
+             // wait for interrupt instruction 
              "wfi;"
-             /* instruction synchronization barrier (flush the pipe-line) */
+             // instruction synchronization barrier (flush the pipe-line) 
              "isb;");
 
     return;
@@ -507,33 +498,59 @@ void mipi_clock_set(void)
 
 void mipi_csi2_clock_set(void)
 {
-    /*set VIDPLL(PLL5) to 596MHz */
-    HW_CCM_ANALOG_PLL_VIDEO_WR(0x00002018);	
+    //set VIDPLL(PLL5) to 596MHz 
+    HW_CCM_ANALOG_PLL_VIDEO_WR(
+        BF_CCM_ANALOG_PLL_VIDEO_DIV_SELECT(0) |
+        BF_CCM_ANALOG_PLL_VIDEO_HALF_LF(1) |
+        BF_CCM_ANALOG_PLL_VIDEO_DOUBLE_LF(1) |
+        BF_CCM_ANALOG_PLL_VIDEO_ENABLE(1) );
     HW_CCM_ANALOG_PLL_VIDEO_NUM_WR(0x00000000);
     HW_CCM_ANALOG_PLL_VIDEO_DENOM_WR(0x00000001);
-    while(!(HW_CCM_ANALOG_PLL_VIDEO_RD() & 0x80000000)); //waiting for PLL lock
-    HW_CCM_ANALOG_PLL_VIDEO_CLR(0x00010000); //disable bypass VIDPLL
+    while(!HW_CCM_ANALOG_PLL_VIDEO.B.LOCK); //waiting for PLL lock
+    BF_CLR(CCM_ANALOG_PLL_VIDEO, BYPASS);
 	
-    /*select CSI0_MCLK osc_clk 24MHz, CKO1 output drives cko2 clock */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_MCLK, ALT3);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, 0x1B0B0);
-    reg32_write(CCM_CCOSR, 0x10e0180);
+    //select CSI0_MCLK osc_clk 24MHz, CKO1 output drives cko2 clock 
+    HW_IOMUXC_SW_MUX_CTL_PAD_CSI0_MCLK_WR(BV_FLD(IOMUXC_SW_MUX_CTL_PAD_CSI0_MCLK, MUX_MODE, ALT3));
+    HW_IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK_WR(
+        BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, DSE, 40OHM) |
+        BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, SPEED, 100MHZ) |
+        BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, PKE, ENABLED) |
+        BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, PUE, PULL) |
+        BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, PUS, 100KOHM_PU) |
+        BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, HYS, ENABLED) );
+    HW_CCM_CCOSR_WR(
+        BF_CCM_CCOSR_CKO1_SEL(0) |
+        BF_CCM_CCOSR_CKO1_DIV(0) |
+        BF_CCM_CCOSR_CKO1_EN(1) |
+        BF_CCM_CCOSR_CKO1_CKO2_SEL(1) | // select cko2 for cko1 output
+        BF_CCM_CCOSR_CKO2_SEL(0xe) |  // osc_clk
+        BF_CCM_CCOSR_CKO2_DIV(0) |  // div 1
+        BF_CCM_CCOSR_CKO2_EN(1) );
 }
 
 void gpu_clock_config(void)
 {
     HW_CCM_ANALOG_PLL_VIDEO_NUM_WR(0xFF0D6C3);
-    HW_CCM_ANALOG_PLL_VIDEO_WR(0x12002);
-    while(!(HW_CCM_ANALOG_PLL_VIDEO_RD() & 0x80000000)); //waiting for PLL lock
-    HW_CCM_ANALOG_PLL_VIDEO_WR(0x80002002);
+    HW_CCM_ANALOG_PLL_VIDEO_WR(
+        BF_CCM_ANALOG_PLL_VIDEO_DIV_SELECT(2) |
+        BF_CCM_ANALOG_PLL_VIDEO_ENABLE(1) |
+        BF_CCM_ANALOG_PLL_VIDEO_BYPASS(1));
+    while(!HW_CCM_ANALOG_PLL_VIDEO.B.LOCK); //waiting for PLL lock
+    BF_CLR(CCM_ANALOG_PLL_VIDEO, BYPASS);
 
     //ldb_di0_clk select PLL5
-    reg32_write(CCM_CS2CDR, reg32_read(CCM_CS2CDR) & 0xfffff1ff);
+    HW_CCM_CS2CDR.B.LDB_DI0_CLK_SEL = 0; // PLL5
 
-    reg32_write(IOMUXC_GPR3, (reg32_read(IOMUXC_GPR3) & 0xfffffcff) | 0x80);    // ipu_mux
-    reg32_write(CCM_CHSCCDR, reg32_read(CCM_CHSCCDR) | 0x3);    // ipu1_di0_clk_sel: ldb_di0_clk
-    reg32_write(CCM_CSCMR2, reg32_read(CCM_CSCMR2) | 0xc00);    // ldb_di0 divided by 3.5
-    reg32_write(CCM_CSCDR2, reg32_read(CCM_CSCDR2) | 0x603);
+    HW_IOMUXC_GPR3.B.LVDS1_MUX_CTL = 0; // LVDS1 source is IPU1 DI0 port
+    HW_IOMUXC_GPR3.B.LVDS0_MUX_CTL = 2; // LVDS0 source is IPU2 DI0 port
+    
+    HW_CCM_CHSCCDR.B.IPU1_DI0_CLK_SEL = 3; // derive clock from ldb_di0_clk
+    HW_CCM_CSCMR2_SET(BM_CCM_CSCMR2_LDB_DI0_IPU_DIV | BM_CCM_CSCMR2_LDB_DI1_IPU_DIV); // ldb_di0 divided by 3.5
+
+#if CHIP_MX6DQ
+    HW_CCM_CSCDR2.B.IPU2_DI0_CLK_SEL = 3; // derive clock from ldb_di0_clk
+    HW_CCM_CSCDR2.B.IPU2_DI1_CLK_SEL = 3; // derive clock from 352M PFD
+#endif // CHIP_MX6DQ
 }
 
 ////////////////////////////////////////////////////////////////////////////////

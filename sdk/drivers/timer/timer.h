@@ -37,6 +37,8 @@
 #define OUTPUT_CMP_SET      0x3 // output set high mode
 #define OUTPUT_CMP_LOWPULSE 0x4 // output set high mode
 
+#define POLLING_MODE 0
+
 ////////////////////////////////////////////////////////////////////////////////
 // API
 ////////////////////////////////////////////////////////////////////////////////
@@ -45,19 +47,22 @@
 extern "C" {
 #endif
 
-/*!
- * @brief Delay for a given number of microseconds.
- *
- * @param usecs Delay in microseconds.
- */
+//! @brief Delay for a given number of microseconds.
+//!
+//! system_time_init() must have been called before using this function.
+//!
+//! @param usecs Delay in microseconds.
 void hal_delay_us(uint32_t usecs);
 
-/*!
- * Init function used of the EPIT timer used for delay.
- */
+//! @brief Init system timer facilities.
+//!
+//! Inits the EPIT timer used for delay, and inits the microsecond counter.
 void system_time_init(void);
 
-//! @brief 
+//! @brief Return the current microsecond counter value.
+//!
+//! @return The number of microseconds elapsed since system_time_init()
+//!     was called. This value may roll over before reaching all ones.
 uint64_t time_get_microseconds();
 
 #if defined(__cplusplus)

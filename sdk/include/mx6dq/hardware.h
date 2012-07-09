@@ -237,7 +237,6 @@ enum display_type {
 void freq_populate(void);
 void show_freq(void);
 uint32_t get_freq(uint32_t module_base);
-uint32_t GetCPUFreq(void);
 void show_ddr_config(void);
 void board_init(void);
 void reset_usb_hub(void);

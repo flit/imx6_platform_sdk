@@ -16,11 +16,11 @@
  * @ingroup diag_usb
  */
 
-// For now this must come before hardware.h due to conflict with ENABLE macro.
-#include "registers/regsccmanalog.h"
-
 #include "hardware.h"
 #include "usb_regs.h"
+#include "registers/regsccm.h"
+#include "registers/regsccmanalog.h"
+
 /*!
  * This function enables the clocks needed for USB operation.
  * @param port
@@ -35,7 +35,8 @@ int usbEnableClocks(usb_module_t * port)
      * Enable the USB clock for the controller
      */
 
-    *(volatile uint32_t *)(CCM_CCGR6) |= 0x00000003;
+//     *(volatile uint32_t *)(CCM_CCGR6) |= 0x00000003;
+    HW_CCM_CCGR6.B.CG0 = 3;
 
     /*!
      * Enable the PLL\n

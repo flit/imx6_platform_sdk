@@ -12,7 +12,7 @@
 #include "sdma_test.h"
 #include "hardware.h"
 
-#define DDR_2_DDR	0
+#define DDR_2_DDR	1
 
 #define MEM2MEM_TEST_BUF_SZ 		1024*8
 

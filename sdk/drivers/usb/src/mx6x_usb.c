@@ -58,6 +58,7 @@ int usbEnableClocks(usb_module_t * port)
     }
 
     usbPllControl->SET = USBPLL_CTRL_POWER; //! - Turn PLL power on.
+	usbPllControl->SET = USBPLL_CTRL_EN_USB_CLKS;	//!Powers the 9-phase PLL outputs for USBPHY0
     while (!(usbPllControl->RW & USBPLL_CTRL_LOCK)) ;   //! - Wait for PLL to lock
     usbPllControl->CLEAR = USBPLL_CTRL_BYPASS;  //! - Clear bypass
     usbPllControl->SET = USBPLL_CTRL_ENABLE;    //! - Enable PLL clock output for the PHY

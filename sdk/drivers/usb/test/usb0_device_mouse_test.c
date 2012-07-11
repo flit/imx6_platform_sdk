@@ -41,6 +41,19 @@ usbdEndpointPair_t endpointList[8] __attribute__ ((aligned (4096))); // 4K align
  *
  */
 
+uint8_t qf_Descriptor[] = {
+	0x0A,	//USB_DEV_QUALIFIER_DESC_LEN,
+	0x06,   //USB_DEV_QUALIFIER_DESC_TYPE,
+	0x00,   //USB_DEV_DESC_SPEC_LB,
+	0x02,   //USB_DEV_DESC_SPEC_HB,
+	0x00,   //USB_DEV_DESC_DEV_CLASS,
+	0x00,   //USB_DEV_DESC_DEV_SUBCLASS,
+	0x00,   //USB_DEV_DESC_DEV_PROTOCOL,
+	0x40,   //USB_DEV_DESC_EP0_MAXPACKETSIZE,
+	0x01,   //USB_DEV_DESC_NUM_OT_SPEED_CONF,
+	0		//USB_DEV_DESC_RESERVED
+};
+
 /*!
  * Main program loop.
  */
@@ -300,6 +313,7 @@ void usb0_device_mouse_test(usb_module_t *port) {
 	}
 }
 
+
 /*!
  * Enumerate device
  *
@@ -357,10 +371,20 @@ void hid_device_enum(usb_module_t *port,
 								setupPacket.wLength;
 				usbd_device_send_control_packet(port, endpointListAddress,
 						fullConfigBuffer, transferSize);
-			} else {
-				printf("Unsupported descriptor request received\n");
+			}else if (setupPacket.wValue == 0x0600) {	// send qualifier descriptor
+				 transferSize = setupPacket.wLength > sizeof(qf_Descriptor)?
+					sizeof(qf_Descriptor): setupPacket.wLength;
+				usbd_device_send_control_packet(port, endpointListAddress,
+						qf_Descriptor,
+						 transferSize
+						);
+			}
+			else {
 				// Stall the endpoint
 				port->moduleBaseAddress->USB_ENDPTCTRL[0] |= USB_ENDPTCTRL_TXS;
+				printf("Unsupported descriptor request received\n");
+				printf("wValue: 0x%x\n",setupPacket.wValue);
+				printf("length: 0x%x\n",setupPacket.wLength);
 			}
 			break;
 

@@ -148,7 +148,7 @@ void ALL_test(void)
         tempmon_test();
         uart_test();
         usdhc_test();
-#ifdef BOARD_SMART_DEVICE
+#if defined(BOARD_SMART_DEVICE) && defined(BOARD_VERSION2)
 		usb_test();
 #endif
         gic_sgi_test();

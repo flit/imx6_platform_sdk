@@ -6,6 +6,7 @@
 */
 
 #include "utility/spinlock.h"
+#include "utility/atomics.h"
 #include "timer/timer.h"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -31,8 +32,8 @@ int spinlock_lock(spinlock_t * lock, uint32_t timeout)
 {
     uint64_t startTime = time_get_microseconds();
     
-    // Wait for lock to become available.
-    while (*lock != kUnlocked)
+    // Spin until we can lock the lock.
+    while (atomic_compare_and_swap((uint32_t *)lock, kUnlocked, kLocked))
     {
         // Unless the caller wants to wait forever, check if the timeout has elapsed.
         if ((timeout != kSpinlockWaitForever)
@@ -42,16 +43,13 @@ int spinlock_lock(spinlock_t * lock, uint32_t timeout)
         }
     }
     
-    // Lock the lock.
-    *lock = kLocked;
-    
     return 0;
 }
 
 void spinlock_unlock(spinlock_t * lock)
 {
     // Unlock the lock.
-    *lock = kUnlocked;
+    while (!atomic_compare_and_swap((uint32_t *)lock, kLocked, kUnlocked));
 }
 
 bool spinlock_is_locked(spinlock_t * lock)

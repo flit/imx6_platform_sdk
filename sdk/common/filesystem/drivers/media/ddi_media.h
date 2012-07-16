@@ -15,7 +15,7 @@
 
 #include <types.h>
 #include "ddi_media_errordefs.h"
-#include "drive_tags.h"
+//#include "drive_tags.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Definitions

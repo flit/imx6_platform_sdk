@@ -45,23 +45,6 @@ static bool IsFATSector(uint32_t drive, uint32_t sector)
     return (sector >= start) && (sector < end); 
 }
 
-//! \brief Returns the appropriate weight for the given sector.
-// static inline int32_t GetSectorWeight(uint32_t drive, uint32_t sector)
-// {
-//     return IsFATSector(drive, sector) ? kMediaCacheWeight_High : kMediaCacheWeight_Medium;
-// }
-
-/* enable only one option, not both */
-//#define RAM_FS
-
-#define RAM_FS_ADDR 0x11000000
-
-#define BYTES_PER_SECTOR 512
-#define NUM_OF_SECTOR    1024
-#define CACHE_SIZE NUM_OF_SECTOR*BYTES_PER_SECTOR
-uint8_t g_cache_buf[CACHE_SIZE];
-uint32_t g_start_sector = 0xFFFFFFFF;
-
 void print_media_fat_info(uint32_t DeviceNum)
 {
     printf("BytesPerSector = %X\n",     MediaTable[DeviceNum].BytesPerSector);
@@ -95,7 +78,7 @@ RtStatus_t FSWriteSector(int32_t deviceNumber, int32_t sectorNumber, int32_t des
     uint8_t * buffer;
 
 #ifndef RAM_FS
-printf("s %X l %X d %X of %X\n",sourceBuffer + sourceOffset, numBytesToWrite, sectorNumber * sectorSize, destOffset);
+//printf("s %X l %X d %X of %X\n",sourceBuffer + sourceOffset, numBytesToWrite, sectorNumber * sectorSize, destOffset);
     if(destOffset != 0)
     {
         buffer = (uint8_t *)malloc(sectorSize);
@@ -114,7 +97,7 @@ printf("s %X l %X d %X of %X\n",sourceBuffer + sourceOffset, numBytesToWrite, se
         status = SUCCESS;
 #else
     buffer = (uint8_t *) RAM_FS_ADDR;
-    printf("s %X l %X d %X of %X\n",sourceBuffer + sourceOffset, numBytesToWrite, sectorNumber * sectorSize, destOffset);
+//    printf("s %X l %X d %X of %X\n",sourceBuffer + sourceOffset, numBytesToWrite, sectorNumber * sectorSize, destOffset);
     if(numBytesToWrite < 21)
     {
         uint8_t cnt;
@@ -167,7 +150,6 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
     int status = 0;
     uint32_t actualSectorNumber = sectorNumber + g_u32MbrStartSector;
     uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
-    uint32_t sectorNum;
 
     // Handle FAT cache.
     bool isFat = false;
@@ -184,7 +166,6 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
         buffer = g_fatCache.buffer;
         g_fatCache.sector = actualSectorNumber;
         g_fatCache.isValid = false;
-        sectorNum = 1;
     }
     else
     {
@@ -193,10 +174,9 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
 		buffer = (uint8_t *)malloc(sectorSize);
     }
 
-#ifndef RAM_FS
     status = card_data_read(g_usdhc_base_addr, (int *)buffer, sectorSize,
                        actualSectorNumber * sectorSize);
-#endif /* RAM_FS */
+
     // Give the caller the token so they can release the cache entry.
     if ((status == 0) && token)
     {
@@ -208,13 +188,7 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
         else
             *token = (uint32_t)buffer;
 
-#ifndef RAM_FS
         return (int32_t *) (buffer);
-#else
-        /* hardcoded address in DDR, that's only for test purpose !!! */
-        buffer = (uint8_t *) RAM_FS_ADDR;
-        return (int32_t *) (buffer + (actualSectorNumber * sectorSize));
-#endif /* RAM_FS */
     }
     else
     {
@@ -228,7 +202,7 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
 
 }
 
-/*! Note by Ray: multiple sectors reading is only for big data chunks, ignoring the FAT table fetching
+/*! Note: multiple sectors reading is only for big data chunks, ignoring the FAT table fetching
  *	the buffer is reused from outside allocation, so need to use the token for further memory recycling.
  */
 int32_t * FSReadMultiSectors(int32_t deviceNumber, int32_t sectorNumber, int32_t writeType, 
@@ -239,7 +213,6 @@ int32_t * FSReadMultiSectors(int32_t deviceNumber, int32_t sectorNumber, int32_t
     int status = 0;
     uint32_t actualSectorNumber = sectorNumber + g_u32MbrStartSector;
     uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
-//   printf("+s 0x%X to 0x%X, size 0x%X\n",actualSectorNumber * sectorSize, actualSectorNumber * sectorSize + size, size);
 
     status = card_data_read(g_usdhc_base_addr, (int *)buffer, size,
                        actualSectorNumber * sectorSize);

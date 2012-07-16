@@ -51,8 +51,6 @@ int vpu_test(void)
     FSDriveInit(DeviceNum);
     SetCWDHandle(DeviceNum);
 
-    print_media_fat_info(DeviceNum);
-
     gCurrentActiveInstance = 0;
 
     /* initialize VPU */

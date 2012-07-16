@@ -25,6 +25,8 @@ static char board_name[20];
 static char board_revision[20];
 static char chip_name[20];
 
+extern void SDK_TEST(void);
+
 /*!
  * print out the diag release version info
  */

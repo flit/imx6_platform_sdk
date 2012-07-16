@@ -20,13 +20,12 @@ int32_t gTotalActiveInstance = 0;
 static int32_t isInterlacedMPEG4 = 0;
 static int32_t isFrameDrop[MAX_NUM_INSTANCE];
 
-//uint8_t in_dec_file_1[] = "indir/fslclip_h264.mp4";
-uint8_t in_dec_file_1[] = "indir/fslclip.264";
-uint8_t in_dec_file_2[] = "indir/fslclip_h264.mp4";
+uint8_t in_dec_file_1[] = "indir/clip_1.264";
+uint8_t in_dec_file_2[] = "indir/clip_2.264";
 
 #define FRAME_TO_DECODE 10000
 #define HDMI_RESOLUTION_720P60
-//#define HDMI_RESOLUTION_1080P60   
+//#define HDMI_RESOLUTION_1080P60
 
 /*
  * Fill the bitstream to VPU ring buffer

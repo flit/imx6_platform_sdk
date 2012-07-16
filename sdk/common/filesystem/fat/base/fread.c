@@ -18,13 +18,13 @@
 ----------------------------------------------------------------------------*/
 #include <types.h>
 #include <string.h>
+#include <stdlib.h>
 #include "fstypes.h"
 #include <error.h>
 #include <filesystem/fsapi.h> //! \todo malinclusion
 #include "platform.h"
 #include "fat_internal.h"
 #include "fs_steering.h"
-#include <stdlib.h>
 
 /*----------------------------------------------------------------------------
 
@@ -220,46 +220,4 @@ RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRe
 
     // Force to RtStatus - all errors are negative so this will still work.
     return (RtStatus_t) NumBytesToRead;
-}
-
-RtStatus_t Fread_multi_sectors(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRead)
-{
-    uint32_t clusterSize, sectorSize, NumBytesRead = 0;
-    uint32_t Device, count, i, res;
-    uint8_t *buffer;
-
-    Device = Handle[HandleNumber].Device;
-    sectorSize = MediaTable[Device].BytesPerSector;
-    clusterSize = sectorSize * MediaTable[Device].SectorsPerCluster;
-
-    buffer = (uint8_t *)malloc(NumBytesToRead);
-
-    if(NumBytesToRead <= sectorSize)
-    {
-        while(NumBytesRead == 0)
-            NumBytesRead = Fread_FAT(HandleNumber, (uint8_t *)buffer, NumBytesToRead);
-    }
-    else
-    {
-        count = (uint32_t) NumBytesToRead / sectorSize ;
-        if((uint32_t) NumBytesToRead % sectorSize)
-            count++;
-
-//        printf("%X cnt %X\n",NumBytesToRead, count);
-        i=0;
-        while(i<count)
-        {
-            res = Fread_FAT(HandleNumber, (uint8_t *)(buffer + sectorSize * i), sectorSize);
-            NumBytesRead += res;
-            if (res != 0)
-                i++;
-//            printf("res %X \n",res);
-        }
-    }
-
-    memcpy((uint8_t *)Buffer, (uint8_t *)buffer, NumBytesRead);
-
-    free(buffer);
-
-    return (RtStatus_t) NumBytesRead;
 }

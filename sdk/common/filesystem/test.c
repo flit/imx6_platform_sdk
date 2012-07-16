@@ -9,12 +9,12 @@
 		File Includes
 ----------------------------------------------------------------------------*/
 #include <types.h>
+#include <string.h>
+#include <stdlib.h>
 #include "fstypes.h"
 #include "fat_internal.h"
 #include <error.h>
 #include <filesystem/fsapi.h>   //! \todo malinclusion
-#include <string.h>
-#include <stdlib.h>
 
 uint8_t readfile[] = "indir/fsproj.h";
 uint8_t writefile[] = "outdir/fsproj.h";
@@ -22,7 +22,6 @@ uint8_t writefile[] = "outdir/fsproj.h";
 #define TEST_FILE_SIZE 2048
 #define DeviceNum 0
 
-extern RtStatus_t Fread_multi_sectors(int32_t, uint8_t *, int32_t);
 extern void print_media_fat_info(uint32_t);
 
 int fat_test(void)
@@ -61,8 +60,7 @@ int fat_test(void)
     printf("%X\n", ReadBuffer);
     memset(ReadBuffer,'\0',FileSize+1);
 
-
-    if ((count = Fread_multi_sectors(fin, ReadBuffer, FileSize)) < 0)
+    if ((count = Fread(fin, ReadBuffer, FileSize)) < 0)
     {
         Fclose(fin);
         return ERROR_GENERIC;

@@ -11,7 +11,7 @@
 // v0.91 : IOMUXC_SW_PAD_CTL_PAD_DRAM_SDCKE0/1 programming is removed, as this got no effect on SDCKE drive strength, pull activiticy.
 //
 // v0.92 : DRAM_RESET/DDR_SEL=00, as a workaround to SDCLK cross point and duty cycle offsets.
-=============================================================================			
+//=============================================================================			
 			
 wait = on			
 //=============================================================================			
@@ -210,7 +210,7 @@ setmem /32 0x021b001c = 0x02038038  // MRW: BA=0 CS=1 MR_ADDR=3  MR_OP=2.drive=2
 //final DDR setup, before operation start:
 setmem /32	0x021b0800 =	0xa1310003 	// DDR_PHY_P0_MPZQHWCTRL, enable automatic ZQ calibration
 
-setmem /32	0x021b0020 =	0x00003800	// MMDC0_MDREF
+setmem /32	0x021b0020 =	0x00001800	// MMDC0_MDREF
 
 setmem /32	0x021b0818 =	0 	// DDR_PHY_P0_MPODTCTRL
 			

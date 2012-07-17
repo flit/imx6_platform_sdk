@@ -23,6 +23,12 @@
 #define CH28_EBA0 	(IPU_DMA_MEMORY_START + 0x01000000)
 #define CH28_EBA1 	(IPU_DMA_MEMORY_START + 0x01400000)
 
+/*for dual video playback*/
+#define IPU1_CH23_EBA0	CH23_EBA0
+#define IPU1_CH23_EBA1	CH23_EBA1
+#define IPU2_CH23_EBA0	CH27_EBA0
+#define IPU2_CH23_EBA1	CH27_EBA1
+
 // for video playback after resizing&rotation
 #define CH22_EBA0 	(IPU_DMA_MEMORY_START + 0x01800000)
 #define CH22_EBA1	(IPU_DMA_MEMORY_START + 0x01C00000)

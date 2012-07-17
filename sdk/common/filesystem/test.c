@@ -16,6 +16,10 @@
 #include <error.h>
 #include <filesystem/fsapi.h>   //! \todo malinclusion
 
+#include "hardware.h"
+#include "timer/epit.h"
+#include "usdhc/inc/usdhc_ifc.h"
+
 uint8_t readfile[] = "indir/fsproj.h";
 uint8_t writefile[] = "outdir/fsproj.h";
 
@@ -23,6 +27,89 @@ uint8_t writefile[] = "outdir/fsproj.h";
 #define DeviceNum 0
 
 extern void print_media_fat_info(uint32_t);
+
+hw_module_t count_timer = {
+    "EPIT2 for system tick",
+    2,
+    EPIT2_BASE_ADDR,
+    27000000,
+    IMX_INT_EPIT2,
+    NULL,
+    NULL
+};
+
+int fat_read_speed_test(void)
+{
+    int count = 0;
+    int TestResult = 0;
+    int32_t fin;
+    uint8_t *ReadBuffer;
+    uint32_t ClusterSize = 0, FileSize = 0;
+    int ChunkSize = 0x80000;
+    uint8_t readfile[] = "indir/fslclip.264";
+    int ReadSize = 0;
+    uint32_t TimeCount = 0;
+
+    printf("FSInit				");
+    if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {
+        TestResult = -1;
+        printf("FAIL\n");
+    } else {
+        printf("PASS\n");
+    }
+
+    /*init the drive */
+    FSDriveInit(DeviceNum);
+    SetCWDHandle(DeviceNum);
+
+    print_media_fat_info(DeviceNum);
+
+    if ((fin = Fopen(readfile, (uint8_t *) "r")) < 0) {
+        printf("Can't open the file: %s !\n", readfile);
+        return ERROR_GENERIC;
+    }
+
+    FileSize = GetFileSize(fin);
+    printf("File %s of size %d opened!\n", readfile, FileSize);
+
+    ClusterSize = MediaTable[DeviceNum].SectorsPerCluster * MediaTable[DeviceNum].BytesPerSector;
+    ReadBuffer = (uint8_t *) malloc(ChunkSize);
+    if (ReadBuffer == NULL) {
+        printf("Allocating buffer failed!\n");
+        return ERROR_GENERIC;
+    }
+
+    count_timer.freq = get_main_clock(IPG_CLK);
+    epit_init(&count_timer, CLKSRC_IPG_CLK, count_timer.freq / 1000000,
+              SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
+    epit_setup_interrupt(&count_timer, FALSE);
+    epit_counter_enable(&count_timer, 0xFFFFFFFF, 0);   //polling mode
+
+    SDHC_ADMA_mode = 1;
+    SDHC_INTR_mode = 0;
+    while (1) {
+        if ((count = Fread(fin, ReadBuffer, ChunkSize)) < 0) {
+            Fclose(fin);
+            return ERROR_GENERIC;
+        }
+
+        ReadSize += count;
+        if (count < ChunkSize) {
+            break;
+        }
+    }
+    TimeCount = ((struct mx_epit *)count_timer.base)->epitcnr;
+    epit_counter_disable(&count_timer); //polling mode
+
+    printf("\n*****************File Reading End********************\n");
+    TimeCount = (0xFFFFFFFF - TimeCount) / 1000;    //ms
+    printf("Total data read %d, time %d ms\n", ReadSize, TimeCount);
+
+    free(ReadBuffer);
+    Fclose(fin);
+    FlushCache();
+    return 0;
+}
 
 int fat_test(void)
 {
@@ -46,8 +133,7 @@ int fat_test(void)
 
     print_media_fat_info(DeviceNum);
 
-    if ((fin = Fopen(readfile, (uint8_t *) "r")) < 0)
-    {
+    if ((fin = Fopen(readfile, (uint8_t *) "r")) < 0) {
         printf("Can't open the file: %s !\n", readfile);
         return ERROR_GENERIC;
     }
@@ -56,17 +142,14 @@ int fat_test(void)
     printf("File %s of size %d opened!\n", readfile, FileSize);
 
     ClusterSize = MediaTable[DeviceNum].SectorsPerCluster * MediaTable[DeviceNum].BytesPerSector;
-    ReadBuffer = (uint8_t *) malloc(FileSize+1);
+    ReadBuffer = (uint8_t *) malloc(FileSize + 1);
     printf("%X\n", ReadBuffer);
-    memset(ReadBuffer,'\0',FileSize+1);
+    memset(ReadBuffer, '\0', FileSize + 1);
 
-    if ((count = Fread(fin, ReadBuffer, FileSize)) < 0)
-    {
+    if ((count = Fread(fin, ReadBuffer, FileSize)) < 0) {
         Fclose(fin);
         return ERROR_GENERIC;
-    }
-    else
-    {
+    } else {
         printf("%s\n", ReadBuffer);
     }
 

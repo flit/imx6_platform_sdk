@@ -179,6 +179,8 @@ struct decode {
     uint32_t virt_bsbuf_addr;
     int32_t picwidth;
     int32_t picheight;
+    int32_t orig_picwidth;      //for vdoa usage
+    int32_t orig_picheight;
     int32_t stride;
     int32_t mjpg_fmt;
     int32_t regfbcount;
@@ -187,7 +189,6 @@ struct decode {
     int32_t extrafb;
     FrameBuffer *fb;
     struct frame_buf **pfbpool;
-    struct vpu_display *disp;
     vpu_mem_desc *mvcol_memdesc;
     Rect picCropRect;
     int32_t reorderEnable;

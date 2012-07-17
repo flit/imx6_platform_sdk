@@ -24,8 +24,8 @@ uint8_t in_dec_file_1[] = "indir/clip_1.264";
 uint8_t in_dec_file_2[] = "indir/clip_2.264";
 
 #define FRAME_TO_DECODE 10000
-#define HDMI_RESOLUTION_720P60
-//#define HDMI_RESOLUTION_1080P60
+//#define HDMI_RESOLUTION_720P60
+#define HDMI_RESOLUTION_1080P60
 
 /*
  * Fill the bitstream to VPU ring buffer
@@ -474,13 +474,18 @@ int32_t decoder_parse(struct decode * dec)
     else
         dec->regfbcount = dec->minfbcount + extended_fbcount;
 
+    /*the original picwidth and picheight is for vdoa usage */
+    dec->orig_picwidth = initinfo.picWidth;
+    dec->orig_picheight = initinfo.picHeight;
     dec->picwidth = ((initinfo.picWidth + 15) & ~15);
 
     align = 16;
+
     if ((dec->cmdl->format == STD_MPEG2 ||
          dec->cmdl->format == STD_VC1 ||
          dec->cmdl->format == STD_AVC || dec->cmdl->format == STD_VP8) && initinfo.interlace == 1)
         align = 32;
+
     dec->picheight = ((initinfo.picHeight + align - 1) & ~(align - 1));
 
     if ((dec->picwidth == 0) || (dec->picheight == 0))
@@ -593,21 +598,73 @@ void decoder_frame_display(void)
     uint32_t id;
 
     static int32_t vdoa_tx = 0;
+    uint32_t proc_buffer, disp_buffer;
+                        static int buffer_switch = 0;
+                        buffer_switch++;
+
     for (i = 0; i < MAX_NUM_INSTANCE; i++) {
         if (vpu_hw_map->codecInstPool[i].inUse && vpu_hw_map->codecInstPool[i].initDone) {
             if (dec_fifo_pop(&gDecFifo[i], &display_buffer, &id) != -1) {
                 VPU_DecClrDispFlag(gDecInstance[i]->handle, disp_clr_index[i]);
                 disp_clr_index[i] = id;
                 if (gDecInstance[i]->cmdl->mapType != LINEAR_FRAME_MAP) {
-                    while ((!vdoa_check_tx_eot()) && (vdoa_tx != 0)) ;
-                    vdoa_clear_interrupt();
-                    vdoa_setup(gDecInstance[i]->picwidth, gDecInstance[i]->picheight,
-                               gDecInstance[i]->stride, FRAME_MAX_WIDTH, 0, 0, 8, 0);
-                    vdoa_start(display_buffer->addrY & 0xFFFFF000,
-                               gDecInstance[i]->picwidth * gDecInstance[i]->picheight,
-                               (i % 2) ? CH23_EBA1 : CH23_EBA0, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
-                    vdoa_tx = 1;
-                    ipu_refresh(i % 2 + 1, (i % 2) ? CH23_EBA1 : CH23_EBA0);    // totally support two instance, inst0 on ipu1, inst2 on ipu2
+                    if (gDecInstance[i]->cmdl->mapType == TILED_FRAME_MB_RASTER_MAP) {
+                        vdoa_clear_interrupt();
+                        vdoa_setup(gDecInstance[i]->picwidth, gDecInstance[i]->picheight,
+                                   gDecInstance[i]->stride, FRAME_MAX_WIDTH, 0, 0, 16, 0);
+                        vdoa_start(display_buffer->addrY & 0xFFFFF000,
+                                   gDecInstance[i]->picwidth * gDecInstance[i]->picheight,
+                                   (i % 2) ? CH23_EBA1 : CH23_EBA0,
+                                   FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
+                        while ((!vdoa_check_tx_eot()) && (vdoa_tx != 0)) ;
+                        vdoa_tx = 1;
+                    } else {    /*for tiled field mode */
+
+                        int top_field = 0, bot_field = 0;
+
+                        if (i % 2 == 0) {
+                            if (buffer_switch % 2) {
+                                proc_buffer = IPU1_CH23_EBA0;
+                                disp_buffer = IPU1_CH23_EBA0;
+                            } else {
+                                proc_buffer = IPU1_CH23_EBA1;
+                                disp_buffer = IPU1_CH23_EBA1;
+                            }
+                        } else {
+                            if (buffer_switch % 2) {
+                                proc_buffer = IPU2_CH23_EBA0;
+                                disp_buffer = IPU2_CH23_EBA0;
+                            } else {
+                                proc_buffer = IPU2_CH23_EBA1;
+                                disp_buffer = IPU2_CH23_EBA1;
+                            }
+                        }
+
+                        top_field = display_buffer->addrY & 0xFFFFF000;
+                        bot_field = (display_buffer->addrCb & 0x00FFFFF0) << 8;
+                        vdoa_clear_interrupt();
+                        vdoa_setup(gDecInstance[i]->orig_picwidth,
+                                   gDecInstance[i]->orig_picheight / 2, gDecInstance[i]->stride,
+                                   FRAME_MAX_WIDTH * 2, 1, 0, 8, 0);
+                        vdoa_start(top_field & 0xFFFFF000,
+                                   gDecInstance[i]->picwidth * gDecInstance[i]->picheight / 2,
+                                   proc_buffer, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
+                        vdoa_tx = 1;
+                        while ((!vdoa_check_tx_eot()) && (vdoa_tx != 0)) ;
+
+                        vdoa_clear_interrupt();
+                        vdoa_setup(gDecInstance[i]->orig_picwidth,
+                                   gDecInstance[i]->orig_picheight / 2, gDecInstance[i]->stride,
+                                   FRAME_MAX_WIDTH * 2, 1, 0, 8, 0);
+                        vdoa_start(bot_field & 0xFFFFF000,
+                                   gDecInstance[i]->picwidth * gDecInstance[i]->picheight / 2,
+                                   proc_buffer + gDecInstance[i]->stride,
+                                   FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
+                        vdoa_tx = 1;
+                        while ((!vdoa_check_tx_eot()) && (vdoa_tx != 0)) ;
+
+                    }
+                    ipu_refresh(i % 2 + 1, disp_buffer);    // totally support two instance, inst0 on ipu1, inst2 on ipu2
 
                 } else {
                     ipu_refresh(i % 2 + 1, display_buffer->addrY);  // totally support two instance, inst0 on ipu1, inst2 on ipu2
@@ -623,6 +680,7 @@ int counter = 0;
 void epit_isr_frame_control(void)
 {
     epit_get_compare_event(&hw_epit2);
+
     decoder_frame_display();
 }
 
@@ -795,6 +853,10 @@ int32_t decode_test(void *arg)
         break;
     case '2':
         multi_instance = 1;
+        if ((file_in_1 = Fopen(in_dec_file_1, (uint8_t *) "r")) < 0) {
+            printf("Can't open the file: %s !\n", in_dec_file_1);
+            err = 1;
+        }
         if ((file_in_2 = Fopen(in_dec_file_2, (uint8_t *) "r")) < 0) {
             printf("Can't open the file: %s !\n", in_dec_file_2);
             err = 1;
@@ -836,10 +898,24 @@ int32_t decode_test(void *arg)
         revchar = getchar();
     } while (revchar == (uint8_t) 0xFF);
 
-    if ((revchar == 'Y') || (revchar == 'y'))
-        map_type = TILED_FRAME_MB_RASTER_MAP;
-    else
+    if ((revchar == 'Y') || (revchar == 'y')) {
+        //   map_type = TILED_FRAME_MB_RASTER_MAP;
+        map_type = TILED_FIELD_MB_RASTER_MAP;
+        memset((void *)IPU1_CH23_EBA0, 0x10, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
+        memset((void *)IPU1_CH23_EBA0 + FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT, 0x80,
+               FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT / 2);
+        memset((void *)IPU1_CH23_EBA1, 0x10, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
+        memset((void *)IPU1_CH23_EBA1 + FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT, 0x80,
+               FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT / 2);
+        memset((void *)IPU2_CH23_EBA0, 0x10, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
+        memset((void *)IPU2_CH23_EBA0 + FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT, 0x80,
+               FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT / 2);
+        memset((void *)IPU2_CH23_EBA1, 0x10, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
+        memset((void *)IPU2_CH23_EBA1 + FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT, 0x80,
+               FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT / 2);
+    } else {
         map_type = LINEAR_FRAME_MAP;
+    }
     /*now enable the INTERRUPT mode of usdhc */
     SDHC_INTR_mode = 1;
     SDHC_ADMA_mode = 0;
@@ -962,10 +1038,11 @@ int32_t decode_test(void *arg)
 
         if (vplay_mode == VPLAY_FREE_RUN) {
             decoder_frame_display();
-        } else if (isFrameDrop[inst]) {
+        } else if (isFrameDrop[inst])
+		{
             decoder_frame_display();
-            isFrameDrop[inst]--;
-        }
+			isFrameDrop[inst] -- ;
+		}
     }
 
 /*release all the buffers*/

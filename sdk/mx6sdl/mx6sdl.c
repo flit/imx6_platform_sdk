@@ -161,6 +161,8 @@ void ALL_test(void)
         printf("\n...end of the tests suite.\n");
     }
 }
+#else
+extern int SDK_TEST(void);
 #endif /* ALL_TEST_ENABLE */
 
 /*!

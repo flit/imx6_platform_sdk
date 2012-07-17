@@ -18,35 +18,33 @@ void vdoa_setup(int width, int height, int vpu_sl, int ipu_sl, int interlaced,
 {
     // Set control register
     uint32_t value = BF_VDOA_VDOAC_PFS(pfs)
-                        | BF_VDOA_VDOAC_ISEL(ipu_sel);
-    
-    switch (bandLines)
-    {
-        case 32:
-            value |= BF_VDOA_VDOAC_BNDM(2);
-            break;
-        case 16:
-            value |= BF_VDOA_VDOAC_BNDM(1);
-            break;
-        default:
-            value |= BF_VDOA_VDOAC_BNDM(0);
-            break;
+        | BF_VDOA_VDOAC_ISEL(ipu_sel);
+
+    switch (bandLines) {
+    case 32:
+        value |= BF_VDOA_VDOAC_BNDM(2);
+        break;
+    case 16:
+        value |= BF_VDOA_VDOAC_BNDM(1);
+        break;
+    default:
+        value |= BF_VDOA_VDOAC_BNDM(0);
+        break;
     }
-    
-    if (interlaced)
-    {
-        value |= BM_VDOA_VDOAC_NF | BM_VDOA_VDOAC_SO;
+
+    if (interlaced) {
+        value |= /*BM_VDOA_VDOAC_NF | */ BM_VDOA_VDOAC_SO;
     }
-    
+
     HW_VDOA_VDOAC_WR(value);
 
     // VDOA frame parameters register
-    HW_VDOA_VDOAFP_WR(  BF_VDOA_VDOAFP_FW(width)
-                        | BF_VDOA_VDOAFP_FH(height));
+    HW_VDOA_VDOAFP_WR(BF_VDOA_VDOAFP_FW(width)
+                      | BF_VDOA_VDOAFP_FH(height));
 
     // VDOA stride line register
-    HW_VDOA_VDOASL_WR(  BF_VDOA_VDOASL_ISLY(ipu_sl)
-                        | BF_VDOA_VDOASL_VSLY(vpu_sl));
+    HW_VDOA_VDOASL_WR(BF_VDOA_VDOASL_ISLY(ipu_sl)
+                      | BF_VDOA_VDOASL_VSLY(vpu_sl));
 }
 
 void vdoa_start(uint32_t src, uint32_t vubo, uint32_t dst, uint32_t iubo)
@@ -64,8 +62,7 @@ void vdoa_start(uint32_t src, uint32_t vubo, uint32_t dst, uint32_t iubo)
 
 void vdoa_set_vpu_buffer(uint32_t vbuf)
 {
-    if (!HW_VDOA_VDOAC.B.SYNC)
-    {
+    if (!HW_VDOA_VDOAC.B.SYNC) {
         HW_VDOA_VDOAVEBA0_WR(vbuf);
     }
 }

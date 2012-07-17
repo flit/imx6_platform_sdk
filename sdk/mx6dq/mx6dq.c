@@ -25,8 +25,6 @@ static char board_name[20];
 static char board_revision[20];
 static char chip_name[20];
 
-extern void SDK_TEST(void);
-
 /*!
  * print out the diag release version info
  */
@@ -192,6 +190,8 @@ void ALL_test(void)
         printf("\n...end of the tests suite.\n");
     }
 }
+#else
+extern int SDK_TEST(void);
 #endif /* ALL_TEST_ENABLE */
 
 /*!

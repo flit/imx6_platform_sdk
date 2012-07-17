@@ -113,18 +113,13 @@ int32_t ips_hdmi_720P60_stream(int32_t ipu_index)
                         FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT / 8);
     ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, 23), NON_INTERLEAVED_SLY, FRAME_MAX_WIDTH - 1);
     ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, 23), NON_INTERLEAVED_SLUV, FRAME_MAX_WIDTH - 1);
-#if 1
-	int i = 0;
-	while(i<8)
-	{
-		memset((void *)disp_mem0+FRAME_MAX_WIDTH * panel->height/8*i, 0x10 + 0x1E*i,  FRAME_MAX_WIDTH * panel->height/8);
-		i++;
-	}
-#else
-    memset((void *)disp_mem0, 0x10, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
-#endif
+    
+	memset((void *)disp_mem0, 0x10, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
     memset((void *)disp_mem0 + FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT, 0x80,
            FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT / 2);
+    memset((void *)CH23_EBA1, 0x10, panel->width * panel->height);
+    memset((void *)CH23_EBA1 + panel->width * FRAME_MAX_HEIGHT, 0x80,
+           panel->width * panel->height / 2);
 
     /*realloc the DMFC fifo */
     ipu_dmfc_alloc(ipu_index, 23, DMFC_FIFO_512X128, 0, DMFC_BURST_32X128);
@@ -158,19 +153,12 @@ int32_t ips_hdmi_1080P60_stream(int32_t ipu_index)
                         FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT / 8);
     ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, 23), NON_INTERLEAVED_SLY, FRAME_MAX_WIDTH - 1);
     ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, 23), NON_INTERLEAVED_SLUV, FRAME_MAX_WIDTH - 1);
-#if 1
-	int i = 0;
-	while(i<8)
-	{
-		memset((void *)disp_mem0+FRAME_MAX_WIDTH * panel->height/8*i, 0x10 + 0x1E*i, FRAME_MAX_WIDTH * panel->height/8);
-		i++;
-	}
-#else
-    memset((void *)disp_mem0, 0x10, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
-#endif
+    
+	memset((void *)disp_mem0, 0x10, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
     memset((void *)disp_mem0 + FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT, 0x80,
            FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT / 2);
-    /*realloc the DMFC fifo */
+    
+	/*realloc the DMFC fifo */
     ipu_dmfc_alloc(ipu_index, 23, DMFC_FIFO_512X128, 0, DMFC_BURST_32X128);
     ipu_cpmem_mod_field(ipu_cpmem_addr(ipu_index, 23), NON_INTERLEAVED_NPB, 63);
 

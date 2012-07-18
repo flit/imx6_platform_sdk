@@ -70,7 +70,7 @@ int32_t dec_fifo_is_empty(vdec_frame_buffer_t * fifo)
 }
 
 /*one frame is in-queued*/
-int32_t dec_fifo_push(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t id)
+int32_t dec_fifo_push(vdec_frame_buffer_t * fifo, struct frame_buf ** frame, uint32_t id)
 {
     if (fifo->full)
         return -1;
@@ -88,7 +88,7 @@ int32_t dec_fifo_push(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint
 }
 
 /*one frame is dequeued*/
-int32_t dec_fifo_pop(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t * id)
+int32_t dec_fifo_pop(vdec_frame_buffer_t * fifo, struct frame_buf ** frame, uint32_t * id)
 {
     if ((fifo->rdptr == fifo->wrptr) && !(fifo->full))
         return -1;
@@ -105,7 +105,8 @@ int32_t dec_fifo_pop(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint3
     return 0;
 }
 
-struct frame_buf *framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY, int32_t height, int32_t mvCol)
+struct frame_buf *framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY, int32_t height,
+                                 int32_t mvCol)
 {
     struct frame_buf *fb;
     int32_t err;
@@ -149,8 +150,8 @@ struct frame_buf *framebuf_alloc(int32_t stdMode, int32_t format, int32_t stride
     return fb;
 }
 
-struct frame_buf *tiled_framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY, int32_t height, int32_t mvCol,
-                                       int32_t mapType)
+struct frame_buf *tiled_framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY,
+                                       int32_t height, int32_t mvCol, int32_t mapType)
 {
     struct frame_buf *fb;
     int32_t err, align;
@@ -233,8 +234,13 @@ struct frame_buf *tiled_framebuf_alloc(int32_t stdMode, int32_t format, int32_t 
     fb->addrCr = chr_bot_20bits << 16;
     fb->strideY = strideY;
     fb->strideC = strideY / divX;
-    if (mvCol)
-        fb->mvColBuf = chr_bot_base + chroma_bot_size;
+    if (mvCol) {
+        if (mapType == TILED_FRAME_MB_RASTER_MAP) {
+            fb->mvColBuf = chr_top_base + chroma_top_size;
+        } else {
+            fb->mvColBuf = chr_bot_base + chroma_bot_size;
+        }
+    }
     return fb;
 }
 

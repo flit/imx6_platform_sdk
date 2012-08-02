@@ -1,3 +1,7 @@
+#-------------------------------------------------------------------------------
+# Sources and objects
+#-------------------------------------------------------------------------------
+
 # Select our object root depending on whether we're building an app or lib.
 ifneq "$(APP)" ""
 OBJS_ROOT = $(APP_OBJS_ROOT)
@@ -12,11 +16,11 @@ space := $(empty) $(empty)
 # Strip sources.
 SOURCES := $(strip $(SOURCES))
 
-# Convert sources list to absolute paths and relative paths.
+# Convert sources list to absolute paths and root-relative paths.
 SOURCES_ABS := $(foreach s,$(SOURCES),$(abspath $(s)))
 SOURCES_REL := $(subst $(SDK_ROOT)/,,$(SOURCES_ABS))
 
-# Get a list of directories containing the source files.
+# Get a list of unique directories containing the source files.
 SOURCE_DIRS_ABS := $(sort $(foreach f,$(SOURCES_ABS),$(dir $(f))))
 SOURCE_DIRS_REL := $(subst $(SDK_ROOT)/,,$(SOURCE_DIRS_ABS))
 
@@ -30,20 +34,22 @@ ASM_S_SOURCES = $(filter %.S,$(SOURCES_REL))
 
 # Convert sources to objects.
 OBJECTS_C := $(addprefix $(OBJS_ROOT)/,$(C_SOURCES:.c=.o))
-OBJECTS_CXX := $(addprefix $(OBJS_ROOT)/,$(CXX_SOURCES:.c=.o))
+OBJECTS_CXX := $(addprefix $(OBJS_ROOT)/,$(CXX_SOURCES:.cpp=.o))
 OBJECTS_ASM := $(addprefix $(OBJS_ROOT)/,$(ASM_s_SOURCES:.s=.o))
 OBJECTS_ASM_S := $(addprefix $(OBJS_ROOT)/,$(ASM_S_SOURCES:.S=.o))
 
 # Complete list of all object files.
-OBJECTS_ALL := $(OBJECTS_LDS) $(OBJECTS_C) $(OBJECTS_CXX) $(OBJECTS_ASM) $(OBJECTS_ASM_S)
+OBJECTS_ALL := $(OBJECTS_C) $(OBJECTS_CXX) $(OBJECTS_ASM) $(OBJECTS_ASM_S)
 
 # Build the target lib path from the lib name.
 ifneq "$(TARGET_LIB_NAME)" ""
 TARGET_LIB ?= $(LIBS_ROOT)/$(TARGET_LIB_NAME)
 endif
 
-# --> Default recipe!
-#
+#-------------------------------------------------------------------------------
+# Default recipe
+#-------------------------------------------------------------------------------
+
 # Note that prerequisite order is important here. The subdirectories must be built first, or you
 # may end up with files in the current directory not getting added to libraries. This would happen
 # if subdirs modified the library file after local files were compiled but before they were added
@@ -61,36 +67,51 @@ echovars:
 # 	@echo C_SOURCES = $(C_SOURCES)
 # 	@echo OBJECTS_C = $(OBJECTS_C)
 
-# Recipe to create the output directory.
+# Recipe to create the output and object file directories.
 $(OBJS_ROOT) $(OBJECTS_DIRS) :
 	@mkdir -p $@
 
-# Pattern rules for compilation.
+#-------------------------------------------------------------------------------
+# Pattern rules for compilation
+#-------------------------------------------------------------------------------
+# We cd into the source directory before calling the appropriate compiler. This must be done
+# on a single command line since make calls individual recipe lines in separate shells, so
+# '&&' is used to chain the commands.
+#
+# Generate make dependencies while compiling using the -MMD option, which excludes system headers.
+# If system headers are included, there are path problems on cygwin. The -MP option creates empty
+# targets for each header file so that a rebuild will be forced if the file goes missing, but
+# no error will occur.
 
+# Compile C sources.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.c
-#%.o: %.c
-# Generate make dependencies and compile. The -MP option creates empty targets
-# for each header file so that a rebuild will be forced if the file goes missing, but
-# no error will occur.
 	@echo Compiling $(subst $(SDK_ROOT)/,,$<)
-	@$(CC) $(CFLAGS) $(SYSTEM_INC) $(C_INCLUDES) $(C_DEFINES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
+	@cd $(dir $<) \
+		&& $(CC) $(CFLAGS) $(SYSTEM_INC) $(C_INCLUDES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
 
+# Compile C++ sources.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.cpp
-# Generate make dependencies and compile. The -MP option creates empty targets
-# for each header file so that a rebuild will be forced if the file goes missing, but
-# no error will occur.
 	@echo Compiling $(subst $(SDK_ROOT)/,,$<)
-	@$(CXX) $(CXXFLAGS) $(SYSTEM_INC) $(C_INCLUDES) $(C_DEFINES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
+	@cd $(dir $<) \
+		&& $(CXX) $(CXXFLAGS) $(SYSTEM_INC) $(C_INCLUDES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
 
 # For .S assembly files, first run through the C preprocessor then assemble.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.S
 	@echo Compiling $(subst $(SDK_ROOT)/,,$<)
-	@$(CPP) -D__LANGUAGE_ASM__ $(C_INCLUDES) $(C_DEFINES) -o $(basename $@).s $<
-	@$(AS) $(A_FLAGS) $(C_INCLUDES) $(A_DEFINES) -MD $(OBJS_ROOT)/$*.d -o $@ $(basename $@).s
+	@cd $(dir $<) \
+		&& $(CPP) -D__LANGUAGE_ASM__ $(C_INCLUDES) $(C_DEFINES) -o $(basename $@).s $< \
+		&& $(AS) $(A_FLAGS) $(C_INCLUDES) $(A_DEFINES) -MD $(OBJS_ROOT)/$*.d -o $@ $(basename $@).s
 
+# Assembler sources.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.s
 	@echo Compiling $(subst $(SDK_ROOT)/,,$<)
-	@$(AS) $(A_FLAGS) $(C_INCLUDES) $(A_DEFINES) -MD $(basename $@).d -o $@ $<
+	@cd $(dir $<) \
+		&& $(AS) $(A_FLAGS) $(C_INCLUDES) $(A_DEFINES) -MD $(basename $@).d -o $@ $<
+
+# Add objects to the target library.
+$(TARGET_LIB): $(OBJECTS_ALL)
+	@echo Archiving $(shell echo $? | wc -w) files...
+	@$(AR) -roucs $(TARGET_LIB) $?
 
 
 # $(OBJECTS): %.o: %.c
@@ -104,42 +125,18 @@ $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.s
 # $(OBJECTS_LDS): $(OBJECTS_LDS).S $(FILES_RELA_LDS)
 # 	$(CC) -s $(OBJECTS_LDS).S $(CFLAGS) -E -P -D__ASM__ $(INC) -o $(OBJECTS_LDS)
 
-
-# $(OBJS_ROOT)/%.o: %.c
-# # Generate make dependencies and compile. The -MP option creates empty targets
-# # for each header file so that a rebuild will be forced if the file goes missing, but
-# # no error will occur.
-# #	@echo Compiling $(addprefix $(MODULE_REL_DIR)$(MODULE)/,$<)
-# 	@echo Compiling $<
-# 	@$(CC) $(CFLAGS) $(SYSTEM_INC) $(C_INCLUDES) $(C_DEFINES) -MMD -MF $(OBJS_ROOT)/$(basename $@).d -MP -o $@ -c $<
-# 
-# $(OBJS_ROOT)/%.o: %.cpp
-# # Generate make dependencies and compile. The -MP option creates empty targets
-# # for each header file so that a rebuild will be forced if the file goes missing, but
-# # no error will occur.
-# 	@echo Compiling $<
-# 	@$(CXX) $(CXXFLAGS) $(SYSTEM_INC) $(C_INCLUDES) $(C_DEFINES) -MMD -MF $(OBJS_ROOT)/$*.d -MP -o $@ -c $<
-# 
-# # For .S assembly files, first run through the C preprocessor then assemble.
-# $(OBJS_ROOT)/%.o: %.S
-# 	@echo Assembling $<
-# 	@$(CPP) -D__LANGUAGE_ASM__ $(C_INCLUDES) $(C_DEFINES) -o $(basename $@).s $<
-# 	@$(AS) $(A_FLAGS) $(C_INCLUDES) $(A_DEFINES) -MD $(OBJS_ROOT)/$*.d -o $@ $(basename $@).s
-# 
-# $(OBJS_ROOT)/%.o: %.s
-# 	@echo Assembling $<
-# 	@$(AS) $(A_FLAGS) $(C_INCLUDES) $(A_DEFINES) -MD $(OBJS_ROOT)/$*.d -o $@ $<
-
-
-# Add objects to the target library.
-$(TARGET_LIB): $(OBJECTS_ALL)
-	@echo Archiving $(notdir $?)
-	@$(AR) -roucs $(TARGET_LIB) $?
+#-------------------------------------------------------------------------------
+# Subdirs
+#-------------------------------------------------------------------------------
 
 # Recursively execute make in the subdirectories.
 .PHONY: $(SUBDIRS)
 $(SUBDIRS):
-	$(MAKE) -r -C $@
+	@$(MAKE) -s -r -C $@
+
+#-------------------------------------------------------------------------------
+# Linking
+#-------------------------------------------------------------------------------
 
 # Link the application.
 $(APP): $(OBJECTS) $(OBJECTS_ASM) $(LIBRARIES) $(APP_LIBS)
@@ -176,15 +173,13 @@ $(APP): $(OBJECTS) $(OBJECTS_ASM) $(LIBRARIES) $(APP_LIBS)
 
 # Set clean as a phony target and it can be appended to.  This is the default
 # behavior.
-.PHONY: clean
-clean::
-	rm -f *.o *.d *.a *.map *.bin $(OBJECTS_LDS)
-	@for _dir in $(SUBDIRS); do \
-		$(MAKE) -C $$_dir clean; \
-	done
+# .PHONY: clean
+# clean::
+# 	rm -f *.o *.d *.a *.map *.bin $(OBJECTS_LDS)
+# 	@for _dir in $(SUBDIRS); do \
+# 		$(MAKE) -C $$_dir clean; \
+# 	done
 
 # Include dependency files.
 -include $(OBJECTS_ALL:.o=.d)
-#-include $(OBJECTS_CXX:.o=.d)
-#-include $(OBJECTS_ASM:.o=.d)
 

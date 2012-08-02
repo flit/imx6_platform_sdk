@@ -14,11 +14,13 @@ SUBDIRS = sdk
 PROGS = 
 TESTS = 
 
+.PHONY: all
 all: $(SUBDIRS) $(PROGS)
 	@echo
 	@echo "Build succeeded!"
 	@echo
 
+.PHONY: test
 test: $(SUBDIRS) $(TESTS)
 	@echo
 	@echo "Tests built successfully!"
@@ -30,12 +32,15 @@ $(PROGS):
 $(TESTS):
 	$(MAKE) -C test/apps/$@
 
+.PHONY: clean
 clean::
-	@for _dir in $(PROGS); do \
-		$(MAKE) -C apps/$$_dir clean; \
-	done
-	@for _dir in $(TESTS); do \
-		$(MAKE) -C test/apps/$$_dir clean; \
-	done
+	rm -rf output
+
+# 	@for _dir in $(PROGS); do \
+# 		$(MAKE) -C apps/$$_dir clean; \
+# 	done
+# 	@for _dir in $(TESTS); do \
+# 		$(MAKE) -C test/apps/$$_dir clean; \
+# 	done
 
 include mk/targets.mk

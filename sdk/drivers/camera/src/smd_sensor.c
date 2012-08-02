@@ -100,7 +100,7 @@ void sensor_clock_setting(void)
     /*select osc_clk 24MHz, CKO1 output drives cko2 clock */
     writel(0x10e0180, CCM_BASE_ADDR + 0x60);
 #else
-    unsigned int32_t value = 0;
+    uint32_t value = 0;
 
     /*config gpio_0 to be clko */
     writel(0x0, IOMUXC_SW_MUX_CTL_PAD_GPIO_0);

@@ -86,41 +86,41 @@ valid_builds=( "mx6dq"  "sabre_ai"     "a" "mx6dq"  "sabre_ai"     "b"
 
 do_build()
 {
-# Generate makefile
-echo "Generating makefiles for ${soc_name}_${board_name}_rev_${board_rev} test=${test_name}"
-
-perl $make_perl_script $config_dir $sdk_dir $soc_name $board_name $board_rev $test_name
-
-if [ $? -eq 1 ]; then
-    echo
-    echo "Failed to run the gen_make perl script."
-    echo "Please double check the -board & -target arguments passed in"
-    echo
-    usage
-    exit 1
-fi
-
-# Clean the build first if requested.
-if [ "$clean_flag" = y ]; then
-    make clean TARGET=$soc_name BOARD=$board_name BOARD_REVISION=$board_rev
-fi
-
-# Run make if requested.
-if [ "$build_flag" = y ]; then
-    make TARGET=$soc_name BOARD=$board_name BOARD_REVISION=$board_rev TEST=$test_name
-    result=$?
+    # Generate makefile
+#     echo "Generating makefiles for ${soc_name}_${board_name}_rev_${board_rev} test=${test_name}"
+#     
+#     perl $make_perl_script $config_dir $sdk_dir $soc_name $board_name $board_rev $test_name
+#     
+#     if [ $? -eq 1 ]; then
+#         echo
+#         echo "Failed to run the gen_make perl script."
+#         echo "Please double check the -board & -target arguments passed in"
+#         echo
+#         usage
+#         exit 1
+#     fi
     
-    build_name="${soc_name} ${board_name} rev_${board_rev} ${test_name}"
-    echo
-    if [ $result -eq 0 ]; then
-        echo "Build $build_name passed!"
-    else
-        echo "Build $build_name failed with return code $result!"
-		exit 1;
+    # Clean the build first if requested.
+    if [ "$clean_flag" = y ]; then
+        make clean TARGET=$soc_name BOARD=$board_name BOARD_REVISION=$board_rev
     fi
-else
-    echo "Done ... Build script completed"
-fi
+    
+    # Run make if requested.
+    if [ "$build_flag" = y ]; then
+        make TARGET=$soc_name BOARD=$board_name BOARD_REVISION=$board_rev TEST=$test_name
+        result=$?
+        
+        build_name="${soc_name} ${board_name} rev_${board_rev} ${test_name}"
+        echo
+        if [ $result -eq 0 ]; then
+            echo "Build $build_name passed!"
+        else
+            echo "Build $build_name failed with return code $result!"
+            exit 1;
+        fi
+    else
+        echo "Done ... Build script completed"
+    fi
 }
 
 # ENTRY POINT
@@ -136,7 +136,7 @@ fi
 
 sdk_dir=$PWD
 
-while [ ! -f tools/gen_make.pl -o ! -d sdk/drivers ]; do
+while [ ! -d sdk/drivers ]; do
     if [ "$sdk_dir" = / ]; then
         echo "Couldn't find root of project tree. Script must be executed from root of project tree"
         echo
@@ -146,8 +146,8 @@ while [ ! -f tools/gen_make.pl -o ! -d sdk/drivers ]; do
     sdk_dir=$PWD
 done
 
-config_dir=$sdk_dir/configs
-make_perl_script=$sdk_dir/tools/gen_make.pl
+# config_dir=$sdk_dir/configs
+# make_perl_script=$sdk_dir/tools/gen_make.pl
 
 os_name=$(uname)
 
@@ -256,31 +256,4 @@ if [ "$list_flag" = n ]; then
 #        echo "Build ${soc_name}_${board_name}_rev_${board_rev} test=${test_name}"
     done
 fi
-#if [ "$soc_name" == "all" ]; then
-#    clean_flag=y
-#    for (( i=0 ; i<${#valid_builds[*]} ; i+=3 )); do
-#        soc_name=${valid_builds[i]}
-#        board_name=${valid_builds[i+1]}
-#        board_version=${valid_builds[i+2]}
-#        do_build
-#    done
-#elif [ "$board_name" == "all" ]; then
-#    clean_flag=y
-#    for (( i=0 ; i<${#valid_builds[*]} ; i+=3 )); do
-#        if [ $"soc_name" != ${valid_builds[i]} ]; then :& # contine
-#            board_name=${valid_builds[i+1]}
-#            board_version=${valid_builds[i+2]}
-#            do_build
-#        fi
-#    done
-#elif [ "$board_version" == "all" ]; then
-#    clean_flag=y
-#    for (( i=0 ; i<${#valid_builds[*]} ; i+=3 )); do
-#        if [ $"soc_name" != ${valid_builds[i]} || $"soc_name" != ${board_name[i+1]} ]; then :& # contine
-#            board_version=${valid_builds[i+2]}
-#            do_build
-#        fi
-#    done
-#else
-#    do_build
-#fi
+

@@ -55,7 +55,7 @@ else ifeq "$(TARGET)" "mx6sl"
 C_DEFINES += -DCHIP_MX6SL
 CPU	= cortex-a9
 else
-$(error Unknown target $(TARGET))
+#$(error Unknown target $(TARGET))
 endif
 
 # Board
@@ -68,7 +68,7 @@ C_DEFINES += -DBOARD_SABRE_LITE
 else ifeq "$(BOARD)" "smart_device"
 C_DEFINES += -DBOARD_SMART_DEVICE
 else
-$(error Unknown board $(BOARD))
+#$(error Unknown board $(BOARD))
 endif
 
 # Board revision
@@ -77,10 +77,11 @@ C_DEFINES +=-DBOARD_VERSION2
 else ifeq "$(BOARD_REVISION)" "a"
 C_DEFINES +=-DBOARD_VERSION1
 else
-$(error Unknown board revision $(BOARD_REVISION))
+#$(error Unknown board revision $(BOARD_REVISION))
 endif
 
-BOARD_DIR = $(shell echo $(BOARD)_rev_$(BOARD_REVISION) | tr [:upper:] [:lower:])
+# BOARD_DIR = $(shell echo $(BOARD)_rev_$(BOARD_REVISION) | tr [:upper:] [:lower:])
+BOARD_DIR = $(BOARD)_rev_$(BOARD_REVISION)
 
 # Set this to define if we want to build thumb binaries or 0 for ARM.
 USE_THUMB ?= 1
@@ -150,133 +151,100 @@ CDEBUG = -g -O0
 
 # Turns on all -O2 except size increasers.
 # Any CDEBUG settings will come after this and can be used to override.
-CFLAGS += -Os
-CFLAGS += -mno-unaligned-access
+COMMON_FLAGS += -Os
+COMMON_FLAGS += -mno-unaligned-access
 
+# Turn on dead code elimination.
+COMMON_FLAGS += -fdce
 
-# enables all warnings and treat them as errors except those preceded with -Wno-
+# Enables all warnings and treat them as errors except those preceded with -Wno-
 C_FLAGS_WARNINGS = -Wall -Werror -Wno-unused-function -fdiagnostics-show-option
 C_FLAGS_WARNINGS += -Wno-unused-but-set-variable -Wno-format
 
-# Basic compiler flags. Enable debugging.
-# Disable placing globals into the common section.
-# COMMON_C_FLAGS = -g -fno-common
-# 
-# # Optimization flags.
-# # No optimization, but turn on dead code elimination.
-# OPTIMIZATION_FLAGS = -O0 -fdce
-
-# ARM flags.
-# Set the CPU, enable APCS, and enable ARM/thumb interworking.
-# Turn on NEON FPU.
-ARM_FLAGS = -march=armv7-a -mcpu=$(CPU) -mtune=$(CPU) -mapcs -mthumb-interwork
-# ARM_FLAGS += -mfpu=neon -mfloat-abi=softfp
-
-# C flags.
-# Set the C standard to C99 with GNU extensions.
-# Use traditional GNU inline function semantics.
-# C_FLAGS = $(C_FLAGS_WARNINGS) $(ARM_FLAGS) $(COMMON_C_FLAGS) $(OPTIMIZATION_FLAGS)
-# C_FLAGS += -std=gnu99 -fgnu89-inline
-# 
-# # C++ flags. Disable exceptions and RTTI.
-# CXX_FLAGS = $(C_FLAGS_WARNINGS) $(ARM_FLAGS) $(COMMON_C_FLAGS) $(OPTIMIZATION_FLAGS)
-# CXX_FLAGS += -fno-exceptions -fno-rtti
-
-
-
 # Turn on all warnings.
-#CFLAGS += -Wall
-CFLAGS += $(C_FLAGS_WARNINGS)
+COMMON_FLAGS += $(C_FLAGS_WARNINGS)
 
 # Don't use common symbols.  This is usually done in kernels.  Makes
 # code size slightly larger and increases performance.
-CFLAGS += -fno-common
+COMMON_FLAGS += -fno-common
 
 # Use a freestanding build environment.  Standard for kernels, implies
 # std library may not exist.
-CFLAGS += -ffreestanding -fno-builtin
+COMMON_FLAGS += -ffreestanding -fno-builtin
 
 # Don't ever link anything against shared libs.
-CFLAGS += -static
+COMMON_FLAGS += -static
 
 # Don't link against the system std library or compiler libraries.
 # Everything we link against MUST be specified with -I/-L explicitly.
-CFLAGS += -nostdinc -nostdlib
+#COMMON_FLAGS += -nostdinc -nostdlib
 
 # Set the C standard to C99 with GNU extensions.
 # Use traditional GNU inline function semantics.
-CFLAGS += -std=gnu99 -fgnu89-inline
+C99_FLAGS = -std=gnu99 -fgnu89-inline
 
 # XXX: remove this later after rebuild mp3 decoder and other pre-built
 # binaries.
 #CFLAGS += -fshort-enums
 
 # Generate code specifically for ARMv7-A, cortex-a8/a5 chip.
-#CFLAGS += -march=armv7-a
+# CFLAGS += -march=armv7-a
 
-#CFLAGS += -mtune=cortex-a9
+# CFLAGS += -mtune=cortex-a9
 
 # Always use the aapcs-linux ABI.  This will work for EABI and GNU/Linux.
 #CFLAGS += -mabi=aapcs-linux
 
-CFLAGS += $(ARM_FLAGS)
+ARM_FLAGS = -march=armv7-a -mcpu=$(CPU) -mtune=$(CPU) -mapcs
+# CFLAGS += $(ARM_FLAGS)
 
 ifeq ($(USE_THUMB), 1)
 # Generate thumb2 instructions (mixed 16/32-bit).
-	CFLAGS += -mthumb
+	ARM_FLAGS += -mthumb
 # Allow mixed ARM and thumb code.  All C code will generate thumb instructions
 # but there is hand-written asm that requires ARM.
-	CFLAGS += -mthumb-interwork
+	ARM_FLAGS += -mthumb-interwork
 # Indicate to MQX PSP that we're using thumb.
-	CFLAGS += -DUSE_THUMB
+	ARM_FLAGS += -DUSE_THUMB
 	CC_LIB_POST = thumb2
 else
 # Generate ARM-only code.
-	CFLAGS += -marm
+	ARM_FLAGS += -marm
 	CC_LIB_POST =
 endif
 
 # Use NEON SIMD instructions for floating point.  Alternatively can specify
 # VFP which gives IEEE 754-compliance (unlike NEON which can have errors).
-CFLAGS += -mfpu=neon
+ARM_FLAGS += -mfpu=neon
 # Specify these options with NEON.
-CFLAGS += -ftree-vectorize
-CFLAGS += -fno-math-errno
-CFLAGS += -funsafe-math-optimizations
-CFLAGS += -fno-signed-zeros
+ARM_FLAGS += -ftree-vectorize
+ARM_FLAGS += -fno-math-errno
+ARM_FLAGS += -funsafe-math-optimizations
+ARM_FLAGS += -fno-signed-zeros
 # Use soft floating point api with HW instructions.
-CFLAGS += -mfloat-abi=softfp
+ARM_FLAGS += -mfloat-abi=softfp
+
+# Build common flags shared by C and C++.
+COMMON_FLAGS += $(ARM_FLAGS) $(CDEBUG) $(C_DEFINES)
 
 # Build with debug symbols enabled by default.  Uncomment to remove.
 # This comes last to allow overriding earlier optimization options.
-CFLAGS += $(CDEBUG)
+# CFLAGS += $(CDEBUG)
+# 
+# CFLAGS += $(C_DEFINES)
 
-CFLAGS += $(C_DEFINES)
-
+# C flags.
+CFLAGS = $(COMMON_FLAGS) $(C99_FLAGS)
 
 # C++ flags.
-CXXFLAGS += $(CFLAGS) $(C_DEFINES)
+CXXFLAGS = $(COMMON_FLAGS)
 
 # Disable exceptions and RTTI.
 CXXFLAGS += -fno-exceptions -fno-rtti
 
-
-
-# define every configuration option using -D flag
-# ifneq (x$(CONFIG_STRING), x)
-# CFLAGS += $(foreach i,$(CONFIG_STRING),-D$(i))
-# endif
-# 
-# ifneq (x$(BOARD), x)
-# CFLAGS += -DBOARD=$(BOARD)
-# endif
-
-#CFLAGS += -DBSP_BOARD_TYPE=$(BSP_BOARD_TYPE)
-
 #-------------------------------------------------------------------------------
 # Include paths
 #-------------------------------------------------------------------------------
-
 
 # include OSA for Linux and MQX
 # INC +=  -I$(OSA_ROOT) \
@@ -334,9 +302,9 @@ LD_FLAGS += -Wl,-Map,$(MAP_FILE)
 LD_FLAGS += -T $(LD_FILE)
 
 
-SYSTEM_INC = -isystem $(CC_INCLUDE) \
-		 -isystem $(CC_INCLUDE_FIXED) \
-		 -isystem $(LIBC_CFLAGS)
+# SYSTEM_INC = -isystem $(CC_INCLUDE) \
+# 		 -isystem $(CC_INCLUDE_FIXED) \
+# 		 -isystem $(LIBC_CFLAGS)
 
 C_INCLUDES = \
     -I$(SDK_ROOT)/sdk/include  \

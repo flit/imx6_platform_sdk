@@ -9,8 +9,8 @@ export TARGET_LIB_NAME
 SUBDIRS = drivers \
 	common \
 	core \
-	utility \
-	$(TARGET)
+	utility
+#	$(TARGET)
 
 
 

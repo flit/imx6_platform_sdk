@@ -117,6 +117,11 @@ fat/utility/shortdirmatch.c
 fat/utility/strlength.c
 endef
 
+INCLUDES += \
+	-I$(SDK_ROOT)/sdk/common/filesystem/ \
+    -I$(SDK_ROOT)/sdk/common/filesystem/include \
+    -I$(SDK_ROOT)/sdk/common/filesystem/fat/include
+
 
 SOURCES = $(steering_src) $(fat32_src)
 

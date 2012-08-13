@@ -11,36 +11,21 @@ SUBDIRS = sdk
 # Programs contains the directory of programs.  For now there will be a
 # top-level Makefile inside that knows how to build them.  This just recurses
 # into it.
-PROGS = 
-TESTS = 
+ALL_APPS = sdk_unit_test
 
 .PHONY: all
-all: $(SUBDIRS) $(PROGS)
+all: $(SUBDIRS) $(ALL_APPS)
 	@echo
 	@echo "Build succeeded!"
 	@echo
 
-.PHONY: test
-test: $(SUBDIRS) $(TESTS)
-	@echo
-	@echo "Tests built successfully!"
-	@echo
-
-$(PROGS):
-	$(MAKE) -C apps/$@
-
-$(TESTS):
-	$(MAKE) -C test/apps/$@
+$(ALL_APPS):
+	@$(MAKE) -s -r -C apps/$@
 
 .PHONY: clean
 clean::
-	rm -rf output
+	@echo "Deleting output directory..."
+	@rm -rf output
 
-# 	@for _dir in $(PROGS); do \
-# 		$(MAKE) -C apps/$$_dir clean; \
-# 	done
-# 	@for _dir in $(TESTS); do \
-# 		$(MAKE) -C test/apps/$$_dir clean; \
-# 	done
 
 include mk/targets.mk

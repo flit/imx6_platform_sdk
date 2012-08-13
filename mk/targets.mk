@@ -3,15 +3,11 @@
 #-------------------------------------------------------------------------------
 
 # Select our object root depending on whether we're building an app or lib.
-ifneq "$(APP)" ""
+ifdef APP_NAME
 OBJS_ROOT = $(APP_OBJS_ROOT)
 else
 OBJS_ROOT = $(LIB_OBJS_ROOT)
 endif
-
-# Kludge to create a variable equal to a single space.
-empty :=
-space := $(empty) $(empty)
 
 # Strip sources.
 SOURCES := $(strip $(SOURCES))
@@ -42,8 +38,15 @@ OBJECTS_ASM_S := $(addprefix $(OBJS_ROOT)/,$(ASM_S_SOURCES:.S=.o))
 OBJECTS_ALL := $(OBJECTS_C) $(OBJECTS_CXX) $(OBJECTS_ASM) $(OBJECTS_ASM_S)
 
 # Build the target lib path from the lib name.
-ifneq "$(TARGET_LIB_NAME)" ""
+ifdef TARGET_LIB_NAME
 TARGET_LIB ?= $(LIBS_ROOT)/$(TARGET_LIB_NAME)
+else ifdef APP_LIB_NAME
+TARGET_LIB ?= $(APP_OUTPUT_ROOT)/$(APP_LIB_NAME)
+endif
+
+# Construct full path name to application output ELF file.
+ifdef APP_NAME
+APP ?= $(APP_OUTPUT_ROOT)/$(APP_NAME).elf
 endif
 
 #-------------------------------------------------------------------------------
@@ -55,8 +58,9 @@ endif
 # if subdirs modified the library file after local files were compiled but before they were added
 # to the library.
 .PHONY: all
-all : echovars $(SUBDIRS) $(OBJS_ROOT) $(OBJECTS_DIRS) $(OBJECTS_ALL) $(LIBS) $(APP) $(TARGET_LIB)
+all : echovars $(SUBDIRS) $(OBJECTS_DIRS) $(OBJECTS_ALL) $(TARGET_LIB) $(APP)
 
+# Debug utility target to dump variable values.
 .PHONY: echovars
 echovars:
 # 	@echo SOURCES = $(SOURCES)
@@ -65,10 +69,12 @@ echovars:
 # 	@echo SOURCE_DIRS_PATH = $(SOURCE_DIRS_PATH)
 # 	@echo OBJECTS_DIRS = $(OBJECTS_DIRS)
 # 	@echo C_SOURCES = $(C_SOURCES)
-# 	@echo OBJECTS_C = $(OBJECTS_C)
+# 	@echo OBJECTS_ALL = $(OBJECTS_ALL)
+# 	@echo TARGET_LIB = $(TARGET_LIB)
+# 	@echo APP = $(APP)
 
-# Recipe to create the output and object file directories.
-$(OBJS_ROOT) $(OBJECTS_DIRS) :
+# Recipe to create the output object file directories.
+$(OBJECTS_DIRS) :
 	@mkdir -p $@
 
 #-------------------------------------------------------------------------------
@@ -85,45 +91,33 @@ $(OBJS_ROOT) $(OBJECTS_DIRS) :
 
 # Compile C sources.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.c
-	@echo Compiling $(subst $(SDK_ROOT)/,,$<)
+	@echo "Compiling $(subst $(SDK_ROOT)/,,$<)"
 	@cd $(dir $<) \
-		&& $(CC) $(CFLAGS) $(SYSTEM_INC) $(C_INCLUDES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
+		&& $(CC) $(CFLAGS) $(SYSTEM_INC) $(INCLUDES) $(DEFINES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
 
 # Compile C++ sources.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.cpp
-	@echo Compiling $(subst $(SDK_ROOT)/,,$<)
+	@echo "Compiling $(subst $(SDK_ROOT)/,,$<)"
 	@cd $(dir $<) \
-		&& $(CXX) $(CXXFLAGS) $(SYSTEM_INC) $(C_INCLUDES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
+		&& $(CXX) $(CXXFLAGS) $(SYSTEM_INC) $(INCLUDES) $(DEFINES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
 
 # For .S assembly files, first run through the C preprocessor then assemble.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.S
-	@echo Compiling $(subst $(SDK_ROOT)/,,$<)
+	@echo "Compiling $(subst $(SDK_ROOT)/,,$<)"
 	@cd $(dir $<) \
-		&& $(CPP) -D__LANGUAGE_ASM__ $(C_INCLUDES) $(C_DEFINES) -o $(basename $@).s $< \
-		&& $(AS) $(A_FLAGS) $(C_INCLUDES) $(A_DEFINES) -MD $(OBJS_ROOT)/$*.d -o $@ $(basename $@).s
+		&& $(CPP) -D__LANGUAGE_ASM__ $(INCLUDES) $(DEFINES) -o $(basename $@).s $< \
+		&& $(AS) $(ASFLAGS) $(INCLUDES) -MD $(OBJS_ROOT)/$*.d -o $@ $(basename $@).s
 
 # Assembler sources.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.s
-	@echo Compiling $(subst $(SDK_ROOT)/,,$<)
+	@echo "Compiling $(subst $(SDK_ROOT)/,,$<)"
 	@cd $(dir $<) \
-		&& $(AS) $(A_FLAGS) $(C_INCLUDES) $(A_DEFINES) -MD $(basename $@).d -o $@ $<
+		&& $(AS) $(ASFLAGS) $(INCLUDES) -MD $(basename $@).d -o $@ $<
 
 # Add objects to the target library.
 $(TARGET_LIB): $(OBJECTS_ALL)
-	@echo Archiving $(shell echo $? | wc -w) files...
-	@$(AR) -roucs $(TARGET_LIB) $?
-
-
-# $(OBJECTS): %.o: %.c
-# 	$(CC) -c $(CFLAGS) $(INC) $< -o $@
-# 	$(CC) -MM $(CFLAGS) $(INC) $*.c > $*.d
-# 
-# $(OBJECTS_ASM): %.o: %.S
-# 	$(CC) -c $(CFLAGS) -D__ASM__ $(INC) $< -o $@
-# 	$(CC) -MM $(CFLAGS) -D__ASM__ $(INC) $*.S > $*.d
-# 
-# $(OBJECTS_LDS): $(OBJECTS_LDS).S $(FILES_RELA_LDS)
-# 	$(CC) -s $(OBJECTS_LDS).S $(CFLAGS) -E -P -D__ASM__ $(INC) -o $(OBJECTS_LDS)
+	@echo "Archiving $(shell echo $? | wc -w) files into $(notdir $@)"
+	@$(AR) -roucs $@ $?
 
 #-------------------------------------------------------------------------------
 # Subdirs
@@ -138,47 +132,41 @@ $(SUBDIRS):
 # Linking
 #-------------------------------------------------------------------------------
 
+ifdef LINK_APP
+
+# If app objects are being archived into a library, we don't need to specify the
+# actual .o files on the linker command line.
+ifdef APP_LIB_NAME
+app_objs = $(TARGET_LIB)
+else
+app_objs = $(OBJECTS_ALL) $(TARGET_LIB)
+endif
+
+app_bin = $(basename $(APP)).bin
+app_map = $(basename $(APP)).map
+
 # Link the application.
-$(APP): $(OBJECTS) $(OBJECTS_ASM) $(LIBRARIES) $(APP_LIBS)
 # Wrap the link objects in start/end group so that ld re-checks each
 # file for dependencies.  Otherwise linking static libs can be a pain
 # since order matters.
-# XXX: specify the .text segment to start in SRAM.  Change this later.
-#      also ugly hack for multiple defition of _start_mqx.  not sure
-#      why this is happening.
-	@echo Linking $(APP)
-# 	$(LD) -Bstatic \
-# 	      -T $(MQX_LD_SCRIPT) \
-# 	      $(MQX_ROOT)/lib/start.o \
-# 	      --start-group \
-# 	      	$(OBJECTS) \
-# 	      	$(OBJECTS_CXX) \
-# 		$(OBJECTS_ASM) \
-# 		$(LIBRARIES) \
-# 		$(APP_LIBS) \
-# 	      --end-group \
-# 	      $(LDADD) $(LDINC) -o $@ \
-# 	      -Map $@.map
-# 	$(OBJCOPY) -O binary $@ $@.bin
-	$(CC) -o $(OUTPUT_ELF) $(CFLAGS) $(C_INCLUDES) -Wl,--whole-archive $(TARGET_LIB) -Wl,--no-whole-archive $(LD_FLAGS)
-	arm-none-eabi-objcopy -O binary $(OUTPUT_ELF) $(OUTPUT_BIN)
-
-# $(OUTPUT_ELF): $(TARGET_LIB) $(LD_FILE)
-# 	@echo Linking $(OUTPUT_ELF)
-# 	@$(CC) -o $(OUTPUT_ELF) $(C_FLAGS) $(C_INCLUDES) $(C_DEFINES) -Wl,--whole-archive $(TARGET_LIB) -Wl,--no-whole-archive $(LD_FLAGS)
-# 
-# $(OUTPUT_BIN): $(OUTPUT_ELF)
-# 	@echo Generating $(OUTPUT_BIN)
-# 	@arm-none-eabi-objcopy -O binary $(OUTPUT_ELF) $(OUTPUT_BIN)
-
-# Set clean as a phony target and it can be appended to.  This is the default
-# behavior.
-# .PHONY: clean
-# clean::
-# 	rm -f *.o *.d *.a *.map *.bin $(OBJECTS_LDS)
-# 	@for _dir in $(SUBDIRS); do \
-# 		$(MAKE) -C $$_dir clean; \
-# 	done
+$(APP): $(OBJECTS) $(OBJECTS_ASM) #$(LIBRARIES) $(APP_LIBS)
+	@echo "Linking $(APP_NAME)..."
+	@$(LD) -Bstatic -nostartfiles -nostdlib \
+	      -T $(LD_FILE) \
+	      --start-group \
+	      	$(app_objs) \
+			$(LIBRARIES) \
+			$(APP_LIBS) \
+	      --end-group \
+	      $(LDADD) $(LDINC) -o $@ \
+	      -Map $(app_map)
+	@$(OBJCOPY) -O binary $@ $(app_bin)
+	@echo "Output ELF: $(APP)"
+	@echo "Output binary: $(app_bin)"
+else
+# Empty target to prevent an error. Needed because $(APP) is a prereq for the 'all' target.
+$(APP): ;
+endif
 
 # Include dependency files.
 -include $(OBJECTS_ALL:.o=.d)

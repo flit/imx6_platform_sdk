@@ -12,6 +12,7 @@ export SDK_ROOT
 # Build root directory paths.
 SDK_LIB_ROOT = $(SDK_ROOT)/sdk
 APPS_ROOT = $(SDK_ROOT)/apps
+BOARD_ROOT = $(SDK_ROOT)/board/$(TARGET)/$(BOARD_DIR_NAME)
 
 # Build output directory paths.
 #
@@ -37,7 +38,7 @@ LIBS_ROOT = $(OUTPUT_ROOT)/lib
 LIB_OBJS_ROOT = $(LIBS_ROOT)/obj
 
 # Put app build products in their own dir.
-APP_OUTPUT_ROOT = $(OUTPUT_ROOT)/$(APP)/$(BOARD)_rev_$(BOARD_REVISION)
+APP_OUTPUT_ROOT = $(OUTPUT_ROOT)/$(APP_NAME)/$(BOARD_DIR_NAME)
 APP_OBJS_ROOT = $(APP_OUTPUT_ROOT)/obj
 
 #-------------------------------------------------------------------------------
@@ -46,13 +47,13 @@ APP_OBJS_ROOT = $(APP_OUTPUT_ROOT)/obj
 
 # Target
 ifeq "$(TARGET)" "mx6dq"
-C_DEFINES += -DCHIP_MX6DQ
+DEFINES += -DCHIP_MX6DQ
 CPU	= cortex-a9
 else ifeq "$(TARGET)" "mx6sdl"
-C_DEFINES += -DCHIP_MX6SDL
+DEFINES += -DCHIP_MX6SDL
 CPU	= cortex-a9
 else ifeq "$(TARGET)" "mx6sl"
-C_DEFINES += -DCHIP_MX6SL
+DEFINES += -DCHIP_MX6SL
 CPU	= cortex-a9
 else
 #$(error Unknown target $(TARGET))
@@ -60,28 +61,27 @@ endif
 
 # Board
 ifeq "$(BOARD)" "evb"
-C_DEFINES += -DBOARD_EVB
+DEFINES += -DBOARD_EVB
 else ifeq "$(BOARD)" "sabre_ai"
-C_DEFINES += -DBOARD_SABRE_AI
+DEFINES += -DBOARD_SABRE_AI
 else ifeq "$(BOARD)" "sabre_lite"
-C_DEFINES += -DBOARD_SABRE_LITE
+DEFINES += -DBOARD_SABRE_LITE
 else ifeq "$(BOARD)" "smart_device"
-C_DEFINES += -DBOARD_SMART_DEVICE
+DEFINES += -DBOARD_SMART_DEVICE
 else
 #$(error Unknown board $(BOARD))
 endif
 
 # Board revision
 ifeq "$(BOARD_REVISION)" "b"
-C_DEFINES +=-DBOARD_VERSION2
+DEFINES +=-DBOARD_VERSION2
 else ifeq "$(BOARD_REVISION)" "a"
-C_DEFINES +=-DBOARD_VERSION1
+DEFINES +=-DBOARD_VERSION1
 else
 #$(error Unknown board revision $(BOARD_REVISION))
 endif
 
-# BOARD_DIR = $(shell echo $(BOARD)_rev_$(BOARD_REVISION) | tr [:upper:] [:lower:])
-BOARD_DIR = $(BOARD)_rev_$(BOARD_REVISION)
+BOARD_DIR_NAME := $(BOARD)_rev_$(BOARD_REVISION)
 
 # Set this to define if we want to build thumb binaries or 0 for ARM.
 USE_THUMB ?= 1
@@ -118,22 +118,12 @@ AS = $(CROSS_COMPILE)as
 AR = $(CROSS_COMPILE)ar
 OBJCOPY = $(CROSS_COMPILE)objcopy
 
-
 #CC_PREFIX ?= /opt/arm-eabi
 CC_PREFIX ?= $(dir $(shell which $(CC)))..
 
 # CodeSourcery ARM EABI compiler already includes newlib libc.  Use this.
 LIBC_LDPATH = $(CC_PREFIX)/$(CROSS_COMPILE_STRIP)/lib/$(CC_LIB_POST)
 LIBC_CFLAGS = $(CC_PREFIX)/$(CROSS_COMPILE_STRIP)/include
-
-# first:
-# 	@echo $(SDK_ROOT)
-# 	@echo $(SDK_LIB_ROOT)
-# 	@echo $(CC_PREFIX)
-# 	@echo $(CC_LIB)
-# 	@echo $(CC_INCLUDE)
-# 	@echo $(CC_INCLUDE_FIXED)
-# 	@echo $(C_DEFINES)
 
 #-------------------------------------------------------------------------------
 # Compiler flags
@@ -225,7 +215,8 @@ ARM_FLAGS += -fno-signed-zeros
 ARM_FLAGS += -mfloat-abi=softfp
 
 # Build common flags shared by C and C++.
-COMMON_FLAGS += $(ARM_FLAGS) $(CDEBUG) $(C_DEFINES)
+COMMON_FLAGS += $(ARM_FLAGS) $(CDEBUG)
+#$(DEFINES)
 
 # Build with debug symbols enabled by default.  Uncomment to remove.
 # This comes last to allow overriding earlier optimization options.
@@ -246,11 +237,6 @@ CXXFLAGS += -fno-exceptions -fno-rtti
 # Include paths
 #-------------------------------------------------------------------------------
 
-# include OSA for Linux and MQX
-# INC +=  -I$(OSA_ROOT) \
-#         -I$(LIBCOMMON_ROOT)
-
-# ifeq ($(PLATFORM), mqx)
 # 	# Indicate gcc and newlib std includes as -isystem so gcc tags and
 # 	# treats them as system directories.
 # 	SYSTEM_INC = -isystem $(CC_INCLUDE) \
@@ -276,54 +262,41 @@ CXXFLAGS += -fno-exceptions -fno-rtti
 # 	# Need to do this strange double-include to fix that.  Address later.
 # 	LDINC += -lc -lcs3unhosted -lc -lcs3 -lcs3arm -lgcc
 # 	LDADD += -L$(CC_LIB) -L$(LIBC_LDPATH)
-# 
-# else
-# 	INC += -I$(LINUX_FAKEROOT)/usr/include
-# 	# XXX: we only need asound when using Maestro.
-# 	LDINC += -lpthread -lrt -lasound
-# 	LDADD += -L. -L$(LINUX_FAKEROOT)/usr/lib
-# 
-# 	ifeq (x$(CONFIG_STRING), x)
-# 		INC += -I$(PROFILE_INC) \
-# 		       -I$(BOARD_INC) \
-# 		       -I$(CONFIG_INC)
-# 	else
-# 		INC += -I$(PROFILE_INC) \
-# 		       -I$(CONFIG_INC)
-# 	endif
-# 
-# 
-# endif
 
+LDADD += -lm -lstdc++ -lc -lgcc
+LDINC += -L$(CC_LIB) -L$(LIBC_LDPATH)
 
-LD_FLAGS = $(DEBUG_FLAGS) $(THUMB_FLAGS) -nostartfiles
-LD_FLAGS += -lm -lstdc++ -lc -lgcc
-LD_FLAGS += -Wl,-Map,$(MAP_FILE)
-LD_FLAGS += -T $(LD_FILE)
+#LD_FLAGS += $(DEBUG_FLAGS) $(THUMB_FLAGS) -nostartfiles
+#LD_FLAGS += -lm -lstdc++ -lc -lgcc
+
+#LD_FLAGS += -Wl,-Map,$(MAP_FILE)
+#LD_FLAGS += -T $(LD_FILE)
 
 
 # SYSTEM_INC = -isystem $(CC_INCLUDE) \
 # 		 -isystem $(CC_INCLUDE_FIXED) \
 # 		 -isystem $(LIBC_CFLAGS)
 
-C_INCLUDES = \
-    -I$(SDK_ROOT)/sdk/include  \
-    -I$(SDK_ROOT)/sdk \
-    -I$(SDK_ROOT)/sdk/drivers \
-    -I$(SDK_ROOT)/sdk/include/$(TARGET) \
-    -I$(SDK_ROOT)/sdk/$(TARGET)/$(BOARD)_rev_$(BOARD_REVISION) \
+INCLUDES += \
     -I. \
     -I../inc \
-    -I$(SDK_ROOT)/sdk/common/ \
-    -I$(SDK_ROOT)/sdk/common/filesystem/ \
-    -I$(SDK_ROOT)/sdk/common/filesystem/include \
-    -I$(SDK_ROOT)/sdk/common/filesystem/fat/include \
+    -I$(SDK_ROOT)/sdk \
+    -I$(SDK_ROOT)/sdk/include  \
+    -I$(SDK_ROOT)/sdk/include/$(TARGET) \
+    -I$(SDK_ROOT)/sdk/drivers \
+    -I$(SDK_ROOT)/sdk/common \
     -I$(SDK_ROOT)/sdk/core \
-    -I$(SDK_ROOT)/sdk/utility
+    -I$(SDK_ROOT)/sdk/utility \
+    -I$(BOARD_ROOT)
 
-A_FLAGS 		=
-A_INCLUDES += \
-    -I$(SDK_ROOT)/sdk/include \
-    -I$(SDK_ROOT)/sdk/include/$(TARGET)/ \
-    -I.
-A_DEFINES 	=
+#     -I$(SDK_ROOT)/sdk/$(TARGET)/$(BOARD)_rev_$(BOARD_REVISION) \
+
+# A_INCLUDES += \
+#     -I$(SDK_ROOT)/sdk/include \
+#     -I$(SDK_ROOT)/sdk/include/$(TARGET)/ \
+#     -I.
+
+
+# Kludge to create a variable equal to a single space.
+empty :=
+space := $(empty) $(empty)

@@ -6,26 +6,29 @@
 
 include mk/common.mk
 
+# Library subdirectories that the apps depend upon.
 SUBDIRS = sdk
 
-# Programs contains the directory of programs.  For now there will be a
-# top-level Makefile inside that knows how to build them.  This just recurses
-# into it.
+# List of all applications to build.
 ALL_APPS = sdk_unit_test
 
 .PHONY: all
-all: $(SUBDIRS) $(ALL_APPS)
+all: $(ALL_APPS)
 	@echo
-	@echo "Build succeeded!"
+	@echo "Build all succeeded!"
 	@echo
 
-$(ALL_APPS):
+$(ALL_APPS): $(SUBDIRS)
 	@$(MAKE) -s -r -C apps/$@
+	@echo
+	@echo "Built $@!"
+	@echo
 
 .PHONY: clean
 clean::
 	@echo "Deleting output directory..."
 	@rm -rf output
+	@echo "done."
 
 
 include mk/targets.mk

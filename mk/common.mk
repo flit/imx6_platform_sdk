@@ -1,3 +1,10 @@
+#-------------------------------------------------------------------------------
+# Utility
+#-------------------------------------------------------------------------------
+
+# Kludge to create a variable equal to a single space.
+empty :=
+space := $(empty) $(empty)
 
 #-------------------------------------------------------------------------------
 # Root paths
@@ -84,32 +91,23 @@ endif
 BOARD_DIR_NAME := $(BOARD)_rev_$(BOARD_REVISION)
 
 # Set this to define if we want to build thumb binaries or 0 for ARM.
-USE_THUMB ?= 1
+USE_THUMB ?= 0
 
 #-------------------------------------------------------------------------------
 # Compiler and tools
 #-------------------------------------------------------------------------------
 
+# Set compiler version defaults.
 CC_VERSION ?= 4.6.3
 CROSS_COMPILE ?= arm-none-eabi-
 
 # Strip off the trailing '-', resulting in arm-none-eabi
 CROSS_COMPILE_STRIP := $(patsubst %-,%,$(CROSS_COMPILE))
 
-# For this to work, must use the codesourcery 4.6.3 release of GCC.
+# For this to work, must use the codesourcery release of GCC.
 CC_INCLUDE = $(CC_PREFIX)/lib/gcc/$(CROSS_COMPILE_STRIP)/$(CC_VERSION)/include
 CC_INCLUDE_FIXED = $(CC_PREFIX)/lib/gcc/$(CROSS_COMPILE_STRIP)/$(CC_VERSION)/include-fixed
 CC_LIB = $(CC_PREFIX)/lib/gcc/$(CROSS_COMPILE_STRIP)/$(CC_VERSION)/$(CC_LIB_POST)
-
-# CFLAGS += -DIMPRESARIO_PLATFORM_MQX
-# enable/disable MUM for tracking system memory usage
-#CFLAGS += -DMEMUSAGE_DEBUG
-
-# CONFIG_INC = $(INFRA_ROOT)/config/include
-# PROFILE_INC = $(INFRA_ROOT)/config/profiles
-# ifeq (x$(CONFIG_STRING), x)
-# 	BOARD_INC = $(INFRA_ROOT)/config/boards/$(BOARD)
-# endif
 
 CC = $(CROSS_COMPILE)gcc
 CXX = $(CROSS_COMPILE)g++
@@ -118,7 +116,7 @@ AS = $(CROSS_COMPILE)as
 AR = $(CROSS_COMPILE)ar
 OBJCOPY = $(CROSS_COMPILE)objcopy
 
-#CC_PREFIX ?= /opt/arm-eabi
+# Get the compiler directory.
 CC_PREFIX ?= $(dir $(shell which $(CC)))..
 
 # CodeSourcery ARM EABI compiler already includes newlib libc.  Use this.
@@ -173,20 +171,9 @@ COMMON_FLAGS += -static
 # Use traditional GNU inline function semantics.
 C99_FLAGS = -std=gnu99 -fgnu89-inline
 
-# XXX: remove this later after rebuild mp3 decoder and other pre-built
-# binaries.
-#CFLAGS += -fshort-enums
-
-# Generate code specifically for ARMv7-A, cortex-a8/a5 chip.
-# CFLAGS += -march=armv7-a
-
-# CFLAGS += -mtune=cortex-a9
-
-# Always use the aapcs-linux ABI.  This will work for EABI and GNU/Linux.
-#CFLAGS += -mabi=aapcs-linux
-
+# Generate code specifically for ARMv7-A, cortex-ax CPU.
+# Use the ARM Procedure Call Standard.
 ARM_FLAGS = -march=armv7-a -mcpu=$(CPU) -mtune=$(CPU) -mapcs
-# CFLAGS += $(ARM_FLAGS)
 
 ifeq ($(USE_THUMB), 1)
 # Generate thumb2 instructions (mixed 16/32-bit).
@@ -211,68 +198,34 @@ ARM_FLAGS += -ftree-vectorize
 ARM_FLAGS += -fno-math-errno
 ARM_FLAGS += -funsafe-math-optimizations
 ARM_FLAGS += -fno-signed-zeros
-# Use soft floating point api with HW instructions.
+# Use hw float instructions and pass float args in regs.
+# Alternatively, float-abi=softfp for soft floating point api with HW instructions.
 ARM_FLAGS += -mfloat-abi=softfp
+#hard
 
 # Build common flags shared by C and C++.
 COMMON_FLAGS += $(ARM_FLAGS) $(CDEBUG)
-#$(DEFINES)
 
-# Build with debug symbols enabled by default.  Uncomment to remove.
-# This comes last to allow overriding earlier optimization options.
-# CFLAGS += $(CDEBUG)
-# 
-# CFLAGS += $(C_DEFINES)
+# C flags. Set C99 mode.
+CFLAGS = $(COMMON_FLAGS)
+CFLAGS += $(C99_FLAGS)
 
-# C flags.
-CFLAGS = $(COMMON_FLAGS) $(C99_FLAGS)
-
-# C++ flags.
+# C++ flags. Disable exceptions and RTTI.
 CXXFLAGS = $(COMMON_FLAGS)
-
-# Disable exceptions and RTTI.
 CXXFLAGS += -fno-exceptions -fno-rtti
 
 #-------------------------------------------------------------------------------
 # Include paths
 #-------------------------------------------------------------------------------
 
-# 	# Indicate gcc and newlib std includes as -isystem so gcc tags and
-# 	# treats them as system directories.
-# 	SYSTEM_INC = -isystem $(CC_INCLUDE) \
-# 		     -isystem $(CC_INCLUDE_FIXED) \
-# 		     -isystem $(LIBC_CFLAGS)
-# 
-# 	ifeq (x$(CONFIG_STRING), x)
-# 		SYSTEM_INC += -I$(PROFILE_INC) \
-# 			          -I$(BOARD_INC) \
-# 			          -I$(CONFIG_INC)
-# 	else
-# 		SYSTEM_INC += -I$(PROFILE_INC) \
-# 			          -I$(CONFIG_INC)
-# 	endif
-# 
-# 	# Global $(INC) variable can be used to include everything.
-# 	INC += $(SYSTEM_INC) \
-# 
-# 	# Link against libc and libgcc.  Specify paths to libc in newlib build
-# 	# directory.  Need to specify libgcc since our linker does not link
-# 	# against anything, even compiler libs because of -nostdlib.
-# 	# XXX: libc and libcs3unhosted have symbols that each rely on the other.
-# 	# Need to do this strange double-include to fix that.  Address later.
-# 	LDINC += -lc -lcs3unhosted -lc -lcs3 -lcs3arm -lgcc
-# 	LDADD += -L$(CC_LIB) -L$(LIBC_LDPATH)
-
+# Link against libc and libgcc. Specify paths to libc in newlib build
+# directory.  Need to specify libgcc since our linker does not link
+# against anything, even compiler libs because of -nostdlib.
 LDADD += -lm -lstdc++ -lc -lgcc
 LDINC += -L$(CC_LIB) -L$(LIBC_LDPATH)
 
-#LD_FLAGS += $(DEBUG_FLAGS) $(THUMB_FLAGS) -nostartfiles
-#LD_FLAGS += -lm -lstdc++ -lc -lgcc
-
-#LD_FLAGS += -Wl,-Map,$(MAP_FILE)
-#LD_FLAGS += -T $(LD_FILE)
-
-
+# Indicate gcc and newlib std includes as -isystem so gcc tags and
+# treats them as system directories.
 # SYSTEM_INC = -isystem $(CC_INCLUDE) \
 # 		 -isystem $(CC_INCLUDE_FIXED) \
 # 		 -isystem $(LIBC_CFLAGS)
@@ -289,14 +242,4 @@ INCLUDES += \
     -I$(SDK_ROOT)/sdk/utility \
     -I$(BOARD_ROOT)
 
-#     -I$(SDK_ROOT)/sdk/$(TARGET)/$(BOARD)_rev_$(BOARD_REVISION) \
 
-# A_INCLUDES += \
-#     -I$(SDK_ROOT)/sdk/include \
-#     -I$(SDK_ROOT)/sdk/include/$(TARGET)/ \
-#     -I.
-
-
-# Kludge to create a variable equal to a single space.
-empty :=
-space := $(empty) $(empty)

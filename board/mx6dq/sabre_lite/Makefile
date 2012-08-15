@@ -1,7 +1,7 @@
 include $(SDK_ROOT)/mk/common.mk
 
 
-SOURCES = \
+SOURCES := \
 	hardware.c \
 	$(wildcard iomux/*.c)
 

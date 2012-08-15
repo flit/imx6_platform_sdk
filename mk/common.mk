@@ -1,4 +1,19 @@
 #-------------------------------------------------------------------------------
+# Copyright (C) 2012 Freescale Semiconductor, Inc. All Rights Reserved.
+#
+# THIS SOFTWARE IS PROVIDED BY FREESCALE "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+# SHALL FREESCALE BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+# OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+# IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+# OF SUCH DAMAGE.
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
 # Utility
 #-------------------------------------------------------------------------------
 
@@ -19,25 +34,18 @@ export SDK_ROOT
 # Build root directory paths.
 SDK_LIB_ROOT = $(SDK_ROOT)/sdk
 APPS_ROOT = $(SDK_ROOT)/apps
-BOARD_ROOT = $(SDK_ROOT)/board/$(TARGET)/$(BOARD_DIR_NAME)
+BOARD_ROOT = $(SDK_ROOT)/board/$(TARGET)/$(BOARD)
 
 # Build output directory paths.
 #
-# Libraries are not board-specific, but apps are.
+# All output goes under the top-level 'output' directory. Libraries are not board-specific,
+# but apps are. Everything is chip-specific.
 #
-# ./output
-# 		mx6dq/
-#			lib/
-#				libsdk.a
-#				libfoobar.a
-#				obj/
-#					*.o
-#			unittest/
-#				evb_rev_a/
-#					app1.elf
-#					obj/
-#						*.o
-#			obds/
+# Libs: output/<chip>/lib/lib<foo>.a
+# Apps: output/<chip>/<app>/<board>/<app>.elf
+#
+# Objects for both libs and apps are placed in an 'obj' directory under either the app
+# or lib output directory.
 #
 OUTPUT_ROOT = $(SDK_ROOT)/output/$(TARGET)
 
@@ -45,7 +53,7 @@ LIBS_ROOT = $(OUTPUT_ROOT)/lib
 LIB_OBJS_ROOT = $(LIBS_ROOT)/obj
 
 # Put app build products in their own dir.
-APP_OUTPUT_ROOT = $(OUTPUT_ROOT)/$(APP_NAME)/$(BOARD_DIR_NAME)
+APP_OUTPUT_ROOT = $(OUTPUT_ROOT)/$(APP_NAME)/$(BOARD_WITH_REV)
 APP_OBJS_ROOT = $(APP_OUTPUT_ROOT)/obj
 
 #-------------------------------------------------------------------------------
@@ -62,8 +70,8 @@ CPU	= cortex-a9
 else ifeq "$(TARGET)" "mx6sl"
 DEFINES += -DCHIP_MX6SL
 CPU	= cortex-a9
-else
-#$(error Unknown target $(TARGET))
+else ifdef TARGET
+$(error Unknown target $(TARGET))
 endif
 
 # Board
@@ -75,8 +83,8 @@ else ifeq "$(BOARD)" "sabre_lite"
 DEFINES += -DBOARD_SABRE_LITE
 else ifeq "$(BOARD)" "smart_device"
 DEFINES += -DBOARD_SMART_DEVICE
-else
-#$(error Unknown board $(BOARD))
+else ifdef BOARD
+$(error Unknown board $(BOARD))
 endif
 
 # Board revision
@@ -84,11 +92,11 @@ ifeq "$(BOARD_REVISION)" "b"
 DEFINES +=-DBOARD_VERSION2
 else ifeq "$(BOARD_REVISION)" "a"
 DEFINES +=-DBOARD_VERSION1
-else
-#$(error Unknown board revision $(BOARD_REVISION))
+else ifdef BOARD_REVISION
+$(error Unknown board revision $(BOARD_REVISION))
 endif
 
-BOARD_DIR_NAME := $(BOARD)_rev_$(BOARD_REVISION)
+BOARD_WITH_REV := $(BOARD)_rev_$(BOARD_REVISION)
 
 # Set this to define if we want to build thumb binaries or 0 for ARM.
 USE_THUMB ?= 0

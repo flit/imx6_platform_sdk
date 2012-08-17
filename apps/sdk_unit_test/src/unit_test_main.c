@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include "hardware.h"
+#include "platform_init.h"
 #include "version.h"
 #include "cortex_a9.h"
 #include "mmu.h"
@@ -61,38 +62,6 @@ static void print_version(void)
     print_ver(chip_name, board_name, board_revision);
 }
 
-void platform_init(void)
-{
-    // Initialize clock sources, dividers, ... 
-    ccm_init();
-    
-    // Configure the EPIT timer used for system delay function. 
-    system_time_init();
-    
-    // populate the freq member of the referenced hw_module in mx6dq_module 
-    freq_populate();
-
-    // Initialize the debug/console UART 
-    uart_init(&g_debug_uart, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
-
-    // flush UART RX FIFO 
-    uint8_t c;
-    do {
-        c = uart_getchar(&g_debug_uart);
-    } while (c != NONE_CHAR);
-
-    // Some init for the board 
-    board_init();
-
-    print_version();
-
-    board_id = BOARD_TYPE_ID;
-    board_rev = BOARD_VERSION_ID;
-
-    show_freq();
-    show_ddr_config();
-}
-
 /*!
  * main function that decides which tests to run and prompts the user before
  * running test.
@@ -100,11 +69,6 @@ void platform_init(void)
  */
 int main(void)
 {
-    // Enable interrupts.
-    gic_set_cpu_priority_mask(0xff);
-    gic_cpu_enable(true);
-    gic_enable(true);
-
     enable_neon_fpu();
 
 #if defined(BOARD_EVB)||defined(BOARD_SMART_DEVICE)
@@ -113,6 +77,15 @@ int main(void)
 #endif
 
     platform_init();
+    
+    print_version();
+
+    board_id = BOARD_TYPE_ID;
+    board_rev = BOARD_VERSION_ID;
+
+    show_freq();
+    show_ddr_config();
+
 
     SDK_TEST();
 

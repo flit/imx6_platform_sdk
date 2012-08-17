@@ -94,7 +94,7 @@ void ALL_test(void)
         uart_test();
         usdhc_test();
 #if defined(BOARD_SMART_DEVICE) && defined(BOARD_VERSION2)
-		usb_test();
+// 		usb_test();
 #endif
         gic_sgi_test();
 

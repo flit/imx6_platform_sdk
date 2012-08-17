@@ -147,6 +147,7 @@ $(SUBDIRS):
 # Linking
 #-------------------------------------------------------------------------------
 
+# Only link the application if LINK_APP is defined.
 ifdef LINK_APP
 
 # If app objects are being archived into a library, we don't need to specify the
@@ -164,7 +165,7 @@ app_map = $(basename $(APP)).map
 # Wrap the link objects in start/end group so that ld re-checks each
 # file for dependencies.  Otherwise linking static libs can be a pain
 # since order matters.
-$(APP): $(OBJECTS) $(OBJECTS_ASM) #$(LIBRARIES) $(APP_LIBS)
+$(APP): $(app_objs) $(LD_FILE) $(LIBRARIES) $(APP_LIBS)
 	@echo "Linking $(APP_NAME)..."
 	@$(LD) -Bstatic -nostartfiles -nostdlib \
 	      -T $(LD_FILE) \

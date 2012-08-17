@@ -25,45 +25,67 @@ LINK_APP = true
 define SUBDIRS
 	$(BOARD_ROOT)
 	$(SDK_LIB_ROOT)/drivers/audio/test
-	$(SDK_LIB_ROOT)/drivers/camera/test
 	$(SDK_LIB_ROOT)/drivers/cpu_utility/test
-	$(SDK_LIB_ROOT)/drivers/eim/test
-	$(SDK_LIB_ROOT)/drivers/enet/test
-	$(SDK_LIB_ROOT)/drivers/flexcan/test
 	$(SDK_LIB_ROOT)/drivers/gic/test
-	$(SDK_LIB_ROOT)/drivers/gpmi/test
-	$(SDK_LIB_ROOT)/drivers/gpu/test
 	$(SDK_LIB_ROOT)/drivers/hdmi/test
 	$(SDK_LIB_ROOT)/drivers/i2c/test
 	$(SDK_LIB_ROOT)/drivers/ipu/test
-	$(SDK_LIB_ROOT)/drivers/keypad/test
-	$(SDK_LIB_ROOT)/drivers/mipi/test
 	$(SDK_LIB_ROOT)/drivers/ocotp/test
 	$(SDK_LIB_ROOT)/drivers/pmu/test
-	$(SDK_LIB_ROOT)/drivers/power_modes/test
-	$(SDK_LIB_ROOT)/drivers/pwm/test
 	$(SDK_LIB_ROOT)/drivers/rtc/test
 	$(SDK_LIB_ROOT)/drivers/sdma/test
-	$(SDK_LIB_ROOT)/drivers/spi/test
 	$(SDK_LIB_ROOT)/drivers/tempmon/test
 	$(SDK_LIB_ROOT)/drivers/timer/test
 	$(SDK_LIB_ROOT)/drivers/uart/test
-	$(SDK_LIB_ROOT)/drivers/usb/test
 	$(SDK_LIB_ROOT)/drivers/usdhc/test
 	$(SDK_LIB_ROOT)/drivers/vdoa/test
 	$(SDK_LIB_ROOT)/drivers/vpu/test
-	$(SDK_LIB_ROOT)/drivers/wdog/test
 endef
+
+# Tests that are only available on the evb.
+ifeq "$(BOARD)" "evb"
+	SUBDIRS += \
+		$(SDK_LIB_ROOT)/drivers/enet/test \
+		$(SDK_LIB_ROOT)/drivers/gpmi/test \
+		$(SDK_LIB_ROOT)/drivers/gpu/test \
+		$(SDK_LIB_ROOT)/drivers/keypad/test \
+		$(SDK_LIB_ROOT)/drivers/pcie/test \
+		$(SDK_LIB_ROOT)/drivers/spi/test \
+		$(SDK_LIB_ROOT)/drivers/wdog/test
+endif
+
+# Tests that apply to either evb or sabre_ai.
+ifneq "$(filter evb sabre_ai,$(BOARD))" ""
+	SUBDIRS += \
+		$(SDK_LIB_ROOT)/drivers/mipi/test \
+		$(SDK_LIB_ROOT)/drivers/usb/test
+endif
+
+# Tests that are only available on the sabre_ai board.
+ifeq "$(BOARD)" "sabre_ai"
+	SUBDIRS += \
+		$(SDK_LIB_ROOT)/drivers/flexcan/test \
+		$(SDK_LIB_ROOT)/drivers/eim/test
+endif
+
+# Camera is only available on the smart_device board.
+ifeq "$(BOARD)" "smart_device"
+	SUBDIRS += $(SDK_LIB_ROOT)/drivers/camera/test
+endif
+
+# PWM is available on all but sabre_lite.
+ifneq "$(BOARD)" "sabre_lite"
+	SUBDIRS += $(SDK_LIB_ROOT)/drivers/pwm/test
+endif
 
 # SATA is only available on the mx6dq.
 ifeq "$(TARGET)" "mx6dq"
-	SUBDIRS += \
-		$(SDK_LIB_ROOT)/drivers/pcie/test \
-		$(SDK_LIB_ROOT)/drivers/sata/test
+	SUBDIRS += $(SDK_LIB_ROOT)/drivers/sata/test
 endif
 
 # Local source files.
 define SOURCES
+	$(APPS_ROOT)/common/platform_init.c
 	src/unit_test_main.c
 	src/all_test.c
 endef
@@ -72,7 +94,9 @@ endef
 LIBRARIES = $(LIBS_ROOT)/libsdk.a
 
 # Specify our linker script.
-LD_FILE = src/sdk_unit_test.ld
+LD_FILE = $(APPS_ROOT)/common/basic_sdk_app.ld
+
+INCLUDES += -I$(APPS_ROOT)/common
 
 
 include $(SDK_ROOT)/mk/targets.mk

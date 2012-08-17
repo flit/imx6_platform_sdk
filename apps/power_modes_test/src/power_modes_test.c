@@ -6,6 +6,7 @@
 */
 
 #include "hardware.h"
+#include "platform_init.h"
 #include "timer/epit.h"
 
 static void tick_timer_interrupt_routine(void);
@@ -70,4 +71,14 @@ void power_modes_test(void)
     printf("Exiting stop state.\n");
 
     printf("Exiting from the low power modes test.\n");
+}
+
+void main(void)
+{
+    platform_init();
+
+    // Perform the power test.
+    power_modes_test();
+
+    _sys_exit(0);
 }

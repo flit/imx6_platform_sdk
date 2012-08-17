@@ -12,7 +12,7 @@
  * @ingroup diag_mipi
  */
 
-#include "mipi_common.h"
+#include "mipi/mipi_common.h"
 #include "hardware.h"
 #include <stdio.h>
 

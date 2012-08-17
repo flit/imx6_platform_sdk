@@ -8,7 +8,7 @@
 #ifndef __SSI_H__
 #define __SSI_H__
 
-#include "hardware.h"
+//#include "hardware.h"
 
 #define SSI_SFCSR_TX_WATERMARK      4   // Default 4
 #define SSI_SFCSR_RX_WATERMARK      4   // Default 4

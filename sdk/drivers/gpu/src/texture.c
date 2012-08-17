@@ -12,9 +12,9 @@
  * @ingroup diag_enet
  */
 
-#include "gpu/inc/gpu_test_common.h"
-#include "gpu/inc/texture5.h"
-#include "gpu/inc/sdk_gpu_utilities.h"
+#include "gpu/gpu_test_common.h"
+#include "gpu/sdk_gpu_utilities.h"
+#include "texture5.h"
 
 static void loadTexture(void)
 {

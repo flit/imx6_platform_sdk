@@ -11,7 +11,7 @@
  * @ingroup diag_camera
  */
 
-#include "camera_def.h"
+#include "camera/camera_def.h"
 
 t_reg_param ov3640_sensor_detection[] = {
     {0x300a, 0x36, 0, 0, 0}

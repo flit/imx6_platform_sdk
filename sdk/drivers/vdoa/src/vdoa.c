@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "vdoa.h"
+#include "vdoa/vdoa.h"
 #include "hardware.h"
 #include "registers/regsvdoa.h"
 

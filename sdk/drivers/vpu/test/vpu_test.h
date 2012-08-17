@@ -9,12 +9,12 @@
 #define _VPU_TEST_H_
 #include <filesystem/fsapi.h>
 #include "hardware.h"
-#include "vpu_lib.h"
-#include "vpu_io.h"
-#include "vpu_util.h"
-#include "ipu/inc/ipu_common.h"
-#include "vdoa/inc/vdoa.h"
-#include "usdhc/inc/usdhc_ifc.h"
+#include "vpu/vpu_lib.h"
+#include "vpu/vpu_io.h"
+#include "vpu/vpu_util.h"
+#include "ipu/ipu_common.h"
+#include "vdoa/vdoa.h"
+#include "usdhc/usdhc_ifc.h"
 
 #define MAX_FIFO_SIZE 		32
 #define NUM_FRAME_BUFS	64

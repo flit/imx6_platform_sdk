@@ -12,7 +12,7 @@
  */
 
 #include <string.h>
-#include "ipu_common.h"
+#include "ipu/ipu_common.h"
 
 /*
  * set the CSI module to handle data from camera

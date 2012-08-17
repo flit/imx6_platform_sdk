@@ -9,8 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "vpu_test.h"
-#include "vpu_debug.h"
-#include "vpu_lib.h"
+#include "vpu/vpu_debug.h"
+#include "vpu/vpu_lib.h"
 #include "timer/epit.h"
 
 bs_mem_t bsmem;

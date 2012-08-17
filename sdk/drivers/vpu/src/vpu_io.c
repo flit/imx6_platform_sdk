@@ -17,11 +17,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "vpu_debug.h"
-#include "vpu_reg.h"
-#include "vpu_io.h"
-#include "vpu_lib.h"
-#include "vpu_util.h"
+#include "vpu/vpu_debug.h"
+#include "vpu/vpu_reg.h"
+#include "vpu/vpu_io.h"
+#include "vpu/vpu_lib.h"
+#include "vpu/vpu_util.h"
 #include "hardware.h"
 
 #define VPU_MEM_START_ADDR	(VIDEO_BUFFERS_START)

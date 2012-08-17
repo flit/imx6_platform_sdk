@@ -12,7 +12,7 @@
  */
 
 #include <string.h>
-#include "ipu_common.h"
+#include "ipu/ipu_common.h"
 
 inline int32_t need_csc(int32_t i, int32_t o)
 {

@@ -14,7 +14,6 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "ipu_common.h"
 #include "ips_test.h"
 
 int32_t ips_rotate_test(ips_dev_panel_t * panel)

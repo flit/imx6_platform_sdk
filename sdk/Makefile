@@ -6,12 +6,11 @@ TARGET_LIB_NAME = libsdk.a
 export TARGET_LIB_NAME
 
 
-SUBDIRS = drivers \
+SUBDIRS = \
+	drivers \
 	common \
 	core \
 	utility
-#	$(TARGET)
-
 
 
 include $(SDK_ROOT)/mk/targets.mk

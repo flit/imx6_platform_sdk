@@ -8,7 +8,7 @@
 #include <stdio.h>
 
 #include "hardware.h"
-#include "pwm/inc/pwm_ifc.h"
+#include "pwm/pwm_ifc.h"
 
 extern void pwm1_iomux_config(void);
 static void pwm_isr(void);

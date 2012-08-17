@@ -15,7 +15,7 @@
 
 #include "sdk.h"
 #include "sdma_script_info.h"
-#include "sdma/inc/sdma.h"
+#include "sdma/sdma.h"
 
 /*--------------------------------- macros --------------------------------------*/
 

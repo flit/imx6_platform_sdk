@@ -10,7 +10,7 @@
  * @brief IPU IDMAC configuration
  * @ingroup diag_ipu
  */
-#include "ipu_common.h"
+#include "ipu/ipu_common.h"
 
 inline void ipu_cpmem_set_field(uint32_t base, int32_t w, int32_t bit, int32_t size, uint32_t v)
 {

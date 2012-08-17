@@ -13,7 +13,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "ipu_common.h"
+#include "ipu/ipu_common.h"
 #include "sdk.h"
 #include "hardware.h"
 

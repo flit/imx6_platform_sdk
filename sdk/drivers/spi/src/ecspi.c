@@ -6,7 +6,7 @@
  */
 #include "ecspi.h"
 #include "hardware.h"
-#include "ecspi_ifc.h"
+#include "spi/ecspi_ifc.h"
 #include "iomux_config.h"
 
 /*-------------------------------------------- Static Variable --------------------------------------------*/

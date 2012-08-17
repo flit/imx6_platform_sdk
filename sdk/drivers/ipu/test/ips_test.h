@@ -15,7 +15,7 @@
 #define __IPS_TEST__
 
 #include "hardware.h"
-#include "ipu_common.h"
+#include "ipu/ipu_common.h"
 
 #define MEM_PRO_UNCACHEABLE
 #define MEM_PRO_UNBUFFERABEL

@@ -239,8 +239,6 @@ LDINC += -L$(CC_LIB) -L$(LIBC_LDPATH)
 # 		 -isystem $(LIBC_CFLAGS)
 
 INCLUDES += \
-    -I. \
-    -I../inc \
     -I$(SDK_ROOT)/sdk \
     -I$(SDK_ROOT)/sdk/include  \
     -I$(SDK_ROOT)/sdk/include/$(TARGET) \

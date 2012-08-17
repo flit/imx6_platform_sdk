@@ -14,9 +14,9 @@
 #include <string.h>
 
 #include "hardware.h"
-#include "vpu_util.h"
-#include "vpu_io.h"
-#include "vpu_debug.h"
+#include "vpu/vpu_util.h"
+#include "vpu/vpu_io.h"
+#include "vpu/vpu_debug.h"
 #include "BitAsmTable_CODA_960.h"
 
 #define MAX_VSIZE       8192

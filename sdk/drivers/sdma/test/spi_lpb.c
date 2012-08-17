@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 #include "ecspi.h"
-#include "sdma/inc/sdma.h"
+#include "sdma/sdma.h"
 #include "sdma_event.h"
 #include "sdma_test.h"
 #include "hardware.h"

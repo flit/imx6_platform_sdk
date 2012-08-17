@@ -16,7 +16,7 @@
 #include "hardware.h"
 #include "ipu_reg_def.h"
 #include "buffers.h"
-#include "ldb/inc/ldb_def.h"
+#include "ldb/ldb_def.h"
 
 #define FRAME_MAX_WIDTH		1920
 #define FRAME_MAX_HEIGHT	1088

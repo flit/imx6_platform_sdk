@@ -13,9 +13,10 @@
  */
 
 #include <stdio.h>
+#include "sdk.h"
 #include "hardware.h"
-#include "audio/inc/audio.h"
-#include "audio/inc/imx-ssi.h"
+#include "audio/audio.h"
+#include "audio/imx-ssi.h"
 
 #define SSI_DEBUG 0
 

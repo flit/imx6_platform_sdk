@@ -11,7 +11,7 @@
  * @ingroup diag_ipu
  */
 
-#include "ipu_common.h"
+#include "ipu/ipu_common.h"
 #include "iomux_config.h"
 #include "registers/regsipu.h"
 

@@ -11,7 +11,7 @@
  * @ingroup diag_camera
  */
 
-#include "camera_def.h"
+#include "camera/camera_def.h"
 
 #if defined (BOARD_SMART_DEVICE) && defined (BOARD_VERSION2)
 #define i2c_base I2C2_BASE_ADDR

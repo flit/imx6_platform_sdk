@@ -10,6 +10,7 @@
  *
  */
 
+#include "usdhc/usdhc_ifc.h"
 #include "usdhc.h"
 #include "hardware.h"
 #include "interrupt.h"

@@ -11,7 +11,7 @@
  *
  * @ingroup diag_mipi
  */
-#include "mipi_common.h"
+#include "mipi/mipi_common.h"
 
 cam_firmware_t ov5640_mipi_VGA_640x480_30fps_YUV422_fm[] = {
     {0x3103, 0x11, 0, 0}

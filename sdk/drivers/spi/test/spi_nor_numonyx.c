@@ -7,7 +7,7 @@
 
 #include "hardware.h"
 #include "spi_nor_numonyx.h"
-#include "spi/inc/ecspi_ifc.h"
+#include "spi/ecspi_ifc.h"
 
 extern dev_ecspi_e dev_spi_nor;
 

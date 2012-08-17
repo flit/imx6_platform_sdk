@@ -19,7 +19,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 //#include <arm_ghs.h>
-#include "usdhc/inc/usdhc_ifc.h"
+#include "usdhc/usdhc_ifc.h"
 #include <assert.h>
 
 extern uint32_t g_usdhc_base_addr;

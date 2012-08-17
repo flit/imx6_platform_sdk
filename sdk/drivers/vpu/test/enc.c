@@ -8,7 +8,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "vpu_test.h"
-#include "vpu_debug.h"
+#include "vpu/vpu_debug.h"
 
 static int32_t frameRateInfo = 0;
 

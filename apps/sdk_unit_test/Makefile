@@ -5,6 +5,9 @@
 include $(SDK_ROOT)/mk/common.mk
 
 
+# Provide default value of TEST if not set.
+TEST ?= ALL
+
 # Test selection configuration.
 ifeq "$(TEST)" "ALL"
 DEFINES +=-DALL_TEST_ENABLE

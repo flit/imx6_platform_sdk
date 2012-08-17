@@ -14,8 +14,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "hardware.h"
-#include "ldb_def.h"
-#include "ipu/inc/ipu_common.h"
+#include "ldb/ldb_def.h"
+#include "ipu/ipu_common.h"
 
 inline void ldb_write_field(unsigned int reg, int bit_offset, int bit_width, unsigned int val)
 {

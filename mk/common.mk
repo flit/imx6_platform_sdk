@@ -28,8 +28,7 @@ space := $(empty) $(empty)
 # At this point, the path to this makefile was just appended to MAKEFILE_LIST. We make
 # use of this to get the root directory of the SDK. This variable is exported to child
 # instances of make.
-SDK_ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))../)
-export SDK_ROOT
+export SDK_ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))../)
 
 # Build root directory paths.
 SDK_LIB_ROOT = $(SDK_ROOT)/sdk

@@ -465,9 +465,6 @@ void csi_port0_iomux_config(void)
     /* config CSI0_MCLK pad for ipu instance CSI0_HSYNC port */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_MCLK, ALT0);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, 0x130B0);
-    /* config CSI0_DATA_EN pad for ipu instance CSI0_DATA_EN port */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA_EN, ALT0);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_DATA_EN, 0x130B0);
     /* config CSI0_VSYNC pad for ipu instance CSI0_VSYNC port */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_VSYNC, ALT0);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_CSI0_VSYNC, 0x130B0);

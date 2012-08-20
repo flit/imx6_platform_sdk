@@ -78,8 +78,8 @@ int32_t ips_resize_test(ips_dev_panel_t * panel)
                 rot_info.height_in = panel->height;
                 rot_info.width_out = rot_info.height_in;
                 rot_info.height_out = rot_info.width_in;
-                rot_info.strideline_in = rot_info.width_in * 2 - 1;
-                rot_info.strideline_out = rot_info.width_out * 2 - 1;
+                rot_info.strideline_in = rot_info.width_in * 2;
+                rot_info.strideline_out = rot_info.width_out * 2;
                 rot_info.pixel_format_in = INTERLEAVED_RGB;
                 rot_info.pixel_format_out = INTERLEAVED_RGB;
                 rot_info.rot = 1;
@@ -95,8 +95,8 @@ int32_t ips_resize_test(ips_dev_panel_t * panel)
                 res_info.height_in = rot_info.height_out;
                 res_info.height_out = panel->height;
                 res_info.width_out = res_info.height_out * res_info.width_in / res_info.height_in;
-                res_info.strideline_in = res_info.width_in * 2 - 1;
-                res_info.strideline_out = panel->width * 2 - 1;
+                res_info.strideline_in = res_info.width_in * 2;
+                res_info.strideline_out = panel->width * 2;
                 res_info.pixel_format_in = INTERLEAVED_RGB;
                 res_info.pixel_format_out = INTERLEAVED_RGB;
                 res_info.addr0_in = rot_out_mem;
@@ -137,8 +137,8 @@ int32_t ips_resize_test(ips_dev_panel_t * panel)
                 rot_info.height_in = panel->width;
                 rot_info.width_out = rot_info.height_in;
                 rot_info.height_out = rot_info.width_in;
-                rot_info.strideline_in = rot_info.width_in * 2 - 1;
-                rot_info.strideline_out = rot_info.width_out * 2 - 1;
+                rot_info.strideline_in = rot_info.width_in * 2;
+                rot_info.strideline_out = rot_info.width_out * 2;
                 rot_info.pixel_format_in = INTERLEAVED_RGB;
                 rot_info.pixel_format_out = INTERLEAVED_RGB;
                 rot_info.rot = 1;

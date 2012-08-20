@@ -36,7 +36,7 @@ int32_t sensor_capture(void)
     /*step 2: setup IPU: from csi to display */
     ipu1_iomux_config();
     ipu_sw_reset(ipu_index, 1000);
-    ipu_capture_setup(ipu_index, 640, 480, panel);
+    ipu_capture_setup(ipu_index, CSI_PARALLEL, 640, 480, 640, 480, panel);
 
     /*step 3: setup sensor */
     sensor = search_sensor();

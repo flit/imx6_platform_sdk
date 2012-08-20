@@ -61,8 +61,8 @@ int32_t ips_rotate_test(ips_dev_panel_t * panel)
     rot_info.height_in = 480;
     rot_info.width_out = rot_info.height_in;
     rot_info.height_out = rot_info.width_in;
-    rot_info.strideline_in = panel->width * 2 - 1;
-    rot_info.strideline_out = panel->width * 2 - 1;
+    rot_info.strideline_in = panel->width * 2;
+    rot_info.strideline_out = panel->width * 2;
     rot_info.pixel_format_in = INTERLEAVED_RGB;
     rot_info.pixel_format_out = INTERLEAVED_RGB;
     rot_info.rot = 1;

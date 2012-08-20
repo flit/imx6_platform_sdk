@@ -101,8 +101,12 @@
 #define OS81050_I2C_BASE    I2C3_BASE_ADDR
 #define OS81050_I2C_ID      (0x40 >> 1)
 
-#define ADV7180_I2C_BASE    I2C3_BASE_ADDR
 #define ADV7180_I2C_ID      (0x42 >> 1)
+#if defined (BOARD_EVB)
+#define ADV7180_I2C_BASE 	I2C1_BASE_ADDR
+#else
+#define ADV7180_I2C_BASE    I2C3_BASE_ADDR
+#endif
 
 /* 
  * BOARD_SMART_DEVICE/BOARD_SABRE_LITE for compile error

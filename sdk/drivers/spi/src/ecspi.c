@@ -37,7 +37,7 @@ static void ecspi_start_transfer(ecspi_register_ptr base, uint16_t brs_bts)
     base->ctrl |= (brs_bts - 1) << ECSPI_CTL_BURST_SHIFT;
 
     /* Clear status */
-    base->status &= ~ECSPI_STS_ALL_MASK;
+    base->status |= ECSPI_STS_ALL_MASK;
 }
 
 static int ecspi_xfer_slv(ecspi_register_ptr base, uint8_t * tx_buf, uint8_t * rx_buf, int bytes)
@@ -91,7 +91,7 @@ static int ecspi_xfer_mst(ecspi_register_ptr base, uint8_t * tx_buf, uint8_t * r
     }
 
     /* Clear status */
-    base->status &= ~ECSPI_STS_TC_MASK;
+    base->status |= ECSPI_STS_TC_MASK;
 
     return SUCCESS;
 }

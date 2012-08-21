@@ -13,11 +13,7 @@
 
 #include "camera_def.h"
 
-#if defined (BOARD_SMART_DEVICE) && defined (BOARD_VERSION2)
-#define i2c_base I2C2_BASE_ADDR
-#else
 #define i2c_base I2C1_BASE_ADDR
-#endif
 
 static int32_t sensor_write_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * pval,
                                 uint16_t is_16bits);
@@ -100,7 +96,7 @@ void sensor_clock_setting(void)
     /*select osc_clk 24MHz, CKO1 output drives cko2 clock */
     writel(0x10e0180, CCM_BASE_ADDR + 0x60);
 #else
-    unsigned int32_t value = 0;
+    uint32_t value = 0;
 
     /*config gpio_0 to be clko */
     writel(0x0, IOMUXC_SW_MUX_CTL_PAD_GPIO_0);

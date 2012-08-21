@@ -15,6 +15,7 @@
 #include "hardware.h"
 
 extern int32_t sensor_capture(void);
+extern int32_t adv7180_capture(void);
 
 typedef struct {
     const char *name;
@@ -24,6 +25,9 @@ typedef struct {
 static camera_test_t camera_tests[] = {
 #if defined(MX53_SMD) || defined(BOARD_SMART_DEVICE)
     {"Sensor capture", sensor_capture},
+#endif
+#if defined(BOARD_EVB)
+	{"adv7180 capture", adv7180_capture},
 #endif
 };
 

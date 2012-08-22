@@ -123,8 +123,10 @@ AS = $(CROSS_COMPILE)as
 AR = $(CROSS_COMPILE)ar
 OBJCOPY = $(CROSS_COMPILE)objcopy
 
-# Get the compiler directory.
-CC_PREFIX ?= $(dir $(shell which $(CC)))..
+# Get the compiler directory. We have to go through this sillyness in order to support
+# paths with spaces in their names, such as under Cygwin where the CodeSourcery compiler
+# is normally installed under C:\Program Files\.
+CC_PREFIX := $(shell dirname "`which $(CC)`")/..
 
 # CodeSourcery ARM EABI compiler already includes newlib libc.  Use this.
 LIBC_LDPATH = $(CC_PREFIX)/$(CROSS_COMPILE_STRIP)/lib/$(CC_LIB_POST)
@@ -229,7 +231,10 @@ CXXFLAGS += -fno-exceptions -fno-rtti
 # directory.  Need to specify libgcc since our linker does not link
 # against anything, even compiler libs because of -nostdlib.
 LDADD += -lm -lstdc++ -lc -lgcc
-LDINC += -L$(CC_LIB) -L$(LIBC_LDPATH)
+
+# These include paths have to be quoted because they may contain spaces,
+# particularly under cygwin.
+LDINC += -L '$(CC_LIB)' -L '$(LIBC_LDPATH)'
 
 # Indicate gcc and newlib std includes as -isystem so gcc tags and
 # treats them as system directories.

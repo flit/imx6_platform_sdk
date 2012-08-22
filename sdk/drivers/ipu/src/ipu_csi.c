@@ -19,33 +19,54 @@
  * @param width: frame width of camera input
  * @param height: frame height of camera input
  */
-void ipu_csi_config(uint32_t ipu_index, uint32_t source, uint32_t width, uint32_t height,
-                    uint32_t data_format, uint32_t gate_mode)
+void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width, uint32_t raw_height, uint32_t act_width, uint32_t act_height)
 {
-    uint32_t csiVSC = 0, csiHSC = 0;
-    uint32_t csiBottomSkip = 0, csiRightSkip = 0;
-    uint32_t csiFrameHeight = height, csiFrameWidth = width;
+	int hsync_pol, vsync_pol, clock_mode, data_fmt;
+	int hsc, vsc;
+	
+	if (csi_interface == CSI_PARALLEL){
+		hsync_pol = 0;
+		vsync_pol = 0;
+		hsc = 0;
+		vsc = 0x0;
+		clock_mode = CSI_CLK_MODE_GATED_CLK;
+		data_fmt = CSI_YUYV;
+	} else if (csi_interface == CSI_MIPI) {
+		hsync_pol = 0;
+		vsync_pol = 0;
+		hsc = 0;
+		vsc = 0x0;
+		clock_mode = CSI_CLK_MODE_NONGATED_CLK;
+		data_fmt = CSI_UYVY;
+	} else if (csi_interface == CSI_BT656_NTSC_INTERLACED) {
+		hsync_pol = 1;
+		vsync_pol = 0;
+		hsc = 0;
+		vsc = 0xD;
+		clock_mode = CSI_CLK_MODE_BT656_INTERLACED;
+		data_fmt = CSI_UYVY;
+	} else if (csi_interface == CSI_BT656_PAL_INTERLACED) {
+		hsync_pol = 1;
+		vsync_pol = 0;
+		hsc = 0;
+		vsc = 0x0;
+		clock_mode = CSI_CLK_MODE_BT656_INTERLACED;
+		data_fmt = CSI_UYVY;
+	} else if (csi_interface == CSI_BT656_NTSC_PROGRESSIVE || csi_interface == CSI_BT656_PAL_PROGRESSIVE){
+		hsync_pol = 1;
+		vsync_pol = 0;
+		hsc = 0;
+		vsc = 0x0;
+		clock_mode = CSI_CLK_MODE_BT656_PROGRESSIVE;
+		data_fmt = CSI_UYVY;
+	} else {
+		printf("Unsupport CSI interface\n");
+	}
 
     /* setting CSI data source, default is from parallel interface */
-    if (source == CSI_PARALLEL) {
-        ipu_write_field(ipu_index, IPU_IPU_CONF__CSI1_DATA_SOURCE, 0);  //csi1 data source is parallel
-        ipu_write_field(ipu_index, IPU_IPU_CONF__CSI0_DATA_SOURCE, 0);  //csi0 data souce is parallel
-    } else if (source == CSI_MIPI) {
-        ipu_write_field(ipu_index, IPU_IPU_CONF__CSI1_DATA_SOURCE, 1);  //csi1 data source is mipi
+   if (csi_interface == CSI_MIPI) {
         ipu_write_field(ipu_index, IPU_IPU_CONF__CSI0_DATA_SOURCE, 1);  //csi0 data souce is mipi
-    }
-
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_DEST, 4);  //destination is IDMAC
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PRTCL, gate_mode); // Gated clock mode
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DIV_RATIO, 0);  //division ratio of HSP_CLK into SENSOR_MCLK
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_WIDTH, 1); //8bits per color
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_PACK_TIGHT, 0); //only when data format is RGB/YUV, and data_width > 8
-
-    /* data format setting */
-    if (source == CSI_PARALLEL) {
-        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_DATA_FORMAT, data_format); // YUV422
-    } else if (source == CSI_MIPI) {
-        switch (data_format) {
+        switch (data_fmt) {
         case CSI_UYVY:
             ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI0, 0x1E);   //(UYVY)MIPI_YUV422 8bit
             break;
@@ -66,43 +87,60 @@ void ipu_csi_config(uint32_t ipu_index, uint32_t source, uint32_t width, uint32_
         ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI1, 0);
         ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI2, 0);
         ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI3, 0);
-    } else {
-        printf("\nWrong interface! Only Parallel and MIPI is supported!\n");
-        return;
     }
 
-    /* set parallel interface information */
-    if (source == CSI_PARALLEL) {
-        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_EN_POL, 0);
-        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_EXT_VSYNC, 1);
-        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PIX_CLK_POL, 0);   // pos edge
-        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_POL, 0);
-        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_HSYNC_POL, 0);
-        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_VSYNC_POL, 0);
-    }
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_DEST, 4);  //destination is IDMAC
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PRTCL, clock_mode); // Gated clock mode
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DIV_RATIO, 0);  //division ratio of HSP_CLK into SENSOR_MCLK
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_WIDTH, 1); //8bits per color
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_PACK_TIGHT, 0); //only when data format is RGB/YUV, and data_width > 8
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_DATA_FORMAT, data_fmt); // YUV422
+
+	/* set parallel interface information */
+	if (csi_interface != CSI_MIPI) {
+		ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_EN_POL, 0);
+		ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_EXT_VSYNC, 1);
+		ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PIX_CLK_POL, 0);   // pos edge
+		ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_POL, 0);
+		ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_HSYNC_POL, hsync_pol);
+		ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_VSYNC_POL, vsync_pol);
+	}
 
     /*CSI0 common sensor configuration for PApa */
     /*set sensor frame size */
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_FRM_SIZE__CSI0_SENS_FRM_HEIGHT, csiFrameHeight - 1);
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_FRM_SIZE__CSI0_SENS_FRM_WIDTH, csiFrameWidth - 1);
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_FRM_SIZE__CSI0_SENS_FRM_HEIGHT, raw_height - 1);
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_FRM_SIZE__CSI0_SENS_FRM_WIDTH, raw_width - 1);
 
     /*CSI_ACT_FRM_SIZE */
-    ipu_write_field(ipu_index, IPU_CSI0_ACT_FRM_SIZE__CSI0_ACT_FRM_HEIGHT,
-                    (csiFrameHeight - 1 - csiVSC - csiBottomSkip));
-    ipu_write_field(ipu_index, IPU_CSI0_ACT_FRM_SIZE__CSI0_ACT_FRM_WIDTH,
-                    (csiFrameWidth - 1 - csiHSC - csiRightSkip));
+    ipu_write_field(ipu_index, IPU_CSI0_ACT_FRM_SIZE__CSI0_ACT_FRM_HEIGHT, act_height - 1);
+    ipu_write_field(ipu_index, IPU_CSI0_ACT_FRM_SIZE__CSI0_ACT_FRM_WIDTH, act_width - 1);
 
     /*CSI_OUT_FRM_CTRL */
     ipu_write_field(ipu_index, IPU_CSI0_OUT_FRM_CTRL__CSI0_HORZ_DWNS, 0);
     ipu_write_field(ipu_index, IPU_CSI0_OUT_FRM_CTRL__CSI0_VERT_DWNS, 0);
-    ipu_write_field(ipu_index, IPU_CSI0_OUT_FRM_CTRL__CSI0_HSC, csiHSC);
-    ipu_write_field(ipu_index, IPU_CSI0_OUT_FRM_CTRL__CSI0_VSC, csiVSC);
+    ipu_write_field(ipu_index, IPU_CSI0_OUT_FRM_CTRL__CSI0_HSC, hsc);
+    ipu_write_field(ipu_index, IPU_CSI0_OUT_FRM_CTRL__CSI0_VSC, vsc);
 
     ipu_write_field(ipu_index, IPU_IPU_CONF__CSI_SEL, 0);
     ipu_write_field(ipu_index, IPU_IPU_CONF__CSI0_EN, 1);
 
-    //???? mipi has IPU_CSI0_CPD_CTRL__ADDR
-    ipu_write_field(ipu_index, IPU_CSI0_CPD_CTRL__CSI0_CPD, 0);
+	if (clock_mode == CSI_CLK_MODE_BT656_PROGRESSIVE) {
+		ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_1__FULL, 0x40030);
+		ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_3__FULL, 0xFF0000);
+	} else if (clock_mode == CSI_CLK_MODE_BT656_INTERLACED) {
+		/*
+		 * Field0BlankEnd = 0x6 (FVH 0x3), Field0BlankStart = 0x2 (FVH 0x2),
+		 * Field0ActiveEnd = 0x4 (FVH 0x1), Field0ActiveStart = 0 (FVH 0x0)
+		 */
+		ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_1__FULL, 0xD07DF);
+		/*
+		 * Field0BlankEnd = 0x7 (FVH 0x7), Field0BlankStart = 0x3 (FVH 0x6),
+		 * Field0ActiveEnd = 0x5 (FVH 0x5), Field0ActiveStart = 0x1 (FVH 0x4)
+		 */
+		ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_2__FULL, 0x40596);
+		ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_3__FULL, 0xFF0000);
+		ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_1__CSI0_CCIR_ERR_DET_EN, 1);
+	}
 }
 
 /*!

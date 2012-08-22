@@ -345,6 +345,17 @@ typedef enum {
     CSI_JPEG,
 } ips_csi_colorimetry_e;
 
+typedef enum {
+	CSI_CLK_MODE_GATED_CLK = 0,
+	CSI_CLK_MODE_NONGATED_CLK,
+	CSI_CLK_MODE_BT656_PROGRESSIVE,
+	CSI_CLK_MODE_BT656_INTERLACED,
+	CSI_CLK_MODE_BT1120_PROGRESSIVE_DDR,
+	CSI_CLK_MODE_BT1120_PROGRESSIVE_SDR,
+	CSI_CLK_MODE_BT1120_INTERLACED_DDR,
+	CSI_CLK_MODE_BT1120_INTERLACED_SDR,
+} ips_csi_clk_mode_e;
+
 enum disp_dev_flag {
     EPSON_VGA,
     CLAA_WVGA,
@@ -395,6 +406,10 @@ enum {
 enum {
     CSI_PARALLEL,
     CSI_MIPI,
+    CSI_BT656_NTSC_PROGRESSIVE,
+    CSI_BT656_PAL_PROGRESSIVE,
+    CSI_BT656_NTSC_INTERLACED,
+    CSI_BT656_PAL_INTERLACED,
 };
 
 typedef struct {
@@ -435,6 +450,7 @@ typedef struct {
     uint32_t u_offset;          //uoffset
     uint32_t bpp;
     uint32_t so;
+    uint32_t ilo;
     uint32_t bm;
     uint32_t rot;
     uint32_t hf;
@@ -578,8 +594,8 @@ void ipu_display_setup(uint32_t ipu_index, uint32_t mem_addr0, uint32_t mem_addr
 void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry,
                             uint32_t fg_width, uint32_t fg_height, uint32_t fp_xp, uint32_t fp_yp,
                             uint32_t alpha);
-void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_height,
-                       ips_dev_panel_t * panel);
+void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width, uint32_t raw_height, uint32_t act_width, uint32_t act_height, ips_dev_panel_t * panel);
+
 void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_height,
                          ips_dev_panel_t * panel);
 
@@ -599,8 +615,7 @@ void ipu_rotate_idmac_config(uint32_t ipu_index, uint32_t channel_in, uint32_t c
                              ipu_rot_info_t rot_info);
 void ipu_resize_idmac_config(uint32_t ipu_index, uint32_t channel_in, uint32_t channel_out,
                              ipu_res_info_t res_info);
-void ipu_idma_pixel_format_config(uint32_t ipu_index, uint32_t channel, uint32_t pixel_format,
-                                  uint32_t sl, uint32_t ubo);
+void ipu_idma_pixel_format_config(uint32_t ipu_index, uint32_t channel, uint32_t pixel_format, uint32_t so, uint32_t sl, uint32_t ubo);
 int32_t ipu_idmac_channel_busy(int32_t ipu_index, int32_t channel);
 void ipu_idmac_channel_enable(int32_t ipu_index, int32_t channel, int32_t enable);
 void ipu_channel_buf_ready(int32_t ipu_index, int32_t channel, int32_t buf);
@@ -655,8 +670,7 @@ int32_t ipu_ic_task_enable(int32_t ipu_index, int32_t task_type, int32_t task, i
 
 void ipu_write_field(int32_t ipu_index, uint32_t ID_addr, uint32_t ID_mask, uint32_t data);
 
-void ipu_csi_config(uint32_t ipu_index, uint32_t source, uint32_t width, uint32_t height,
-                    uint32_t data_format, uint32_t gate_mode);
+void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width, uint32_t raw_height, uint32_t act_width, uint32_t act_height);
 uint32_t ipu_smfc_fifo_allocate(uint32_t ipu_index, uint32_t channel, uint32_t map,
                                 uint32_t burst_size);
 void ipu_capture_disp_link(uint32_t ipu_index, uint32_t smfc);

@@ -27,6 +27,8 @@ uint8_t in_dec_file_2[] = "indir/clip_2.264";
 //#define HDMI_RESOLUTION_720P60
 #define HDMI_RESOLUTION_1080P60
 
+static int bufSwitchIndex[MAX_NUM_INSTANCE];
+
 /*
  * Fill the bitstream to VPU ring buffer
  */
@@ -597,62 +599,57 @@ void decoder_frame_display(void)
     struct frame_buf *display_buffer = NULL;
     uint32_t id;
 
-    static int32_t vdoa_tx = 0;
     uint32_t proc_buffer, disp_buffer;
-                        static int buffer_switch = 0;
-                        buffer_switch++;
 
     for (i = 0; i < MAX_NUM_INSTANCE; i++) {
         if (vpu_hw_map->codecInstPool[i].inUse && vpu_hw_map->codecInstPool[i].initDone) {
             if (dec_fifo_pop(&gDecFifo[i], &display_buffer, &id) != -1) {
+                bufSwitchIndex[i] = (bufSwitchIndex[i] + 1) % 2;
                 VPU_DecClrDispFlag(gDecInstance[i]->handle, disp_clr_index[i]);
                 disp_clr_index[i] = id;
+
                 if (gDecInstance[i]->cmdl->mapType != LINEAR_FRAME_MAP) {
+                    if (i % 2 == 0) {
+                        if (bufSwitchIndex[i] % 2) {
+                            proc_buffer = IPU1_CH23_EBA0;
+                            disp_buffer = IPU1_CH23_EBA0;
+                        } else {
+                            proc_buffer = IPU1_CH23_EBA1;
+                            disp_buffer = IPU1_CH23_EBA1;
+                        }
+                    } else {
+                        if (bufSwitchIndex[i] % 2) {
+                            proc_buffer = IPU2_CH23_EBA0;
+                            disp_buffer = IPU2_CH23_EBA0;
+                        } else {
+                            proc_buffer = IPU2_CH23_EBA1;
+                            disp_buffer = IPU2_CH23_EBA1;
+                        }
+                    }
                     if (gDecInstance[i]->cmdl->mapType == TILED_FRAME_MB_RASTER_MAP) {
                         vdoa_clear_interrupt();
                         vdoa_setup(gDecInstance[i]->picwidth, gDecInstance[i]->picheight,
                                    gDecInstance[i]->stride, FRAME_MAX_WIDTH, 0, 0, 16, 0);
                         vdoa_start(display_buffer->addrY & 0xFFFFF000,
                                    gDecInstance[i]->picwidth * gDecInstance[i]->picheight,
-                                   (i % 2) ? CH23_EBA1 : CH23_EBA0,
-                                   FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
-                        while ((!vdoa_check_tx_eot()) && (vdoa_tx != 0)) ;
-                        vdoa_tx = 1;
+                                   proc_buffer, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
+                        while (!vdoa_check_tx_eot()) ;
+                        vdoa_clear_interrupt();
                     } else {    /*for tiled field mode */
 
                         int top_field = 0, bot_field = 0;
 
-                        if (i % 2 == 0) {
-                            if (buffer_switch % 2) {
-                                proc_buffer = IPU1_CH23_EBA0;
-                                disp_buffer = IPU1_CH23_EBA0;
-                            } else {
-                                proc_buffer = IPU1_CH23_EBA1;
-                                disp_buffer = IPU1_CH23_EBA1;
-                            }
-                        } else {
-                            if (buffer_switch % 2) {
-                                proc_buffer = IPU2_CH23_EBA0;
-                                disp_buffer = IPU2_CH23_EBA0;
-                            } else {
-                                proc_buffer = IPU2_CH23_EBA1;
-                                disp_buffer = IPU2_CH23_EBA1;
-                            }
-                        }
-
                         top_field = display_buffer->addrY & 0xFFFFF000;
                         bot_field = (display_buffer->addrCb & 0x00FFFFF0) << 8;
-                        vdoa_clear_interrupt();
                         vdoa_setup(gDecInstance[i]->orig_picwidth,
                                    gDecInstance[i]->orig_picheight / 2, gDecInstance[i]->stride,
                                    FRAME_MAX_WIDTH * 2, 1, 0, 8, 0);
                         vdoa_start(top_field & 0xFFFFF000,
                                    gDecInstance[i]->picwidth * gDecInstance[i]->picheight / 2,
                                    proc_buffer, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
-                        vdoa_tx = 1;
-                        while ((!vdoa_check_tx_eot()) && (vdoa_tx != 0)) ;
-
+                        while (!vdoa_check_tx_eot()) ;
                         vdoa_clear_interrupt();
+
                         vdoa_setup(gDecInstance[i]->orig_picwidth,
                                    gDecInstance[i]->orig_picheight / 2, gDecInstance[i]->stride,
                                    FRAME_MAX_WIDTH * 2, 1, 0, 8, 0);
@@ -660,12 +657,11 @@ void decoder_frame_display(void)
                                    gDecInstance[i]->picwidth * gDecInstance[i]->picheight / 2,
                                    proc_buffer + gDecInstance[i]->stride,
                                    FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
-                        vdoa_tx = 1;
-                        while ((!vdoa_check_tx_eot()) && (vdoa_tx != 0)) ;
+                        while (!vdoa_check_tx_eot()) ;
+                        vdoa_clear_interrupt();
 
                     }
                     ipu_refresh(i % 2 + 1, disp_buffer);    // totally support two instance, inst0 on ipu1, inst2 on ipu2
-
                 } else {
                     ipu_refresh(i % 2 + 1, display_buffer->addrY);  // totally support two instance, inst0 on ipu1, inst2 on ipu2
                 }
@@ -821,7 +817,9 @@ int32_t decode_test(void *arg)
     int32_t file_in_1 = 0, file_in_2 = 0;
 
     while (i < MAX_NUM_INSTANCE) {
-        isFrameDrop[i++] = 0;   //initialize the frame drop flag
+        isFrameDrop[i] = 0;     //initialize the frame drop flag
+        bufSwitchIndex[i] = 0;  //initialize the buffer switch index
+        i++;
     }
 
     printf("please select decoder instance:(1 or 2)\n");
@@ -899,8 +897,8 @@ int32_t decode_test(void *arg)
     } while (revchar == (uint8_t) 0xFF);
 
     if ((revchar == 'Y') || (revchar == 'y')) {
-        //   map_type = TILED_FRAME_MB_RASTER_MAP;
-        map_type = TILED_FIELD_MB_RASTER_MAP;
+        map_type = TILED_FRAME_MB_RASTER_MAP;
+        //map_type = TILED_FIELD_MB_RASTER_MAP;
         memset((void *)IPU1_CH23_EBA0, 0x10, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
         memset((void *)IPU1_CH23_EBA0 + FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT, 0x80,
                FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT / 2);
@@ -1038,11 +1036,10 @@ int32_t decode_test(void *arg)
 
         if (vplay_mode == VPLAY_FREE_RUN) {
             decoder_frame_display();
-        } else if (isFrameDrop[inst])
-		{
+        } else if (isFrameDrop[inst]) {
             decoder_frame_display();
-			isFrameDrop[inst] -- ;
-		}
+            isFrameDrop[inst]--;
+        }
     }
 
 /*release all the buffers*/

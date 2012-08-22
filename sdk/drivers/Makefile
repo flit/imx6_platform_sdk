@@ -73,6 +73,7 @@ usdhc/src/usdhc_mmc.c
 usdhc/src/usdhc_sd.c
 usdhc/src/usdhc.c
 vdoa/src/vdoa.c
+video/src/adv7180.c
 vpu/src/vpu_gdi.c
 vpu/src/vpu_io.c
 vpu/src/vpu_lib.c

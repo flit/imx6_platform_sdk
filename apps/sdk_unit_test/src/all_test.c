@@ -37,6 +37,7 @@ extern int eim_test();
 extern int gpu_test(void);
 extern int camera_test(void);
 extern int wdog_test(void);
+extern int camera_test(void);
 extern void usb_test(void);
 
 #if CHIP_MX6DQ

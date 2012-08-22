@@ -69,12 +69,12 @@ int32_t ips_csc_test(ips_dev_panel_t * panel)
     res_info.pixel_format_in = INTERLEAVED_RGB;
     res_info.width_in = panel->width;
     res_info.height_in = panel->height;
-    res_info.strideline_in = 2 * res_info.width_in - 1;
+    res_info.strideline_in = 2 * res_info.width_in;
     res_info.addr0_out = csc_out_mem;
     res_info.pixel_format_out = NON_INTERLEAVED_YUV420;
     res_info.width_out = res_info.width_in;
     res_info.height_out = res_info.height_in;
-    res_info.strideline_out = res_info.width_out - 1;
+    res_info.strideline_out = res_info.width_out;
     res_info.u_offset_out = res_info.width_out * res_info.height_out;
     ipu_resize_idmac_config(ipu_index, channel_in, channel_out, res_info);
 

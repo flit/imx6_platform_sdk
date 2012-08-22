@@ -190,31 +190,30 @@ void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_
     ipu_di_config(ipu_index, di, panel);
 }
 
-void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_height,
-                       ips_dev_panel_t * panel)
+void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width, uint32_t raw_height, uint32_t act_width, uint32_t act_height, ips_dev_panel_t * panel)
 {
     uint32_t csi_in_channel = CSI_TO_MEM_CH0, disp_channel = MEM_TO_DP_BG_CH23;
     ipu_idmac_info_t idmac_info;
     uint32_t csi_mem0 = CH23_EBA0, csi_mem1 = CH23_EBA1;
-    uint32_t csi_pixel_format = PARTIAL_INTERLEAVED_YUV420;
+    uint32_t csi_pixel_format = NON_INTERLEAVED_YUV420;
 
     /*step1: config the csi: idma channel (csi -- mem), smfc, csi */
-
-    /*setup idma background channel from MEM to display
-       channel: 23
-     */
     memset(&idmac_info, 0, sizeof(ipu_idmac_info_t));
     idmac_info.channel = CSI_TO_MEM_CH0;
     idmac_info.addr0 = csi_mem0;
     idmac_info.addr1 = csi_mem1;
-    idmac_info.width = csi_width;
-    idmac_info.height = csi_height;
+    idmac_info.width = act_width;
+    idmac_info.height = act_height;
     idmac_info.pixel_format = csi_pixel_format;
-    if (csi_pixel_format == INTERLEAVED_RGB) {
-        idmac_info.sl = panel->width * 2 - 1;
+	if (csi_interface == CSI_BT656_NTSC_INTERLACED || csi_interface == CSI_BT656_PAL_INTERLACED)
+    	idmac_info.so = 1;
+	else 
+		idmac_info.so = 0;
+    if (csi_pixel_format >= INTERLEAVED_RGB) {
+        idmac_info.sl = panel->width * 2;
         idmac_info.u_offset = 0;
     } else {
-        idmac_info.sl = panel->width - 1;
+        idmac_info.sl = panel->width;
         idmac_info.u_offset = panel->width * panel->height;
     }
     idmac_info.npb = 15;
@@ -224,7 +223,7 @@ void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_heig
     ipu_smfc_fifo_allocate(ipu_index, 0, 0, 3);
 
     /*step3: config csi for IPU */
-    ipu_csi_config(ipu_index, CSI_PARALLEL, csi_width, csi_height, CSI_YUYV, 0);
+    ipu_csi_config(ipu_index, csi_interface, raw_width, raw_height, act_width, act_height);
 
     /*step4: config display channel: idma, dmfc, dc, dp, di */
     ipu_display_setup(ipu_index, csi_mem0, csi_mem1, csi_pixel_format, panel);
@@ -233,11 +232,11 @@ void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_heig
     ipu_capture_disp_link(ipu_index, 0);
 
     /*step6: paint the other display area to white. */
-    memset((void *)CH23_EBA0, 0xFF, 2 * panel->width * panel->height);
+    memset((void *)CH23_EBA0, 0xFF, panel->width * panel->height);
     memset((void *)(CH23_EBA0 + panel->width * panel->height), 0x80,
            panel->width * panel->height / 2);
 
-    memset((void *)CH23_EBA1, 0xFF, 2 * panel->width * panel->height);
+    memset((void *)CH23_EBA1, 0xFF, panel->width * panel->height);
     memset((void *)(CH23_EBA1 + panel->width * panel->height), 0x80,
            panel->width * panel->height / 2);
 
@@ -253,7 +252,6 @@ void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_he
 {
     uint32_t csi_in_channel = CSI_TO_MEM_CH0;
     ipu_idmac_info_t idmac_info;
-    uint32_t data_format = CSI_UYVY;
 
     /*step1: config the csi: idma channel (csi -- mem), smfc, csi */
 
@@ -267,7 +265,7 @@ void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_he
     idmac_info.width = csi_width;
     idmac_info.height = csi_height;
     idmac_info.pixel_format = PARTIAL_INTERLEAVED_YUV420;
-    idmac_info.sl = panel->width - 1;
+    idmac_info.sl = panel->width;
     idmac_info.u_offset = panel->width * panel->height;
     idmac_info.npb = 15;
     ipu_general_idmac_config(ipu_index, &idmac_info);
@@ -276,7 +274,7 @@ void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_he
     ipu_smfc_fifo_allocate(ipu_index, 0, 0, 3);
 
     /*step3: config csi for IPU */
-    ipu_csi_config(ipu_index, CSI_MIPI, csi_width, csi_height, data_format, 1);
+    ipu_csi_config(ipu_index, CSI_MIPI, csi_width, csi_height, csi_width, csi_height);
 
     /*step4: config display channel: idma, dmfc, dc, dp, di */
     ipu_display_setup(ipu_index, CH23_EBA0, CH23_EBA1, PARTIAL_INTERLEAVED_YUV420, panel);

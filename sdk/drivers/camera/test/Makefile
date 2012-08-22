@@ -2,8 +2,9 @@ include $(SDK_ROOT)/mk/common.mk
 
 
 define SOURCES
-camera_test.c
-sensor_capture.c
+	adv7180_capture.c
+	camera_test.c
+	sensor_capture.c
 endef
 
 

@@ -14,7 +14,7 @@
 #include "hardware.h"
 #include "usdhc_host.h"
 #include "usdhc_mmc.h"
-#include "usdhc/inc/usdhc_ifc.h"
+#include "usdhc/usdhc_ifc.h"
 
 static struct csd_struct csd_reg;
 static uint32_t ext_csd_data[BLK_LEN / FOUR];

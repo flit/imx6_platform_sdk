@@ -15,13 +15,47 @@
 static int usdhc_test_pio(void);
 static int usdhc_test_adma(void);
 static int usdhc_test_adma_intr(void);
+static int usdhc_test_emmc(void);
+static int emmc_test_dump(void);
+static int emmc_test_boot(void);
+static int emmc_test_width(void);
+static int emmc_test_ack(void);
 static int mmc_test(unsigned int, unsigned int);
 
 static usdhc_test_t usdhc_tests[] = {
     {"usdhc polling IO", usdhc_test_pio},
     {"usdhc ADMA polling", usdhc_test_adma},
     {"usdhc ADMA interrupt", usdhc_test_adma_intr},
+    {"**emmc special", usdhc_test_emmc},
 };
+
+static usdhc_test_t emmc_tests[] = {
+    {"dump configure info", emmc_test_dump},
+    {"set boot partition", emmc_test_boot},
+    {"set bus width", emmc_test_width},
+    {"set boot ack", emmc_test_ack},
+};
+
+static char *emmc_partition[] = {
+    "user partition",
+    "boot partition #1",
+    "boot partition #2",
+};
+
+static char *emmc_bus_width[] = {
+    "1 bit SDR",
+    "4 bit SDR",
+    "8 bit SDR",
+    "4 bit DDR",
+    "8 bit DDR",
+};
+
+static char *emmc_boot_ack[] = {
+    "enable",
+    "disable",
+};
+
+static uint32_t emmc_base_addr;
 
 /* Buffer Definition */
 static int mmc_test_src[MMC_TEST_BUF_SIZE + MMC_CARD_SECTOR_BUFFER];
@@ -109,6 +143,151 @@ static int usdhc_test_adma_intr(void)
     SDHC_INTR_mode = SDHC_ADMA_mode = FALSE;
 
     return retv;
+}
+
+static int emmc_test_dump(void)
+{
+    emmc_print_cfg_info(emmc_base_addr);
+
+    return TRUE;
+}
+
+static int emmc_test_boot(void)
+{
+    int idx;
+    char sel;
+
+    do {
+        printf("Please select:\n");
+
+        for (idx = 0; idx < (sizeof(emmc_partition) / sizeof(char *)); idx++) {
+            printf("\t%d - %s\n", idx, emmc_partition[idx]);
+        }
+        printf("\tx - to exit.\n");
+
+        do {
+            sel = getchar();
+        } while (sel == (char)0xFF);
+
+        if (sel == 'x') {
+            break;
+        }
+
+        idx = sel - '0';
+
+        if ((idx >= 0) && (idx < (sizeof(emmc_partition) / sizeof(char *)))) {
+            mmc_set_boot_partition(emmc_base_addr, idx);
+            break;
+        }
+    } while (TRUE);
+
+    return TRUE;
+}
+
+static int emmc_test_width(void)
+{
+    int idx;
+    char sel;
+
+    do {
+        printf("Please select:\n");
+
+        for (idx = 0; idx < (sizeof(emmc_bus_width) / sizeof(char *)); idx++) {
+            printf("\t%d - %s\n", idx, emmc_bus_width[idx]);
+        }
+        printf("\tx - to exit.\n");
+
+        do {
+            sel = getchar();
+        } while (sel == (char)0xFF);
+
+        if (sel == 'x') {
+            break;
+        }
+
+        idx = sel - '0';
+
+        if ((idx >= 0) && (idx < (sizeof(emmc_bus_width) / sizeof(char *)))) {
+            mmc_set_boot_bus_width(emmc_base_addr, idx);
+            break;
+        }
+    } while (TRUE);
+
+    return TRUE;
+}
+
+static int emmc_test_ack(void)
+{
+    int idx;
+    char sel;
+
+    do {
+        printf("Please select:\n");
+
+        for (idx = 0; idx < (sizeof(emmc_boot_ack) / sizeof(char *)); idx++) {
+            printf("\t%d - %s\n", idx, emmc_boot_ack[idx]);
+        }
+        printf("\tx - to exit.\n");
+
+        do {
+            sel = getchar();
+        } while (sel == (char)0xFF);
+
+        if (sel == 'x') {
+            break;
+        }
+
+        idx = sel - '0';
+
+        if ((idx >= 0) && (idx < (sizeof(emmc_boot_ack) / sizeof(char *)))) {
+            mmc_set_boot_ack(emmc_base_addr, !idx);
+            break;
+        }
+    } while (TRUE);
+
+    return TRUE;
+}
+
+static int usdhc_test_emmc(void)
+{
+    int idx;
+    char sel;
+
+    printf("\n\tInitializing eMMC chip.\n");
+
+    emmc_base_addr = USDHC3_BASE_ADDR;
+
+    if (FAIL == card_emmc_init(emmc_base_addr)) {
+        printf("Initialize eMMC failed.\n");
+        return FALSE;
+    }
+
+    do {
+        printf("Please select function:\n");
+        for (idx = 0; idx < (sizeof(emmc_tests) / sizeof(usdhc_test_t)); idx++) {
+            printf("\t%d - %s\n", idx, emmc_tests[idx].name);
+        }
+        printf("\tx - to exit.\n");
+
+        do {
+            sel = getchar();
+        } while (sel == (char)0xFF);
+
+        if (sel == 'x') {
+            printf("\nTest exit.\n");
+            break;
+        }
+
+        idx = sel - '0';
+
+        if ((idx >= 0) && (idx < (sizeof(emmc_tests) / sizeof(usdhc_test_t)))) {
+            printf("\n");
+            emmc_tests[idx].test();
+        }
+
+    } while (TRUE);
+
+    return TRUE;
 }
 
 static int mmc_test(unsigned int bus_width, unsigned int base_address)

@@ -216,6 +216,7 @@ extern int card_trans_status(int);
 extern int card_get_port(int);
 
 extern int mmc_init(int, int);
+extern int emmc_init(int);
 extern int mmc_voltage_validation(int);
 
 extern int sd_init(int, int);

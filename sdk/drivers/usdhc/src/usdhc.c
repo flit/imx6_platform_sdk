@@ -158,6 +158,37 @@ int card_init(int base_address, int bus_width)
     return init_status;
 }
 
+int card_emmc_init(int base_address)
+{
+    int init_status = FAIL;
+
+    /* Initialize uSDHC Controller */
+    host_init(base_address);
+
+    /* Software Reset to Interface Controller */
+    host_reset(base_address, ESDHC_ONE_BIT_SUPPORT, ESDHC_LITTLE_ENDIAN_MODE);
+
+    /* Enable Identification Frequency */
+    host_cfg_clock(base_address, IDENTIFICATION_FREQ);
+
+    /* Send Init 80 Clock */
+    host_init_active(base_address);
+
+    /* Issue Software Reset to card */
+    if (card_software_reset(base_address) == FAIL) {
+        return init_status;
+    }
+
+    /* MMC Voltage Validation */
+    else if (mmc_voltage_validation(base_address) == SUCCESS) {
+
+        /* MMC Initialization */
+        init_status = emmc_init(base_address);
+    }
+
+    return init_status;
+}
+
 #if 0
 int card_get_csd(int base_address)
 {
@@ -168,8 +199,7 @@ int card_get_csd(int base_address)
     int card_address = (card_rca << RCA_SHIFT);
 
     /* Configure CMD9 for MMC/SD card */
-    mxcmci_cmd_config(&cmd, CMD9, card_address, READ, RESPONSE_136,
-                      DATA_PRESENT_NONE, TRUE, FALSE);
+    mxcmci_cmd_config(&cmd, CMD9, card_address, READ, RESPONSE_136, DATA_PRESENT_NONE, TRUE, FALSE);
 
     if (host_send_cmd(base_address, &cmd) == SUCCESS) {
         response.format = RESPONSE_136;
@@ -281,8 +311,7 @@ int card_trans_status(int base_address)
     card_address = usdhc_device[port].rca << RCA_SHIFT;
 
     /* Configure CMD13 */
-    card_cmd_config(&cmd, CMD13, card_address, READ, RESPONSE_48,
-                    DATA_PRESENT_NONE, TRUE, TRUE);
+    card_cmd_config(&cmd, CMD13, card_address, READ, RESPONSE_48, DATA_PRESENT_NONE, TRUE, TRUE);
 
     usdhc_printf("Send CMD13.\n");
 

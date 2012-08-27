@@ -18,6 +18,20 @@
 #define FAIL 1
 #endif
 
+typedef enum {
+    EMMC_PART_USER,
+    EMMC_PART_BOOT1,
+    EMMC_PART_BOOT2
+} emmc_part_e;
+
+typedef enum {
+    EMMC_BOOT_SDR1,
+    EMMC_BOOT_SDR4,
+    EMMC_BOOT_SDR8,
+    EMMC_BOOT_DDR4,
+    EMMC_BOOT_DDR8
+} emmc_bus_width_e;
+
 /*
  * Whether to enable ADMA when read/write from/to card.
  * If enabled, then use ADMA for transfer, or else, use polling IO
@@ -65,5 +79,14 @@ extern int card_data_write(int, int *, int, int);
  * status: Store the readback status. 0: busy, 1: success, 2: error
  */
 extern int card_xfer_result(int, int *);
+
+/*
+ * eMMC specific functions
+ */
+extern int card_emmc_init(int);
+extern void emmc_print_cfg_info(int);
+extern int mmc_set_boot_ack(int, int);
+extern int mmc_set_boot_partition(int, emmc_part_e);
+extern int mmc_set_boot_bus_width(int, emmc_bus_width_e);
 
 #endif

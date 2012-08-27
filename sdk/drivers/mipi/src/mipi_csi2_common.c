@@ -13,8 +13,8 @@
  */
 
 #include <stdio.h>
-#include "mipi_common.h"
-#include "ipu/inc/ipu_common.h"
+#include "mipi/mipi_common.h"
+#include "ipu/ipu_common.h"
 
 #define PREVIEW 1
 #define MIPI_SENSOR_ADDR 0x3C

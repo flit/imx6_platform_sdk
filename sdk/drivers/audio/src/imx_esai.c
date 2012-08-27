@@ -12,9 +12,10 @@
  * @ingroup diag_audio
  */
 
+#include "sdk.h"
 #include "hardware.h"
-#include "audio/inc/audio.h"
-#include "audio/inc/imx_esai.h"
+#include "audio/audio.h"
+#include "audio/imx_esai.h"
 
 #define ESAI_DEBUG	1
 #if ESAI_DEBUG

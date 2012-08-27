@@ -13,8 +13,9 @@
  */
 
 #include <stdio.h>
+#include "sdk.h"
 #include "hardware.h"
-#include "audio/inc/imx-audmux.h"
+#include "audio/imx-audmux.h"
 
 /*!
  * Dump the registers of audmux

@@ -11,7 +11,7 @@
  * @ingroup diag_camera
  */
 
-#include "adv7180_def.h"
+#include "video/adv7180_def.h"
 
 #define ADV7180_ADDR			0x42 >> 1
 

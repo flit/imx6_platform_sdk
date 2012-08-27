@@ -8,7 +8,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "sdma/inc/sdma.h"
+#include "sdma/sdma.h"
 #include "sdma_test.h"
 #include "hardware.h"
 

@@ -12,7 +12,7 @@
  * @ingroup diag_enet
  */
 
-#include "gpu/inc/sdk_ipu_common.h"
+#include "gpu/sdk_ipu_common.h"
 
 /* global IPU variables */
 int channel;

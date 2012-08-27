@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "hardware.h"
 #include "cfi_flash.h"
-#include "eim/inc/eim_ifc.h"
+#include "eim/eim_ifc.h"
 
 #define EIM_BUFFER_SZ 0x1000
 extern flash_info_t flash_info[];

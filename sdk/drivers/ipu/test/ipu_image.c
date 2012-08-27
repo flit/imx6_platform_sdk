@@ -12,7 +12,7 @@
  */
 
 /*binary data for a small image with Freescale logo on.*/
-#include "ipu_common.h"
+#include "ipu/ipu_common.h"
 #include "buffers.h"
 #include "ipu_reg_def.h"
 

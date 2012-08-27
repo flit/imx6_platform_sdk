@@ -11,7 +11,7 @@
  * @ingroup diag_camera
  */
 
-#include "camera_def.h"
+#include "camera/camera_def.h"
 
 #define i2c_base I2C1_BASE_ADDR
 

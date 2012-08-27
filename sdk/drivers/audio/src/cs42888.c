@@ -12,9 +12,10 @@
  * @ingroup diag_audio
  */
 
+#include "sdk.h"
 #include "hardware.h"
-#include "audio/inc/audio.h"
-#include "audio/inc/cs42888.h"
+#include "audio/audio.h"
+#include "audio/cs42888.h"
 
 extern int32_t esai_codec_power_on(void);
 

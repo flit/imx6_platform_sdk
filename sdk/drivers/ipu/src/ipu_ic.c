@@ -10,7 +10,7 @@
  * @brief display controller configuration of IPU.
  * @ingroup diag_ipu
  */
-#include "ipu_common.h"
+#include "ipu/ipu_common.h"
 
 /*!
  * enable IC submodule

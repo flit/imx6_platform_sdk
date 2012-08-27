@@ -8,7 +8,7 @@
 #include "sdk.h"
 #include "soc_memory_map.h"
 #include "iomux_register.h"
-#include "pcie/inc/pcie_common.h"
+#include "pcie/pcie_common.h"
 
 #define DEBUG_ENABLE	1
 

@@ -12,9 +12,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "vpu_gdi.h"
-#include "vpu_util.h"
-#include "vpu_debug.h"
+#include "vpu/vpu_gdi.h"
+#include "vpu/vpu_util.h"
+#include "vpu/vpu_debug.h"
 
 static int GetXY2RBCLogic(int map_val, int xpos, int ypos, int tb);
 static int rbc2axi_logic(int map_val, int ra_in, int ba_in, int ca_in);

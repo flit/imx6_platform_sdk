@@ -10,8 +10,8 @@
 #include <stdlib.h>
 #include "vpu_test.h"
 #include "hardware.h"
-#include "vpu_debug.h"
-#include "vpu_util.h"
+#include "vpu/vpu_debug.h"
+#include "vpu/vpu_util.h"
 
 extern void print_media_fat_info(uint32_t);
 

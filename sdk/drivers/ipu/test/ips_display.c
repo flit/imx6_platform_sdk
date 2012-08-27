@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "ipu_common.h"
 #include "ips_test.h"
 
 /*!

@@ -12,8 +12,8 @@
  */
 
 #include <stdio.h>
-#include "ipu/inc/ipu_common.h"
-#include "camera_def.h"
+#include "ipu/ipu_common.h"
+#include "camera/camera_def.h"
 #include "iomux_config.h"
 #include "registers/regsipu.h"
 

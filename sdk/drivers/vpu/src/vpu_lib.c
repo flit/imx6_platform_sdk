@@ -21,12 +21,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "vpu_reg.h"
-#include "vpu_lib.h"
-#include "vpu_util.h"
-#include "vpu_io.h"
-#include "vpu_debug.h"
-#include "vpu_gdi.h"
+#include "vpu/vpu_reg.h"
+#include "vpu/vpu_lib.h"
+#include "vpu/vpu_util.h"
+#include "vpu/vpu_io.h"
+#include "vpu/vpu_debug.h"
+#include "vpu/vpu_gdi.h"
 #include "timer/timer.h"
 
 #define IMAGE_ENDIAN			0

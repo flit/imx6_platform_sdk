@@ -12,10 +12,10 @@
  * @ingroup diag_audio
  */
 
+#include "sdk.h"
 #include "hardware.h"
-//#include "functions.h"
-#include "audio/inc/audio.h"
-#include "imx_spdif.h"
+#include "audio/audio.h"
+#include "audio/imx_spdif.h"
 
 #define SPDIF_DEBUG 1
 

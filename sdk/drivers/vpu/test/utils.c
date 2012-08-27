@@ -9,7 +9,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "vpu_test.h"
-#include "vpu_debug.h"
+#include "vpu/vpu_debug.h"
 
 int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
 {

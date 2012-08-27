@@ -13,7 +13,7 @@
  */
 
 #include "sdk.h"
-#include "audio.h"
+#include "audio/audio.h"
 
 #define DEBUG_ENABLE	1
 #if DEBUG_ENABLE

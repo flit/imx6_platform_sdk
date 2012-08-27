@@ -5,6 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
+#include "pwm/pwm_ifc.h"
 #include "pwm.h"
 #include "interrupt.h"
 

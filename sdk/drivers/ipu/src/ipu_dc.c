@@ -11,7 +11,7 @@
  * @ingroup diag_ipu
  */
 
-#include "ipu_common.h"
+#include "ipu/ipu_common.h"
 
 /*!
  * DC submodule configuration.

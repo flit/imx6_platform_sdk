@@ -11,7 +11,7 @@
  * @ingroup diag_ipu
  */
 
-#include "ipu_common.h"
+#include "ipu/ipu_common.h"
 
 void ipu_dmfc_config(uint32_t ipu_index, uint32_t channel)
 {

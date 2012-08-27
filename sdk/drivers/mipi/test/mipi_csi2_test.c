@@ -15,8 +15,8 @@
 #include <stdio.h>
 
 #include "hardware.h"
-#include "mipi_common.h"
-#include "ipu/inc/ipu_common.h"
+#include "mipi/mipi_common.h"
+#include "ipu/ipu_common.h"
 #include "iomux_config.h"
 #include "registers/regsipu.h"
 

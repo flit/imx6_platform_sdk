@@ -25,22 +25,68 @@ include mk/common.mk
 SUBDIRS = sdk
 
 # List of all applications to build. Applications must reside in the apps directory.
-ALL_APPS = sdk_unit_test power_modes_test
+ALL_APPS = \
+	sdk_unit_test \
+	power_modes_test
 
 # Default target.
 .PHONY: all
-all: $(ALL_APPS)
+all: $(ALL_APPS) ;
 
+# App targets. All apps depend on the listed subdirectories.
+.PHONY: ALL_APPS
 $(ALL_APPS): $(SUBDIRS)
 	@echo $$'\n'"Building $@..."
 	@$(MAKE) -s -r -C apps/$@
 	@echo $$'\n'"Build of $@ passed for $(TARGET) $(BOARD) rev $(BOARD_REVISION)!"$$'\n'
 
+$(SUBDIRS)::
+	@echo $$'\n'"Building $@..."
+
+# Target to clean everything.
 .PHONY: clean
-clean::
+clean:
 	@echo "Deleting output directory..."
 	@rm -rf output
 	@echo "done."
 
+# Target to clean just the sdk. Actually, it cleans any libraries for the target, so the
+# board libraries will be cleaned, too.
+.PHONY: clean_sdk
+clean_sdk:
+ifdef TARGET
+	rm -rf $(OUTPUT_ROOT)/lib
+else
+	rm -rf $(SDK_ROOT)/output/*/lib
+endif
+
+# Set up targets to clean each of the applications. For an app "foo", the target to clean
+# just that app is "clean_foo". If no TARGET is passed to make, the app is cleaned
+# for all targets.
+ALL_APP_CLEAN_TARGETS := $(addprefix clean_,$(ALL_APPS))
+.PHONY: $(ALL_APP_CLEAN_TARGETS)
+$(ALL_APP_CLEAN_TARGETS):
+ifdef TARGET
+ifdef BOARD
+ifdef BOARD_REVISION
+ifdef BOARD_REVISION_IS_DEFAULT
+# Clean all revs of the board.
+	rm -rf $(OUTPUT_ROOT)/$(patsubst clean_%,%,$@)/$(BOARD)_rev_*
+else
+# Specific rev specified so clean just that one rev.
+	rm -rf $(OUTPUT_ROOT)/$(patsubst clean_%,%,$@)/$(BOARD_WITH_REV)
+endif
+else
+# Clean all revs of the board.
+	rm -rf $(OUTPUT_ROOT)/$(patsubst clean_%,%,$@)/$(BOARD)_rev_*
+endif
+else
+# Clean all boards of the app.
+	rm -rf $(OUTPUT_ROOT)/$(patsubst clean_%,%,$@)
+endif
+else
+# Clean all boards and targets of the app.
+	rm -rf $(SDK_ROOT)/output/*/$(patsubst clean_%,%,$@)
+endif
 
 include mk/targets.mk

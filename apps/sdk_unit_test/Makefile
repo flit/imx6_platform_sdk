@@ -110,8 +110,8 @@ endef
 
 # Need to include the SDK library!
 LIBRARIES := \
-	$(LIBS_ROOT)/libsdk.a \
-	$(LIBS_ROOT)/libboard_$(BOARD_WITH_REV).a
+	$(LIBSDK) \
+	$(LIBBOARD)
 
 # Specify our linker script.
 LD_FILE = $(APPS_ROOT)/common/basic_sdk_app.ld

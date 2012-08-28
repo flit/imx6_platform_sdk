@@ -56,6 +56,13 @@ APP_OUTPUT_ROOT = $(OUTPUT_ROOT)/$(APP_NAME)/$(BOARD_WITH_REV)
 APP_OBJS_ROOT = $(APP_OUTPUT_ROOT)/obj
 
 #-------------------------------------------------------------------------------
+# Standard library paths
+#-------------------------------------------------------------------------------
+
+LIBSDK = $(LIBS_ROOT)/libsdk.a
+LIBBOARD = $(LIBS_ROOT)/libboard_$(BOARD_WITH_REV).a
+
+#-------------------------------------------------------------------------------
 # Target and board configuration
 #-------------------------------------------------------------------------------
 
@@ -76,6 +83,8 @@ endif
 # Board
 ifeq "$(BOARD)" "evb"
 DEFINES += -DBOARD_EVB
+else ifeq "$(BOARD)" "evk"
+DEFINES += -DBOARD_EVK
 else ifeq "$(BOARD)" "sabre_ai"
 DEFINES += -DBOARD_SABRE_AI
 else ifeq "$(BOARD)" "sabre_lite"
@@ -86,7 +95,11 @@ else ifdef BOARD
 $(error Unknown board $(BOARD))
 endif
 
-# Board revision
+# Board revision, defaults to a if not specified.
+ifndef BOARD_REVISION
+BOARD_REVISION = a
+BOARD_REVISION_IS_DEFAULT = yes
+endif
 ifeq "$(BOARD_REVISION)" "b"
 DEFINES +=-DBOARD_VERSION2
 else ifeq "$(BOARD_REVISION)" "a"
@@ -95,9 +108,12 @@ else ifdef BOARD_REVISION
 $(error Unknown board revision $(BOARD_REVISION))
 endif
 
+# Only define this variable if a board is specified.
+ifdef BOARD
 BOARD_WITH_REV := $(BOARD)_rev_$(BOARD_REVISION)
+endif
 
-# Set this to define if we want to build thumb binaries or 0 for ARM.
+# Set this define to 1 if we want to build thumb binaries, or 0 for ARM.
 USE_THUMB ?= 0
 
 #-------------------------------------------------------------------------------

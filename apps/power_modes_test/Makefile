@@ -20,12 +20,8 @@
 include $(SDK_ROOT)/mk/common.mk
 
 
-# Set up to link application. Subdirectories will archive objects into sdk_unit_test.a
-# but not try to link the application executable since LINK_APP is not set.
-export APP_NAME = power_modes_test
-export APP_LIB_NAME = power_modes_test.a
-
-# Set this to enable linking of the application executable.
+# Set up to link application.
+APP_NAME = power_modes_test
 LINK_APP = true
 
 # Subdirectories included in the build.
@@ -41,8 +37,8 @@ endef
 
 # Need to include the SDK library!
 LIBRARIES := \
-	$(LIBS_ROOT)/libsdk.a \
-	$(LIBS_ROOT)/libboard_$(BOARD_WITH_REV).a
+	$(LIBSDK) \
+	$(LIBBOARD)
 
 # Specify our linker script.
 LD_FILE = $(APPS_ROOT)/common/basic_sdk_app.ld

@@ -61,7 +61,7 @@ endif
 
 # Construct full path name to application output ELF file.
 ifdef APP_NAME
-APP ?= $(APP_OUTPUT_ROOT)/$(APP_NAME).elf
+APP_ELF ?= $(APP_OUTPUT_ROOT)/$(APP_NAME).elf
 endif
 
 #-------------------------------------------------------------------------------
@@ -73,24 +73,29 @@ endif
 # if subdirs modified the library file after local files were compiled but before they were added
 # to the library.
 .PHONY: all
-all : echovars $(SUBDIRS) $(OBJECTS_DIRS) $(OBJECTS_ALL) $(TARGET_LIB) $(APP)
-
-# Debug utility target to dump variable values.
-.PHONY: echovars
-echovars:
-# 	@echo SOURCES = $(SOURCES)
-# 	@echo SOURCES_ABS = $(SOURCES_ABS)
-# 	@echo SOURCES_REL = $(SOURCES_REL)
-# 	@echo SOURCE_DIRS_PATH = $(SOURCE_DIRS_PATH)
-# 	@echo OBJECTS_DIRS = $(OBJECTS_DIRS)
-# 	@echo C_SOURCES = $(C_SOURCES)
-# 	@echo OBJECTS_ALL = $(OBJECTS_ALL)
-# 	@echo TARGET_LIB = $(TARGET_LIB)
-# 	@echo APP = $(APP)
+all : $(SUBDIRS) $(OBJECTS_DIRS) $(OBJECTS_ALL) $(TARGET_LIB) $(APP_ELF)
 
 # Recipe to create the output object file directories.
 $(OBJECTS_DIRS) :
 	@mkdir -p $@
+
+#-------------------------------------------------------------------------------
+# Debug variable dump
+#-------------------------------------------------------------------------------
+
+# Do not dump variables to output by default. Set to 1 to dump variable values.
+dumpvars = 0
+
+# Debug utility target to dump variable values.
+ifeq "$(dumpvars)" "1"
+$(info SOURCES = $(SOURCES))
+$(info OBJECTS_DIRS = $(OBJECTS_DIRS))
+$(info OBJECTS_ALL = $(OBJECTS_ALL))
+$(info SUBDIRS = $(SUBDIRS))
+$(info TARGET_LIB = $(TARGET_LIB))
+$(info APP_ELF = $(APP_ELF))
+$(info LIBRARIES = $(LIBRARIES))
+endif
 
 #-------------------------------------------------------------------------------
 # Pattern rules for compilation
@@ -138,9 +143,12 @@ $(TARGET_LIB): $(OBJECTS_ALL)
 # Subdirs
 #-------------------------------------------------------------------------------
 
-# Recursively execute make in the subdirectories.
+# Recursively execute make in each of the subdirectories.
+# Subdirs are double-colon rules to allow additional recipes to be added to them.
+# This is used by the top-level makefile to print a message when starting to build
+# the sdk library.
 .PHONY: $(SUBDIRS)
-$(SUBDIRS):
+$(SUBDIRS)::
 	@$(MAKE) -s -r -C $@
 
 #-------------------------------------------------------------------------------
@@ -158,14 +166,14 @@ else
 app_objs = $(OBJECTS_ALL) $(TARGET_LIB)
 endif
 
-app_bin = $(basename $(APP)).bin
-app_map = $(basename $(APP)).map
+app_bin = $(basename $(APP_ELF)).bin
+app_map = $(basename $(APP_ELF)).map
 
 # Link the application.
 # Wrap the link objects in start/end group so that ld re-checks each
 # file for dependencies.  Otherwise linking static libs can be a pain
 # since order matters.
-$(APP): $(app_objs) $(LD_FILE) $(LIBRARIES) $(APP_LIBS)
+$(APP_ELF): $(app_objs) $(LD_FILE) $(LIBRARIES) $(APP_LIBS)
 	@echo "Linking $(APP_NAME)..."
 	@$(LD) -Bstatic -nostartfiles -nostdlib \
 	      -T $(LD_FILE) \
@@ -177,11 +185,11 @@ $(APP): $(app_objs) $(LD_FILE) $(LIBRARIES) $(APP_LIBS)
 	      $(LDADD) $(LDINC) -o $@ \
 	      -Map $(app_map)
 	@$(OBJCOPY) -O binary $@ $(app_bin)
-	@echo "Output ELF: $(APP)"
+	@echo "Output ELF: $(APP_ELF)"
 	@echo "Output binary: $(app_bin)"
 else
 # Empty target to prevent an error. Needed because $(APP) is a prereq for the 'all' target.
-$(APP): ;
+$(APP_ELF): ;
 endif
 
 # Include dependency files.

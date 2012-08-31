@@ -115,6 +115,7 @@ fat/utility/setcwd.c
 fat/utility/setshortfilename.c
 fat/utility/shortdirmatch.c
 fat/utility/strlength.c
+fat/fs_fat_memory.c
 endef
 
 INCLUDES += \

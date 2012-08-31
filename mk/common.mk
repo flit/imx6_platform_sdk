@@ -122,7 +122,7 @@ USE_THUMB ?= 0
 
 # Set compiler version defaults.
 CC_VERSION ?= 4.6.3
-CROSS_COMPILE ?= arm-none-eabi-
+CROSS_COMPILE = arm-none-eabi-
 
 # Strip off the trailing '-', resulting in arm-none-eabi
 CROSS_COMPILE_STRIP := $(patsubst %-,%,$(CROSS_COMPILE))

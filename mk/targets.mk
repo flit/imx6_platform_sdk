@@ -72,7 +72,7 @@ endif
 # may end up with files in the current directory not getting added to libraries. This would happen
 # if subdirs modified the library file after local files were compiled but before they were added
 # to the library.
-.PHONY: all
+.PHONY: all $(TARGET_LIB)
 all : $(SUBDIRS) $(OBJECTS_DIRS) $(OBJECTS_ALL) $(TARGET_LIB) $(APP_ELF)
 
 # Recipe to create the output object file directories.

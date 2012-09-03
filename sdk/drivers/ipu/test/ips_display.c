@@ -33,7 +33,7 @@ int32_t ips_display_test(ips_dev_panel_t * panel)
     ipu_sw_reset(ipu_index, 1000);
 
     /*setup IPU display channel */
-    ipu_display_setup(ipu_index, disp_mem, (uint32_t) NULL, INTERLEAVED_RGB, panel);
+    ipu_display_setup(ipu_index, disp_mem, (uint32_t) NULL, INTERLEAVED_RGB565, panel);
 
     /*enable ipu display channel */
     ipu_enable_display(ipu_index);
@@ -70,7 +70,7 @@ int32_t ips_hdmi_stream(void)
     ipu_sw_reset(ipu_index, 1000);
 
     /*setup IPU display channel */
-    ipu_display_setup(ipu_index, disp_mem, (uint32_t) NULL, INTERLEAVED_RGB, panel);
+    ipu_display_setup(ipu_index, disp_mem, (uint32_t) NULL, INTERLEAVED_RGB565, panel);
 
     /*enable ipu display channel */
     ipu_enable_display(ipu_index);
@@ -253,7 +253,7 @@ int32_t ips_mipi_wvga_rgb_stream(int32_t ipu_index)
     ipu_sw_reset(ipu_index, 1000);
 
     /*setup IPU display channel */
-    ipu_display_setup(ipu_index, disp_mem0, disp_mem1, INTERLEAVED_RGB, panel);
+    ipu_display_setup(ipu_index, disp_mem0, disp_mem1, INTERLEAVED_RGB565, panel);
 
     /*load image */
     load_centralized_image(disp_mem0, panel);

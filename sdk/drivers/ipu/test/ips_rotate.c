@@ -30,7 +30,7 @@ int32_t ips_rotate_test(ips_dev_panel_t * panel)
     printf("Press 'Y' / 'y' for 90 degree clockwise rotation.\nOther key to exit.)\n");
 
     /*setup IPU display channel */
-    ipu_display_setup(ipu_index, rot_out_mem, (uint32_t) NULL, INTERLEAVED_RGB, panel);
+    ipu_display_setup(ipu_index, rot_out_mem, (uint32_t) NULL, INTERLEAVED_RGB565, panel);
 
     /*enable ipu display channel */
     ipu_enable_display(ipu_index);
@@ -62,8 +62,8 @@ int32_t ips_rotate_test(ips_dev_panel_t * panel)
     rot_info.height_out = rot_info.width_in;
     rot_info.strideline_in = panel->width * 2;
     rot_info.strideline_out = panel->width * 2;
-    rot_info.pixel_format_in = INTERLEAVED_RGB;
-    rot_info.pixel_format_out = INTERLEAVED_RGB;
+    rot_info.pixel_format_in = INTERLEAVED_RGB565;
+    rot_info.pixel_format_out = INTERLEAVED_RGB565;
     rot_info.rot = 1;
     rot_info.hf = 0;
     rot_info.vf = 0;

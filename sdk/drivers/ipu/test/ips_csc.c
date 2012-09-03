@@ -32,7 +32,7 @@ int32_t ips_csc_test(ips_dev_panel_t * panel)
     ipu_sw_reset(ipu_index, 1000);
 
     /*setup IPU dual display channel, enable partial plane */
-    ipu_display_setup(ipu_index, disp_mem, (uint32_t) NULL, INTERLEAVED_RGB, panel);
+    ipu_display_setup(ipu_index, disp_mem, (uint32_t) NULL, INTERLEAVED_RGB565, panel);
 
     /*enable ipu display channel */
     ipu_enable_display(ipu_index);
@@ -66,7 +66,7 @@ int32_t ips_csc_test(ips_dev_panel_t * panel)
     /*setup ic main processing task channel for CSC */
     memset(&res_info, 0x00, sizeof(ipu_res_info_t));
     res_info.addr0_in = disp_mem;
-    res_info.pixel_format_in = INTERLEAVED_RGB;
+    res_info.pixel_format_in = INTERLEAVED_RGB565;
     res_info.width_in = panel->width;
     res_info.height_in = panel->height;
     res_info.strideline_in = 2 * res_info.width_in;

@@ -10,7 +10,6 @@
 
 #include "soc_memory_map.h"
 #include "ipu_reg_def.h"
-#include "sdk_ipu_common.h"
 
 #define REG_BASE GPU_3D_BASE_ADDR
 #define DEBUG_REG_BASE GPU_3D_BASE_ADDR

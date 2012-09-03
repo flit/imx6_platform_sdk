@@ -62,7 +62,6 @@ SOURCES += \
 	flexcan/src/can.c \
 	gpu/src/rotate_texture.c \
 	gpu/src/sdk_gpu_utilities.c \
-	gpu/src/sdk_ipu_common.c \
 	gpu/src/texture.c \
 	gpmi/src/bch_ecc.c \
 	gpmi/src/gpmi_dma_components.cpp \

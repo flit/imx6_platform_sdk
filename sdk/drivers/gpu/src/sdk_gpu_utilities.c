@@ -22,6 +22,7 @@
 
 int frame_no = 0;
 extern volatile int gpu_new_frame;
+extern void ipu_channel_buf_ready(int32_t ipu_index, int32_t channel, int32_t buf);
 
 /********* UTILITY FUNCTIONS *********/
 unsigned long ReadReg(unsigned int addr)
@@ -1192,8 +1193,8 @@ void CallResolve(unsigned long phys, int SuperSample, int SrcSuperTile, int DstS
 
     //Update IPU buffer pointer HERE!!!
     if (lcd_buffer_addr == LCD0_FRAME_BUFFER_ADDR) {
-        sdk_ipu_write_field(2, IPU_IPU_CH_BUF0_RDY0__DMA_CH_BUF0_RDY_27, 1);
+		ipu_channel_buf_ready(2, 27, 0);
     } else {
-        sdk_ipu_write_field(2, IPU_IPU_CH_BUF1_RDY0__DMA_CH_BUF1_RDY_27, 1);
+		ipu_channel_buf_ready(2, 27, 0);
     }
 }

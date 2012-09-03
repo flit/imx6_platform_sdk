@@ -16,7 +16,7 @@
 
 inline int32_t need_csc(int32_t i, int32_t o)
 {
-    if ((i == INTERLEAVED_RGB && o > DCMAP_BRG888) || (i != INTERLEAVED_RGB && o <= DCMAP_BRG888))
+    if ((((i & 0xF) == (INTERLEAVED_RGB)) && (o > DCMAP_BRG888)) || (((i & 0xF) != INTERLEAVED_RGB) && (o <= DCMAP_BRG888)))
         return 1;
     else
         return 0;
@@ -126,7 +126,7 @@ void ipu_display_setup(uint32_t ipu_index, uint32_t mem_addr0, uint32_t mem_addr
     uint32_t in_type, out_type, csc_type = NO_CSC;
 
     /*step1: determine CSC type according input colorimetry and output colorimetry */
-    in_type = (mem_colorimetry == INTERLEAVED_RGB) ? RGB : YUV;
+    in_type = ((mem_colorimetry & 0xF) == INTERLEAVED_RGB) ? RGB : YUV;
     switch (panel->colorimetry) {
     case DCMAP_YUV888:
     case DCMAP_UVY888:
@@ -209,7 +209,7 @@ void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_
     	idmac_info.so = 1;
 	else 
 		idmac_info.so = 0;
-    if (csi_pixel_format >= INTERLEAVED_RGB) {
+    if ((csi_pixel_format & 0xF) >= INTERLEAVED_RGB) {
         idmac_info.sl = panel->width * 2;
         idmac_info.u_offset = 0;
     } else {

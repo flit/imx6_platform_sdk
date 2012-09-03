@@ -35,7 +35,7 @@ int32_t ips_resize_test(ips_dev_panel_t * panel)
     ipu_sw_reset(ipu_index, 1000);
 
     /*setup IPU display channel */
-    ipu_display_setup(ipu_index, res_out_mem, (uint32_t) NULL, INTERLEAVED_RGB, panel);
+    ipu_display_setup(ipu_index, res_out_mem, (uint32_t) NULL, INTERLEAVED_RGB565, panel);
 
     /*enable ipu display channel */
     ipu_enable_display(ipu_index);
@@ -79,8 +79,8 @@ int32_t ips_resize_test(ips_dev_panel_t * panel)
                 rot_info.height_out = rot_info.width_in;
                 rot_info.strideline_in = rot_info.width_in * 2;
                 rot_info.strideline_out = rot_info.width_out * 2;
-                rot_info.pixel_format_in = INTERLEAVED_RGB;
-                rot_info.pixel_format_out = INTERLEAVED_RGB;
+                rot_info.pixel_format_in = INTERLEAVED_RGB565;
+                rot_info.pixel_format_out = INTERLEAVED_RGB565;
                 rot_info.rot = 1;
                 rot_info.hf = 0;
                 rot_info.vf = 0;
@@ -96,8 +96,8 @@ int32_t ips_resize_test(ips_dev_panel_t * panel)
                 res_info.width_out = res_info.height_out * res_info.width_in / res_info.height_in;
                 res_info.strideline_in = res_info.width_in * 2;
                 res_info.strideline_out = panel->width * 2;
-                res_info.pixel_format_in = INTERLEAVED_RGB;
-                res_info.pixel_format_out = INTERLEAVED_RGB;
+                res_info.pixel_format_in = INTERLEAVED_RGB565;
+                res_info.pixel_format_out = INTERLEAVED_RGB565;
                 res_info.addr0_in = rot_out_mem;
                 res_info.addr0_out =
                     res_out_mem + (panel->height - res_info.height_out) * panel->width +
@@ -138,8 +138,8 @@ int32_t ips_resize_test(ips_dev_panel_t * panel)
                 rot_info.height_out = rot_info.width_in;
                 rot_info.strideline_in = rot_info.width_in * 2;
                 rot_info.strideline_out = rot_info.width_out * 2;
-                rot_info.pixel_format_in = INTERLEAVED_RGB;
-                rot_info.pixel_format_out = INTERLEAVED_RGB;
+                rot_info.pixel_format_in = INTERLEAVED_RGB565;
+                rot_info.pixel_format_out = INTERLEAVED_RGB565;
                 rot_info.rot = 1;
                 rot_info.hf = 0;
                 rot_info.vf = 0;

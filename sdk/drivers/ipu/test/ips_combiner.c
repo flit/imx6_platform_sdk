@@ -31,7 +31,7 @@ int32_t ips_combiner_test(ips_dev_panel_t * panel)
     /*setup IPU dual display channel, enable partial plane */
     fg_xp = (panel->width - fg_width) / 2;
     fg_yp = panel->height - 300;
-    ipu_dual_display_setup(ipu_index, panel, INTERLEAVED_RGB, fg_width, fg_height, fg_xp, fg_yp,
+    ipu_dual_display_setup(ipu_index, panel, INTERLEAVED_RGB565, fg_width, fg_height, fg_xp, fg_yp,
                            alpha);
 
     /*enable ipu display channel */

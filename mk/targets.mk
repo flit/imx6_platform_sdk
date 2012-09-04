@@ -64,6 +64,12 @@ ifdef APP_NAME
 APP_ELF ?= $(APP_OUTPUT_ROOT)/$(APP_NAME).elf
 endif
 
+ifdef TARGET_LIB
+archive_or_objs = $(TARGET_LIB)
+else
+archive_or_objs = $(OBJECTS_ALL)
+endif
+
 #-------------------------------------------------------------------------------
 # Default recipe
 #-------------------------------------------------------------------------------
@@ -72,12 +78,19 @@ endif
 # may end up with files in the current directory not getting added to libraries. This would happen
 # if subdirs modified the library file after local files were compiled but before they were added
 # to the library.
-.PHONY: all $(TARGET_LIB)
-all : $(SUBDIRS) $(OBJECTS_DIRS) $(OBJECTS_ALL) $(TARGET_LIB) $(APP_ELF)
+.PHONY: all
+all : $(SUBDIRS) $(OBJECTS_DIRS) $(archive_or_objs) $(APP_ELF)
+
+# For RedHat we have to force always archiving. It seems that fractions of a second are not
+# recorded in file modification dates on RedHat (at least the server we tested with), which
+# caused files to be consiered up to date when they weren't.
+ifeq "$(is_redhat)" "y"
+.PHONY: $(TARGET_LIB)
+endif
 
 # Recipe to create the output object file directories.
 $(OBJECTS_DIRS) :
-	@mkdir -p $@
+	$(at)mkdir -p $@
 
 #-------------------------------------------------------------------------------
 # Debug variable dump
@@ -111,33 +124,38 @@ endif
 
 # Compile C sources.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.c
-	@echo "Compiling $(subst $(SDK_ROOT)/,,$<)"
-	@cd $(dir $<) \
-		&& $(CC) $(CFLAGS) $(SYSTEM_INC) $(INCLUDES) $(DEFINES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
+	@if [ -t 1 ]; then printf "$(color_c)Compiling$(color_default) $(subst $(SDK_ROOT)/,,$<)\n" ; \
+	else printf "Compiling $(subst $(SDK_ROOT)/,,$<)\n" ; fi
+	$(at)cd $(dir $<) && $(CC) $(CFLAGS) $(SYSTEM_INC) $(INCLUDES) $(DEFINES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
 
 # Compile C++ sources.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.cpp
-	@echo "Compiling $(subst $(SDK_ROOT)/,,$<)"
-	@cd $(dir $<) \
-		&& $(CXX) $(CXXFLAGS) $(SYSTEM_INC) $(INCLUDES) $(DEFINES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
+	@if [ -t 1 ]; then printf "$(color_cpp)Compiling$(color_default) $(subst $(SDK_ROOT)/,,$<)\n" ; \
+	else printf "Compiling $(subst $(SDK_ROOT)/,,$<)\n" ; fi
+	$(at)cd $(dir $<) && $(CXX) $(CXXFLAGS) $(SYSTEM_INC) $(INCLUDES) $(DEFINES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
 
 # For .S assembly files, first run through the C preprocessor then assemble.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.S
-	@echo "Compiling $(subst $(SDK_ROOT)/,,$<)"
-	@cd $(dir $<) \
-		&& $(CPP) -D__LANGUAGE_ASM__ $(INCLUDES) $(DEFINES) -o $(basename $@).s $< \
-		&& $(AS) $(ASFLAGS) $(INCLUDES) -MD $(OBJS_ROOT)/$*.d -o $@ $(basename $@).s
+	@if [ -t 1 ]; then printf "$(color_asm)Assembling$(color_default) $(subst $(SDK_ROOT)/,,$<)\n" ; \
+	else printf "Assembling $(subst $(SDK_ROOT)/,,$<)\n" ; fi
+	$(at)cd $(dir $<) \
+	&& $(CPP) -D__LANGUAGE_ASM__ $(INCLUDES) $(DEFINES) -o $(basename $@).s $< \
+	&& $(AS) $(ASFLAGS) $(INCLUDES) -MD $(OBJS_ROOT)/$*.d -o $@ $(basename $@).s
 
 # Assembler sources.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.s
-	@echo "Compiling $(subst $(SDK_ROOT)/,,$<)"
-	@cd $(dir $<) \
-		&& $(AS) $(ASFLAGS) $(INCLUDES) -MD $(basename $@).d -o $@ $<
+	@if [ -t 1 ]; then printf "$(color_asm)Assembling$(color_default) $(subst $(SDK_ROOT)/,,$<)\n" ; \
+	else printf "Assembling $(subst $(SDK_ROOT)/,,$<)\n" ; fi
+	$(at)cd $(dir $<) && $(AS) $(ASFLAGS) $(INCLUDES) -MD $(basename $@).d -o $@ $<
 
 # Add objects to the target library.
+#
+# Note that we're checking the archive's mod date and not each entry in the archive. This
+# lets us do a single update operation with all modified object files.
 $(TARGET_LIB): $(OBJECTS_ALL)
-	@echo "Archiving $(shell echo $? | wc -w) files into $(notdir $@)"
-	@$(AR) -roucs $@ $?
+	@if [ -t 1 ]; then printf "$(color_ar)Archiving$(color_default) $(shell echo $? | wc -w) files in $(@F)\n" ; \
+	else printf "Archiving $(shell echo $? | wc -w) files in $(@F)\n" ; fi
+	$(at)$(AR) -rucs $@ $?
 
 #-------------------------------------------------------------------------------
 # Subdirs
@@ -149,7 +167,7 @@ $(TARGET_LIB): $(OBJECTS_ALL)
 # the sdk library.
 .PHONY: $(SUBDIRS)
 $(SUBDIRS)::
-	@$(MAKE) -s -r -C $@
+	@$(MAKE) $(silent_make) -r -C $@
 
 #-------------------------------------------------------------------------------
 # Linking
@@ -174,8 +192,9 @@ app_map = $(basename $(APP_ELF)).map
 # file for dependencies.  Otherwise linking static libs can be a pain
 # since order matters.
 $(APP_ELF): $(app_objs) $(LD_FILE) $(LIBRARIES) $(APP_LIBS)
-	@echo "Linking $(APP_NAME)..."
-	@$(LD) -Bstatic -nostartfiles -nostdlib \
+	@if [ -t 1 ]; then printf "$(color_link)Linking$(color_default) $(APP_NAME)...\n" ; \
+	else printf "Linking $(APP_NAME)...\n" ; fi
+	$(at)$(LD) -Bstatic -nostartfiles -nostdlib \
 	      -T $(LD_FILE) \
 	      --start-group \
 	      	$(app_objs) \
@@ -184,7 +203,7 @@ $(APP_ELF): $(app_objs) $(LD_FILE) $(LIBRARIES) $(APP_LIBS)
 	      --end-group \
 	      $(LDADD) $(LDINC) -o $@ \
 	      -Map $(app_map)
-	@$(OBJCOPY) -O binary $@ $(app_bin)
+	$(at)$(OBJCOPY) -O binary $@ $(app_bin)
 	@echo "Output ELF: $(APP_ELF)"
 	@echo "Output binary: $(app_bin)"
 else

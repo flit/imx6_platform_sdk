@@ -21,6 +21,44 @@
 empty :=
 space := $(empty) $(empty)
 
+# Set to 'y' if running on redhat.
+is_redhat := $(shell if [ -f /etc/redhat-release ]; then echo y ; fi)
+
+#-------------------------------------------------------------------------------
+# Logging options
+#-------------------------------------------------------------------------------
+
+# Normally, commands in recipes are prefixed with '@' so the command itself
+# is not echoed by make. But if VERBOSE is defined (set to anything non-empty),
+# then the '@' is removed from recipes. The 'at' variable is used to control
+# this. Similarly, 'silent_make' is used to pass the -s option to child make
+# invocations when not in VERBOSE mode.
+ifdef VERBOSE
+at :=
+silent_make :=
+else
+at := @
+silent_make := -s
+endif
+
+# These colors must be printed with the printf command. echo won't handle the
+# escape sequences.
+color_default = \033[00m
+color_red = \033[31m
+color_green = \033[32m
+color_yellow = \033[33m
+color_blue = \033[34m
+color_magenta = \033[35m
+color_cyan = \033[36m
+
+ifdef BUILD_SDK_COLOR
+color_c := $(color_green)
+color_cpp := $(color_green)
+color_asm := $(color_magenta)
+color_ar := $(color_blue)
+color_link := $(color_cyan)
+endif
+
 #-------------------------------------------------------------------------------
 # Root paths
 #-------------------------------------------------------------------------------

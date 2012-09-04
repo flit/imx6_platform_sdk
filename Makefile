@@ -37,7 +37,7 @@ all: $(ALL_APPS) ;
 .PHONY: ALL_APPS
 $(ALL_APPS): $(SUBDIRS)
 	@echo $$'\n'"Building $@..."
-	@$(MAKE) -s -r -C apps/$@
+	@$(MAKE) $(silent_make) -r -C apps/$@
 	@echo $$'\n'"Build of $@ passed for $(TARGET) $(BOARD) rev $(BOARD_REVISION)!"$$'\n'
 
 $(SUBDIRS)::
@@ -59,6 +59,11 @@ ifdef TARGET
 else
 	rm -rf $(SDK_ROOT)/output/*/lib
 endif
+
+# Target to clean the board library and objects.
+.PHONY: clean_board
+clean_board:
+	rm -rf $(LIBBOARD) $(OUTPUT_ROOT)/lib/obj/board/$(TARGET)/$(BOARD_WITH_REV)
 
 # Set up targets to clean each of the applications. For an app "foo", the target to clean
 # just that app is "clean_foo". If no TARGET is passed to make, the app is cleaned

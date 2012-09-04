@@ -88,7 +88,9 @@ endif
 
 # Camera is only available on the smart_device board.
 ifeq "$(BOARD)" "smart_device"
-	SUBDIRS += $(SDK_LIB_ROOT)/drivers/camera/test
+	SUBDIRS += \
+		$(SDK_LIB_ROOT)/drivers/camera/test \
+		$(SDK_LIB_ROOT)/drivers/keypad/test
 endif
 
 # PWM is available on all but sabre_lite.

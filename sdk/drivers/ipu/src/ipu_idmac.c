@@ -236,7 +236,7 @@ void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t addr0, uint32_t addr1
     idmac_info.width = width;
     idmac_info.height = height;
     idmac_info.pixel_format = pixel_format;
-    if (pixel_format == INTERLEAVED_RGBA8888) {
+    if (pixel_format == INTERLEAVED_ARGB8888) {
         idmac_info.sl = width * 4;
         idmac_info.u_offset = 0;
 	} else if ((pixel_format & 0xF) >= INTERLEAVED_RGB) {
@@ -275,7 +275,7 @@ void ipu_disp_fg_idmac_config(uint32_t ipu_index, uint32_t addr0, uint32_t addr1
     idmac_info.width = width;
     idmac_info.height = height;
     idmac_info.pixel_format = pixel_format;
-	if (pixel_format == INTERLEAVED_RGBA8888) {
+	if (pixel_format == INTERLEAVED_ARGB8888) {
         idmac_info.sl = width * 4;
         idmac_info.u_offset = 0;
 	} else if ((pixel_format & 0xF) >= INTERLEAVED_RGB) {
@@ -479,16 +479,16 @@ void ipu_idma_pixel_format_config(uint32_t ipu_index, uint32_t channel, uint32_t
 			ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLY, sl - 1);
 		}
         break;
-    case INTERLEAVED_RGBA8888:      //for GPU demo usage
+    case INTERLEAVED_ARGB8888:      //for GPU demo usage
         ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_BPP, 0x0);
         ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_WID0, 8 - 1);
         ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_WID1, 8 - 1);
         ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_WID2, 8 - 1);
         ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_WID3, 8 - 1);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_OFF0, 0);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_OFF1, 8);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_OFF2, 16);
-        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_OFF3, 24);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_OFF0, 8);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_OFF1, 16);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_OFF2, 24);
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), INTERLEAVED_OFF3, 0);
 		if (so == 1) {
 			ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_SLY, sl * 2 - 1);
 			ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, channel), NON_INTERLEAVED_ILO, sl / 8);

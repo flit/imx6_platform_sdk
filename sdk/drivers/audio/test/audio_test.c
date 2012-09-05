@@ -42,6 +42,9 @@ static audio_test_t audio_tests[] = {
 #if defined(BOARD_EVB)
     {"SPDIF playback", spdif_playback},
 #endif
+#if defined(BOARD_SMART_DEVICE)
+    {"SSI playback", ssi_playback},
+#endif
 };
 
 int32_t audio_test(void)

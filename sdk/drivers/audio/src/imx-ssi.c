@@ -19,6 +19,8 @@
 #include "audio/imx-ssi.h"
 
 #define SSI_DEBUG 0
+#define SSI_READ_TIMEOUT      0x400000
+#define SSI_WRITE_TIMEOUT     0x400000
 
 #if SSI_DEBUG
 #define D(fmt,args...) printf(fmt, ## args)
@@ -143,6 +145,10 @@ static uint32_t ssi_get_hw_setting(audio_ctrl_p ctrl, uint32_t type)
         val = (ssi->stccr & SSI_STCCR_WL_MASK) >> SSI_STCCR_WL_SHIFT;
         val = (val + 1) * 2;
         break;
+    case SSI_SETTING_RX_WORD_LEN:
+        val = (ssi->srccr & SSI_SRCCR_WL_MASK) >> SSI_SRCCR_WL_SHIFT;
+        val = (val + 1) *2;
+        break;
     default:
         break;
     }
@@ -191,7 +197,8 @@ static uint32_t ssi_set_hw_setting(audio_ctrl_p ctrl, uint32_t type, uint32_t va
         break;
     case SSI_SETTING_TX_BIT_CLOCK:
         v = ssi->stccr;
-        v &= ~(SSI_STCCR_DIV2 | SSI_STCCR_PSR | SSI_STCCR_PM_MASK);
+//        v &= ~(SSI_STCCR_DIV2 | SSI_STCCR_PSR | SSI_STCCR_PM_MASK);
+        v &= ~(SSI_STCCR_PSR | SSI_STCCR_PM_MASK);
         v |= val;
         ssi->stccr = v;
         break;
@@ -262,6 +269,18 @@ static uint32_t ssi_hw_enable(audio_ctrl_p ctrl, uint32_t type, bool enable)
         else
             ssi->stcr &= ~SSI_STCR_TFEN1;
         break;
+    case SSI_HW_ENABLE_RXFIFO1:
+        if (enable)
+            ssi->srcr |= SSI_SRCR_RFEN0;
+        else
+            ssi->srcr &= ~SSI_SRCR_RFEN0;
+        break;
+    case SSI_HW_ENABLE_RXFIFO2:
+        if (enable)
+            ssi->srcr |= SSI_SRCR_RFEN1;
+        else
+            ssi->srcr &= ~SSI_SRCR_RFEN1;
+        break;
     default:
         break;
     }
@@ -319,7 +338,8 @@ int32_t ssi_config(void *priv, audio_dev_para_p para)
 
         ssi->scr |= SSI_SCR_CLK_IST | SSI_SCR_SYN;
         ssi->stcr |= SSI_STCR_TSCKP | SSI_STCR_TEFS;
-        ssi->stccr |= SSI_STCCR_DC(1) | SSI_STCCR_PM(0);
+//        ssi->stccr |= SSI_STCCR_DC(1) | SSI_STCCR_PM(0);
+        ssi->stccr |= SSI_STCCR_DC(1) | SSI_STCCR_PM(0xA);
     } else {
         //TODO
     }
@@ -332,6 +352,9 @@ int32_t ssi_config(void *priv, audio_dev_para_p para)
     ssi_hw_enable(ctrl, SSI_HW_ENABLE_SSI, true);
     ssi_hw_enable(ctrl, SSI_HW_ENABLE_TXFIFO1, true);
     ssi_hw_enable(ctrl, SSI_HW_ENABLE_TX, true);
+
+    ssi_hw_enable(ctrl, SSI_HW_ENABLE_RX, true);
+    ssi_hw_enable(ctrl, SSI_HW_ENABLE_RXFIFO1, true);
 
 //    ssi_dump(ctrl);
 
@@ -376,6 +399,33 @@ int32_t ssi_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * byte
     return 0;
 }
 
+int32_t ssi_read_fifo(void *priv, uint8_t *buf, uint32_t byte2read, uint32_t * byteread)
+{
+    uint32_t i, size, sample_cnt;
+    uint16_t *buf_ptr = (uint16_t *) buf;
+    audio_ctrl_p ctrl = (audio_ctrl_p) priv;
+    volatile imx_ssi_regs_p ssi = (imx_ssi_regs_p) (ctrl->base_addr);
+    uint32_t wl = ssi_get_hw_setting(ctrl, SSI_SETTING_RX_WORD_LEN);
+    int32_t time_out_tmp;
+    
+    size = byte2read/(wl);
+    for ( i = 0; i < size; i++, buf_ptr++) {
+        time_out_tmp = SSI_READ_TIMEOUT;
+        do {
+            sample_cnt = ((ssi->sfcsr) >> 12) & 0x0F;
+        } while ((time_out_tmp--) && (sample_cnt == 0));
+
+        if (0 >= time_out_tmp) {
+            return -1;
+        }
+
+        *buf_ptr = (ssi->srx0);
+    }
+    *byteread = byte2read;
+
+    return 0; 
+}
+
 /*!
  * Close the SSI module
  * @param       priv    a pointer passed by audio card driver, SSI driver should change it
@@ -401,6 +451,7 @@ static audio_dev_ops_t ssi_ops = {
     .config = ssi_config,
     .ioctl = NULL,
     .write = ssi_write_fifo,
+    .read = ssi_read_fifo,
 };
 
 audio_ctrl_t imx_ssi_1 = {

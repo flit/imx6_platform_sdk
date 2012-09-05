@@ -7,6 +7,8 @@
 #ifndef __AUDIO_H
 #define __AUDIO_H
 
+#define AUDIO_RECORD_BUF_LEN    0x100000
+
 typedef enum {
     AUDIO_BUS_TYPE_SSI,
     AUDIO_BUS_TYPE_ESAI,
@@ -76,7 +78,7 @@ typedef struct {
     int32_t (*config) (void *priv, audio_dev_para_p para);
     int32_t (*ioctl) (void *priv, uint32_t cmd, void *para);
     int32_t (*write) (void *priv, uint8_t * buf, uint32_t byte2write, uint32_t * bytewrittern);
-    int32_t (*read) (void *priv, uint8_t * buf, uint32_t byte2read, uint32_t byteread);
+    int32_t (*read) (void *priv, uint8_t * buf, uint32_t byte2read, uint32_t * byteread);
 } audio_dev_ops_t, *audio_dev_ops_p;
 
 typedef struct {

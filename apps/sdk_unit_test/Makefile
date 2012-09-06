@@ -108,6 +108,8 @@ define SOURCES
 	$(APPS_ROOT)/common/platform_init.c
 	src/unit_test_main.c
 	src/all_test.c
+        $(APPS_ROOT)/obds/src/tests/audio_ssi_test.c
+        $(APPS_ROOT)/obds/src/tests/ddr_test.c
 endef
 
 # Need to include the SDK library!

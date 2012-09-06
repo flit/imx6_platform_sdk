@@ -40,6 +40,9 @@
 //#include "usb_regs.h"
 #include "usb/usb.h"
 #include "keypad/keypad_port.h"
+//Add it from obds
+#include "audio/audio.h"
+#include "audio/imx-audmux.h"
 
 // Android_Buttons test defines
 #define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR
@@ -82,6 +85,9 @@
 // audio defines
 #define WM8958_I2C_DEV_ADDR 		(0x34>>1)
 #define WM8958_I2C_BASE_ADDR		I2C2_BASE_ADDR
+
+#define WM8962_I2C_DEV_ADDR             (0x34>>1)
+#define WM8962_I2C_BASE_ADDR            I2C1_BASE_ADDR
 
 #define SGTL5000_I2C_BASE   I2C2_BASE_ADDR  // audio codec on i2c2
 #define SGTL5000_I2C_ID     0x0A
@@ -165,6 +171,7 @@ extern imx_i2c_request_t max7310_i2c_req_array[];
 #define MMA8451_I2C_ID      0x1C
 #define MAG3112_I2C_ID      0x1D
 #define ISL29023_I2C_ID	    0x44
+#define MAG3110_I2C_ID      0x0E
 
 #define MAX11801_I2C_BASE	I2C3_BASE_ADDR
 #define MAX11801_I2C_ID     (0x90 >> 1)
@@ -179,6 +186,14 @@ extern imx_i2c_request_t max7310_i2c_req_array[];
 #define LTC2495_I2C_BASE    I2C2_BASE_ADDR
 #define LTC2495_I2C_ID      (0x28 >> 1)
 
+//copied from OBDS
+#if defined(BOARD_SABRE_LITE)
+#define P1003_TSC_I2C_BASE   I2C3_BASE_ADDR
+#else
+#define P1003_TSC_I2C_BASE   I2C2_BASE_ADDR
+#endif
+#define P1003_TSC_I2C_ID     4
+
 // USB test defines
 #define MX53_USBH1_BASE_ADDR    0x53F80200
 #define MX53_USBH2_BASE_ADDR    0x53F80400
@@ -190,6 +205,9 @@ extern imx_i2c_request_t max7310_i2c_req_array[];
 #define USBH2_VIEWPORT      (USBH2_BASE_ADDR + 0x170)
 #define USB_CTRL_1      (USBOH3_BASE_ADDR + 0x810)
 #define UH2_PORTSC1 (USBH2_BASE_ADDR + 0x184)
+
+#define USBOH3_BASE_ADDR      USBOH3_USB_BASE_ADDR
+
 
 #define FEC_BASE_ADDR         ENET_BASE_ADDR
 
@@ -236,6 +254,7 @@ enum display_type {
     DISP_DEV_VGA,
     DISP_DEV_HDMI,
     DISP_DEV_TV,
+    DISP_DEV_MIPI,
 };
 
 void freq_populate(void);
@@ -248,8 +267,13 @@ void usb_clock_enable(void);
 void imx_enet_setup(void);
 void gpmi_nand_clk_setup(void);
 void hw_can_iomux_config(uint32_t module_instance);
+void audio_codec_power_on(void);
+void audio_clock_config(void);
 extern hw_module_t g_debug_uart;
 extern hw_module_t g_system_timer;
+
+//OBDS-SDK merge, add according to hardware.c
+void audio_clock_config(void);
 
 extern int32_t max7310_init(uint32_t, uint32_t, uint32_t);
 extern void max7310_set_gpio_output(uint32_t, uint32_t, uint32_t);
@@ -266,6 +290,18 @@ extern int32_t is_input_char(uint8_t);
 
 extern void camera_power_on(void);
 extern void csi_port0_iomux_config(void);
+
+//list of obds tests
+extern int i2s_audio_test_enable;
+extern int ddr_test_enable;
+
+
+extern audio_pcm_t pcm_record;
+extern audio_pcm_t pcm_music;
+extern audio_card_t snd_card_ssi;
+extern audio_card_t snd_card_ssi_sgtl5000;
+extern audio_card_t snd_card_ssi_wm8958;
+extern audio_card_t snd_card_ssi_wm8962;
 
 //! @name Board ID
 //@{
@@ -306,4 +342,8 @@ extern void csi_port0_iomux_config(void);
 #error Need to define a board type
 #endif
 
+//Copy from obds
+//Provide macros for test enter and exit outputs
+#define TEST_ENTER(name) printf("Running test: %s\n", name)
+#define TEST_EXIT(name) do {printf("..Test: %s\n", name); } while(0) 
 #endif /* __HARDWARE_H__ */

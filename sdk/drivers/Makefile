@@ -17,6 +17,8 @@ audio/src/imx-audmux.c
 audio/src/imx-ssi.c
 audio/src/sgtl5000.c
 audio/src/snd_card.c
+audio/src/wm8958_dac.c
+audio/src/wm8962.c
 camera/src/camera_profile.c
 camera/src/smd_sensor.c
 cpu_utility/src/cpu_get_cores.c

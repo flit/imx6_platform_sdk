@@ -22,23 +22,18 @@ include $(SDK_ROOT)/mk/common.mk
 
 # Set up to link application.
 APP_NAME = power_modes_test
-LINK_APP = true
-
-# Subdirectories included in the build.
-define SUBDIRS
-	$(BOARD_ROOT)
-endef
+LINK_APP = 1
 
 # Local source files.
 define SOURCES
-	$(APPS_ROOT)/common/platform_init.c
-	src/power_modes_test.c
+    $(APPS_ROOT)/common/platform_init.c
+    src/power_modes_test.c
 endef
 
 # Need to include the SDK library!
-LIBRARIES := \
-	$(LIBSDK) \
-	$(LIBBOARD)
+LIBRARIES = \
+    $(LIBSDK) \
+    $(LIBBOARD)
 
 # Specify our linker script.
 LD_FILE = $(APPS_ROOT)/common/basic_sdk_app.ld

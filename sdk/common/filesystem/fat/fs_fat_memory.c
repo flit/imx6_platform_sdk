@@ -29,10 +29,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Includes
 ////////////////////////////////////////////////////////////////////////////////
-#include "include/fstypes.h"
-//#include "hw/core/vmemory.h"
-#include "include/fat_internal.h"
-#include "include/filespec.h"
+#include "fstypes.h"
+#include "fat_internal.h"
+#include "filespec.h"
 #include "sectordef.h"
 
 

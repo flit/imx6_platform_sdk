@@ -25,27 +25,42 @@
 #include "os_filesystem_errordefs.h"
 #include <stdio.h>
 #include "fsproj.h"
-#include "filesystem/filesystem.h"
+#include "drivers/media/ddi_media.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Externs
 ////////////////////////////////////////////////////////////////////////////////
 
 //! \brief Holds fast file handles for files that CheckDisk() deletes.
-extern uint64_t *g_CheckDiskFastFileHandles;
-//! \brief Holds the number of fast file handles that CheckDisk() deletes.
-extern uint8_t g_CheckDiskNumFastFileHandles;
-//! \brief Holds directories that CheckDisk() deletes.
-extern uint8_t g_CheckDiskAnyDirectoriesDeleted;
+// extern uint64_t *g_CheckDiskFastFileHandles;
+// //! \brief Holds the number of fast file handles that CheckDisk() deletes.
+// extern uint8_t g_CheckDiskNumFastFileHandles;
+// //! \brief Holds directories that CheckDisk() deletes.
+// extern uint8_t g_CheckDiskAnyDirectoriesDeleted;
+// 
+// 
+// // We'll remember up to this many fast file handles with
+// // each fast file handle being 64 bits
+// //! \brief Maximum number of 64-bit fast file handles stored.
+// #define CHECKDISK_MAX_FAST_FILE_HANDLES   (32)
+// 
+// //! \brief Large buffers are allocated by DMI instead of stack.
+// #define FS_USE_MALLOC
 
+//! \brief TBD
+#define SEEK_SET           	0
+//! \brief TBD
+#define SEEK_CUR            1
+//! \brief TBD
+#define SEEK_END            2
 
-// We'll remember up to this many fast file handles with
-// each fast file handle being 64 bits
-//! \brief Maximum number of 64-bit fast file handles stored.
-#define CHECKDISK_MAX_FAST_FILE_HANDLES   (32)
+//! \brief TBD
+#define INVALID_FILESYSTEM	      (WORD)(3)
 
-//! \brief Large buffers are allocated by DMI instead of stack.
-#define FS_USE_MALLOC
+#ifndef MAX_FILENAME_LENGTH
+//! \brief TBD
+#define MAX_FILENAME_LENGTH 256
+#endif
 
 #if defined(__cplusplus) && !defined(WIN32)
 extern "C" {
@@ -355,39 +370,6 @@ RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRe
 //! \todo [PUBS] Add definition(s).
 ///////////////////////////////////////////////////////////////////////////////
 RtStatus_t Fwrite_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToWrite);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief TBD
-//!
-//! \fntype Function 
-//!
-//! \param[in] i32HandleNumber    TBD
-//! \param[in] pBuffer          TBD
-//! \param[in] i32NumBytesToWrite TBD
-//!
-//! \return Status of the call.
-//! \retval TBD
-//!
-//! \todo [PUBS] Add definition(s).
-///////////////////////////////////////////////////////////////////////////////
-RtStatus_t Fwrite_BypassCache(int32_t i32HandleNumber, 
-                         uint8_t *pBuffer, 
-                         int32_t i32NumBytesToWrite);
-
-///////////////////////////////////////////////////////////////////////////////
-//! \brief TBD
-//!
-//! \fntype Function 
-//!
-//! \param[in] i32HandleNumber    TBD
-//! \param[in] pBuffer          TBD
-//! \param[in] i32NumBytesToRead TBD
-//!
-//! \return Status of the call.
-//! \retval TBD
-//!
-//! \todo [PUBS] Add definition(s).
-///////////////////////////////////////////////////////////////////////////////
-RtStatus_t Fread_BypassCache(int32_t i32HandleNumber, uint8_t *pBuffer, int32_t i32NumBytesToRead);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief TBD
@@ -522,29 +504,6 @@ RtStatus_t Fremovew(uint8_t *filepath);
 RtStatus_t FSInit(uint8_t *bufx, uint8_t *bufy, int32_t maxdevices, int32_t maxhandles, int32_t maxcaches);
 
 ///////////////////////////////////////////////////////////////////////////////
-//! Macro IsExternalDriveFsReady() 
-//! \brief Indicates to applications if the external drive's FS is ready to be used or not.
-//! The Drive's FS is ready after FSInit, FsDriveInit(), and ComputeFreeCluster() succeed.
-//! \type Macro
-//! \param[in] none
-//!
-//! \return bool result.
-//! \retval true if the external drive is present and its FS is ready to be used, 
-//!         else returns false meaning not present OR card's FS not init yet.
-//!
-//! \note An API to check if the external media's FS is ready for use.
-//! Exception case: if framework's DISABLE_FILESYSTEM is defined (FS can be handled by app), 
-//!                 this API then signals only drive readiness (not drive's FS state).
-#if (!defined(WIN32))
-#define IsExternalDriveFsReady() (g_bFrameworkExternalDriveOrFsInit)
-#else
-#define IsExternalDriveFsReady() false
-#endif
-// Future alternate enhanced ver below also checks for valid FAT type but costs a function call.
-// To view the implementation of ExternalMMCMediaPresent, see readdevicerecord.c 
-//#define IsExternalDriveFsReady() ((ExternalMMCMediaPresent()==MEDIA_MMC_VALID)?true:false)
-
-///////////////////////////////////////////////////////////////////////////////
 //! \brief TBD
 //!
 //! \fntype Function 
@@ -604,48 +563,6 @@ int32_t Computefreecluster(int32_t DeviceNumber);
 //! \see To view the function definition, see getfilesize.c.
 ///////////////////////////////////////////////////////////////////////////////
 RtStatus_t GetFileSize(int32_t HandleNumber);
-
-//! GET_FILE_SIZE macro is a lightweight version of GetFileSize function
-//! There are some places where GetFileSize is called again and again
-//! and in some of those places GetFileSize follows a call to Handleactive.
-//! But, Handleactive is called from within GetFileSize.
-//! So, it's best to use this macro to save time, especially after having
-//! called HandleActive on HandleNumber.
-#define GET_FILE_SIZE(HandleNumber) (Handle[(HandleNumber)].FileSize)
-
-RtStatus_t FastOpen(int64_t Key, uint8_t *mode);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Provides the fast access to the handle.
-//!
-//! \fntype Reentrant 
-//!
-//! \param[in] HandleNumber
-//!
-//! \return A packed \c int64_t containing key defined as a bit pattern\n
-//!                  1) Lower 4 bits(0-3) for device\n
-//!                  2) 32 Bits (4-35) for directory sector\n
-//!                  3) 12 bits (36-47) for directory offset bits 48-63 are not used.
-//!
-//! \internal
-//! \see To view the function definition, see fgetfasthandle.c.
-///////////////////////////////////////////////////////////////////////////////
-int64_t    FgetFastHandle(int32_t HandleNumber);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Extracts the device from 64-bit key and returns the device number.
-//!
-//! \fntype Reentrant 
-//!
-//! \param[in] Key File key.
-//!
-//! \return Device number.
-//!
-//! \internal
-//! \see To view the function definition, see fgetfasthandle.c.
-///////////////////////////////////////////////////////////////////////////////
-int32_t    FgetDevice(int64_t Key);
-
-//! \brief TBD
-RtStatus_t GetShortfilename(int64_t Key,uint8_t *Buffer);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Flushes only the dirty cache buffers that contain valid
@@ -711,21 +628,7 @@ int32_t FSFATType(int32_t DeviceNum);
 //! \see To view the function definition, see readdevicerecord.c.
 ///////////////////////////////////////////////////////////////////////////////
 int32_t FSMediaPresent(int32_t DeviceNum);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Returns cluster Shift
-//!
-//! \fntype Non-Reentrant
-//!
-//! \param[in] DeviceNum
-//!
-//! \return TBD
-//!
-//! \todo [PUBS] Add definition(s).
-//!
-//! \internal
-//! \see To view the function definition, see readdevicerecord.c.
-///////////////////////////////////////////////////////////////////////////////
-int32_t FSClusterShift(int32_t DeviceNum);
+
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief TBD
 //!
@@ -759,140 +662,7 @@ int64_t FSFreeSpaceFromHandle(int32_t HandleNumber);
 //! \internal
 //! \see To view the function definition, see readdevicerecord.c.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t FSSize(int32_t DeviceNum, int32_t TYPE);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Gets a word from the given unicode string at the given offset and updates the offset accordingly.
-//! 
-//! \fntype Reentrant Function 
-//!
-//! \param[in] Buffer Pointer to the buffer.
-//! \param[in] offset Pointer to the offset.
-//!
-//! \return TBD
-//!
-//! \todo [PUBS] Add definition(s).
-//!
-//! \internal
-//! \see To view the function definition, see getchar.c.
-///////////////////////////////////////////////////////////////////////////////
-int32_t GetCharW(uint8_t *Buffer,int32_t *offset);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Gets a character from the given string at the given offset and updates the offset accordingly.
-//!
-//! \fntype Reentrant Function  
-//!
-//! This	function 
-//!
-//! \param[in] Buffer Pointer to the buffer.
-//! \param[in] offset Pointer to the offset   
-//!
-//! \return TBD
-//!
-//! \todo [PUBS] Add definition(s).
-//!
-//! \internal
-//! \see To view the function definition, see getchar.c.
-///////////////////////////////////////////////////////////////////////////////
-//int32_t GetChar(uint8_t *Buffer,int32_t *offset);
-RtStatus_t GetChar(uint8_t *Buffer,int32_t *offset);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Puts a character in the given string at given offset 
-//!                  and updates the offset accordingly.
-//!
-//! \fntype Reentrant Function  
-//!
-//! \param[in] Buffer Pointer to the buffer.
-//! \param[in] offset Pointer to the offset.   
-//! \param[in] Char   Character to put.
-//!
-//! \internal
-//! \see To view the function definition, see putchar.c.
-///////////////////////////////////////////////////////////////////////////////
-void PutChar(uint8_t *Buffer,int32_t *offset,int32_t Char);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Puts a word in the given unicode string at given offset and updates the offset accordingly.
-//!
-//! \fntype Reentrant Function  
-//!
-//! \param[in] Buffer Pointer to the buffer.
-//! \param[in] offset Pointer to the offset.  
-//! \param[in] Char   Character/word to put.
-//!
-//! \internal
-//! \see To view the function definition, see putchar.c.
-///////////////////////////////////////////////////////////////////////////////
-void PutCharW(uint8_t *Buffer,int32_t *offset,int32_t Char);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Copies the string from current position to another string.
-//!
-//! \fntype Reentrant Function  
-//!
-//!   This function copies the string from current position to the 
-//!   directory separator or null character in the file path to 
-//!   another string called name.Current position is set to next 
-//!   directory separator or to end of file path.
-//!
-//! \param[in]  filepath Pointer to the file path.
-//! \param[out] currentPosition Current position.   
-//!
-//! \return Next current position.
-//!
-//! \note This function considers the string to be Unicode.
-//!
-//! \todo [PUBS] Check definitions.
-//!
-//! \internal
-//! \see To view the function definition, see getname.c.
-///////////////////////////////////////////////////////////////////////////////
-//int32_t GetnameW(uint8_t *filepath,int32_t currentPosition);
-RtStatus_t GetnameW(uint8_t *filepath,int32_t currentPosition);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Copies the string from current position to another string.
-//!
-//! \fntype Reentrant Function  
-//!
-//!   This function copies the string from current position to the 
-//!   directory separator or null character in the file path to 
-//!   another string called name.Current position is set to next 
-//!   directory separator or to end of file path. 
-//!
-//! \param[in]  filepath Pointer to the file path.
-//! \param[out] currentPosition Current position.   
-//!
-//! \return Next current position.
-//!
-//! \note This function considers the string to be DBCS.
-//!
-//! \todo [PUBS] Check definitions.
-//!
-//! \internal
-//! \see To view the function definition, see getname.c.
-///////////////////////////////////////////////////////////////////////////////
-//int32_t Getname(uint8_t *filepath, int32_t currentPosition);
-RtStatus_t Getname(uint8_t *filepath, int32_t currentPosition);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Copies the string from current position to another string.
-//!
-//! \fntype Reentrant Function  
-//!   
-//! This function copies the string from current position to the 
-//! directory separator or null character in the file path to 
-//! another string called name.Current position is set to next 
-//! directory separator or to end of file path.
-//!
-//! \param[in] filepath        Pointer to filepath.
-//! \param[in] currentPosition Current position.  
-//!
-//! \return Next current position.
-//!
-//! \note This function considers the string to be Unicode.
-//!
-//! \todo [PUBS] Check definition; definition is same as GetnameW.
-//!
-//! \internal
-//! \see To view the function definition, see getname.c.
-///////////////////////////////////////////////////////////////////////////////
-int32_t GetDirnameW(uint8_t *filepath,int32_t currentPosition);
+int32_t FSSize(int32_t DeviceNum);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Directory API
@@ -1023,6 +793,8 @@ RtStatus_t Rmdirw(uint8_t *filepath);
 ///////////////////////////////////////////////////////////////////////////////
 int32_t DeleteTree(uint8_t *Path);
 
+int32_t Frename(uint8_t *oldFilename, uint8_t *newFilename);
+
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Returns the pointer to the \c gCurrentWorkingdirectory string buffer.
 //!
@@ -1034,37 +806,6 @@ int32_t DeleteTree(uint8_t *Path);
 //! \see To view the function definition, see getcwd.c.
 ///////////////////////////////////////////////////////////////////////////////
 uint8_t *Getcwd(void);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Copies first string (\c filepath) to second string (\c gCworkingDir).
-//!
-//! \fntype Function 
-//!
-//! \param[in] filepath     Pointer to the file path.
-//! \param[in] gCworkingDir Pointer to the second string.
-//! \param[in] index        TBD
-//! \param[in] length       TBD
-//!
-//! \return Status of the call.
-//! \retval SUCCESS If call was successful.
-//! \retval Error   If error occurs.
-//!
-//! \todo [PUBS] Add definition(s), verify direction of parameters, and list error codes.
-//!
-//! \internal
-//! \see To view the function definition, see setcwd.c.
-///////////////////////////////////////////////////////////////////////////////
-RtStatus_t Setcwd(uint8_t *filepath, uint8_t *gCworkingDir, int32_t index, int32_t length);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Finds a free handle and copies the handle 0 (CWD handle) to this new handle.
-//!
-//! \fntype Function 
-//!
-//! \return Returns the handle number of the new free handle found or error if function fails
-//!
-//! \internal
-//! \see To view the function definition, see handleres.c.
-///////////////////////////////////////////////////////////////////////////////
-int32_t GetCWDHandle(void);
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief TBD
 //!
@@ -1080,51 +821,6 @@ int32_t GetCWDHandle(void);
 //! \see To view the function definition, see setcwdhandle.c.
 ///////////////////////////////////////////////////////////////////////////////
 int32_t  SetCWDHandle(int32_t DeviceNo);
-
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Converts the given DBCS string to UNICODE.
-//!
-//! \fntype Reentrant Function 
-//!
-//! \param[in] filepath Pointer to the file name.
-//! \param[in] buf      Pointer to the buffer.
-//! \param[in] index    Starting point for the string.
-//! \param[in] length   Length of the string (ending point of the string).
-//!
-//! \internal
-//! \see To view the function definition, see fsunicode.c.
-///////////////////////////////////////////////////////////////////////////////
-void DBCStoUnicode(uint8_t *filepath, uint8_t *buf,int32_t index, int32_t length);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Returns the length of a string. 
-//!
-//! \fntype Function 
-//!
-//! \param[in] filepath Pointer to the file path.
-//!
-//! \return Number of characters in the string.
-//!
-//! \note This function considers the string as DBCS.
-//!
-//! \internal
-//! \see To view the function definition, see .
-///////////////////////////////////////////////////////////////////////////////
-int32_t Strlength(uint8_t *filepath);
-///////////////////////////////////////////////////////////////////////////////
-//! \brief Returns the length of a string. 
-//!
-//! \fntype Function 
-//!
-//! \param[in] filepath Pointer to the file path.
-//!
-//! \return Number of characters in the string.
-//!
-//! \note This function considers the string as Unicode.
-//!
-//! \internal
-//! \see To view the function definition, see .
-///////////////////////////////////////////////////////////////////////////////
-int32_t StrlengthW(uint8_t *filepath);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Find file API
@@ -1205,8 +901,6 @@ RtStatus_t FindNext(int32_t HandleNumber, FindData_t *_finddata);
 //! \brief TBD
 //! \todo [PUBS] Add definition...
 RtStatus_t FindClose(int32_t HandleNumber);
-
-int32_t Frename(uint8_t *oldFilename,uint8_t *newFilename);
 
 ////////////////////////////////////////////////////////////////////////////////
 // File attribute API
@@ -1417,58 +1111,58 @@ int32_t CheckFileNameCase(int32_t HandleNumber, FindData_t * pFindData);
 
 //! \brief TBD
 //! \todo [PUBS] Add definition...
-typedef struct
-{
-    //! \brief TBD
-    int32_t CurrentOffset;     
-    //! \brief TBD
-    int32_t BytePosInSector;
-    //! \brief TBD
-    int32_t SectorPosInCluster;
-    //! \brief TBD
-    int32_t CurrentCluster;
-    //! \brief TBD
-    int32_t CurrentSector;   
-} HandleContext_t;
-
-////////////////////////////////////////////////////////////////////////////////
-// Check Disk Public API
-////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////
-//! \brief TBD
-//!
-//! \fntype Function 
-//!
-//! \param[in] drive TBD
-//!
-//! \return Status of the call.
-//! \retval SUCCESS If the call was successful.
-//! \retval ERROR   If an error occurred.
-//!
-//! \todo [PUBS] Add definition(s) and actual error codes.
-//!
-//! \internal
-//! \see To view the function definition, see chkdsk.c.
-///////////////////////////////////////////////////////////////////////////////
-RtStatus_t CheckDisk( uint8_t drive );
-
-//! \brief TBD
-//! \todo [PUBS] Add definition...
-#define MAXCONTEXT 8
-
-//! \brief TBD
-//! \todo [PUBS] Add definition...
-typedef struct
-{
-    //! \brief TBD
-    int32_t  HandleNumber;
-    //! \brief TBD
-    HandleContext_t HandleContext[MAXCONTEXT];
-} StoreContext_t;
-
-//! \brief TBD
-//! \todo [PUBS] Add definition...
-#define MAX_STORE 2
+// typedef struct
+// {
+//     //! \brief TBD
+//     int32_t CurrentOffset;     
+//     //! \brief TBD
+//     int32_t BytePosInSector;
+//     //! \brief TBD
+//     int32_t SectorPosInCluster;
+//     //! \brief TBD
+//     int32_t CurrentCluster;
+//     //! \brief TBD
+//     int32_t CurrentSector;   
+// } HandleContext_t;
+// 
+// ////////////////////////////////////////////////////////////////////////////////
+// // Check Disk Public API
+// ////////////////////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////////////////
+// //! \brief TBD
+// //!
+// //! \fntype Function 
+// //!
+// //! \param[in] drive TBD
+// //!
+// //! \return Status of the call.
+// //! \retval SUCCESS If the call was successful.
+// //! \retval ERROR   If an error occurred.
+// //!
+// //! \todo [PUBS] Add definition(s) and actual error codes.
+// //!
+// //! \internal
+// //! \see To view the function definition, see chkdsk.c.
+// ///////////////////////////////////////////////////////////////////////////////
+// RtStatus_t CheckDisk( uint8_t drive );
+// 
+// //! \brief TBD
+// //! \todo [PUBS] Add definition...
+// #define MAXCONTEXT 8
+// 
+// //! \brief TBD
+// //! \todo [PUBS] Add definition...
+// typedef struct
+// {
+//     //! \brief TBD
+//     int32_t  HandleNumber;
+//     //! \brief TBD
+//     HandleContext_t HandleContext[MAXCONTEXT];
+// } StoreContext_t;
+// 
+// //! \brief TBD
+// //! \todo [PUBS] Add definition...
+// #define MAX_STORE 2
 
 
 #if defined(__cplusplus) && !defined(WIN32)

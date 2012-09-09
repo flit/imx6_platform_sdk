@@ -19,7 +19,6 @@
 
 include $(SDK_ROOT)/mk/common.mk
 
-
 # Provide default value of TEST if not set.
 TEST ?= ALL
 
@@ -121,5 +120,34 @@ LD_FILE = $(APPS_ROOT)/common/basic_sdk_app.ld
 # Add common to include paths.
 INCLUDES += -I$(APPS_ROOT)/common
 
-
+# Standard targets.
 include $(SDK_ROOT)/mk/targets.mk
+
+# Special rules to force rebuilding of the unit test app when the TEST variable is
+# changed. These rules must come after the inclusion of targets.mk because they
+# depend upon variables defined in that file.
+
+# The most recent value of the TEST variable is written to a current_test.txt file
+# in the app's output directory. Here we construct the filename and read its current
+# contents.
+current_test_file := $(APP_OUTPUT_ROOT)/current_test.txt
+current_test_name := $(shell [ -f $(current_test_file) ] && cat $(current_test_file))
+
+# Delete the current test name file if the currently selected test doesn't match the
+# one recorded in it.
+ifneq "$(TEST)" "$(current_test_name)"
+#$(info Deleting $(current_test_file); last test was $(current_test_name))
+$(shell rm -f $(current_test_file))
+#else
+#$(info Last test $(current_test_name) matches current test $(TEST))
+endif
+
+# Object files and the application executable depend on the current test file. This
+# forces rebuilding if the file doesn't exist, i.e. if we deleted it above.
+$(OBJECTS_ALL) $(APP_ELF): $(current_test_file)
+
+# To rebuild the current test file, just write the value of TEST into it.
+$(current_test_file):
+	echo "$(TEST)" > $(current_test_file)
+#	echo "Updated current test to $(TEST)"
+

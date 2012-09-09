@@ -78,7 +78,7 @@ archive_or_objs = $(OBJECTS_ALL)
 endif
 
 #-------------------------------------------------------------------------------
-# Default recipe
+# Default target
 #-------------------------------------------------------------------------------
 
 # Note that prerequisite order is important here. The subdirectories must be built first, or you
@@ -90,7 +90,7 @@ all : $(SUBDIRS) $(OBJECTS_DIRS) $(archive_or_objs) $(APP_ELF)
 
 # For RedHat we have to force always archiving. It seems that fractions of a second are not
 # recorded in file modification dates on RedHat (at least the server we tested with), which
-# caused files to be consiered up to date when they weren't.
+# caused files to be considered up to date when they weren't.
 ifeq "$(is_redhat)" "1"
 .PHONY: $(TARGET_LIB)
 endif
@@ -98,6 +98,9 @@ endif
 # Recipe to create the output object file directories.
 $(OBJECTS_DIRS) :
 	$(at)mkdir -p $@
+
+# Everything depends upon the current makefile.
+$(OBJECTS_ALL) $(TARGET_LIB) $(APP_ELF): $(this_makefile)
 
 #-------------------------------------------------------------------------------
 # Pattern rules for compilation

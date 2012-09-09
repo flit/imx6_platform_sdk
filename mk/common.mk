@@ -81,6 +81,7 @@ endif
 # At this point, the path to this makefile was just appended to MAKEFILE_LIST. We make
 # use of this to get the root directory of the SDK. This variable is exported to child
 # instances of make.
+this_makefile := $(firstword $(MAKEFILE_LIST))
 export SDK_ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))../)
 
 # Build root directory paths.

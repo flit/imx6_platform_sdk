@@ -16,35 +16,10 @@
 include $(SDK_ROOT)/mk/common.mk
 
 
-# FAT32 and FS steering API source files.
-define SOURCES
-fat/base.c
-fat/cache_wrappers.c
-fat/chdir.c
-fat/deletetree.c
-fat/directories.c
-fat/fatapi.c
-fat/filegetattrib.c
-fat/findfirst.c
-fat/findnextsector.c
-fat/fopen.c
-fat/fs_fat_memory.c
-fat/fs_steering.c
-fat/fsinit.c
-fat/fsunicode.c
-fat/handle.c
-fat/longfilename.c
-fat/readdevicerecord.c
-fat/reentrant_section.c
-fat/standardapi.c
-fat/string_utilities.c
-endef
+SOURCES = filesystem_test.c
 
-# Extra include paths needed to build the filesystem.
 INCLUDES += \
-	-I$(SDK_ROOT)/sdk/common/filesystem/ \
-    -I$(SDK_ROOT)/sdk/common/filesystem/include \
-    -I$(SDK_ROOT)/sdk/common/filesystem/fat/
+	-I$(SDK_LIB_ROOT)/common/filesystem/include
 
 
 include $(SDK_ROOT)/mk/targets.mk

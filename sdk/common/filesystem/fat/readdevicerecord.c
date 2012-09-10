@@ -24,7 +24,7 @@
 #include <string.h>
 #include "platform.h"
 #include "bootsecoffset.h" 
-#include "drivers/media/ddi_media.h" 
+#include "ddi_media.h" 
 #include "diroffset.h"
 
 /*----------------------------------------------------------------------------

@@ -24,7 +24,7 @@
 #include "platform.h"
 #include "bootsecoffset.h" 
 #include "diroffset.h" 
-#include "drivers/media/media_cache.h"
+#include "media_cache.h"
 
 RtStatus_t media_cache_pinned_write(MediaCacheParamBlock_t * pb){return 0;}
 RtStatus_t media_cache_release(uint32_t token){return 0;}

@@ -8,14 +8,14 @@
 /*----------------------------------------------------------------------------
 		File Includes
 ----------------------------------------------------------------------------*/
-#include <types.h>
+#include "sdk.h"
+#include "types.h"
 #include <string.h>
 #include <stdlib.h>
-#include "fstypes.h"
-#include "fat_internal.h"
 #include <error.h>
-#include <filesystem/fsapi.h>   //! \todo malinclusion
-
+#include "filesystem/fsapi.h"
+#include "filesystem/fat/fstypes.h"
+#include "filesystem/fat/fat_internal.h"
 #include "hardware.h"
 #include "timer/epit.h"
 #include "usdhc/usdhc_ifc.h"

@@ -34,7 +34,7 @@
 //! \see Fclose, Fread, Fwrite, Fseek
 
 #include "fs_steering.h"
-//#include "arm_ghs.h"
+#include "ddi_media.h"
 
 // Array of fuction pointers for the redirection of Fclose.  There should
 // be one entry in the array for each FsType_t enum value and a NULL entry
@@ -67,6 +67,55 @@ Fseek_t const pRedirectFseek[FS_TYPE_MAX+1] = {
     // Future       // Add more file system redirection functions here when needed
     NULL            // For steering of invalid handles
 };
+
+// Array of fuction pointers for the redirection of Fread.  There should
+// be one entry in the array for each FsType_t enum value and a NULL entry
+// to terminate the array.
+Fread_t const pRedirectFread[FS_TYPE_MAX+1] = {
+    Fread_FAT,          // For FAT handles
+    NULL,
+//    os_resource_Read,    // For resource handles
+    // Future       // Add more file system redirection functions here when needed
+    NULL            // For steering of invalid handles
+};
+
+//! \brief Determines the FsType_t of a file handle
+//!                  
+//! \fntype Function                  
+//!                  
+//! Determines the FsType_t of the specified file handle and returns
+//! it to the caller.
+//!                  
+//! \param[in]  handleNumber The file handle of interest      
+//!                  
+//! \retval FS_TYPE_FAT      If \c handleNumber is for the default filesystem
+//! \retval FS_TYPE_RESOURCE If \c handleNumber is for the resource filesystem
+//! \retval FS_TYPE_MAX      If \c handleNumber is of an unknown value
+//!                  
+//                  
+FsType_t FileSystemType( int32_t handleNumber )
+{
+    // Is the handle within the range for FAT
+    if( handleNumber >= FAT_HANDLE_MIN &&
+        handleNumber <= FAT_HANDLE_MAX )
+    {
+        // Type is FAT
+        return FS_TYPE_FAT;
+    }
+    // Is the handle within the range for resources
+    else if( handleNumber >= RESOURCE_HANDLE_MIN &&
+             handleNumber <= RESOURCE_HANDLE_MAX )
+    {
+        // Type is resource
+        return FS_TYPE_RESOURCE;
+    }
+    // Indicate an error if we get here
+    else
+    {
+        // Error
+        return FS_TYPE_MAX;
+    }
+}
 
 //                  
 //! \brief Redirects an Fclose request
@@ -178,6 +227,49 @@ RtStatus_t Fseek( int32_t handleNumber, int32_t numBytesToSeek, int32_t seekPosi
         // Call steering function
         result = function( handleNumber, numBytesToSeek, seekPosition );
     }
+
+    return result;
+}
+
+//! \brief Redirects an Fread request
+//!                  
+//! \fntype Function                  
+//!                  
+//! Redirects an Fread request to the appropriate handler based on the
+//! specified file handle.
+//!                  
+//! \param[in]  handleNumber   Handle of the file to read from
+//! \param[out] pBuffer        Buffer in which the data to be read is placed
+//! \param[in]  numBytesToRead Number of bytes to read from the file
+//!                  
+//! \retval ERROR_OS_FILESYSTEM_NO_STEERING_FUNCTION If there is no steering function defined for \c filehandle
+//! \retval RtStatus_t If the steering function encountered an error
+//! \retval Number of bytes read if the steering function was successful
+//!                  
+//                  
+int32_t Fread( int32_t handleNumber, uint8_t *pBuffer, int32_t numBytesToRead )
+{
+    int32_t result = ERROR_OS_FILESYSTEM_NO_STEERING_FUNCTION;
+    FsType_t type;
+    Fread_t function;
+    
+    ddi_ldl_push_media_task((const char *)__builtin_return_address(0));
+    ddi_ldl_push_media_task("Fread");
+
+    // Determine filesystem type
+    type = FileSystemType( handleNumber );
+    // Get steering function
+    function = pRedirectFread[type];
+
+    // Is steering function defined for this type
+    if( function != NULL )
+    {
+        // Call steering function
+        result = function( handleNumber, pBuffer, numBytesToRead );
+    }
+    
+    ddi_ldl_pop_media_task();
+    ddi_ldl_pop_media_task();
 
     return result;
 }

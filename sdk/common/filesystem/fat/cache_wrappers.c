@@ -13,12 +13,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "fat_internal.h"
-// #include "drivers/media/media_cache.h"
-// #include "drivers/media/media_buffer_manager.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-//#include <arm_ghs.h>
 #include "usdhc/usdhc_ifc.h"
 #include <assert.h>
 
@@ -113,13 +110,6 @@ RtStatus_t FSWriteSector(int32_t deviceNumber, int32_t sectorNumber, int32_t des
 #endif
 
     return status;
-}
-
-// used by Fwrite_BypassCache(), used by StorWriteObjectData()
-RtStatus_t FSWriteSector_BypassCache(int32_t deviceNumber, int32_t sectorNumber, int32_t destOffset, uint8_t * sourceBuffer, int32_t sourceOffset, int32_t numBytesToWrite, int32_t writeType)
-{
-    // Setup param block for write.
-    return FSWriteSector(deviceNumber, sectorNumber, destOffset, sourceBuffer, sourceOffset, numBytesToWrite, writeType);
 }
 
 // Used only in clearcluster() in the FAT filesystem. Can replace with call to writesector.
@@ -218,13 +208,6 @@ int32_t * FSReadMultiSectors(int32_t deviceNumber, int32_t sectorNumber, int32_t
                        actualSectorNumber * sectorSize);
 
 	return (int32_t *) (buffer);
-}
-
-
-// used by Fread_BypassCache(), used by StorReadObjectData()
-int32_t * FSReadSector_BypassCache(int32_t deviceNumber, int32_t sectorNumber, int32_t writeType, uint8_t *pBuffer, uint32_t * token)
-{
-    return FSReadSector(deviceNumber, sectorNumber, writeType, token);
 }
 
 RtStatus_t FSReleaseSector(uint32_t token)

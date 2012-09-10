@@ -19,6 +19,11 @@
 
 include $(SDK_ROOT)/mk/common.mk
 
+# Alias 'test' to 'TEST' for easier command line typing.
+ifdef test
+TEST = $(test)
+endif
+
 # Provide default value of TEST if not set.
 TEST ?= ALL
 
@@ -34,10 +39,11 @@ DEFINES +=-DSTANDALONE -DSDK_TEST=$(TEST)_test
 export APP_NAME = sdk_unit_test
 LINK_APP = 1
 
-# Subdirectories included in the build.
+# Tests included in the build for all targets and boards.
 define SUBDIRS
     $(SDK_LIB_ROOT)/drivers/audio/test
     $(SDK_LIB_ROOT)/drivers/cpu_utility/test
+    $(SDK_LIB_ROOT)/common/filesystem/test
     $(SDK_LIB_ROOT)/drivers/gic/test
     $(SDK_LIB_ROOT)/drivers/hdmi/test
     $(SDK_LIB_ROOT)/drivers/i2c/test

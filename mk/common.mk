@@ -204,20 +204,23 @@ AS = $(CROSS_COMPILE)as
 AR = $(CROSS_COMPILE)ar
 OBJCOPY = $(CROSS_COMPILE)objcopy
 
-# Ask the gcc front-end to tell us where libgcc and libc libraries are located. These
-# variables must be recursively defined variables since they depend on CFLAGS.
-libgcc_default = $(shell $(CC) -print-file-name=libgcc.a)
-LIBGCC = $(shell $(CC) $(CFLAGS) -print-file-name=libgcc.a)
-LIBC = $(shell $(CC) $(CFLAGS) -print-file-name=libc.a)
+# Ask the compiler for its version
+CC_VERSION := $(shell $(CC) -dumpversion)
+
+# Get the compiler directory. We have to go through this sillyness in order to support
+# paths with spaces in their names, such as under Cygwin where the CodeSourcery compiler
+# is normally installed under C:\Program Files\.
+CC_PREFIX := $(shell dirname "`which $(CC)`")/..
 
 # Standard library include paths.
-LIBGCC_LDPATH = $(abspath $(dir $(LIBGCC)))
-LIBC_LDPATH = $(abspath $(dir $(LIBC)))
+LIBGCC_LDPATH = $(CC_PREFIX)/lib/gcc/$(CROSS_COMPILE_STRIP)/$(CC_VERSION)/$(CC_LIB_POST)
+LIBC_LDPATH = $(CC_PREFIX)/$(CROSS_COMPILE_STRIP)/lib/$(CC_LIB_POST)
 
 # System header file include paths.
-LIBC_INCLUDE = $(abspath $(dir $(LIBC))/../include)
-CC_INCLUDE = $(abspath $(dir $(libgcc_default))/include)
-CC_INCLUDE_FIXED = $(abspath $(dir $(libgcc_default))/include-fixed)
+CC_INCLUDE = $(CC_PREFIX)/lib/gcc/$(CROSS_COMPILE_STRIP)/$(CC_VERSION)/include
+CC_INCLUDE_FIXED = $(CC_PREFIX)/lib/gcc/$(CROSS_COMPILE_STRIP)/$(CC_VERSION)/include-fixed
+LIBC_INCLUDE = $(CC_PREFIX)/$(CROSS_COMPILE_STRIP)/include
+
 
 #-------------------------------------------------------------------------------
 # Compiler flags
@@ -325,9 +328,9 @@ LDINC += -L '$(LIBGCC_LDPATH)' -L '$(LIBC_LDPATH)'
 # Indicate gcc and newlib std includes as -isystem so gcc tags and
 # treats them as system directories.
 SYSTEM_INC = \
-    -isystem $(CC_INCLUDE) \
-    -isystem $(CC_INCLUDE_FIXED) \
-    -isystem $(LIBC_INCLUDE)
+    -isystem '$(CC_INCLUDE)' \
+    -isystem '$(CC_INCLUDE_FIXED)' \
+    -isystem '$(LIBC_INCLUDE)'
 
 INCLUDES += \
     -I$(SDK_ROOT)/sdk \

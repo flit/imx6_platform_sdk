@@ -231,13 +231,39 @@ void board_init(void)
     max7310_i2c_req_array[1].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
     max7310_i2c_req_array[1].dev_addr = MAX7310_I2C_ID1;    // the I2C DEVICE address
     max7310_init(1, MAX7310_ID1_DEF_DIR, MAX7310_ID1_DEF_VAL);
+#endif
 #if defined(BOARD_SABRE_AI)
     max7310_i2c_req_array[2].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
     max7310_i2c_req_array[2].dev_addr = MAX7310_I2C_ID2;    // the I2C DEVICE address
     max7310_init(2, MAX7310_ID2_DEF_DIR, MAX7310_ID2_DEF_VAL);
 #endif
-#endif
+}
 
+
+/*!
+ * eCSPI pin mux and pad configure
+ */
+void ecspi_iomux_cfg(uint32_t base_address)
+{
+    switch (base_address) {
+    case ECSPI1_BASE_ADDR:
+        ecspi1_iomux_config();
+        break;
+    case ECSPI2_BASE_ADDR:
+        ecspi2_iomux_config();
+        break;
+    case ECSPI3_BASE_ADDR:
+        ecspi3_iomux_config();
+        break;
+    case ECSPI4_BASE_ADDR:
+        ecspi4_iomux_config();
+        break;
+    case ECSPI5_BASE_ADDR:
+        ecspi5_iomux_config();
+        break;
+    default:
+        break;
+    }
 }
 
 /*!
@@ -526,6 +552,25 @@ void imx_ar8031_reset(void)
 //    max7310_set_gpio_output(0, 2, GPIO_LOW_LEVEL);
 //    hal_delay_us(1000);
 //    max7310_set_gpio_output(0, 2, GPIO_HIGH_LEVEL);
+#endif
+}
+
+/*CPU_PER_RST_B low to high*/
+void imx_KSZ9021RN_reset(void)
+{
+    //max7310_set_gpio_output(0, 2, GPIO_LOW_LEVEL);
+    //hal_delay_us(1000000);
+    //max7310_set_gpio_output(0, 2, GPIO_HIGH_LEVEL);
+#ifdef BOARD_SABRE_LITE
+    // Config gpio3_GPIO[23] to pad EIM_D23(D25)
+    writel((SION_DISABLED & 0x1) << 4 | (ALT5 & 0x7), IOMUXC_SW_MUX_CTL_PAD_EIM_D23);
+    writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
+           (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
+           (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_D23);
+    writel((readl(GPIO3_BASE_ADDR + 0x4) | (1 << 23)), GPIO3_BASE_ADDR + 0x4);  /*output */
+    writel(readl(GPIO3_BASE_ADDR + 0x0) & ~(1 << 23), GPIO3_BASE_ADDR + 0x0);   // output low
+    hal_delay_us(1000000);      // hold in reset for a delay
+    writel(readl(GPIO3_BASE_ADDR + 0x0) | (1 << 23), GPIO3_BASE_ADDR + 0x0);
 #endif
 }
 

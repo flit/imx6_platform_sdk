@@ -49,6 +49,8 @@ extern int pcie_test(void);
 int        auto_run_enable;
 extern int i2s_audio_test(void);
 extern int run_ddr_test(void);
+extern int ds90ur124_test_main(void);
+//extern int spi_nor_test(void);
 
 
 void ALL_test(void)
@@ -101,7 +103,7 @@ void ALL_test(void)
            break;
         case '2':
            //UART test
-//           uart_test(); 
+           uart_test(); 
            break;
         case '3':
            //Board ID test
@@ -112,7 +114,7 @@ void ALL_test(void)
            //SPI NOR FLASH
 //           spi_nor_test_enable = 1;
 //           spi_nor_flash_type = M25P32;
-//           spi_nor_test(); 
+ //          spi_nor_test(); 
            break;
         case '5':
            //SNVS SRTC Test

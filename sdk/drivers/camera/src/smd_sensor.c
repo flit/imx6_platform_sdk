@@ -11,9 +11,19 @@
  * @ingroup diag_camera
  */
 
-#include "camera/camera_def.h"
+#include "camera_def.h"
 
+#if defined (CHIP_MX6SL)
+#define i2c_base I2C3_BASE_ADDR
+#else
 #define i2c_base I2C1_BASE_ADDR
+#endif
+
+t_reg_param ov5642_strobe_on[] = {
+    {0x3004, 0xff, 0, 0, 0},
+    {0x3016, 0x02, 0, 0, 0},
+    {0x3B00, 0x8c, 0, 0, }
+};
 
 static int32_t sensor_write_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * pval,
                                 uint16_t is_16bits);
@@ -149,7 +159,7 @@ t_camera_profile *search_sensor(void)
         sensor_reset();
         sensor_clock_setting();
         sensor_i2c_init(i2c_base, 170000);
-
+hal_delay_us(1000000);
         for (j = 0; j < sensor_on->sensor_detection_size; ++j) {
             t_reg_param *setting = &sensor_on->sensor_detection[j];
             sensor_read_reg(sensor_on->i2c_dev_addr, setting->addr, &read_value,
@@ -345,3 +355,40 @@ static int32_t sensor_read_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * 
 
     return ret;
 }
+
+int camera_strobeflash_on(uint32_t i2cbase)
+{
+    int ret, i;
+    t_reg_param *setting;
+
+    sensor_i2c_init(i2cbase, 170000);
+
+    for (i = 0; i < ARRAY_SIZE(ov5642_strobe_on); i++) {
+       setting = &ov5642_strobe_on[i];
+        ret = sensor_write_reg(i2cbase, setting->addr, &setting->value, setting->is_16bits);
+        if (ret != 0) {
+            printf("I2C write error.\n");
+            return ret;
+        }
+        if (setting->delay_ms != 0)
+            hal_delay_us(setting->delay_ms * 1000);
+    }
+
+    return ret;
+}
+
+int camera_strobeflash_off(uint32_t i2cbase)
+{
+    int ret = 0;
+
+    sensor_i2c_init(i2cbase, 170000);
+
+    ret = sensor_write_reg(i2cbase, 0x3B00, 0x00, 0);
+    if (ret != 0) {
+        printf("I2C write error.\n");
+        return ret;
+    }
+
+    return ret;
+}
+

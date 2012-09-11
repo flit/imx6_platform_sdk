@@ -15,7 +15,7 @@
 #include "hardware.h"
 
 extern void adv7180_set_gpio_output(unsigned int, unsigned int);
-extern void adv7180_i2c_init(void);
+extern void adv7180_i2c_init_obds(void);
 extern void adv7180_set_tristate_output(void);
 void deserializer_io_config(void);
 
@@ -26,7 +26,7 @@ void ds90ur124_init(void)
 {
     /* init the ADV7180 which handles PWRDN and OE signals
        of the DS90UR124 */
-    adv7180_i2c_init();
+    adv7180_i2c_init_obds();
     /* Data, hsync, and vsync signals are shared between
        the deserializer and video in chip */
     /* video in I/O placed in tri-state */

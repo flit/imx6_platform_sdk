@@ -6,10 +6,9 @@
  */
 
 #include "hardware.h"
-//#include "imx_i2c.h"
 
 // adv7180 functions
-extern void adv7180_i2c_init(void);
+extern void adv7180_i2c_init_obds(void);
 extern unsigned char adv7180_reg_read(unsigned char reg_addr);
 extern int adv7180_reg_write(unsigned char reg_addr, unsigned char data);
 extern void adv7180_set_gpio_output(unsigned int io_x, unsigned int level);
@@ -33,7 +32,7 @@ int ard_mb_reset_test(void)
     printf(" You only have %d seconds to hit the button, so make haste! \n", time);
     /* blink LED1 and LED2 attached to gpios of the ADV7180 */
 
-    adv7180_i2c_init();
+    adv7180_i2c_init_obds();
     adv7180_reg_write(0x00, 0x03);  //when reset will be set to 0
     printf(" time left: %ds..............................\n", time--);
     do {

@@ -24,7 +24,7 @@ struct imx_i2c_request adv7180_i2c_req;
 /*!
  * I2C init function to control the video A/D converter ADV7180.
  */
-void adv7180_i2c_init(void)
+void adv7180_i2c_init_obds(void)
 {
     /* reset the ADV7180 */
     max7310_set_gpio_output(0, 3, GPIO_LOW_LEVEL);
@@ -139,7 +139,7 @@ int adv7180_test_main(void)
 
     PROMPT_RUN_TEST("VIDEO INPUT");
 
-    adv7180_i2c_init();
+    adv7180_i2c_init_obds();
     ret = adv7180_i2c_device_id_check();
 
     /* if ID check test pass then test LED1 and LED2 attached

@@ -214,7 +214,7 @@ int i2c_device_id_check_DA9053(void)
 
         /* Make sure we read back what we wrote */
         if (reg_data == 0xC) {
-            I2CDBG("\tI2C communication to PMIC DA9053 validated \n");
+            printf("\tI2C communication to PMIC DA9053 validated \n");
 
 #ifdef DA9053_VALIDATION
             // Dialog specific evaluation test
@@ -232,7 +232,7 @@ int i2c_device_id_check_DA9053(void)
         }
     }
 
-    I2CDBG("\tDA9053 Device ID error, 0x%04x\n", reg_data);
+    printf("\tDA9053 Device ID error, 0x%04x\n", reg_data);
     return TEST_FAILED;
 }
 

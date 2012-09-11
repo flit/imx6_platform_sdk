@@ -90,7 +90,9 @@ endif
 ifeq "$(BOARD)" "smart_device"
 	SUBDIRS += \
 		$(SDK_LIB_ROOT)/drivers/camera/test \
-		$(SDK_LIB_ROOT)/drivers/keypad/test
+		$(SDK_LIB_ROOT)/drivers/keypad/test \
+                $(SDK_LIB_ROOT)/drivers/spi/test \
+                $(SDK_LIB_ROOT)/drivers/board_id/test
 endif
 
 # PWM is available on all but sabre_lite.
@@ -110,6 +112,37 @@ define SOURCES
 	src/all_test.c
         $(APPS_ROOT)/obds/src/tests/audio_ssi_test.c
         $(APPS_ROOT)/obds/src/tests/ddr_test.c
+        $(APPS_ROOT)/obds/src/tests/imx_spi_nor_test.c
+        $(APPS_ROOT)/obds/src/tests/snvs_srtc_obds_test.c
+        $(APPS_ROOT)/obds/src/tests/enet_mx6dldq_test.c
+        $(APPS_ROOT)/obds/src/tests/mmcsd_test.c
+        $(APPS_ROOT)/obds/src/tests/i2c_check_light_sensor_isl29023.c
+        $(APPS_ROOT)/obds/src/tests/i2c_device_barometer_ppl3115.c
+        $(APPS_ROOT)/obds/src/tests/i2c_device_digital_compass_mag3110.c
+        $(APPS_ROOT)/obds/src/tests/i2c_device_digital_compass_mag3112.c
+        $(APPS_ROOT)/obds/src/tests/i2c_device_id_check_mma8450.c
+        $(APPS_ROOT)/obds/src/tests/i2c_device_id_check_mma8451.c
+        $(APPS_ROOT)/obds/src/tests/i2c_device_id_check_p1003_tsc.c
+        $(APPS_ROOT)/obds/src/tests/i2c_device_temp_sensor_emc1046.c
+        $(APPS_ROOT)/obds/src/tests/i2c_device_zigbee_mc1323.c
+        $(APPS_ROOT)/obds/src/tests/touch_screen_max11801.c
+        $(APPS_ROOT)/obds/src/tests/i2c_dev_tests.c
+        $(APPS_ROOT)/obds/src/tests/pmic_da9053.c
+        $(APPS_ROOT)/obds/src/tests/pmic_lt3589.c
+        $(APPS_ROOT)/obds/src/tests/pmic_max17135.c
+        $(APPS_ROOT)/obds/src/tests/pmic_mc13892.c
+        $(APPS_ROOT)/obds/src/tests/i2c_device_pmic_pf0100.c
+        $(APPS_ROOT)/obds/src/tests/deserializer_ds90ur124.c
+        $(APPS_ROOT)/obds/src/tests/fm_tuner_si476x_test.c
+        $(APPS_ROOT)/obds/src/tests/gps_test.c
+        $(APPS_ROOT)/obds/src/tests/i2c_eeprom_at24cxx_test.c
+        $(APPS_ROOT)/obds/src/tests/mlb_os81050.c
+        $(APPS_ROOT)/obds/src/tests/srtc_test.c
+        $(APPS_ROOT)/obds/src/tests/touch_button_test.c
+        $(APPS_ROOT)/obds/src/tests/touch_screen.c
+        $(APPS_ROOT)/obds/src/tests/video_dec_adv7180.c
+        $(APPS_ROOT)/obds/src/tests/video_dec_ARD_MB_reset_button.c
+        $(APPS_ROOT)/obds/src/tests/video_dec_ARD_MBrst_from_cpu_expander.c
 endef
 
 # Need to include the SDK library!

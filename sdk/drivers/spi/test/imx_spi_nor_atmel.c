@@ -7,7 +7,7 @@
 
 #include "hardware.h"
 #include "imx_spi_nor_atmel.h"
-#include "spi/inc/ecspi_ifc.h"
+#include "spi/ecspi_ifc.h"
 
 extern dev_ecspi_e dev_spi_nor;
 

@@ -20,21 +20,11 @@ extern int spi_nor_write_numonyx(uint32_t addr, uint8_t* data, uint32_t length);
 extern int spi_nor_read_numonyx(void *src, void *dest, int len);
 extern int spi_nor_erase_numonyx(uint32_t addr, uint32_t length);
 
-//imx_spi_init_func_t spi_init_flash;
-//imx_spi_xfer_func_t spi_xfer_flash;
-
 uint32_t spi_nor_flash_type;
 extern dev_ecspi_e dev_spi_nor;
 
 uint8_t __attribute__ ((aligned(4))) spi_nor_tx_buf[SPI_NOR_XFER_SZ];
 uint8_t __attribute__ ((aligned(4))) spi_nor_rx_buf[SPI_NOR_XFER_SZ];
-
-static struct spi_v2_3_reg spi_nor_reg;
-
-// The remaining elements of imx_spi_nor is filled in the files like mx53.c or mx50.c, etc.
-struct imx_spi_dev imx_spi_nor = {
-  reg:&spi_nor_reg,
-};
 
 struct chip_id {
     char id0;

@@ -41,9 +41,12 @@
 #include "usb/usb.h"
 #include "keypad/keypad_port.h"
 
-//Add it from obds
+//Add for obds tests
 #include "audio/audio.h"
 #include "audio/imx-audmux.h"
+#include "spi/ecspi_ifc.h"
+#include "enet/enet.h"
+#include "board_id/board_id.h"
 
 // Android_Buttons test defines
 #define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR
@@ -343,6 +346,7 @@ extern int program_board_id_enable;
 extern int spi_nor_test_enable;
 extern int obds_snvs_srtc_test_enable;
 extern int srtc_test_enable;
+extern int program_board_id_enable;
 
 //Add variabnes from obds
 extern uint32_t usbh_EHCI_test_mode_base;

@@ -8,11 +8,11 @@
 #include "stdio.h"
 #include "string.h"
 #include "hardware.h"
-#include "board_id.h"
+//#include "board_id.h"
 
 extern int SDHC_ADMA_mode;
 extern int SDHC_UHSI_mode;
-extern int card_detect_en;
+int card_detect_en = TRUE;
 
 extern int mmc_sd_test(unsigned int, unsigned int);
 

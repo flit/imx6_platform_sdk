@@ -50,8 +50,30 @@ int        auto_run_enable;
 extern int i2s_audio_test(void);
 extern int run_ddr_test(void);
 extern int ds90ur124_test_main(void);
-//extern int spi_nor_test(void);
-
+extern int spi_nor_test(void);
+extern int obds_snvs_srtc_test(void);
+extern int enet_test_main(void);
+extern int ar8031_test_main(void);
+extern int KSZ9021RN_test_main(void);
+extern int mmcsd_test(void);
+extern int program_board_id(void);
+extern int i2c_device_id_check(void);
+extern int i2c_device_id_check_DA9053(void);
+extern int ltc3589_i2c_device_id_check(void);
+extern int i2c_device_id_check_MAX17135(void);
+extern int device_id_mc13892_test(void);
+extern int pf0100_i2c_device_id_check(void);
+extern int ds90ur124_test_main(void);
+extern int si476x_test_main(void);
+extern int gps_test(void);
+extern int i2c_eeprom_at24cxx_test(void);
+extern int os81050_test_main(void);
+extern int srtc_test(void);
+extern int touch_button_test(void);
+extern int touch_screen_test(void);
+extern int adv7180_test_main(void);
+extern int ard_mb_reset_test(void);
+extern int ard_mb_expander_reset_test(void); 
 
 void ALL_test(void)
 {
@@ -107,19 +129,19 @@ void ALL_test(void)
            break;
         case '3':
            //Board ID test
-//           program_board_id_enable = 1;
-//           program_board_id(); 
+           program_board_id_enable = 1;
+           program_board_id(); 
            break;
         case '4':
            //SPI NOR FLASH
-//           spi_nor_test_enable = 1;
-//           spi_nor_flash_type = M25P32;
- //          spi_nor_test(); 
+           spi_nor_test_enable = 1;
+           spi_nor_flash_type = M25P32;
+           spi_nor_test(); 
            break;
         case '5':
            //SNVS SRTC Test
-//           obds_snvs_srtc_test_enable = 1;
-//           obds_snvs_srtc_test();
+           obds_snvs_srtc_test_enable = 1;
+           obds_snvs_srtc_test();
            break;
         case '6':
             //I2S Audio 
@@ -142,15 +164,15 @@ void ALL_test(void)
             }  
             break;
         case '7':
-//            enet_test_enable = 1;
-//            enet_test_main();
-//            ar8031_test_enable = 1;
-//            ar8031_test_main();
-//            KSZ9021RN_test_enable = 1;
-//            KSZ9021RN_test_main();
+            enet_test_enable = 1;
+            enet_test_main();
+            ar8031_test_enable = 1;
+            ar8031_test_main();
+            KSZ9021RN_test_enable = 1;
+            KSZ9021RN_test_main();
             break;
         case '8':
-/*            printf("PMIC Test --- DA9053, y/n\n");
+            printf("PMIC Test --- DA9053, y/n\n");
             do {
                 input = getchar();
             } while (input == NONE_CHAR);
@@ -198,10 +220,9 @@ void ALL_test(void)
                 pf0100_i2c_device_id_test_enable = 1;
                 pf0100_i2c_device_id_check();
             }
-*/            
             break;
         case '9':
-/*            i2c_device_id_check_isl29023_test_enable = 1;
+            i2c_device_id_check_isl29023_test_enable = 1;
             //i2c_device_id_check_mma8450_test_enable = 1;
             i2c_device_id_check_mma8451_test_enable = 1;
             i2c_device_id_check_mag3112_test_enable = 1;
@@ -209,13 +230,13 @@ void ALL_test(void)
             i2c_device_id_check_p1003_test_enable = 1;
             i2c_device_id_check_cs42888_test_enable = 1;
 
-            i2c_device_id_check();  */
+            i2c_device_id_check();  
             break;
         case 'a':
-/*            mmcsd_test_enable = 1;
-            mmcsd_bus_width = 8;
+            mmcsd_test_enable = 1;
+            mmcsd_bus_width = 4;
             mmc_sd_base_address = USDHC4_BASE_ADDR;
-            mmcsd_test(); */
+            mmcsd_test(); 
             break; 
         case 'b':
  /*           printf("SDK USB Test, y/n\n");
@@ -272,7 +293,7 @@ void ALL_test(void)
             }       
 */            break;
         case 'c':
-//            sata_test();
+            sata_test();
             break;
         case 'd':
 //            camera_test();
@@ -281,51 +302,51 @@ void ALL_test(void)
 //            hdmi_test();
             break;
         case 'f':
-//            ds90ur124_test_enable = 1;
-//            ds90ur124_test_main();
+            ds90ur124_test_enable = 1;
+            ds90ur124_test_main();
             break;
         case 'g':
-//            si476x_test_enable = 1;
-//            si476x_test_main();
+            si476x_test_enable = 1;
+            si476x_test_main();
             break;
         case 'h':
-//            gps_test_enable = 1;
-//            gps_test();
+            gps_test_enable = 1;
+            gps_test();
             break;
         case 'i':
-//            i2c_eeprom_at24cxx_test();
+            i2c_eeprom_at24cxx_test();
             break;
         case 'j':
-//            mlb_os81050_test_enable = 1;
-//            os81050_test_main();
+            mlb_os81050_test_enable = 1;
+            os81050_test_main();
             break;
         case 'k':
-//            srtc_test_enable = 1;
-//            srtc_test();
+            srtc_test_enable = 1;
+            srtc_test();
             break;
         case 'l':
 //            smbus_test_enable = 1;
 //            smbus_test_routine();
             break;
         case 'm':
-//            touch_button_test_enable = 1;
-//            touch_button_test();
+            touch_button_test_enable = 1;
+            touch_button_test();
             break;
         case 'n':
-//            touch_screen_test_enable = 1;
-//            touch_screen_test();
+            touch_screen_test_enable = 1;
+            touch_screen_test();
             break;
         case 'o':
-//            adv7180_test_enable = 1;
-//            adv7180_test_main();
+            adv7180_test_enable = 1;
+            adv7180_test_main();
             break;
         case 'p':
-//            ard_mb_reset_test_enable = 1;
-//            ard_mb_reset_test();
+            ard_mb_reset_test_enable = 1;
+            ard_mb_reset_test();
             break;
         case 'q':
-//            ard_mb_expander_reset_test_enable = 1;
-//            ard_mb_expander_reset_test();
+            ard_mb_expander_reset_test_enable = 1;
+            ard_mb_expander_reset_test();
             break;
         case 'r':
 //            weim_nor_flash_test_enable = 1;

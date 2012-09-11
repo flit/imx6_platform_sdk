@@ -11,7 +11,7 @@
  * @ingroup diag_camera
  */
 
-#include "camera_def.h"
+#include "camera/camera_def.h"
 
 #if defined (CHIP_MX6SL)
 #define i2c_base I2C3_BASE_ADDR

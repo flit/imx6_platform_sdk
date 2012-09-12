@@ -16,11 +16,10 @@
 include $(SDK_ROOT)/mk/common.mk
 
 
-TARGET_LIB_NAME := board_$(BOARD_WITH_REV)
+SOURCES = filesystem_test.c
 
-SOURCES := \
-	hardware.c \
-	$(wildcard rev_$(BOARD_REVISION)_iomux/*.c)
+INCLUDES += \
+	-I$(SDK_LIB_ROOT)/common/filesystem/include
 
 
 include $(SDK_ROOT)/mk/targets.mk

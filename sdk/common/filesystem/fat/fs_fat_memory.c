@@ -29,10 +29,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Includes
 ////////////////////////////////////////////////////////////////////////////////
-#include "include/fstypes.h"
-//#include "hw/core/vmemory.h"
-#include "include/fat_internal.h"
-#include "include/filespec.h"
+#include "fstypes.h"
+#include "fat_internal.h"
+#include "filespec.h"
 #include "sectordef.h"
 
 
@@ -53,7 +52,6 @@ const uint8_t DriveLetter[] = DRIVELETTERS;
 uint8_t bufy[ NUMDEVICES*sizeof(FileSystemMediaTable_t) +
               NUMHANDLES*sizeof(HandleTable_t) +
               NUMHANDLES*sizeof(FileSpecs_t) ] __attribute__ ((aligned(4)));
-uint8_t read_buf[1024];
 
 #endif //#if (NUMDEVICES > 0)
 

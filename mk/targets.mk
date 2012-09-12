@@ -18,7 +18,7 @@
 #-------------------------------------------------------------------------------
 
 # Select our object root depending on whether we're building an app or lib.
-ifdef APP_NAME
+ifneq "$(APP_NAME)" ""
 OBJS_ROOT = $(APP_OBJS_ROOT)
 else
 OBJS_ROOT = $(LIB_OBJS_ROOT)
@@ -52,26 +52,33 @@ OBJECTS_ASM_S := $(addprefix $(OBJS_ROOT)/,$(ASM_S_SOURCES:.S=.o))
 # Complete list of all object files.
 OBJECTS_ALL := $(OBJECTS_C) $(OBJECTS_CXX) $(OBJECTS_ASM) $(OBJECTS_ASM_S)
 
+#-------------------------------------------------------------------------------
+# Target library
+#-------------------------------------------------------------------------------
+
+# Library where app objects are archived, if used.
+LIBAPP = $(APP_OUTPUT_ROOT)/lib$(APP_NAME).a
+
 # Build the target lib path from the lib name.
-ifdef TARGET_LIB_NAME
-TARGET_LIB ?= $(LIBS_ROOT)/$(TARGET_LIB_NAME)
-else ifdef APP_LIB_NAME
-TARGET_LIB ?= $(APP_OUTPUT_ROOT)/$(APP_LIB_NAME)
+ifneq "$(TARGET_LIB_NAME)" ""
+TARGET_LIB ?= $(LIBS_ROOT)/lib$(TARGET_LIB_NAME).a
+else ifneq "$(ARCHIVE_APP_OBJECTS)" ""
+TARGET_LIB ?= $(LIBAPP)
 endif
 
 # Construct full path name to application output ELF file.
-ifdef APP_NAME
+ifneq "$(APP_NAME)" ""
 APP_ELF ?= $(APP_OUTPUT_ROOT)/$(APP_NAME).elf
 endif
 
-ifdef TARGET_LIB
+ifneq "$(TARGET_LIB)" ""
 archive_or_objs = $(TARGET_LIB)
 else
 archive_or_objs = $(OBJECTS_ALL)
 endif
 
 #-------------------------------------------------------------------------------
-# Default recipe
+# Default target
 #-------------------------------------------------------------------------------
 
 # Note that prerequisite order is important here. The subdirectories must be built first, or you
@@ -83,8 +90,8 @@ all : $(SUBDIRS) $(OBJECTS_DIRS) $(archive_or_objs) $(APP_ELF)
 
 # For RedHat we have to force always archiving. It seems that fractions of a second are not
 # recorded in file modification dates on RedHat (at least the server we tested with), which
-# caused files to be consiered up to date when they weren't.
-ifeq "$(is_redhat)" "y"
+# caused files to be considered up to date when they weren't.
+ifeq "$(is_redhat)" "1"
 .PHONY: $(TARGET_LIB)
 endif
 
@@ -92,23 +99,8 @@ endif
 $(OBJECTS_DIRS) :
 	$(at)mkdir -p $@
 
-#-------------------------------------------------------------------------------
-# Debug variable dump
-#-------------------------------------------------------------------------------
-
-# Do not dump variables to output by default. Set to 1 to dump variable values.
-dumpvars = 0
-
-# Debug utility target to dump variable values.
-ifeq "$(dumpvars)" "1"
-$(info SOURCES = $(SOURCES))
-$(info OBJECTS_DIRS = $(OBJECTS_DIRS))
-$(info OBJECTS_ALL = $(OBJECTS_ALL))
-$(info SUBDIRS = $(SUBDIRS))
-$(info TARGET_LIB = $(TARGET_LIB))
-$(info APP_ELF = $(APP_ELF))
-$(info LIBRARIES = $(LIBRARIES))
-endif
+# Everything depends upon the current makefile.
+$(OBJECTS_ALL) $(TARGET_LIB) $(APP_ELF): $(this_makefile)
 
 #-------------------------------------------------------------------------------
 # Pattern rules for compilation
@@ -174,11 +166,11 @@ $(SUBDIRS)::
 #-------------------------------------------------------------------------------
 
 # Only link the application if LINK_APP is defined.
-ifdef LINK_APP
+ifeq "$(LINK_APP)" "1"
 
 # If app objects are being archived into a library, we don't need to specify the
 # actual .o files on the linker command line.
-ifdef APP_LIB_NAME
+ifeq "$(ARCHIVE_APP_OBJECTS)" "1"
 app_objs = $(TARGET_LIB)
 else
 app_objs = $(OBJECTS_ALL) $(TARGET_LIB)
@@ -194,12 +186,12 @@ app_map = $(basename $(APP_ELF)).map
 $(APP_ELF): $(app_objs) $(LD_FILE) $(LIBRARIES) $(APP_LIBS)
 	@if [ -t 1 ]; then printf "$(color_link)Linking$(color_default) $(APP_NAME)...\n" ; \
 	else printf "Linking $(APP_NAME)...\n" ; fi
-	$(at)$(LD) -Bstatic -nostartfiles -nostdlib \
+	$(at)$(LD) -Bstatic -nostartfiles -nostdlib $(LDFLAGS) \
 	      -T $(LD_FILE) \
 	      --start-group \
-	      	$(app_objs) \
-			$(LIBRARIES) \
-			$(APP_LIBS) \
+	      $(app_objs) \
+	      $(LIBRARIES) \
+	      $(APP_LIBS) \
 	      --end-group \
 	      $(LDADD) $(LDINC) -o $@ \
 	      -Map $(app_map)

@@ -21,19 +21,32 @@
 empty :=
 space := $(empty) $(empty)
 
-# Set to 'y' if running on redhat.
-is_redhat := $(shell if [ -f /etc/redhat-release ]; then echo y ; fi)
+#-------------------------------------------------------------------------------
+# OS
+#-------------------------------------------------------------------------------
+
+# Get the OS name. Known values are "Linux", "CYGWIN_NT-5.1", and "Darwin".
+os_name := $(shell uname -s)
+
+# Set to 1 if running on cygwin.
+is_cygwin := $(and $(findstring CYGWIN,$(os_name)),1)
+
+# Set to 1 if running on redhat.
+is_redhat := $(shell if [ -f /etc/redhat-release ]; then echo 1 ; fi)
 
 #-------------------------------------------------------------------------------
 # Logging options
 #-------------------------------------------------------------------------------
+
+# Enable color output by default.
+BUILD_SDK_COLOR ?= 1
 
 # Normally, commands in recipes are prefixed with '@' so the command itself
 # is not echoed by make. But if VERBOSE is defined (set to anything non-empty),
 # then the '@' is removed from recipes. The 'at' variable is used to control
 # this. Similarly, 'silent_make' is used to pass the -s option to child make
 # invocations when not in VERBOSE mode.
-ifdef VERBOSE
+ifeq "$(VERBOSE)" "1"
 at :=
 silent_make :=
 else
@@ -44,6 +57,7 @@ endif
 # These colors must be printed with the printf command. echo won't handle the
 # escape sequences.
 color_default = \033[00m
+color_bold = \033[01m
 color_red = \033[31m
 color_green = \033[32m
 color_yellow = \033[33m
@@ -51,11 +65,12 @@ color_blue = \033[34m
 color_magenta = \033[35m
 color_cyan = \033[36m
 
-ifdef BUILD_SDK_COLOR
+ifeq "$(BUILD_SDK_COLOR)" "1"
+color_build := $(color_bold)$(color_blue)
 color_c := $(color_green)
 color_cpp := $(color_green)
 color_asm := $(color_magenta)
-color_ar := $(color_blue)
+color_ar := $(color_yellow)
 color_link := $(color_cyan)
 endif
 
@@ -66,6 +81,7 @@ endif
 # At this point, the path to this makefile was just appended to MAKEFILE_LIST. We make
 # use of this to get the root directory of the SDK. This variable is exported to child
 # instances of make.
+this_makefile := $(firstword $(MAKEFILE_LIST))
 export SDK_ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))../)
 
 # Build root directory paths.
@@ -76,18 +92,19 @@ BOARD_ROOT = $(SDK_ROOT)/board/$(TARGET)/$(BOARD)
 # Build output directory paths.
 #
 # All output goes under the top-level 'output' directory. Libraries are not board-specific,
-# but apps are. Everything is chip-specific.
+# but apps are. Everything is chip-specific. Objects for both libs and apps are placed in
+# an 'obj' directory under either the app or lib output directory.
 #
-# Libs: output/<chip>/lib/lib<foo>.a
-# Apps: output/<chip>/<app>/<board>/<app>.elf
+# Libs:     output/<chip>/lib/lib<foo>.a
+# Lib objs: output/<chip>/lib/obj/<foo>/...
 #
-# Objects for both libs and apps are placed in an 'obj' directory under either the app
-# or lib output directory.
+# Apps:     output/<chip>/<app>/<board>/<app>.elf
+# App objs: output/<chip>/<app>/<board>/obj/...
 #
 OUTPUT_ROOT = $(SDK_ROOT)/output/$(TARGET)
 
 LIBS_ROOT = $(OUTPUT_ROOT)/lib
-LIB_OBJS_ROOT = $(LIBS_ROOT)/obj
+LIB_OBJS_ROOT = $(LIBS_ROOT)/obj/$(TARGET_LIB_NAME)
 
 # Put app build products in their own dir.
 APP_OUTPUT_ROOT = $(OUTPUT_ROOT)/$(APP_NAME)/$(BOARD_WITH_REV)
@@ -103,6 +120,18 @@ LIBBOARD = $(LIBS_ROOT)/libboard_$(BOARD_WITH_REV).a
 #-------------------------------------------------------------------------------
 # Target and board configuration
 #-------------------------------------------------------------------------------
+
+# Handle lower-case versions of the config variables. These are really meant to ease
+# manual invocation of make via the command line.
+ifdef target
+TARGET = $(target)
+endif
+ifdef board
+BOARD = $(board)
+endif
+ifdef boardrev
+BOARD_REVISION = $(boardrev)
+endif
 
 # Target
 ifeq "$(TARGET)" "mx6dq"
@@ -158,18 +187,16 @@ USE_THUMB ?= 0
 # Compiler and tools
 #-------------------------------------------------------------------------------
 
+# For all the paths built below, we assume that the Mentor CodeSourcery release of gcc is
+# being used. Other distributions of gcc may work, but have not been tested.
+
 # Set compiler version defaults.
-CC_VERSION ?= 4.6.3
 CROSS_COMPILE = arm-none-eabi-
 
 # Strip off the trailing '-', resulting in arm-none-eabi
-CROSS_COMPILE_STRIP := $(patsubst %-,%,$(CROSS_COMPILE))
+CROSS_COMPILE_STRIP := $(CROSS_COMPILE:%-=%)
 
-# For this to work, must use the codesourcery release of GCC.
-CC_INCLUDE = $(CC_PREFIX)/lib/gcc/$(CROSS_COMPILE_STRIP)/$(CC_VERSION)/include
-CC_INCLUDE_FIXED = $(CC_PREFIX)/lib/gcc/$(CROSS_COMPILE_STRIP)/$(CC_VERSION)/include-fixed
-CC_LIB = $(CC_PREFIX)/lib/gcc/$(CROSS_COMPILE_STRIP)/$(CC_VERSION)/$(CC_LIB_POST)
-
+# Build tool names.
 CC = $(CROSS_COMPILE)gcc
 CXX = $(CROSS_COMPILE)g++
 LD = $(CROSS_COMPILE)ld
@@ -177,14 +204,23 @@ AS = $(CROSS_COMPILE)as
 AR = $(CROSS_COMPILE)ar
 OBJCOPY = $(CROSS_COMPILE)objcopy
 
+# Ask the compiler for its version
+CC_VERSION := $(shell $(CC) -dumpversion)
+
 # Get the compiler directory. We have to go through this sillyness in order to support
 # paths with spaces in their names, such as under Cygwin where the CodeSourcery compiler
 # is normally installed under C:\Program Files\.
 CC_PREFIX := $(shell dirname "`which $(CC)`")/..
 
-# CodeSourcery ARM EABI compiler already includes newlib libc.  Use this.
+# Standard library include paths.
+LIBGCC_LDPATH = $(CC_PREFIX)/lib/gcc/$(CROSS_COMPILE_STRIP)/$(CC_VERSION)/$(CC_LIB_POST)
 LIBC_LDPATH = $(CC_PREFIX)/$(CROSS_COMPILE_STRIP)/lib/$(CC_LIB_POST)
-LIBC_CFLAGS = $(CC_PREFIX)/$(CROSS_COMPILE_STRIP)/include
+
+# System header file include paths.
+CC_INCLUDE = $(CC_PREFIX)/lib/gcc/$(CROSS_COMPILE_STRIP)/$(CC_VERSION)/include
+CC_INCLUDE_FIXED = $(CC_PREFIX)/lib/gcc/$(CROSS_COMPILE_STRIP)/$(CC_VERSION)/include-fixed
+LIBC_INCLUDE = $(CC_PREFIX)/$(CROSS_COMPILE_STRIP)/include
+
 
 #-------------------------------------------------------------------------------
 # Compiler flags
@@ -238,19 +274,19 @@ C99_FLAGS = -std=gnu99 -fgnu89-inline
 # Use the ARM Procedure Call Standard.
 ARM_FLAGS = -march=armv7-a -mcpu=$(CPU) -mtune=$(CPU) -mapcs
 
-ifeq ($(USE_THUMB), 1)
-# Generate thumb2 instructions (mixed 16/32-bit).
-	ARM_FLAGS += -mthumb
-# Allow mixed ARM and thumb code.  All C code will generate thumb instructions
-# but there is hand-written asm that requires ARM.
-	ARM_FLAGS += -mthumb-interwork
-# Indicate to MQX PSP that we're using thumb.
-	ARM_FLAGS += -DUSE_THUMB
-	CC_LIB_POST = thumb2
+ifeq "$(USE_THUMB)" "1"
+    # Generate thumb2 instructions (mixed 16/32-bit).
+    ARM_FLAGS += -mthumb
+    # Allow mixed ARM and thumb code.  All C code will generate thumb instructions
+    # but there is hand-written asm that requires ARM.
+    ARM_FLAGS += -mthumb-interwork
+    # Indicate to MQX PSP that we're using thumb.
+    ARM_FLAGS += -DUSE_THUMB
+    CC_LIB_POST = thumb2
 else
-# Generate ARM-only code.
-	ARM_FLAGS += -marm
-	CC_LIB_POST =
+    # Generate ARM-only code.
+    ARM_FLAGS += -marm
+    CC_LIB_POST =
 endif
 
 # Use NEON SIMD instructions for floating point.  Alternatively can specify
@@ -261,20 +297,19 @@ ARM_FLAGS += -ftree-vectorize
 ARM_FLAGS += -fno-math-errno
 ARM_FLAGS += -funsafe-math-optimizations
 ARM_FLAGS += -fno-signed-zeros
-# Use hw float instructions and pass float args in regs.
-# Alternatively, float-abi=softfp for soft floating point api with HW instructions.
+# Use float-abi=softfp for soft floating point api with HW instructions.
+# Alternatively, float-abi=hard for hw float instructions and pass float args in float regs.
 ARM_FLAGS += -mfloat-abi=softfp
-#hard
 
 # Build common flags shared by C and C++.
 COMMON_FLAGS += $(ARM_FLAGS) $(CDEBUG)
 
 # C flags. Set C99 mode.
-CFLAGS = $(COMMON_FLAGS)
+CFLAGS += $(COMMON_FLAGS)
 CFLAGS += $(C99_FLAGS)
 
 # C++ flags. Disable exceptions and RTTI.
-CXXFLAGS = $(COMMON_FLAGS)
+CXXFLAGS += $(COMMON_FLAGS)
 CXXFLAGS += -fno-exceptions -fno-rtti
 
 #-------------------------------------------------------------------------------
@@ -288,13 +323,14 @@ LDADD += -lm -lstdc++ -lc -lgcc
 
 # These include paths have to be quoted because they may contain spaces,
 # particularly under cygwin.
-LDINC += -L '$(CC_LIB)' -L '$(LIBC_LDPATH)'
+LDINC += -L '$(LIBGCC_LDPATH)' -L '$(LIBC_LDPATH)'
 
 # Indicate gcc and newlib std includes as -isystem so gcc tags and
 # treats them as system directories.
-# SYSTEM_INC = -isystem $(CC_INCLUDE) \
-# 		 -isystem $(CC_INCLUDE_FIXED) \
-# 		 -isystem $(LIBC_CFLAGS)
+SYSTEM_INC = \
+    -isystem '$(CC_INCLUDE)' \
+    -isystem '$(CC_INCLUDE_FIXED)' \
+    -isystem '$(LIBC_INCLUDE)'
 
 INCLUDES += \
     -I$(SDK_ROOT)/sdk \
@@ -305,5 +341,4 @@ INCLUDES += \
     -I$(SDK_ROOT)/sdk/core \
     -I$(SDK_ROOT)/sdk/utility \
     -I$(BOARD_ROOT)
-
 

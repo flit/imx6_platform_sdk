@@ -16,11 +16,7 @@
 include $(SDK_ROOT)/mk/common.mk
 
 
-# Clear the app name.
-APP_NAME :=
-APP_LIB_NAME :=
-
-TARGET_LIB_NAME := libboard_$(BOARD_WITH_REV).a
+TARGET_LIB_NAME := board_$(BOARD_WITH_REV)
 
 SOURCES := \
 	hardware.c \

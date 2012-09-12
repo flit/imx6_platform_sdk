@@ -23,6 +23,7 @@ extern hw_module_t g_debug_uart;
 extern uint8_t uart_getchar(struct hw_module *port);
 extern void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
        uint32_t buffer_addr);
+extern void enable_L1_cache(void);
 
 int width = GPU_DEMO_WIDTH;
 int height = GPU_DEMO_HEIGHT;
@@ -65,8 +66,6 @@ int gpu_test(void)
     new_half_height.f = ((float)height) / 2.0f;
     neg_new_half_height.f = -new_half_height.f;
 
-    //ipu1_iomux_config();
-
     // enable GPU to access MMDC
     val = reg32_read(CSU_BASE_ADDR + 0x64);
     val |= 0xff;
@@ -82,18 +81,19 @@ int gpu_test(void)
     reg32_write(GPU_3D_BASE_ADDR + 0x0, val);
     val &= 0xfffffdff;
     reg32_write(GPU_3D_BASE_ADDR + 0x0, val);
-
+	
 	/*initialize the display device*/
 	if(panel_init == 0) {
 		int32_t ipu_index = 2;
 		ipu_sw_reset(ipu_index, 1000000);
 		ips_dev_panel_t *panel = search_panel("HannStar XGA LVDS");
 		panel->panel_init(&ipu_index);
-		ipu_dual_display_setup(ipu_index, panel, INTERLEAVED_RGBA8888, width, height, 0, 0, 0x0);
+		ipu_dual_display_setup(ipu_index, panel, INTERLEAVED_ARGB8888, width, height, 0, 0, 0x0);
 		ipu_dma_update_buffer(ipu_index, 23, 0, 0x24000000);
 		ipu_dma_update_buffer(ipu_index, 27, 0, 0x18000000);
 		ipu_dma_update_buffer(ipu_index, 27, 1, 0x18800000);
 		ipu_enable_display(ipu_index);
+		panel_init = 1;
 	}
    
     runTexture(CMD_BUFFER_ADDR, 0);

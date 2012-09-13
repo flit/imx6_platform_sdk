@@ -5,10 +5,12 @@
  * Freescale Semiconductor, Inc.
 */
 
+//! @addtogroup diag_timer
+//! @{
+
 /*!
  * @file timer.h
  * @brief various defines used by the timer driver.
- * @ingroup diag_timer
  */
 
 #ifndef __TIMER_H__
@@ -20,23 +22,27 @@
 // Constants
 ////////////////////////////////////////////////////////////////////////////////
 
-/* these defines are common to EPIT and GPT modules */
-#define WAIT_MODE_EN    1
-#define STOP_MODE_EN    2
+//! @brief Options for low power mode support for the timers.
+//!
+//! These constants are bit masks that are or'd together to select in which low
+//! power modes the timer will continue counting.
+enum _timer_low_power_modes
+{
+    WAIT_MODE_EN = 1,   //!< Timer is enabled in wait mode.
+    STOP_MODE_EN = 2    //!< Timer is enabled in stop mode.
+};
 
-#define CLKSRC_OFF      0x0 // clock source is OFF
-#define CLKSRC_IPG_CLK  0x1 // clock source is peripheral clock
-#define CLKSRC_PER_CLK  0x2 // clock source is high-freq reference clock
-#define CLKSRC_CLKIN    0x3 // clock source is external from a CLKIN input
-#define CLKSRC_CKIL     0x3 // clock source is low-freq reference clock
+//! @brief Available clock sources for the timers.
+enum _timer_clock_sources
+{
+    CLKSRC_OFF = 0,     //!< clock source is OFF
+    CLKSRC_IPG_CLK = 1, //!< clock source is peripheral clock
+    CLKSRC_PER_CLK = 2, //!< clock source is high-freq reference clock
+    CLKSRC_CLKIN = 3,   //!< clock source is external from a CLKIN input
+    CLKSRC_CKIL = 3     //!< clock source is low-freq reference clock
+};
 
-/* list of output modes supported by the EPIT and GPT */
-#define OUTPUT_CMP_DISABLE  0x0 // output disconnected from pad
-#define OUTPUT_CMP_TOGGLE   0x1 // output toggle mode
-#define OUTPUT_CMP_CLEAR    0x2 // output set low mode
-#define OUTPUT_CMP_SET      0x3 // output set high mode
-#define OUTPUT_CMP_LOWPULSE 0x4 // output set high mode
-
+//! @brief Do not enable interrupts.
 #define POLLING_MODE 0
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -68,6 +74,8 @@ uint64_t time_get_microseconds();
 #if defined(__cplusplus)
 }
 #endif
+
+//! @}
 
 #endif // __TIMER_H__
 ////////////////////////////////////////////////////////////////////////////////

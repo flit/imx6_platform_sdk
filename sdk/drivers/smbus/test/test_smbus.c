@@ -4,7 +4,7 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
-//#include "smbus.h"
+#include "smbus/smbus.h"
 #include "hardware.h"
 #include "io.h"
 

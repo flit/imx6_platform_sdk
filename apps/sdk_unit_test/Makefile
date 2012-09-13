@@ -52,6 +52,7 @@ define SUBDIRS
 	$(SDK_LIB_ROOT)/drivers/pmu/test
 	$(SDK_LIB_ROOT)/drivers/rtc/test
 	$(SDK_LIB_ROOT)/drivers/sdma/test
+        $(SDK_LIB_ROOT)/drivers/smbus/test
 	$(SDK_LIB_ROOT)/drivers/tempmon/test
 	$(SDK_LIB_ROOT)/drivers/timer/test
 	$(SDK_LIB_ROOT)/drivers/uart/test

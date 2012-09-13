@@ -64,7 +64,7 @@ void epd_power_up(void)
 {
     int i = 0;
 
-//    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_D10, 0x5);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_D10, 0x5);
     gpio_dir_config(GPIO_PORT1, 17, GPIO_GDIR_OUTPUT);
     gpio_write_data(GPIO_PORT1, 17, GPIO_LOW_LEVEL);
 
@@ -83,24 +83,24 @@ void epd_power_up(void)
      * VDPS         24(NEG)                 2,4
      * Vcom:        22(VCOM)                22,24
      */
-//    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EPDC_PWRCTRL0, 0x5);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EPDC_PWRCTRL0, 0x5);
     gpio_dir_config(GPIO_PORT2, 7, GPIO_GDIR_OUTPUT);
     gpio_write_data(GPIO_PORT2, 7, GPIO_HIGH_LEVEL);
 
     //EN : pmic_wakeup gpio2.14
-//    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_PWRWAKEUP, 0x05);    //  gpio2.GPIO[31]
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_PWRWAKEUP, 0x05);    //  gpio2.GPIO[31]
     gpio_dir_config(GPIO_PORT2, 14, GPIO_GDIR_OUTPUT);
     gpio_write_data(GPIO_PORT2, 14, GPIO_HIGH_LEVEL);
 
     //CEN : pmic_vcom gpio2.3 
-//    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_VCOM0, 0x05);    //  gpio3.GPIO[17]
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_VCOM0, 0x05);    //  gpio3.GPIO[17]
     gpio_dir_config(GPIO_PORT2, 3, GPIO_GDIR_OUTPUT);
     gpio_write_data(GPIO_PORT2, 3, GPIO_HIGH_LEVEL);
 
     while (i++ < 10000)
         __asm("nop");
 
-//    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_D10, 0x5);
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_D10, 0x5);
     gpio_dir_config(GPIO_PORT1, 17, GPIO_GDIR_OUTPUT);
     gpio_write_data(GPIO_PORT1, 17, GPIO_HIGH_LEVEL);
 }
@@ -164,7 +164,7 @@ int spdc_display_test(void)
     }
     PROMPT_RUN_TEST("Sipix EINK display test");
 
-//    spdc_iomux_config();
+    spdc_iomux_config();
 
     /*turn on the SPDC clock */
     epd_clock_gate(0);

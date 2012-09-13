@@ -26,16 +26,16 @@
 #define SPDC_VSIZE 600
 
 /*SPDC memory map*/
-//#if defined(MX6SL)
+#if defined(MX6SL)
 #define WV_DATA_ADDR			0x93000000
 #define EPD_NEXT_BUF_ADDR		0x93100000
 #define EPD_CUR_BUF_ADDR		0x93200000
 #define EPD_PREV_BUF_ADDR		0x93300000
 #define EPD_FRM_CNT_BUF_ADDR	0x93400000
 #define EPD_LUT_BUF_ADDR		0x93500000
-//#else
-//#error SPDC is not supported on the platform
-//#endif
+#else
+#error SPDC is not supported on the platform
+#endif
 
 
 enum epd_operation {

@@ -58,10 +58,6 @@ define SUBDIRS
 	$(SDK_LIB_ROOT)/drivers/usdhc/test
 	$(SDK_LIB_ROOT)/drivers/vdoa/test
 	$(SDK_LIB_ROOT)/drivers/vpu/test
-        $(SDK_LIB_ROOT)/drivers/epdc/test
-        $(SDK_LIB_ROOT)/drivers/lcdc/test
-        $(SDK_LIB_ROOT)/drivers/spdc/test
-        $(SDK_LIB_ROOT)/drivers/spdif/test
 endef
 
 # Tests that are only available on the evb.
@@ -96,7 +92,6 @@ ifeq "$(BOARD)" "smart_device"
 		$(SDK_LIB_ROOT)/drivers/camera/test \
 		$(SDK_LIB_ROOT)/drivers/keypad/test \
                 $(SDK_LIB_ROOT)/drivers/spi/test \
-                $(SDK_LIB_ROOT)/drivers/epdc/test \
                 $(SDK_LIB_ROOT)/drivers/board_id/test
 endif
 

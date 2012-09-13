@@ -10,8 +10,6 @@ is_dq_or_sdl = 1
 endif
 
 define SOURCES
-epdc/src/mxc_epdc.c
-lcdc/src/pxp_drv.c
 audio/src/cs42888.c
 audio/src/imx_esai.c
 audio/src/imx_spdif.c

@@ -11,8 +11,7 @@
 #include <hardware.h>           // Hardware definitions
 
 #if !defined(EPDC_BASE_ADDR)
-#if defined(CHIP_MX6SDL)||defined(CHIP_MX6SL) || defined(CHIP_MX6DQ)
-//#if defiend(CHIP_MX6SDL) || defiend(CHIP_MX6SL)
+#if defiend(CHIP_MX6SDL) || defiend(CHIP_MX6SL)
 #define EPDC_BASE_ADDR 0x020F4000
 #else
 #error	EPDC is not supported on the platform!!!

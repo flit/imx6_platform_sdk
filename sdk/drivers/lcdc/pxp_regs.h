@@ -10,8 +10,7 @@
 
 #include "hardware.h"           // Hardware definitions
 
-#define PXP_BASE_ADDR                           0x02000000
-//#define PXP_BASE_ADDR				EPXP_BASE_ADDR
+#define PXP_BASE_ADDR				EPXP_BASE_ADDR
 
 #define HW_PXP_CTRL 				(PXP_BASE_ADDR + 0x000)
 #define HW_PXP_CTRL_SET 			(PXP_BASE_ADDR + 0x004)

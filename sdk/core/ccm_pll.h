@@ -60,8 +60,8 @@ typedef enum _peri_clocks {
     RAWNAND_CLK,
     USB_CLK,
     VPU_CLK,
-    SPI1_CLK = ECSPI1_BASE_ADDR,
-    SPI2_CLK = ECSPI2_BASE_ADDR,
+    SPI1_CLK,
+    SPI2_CLK
 } peri_clocks_t;
 
 //! @brief Available PLLs.

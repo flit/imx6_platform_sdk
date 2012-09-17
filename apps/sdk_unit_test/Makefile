@@ -19,6 +19,10 @@
 
 include $(SDK_ROOT)/mk/common.mk
 
+# Alias 'test' to 'TEST' for easier command line typing.
+ifdef test
+TEST = $(test)
+endif
 
 # Provide default value of TEST if not set.
 TEST ?= ALL
@@ -31,125 +35,90 @@ endif
 # Pass the selected test name to the unit test app.
 DEFINES +=-DSTANDALONE -DSDK_TEST=$(TEST)_test
 
-# Set up to link application. Subdirectories will archive objects into sdk_unit_test.a
-# but not try to link the application executable since LINK_APP is not set.
+# Set up to link application.
 export APP_NAME = sdk_unit_test
-export APP_LIB_NAME = sdk_unit_test.a
+LINK_APP = 1
 
-# Set this to enable linking of the application executable.
-LINK_APP = true
-
-# Subdirectories included in the build.
+# Tests included in the build for all targets and boards.
 define SUBDIRS
-	$(BOARD_ROOT)
-	$(SDK_LIB_ROOT)/drivers/audio/test
-	$(SDK_LIB_ROOT)/drivers/cpu_utility/test
-	$(SDK_LIB_ROOT)/drivers/gic/test
-	$(SDK_LIB_ROOT)/drivers/hdmi/test
-	$(SDK_LIB_ROOT)/drivers/i2c/test
-	$(SDK_LIB_ROOT)/drivers/ipu/test
-	$(SDK_LIB_ROOT)/drivers/ocotp/test
-	$(SDK_LIB_ROOT)/drivers/pmu/test
-	$(SDK_LIB_ROOT)/drivers/rtc/test
-	$(SDK_LIB_ROOT)/drivers/sdma/test
-        $(SDK_LIB_ROOT)/drivers/smbus/test
-	$(SDK_LIB_ROOT)/drivers/tempmon/test
-	$(SDK_LIB_ROOT)/drivers/timer/test
-	$(SDK_LIB_ROOT)/drivers/uart/test
-	$(SDK_LIB_ROOT)/drivers/usdhc/test
-	$(SDK_LIB_ROOT)/drivers/vdoa/test
-	$(SDK_LIB_ROOT)/drivers/vpu/test
+    $(SDK_LIB_ROOT)/drivers/audio/test
+    $(SDK_LIB_ROOT)/drivers/cpu_utility/test
+    $(SDK_LIB_ROOT)/common/filesystem/test
+    $(SDK_LIB_ROOT)/drivers/gic/test
+    $(SDK_LIB_ROOT)/drivers/hdmi/test
+    $(SDK_LIB_ROOT)/drivers/i2c/test
+    $(SDK_LIB_ROOT)/drivers/ipu/test
+    $(SDK_LIB_ROOT)/drivers/ocotp/test
+    $(SDK_LIB_ROOT)/drivers/pmu/test
+    $(SDK_LIB_ROOT)/drivers/rtc/test
+    $(SDK_LIB_ROOT)/drivers/sdma/test
+    $(SDK_LIB_ROOT)/drivers/tempmon/test
+    $(SDK_LIB_ROOT)/drivers/timer/test
+    $(SDK_LIB_ROOT)/drivers/uart/test
+    $(SDK_LIB_ROOT)/drivers/usdhc/test
+    $(SDK_LIB_ROOT)/drivers/vdoa/test
+    $(SDK_LIB_ROOT)/drivers/vpu/test
 endef
 
 # Tests that are only available on the evb.
 ifeq "$(BOARD)" "evb"
-	SUBDIRS += \
-		$(SDK_LIB_ROOT)/drivers/enet/test \
-		$(SDK_LIB_ROOT)/drivers/gpmi/test \
-		$(SDK_LIB_ROOT)/drivers/gpu/test \
-		$(SDK_LIB_ROOT)/drivers/keypad/test \
-		$(SDK_LIB_ROOT)/drivers/pcie/test \
-		$(SDK_LIB_ROOT)/drivers/spi/test \
-		$(SDK_LIB_ROOT)/drivers/wdog/test
+    SUBDIRS += \
+        $(SDK_LIB_ROOT)/drivers/enet/test \
+        $(SDK_LIB_ROOT)/drivers/gpmi/test \
+        $(SDK_LIB_ROOT)/drivers/gpu/test \
+        $(SDK_LIB_ROOT)/drivers/keypad/test \
+        $(SDK_LIB_ROOT)/drivers/pcie/test \
+        $(SDK_LIB_ROOT)/drivers/spi/test \
+        $(SDK_LIB_ROOT)/drivers/wdog/test
 endif
 
 # Tests that apply to either evb or sabre_ai.
 ifneq "$(filter evb sabre_ai,$(BOARD))" ""
-	SUBDIRS += \
-		$(SDK_LIB_ROOT)/drivers/mipi/test \
-		$(SDK_LIB_ROOT)/drivers/usb/test
+    SUBDIRS += \
+        $(SDK_LIB_ROOT)/drivers/mipi/test \
+        $(SDK_LIB_ROOT)/drivers/usb/test
 endif
 
 # Tests that are only available on the sabre_ai board.
 ifeq "$(BOARD)" "sabre_ai"
-	SUBDIRS += \
-		$(SDK_LIB_ROOT)/drivers/flexcan/test \
-		$(SDK_LIB_ROOT)/drivers/eim/test
+    SUBDIRS += \
+        $(SDK_LIB_ROOT)/drivers/flexcan/test \
+        $(SDK_LIB_ROOT)/drivers/eim/test
 endif
 
-# Camera is only available on the smart_device board.
+# Tests only available on the smart_device board.
 ifeq "$(BOARD)" "smart_device"
-	SUBDIRS += \
-		$(SDK_LIB_ROOT)/drivers/camera/test \
-		$(SDK_LIB_ROOT)/drivers/keypad/test \
-                $(SDK_LIB_ROOT)/drivers/spi/test \
-                $(SDK_LIB_ROOT)/drivers/board_id/test
+    SUBDIRS += \
+        $(SDK_LIB_ROOT)/drivers/camera/test \
+        $(SDK_LIB_ROOT)/drivers/keypad/test
 endif
 
 # PWM is available on all but sabre_lite.
 ifneq "$(BOARD)" "sabre_lite"
-	SUBDIRS += $(SDK_LIB_ROOT)/drivers/pwm/test
+    SUBDIRS += $(SDK_LIB_ROOT)/drivers/pwm/test
 endif
 
 # SATA is only available on the mx6dq.
 ifeq "$(TARGET)" "mx6dq"
-	SUBDIRS += $(SDK_LIB_ROOT)/drivers/sata/test
+    SUBDIRS += $(SDK_LIB_ROOT)/drivers/sata/test
 endif
 
 # Local source files.
 define SOURCES
-	$(APPS_ROOT)/common/platform_init.c
-	src/unit_test_main.c
-	src/all_test.c
-        $(APPS_ROOT)/obds/src/tests/audio_ssi_test.c
-        $(APPS_ROOT)/obds/src/tests/ddr_test.c
-        $(APPS_ROOT)/obds/src/tests/imx_spi_nor_test.c
-        $(APPS_ROOT)/obds/src/tests/snvs_srtc_obds_test.c
-        $(APPS_ROOT)/obds/src/tests/enet_mx6dldq_test.c
-        $(APPS_ROOT)/obds/src/tests/mmcsd_test.c
-        $(APPS_ROOT)/obds/src/tests/i2c_check_light_sensor_isl29023.c
-        $(APPS_ROOT)/obds/src/tests/i2c_device_barometer_ppl3115.c
-        $(APPS_ROOT)/obds/src/tests/i2c_device_digital_compass_mag3110.c
-        $(APPS_ROOT)/obds/src/tests/i2c_device_digital_compass_mag3112.c
-        $(APPS_ROOT)/obds/src/tests/i2c_device_id_check_mma8450.c
-        $(APPS_ROOT)/obds/src/tests/i2c_device_id_check_mma8451.c
-        $(APPS_ROOT)/obds/src/tests/i2c_device_id_check_p1003_tsc.c
-        $(APPS_ROOT)/obds/src/tests/i2c_device_temp_sensor_emc1046.c
-        $(APPS_ROOT)/obds/src/tests/i2c_device_zigbee_mc1323.c
-        $(APPS_ROOT)/obds/src/tests/touch_screen_max11801.c
-        $(APPS_ROOT)/obds/src/tests/i2c_dev_tests.c
-        $(APPS_ROOT)/obds/src/tests/pmic_da9053.c
-        $(APPS_ROOT)/obds/src/tests/pmic_lt3589.c
-        $(APPS_ROOT)/obds/src/tests/pmic_max17135.c
-        $(APPS_ROOT)/obds/src/tests/pmic_mc13892.c
-        $(APPS_ROOT)/obds/src/tests/i2c_device_pmic_pf0100.c
-        $(APPS_ROOT)/obds/src/tests/deserializer_ds90ur124.c
-        $(APPS_ROOT)/obds/src/tests/fm_tuner_si476x_test.c
-        $(APPS_ROOT)/obds/src/tests/gps_test.c
-        $(APPS_ROOT)/obds/src/tests/i2c_eeprom_at24cxx_test.c
-        $(APPS_ROOT)/obds/src/tests/mlb_os81050.c
-        $(APPS_ROOT)/obds/src/tests/srtc_test.c
-        $(APPS_ROOT)/obds/src/tests/touch_button_test.c
-        $(APPS_ROOT)/obds/src/tests/touch_screen.c
-        $(APPS_ROOT)/obds/src/tests/video_dec_adv7180.c
-        $(APPS_ROOT)/obds/src/tests/video_dec_ARD_MB_reset_button.c
-        $(APPS_ROOT)/obds/src/tests/video_dec_ARD_MBrst_from_cpu_expander.c
+    $(APPS_ROOT)/common/platform_init.c
+    src/unit_test_main.c
+    src/all_test.c
 endef
 
+# Subdirectories will archive objects into libsdk_unit_test.a
+# but not try to link the application executable since LINK_APP is not set.
+$(SUBDIRS):: export ARCHIVE_APP_OBJECTS=1
+
 # Need to include the SDK library!
-LIBRARIES := \
-	$(LIBSDK) \
-	$(LIBBOARD)
+LIBRARIES = \
+    $(LIBSDK) \
+    $(LIBBOARD) \
+    $(LIBAPP)
 
 # Specify our linker script.
 LD_FILE = $(APPS_ROOT)/common/basic_sdk_app.ld
@@ -157,5 +126,34 @@ LD_FILE = $(APPS_ROOT)/common/basic_sdk_app.ld
 # Add common to include paths.
 INCLUDES += -I$(APPS_ROOT)/common
 
-
+# Standard targets.
 include $(SDK_ROOT)/mk/targets.mk
+
+# Special rules to force rebuilding of the unit test app when the TEST variable is
+# changed. These rules must come after the inclusion of targets.mk because they
+# depend upon variables defined in that file.
+
+# The most recent value of the TEST variable is written to a current_test.txt file
+# in the app's output directory. Here we construct the filename and read its current
+# contents.
+current_test_file := $(APP_OUTPUT_ROOT)/current_test.txt
+current_test_name := $(shell [ -f $(current_test_file) ] && cat $(current_test_file))
+
+# Delete the current test name file if the currently selected test doesn't match the
+# one recorded in it.
+ifneq "$(TEST)" "$(current_test_name)"
+#$(info Deleting $(current_test_file); last test was $(current_test_name))
+$(shell rm -f $(current_test_file))
+#else
+#$(info Last test $(current_test_name) matches current test $(TEST))
+endif
+
+# Object files and the application executable depend on the current test file. This
+# forces rebuilding if the file doesn't exist, i.e. if we deleted it above.
+$(OBJECTS_ALL) $(APP_ELF): $(current_test_file)
+
+# To rebuild the current test file, just write the value of TEST into it.
+$(current_test_file):
+	echo "$(TEST)" > $(current_test_file)
+#	echo "Updated current test to $(TEST)"
+

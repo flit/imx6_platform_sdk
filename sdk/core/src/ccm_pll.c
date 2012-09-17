@@ -462,10 +462,8 @@ void ccm_enter_low_power(lp_modes_t lp_mode)
     uint32_t ccm_clpcr = 0;
 
     // if MMDC channel 1 is not used, the handshake must be masked 
-    // enable the well-biased mode - set disable core clock in wait - set
-    // disable oscillator in stop
+    // set disable core clock in wait - set disable oscillator in stop
     ccm_clpcr = BM_CCM_CLPCR_BYPASS_MMDC_CH1_LPM_HS |
-        BM_CCM_CLPCR_WB_CORE_AT_LPM |
         BM_CCM_CLPCR_SBYOS | BM_CCM_CLPCR_ARM_CLK_DIS_ON_LPM | lp_mode;
 
     if (lp_mode == STOP_MODE) {
@@ -512,10 +510,14 @@ void mipi_csi2_clock_set(void)
                                           BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, PUS,
                                                  100KOHM_PU) |
                                           BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, HYS, ENABLED));
-    HW_CCM_CCOSR_WR(BF_CCM_CCOSR_CKO1_SEL(0) | BF_CCM_CCOSR_CKO1_DIV(0) | BF_CCM_CCOSR_CKO1_EN(1) | BF_CCM_CCOSR_CKO1_CKO2_SEL(1) | // select cko2 for cko1 output
-                    BF_CCM_CCOSR_CKO2_SEL(0xe) |    // osc_clk
-                    BF_CCM_CCOSR_CKO2_DIV(0) |  // div 1
-                    BF_CCM_CCOSR_CKO2_EN(1));
+    HW_CCM_CCOSR_WR(
+                    BF_CCM_CCOSR_CLKO1_SEL(0) |
+                    BF_CCM_CCOSR_CLKO1_DIV(0) |
+                    BF_CCM_CCOSR_CLKO1_EN(1) |
+                    BF_CCM_CCOSR_CLKO1_CLKO2_SEL(1) | // select cko2 for cko1 output
+                    BF_CCM_CCOSR_CLKO2_SEL(0xe) |    // osc_clk
+                    BF_CCM_CCOSR_CLKO2_DIV(0) |  // div 1
+                    BF_CCM_CCOSR_CLKO2_EN(1));
 }
 
 void gpu_clock_config(void)

@@ -2019,8 +2019,6 @@ group.long 0x54++0x3
         textline "     "
         bitfld.long 0x00 16. " WB_PER_AT_LPM ,Enable periphery charge pump for well biasing at low power mode (stop or wait)" "0,1"
         textline "     "
-        bitfld.long 0x00 17. " WB_CORE_AT_LPM ,Enable core charge pump for well biasing at low power mode (stop or wait)" "0,1"
-        textline "     "
         bitfld.long 0x00 19. " BYPASS_MMDC_CH0_LPM_HS ,Bypass handshake with mmdc_ch0 on next entrance to low power mode (wait or stop mode)." "0,1"
         textline "     "
         bitfld.long 0x00 21. " BYPASS_MMDC_ROOT_LPM_HS ,Bypass handshake with mmdc_root on next entrance to low power mode (wait or stop mode)." "0,1"
@@ -2077,19 +2075,19 @@ group.long 0x5c++0x3
 width 6.
 group.long 0x60++0x3
     line.long 0x00 "CCOSR,CCM Clock Output Source Register"
-        hexmask.long.byte 0x00 0.--4. 1. " CKO1_SEL ,Selection of the clock to be generated on cko1"
+        hexmask.long.byte 0x00 0.--4. 1. " CLKO1_SEL ,Selection of the clock to be generated on clko1"
         textline "     "
-        hexmask.long.byte 0x00 4.--7. 1. " CKO1_DIV ,Setting the divider of CKO1"
+        hexmask.long.byte 0x00 4.--7. 1. " CLKO1_DIV ,Setting the divider of CLKO1"
         textline "     "
-        bitfld.long 0x00 7. " CKO1_EN ,Enable of CKO1 clock" "0,1"
+        bitfld.long 0x00 7. " CLKO1_EN ,Enable of CLKO1 clock" "0,1"
         textline "     "
-        bitfld.long 0x00 8. " CKO1_CKO2_SEL ,CKO1 output to reflect cko1 or cko2 clocks" "0,1"
+        bitfld.long 0x00 8. " CLKO1_CLKO2_SEL ,CLKO1 output to reflect clko1 or clko2 clocks" "0,1"
         textline "     "
-        hexmask.long.byte 0x00 16.--21. 1. " CKO2_SEL ,Selection of the clock to be generated on cko2"
+        hexmask.long.byte 0x00 16.--21. 1. " CLKO2_SEL ,Selection of the clock to be generated on clko2"
         textline "     "
-        hexmask.long.byte 0x00 21.--24. 1. " CKO2_DIV ,Setting the divider of CKO2"
+        hexmask.long.byte 0x00 21.--24. 1. " CLKO2_DIV ,Setting the divider of CLKO2"
         textline "     "
-        bitfld.long 0x00 24. " CKO2_EN ,Enable of CKO2 clock" "0,1"
+        bitfld.long 0x00 24. " CLKO2_EN ,Enable of CLKO2 clock" "0,1"
 width 5.
 group.long 0x64++0x3
     line.long 0x00 "CGPR,CCM General Purpose Register"
@@ -4485,67 +4483,67 @@ group.long 0x204++0x3
 width 3.
 group.long 0x218++0x3
     line.long 0x00 "SA,Secure access register"
-        bitfld.long 0x00 0. " SA ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 0. " NSA ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 1. " L ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 2. " SA1 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 2. " NSA1 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 3. " L1 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 4. " SA2 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 4. " NSA2 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 5. " L2 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 6. " SA3 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 6. " NSA3 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 7. " L3 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 8. " SA4 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 8. " NSA4 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 9. " L4 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 10. " SA5 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 10. " NSA5 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 11. " L5 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 12. " SA6 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 12. " NSA6 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 13. " L6 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 14. " SA7 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 14. " NSA7 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 15. " L7 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 16. " SA8 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 16. " NSA8 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 17. " L8 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 18. " SA9 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 18. " NSA9 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 19. " L9 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 20. " SA10 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 20. " NSA10 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 21. " L10 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 22. " SA11 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 22. " NSA11 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 23. " L11 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 24. " SA12 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 24. " NSA12 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 25. " L12 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 26. " SA13 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 26. " NSA13 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 27. " L13 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 28. " SA14 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 28. " NSA14 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 29. " L14 ,Lock bit set by secure software" "0,1"
         textline "  "
-        bitfld.long 0x00 30. " SA15 ,Access Policy indicator bits" "0,1"
+        bitfld.long 0x00 30. " NSA15 ,Non-Secure Access Policy indicator bits" "0,1"
         textline "  "
         bitfld.long 0x00 31. " L15 ,Lock bit set by secure software" "0,1"
 
@@ -6950,7 +6948,7 @@ group.long 0x160++0x3
     line.long 0x00 "UPD_CTRL,EPDC Update Command Control"
         bitfld.long 0x00 0. " UPDATE_MODE ,Update Mode" "0,1"
         textline "        "
-        bitfld.long 0x00 1. " DRY_RUN ,Collision Detection." "0,1"
+        bitfld.long 0x00 1. " DRY_RUN ,Enable Dry Run mode(set to 1)." "0,1"
         textline "        "
         bitfld.long 0x00 2. " AUTOWV ,enable automatical waveform mode selection" "0,1"
         textline "        "
@@ -7146,7 +7144,7 @@ group.long 0x420++0x3
         textline "   "
         bitfld.long 0x00 17. " LUT_COL_IRQ ,Collision detection interrupt." "0,1"
         textline "   "
-        bitfld.long 0x00 18. " TCE_UNDERRUN_IRQ ,Interrupt to signify that a pixel FIFO under-run has occured." "0,1"
+        bitfld.long 0x00 18. " TCE_UNDERRUN_IRQ ,Interrupt to indicate that a pixel FIFO under-run has occured." "0,1"
         textline "   "
         bitfld.long 0x00 19. " FRAME_END_IRQ ,Interrupt to indicate EPDC has completed the current frame and is in the vertical blanking period." "0,1"
         textline "   "
@@ -7330,7 +7328,7 @@ group.long 0x810++0x3
 width 11.
 group.long 0x820++0x3
     line.long 0x00 "PIGEON_0_2,Panel Interface Signal Generator Register 0_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "          "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 11.
@@ -7358,7 +7356,7 @@ group.long 0x850++0x3
 width 11.
 group.long 0x860++0x3
     line.long 0x00 "PIGEON_1_2,Panel Interface Signal Generator Register 1_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "          "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 11.
@@ -7386,7 +7384,7 @@ group.long 0x890++0x3
 width 11.
 group.long 0x8a0++0x3
     line.long 0x00 "PIGEON_2_2,Panel Interface Signal Generator Register 2_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "          "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 11.
@@ -7414,7 +7412,7 @@ group.long 0x8d0++0x3
 width 11.
 group.long 0x8e0++0x3
     line.long 0x00 "PIGEON_3_2,Panel Interface Signal Generator Register 3_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "          "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 11.
@@ -7442,7 +7440,7 @@ group.long 0x910++0x3
 width 11.
 group.long 0x920++0x3
     line.long 0x00 "PIGEON_4_2,Panel Interface Signal Generator Register 4_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "          "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 11.
@@ -7470,7 +7468,7 @@ group.long 0x950++0x3
 width 11.
 group.long 0x960++0x3
     line.long 0x00 "PIGEON_5_2,Panel Interface Signal Generator Register 5_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "          "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 11.
@@ -7498,7 +7496,7 @@ group.long 0x990++0x3
 width 11.
 group.long 0x9a0++0x3
     line.long 0x00 "PIGEON_6_2,Panel Interface Signal Generator Register 6_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "          "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 11.
@@ -7526,7 +7524,7 @@ group.long 0x9d0++0x3
 width 11.
 group.long 0x9e0++0x3
     line.long 0x00 "PIGEON_7_2,Panel Interface Signal Generator Register 7_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "          "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 11.
@@ -7554,7 +7552,7 @@ group.long 0xa10++0x3
 width 11.
 group.long 0xa20++0x3
     line.long 0x00 "PIGEON_8_2,Panel Interface Signal Generator Register 8_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "          "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 11.
@@ -7582,7 +7580,7 @@ group.long 0xa50++0x3
 width 11.
 group.long 0xa60++0x3
     line.long 0x00 "PIGEON_9_2,Panel Interface Signal Generator Register 9_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "          "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 12.
@@ -7610,7 +7608,7 @@ group.long 0xa90++0x3
 width 12.
 group.long 0xaa0++0x3
     line.long 0x00 "PIGEON_10_2,Panel Interface Signal Generator Register 10_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "           "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 12.
@@ -7638,7 +7636,7 @@ group.long 0xad0++0x3
 width 12.
 group.long 0xae0++0x3
     line.long 0x00 "PIGEON_11_2,Panel Interface Signal Generator Register 11_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "           "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 12.
@@ -7666,7 +7664,7 @@ group.long 0xb10++0x3
 width 12.
 group.long 0xb20++0x3
     line.long 0x00 "PIGEON_12_2,Panel Interface Signal Generator Register 12_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "           "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 12.
@@ -7694,7 +7692,7 @@ group.long 0xb50++0x3
 width 12.
 group.long 0xb60++0x3
     line.long 0x00 "PIGEON_13_2,Panel Interface Signal Generator Register 13_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "           "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 12.
@@ -7722,7 +7720,7 @@ group.long 0xb90++0x3
 width 12.
 group.long 0xba0++0x3
     line.long 0x00 "PIGEON_14_2,Panel Interface Signal Generator Register 14_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "           "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 12.
@@ -7750,7 +7748,7 @@ group.long 0xbd0++0x3
 width 12.
 group.long 0xbe0++0x3
     line.long 0x00 "PIGEON_15_2,Panel Interface Signal Generator Register 15_1"
-        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal: DIS/AND/OR/COND"
+        hexmask.long.byte 0x00 0.--4. 1. " SIG_LOGIC ,logic operation with another signal sigout : final output signal of this generator mask : final mask of this generator this_sig : intermediate signal of this generator before logic operation other_masks : intermediate mask result of this generator before logic operation sig_another : signal selected other generators"
         textline "           "
         hexmask.long.byte 0x00 4.--9. 1. " SIG_ANOTHER ,select another signal for logic operation or as mask or counter tick event"
 width 12.
@@ -7770,47 +7768,47 @@ tree.open "EPIT"
     tree "EPIT1"
         base ad:0x020d0000
 
-width 7.
+width 3.
 group.long 0x0++0x3
-    line.long 0x00 "EPITCR,Control register"
+    line.long 0x00 "CR,Control register"
         bitfld.long 0x00 0. " EN ,This bit enables the EPIT." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 1. " ENMOD ,EPIT enable mode." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 2. " OCIEN ,Output compare interrupt enable." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 3. " RLD ,Counter reload control." "0,1"
-        textline "      "
+        textline "  "
         hexmask.long.word 0x00 4.--16. 1. " PRESCALAR ,Counter clock prescaler value."
-        textline "      "
+        textline "  "
         bitfld.long 0x00 16. " SWR ,Software reset." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 17. " IOVW ,EPIT counter overwrite enable." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 18. " DBGEN ,This bit is used to keep the EPIT functional in debug mode." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 19. " WAITEN ,This read/write control bit enables the operation of the EPIT during wait mode." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 21. " STOPEN ,EPIT stop mode enable." "0,1"
-        textline "      "
+        textline "  "
         hexmask.long.byte 0x00 22.--24. 1. " OM ,EPIT output mode.This bit field determines the mode of EPIT output on the output pin."
-        textline "      "
+        textline "  "
         hexmask.long.byte 0x00 24.--26. 1. " CLKSRC ,Select clock source These bits determine which clock input is to be selected for running the counter."
-width 7.
+width 3.
 group.long 0x4++0x3
-    line.long 0x00 "EPITSR,Status register"
+    line.long 0x00 "SR,Status register"
         bitfld.long 0x00 0. " OCIF ,Output compare interrupt flag." "0,1"
-width 7.
+width 3.
 group.long 0x8++0x3
-    line.long 0x00 "EPITLR,Load register"
+    line.long 0x00 "LR,Load register"
         hexmask.long.long 0x00 0.--32. 1. " LOAD ,Load value."
-width 9.
+width 5.
 group.long 0xc++0x3
-    line.long 0x00 "EPITCMPR,Compare register"
+    line.long 0x00 "CMPR,Compare register"
         hexmask.long.long 0x00 0.--32. 1. " COMPARE ,Compare Value."
-width 8.
+width 4.
 rgroup.long 0x10++0x3
-    line.long 0x00 "EPITCNR,Counter register"
+    line.long 0x00 "CNR,Counter register"
         hexmask.long.long 0x00 0.--32. 1. " COUNT ,Counter value."
 
 
@@ -7818,47 +7816,47 @@ rgroup.long 0x10++0x3
     tree "EPIT2"
         base ad:0x020d4000
 
-width 7.
+width 3.
 group.long 0x0++0x3
-    line.long 0x00 "EPITCR,Control register"
+    line.long 0x00 "CR,Control register"
         bitfld.long 0x00 0. " EN ,This bit enables the EPIT." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 1. " ENMOD ,EPIT enable mode." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 2. " OCIEN ,Output compare interrupt enable." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 3. " RLD ,Counter reload control." "0,1"
-        textline "      "
+        textline "  "
         hexmask.long.word 0x00 4.--16. 1. " PRESCALAR ,Counter clock prescaler value."
-        textline "      "
+        textline "  "
         bitfld.long 0x00 16. " SWR ,Software reset." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 17. " IOVW ,EPIT counter overwrite enable." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 18. " DBGEN ,This bit is used to keep the EPIT functional in debug mode." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 19. " WAITEN ,This read/write control bit enables the operation of the EPIT during wait mode." "0,1"
-        textline "      "
+        textline "  "
         bitfld.long 0x00 21. " STOPEN ,EPIT stop mode enable." "0,1"
-        textline "      "
+        textline "  "
         hexmask.long.byte 0x00 22.--24. 1. " OM ,EPIT output mode.This bit field determines the mode of EPIT output on the output pin."
-        textline "      "
+        textline "  "
         hexmask.long.byte 0x00 24.--26. 1. " CLKSRC ,Select clock source These bits determine which clock input is to be selected for running the counter."
-width 7.
+width 3.
 group.long 0x4++0x3
-    line.long 0x00 "EPITSR,Status register"
+    line.long 0x00 "SR,Status register"
         bitfld.long 0x00 0. " OCIF ,Output compare interrupt flag." "0,1"
-width 7.
+width 3.
 group.long 0x8++0x3
-    line.long 0x00 "EPITLR,Load register"
+    line.long 0x00 "LR,Load register"
         hexmask.long.long 0x00 0.--32. 1. " LOAD ,Load value."
-width 9.
+width 5.
 group.long 0xc++0x3
-    line.long 0x00 "EPITCMPR,Compare register"
+    line.long 0x00 "CMPR,Compare register"
         hexmask.long.long 0x00 0.--32. 1. " COMPARE ,Compare Value."
-width 8.
+width 4.
 rgroup.long 0x10++0x3
-    line.long 0x00 "EPITCNR,Counter register"
+    line.long 0x00 "CNR,Counter register"
         hexmask.long.long 0x00 0.--32. 1. " COUNT ,Counter value."
 
 
@@ -8073,9 +8071,15 @@ group.long 0x0++0x3
         textline "    "
         bitfld.long 0x00 1. " GPU_VPU_PUP_REQ ,GPU Power Up request." "0,1"
         textline "    "
+        bitfld.long 0x00 4. " DISPLAY_PDN_REQ ,Display Power Down request." "0,1"
+        textline "    "
+        bitfld.long 0x00 5. " DISPLAY_PUP_REQ ,Display Power Up request." "0,1"
+        textline "    "
         bitfld.long 0x00 16. " DVFS0CR ,DVFS0 (ARM) Change request (bit is read-only)" "0,1"
         textline "    "
         bitfld.long 0x00 21. " GPCIRQM ,GPC interrupt/event masking" "0,1"
+        textline "    "
+        bitfld.long 0x00 22. " L2_PGE ,L2 Cache Power Gate Enable" "0,1"
 width 4.
 group.long 0x4++0x3
     line.long 0x00 "PGR,GPC Power Gating Register"
@@ -9570,8 +9574,6 @@ group.long 0x0++0x3
         bitfld.long 0x00 6. " DMAREQ_MUX_SEL6 ,Selects between two possible sources for SDMA_EVENT[23]:" "0,1"
         textline "    "
         bitfld.long 0x00 7. " DMAREQ_MUX_SEL7 ,Selects between two possible sources for SDMA_EVENT[14]:" "0,1"
-        textline "    "
-        bitfld.long 0x00 8. " DISP_MUX_CTL ,select between epdc and spdc(tcon)" "0,1"
 width 5.
 group.long 0x4++0x3
     line.long 0x00 "GPR1,GPR1"
@@ -14611,13 +14613,13 @@ width 20.
 group.long 0x5d8++0x3
     line.long 0x00 "SW_PAD_CTL_GRP_B3DS,SW_GRP"
         hexmask.long.byte 0x00 3.--6. 1. " DSE ,Drive Strength Field Select one out of next values for group: B3DS (Pads: DRAM_D24 DRAM_D25 DRAM_D26 DRAM_D27 DRAM_D28 DRAM_D29 DRAM_D30 DRAM_D31)."
-width 31.
+width 24.
 group.long 0x5dc++0x3
-    line.long 0x00 "ANALOG_USB_OTG_ID_SELECT_INPUT,SELECT_INPUT"
+    line.long 0x00 "USB_OTG_ID_SELECT_INPUT,SELECT_INPUT"
         hexmask.long.byte 0x00 0.--3. 1. " DAISY ,Selecting Pads Involved in Daisy Chain."
 width 31.
 group.long 0x5e0++0x3
-    line.long 0x00 "ANALOG_USB_UH1_ID_SELECT_INPUT,SELECT_INPUT"
+    line.long 0x00 "USB_IPP_IND_H1_ID_SELECT_INPUT,SELECT_INPUT"
         hexmask.long.byte 0x00 0.--2. 1. " DAISY ,Selecting Pads Involved in Daisy Chain."
 width 36.
 group.long 0x5e4++0x3
@@ -15298,7 +15300,7 @@ group.word 0x2++0x1
         textline "    "
         bitfld.word 0x00 2. " KDSC ,Key Depress Synchronizer Clear." "0,1"
         textline "    "
-        bitfld.word 0x00 3. " KPP_KRSS ,Key Release Synchronizer Set." "0,1"
+        bitfld.word 0x00 3. " KRSS ,Key Release Synchronizer Set." "0,1"
         textline "    "
         bitfld.word 0x00 8. " KDIE ,Keypad Key Depress Interrupt Enable." "0,1"
         textline "    "
@@ -16300,15 +16302,9 @@ group.long 0x40++0x3
 width 10.
 group.long 0x50++0x3
     line.long 0x00 "SW_STICKY,Sticky bit Register"
-        bitfld.long 0x00 0. " BLOCK_DTCP_KEY ,Shadow register read and OTP read lock for DTCP_KEY region." "0,1"
-        textline "         "
         bitfld.long 0x00 1. " SRK_REVOKE_LOCK ,Shadow register write and OTP write lock for SRK_REVOKE region." "0,1"
         textline "         "
         bitfld.long 0x00 2. " FIELD_RETURN_LOCK ,Shadow register write and OTP write lock for FIELD_RETURN region." "0,1"
-        textline "         "
-        bitfld.long 0x00 3. " BLOCK_ROM_PART ,Set by ARM during Boot after DTCP is initialized and before test mode entry, if ROM_PART_LOCK=1.* 0 (Default) - Secret part of Boot ROM is not hidden (subject to other conditions).* 1 - Secret part of Boot ROM is hidden.Once this bit is set, it is always high unless a POR is issued." "0,1"
-        textline "         "
-        bitfld.long 0x00 4. " JTAG_BLOCK_RELEASE ,Set by ARM during Boot after DTCP is initialized and before test mode entry." "0,1"
 width 4.
 group.long 0x60++0x3
     line.long 0x00 "SCS,Software Controllable Signals Register"
@@ -16369,8 +16365,6 @@ group.long 0x400++0x3
         hexmask.long.byte 0x00 20.--22. 1. " CRC_GP_LOCK ,Status of shadow register write and read, OTP program and read lock for CRC region."
         textline "    "
         bitfld.long 0x00 22. " MISC_CONF ,Status of shadow register and OTP write lock for misc_conf region." "0,1"
-        textline "    "
-        bitfld.long 0x00 23. " DTCP_DEV_CERT ,Status of shadow register and OTP write lock for dtcp_dev_cert region." "0,1"
         textline "    "
         bitfld.long 0x00 25. " PIN ,Status of Pin access lock bit." "0,1"
         textline "    "
@@ -16799,6 +16793,8 @@ group.long 0x150++0x3
         bitfld.long 0x00 7. " REFTOP_VBGUP ,Status bit which signals that the analog bandgap voltage is up and stable." "0,1"
         textline "     "
         hexmask.long.byte 0x00 11.--13. 1. " STOP_MODE_CONFIG ,Configure the analog behavior in stop mode."
+        textline "     "
+        bitfld.long 0x00 13. " DISCON_HIGH_SNVS ,This bit forces the short between VDDHIGH_IN and VSNVS_IN to open when asserted." "0,1"
         textline "     "
         hexmask.long.byte 0x00 14.--16. 1. " OSC_I ,This bit field determines the bias current in the 24MHz oscillator."
         textline "     "
@@ -18734,6 +18730,390 @@ tree.end
 
 
 ;--------------------------------------------------------------------------------
+; SNVS
+;--------------------------------------------------------------------------------
+tree "SNVS"
+    base ad:0x020cc000
+
+width 5.
+group.long 0x0++0x3
+    line.long 0x00 "HPLR,SNVS _HP Lock Register"
+        bitfld.long 0x00 0. " ZMK_WSL ,Zeroizable Master Key Write Soft Lock When set, prevents any writes (software and hardware) to the ZMK registers and MASTER_KEY_SEL, ZMK_HWP, ZMK_VAL, and ZMK_ECC_EN fields of the LPMKCR." "0,1"
+        textline "    "
+        bitfld.long 0x00 1. " ZMK_RSL ,Zeroizable Master Key Read Soft Lock When set, prevents any software reads to the ZMK Registers and ZMK_ECC_VALUE field of the LPMKCR." "0,1"
+        textline "    "
+        bitfld.long 0x00 2. " SRTC_SL ,Secure Real Time Counter Soft Lock When set, prevents any writes to the SRTC Registers, SRTC_ENV, and SRTC_INV_EN bits." "0,1"
+        textline "    "
+        bitfld.long 0x00 3. " LPCALB_SL ,LP Calibration Soft Lock When set, prevents any writes to the LP Calibration Value (LPCALB_VAL) and LP Calibration Enable (LPCALB_EN)." "0,1"
+        textline "    "
+        bitfld.long 0x00 4. " MC_SL ,Monotonic Counter Soft Lock When set, prevents any writes (increments) to the MC Registers and MC_ENV bit." "0,1"
+        textline "    "
+        bitfld.long 0x00 5. " GPR_SL ,General Purpose Register Soft Lock When set, prevents any writes to the GPR." "0,1"
+        textline "    "
+        bitfld.long 0x00 6. " LPSVCR_SL ,LP Security Violation Control Register Soft Lock When set, prevents any writes to the LPSVCR." "0,1"
+        textline "    "
+        bitfld.long 0x00 7. " LPTGFCR_SL ,LP Tamper Glitch Filter Configuration Register Soft Lock When set, prevents any writes to the LPTGFCR." "0,1"
+        textline "    "
+        bitfld.long 0x00 8. " LPTDCR_SL ,LP Tamper Detectors Configuration Register Soft Lock When set, prevents any writes to the LPTDCR." "0,1"
+        textline "    "
+        bitfld.long 0x00 9. " MKS_SL ,Master Key Select Soft Lock When set, prevents any writes to the MASTER_KEY_SEL field of the LPMKCR." "0,1"
+        textline "    "
+        bitfld.long 0x00 16. " HPSVCR_L ,HP Security Violation Control Register Lock When set, prevents any writes to the HPSVCR." "0,1"
+        textline "    "
+        bitfld.long 0x00 17. " HPSICR_L ,HP Security Interrupt Control Register Lock When set, prevents any writes to the HPSICR." "0,1"
+        textline "    "
+        bitfld.long 0x00 18. " HAC_L ,High Assurance Configuration Lock When set, prevents any writes to HPHACIVR, HPHACR, and HAC_EN bit of HPCOMR." "0,1"
+width 7.
+group.long 0x4++0x3
+    line.long 0x00 "HPCOMR,SNVS _HP Command Register"
+        bitfld.long 0x00 0. " SSM_ST ,SSM State Transition Transition state of the system security monitor." "0,1"
+        textline "      "
+        bitfld.long 0x00 1. " SSM_ST_DIS ,SSM Secure to Trusted State Transition Disable When set, disables the SSM transition from secure to trusted state." "0,1"
+        textline "      "
+        bitfld.long 0x00 2. " SSM_SFNS_DIS ,SSM Soft Fail to Non-Secure State Transition Disable When set, it disables the SSM transition from soft fail to non-secure state." "0,1"
+        textline "      "
+        bitfld.long 0x00 4. " LP_SWR ,LP Software Reset When set, it resets the SNVS _LP section." "0,1"
+        textline "      "
+        bitfld.long 0x00 5. " LP_SWR_DIS ,LP Software Reset Disable When set, disables the LP software reset." "0,1"
+        textline "      "
+        bitfld.long 0x00 8. " SW_SV ,Software Security Violation When set, the system security monitor treats this bit as a non-fatal security violation." "0,1"
+        textline "      "
+        bitfld.long 0x00 9. " SW_FSV ,Software Fatal Security Violation When set, the system security monitor treats this bit as a fatal security violation." "0,1"
+        textline "      "
+        bitfld.long 0x00 10. " SW_LPSV ,LP Software Security Violation When set, SNVS _LP treats this bit as a security violation." "0,1"
+        textline "      "
+        bitfld.long 0x00 12. " PROG_ZMK ,Program Zeroizable Master Key This bit activates ZMK hardware programming mechanism." "0,1"
+        textline "      "
+        bitfld.long 0x00 13. " MKS_EN ,Master Key Select Enable When not set, the one time programmable (OTP) master key is selected by default." "0,1"
+        textline "      "
+        bitfld.long 0x00 16. " HAC_EN ,High Assurance Configuration Enable This bit controls the SSM transition from the soft fail to the hard fail state." "0,1"
+        textline "      "
+        bitfld.long 0x00 17. " HAC_LOAD ,High Assurance Counter Load When set, it loads the High Assurance Counter Register with the value of the High Assurance Counter Load Register." "0,1"
+        textline "      "
+        bitfld.long 0x00 18. " HAC_CLEAR ,High Assurance Counter Clear When set, it clears the High Assurance Counter Register." "0,1"
+        textline "      "
+        bitfld.long 0x00 19. " HAC_STOP ,High Assurance Counter Stop This bit can be set only when SSM is in soft fail state." "0,1"
+        textline "      "
+        bitfld.long 0x00 31. " NPSWA_EN ,Non-Privileged Software Access Enable When set, allows non-privileged software to access all SNVS registers, including those that are privileged software read/write access only." "0,1"
+width 5.
+group.long 0x8++0x3
+    line.long 0x00 "HPCR,SNVS_HP Control Register"
+        bitfld.long 0x00 0. " RTC_EN ,HP Real Time Counter Enable" "0,1"
+        textline "    "
+        bitfld.long 0x00 1. " HPTA_EN ,HP Time Alarm Enable When set, the time alarm interrupt is generated if the value in the HP Time Alarm Registers is equal to the value of the HP Real Time Counter." "0,1"
+        textline "    "
+        bitfld.long 0x00 3. " PI_EN ,HP Periodic Interrupt Enable The periodic interrupt can be generated only if the HP Real Time Counter is enabled." "0,1"
+        textline "    "
+        hexmask.long.byte 0x00 4.--8. 1. " PI_FREQ ,Periodic Interrupt Frequency Defines frequency of the periodic interrupt."
+        textline "    "
+        bitfld.long 0x00 8. " HPCALB_EN ,HP Real Time Counter Calibration Enabled Indicates that the time calibration mechanism is enabled." "0,1"
+        textline "    "
+        hexmask.long.byte 0x00 10.--15. 1. " HPCALB_VAL ,HP Calibration Value Defines signed calibration value for the HP Real Time Counter."
+        textline "    "
+        bitfld.long 0x00 16. " HP_TS ,HP Time Synchronize When set, this updates the HP Time Counter with the LP Time Counter value." "0,1"
+width 7.
+group.long 0xc++0x3
+    line.long 0x00 "HPSICR,SNVS _HP Security Interrupt Control Register"
+        bitfld.long 0x00 0. " SVI_EN0 ,Security Violation Interrupt 0 Enable This bit enables generation of the security interrupt to the host processor upon security violation detection on input port 0." "0,1"
+        textline "      "
+        bitfld.long 0x00 1. " SVI_EN1 ,Security Violation Interrupt 1 Enable This bit enables generation of the security interrupt to the host processor upon security violation detection on input port 1." "0,1"
+        textline "      "
+        bitfld.long 0x00 2. " SVI_EN2 ,Security Violation Interrupt 2 Enable This bit enables generation of the security interrupt to the host processor upon security violation detection on input port 2." "0,1"
+        textline "      "
+        bitfld.long 0x00 3. " SVI_EN3 ,Security Violation Interrupt 3 Enable This bit enables generation of the security interrupt to the host processor upon security violation detection on input port 3." "0,1"
+        textline "      "
+        bitfld.long 0x00 4. " SVI_EN4 ,Security Violation Interrupt 4 Enable This bit enables generation of the security interrupt to the host processor upon security violation detection on input port 4." "0,1"
+        textline "      "
+        bitfld.long 0x00 5. " SVI_EN5 ,Security Violation Interrupt 5 Enable This bit enables generation of the security interrupt to the host processor upon security violation detection on input port 5." "0,1"
+        textline "      "
+        bitfld.long 0x00 31. " LPSVI_EN ,LP Security Violation Interrupt Enable This bit enables generating of the security interrupt to the host processor upon security violation signal from the LP section." "0,1"
+width 7.
+group.long 0x10++0x3
+    line.long 0x00 "HPSVCR,SNVS _HP Security Violation Control Register"
+        bitfld.long 0x00 0. " SV_CFG0 ,Security Violation Input 0 Configuration This field configures the security violation input 0." "0,1"
+        textline "      "
+        bitfld.long 0x00 1. " SV_CFG1 ,Security Violation Input 1 Configuration This field configures the Security Violation Input 1." "0,1"
+        textline "      "
+        bitfld.long 0x00 2. " SV_CFG2 ,Security Violation Input 2 Configuration This field configures the security violation input 2." "0,1"
+        textline "      "
+        bitfld.long 0x00 3. " SV_CFG3 ,Security Violation Input 3 Configuration This field configures the security violation input 3." "0,1"
+        textline "      "
+        bitfld.long 0x00 4. " SV_CFG4 ,Security Violation Input 4 Configuration This field configures the security violation Input 4." "0,1"
+        textline "      "
+        hexmask.long.byte 0x00 5.--7. 1. " SV_CFG5 ,Security Violation Input 5 Configuration This field configures the Security Violation Input 5."
+        textline "      "
+        hexmask.long.byte 0x00 30.--32. 1. " LPSV_CFG ,LP Security Violation Configuration This field configures the LP security violation source."
+width 5.
+group.long 0x14++0x3
+    line.long 0x00 "HPSR,SNVS _HP Status Register"
+        hexmask.long.byte 0x00 8.--12. 1. " SSM_ST ,System Security Monitor State This field contains the encoded state of the SSM's state machine."
+        textline "    "
+        bitfld.long 0x00 27. " OTPMK_ZERO ,One Time Programmable Master Key is Equal to Zero." "0,1"
+        textline "    "
+        bitfld.long 0x00 31. " ZMK_ZERO ,Zeroizable Master Key is Equal to Zero." "0,1"
+width 7.
+group.long 0x18++0x3
+    line.long 0x00 "HPSVSR,SNVS _HP Security Violation Status Register"
+        bitfld.long 0x00 0. " SEC_VIO0 ,Security violation on input 0 is detected." "0,1"
+        textline "      "
+        bitfld.long 0x00 1. " SEC_VIO1 ,Security violation on input 1 is detected." "0,1"
+        textline "      "
+        bitfld.long 0x00 2. " SEC_VIO2 ,Security violation on input 2 is detected." "0,1"
+        textline "      "
+        bitfld.long 0x00 3. " SEC_VIO3 ,Security violation on input 3 is detected." "0,1"
+        textline "      "
+        bitfld.long 0x00 4. " SEC_VIO4 ,Security violation on input 4 is detected." "0,1"
+        textline "      "
+        bitfld.long 0x00 5. " SEC_VIO5 ,Security volation on input 5 is detected." "0,1"
+        textline "      "
+        hexmask.long.word 0x00 16.--25. 1. " ZMK_SYNDROME ,Zeroizable Master Key Syndrome Value The ZMK syndrome indicates error location and parity ."
+        textline "      "
+        bitfld.long 0x00 27. " ZMK_ECC_FAIL ,Zeroizable Master Key Error Correcting Code Check Failure When set, this bit triggers a bad key violation to the SSM and a security violation to the SNVS _LP section, which clears security sensitive data." "0,1"
+width 9.
+group.long 0x1c++0x3
+    line.long 0x00 "HPHACIVR,SNVS _HP High Assurance Counter IV Register"
+        hexmask.long.long 0x00 0.--32. 1. " HAC_COUNTER_IV ,High Assurance Counter Initial Value This register is used to set the starting count value to the high assurance counter."
+width 7.
+group.long 0x20++0x3
+    line.long 0x00 "HPHACR,SNVS _HP High Assurance Counter Register"
+        hexmask.long.long 0x00 0.--32. 1. " HAC_COUNTER ,High Assurance Counter When the HAC_EN bit is set and the SSM is in the soft fail state, this counter starts to count down with the system clock."
+width 8.
+group.long 0x24++0x3
+    line.long 0x00 "HPRTCMR,SNVS_HP Real Time Counter MSB Register"
+        hexmask.long.word 0x00 0.--15. 1. " RTC ,HP Real Time Counter Most significant bits."
+width 8.
+group.long 0x28++0x3
+    line.long 0x00 "HPRTCLR,SNVS_HP Real Time Counter LSB Register"
+        hexmask.long.long 0x00 0.--32. 1. " RTC ,HP Real Time Counter Least significant 32 bits."
+width 7.
+group.long 0x2c++0x3
+    line.long 0x00 "HPTAMR,SNVS_HP Time Alarm MSB Register"
+        hexmask.long.word 0x00 0.--15. 1. " HPTA ,HP Time Alarm Most significant 15 bits."
+width 7.
+group.long 0x30++0x3
+    line.long 0x00 "HPTALR,SNVS_HP Time Alarm LSB Register"
+        hexmask.long.long 0x00 0.--32. 1. " HPTA ,HP Time Alarm Least significant bits."
+width 5.
+group.long 0x34++0x3
+    line.long 0x00 "LPLR,SNVS _LP Lock Register"
+        bitfld.long 0x00 0. " ZMK_WHL ,Zeroizable Master Key Write Hard Lock When set, prevents any writes (software and hardware) to the ZMK registers and ZMK_HWP, ZMK_VAL, and ZMK_ECC_EN fields of the LPMKCR." "0,1"
+        textline "    "
+        bitfld.long 0x00 1. " ZMK_RHL ,Zeroizable Master Key Read Hard Lock When set, prevents any software reads to the ZMK registers and ZMK_ECC_VALUE field of the LPMKCR." "0,1"
+        textline "    "
+        bitfld.long 0x00 2. " SRTC_HL ,Secure Real Time Counter Hard Lock When set, prevents any writes to the SRTC registers, SRTC_ENV, and SRTC_INV_EN bits." "0,1"
+        textline "    "
+        bitfld.long 0x00 3. " LPCALB_HL ,LP Calibration Hard Lock When set, prevents any writes to the LP Calibration Value (LPCALB_VAL) and LP Calibration Enable (LPCALB_EN)." "0,1"
+        textline "    "
+        bitfld.long 0x00 4. " MC_HL ,Monotonic Counter Hard Lock When set, prevents any writes (increments) to the MC Registers and MC_ENV bit." "0,1"
+        textline "    "
+        bitfld.long 0x00 5. " GPR_HL ,General Purpose Register Hard Lock When set, prevents any writes to the GPR." "0,1"
+        textline "    "
+        bitfld.long 0x00 6. " LPSVCR_HL ,LP Security Violation Control Register Hard Lock When set, prevents any writes to the LPSVCR." "0,1"
+        textline "    "
+        bitfld.long 0x00 7. " LPTGFCR_HL ,LP Tamper Glitch Filter Configuration Register Hard Lock When set, prevents any writes to the LPTGFCR." "0,1"
+        textline "    "
+        bitfld.long 0x00 8. " LPTDCR_HL ,LP Tamper Detectors Configuration Register Hard Lock When set, prevents any writes to the LPTDCR." "0,1"
+        textline "    "
+        bitfld.long 0x00 9. " MKS_HL ,Master Key Select Hard Lock When set, prevents any writes to the MASTER_KEY_SEL field of the LP Master Key Control Register." "0,1"
+width 5.
+group.long 0x38++0x3
+    line.long 0x00 "LPCR,SNVS_LP Control Register"
+        bitfld.long 0x00 0. " SRTC_ENV ,Secure Real Time Counter Enable and Valid When set, the SRTC becomes operational." "0,1"
+        textline "    "
+        bitfld.long 0x00 1. " LPTA_EN ,LP Time Alarm Enable When set, the SNVS functional interrupt is asserted if the LP Time Alarm Register is equal to the 32 MSBs of the secure real time counter." "0,1"
+        textline "    "
+        bitfld.long 0x00 2. " MC_ENV ,Monotonic Counter Enable and Valid When set, the MC can be incremented (by write transaction to the LPSMCMR or LPSMCLR)." "0,1"
+        textline "    "
+        bitfld.long 0x00 3. " LPWUI_EN ,LP Wake-Up Interrupt Enable This interrupt line should be connected to the external pin and is intended to inform the external chip about an SNVS _LP event (tamper event, MC rollover, SRTC rollover, or time alarm )." "0,1"
+        textline "    "
+        bitfld.long 0x00 4. " SRTC_INV_EN ,Secure Real Time Counter Invalidation Enable When set, the SRTC is invalidated (SRTC_ENV bit is cleared) in the case of security violation." "0,1"
+        textline "    "
+        bitfld.long 0x00 5. " DP_EN ,Dumb PMIC Enabled" "0,1"
+        textline "    "
+        bitfld.long 0x00 6. " TOP ,Turn of System Power Asserting this bit causes a signal to be sent to the Power Management IC to turn off the system power." "0,1"
+        textline "    "
+        bitfld.long 0x00 8. " LPCALB_EN ,LP Calibration Enable When set, enables the SRTC calibration mechanism." "0,1"
+        textline "    "
+        hexmask.long.byte 0x00 10.--15. 1. " LPCALB_VAL ,LP Calibration Value Defines signed calibration value for SRTC."
+width 7.
+group.long 0x3c++0x3
+    line.long 0x00 "LPMKCR,SNVS_LP Master Key Control Register"
+        hexmask.long.byte 0x00 0.--2. 1. " MASTER_KEY_SEL ,Master Key Select These bits select the SNVS Master Key output when Master Key Select bits are enabled by MKS_EN bit in the HPCOMR ."
+        textline "      "
+        bitfld.long 0x00 2. " ZMK_HWP ,Zeroizable Master Key hardware Programming mode When set, only the hardware key programming mechanism can set the ZMK and software cannot read it." "0,1"
+        textline "      "
+        bitfld.long 0x00 3. " ZMK_VAL ,Zeroizable Master Key Valid When set, the ZMK value can be selected by the master key control block for use by cryptographic modules." "0,1"
+        textline "      "
+        bitfld.long 0x00 4. " ZMK_ECC_EN ,Zeroizable Master Key Error Correcting Code Check Enable Writing one to this field automatically calculates and sets the ZMK ECC value in the ZMK_ECC_VALUE field of this register." "0,1"
+        textline "      "
+        hexmask.long.word 0x00 7.--16. 1. " ZMK_ECC_VALUE ,Zeroizable Master Key Error Correcting Code Value This field is automatically calculated and set when one is written into ZMK_ECC_EN bit of this register."
+width 7.
+group.long 0x40++0x3
+    line.long 0x00 "LPSVCR,SNVS_LP Security Violation Control Register"
+        bitfld.long 0x00 0. " SV_EN0 ,Security Violation 0 Enable This bit enables security violation input 0." "0,1"
+        textline "      "
+        bitfld.long 0x00 1. " SV_EN1 ,Security Violation 1 Enable This bit enables security violation input 1." "0,1"
+        textline "      "
+        bitfld.long 0x00 2. " SV_EN2 ,Security Violation 2 Enable This bit enables security violation input 2." "0,1"
+        textline "      "
+        bitfld.long 0x00 3. " SV_EN3 ,Security Violation 3 Enable This bit enables security violation input 3." "0,1"
+        textline "      "
+        bitfld.long 0x00 4. " SV_EN4 ,Security Violation 4 Enable This bit enables security violation input 4." "0,1"
+        textline "      "
+        bitfld.long 0x00 5. " SV_EN5 ,Security Violation 5 Enable This bit enables security violation input 5." "0,1"
+width 8.
+group.long 0x44++0x3
+    line.long 0x00 "LPTGFCR,SNVS_LP Tamper Glitch Filters Configuration Register"
+        hexmask.long.byte 0x00 0.--5. 1. " WMTGF ,Wire-Mesh Tamper Glitch Filter Configures the length of the digital glitch filter for the wire-mesh tamper 1 and 2 pins between 1 and 63 SRTC clock cycles."
+        textline "       "
+        bitfld.long 0x00 7. " WMTGF_EN ,Wire-Mesh Tamper Glitch Filter Enable When set, enables the wire-mesh tamper glitch filter." "0,1"
+        textline "       "
+        hexmask.long.byte 0x00 16.--21. 1. " ETGF1 ,External Tamper Glitch Filter 1 Configures the length of the digital glitch filter for the external tamper 1 pin between 128 and 8064 SRTC clock cycles."
+        textline "       "
+        bitfld.long 0x00 23. " ETGF1_EN ,External Tamper Glitch Filter 1 Enable When set, enables the external tamper glitch filter 1." "0,1"
+width 7.
+group.long 0x48++0x3
+    line.long 0x00 "LPTDCR,SNVS_LP Tamper Detectors Configuration Register"
+        bitfld.long 0x00 1. " SRTCR_EN ,SRTC Rollover Enable When set, an SRTC rollover event generates an LP security violation." "0,1"
+        textline "      "
+        bitfld.long 0x00 2. " MCR_EN ,MC Rollover Enable When set, an MC Rollover event generates an LP security violation." "0,1"
+        textline "      "
+        bitfld.long 0x00 4. " CT_EN ,Clock Tamper Enable When set, a clock monitor tamper generates an LP security violation." "0,1"
+        textline "      "
+        bitfld.long 0x00 5. " TT_EN ,Temperature Tamper Enable When set, a temperature monitor tamper generates an LP security violation." "0,1"
+        textline "      "
+        bitfld.long 0x00 6. " VT_EN ,Voltage Tamper Enable When set, a voltage monitor tamper generates an LP security violation." "0,1"
+        textline "      "
+        bitfld.long 0x00 7. " WMT1_EN ,Wire-Mesh Tampering 1 Enable When set, wire-mesh tampering 1 detection generates an LP security violation." "0,1"
+        textline "      "
+        bitfld.long 0x00 8. " WMT2_EN ,Wire-Mesh Tampering 2 Enable When set, wire-mesh tampering 2 detection generates an LP security violation." "0,1"
+        textline "      "
+        bitfld.long 0x00 9. " ET1_EN ,External Tampering 1 Enable When set, external tampering 1 detection generates an LP security violation." "0,1"
+        textline "      "
+        bitfld.long 0x00 14. " PFD_OBSERV ,System Power Fail Detector (PFD) Observability Flop The asynchronous reset input of this flop is connected directly to the inverted output of the PFD analog circuitry (external to the SNVS block)." "0,1"
+        textline "      "
+        bitfld.long 0x00 15. " POR_OBSERV ,Power On Reset (POR) Observability Flop The asynchronous reset input of this flop is connected directly to the output of the POR analog circuitry (external to the SNVS block)." "0,1"
+        textline "      "
+        hexmask.long.byte 0x00 16.--19. 1. " LTDC ,Low Temperature Detect Configuration These configuration bits are wired as an output of the module."
+        textline "      "
+        hexmask.long.byte 0x00 20.--23. 1. " HTDC ,High Temperature Detect Configuration These configuration bits are wired as an output of the module."
+        textline "      "
+        hexmask.long.byte 0x00 24.--27. 1. " VRC ,Voltage Reference Configuration These configuration bits are wired as an output of the module."
+        textline "      "
+        bitfld.long 0x00 28. " OSCB ,Oscillator Bypass When set, this signal bypasses the internal SRTC clock oscillator, allowing only an external clock to drive the SRTC clock source." "0,1"
+width 5.
+group.long 0x4c++0x3
+    line.long 0x00 "LPSR,SNVS _LP Status Register"
+        bitfld.long 0x00 0. " LPTA ,LP Time Alarm." "0,1"
+        textline "    "
+        bitfld.long 0x00 1. " SRTCR ,Secure Real Time Counter Rollover." "0,1"
+        textline "    "
+        bitfld.long 0x00 2. " MCR ,Monotonic Counter Rollover." "0,1"
+        textline "    "
+        bitfld.long 0x00 3. " PGD ,Power Supply Glitch Detected." "0,1"
+        textline "    "
+        bitfld.long 0x00 4. " CTD ,Clock Tampering Detected." "0,1"
+        textline "    "
+        bitfld.long 0x00 5. " TTD ,Temperature Tamper Detected." "0,1"
+        textline "    "
+        bitfld.long 0x00 6. " VTD ,Voltage Tampering Detected." "0,1"
+        textline "    "
+        bitfld.long 0x00 7. " WMT1D ,Wire-Mesh Tampering 1 Detected." "0,1"
+        textline "    "
+        bitfld.long 0x00 8. " WMT2D ,Wire-Mesh Tampering 2 Detected." "0,1"
+        textline "    "
+        bitfld.long 0x00 9. " ET1D ,External Tampering 1 Detected." "0,1"
+        textline "    "
+        bitfld.long 0x00 16. " ESVD ,External Security Violation Detected Indicates that a security violation is detected on one of the HP security violation ports." "0,1"
+        textline "    "
+        bitfld.long 0x00 30. " LPNS ,LP Section is Non-Secured Indicates that LP section was provisioned/programmed in the non-secure state." "0,1"
+        textline "    "
+        bitfld.long 0x00 31. " LPS ,LP Section is Secured Indicates that the LP section is provisioned/programmed in the secure or trusted state." "0,1"
+width 9.
+group.long 0x50++0x3
+    line.long 0x00 "LPSRTCMR,SNVS_LP Secure Real Time Counter MSB Register"
+        hexmask.long.word 0x00 0.--15. 1. " SRTC ,LP Secure Real Time Counter most significant bits This register can be programmed only when SRTC is not active and not locked, meaning the SRTC_ENV, SRTC_SL, and SRTC_HL bits are not set."
+width 9.
+group.long 0x54++0x3
+    line.long 0x00 "LPSRTCLR,SNVS_LP Secure Real Time Counter LSB Register"
+        hexmask.long.long 0x00 0.--32. 1. " SRTC ,LP Secure Real Time Counter least significant 32 bits This register can be programmed only when SRTC is not active and not locked, meaning the SRTC_ENV, SRTC_SL, and SRTC_HL bits are not set."
+width 6.
+group.long 0x58++0x3
+    line.long 0x00 "LPTAR,SNVS_LP Time Alarm Register"
+        hexmask.long.long 0x00 0.--32. 1. " LPTA ,LP Time Alarm This register can be programmed only when the LP time alarm is disabled (LPTA_EN bit is not set)."
+width 8.
+group.long 0x5c++0x3
+    line.long 0x00 "LPSMCMR,SNVS_LP Secure Monotonic Counter MSB Register"
+        hexmask.long.word 0x00 0.--16. 1. " MON_COUNTER ,Monotonic Counter Most Significant 16 Bits The MC is incremented by one when: A write transaction to the LPSMCMR or LPSMCLR register is detected."
+        textline "       "
+        hexmask.long.word 0x00 16.--32. 1. " MC_ERA_BITS ,Monotonic Counter Era Bits These bits are inputs to the module and typically connect to fuses."
+width 8.
+group.long 0x60++0x3
+    line.long 0x00 "LPSMCLR,SNVS_LP Secure Monotonic Counter LSB Register"
+        hexmask.long.long 0x00 0.--32. 1. " MON_COUNTER ,Monotonic Counter bits The MC is incremented by one when: A write transaction to the LPSMCMR or LPSMCLR Register is detected."
+width 7.
+group.long 0x64++0x3
+    line.long 0x00 "LPPGDR,SNVS _LP Power Glitch Detector Register"
+        hexmask.long.long 0x00 0.--32. 1. " PGD ,Power Glitch Detector Value"
+width 6.
+group.long 0x68++0x3
+    line.long 0x00 "LPGPR,SNVS_LP General Purpose Register"
+        hexmask.long.long 0x00 0.--32. 1. " GPR ,General Purpose Register When GPR_SL or GPR_HL bit is set, the register cannot be programmed."
+width 8.
+group.long 0x6c++0x3
+    line.long 0x00 "LPZMKR0,SNVS_LP Zeroizable Master Key Register n"
+        hexmask.long.long 0x00 0.--32. 1. " ZMK ,Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 - ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[ 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]"
+width 8.
+group.long 0x70++0x3
+    line.long 0x00 "LPZMKR1,SNVS_LP Zeroizable Master Key Register n"
+        hexmask.long.long 0x00 0.--32. 1. " ZMK ,Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 - ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[ 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]"
+width 8.
+group.long 0x74++0x3
+    line.long 0x00 "LPZMKR2,SNVS_LP Zeroizable Master Key Register n"
+        hexmask.long.long 0x00 0.--32. 1. " ZMK ,Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 - ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[ 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]"
+width 8.
+group.long 0x78++0x3
+    line.long 0x00 "LPZMKR3,SNVS_LP Zeroizable Master Key Register n"
+        hexmask.long.long 0x00 0.--32. 1. " ZMK ,Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 - ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[ 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]"
+width 8.
+group.long 0x7c++0x3
+    line.long 0x00 "LPZMKR4,SNVS_LP Zeroizable Master Key Register n"
+        hexmask.long.long 0x00 0.--32. 1. " ZMK ,Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 - ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[ 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]"
+width 8.
+group.long 0x80++0x3
+    line.long 0x00 "LPZMKR5,SNVS_LP Zeroizable Master Key Register n"
+        hexmask.long.long 0x00 0.--32. 1. " ZMK ,Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 - ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[ 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]"
+width 8.
+group.long 0x84++0x3
+    line.long 0x00 "LPZMKR6,SNVS_LP Zeroizable Master Key Register n"
+        hexmask.long.long 0x00 0.--32. 1. " ZMK ,Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 - ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[ 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]"
+width 8.
+group.long 0x88++0x3
+    line.long 0x00 "LPZMKR7,SNVS_LP Zeroizable Master Key Register n"
+        hexmask.long.long 0x00 0.--32. 1. " ZMK ,Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 - ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[ 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]"
+width 8.
+rgroup.long 0xbf8++0x3
+    line.long 0x00 "HPVIDR1,SNVS _HP Version ID Register 1"
+        hexmask.long.byte 0x00 0.--8. 1. " MINOR_REV ,SNVS block minor version number"
+        textline "       "
+        hexmask.long.byte 0x00 8.--16. 1. " MAJOR_REV ,SNVS block major version number"
+        textline "       "
+        hexmask.long.word 0x00 16.--32. 1. " IP_ID ,SNVS block ID"
+width 8.
+rgroup.long 0xbfc++0x3
+    line.long 0x00 "HPVIDR2,SNVS _HP Version ID Register 2"
+        hexmask.long.byte 0x00 0.--8. 1. " CONFIG_OPT ,SNVS Configuration Option"
+        textline "       "
+        hexmask.long.byte 0x00 8.--16. 1. " ECO_REV ,SNVS ECO Revision"
+        textline "       "
+        hexmask.long.byte 0x00 16.--24. 1. " INTG_OPT ,SNVS Integration Option"
+
+
+tree.end
+
+
+
+;--------------------------------------------------------------------------------
 ; SPBA
 ;--------------------------------------------------------------------------------
 tree "SPBA"
@@ -19402,6 +19782,38 @@ rgroup.long 0x10++0x3
         textline "   "
         hexmask.long.byte 0x00 24.--32. 1. " UNIMPLEMENTED ,"
 width 4.
+wgroup.long 0x10++0x3
+    line.long 0x00 "SIC,InterruptClear Register"
+        bitfld.long 0x00 2. " LOCKLOSS ,SPDIF receiver loss of lock" "0,1"
+        textline "   "
+        bitfld.long 0x00 3. " RXFIFORESYN ,Rx FIFO resync" "0,1"
+        textline "   "
+        bitfld.long 0x00 4. " RXFIFOUNOV ,Rx FIFO underrun/overrun" "0,1"
+        textline "   "
+        bitfld.long 0x00 5. " UQERR ,U/Q Channel framing error" "0,1"
+        textline "   "
+        bitfld.long 0x00 6. " UQSYNC ,U/Q Channel sync found" "0,1"
+        textline "   "
+        bitfld.long 0x00 7. " QRXOV ,Q Channel receive register overrun" "0,1"
+        textline "   "
+        bitfld.long 0x00 9. " URXOV ,U Channel receive register overrun" "0,1"
+        textline "   "
+        bitfld.long 0x00 14. " BITERR ,SPDIF receiver found parity bit error" "0,1"
+        textline "   "
+        bitfld.long 0x00 15. " SYMERR ,SPDIF receiver found illegal symbol" "0,1"
+        textline "   "
+        bitfld.long 0x00 16. " VALNOGOOD ,SPDIF validity flag no good" "0,1"
+        textline "   "
+        bitfld.long 0x00 17. " CNEW ,SPDIF receive change in value of control channel" "0,1"
+        textline "   "
+        bitfld.long 0x00 18. " TXRESYN ,SPDIF Tx FIFO resync" "0,1"
+        textline "   "
+        bitfld.long 0x00 19. " TXUNOV ,SPDIF Tx FIFO under/overrun" "0,1"
+        textline "   "
+        bitfld.long 0x00 20. " LOCK ,SPDIF receiver's DPLL is locked" "0,1"
+        textline "   "
+        hexmask.long.byte 0x00 24.--32. 1. " UNIMPLEMENTED ,"
+width 4.
 rgroup.long 0x14++0x3
     line.long 0x00 "SRL,SPDIFRxLeft Register"
         hexmask.long.long 0x00 0.--24. 1. " RXDATALEFT ,Processor receive SPDIF data left"
@@ -19494,47 +19906,25 @@ tree "SRC"
 width 4.
 group.long 0x0++0x3
     line.long 0x00 "SCR,SRC Control Register"
-        bitfld.long 0x00 0. " WARM_RESET_ENABLE ,Warm reset enable bit." "0,1"
+        bitfld.long 0x00 0. " WARM_RESET_ENABLE ,WARM reset enable bit." "0,1"
         textline "   "
         bitfld.long 0x00 1. " SW_GPU_RST ,Software reset for gpu this is a self clearing bit." "0,1"
         textline "   "
         bitfld.long 0x00 2. " SW_VPU_RST ,Software reset for vpu this is a self clearing bit." "0,1"
         textline "   "
-        bitfld.long 0x00 3. " SW_IPU1_RST ,Software reset for ipu1 Note: this is a self clearing bit." "0,1"
-        textline "   "
         bitfld.long 0x00 4. " SW_OPEN_VG_RST ,Software reset for open_vg This is a self clearing bit." "0,1"
         textline "   "
-        hexmask.long.byte 0x00 5.--7. 1. " WARM_RST_BYPASS_COUNT ,Defines the ckil cycles to count before bypassing the emi acknowledge for warm reset."
+        hexmask.long.byte 0x00 5.--7. 1. " WARM_RST_BYPASS_COUNT ,Defines the ckil cycles to count before bypassing the MMDC acknowledge for WARM reset."
         textline "   "
         hexmask.long.byte 0x00 7.--11. 1. " MASK_WDOG_RST ,Mask wdog_rst_b source."
         textline "   "
-        bitfld.long 0x00 11. " WEIM_RST ,WEIM reset is needed in order to reconfigure the weim chip select." "0,1"
-        textline "   "
-        bitfld.long 0x00 12. " SW_IPU2_RST ,Software reset for ipu2 this is a self clearing bit." "0,1"
+        bitfld.long 0x00 11. " EIM_RST ,EIM reset is needed in order to reconfigure the eim chip select." "0,1"
         textline "   "
         bitfld.long 0x00 13. " CORE0_RST ,Software reset for core0 only." "0,1"
         textline "   "
-        bitfld.long 0x00 14. " CORE1_RST ,Software reset for core1 only." "0,1"
-        textline "   "
-        bitfld.long 0x00 15. " CORE2_RST ,Software reset for core2 only." "0,1"
-        textline "   "
-        bitfld.long 0x00 16. " CORE3_RST ,Software reset for core3 only." "0,1"
-        textline "   "
         bitfld.long 0x00 17. " CORE0_DBG_RST ,Software reset for core0 debug only." "0,1"
         textline "   "
-        bitfld.long 0x00 18. " CORE1_DBG_RST ,Software reset for core1 debug only." "0,1"
-        textline "   "
-        bitfld.long 0x00 19. " CORE2_DBG_RST ,Software reset for core2 debug only." "0,1"
-        textline "   "
-        bitfld.long 0x00 20. " CORE3_DBG_RST ,Software reset for core3 debug only." "0,1"
-        textline "   "
         bitfld.long 0x00 21. " CORES_DBG_RST ,Software reset for debug of arm platform only." "0,1"
-        textline "   "
-        bitfld.long 0x00 22. " CORE1_ENABLE ,CPU core1 enable." "0,1"
-        textline "   "
-        bitfld.long 0x00 23. " CORE2_ENABLE ,CPU core2 enable." "0,1"
-        textline "   "
-        bitfld.long 0x00 24. " CORE3_ENABLE ,CPU core3 enable." "0,1"
         textline "   "
         bitfld.long 0x00 25. " DBG_RST_MSK_PG ,Do not assert debug resets after power gating event of cpu" "0,1"
 width 6.
@@ -19562,7 +19952,7 @@ group.long 0x8++0x3
         textline "    "
         bitfld.long 0x00 6. " JTAG_SW_RST ,JTAG SW reset." "0,1"
         textline "    "
-        bitfld.long 0x00 16. " WARM_BOOT ,Warm boot indication shows that warm boot was initiated by software." "0,1"
+        bitfld.long 0x00 16. " WARM_BOOT ,WARM boot indication shows that WARM boot was initiated by software." "0,1"
 width 5.
 rgroup.long 0x14++0x3
     line.long 0x00 "SISR,SRC Interrupt Status Register"
@@ -19570,19 +19960,9 @@ rgroup.long 0x14++0x3
         textline "    "
         bitfld.long 0x00 1. " VPU_PASSED_RESET ,Interrupt generated to indicate that vpu passed software reset and is ready to be used" "0,1"
         textline "    "
-        bitfld.long 0x00 2. " IPU1_PASSED_RESET ,Interrupt generated to indicate that ipu passed software reset and is ready to be used" "0,1"
-        textline "    "
         bitfld.long 0x00 3. " OPEN_VG_PASSED_RESET ,Interrupt generated to indicate that open_vg passed software reset and is ready to be used" "0,1"
         textline "    "
-        bitfld.long 0x00 4. " IPU2_PASSED_RESET ,Interrupt generated to indicate that ipu2 passed software reset and is ready to be used" "0,1"
-        textline "    "
-        bitfld.long 0x00 5. " CORE0_WDOG_RST_REQ ,Wdog reset request from CPU core0." "0,1"
-        textline "    "
-        bitfld.long 0x00 6. " CORE1_WDOG_RST_REQ ,Wdog reset request from CPU core1." "0,1"
-        textline "    "
-        bitfld.long 0x00 7. " CORE2_WDOG_RST_REQ ,Wdog reset request from CPU core2." "0,1"
-        textline "    "
-        bitfld.long 0x00 8. " CORE3_WDOG_RST_REQ ,Wdog reset request from CPU core3." "0,1"
+        bitfld.long 0x00 5. " CORE0_WDOG_RST_REQ ,WDOG reset request from CPU core0." "0,1"
 width 5.
 group.long 0x18++0x3
     line.long 0x00 "SIMR,SRC Interrupt Mask Register"
@@ -19590,11 +19970,7 @@ group.long 0x18++0x3
         textline "    "
         bitfld.long 0x00 1. " MASK_VPU_PASSED_RESET ,mask interrupt generation due to vpu passed reset" "0,1"
         textline "    "
-        bitfld.long 0x00 2. " MASK_IPU_PASSED_RESET ,mask interrupt generation due to ipu passed reset" "0,1"
-        textline "    "
         bitfld.long 0x00 3. " MASK_OPEN_VG_PASSED_RESET ,mask interrupt generation due to open_vg passed reset" "0,1"
-        textline "    "
-        bitfld.long 0x00 4. " MASK_IPU2_PASSED_RESET ,mask interrupt generation due to ipu2 passing reset" "0,1"
 width 6.
 rgroup.long 0x1c++0x3
     line.long 0x00 "SBMR2,SRC Boot Mode Register 2"
@@ -19669,7 +20045,7 @@ rgroup.long 0xc++0x3
 width 8.
 group.long 0x10++0x3
     line.long 0x00 "SSI_SCR,SSI Control Register"
-        bitfld.long 0x00 0. " SSIEN ,SSIEN - SSI Enable This bit is used to enable/disable the When disabled, all SSI status bits are preset to the same state produced by the power-on reset, all control bits are unaffected, the contents of Tx and Rx FIFOs are cleared." "0,1"
+        bitfld.long 0x00 0. " SSIEN ,SSIEN - SSI Enable This bit is used to enable/disable the SSI." "0,1"
         textline "       "
         bitfld.long 0x00 1. " TE ,Transmit Enable." "0,1"
         textline "       "
@@ -19909,7 +20285,7 @@ rgroup.long 0xc++0x3
 width 8.
 group.long 0x10++0x3
     line.long 0x00 "SSI_SCR,SSI Control Register"
-        bitfld.long 0x00 0. " SSIEN ,SSIEN - SSI Enable This bit is used to enable/disable the When disabled, all SSI status bits are preset to the same state produced by the power-on reset, all control bits are unaffected, the contents of Tx and Rx FIFOs are cleared." "0,1"
+        bitfld.long 0x00 0. " SSIEN ,SSIEN - SSI Enable This bit is used to enable/disable the SSI." "0,1"
         textline "       "
         bitfld.long 0x00 1. " TE ,Transmit Enable." "0,1"
         textline "       "
@@ -20149,7 +20525,7 @@ rgroup.long 0xc++0x3
 width 8.
 group.long 0x10++0x3
     line.long 0x00 "SSI_SCR,SSI Control Register"
-        bitfld.long 0x00 0. " SSIEN ,SSIEN - SSI Enable This bit is used to enable/disable the When disabled, all SSI status bits are preset to the same state produced by the power-on reset, all control bits are unaffected, the contents of Tx and Rx FIFOs are cleared." "0,1"
+        bitfld.long 0x00 0. " SSIEN ,SSIEN - SSI Enable This bit is used to enable/disable the SSI." "0,1"
         textline "       "
         bitfld.long 0x00 1. " TE ,Transmit Enable." "0,1"
         textline "       "
@@ -22131,10 +22507,20 @@ width 22.
 group.long 0x154++0x3
     line.long 0x00 "UOG1_PERIODICLISTBASE,Frame List Base Address"
         hexmask.long.long 0x00 12.--32. 1. " BASEADR ,Base Address (Low)."
+width 16.
+group.long 0x154++0x3
+    line.long 0x00 "UOG1_DEVICEADDR,Device Address"
+        bitfld.long 0x00 24. " USBADRA ,Device Address Advance." "0,1"
+        textline "               "
+        hexmask.long.byte 0x00 25.--32. 1. " USBADR ,Device Address."
 width 19.
 group.long 0x158++0x3
     line.long 0x00 "UOG1_ASYNCLISTADDR,Next Asynch. Address"
         hexmask.long.long 0x00 5.--32. 1. " ASYBASE ,Link Pointer Low (LPL)."
+width 19.
+group.long 0x158++0x3
+    line.long 0x00 "UOG1_ENDPTLISTADDR,Endpoint List Address"
+        hexmask.long.long 0x00 11.--32. 1. " EPBASE ,Endpoint List Pointer(Low)."
 width 15.
 group.long 0x160++0x3
     line.long 0x00 "UOG1_BURSTSIZE,Programmable Burst Size"
@@ -22727,10 +23113,20 @@ width 22.
 group.long 0x354++0x3
     line.long 0x00 "UOG2_PERIODICLISTBASE,Frame List Base Address"
         hexmask.long.long 0x00 12.--32. 1. " BASEADR ,Base Address (Low)."
+width 16.
+group.long 0x354++0x3
+    line.long 0x00 "UOG2_DEVICEADDR,Device Address"
+        bitfld.long 0x00 24. " USBADRA ,Device Address Advance." "0,1"
+        textline "               "
+        hexmask.long.byte 0x00 25.--32. 1. " USBADR ,Device Address."
 width 19.
 group.long 0x358++0x3
     line.long 0x00 "UOG2_ASYNCLISTADDR,Next Asynch. Address"
         hexmask.long.long 0x00 5.--32. 1. " ASYBASE ,Link Pointer Low (LPL)."
+width 19.
+group.long 0x358++0x3
+    line.long 0x00 "UOG2_ENDPTLISTADDR,Endpoint List Address"
+        hexmask.long.long 0x00 11.--32. 1. " EPBASE ,Endpoint List Pointer(Low)."
 width 15.
 group.long 0x360++0x3
     line.long 0x00 "UOG2_BURSTSIZE,Programmable Burst Size"
@@ -23896,7 +24292,7 @@ group.long 0x28++0x3
         textline "         "
         bitfld.long 0x00 3. " D3CD ,DAT3 as Card Detection Pin: If this bit is set, DAT3 should be pulled down to act as a card detection pin." "0,1"
         textline "         "
-        hexmask.long.byte 0x00 4.--6. 1. " EMODE ,Endian Mode: The uSDHC supports all four endian modes in data transfer."
+        hexmask.long.byte 0x00 4.--6. 1. " EMODE ,Endian Mode: The uSDHC supports all three endian modes in data transfer."
         textline "         "
         bitfld.long 0x00 6. " CDTL ,Card Detect Test Level: This is bit is enabled while the Card Detection Signal Selection is set to 1 and it indicates card insertion." "0,1"
         textline "         "
@@ -23914,8 +24310,6 @@ group.long 0x28++0x3
         textline "         "
         bitfld.long 0x00 20. " RD_DONE_NO_8CLK ,Read done no 8 clock: According to the SD/MMC spec, for read data transaction, 8 clocks are needed after the end bit of the last data block." "0,1"
         textline "         "
-        hexmask.long.byte 0x00 21.--24. 1. " RD_WAIT_POINT ,Read wait point : This is only for debug purpose."
-        textline "         "
         bitfld.long 0x00 24. " WECINT ,Wakeup Event Enable On Card Interrupt: This bit enables a wakeup event, via a Card Interrupt, in the Interrupt Status register." "0,1"
         textline "         "
         bitfld.long 0x00 25. " WECINS ,Wakeup Event Enable On SD Card Insertion: This bit enables a wakeup event, via a Card Insertion, in the Interrupt Status register." "0,1"
@@ -23925,28 +24319,16 @@ group.long 0x28++0x3
         hexmask.long.byte 0x00 27.--30. 1. " BURST_LEN_EN ,BURST length enable for INCR, INCR4/INCR8/INCR16, INCR4-WRAP/INCR8-WRAP/INCR16-WRAP This is used to enable/disable the burst length for the external AHB2AXI bridge."
         textline "         "
         bitfld.long 0x00 30. " NON_EXACT_BLK_RD ,Current block read is non-exact block read." "0,1"
-        textline "         "
-        bitfld.long 0x00 31. " RD_NO8CLK_EN ,Only for debug." "0,1"
 width 9.
 group.long 0x2c++0x3
     line.long 0x00 "SYS_CTRL,System Control"
-        bitfld.long 0x00 0. " IPGEN ,IPG Clock Enable: It's not implemented in uSDHC IP." "0,1"
-        textline "        "
-        bitfld.long 0x00 1. " HCKEN ,HCLK Enable: It's not implemented in uSDHC IP." "0,1"
-        textline "        "
-        bitfld.long 0x00 2. " PEREN ,Perpherial Clock Enable It's not implemented in uSDHC IP." "0,1"
-        textline "        "
-        bitfld.long 0x00 3. " SDCLKEN ,SD Clock Enable It's not implemented in uSDHC IP." "0,1"
-        textline "        "
         hexmask.long.byte 0x00 4.--8. 1. " DVS ,Divisor: This register is used to provide a more exact divisor to generate the desired SD clock frequency."
         textline "        "
         hexmask.long.byte 0x00 8.--16. 1. " SDCLKFS ,SDCLK Frequency Select: This register is used to select the frequency of the SDCLK pin."
         textline "        "
         hexmask.long.byte 0x00 16.--20. 1. " DTOCV ,Data Timeout Counter Value: This value determines the interval by which DAT line timeouts are detected."
         textline "        "
-        bitfld.long 0x00 22. " RST_FIFO ,Reset the Async FIFO: Reset the Async FIFO between card interface and the internal logic." "0,1"
-        textline "        "
-        bitfld.long 0x00 23. " IPP_RST_N ,This register's value will be output to CARD from pad directly for hardware reset of the card if card support this feature." "0,1"
+        bitfld.long 0x00 23. " IPP_RST_N ,This register's value will be output to CARD from pad directly for hardware reset of the card if the card supports this feature." "0,1"
         textline "        "
         bitfld.long 0x00 24. " RSTA ,Software Reset For ALL: This reset effects the entire Host Controller except for the card detection circuit." "0,1"
         textline "        "
@@ -24162,7 +24544,7 @@ group.long 0x48++0x3
         textline "        "
         bitfld.long 0x00 5. " MSBSEL ,Multi / Single Block Select: This bit enables multiple block DAT line data transfers." "0,1"
         textline "        "
-        bitfld.long 0x00 6. " NIBBLE_POS ,In DDR 4 bit mode nibble position indictation." "0,1"
+        bitfld.long 0x00 6. " NIBBLE_POS ,In DDR 4-bit mode nibble position indictation." "0,1"
         textline "        "
         bitfld.long 0x00 7. " AC23EN ,Auto CMD23 Enable When this bit is set to 1, the Host Controller issues a CMD23 automatically before issuing a command specified in the Command Register." "0,1"
         textline "        "
@@ -24173,12 +24555,6 @@ group.long 0x48++0x3
         bitfld.long 0x00 24. " AUTO_TUNE_EN ,Auto tuning enable (Only used for SD3.0, SDR104 mode)" "0,1"
         textline "        "
         bitfld.long 0x00 25. " FBCLK_SEL ,Feedback clock source selection (Only used for SD3.0, SDR104 mode)" "0,1"
-        textline "        "
-        bitfld.long 0x00 29. " AC12_RD_POINT ,Only for debug." "0,1"
-        textline "        "
-        bitfld.long 0x00 30. " CMD_DMY_WAIT_CFG ,Only for debug." "0,1"
-        textline "        "
-        bitfld.long 0x00 31. " CMD_DMY_EN ,Only for debug." "0,1"
 width 12.
 wgroup.long 0x50++0x3
     line.long 0x00 "FORCE_EVENT,Force Event"
@@ -24238,7 +24614,7 @@ group.long 0x60++0x3
         textline "        "
         hexmask.long.byte 0x00 3.--7. 1. " DLL_CTRL_SLV_DLY_TARGET ,The delay target for the uSDHC loopback read clock can be programmed in 1/16th increments of an ref_clock half-period."
         textline "        "
-        bitfld.long 0x00 7. " DLL_CTRL_GATE_UPDATE ,Set this bit to 1 to force DLL not update from now on.Since when clock_in exists, glitches might appear during update." "0,1"
+        bitfld.long 0x00 7. " DLL_CTRL_GATE_UPDATE ,Set this bit to 1 to prevent the DLL from updating (since when clock_in exists, glitches may appear during DLL updates)." "0,1"
         textline "        "
         bitfld.long 0x00 8. " DLL_CTRL_SLV_OVERRIDE ,Set this bit to 1 to Enable manual override for slave delay chain using SLV_OVERRIDE_VAL; to set 0 to disable manual override." "0,1"
         textline "        "
@@ -24246,7 +24622,7 @@ group.long 0x60++0x3
         textline "        "
         hexmask.long.byte 0x00 16.--19. 1. " DLL_CTRL_SLV_DLY_TARGET1 ,Refer to DLL_CTRL_SLV_DLY_TARGET[3:0] below."
         textline "        "
-        hexmask.long.byte 0x00 20.--28. 1. " DLL_CTRL_SLV_UPDATE_INT ,slave delay line update interval."
+        hexmask.long.byte 0x00 20.--28. 1. " DLL_CTRL_SLV_UPDATE_INT ,Slave delay line update interval."
         textline "        "
         hexmask.long.byte 0x00 28.--32. 1. " DLL_CTRL_REF_UPDATE_INT ,DLL control loop update interval."
 width 11.
@@ -24274,7 +24650,7 @@ group.long 0x68++0x3
         textline "                    "
         hexmask.long.byte 0x00 20.--24. 1. " TAP_SEL_OUT ,Reflect the number of delay cells added on the feedback clock between CLK_PRE and CLK_OUT."
         textline "                    "
-        hexmask.long.byte 0x00 24.--31. 1. " TAP_SEL_PRE ,Reflect the number of delay cells added on the feedback clock between the feedback clock and CLK_PRE."
+        hexmask.long.byte 0x00 24.--31. 1. " TAP_SEL_PRE ,Reflects the number of delay cells added on the feedback clock between the feedback clock and CLK_PRE."
         textline "                    "
         bitfld.long 0x00 31. " PRE_ERR ,PRE error which means the number of delay cells added on the feedback clock is too small." "0,1"
 width 10.
@@ -24288,19 +24664,15 @@ group.long 0xc0++0x3
         textline "         "
         bitfld.long 0x00 3. " AC12_WR_CHKBUSY_EN ,Check busy enable after auto CMD12 for write data packet" "0,1"
         textline "         "
-        bitfld.long 0x00 4. " DAT3_CD_POL ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 4. " DAT3_CD_POL ,Only for debug." "0,1"
         textline "         "
-        bitfld.long 0x00 5. " CD_POL ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 5. " CD_POL ,Only for debug." "0,1"
         textline "         "
-        bitfld.long 0x00 6. " WP_POL ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 6. " WP_POL ,Only for debug." "0,1"
         textline "         "
-        bitfld.long 0x00 7. " CLKONJ_IN_ABORT ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 7. " CLKONJ_IN_ABORT ,Only for debug." "0,1"
         textline "         "
         bitfld.long 0x00 8. " FRC_SDCLK_ON ,Force CLK output active:" "0,1"
-        textline "         "
-        bitfld.long 0x00 9. " AC12_ISNOT_ABORT ,This bit only uses for debugging." "0,1"
-        textline "         "
-        bitfld.long 0x00 10. " DDREN_ACT_ATONCE ,This bit only uses for debugging." "0,1"
         textline "         "
         bitfld.long 0x00 11. " IPG_CLK_SOFT_EN ,IPG_CLK software enable" "0,1"
         textline "         "
@@ -24313,28 +24685,20 @@ group.long 0xc0++0x3
         bitfld.long 0x00 15. " CRC_CHK_DIS ,CRC check disable" "0,1"
         textline "         "
         hexmask.long.byte 0x00 16.--24. 1. " INT_ST_VAL ,Internal State Value Internal state value, reflecting the corresponding state value selected by Debug Select field."
-        textline "         "
-        hexmask.long.byte 0x00 24.--28. 1. " DBG_SEL ,Debug Select Select the internal sub-module to show its internal state value."
-        textline "         "
-        bitfld.long 0x00 28. " CMD_OE_PRE_EN ,Only for debug." "0,1"
-        textline "         "
-        bitfld.long 0x00 29. " AC12_RD_CHKBUSY_EN ,Only for debug." "0,1"
-        textline "         "
-        bitfld.long 0x00 30. " CARD_DET_IN_IDLE_ENJ ,Only for debug." "0,1"
 width 9.
 group.long 0xc4++0x3
     line.long 0x00 "MMC_BOOT,MMC Boot Register"
         hexmask.long.byte 0x00 0.--4. 1. " DTOCV_ACK ,Boot ACK time out counter value."
         textline "        "
-        bitfld.long 0x00 4. " BOOT_ACK ,Boot ack mode select 0: no ack 1: ack" "0,1"
+        bitfld.long 0x00 4. " BOOT_ACK ,Boot ack mode select." "0,1"
         textline "        "
-        bitfld.long 0x00 5. " BOOT_MODE ,Boot mode select 0: normal boot 1: alternative boot" "0,1"
+        bitfld.long 0x00 5. " BOOT_MODE ,Boot mode select." "0,1"
         textline "        "
-        bitfld.long 0x00 6. " BOOT_EN ,Boot mode enable 0: fast boot disable 1: fast boot enable" "0,1"
+        bitfld.long 0x00 6. " BOOT_EN ,Boot mode enable." "0,1"
         textline "        "
-        bitfld.long 0x00 7. " AUTO_SABG_EN ,When boot, enable auto stop at block gap function." "0,1"
+        bitfld.long 0x00 7. " AUTO_SABG_EN ,During boot, enable auto stop at block gap function." "0,1"
         textline "        "
-        bitfld.long 0x00 8. " DISABLE_TIME_OUT ,Please note, when this bit is set, there is no timeout check no matter boot_en is set or not." "0,1"
+        bitfld.long 0x00 8. " DISABLE_TIME_OUT ,Please note, when this bit is set, there is no timeout check no matter whether boot_en is set or not." "0,1"
         textline "        "
         hexmask.long.word 0x00 16.--32. 1. " BOOT_BLK_CNT ,The value defines the Stop At Block Gap value of automatic mode."
 width 11.
@@ -24367,12 +24731,6 @@ group.long 0xcc++0x3
         hexmask.long.byte 0x00 20.--23. 1. " TUNING_WINDOW ,Select data window value for auto tuning"
         textline "           "
         bitfld.long 0x00 24. " STD_TUNING_EN ,Standard tuning circuit and procedure enable: This bit is used to enable standard tuning circuit and procedure." "0,1"
-width 14.
-rgroup.long 0xfc++0x3
-    line.long 0x00 "HOST_CTRL_VER,Host Controller Version"
-        hexmask.long.byte 0x00 0.--8. 1. " SVN ,Specification Version Number: These status bits indicate the Host Controller Specification Version."
-        textline "             "
-        hexmask.long.byte 0x00 8.--16. 1. " VVN ,Vendor Version Number: These status bits are reserved for the vendor version number."
 
 
     tree.end
@@ -24476,7 +24834,7 @@ group.long 0x28++0x3
         textline "         "
         bitfld.long 0x00 3. " D3CD ,DAT3 as Card Detection Pin: If this bit is set, DAT3 should be pulled down to act as a card detection pin." "0,1"
         textline "         "
-        hexmask.long.byte 0x00 4.--6. 1. " EMODE ,Endian Mode: The uSDHC supports all four endian modes in data transfer."
+        hexmask.long.byte 0x00 4.--6. 1. " EMODE ,Endian Mode: The uSDHC supports all three endian modes in data transfer."
         textline "         "
         bitfld.long 0x00 6. " CDTL ,Card Detect Test Level: This is bit is enabled while the Card Detection Signal Selection is set to 1 and it indicates card insertion." "0,1"
         textline "         "
@@ -24494,8 +24852,6 @@ group.long 0x28++0x3
         textline "         "
         bitfld.long 0x00 20. " RD_DONE_NO_8CLK ,Read done no 8 clock: According to the SD/MMC spec, for read data transaction, 8 clocks are needed after the end bit of the last data block." "0,1"
         textline "         "
-        hexmask.long.byte 0x00 21.--24. 1. " RD_WAIT_POINT ,Read wait point : This is only for debug purpose."
-        textline "         "
         bitfld.long 0x00 24. " WECINT ,Wakeup Event Enable On Card Interrupt: This bit enables a wakeup event, via a Card Interrupt, in the Interrupt Status register." "0,1"
         textline "         "
         bitfld.long 0x00 25. " WECINS ,Wakeup Event Enable On SD Card Insertion: This bit enables a wakeup event, via a Card Insertion, in the Interrupt Status register." "0,1"
@@ -24505,28 +24861,16 @@ group.long 0x28++0x3
         hexmask.long.byte 0x00 27.--30. 1. " BURST_LEN_EN ,BURST length enable for INCR, INCR4/INCR8/INCR16, INCR4-WRAP/INCR8-WRAP/INCR16-WRAP This is used to enable/disable the burst length for the external AHB2AXI bridge."
         textline "         "
         bitfld.long 0x00 30. " NON_EXACT_BLK_RD ,Current block read is non-exact block read." "0,1"
-        textline "         "
-        bitfld.long 0x00 31. " RD_NO8CLK_EN ,Only for debug." "0,1"
 width 9.
 group.long 0x2c++0x3
     line.long 0x00 "SYS_CTRL,System Control"
-        bitfld.long 0x00 0. " IPGEN ,IPG Clock Enable: It's not implemented in uSDHC IP." "0,1"
-        textline "        "
-        bitfld.long 0x00 1. " HCKEN ,HCLK Enable: It's not implemented in uSDHC IP." "0,1"
-        textline "        "
-        bitfld.long 0x00 2. " PEREN ,Perpherial Clock Enable It's not implemented in uSDHC IP." "0,1"
-        textline "        "
-        bitfld.long 0x00 3. " SDCLKEN ,SD Clock Enable It's not implemented in uSDHC IP." "0,1"
-        textline "        "
         hexmask.long.byte 0x00 4.--8. 1. " DVS ,Divisor: This register is used to provide a more exact divisor to generate the desired SD clock frequency."
         textline "        "
         hexmask.long.byte 0x00 8.--16. 1. " SDCLKFS ,SDCLK Frequency Select: This register is used to select the frequency of the SDCLK pin."
         textline "        "
         hexmask.long.byte 0x00 16.--20. 1. " DTOCV ,Data Timeout Counter Value: This value determines the interval by which DAT line timeouts are detected."
         textline "        "
-        bitfld.long 0x00 22. " RST_FIFO ,Reset the Async FIFO: Reset the Async FIFO between card interface and the internal logic." "0,1"
-        textline "        "
-        bitfld.long 0x00 23. " IPP_RST_N ,This register's value will be output to CARD from pad directly for hardware reset of the card if card support this feature." "0,1"
+        bitfld.long 0x00 23. " IPP_RST_N ,This register's value will be output to CARD from pad directly for hardware reset of the card if the card supports this feature." "0,1"
         textline "        "
         bitfld.long 0x00 24. " RSTA ,Software Reset For ALL: This reset effects the entire Host Controller except for the card detection circuit." "0,1"
         textline "        "
@@ -24742,7 +25086,7 @@ group.long 0x48++0x3
         textline "        "
         bitfld.long 0x00 5. " MSBSEL ,Multi / Single Block Select: This bit enables multiple block DAT line data transfers." "0,1"
         textline "        "
-        bitfld.long 0x00 6. " NIBBLE_POS ,In DDR 4 bit mode nibble position indictation." "0,1"
+        bitfld.long 0x00 6. " NIBBLE_POS ,In DDR 4-bit mode nibble position indictation." "0,1"
         textline "        "
         bitfld.long 0x00 7. " AC23EN ,Auto CMD23 Enable When this bit is set to 1, the Host Controller issues a CMD23 automatically before issuing a command specified in the Command Register." "0,1"
         textline "        "
@@ -24753,12 +25097,6 @@ group.long 0x48++0x3
         bitfld.long 0x00 24. " AUTO_TUNE_EN ,Auto tuning enable (Only used for SD3.0, SDR104 mode)" "0,1"
         textline "        "
         bitfld.long 0x00 25. " FBCLK_SEL ,Feedback clock source selection (Only used for SD3.0, SDR104 mode)" "0,1"
-        textline "        "
-        bitfld.long 0x00 29. " AC12_RD_POINT ,Only for debug." "0,1"
-        textline "        "
-        bitfld.long 0x00 30. " CMD_DMY_WAIT_CFG ,Only for debug." "0,1"
-        textline "        "
-        bitfld.long 0x00 31. " CMD_DMY_EN ,Only for debug." "0,1"
 width 12.
 wgroup.long 0x50++0x3
     line.long 0x00 "FORCE_EVENT,Force Event"
@@ -24818,7 +25156,7 @@ group.long 0x60++0x3
         textline "        "
         hexmask.long.byte 0x00 3.--7. 1. " DLL_CTRL_SLV_DLY_TARGET ,The delay target for the uSDHC loopback read clock can be programmed in 1/16th increments of an ref_clock half-period."
         textline "        "
-        bitfld.long 0x00 7. " DLL_CTRL_GATE_UPDATE ,Set this bit to 1 to force DLL not update from now on.Since when clock_in exists, glitches might appear during update." "0,1"
+        bitfld.long 0x00 7. " DLL_CTRL_GATE_UPDATE ,Set this bit to 1 to prevent the DLL from updating (since when clock_in exists, glitches may appear during DLL updates)." "0,1"
         textline "        "
         bitfld.long 0x00 8. " DLL_CTRL_SLV_OVERRIDE ,Set this bit to 1 to Enable manual override for slave delay chain using SLV_OVERRIDE_VAL; to set 0 to disable manual override." "0,1"
         textline "        "
@@ -24826,7 +25164,7 @@ group.long 0x60++0x3
         textline "        "
         hexmask.long.byte 0x00 16.--19. 1. " DLL_CTRL_SLV_DLY_TARGET1 ,Refer to DLL_CTRL_SLV_DLY_TARGET[3:0] below."
         textline "        "
-        hexmask.long.byte 0x00 20.--28. 1. " DLL_CTRL_SLV_UPDATE_INT ,slave delay line update interval."
+        hexmask.long.byte 0x00 20.--28. 1. " DLL_CTRL_SLV_UPDATE_INT ,Slave delay line update interval."
         textline "        "
         hexmask.long.byte 0x00 28.--32. 1. " DLL_CTRL_REF_UPDATE_INT ,DLL control loop update interval."
 width 11.
@@ -24854,7 +25192,7 @@ group.long 0x68++0x3
         textline "                    "
         hexmask.long.byte 0x00 20.--24. 1. " TAP_SEL_OUT ,Reflect the number of delay cells added on the feedback clock between CLK_PRE and CLK_OUT."
         textline "                    "
-        hexmask.long.byte 0x00 24.--31. 1. " TAP_SEL_PRE ,Reflect the number of delay cells added on the feedback clock between the feedback clock and CLK_PRE."
+        hexmask.long.byte 0x00 24.--31. 1. " TAP_SEL_PRE ,Reflects the number of delay cells added on the feedback clock between the feedback clock and CLK_PRE."
         textline "                    "
         bitfld.long 0x00 31. " PRE_ERR ,PRE error which means the number of delay cells added on the feedback clock is too small." "0,1"
 width 10.
@@ -24868,19 +25206,15 @@ group.long 0xc0++0x3
         textline "         "
         bitfld.long 0x00 3. " AC12_WR_CHKBUSY_EN ,Check busy enable after auto CMD12 for write data packet" "0,1"
         textline "         "
-        bitfld.long 0x00 4. " DAT3_CD_POL ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 4. " DAT3_CD_POL ,Only for debug." "0,1"
         textline "         "
-        bitfld.long 0x00 5. " CD_POL ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 5. " CD_POL ,Only for debug." "0,1"
         textline "         "
-        bitfld.long 0x00 6. " WP_POL ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 6. " WP_POL ,Only for debug." "0,1"
         textline "         "
-        bitfld.long 0x00 7. " CLKONJ_IN_ABORT ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 7. " CLKONJ_IN_ABORT ,Only for debug." "0,1"
         textline "         "
         bitfld.long 0x00 8. " FRC_SDCLK_ON ,Force CLK output active:" "0,1"
-        textline "         "
-        bitfld.long 0x00 9. " AC12_ISNOT_ABORT ,This bit only uses for debugging." "0,1"
-        textline "         "
-        bitfld.long 0x00 10. " DDREN_ACT_ATONCE ,This bit only uses for debugging." "0,1"
         textline "         "
         bitfld.long 0x00 11. " IPG_CLK_SOFT_EN ,IPG_CLK software enable" "0,1"
         textline "         "
@@ -24893,28 +25227,20 @@ group.long 0xc0++0x3
         bitfld.long 0x00 15. " CRC_CHK_DIS ,CRC check disable" "0,1"
         textline "         "
         hexmask.long.byte 0x00 16.--24. 1. " INT_ST_VAL ,Internal State Value Internal state value, reflecting the corresponding state value selected by Debug Select field."
-        textline "         "
-        hexmask.long.byte 0x00 24.--28. 1. " DBG_SEL ,Debug Select Select the internal sub-module to show its internal state value."
-        textline "         "
-        bitfld.long 0x00 28. " CMD_OE_PRE_EN ,Only for debug." "0,1"
-        textline "         "
-        bitfld.long 0x00 29. " AC12_RD_CHKBUSY_EN ,Only for debug." "0,1"
-        textline "         "
-        bitfld.long 0x00 30. " CARD_DET_IN_IDLE_ENJ ,Only for debug." "0,1"
 width 9.
 group.long 0xc4++0x3
     line.long 0x00 "MMC_BOOT,MMC Boot Register"
         hexmask.long.byte 0x00 0.--4. 1. " DTOCV_ACK ,Boot ACK time out counter value."
         textline "        "
-        bitfld.long 0x00 4. " BOOT_ACK ,Boot ack mode select 0: no ack 1: ack" "0,1"
+        bitfld.long 0x00 4. " BOOT_ACK ,Boot ack mode select." "0,1"
         textline "        "
-        bitfld.long 0x00 5. " BOOT_MODE ,Boot mode select 0: normal boot 1: alternative boot" "0,1"
+        bitfld.long 0x00 5. " BOOT_MODE ,Boot mode select." "0,1"
         textline "        "
-        bitfld.long 0x00 6. " BOOT_EN ,Boot mode enable 0: fast boot disable 1: fast boot enable" "0,1"
+        bitfld.long 0x00 6. " BOOT_EN ,Boot mode enable." "0,1"
         textline "        "
-        bitfld.long 0x00 7. " AUTO_SABG_EN ,When boot, enable auto stop at block gap function." "0,1"
+        bitfld.long 0x00 7. " AUTO_SABG_EN ,During boot, enable auto stop at block gap function." "0,1"
         textline "        "
-        bitfld.long 0x00 8. " DISABLE_TIME_OUT ,Please note, when this bit is set, there is no timeout check no matter boot_en is set or not." "0,1"
+        bitfld.long 0x00 8. " DISABLE_TIME_OUT ,Please note, when this bit is set, there is no timeout check no matter whether boot_en is set or not." "0,1"
         textline "        "
         hexmask.long.word 0x00 16.--32. 1. " BOOT_BLK_CNT ,The value defines the Stop At Block Gap value of automatic mode."
 width 11.
@@ -24947,12 +25273,6 @@ group.long 0xcc++0x3
         hexmask.long.byte 0x00 20.--23. 1. " TUNING_WINDOW ,Select data window value for auto tuning"
         textline "           "
         bitfld.long 0x00 24. " STD_TUNING_EN ,Standard tuning circuit and procedure enable: This bit is used to enable standard tuning circuit and procedure." "0,1"
-width 14.
-rgroup.long 0xfc++0x3
-    line.long 0x00 "HOST_CTRL_VER,Host Controller Version"
-        hexmask.long.byte 0x00 0.--8. 1. " SVN ,Specification Version Number: These status bits indicate the Host Controller Specification Version."
-        textline "             "
-        hexmask.long.byte 0x00 8.--16. 1. " VVN ,Vendor Version Number: These status bits are reserved for the vendor version number."
 
 
     tree.end
@@ -25056,7 +25376,7 @@ group.long 0x28++0x3
         textline "         "
         bitfld.long 0x00 3. " D3CD ,DAT3 as Card Detection Pin: If this bit is set, DAT3 should be pulled down to act as a card detection pin." "0,1"
         textline "         "
-        hexmask.long.byte 0x00 4.--6. 1. " EMODE ,Endian Mode: The uSDHC supports all four endian modes in data transfer."
+        hexmask.long.byte 0x00 4.--6. 1. " EMODE ,Endian Mode: The uSDHC supports all three endian modes in data transfer."
         textline "         "
         bitfld.long 0x00 6. " CDTL ,Card Detect Test Level: This is bit is enabled while the Card Detection Signal Selection is set to 1 and it indicates card insertion." "0,1"
         textline "         "
@@ -25074,8 +25394,6 @@ group.long 0x28++0x3
         textline "         "
         bitfld.long 0x00 20. " RD_DONE_NO_8CLK ,Read done no 8 clock: According to the SD/MMC spec, for read data transaction, 8 clocks are needed after the end bit of the last data block." "0,1"
         textline "         "
-        hexmask.long.byte 0x00 21.--24. 1. " RD_WAIT_POINT ,Read wait point : This is only for debug purpose."
-        textline "         "
         bitfld.long 0x00 24. " WECINT ,Wakeup Event Enable On Card Interrupt: This bit enables a wakeup event, via a Card Interrupt, in the Interrupt Status register." "0,1"
         textline "         "
         bitfld.long 0x00 25. " WECINS ,Wakeup Event Enable On SD Card Insertion: This bit enables a wakeup event, via a Card Insertion, in the Interrupt Status register." "0,1"
@@ -25085,28 +25403,16 @@ group.long 0x28++0x3
         hexmask.long.byte 0x00 27.--30. 1. " BURST_LEN_EN ,BURST length enable for INCR, INCR4/INCR8/INCR16, INCR4-WRAP/INCR8-WRAP/INCR16-WRAP This is used to enable/disable the burst length for the external AHB2AXI bridge."
         textline "         "
         bitfld.long 0x00 30. " NON_EXACT_BLK_RD ,Current block read is non-exact block read." "0,1"
-        textline "         "
-        bitfld.long 0x00 31. " RD_NO8CLK_EN ,Only for debug." "0,1"
 width 9.
 group.long 0x2c++0x3
     line.long 0x00 "SYS_CTRL,System Control"
-        bitfld.long 0x00 0. " IPGEN ,IPG Clock Enable: It's not implemented in uSDHC IP." "0,1"
-        textline "        "
-        bitfld.long 0x00 1. " HCKEN ,HCLK Enable: It's not implemented in uSDHC IP." "0,1"
-        textline "        "
-        bitfld.long 0x00 2. " PEREN ,Perpherial Clock Enable It's not implemented in uSDHC IP." "0,1"
-        textline "        "
-        bitfld.long 0x00 3. " SDCLKEN ,SD Clock Enable It's not implemented in uSDHC IP." "0,1"
-        textline "        "
         hexmask.long.byte 0x00 4.--8. 1. " DVS ,Divisor: This register is used to provide a more exact divisor to generate the desired SD clock frequency."
         textline "        "
         hexmask.long.byte 0x00 8.--16. 1. " SDCLKFS ,SDCLK Frequency Select: This register is used to select the frequency of the SDCLK pin."
         textline "        "
         hexmask.long.byte 0x00 16.--20. 1. " DTOCV ,Data Timeout Counter Value: This value determines the interval by which DAT line timeouts are detected."
         textline "        "
-        bitfld.long 0x00 22. " RST_FIFO ,Reset the Async FIFO: Reset the Async FIFO between card interface and the internal logic." "0,1"
-        textline "        "
-        bitfld.long 0x00 23. " IPP_RST_N ,This register's value will be output to CARD from pad directly for hardware reset of the card if card support this feature." "0,1"
+        bitfld.long 0x00 23. " IPP_RST_N ,This register's value will be output to CARD from pad directly for hardware reset of the card if the card supports this feature." "0,1"
         textline "        "
         bitfld.long 0x00 24. " RSTA ,Software Reset For ALL: This reset effects the entire Host Controller except for the card detection circuit." "0,1"
         textline "        "
@@ -25322,7 +25628,7 @@ group.long 0x48++0x3
         textline "        "
         bitfld.long 0x00 5. " MSBSEL ,Multi / Single Block Select: This bit enables multiple block DAT line data transfers." "0,1"
         textline "        "
-        bitfld.long 0x00 6. " NIBBLE_POS ,In DDR 4 bit mode nibble position indictation." "0,1"
+        bitfld.long 0x00 6. " NIBBLE_POS ,In DDR 4-bit mode nibble position indictation." "0,1"
         textline "        "
         bitfld.long 0x00 7. " AC23EN ,Auto CMD23 Enable When this bit is set to 1, the Host Controller issues a CMD23 automatically before issuing a command specified in the Command Register." "0,1"
         textline "        "
@@ -25333,12 +25639,6 @@ group.long 0x48++0x3
         bitfld.long 0x00 24. " AUTO_TUNE_EN ,Auto tuning enable (Only used for SD3.0, SDR104 mode)" "0,1"
         textline "        "
         bitfld.long 0x00 25. " FBCLK_SEL ,Feedback clock source selection (Only used for SD3.0, SDR104 mode)" "0,1"
-        textline "        "
-        bitfld.long 0x00 29. " AC12_RD_POINT ,Only for debug." "0,1"
-        textline "        "
-        bitfld.long 0x00 30. " CMD_DMY_WAIT_CFG ,Only for debug." "0,1"
-        textline "        "
-        bitfld.long 0x00 31. " CMD_DMY_EN ,Only for debug." "0,1"
 width 12.
 wgroup.long 0x50++0x3
     line.long 0x00 "FORCE_EVENT,Force Event"
@@ -25398,7 +25698,7 @@ group.long 0x60++0x3
         textline "        "
         hexmask.long.byte 0x00 3.--7. 1. " DLL_CTRL_SLV_DLY_TARGET ,The delay target for the uSDHC loopback read clock can be programmed in 1/16th increments of an ref_clock half-period."
         textline "        "
-        bitfld.long 0x00 7. " DLL_CTRL_GATE_UPDATE ,Set this bit to 1 to force DLL not update from now on.Since when clock_in exists, glitches might appear during update." "0,1"
+        bitfld.long 0x00 7. " DLL_CTRL_GATE_UPDATE ,Set this bit to 1 to prevent the DLL from updating (since when clock_in exists, glitches may appear during DLL updates)." "0,1"
         textline "        "
         bitfld.long 0x00 8. " DLL_CTRL_SLV_OVERRIDE ,Set this bit to 1 to Enable manual override for slave delay chain using SLV_OVERRIDE_VAL; to set 0 to disable manual override." "0,1"
         textline "        "
@@ -25406,7 +25706,7 @@ group.long 0x60++0x3
         textline "        "
         hexmask.long.byte 0x00 16.--19. 1. " DLL_CTRL_SLV_DLY_TARGET1 ,Refer to DLL_CTRL_SLV_DLY_TARGET[3:0] below."
         textline "        "
-        hexmask.long.byte 0x00 20.--28. 1. " DLL_CTRL_SLV_UPDATE_INT ,slave delay line update interval."
+        hexmask.long.byte 0x00 20.--28. 1. " DLL_CTRL_SLV_UPDATE_INT ,Slave delay line update interval."
         textline "        "
         hexmask.long.byte 0x00 28.--32. 1. " DLL_CTRL_REF_UPDATE_INT ,DLL control loop update interval."
 width 11.
@@ -25434,7 +25734,7 @@ group.long 0x68++0x3
         textline "                    "
         hexmask.long.byte 0x00 20.--24. 1. " TAP_SEL_OUT ,Reflect the number of delay cells added on the feedback clock between CLK_PRE and CLK_OUT."
         textline "                    "
-        hexmask.long.byte 0x00 24.--31. 1. " TAP_SEL_PRE ,Reflect the number of delay cells added on the feedback clock between the feedback clock and CLK_PRE."
+        hexmask.long.byte 0x00 24.--31. 1. " TAP_SEL_PRE ,Reflects the number of delay cells added on the feedback clock between the feedback clock and CLK_PRE."
         textline "                    "
         bitfld.long 0x00 31. " PRE_ERR ,PRE error which means the number of delay cells added on the feedback clock is too small." "0,1"
 width 10.
@@ -25448,19 +25748,15 @@ group.long 0xc0++0x3
         textline "         "
         bitfld.long 0x00 3. " AC12_WR_CHKBUSY_EN ,Check busy enable after auto CMD12 for write data packet" "0,1"
         textline "         "
-        bitfld.long 0x00 4. " DAT3_CD_POL ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 4. " DAT3_CD_POL ,Only for debug." "0,1"
         textline "         "
-        bitfld.long 0x00 5. " CD_POL ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 5. " CD_POL ,Only for debug." "0,1"
         textline "         "
-        bitfld.long 0x00 6. " WP_POL ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 6. " WP_POL ,Only for debug." "0,1"
         textline "         "
-        bitfld.long 0x00 7. " CLKONJ_IN_ABORT ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 7. " CLKONJ_IN_ABORT ,Only for debug." "0,1"
         textline "         "
         bitfld.long 0x00 8. " FRC_SDCLK_ON ,Force CLK output active:" "0,1"
-        textline "         "
-        bitfld.long 0x00 9. " AC12_ISNOT_ABORT ,This bit only uses for debugging." "0,1"
-        textline "         "
-        bitfld.long 0x00 10. " DDREN_ACT_ATONCE ,This bit only uses for debugging." "0,1"
         textline "         "
         bitfld.long 0x00 11. " IPG_CLK_SOFT_EN ,IPG_CLK software enable" "0,1"
         textline "         "
@@ -25473,28 +25769,20 @@ group.long 0xc0++0x3
         bitfld.long 0x00 15. " CRC_CHK_DIS ,CRC check disable" "0,1"
         textline "         "
         hexmask.long.byte 0x00 16.--24. 1. " INT_ST_VAL ,Internal State Value Internal state value, reflecting the corresponding state value selected by Debug Select field."
-        textline "         "
-        hexmask.long.byte 0x00 24.--28. 1. " DBG_SEL ,Debug Select Select the internal sub-module to show its internal state value."
-        textline "         "
-        bitfld.long 0x00 28. " CMD_OE_PRE_EN ,Only for debug." "0,1"
-        textline "         "
-        bitfld.long 0x00 29. " AC12_RD_CHKBUSY_EN ,Only for debug." "0,1"
-        textline "         "
-        bitfld.long 0x00 30. " CARD_DET_IN_IDLE_ENJ ,Only for debug." "0,1"
 width 9.
 group.long 0xc4++0x3
     line.long 0x00 "MMC_BOOT,MMC Boot Register"
         hexmask.long.byte 0x00 0.--4. 1. " DTOCV_ACK ,Boot ACK time out counter value."
         textline "        "
-        bitfld.long 0x00 4. " BOOT_ACK ,Boot ack mode select 0: no ack 1: ack" "0,1"
+        bitfld.long 0x00 4. " BOOT_ACK ,Boot ack mode select." "0,1"
         textline "        "
-        bitfld.long 0x00 5. " BOOT_MODE ,Boot mode select 0: normal boot 1: alternative boot" "0,1"
+        bitfld.long 0x00 5. " BOOT_MODE ,Boot mode select." "0,1"
         textline "        "
-        bitfld.long 0x00 6. " BOOT_EN ,Boot mode enable 0: fast boot disable 1: fast boot enable" "0,1"
+        bitfld.long 0x00 6. " BOOT_EN ,Boot mode enable." "0,1"
         textline "        "
-        bitfld.long 0x00 7. " AUTO_SABG_EN ,When boot, enable auto stop at block gap function." "0,1"
+        bitfld.long 0x00 7. " AUTO_SABG_EN ,During boot, enable auto stop at block gap function." "0,1"
         textline "        "
-        bitfld.long 0x00 8. " DISABLE_TIME_OUT ,Please note, when this bit is set, there is no timeout check no matter boot_en is set or not." "0,1"
+        bitfld.long 0x00 8. " DISABLE_TIME_OUT ,Please note, when this bit is set, there is no timeout check no matter whether boot_en is set or not." "0,1"
         textline "        "
         hexmask.long.word 0x00 16.--32. 1. " BOOT_BLK_CNT ,The value defines the Stop At Block Gap value of automatic mode."
 width 11.
@@ -25527,12 +25815,6 @@ group.long 0xcc++0x3
         hexmask.long.byte 0x00 20.--23. 1. " TUNING_WINDOW ,Select data window value for auto tuning"
         textline "           "
         bitfld.long 0x00 24. " STD_TUNING_EN ,Standard tuning circuit and procedure enable: This bit is used to enable standard tuning circuit and procedure." "0,1"
-width 14.
-rgroup.long 0xfc++0x3
-    line.long 0x00 "HOST_CTRL_VER,Host Controller Version"
-        hexmask.long.byte 0x00 0.--8. 1. " SVN ,Specification Version Number: These status bits indicate the Host Controller Specification Version."
-        textline "             "
-        hexmask.long.byte 0x00 8.--16. 1. " VVN ,Vendor Version Number: These status bits are reserved for the vendor version number."
 
 
     tree.end
@@ -25636,7 +25918,7 @@ group.long 0x28++0x3
         textline "         "
         bitfld.long 0x00 3. " D3CD ,DAT3 as Card Detection Pin: If this bit is set, DAT3 should be pulled down to act as a card detection pin." "0,1"
         textline "         "
-        hexmask.long.byte 0x00 4.--6. 1. " EMODE ,Endian Mode: The uSDHC supports all four endian modes in data transfer."
+        hexmask.long.byte 0x00 4.--6. 1. " EMODE ,Endian Mode: The uSDHC supports all three endian modes in data transfer."
         textline "         "
         bitfld.long 0x00 6. " CDTL ,Card Detect Test Level: This is bit is enabled while the Card Detection Signal Selection is set to 1 and it indicates card insertion." "0,1"
         textline "         "
@@ -25654,8 +25936,6 @@ group.long 0x28++0x3
         textline "         "
         bitfld.long 0x00 20. " RD_DONE_NO_8CLK ,Read done no 8 clock: According to the SD/MMC spec, for read data transaction, 8 clocks are needed after the end bit of the last data block." "0,1"
         textline "         "
-        hexmask.long.byte 0x00 21.--24. 1. " RD_WAIT_POINT ,Read wait point : This is only for debug purpose."
-        textline "         "
         bitfld.long 0x00 24. " WECINT ,Wakeup Event Enable On Card Interrupt: This bit enables a wakeup event, via a Card Interrupt, in the Interrupt Status register." "0,1"
         textline "         "
         bitfld.long 0x00 25. " WECINS ,Wakeup Event Enable On SD Card Insertion: This bit enables a wakeup event, via a Card Insertion, in the Interrupt Status register." "0,1"
@@ -25665,28 +25945,16 @@ group.long 0x28++0x3
         hexmask.long.byte 0x00 27.--30. 1. " BURST_LEN_EN ,BURST length enable for INCR, INCR4/INCR8/INCR16, INCR4-WRAP/INCR8-WRAP/INCR16-WRAP This is used to enable/disable the burst length for the external AHB2AXI bridge."
         textline "         "
         bitfld.long 0x00 30. " NON_EXACT_BLK_RD ,Current block read is non-exact block read." "0,1"
-        textline "         "
-        bitfld.long 0x00 31. " RD_NO8CLK_EN ,Only for debug." "0,1"
 width 9.
 group.long 0x2c++0x3
     line.long 0x00 "SYS_CTRL,System Control"
-        bitfld.long 0x00 0. " IPGEN ,IPG Clock Enable: It's not implemented in uSDHC IP." "0,1"
-        textline "        "
-        bitfld.long 0x00 1. " HCKEN ,HCLK Enable: It's not implemented in uSDHC IP." "0,1"
-        textline "        "
-        bitfld.long 0x00 2. " PEREN ,Perpherial Clock Enable It's not implemented in uSDHC IP." "0,1"
-        textline "        "
-        bitfld.long 0x00 3. " SDCLKEN ,SD Clock Enable It's not implemented in uSDHC IP." "0,1"
-        textline "        "
         hexmask.long.byte 0x00 4.--8. 1. " DVS ,Divisor: This register is used to provide a more exact divisor to generate the desired SD clock frequency."
         textline "        "
         hexmask.long.byte 0x00 8.--16. 1. " SDCLKFS ,SDCLK Frequency Select: This register is used to select the frequency of the SDCLK pin."
         textline "        "
         hexmask.long.byte 0x00 16.--20. 1. " DTOCV ,Data Timeout Counter Value: This value determines the interval by which DAT line timeouts are detected."
         textline "        "
-        bitfld.long 0x00 22. " RST_FIFO ,Reset the Async FIFO: Reset the Async FIFO between card interface and the internal logic." "0,1"
-        textline "        "
-        bitfld.long 0x00 23. " IPP_RST_N ,This register's value will be output to CARD from pad directly for hardware reset of the card if card support this feature." "0,1"
+        bitfld.long 0x00 23. " IPP_RST_N ,This register's value will be output to CARD from pad directly for hardware reset of the card if the card supports this feature." "0,1"
         textline "        "
         bitfld.long 0x00 24. " RSTA ,Software Reset For ALL: This reset effects the entire Host Controller except for the card detection circuit." "0,1"
         textline "        "
@@ -25902,7 +26170,7 @@ group.long 0x48++0x3
         textline "        "
         bitfld.long 0x00 5. " MSBSEL ,Multi / Single Block Select: This bit enables multiple block DAT line data transfers." "0,1"
         textline "        "
-        bitfld.long 0x00 6. " NIBBLE_POS ,In DDR 4 bit mode nibble position indictation." "0,1"
+        bitfld.long 0x00 6. " NIBBLE_POS ,In DDR 4-bit mode nibble position indictation." "0,1"
         textline "        "
         bitfld.long 0x00 7. " AC23EN ,Auto CMD23 Enable When this bit is set to 1, the Host Controller issues a CMD23 automatically before issuing a command specified in the Command Register." "0,1"
         textline "        "
@@ -25913,12 +26181,6 @@ group.long 0x48++0x3
         bitfld.long 0x00 24. " AUTO_TUNE_EN ,Auto tuning enable (Only used for SD3.0, SDR104 mode)" "0,1"
         textline "        "
         bitfld.long 0x00 25. " FBCLK_SEL ,Feedback clock source selection (Only used for SD3.0, SDR104 mode)" "0,1"
-        textline "        "
-        bitfld.long 0x00 29. " AC12_RD_POINT ,Only for debug." "0,1"
-        textline "        "
-        bitfld.long 0x00 30. " CMD_DMY_WAIT_CFG ,Only for debug." "0,1"
-        textline "        "
-        bitfld.long 0x00 31. " CMD_DMY_EN ,Only for debug." "0,1"
 width 12.
 wgroup.long 0x50++0x3
     line.long 0x00 "FORCE_EVENT,Force Event"
@@ -25978,7 +26240,7 @@ group.long 0x60++0x3
         textline "        "
         hexmask.long.byte 0x00 3.--7. 1. " DLL_CTRL_SLV_DLY_TARGET ,The delay target for the uSDHC loopback read clock can be programmed in 1/16th increments of an ref_clock half-period."
         textline "        "
-        bitfld.long 0x00 7. " DLL_CTRL_GATE_UPDATE ,Set this bit to 1 to force DLL not update from now on.Since when clock_in exists, glitches might appear during update." "0,1"
+        bitfld.long 0x00 7. " DLL_CTRL_GATE_UPDATE ,Set this bit to 1 to prevent the DLL from updating (since when clock_in exists, glitches may appear during DLL updates)." "0,1"
         textline "        "
         bitfld.long 0x00 8. " DLL_CTRL_SLV_OVERRIDE ,Set this bit to 1 to Enable manual override for slave delay chain using SLV_OVERRIDE_VAL; to set 0 to disable manual override." "0,1"
         textline "        "
@@ -25986,7 +26248,7 @@ group.long 0x60++0x3
         textline "        "
         hexmask.long.byte 0x00 16.--19. 1. " DLL_CTRL_SLV_DLY_TARGET1 ,Refer to DLL_CTRL_SLV_DLY_TARGET[3:0] below."
         textline "        "
-        hexmask.long.byte 0x00 20.--28. 1. " DLL_CTRL_SLV_UPDATE_INT ,slave delay line update interval."
+        hexmask.long.byte 0x00 20.--28. 1. " DLL_CTRL_SLV_UPDATE_INT ,Slave delay line update interval."
         textline "        "
         hexmask.long.byte 0x00 28.--32. 1. " DLL_CTRL_REF_UPDATE_INT ,DLL control loop update interval."
 width 11.
@@ -26014,7 +26276,7 @@ group.long 0x68++0x3
         textline "                    "
         hexmask.long.byte 0x00 20.--24. 1. " TAP_SEL_OUT ,Reflect the number of delay cells added on the feedback clock between CLK_PRE and CLK_OUT."
         textline "                    "
-        hexmask.long.byte 0x00 24.--31. 1. " TAP_SEL_PRE ,Reflect the number of delay cells added on the feedback clock between the feedback clock and CLK_PRE."
+        hexmask.long.byte 0x00 24.--31. 1. " TAP_SEL_PRE ,Reflects the number of delay cells added on the feedback clock between the feedback clock and CLK_PRE."
         textline "                    "
         bitfld.long 0x00 31. " PRE_ERR ,PRE error which means the number of delay cells added on the feedback clock is too small." "0,1"
 width 10.
@@ -26028,19 +26290,15 @@ group.long 0xc0++0x3
         textline "         "
         bitfld.long 0x00 3. " AC12_WR_CHKBUSY_EN ,Check busy enable after auto CMD12 for write data packet" "0,1"
         textline "         "
-        bitfld.long 0x00 4. " DAT3_CD_POL ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 4. " DAT3_CD_POL ,Only for debug." "0,1"
         textline "         "
-        bitfld.long 0x00 5. " CD_POL ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 5. " CD_POL ,Only for debug." "0,1"
         textline "         "
-        bitfld.long 0x00 6. " WP_POL ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 6. " WP_POL ,Only for debug." "0,1"
         textline "         "
-        bitfld.long 0x00 7. " CLKONJ_IN_ABORT ,This bit only uses for debugging." "0,1"
+        bitfld.long 0x00 7. " CLKONJ_IN_ABORT ,Only for debug." "0,1"
         textline "         "
         bitfld.long 0x00 8. " FRC_SDCLK_ON ,Force CLK output active:" "0,1"
-        textline "         "
-        bitfld.long 0x00 9. " AC12_ISNOT_ABORT ,This bit only uses for debugging." "0,1"
-        textline "         "
-        bitfld.long 0x00 10. " DDREN_ACT_ATONCE ,This bit only uses for debugging." "0,1"
         textline "         "
         bitfld.long 0x00 11. " IPG_CLK_SOFT_EN ,IPG_CLK software enable" "0,1"
         textline "         "
@@ -26053,28 +26311,20 @@ group.long 0xc0++0x3
         bitfld.long 0x00 15. " CRC_CHK_DIS ,CRC check disable" "0,1"
         textline "         "
         hexmask.long.byte 0x00 16.--24. 1. " INT_ST_VAL ,Internal State Value Internal state value, reflecting the corresponding state value selected by Debug Select field."
-        textline "         "
-        hexmask.long.byte 0x00 24.--28. 1. " DBG_SEL ,Debug Select Select the internal sub-module to show its internal state value."
-        textline "         "
-        bitfld.long 0x00 28. " CMD_OE_PRE_EN ,Only for debug." "0,1"
-        textline "         "
-        bitfld.long 0x00 29. " AC12_RD_CHKBUSY_EN ,Only for debug." "0,1"
-        textline "         "
-        bitfld.long 0x00 30. " CARD_DET_IN_IDLE_ENJ ,Only for debug." "0,1"
 width 9.
 group.long 0xc4++0x3
     line.long 0x00 "MMC_BOOT,MMC Boot Register"
         hexmask.long.byte 0x00 0.--4. 1. " DTOCV_ACK ,Boot ACK time out counter value."
         textline "        "
-        bitfld.long 0x00 4. " BOOT_ACK ,Boot ack mode select 0: no ack 1: ack" "0,1"
+        bitfld.long 0x00 4. " BOOT_ACK ,Boot ack mode select." "0,1"
         textline "        "
-        bitfld.long 0x00 5. " BOOT_MODE ,Boot mode select 0: normal boot 1: alternative boot" "0,1"
+        bitfld.long 0x00 5. " BOOT_MODE ,Boot mode select." "0,1"
         textline "        "
-        bitfld.long 0x00 6. " BOOT_EN ,Boot mode enable 0: fast boot disable 1: fast boot enable" "0,1"
+        bitfld.long 0x00 6. " BOOT_EN ,Boot mode enable." "0,1"
         textline "        "
-        bitfld.long 0x00 7. " AUTO_SABG_EN ,When boot, enable auto stop at block gap function." "0,1"
+        bitfld.long 0x00 7. " AUTO_SABG_EN ,During boot, enable auto stop at block gap function." "0,1"
         textline "        "
-        bitfld.long 0x00 8. " DISABLE_TIME_OUT ,Please note, when this bit is set, there is no timeout check no matter boot_en is set or not." "0,1"
+        bitfld.long 0x00 8. " DISABLE_TIME_OUT ,Please note, when this bit is set, there is no timeout check no matter whether boot_en is set or not." "0,1"
         textline "        "
         hexmask.long.word 0x00 16.--32. 1. " BOOT_BLK_CNT ,The value defines the Stop At Block Gap value of automatic mode."
 width 11.
@@ -26107,12 +26357,6 @@ group.long 0xcc++0x3
         hexmask.long.byte 0x00 20.--23. 1. " TUNING_WINDOW ,Select data window value for auto tuning"
         textline "           "
         bitfld.long 0x00 24. " STD_TUNING_EN ,Standard tuning circuit and procedure enable: This bit is used to enable standard tuning circuit and procedure." "0,1"
-width 14.
-rgroup.long 0xfc++0x3
-    line.long 0x00 "HOST_CTRL_VER,Host Controller Version"
-        hexmask.long.byte 0x00 0.--8. 1. " SVN ,Specification Version Number: These status bits indicate the Host Controller Specification Version."
-        textline "             "
-        hexmask.long.byte 0x00 8.--16. 1. " VVN ,Vendor Version Number: These status bits are reserved for the vendor version number."
 
 
     tree.end
@@ -26157,7 +26401,7 @@ rgroup.word 0x4++0x1
     line.word 0x00 "WRSR,Watchdog Reset Status Register"
         bitfld.word 0x00 0. " SFTW ,Software Reset." "0,1"
         textline "    "
-        bitfld.word 0x00 1. " TOUT ,Time-out." "0,1"
+        bitfld.word 0x00 1. " TOUT ,Timeout." "0,1"
         textline "    "
         bitfld.word 0x00 4. " POR ,Power On Reset." "0,1"
 width 5.
@@ -26207,7 +26451,7 @@ rgroup.word 0x4++0x1
     line.word 0x00 "WRSR,Watchdog Reset Status Register"
         bitfld.word 0x00 0. " SFTW ,Software Reset." "0,1"
         textline "    "
-        bitfld.word 0x00 1. " TOUT ,Time-out." "0,1"
+        bitfld.word 0x00 1. " TOUT ,Timeout." "0,1"
         textline "    "
         bitfld.word 0x00 4. " POR ,Power On Reset." "0,1"
 width 5.
@@ -26253,7 +26497,7 @@ group.long 0x150++0x3
         textline "     "
         bitfld.long 0x00 16. " OSC_XTALOK ,Status bit which signals that the output of the 24MHz crystal oscillator is stable." "0,1"
         textline "     "
-        bitfld.long 0x00 17. " OSC_XTALOK_EN ,Enable bit" "0,1"
+        bitfld.long 0x00 17. " OSC_XTALOK_EN ,Enable bit for the xtal_ok module(24 MHz)" "0,1"
         textline "     "
         hexmask.long.byte 0x00 18.--20. 1. " WBCP_VPW_THRESH ,This signal alters the voltage that the pwell is charged pumped to."
         textline "     "

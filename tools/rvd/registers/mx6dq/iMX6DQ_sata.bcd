@@ -2,652 +2,598 @@
 description="Freescale iMX6DQ development kit"
 Advanced_Information.Cortex-A9={\
   Memory_block.default={}\
-  :Memory_block.M_SATA={\
-    start=0x02200000:length=0x00000180:description="SATA"\
-  }:\
   Map_Rule.default={}:Register_enum.default={}:Register.default={\
     bit_fields.default={}\
   }:Concat_Register.default={}:Peripherals.default={\
     Register.default={\
       bit_fields.default={}\
     }\
-  }:Peripherals.SATA={\
-    base=Absolute:description="":Register.G_SATA_CAP={\
-      gui_name="CAP":start=0x02200000:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SATA_CAP_NP={\
+  }\
+  :Peripherals.SATA={\
+    base=Absolute:description=""\
+    :Register.G_SATA_CAP={\
+      gui_name="CAP":start=0x2200000:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_SATA_CAP_NP={\
         gui_name="NP":position=0:size=5:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_SXS={\
+      }\
+      :bit_fields.B_SATA_CAP_SXS={\
         gui_name="SXS":position=5:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_EMS={\
+      }\
+      :bit_fields.B_SATA_CAP_EMS={\
         gui_name="EMS":position=6:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_CCCS={\
+      }\
+      :bit_fields.B_SATA_CAP_CCCS={\
         gui_name="CCCS":position=7:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_NCS={\
+      }\
+      :bit_fields.B_SATA_CAP_NCS={\
         gui_name="NCS":position=8:size=5:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_PSC={\
+      }\
+      :bit_fields.B_SATA_CAP_PSC={\
         gui_name="PSC":position=13:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_SSC={\
+      }\
+      :bit_fields.B_SATA_CAP_SSC={\
         gui_name="SSC":position=14:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_PMD={\
+      }\
+      :bit_fields.B_SATA_CAP_PMD={\
         gui_name="PMD":position=15:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_SMP={\
+      }\
+      :bit_fields.B_SATA_CAP_SMP={\
         gui_name="SMP":position=17:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_SAM={\
+      }\
+      :bit_fields.B_SATA_CAP_SAM={\
         gui_name="SAM":position=18:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_ISS={\
+      }\
+      :bit_fields.B_SATA_CAP_ISS={\
         gui_name="ISS":position=20:size=4:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_SCLO={\
+      }\
+      :bit_fields.B_SATA_CAP_SCLO={\
         gui_name="SCLO":position=24:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_SAL={\
+      }\
+      :bit_fields.B_SATA_CAP_SAL={\
         gui_name="SAL":position=25:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_SALP={\
+      }\
+      :bit_fields.B_SATA_CAP_SALP={\
         gui_name="SALP":position=26:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_SSS={\
+      }\
+      :bit_fields.B_SATA_CAP_SSS={\
         gui_name="SSS":position=27:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_SMPS={\
+      }\
+      :bit_fields.B_SATA_CAP_SMPS={\
         gui_name="SMPS":position=28:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_SSNTF={\
+      }\
+      :bit_fields.B_SATA_CAP_SSNTF={\
         gui_name="SSNTF":position=29:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_SNCQ={\
+      }\
+      :bit_fields.B_SATA_CAP_SNCQ={\
         gui_name="SNCQ":position=30:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_CAP_S64A={\
+      }\
+      :bit_fields.B_SATA_CAP_S64A={\
         gui_name="S64A":position=31:size=1:read_only=true\
       }\
-    }:Register.G_SATA_GHC={\
-      gui_name="GHC":start=0x02200004:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_GHC_HR={\
+    }\
+    :Register.G_SATA_GHC={\
+      gui_name="GHC":start=0x2200004:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_GHC_HR={\
         gui_name="HR":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_GHC_IE={\
+      }\
+      :bit_fields.B_SATA_GHC_IE={\
         gui_name="IE":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_GHC_AE={\
+      }\
+      :bit_fields.B_SATA_GHC_AE={\
         gui_name="AE":position=31:size=1:read_only=false\
       }\
-    }:Register.G_SATA_IS={\
-      gui_name="IS":start=0x02200008:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_IS_IPS={\
+    }\
+    :Register.G_SATA_IS={\
+      gui_name="IS":start=0x2200008:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_IS_IPS={\
         gui_name="IPS":position=0:size=2:read_only=false\
       }\
-    }:Register.G_SATA_PI={\
-      gui_name="PI":start=0x0220000c:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SATA_PI_PI={\
+    }\
+    :Register.G_SATA_PI={\
+      gui_name="PI":start=0x220000c:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_SATA_PI_PI={\
         gui_name="PI":position=0:size=1:read_only=true\
       }\
-    }:Register.G_SATA_VS={\
-      gui_name="VS":start=0x02200010:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SATA_VS_MNR={\
+    }\
+    :Register.G_SATA_VS={\
+      gui_name="VS":start=0x2200010:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_SATA_VS_MNR={\
         gui_name="MNR":position=0:size=16:read_only=true\
-      }:\
-        bit_fields.B_SATA_VS_MJR={\
+      }\
+      :bit_fields.B_SATA_VS_MJR={\
         gui_name="MJR":position=16:size=16:read_only=true\
       }\
-    }:Register.G_SATA_CCC_CTL={\
-      gui_name="CCC_CTL":start=0x02200014:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_CCC_CTL_EN={\
+    }\
+    :Register.G_SATA_CCC_CTL={\
+      gui_name="CCC_CTL":start=0x2200014:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_CCC_CTL_EN={\
         gui_name="EN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_CCC_CTL_INT={\
+      }\
+      :bit_fields.B_SATA_CCC_CTL_INT={\
         gui_name="INT":position=3:size=5:read_only=false\
-      }:\
-        bit_fields.B_SATA_CCC_CTL_CC={\
+      }\
+      :bit_fields.B_SATA_CCC_CTL_CC={\
         gui_name="CC":position=8:size=8:read_only=false\
-      }:\
-        bit_fields.B_SATA_CCC_CTL_TV={\
+      }\
+      :bit_fields.B_SATA_CCC_CTL_TV={\
         gui_name="TV":position=16:size=16:read_only=false\
       }\
-    }:Register.G_SATA_CCC_PORTS={\
-      gui_name="CCC_PORTS":start=0x02200018:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_CCC_PORTS_PRT={\
+    }\
+    :Register.G_SATA_CCC_PORTS={\
+      gui_name="CCC_PORTS":start=0x2200018:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_CCC_PORTS_PRT={\
         gui_name="PRT":position=0:size=32:read_only=false\
       }\
-    }:Register.G_SATA_CAP2={\
-      gui_name="CAP2":start=0x02200024:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SATA_CAP2_APST={\
+    }\
+    :Register.G_SATA_CAP2={\
+      gui_name="CAP2":start=0x2200024:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_SATA_CAP2_APST={\
         gui_name="APST":position=2:size=1:read_only=true\
       }\
-    }:Register.G_SATA_BISTAFR={\
-      gui_name="BISTAFR":start=0x022000a0:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SATA_BISTAFR_PD={\
+    }\
+    :Register.G_SATA_BISTAFR={\
+      gui_name="BISTAFR":start=0x22000a0:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_SATA_BISTAFR_PD={\
         gui_name="PD":position=0:size=8:read_only=true\
-      }:\
-        bit_fields.B_SATA_BISTAFR_NCP={\
+      }\
+      :bit_fields.B_SATA_BISTAFR_NCP={\
         gui_name="NCP":position=8:size=8:read_only=true\
       }\
-    }:Register.G_SATA_BISTCR={\
-      gui_name="BISTCR":start=0x022000a4:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_BISTCR_PATTERN={\
+    }\
+    :Register.G_SATA_BISTCR={\
+      gui_name="BISTCR":start=0x22000a4:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_BISTCR_PATTERN={\
         gui_name="PATTERN":position=0:size=4:read_only=false\
-      }:\
-        bit_fields.B_SATA_BISTCR_PV={\
+      }\
+      :bit_fields.B_SATA_BISTCR_PV={\
         gui_name="PV":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_BISTCR_FLIP={\
+      }\
+      :bit_fields.B_SATA_BISTCR_FLIP={\
         gui_name="FLIP":position=5:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_BISTCR_ERREN={\
+      }\
+      :bit_fields.B_SATA_BISTCR_ERREN={\
         gui_name="ERREN":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_BISTCR_LLC={\
+      }\
+      :bit_fields.B_SATA_BISTCR_LLC={\
         gui_name="LLC":position=8:size=3:read_only=false\
-      }:\
-        bit_fields.B_SATA_BISTCR_SDFE={\
+      }\
+      :bit_fields.B_SATA_BISTCR_SDFE={\
         gui_name="SDFE":position=12:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_BISTCR_QPHYINIT={\
+      }\
+      :bit_fields.B_SATA_BISTCR_QPHYINIT={\
         gui_name="QPHYINIT":position=14:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_BISTCR_NEALB={\
+      }\
+      :bit_fields.B_SATA_BISTCR_NEALB={\
         gui_name="NEALB":position=16:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_BISTCR_CNTCLR={\
+      }\
+      :bit_fields.B_SATA_BISTCR_CNTCLR={\
         gui_name="CNTCLR":position=17:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_BISTCR_TXO={\
+      }\
+      :bit_fields.B_SATA_BISTCR_TXO={\
         gui_name="TXO":position=18:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_BISTCR_FERLB={\
+      }\
+      :bit_fields.B_SATA_BISTCR_FERLB={\
         gui_name="FERLB":position=20:size=1:read_only=false\
       }\
-    }:Register.G_SATA_BISTFCTR={\
-      gui_name="BISTFCTR":start=0x022000a8:length=4:\
+    }\
+    :Register.G_SATA_BISTFCTR={\
+      gui_name="BISTFCTR":start=0x22000a8:length=4:\
       read_only=true:write_only=false\
-    }:Register.G_SATA_BISTSR={\
-      gui_name="BISTSR":start=0x022000ac:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SATA_BISTSR_FRAMERR={\
+    }\
+    :Register.G_SATA_BISTSR={\
+      gui_name="BISTSR":start=0x22000ac:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_SATA_BISTSR_FRAMERR={\
         gui_name="FRAMERR":position=0:size=16:read_only=true\
-      }:\
-        bit_fields.B_SATA_BISTSR_BRSTERR={\
+      }\
+      :bit_fields.B_SATA_BISTSR_BRSTERR={\
         gui_name="BRSTERR":position=16:size=8:read_only=true\
       }\
-    }:Register.G_SATA_OOBR={\
-      gui_name="OOBR":start=0x022000bc:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_OOBR_CIMAX={\
+    }\
+    :Register.G_SATA_OOBR={\
+      gui_name="OOBR":start=0x22000bc:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_OOBR_CIMAX={\
         gui_name="CIMAX":position=0:size=8:read_only=false\
-      }:\
-        bit_fields.B_SATA_OOBR_CIMIN={\
+      }\
+      :bit_fields.B_SATA_OOBR_CIMIN={\
         gui_name="CIMIN":position=8:size=8:read_only=false\
-      }:\
-        bit_fields.B_SATA_OOBR_CWMAX={\
+      }\
+      :bit_fields.B_SATA_OOBR_CWMAX={\
         gui_name="CWMAX":position=16:size=8:read_only=false\
-      }:\
-        bit_fields.B_SATA_OOBR_CWMIN={\
+      }\
+      :bit_fields.B_SATA_OOBR_CWMIN={\
         gui_name="CWMIN":position=24:size=7:read_only=false\
-      }:\
-        bit_fields.B_SATA_OOBR_WE={\
+      }\
+      :bit_fields.B_SATA_OOBR_WE={\
         gui_name="WE":position=31:size=1:read_only=false\
       }\
-    }:Register.G_SATA_GPCR={\
-      gui_name="GPCR":start=0x022000d0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_GPCR_GP_CONTROL={\
+    }\
+    :Register.G_SATA_GPCR={\
+      gui_name="GPCR":start=0x22000d0:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_GPCR_GP_CONTROL={\
         gui_name="GP_CONTROL":position=0:size=32:read_only=false\
       }\
-    }:Register.G_SATA_GPSR={\
-      gui_name="GPSR":start=0x022000d4:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_GPSR_GP_STATUS={\
+    }\
+    :Register.G_SATA_GPSR={\
+      gui_name="GPSR":start=0x22000d4:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_GPSR_GP_STATUS={\
         gui_name="GP_STATUS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_SATA_TIMER1MS={\
-      gui_name="TIMER1MS":start=0x022000e0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_TIMER1MS_TIMV={\
+    }\
+    :Register.G_SATA_TIMER1MS={\
+      gui_name="TIMER1MS":start=0x22000e0:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_TIMER1MS_TIMV={\
         gui_name="TIMV":position=0:size=20:read_only=false\
       }\
-    }:Register.G_SATA_GPARAM1R={\
-      gui_name="GPARAM1R":start=0x022000e8:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SATA_GPARAM1R_M_HADDR={\
-        gui_name="M_HADDR":position=6:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM1R_S_HADDR={\
-        gui_name="S_HADDR":position=7:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM1R_AHB_ENDIAN={\
-        gui_name="AHB_ENDIAN":position=8:size=2:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM1R_RETURN_ERR={\
-        gui_name="RETURN_ERR":position=10:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM1R_BIST_M={\
-        gui_name="BIST_M":position=13:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM1R_PHY_STAT={\
-        gui_name="PHY_STAT":position=15:size=6:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM1R_PHY_CTRL={\
-        gui_name="PHY_CTRL":position=21:size=6:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM1R_PHY_RST={\
-        gui_name="PHY_RST":position=27:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM1R_PHY_DATA={\
-        gui_name="PHY_DATA":position=28:size=2:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM1R_RX_BUFFER={\
-        gui_name="RX_BUFFER":position=30:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM1R_ALIGN_M={\
-        gui_name="ALIGN_M":position=31:size=1:read_only=true\
-      }\
-    }:Register.G_SATA_GPARAM2R={\
-      gui_name="GPARAM2R":start=0x022000ec:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SATA_GPARAM2R_RXOOB_CLK={\
-        gui_name="RXOOB_CLK":position=0:size=9:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM2R_TX_OOB_M={\
-        gui_name="TX_OOB_M":position=9:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM2R_RX_OOB_M={\
-        gui_name="RX_OOB_M":position=10:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM2R_RXOOB_CLK_M={\
-        gui_name="RXOOB_CLK_M":position=11:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM2R_ENCODE_M={\
-        gui_name="ENCODE_M":position=12:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM2R_DEV_MP={\
-        gui_name="DEV_MP":position=13:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_GPARAM2R_DEV_CP={\
-        gui_name="DEV_CP":position=14:size=1:read_only=true\
-      }\
-    }:Register.G_SATA_PPARAMR={\
-      gui_name="PPARAMR":start=0x022000f0:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SATA_PPARAMR_RXFIFO_DEPTH={\
-        gui_name="RXFIFO_DEPTH":position=0:size=3:read_only=true\
-      }:\
-        bit_fields.B_SATA_PPARAMR_TXFIFO_DEPTH={\
-        gui_name="TXFIFO_DEPTH":position=3:size=3:read_only=true\
-      }:\
-        bit_fields.B_SATA_PPARAMR_RX_MEM_S={\
-        gui_name="RX_MEM_S":position=6:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_PPARAMR_RX_MEM_M={\
-        gui_name="RX_MEM_M":position=7:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_PPARAMR_TX_MEM_S={\
-        gui_name="TX_MEM_S":position=8:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_PPARAMR_TX_MEM_M={\
-        gui_name="TX_MEM_M":position=9:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_PPARAMR_TX_MEM_S={\
-        gui_name="TX_MEM_S":position=10:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_PPARAMR_TX_MEM_M={\
-        gui_name="TX_MEM_M":position=11:size=1:read_only=true\
-      }\
-    }:Register.G_SATA_TESTR={\
-      gui_name="TESTR":start=0x022000f4:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_TESTR_TEST_IF={\
+    }\
+    :Register.G_SATA_TESTR={\
+      gui_name="TESTR":start=0x22000f4:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_TESTR_TEST_IF={\
         gui_name="TEST_IF":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_TESTR_PSEL={\
+      }\
+      :bit_fields.B_SATA_TESTR_PSEL={\
         gui_name="PSEL":position=16:size=3:read_only=false\
       }\
-    }:Register.G_SATA_VERSIONR={\
-      gui_name="VERSIONR":start=0x022000f8:length=4:\
+    }\
+    :Register.G_SATA_VERSIONR={\
+      gui_name="VERSIONR":start=0x22000f8:length=4:\
       read_only=true:write_only=false\
-    }:Register.G_SATA_P0CLB={\
-      gui_name="P0CLB":start=0x02200100:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_P0CLB_CLB={\
+    }\
+    :Register.G_SATA_P0CLB={\
+      gui_name="P0CLB":start=0x2200100:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_P0CLB_CLB={\
         gui_name="CLB":position=10:size=22:read_only=false\
       }\
-    }:Register.G_SATA_P0FB={\
-      gui_name="P0FB":start=0x02200108:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_P0FB_FB={\
+    }\
+    :Register.G_SATA_P0FB={\
+      gui_name="P0FB":start=0x2200108:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_P0FB_FB={\
         gui_name="FB":position=8:size=24:read_only=false\
       }\
-    }:Register.G_SATA_P0IS={\
-      gui_name="P0IS":start=0x02200110:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_P0IS_DHRS={\
+    }\
+    :Register.G_SATA_P0IS={\
+      gui_name="P0IS":start=0x2200110:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_P0IS_DHRS={\
         gui_name="DHRS":position=0:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_PSS={\
+      }\
+      :bit_fields.B_SATA_P0IS_PSS={\
         gui_name="PSS":position=1:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_DSS={\
+      }\
+      :bit_fields.B_SATA_P0IS_DSS={\
         gui_name="DSS":position=2:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_SDBS={\
+      }\
+      :bit_fields.B_SATA_P0IS_SDBS={\
         gui_name="SDBS":position=3:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_UFS={\
+      }\
+      :bit_fields.B_SATA_P0IS_UFS={\
         gui_name="UFS":position=4:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_DPS={\
+      }\
+      :bit_fields.B_SATA_P0IS_DPS={\
         gui_name="DPS":position=5:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_PCS={\
+      }\
+      :bit_fields.B_SATA_P0IS_PCS={\
         gui_name="PCS":position=6:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_PRCS={\
+      }\
+      :bit_fields.B_SATA_P0IS_PRCS={\
         gui_name="PRCS":position=22:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_IPMS={\
+      }\
+      :bit_fields.B_SATA_P0IS_IPMS={\
         gui_name="IPMS":position=23:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_OFS={\
+      }\
+      :bit_fields.B_SATA_P0IS_OFS={\
         gui_name="OFS":position=24:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_INFS={\
+      }\
+      :bit_fields.B_SATA_P0IS_INFS={\
         gui_name="INFS":position=26:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_IFS={\
+      }\
+      :bit_fields.B_SATA_P0IS_IFS={\
         gui_name="IFS":position=27:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_HBDS={\
+      }\
+      :bit_fields.B_SATA_P0IS_HBDS={\
         gui_name="HBDS":position=28:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_HBFS={\
+      }\
+      :bit_fields.B_SATA_P0IS_HBFS={\
         gui_name="HBFS":position=29:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0IS_TFES={\
+      }\
+      :bit_fields.B_SATA_P0IS_TFES={\
         gui_name="TFES":position=30:size=1:read_only=true\
       }\
-    }:Register.G_SATA_P0IE={\
-      gui_name="P0IE":start=0x02200114:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_P0IE_DHRE={\
+    }\
+    :Register.G_SATA_P0IE={\
+      gui_name="P0IE":start=0x2200114:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_P0IE_DHRE={\
         gui_name="DHRE":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_PSE={\
+      }\
+      :bit_fields.B_SATA_P0IE_PSE={\
         gui_name="PSE":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_DSE={\
+      }\
+      :bit_fields.B_SATA_P0IE_DSE={\
         gui_name="DSE":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_SDBE={\
+      }\
+      :bit_fields.B_SATA_P0IE_SDBE={\
         gui_name="SDBE":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_UFE={\
+      }\
+      :bit_fields.B_SATA_P0IE_UFE={\
         gui_name="UFE":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_DPE={\
+      }\
+      :bit_fields.B_SATA_P0IE_DPE={\
         gui_name="DPE":position=5:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_PCE={\
+      }\
+      :bit_fields.B_SATA_P0IE_PCE={\
         gui_name="PCE":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_PRCE={\
+      }\
+      :bit_fields.B_SATA_P0IE_PRCE={\
         gui_name="PRCE":position=22:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_IPME={\
+      }\
+      :bit_fields.B_SATA_P0IE_IPME={\
         gui_name="IPME":position=23:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_OFE={\
+      }\
+      :bit_fields.B_SATA_P0IE_OFE={\
         gui_name="OFE":position=24:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_INFE={\
+      }\
+      :bit_fields.B_SATA_P0IE_INFE={\
         gui_name="INFE":position=26:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_IFE={\
+      }\
+      :bit_fields.B_SATA_P0IE_IFE={\
         gui_name="IFE":position=27:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_HBDE={\
+      }\
+      :bit_fields.B_SATA_P0IE_HBDE={\
         gui_name="HBDE":position=28:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_HBFE={\
+      }\
+      :bit_fields.B_SATA_P0IE_HBFE={\
         gui_name="HBFE":position=29:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_TFEE={\
+      }\
+      :bit_fields.B_SATA_P0IE_TFEE={\
         gui_name="TFEE":position=30:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0IE_CPDE={\
+      }\
+      :bit_fields.B_SATA_P0IE_CPDE={\
         gui_name="CPDE":position=31:size=1:read_only=false\
       }\
-    }:Register.G_SATA_P0CMD={\
-      gui_name="P0CMD":start=0x02200118:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_P0CMD_ST={\
+    }\
+    :Register.G_SATA_P0CMD={\
+      gui_name="P0CMD":start=0x2200118:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_P0CMD_ST={\
         gui_name="ST":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_SUD={\
+      }\
+      :bit_fields.B_SATA_P0CMD_SUD={\
         gui_name="SUD":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_POD={\
+      }\
+      :bit_fields.B_SATA_P0CMD_POD={\
         gui_name="POD":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_CLO={\
+      }\
+      :bit_fields.B_SATA_P0CMD_CLO={\
         gui_name="CLO":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_FRE={\
+      }\
+      :bit_fields.B_SATA_P0CMD_FRE={\
         gui_name="FRE":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_CCS={\
+      }\
+      :bit_fields.B_SATA_P0CMD_CCS={\
         gui_name="CCS":position=8:size=5:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_MPSS={\
+      }\
+      :bit_fields.B_SATA_P0CMD_MPSS={\
         gui_name="MPSS":position=13:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_FR={\
+      }\
+      :bit_fields.B_SATA_P0CMD_FR={\
         gui_name="FR":position=14:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_CR={\
+      }\
+      :bit_fields.B_SATA_P0CMD_CR={\
         gui_name="CR":position=15:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_CPS={\
+      }\
+      :bit_fields.B_SATA_P0CMD_CPS={\
         gui_name="CPS":position=16:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_PMA={\
+      }\
+      :bit_fields.B_SATA_P0CMD_PMA={\
         gui_name="PMA":position=17:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_HPCP={\
+      }\
+      :bit_fields.B_SATA_P0CMD_HPCP={\
         gui_name="HPCP":position=18:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_ESP={\
+      }\
+      :bit_fields.B_SATA_P0CMD_ESP={\
         gui_name="ESP":position=21:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_APSTE={\
+      }\
+      :bit_fields.B_SATA_P0CMD_APSTE={\
         gui_name="APSTE":position=23:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_ATAPI={\
+      }\
+      :bit_fields.B_SATA_P0CMD_ATAPI={\
         gui_name="ATAPI":position=24:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_DLAE={\
+      }\
+      :bit_fields.B_SATA_P0CMD_DLAE={\
         gui_name="DLAE":position=25:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_ALPE={\
+      }\
+      :bit_fields.B_SATA_P0CMD_ALPE={\
         gui_name="ALPE":position=26:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_ASP={\
+      }\
+      :bit_fields.B_SATA_P0CMD_ASP={\
         gui_name="ASP":position=27:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0CMD_ICC={\
+      }\
+      :bit_fields.B_SATA_P0CMD_ICC={\
         gui_name="ICC":position=28:size=4:read_only=false\
       }\
-    }:Register.G_SATA_P0TFD={\
-      gui_name="P0TFD":start=0x02200120:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SATA_P0TFD_STS={\
+    }\
+    :Register.G_SATA_P0TFD={\
+      gui_name="P0TFD":start=0x2200120:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_SATA_P0TFD_STS={\
         gui_name="STS":position=0:size=8:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0TFD_ERR={\
+      }\
+      :bit_fields.B_SATA_P0TFD_ERR={\
         gui_name="ERR":position=8:size=8:read_only=true\
       }\
-    }:Register.G_SATA_P0SIG={\
-      gui_name="P0SIG":start=0x02200124:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SATA_P0SIG_SIG={\
+    }\
+    :Register.G_SATA_P0SIG={\
+      gui_name="P0SIG":start=0x2200124:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_SATA_P0SIG_SIG={\
         gui_name="SIG":position=0:size=32:read_only=true\
       }\
-    }:Register.G_SATA_P0SSTS={\
-      gui_name="P0SSTS":start=0x02200128:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SATA_P0SSTS_DET={\
+    }\
+    :Register.G_SATA_P0SSTS={\
+      gui_name="P0SSTS":start=0x2200128:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_SATA_P0SSTS_DET={\
         gui_name="DET":position=0:size=4:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SSTS_SPD={\
+      }\
+      :bit_fields.B_SATA_P0SSTS_SPD={\
         gui_name="SPD":position=4:size=4:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SSTS_IPM={\
+      }\
+      :bit_fields.B_SATA_P0SSTS_IPM={\
         gui_name="IPM":position=8:size=4:read_only=true\
       }\
-    }:Register.G_SATA_P0SCTL={\
-      gui_name="P0SCTL":start=0x0220012c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_P0SCTL_DET={\
+    }\
+    :Register.G_SATA_P0SCTL={\
+      gui_name="P0SCTL":start=0x220012c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_P0SCTL_DET={\
         gui_name="DET":position=0:size=4:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0SCTL_SPD={\
+      }\
+      :bit_fields.B_SATA_P0SCTL_SPD={\
         gui_name="SPD":position=4:size=4:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0SCTL_IPM={\
+      }\
+      :bit_fields.B_SATA_P0SCTL_IPM={\
         gui_name="IPM":position=8:size=4:read_only=false\
       }\
-    }:Register.G_SATA_P0SERR={\
-      gui_name="P0SERR":start=0x02200130:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_P0SERR_ERR_I={\
+    }\
+    :Register.G_SATA_P0SERR={\
+      gui_name="P0SERR":start=0x2200130:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_P0SERR_ERR_I={\
         gui_name="ERR_I":position=0:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_ERR_M={\
+      }\
+      :bit_fields.B_SATA_P0SERR_ERR_M={\
         gui_name="ERR_M":position=1:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_ERR_T={\
+      }\
+      :bit_fields.B_SATA_P0SERR_ERR_T={\
         gui_name="ERR_T":position=8:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_ERR_C={\
+      }\
+      :bit_fields.B_SATA_P0SERR_ERR_C={\
         gui_name="ERR_C":position=9:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_ERR_P={\
+      }\
+      :bit_fields.B_SATA_P0SERR_ERR_P={\
         gui_name="ERR_P":position=10:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_ERR_E={\
+      }\
+      :bit_fields.B_SATA_P0SERR_ERR_E={\
         gui_name="ERR_E":position=11:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_DIAG_N={\
+      }\
+      :bit_fields.B_SATA_P0SERR_DIAG_N={\
         gui_name="DIAG_N":position=16:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_DIAG_I={\
+      }\
+      :bit_fields.B_SATA_P0SERR_DIAG_I={\
         gui_name="DIAG_I":position=17:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_DIAG_W={\
+      }\
+      :bit_fields.B_SATA_P0SERR_DIAG_W={\
         gui_name="DIAG_W":position=18:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_DIAG_B={\
+      }\
+      :bit_fields.B_SATA_P0SERR_DIAG_B={\
         gui_name="DIAG_B":position=19:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_DIAG_D={\
+      }\
+      :bit_fields.B_SATA_P0SERR_DIAG_D={\
         gui_name="DIAG_D":position=20:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_DIAG_C={\
+      }\
+      :bit_fields.B_SATA_P0SERR_DIAG_C={\
         gui_name="DIAG_C":position=21:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_DIAG_H={\
+      }\
+      :bit_fields.B_SATA_P0SERR_DIAG_H={\
         gui_name="DIAG_H":position=22:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_DIAG_S={\
+      }\
+      :bit_fields.B_SATA_P0SERR_DIAG_S={\
         gui_name="DIAG_S":position=23:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_DIAG_T={\
+      }\
+      :bit_fields.B_SATA_P0SERR_DIAG_T={\
         gui_name="DIAG_T":position=24:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_DIAG_F={\
+      }\
+      :bit_fields.B_SATA_P0SERR_DIAG_F={\
         gui_name="DIAG_F":position=25:size=1:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0SERR_DIAG_X={\
+      }\
+      :bit_fields.B_SATA_P0SERR_DIAG_X={\
         gui_name="DIAG_X":position=26:size=1:read_only=true\
       }\
-    }:Register.G_SATA_P0SACT={\
-      gui_name="P0SACT":start=0x02200134:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_P0SACT_DS={\
+    }\
+    :Register.G_SATA_P0SACT={\
+      gui_name="P0SACT":start=0x2200134:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_P0SACT_DS={\
         gui_name="DS":position=0:size=32:read_only=false\
       }\
-    }:Register.G_SATA_P0CI={\
-      gui_name="P0CI":start=0x02200138:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_P0CI_CI={\
+    }\
+    :Register.G_SATA_P0CI={\
+      gui_name="P0CI":start=0x2200138:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_P0CI_CI={\
         gui_name="CI":position=0:size=32:read_only=false\
       }\
-    }:Register.G_SATA_P0SNTF={\
-      gui_name="P0SNTF":start=0x0220013c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_P0SNTF_PMN={\
+    }\
+    :Register.G_SATA_P0SNTF={\
+      gui_name="P0SNTF":start=0x220013c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_P0SNTF_PMN={\
         gui_name="PMN":position=0:size=16:read_only=false\
       }\
-    }:Register.G_SATA_P0DMACR={\
-      gui_name="P0DMACR":start=0x02200170:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_P0DMACR_TXTS={\
+    }\
+    :Register.G_SATA_P0DMACR={\
+      gui_name="P0DMACR":start=0x2200170:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_P0DMACR_TXTS={\
         gui_name="TXTS":position=0:size=4:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0DMACR_RXTS={\
+      }\
+      :bit_fields.B_SATA_P0DMACR_RXTS={\
         gui_name="RXTS":position=4:size=4:read_only=false\
       }\
-    }:Register.G_SATA_P0PHYCR={\
-      gui_name="P0PHYCR":start=0x02200178:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SATA_P0PHYCR_CR_DATA_IN={\
+    }\
+    :Register.G_SATA_P0PHYCR={\
+      gui_name="P0PHYCR":start=0x2200178:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SATA_P0PHYCR_CR_DATA_IN={\
         gui_name="CR_DATA_IN":position=0:size=16:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0PHYCR_CR_CAP_ADDR={\
+      }\
+      :bit_fields.B_SATA_P0PHYCR_CR_CAP_ADDR={\
         gui_name="CR_CAP_ADDR":position=16:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0PHYCR_CR_CAP_DATA={\
+      }\
+      :bit_fields.B_SATA_P0PHYCR_CR_CAP_DATA={\
         gui_name="CR_CAP_DATA":position=17:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0PHYCR_CR_WRITE={\
+      }\
+      :bit_fields.B_SATA_P0PHYCR_CR_WRITE={\
         gui_name="CR_WRITE":position=18:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0PHYCR_CR_READ={\
+      }\
+      :bit_fields.B_SATA_P0PHYCR_CR_READ={\
         gui_name="CR_READ":position=19:size=1:read_only=false\
-      }:\
-        bit_fields.B_SATA_P0PHYCR_TEST_PDDQ={\
+      }\
+      :bit_fields.B_SATA_P0PHYCR_TEST_PDDQ={\
         gui_name="TEST_PDDQ":position=20:size=1:read_only=false\
       }\
-    }:Register.G_SATA_P0PHYSR={\
-      gui_name="P0PHYSR":start=0x0220017c:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SATA_P0PHYSR_CR_DATA_OUT={\
+    }\
+    :Register.G_SATA_P0PHYSR={\
+      gui_name="P0PHYSR":start=0x220017c:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_SATA_P0PHYSR_CR_DATA_OUT={\
         gui_name="CR_DATA_OUT":position=0:size=16:read_only=true\
-      }:\
-        bit_fields.B_SATA_P0PHYSR_CR_ACK={\
+      }\
+      :bit_fields.B_SATA_P0PHYSR_CR_ACK={\
         gui_name="CR_ACK":position=18:size=1:read_only=true\
       }\
     }\
-  }:Register_window.SATA={\
-        line="$+":\
+  }\
+  :Register_window.SATA={\
+    line="$+":\
     line="=G_SATA_CAP":\
     line="B_SATA_CAP_NP":\
     line="B_SATA_CAP_SXS":\
@@ -749,41 +695,6 @@ Advanced_Information.Cortex-A9={\
     line="$+":\
     line="=G_SATA_TIMER1MS":\
     line="B_SATA_TIMER1MS_TIMV":\
-    line="$$":\
-    line="$+":\
-    line="=G_SATA_GPARAM1R":\
-    line="B_SATA_GPARAM1R_M_HADDR":\
-    line="B_SATA_GPARAM1R_S_HADDR":\
-    line="B_SATA_GPARAM1R_AHB_ENDIAN":\
-    line="B_SATA_GPARAM1R_RETURN_ERR":\
-    line="B_SATA_GPARAM1R_BIST_M":\
-    line="B_SATA_GPARAM1R_PHY_STAT":\
-    line="B_SATA_GPARAM1R_PHY_CTRL":\
-    line="B_SATA_GPARAM1R_PHY_RST":\
-    line="B_SATA_GPARAM1R_PHY_DATA":\
-    line="B_SATA_GPARAM1R_RX_BUFFER":\
-    line="B_SATA_GPARAM1R_ALIGN_M":\
-    line="$$":\
-    line="$+":\
-    line="=G_SATA_GPARAM2R":\
-    line="B_SATA_GPARAM2R_RXOOB_CLK":\
-    line="B_SATA_GPARAM2R_TX_OOB_M":\
-    line="B_SATA_GPARAM2R_RX_OOB_M":\
-    line="B_SATA_GPARAM2R_RXOOB_CLK_M":\
-    line="B_SATA_GPARAM2R_ENCODE_M":\
-    line="B_SATA_GPARAM2R_DEV_MP":\
-    line="B_SATA_GPARAM2R_DEV_CP":\
-    line="$$":\
-    line="$+":\
-    line="=G_SATA_PPARAMR":\
-    line="B_SATA_PPARAMR_RXFIFO_DEPTH":\
-    line="B_SATA_PPARAMR_TXFIFO_DEPTH":\
-    line="B_SATA_PPARAMR_RX_MEM_S":\
-    line="B_SATA_PPARAMR_RX_MEM_M":\
-    line="B_SATA_PPARAMR_TX_MEM_S":\
-    line="B_SATA_PPARAMR_TX_MEM_M":\
-    line="B_SATA_PPARAMR_TX_MEM_S":\
-    line="B_SATA_PPARAMR_TX_MEM_M":\
     line="$$":\
     line="$+":\
     line="=G_SATA_TESTR":\
@@ -932,5 +843,6 @@ Advanced_Information.Cortex-A9={\
     line="B_SATA_P0PHYSR_CR_DATA_OUT":\
     line="B_SATA_P0PHYSR_CR_ACK":\
     line="$$":\
-  }:ARM_config={}\
+  }\
+  :ARM_config={}\
 }

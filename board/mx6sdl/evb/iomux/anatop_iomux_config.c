@@ -59,8 +59,8 @@ void anatop_iomux_config(void)
     //               NOTE: Instance: anatop,   In Pin: usb_otg_id
     //     SEL_ENET_RX_ER_ALT0 (0) - Selecting Pad: ENET_RX_ER for Mode: ALT0.
     //     SEL_GPIO_1_ALT3 (1) - Selecting Pad: GPIO_1 for Mode: ALT3.
-    HW_IOMUXC_ANATOP_USB_OTG_ID_SELECT_INPUT_WR(
-            BF_IOMUXC_ANATOP_USB_OTG_ID_SELECT_INPUT_DAISY(SEL_ENET_RX_ER_ALT0));
+    HW_IOMUXC_USB_OTG_ID_SELECT_INPUT_WR(
+            BF_IOMUXC_USB_OTG_ID_SELECT_INPUT_DAISY(SEL_ENET_RX_ER_ALT0));
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_GPIO_1(0x020E05E0)
     //   HYS [16] - Hysteresis Enable Field Reset: HYS_ENABLED

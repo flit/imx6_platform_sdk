@@ -2,727 +2,763 @@
 description="Freescale iMX6SDL development kit"
 Advanced_Information.Cortex-A9={\
   Memory_block.default={}\
-  :Memory_block.M_ECSPI1={\
-    start=0x02008000:length=0x00000044:description="ECSPI1"\
-  }:Memory_block.M_ECSPI2={\
-    start=0x0200c000:length=0x00000044:description="ECSPI2"\
-  }:Memory_block.M_ECSPI3={\
-    start=0x02010000:length=0x00000044:description="ECSPI3"\
-  }:Memory_block.M_ECSPI4={\
-    start=0x02014000:length=0x00000044:description="ECSPI4"\
-  }:\
   Map_Rule.default={}:Register_enum.default={}:Register.default={\
     bit_fields.default={}\
   }:Concat_Register.default={}:Peripherals.default={\
     Register.default={\
       bit_fields.default={}\
     }\
-  }:Peripherals.ECSPI1={\
-    base=Absolute:description="":Register.G_1ECSPI_RXDATA={\
-      gui_name="RXDATA":start=0x02008000:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_1ECSPI_RXDATA_ECSPI_RXDATA={\
+  }\
+  :Peripherals.ECSPI1={\
+    base=Absolute:description=""\
+    :Register.G_1ECSPI_RXDATA={\
+      gui_name="RXDATA":start=0x2008000:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_1ECSPI_RXDATA_ECSPI_RXDATA={\
         gui_name="ECSPI_RXDATA":position=0:size=32:read_only=true\
       }\
-    }:Register.G_1ECSPI_TXDATA={\
-      gui_name="TXDATA":start=0x02008004:length=4:\
-      read_only=false:write_only=true:\
-        bit_fields.B_1ECSPI_TXDATA_ECSPI_TXDATA={\
+    }\
+    :Register.G_1ECSPI_TXDATA={\
+      gui_name="TXDATA":start=0x2008004:length=4:\
+      read_only=false:write_only=true\
+      :bit_fields.B_1ECSPI_TXDATA_ECSPI_TXDATA={\
         gui_name="ECSPI_TXDATA":position=0:size=32:read_only=false\
       }\
-    }:Register.G_1ECSPI_CONREG={\
-      gui_name="CONREG":start=0x02008008:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_1ECSPI_CONREG_EN={\
+    }\
+    :Register.G_1ECSPI_CONREG={\
+      gui_name="CONREG":start=0x2008008:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_1ECSPI_CONREG_EN={\
         gui_name="EN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONREG_HT={\
+      }\
+      :bit_fields.B_1ECSPI_CONREG_HT={\
         gui_name="HT":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONREG_XCH={\
+      }\
+      :bit_fields.B_1ECSPI_CONREG_XCH={\
         gui_name="XCH":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONREG_SMC={\
+      }\
+      :bit_fields.B_1ECSPI_CONREG_SMC={\
         gui_name="SMC":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONREG_CHANNEL_MODE={\
+      }\
+      :bit_fields.B_1ECSPI_CONREG_CHANNEL_MODE={\
         gui_name="CHANNEL_MODE":position=4:size=4:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONREG_POST_DIVIDER={\
+      }\
+      :bit_fields.B_1ECSPI_CONREG_POST_DIVIDER={\
         gui_name="POST_DIVIDER":position=8:size=4:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONREG_PRE_DIVIDER={\
+      }\
+      :bit_fields.B_1ECSPI_CONREG_PRE_DIVIDER={\
         gui_name="PRE_DIVIDER":position=12:size=4:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONREG_DRCTL={\
+      }\
+      :bit_fields.B_1ECSPI_CONREG_DRCTL={\
         gui_name="DRCTL":position=16:size=2:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONREG_CHANNEL_SELECT={\
+      }\
+      :bit_fields.B_1ECSPI_CONREG_CHANNEL_SELECT={\
         gui_name="CHANNEL_SELECT":position=18:size=2:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONREG_BURST_LENGTH={\
+      }\
+      :bit_fields.B_1ECSPI_CONREG_BURST_LENGTH={\
         gui_name="BURST_LENGTH":position=20:size=12:read_only=false\
       }\
-    }:Register.G_1ECSPI_CONFIGREG={\
-      gui_name="CONFIGREG":start=0x0200800c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_1ECSPI_CONFIGREG_SCLK_PHA={\
+    }\
+    :Register.G_1ECSPI_CONFIGREG={\
+      gui_name="CONFIGREG":start=0x200800c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_1ECSPI_CONFIGREG_SCLK_PHA={\
         gui_name="SCLK_PHA":position=0:size=4:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONFIGREG_SCLK_POL={\
+      }\
+      :bit_fields.B_1ECSPI_CONFIGREG_SCLK_POL={\
         gui_name="SCLK_POL":position=4:size=4:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONFIGREG_SS_CTL={\
+      }\
+      :bit_fields.B_1ECSPI_CONFIGREG_SS_CTL={\
         gui_name="SS_CTL":position=8:size=4:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONFIGREG_SS_POL={\
+      }\
+      :bit_fields.B_1ECSPI_CONFIGREG_SS_POL={\
         gui_name="SS_POL":position=12:size=4:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONFIGREG_DATA_CTL={\
+      }\
+      :bit_fields.B_1ECSPI_CONFIGREG_DATA_CTL={\
         gui_name="DATA_CTL":position=16:size=4:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONFIGREG_SCLK_CTL={\
+      }\
+      :bit_fields.B_1ECSPI_CONFIGREG_SCLK_CTL={\
         gui_name="SCLK_CTL":position=20:size=4:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_CONFIGREG_HT_LENGTH={\
+      }\
+      :bit_fields.B_1ECSPI_CONFIGREG_HT_LENGTH={\
         gui_name="HT_LENGTH":position=24:size=5:read_only=false\
       }\
-    }:Register.G_1ECSPI_INTREG={\
-      gui_name="INTREG":start=0x02008010:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_1ECSPI_INTREG_TEEN={\
+    }\
+    :Register.G_1ECSPI_INTREG={\
+      gui_name="INTREG":start=0x2008010:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_1ECSPI_INTREG_TEEN={\
         gui_name="TEEN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_INTREG_TDREN={\
+      }\
+      :bit_fields.B_1ECSPI_INTREG_TDREN={\
         gui_name="TDREN":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_INTREG_TFEN={\
+      }\
+      :bit_fields.B_1ECSPI_INTREG_TFEN={\
         gui_name="TFEN":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_INTREG_RREN={\
+      }\
+      :bit_fields.B_1ECSPI_INTREG_RREN={\
         gui_name="RREN":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_INTREG_RDREN={\
+      }\
+      :bit_fields.B_1ECSPI_INTREG_RDREN={\
         gui_name="RDREN":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_INTREG_RFEN={\
+      }\
+      :bit_fields.B_1ECSPI_INTREG_RFEN={\
         gui_name="RFEN":position=5:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_INTREG_ROEN={\
+      }\
+      :bit_fields.B_1ECSPI_INTREG_ROEN={\
         gui_name="ROEN":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_INTREG_TCEN={\
+      }\
+      :bit_fields.B_1ECSPI_INTREG_TCEN={\
         gui_name="TCEN":position=7:size=1:read_only=false\
       }\
-    }:Register.G_1ECSPI_DMAREG={\
-      gui_name="DMAREG":start=0x02008014:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_1ECSPI_DMAREG_TX_THRESHOLD={\
+    }\
+    :Register.G_1ECSPI_DMAREG={\
+      gui_name="DMAREG":start=0x2008014:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_1ECSPI_DMAREG_TX_THRESHOLD={\
         gui_name="TX_THRESHOLD":position=0:size=6:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_DMAREG_TEDEN={\
+      }\
+      :bit_fields.B_1ECSPI_DMAREG_TEDEN={\
         gui_name="TEDEN":position=7:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_DMAREG_RX_THRESHOLD={\
+      }\
+      :bit_fields.B_1ECSPI_DMAREG_RX_THRESHOLD={\
         gui_name="RX_THRESHOLD":position=16:size=6:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_DMAREG_RXDEN={\
+      }\
+      :bit_fields.B_1ECSPI_DMAREG_RXDEN={\
         gui_name="RXDEN":position=23:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_DMAREG_RX_DMA_LENGTH={\
+      }\
+      :bit_fields.B_1ECSPI_DMAREG_RX_DMA_LENGTH={\
         gui_name="RX_DMA_LENGTH":position=24:size=6:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_DMAREG_RXTDEN={\
+      }\
+      :bit_fields.B_1ECSPI_DMAREG_RXTDEN={\
         gui_name="RXTDEN":position=31:size=1:read_only=false\
       }\
-    }:Register.G_1ECSPI_STATREG={\
-      gui_name="STATREG":start=0x02008018:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_1ECSPI_STATREG_TE={\
+    }\
+    :Register.G_1ECSPI_STATREG={\
+      gui_name="STATREG":start=0x2008018:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_1ECSPI_STATREG_TE={\
         gui_name="TE":position=0:size=1:read_only=true\
-      }:\
-        bit_fields.B_1ECSPI_STATREG_TDR={\
+      }\
+      :bit_fields.B_1ECSPI_STATREG_TDR={\
         gui_name="TDR":position=1:size=1:read_only=true\
-      }:\
-        bit_fields.B_1ECSPI_STATREG_TF={\
+      }\
+      :bit_fields.B_1ECSPI_STATREG_TF={\
         gui_name="TF":position=2:size=1:read_only=true\
-      }:\
-        bit_fields.B_1ECSPI_STATREG_RR={\
+      }\
+      :bit_fields.B_1ECSPI_STATREG_RR={\
         gui_name="RR":position=3:size=1:read_only=true\
-      }:\
-        bit_fields.B_1ECSPI_STATREG_RDR={\
+      }\
+      :bit_fields.B_1ECSPI_STATREG_RDR={\
         gui_name="RDR":position=4:size=1:read_only=true\
-      }:\
-        bit_fields.B_1ECSPI_STATREG_RF={\
+      }\
+      :bit_fields.B_1ECSPI_STATREG_RF={\
         gui_name="RF":position=5:size=1:read_only=true\
-      }:\
-        bit_fields.B_1ECSPI_STATREG_RO={\
+      }\
+      :bit_fields.B_1ECSPI_STATREG_RO={\
         gui_name="RO":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_STATREG_TC={\
+      }\
+      :bit_fields.B_1ECSPI_STATREG_TC={\
         gui_name="TC":position=7:size=1:read_only=false\
       }\
-    }:Register.G_1ECSPI_PERIODREG={\
-      gui_name="PERIODREG":start=0x0200801c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_1ECSPI_PERIODREG_SAMPLE_PERIOD={\
+    }\
+    :Register.G_1ECSPI_PERIODREG={\
+      gui_name="PERIODREG":start=0x200801c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_1ECSPI_PERIODREG_SAMPLE_PERIOD={\
         gui_name="SAMPLE_PERIOD":position=0:size=15:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_PERIODREG_CSRC={\
+      }\
+      :bit_fields.B_1ECSPI_PERIODREG_CSRC={\
         gui_name="CSRC":position=15:size=1:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_PERIODREG_CSD_CTL={\
+      }\
+      :bit_fields.B_1ECSPI_PERIODREG_CSD_CTL={\
         gui_name="CSD_CTL":position=16:size=6:read_only=false\
       }\
-    }:Register.G_1ECSPI_TESTREG={\
-      gui_name="TESTREG":start=0x02008020:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_1ECSPI_TESTREG_TXCNT={\
+    }\
+    :Register.G_1ECSPI_TESTREG={\
+      gui_name="TESTREG":start=0x2008020:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_1ECSPI_TESTREG_TXCNT={\
         gui_name="TXCNT":position=0:size=7:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_TESTREG_RXCNT={\
+      }\
+      :bit_fields.B_1ECSPI_TESTREG_RXCNT={\
         gui_name="RXCNT":position=8:size=7:read_only=false\
-      }:\
-        bit_fields.B_1ECSPI_TESTREG_LBC={\
+      }\
+      :bit_fields.B_1ECSPI_TESTREG_LBC={\
         gui_name="LBC":position=31:size=1:read_only=false\
       }\
-    }:Register.G_1ECSPI_MSGDATA={\
-      gui_name="MSGDATA":start=0x02008040:length=4:\
-      read_only=false:write_only=true:\
-        bit_fields.B_1ECSPI_MSGDATA_ECSPI_MSGDATA={\
+    }\
+    :Register.G_1ECSPI_MSGDATA={\
+      gui_name="MSGDATA":start=0x2008040:length=4:\
+      read_only=false:write_only=true\
+      :bit_fields.B_1ECSPI_MSGDATA_ECSPI_MSGDATA={\
         gui_name="ECSPI_MSGDATA":position=0:size=32:read_only=false\
       }\
     }\
-  }:Peripherals.ECSPI2={\
-    base=Absolute:description="":Register.G_2ECSPI_RXDATA={\
-      gui_name="RXDATA":start=0x0200c000:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_2ECSPI_RXDATA_ECSPI_RXDATA={\
+  }\
+  :Peripherals.ECSPI2={\
+    base=Absolute:description=""\
+    :Register.G_2ECSPI_RXDATA={\
+      gui_name="RXDATA":start=0x200c000:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_2ECSPI_RXDATA_ECSPI_RXDATA={\
         gui_name="ECSPI_RXDATA":position=0:size=32:read_only=true\
       }\
-    }:Register.G_2ECSPI_TXDATA={\
-      gui_name="TXDATA":start=0x0200c004:length=4:\
-      read_only=false:write_only=true:\
-        bit_fields.B_2ECSPI_TXDATA_ECSPI_TXDATA={\
+    }\
+    :Register.G_2ECSPI_TXDATA={\
+      gui_name="TXDATA":start=0x200c004:length=4:\
+      read_only=false:write_only=true\
+      :bit_fields.B_2ECSPI_TXDATA_ECSPI_TXDATA={\
         gui_name="ECSPI_TXDATA":position=0:size=32:read_only=false\
       }\
-    }:Register.G_2ECSPI_CONREG={\
-      gui_name="CONREG":start=0x0200c008:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_2ECSPI_CONREG_EN={\
+    }\
+    :Register.G_2ECSPI_CONREG={\
+      gui_name="CONREG":start=0x200c008:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_2ECSPI_CONREG_EN={\
         gui_name="EN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONREG_HT={\
+      }\
+      :bit_fields.B_2ECSPI_CONREG_HT={\
         gui_name="HT":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONREG_XCH={\
+      }\
+      :bit_fields.B_2ECSPI_CONREG_XCH={\
         gui_name="XCH":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONREG_SMC={\
+      }\
+      :bit_fields.B_2ECSPI_CONREG_SMC={\
         gui_name="SMC":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONREG_CHANNEL_MODE={\
+      }\
+      :bit_fields.B_2ECSPI_CONREG_CHANNEL_MODE={\
         gui_name="CHANNEL_MODE":position=4:size=4:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONREG_POST_DIVIDER={\
+      }\
+      :bit_fields.B_2ECSPI_CONREG_POST_DIVIDER={\
         gui_name="POST_DIVIDER":position=8:size=4:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONREG_PRE_DIVIDER={\
+      }\
+      :bit_fields.B_2ECSPI_CONREG_PRE_DIVIDER={\
         gui_name="PRE_DIVIDER":position=12:size=4:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONREG_DRCTL={\
+      }\
+      :bit_fields.B_2ECSPI_CONREG_DRCTL={\
         gui_name="DRCTL":position=16:size=2:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONREG_CHANNEL_SELECT={\
+      }\
+      :bit_fields.B_2ECSPI_CONREG_CHANNEL_SELECT={\
         gui_name="CHANNEL_SELECT":position=18:size=2:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONREG_BURST_LENGTH={\
+      }\
+      :bit_fields.B_2ECSPI_CONREG_BURST_LENGTH={\
         gui_name="BURST_LENGTH":position=20:size=12:read_only=false\
       }\
-    }:Register.G_2ECSPI_CONFIGREG={\
-      gui_name="CONFIGREG":start=0x0200c00c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_2ECSPI_CONFIGREG_SCLK_PHA={\
+    }\
+    :Register.G_2ECSPI_CONFIGREG={\
+      gui_name="CONFIGREG":start=0x200c00c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_2ECSPI_CONFIGREG_SCLK_PHA={\
         gui_name="SCLK_PHA":position=0:size=4:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONFIGREG_SCLK_POL={\
+      }\
+      :bit_fields.B_2ECSPI_CONFIGREG_SCLK_POL={\
         gui_name="SCLK_POL":position=4:size=4:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONFIGREG_SS_CTL={\
+      }\
+      :bit_fields.B_2ECSPI_CONFIGREG_SS_CTL={\
         gui_name="SS_CTL":position=8:size=4:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONFIGREG_SS_POL={\
+      }\
+      :bit_fields.B_2ECSPI_CONFIGREG_SS_POL={\
         gui_name="SS_POL":position=12:size=4:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONFIGREG_DATA_CTL={\
+      }\
+      :bit_fields.B_2ECSPI_CONFIGREG_DATA_CTL={\
         gui_name="DATA_CTL":position=16:size=4:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONFIGREG_SCLK_CTL={\
+      }\
+      :bit_fields.B_2ECSPI_CONFIGREG_SCLK_CTL={\
         gui_name="SCLK_CTL":position=20:size=4:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_CONFIGREG_HT_LENGTH={\
+      }\
+      :bit_fields.B_2ECSPI_CONFIGREG_HT_LENGTH={\
         gui_name="HT_LENGTH":position=24:size=5:read_only=false\
       }\
-    }:Register.G_2ECSPI_INTREG={\
-      gui_name="INTREG":start=0x0200c010:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_2ECSPI_INTREG_TEEN={\
+    }\
+    :Register.G_2ECSPI_INTREG={\
+      gui_name="INTREG":start=0x200c010:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_2ECSPI_INTREG_TEEN={\
         gui_name="TEEN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_INTREG_TDREN={\
+      }\
+      :bit_fields.B_2ECSPI_INTREG_TDREN={\
         gui_name="TDREN":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_INTREG_TFEN={\
+      }\
+      :bit_fields.B_2ECSPI_INTREG_TFEN={\
         gui_name="TFEN":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_INTREG_RREN={\
+      }\
+      :bit_fields.B_2ECSPI_INTREG_RREN={\
         gui_name="RREN":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_INTREG_RDREN={\
+      }\
+      :bit_fields.B_2ECSPI_INTREG_RDREN={\
         gui_name="RDREN":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_INTREG_RFEN={\
+      }\
+      :bit_fields.B_2ECSPI_INTREG_RFEN={\
         gui_name="RFEN":position=5:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_INTREG_ROEN={\
+      }\
+      :bit_fields.B_2ECSPI_INTREG_ROEN={\
         gui_name="ROEN":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_INTREG_TCEN={\
+      }\
+      :bit_fields.B_2ECSPI_INTREG_TCEN={\
         gui_name="TCEN":position=7:size=1:read_only=false\
       }\
-    }:Register.G_2ECSPI_DMAREG={\
-      gui_name="DMAREG":start=0x0200c014:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_2ECSPI_DMAREG_TX_THRESHOLD={\
+    }\
+    :Register.G_2ECSPI_DMAREG={\
+      gui_name="DMAREG":start=0x200c014:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_2ECSPI_DMAREG_TX_THRESHOLD={\
         gui_name="TX_THRESHOLD":position=0:size=6:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_DMAREG_TEDEN={\
+      }\
+      :bit_fields.B_2ECSPI_DMAREG_TEDEN={\
         gui_name="TEDEN":position=7:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_DMAREG_RX_THRESHOLD={\
+      }\
+      :bit_fields.B_2ECSPI_DMAREG_RX_THRESHOLD={\
         gui_name="RX_THRESHOLD":position=16:size=6:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_DMAREG_RXDEN={\
+      }\
+      :bit_fields.B_2ECSPI_DMAREG_RXDEN={\
         gui_name="RXDEN":position=23:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_DMAREG_RX_DMA_LENGTH={\
+      }\
+      :bit_fields.B_2ECSPI_DMAREG_RX_DMA_LENGTH={\
         gui_name="RX_DMA_LENGTH":position=24:size=6:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_DMAREG_RXTDEN={\
+      }\
+      :bit_fields.B_2ECSPI_DMAREG_RXTDEN={\
         gui_name="RXTDEN":position=31:size=1:read_only=false\
       }\
-    }:Register.G_2ECSPI_STATREG={\
-      gui_name="STATREG":start=0x0200c018:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_2ECSPI_STATREG_TE={\
+    }\
+    :Register.G_2ECSPI_STATREG={\
+      gui_name="STATREG":start=0x200c018:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_2ECSPI_STATREG_TE={\
         gui_name="TE":position=0:size=1:read_only=true\
-      }:\
-        bit_fields.B_2ECSPI_STATREG_TDR={\
+      }\
+      :bit_fields.B_2ECSPI_STATREG_TDR={\
         gui_name="TDR":position=1:size=1:read_only=true\
-      }:\
-        bit_fields.B_2ECSPI_STATREG_TF={\
+      }\
+      :bit_fields.B_2ECSPI_STATREG_TF={\
         gui_name="TF":position=2:size=1:read_only=true\
-      }:\
-        bit_fields.B_2ECSPI_STATREG_RR={\
+      }\
+      :bit_fields.B_2ECSPI_STATREG_RR={\
         gui_name="RR":position=3:size=1:read_only=true\
-      }:\
-        bit_fields.B_2ECSPI_STATREG_RDR={\
+      }\
+      :bit_fields.B_2ECSPI_STATREG_RDR={\
         gui_name="RDR":position=4:size=1:read_only=true\
-      }:\
-        bit_fields.B_2ECSPI_STATREG_RF={\
+      }\
+      :bit_fields.B_2ECSPI_STATREG_RF={\
         gui_name="RF":position=5:size=1:read_only=true\
-      }:\
-        bit_fields.B_2ECSPI_STATREG_RO={\
+      }\
+      :bit_fields.B_2ECSPI_STATREG_RO={\
         gui_name="RO":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_STATREG_TC={\
+      }\
+      :bit_fields.B_2ECSPI_STATREG_TC={\
         gui_name="TC":position=7:size=1:read_only=false\
       }\
-    }:Register.G_2ECSPI_PERIODREG={\
-      gui_name="PERIODREG":start=0x0200c01c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_2ECSPI_PERIODREG_SAMPLE_PERIOD={\
+    }\
+    :Register.G_2ECSPI_PERIODREG={\
+      gui_name="PERIODREG":start=0x200c01c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_2ECSPI_PERIODREG_SAMPLE_PERIOD={\
         gui_name="SAMPLE_PERIOD":position=0:size=15:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_PERIODREG_CSRC={\
+      }\
+      :bit_fields.B_2ECSPI_PERIODREG_CSRC={\
         gui_name="CSRC":position=15:size=1:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_PERIODREG_CSD_CTL={\
+      }\
+      :bit_fields.B_2ECSPI_PERIODREG_CSD_CTL={\
         gui_name="CSD_CTL":position=16:size=6:read_only=false\
       }\
-    }:Register.G_2ECSPI_TESTREG={\
-      gui_name="TESTREG":start=0x0200c020:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_2ECSPI_TESTREG_TXCNT={\
+    }\
+    :Register.G_2ECSPI_TESTREG={\
+      gui_name="TESTREG":start=0x200c020:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_2ECSPI_TESTREG_TXCNT={\
         gui_name="TXCNT":position=0:size=7:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_TESTREG_RXCNT={\
+      }\
+      :bit_fields.B_2ECSPI_TESTREG_RXCNT={\
         gui_name="RXCNT":position=8:size=7:read_only=false\
-      }:\
-        bit_fields.B_2ECSPI_TESTREG_LBC={\
+      }\
+      :bit_fields.B_2ECSPI_TESTREG_LBC={\
         gui_name="LBC":position=31:size=1:read_only=false\
       }\
-    }:Register.G_2ECSPI_MSGDATA={\
-      gui_name="MSGDATA":start=0x0200c040:length=4:\
-      read_only=false:write_only=true:\
-        bit_fields.B_2ECSPI_MSGDATA_ECSPI_MSGDATA={\
+    }\
+    :Register.G_2ECSPI_MSGDATA={\
+      gui_name="MSGDATA":start=0x200c040:length=4:\
+      read_only=false:write_only=true\
+      :bit_fields.B_2ECSPI_MSGDATA_ECSPI_MSGDATA={\
         gui_name="ECSPI_MSGDATA":position=0:size=32:read_only=false\
       }\
     }\
-  }:Peripherals.ECSPI3={\
-    base=Absolute:description="":Register.G_3ECSPI_RXDATA={\
-      gui_name="RXDATA":start=0x02010000:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_3ECSPI_RXDATA_ECSPI_RXDATA={\
+  }\
+  :Peripherals.ECSPI3={\
+    base=Absolute:description=""\
+    :Register.G_3ECSPI_RXDATA={\
+      gui_name="RXDATA":start=0x2010000:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_3ECSPI_RXDATA_ECSPI_RXDATA={\
         gui_name="ECSPI_RXDATA":position=0:size=32:read_only=true\
       }\
-    }:Register.G_3ECSPI_TXDATA={\
-      gui_name="TXDATA":start=0x02010004:length=4:\
-      read_only=false:write_only=true:\
-        bit_fields.B_3ECSPI_TXDATA_ECSPI_TXDATA={\
+    }\
+    :Register.G_3ECSPI_TXDATA={\
+      gui_name="TXDATA":start=0x2010004:length=4:\
+      read_only=false:write_only=true\
+      :bit_fields.B_3ECSPI_TXDATA_ECSPI_TXDATA={\
         gui_name="ECSPI_TXDATA":position=0:size=32:read_only=false\
       }\
-    }:Register.G_3ECSPI_CONREG={\
-      gui_name="CONREG":start=0x02010008:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_3ECSPI_CONREG_EN={\
+    }\
+    :Register.G_3ECSPI_CONREG={\
+      gui_name="CONREG":start=0x2010008:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_3ECSPI_CONREG_EN={\
         gui_name="EN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONREG_HT={\
+      }\
+      :bit_fields.B_3ECSPI_CONREG_HT={\
         gui_name="HT":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONREG_XCH={\
+      }\
+      :bit_fields.B_3ECSPI_CONREG_XCH={\
         gui_name="XCH":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONREG_SMC={\
+      }\
+      :bit_fields.B_3ECSPI_CONREG_SMC={\
         gui_name="SMC":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONREG_CHANNEL_MODE={\
+      }\
+      :bit_fields.B_3ECSPI_CONREG_CHANNEL_MODE={\
         gui_name="CHANNEL_MODE":position=4:size=4:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONREG_POST_DIVIDER={\
+      }\
+      :bit_fields.B_3ECSPI_CONREG_POST_DIVIDER={\
         gui_name="POST_DIVIDER":position=8:size=4:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONREG_PRE_DIVIDER={\
+      }\
+      :bit_fields.B_3ECSPI_CONREG_PRE_DIVIDER={\
         gui_name="PRE_DIVIDER":position=12:size=4:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONREG_DRCTL={\
+      }\
+      :bit_fields.B_3ECSPI_CONREG_DRCTL={\
         gui_name="DRCTL":position=16:size=2:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONREG_CHANNEL_SELECT={\
+      }\
+      :bit_fields.B_3ECSPI_CONREG_CHANNEL_SELECT={\
         gui_name="CHANNEL_SELECT":position=18:size=2:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONREG_BURST_LENGTH={\
+      }\
+      :bit_fields.B_3ECSPI_CONREG_BURST_LENGTH={\
         gui_name="BURST_LENGTH":position=20:size=12:read_only=false\
       }\
-    }:Register.G_3ECSPI_CONFIGREG={\
-      gui_name="CONFIGREG":start=0x0201000c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_3ECSPI_CONFIGREG_SCLK_PHA={\
+    }\
+    :Register.G_3ECSPI_CONFIGREG={\
+      gui_name="CONFIGREG":start=0x201000c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_3ECSPI_CONFIGREG_SCLK_PHA={\
         gui_name="SCLK_PHA":position=0:size=4:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONFIGREG_SCLK_POL={\
+      }\
+      :bit_fields.B_3ECSPI_CONFIGREG_SCLK_POL={\
         gui_name="SCLK_POL":position=4:size=4:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONFIGREG_SS_CTL={\
+      }\
+      :bit_fields.B_3ECSPI_CONFIGREG_SS_CTL={\
         gui_name="SS_CTL":position=8:size=4:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONFIGREG_SS_POL={\
+      }\
+      :bit_fields.B_3ECSPI_CONFIGREG_SS_POL={\
         gui_name="SS_POL":position=12:size=4:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONFIGREG_DATA_CTL={\
+      }\
+      :bit_fields.B_3ECSPI_CONFIGREG_DATA_CTL={\
         gui_name="DATA_CTL":position=16:size=4:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONFIGREG_SCLK_CTL={\
+      }\
+      :bit_fields.B_3ECSPI_CONFIGREG_SCLK_CTL={\
         gui_name="SCLK_CTL":position=20:size=4:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_CONFIGREG_HT_LENGTH={\
+      }\
+      :bit_fields.B_3ECSPI_CONFIGREG_HT_LENGTH={\
         gui_name="HT_LENGTH":position=24:size=5:read_only=false\
       }\
-    }:Register.G_3ECSPI_INTREG={\
-      gui_name="INTREG":start=0x02010010:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_3ECSPI_INTREG_TEEN={\
+    }\
+    :Register.G_3ECSPI_INTREG={\
+      gui_name="INTREG":start=0x2010010:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_3ECSPI_INTREG_TEEN={\
         gui_name="TEEN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_INTREG_TDREN={\
+      }\
+      :bit_fields.B_3ECSPI_INTREG_TDREN={\
         gui_name="TDREN":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_INTREG_TFEN={\
+      }\
+      :bit_fields.B_3ECSPI_INTREG_TFEN={\
         gui_name="TFEN":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_INTREG_RREN={\
+      }\
+      :bit_fields.B_3ECSPI_INTREG_RREN={\
         gui_name="RREN":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_INTREG_RDREN={\
+      }\
+      :bit_fields.B_3ECSPI_INTREG_RDREN={\
         gui_name="RDREN":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_INTREG_RFEN={\
+      }\
+      :bit_fields.B_3ECSPI_INTREG_RFEN={\
         gui_name="RFEN":position=5:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_INTREG_ROEN={\
+      }\
+      :bit_fields.B_3ECSPI_INTREG_ROEN={\
         gui_name="ROEN":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_INTREG_TCEN={\
+      }\
+      :bit_fields.B_3ECSPI_INTREG_TCEN={\
         gui_name="TCEN":position=7:size=1:read_only=false\
       }\
-    }:Register.G_3ECSPI_DMAREG={\
-      gui_name="DMAREG":start=0x02010014:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_3ECSPI_DMAREG_TX_THRESHOLD={\
+    }\
+    :Register.G_3ECSPI_DMAREG={\
+      gui_name="DMAREG":start=0x2010014:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_3ECSPI_DMAREG_TX_THRESHOLD={\
         gui_name="TX_THRESHOLD":position=0:size=6:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_DMAREG_TEDEN={\
+      }\
+      :bit_fields.B_3ECSPI_DMAREG_TEDEN={\
         gui_name="TEDEN":position=7:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_DMAREG_RX_THRESHOLD={\
+      }\
+      :bit_fields.B_3ECSPI_DMAREG_RX_THRESHOLD={\
         gui_name="RX_THRESHOLD":position=16:size=6:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_DMAREG_RXDEN={\
+      }\
+      :bit_fields.B_3ECSPI_DMAREG_RXDEN={\
         gui_name="RXDEN":position=23:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_DMAREG_RX_DMA_LENGTH={\
+      }\
+      :bit_fields.B_3ECSPI_DMAREG_RX_DMA_LENGTH={\
         gui_name="RX_DMA_LENGTH":position=24:size=6:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_DMAREG_RXTDEN={\
+      }\
+      :bit_fields.B_3ECSPI_DMAREG_RXTDEN={\
         gui_name="RXTDEN":position=31:size=1:read_only=false\
       }\
-    }:Register.G_3ECSPI_STATREG={\
-      gui_name="STATREG":start=0x02010018:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_3ECSPI_STATREG_TE={\
+    }\
+    :Register.G_3ECSPI_STATREG={\
+      gui_name="STATREG":start=0x2010018:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_3ECSPI_STATREG_TE={\
         gui_name="TE":position=0:size=1:read_only=true\
-      }:\
-        bit_fields.B_3ECSPI_STATREG_TDR={\
+      }\
+      :bit_fields.B_3ECSPI_STATREG_TDR={\
         gui_name="TDR":position=1:size=1:read_only=true\
-      }:\
-        bit_fields.B_3ECSPI_STATREG_TF={\
+      }\
+      :bit_fields.B_3ECSPI_STATREG_TF={\
         gui_name="TF":position=2:size=1:read_only=true\
-      }:\
-        bit_fields.B_3ECSPI_STATREG_RR={\
+      }\
+      :bit_fields.B_3ECSPI_STATREG_RR={\
         gui_name="RR":position=3:size=1:read_only=true\
-      }:\
-        bit_fields.B_3ECSPI_STATREG_RDR={\
+      }\
+      :bit_fields.B_3ECSPI_STATREG_RDR={\
         gui_name="RDR":position=4:size=1:read_only=true\
-      }:\
-        bit_fields.B_3ECSPI_STATREG_RF={\
+      }\
+      :bit_fields.B_3ECSPI_STATREG_RF={\
         gui_name="RF":position=5:size=1:read_only=true\
-      }:\
-        bit_fields.B_3ECSPI_STATREG_RO={\
+      }\
+      :bit_fields.B_3ECSPI_STATREG_RO={\
         gui_name="RO":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_STATREG_TC={\
+      }\
+      :bit_fields.B_3ECSPI_STATREG_TC={\
         gui_name="TC":position=7:size=1:read_only=false\
       }\
-    }:Register.G_3ECSPI_PERIODREG={\
-      gui_name="PERIODREG":start=0x0201001c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_3ECSPI_PERIODREG_SAMPLE_PERIOD={\
+    }\
+    :Register.G_3ECSPI_PERIODREG={\
+      gui_name="PERIODREG":start=0x201001c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_3ECSPI_PERIODREG_SAMPLE_PERIOD={\
         gui_name="SAMPLE_PERIOD":position=0:size=15:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_PERIODREG_CSRC={\
+      }\
+      :bit_fields.B_3ECSPI_PERIODREG_CSRC={\
         gui_name="CSRC":position=15:size=1:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_PERIODREG_CSD_CTL={\
+      }\
+      :bit_fields.B_3ECSPI_PERIODREG_CSD_CTL={\
         gui_name="CSD_CTL":position=16:size=6:read_only=false\
       }\
-    }:Register.G_3ECSPI_TESTREG={\
-      gui_name="TESTREG":start=0x02010020:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_3ECSPI_TESTREG_TXCNT={\
+    }\
+    :Register.G_3ECSPI_TESTREG={\
+      gui_name="TESTREG":start=0x2010020:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_3ECSPI_TESTREG_TXCNT={\
         gui_name="TXCNT":position=0:size=7:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_TESTREG_RXCNT={\
+      }\
+      :bit_fields.B_3ECSPI_TESTREG_RXCNT={\
         gui_name="RXCNT":position=8:size=7:read_only=false\
-      }:\
-        bit_fields.B_3ECSPI_TESTREG_LBC={\
+      }\
+      :bit_fields.B_3ECSPI_TESTREG_LBC={\
         gui_name="LBC":position=31:size=1:read_only=false\
       }\
-    }:Register.G_3ECSPI_MSGDATA={\
-      gui_name="MSGDATA":start=0x02010040:length=4:\
-      read_only=false:write_only=true:\
-        bit_fields.B_3ECSPI_MSGDATA_ECSPI_MSGDATA={\
+    }\
+    :Register.G_3ECSPI_MSGDATA={\
+      gui_name="MSGDATA":start=0x2010040:length=4:\
+      read_only=false:write_only=true\
+      :bit_fields.B_3ECSPI_MSGDATA_ECSPI_MSGDATA={\
         gui_name="ECSPI_MSGDATA":position=0:size=32:read_only=false\
       }\
     }\
-  }:Peripherals.ECSPI4={\
-    base=Absolute:description="":Register.G_4ECSPI_RXDATA={\
-      gui_name="RXDATA":start=0x02014000:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_4ECSPI_RXDATA_ECSPI_RXDATA={\
+  }\
+  :Peripherals.ECSPI4={\
+    base=Absolute:description=""\
+    :Register.G_4ECSPI_RXDATA={\
+      gui_name="RXDATA":start=0x2014000:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_4ECSPI_RXDATA_ECSPI_RXDATA={\
         gui_name="ECSPI_RXDATA":position=0:size=32:read_only=true\
       }\
-    }:Register.G_4ECSPI_TXDATA={\
-      gui_name="TXDATA":start=0x02014004:length=4:\
-      read_only=false:write_only=true:\
-        bit_fields.B_4ECSPI_TXDATA_ECSPI_TXDATA={\
+    }\
+    :Register.G_4ECSPI_TXDATA={\
+      gui_name="TXDATA":start=0x2014004:length=4:\
+      read_only=false:write_only=true\
+      :bit_fields.B_4ECSPI_TXDATA_ECSPI_TXDATA={\
         gui_name="ECSPI_TXDATA":position=0:size=32:read_only=false\
       }\
-    }:Register.G_4ECSPI_CONREG={\
-      gui_name="CONREG":start=0x02014008:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_4ECSPI_CONREG_EN={\
+    }\
+    :Register.G_4ECSPI_CONREG={\
+      gui_name="CONREG":start=0x2014008:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_4ECSPI_CONREG_EN={\
         gui_name="EN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONREG_HT={\
+      }\
+      :bit_fields.B_4ECSPI_CONREG_HT={\
         gui_name="HT":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONREG_XCH={\
+      }\
+      :bit_fields.B_4ECSPI_CONREG_XCH={\
         gui_name="XCH":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONREG_SMC={\
+      }\
+      :bit_fields.B_4ECSPI_CONREG_SMC={\
         gui_name="SMC":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONREG_CHANNEL_MODE={\
+      }\
+      :bit_fields.B_4ECSPI_CONREG_CHANNEL_MODE={\
         gui_name="CHANNEL_MODE":position=4:size=4:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONREG_POST_DIVIDER={\
+      }\
+      :bit_fields.B_4ECSPI_CONREG_POST_DIVIDER={\
         gui_name="POST_DIVIDER":position=8:size=4:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONREG_PRE_DIVIDER={\
+      }\
+      :bit_fields.B_4ECSPI_CONREG_PRE_DIVIDER={\
         gui_name="PRE_DIVIDER":position=12:size=4:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONREG_DRCTL={\
+      }\
+      :bit_fields.B_4ECSPI_CONREG_DRCTL={\
         gui_name="DRCTL":position=16:size=2:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONREG_CHANNEL_SELECT={\
+      }\
+      :bit_fields.B_4ECSPI_CONREG_CHANNEL_SELECT={\
         gui_name="CHANNEL_SELECT":position=18:size=2:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONREG_BURST_LENGTH={\
+      }\
+      :bit_fields.B_4ECSPI_CONREG_BURST_LENGTH={\
         gui_name="BURST_LENGTH":position=20:size=12:read_only=false\
       }\
-    }:Register.G_4ECSPI_CONFIGREG={\
-      gui_name="CONFIGREG":start=0x0201400c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_4ECSPI_CONFIGREG_SCLK_PHA={\
+    }\
+    :Register.G_4ECSPI_CONFIGREG={\
+      gui_name="CONFIGREG":start=0x201400c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_4ECSPI_CONFIGREG_SCLK_PHA={\
         gui_name="SCLK_PHA":position=0:size=4:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONFIGREG_SCLK_POL={\
+      }\
+      :bit_fields.B_4ECSPI_CONFIGREG_SCLK_POL={\
         gui_name="SCLK_POL":position=4:size=4:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONFIGREG_SS_CTL={\
+      }\
+      :bit_fields.B_4ECSPI_CONFIGREG_SS_CTL={\
         gui_name="SS_CTL":position=8:size=4:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONFIGREG_SS_POL={\
+      }\
+      :bit_fields.B_4ECSPI_CONFIGREG_SS_POL={\
         gui_name="SS_POL":position=12:size=4:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONFIGREG_DATA_CTL={\
+      }\
+      :bit_fields.B_4ECSPI_CONFIGREG_DATA_CTL={\
         gui_name="DATA_CTL":position=16:size=4:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONFIGREG_SCLK_CTL={\
+      }\
+      :bit_fields.B_4ECSPI_CONFIGREG_SCLK_CTL={\
         gui_name="SCLK_CTL":position=20:size=4:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_CONFIGREG_HT_LENGTH={\
+      }\
+      :bit_fields.B_4ECSPI_CONFIGREG_HT_LENGTH={\
         gui_name="HT_LENGTH":position=24:size=5:read_only=false\
       }\
-    }:Register.G_4ECSPI_INTREG={\
-      gui_name="INTREG":start=0x02014010:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_4ECSPI_INTREG_TEEN={\
+    }\
+    :Register.G_4ECSPI_INTREG={\
+      gui_name="INTREG":start=0x2014010:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_4ECSPI_INTREG_TEEN={\
         gui_name="TEEN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_INTREG_TDREN={\
+      }\
+      :bit_fields.B_4ECSPI_INTREG_TDREN={\
         gui_name="TDREN":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_INTREG_TFEN={\
+      }\
+      :bit_fields.B_4ECSPI_INTREG_TFEN={\
         gui_name="TFEN":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_INTREG_RREN={\
+      }\
+      :bit_fields.B_4ECSPI_INTREG_RREN={\
         gui_name="RREN":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_INTREG_RDREN={\
+      }\
+      :bit_fields.B_4ECSPI_INTREG_RDREN={\
         gui_name="RDREN":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_INTREG_RFEN={\
+      }\
+      :bit_fields.B_4ECSPI_INTREG_RFEN={\
         gui_name="RFEN":position=5:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_INTREG_ROEN={\
+      }\
+      :bit_fields.B_4ECSPI_INTREG_ROEN={\
         gui_name="ROEN":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_INTREG_TCEN={\
+      }\
+      :bit_fields.B_4ECSPI_INTREG_TCEN={\
         gui_name="TCEN":position=7:size=1:read_only=false\
       }\
-    }:Register.G_4ECSPI_DMAREG={\
-      gui_name="DMAREG":start=0x02014014:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_4ECSPI_DMAREG_TX_THRESHOLD={\
+    }\
+    :Register.G_4ECSPI_DMAREG={\
+      gui_name="DMAREG":start=0x2014014:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_4ECSPI_DMAREG_TX_THRESHOLD={\
         gui_name="TX_THRESHOLD":position=0:size=6:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_DMAREG_TEDEN={\
+      }\
+      :bit_fields.B_4ECSPI_DMAREG_TEDEN={\
         gui_name="TEDEN":position=7:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_DMAREG_RX_THRESHOLD={\
+      }\
+      :bit_fields.B_4ECSPI_DMAREG_RX_THRESHOLD={\
         gui_name="RX_THRESHOLD":position=16:size=6:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_DMAREG_RXDEN={\
+      }\
+      :bit_fields.B_4ECSPI_DMAREG_RXDEN={\
         gui_name="RXDEN":position=23:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_DMAREG_RX_DMA_LENGTH={\
+      }\
+      :bit_fields.B_4ECSPI_DMAREG_RX_DMA_LENGTH={\
         gui_name="RX_DMA_LENGTH":position=24:size=6:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_DMAREG_RXTDEN={\
+      }\
+      :bit_fields.B_4ECSPI_DMAREG_RXTDEN={\
         gui_name="RXTDEN":position=31:size=1:read_only=false\
       }\
-    }:Register.G_4ECSPI_STATREG={\
-      gui_name="STATREG":start=0x02014018:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_4ECSPI_STATREG_TE={\
+    }\
+    :Register.G_4ECSPI_STATREG={\
+      gui_name="STATREG":start=0x2014018:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_4ECSPI_STATREG_TE={\
         gui_name="TE":position=0:size=1:read_only=true\
-      }:\
-        bit_fields.B_4ECSPI_STATREG_TDR={\
+      }\
+      :bit_fields.B_4ECSPI_STATREG_TDR={\
         gui_name="TDR":position=1:size=1:read_only=true\
-      }:\
-        bit_fields.B_4ECSPI_STATREG_TF={\
+      }\
+      :bit_fields.B_4ECSPI_STATREG_TF={\
         gui_name="TF":position=2:size=1:read_only=true\
-      }:\
-        bit_fields.B_4ECSPI_STATREG_RR={\
+      }\
+      :bit_fields.B_4ECSPI_STATREG_RR={\
         gui_name="RR":position=3:size=1:read_only=true\
-      }:\
-        bit_fields.B_4ECSPI_STATREG_RDR={\
+      }\
+      :bit_fields.B_4ECSPI_STATREG_RDR={\
         gui_name="RDR":position=4:size=1:read_only=true\
-      }:\
-        bit_fields.B_4ECSPI_STATREG_RF={\
+      }\
+      :bit_fields.B_4ECSPI_STATREG_RF={\
         gui_name="RF":position=5:size=1:read_only=true\
-      }:\
-        bit_fields.B_4ECSPI_STATREG_RO={\
+      }\
+      :bit_fields.B_4ECSPI_STATREG_RO={\
         gui_name="RO":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_STATREG_TC={\
+      }\
+      :bit_fields.B_4ECSPI_STATREG_TC={\
         gui_name="TC":position=7:size=1:read_only=false\
       }\
-    }:Register.G_4ECSPI_PERIODREG={\
-      gui_name="PERIODREG":start=0x0201401c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_4ECSPI_PERIODREG_SAMPLE_PERIOD={\
+    }\
+    :Register.G_4ECSPI_PERIODREG={\
+      gui_name="PERIODREG":start=0x201401c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_4ECSPI_PERIODREG_SAMPLE_PERIOD={\
         gui_name="SAMPLE_PERIOD":position=0:size=15:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_PERIODREG_CSRC={\
+      }\
+      :bit_fields.B_4ECSPI_PERIODREG_CSRC={\
         gui_name="CSRC":position=15:size=1:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_PERIODREG_CSD_CTL={\
+      }\
+      :bit_fields.B_4ECSPI_PERIODREG_CSD_CTL={\
         gui_name="CSD_CTL":position=16:size=6:read_only=false\
       }\
-    }:Register.G_4ECSPI_TESTREG={\
-      gui_name="TESTREG":start=0x02014020:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_4ECSPI_TESTREG_TXCNT={\
+    }\
+    :Register.G_4ECSPI_TESTREG={\
+      gui_name="TESTREG":start=0x2014020:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_4ECSPI_TESTREG_TXCNT={\
         gui_name="TXCNT":position=0:size=7:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_TESTREG_RXCNT={\
+      }\
+      :bit_fields.B_4ECSPI_TESTREG_RXCNT={\
         gui_name="RXCNT":position=8:size=7:read_only=false\
-      }:\
-        bit_fields.B_4ECSPI_TESTREG_LBC={\
+      }\
+      :bit_fields.B_4ECSPI_TESTREG_LBC={\
         gui_name="LBC":position=31:size=1:read_only=false\
       }\
-    }:Register.G_4ECSPI_MSGDATA={\
-      gui_name="MSGDATA":start=0x02014040:length=4:\
-      read_only=false:write_only=true:\
-        bit_fields.B_4ECSPI_MSGDATA_ECSPI_MSGDATA={\
+    }\
+    :Register.G_4ECSPI_MSGDATA={\
+      gui_name="MSGDATA":start=0x2014040:length=4:\
+      read_only=false:write_only=true\
+      :bit_fields.B_4ECSPI_MSGDATA_ECSPI_MSGDATA={\
         gui_name="ECSPI_MSGDATA":position=0:size=32:read_only=false\
       }\
     }\
-  }:Register_window.ECSPI1={\
-        line="$+":\
+  }\
+  :Register_window.ECSPI1={\
+    line="$+":\
     line="=G_1ECSPI_RXDATA":\
     line="B_1ECSPI_RXDATA_ECSPI_RXDATA":\
     line="$$":\
@@ -800,8 +836,9 @@ Advanced_Information.Cortex-A9={\
     line="=G_1ECSPI_MSGDATA":\
     line="B_1ECSPI_MSGDATA_ECSPI_MSGDATA":\
     line="$$":\
-  }:Register_window.ECSPI2={\
-        line="$+":\
+  }\
+  :Register_window.ECSPI2={\
+    line="$+":\
     line="=G_2ECSPI_RXDATA":\
     line="B_2ECSPI_RXDATA_ECSPI_RXDATA":\
     line="$$":\
@@ -879,8 +916,9 @@ Advanced_Information.Cortex-A9={\
     line="=G_2ECSPI_MSGDATA":\
     line="B_2ECSPI_MSGDATA_ECSPI_MSGDATA":\
     line="$$":\
-  }:Register_window.ECSPI3={\
-        line="$+":\
+  }\
+  :Register_window.ECSPI3={\
+    line="$+":\
     line="=G_3ECSPI_RXDATA":\
     line="B_3ECSPI_RXDATA_ECSPI_RXDATA":\
     line="$$":\
@@ -958,8 +996,9 @@ Advanced_Information.Cortex-A9={\
     line="=G_3ECSPI_MSGDATA":\
     line="B_3ECSPI_MSGDATA_ECSPI_MSGDATA":\
     line="$$":\
-  }:Register_window.ECSPI4={\
-        line="$+":\
+  }\
+  :Register_window.ECSPI4={\
+    line="$+":\
     line="=G_4ECSPI_RXDATA":\
     line="B_4ECSPI_RXDATA_ECSPI_RXDATA":\
     line="$$":\
@@ -1037,5 +1076,6 @@ Advanced_Information.Cortex-A9={\
     line="=G_4ECSPI_MSGDATA":\
     line="B_4ECSPI_MSGDATA_ECSPI_MSGDATA":\
     line="$$":\
-  }:ARM_config={}\
+  }\
+  :ARM_config={}\
 }

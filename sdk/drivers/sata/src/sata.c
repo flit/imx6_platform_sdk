@@ -684,13 +684,13 @@ static void sata_clock_init(sata_phy_ref_clk_t * phyclk)
         /*Set CLKO2 to ddr_clk_root,300MHz */
 //         writel(~(0x1F << 16), CCM_CCOSR);
 //         writel((0x9 << 16), CCM_CCOSR); //DDR
-        HW_CCM_CCOSR.B.CKO2_SEL = 9; // 125M_clk_root
+        HW_CCM_CCOSR.B.CLKO2_SEL = 9; // 125M_clk_root
 
         /*Set CLKO2 Divider as 3 to get 100MHz */
-        HW_CCM_CCOSR.B.CKO2_DIV = 2; // div 3
+        HW_CCM_CCOSR.B.CLKO2_DIV = 2; // div 3
 
         /*Enable CLKO2 */
-        HW_CCM_CCOSR.B.CKO2_EN = 1;
+        HW_CCM_CCOSR.B.CLKO2_EN = 1;
 
         PRINT(0, "+SATADBGMSG: SATA PHY Clock 100MHz Div of CLKO2\n");
         PRINT(0, "+SATADBGMSG: CCOSR = 0x%08x\n", HW_CCM_CCOSR_RD());

@@ -57,6 +57,7 @@ void start_secondary_cpu(uint32_t cpu_num, void functPtr(void))
         HW_SRC_SCR.B.CORE1_ENABLE = 1;
         break;
 
+#if defined(CHIP_MX6DQ)
     case 2:
         HW_SRC_GPR5_WR((uint32_t) & startup_imx6x);
         HW_SRC_GPR6_WR((uint32_t) functPtr);
@@ -70,6 +71,7 @@ void start_secondary_cpu(uint32_t cpu_num, void functPtr(void))
 
         HW_SRC_SCR.B.CORE3_ENABLE = 1;
         break;
+#endif // CHIP_MX6DQ
     }
 
     // Start secondary core.

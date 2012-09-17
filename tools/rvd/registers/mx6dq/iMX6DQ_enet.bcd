@@ -2,478 +2,516 @@
 description="Freescale iMX6DQ development kit"
 Advanced_Information.Cortex-A9={\
   Memory_block.default={}\
-  :Memory_block.M_ENET={\
-    start=0x02188004:length=0x00000418:description="ENET"\
-  }:\
   Map_Rule.default={}:Register_enum.default={}:Register.default={\
     bit_fields.default={}\
   }:Concat_Register.default={}:Peripherals.default={\
     Register.default={\
       bit_fields.default={}\
     }\
-  }:Peripherals.ENET={\
-    base=Absolute:description="":Register.G_ENET_EIR={\
-      gui_name="EIR":start=0x02188004:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_EIR_TS_TIMER={\
+  }\
+  :Peripherals.ENET={\
+    base=Absolute:description=""\
+    :Register.G_ENET_EIR={\
+      gui_name="EIR":start=0x2188004:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_EIR_TS_TIMER={\
         gui_name="TS_TIMER":position=15:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_TS_AVAIL={\
+      }\
+      :bit_fields.B_ENET_EIR_TS_AVAIL={\
         gui_name="TS_AVAIL":position=16:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_WAKEUP={\
+      }\
+      :bit_fields.B_ENET_EIR_WAKEUP={\
         gui_name="WAKEUP":position=17:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_PLR={\
+      }\
+      :bit_fields.B_ENET_EIR_PLR={\
         gui_name="PLR":position=18:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_UN={\
+      }\
+      :bit_fields.B_ENET_EIR_UN={\
         gui_name="UN":position=19:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_RL={\
+      }\
+      :bit_fields.B_ENET_EIR_RL={\
         gui_name="RL":position=20:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_LC={\
+      }\
+      :bit_fields.B_ENET_EIR_LC={\
         gui_name="LC":position=21:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_EBERR={\
+      }\
+      :bit_fields.B_ENET_EIR_EBERR={\
         gui_name="EBERR":position=22:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_MII={\
+      }\
+      :bit_fields.B_ENET_EIR_MII={\
         gui_name="MII":position=23:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_RXB={\
+      }\
+      :bit_fields.B_ENET_EIR_RXB={\
         gui_name="RXB":position=24:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_RXF={\
+      }\
+      :bit_fields.B_ENET_EIR_RXF={\
         gui_name="RXF":position=25:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_TXB={\
+      }\
+      :bit_fields.B_ENET_EIR_TXB={\
         gui_name="TXB":position=26:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_TXF={\
+      }\
+      :bit_fields.B_ENET_EIR_TXF={\
         gui_name="TXF":position=27:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_GRA={\
+      }\
+      :bit_fields.B_ENET_EIR_GRA={\
         gui_name="GRA":position=28:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_BABT={\
+      }\
+      :bit_fields.B_ENET_EIR_BABT={\
         gui_name="BABT":position=29:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIR_BABR={\
+      }\
+      :bit_fields.B_ENET_EIR_BABR={\
         gui_name="BABR":position=30:size=1:read_only=false\
       }\
-    }:Register.G_ENET_EIMR={\
-      gui_name="EIMR":start=0x02188008:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_EIMR_TS_TIMER={\
+    }\
+    :Register.G_ENET_EIMR={\
+      gui_name="EIMR":start=0x2188008:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_EIMR_TS_TIMER={\
         gui_name="TS_TIMER":position=15:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_TS_AVAIL={\
+      }\
+      :bit_fields.B_ENET_EIMR_TS_AVAIL={\
         gui_name="TS_AVAIL":position=16:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_WAKEUP={\
+      }\
+      :bit_fields.B_ENET_EIMR_WAKEUP={\
         gui_name="WAKEUP":position=17:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_PLR={\
+      }\
+      :bit_fields.B_ENET_EIMR_PLR={\
         gui_name="PLR":position=18:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_UN={\
+      }\
+      :bit_fields.B_ENET_EIMR_UN={\
         gui_name="UN":position=19:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_RL={\
+      }\
+      :bit_fields.B_ENET_EIMR_RL={\
         gui_name="RL":position=20:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_LC={\
+      }\
+      :bit_fields.B_ENET_EIMR_LC={\
         gui_name="LC":position=21:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_EBERR={\
+      }\
+      :bit_fields.B_ENET_EIMR_EBERR={\
         gui_name="EBERR":position=22:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_MII={\
+      }\
+      :bit_fields.B_ENET_EIMR_MII={\
         gui_name="MII":position=23:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_RXB={\
+      }\
+      :bit_fields.B_ENET_EIMR_RXB={\
         gui_name="RXB":position=24:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_RXF={\
+      }\
+      :bit_fields.B_ENET_EIMR_RXF={\
         gui_name="RXF":position=25:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_TXB={\
+      }\
+      :bit_fields.B_ENET_EIMR_TXB={\
         gui_name="TXB":position=26:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_TXF={\
+      }\
+      :bit_fields.B_ENET_EIMR_TXF={\
         gui_name="TXF":position=27:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_GRA={\
+      }\
+      :bit_fields.B_ENET_EIMR_GRA={\
         gui_name="GRA":position=28:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_BABT={\
+      }\
+      :bit_fields.B_ENET_EIMR_BABT={\
         gui_name="BABT":position=29:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_EIMR_BABR={\
+      }\
+      :bit_fields.B_ENET_EIMR_BABR={\
         gui_name="BABR":position=30:size=1:read_only=false\
       }\
-    }:Register.G_ENET_RDAR={\
-      gui_name="RDAR":start=0x02188010:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_RDAR_RDAR={\
+    }\
+    :Register.G_ENET_RDAR={\
+      gui_name="RDAR":start=0x2188010:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_RDAR_RDAR={\
         gui_name="RDAR":position=24:size=1:read_only=false\
       }\
-    }:Register.G_ENET_TDAR={\
-      gui_name="TDAR":start=0x02188014:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_TDAR_TDAR={\
+    }\
+    :Register.G_ENET_TDAR={\
+      gui_name="TDAR":start=0x2188014:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_TDAR_TDAR={\
         gui_name="TDAR":position=24:size=1:read_only=false\
       }\
-    }:Register.G_ENET_ECR={\
-      gui_name="ECR":start=0x02188024:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_ECR_RESET={\
+    }\
+    :Register.G_ENET_ECR={\
+      gui_name="ECR":start=0x2188024:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_ECR_RESET={\
         gui_name="RESET":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_ECR_ETHEREN={\
+      }\
+      :bit_fields.B_ENET_ECR_ETHEREN={\
         gui_name="ETHEREN":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_ECR_MAGICEN={\
+      }\
+      :bit_fields.B_ENET_ECR_MAGICEN={\
         gui_name="MAGICEN":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_ECR_SLEEP={\
+      }\
+      :bit_fields.B_ENET_ECR_SLEEP={\
         gui_name="SLEEP":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_ECR_EN1588={\
+      }\
+      :bit_fields.B_ENET_ECR_EN1588={\
         gui_name="EN1588":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_ECR_DBGEN={\
+      }\
+      :bit_fields.B_ENET_ECR_DBGEN={\
         gui_name="DBGEN":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_ECR_STOPEN={\
+      }\
+      :bit_fields.B_ENET_ECR_STOPEN={\
         gui_name="STOPEN":position=7:size=1:read_only=false\
       }\
-    }:Register.G_ENET_MMFR={\
-      gui_name="MMFR":start=0x02188040:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_MMFR_DATA={\
+    }\
+    :Register.G_ENET_MMFR={\
+      gui_name="MMFR":start=0x2188040:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_MMFR_DATA={\
         gui_name="DATA":position=0:size=16:read_only=false\
-      }:\
-        bit_fields.B_ENET_MMFR_TA={\
+      }\
+      :bit_fields.B_ENET_MMFR_TA={\
         gui_name="TA":position=16:size=2:read_only=false\
-      }:\
-        bit_fields.B_ENET_MMFR_RA={\
+      }\
+      :bit_fields.B_ENET_MMFR_RA={\
         gui_name="RA":position=18:size=5:read_only=false\
-      }:\
-        bit_fields.B_ENET_MMFR_PA={\
+      }\
+      :bit_fields.B_ENET_MMFR_PA={\
         gui_name="PA":position=23:size=5:read_only=false\
-      }:\
-        bit_fields.B_ENET_MMFR_OP={\
+      }\
+      :bit_fields.B_ENET_MMFR_OP={\
         gui_name="OP":position=28:size=2:read_only=false\
-      }:\
-        bit_fields.B_ENET_MMFR_ST={\
+      }\
+      :bit_fields.B_ENET_MMFR_ST={\
         gui_name="ST":position=30:size=2:read_only=false\
       }\
-    }:Register.G_ENET_MSCR={\
-      gui_name="MSCR":start=0x02188044:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_MSCR_MII_SPEED={\
+    }\
+    :Register.G_ENET_MSCR={\
+      gui_name="MSCR":start=0x2188044:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_MSCR_MII_SPEED={\
         gui_name="MII_SPEED":position=1:size=6:read_only=false\
-      }:\
-        bit_fields.B_ENET_MSCR_DIS_PRE={\
+      }\
+      :bit_fields.B_ENET_MSCR_DIS_PRE={\
         gui_name="DIS_PRE":position=7:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_MSCR_HOLDTIME={\
+      }\
+      :bit_fields.B_ENET_MSCR_HOLDTIME={\
         gui_name="HOLDTIME":position=8:size=3:read_only=false\
       }\
-    }:Register.G_ENET_MIBC={\
-      gui_name="MIBC":start=0x02188064:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_MIBC_MIB_CLEAR={\
+    }\
+    :Register.G_ENET_MIBC={\
+      gui_name="MIBC":start=0x2188064:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_MIBC_MIB_CLEAR={\
         gui_name="MIB_CLEAR":position=29:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_MIBC_MIB_IDLE={\
+      }\
+      :bit_fields.B_ENET_MIBC_MIB_IDLE={\
         gui_name="MIB_IDLE":position=30:size=1:read_only=true\
-      }:\
-        bit_fields.B_ENET_MIBC_MIB_DIS={\
+      }\
+      :bit_fields.B_ENET_MIBC_MIB_DIS={\
         gui_name="MIB_DIS":position=31:size=1:read_only=false\
       }\
-    }:Register.G_ENET_RCR={\
-      gui_name="RCR":start=0x02188084:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_RCR_LOOP={\
+    }\
+    :Register.G_ENET_RCR={\
+      gui_name="RCR":start=0x2188084:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_RCR_LOOP={\
         gui_name="LOOP":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_DRT={\
+      }\
+      :bit_fields.B_ENET_RCR_DRT={\
         gui_name="DRT":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_MII_MODE={\
+      }\
+      :bit_fields.B_ENET_RCR_MII_MODE={\
         gui_name="MII_MODE":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_PROM={\
+      }\
+      :bit_fields.B_ENET_RCR_PROM={\
         gui_name="PROM":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_BC_REJ={\
+      }\
+      :bit_fields.B_ENET_RCR_BC_REJ={\
         gui_name="BC_REJ":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_FCE={\
+      }\
+      :bit_fields.B_ENET_RCR_FCE={\
         gui_name="FCE":position=5:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_RMII_MODE={\
+      }\
+      :bit_fields.B_ENET_RCR_RMII_MODE={\
         gui_name="RMII_MODE":position=8:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_RMII_10T={\
+      }\
+      :bit_fields.B_ENET_RCR_RMII_10T={\
         gui_name="RMII_10T":position=9:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_PADEN={\
+      }\
+      :bit_fields.B_ENET_RCR_PADEN={\
         gui_name="PADEN":position=12:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_PAUFWD={\
+      }\
+      :bit_fields.B_ENET_RCR_PAUFWD={\
         gui_name="PAUFWD":position=13:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_CRCFWD={\
+      }\
+      :bit_fields.B_ENET_RCR_CRCFWD={\
         gui_name="CRCFWD":position=14:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_CFEN={\
+      }\
+      :bit_fields.B_ENET_RCR_CFEN={\
         gui_name="CFEN":position=15:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_MAX_FL={\
+      }\
+      :bit_fields.B_ENET_RCR_MAX_FL={\
         gui_name="MAX_FL":position=16:size=14:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_NLC={\
+      }\
+      :bit_fields.B_ENET_RCR_NLC={\
         gui_name="NLC":position=30:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RCR_GRS={\
+      }\
+      :bit_fields.B_ENET_RCR_GRS={\
         gui_name="GRS":position=31:size=1:read_only=true\
       }\
-    }:Register.G_ENET_TCR={\
-      gui_name="TCR":start=0x021880c4:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_TCR_GTS={\
+    }\
+    :Register.G_ENET_TCR={\
+      gui_name="TCR":start=0x21880c4:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_TCR_GTS={\
         gui_name="GTS":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_TCR_FDEN={\
+      }\
+      :bit_fields.B_ENET_TCR_FDEN={\
         gui_name="FDEN":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_TCR_TFC_PAUSE={\
+      }\
+      :bit_fields.B_ENET_TCR_TFC_PAUSE={\
         gui_name="TFC_PAUSE":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_TCR_RFC_PAUSE={\
+      }\
+      :bit_fields.B_ENET_TCR_RFC_PAUSE={\
         gui_name="RFC_PAUSE":position=4:size=1:read_only=true\
-      }:\
-        bit_fields.B_ENET_TCR_ADDSEL={\
+      }\
+      :bit_fields.B_ENET_TCR_ADDSEL={\
         gui_name="ADDSEL":position=5:size=3:read_only=false\
-      }:\
-        bit_fields.B_ENET_TCR_ADDINS={\
+      }\
+      :bit_fields.B_ENET_TCR_ADDINS={\
         gui_name="ADDINS":position=8:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_TCR_CRCFWD={\
+      }\
+      :bit_fields.B_ENET_TCR_CRCFWD={\
         gui_name="CRCFWD":position=9:size=1:read_only=false\
       }\
-    }:Register.G_ENET_PALR={\
-      gui_name="PALR":start=0x021880e4:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_PALR_PADDR1={\
+    }\
+    :Register.G_ENET_PALR={\
+      gui_name="PALR":start=0x21880e4:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_PALR_PADDR1={\
         gui_name="PADDR1":position=0:size=32:read_only=false\
       }\
-    }:Register.G_ENET_PAUR={\
-      gui_name="PAUR":start=0x021880e8:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_PAUR_TYPE={\
+    }\
+    :Register.G_ENET_PAUR={\
+      gui_name="PAUR":start=0x21880e8:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_PAUR_TYPE={\
         gui_name="TYPE":position=0:size=16:read_only=true\
-      }:\
-        bit_fields.B_ENET_PAUR_PADDR2={\
+      }\
+      :bit_fields.B_ENET_PAUR_PADDR2={\
         gui_name="PADDR2":position=16:size=16:read_only=false\
       }\
-    }:Register.G_ENET_OPD={\
-      gui_name="OPD":start=0x021880ec:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_OPD_PAUSE_DUR={\
+    }\
+    :Register.G_ENET_OPD={\
+      gui_name="OPD":start=0x21880ec:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_OPD_PAUSE_DUR={\
         gui_name="PAUSE_DUR":position=0:size=16:read_only=false\
-      }:\
-        bit_fields.B_ENET_OPD_OPCODE={\
+      }\
+      :bit_fields.B_ENET_OPD_OPCODE={\
         gui_name="OPCODE":position=16:size=16:read_only=true\
       }\
-    }:Register.G_ENET_IAUR={\
-      gui_name="IAUR":start=0x02188118:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_IAUR_IADDR1={\
+    }\
+    :Register.G_ENET_IAUR={\
+      gui_name="IAUR":start=0x2188118:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_IAUR_IADDR1={\
         gui_name="IADDR1":position=0:size=32:read_only=false\
       }\
-    }:Register.G_ENET_IALR={\
-      gui_name="IALR":start=0x0218811c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_IALR_IADDR2={\
+    }\
+    :Register.G_ENET_IALR={\
+      gui_name="IALR":start=0x218811c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_IALR_IADDR2={\
         gui_name="IADDR2":position=0:size=32:read_only=false\
       }\
-    }:Register.G_ENET_GAUR={\
-      gui_name="GAUR":start=0x02188120:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_GAUR_GADDR1={\
+    }\
+    :Register.G_ENET_GAUR={\
+      gui_name="GAUR":start=0x2188120:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_GAUR_GADDR1={\
         gui_name="GADDR1":position=0:size=32:read_only=false\
       }\
-    }:Register.G_ENET_GALR={\
-      gui_name="GALR":start=0x02188124:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_GALR_GADDR2={\
+    }\
+    :Register.G_ENET_GALR={\
+      gui_name="GALR":start=0x2188124:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_GALR_GADDR2={\
         gui_name="GADDR2":position=0:size=32:read_only=false\
       }\
-    }:Register.G_ENET_TFWR={\
-      gui_name="TFWR":start=0x02188144:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_TFWR_TFWR={\
+    }\
+    :Register.G_ENET_TFWR={\
+      gui_name="TFWR":start=0x2188144:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_TFWR_TFWR={\
         gui_name="TFWR":position=0:size=6:read_only=false\
-      }:\
-        bit_fields.B_ENET_TFWR_STRFWD={\
+      }\
+      :bit_fields.B_ENET_TFWR_STRFWD={\
         gui_name="STRFWD":position=8:size=1:read_only=false\
       }\
-    }:Register.G_ENET_RDSR={\
-      gui_name="RDSR":start=0x02188180:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_RDSR_R_DES_START={\
+    }\
+    :Register.G_ENET_RDSR={\
+      gui_name="RDSR":start=0x2188180:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_RDSR_R_DES_START={\
         gui_name="R_DES_START":position=3:size=29:read_only=false\
       }\
-    }:Register.G_ENET_TDSR={\
-      gui_name="TDSR":start=0x02188184:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_TDSR_X_DES_START={\
+    }\
+    :Register.G_ENET_TDSR={\
+      gui_name="TDSR":start=0x2188184:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_TDSR_X_DES_START={\
         gui_name="X_DES_START":position=3:size=29:read_only=false\
       }\
-    }:Register.G_ENET_MRBR={\
-      gui_name="MRBR":start=0x02188188:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_MRBR_R_BUF_SIZE={\
+    }\
+    :Register.G_ENET_MRBR={\
+      gui_name="MRBR":start=0x2188188:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_MRBR_R_BUF_SIZE={\
         gui_name="R_BUF_SIZE":position=4:size=10:read_only=false\
       }\
-    }:Register.G_ENET_RSFL={\
-      gui_name="RSFL":start=0x02188190:length=4:\
+    }\
+    :Register.G_ENET_RSFL={\
+      gui_name="RSFL":start=0x2188190:length=4:\
       read_only=false:write_only=false\
-    }:Register.G_ENET_RSEM={\
-      gui_name="RSEM":start=0x02188194:length=4:\
+    }\
+    :Register.G_ENET_RSEM={\
+      gui_name="RSEM":start=0x2188194:length=4:\
       read_only=false:write_only=false\
-    }:Register.G_ENET_RAEM={\
-      gui_name="RAEM":start=0x02188198:length=4:\
+    }\
+    :Register.G_ENET_RAEM={\
+      gui_name="RAEM":start=0x2188198:length=4:\
       read_only=false:write_only=false\
-    }:Register.G_ENET_RAFL={\
-      gui_name="RAFL":start=0x0218819c:length=4:\
+    }\
+    :Register.G_ENET_RAFL={\
+      gui_name="RAFL":start=0x218819c:length=4:\
       read_only=false:write_only=false\
-    }:Register.G_ENET_TSEM={\
-      gui_name="TSEM":start=0x021881a0:length=4:\
+    }\
+    :Register.G_ENET_TSEM={\
+      gui_name="TSEM":start=0x21881a0:length=4:\
       read_only=false:write_only=false\
-    }:Register.G_ENET_TAEM={\
-      gui_name="TAEM":start=0x021881a4:length=4:\
+    }\
+    :Register.G_ENET_TAEM={\
+      gui_name="TAEM":start=0x21881a4:length=4:\
       read_only=false:write_only=false\
-    }:Register.G_ENET_TAFL={\
-      gui_name="TAFL":start=0x021881a8:length=4:\
+    }\
+    :Register.G_ENET_TAFL={\
+      gui_name="TAFL":start=0x21881a8:length=4:\
       read_only=false:write_only=false\
-    }:Register.G_ENET_TIPG={\
-      gui_name="TIPG":start=0x021881ac:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_TIPG_IPG={\
+    }\
+    :Register.G_ENET_TIPG={\
+      gui_name="TIPG":start=0x21881ac:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_TIPG_IPG={\
         gui_name="IPG":position=0:size=5:read_only=false\
       }\
-    }:Register.G_ENET_FTRL={\
-      gui_name="FTRL":start=0x021881b0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_FTRL_TRUNC_FL={\
+    }\
+    :Register.G_ENET_FTRL={\
+      gui_name="FTRL":start=0x21881b0:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_FTRL_TRUNC_FL={\
         gui_name="TRUNC_FL":position=0:size=14:read_only=false\
       }\
-    }:Register.G_ENET_TACC={\
-      gui_name="TACC":start=0x021881c0:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_TACC_SHIFT16={\
+    }\
+    :Register.G_ENET_TACC={\
+      gui_name="TACC":start=0x21881c0:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_TACC_SHIFT16={\
         gui_name="SHIFT16":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_TACC_IPCHK={\
+      }\
+      :bit_fields.B_ENET_TACC_IPCHK={\
         gui_name="IPCHK":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_TACC_PROCHK={\
+      }\
+      :bit_fields.B_ENET_TACC_PROCHK={\
         gui_name="PROCHK":position=4:size=1:read_only=false\
       }\
-    }:Register.G_ENET_RACC={\
-      gui_name="RACC":start=0x021881c4:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_RACC_PADREM={\
+    }\
+    :Register.G_ENET_RACC={\
+      gui_name="RACC":start=0x21881c4:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_RACC_PADREM={\
         gui_name="PADREM":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RACC_IPDIS={\
+      }\
+      :bit_fields.B_ENET_RACC_IPDIS={\
         gui_name="IPDIS":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RACC_PRODIS={\
+      }\
+      :bit_fields.B_ENET_RACC_PRODIS={\
         gui_name="PRODIS":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RACC_LINEDIS={\
+      }\
+      :bit_fields.B_ENET_RACC_LINEDIS={\
         gui_name="LINEDIS":position=6:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_RACC_SHIFT16={\
+      }\
+      :bit_fields.B_ENET_RACC_SHIFT16={\
         gui_name="SHIFT16":position=7:size=1:read_only=false\
       }\
-    }:Register.G_ENET_ATCR={\
-      gui_name="ATCR":start=0x02188400:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_ATCR_EN={\
+    }\
+    :Register.G_ENET_ATCR={\
+      gui_name="ATCR":start=0x2188400:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_ATCR_EN={\
         gui_name="EN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_ATCR_OFFEN={\
+      }\
+      :bit_fields.B_ENET_ATCR_OFFEN={\
         gui_name="OFFEN":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_ATCR_OFFRST={\
+      }\
+      :bit_fields.B_ENET_ATCR_OFFRST={\
         gui_name="OFFRST":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_ATCR_PEREN={\
+      }\
+      :bit_fields.B_ENET_ATCR_PEREN={\
         gui_name="PEREN":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_ATCR_PINPER={\
+      }\
+      :bit_fields.B_ENET_ATCR_PINPER={\
         gui_name="PINPER":position=7:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_ATCR_RESTART={\
+      }\
+      :bit_fields.B_ENET_ATCR_RESTART={\
         gui_name="RESTART":position=9:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_ATCR_CAPTURE={\
+      }\
+      :bit_fields.B_ENET_ATCR_CAPTURE={\
         gui_name="CAPTURE":position=11:size=1:read_only=false\
-      }:\
-        bit_fields.B_ENET_ATCR_SLAVE={\
+      }\
+      :bit_fields.B_ENET_ATCR_SLAVE={\
         gui_name="SLAVE":position=13:size=1:read_only=false\
       }\
-    }:Register.G_ENET_ATVR={\
-      gui_name="ATVR":start=0x02188404:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_ATVR_ATIME={\
+    }\
+    :Register.G_ENET_ATVR={\
+      gui_name="ATVR":start=0x2188404:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_ATVR_ATIME={\
         gui_name="ATIME":position=0:size=32:read_only=false\
       }\
-    }:Register.G_ENET_ATOFF={\
-      gui_name="ATOFF":start=0x02188408:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_ATOFF_OFFSET={\
+    }\
+    :Register.G_ENET_ATOFF={\
+      gui_name="ATOFF":start=0x2188408:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_ATOFF_OFFSET={\
         gui_name="OFFSET":position=0:size=32:read_only=false\
       }\
-    }:Register.G_ENET_ATPER={\
-      gui_name="ATPER":start=0x0218840c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_ATPER_PERIOD={\
+    }\
+    :Register.G_ENET_ATPER={\
+      gui_name="ATPER":start=0x218840c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_ATPER_PERIOD={\
         gui_name="PERIOD":position=0:size=32:read_only=false\
       }\
-    }:Register.G_ENET_ATCOR={\
-      gui_name="ATCOR":start=0x02188410:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_ATCOR_COR={\
+    }\
+    :Register.G_ENET_ATCOR={\
+      gui_name="ATCOR":start=0x2188410:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_ATCOR_COR={\
         gui_name="COR":position=0:size=31:read_only=false\
       }\
-    }:Register.G_ENET_ATINC={\
-      gui_name="ATINC":start=0x02188414:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_ENET_ATINC_INC={\
+    }\
+    :Register.G_ENET_ATINC={\
+      gui_name="ATINC":start=0x2188414:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_ENET_ATINC_INC={\
         gui_name="INC":position=0:size=7:read_only=false\
-      }:\
-        bit_fields.B_ENET_ATINC_INC_CORR={\
+      }\
+      :bit_fields.B_ENET_ATINC_INC_CORR={\
         gui_name="INC_CORR":position=8:size=7:read_only=false\
       }\
-    }:Register.G_ENET_ATSTMP={\
-      gui_name="ATSTMP":start=0x02188418:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_ENET_ATSTMP_TIMESTAMP={\
+    }\
+    :Register.G_ENET_ATSTMP={\
+      gui_name="ATSTMP":start=0x2188418:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_ENET_ATSTMP_TIMESTAMP={\
         gui_name="TIMESTAMP":position=0:size=32:read_only=false\
       }\
     }\
-  }:Register_window.ENET={\
-        line="$+":\
+  }\
+  :Register_window.ENET={\
+    line="$+":\
     line="=G_ENET_EIR":\
     line="B_ENET_EIR_TS_TIMER":\
     line="B_ENET_EIR_TS_AVAIL":\
@@ -704,5 +742,6 @@ Advanced_Information.Cortex-A9={\
     line="=G_ENET_ATSTMP":\
     line="B_ENET_ATSTMP_TIMESTAMP":\
     line="$$":\
-  }:ARM_config={}\
+  }\
+  :ARM_config={}\
 }

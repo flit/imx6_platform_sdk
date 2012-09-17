@@ -587,18 +587,18 @@ void pcie_card_pwr_setup(uint32_t enable)
     }
 }
 
-void enable_extrn_100mhz_clk(uint32_t enable)
-{
-    if (enable) {
-        // Disable SATA clock gating used as external reference
-        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_100M);
-
-        // Select SATA clock source and switch to output buffer.
-        HW_PMU_MISC1_CLR(BM_PMU_MISC1_LVDSCLK1_IBEN);
-        HW_PMU_MISC1.B.LVDS1_CLK_SEL = BV_PMU_MISC1_LVDS1_CLK_SEL__SATA_REF;
-        HW_PMU_MISC1_SET(BM_PMU_MISC1_LVDSCLK1_OBEN);
-    }
-}
+// void enable_extrn_100mhz_clk(uint32_t enable)
+// {
+//     if (enable) {
+//         // Disable SATA clock gating used as external reference
+//         HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_100M);
+// 
+//         // Select SATA clock source and switch to output buffer.
+//         HW_PMU_MISC1_CLR(BM_PMU_MISC1_LVDSCLK1_IBEN);
+//         HW_PMU_MISC1.B.LVDS1_CLK_SEL = BV_PMU_MISC1_LVDS1_CLK_SEL__SATA_REF;
+//         HW_PMU_MISC1_SET(BM_PMU_MISC1_LVDSCLK1_OBEN);
+//     }
+// }
 
 void enable_extrn_125mhz_clk(uint32_t enable)
 {

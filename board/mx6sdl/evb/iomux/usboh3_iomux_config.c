@@ -60,8 +60,8 @@ void usboh3_iomux_config(void)
     //               NOTE: Instance: usboh3,   In Pin: ipp_ind_otg_oc
     //     SEL_EIM_D21_ALT4 (0) - Selecting Pad: EIM_D21 for Mode: ALT4.
     //     SEL_KEY_COL4_ALT2 (1) - Selecting Pad: KEY_COL4 for Mode: ALT2.
-    HW_IOMUXC_USBOH3_IPP_IND_OTG_OC_SELECT_INPUT_WR(
-            BF_IOMUXC_USBOH3_IPP_IND_OTG_OC_SELECT_INPUT_DAISY(SEL_EIM_D21_ALT4));
+    HW_IOMUXC_USB_IPP_IND_OTG_OC_SELECT_INPUT_WR(
+            BF_IOMUXC_USB_IPP_IND_OTG_OC_SELECT_INPUT_DAISY(SEL_EIM_D21_ALT4));
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_EIM_D21(0x020E0528)
     //   HYS [16] - Hysteresis Enable Field Reset: HYS_ENABLED

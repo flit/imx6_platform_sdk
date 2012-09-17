@@ -2,391 +2,411 @@
 description="Freescale iMX6SL development kit"
 Advanced_Information.Cortex-A9={\
   Memory_block.default={}\
-  :Memory_block.M_PWM1={\
-    start=0x02080000:length=0x00000018:description="PWM1"\
-  }:Memory_block.M_PWM2={\
-    start=0x02084000:length=0x00000018:description="PWM2"\
-  }:Memory_block.M_PWM3={\
-    start=0x02088000:length=0x00000018:description="PWM3"\
-  }:Memory_block.M_PWM4={\
-    start=0x0208c000:length=0x00000018:description="PWM4"\
-  }:\
   Map_Rule.default={}:Register_enum.default={}:Register.default={\
     bit_fields.default={}\
   }:Concat_Register.default={}:Peripherals.default={\
     Register.default={\
       bit_fields.default={}\
     }\
-  }:Peripherals.PWM1={\
-    base=Absolute:description="":Register.G_1PWM_PWMCR={\
-      gui_name="PWMCR":start=0x02080000:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_1PWM_PWMCR_EN={\
+  }\
+  :Peripherals.PWM1={\
+    base=Absolute:description=""\
+    :Register.G_1PWM_PWMCR={\
+      gui_name="PWMCR":start=0x2080000:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_1PWM_PWMCR_EN={\
         gui_name="EN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMCR_REPEAT={\
+      }\
+      :bit_fields.B_1PWM_PWMCR_REPEAT={\
         gui_name="REPEAT":position=1:size=2:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMCR_SWR={\
+      }\
+      :bit_fields.B_1PWM_PWMCR_SWR={\
         gui_name="SWR":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMCR_PRESCALER={\
+      }\
+      :bit_fields.B_1PWM_PWMCR_PRESCALER={\
         gui_name="PRESCALER":position=4:size=12:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMCR_CLKSRC={\
+      }\
+      :bit_fields.B_1PWM_PWMCR_CLKSRC={\
         gui_name="CLKSRC":position=16:size=2:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMCR_POUTC={\
+      }\
+      :bit_fields.B_1PWM_PWMCR_POUTC={\
         gui_name="POUTC":position=18:size=2:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMCR_HCTR={\
+      }\
+      :bit_fields.B_1PWM_PWMCR_HCTR={\
         gui_name="HCTR":position=20:size=1:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMCR_BCTR={\
+      }\
+      :bit_fields.B_1PWM_PWMCR_BCTR={\
         gui_name="BCTR":position=21:size=1:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMCR_DBGEN={\
+      }\
+      :bit_fields.B_1PWM_PWMCR_DBGEN={\
         gui_name="DBGEN":position=22:size=1:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMCR_WAITEN={\
+      }\
+      :bit_fields.B_1PWM_PWMCR_WAITEN={\
         gui_name="WAITEN":position=23:size=1:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMCR_DOZEN={\
+      }\
+      :bit_fields.B_1PWM_PWMCR_DOZEN={\
         gui_name="DOZEN":position=24:size=1:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMCR_STOPEN={\
+      }\
+      :bit_fields.B_1PWM_PWMCR_STOPEN={\
         gui_name="STOPEN":position=25:size=1:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMCR_FWM={\
+      }\
+      :bit_fields.B_1PWM_PWMCR_FWM={\
         gui_name="FWM":position=26:size=2:read_only=false\
       }\
-    }:Register.G_1PWM_PWMSR={\
-      gui_name="PWMSR":start=0x02080004:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_1PWM_PWMSR_FIFOAV={\
+    }\
+    :Register.G_1PWM_PWMSR={\
+      gui_name="PWMSR":start=0x2080004:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_1PWM_PWMSR_FIFOAV={\
         gui_name="FIFOAV":position=0:size=3:read_only=true\
-      }:\
-        bit_fields.B_1PWM_PWMSR_FE={\
+      }\
+      :bit_fields.B_1PWM_PWMSR_FE={\
         gui_name="FE":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMSR_ROV={\
+      }\
+      :bit_fields.B_1PWM_PWMSR_ROV={\
         gui_name="ROV":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMSR_CMP={\
+      }\
+      :bit_fields.B_1PWM_PWMSR_CMP={\
         gui_name="CMP":position=5:size=1:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMSR_FWE={\
+      }\
+      :bit_fields.B_1PWM_PWMSR_FWE={\
         gui_name="FWE":position=6:size=1:read_only=false\
       }\
-    }:Register.G_1PWM_PWMIR={\
-      gui_name="PWMIR":start=0x02080008:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_1PWM_PWMIR_FIE={\
+    }\
+    :Register.G_1PWM_PWMIR={\
+      gui_name="PWMIR":start=0x2080008:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_1PWM_PWMIR_FIE={\
         gui_name="FIE":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMIR_RIE={\
+      }\
+      :bit_fields.B_1PWM_PWMIR_RIE={\
         gui_name="RIE":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_1PWM_PWMIR_CIE={\
+      }\
+      :bit_fields.B_1PWM_PWMIR_CIE={\
         gui_name="CIE":position=2:size=1:read_only=false\
       }\
-    }:Register.G_1PWM_PWMSAR={\
-      gui_name="PWMSAR":start=0x0208000c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_1PWM_PWMSAR_SAMPLE={\
+    }\
+    :Register.G_1PWM_PWMSAR={\
+      gui_name="PWMSAR":start=0x208000c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_1PWM_PWMSAR_SAMPLE={\
         gui_name="SAMPLE":position=0:size=16:read_only=false\
       }\
-    }:Register.G_1PWM_PWMPR={\
-      gui_name="PWMPR":start=0x02080010:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_1PWM_PWMPR_PERIOD={\
+    }\
+    :Register.G_1PWM_PWMPR={\
+      gui_name="PWMPR":start=0x2080010:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_1PWM_PWMPR_PERIOD={\
         gui_name="PERIOD":position=0:size=16:read_only=false\
       }\
-    }:Register.G_1PWM_PWMCNR={\
-      gui_name="PWMCNR":start=0x02080014:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_1PWM_PWMCNR_COUNT={\
+    }\
+    :Register.G_1PWM_PWMCNR={\
+      gui_name="PWMCNR":start=0x2080014:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_1PWM_PWMCNR_COUNT={\
         gui_name="COUNT":position=0:size=16:read_only=true\
       }\
     }\
-  }:Peripherals.PWM2={\
-    base=Absolute:description="":Register.G_2PWM_PWMCR={\
-      gui_name="PWMCR":start=0x02084000:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_2PWM_PWMCR_EN={\
+  }\
+  :Peripherals.PWM2={\
+    base=Absolute:description=""\
+    :Register.G_2PWM_PWMCR={\
+      gui_name="PWMCR":start=0x2084000:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_2PWM_PWMCR_EN={\
         gui_name="EN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMCR_REPEAT={\
+      }\
+      :bit_fields.B_2PWM_PWMCR_REPEAT={\
         gui_name="REPEAT":position=1:size=2:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMCR_SWR={\
+      }\
+      :bit_fields.B_2PWM_PWMCR_SWR={\
         gui_name="SWR":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMCR_PRESCALER={\
+      }\
+      :bit_fields.B_2PWM_PWMCR_PRESCALER={\
         gui_name="PRESCALER":position=4:size=12:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMCR_CLKSRC={\
+      }\
+      :bit_fields.B_2PWM_PWMCR_CLKSRC={\
         gui_name="CLKSRC":position=16:size=2:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMCR_POUTC={\
+      }\
+      :bit_fields.B_2PWM_PWMCR_POUTC={\
         gui_name="POUTC":position=18:size=2:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMCR_HCTR={\
+      }\
+      :bit_fields.B_2PWM_PWMCR_HCTR={\
         gui_name="HCTR":position=20:size=1:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMCR_BCTR={\
+      }\
+      :bit_fields.B_2PWM_PWMCR_BCTR={\
         gui_name="BCTR":position=21:size=1:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMCR_DBGEN={\
+      }\
+      :bit_fields.B_2PWM_PWMCR_DBGEN={\
         gui_name="DBGEN":position=22:size=1:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMCR_WAITEN={\
+      }\
+      :bit_fields.B_2PWM_PWMCR_WAITEN={\
         gui_name="WAITEN":position=23:size=1:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMCR_DOZEN={\
+      }\
+      :bit_fields.B_2PWM_PWMCR_DOZEN={\
         gui_name="DOZEN":position=24:size=1:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMCR_STOPEN={\
+      }\
+      :bit_fields.B_2PWM_PWMCR_STOPEN={\
         gui_name="STOPEN":position=25:size=1:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMCR_FWM={\
+      }\
+      :bit_fields.B_2PWM_PWMCR_FWM={\
         gui_name="FWM":position=26:size=2:read_only=false\
       }\
-    }:Register.G_2PWM_PWMSR={\
-      gui_name="PWMSR":start=0x02084004:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_2PWM_PWMSR_FIFOAV={\
+    }\
+    :Register.G_2PWM_PWMSR={\
+      gui_name="PWMSR":start=0x2084004:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_2PWM_PWMSR_FIFOAV={\
         gui_name="FIFOAV":position=0:size=3:read_only=true\
-      }:\
-        bit_fields.B_2PWM_PWMSR_FE={\
+      }\
+      :bit_fields.B_2PWM_PWMSR_FE={\
         gui_name="FE":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMSR_ROV={\
+      }\
+      :bit_fields.B_2PWM_PWMSR_ROV={\
         gui_name="ROV":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMSR_CMP={\
+      }\
+      :bit_fields.B_2PWM_PWMSR_CMP={\
         gui_name="CMP":position=5:size=1:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMSR_FWE={\
+      }\
+      :bit_fields.B_2PWM_PWMSR_FWE={\
         gui_name="FWE":position=6:size=1:read_only=false\
       }\
-    }:Register.G_2PWM_PWMIR={\
-      gui_name="PWMIR":start=0x02084008:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_2PWM_PWMIR_FIE={\
+    }\
+    :Register.G_2PWM_PWMIR={\
+      gui_name="PWMIR":start=0x2084008:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_2PWM_PWMIR_FIE={\
         gui_name="FIE":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMIR_RIE={\
+      }\
+      :bit_fields.B_2PWM_PWMIR_RIE={\
         gui_name="RIE":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_2PWM_PWMIR_CIE={\
+      }\
+      :bit_fields.B_2PWM_PWMIR_CIE={\
         gui_name="CIE":position=2:size=1:read_only=false\
       }\
-    }:Register.G_2PWM_PWMSAR={\
-      gui_name="PWMSAR":start=0x0208400c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_2PWM_PWMSAR_SAMPLE={\
+    }\
+    :Register.G_2PWM_PWMSAR={\
+      gui_name="PWMSAR":start=0x208400c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_2PWM_PWMSAR_SAMPLE={\
         gui_name="SAMPLE":position=0:size=16:read_only=false\
       }\
-    }:Register.G_2PWM_PWMPR={\
-      gui_name="PWMPR":start=0x02084010:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_2PWM_PWMPR_PERIOD={\
+    }\
+    :Register.G_2PWM_PWMPR={\
+      gui_name="PWMPR":start=0x2084010:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_2PWM_PWMPR_PERIOD={\
         gui_name="PERIOD":position=0:size=16:read_only=false\
       }\
-    }:Register.G_2PWM_PWMCNR={\
-      gui_name="PWMCNR":start=0x02084014:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_2PWM_PWMCNR_COUNT={\
+    }\
+    :Register.G_2PWM_PWMCNR={\
+      gui_name="PWMCNR":start=0x2084014:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_2PWM_PWMCNR_COUNT={\
         gui_name="COUNT":position=0:size=16:read_only=true\
       }\
     }\
-  }:Peripherals.PWM3={\
-    base=Absolute:description="":Register.G_3PWM_PWMCR={\
-      gui_name="PWMCR":start=0x02088000:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_3PWM_PWMCR_EN={\
+  }\
+  :Peripherals.PWM3={\
+    base=Absolute:description=""\
+    :Register.G_3PWM_PWMCR={\
+      gui_name="PWMCR":start=0x2088000:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_3PWM_PWMCR_EN={\
         gui_name="EN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMCR_REPEAT={\
+      }\
+      :bit_fields.B_3PWM_PWMCR_REPEAT={\
         gui_name="REPEAT":position=1:size=2:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMCR_SWR={\
+      }\
+      :bit_fields.B_3PWM_PWMCR_SWR={\
         gui_name="SWR":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMCR_PRESCALER={\
+      }\
+      :bit_fields.B_3PWM_PWMCR_PRESCALER={\
         gui_name="PRESCALER":position=4:size=12:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMCR_CLKSRC={\
+      }\
+      :bit_fields.B_3PWM_PWMCR_CLKSRC={\
         gui_name="CLKSRC":position=16:size=2:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMCR_POUTC={\
+      }\
+      :bit_fields.B_3PWM_PWMCR_POUTC={\
         gui_name="POUTC":position=18:size=2:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMCR_HCTR={\
+      }\
+      :bit_fields.B_3PWM_PWMCR_HCTR={\
         gui_name="HCTR":position=20:size=1:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMCR_BCTR={\
+      }\
+      :bit_fields.B_3PWM_PWMCR_BCTR={\
         gui_name="BCTR":position=21:size=1:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMCR_DBGEN={\
+      }\
+      :bit_fields.B_3PWM_PWMCR_DBGEN={\
         gui_name="DBGEN":position=22:size=1:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMCR_WAITEN={\
+      }\
+      :bit_fields.B_3PWM_PWMCR_WAITEN={\
         gui_name="WAITEN":position=23:size=1:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMCR_DOZEN={\
+      }\
+      :bit_fields.B_3PWM_PWMCR_DOZEN={\
         gui_name="DOZEN":position=24:size=1:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMCR_STOPEN={\
+      }\
+      :bit_fields.B_3PWM_PWMCR_STOPEN={\
         gui_name="STOPEN":position=25:size=1:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMCR_FWM={\
+      }\
+      :bit_fields.B_3PWM_PWMCR_FWM={\
         gui_name="FWM":position=26:size=2:read_only=false\
       }\
-    }:Register.G_3PWM_PWMSR={\
-      gui_name="PWMSR":start=0x02088004:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_3PWM_PWMSR_FIFOAV={\
+    }\
+    :Register.G_3PWM_PWMSR={\
+      gui_name="PWMSR":start=0x2088004:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_3PWM_PWMSR_FIFOAV={\
         gui_name="FIFOAV":position=0:size=3:read_only=true\
-      }:\
-        bit_fields.B_3PWM_PWMSR_FE={\
+      }\
+      :bit_fields.B_3PWM_PWMSR_FE={\
         gui_name="FE":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMSR_ROV={\
+      }\
+      :bit_fields.B_3PWM_PWMSR_ROV={\
         gui_name="ROV":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMSR_CMP={\
+      }\
+      :bit_fields.B_3PWM_PWMSR_CMP={\
         gui_name="CMP":position=5:size=1:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMSR_FWE={\
+      }\
+      :bit_fields.B_3PWM_PWMSR_FWE={\
         gui_name="FWE":position=6:size=1:read_only=false\
       }\
-    }:Register.G_3PWM_PWMIR={\
-      gui_name="PWMIR":start=0x02088008:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_3PWM_PWMIR_FIE={\
+    }\
+    :Register.G_3PWM_PWMIR={\
+      gui_name="PWMIR":start=0x2088008:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_3PWM_PWMIR_FIE={\
         gui_name="FIE":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMIR_RIE={\
+      }\
+      :bit_fields.B_3PWM_PWMIR_RIE={\
         gui_name="RIE":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_3PWM_PWMIR_CIE={\
+      }\
+      :bit_fields.B_3PWM_PWMIR_CIE={\
         gui_name="CIE":position=2:size=1:read_only=false\
       }\
-    }:Register.G_3PWM_PWMSAR={\
-      gui_name="PWMSAR":start=0x0208800c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_3PWM_PWMSAR_SAMPLE={\
+    }\
+    :Register.G_3PWM_PWMSAR={\
+      gui_name="PWMSAR":start=0x208800c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_3PWM_PWMSAR_SAMPLE={\
         gui_name="SAMPLE":position=0:size=16:read_only=false\
       }\
-    }:Register.G_3PWM_PWMPR={\
-      gui_name="PWMPR":start=0x02088010:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_3PWM_PWMPR_PERIOD={\
+    }\
+    :Register.G_3PWM_PWMPR={\
+      gui_name="PWMPR":start=0x2088010:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_3PWM_PWMPR_PERIOD={\
         gui_name="PERIOD":position=0:size=16:read_only=false\
       }\
-    }:Register.G_3PWM_PWMCNR={\
-      gui_name="PWMCNR":start=0x02088014:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_3PWM_PWMCNR_COUNT={\
+    }\
+    :Register.G_3PWM_PWMCNR={\
+      gui_name="PWMCNR":start=0x2088014:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_3PWM_PWMCNR_COUNT={\
         gui_name="COUNT":position=0:size=16:read_only=true\
       }\
     }\
-  }:Peripherals.PWM4={\
-    base=Absolute:description="":Register.G_4PWM_PWMCR={\
-      gui_name="PWMCR":start=0x0208c000:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_4PWM_PWMCR_EN={\
+  }\
+  :Peripherals.PWM4={\
+    base=Absolute:description=""\
+    :Register.G_4PWM_PWMCR={\
+      gui_name="PWMCR":start=0x208c000:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_4PWM_PWMCR_EN={\
         gui_name="EN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMCR_REPEAT={\
+      }\
+      :bit_fields.B_4PWM_PWMCR_REPEAT={\
         gui_name="REPEAT":position=1:size=2:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMCR_SWR={\
+      }\
+      :bit_fields.B_4PWM_PWMCR_SWR={\
         gui_name="SWR":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMCR_PRESCALER={\
+      }\
+      :bit_fields.B_4PWM_PWMCR_PRESCALER={\
         gui_name="PRESCALER":position=4:size=12:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMCR_CLKSRC={\
+      }\
+      :bit_fields.B_4PWM_PWMCR_CLKSRC={\
         gui_name="CLKSRC":position=16:size=2:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMCR_POUTC={\
+      }\
+      :bit_fields.B_4PWM_PWMCR_POUTC={\
         gui_name="POUTC":position=18:size=2:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMCR_HCTR={\
+      }\
+      :bit_fields.B_4PWM_PWMCR_HCTR={\
         gui_name="HCTR":position=20:size=1:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMCR_BCTR={\
+      }\
+      :bit_fields.B_4PWM_PWMCR_BCTR={\
         gui_name="BCTR":position=21:size=1:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMCR_DBGEN={\
+      }\
+      :bit_fields.B_4PWM_PWMCR_DBGEN={\
         gui_name="DBGEN":position=22:size=1:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMCR_WAITEN={\
+      }\
+      :bit_fields.B_4PWM_PWMCR_WAITEN={\
         gui_name="WAITEN":position=23:size=1:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMCR_DOZEN={\
+      }\
+      :bit_fields.B_4PWM_PWMCR_DOZEN={\
         gui_name="DOZEN":position=24:size=1:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMCR_STOPEN={\
+      }\
+      :bit_fields.B_4PWM_PWMCR_STOPEN={\
         gui_name="STOPEN":position=25:size=1:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMCR_FWM={\
+      }\
+      :bit_fields.B_4PWM_PWMCR_FWM={\
         gui_name="FWM":position=26:size=2:read_only=false\
       }\
-    }:Register.G_4PWM_PWMSR={\
-      gui_name="PWMSR":start=0x0208c004:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_4PWM_PWMSR_FIFOAV={\
+    }\
+    :Register.G_4PWM_PWMSR={\
+      gui_name="PWMSR":start=0x208c004:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_4PWM_PWMSR_FIFOAV={\
         gui_name="FIFOAV":position=0:size=3:read_only=true\
-      }:\
-        bit_fields.B_4PWM_PWMSR_FE={\
+      }\
+      :bit_fields.B_4PWM_PWMSR_FE={\
         gui_name="FE":position=3:size=1:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMSR_ROV={\
+      }\
+      :bit_fields.B_4PWM_PWMSR_ROV={\
         gui_name="ROV":position=4:size=1:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMSR_CMP={\
+      }\
+      :bit_fields.B_4PWM_PWMSR_CMP={\
         gui_name="CMP":position=5:size=1:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMSR_FWE={\
+      }\
+      :bit_fields.B_4PWM_PWMSR_FWE={\
         gui_name="FWE":position=6:size=1:read_only=false\
       }\
-    }:Register.G_4PWM_PWMIR={\
-      gui_name="PWMIR":start=0x0208c008:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_4PWM_PWMIR_FIE={\
+    }\
+    :Register.G_4PWM_PWMIR={\
+      gui_name="PWMIR":start=0x208c008:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_4PWM_PWMIR_FIE={\
         gui_name="FIE":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMIR_RIE={\
+      }\
+      :bit_fields.B_4PWM_PWMIR_RIE={\
         gui_name="RIE":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_4PWM_PWMIR_CIE={\
+      }\
+      :bit_fields.B_4PWM_PWMIR_CIE={\
         gui_name="CIE":position=2:size=1:read_only=false\
       }\
-    }:Register.G_4PWM_PWMSAR={\
-      gui_name="PWMSAR":start=0x0208c00c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_4PWM_PWMSAR_SAMPLE={\
+    }\
+    :Register.G_4PWM_PWMSAR={\
+      gui_name="PWMSAR":start=0x208c00c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_4PWM_PWMSAR_SAMPLE={\
         gui_name="SAMPLE":position=0:size=16:read_only=false\
       }\
-    }:Register.G_4PWM_PWMPR={\
-      gui_name="PWMPR":start=0x0208c010:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_4PWM_PWMPR_PERIOD={\
+    }\
+    :Register.G_4PWM_PWMPR={\
+      gui_name="PWMPR":start=0x208c010:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_4PWM_PWMPR_PERIOD={\
         gui_name="PERIOD":position=0:size=16:read_only=false\
       }\
-    }:Register.G_4PWM_PWMCNR={\
-      gui_name="PWMCNR":start=0x0208c014:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_4PWM_PWMCNR_COUNT={\
+    }\
+    :Register.G_4PWM_PWMCNR={\
+      gui_name="PWMCNR":start=0x208c014:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_4PWM_PWMCNR_COUNT={\
         gui_name="COUNT":position=0:size=16:read_only=true\
       }\
     }\
-  }:Register_window.PWM1={\
-        line="$+":\
+  }\
+  :Register_window.PWM1={\
+    line="$+":\
     line="=G_1PWM_PWMCR":\
     line="B_1PWM_PWMCR_EN":\
     line="B_1PWM_PWMCR_REPEAT":\
@@ -428,8 +448,9 @@ Advanced_Information.Cortex-A9={\
     line="=G_1PWM_PWMCNR":\
     line="B_1PWM_PWMCNR_COUNT":\
     line="$$":\
-  }:Register_window.PWM2={\
-        line="$+":\
+  }\
+  :Register_window.PWM2={\
+    line="$+":\
     line="=G_2PWM_PWMCR":\
     line="B_2PWM_PWMCR_EN":\
     line="B_2PWM_PWMCR_REPEAT":\
@@ -471,8 +492,9 @@ Advanced_Information.Cortex-A9={\
     line="=G_2PWM_PWMCNR":\
     line="B_2PWM_PWMCNR_COUNT":\
     line="$$":\
-  }:Register_window.PWM3={\
-        line="$+":\
+  }\
+  :Register_window.PWM3={\
+    line="$+":\
     line="=G_3PWM_PWMCR":\
     line="B_3PWM_PWMCR_EN":\
     line="B_3PWM_PWMCR_REPEAT":\
@@ -514,8 +536,9 @@ Advanced_Information.Cortex-A9={\
     line="=G_3PWM_PWMCNR":\
     line="B_3PWM_PWMCNR_COUNT":\
     line="$$":\
-  }:Register_window.PWM4={\
-        line="$+":\
+  }\
+  :Register_window.PWM4={\
+    line="$+":\
     line="=G_4PWM_PWMCR":\
     line="B_4PWM_PWMCR_EN":\
     line="B_4PWM_PWMCR_REPEAT":\
@@ -557,5 +580,6 @@ Advanced_Information.Cortex-A9={\
     line="=G_4PWM_PWMCNR":\
     line="B_4PWM_PWMCNR_COUNT":\
     line="$$":\
-  }:ARM_config={}\
+  }\
+  :ARM_config={}\
 }

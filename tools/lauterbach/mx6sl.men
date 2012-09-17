@@ -43,6 +43,7 @@ menu
 		menuitem "SDMABP"							"per , ""SDMABP"""
 		menuitem "SDMACORE"							"per , ""SDMACORE"""
 		menuitem "SJC"							"per , ""SJC"""
+		menuitem "SNVS"							"per , ""SNVS"""
 		menuitem "SPBA"							"per , ""SPBA"""
 		menuitem "SPDIF"							"per , ""SPDIF"""
 		menuitem "SRC"							"per , ""SRC"""

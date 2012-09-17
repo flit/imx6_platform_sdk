@@ -58,8 +58,8 @@ void usboh3_iomux_config(void)
     //               NOTE: Instance: usboh3,   In Pin: ipp_ind_uh1_oc
     //     SEL_EIM_D30_ALT6 (0) - Selecting Pad: EIM_D30 for Mode: ALT6.
     //     SEL_GPIO_3_ALT6 (1) - Selecting Pad: GPIO_3 for Mode: ALT6.
-    HW_IOMUXC_USBOH3_IPP_IND_UH1_OC_SELECT_INPUT_WR(
-            BF_IOMUXC_USBOH3_IPP_IND_UH1_OC_SELECT_INPUT_DAISY(SEL_EIM_D30_ALT6));
+    HW_IOMUXC_USB_IPP_IND_H1_OC_SELECT_INPUT_WR(
+            BF_IOMUXC_USB_IPP_IND_H1_OC_SELECT_INPUT_DAISY(SEL_EIM_D30_ALT6));
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_EIM_D30(0x020E054C)
     //   HYS [16] - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -144,8 +144,8 @@ void usboh3_iomux_config(void)
     //               NOTE: Instance: usboh3,   In Pin: ipp_ind_otg_oc
     //     SEL_EIM_D21_ALT4 (0) - Selecting Pad: EIM_D21 for Mode: ALT4.
     //     SEL_KEY_COL4_ALT2 (1) - Selecting Pad: KEY_COL4 for Mode: ALT2.
-    HW_IOMUXC_USBOH3_IPP_IND_OTG_OC_SELECT_INPUT_WR(
-            BF_IOMUXC_USBOH3_IPP_IND_OTG_OC_SELECT_INPUT_DAISY(SEL_EIM_D21_ALT4));
+    HW_IOMUXC_USB_IPP_IND_OTG_OC_SELECT_INPUT_WR(
+            BF_IOMUXC_USB_IPP_IND_OTG_OC_SELECT_INPUT_DAISY(SEL_EIM_D21_ALT4));
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_KEY_COL4(0x020E063C)
     //   HYS [16] - Hysteresis Enable Field Reset: HYS_ENABLED

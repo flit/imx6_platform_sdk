@@ -2,301 +2,319 @@
 description="Freescale iMX6SL development kit"
 Advanced_Information.Cortex-A9={\
   Memory_block.default={}\
-  :Memory_block.M_SPDC={\
-    start=0x020e8000:length=0x0000004c:description="SPDC"\
-  }:\
   Map_Rule.default={}:Register_enum.default={}:Register.default={\
     bit_fields.default={}\
   }:Concat_Register.default={}:Peripherals.default={\
     Register.default={\
       bit_fields.default={}\
     }\
-  }:Peripherals.SPDC={\
-    base=Absolute:description="":Register.G_SPDC_EPD_DISP_TRIGGER={\
-      gui_name="EPD_DISP_TRIGGER":start=0x020e8000:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_DISP_TRIGGER_DISP_TR1={\
+  }\
+  :Peripherals.SPDC={\
+    base=Absolute:description=""\
+    :Register.G_SPDC_DISP_TRIGGER={\
+      gui_name="DISP_TRIGGER":start=0x20e8000:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_DISP_TRIGGER_DISP_TRIG={\
         gui_name="DISP_TRIG":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_DISP_TRIGGER_EPD_MODE={\
+      }\
+      :bit_fields.B_SPDC_DISP_TRIGGER_EPD_MODE={\
         gui_name="EPD_MODE":position=1:size=3:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_DISP_TRIGGER_FLASH_S2={\
+      }\
+      :bit_fields.B_SPDC_DISP_TRIGGER_FLASH_SET={\
         gui_name="FLASH_SET":position=4:size=1:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_UPDATE_X_Y={\
-      gui_name="EPD_UPDATE_X_Y":start=0x020e8004:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_UPDATE_X_Y_COORDINAT3={\
+    }\
+    :Register.G_SPDC_UPDATE_X_Y={\
+      gui_name="UPDATE_X_Y":start=0x20e8004:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_UPDATE_X_Y_COORDINATE_Y={\
         gui_name="COORDINATE_Y":position=0:size=12:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_UPDATE_X_Y_COORDINAT4={\
+      }\
+      :bit_fields.B_SPDC_UPDATE_X_Y_COORDINATE_X={\
         gui_name="COORDINATE_X":position=16:size=12:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_UPDATE_W_H={\
-      gui_name="EPD_UPDATE_W_H":start=0x020e8008:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_UPDATE_W_H_HEIGHT={\
+    }\
+    :Register.G_SPDC_UPDATE_W_H={\
+      gui_name="UPDATE_W_H":start=0x20e8008:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_UPDATE_W_H_HEIGHT={\
         gui_name="HEIGHT":position=0:size=12:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_UPDATE_W_H_WIDTH={\
+      }\
+      :bit_fields.B_SPDC_UPDATE_W_H_WIDTH={\
         gui_name="WIDTH":position=16:size=12:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_LUT_PARA_UPDATE={\
-      gui_name="EPD_LUT_PARA_UPDATE":start=0x020e800c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_LUT_PARA_UPDATE_LUT_5={\
+    }\
+    :Register.G_SPDC_LUT_PARA_UPDATE={\
+      gui_name="LUT_PARA_UPDATE":start=0x20e800c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_LUT_PARA_UPDATE_LUT_PARA1={\
         gui_name="LUT_PARAMETER_UPDATED_VALUE":position=0:size=8:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_LUT_PARA_UPDATE_LUT_6={\
+      }\
+      :bit_fields.B_SPDC_LUT_PARA_UPDATE_LUT_PARA2={\
         gui_name="LUT_PARAMETER_UPDATED_ADDR":position=8:size=8:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_OPERATE={\
-      gui_name="EPD_OPERATE":start=0x020e8010:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_OPERATE_DISP_REFRESH={\
+    }\
+    :Register.G_SPDC_OPERATE={\
+      gui_name="OPERATE":start=0x20e8010:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_OPERATE_DISP_REFRESH={\
         gui_name="DISP_REFRESH":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_OPERATE_DEEP_REFRESH={\
+      }\
+      :bit_fields.B_SPDC_OPERATE_DEEP_REFRESH={\
         gui_name="DEEP_REFRESH":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_OPERATE_DISP_RESET={\
+      }\
+      :bit_fields.B_SPDC_OPERATE_DISP_RESET={\
         gui_name="DISP_RESET":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_OPERATE_SW_TCON_RESET={\
+      }\
+      :bit_fields.B_SPDC_OPERATE_SW_TCON_RESET={\
         gui_name="SW_TCON_RESET":position=31:size=1:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_PANEL_INIT_SET={\
-      gui_name="EPD_PANEL_INIT_SET":start=0x020e8014:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_PANEL_INIT_SET_YOE_P7={\
+    }\
+    :Register.G_SPDC_PANEL_INIT_SET={\
+      gui_name="PANEL_INIT_SET":start=0x20e8014:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_PANEL_INIT_SET_YOE_POL={\
         gui_name="YOE_POL":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_PANEL_INIT_SET_DUAL_8={\
+      }\
+      :bit_fields.B_SPDC_PANEL_INIT_SET_DUAL_GATE={\
         gui_name="DUAL_GATE":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_PANEL_INIT_SET_RESOL9={\
+      }\
+      :bit_fields.B_SPDC_PANEL_INIT_SET_RESOLUTION={\
         gui_name="RESOLUTION":position=2:size=5:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_PANEL_INIT_SET_UD={\
+      }\
+      :bit_fields.B_SPDC_PANEL_INIT_SET_UD={\
         gui_name="UD":position=7:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_PANEL_INIT_SET_RL={\
+      }\
+      :bit_fields.B_SPDC_PANEL_INIT_SET_RL={\
         gui_name="RL":position=8:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_PANEL_INIT_SET_DATA10={\
+      }\
+      :bit_fields.B_SPDC_PANEL_INIT_SET_DATA_FILT3={\
         gui_name="DATA_FILTER_N":position=9:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_PANEL_INIT_SET_POWE11={\
+      }\
+      :bit_fields.B_SPDC_PANEL_INIT_SET_POWER_REA4={\
         gui_name="POWER_READY":position=10:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_PANEL_INIT_SET_RGBW12={\
+      }\
+      :bit_fields.B_SPDC_PANEL_INIT_SET_RGBW_MODE5={\
         gui_name="RGBW_MODE_EN":position=11:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_PANEL_INIT_SET_HBUR13={\
+      }\
+      :bit_fields.B_SPDC_PANEL_INIT_SET_HBURST_LE6={\
         gui_name="HBURST_LEN_EN":position=13:size=1:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_TEMPER_SETTING={\
-      gui_name="EPD_TEMPER_SETTING":start=0x020e8018:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_TEMPER_SETTING_TEMP14={\
+    }\
+    :Register.G_SPDC_TEMPER_SETTING={\
+      gui_name="TEMPER_SETTING":start=0x20e8018:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_TEMPER_SETTING_TEMPERATU7={\
         gui_name="TEMPERATURE":position=0:size=9:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_NEXT_BUF={\
-      gui_name="EPD_NEXT_BUF":start=0x020e801c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_NEXT_BUF_NEXT_FRAME15={\
+    }\
+    :Register.G_SPDC_NEXT_BUF={\
+      gui_name="NEXT_BUF":start=0x20e801c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_NEXT_BUF_NEXT_FRAME_MEMO8={\
         gui_name="NEXT_FRAME_MEMORY_ADDR":position=0:size=32:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_CURRENT_BUF={\
-      gui_name="EPD_CURRENT_BUF":start=0x020e8020:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_CURRENT_BUF_CURRENT16={\
+    }\
+    :Register.G_SPDC_CURRENT_BUF={\
+      gui_name="CURRENT_BUF":start=0x20e8020:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_CURRENT_BUF_CURRENT_FRAM9={\
         gui_name="CURRENT_FRAME_MEMORY_ADDR":position=0:size=32:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_PREVIOUS_BUFF={\
-      gui_name="EPD_PREVIOUS_BUFF":start=0x020e8024:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_PREVIOUS_BUFF_PREVI17={\
+    }\
+    :Register.G_SPDC_PREVIOUS_BUFF={\
+      gui_name="PREVIOUS_BUFF":start=0x20e8024:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_PREVIOUS_BUFF_PREVIOUS_10={\
         gui_name="PREVIOUS_FRAME_MEMORY_ADDR":position=0:size=32:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_FRM_CNT_BUFF={\
-      gui_name="EPD_FRM_CNT_BUFF":start=0x020e8028:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_FRM_CNT_BUFF_COUNTE18={\
+    }\
+    :Register.G_SPDC_FRM_CNT_BUFF={\
+      gui_name="FRM_CNT_BUFF":start=0x20e8028:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_FRM_CNT_BUFF_COUNTER_FR11={\
         gui_name="COUNTER_FRAME_MEMORY_ADDR":position=0:size=32:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_LUT_BUFF={\
-      gui_name="EPD_LUT_BUFF":start=0x020e802c:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_LUT_BUFF_LUT_MEMORY19={\
+    }\
+    :Register.G_SPDC_LUT_BUFF={\
+      gui_name="LUT_BUFF":start=0x20e802c:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_LUT_BUFF_LUT_MEMORY_ADDR={\
         gui_name="LUT_MEMORY_ADDR":position=0:size=32:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_INT_EN={\
-      gui_name="EPD_INT_EN":start=0x020e8030:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_INT_EN_UPDATE_FINIS20={\
+    }\
+    :Register.G_SPDC_INT_EN={\
+      gui_name="INT_EN":start=0x20e8030:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_INT_EN_UPDATE_FINISH_IN12={\
         gui_name="UPDATE_FINISH_INT_EN":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_INT_EN_TCON_INIT_FI21={\
+      }\
+      :bit_fields.B_SPDC_INT_EN_TCON_INIT_FINISH13={\
         gui_name="TCON_INIT_FINISH_INT_EN":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_INT_EN_LUT_DOWNLOAD22={\
+      }\
+      :bit_fields.B_SPDC_INT_EN_LUT_DOWNLOAD_FIN14={\
         gui_name="LUT_DOWNLOAD_FINISH_INT_EN":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_INT_EN_TCON_ERROR_I23={\
+      }\
+      :bit_fields.B_SPDC_INT_EN_TCON_ERROR_INT_EN={\
         gui_name="TCON_ERROR_INT_EN":position=3:size=1:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_INT_ST_CLR={\
-      gui_name="EPD_INT_ST_CLR":start=0x020e8034:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_INT_ST_CLR_UPDATE_F24={\
+    }\
+    :Register.G_SPDC_INT_ST_CLR={\
+      gui_name="INT_ST_CLR":start=0x20e8034:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_INT_ST_CLR_UPDATE_FINIS15={\
         gui_name="UPDATE_FINISH_INT_CLR":position=0:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_INT_ST_CLR_TCON_INI25={\
+      }\
+      :bit_fields.B_SPDC_INT_ST_CLR_TCON_INIT_FI16={\
         gui_name="TCON_INIT_FINISH_INT_CLR":position=1:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_INT_ST_CLR_LUT_DOWN26={\
+      }\
+      :bit_fields.B_SPDC_INT_ST_CLR_LUT_DOWNLOAD17={\
         gui_name="LUT_DOWNLOAD_FINISH_INT_CLR":position=2:size=1:read_only=false\
-      }:\
-        bit_fields.B_SPDC_EPD_INT_ST_CLR_TCON_ERR27={\
+      }\
+      :bit_fields.B_SPDC_INT_ST_CLR_TCON_ERROR_I18={\
         gui_name="TCON_ERROR_INT_CLR":position=3:size=1:read_only=false\
       }\
-    }:Register.G_SPDC_EPD_STATUS={\
-      gui_name="EPD_STATUS":start=0x020e803c:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SPDC_EPD_STATUS_EPD_TCON_BUS28={\
+    }\
+    :Register.G_SPDC_STATUS={\
+      gui_name="STATUS":start=0x20e803c:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_SPDC_STATUS_EPD_TCON_BUSY_N={\
         gui_name="EPD_TCON_BUSY_N":position=0:size=1:read_only=true\
-      }:\
-        bit_fields.B_SPDC_EPD_STATUS_LUT_CHECKSUM={\
+      }\
+      :bit_fields.B_SPDC_STATUS_LUT_CHECKSUM={\
         gui_name="LUT_CHECKSUM":position=3:size=1:read_only=true\
-      }:\
-        bit_fields.B_SPDC_EPD_STATUS_EPD_TCON_STA29={\
+      }\
+      :bit_fields.B_SPDC_STATUS_EPD_TCON_STATUS={\
         gui_name="EPD_TCON_STATUS":position=4:size=4:read_only=true\
       }\
-    }:Register.G_SPDC_EPD_PANEL_TYPE_VER={\
-      gui_name="EPD_PANEL_TYPE_VER":start=0x020e8040:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SPDC_EPD_PANEL_TYPE_VER_PROD30={\
+    }\
+    :Register.G_SPDC_PANEL_TYPE_VER={\
+      gui_name="PANEL_TYPE_VER":start=0x20e8040:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_SPDC_PANEL_TYPE_VER_PRODUCT_19={\
         gui_name="PRODUCT_AND_DRIVER_ID":position=0:size=16:read_only=true\
-      }:\
-        bit_fields.B_SPDC_EPD_PANEL_TYPE_VER_LUT_31={\
+      }\
+      :bit_fields.B_SPDC_PANEL_TYPE_VER_LUT_VERS20={\
         gui_name="LUT_VERSION":position=16:size=8:read_only=true\
-      }:\
-        bit_fields.B_SPDC_EPD_PANEL_TYPE_VER_EPD_32={\
+      }\
+      :bit_fields.B_SPDC_PANEL_TYPE_VER_EPD_PANE21={\
         gui_name="EPD_PANEL_TYPE":position=24:size=8:read_only=true\
       }\
-    }:Register.G_SPDC_EPD_TCON_VER={\
-      gui_name="EPD_TCON_VER":start=0x020e8044:length=4:\
-      read_only=true:write_only=false:\
-        bit_fields.B_SPDC_EPD_TCON_VER_EPD_TCON_V33={\
+    }\
+    :Register.G_SPDC_TCON_VER={\
+      gui_name="TCON_VER":start=0x20e8044:length=4:\
+      read_only=true:write_only=false\
+      :bit_fields.B_SPDC_TCON_VER_EPD_TCON_VERSION={\
         gui_name="EPD_TCON_VERSION":position=0:size=8:read_only=true\
       }\
-    }:Register.G_SPDC_EPD_SW_GATE_CLK={\
-      gui_name="EPD_SW_GATE_CLK":start=0x020e8048:length=4:\
-      read_only=false:write_only=false:\
-        bit_fields.B_SPDC_EPD_SW_GATE_CLK_GATING_34={\
+    }\
+    :Register.G_SPDC_SW_GATE_CLK={\
+      gui_name="SW_GATE_CLK":start=0x20e8048:length=4:\
+      read_only=false:write_only=false\
+      :bit_fields.B_SPDC_SW_GATE_CLK_GATING_ALL_22={\
         gui_name="GATING_ALL_CLK_EN":position=0:size=1:read_only=false\
       }\
     }\
-  }:Register_window.SPDC={\
-        line="$+":\
-    line="=G_SPDC_EPD_DISP_TRIGGER":\
-    line="B_SPDC_EPD_DISP_TRIGGER_DISP_TR1":\
-    line="B_SPDC_EPD_DISP_TRIGGER_EPD_MODE":\
-    line="B_SPDC_EPD_DISP_TRIGGER_FLASH_S2":\
+  }\
+  :Register_window.SPDC={\
+    line="$+":\
+    line="=G_SPDC_DISP_TRIGGER":\
+    line="B_SPDC_DISP_TRIGGER_DISP_TRIG":\
+    line="B_SPDC_DISP_TRIGGER_EPD_MODE":\
+    line="B_SPDC_DISP_TRIGGER_FLASH_SET":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_UPDATE_X_Y":\
-    line="B_SPDC_EPD_UPDATE_X_Y_COORDINAT3":\
-    line="B_SPDC_EPD_UPDATE_X_Y_COORDINAT4":\
+    line="=G_SPDC_UPDATE_X_Y":\
+    line="B_SPDC_UPDATE_X_Y_COORDINATE_Y":\
+    line="B_SPDC_UPDATE_X_Y_COORDINATE_X":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_UPDATE_W_H":\
-    line="B_SPDC_EPD_UPDATE_W_H_HEIGHT":\
-    line="B_SPDC_EPD_UPDATE_W_H_WIDTH":\
+    line="=G_SPDC_UPDATE_W_H":\
+    line="B_SPDC_UPDATE_W_H_HEIGHT":\
+    line="B_SPDC_UPDATE_W_H_WIDTH":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_LUT_PARA_UPDATE":\
-    line="B_SPDC_EPD_LUT_PARA_UPDATE_LUT_5":\
-    line="B_SPDC_EPD_LUT_PARA_UPDATE_LUT_6":\
+    line="=G_SPDC_LUT_PARA_UPDATE":\
+    line="B_SPDC_LUT_PARA_UPDATE_LUT_PARA1":\
+    line="B_SPDC_LUT_PARA_UPDATE_LUT_PARA2":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_OPERATE":\
-    line="B_SPDC_EPD_OPERATE_DISP_REFRESH":\
-    line="B_SPDC_EPD_OPERATE_DEEP_REFRESH":\
-    line="B_SPDC_EPD_OPERATE_DISP_RESET":\
-    line="B_SPDC_EPD_OPERATE_SW_TCON_RESET":\
+    line="=G_SPDC_OPERATE":\
+    line="B_SPDC_OPERATE_DISP_REFRESH":\
+    line="B_SPDC_OPERATE_DEEP_REFRESH":\
+    line="B_SPDC_OPERATE_DISP_RESET":\
+    line="B_SPDC_OPERATE_SW_TCON_RESET":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_PANEL_INIT_SET":\
-    line="B_SPDC_EPD_PANEL_INIT_SET_YOE_P7":\
-    line="B_SPDC_EPD_PANEL_INIT_SET_DUAL_8":\
-    line="B_SPDC_EPD_PANEL_INIT_SET_RESOL9":\
-    line="B_SPDC_EPD_PANEL_INIT_SET_UD":\
-    line="B_SPDC_EPD_PANEL_INIT_SET_RL":\
-    line="B_SPDC_EPD_PANEL_INIT_SET_DATA10":\
-    line="B_SPDC_EPD_PANEL_INIT_SET_POWE11":\
-    line="B_SPDC_EPD_PANEL_INIT_SET_RGBW12":\
-    line="B_SPDC_EPD_PANEL_INIT_SET_HBUR13":\
+    line="=G_SPDC_PANEL_INIT_SET":\
+    line="B_SPDC_PANEL_INIT_SET_YOE_POL":\
+    line="B_SPDC_PANEL_INIT_SET_DUAL_GATE":\
+    line="B_SPDC_PANEL_INIT_SET_RESOLUTION":\
+    line="B_SPDC_PANEL_INIT_SET_UD":\
+    line="B_SPDC_PANEL_INIT_SET_RL":\
+    line="B_SPDC_PANEL_INIT_SET_DATA_FILT3":\
+    line="B_SPDC_PANEL_INIT_SET_POWER_REA4":\
+    line="B_SPDC_PANEL_INIT_SET_RGBW_MODE5":\
+    line="B_SPDC_PANEL_INIT_SET_HBURST_LE6":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_TEMPER_SETTING":\
-    line="B_SPDC_EPD_TEMPER_SETTING_TEMP14":\
+    line="=G_SPDC_TEMPER_SETTING":\
+    line="B_SPDC_TEMPER_SETTING_TEMPERATU7":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_NEXT_BUF":\
-    line="B_SPDC_EPD_NEXT_BUF_NEXT_FRAME15":\
+    line="=G_SPDC_NEXT_BUF":\
+    line="B_SPDC_NEXT_BUF_NEXT_FRAME_MEMO8":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_CURRENT_BUF":\
-    line="B_SPDC_EPD_CURRENT_BUF_CURRENT16":\
+    line="=G_SPDC_CURRENT_BUF":\
+    line="B_SPDC_CURRENT_BUF_CURRENT_FRAM9":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_PREVIOUS_BUFF":\
-    line="B_SPDC_EPD_PREVIOUS_BUFF_PREVI17":\
+    line="=G_SPDC_PREVIOUS_BUFF":\
+    line="B_SPDC_PREVIOUS_BUFF_PREVIOUS_10":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_FRM_CNT_BUFF":\
-    line="B_SPDC_EPD_FRM_CNT_BUFF_COUNTE18":\
+    line="=G_SPDC_FRM_CNT_BUFF":\
+    line="B_SPDC_FRM_CNT_BUFF_COUNTER_FR11":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_LUT_BUFF":\
-    line="B_SPDC_EPD_LUT_BUFF_LUT_MEMORY19":\
+    line="=G_SPDC_LUT_BUFF":\
+    line="B_SPDC_LUT_BUFF_LUT_MEMORY_ADDR":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_INT_EN":\
-    line="B_SPDC_EPD_INT_EN_UPDATE_FINIS20":\
-    line="B_SPDC_EPD_INT_EN_TCON_INIT_FI21":\
-    line="B_SPDC_EPD_INT_EN_LUT_DOWNLOAD22":\
-    line="B_SPDC_EPD_INT_EN_TCON_ERROR_I23":\
+    line="=G_SPDC_INT_EN":\
+    line="B_SPDC_INT_EN_UPDATE_FINISH_IN12":\
+    line="B_SPDC_INT_EN_TCON_INIT_FINISH13":\
+    line="B_SPDC_INT_EN_LUT_DOWNLOAD_FIN14":\
+    line="B_SPDC_INT_EN_TCON_ERROR_INT_EN":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_INT_ST_CLR":\
-    line="B_SPDC_EPD_INT_ST_CLR_UPDATE_F24":\
-    line="B_SPDC_EPD_INT_ST_CLR_TCON_INI25":\
-    line="B_SPDC_EPD_INT_ST_CLR_LUT_DOWN26":\
-    line="B_SPDC_EPD_INT_ST_CLR_TCON_ERR27":\
+    line="=G_SPDC_INT_ST_CLR":\
+    line="B_SPDC_INT_ST_CLR_UPDATE_FINIS15":\
+    line="B_SPDC_INT_ST_CLR_TCON_INIT_FI16":\
+    line="B_SPDC_INT_ST_CLR_LUT_DOWNLOAD17":\
+    line="B_SPDC_INT_ST_CLR_TCON_ERROR_I18":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_STATUS":\
-    line="B_SPDC_EPD_STATUS_EPD_TCON_BUS28":\
-    line="B_SPDC_EPD_STATUS_LUT_CHECKSUM":\
-    line="B_SPDC_EPD_STATUS_EPD_TCON_STA29":\
+    line="=G_SPDC_STATUS":\
+    line="B_SPDC_STATUS_EPD_TCON_BUSY_N":\
+    line="B_SPDC_STATUS_LUT_CHECKSUM":\
+    line="B_SPDC_STATUS_EPD_TCON_STATUS":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_PANEL_TYPE_VER":\
-    line="B_SPDC_EPD_PANEL_TYPE_VER_PROD30":\
-    line="B_SPDC_EPD_PANEL_TYPE_VER_LUT_31":\
-    line="B_SPDC_EPD_PANEL_TYPE_VER_EPD_32":\
+    line="=G_SPDC_PANEL_TYPE_VER":\
+    line="B_SPDC_PANEL_TYPE_VER_PRODUCT_19":\
+    line="B_SPDC_PANEL_TYPE_VER_LUT_VERS20":\
+    line="B_SPDC_PANEL_TYPE_VER_EPD_PANE21":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_TCON_VER":\
-    line="B_SPDC_EPD_TCON_VER_EPD_TCON_V33":\
+    line="=G_SPDC_TCON_VER":\
+    line="B_SPDC_TCON_VER_EPD_TCON_VERSION":\
     line="$$":\
     line="$+":\
-    line="=G_SPDC_EPD_SW_GATE_CLK":\
-    line="B_SPDC_EPD_SW_GATE_CLK_GATING_34":\
+    line="=G_SPDC_SW_GATE_CLK":\
+    line="B_SPDC_SW_GATE_CLK_GATING_ALL_22":\
     line="$$":\
-  }:ARM_config={}\
+  }\
+  :ARM_config={}\
 }

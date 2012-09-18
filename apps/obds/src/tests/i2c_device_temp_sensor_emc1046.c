@@ -5,6 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
+#include "obds.h"
 #include "hardware.h"
 
 #define EMC1046_I2C_ID			0x4C

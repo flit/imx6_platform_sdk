@@ -6,6 +6,7 @@
 */
 
 //#include "imx_i2c.h"
+#include "obds.h"
 #include "hardware.h"
 
 extern int i2c_device_check_max11801(unsigned int i2c_base_addr);

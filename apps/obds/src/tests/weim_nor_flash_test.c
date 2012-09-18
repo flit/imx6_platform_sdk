@@ -16,6 +16,7 @@
  * @ingroup diag_weim_nor
  */
 
+#include "obds.h"
 #include "hardware.h"
 //#include "weim_nor_flash.h"
 

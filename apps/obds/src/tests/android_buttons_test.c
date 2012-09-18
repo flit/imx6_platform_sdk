@@ -5,6 +5,7 @@
  * Freescale Semiconductor, Inc.
  */
 
+#include "obds.h"
 #include "hardware.h"
 #include "gpio_define.h"
 #include "io.h"

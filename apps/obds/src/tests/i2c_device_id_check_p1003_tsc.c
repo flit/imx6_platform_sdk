@@ -6,6 +6,7 @@
 */
 
 //#include "imx_i2c.h"
+#include "obds.h"
 #include "hardware.h"
 
 int p1003_show_touch(unsigned int i2c_base_addr);

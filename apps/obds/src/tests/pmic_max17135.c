@@ -5,6 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
+#include "obds.h"
 #include "hardware.h"
 
 #define PMIC_MAX17135_I2C_ADDR        (0x90 >> 1)   // PMIC I2C Slave address

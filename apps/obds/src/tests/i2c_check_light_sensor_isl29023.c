@@ -5,6 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
+#include "obds.h"
 #include "hardware.h"
 
 #define REG_COMMAND_1 	0x00

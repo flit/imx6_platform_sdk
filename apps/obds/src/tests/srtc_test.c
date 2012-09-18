@@ -11,6 +11,7 @@
  *
  */
 
+#include "obds.h"
 #include "hardware.h"
 
 /*!

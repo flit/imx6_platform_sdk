@@ -6,6 +6,7 @@
 */
 
 //#include "imx_i2c.h"
+#include "obds.h"
 #include "hardware.h"
 #include "io.h"
 #include <stdio.h>

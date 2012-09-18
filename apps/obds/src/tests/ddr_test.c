@@ -20,6 +20,7 @@
 * Note, this file depends that in the SoC header file, CSD0_BASE_ADDR
 * CSD1_BASE_ADDR are properly defined.
 */
+#include "obds.h"
 #include "hardware.h"           /* note, this is where the SoC specific header file is included */
 
 /*!

@@ -12,6 +12,7 @@
  * @ingroup diag_fm_tuner
  */
 
+#include "obds.h"
 #include "hardware.h"
 //#include "imx_i2c.h"
 

@@ -7,6 +7,7 @@
 #include "stdlib.h"
 #include "stdio.h"
 #include "string.h"
+#include "obds.h"
 #include "hardware.h"
 #include "board_id.h"
 

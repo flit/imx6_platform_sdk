@@ -5,6 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
+#include "obds.h"
 #include "hardware.h"
 
 #define PPL3115_I2C_ID			0x60

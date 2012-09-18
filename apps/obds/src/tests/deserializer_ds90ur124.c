@@ -12,6 +12,7 @@
  * @ingroup diag_deserializer
  */
 
+#include "obds.h"
 #include "hardware.h"
 
 extern void adv7180_set_gpio_output(unsigned int, unsigned int);

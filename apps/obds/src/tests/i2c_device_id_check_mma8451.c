@@ -5,6 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
+#include "obds.h"
 #include "hardware.h"
 
 #define REG_CTRL_REG1		0x2A

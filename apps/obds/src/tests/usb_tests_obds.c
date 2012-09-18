@@ -12,6 +12,7 @@
  */
 #include <string.h>
 #include "io.h"
+#include "obds.h"
 #include "hardware.h"
 #if defined(CHIP_MX6SL)
 	#include "registers/regsusbcore.h"

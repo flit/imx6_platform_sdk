@@ -6,6 +6,7 @@
 */
 
 #include <stdio.h>
+#include "obds.h"
 #include "sdk.h"
 #include "hardware.h"
 

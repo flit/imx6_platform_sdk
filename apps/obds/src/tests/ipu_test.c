@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "obds.h"
 #include "hardware.h"
 #include "gpio_define.h"
 #include "logo.h"

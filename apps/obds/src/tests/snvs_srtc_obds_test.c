@@ -11,6 +11,7 @@
  *
  */
 
+#include "obds.h"
 #include "hardware.h"
 
 // These defines are used to solve some compilations issue with src/drivers/timer/imx_timer/srtc.c

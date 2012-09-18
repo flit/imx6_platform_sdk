@@ -5,6 +5,7 @@
  * Freescale Semiconductor, Inc.
  */
 
+#include "obds.h"
 #include "hardware.h"
 
 // adv7180 functions

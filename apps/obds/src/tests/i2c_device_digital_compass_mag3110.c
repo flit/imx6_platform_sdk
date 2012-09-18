@@ -5,6 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
+#include "obds.h"
 #include "hardware.h"
 
 unsigned char mag3110_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr)

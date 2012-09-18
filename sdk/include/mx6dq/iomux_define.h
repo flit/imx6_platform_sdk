@@ -650,8 +650,4 @@
 #define SEL_DI0_PIN4_ALT3 0x0
 #define SEL_GPIO_9_ALT6   0x1
 
-//Add from mx53 for ds90ur124.c
-#define GPR_BASE_ADDR      (IOMUXC_BASE_ADDR + 0x0)
-#define OBSRV_BASE_ADDR    (GPR_BASE_ADDR + 0xc)
-#define SW_MUX_BASE_ADDR   (OBSRV_BASE_ADDR + 0x14)
 #endif // _IOMUX_DEFINE_H_

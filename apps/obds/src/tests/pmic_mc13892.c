@@ -14,6 +14,7 @@
  * @ingroup diag_pmic
  */
 
+#include "obds.h"
 #include "hardware.h"
 
 #define PMIC_READ                   1

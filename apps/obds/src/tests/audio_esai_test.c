@@ -8,6 +8,7 @@
 #ifndef CHIP_MX6SL
 
 #include <stdio.h>
+#include "obds.h"
 #include "io.h"
 #include "hardware.h"
 #include "soc_memory_map.h"

@@ -16,6 +16,7 @@
  * @ingroup diag_enet
  */
 
+#include "obds.h"
 #include "hardware.h"
 #include "io.h"
 //#include "enet.h"

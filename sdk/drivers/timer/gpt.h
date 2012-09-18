@@ -5,92 +5,209 @@
  * Freescale Semiconductor, Inc.
 */
 
+//! @addtogroup diag_timer
+//! @{
+
 /*!
  * @file gpt.h
- * @brief GPT driver header file.
- * @ingroup diag_timer
+ * @brief GPT driver public interface.
  */
 
 #ifndef __GPT_H__
 #define __GPT_H__
 
 #include "sdk.h"
+#include "timer.h"
 
-/* GPT Registers Bit Fields */
-#define GPTCR_FO3           (0 << 31)   // GPT force output compare
-#define GPTCR_FO2           (0 << 30)   // GPT force output compare
-#define GPTCR_FO1           (0 << 29)   // GPT force output compare
-    /* x=1,2,3 - y=output mode listed into timer.h */
-#define GPTCR_OM_MODE(x,y)  ((y) << (17+x*3)) // GPT output compare mode
-    /* x=1,2 - y=input mode listed below */
-#define GPTCR_IM_MODE(x,y)  ((y) << (14+x*2)) // GPT input capture mode
-#define GPTCR_SWR           (1 << 15)   // starts a software reset
-#define GPTCR_FRR           (1 << 9)    // Free-run or restart mode
-    /* x = clock source */
-#define GPTCR_CLKSRC(x)     ((x) << 6)  // clock source
-#define GPTCR_STOPEN        (1 << 5)    // GPT enabled in STOP mode
-#define GPTCR_WAITEN        (1 << 3)    // GPT enabled in WAIT mode
-#define GPTCR_DBGEN         (1 << 2)    // GPT enabled in debug mode
-#define GPTCR_ENMOD         (1 << 1)    // counter start mode
-#define GPTCR_EN            (1 << 0)    // GPT enable
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
 
-#define GPTSR_ROV           (1 << 5)    // Rollover flag set
-#define GPTSR_IF2           (1 << 4)    // Input capture flag 2 set
-#define GPTSR_IF1           (1 << 3)    // Input capture flag 1 set
-#define GPTSR_OF3           (1 << 2)    // Output compare flag 3 set
-#define GPTSR_OF2           (1 << 1)    // Output compare flag 2 set
-#define GPTSR_OF1           (1 << 0)    // Output compare flag 1 set
-#define GPTSR_ALL           0x3F        // All flags
+//! @brief Possible events for the GPT.
+//!
+//! These constants are intended to be combined together to form a bitmask. Several
+//! of the GPT driver APIs use such a bitmask. For instance, gpt_counter_enable()
+//! accepts a bitmask that selects the events for which interrupts should be enabled.
+//!
+//! Note that the values of these enums happen to be the bitmasks for the respective
+//! fields in the HW_GPT_SR and HW_GPT_IR registers, so a mask constructed from them
+//! can be used directly with register values.
+enum _gpt_events
+{
+    kGPTNoEvent = 0,               //!< No events enabled.
+    kGPTRollover = 1 << 5,         //!< Rollover event.
+    kGPTInputCapture1 = 1 << 3,    //!< Input capture 1 event.
+    kGPTInputCapture2 = 1 << 4,    //!< Input capture 2 event.
+    kGPTOutputCompare1 = 1 << 0,   //!< Output compare 1 event.
+    kGPTOutputCompare2 = 1 << 1,   //!< Output compare 2 event.
+    kGPTOutputCompare3 = 1 << 2,   //!< Output compare 3 event.
+    
+    //! Combined mask of all GPT events.
+    kGPTAllEvents = kGPTRollover | kGPTInputCapture1 | kGPTInputCapture2
+                    | kGPTOutputCompare1 | kGPTOutputCompare2 | kGPTOutputCompare3
+};
 
-#define GPTSR_ROVIE         (1 << 5)    // Rollover interrupt enable
-#define GPTSR_IF2IE         (1 << 4)    // Input capture 2 interrupt enable
-#define GPTSR_IF1IE         (1 << 3)    // Input capture 1 interrupt enable
-#define GPTSR_OF3IE         (1 << 2)    // Output compare 3 interrupt enable
-#define GPTSR_OF2IE         (1 << 1)    // Output compare 2 interrupt enable
-#define GPTSR_OF1IE         (1 << 0)    // Output compare 1 interrupt enable
+//! @brief GPT counter modes.
+enum _gpt_counter_mode
+{
+    RESTART_MODE = 0,
+    FREE_RUN_MODE = 1
+};
 
-/* GPT specific defines */
-#define RESTART_MODE    0
-#define FREE_RUN_MODE   GPTCR_FRR
-/* list of input capture modes supported */
-#define INPUT_CAP_DISABLE       0x0 // input capture event disabled
-#define INPUT_CAP_RISING_EDGE   0x1 // input capture event on a rising edge
-#define INPUT_CAP_FALLING_EDGE  0x2 // input capture event on a falling edge
-#define INPUT_CAP_BOTH_EDGE     0x3 // input capture event on a both edge
+//! @brief Supported input capture modes.
+enum _gpt_capture_modes
+{
+    INPUT_CAP_DISABLE = 0,      //!< input capture event disabled
+    INPUT_CAP_RISING_EDGE = 1,  //!< input capture event on a rising edge
+    INPUT_CAP_FALLING_EDGE = 2, //!< input capture event on a falling edge
+    INPUT_CAP_BOTH_EDGE = 3     //!< input capture event on a both edge
+};
 
-#define CAP_INPUT1  1
-#define CAP_INPUT2  2
-#define CMP_OUTPUT1  1
-#define CMP_OUTPUT2  2
-#define CMP_OUTPUT3  3
+//! @brief Supported output modes.
+enum _gpt_compare_modes
+{
+    OUTPUT_CMP_DISABLE = 0,     //!< output disconnected from pad
+    OUTPUT_CMP_TOGGLE = 1,      //!< output toggle mode
+    OUTPUT_CMP_CLEAR = 2,       //!< output set low mode
+    OUTPUT_CMP_SET = 3,         //!< output set high mode
+    OUTPUT_CMP_LOWPULSE = 4     //!< output set high mode
+};
 
-/* GPT driver list of functions */
+////////////////////////////////////////////////////////////////////////////////
+// API
+////////////////////////////////////////////////////////////////////////////////
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
+/*!
+ * @brief Initialize the GPT timer.
+ *
+ * @param   port Pointer to the GPT module structure.
+ * @param   clock_src Source clock of the counter: CLKSRC_OFF, CLKSRC_IPG_CLK,
+ *                      CLKSRC_PER_CLK, CLKSRC_CKIL, CLKSRC_CLKIN.
+ * @param   prescaler Prescaler of the source clock from 1 to 4096.
+ * @param   counter_mode Counter mode: FREE_RUN_MODE or RESTART_MODE.
+ * @param   low_power_mode Low power during which the timer is enabled:
+ *                           WAIT_MODE_EN and/or STOP_MODE_EN.
+ */
 void gpt_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
               uint32_t counter_mode, uint32_t low_power_mode);
-void gpt_setup_interrupt(struct hw_module *port, uint8_t state);
+
+/*!
+ * @brief Setup GPT interrupt.
+ *
+ * It enables or disables the related HW module interrupt, and attached the
+ * related sub-routine into the vector table.
+ *
+ * @param   port Pointer to the GPT module structure.
+ * @param   enableIt Pass true to enable the interrupt.
+ */
+void gpt_setup_interrupt(struct hw_module *port, bool enableIt);
+
+/*!
+ * @brief Enable the GPT module.
+ *
+ * Used typically when the gpt_init is done, and other interrupt related settings are ready.
+ *
+ * If a value of #kGPTNoEvent is passed for @a irq_mode, then no interrupts will be enabled.
+ * This effectively puts the timer into polling mode, where you must call gpt_get_x_event()
+ * to check for an event having occurred.
+ *
+ * @param   port Pointer to the GPT module structure.
+ * @param   irq_mode Mask of events to enable interrupts for, such as #kGPTRollover or
+ *      #kGPTOutputCompare1. See the #_gpt_events enum for the complete list. Pass
+ *      #kGPTNoEvent to prevent any interrupts from being enabled, which effectively puts
+ *      the timer into polling mode.
+ */
 void gpt_counter_enable(struct hw_module *port, uint32_t irq_mode);
+
+/*!
+ * @brief Disable the counter.
+ *
+ * It saves power when not used.
+ *
+ * @param   port Pointer to the GPT module structure.
+ */
 void gpt_counter_disable(struct hw_module *port);
+
+/*!
+ * @brief Get rollover event flag and clear it if set.
+ *
+ * This function can typically be used for polling method, but
+ * is also used to clear the status compare flag in IRQ mode.
+ *
+ * @param   port Pointer to the GPT module structure.
+ * @return  Either 0 of kGPTRollover.
+ */
 uint32_t gpt_get_rollover_event(struct hw_module *port);
+
+/*!
+ * @brief Get a captured value when an event occured, and clear the flag if set.
+ *
+ * Use this function to check for an input capture event having occurred, either in
+ * the event ISR or to check manually in polling mode. Pass the input channel to check
+ * in the @a flag parameter. If that channel fired, its captured timer value will be
+ * read and placed in @a capture_val (if not NULL). The event that fired will be cleared
+ * and its event mask returned as the return value from the function. If no event
+ * occurred, the function returns 0.
+ *
+ * @param   port Pointer to the GPT module structure.
+ * @param   flag Which channel to check, either #kGPTInputCapture1 or #kGPTInputCapture2.
+ *      Only one channel may be specified.
+ * @param   capture_val The capture register value is returned through this parameter if
+ *      the specified event occurred. May be NULL if not required.
+ * @return  Mask of input specified capture event that occurred, or 0 if no event occurred.
+ */
 uint32_t gpt_get_capture_event(struct hw_module *port, uint8_t flag,
                                uint32_t * capture_val);
+
+/*!
+ * @brief Set the input capture mode.
+ *
+ * @param   port Pointer to the GPT module structure.
+ * @param   cap_input The input capture channel to configure, either #kGPTInputCapture1
+ *      or #kGPTInputCapture2.
+ * @param   cap_input_mode Capture input mode: #INPUT_CAP_DISABLE, #INPUT_CAP_BOTH_EDGE,
+ *                            #INPUT_CAP_FALLING_EDGE, #INPUT_CAP_RISING_EDGE.
+ */
 void gpt_set_capture_event(struct hw_module *port, uint8_t cap_input,
                            uint8_t cap_input_mode);
+
+/*!
+ * @brief Get a compare event flag and clear it if set.
+ *
+ * This function can typically be used for polling method, but
+ * is also used to clear the status compare flag in IRQ mode.
+ *
+ * @param   port Pointer to the GPT module structure.
+ * @param   flag Checked compare event flag such GPTSR_OF1, GPTSR_OF2, GPTSR_OF3.
+ * @return  The value of the compare event flag.
+ */
 uint32_t gpt_get_compare_event(struct hw_module *port, uint8_t flag);
+
+/*!
+ * @brief Set a compare event by programming the compare register and 
+ * compare output mode.
+ *
+ * @param   port Pointer to the GPT module structure.
+ * @param   cmp_output The channel to configure. Must be one of #kGPTOutputCompare1,
+ *      #kGPTOutputCompare2, or #kGPTOutputCompare3.
+ * @param   cmp_output_mode Compare output mode: #OUTPUT_CMP_DISABLE, #OUTPUT_CMP_TOGGLE,
+ *                            #OUTPUT_CMP_CLEAR, #OUTPUT_CMP_SET, #OUTPUT_CMP_LOWPULSE.
+ * @param   cmp_value Compare value for the compare register.
+ */
 void gpt_set_compare_event(struct hw_module *port, uint8_t cmp_output,
                            uint8_t cmp_output_mode, uint32_t cmp_value);
 
-/* GPT Registers list */
-struct mx_gpt {
-    volatile uint32_t gpt_cr;
-    volatile uint32_t gpt_pr;
-    volatile uint32_t gpt_sr;
-    volatile uint32_t gpt_ir;
-    volatile uint32_t gpt_ocr1;
-    volatile uint32_t gpt_ocr2;
-    volatile uint32_t gpt_ocr3;
-    volatile uint32_t gpt_icr1;
-    volatile uint32_t gpt_icr2;
-    volatile uint32_t gpt_cnt;
-};
+#if defined(__cplusplus)
+}
+#endif
+
+//! @}
 
 #endif //__GPT_H__
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

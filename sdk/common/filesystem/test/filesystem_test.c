@@ -95,7 +95,7 @@ int fat_write_speed_test(void)
 		printf(".");
 	}
 
-    TimeCount = ((struct mx_epit *)count_timer.base)->epitcnr;
+    TimeCount = epit_get_counter_value(&count_timer);
     epit_counter_disable(&count_timer); //polling mode
 
     free(WriteBuffer);
@@ -169,7 +169,7 @@ int fat_read_speed_test(void)
             break;
         }
     }
-    TimeCount = ((struct mx_epit *)count_timer.base)->epitcnr;
+    TimeCount = epit_get_counter_value(&count_timer);
     epit_counter_disable(&count_timer); //polling mode
 
     printf("\n*****************File Reading End********************\n");

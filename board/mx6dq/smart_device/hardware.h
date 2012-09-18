@@ -41,6 +41,13 @@
 #include "usb/usb.h"
 #include "keypad/keypad_port.h"
 
+//Add for obds tests
+#include "audio/audio.h"
+#include "audio/imx-audmux.h"
+#include "spi/ecspi_ifc.h"
+#include "enet/enet.h"
+#include "board_id/board_id.h"
+
 // Android_Buttons test defines
 #define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR
 #define HOME_BUTTON_GPIO_NUM	11
@@ -82,6 +89,9 @@
 // audio defines
 #define WM8958_I2C_DEV_ADDR 		(0x34>>1)
 #define WM8958_I2C_BASE_ADDR		I2C2_BASE_ADDR
+
+#define WM8962_I2C_DEV_ADDR             (0x34>>1)
+#define WM8962_I2C_BASE_ADDR            I2C1_BASE_ADDR
 
 #define SGTL5000_I2C_BASE   I2C2_BASE_ADDR  // audio codec on i2c2
 #define SGTL5000_I2C_ID     0x0A
@@ -165,6 +175,7 @@ extern imx_i2c_request_t max7310_i2c_req_array[];
 #define MMA8451_I2C_ID      0x1C
 #define MAG3112_I2C_ID      0x1D
 #define ISL29023_I2C_ID	    0x44
+#define MAG3110_I2C_ID      0x0E
 
 #define MAX11801_I2C_BASE	I2C3_BASE_ADDR
 #define MAX11801_I2C_ID     (0x90 >> 1)
@@ -179,6 +190,14 @@ extern imx_i2c_request_t max7310_i2c_req_array[];
 #define LTC2495_I2C_BASE    I2C2_BASE_ADDR
 #define LTC2495_I2C_ID      (0x28 >> 1)
 
+//copied from OBDS
+#if defined(BOARD_SABRE_LITE)
+#define P1003_TSC_I2C_BASE   I2C3_BASE_ADDR
+#else
+#define P1003_TSC_I2C_BASE   I2C2_BASE_ADDR
+#endif
+#define P1003_TSC_I2C_ID     4
+
 // USB test defines
 #define MX53_USBH1_BASE_ADDR    0x53F80200
 #define MX53_USBH2_BASE_ADDR    0x53F80400
@@ -190,6 +209,9 @@ extern imx_i2c_request_t max7310_i2c_req_array[];
 #define USBH2_VIEWPORT      (USBH2_BASE_ADDR + 0x170)
 #define USB_CTRL_1      (USBOH3_BASE_ADDR + 0x810)
 #define UH2_PORTSC1 (USBH2_BASE_ADDR + 0x184)
+
+#define USBOH3_BASE_ADDR      USBOH3_USB_BASE_ADDR
+
 
 #define FEC_BASE_ADDR         ENET_BASE_ADDR
 
@@ -236,6 +258,7 @@ enum display_type {
     DISP_DEV_VGA,
     DISP_DEV_HDMI,
     DISP_DEV_TV,
+    DISP_DEV_MIPI,
 };
 
 void freq_populate(void);
@@ -247,9 +270,20 @@ void reset_usb_hub(void);
 void usb_clock_enable(void);
 void imx_enet_setup(void);
 void gpmi_nand_clk_setup(void);
+void ecspi_iomux_cfg(uint32_t);
 void hw_can_iomux_config(uint32_t module_instance);
+
+//OBDS-SDK Merge, add according to hardware.c
+void deserializer_io_config(void);
+void mlb_io_config(void);
+void weim_nor_flash_cs_setup(void);
+void audio_codec_power_on(void);
+void audio_clock_config(void);
 extern hw_module_t g_debug_uart;
 extern hw_module_t g_system_timer;
+
+//OBDS-SDK merge, add according to hardware.c
+void audio_clock_config(void);
 
 extern int32_t max7310_init(uint32_t, uint32_t, uint32_t);
 extern void max7310_set_gpio_output(uint32_t, uint32_t, uint32_t);
@@ -266,6 +300,70 @@ extern int32_t is_input_char(uint8_t);
 
 extern void camera_power_on(void);
 extern void csi_port0_iomux_config(void);
+
+
+//list of tests from obds
+extern int android_buttons_test_enable;
+extern int touch_button_test_enable;
+extern int eeprom_test_enable;
+extern int ddr_test_enable;
+extern int i2c_device_id_check_p1003_test_enable;
+extern int i2c_device_id_check_mma8451_test_enable;
+extern int i2c_device_id_check_mag3110_test_enable;
+extern int i2c_device_id_check_mag3112_test_enable;
+extern int i2c_device_id_check_isl29023_test_enable;
+extern int i2c_device_id_check_cs42888_test_enable;
+extern int touch_screen_test_enable;
+extern int adv7180_test_enable;
+extern int ard_mb_reset_test_enable;
+extern int ard_mb_expander_reset_test_enable;
+extern int ds90ur124_test_enable;
+extern int mlb_os81050_test_enable;
+extern int weim_nor_flash_test_enable;
+extern int pf0100_i2c_device_id_test_enable;
+extern int usbh_EHCI_test_mode_test_enable;
+extern int usbh_dev_enum_test_enable;
+extern int usbo_dev_enum_test_enable;
+extern int usbh_hub251x_test_enable;
+extern int spi_nor_test_enable;
+extern int smbus_test_enable;
+extern int i2c_device_id_check_DA9053_test_enable;
+extern int ltc3589_i2c_device_id_test_enable;
+extern int pmic_mc13892_test_enable;
+extern int mmcsd_test_enable;
+extern int sdio_test_enable;
+extern int gps_test_enable;
+extern int ipu_display_test_enable;
+extern int si476x_test_enable;
+extern int obds_snvs_srtc_test_enable;
+extern int enet_test_enable;
+extern int ar8031_test_enable;
+extern int KSZ9021RN_test_enable;
+extern int camera_flashtest_ebable;
+extern int i2s_audio_test_enable;
+extern int esai_test_enable;
+extern int program_board_id_enable;
+extern int spi_nor_test_enable;
+extern int obds_snvs_srtc_test_enable;
+extern int srtc_test_enable;
+extern int program_board_id_enable;
+
+//Add variabnes from obds
+extern uint32_t usbh_EHCI_test_mode_base;
+extern uint32_t usbh_dev_enum_test_base;
+extern uint32_t usbo_dev_enum_test_base;
+extern uint32_t usbh_hub251x_test_base;
+extern uint32_t mmcsd_bus_width;
+extern uint32_t mmc_sd_base_address;
+extern uint32_t sdio_bus_width;
+extern uint32_t sdio_base_address;
+
+extern audio_pcm_t pcm_record;
+extern audio_pcm_t pcm_music;
+extern audio_card_t snd_card_ssi;
+extern audio_card_t snd_card_ssi_sgtl5000;
+extern audio_card_t snd_card_ssi_wm8958;
+extern audio_card_t snd_card_ssi_wm8962;
 
 //! @name Board ID
 //@{
@@ -306,4 +404,16 @@ extern void csi_port0_iomux_config(void);
 #error Need to define a board type
 #endif
 
+//Copy from obds
+#define PMIC_MC13892_I2C_BASE      I2C2_BASE_ADDR
+#define PMIC_LTC3589_I2C_BASE      I2C2_BASE_ADDR
+#define PMIC_DA9053_I2C_BASE       I2C1_BASE_ADDR
+#define PMIC_PF0100_I2C_BASE       I2C2_BASE_ADDR 
+#define PMIC_MAX17135_I2C_BASE     I2C1_BASE_ADDR
+
+#define CSPI_BASE_ADDR             ECSPI1_BASE_ADDR
+//Copy from obds
+//Provide macros for test enter and exit outputs
+#define TEST_ENTER(name) printf("Running test: %s\n", name)
+#define TEST_EXIT(name) do {printf("..Test: %s\n", name); } while(0) 
 #endif /* __HARDWARE_H__ */

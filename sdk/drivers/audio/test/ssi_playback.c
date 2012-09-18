@@ -27,10 +27,14 @@ int32_t ssi_playback(audio_pcm_p pcm_file)
         printf("  skip AUDIO test \n");
         return TEST_BYPASSED;
     }
-
-    audmux_route(AUDMUX_PORT_2, AUDMUX_PORT_5, AUDMUX_SSI_SLAVE);
-
+#if defined(BOARD_SMART_DEVICE) || (defined(CHIP_MX6SL) && defined(BOARD_EVB))
+    audmux_route(AUDMUX_PORT_2, AUDMUX_PORT_3, AUDMUX_SSI_MASTER);
     dev_para.bus_mode = AUDIO_BUS_MODE_SLAVE;
+#endif
+#if defined(BOARD_SABRE_LITE)
+    audmux_route(AUDMUX_PORT_2, AUDMUX_PORT_4, AUDMUX_SSI_SLAVE);
+    dev_para.bus_mode = AUDIO_BUS_MODE_SLAVE;
+#endif
     dev_para.bus_protocol = AUDIO_BUS_PROTOCOL_I2S;
     dev_para.sample_rate = SAMPLERATE_48KHz;
     dev_para.word_length = WL_16;

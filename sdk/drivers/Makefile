@@ -17,10 +17,13 @@ audio/src/imx-audmux.c
 audio/src/imx-ssi.c
 audio/src/sgtl5000.c
 audio/src/snd_card.c
+audio/src/wm8958_dac.c
+audio/src/wm8962.c
 camera/src/camera_profile.c
 camera/src/smd_sensor.c
 cpu_utility/src/cpu_get_cores.c
 eim/src/eim.c
+flexcan/src/can.c
 gic/src/gic.c
 gpio/src/gpio.c
 i2c/src/imx_i2c_slave.c
@@ -33,6 +36,7 @@ rtc/src/rtc.c
 rtc/src/srtc.c
 sdma/src/sdma_script_info.c
 sdma/src/sdma.c
+smbus/src/smbus.c
 snvs/src/snvs.c
 spi/src/ecspi.c
 tempmon/src/tempmon.c

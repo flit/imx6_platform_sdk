@@ -15,6 +15,10 @@
 #define __IO_H__
 
 #include "sdk_types.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "sdk.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -110,6 +114,18 @@
  * This macro is used to set certain bit field inside a number
  */
 #define SET_FIELD(val, len, sh, nval)    ((val & ~(((1 << len) - 1) << sh)) | (nval << sh))
+
+typedef unsigned int (*pmic_mc13892_reg_t) (unsigned int reg, unsigned int val, unsigned int write);
+#define PROMPT_RUN_TEST(name)           \
+    do {                                \
+        printf("\n---- Running < %s > test\n", name);       \
+        if (!auto_run_enable) {                             \
+            if (!is_input_char('y'))                        \
+                return TEST_BYPASSED;                       \
+        }                                                   \
+    } while (0)
+
+extern int auto_run_enable;
 
 #endif // __IO_H__
 ////////////////////////////////////////////////////////////////////////////////

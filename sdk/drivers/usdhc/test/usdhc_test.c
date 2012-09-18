@@ -63,6 +63,10 @@ static int mmc_test_dst[MMC_TEST_BUF_SIZE + MMC_CARD_SECTOR_BUFFER];
 static int mmc_test_tmp[MMC_TEST_BUF_SIZE + MMC_CARD_SECTOR_BUFFER];
 
 /********************************************* Global Function ******************************************/
+int mmc_sd_test(unsigned int bus_width, unsigned int base_address)
+{
+    return mmc_test(bus_width, base_address);
+}
 
 int usdhc_test(void)
 {

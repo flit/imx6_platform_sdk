@@ -24,6 +24,8 @@
 
 extern audio_ctrl_t imx_ssi_2;
 extern audio_codec_t sgtl5000;
+extern audio_codec_t wm8958;
+extern audio_codec_t wm8962;
 
 extern audio_ctrl_t imx_esai_1;
 extern audio_codec_t cs42888;
@@ -142,17 +144,29 @@ static int32_t snd_card_write(void *priv, uint8_t * buf, uint32_t bytes2write,
     return 0;
 }
 
+static int32_t snd_card_read(void *priv, uint8_t * buf, uint32_t bytes2read,
+                              uint32_t * bytes_read)
+{
+    audio_card_p card = (audio_card_p) priv;
+    audio_ctrl_p ctrl = card->ctrl;
+    
+    ctrl->ops->read((void *)ctrl, buf, bytes2read, bytes_read);
+
+    return 0;
+}
+
 static audio_dev_ops_t snd_card_ops = {
     .init = snd_card_init,
     .deinit = snd_card_deinit,
     .config = snd_card_config,
     .ioctl = snd_card_ioctl,
     .write = snd_card_write,
+    .read = snd_card_read,
 };
 
 audio_card_t snd_card_ssi = {
     .name = "i.MX SSI sound card",
-    .codec = &sgtl5000,
+    .codec = &wm8962,   //&sgtl5000,
     .ctrl = &imx_ssi_2,
     .ops = &snd_card_ops,
 };
@@ -168,3 +182,25 @@ audio_card_t snd_card_spdif = {
     .ctrl = &imx_spdif,
     .ops = &snd_card_ops,
 };
+
+audio_card_t snd_card_ssi_sgtl5000 = {
+    .name = "i.MX SSI sound card - sgtl5000",
+    .codec = &sgtl5000,
+    .ctrl = &imx_ssi_2,
+    .ops = &snd_card_ops,
+};
+
+audio_card_t snd_card_ssi_wm8958 = {
+    .name = "i.MX SSI sound card - wm8958",
+    .codec = &wm8958,
+    .ctrl = &imx_ssi_2,
+    .ops = &snd_card_ops,
+};
+
+audio_card_t snd_card_ssi_wm8962 = {
+    .name = "i.MX SSI sound card - wm8962",
+    .codec = &wm8962,
+    .ctrl = &imx_ssi_2,
+    .ops = &snd_card_ops,
+};
+

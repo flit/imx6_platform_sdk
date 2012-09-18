@@ -23,6 +23,7 @@
 #define ON 1
 #define OFF 0
 
+extern sata_phy_ref_clk_t sata_phy_clk_sel;
 struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 
 // ARM core.
@@ -521,7 +522,16 @@ void imx_ar8031_reset(void)
 void sata_power_on(void)
 {
     //enable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0
+#ifdef BOARD_SMART_DEVICE
+    //AUX_5V_EN
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
+    gpio_dir_config(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
+    gpio_write_data(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
+#else
+    //enable SATA_3V3 and SATA_5V with MX7310 CTRL_0
     max7310_set_gpio_output(1, 0, GPIO_HIGH_LEVEL);
+    sata_phy_clk_sel = CCM_PLL_ENET;
+#endif
 }
 
 /*!
@@ -718,4 +728,36 @@ void usbDisableVbus(usb_module_t * port)
         // no such controller
         break;
     }
+}
+
+/*! From obds
+ * Audio Codec Power on
+ */
+void audio_codec_power_on (void)
+{
+#ifdef BOARD_SMART_DEVICE
+    //CODEC PWR_EN, key_col12
+    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_KEY_COL2);
+    gpio_dir_config(GPIO_PORT4, 10, GPIO_GDIR_OUTPUT);
+    gpio_write_data(GPIO_PORT4, 10, GPIO_HIGH_LEVEL);
+#endif
+}
+
+/*! From obds
+ * Audio Clock Config
+ */
+void audio_clock_config(void)
+{
+#if defined(CHIP_MX6DQ) && defined(BOARD_SMART_DEVICE) 
+    uint32_t val = 0;
+    
+    ccm_iomux_config();
+
+    val = (0x01 << 24) |      //clko2 en
+          (0x05 << 21) |     //div 6
+          (0x13 << 16) |     //ssi2 root clk
+          (0x01 << 8);       //CKO1 output drives cko2 clock
+//    writel(val, CCM_CCOSR);
+    writel(val, (CCM_BASE_ADDR + CCM_CCOSR_OFFSET));
+#endif
 }

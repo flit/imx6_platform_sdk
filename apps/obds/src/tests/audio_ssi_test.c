@@ -53,10 +53,10 @@ int audio_test_init(void)
 #endif
 
 #if defined(BOARD_SABRE_LITE)
-    snd_card = snd_card_ssi_sgtl5000;
+    snd_card = &snd_card_ssi_sgtl5000;
 #endif
 #if (defined(CHIP_MX6SL) && defined(BOARD_EVB))
-    snd_card = snd_card_ssi_wm8962;
+    snd_card = &snd_card_ssi_wm8962;
 #endif
 
 #if defined(BOARD_SMART_DEVICE) || (defined(CHIP_MX6SL) && defined(BOARD_EVB))

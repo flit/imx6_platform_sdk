@@ -23,6 +23,8 @@
 #define ON 1
 #define OFF 0
 
+extern sata_phy_ref_clk_t sata_phy_clk_sel;
+
 struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
 
 // ARM core.
@@ -588,7 +590,7 @@ void sata_power_on(void)
 #else
     //enable SATA_3V3 and SATA_5V with MX7310 CTRL_0
     max7310_set_gpio_output(1, 0, GPIO_HIGH_LEVEL);
-    sata_phy_clk_sel = ANATOP_ENET_PLL;
+    sata_phy_clk_sel = CCM_PLL_ENET;
 #endif
 }
 

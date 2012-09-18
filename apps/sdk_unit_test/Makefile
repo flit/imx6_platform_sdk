@@ -39,6 +39,8 @@ DEFINES +=-DSTANDALONE -DSDK_TEST=$(TEST)_test
 export APP_NAME = sdk_unit_test
 LINK_APP = 1
 
+APP_ELF = $(APP_OUTPUT_ROOT)/$(APP_NAME)_$(TEST).elf
+
 # Tests included in the build for all targets and boards.
 define SUBDIRS
     $(SDK_LIB_ROOT)/drivers/audio/test

@@ -7,7 +7,7 @@
 
 #include "obds.h"
 #include "hardware.h"
-#include "board_id.h"
+#include "board_id/board_id.h"
 
 extern int i2c_device_id_check_MMA8451(unsigned int i2c_base_addr);
 extern int i2c_device_id_check_isl29023(unsigned int i2c_base_addr);
@@ -37,10 +37,10 @@ int i2c_device_id_check(void)
     } else if (BOARD_TYPE_ID == BOARD_TYPE_SMART_DEVICE) {
         //  USB_OTG_PWR_EN (EIM_D22)
         writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_EB3);
-        gpio_dir_config(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
-        gpio_write_data(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
+        gpio_dir_config(HW_GPIO2, 31, GPIO_GDIR_OUTPUT);
+        gpio_write_data(HW_GPIO2, 31, GPIO_LOW_LEVEL);
         hal_delay_us(1000);
-        gpio_write_data(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
+        gpio_write_data(HW_GPIO2, 31, GPIO_HIGH_LEVEL);
 
         //rc |= i2c_device_id_check_mc1323(I2C2_BASE_ADDR);
         if (i2c_device_id_check_mma8451_test_enable == 1) {

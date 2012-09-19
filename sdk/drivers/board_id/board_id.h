@@ -13,9 +13,7 @@
 
 #ifndef BOARD_ID_H_
 #define BOARD_ID_H_
-#include <stdio.h>
-#include "io.h"
-#include "hardware.h"
+
 #include "registers/regsusbanalog.h"
 #include "registers/regsocotp.h"
 
@@ -33,24 +31,20 @@ typedef union _fsl_board_id {
         unsigned CHIP_REV_MAJOR:8;  //!< [15:8] Fixed read-only value reflecting the MAJOR field of the RTL version.
         unsigned CHIP_TYPE_ID:8;    //!< [23:16] Fixed read-only value reflecting the CHIP_TYPE field of the RTL version.
         unsigned BOARD_REV:4;   //!< [27:24] Fixed read-only value reflecting the BOARD_REV field of the Board Version set in the OCOTP fuses.
-        unsigned BOARD_TYPE_IDD:4;   //!< [31:28] Fixed read-only value reflecting the BOARD_TYPE field of the Board Version set in the OCOTP fuses.
+        unsigned BOARD_TYPE_ID:4;   //!< [31:28] Fixed read-only value reflecting the BOARD_TYPE field of the Board Version set in the OCOTP fuses.
     } B;
 } fsl_board_id_t;
 
 // Get the FSL Board ID  (fsl_board_id_t)
 fsl_board_id_t get_board_id(void);
 // Get strings describing the various components of the FSL Board ID  (fsl_board_id_t)
-void chip_name_func(char *name, uint32_t chip_id, bool long_name_flag);
-void chip_revision_func(char *rev_str, uint32_t major_rev, uint32_t minor_rev);
-void board_name_func(char *name, uint32_t board_id);
-void board_revision_func(char *name, uint32_t board_rev);
+void chip_name(char *name, uint32_t chip_id, bool long_name_flag);
+void chip_revision(char *rev_str, uint32_t major_rev, uint32_t minor_rev);
+void board_name(char *name, uint32_t board_id);
+void board_revision(char *name, uint32_t board_rev);
 void board_description(char *desc);
 
 void show_board_id(fsl_board_id_t board_id);
-int program_board_id_fuses(uint32_t board_type, uint32_t board_rev);
-
-extern int program_board_id_enable;
-int program_board_id(void);
 
 /* Chip Type */
 #define CHIP_TYPE_MX6SL         0x60
@@ -72,14 +66,14 @@ int program_board_id(void);
 #define BOARD_TYPE_SMART_DEVICE 0x2
 #define BOARD_TYPE_SABRE_LITE   0x3
 #define BOARD_TYPE_EVB          0x4
-#define BOARD_TYPE_EVK_EPDC     0x5
-#define BOARD_TYPE_EVK_SPDC     0x6
+#define BOARD_TYPE_EVK          0x5
 
 /* Board Revision */
 #define BOARD_REVISION_DEFAULT	0x0
 #define BOARD_REVISION_A	    0x1
 #define BOARD_REVISION_B	    0x2
-#define BOARD_REVISION_C	    0x3
+#define BOARD_REVISION_BX       0x3
+#define BOARD_REVISION_C        0x4
 
 #if defined(CHIP_MX6SL)
 #define CHIP_TYPE        CHIP_TYPE_MX6SL
@@ -99,13 +93,15 @@ int program_board_id(void);
 #define BOARD_TYPE            BOARD_TYPE_SABRE_LITE
 #elif defined(BOARD_EVB)
 #define BOARD_TYPE            BOARD_TYPE_EVB
+#elif defined(BOARD_EVK)
+#define BOARD_TYPE            BOARD_TYPE_EVK
 #else
 #error Need to define a board type
 #endif
 
-#if defined(BOARD_VERSION2)
+#if defined(BOARD_REV_B)
 #define BOARD_REVISION        BOARD_REVISION_B
-#elif defined(BOARD_VERSION1)
+#elif defined(BOARD_REV_A)
 #define BOARD_REVISION        BOARD_REVISION_A
 #else
 #error Need to define a board revision

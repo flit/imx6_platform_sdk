@@ -20,8 +20,11 @@
 #include <string.h>
 #include "obds.h"
 #include "hardware.h"
-#include "gpio_define.h"
+#include "gpio/gpio.h"
 #include "logo.h"
+#include "ldb/ldb_def.h"
+
+#include "registers/regsipu.h"
 
 #define WVGA_FW      800
 #define WVGA_FH      480
@@ -53,7 +56,7 @@ void ipu_panel_enable(int panel_type_sel, int bit_mode, char *panel_name);
 void ldb_config_ipu(int);
 
 //extern void ipu_display_setup(uint32_t ipu_index, uint32_t, uint32_t, uint32_t, ips_dev_panel_t *panel);
-extern void ipu_iomux_config(void);
+//extern void ipu_iomux_config(void);
 extern void ldb_clock_config(int freq, int ipu_index);
 extern void disable_para_panel(void);
 extern int ipu_sw_reset(int32_t ipu_index, int32_t timeout);
@@ -209,7 +212,7 @@ static int ipu_display_test(int disp_dev_type)
 //    uint32_t disp_mem;
 //    ips_dev_panel_t *panel = NULL;
     unsigned int bit_mode = LVDS_PANEL_18BITS_MODE;
-    ipu_iomux_config();
+    ipu_iomux_config(HW_IPU1);
     ipu_sw_reset(1, 1000);
 
     dispDev.type = disp_dev_type;

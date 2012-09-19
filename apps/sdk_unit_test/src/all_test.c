@@ -94,7 +94,7 @@ void ALL_test(void)
         tempmon_test();
         uart_test();
         usdhc_test();
-#if defined(BOARD_SMART_DEVICE) && defined(BOARD_VERSION2)
+#if defined(BOARD_SMART_DEVICE) && defined(BOARD_REV_B)
 // 		usb_test();
 #endif
         gic_sgi_test();

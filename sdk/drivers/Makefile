@@ -19,6 +19,7 @@ audio/src/sgtl5000.c
 audio/src/snd_card.c
 audio/src/wm8958_dac.c
 audio/src/wm8962.c
+board_id/src/board_id.c
 camera/src/camera_profile.c
 camera/src/smd_sensor.c
 cpu_utility/src/cpu_get_cores.c

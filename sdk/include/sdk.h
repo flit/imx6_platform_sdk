@@ -32,6 +32,9 @@
 
 #define NONE_CHAR   (0xFF)
 
+//#define SUCCESS             0
+#define INVALID_PARAMETER (-1)
+
 //! @name Min/max macros
 //@{
 #if !defined(MIN)

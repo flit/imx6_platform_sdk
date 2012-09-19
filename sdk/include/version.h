@@ -17,6 +17,6 @@
 
 #define version_s	"1.0"
 
-void print_ver(char *chip, char *brd, char *brd_rev);
+void print_version(void);
 
 #endif /*VERSION_H_ */

@@ -12,6 +12,7 @@
  */
 
 #include <stdio.h>
+#include <stdbool.h>
 #include "hardware.h"
 #include "ocotp/ocotp.h"
 #include "registers/regsocotp.h"
@@ -31,8 +32,8 @@ static int32_t WriteOTPValues(uint32_t * pau32Registers, uint32_t u32RegIndex, u
 /*!
  * @brief Waits until OCOTP_CTRL BUSY bit is cleared.
  *
- * @return SUCCESS on success otherwise ERROR_BIT_SET
- * @todo also deal with timeout and test for BUSY still set
+ * @return SUCCESS on success otherwise ERROR_BIT_SET.
+ * @todo Also deal with timeout and test for BUSY still set.
  */
 int Delay4Busy(void)
 {
@@ -41,6 +42,25 @@ int Delay4Busy(void)
 
     // process any errors
     if (HW_OCOTP_CTRL.B.ERROR) {
+        // clear the error bit so more writes can be done
+        HW_OCOTP_CTRL_CLR(BM_OCOTP_CTRL_ERROR);
+        return ERROR_OTP_CTRL_ERROR;
+    }
+    return SUCCESS;
+}
+
+/*!
+ * @brief Waits until BM_OCOTP_CTRL_RELOAD_SHADOWS is cleared or timeout.
+ *
+ * @return SUCCESS on success otherwise ERROR_BIT_SET.
+ * @todo Also deal with timeout and test for BUSY still set.
+ */
+int Delay4Reload(void)
+{
+    while (HW_OCOTP_CTRL.B.RELOAD_SHADOWS);
+
+    // process any errors
+    if (HW_OCOTP_CTRL_RD() & BM_OCOTP_CTRL_ERROR) {
         // clear the error bit so more writes can be done
         HW_OCOTP_CTRL_CLR(BM_OCOTP_CTRL_ERROR);
         return ERROR_OTP_CTRL_ERROR;
@@ -202,6 +222,45 @@ void ocotp_fuse_blow_row(uint32_t bank, uint32_t row, uint32_t value)
         return;
     }
 //     printf("Fuse programmed successfully\n");
+}
+
+int ocotp_reload_otp_shadow_registers(void)
+{
+    /*
+     * 1. Program HW_OCOTP_TIMING[STROBE_READ] and
+     * HW_OCOTP_TIMING[RELAX] fields with timing values to match the current
+     * frequency of the ipg_clk. OTP read will work at maximum bus frequencies as long as
+     * the HW_OCOTP_TIMING parameters are set correctly.
+     */
+    // TODO:
+
+    /*
+     * 2. Check that HW_OCOTP_CTRL[BUSY] and HW_OCOTP_CTRL[ERROR] are
+     * clear. Overlapped accesses are not supported by the controller. Any pending write,
+     * read or reload must be completed before a read access can be requested.
+     */
+    if (HW_OCOTP_CTRL.B.BUSY) {
+        return ERROR_OTP_CTRL_BUSY;
+    }
+
+    if (HW_OCOTP_CTRL.B.ERROR) {
+        return ERROR_OTP_CTRL_ERROR;
+    }
+
+    /*
+     * 3. Set the HW_OCOTP_CTRL[RELOAD_SHADOWS] bit. OCOTP will read all the
+     * fuse one by one and put it into corresponding shadow register.
+     */
+    HW_OCOTP_CTRL_WR(BM_OCOTP_CTRL_RELOAD_SHADOWS);
+
+    /*
+     * 4. Wait for HW_OCOTP_CTRL[BUSY] and
+     * HW_OCOTP_CTRL[RELOAD_SHADOWS] to be cleared by the controller.
+     */
+    Delay4Busy();
+    Delay4Reload();
+
+    return SUCCESS;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

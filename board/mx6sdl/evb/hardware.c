@@ -252,21 +252,21 @@ void lvds_power_on(void)
 
     /*lvds backlight enable, GPIO_9 */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_GPIO_9, ALT5);
-    gpio_dir_config(GPIO_PORT1, 9, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT1, 9, GPIO_HIGH_LEVEL);
+    gpio_dir_config(HW_GPIO1, 9, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO1, 9, GPIO_HIGH_LEVEL);
 #endif
 
 #ifdef BOARD_SMART_DEVICE
     // 3v3 on by default
     // AUX_5V_EN LVDS0 power
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
-    gpio_dir_config(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
+    gpio_dir_config(HW_GPIO6, 10, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO6, 10, GPIO_HIGH_LEVEL);
     // PMIC_5V LVDS1 power on by default
     // backlight both lvds1/0, disp0_contrast/disp0_pwm, gpio1[21]
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT3, ALT5);
-    gpio_dir_config(GPIO_PORT1, 21, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT1, 21, GPIO_HIGH_LEVEL);
+    gpio_dir_config(HW_GPIO1, 21, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO1, 21, GPIO_HIGH_LEVEL);
 #endif
 
 #ifdef BOARD_SABRE_AI
@@ -275,8 +275,8 @@ void lvds_power_on(void)
 
     /*lvds backlight enable, GPIO_9 */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1, ALT5);
-    gpio_dir_config(GPIO_PORT2, 9, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT2, 9, GPIO_HIGH_LEVEL);
+    gpio_dir_config(HW_GPIO2, 9, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO2, 9, GPIO_HIGH_LEVEL);
 
 #endif
 }
@@ -289,8 +289,8 @@ void mipi_backlight_en(void)
     //configure pin19 of the mipi dsi/csi connector
 #ifdef BOARD_EVB
     //set GPIO1_9 to 0 so clear vbus on board
-    gpio_dir_config(GPIO_PORT1, 9, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT1, 9, GPIO_HIGH_LEVEL);
+    gpio_dir_config(HW_GPIO1, 9, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO1, 9, GPIO_HIGH_LEVEL);
 #endif
 
 #ifdef BOARD_SABRE_AI
@@ -300,8 +300,8 @@ void mipi_backlight_en(void)
 #ifdef BOARD_SMART_DEVICE
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D0, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D0, 0x1B0B0);
-    gpio_dir_config(GPIO_PORT2, 0, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT2, 0, GPIO_HIGH_LEVEL);
+    gpio_dir_config(HW_GPIO2, 0, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO2, 0, GPIO_HIGH_LEVEL);
 #endif
 }
 
@@ -314,10 +314,10 @@ void mipi_display_reset(void)
 /*pin29 of mipi connector for the LCD reset*/
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT, 0x1b0b0);
-    gpio_dir_config(GPIO_PORT5, 0, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT5, 0, GPIO_LOW_LEVEL);
+    gpio_dir_config(HW_GPIO5, 0, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO5, 0, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
-    gpio_write_data(GPIO_PORT5, 0, GPIO_HIGH_LEVEL);
+    gpio_write_data(HW_GPIO5, 0, GPIO_HIGH_LEVEL);
     hal_delay_us(1000);
 #endif
 
@@ -329,10 +329,10 @@ void mipi_display_reset(void)
 /*pin29 of mipi connector for the LCD reset*/
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CS0, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CS0, 0x1b0b0);
-    gpio_dir_config(GPIO_PORT6, 11, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT6, 11, GPIO_LOW_LEVEL);
+    gpio_dir_config(HW_GPIO6, 11, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO6, 11, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
-    gpio_write_data(GPIO_PORT6, 11, GPIO_HIGH_LEVEL);
+    gpio_write_data(HW_GPIO6, 11, GPIO_HIGH_LEVEL);
     hal_delay_us(1000);
 #endif
 }
@@ -436,14 +436,14 @@ void hw_can_iomux_config(uint32_t module_instance)
         /* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */
         /* active low input */
         writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_GPIO_4);
-        gpio_dir_config(GPIO_PORT1, 4, GPIO_GDIR_INPUT);
+        gpio_dir_config(HW_GPIO1, 4, GPIO_GDIR_INPUT);
         break;
 
     case HW_FLEXCAN2:
         /* Select ALT5 mode of SD4_DAT3 for GPIO2_11 - CAN2_NERR_B */
         /* active low input */
         writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
-        gpio_dir_config(GPIO_PORT2, 11, GPIO_GDIR_INPUT);
+        gpio_dir_config(HW_GPIO2, 11, GPIO_GDIR_INPUT);
         break;
 
     default:
@@ -524,8 +524,8 @@ void sata_power_on(void)
 // #ifdef BOARD_SMART_DEVICE
 //     //AUX_5V_EN
 //     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
-//     gpio_dir_config(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
-//     gpio_write_data(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
+//     gpio_dir_config(HW_GPIO6, 10, GPIO_GDIR_OUTPUT);
+//     gpio_write_data(HW_GPIO6, 10, GPIO_HIGH_LEVEL);
 // #else
 //     //enable SATA_3V3 and SATA_5V with MX7310 CTRL_0
 //     max7310_set_gpio_output(1, 0, GPIO_HIGH_LEVEL);
@@ -650,8 +650,8 @@ void usbEnableVbus(usb_module_t * port)
 #endif
 #if defined(BOARD_EVB) || defined(BOARD_SMART_DEVICE)
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D22, ALT5);
-        gpio_dir_config(GPIO_PORT3, 22, GPIO_GDIR_OUTPUT);
-        gpio_write_data(GPIO_PORT3, 22, GPIO_HIGH_LEVEL);
+        gpio_dir_config(HW_GPIO3, 22, GPIO_GDIR_OUTPUT);
+        gpio_write_data(HW_GPIO3, 22, GPIO_HIGH_LEVEL);
 #endif
 
         break;
@@ -663,13 +663,13 @@ void usbEnableVbus(usb_module_t * port)
 
 #ifdef BOARD_EVB
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D31, ALT5);
-        gpio_dir_config(GPIO_PORT3, 31, GPIO_GDIR_OUTPUT);
-        gpio_write_data(GPIO_PORT3, 31, GPIO_HIGH_LEVEL);
+        gpio_dir_config(HW_GPIO3, 31, GPIO_GDIR_OUTPUT);
+        gpio_write_data(HW_GPIO3, 31, GPIO_HIGH_LEVEL);
 #endif
 #ifdef BOARD_SMART_DEVICE
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D30, ALT5);
-        gpio_dir_config(GPIO_PORT3, 30, GPIO_GDIR_OUTPUT);
-        gpio_write_data(GPIO_PORT3, 30, GPIO_HIGH_LEVEL);
+        gpio_dir_config(HW_GPIO3, 30, GPIO_GDIR_OUTPUT);
+        gpio_write_data(HW_GPIO3, 30, GPIO_HIGH_LEVEL);
 #endif
 
         break;
@@ -702,7 +702,7 @@ void usbDisableVbus(usb_module_t * port)
         max7310_set_gpio_output(MAX7310_I2C_ID2, 1, 0);
 #endif
 #if defined(BOARD_EVB) || defined(BOARD_SMART_DEVICE)
-        gpio_write_data(GPIO_PORT3, 22, GPIO_LOW_LEVEL);
+        gpio_write_data(HW_GPIO3, 22, GPIO_LOW_LEVEL);
 #endif
         break;
     case Host1:
@@ -710,10 +710,10 @@ void usbDisableVbus(usb_module_t * port)
         max7310_set_gpio_output(MAX7310_I2C_ID1, 7, 0);
 #endif
 #ifdef BOARD_EVB
-        gpio_write_data(GPIO_PORT3, 31, GPIO_LOW_LEVEL);
+        gpio_write_data(HW_GPIO3, 31, GPIO_LOW_LEVEL);
 #endif
 #ifdef BOARD_SMART_DEVICE
-        gpio_write_data(GPIO_PORT3, 30, GPIO_LOW_LEVEL);
+        gpio_write_data(HW_GPIO3, 30, GPIO_LOW_LEVEL);
 #endif
     case Host2:
 #ifdef BOARD_EVB
@@ -737,8 +737,8 @@ void audio_codec_power_on (void)
 #ifdef BOARD_SMART_DEVICE
     //CODEC PWR_EN, key_col12
     writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_KEY_COL2);
-    gpio_dir_config(GPIO_PORT4, 10, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT4, 10, GPIO_HIGH_LEVEL);
+    gpio_dir_config(HW_GPIO4, 10, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO4, 10, GPIO_HIGH_LEVEL);
 #endif
 }
 
@@ -758,5 +758,59 @@ void audio_clock_config(void)
           (0x01 << 8);       //CKO1 output drives cko2 clock
 //    writel(val, CCM_CCOSR);
     writel(val, (CCM_BASE_ADDR + CCM_CCOSR_OFFSET));
+#endif
+}
+
+/* IOMUX configuration for the Android_Buttons */
+void android_buttons_iomux_config()
+{
+    //HOME_(SD2_CMD_GPI1_11)
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD2_CMD, ALT5);   //GPIO1[11]
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD2_CMD, 0x00E0); // pull-up enabled at pad
+    //BACK_(SD2_DAT3_GPI1_12)
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD2_DAT3, ALT5);  //GPIO1[12]
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD2_DAT3, 0x00E0);    // pull-up enabled at pad
+    //PROG_(SD4_DAT4_GPI2_12)
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT4, ALT5);  //GPIO2[12]
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD4_DAT4, 0x00E0);    // pull-up enabled at pad
+    //VOL+_(SD4_DAT7_GPI2_15)
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT7, ALT5);  //GPIO2[15]
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD4_DAT7, 0x00E0);    // pull-up enabled at pad
+    //VOL-_(DISP0_DAT20_GPI5_14)
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT20, ALT5);   //GPIO5[14]
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT20, 0x00E0); // pull-up enabled at pad
+}
+
+/*  I/O config for the DS90UR124QVS - LVDS camera in */
+void deserializer_io_config(void)
+{
+    /* REN and RPWDB controlled by ADV7180 configured in the driver */
+	csi_port0_iomux_config();
+}
+
+/* ENET iomux config */
+void imx_enet_iomux(void)
+{
+    enet_iomux_config();
+}
+
+/*CPU_PER_RST_B low to high*/
+void imx_KSZ9021RN_reset(void)
+{
+    //max7310_set_gpio_output(0, 2, GPIO_LOW_LEVEL);
+    //hal_delay_us(1000000);
+    //max7310_set_gpio_output(0, 2, GPIO_HIGH_LEVEL);
+}
+
+/* MLB iomux configuration */
+void mlb_io_config(void)
+{
+#ifdef MLB_SUPPORT
+    /* default board will use I2C3, but might be I2C2 */
+    io_cfg_i2c(OS81050_I2C_BASE);
+    mlb_iomux_config();
+    /* MLB_PWRDN input */
+    writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT15);
+    gpio_dir_config(HW_GPIO5, 9, GPIO_GDIR_INPUT);
 #endif
 }

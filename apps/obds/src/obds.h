@@ -7,9 +7,41 @@
 #if !defined(__OBDS_H__)
 #define __OBDS_H__
 
+#include <stdint.h>
+#include "audio/audio.h"
+
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
+
+//#define OBDS_DEBUG
+#ifdef OBDS_DEBUG
+#define printf1    printf
+#else
+#define printf1(fmt,args...)
+#endif
+//#define OBDS_DEBUG2
+#ifdef OBDS_DEBUG2
+#define printf2    printf
+#else
+#define printf2(fmt,args...)
+#endif
+
+/*!
+ * maximum number of tests currently supported
+ */
+#define MAX_TEST_NR             200
+/*!
+ * maximum test name length in byte
+ */
+#define MAX_TEST_NAME_LEN       64
+/*!
+ * maximum number of retries for a certain test
+ */
+#define MAX_TEST_RETRY          10
+
+// OBDS tests
+int srtc_test(void);
 
 //list of tests from obds
 extern int android_buttons_test_enable;

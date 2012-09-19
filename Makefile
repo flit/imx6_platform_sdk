@@ -24,11 +24,13 @@
 #  - board
 #  - sdk_unit_test
 #  - power_modes_test
+#  - obds
 #  - clean
 #  - clean_sdk
 #  - clean_board
 #  - clean_sdk_unit_test
 #  - clean_power_modes_test
+#  - clean_obds
 #
 # The clean targets work with any combination of configuration variables. For
 # example, clean_sdk with TARGET set will clean libsdk for only that TARGET, while
@@ -45,7 +47,8 @@ SUBDIRS = \
 # List of all applications to build. Applications must reside in the apps directory.
 ALL_APPS = \
     sdk_unit_test \
-    power_modes_test
+    power_modes_test \
+    obds
 
 # Default target.
 .PHONY: all

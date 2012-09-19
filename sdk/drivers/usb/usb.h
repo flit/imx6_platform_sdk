@@ -127,6 +127,43 @@ typedef struct usbInterfaceDescriptor {
     uint8_t iInterface;
 } usbInterfaceDescriptor_t;
 
+/* USB Descriptor Type */
+#define DEVICE_DESCRIPTOR             0x1
+#define CONFIG_DESCRIPTOR             0x2
+#define STRING_DESCRIPTOR             0x3
+#define INTERFACE_DESCRIPTOR          0x4
+#define ENDPOINT_DESCRIPTOR           0x5
+#define DEVICE_QUALIFIER_DESCRIPTOR   0x6
+#define OTHER_SPEED_CONFIG_DESCRIPTOR 0x7
+#define INTERFACE_POWER_DESCRIPTOR    0x8
+
+//HID class interface descriptor definitions
+#define CLASS_CODE_HID                     0x03
+#define SUBCLASS_CODE_HID_NOSUBCLASS       0x00
+#define SUBCLASS_CODE_HID_BOOT_INTERFACE   0x01
+#define PROTOCOL_CODE_HID_NONE             0x00
+#define PROTOCOL_CODE_HID_KEYBOARD         0x01
+#define PROTOCOL_CODE_HID_MOUSE            0x02
+
+//MSC class interface descriptor definitions
+#define CLASS_CODE_MSC                     0x08
+#define SUBCLASS_CODE_MSC_RBC              0x01 /*Reduced Block Commandds, typically for a flash device */
+#define SUBCLASS_CODE_MSC_SFF8020          0x02 /*a CD/DVD device uses SFF-8020i or MMC-2 command blocks */
+#define SUBCLASS_CODE_MSC_QIC              0x03 /*a tape device uses QIC-157 command blocks */
+#define SUBCLASS_CODE_MSC_UFI              0x04 /*a floppy disk drive device */
+#define SUBCLASS_CODE_MSC_SFF8070          0x05 /*a floppy disk drive device */
+#define SUBCLASS_CODE_MSC_SCSI             0x06 /*SCSI transparent command set, popular in msc */
+#define PROTOCOL_CODE_MSC_CBI00            0x00 /*for floppy device - with command completion interrupt */
+#define PROTOCOL_CODE_MSC_CBI01            0x01 /*for floppy device - with no command completion interrupt */
+#define PROTOCOL_CODE_MSC_BOT              0x50 /*Bulk-Only Transport, popular in msc */
+
+//HUB class interface descriptor definitions
+#define CLASS_CODE_HUB                     0x09
+#define SUBCLASS_CODE_HUB                  0x00
+#define PROTOCOL_CODE_HUB_NON_HIGHSPEED    0x00 /*for full/low speed hub */
+#define PROTOCOL_CODE_HUB_MULTI_TT         0x02 /*multiple TT */
+#define PROTOCOL_CODE_USB_SINGLE_TT        0x01 /*single TT */
+
 typedef struct usbEndpointDescriptor {
     uint8_t bLength;
     uint8_t bDescriptorType;

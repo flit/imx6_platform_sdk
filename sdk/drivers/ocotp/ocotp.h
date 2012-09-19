@@ -63,6 +63,15 @@ int32_t ocotp_sense_fuse(uint32_t bank, uint32_t row);
  */
 void ocotp_fuse_blow_row(uint32_t bank, uint32_t row, uint32_t value);
 
+/*!
+ * @brief Reload OTP shadow registers.
+ *
+ * @retval ERROR_OTP_CTRL_BUSY, if busy
+ * @retval ERROR_OTP_CTRL_ERROR, if error
+ * @retval otherwise SUCCESS
+ */
+int ocotp_reload_otp_shadow_registers(void);
+
 #if defined(__cplusplus)
 extern "C" {
 #endif

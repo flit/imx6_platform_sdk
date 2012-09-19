@@ -65,8 +65,8 @@ void epd_power_up(void)
     int i = 0;
 
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_D10, 0x5);
-    gpio_dir_config(GPIO_PORT1, 17, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT1, 17, GPIO_LOW_LEVEL);
+    gpio_dir_config(HW_GPIO1, 17, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO1, 17, GPIO_LOW_LEVEL);
 
     /* Using the MAX17135 as the power supplier 
      * Panel connector are using the AXT334124
@@ -84,25 +84,25 @@ void epd_power_up(void)
      * Vcom:        22(VCOM)                22,24
      */
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_EPDC_PWRCTRL0, 0x5);
-    gpio_dir_config(GPIO_PORT2, 7, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT2, 7, GPIO_HIGH_LEVEL);
+    gpio_dir_config(HW_GPIO2, 7, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO2, 7, GPIO_HIGH_LEVEL);
 
     //EN : pmic_wakeup gpio2.14
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_PWRWAKEUP, 0x05);    //  gpio2.GPIO[31]
-    gpio_dir_config(GPIO_PORT2, 14, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT2, 14, GPIO_HIGH_LEVEL);
+    gpio_dir_config(HW_GPIO2, 14, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO2, 14, GPIO_HIGH_LEVEL);
 
     //CEN : pmic_vcom gpio2.3 
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_VCOM0, 0x05);    //  gpio3.GPIO[17]
-    gpio_dir_config(GPIO_PORT2, 3, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT2, 3, GPIO_HIGH_LEVEL);
+    gpio_dir_config(HW_GPIO2, 3, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO2, 3, GPIO_HIGH_LEVEL);
 
     while (i++ < 10000)
         __asm("nop");
 
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_D10, 0x5);
-    gpio_dir_config(GPIO_PORT1, 17, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT1, 17, GPIO_HIGH_LEVEL);
+    gpio_dir_config(HW_GPIO1, 17, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO1, 17, GPIO_HIGH_LEVEL);
 }
 
 void epd_clock_gate(int on)

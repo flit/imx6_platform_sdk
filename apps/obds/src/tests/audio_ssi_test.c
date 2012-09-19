@@ -45,10 +45,10 @@ int audio_test_init(void)
     snd_card = &snd_card_ssi_sgtl5000;
 
 #if defined(BOARD_SMART_DEVICE)
-#if defined(BOARD_VERSION1)
+#if defined(BOARD_REV_A)
     snd_card = &snd_card_ssi_wm8958;
 #endif
-#if defined(BOARD_VERSION2)
+#if defined(BOARD_REV_B)
     snd_card = &snd_card_ssi_wm8962;
 #endif
 #endif
@@ -161,7 +161,7 @@ int i2s_audio_test(void)
         return TEST_FAILED;
     }
 
-#if (defined(CHIP_MX6SL) && defined(BOARD_EVB)) || (defined(BOARD_SMART_DEVICE) && defined(BOARD_VERSION2))
+#if (defined(CHIP_MX6SL) && defined(BOARD_EVB)) || (defined(BOARD_SMART_DEVICE) && defined(BOARD_REV_B))
 #if !defined(WM8962_I2C_UNSTABLE)
     printf(" Audio input: please ensure micphone is plugged in. Press 'y/Y' to confirm.\n");
     do {

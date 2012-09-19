@@ -30,7 +30,6 @@ output
 #
 # Top-level generic files
 #
-makefile
 release
 *_release
 tags

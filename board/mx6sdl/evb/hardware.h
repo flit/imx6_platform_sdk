@@ -49,16 +49,16 @@
 #include "board_id/board_id.h"
 
 // Android_Buttons test defines
-#define HOME_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR
-#define HOME_BUTTON_GPIO_NUM	11
-#define BACK_BUTTON_GOPIO_BASE	GPIO1_BASE_ADDR
-#define BACK_BUTTON_GPIO_NUM	12
-#define PROG_BUTTON_GOPIO_BASE	GPIO2_BASE_ADDR
-#define PROG_BUTTON_GPIO_NUM	12
-#define VOLPLUS_BUTTON_GOPIO_BASE	GPIO2_BASE_ADDR
-#define VOLPLUS_BUTTON_GPIO_NUM		15
-#define VOLNEG_BUTTON_GOPIO_BASE	GPIO7_BASE_ADDR
-#define VOLNEG_BUTTON_GPIO_NUM		8
+#define HOME_BUTTON_GPIO_INST     HW_GPIO1
+#define HOME_BUTTON_GPIO_NUM      11
+#define BACK_BUTTON_GPIO_INST     HW_GPIO1
+#define BACK_BUTTON_GPIO_NUM      12
+#define PROG_BUTTON_GPIO_INST     HW_GPIO2
+#define PROG_BUTTON_GPIO_NUM      12
+#define VOLPLUS_BUTTON_GPIO_INST  HW_GPIO2
+#define VOLPLUS_BUTTON_GPIO_NUM   15
+#define VOLMINUS_BUTTON_GPIO_INST HW_GPIO7
+#define VOLMINUS_BUTTON_GPIO_NUM  8
 
 #define WEIM_REGISTERS_BASE_ADDR WEIM_BASE_ADDR
 #define WEIM_CS_BASE_ADDR   0x08000000
@@ -171,6 +171,7 @@ extern imx_i2c_request_t max7310_i2c_req_array[];
 #define MMA8451_I2C_ID      0x1C
 #define MAG3112_I2C_ID      0x1D
 #define ISL29023_I2C_ID	    0x44
+#define MAG3110_I2C_ID      0x0E
 
 #define MAX11801_I2C_BASE	I2C3_BASE_ADDR
 #define MAX11801_I2C_ID     (0x90 >> 1)
@@ -263,6 +264,10 @@ void usb_clock_enable(void);
 void imx_enet_setup(void);
 void gpmi_nand_clk_setup(void);
 void hw_can_iomux_config(uint32_t module_instance);
+//OBDS-SDK Merge, add according to hardware.c
+void deserializer_io_config(void);
+void mlb_io_config(void);
+void weim_nor_flash_cs_setup(void);
 void audio_codec_power_on(void);
 void audio_clock_config(void);
 extern hw_module_t g_debug_uart;
@@ -286,45 +291,6 @@ extern int32_t is_input_char(uint8_t);
 
 extern void camera_power_on(void);
 extern void csi_port0_iomux_config(void);
-
-//! @name Board ID
-//@{
-#define BOARD_ID_DEFAULT                0x0
-#define BOARD_ID_MX6SDL_SABRE_AI         0x1
-#define BOARD_ID_MX6SDL_SMART_DEVICE     0x2
-#define BOARD_ID_MX6SDL_EVB              0x3
-#define BOARD_ID_MX6SDL_SABRE_LITE       0x4
-//@}
-
-//! @name Board version
-//@{
-#define BOARD_VERSION_DEFAULT	0x0
-#define BOARD_VERSION_1	0x1
-#define BOARD_VERSION_2	0x2
-#define BOARD_VERSION_3	0x1
-#define BOARD_VERSION_4	0x2
-#define BOARD_VERSION_5	0x1
-//@}
-
-#if defined(BOARD_VERSION2)
-#define BOARD_VERSION_ID        BOARD_VERSION_2
-#elif defined(BOARD_VERSION1)
-#define BOARD_VERSION_ID        BOARD_VERSION_1
-#else
-#error Need to define a board revision
-#endif
-
-#if defined(BOARD_SABRE_AI)
-#define BOARD_TYPE_ID           BOARD_ID_MX6SDL_SABRE_AI
-#elif defined(BOARD_SMART_DEVICE)
-#define BOARD_TYPE_ID           BOARD_ID_MX6SDL_SMART_DEVICE
-#elif defined(BOARD_EVB)
-#define BOARD_TYPE_ID           BOARD_ID_MX6SDL_EVB
-#elif defined(BOARD_SABRE_LITE)
-#define BOARD_TYPE_ID           BOARD_ID_MX6SDL_SABRE_LITE
-#else
-#error Need to define a board type
-#endif
 
 //Copy from obds
 #define PMIC_MC13892_I2C_BASE      I2C2_BASE_ADDR

@@ -251,7 +251,7 @@ int max11801_ts_test(unsigned int i2c_base_addr)
 
 	printf("Starting showing Touchscreen touches. Press 'x' to exit.\n");
 	while (1) {
-		pin = gpio_read_data(GPIO_PORT3,26);    // check TS_INT
+		pin = gpio_read_data(HW_GPIO3,26);    // check TS_INT
 		printf("MAX11801 TS_INT pin%01X. Press 'x' to exit.\n", pin);
 		if (pin==0x00)
 		{

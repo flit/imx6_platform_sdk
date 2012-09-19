@@ -259,16 +259,16 @@ void mipi_cam_power_on(void)
     /*power supply through pin25 of connector, for cam_pdown */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_WP_B, 0x1B0B0);
-    gpio_dir_config(GPIO_PORT6, 9, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT6, 9, GPIO_HIGH_LEVEL);
+    gpio_dir_config(HW_GPIO6, 9, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO6, 9, GPIO_HIGH_LEVEL);
 
     /*reset of camera sensor, pin 27 */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_RB0, 0x1B0B0);
-    gpio_dir_config(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
-    gpio_write_data(GPIO_PORT6, 10, GPIO_LOW_LEVEL);
+    gpio_dir_config(HW_GPIO6, 10, GPIO_GDIR_OUTPUT);
+    gpio_write_data(HW_GPIO6, 10, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
-    gpio_write_data(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
+    gpio_write_data(HW_GPIO6, 10, GPIO_HIGH_LEVEL);
 #endif
 }
 

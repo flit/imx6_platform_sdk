@@ -47,14 +47,6 @@ struct hw_module *mx6sl_module[] = {
     NULL,
 };
 
-unsigned int mx6sl_gpio[] = {
-    GPIO1_BASE_ADDR,
-    GPIO2_BASE_ADDR,
-    GPIO3_BASE_ADDR,
-    GPIO4_BASE_ADDR,
-    GPIO5_BASE_ADDR
-};
-
 #define REF_IN_CLK_NUM  4
 struct fixed_pll_mfd {
     u32 ref_clk_hz;
@@ -73,121 +65,6 @@ static volatile u32 *pll_base[] = {
     REG32_PTR(PLL3_BASE_ADDR),
     REG32_PTR(PLL4_BASE_ADDR),
 };
-
-/*!
- * Sets the GPIO direction for the specified pin.
- *
- * @param	port: 	GPIO module instance, 0 to 4.
- * @param 	pin:	GPIO pin 0 to 31.
- * @param 	dir:	direction for the pin. in or out.
- *
- * @return:  -1 means failed to set the pin
- *
- */
-int gpio_dir_config(int port, int pin, int dir)
-{
-    unsigned int oldVal = 0, newVal = 0;
-
-    if ((port >= 5) || (port < 0)) {
-        printf("Wrong GPIO Port[%d] Input! [0~4] Is Allowed!\n", port);
-        return -1;
-    }
-
-    if ((pin > 31) || (pin < 0)) {
-        printf("Wrong GPIO Pin[%d] Input! [1~32] Is Allowed!\n", pin);
-        return -1;
-    }
-
-    oldVal = readl(mx6sl_gpio[port] + GPIO_GDIR0_OFFSET);
-
-    if (dir == GPIO_GDIR_INPUT)
-        newVal = oldVal & (~(1 << pin));
-    else
-        newVal = oldVal | (1 << pin);
-
-    writel(newVal, mx6sl_gpio[port] + GPIO_GDIR0_OFFSET);
-    return 0;
-}
-
-/*!
-Function:
-	gpio_write_data()
-Description:
-	Sets the GPIO attribute(high or low) for the specified pin.
-Parameters:
-    @port: 	GPIO module instance, 0 to 4.
-	@pin:	GPIO pin 0 to 31.
-    @attr:	attribute for the pin. high/low
-Returns:
-    Return the value, -1 means failed to set the pin
-*/
-int gpio_write_data(int port, int pin, unsigned int attr)
-{
-    int dir;
-    unsigned int oldVal = 0, newVal = 0;
-
-    if ((port >= 5) || (port < 0)) {
-        printf("Wrong GPIO Port[%d] Input! [0~4] Is Allowed!\n", port);
-        return -1;
-    }
-
-    if ((pin > 31) || (pin < 0)) {
-        printf("Wrong GPIO Pin[%d] Input! [1~32] Is Allowed!\n", pin);
-        return -1;
-    }
-
-    dir = (readl(mx6sl_gpio[port] + GPIO_GDIR0_OFFSET) & (1 << pin)) >> pin;
-
-    if (dir != 1) {
-        printf("GPIO%d_%d is not configured to be output!\n", port + 1, pin);
-        return -1;
-    }
-
-    oldVal = readl(mx6sl_gpio[port] + GPIO_DR0_OFFSET);
-
-    if (attr == 0)
-        newVal = oldVal & (~(1 << pin));
-    else if (attr == 1)
-        newVal = oldVal | (1 << pin);
-
-    writel(newVal, mx6sl_gpio[port] + GPIO_DR0_OFFSET);
-    return 0;
-}
-
-/*!
-Function:
-	gpio_read_data()
-Description:
-	Gets the GPIO attribute(high or low) for the specified pin.
-Parameters:
-    @port: 	GPIO module instance, 0 to 4.
-	@pin:	GPIO pin 0 to 31.
-Returns:
-    Return the value, -1 means failed to get the value
-*/
-int gpio_read_data(int port, int pin)
-{
-    int dir;
-
-    if ((port >= 5) || (port < 0)) {
-        printf("Wrong GPIO Port[%d] Input! [0~4] Is Allowed!\n", port);
-        return -1;
-    }
-
-    if ((pin > 31) || (pin < 0)) {
-        printf("Wrong GPIO Pin[%d] Input! [1~32] Is Allowed!\n", pin);
-        return -1;
-    }
-
-    dir = (readl(mx6sl_gpio[port] + GPIO_GDIR0_OFFSET) & (1 << pin)) >> pin;
-
-    if (dir != 0) {
-        printf("GPIO%d_%d is not configured to be input!\n", port + 1, pin);
-        return -1;
-    }
-
-    return (readl(mx6sl_gpio[port] + GPIO_DR0_OFFSET) & (1 << pin)) >> pin;
-}
 
 /*!
  * This function returns the low power audio clock.
@@ -711,8 +588,8 @@ void io_cfg_spi(struct imx_spi_dev *dev)
     /* Select ALT5 mode of EIM_A24 for GPIO5_4 - EIMD18_I2C3_STEER(EIM_A24) */
     /* low output to select WEIM NOR option */
     writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_A24);
-    gpio_dir_config(HW_GPIO5, 4, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO5, 4, GPIO_LOW_LEVEL);
+    gpio_set_direction(GPIO_PORT5, 4, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT5, 4, GPIO_LOW_LEVEL);
 #endif
 
     switch (dev->base) {
@@ -828,8 +705,8 @@ void io_cfg_i2c(u32 module_base)
         /* Select ALT5 mode of EIM_A24 for GPIO5_4 - EIMD18_I2C3_STEER(EIM_A24) */
         /* high output to select I2C3 option */
         writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_A24);
-        gpio_dir_config(HW_GPIO5, 4, GPIO_GDIR_OUTPUT);
-        gpio_write_data(HW_GPIO5, 4, GPIO_HIGH_LEVEL);
+        gpio_set_direction(GPIO_PORT5, 4, GPIO_GDIR_OUTPUT);
+        gpio_set_level(GPIO_PORT5, 4, GPIO_HIGH_LEVEL);
 #endif
         break;
     default:
@@ -848,7 +725,7 @@ void usdhc_iomux_config(u32 module_base)
 #if defined(SABRE_AI)
         /* Select ALT5 mode of CSI0_DATA_EN for GPIO5_20 - SDb_WP(CSI0_DATA_EN_GPIO5_20) */
         writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA_EN);
-        gpio_dir_config(HW_GPIO5, 20, GPIO_GDIR_INPUT);
+        gpio_set_direction(GPIO_PORT5, 20, GPIO_GDIR_INPUT);
 #endif
         break;
 
@@ -861,10 +738,10 @@ void usdhc_iomux_config(u32 module_base)
 #if defined(SABRE_AI)
         /* Select ALT5 mode of NANDF_CS2 for GPIO6_15 - SDa_CD_B(GPIO6_15) */
         writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_NANDF_CS2);
-        gpio_dir_config(HW_GPIO6, 15, GPIO_GDIR_INPUT);
+        gpio_set_direction(GPIO_PORT6, 15, GPIO_GDIR_INPUT);
         /* Select ALT5 mode of SD2_DAT2 for GPIO1_13 - SDa_WP(SD2_DAT2_GPIO1_13) */
         writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD2_DAT2);
-        gpio_dir_config(HW_GPIO1, 13, GPIO_GDIR_INPUT);
+        gpio_set_direction(GPIO_PORT1, 13, GPIO_GDIR_INPUT);
 #endif
         break;
     case USDHC4_BASE_ADDR:
@@ -890,7 +767,7 @@ bool usdhc_card_detected(unsigned int base_address)
     } else if (base_address == USDHC3_BASE_ADDR) {
         // SDa_CD_B using GPIO6_15
         // Bit LOW == pin LOW ==  Card Detected.
-        ret_val = gpio_read_data(HW_GPIO6, 15) == GPIO_LOW_LEVEL;
+        ret_val = gpio_get_level(GPIO_PORT6, 15) == GPIO_LOW_LEVEL;
     }
 #else
     if (BG_USDHC_PRES_STATE_CDPL(HW_USDHC_PRES_STATE_RD(REGS_USDHC_INSTANCE(base_address)))) {
@@ -910,11 +787,11 @@ bool usdhc_write_protected(unsigned int base_address)
     if (base_address == USDHC1_BASE_ADDR) {
         // SDb_WP (CSI0_DATA_EN_GPIO5_20)
         // Bit HIGH == pin HIGH == Write Protected.
-        ret_val = gpio_read_data(HW_GPIO5, 20) == GPIO_HIGH_LEVEL;
+        ret_val = gpio_get_level(GPIO_PORT5, 20) == GPIO_HIGH_LEVEL;
     } else if (base_address == USDHC3_BASE_ADDR) {
         // SDa_WP (SD2_DAT2_GPIO1_13)
         // Bit HIGH == pin HIGH == Write Protected.
-        ret_val = gpio_read_data(HW_GPIO1, 13) == GPIO_HIGH_LEVEL;
+        ret_val = gpio_get_level(GPIO_PORT1, 13) == GPIO_HIGH_LEVEL;
     }
 #else
     if (BG_USDHC_PRES_STATE_WPSPL(HW_USDHC_PRES_STATE_RD(REGS_USDHC_INSTANCE(base_address)))) {
@@ -1012,12 +889,12 @@ void gps_io_config(void)
     /* Select ALT1 mode of PATA_DATA5 for GPIO2_5 - GPS_PWREN */
     /* active high output */
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_PATA_DATA5);
-    gpio_dir_config(HW_GPIO2, 5, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO2, 5, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT2, 5, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 5, GPIO_HIGH_LEVEL);
     /* Select ALT1 mode of PATA_DATA6 for GPIO2_6 - GPS_INT_B */
     /* active low input */
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_PATA_DATA6);
-    gpio_dir_config(HW_GPIO2, 6, GPIO_GDIR_INPUT);
+    gpio_set_direction(GPIO_PORT2, 6, GPIO_GDIR_INPUT);
     /* _TO_DO_ : set trigger mode for this IRQ */
     /* _TO_DO_ : add GPS_RST_B through I/O expander and a function to control it */
     /* _TO_DO_ : add clock 32k output to the GPS module */
@@ -1033,7 +910,7 @@ void mlb_io_config(void)
     mlb_iomux_config();
     /* MLB_PWRDN input */
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT15);
-    gpio_dir_config(HW_GPIO5, 9, GPIO_GDIR_INPUT);
+    gpio_set_direction(GPIO_PORT5, 9, GPIO_GDIR_INPUT);
 #endif
 }
 
@@ -1045,17 +922,17 @@ void can1_io_config(void)
     /* Select ALT1 mode of PATA_DATA0 for GPIO2_0 - CAN1_NERR_B */
     /* active low input */
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_PATA_DATA0);
-    gpio_dir_config(HW_GPIO2, 0, GPIO_GDIR_INPUT);
+    gpio_set_direction(GPIO_PORT2, 0, GPIO_GDIR_INPUT);
     /* Select ALT1 mode of PATA_DA_0 for GPIO7_6 - CAN_EN */
     /* active high output */
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_PATA_DA_0);
-    gpio_dir_config(HW_GPIO7, 0, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO7, 0, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT7, 0, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT7, 0, GPIO_HIGH_LEVEL);
     /* Select ALT1 mode of KEY_ROW4 for GPIO4_15 - CAN_STBY */
     /* active high output */
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_KEY_ROW4);
-    gpio_dir_config(HW_GPIO4, 15, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO4, 15, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT4, 15, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT4, 15, GPIO_HIGH_LEVEL);
 #endif
 }
 
@@ -1067,7 +944,7 @@ void can2_io_config(void)
     /* Select ALT1 mode of PATA_DATA1 for GPIO2_1 - CAN2_NERR_B */
     /* active low input */
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_PATA_DATA1);
-    gpio_dir_config(HW_GPIO2, 1, GPIO_GDIR_INPUT);
+    gpio_set_direction(GPIO_PORT2, 1, GPIO_GDIR_INPUT);
 #endif
 }
 
@@ -1413,10 +1290,10 @@ void usb_vbus_power_on(void)
 #ifdef SMART_DEVICE
     //  USB_OTG_PWR_EN (EIM_D22)
     writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_D22);
-    gpio_dir_config(HW_GPIO3, 22, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO3, 22, GPIO_LOW_LEVEL);
+    gpio_set_direction(GPIO_PORT3, 22, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT3, 22, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
-    gpio_write_data(HW_GPIO3, 22, GPIO_HIGH_LEVEL);
+    gpio_set_level(GPIO_PORT3, 22, GPIO_HIGH_LEVEL);
 #endif
 }
 
@@ -1432,12 +1309,12 @@ void audio_codec_power_on(void)
 #ifdef SMART_DEVICE
     //  CODEC_PWR_EN, key_col2
     writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_KEY_COL2);
-    gpio_dir_config(HW_GPIO4, 10, GPIO_GDIR_OUTPUT);
+    gpio_set_direction(GPIO_PORT4, 10, GPIO_GDIR_OUTPUT);
 
     //For SD RevB board, if CODEC_PWR_EN cleared then set, the board reset. So comment it.      
-//    gpio_write_data(HW_GPIO4, 10, GPIO_LOW_LEVEL);
+//    gpio_set_level(GPIO_PORT4, 10, GPIO_LOW_LEVEL);
 //    hal_delay_us(1000);
-    gpio_write_data(HW_GPIO4, 10, GPIO_HIGH_LEVEL);
+    gpio_set_level(GPIO_PORT4, 10, GPIO_HIGH_LEVEL);
 #endif
 }
 
@@ -1502,8 +1379,8 @@ void sata_power_on(void)
 #ifdef SMART_DEVICE
     // AUX_5V_EN 
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
-    gpio_dir_config(HW_GPIO6, 10, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO6, 10, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
 #else
     //enable SATA_3V3 and SATA_5V with MX7310 CTRL_0
     max7310_set_gpio_output(1, 0, GPIO_HIGH_LEVEL);
@@ -1517,7 +1394,7 @@ void sata_power_off(void)
 {
 #ifdef SMART_DEVICE
     // AUX_5V_EN, will also turn off lvds0, can
-    gpio_write_data(HW_GPIO6, 10, GPIO_LOW_LEVEL);
+    gpio_set_level(GPIO_PORT6, 10, GPIO_LOW_LEVEL);
 #else
     //disable SATA_3V3 and SATA_5V with MX7310 CTRL_0
     max7310_set_gpio_output(1, 0, GPIO_LOW_LEVEL);
@@ -1633,28 +1510,28 @@ void lvds_power_on(char *panel_name)
 
     /*lvds backlight enable, GPIO_9 */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_GPIO_9, ALT5);
-    gpio_dir_config(HW_GPIO1, 9, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO1, 9, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT1, 9, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT1, 9, GPIO_HIGH_LEVEL);
 #endif
 
 #ifdef SMART_DEVICE
     // 3v3 on by default
     // AUX_5V_EN LVDS0 power
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
-    gpio_dir_config(HW_GPIO6, 10, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO6, 10, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
     // PMIC_5V LVDS1 power on by default
     // backlight both lvds1/0, disp0_contrast/disp0_pwm, gpio1[21]
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT3, ALT5);
-    gpio_dir_config(HW_GPIO1, 21, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO1, 21, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT1, 21, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT1, 21, GPIO_HIGH_LEVEL);
 #endif
 
 #ifdef SABRE_AI
     /*lvds backlight enable, GPIO2_0 */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1, ALT5);
-    gpio_dir_config(HW_GPIO2, 9, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO2, 9, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT2, 9, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 9, GPIO_HIGH_LEVEL);
 #endif
 }
 
@@ -1694,9 +1571,9 @@ void ard_spi_nor_control(int en_dis)
     // set DI0_PIN2 mux control for GPIO4_18 usage
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_DI0_PIN2);
     // configure GPIO4_18 as output
-    gpio_dir_config(4, 18, GPIO_GDIR_OUTPUT);   // port=4, pin=18, dir=output
+    gpio_set_direction(4, 18, GPIO_GDIR_OUTPUT);   // port=4, pin=18, dir=output
     // write GPIO4_18 as low (enable spi nor) or high (disable spi nor)
-    gpio_write_data(4, 18, en_dis); // port=4, pin=18, en_dis (low or high)
+    gpio_set_level(4, 18, en_dis); // port=4, pin=18, en_dis (low or high)
 }
 #endif
 
@@ -1708,35 +1585,35 @@ void tftlcd_backlight_en(char *panel_name)
 #if !defined(EVB)               // todo: fix this
     /*GPIO to provide backlight */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
-    gpio_dir_config(HW_GPIO4, 20, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO4, 20, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT4, 20, GPIO_HIGH_LEVEL);
 #endif
 #if 0
 #ifdef SABRE_AI
     /*lvds/parallel display backlight enable, GPIO2_0 */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1, ALT5);
-    gpio_dir_config(HW_GPIO2, 9, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO2, 9, GPIO_LOW_LEVEL);
+    gpio_set_direction(GPIO_PORT2, 9, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 9, GPIO_LOW_LEVEL);
 
     // lcd_contrast conflict with actual BoundaryDev display so seeting to input
     // since TSC not used on SABRE AI
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
-    gpio_dir_config(HW_GPIO4, 20, GPIO_GDIR_INPUT);
+    gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_INPUT);
 #endif
 #ifdef SMART_DEVICE
     /* AUX_3V15 */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_WP_B, 0x1B0B0);
-    gpio_dir_config(HW_GPIO6, 9, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO6, 9, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT6, 9, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT6, 9, GPIO_HIGH_LEVEL);
     // backlight both lvds1/0, disp0_contrast/disp0_pwm, gpio1[21]
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT3, ALT5);
-    gpio_dir_config(HW_GPIO1, 21, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO1, 21, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT1, 21, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT1, 21, GPIO_HIGH_LEVEL);
     // AUX_5V_EN LVDS0 power
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
-    gpio_dir_config(HW_GPIO6, 10, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO6, 10, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
 #endif
 #endif
 
@@ -1751,19 +1628,19 @@ void tftlcd_reset(char *panel_name)
 #if (!defined(MX6SL) && defined(EVB))
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_EB3, ALT5);
         reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_EB3, 0x1B0B0);
-        gpio_dir_config(HW_GPIO2, 31, GPIO_GDIR_OUTPUT);
-        gpio_write_data(HW_GPIO2, 31, GPIO_LOW_LEVEL);
+        gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
+        gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
         hal_delay_us(1000);
-        gpio_write_data(HW_GPIO2, 31, GPIO_HIGH_LEVEL);
+        gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
         hal_delay_us(1000);
 #endif
 #ifdef SMART_DEVICE
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_DA8, ALT5);
         reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_DA8, 0x1B0B0);
-        gpio_dir_config(HW_GPIO3, 8, GPIO_GDIR_OUTPUT);
-        gpio_write_data(HW_GPIO3, 8, GPIO_LOW_LEVEL);
+        gpio_set_direction(GPIO_PORT3, 8, GPIO_GDIR_OUTPUT);
+        gpio_set_level(GPIO_PORT3, 8, GPIO_LOW_LEVEL);
         hal_delay_us(1000);
-        gpio_write_data(HW_GPIO3, 8, GPIO_HIGH_LEVEL);
+        gpio_set_level(GPIO_PORT3, 8, GPIO_HIGH_LEVEL);
         hal_delay_us(1000);
 #endif
     }
@@ -1777,8 +1654,8 @@ void disable_para_panel(void)
 #if !defined(EVB)               // todo: fix this
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_EB3, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_EB3, 0x1B0B0);
-    gpio_dir_config(HW_GPIO2, 31, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO2, 31, GPIO_LOW_LEVEL);
+    gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
 #endif
 }
 
@@ -1790,8 +1667,8 @@ void mipi_backlight_en(void)
     //configure pin19 of the mipi dsi/csi connector
 #if (!defined(MX6SL) && defined(EVB))
     //set GPIO1_9 to 0 so clear vbus on board
-    gpio_dir_config(HW_GPIO1, 9, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO1, 9, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT1, 9, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT1, 9, GPIO_HIGH_LEVEL);
 #endif
 
 #ifdef SABRE_AI
@@ -1801,8 +1678,8 @@ void mipi_backlight_en(void)
 #ifdef SMART_DEVICE
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D0, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D0, 0x1B0B0);
-    gpio_dir_config(HW_GPIO2, 0, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO2, 0, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT2, 0, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 0, GPIO_HIGH_LEVEL);
 #endif
 }
 
@@ -1839,16 +1716,16 @@ void mipi_cam_power_on(void)
     /*power supply through pin25 of connector, for cam_pdown */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_WP_B, 0x1B0B0);
-    gpio_dir_config(HW_GPIO6, 9, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO6, 9, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT6, 9, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT6, 9, GPIO_HIGH_LEVEL);
 
     /*reset of camera sensor, pin 27 */
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_RB0, 0x1B0B0);
-    gpio_dir_config(HW_GPIO6, 10, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO6, 10, GPIO_LOW_LEVEL);
+    gpio_set_direction(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT6, 10, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
-    gpio_write_data(HW_GPIO6, 10, GPIO_HIGH_LEVEL);
+    gpio_set_level(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
 #endif
 }
 
@@ -1861,10 +1738,10 @@ void mipi_display_reset(void)
 /*pin29 of mipi connector for the LCD reset*/
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT, 0x1b0b0);
-    gpio_dir_config(HW_GPIO5, 0, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO5, 0, GPIO_LOW_LEVEL);
+    gpio_set_direction(GPIO_PORT5, 0, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT5, 0, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
-    gpio_write_data(HW_GPIO5, 0, GPIO_HIGH_LEVEL);
+    gpio_set_level(GPIO_PORT5, 0, GPIO_HIGH_LEVEL);
     hal_delay_us(1000);
 #endif
 
@@ -1876,10 +1753,10 @@ void mipi_display_reset(void)
 /*pin29 of mipi connector for the LCD reset*/
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CS0, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CS0, 0x1b0b0);
-    gpio_dir_config(HW_GPIO6, 11, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO6, 11, GPIO_LOW_LEVEL);
+    gpio_set_direction(GPIO_PORT6, 11, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT6, 11, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
-    gpio_write_data(HW_GPIO6, 11, GPIO_HIGH_LEVEL);
+    gpio_set_level(GPIO_PORT6, 11, GPIO_HIGH_LEVEL);
     hal_delay_us(1000);
 #endif
 }
@@ -1962,13 +1839,13 @@ void epdc_power_supply(void)
 
     //EN : pmic_wakeup gpio2.14
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_PWRWAKEUP, 0x05);
-    gpio_dir_config(HW_GPIO2, 14, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO2, 14, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT2, 14, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 14, GPIO_HIGH_LEVEL);
 
     //CEN : pmic_vcom gpio2.3 
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_EPDC_VCOM0, 0x05);
-    gpio_dir_config(HW_GPIO2, 3, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO2, 3, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT2, 3, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 3, GPIO_HIGH_LEVEL);
 
     for (i = 0; i < 1000000; i++)
         __asm("nop");
@@ -2006,7 +1883,7 @@ void can_io_cfg(unsigned int base_address)
         /* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */
         /* active low input */
         writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_GPIO_4);
-        gpio_dir_config(HW_GPIO1, 4, GPIO_GDIR_INPUT);
+        gpio_set_direction(GPIO_PORT1, 4, GPIO_GDIR_INPUT);
 #endif
         break;
 
@@ -2017,7 +1894,7 @@ void can_io_cfg(unsigned int base_address)
         /* Select ALT5 mode of SD4_DAT3 for GPIO2_11 - CAN2_NERR_B */
         /* active low input */
         writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
-        gpio_dir_config(HW_GPIO2, 11, GPIO_GDIR_INPUT);
+        gpio_set_direction(GPIO_PORT2, 11, GPIO_GDIR_INPUT);
 #endif
         break;
 
@@ -2048,14 +1925,14 @@ void video_in_io_config(void)
     /* Select ALT1 mode of GPIO_7 for GPIO1_7 */
     /* active low input */
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_GPIO_7);
-    gpio_dir_config(HW_GPIO1, 7, GPIO_GDIR_INPUT);
+    gpio_set_direction(GPIO_PORT1, 7, GPIO_GDIR_INPUT);
 
     /* Power down - use PATA_DATA2 as active low output */
     /* Select ALT1 mode of PATA_DATA2 for GPIO2_2 */
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_PATA_DATA2);
-    gpio_dir_config(HW_GPIO2, 2, GPIO_GDIR_OUTPUT);
+    gpio_set_direction(GPIO_PORT2, 2, GPIO_GDIR_OUTPUT);
     /* Keep ADV7180 powered, as it is after board power up */
-    gpio_write_data(HW_GPIO2, 2, GPIO_HIGH_LEVEL);
+    gpio_set_level(GPIO_PORT2, 2, GPIO_HIGH_LEVEL);
 
     csi_iomux_config();
 }
@@ -2064,6 +1941,6 @@ void video_in_io_config(void)
 void video_in_set_power(int state)
 {
     /* Power down - active low output */
-    gpio_write_data(HW_GPIO2, 2, state);
+    gpio_set_level(GPIO_PORT2, 2, state);
 }
 #endif

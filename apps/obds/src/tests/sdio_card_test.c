@@ -22,26 +22,26 @@ static void wifi_power_on(void)
     /* Power Enable */
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_EIM_DA10);
     writel(0x80, IOMUXC_SW_PAD_CTL_PAD_EIM_DA10);
-    gpio_dir_config(HW_GPIO3, 10, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO3, 10, 1);
+    gpio_set_direction(GPIO_PORT3, 10, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT3, 10, GPIO_HIGH_LEVEL);
     hal_delay_us(1000 * 1000);
 
     /* Enable DCDC1V8 Switch */
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_EIM_DA1);
     writel(0x80, IOMUXC_SW_PAD_CTL_PAD_EIM_DA1);
-    gpio_dir_config(HW_GPIO3, 1, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO3, 1, 1);
+    gpio_set_direction(GPIO_PORT3, 1, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT3, 1, GPIO_HIGH_LEVEL);
     hal_delay_us(1000 * 1000);
 
     /* Reset Module */
     writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_EIM_DA5);
     writel(0x80, IOMUXC_SW_PAD_CTL_PAD_EIM_DA5);
-    gpio_dir_config(HW_GPIO3, 5, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO3, 5, 1);
+    gpio_set_direction(GPIO_PORT3, 5, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT3, 5, GPIO_HIGH_LEVEL);
     hal_delay_us(100 * 1000);
-    gpio_write_data(HW_GPIO3, 5, 0);
+    gpio_set_level(GPIO_PORT3, 5, GPIO_LOW_LEVEL);
     hal_delay_us(500 * 1000);
-    gpio_write_data(HW_GPIO3, 5, 1);
+    gpio_set_level(GPIO_PORT3, 5, GPIO_HIGH_LEVEL);
     hal_delay_us(100 * 1000);
 #endif
 }

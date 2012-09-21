@@ -67,30 +67,30 @@ void ds90ur124_receive_cnx_test(void)
        GPIO5_22 to GPIO5_31 */
     for (i = 0; i < 10; i++) {
         writel(ALT1, SW_MUX_BASE_ADDR + 0xb0 + i * 4);
-        gpio_dir_config(HW_GPIO5, 22 + i, GPIO_GDIR_INPUT);
+        gpio_set_direction(GPIO_PORT5, 22 + i, GPIO_GDIR_INPUT);
         printf("  Please set serializer pin J1.%d to high\n", i);
-        while (gpio_read_data(HW_GPIO5, 22 + i) != 1) ;
+        while (gpio_get_level(GPIO_PORT5, 22 + i) != GPIO_HIGH_LEVEL) ;
     }
 
     /* GPIO6_0 to GPIO0_5 */
     for (i = 0; i < 6; i++) {
         writel(ALT1, SW_MUX_BASE_ADDR + 0xd8 + i * 4);
-        gpio_dir_config(HW_GPIO6, i, GPIO_GDIR_INPUT);
+        gpio_set_direction(GPIO_PORT6, i, GPIO_GDIR_INPUT);
         printf("  Please set serializer pin J1.%d to high\n", i + 10);
-        while (gpio_read_data(HW_GPIO6, i) != 1) ;
+        while (gpio_get_level(GPIO_PORT6, i) != GPIO_HIGH_LEVEL) ;
     }
 
     /* GPIO5_19 <=> CSI0_HSYNC */
     writel(ALT1, SW_MUX_BASE_ADDR + 0xa4);
-    gpio_dir_config(HW_GPIO5, 19, GPIO_GDIR_INPUT);
+    gpio_set_direction(GPIO_PORT5, 19, GPIO_GDIR_INPUT);
     printf("  Please set serializer pin J1.22 to high\n");
-    while (gpio_read_data(HW_GPIO5, 19) != 1) ;
+    while (gpio_get_level(GPIO_PORT5, 19) != GPIO_HIGH_LEVEL) ;
 
     /* GPIO5_21 <=> CSI0_VSYNC */
     writel(ALT1, SW_MUX_BASE_ADDR + 0xac);
-    gpio_dir_config(HW_GPIO5, 21, GPIO_GDIR_INPUT);
+    gpio_set_direction(GPIO_PORT5, 21, GPIO_GDIR_INPUT);
     printf("  Please set serializer pin J1.23 to high\n");
-    while (gpio_read_data(HW_GPIO5, 21) != 1) ;
+    while (gpio_get_level(GPIO_PORT5, 21) != GPIO_HIGH_LEVEL) ;
 
     printf("Test is finished, you can get back to your doze state :-D\n");
 }

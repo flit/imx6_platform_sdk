@@ -49,9 +49,9 @@ void record_test_result(char *name, int result);
 //void platform_init(void);
 //extern int program_mac_address_enable;
 //int set_mac(void);
-//int gpio_dir_config(int port, int pin, int dir);
-//int gpio_read_data(int port, int pin);
-//int gpio_write_data(int port, int pin, unsigned int attr);
+//int gpio_set_direction(int port, int pin, int dir);
+//int gpio_get_level(int port, int pin);
+//int gpio_set_level(int port, int pin, unsigned int attr);
 
 typedef enum {
 	SEL_CPU_ONLY_TESTS,

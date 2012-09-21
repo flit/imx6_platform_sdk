@@ -51,14 +51,14 @@ int weim_nor_flash_test(void)
     weim_iomux_config();
 #if defined(BOARD_SABRE_AI) && !defined(BOARD_REV_A)  // for I2C3 steering
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT8, ALT5);
-    gpio_dir_config(HW_GPIO4, 29, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO4, 29, GPIO_HIGH_LEVEL);
+    gpio_set_direction(GPIO_PORT4, 29, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT4, 29, GPIO_HIGH_LEVEL);
 
     /* Select ALT5 mode of EIM_A24 for GPIO5_4 - EIMD18_I2C3_STEER(EIM_A24) */
     /* low output to select WEIM NOR option */
     writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_A24);
-    gpio_dir_config(HW_GPIO5, 4, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO5, 4, GPIO_LOW_LEVEL);
+    gpio_set_direction(GPIO_PORT5, 4, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT5, 4, GPIO_LOW_LEVEL);
 #endif
 
     weim_nor_flash_cs_setup();

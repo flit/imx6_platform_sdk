@@ -16,6 +16,7 @@
 #include "hardware.h"
 #include "audio/audio.h"
 #include "audio/imx_spdif.h"
+#include "registers/regsspdif.h"
 
 #define SPDIF_DEBUG 1
 
@@ -24,6 +25,8 @@
 #else
 #define D(fmt,args...)
 #endif
+
+#define UNUSED_VARIABLE(x)	(x) = (x)
 
 extern void spdif_clk_cfg(void);
 extern unsigned int spdif_get_tx_clk_freq(void);
@@ -38,23 +41,23 @@ extern unsigned int spdif_get_tx_clk_freq(void);
 #if SPDIF_DEBUG
 static int32_t spdif_dump(audio_ctrl_p ctrl)
 {
-    volatile imx_spdif_regs_p spdif = (imx_spdif_regs_p) (ctrl->base_addr);
+    uint32_t instance = ctrl->instance;
+
+    UNUSED_VARIABLE(instance);
 
     printf("=================%s dump==================\n", ctrl->name);
 
-    printf("SCR: 0x%x\n", spdif->scr);
-    printf("SRCD: 0x%x\n", spdif->srcd);
-    printf("SRPC: 0x%x\n", spdif->srpc);
-    printf("SIE: 0x%x\n", spdif->sie);
-    printf("SIS: 0x%x\n", spdif->sis);
-    printf("SRCSLH: 0x%x\n", spdif->srcsh);
-    printf("SRCSLL: 0x%x\n", spdif->srcsl);
-    printf("SQU: 0x%x\n", spdif->sru);
-    printf("SRQ: 0x%x\n", spdif->srq);
-    printf("STCSCH: 0x%x\n", spdif->stcsch);
-    printf("STCSCL: 0x%x\n", spdif->stcscl);
-    printf("SRFM: 0x%x\n", spdif->srfm);
-    printf("STC: 0x%x\n", spdif->stc);
+    printf("SCR: 0x%x\n", 	HW_SPDIF_SCR_RD());
+    printf("SRCD: 0x%x\n", 	HW_SPDIF_SRCD_RD());
+    printf("SRPC: 0x%x\n", 	HW_SPDIF_SRPC_RD());
+    printf("SIE: 0x%x\n", 	HW_SPDIF_SIE_RD());
+    printf("SIS: 0x%x\n", 	HW_SPDIF_SIS_RD());
+    printf("SRCSH: 0x%x\n", 	HW_SPDIF_SRCSH_RD());
+    printf("SRCSL: 0x%x\n", 	HW_SPDIF_SRCSL_RD());
+    printf("STCSCH: 0x%x\n", 	HW_SPDIF_STCSCH_RD());
+    printf("STCSCL: 0x%x\n", 	HW_SPDIF_STCSCL_RD());
+    printf("SRFM: 0x%x\n", 	HW_SPDIF_SRFM_RD());
+    printf("STC: 0x%x\n", 	HW_SPDIF_STC_RD());
 
     return 0;
 }
@@ -74,13 +77,17 @@ static int32_t spdif_dump(audio_ctrl_p ctrl)
  */
 static int32_t spdif_soft_reset(audio_ctrl_p ctrl)
 {
-    volatile imx_spdif_regs_p spdif = (imx_spdif_regs_p) (ctrl->base_addr);
-
+    uint32_t instance = ctrl->instance;
+    uint32_t val;
     int cycle = 0;
 
-    spdif->scr |= SCR_SOFT_RESET;
+    UNUSED_VARIABLE(instance);
 
-    while ((spdif->scr & 0x1000) && (cycle++ < 50)) ;
+    val = HW_SPDIF_SCR_RD();
+    val |= BM_SPDIF_SCR_SOFT_RESET;
+    HW_SPDIF_SCR_WR(val);
+
+    while ((HW_SPDIF_SCR_RD() &  BM_SPDIF_SCR_SOFT_RESET) && (cycle++ < 100)) ;
 
     return 0;
 }
@@ -96,30 +103,32 @@ static int32_t spdif_soft_reset(audio_ctrl_p ctrl)
  */
 static uint32_t spdif_get_hw_setting(audio_ctrl_p ctrl, uint32_t type)
 {
-    volatile imx_spdif_regs_p spdif = (imx_spdif_regs_p) (ctrl->base_addr);
-    uint32_t val = 0;
+    uint32_t instance = ctrl->instance;
+    uint32_t val;
+
+    UNUSED_VARIABLE(instance);
 
     switch (type) {
     case SPDIF_GET_FREQMEAS:
-        val = spdif->srfm;
+        val = HW_SPDIF_SRFM_RD();
         break;
     case SPDIF_GET_GAIN_SEL:
-        val = (spdif->srpc & (0x7 << 3)) >> 3;
+        val = (HW_SPDIF_SRPC_RD() & (0x7 << 3)) >> 3;
         break;
     case SPDIF_GET_RX_CCHANNEL_INFO_H:
-        val = spdif->srcsh;
+        val = HW_SPDIF_SRCSH_RD();
         break;
     case SPDIF_GET_RX_CCHANNEL_INFO_L:
-        val = spdif->srcsl;
+        val = HW_SPDIF_SRCSL_RD();
         break;
     case SPDIF_GET_RX_UCHANNEL_INFO:
-        val = spdif->sru;
+        val = HW_SPDIF_SRU_RD();
         break;
     case SPDIF_GET_RX_QCHANNEL_INFO:
-        val = spdif->srq;
+        val = HW_SPDIF_SRQ_RD();
         break;
     case SPDIF_GET_INT_STATUS:
-        val = spdif->sis;
+        val = HW_SPDIF_SIS_RD();
     }
 
     return val;
@@ -179,9 +188,11 @@ int32_t spdif_init(void *priv)
 int32_t spdif_config(void *priv, audio_dev_para_p para)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
-    volatile imx_spdif_regs_p spdif = (imx_spdif_regs_p) (ctrl->base_addr);
+    uint32_t instance = ctrl->instance;
     iec958_cchannel_t cchannel;
     uint32_t val;
+
+    UNUSED_VARIABLE(instance);
 
     /* Set channel information */
     memset(&cchannel, 0, sizeof(cchannel));
@@ -209,24 +220,24 @@ int32_t spdif_config(void *priv, audio_dev_para_p para)
         cchannel.l.ctrl.max_len = IEC958_CON_MAX_LENGTH_24;
         cchannel.l.ctrl.sample_len = IEC958_CON_SAMPLE_LENGTH_24_20;    //IEC958_CON_SAMPLE_LENGTH_24_20;
     }
-    spdif->stcsch = cchannel.h.data;
-    spdif->stcscl = cchannel.l.data;
+    HW_SPDIF_STCSCH_WR(cchannel.h.data);
+    HW_SPDIF_STCSCL_WR(cchannel.l.data);
 
-    val = spdif->scr;
+    val = HW_SPDIF_SCR_RD();
     val |=
         SCR_USRC_SEL_NONE | SCR_TXSEL_NORMAL | SCR_VAL_CLEAR | SCR_TXFIFO_NORMAL |
-        SCR_TXFIFO_AUTOSYNC | SCR_TXFIFO_ESEL_8_SAMPLE;
-    spdif->scr = val;
+        BM_SPDIF_SCR_TXAUTOSYNC | SCR_TXFIFO_ESEL_8_SAMPLE;
+    HW_SPDIF_SCR_WR(val);
 
-    val = spdif->stc;
+    val = HW_SPDIF_STC_RD();
     /* Select SPDIF0_CLK as tx clk */
-    val &= ~(STC_TXCLK_SRC_MASK);
-    val |= TX_CLK_SEL_SPDIF0_CLK << STC_TXCLK_SRC_OFFSET;
+    val &= ~(BM_SPDIF_STC_TXCLK_SOURCE);
+    val |= TX_CLK_SEL_SPDIF0_CLK << BP_SPDIF_STC_TXCLK_SOURCE;
     /* Set tx clk divider */
-    val &= ~(STC_TXCLK_DIV_OFFSET);
-    val |= spdif_cal_txclk_div(ctrl, para->sample_rate) << STC_TXCLK_DIV_OFFSET;
-    val |= STC_TX_ALL_CLK_ON;
-    spdif->stc = val;
+    val &= ~(BM_SPDIF_STC_TXCLK_DF);
+    val |= spdif_cal_txclk_div(ctrl, para->sample_rate) << BP_SPDIF_STC_TXCLK_DF;
+    val |= BM_SPDIF_STC_TX_ALL_CLK_EN;
+    HW_SPDIF_STC_WR(val);
 
     spdif_dump(ctrl);
 
@@ -247,18 +258,20 @@ int32_t spdif_config(void *priv, audio_dev_para_p para)
 int32_t spdif_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_written)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
-    volatile imx_spdif_regs_p spdif = (imx_spdif_regs_p) (ctrl->base_addr);
+    uint32_t instance = ctrl->instance;
     uint32_t i = 0;
     uint32_t val;
 
+    UNUSED_VARIABLE(instance);
+
     while (i < size) {
-        if (spdif->sis & INT_TX_EMPTY) {
+        if (HW_SPDIF_SIS_RD() & BM_SPDIF_SIS_TXEM) {
             val = *((uint16_t *) (buf + i));
             /* TODO: the msb bit of the audio data should be always at 23bit of stl or str  */
             val = (val << 8) & 0x00ffffff;
 
-            spdif->stl = val;
-            spdif->str = val;
+	    HW_SPDIF_STL_WR(val);
+	    HW_SPDIF_STR_WR(val);
 
             i += 2;
         }
@@ -292,6 +305,6 @@ static audio_dev_ops_t spdif_ops = {
 
 audio_ctrl_t imx_spdif = {
     .name = "imx SPDIF audio controller",
-    .base_addr = SPDIF_BASE_ADDR,
+    .instance = 1,
     .ops = &spdif_ops,
 };

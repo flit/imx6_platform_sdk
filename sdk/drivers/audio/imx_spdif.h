@@ -16,50 +16,17 @@
 #ifndef __IMX_SPDIF_H__
 #define __IMX_SPDIF_H__
 
-/* SPDIF Configuration register */
-typedef struct {
-    volatile uint32_t scr;      // spdif configuration register 24 [23:0] 24' h000400
-    volatile uint32_t srcd;     // cdtext configuration register 24 [1] 24'h000000
-    volatile uint32_t srpc;     // freqmeas configuration register 24 [5:0] 24'h000000
-    volatile uint32_t sie;      // interrupt enable register 24 [23:0] 24'h000000
-    volatile uint32_t sis;      // interrupt status/clear register 24 [23:0] 24'h000002
-    volatile uint32_t srl;      // spdif receive data - left channel 24 [23:0] 24'h000000
-    volatile uint32_t srr;      // spdif receive data - right channel 24 [23:0] 24'h000000
-    volatile uint32_t srcsh;    // spdif receive c channel, bits[47:24] 24 [23:0] 24'h000000
-    volatile uint32_t srcsl;    // spdif receive c channel, bits[23:0] 24 [23:0] 24'h000000
-    volatile uint32_t sru;      // spdif receive u channel 24 [23:0] 24'h000000
-    volatile uint32_t srq;      // spdif receive q channel 24 [23:0] 24'h000000
-    volatile uint32_t stl;      // spdif transmit left channel 24 [23:0] 24'h000000
-    volatile uint32_t str;      // spdif transmit rightchannel 24 [23:0] 24'h000000
-    volatile uint32_t stcsch;   //spdif transmit cons. c channel, bits [47:24] 24'h000000
-    volatile uint32_t stcscl;   // spdif transmit cons. c channel, bits [23:0] 24'h000000
-    volatile uint32_t reserved1[2];
-    volatile uint32_t srfm;     // freqmeasurement 24 [23:0] 24'h000000
-    volatile uint32_t reserved2[2];
-    volatile uint32_t stc;      // transmit clock control register 24 [23:0] 24'h020f00
-} imx_spdif_regs_t, *imx_spdif_regs_p;
-
 /* Register fields */
-#define SCR_RXFIFO_CTL_ZERO	(1 << 23)
-#define SCR_RXFIFO_OFF		(1 << 22)
-#define SCR_RXFIFO_RST		(1 << 21)
 #define SCR_RXFIFO_FSEL_BIT	(19)
 #define SCR_RXFIFO_FSEL_MASK	(0x3 << SCR_RXFIFO_FSEL_BIT)
-#define SCR_RXFIFO_AUTOSYNC	(1 << 18)
-#define SCR_TXFIFO_AUTOSYNC	(1 << 17)
 #define SCR_TXFIFO_ESEL_BIT	(15)
 #define SCR_TXFIFO_ESEL_MASK	(0x3 << SCR_TXFIFO_ESEL_BIT)
 #define SCR_TXFIFO_ESEL_0_SAMPLE	(0x0 << SCR_TXFIFO_ESEL_BIT)
 #define SCR_TXFIFO_ESEL_4_SAMPLE	(0x1 << SCR_TXFIFO_ESEL_BIT)
 #define SCR_TXFIFO_ESEL_8_SAMPLE	(0x2 << SCR_TXFIFO_ESEL_BIT)
 #define SCR_TXFIFO_ESEL_12_SAMPLE	(0x3 << SCR_TXFIFO_ESEL_BIT)
-#define SCR_LOW_POWER		(1 << 13)
-#define SCR_SOFT_RESET		(1 << 12)
 #define SCR_TXFIFO_ZERO		(0 << 10)
 #define SCR_TXFIFO_NORMAL	(1 << 10)
-#define SCR_TXFIFO_ONESAMPLE	(1 << 11)
-#define SCR_DMA_RX_EN		(1 << 9)
-#define SCR_DMA_TX_EN		(1 << 8)
 #define SCR_VAL_CLEAR		(1 << 5)
 #define SCR_TXSEL_OFF		(0 << 2)
 #define SCR_TXSEL_RX		(1 << 2)
@@ -67,19 +34,6 @@ typedef struct {
 #define SCR_USRC_SEL_NONE	(0x0)
 #define SCR_USRC_SEL_RECV	(0x1)
 #define SCR_USRC_SEL_CHIP	(0x3)
-
-/* SPDIF CDText control */
-#define SRCD_CD_USER_OFFSET	1
-#define SRCD_CD_USER		(1 << SRCD_CD_USER_OFFSET)
-
-/* SPDIF Phase Configuration register */
-#define SRPC_DPLL_LOCKED	(1 << 6)
-#define SRPC_CLKSRC_SEL_OFFSET	7
-#define SRPC_CLKSRC_SEL_MASK	(0xF << 7)
-#define SRPC_CLKSRC_SEL_LOCKED	5
-/* gain sel */
-#define SRPC_GAINSEL_OFFSET	3
-#define SRPC_GAINSEL_SEL_MASK	(0x7 << 3)
 
 typedef enum {
     CLK_TO_MEAS_RXCLK_EXTAL = 0,
@@ -110,34 +64,6 @@ enum spdif_gainsel {
 };
 
 #define SPDIF_DEFAULT_GAINSEL	GAINSEL_MULTI_8
-
-/* SPDIF interrupt mask define */
-#define INT_DPLL_LOCKED		(1 << 20)
-#define INT_TXFIFO_UNOV		(1 << 19)
-#define INT_TXFIFO_RESYNC	(1 << 18)
-#define INT_CNEW		(1 << 17)
-#define INT_VAL_NOGOOD		(1 << 16)
-#define INT_SYM_ERR		(1 << 15)
-#define INT_BIT_ERR		(1 << 14)
-#define INT_URX_FUL		(1 << 10)
-#define INT_URX_OV		(1 << 9)
-#define INT_QRX_FUL		(1 << 8)
-#define INT_QRX_OV		(1 << 7)
-#define INT_UQ_SYNC		(1 << 6)
-#define INT_UQ_ERR		(1 << 5)
-#define INT_RX_UNOV		(1 << 4)
-#define INT_RX_RESYNC		(1 << 3)
-#define INT_LOSS_LOCK		(1 << 2)
-#define INT_TX_EMPTY		(1 << 1)
-#define INT_RXFIFO_FUL		(1 << 0)
-
-/* SPDIF Clock register */
-#define STC_SYSCLK_DIV_OFFSET	11
-#define STC_TXCLK_SRC_OFFSET	8
-#define STC_TXCLK_SRC_MASK		(0x07 << 8)
-#define STC_TXCLK_DIV_OFFSET	0
-#define STC_TXCLK_DIV_MASK		0x7F
-#define STC_TX_ALL_CLK_ON		(0x01 << 7)
 
 typedef enum {
     TX_CLK_SEL_XTAL0 = 0,

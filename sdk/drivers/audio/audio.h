@@ -93,7 +93,7 @@ typedef struct {
 
 typedef struct {
     const char *name;
-    uint32_t base_addr;         // the io base address of the controller
+    uint32_t instance;         // the io base address of the controller
     audio_bus_type_e bus_type;  //The bus type(ssi, esai or spdif) the controller supports
     audio_bus_mode_e bus_mode;  //the bus mode(master, slave or both)the controller supports
     uint32_t irq;                    //the irq number

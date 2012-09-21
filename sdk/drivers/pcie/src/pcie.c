@@ -9,6 +9,8 @@
 #include "soc_memory_map.h"
 #include "iomux_register.h"
 #include "pcie/pcie_common.h"
+#include "registers/regspcierc.h"
+#include "registers/regspciepl.h"
 
 #define DEBUG_ENABLE	1
 
@@ -87,7 +89,8 @@ static int wait_link_up(int wait_ms)
 
     count = wait_ms;
     do {
-        val = reg32_read(PCIE_DBI_BASE_ADDR + DB_R1) & (0x1 << (36 - 32));  // link is debug bit 36 debug 1 start in bit 32
+//        val = reg32_read(PCIE_DBI_BASE_ADDR + DB_R1) & (0x1 << (36 - 32));  // link is debug bit 36 debug 1 start in bit 32
+	val = HW_PCIE_PL_DEBUG1_RD() & (0x01 << (36 - 32));	//link is debug bit 36 debug 1 start in bit 32
         count--;
         hal_delay_us(1000);
     } while (!val && (count || (wait_ms == 0)));
@@ -114,6 +117,7 @@ static int wait_link_up(int wait_ms)
 uint32_t pcie_map_space(uint32_t viewport, uint32_t tlp_type,
                         uint32_t addr_base_cpu_side, uint32_t addr_base_pcie_side, uint32_t size)
 {
+/*
     reg32_write(PCIE_DBI_BASE_ADDR + ATU_VIEWPORT_R, (viewport & 0x0F) | (0 << 31));
     reg32_write(PCIE_DBI_BASE_ADDR + ATU_REGION_LOWBASE_R, addr_base_cpu_side);
     reg32_write(PCIE_DBI_BASE_ADDR + ATU_REGION_UPBASE_R, 0);
@@ -122,6 +126,15 @@ uint32_t pcie_map_space(uint32_t viewport, uint32_t tlp_type,
     reg32_write(PCIE_DBI_BASE_ADDR + ATU_REGION_LOW_TRGT_ADDR_R, addr_base_pcie_side);
     reg32_write(PCIE_DBI_BASE_ADDR + ATU_REGION_CTRL1_R, tlp_type & 0x0F);
     reg32_write(PCIE_DBI_BASE_ADDR + ATU_REGION_CTRL2_R, ((unsigned int)(1 << 31)));
+*/
+    HW_PCIE_PL_IATUVR_WR((viewport & 0x0F) | (0 << 31));
+    HW_PCIE_PL_IATURLBA_WR(addr_base_cpu_side);
+    HW_PCIE_PL_IATURUBA_WR(0);
+    HW_PCIE_PL_IATURLA_WR(addr_base_cpu_side + size - 1);
+    HW_PCIE_PL_IATURUTA_WR(0);
+    HW_PCIE_PL_IATURLTA_WR(addr_base_pcie_side); 
+    HW_PCIE_PL_IATURC1_WR(tlp_type & 0x0F);
+    HW_PCIE_PL_IATURC2_WR(((unsigned int)(1 << 31)));
 
     return addr_base_cpu_side;
 }
@@ -184,9 +197,14 @@ int pcie_init(pcie_dm_mode_e dev_mode)
         return -1;
     }
     //enable master, io, memory
-    val = reg32_read(PCIE_DBI_BASE_ADDR + STS_CMD_RGSTR);
-    val |= 0x07;
-    reg32_write(PCIE_DBI_BASE_ADDR + STS_CMD_RGSTR, val);
+    //val = reg32_read(PCIE_DBI_BASE_ADDR + STS_CMD_RGSTR);
+    val = HW_PCIE_RC_COMMAND_RD();
+    //val |= 0x07;
+    val |= BM_PCIE_RC_COMMAND_I_O_SPACE_ENABLE |
+	BM_PCIE_RC_COMMAND_MEMORY_SPACE_ENABLE |
+	BM_PCIE_RC_COMMAND_BUS_MASTER_ENABLE;
+    //reg32_write(PCIE_DBI_BASE_ADDR + STS_CMD_RGSTR, val);
+    HW_PCIE_RC_COMMAND_WR(val);
 
     return 0;
 }

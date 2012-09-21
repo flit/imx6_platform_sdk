@@ -7,7 +7,7 @@
 
 #include "obds.h"
 #include "hardware.h"
-//#include "board_id.h"
+#include "board_id.h"
 
 extern int i2c_device_id_check_MMA8451(unsigned int i2c_base_addr);
 extern int i2c_device_id_check_isl29023(unsigned int i2c_base_addr);
@@ -17,10 +17,6 @@ extern int i2c_device_check_max11801(unsigned int i2c_base_addr);
 extern int i2c_device_check_cs42888(void);
 extern int i2c_device_id_check_p1003(unsigned int i2c_base_addr);
 extern int i2c_device_id_check_emc1046(unsigned int i2c_base_addr);
-
-extern int i2c_device_id_check_MMA8450(unsigned int i2c_base_addr);
-extern int i2c_device_id_check_ppl3115(unsigned int i2c_base_addr);
-extern int i2c_device_id_check_mc1323(unsigned int i2c_base_addr);
 
 int i2c_device_id_check_mag3112_test_enable = 0;
 int i2c_device_id_check_mag3110_test_enable = 0;
@@ -47,7 +43,7 @@ int i2c_device_id_check(void)
         gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
 
         //rc |= i2c_device_id_check_mc1323(I2C2_BASE_ADDR);
-/*        if (i2c_device_id_check_mma8451_test_enable == 1) {
+        if (i2c_device_id_check_mma8451_test_enable == 1) {
             ++test_count;
             rc |= i2c_device_id_check_MMA8451(I2C1_BASE_ADDR);  // accelerometer
         }
@@ -63,74 +59,6 @@ int i2c_device_id_check(void)
             ++test_count;
             rc |= i2c_device_id_check_p1003(P1003_TSC_I2C_BASE);    // hannstar display TSC via lvds
         }
-*/
-        ++test_count;
-        printf("-------- Accelerometer ---------\n");
-        printf("Accelerometer --- MMA8450 - I2C1\n");
-        i2c_device_id_check_MMA8450(I2C1_BASE_ADDR);
-        printf("Accelerometer -- MMA8450 - I2C2\n");
-        i2c_device_id_check_MMA8450(I2C2_BASE_ADDR);
-        printf("Accelerometer -- MMA8450 - I2C3\n");
-        i2c_device_id_check_MMA8450(I2C3_BASE_ADDR);
-        
-        printf("\n");
-
-        printf("Accelerometer --- MMA8451 - I2C1\n");
-        i2c_device_id_check_MMA8451(I2C1_BASE_ADDR);
-        printf("Accelerometer -- MMA8451 - I2C2\n");
-        i2c_device_id_check_MMA8451(I2C2_BASE_ADDR);
-        printf("Accelerometer -- MMA8451 - I2C3\n");
-        i2c_device_id_check_MMA8451(I2C3_BASE_ADDR);
-        
-        printf("\n-------- Barometer ---------\n");
-        printf("Barometer --- ppl3115 - I2C1\n");
-        i2c_device_id_check_ppl3115(I2C1_BASE_ADDR);
-        printf("Barometer --- ppl3115 - I2C2\n");
-        i2c_device_id_check_ppl3115(I2C2_BASE_ADDR);
-        printf("Barometer --- ppl3115 - I2C3\n");
-        i2c_device_id_check_ppl3115(I2C3_BASE_ADDR);
-
-        printf("\n-------- Digital Compass ---------\n");
-        printf("digital compass --- mag3110 - I2C3\n");
-        i2c_device_id_check_mag3110(I2C3_BASE_ADDR);
-
-        printf("\n");
-
-        printf("digital compass --- mag3112 - I2C1\n");
-        i2c_device_id_check_mag3112(I2C1_BASE_ADDR);
-        printf("digital compass --- mag3112 - I2C2\n");
-        i2c_device_id_check_mag3112(I2C2_BASE_ADDR);
-        printf("digital compass --- mag3112 - I2C3\n");
-        i2c_device_id_check_mag3112(I2C3_BASE_ADDR);
-
-        printf("\n-------- Light Sensor ---------\n");
-
-        printf("light sensor --- ISL29023 - I2C3\n");
-        i2c_device_id_check_isl29023(I2C3_BASE_ADDR);
-
-        printf("\n-------- Temp Sensor ---------\n");
-
-        printf("temp sensor --- emc1046 - I2C1\n");
-        i2c_device_id_check_emc1046(I2C1_BASE_ADDR);
-        printf("temp sensor --- emc1046 - I2C2\n");
-        i2c_device_id_check_emc1046(I2C2_BASE_ADDR);
-        printf("temp sensor --- emc1046 - I2C3\n");
-        i2c_device_id_check_emc1046(I2C3_BASE_ADDR);
-
-        printf("\n");
-
-        printf("TouchScreen --Hanstar p1003 - I2C1\n");
-        i2c_device_id_check_p1003(I2C1_BASE_ADDR);
-        printf("TouchScreen --Hanstar p1003 - I2C2\n");
-        i2c_device_id_check_p1003(I2C2_BASE_ADDR);
-        printf("TouchScreen --Hanstar p1003 - I2C3\n");
-        i2c_device_id_check_p1003(I2C3_BASE_ADDR);
-
-
-        printf("max11801 - I2C2\n");
-        i2c_device_check_max11801(I2C2_BASE_ADDR);
-
-
         //rc |= i2c_device_id_check_emc1046(I2C3_BASE_ADDR);
     } else if (BOARD_TYPE_ID == BOARD_TYPE_SABRE_LITE) {
         if (i2c_device_id_check_p1003_test_enable == 1) {

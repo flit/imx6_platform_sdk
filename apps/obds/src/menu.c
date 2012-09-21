@@ -11,8 +11,9 @@
 
 #include "hardware.h"
 #include "board_id/board_id.h"
-#include "utility/menu.h"
 #include "version.h"
+#include "obds.h"
+#include "menu.h"
 
 extern test_module_t* obds_test_modules[MAX_TEST_NR];
 extern int total_tests;
@@ -50,7 +51,7 @@ void menu(void)
 			printf("%02d. %s\n", idx, obds_test_modules[idx]->name );
 		}
 
-		while (receive_char() != NONE_CHAR); // empty key buffer
+		while (getchar() != NONE_CHAR); // empty key buffer
 		char key = '0';
 	    int test = -1;
 
@@ -61,7 +62,7 @@ select_test:
 				printf("\n\nEnter test number followed by the enter key, 'm' for menu, or 'q' to exit.\n");
 
 			// get a key press
-			while ((key = receive_char()) == NONE_CHAR);
+			while ((key = getchar()) == NONE_CHAR);
 			// echo the key
 			printf("%c", key);
 

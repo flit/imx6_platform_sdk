@@ -21,23 +21,15 @@
 #include "version.h"
 #include "text_color.h"
 #include "obds_utils.h"
+#include "menu.h"
 #include "obds.h"
 
-#include "utility/menu.h"
 
 //struct hw_module {
 //    char *name;
 //    u32 base;
 //    u32 freq;
 //};
-
-typedef int (*obds_test_t) (void);
-
-typedef struct _test_module {
-	obds_test_t func_ptr;
-    char name[MAX_TEST_NAME_LEN];
-    s32 result;
-}test_module_t;
 
 void record_test_result(char *name, int result);
 
@@ -57,9 +49,9 @@ void record_test_result(char *name, int result);
 //void platform_init(void);
 //extern int program_mac_address_enable;
 //int set_mac(void);
-//int gpio_dir_config(int port, int pin, int dir);
-//int gpio_read_data(int port, int pin);
-//int gpio_write_data(int port, int pin, unsigned int attr);
+//int gpio_set_direction(int port, int pin, int dir);
+//int gpio_get_level(int port, int pin);
+//int gpio_set_level(int port, int pin, unsigned int attr);
 
 typedef enum {
 	SEL_CPU_ONLY_TESTS,
@@ -90,17 +82,17 @@ void select_tests(SELECT_TESTS tests);
 #define RUN_TEST(name, func)            \
     static obds_test_t __obds_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch"))) = func;              \
     static char  __obds_name_##func[MAX_TEST_NAME_LEN] __attribute__ ((used)) __attribute__ ((section(".test_launch"))) = name; \
-	static s32  __obds_result_##func __attribute__ ((used)) __attribute__ ((section(".test_launch"))) = TEST_NOTPRESENT;
+	static int  __obds_result_##func __attribute__ ((used)) __attribute__ ((section(".test_launch"))) = TEST_NOTPRESENT;
 
 #define RUN_TEST_EARLY(name, func)      \
     static obds_test_t __obds_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_early"))) = func;        \
     static char __obds_name_##func[MAX_TEST_NAME_LEN] __attribute__ ((used)) __attribute__ ((section(".test_launch_early"))) = name;  \
-    static s32 __obds_result_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_early"))) = TEST_NOTPRESENT;
+    static int __obds_result_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_early"))) = TEST_NOTPRESENT;
 
 #define RUN_TEST_LATE(name, func)       \
     static obds_test_t __obds_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_late"))) = func;        \
     static char __obds_name_##func[MAX_TEST_NAME_LEN] __attribute__ ((used)) __attribute__ ((section(".test_launch_late"))) = name; \
-    static s32 __obds_result_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_late"))) = TEST_NOTPRESENT;
+    static int __obds_result_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_late"))) = TEST_NOTPRESENT;
 
 #define RUN_TEST_INTERACTIVE(name, func)        RUN_TEST_LATE(name, func)
 
@@ -235,7 +227,7 @@ int main(void)
     srtc_test();
 
 
-    //menu();
+    menu();
 
     report_test_results();
 

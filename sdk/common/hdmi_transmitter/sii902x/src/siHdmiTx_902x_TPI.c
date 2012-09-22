@@ -229,10 +229,10 @@ void TxHW_Reset(void)
     writel(0x1, IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT);
     writel(0xE0, IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT);
 #endif
-    gpio_dir_config(HW_GPIO5, 0, GPIO_GDIR_OUTPUT);
-    gpio_write_data(HW_GPIO5, 0, 0x0);
+    gpio_set_direction(GPIO_PORT5, 0, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT5, 0, GPIO_LOW_LEVEL);
     DelayMS(TX_HW_RESET_PERIOD);
-    gpio_write_data(HW_GPIO5, 0, 0x1);
+    gpio_set_level(GPIO_PORT5, 0, GPIO_HIGH_LEVEL);
     DelayMS(TX_HW_RESET_PERIOD);
     TXHAL_InitPostReset();
 }

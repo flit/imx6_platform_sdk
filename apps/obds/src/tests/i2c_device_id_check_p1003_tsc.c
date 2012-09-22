@@ -63,7 +63,7 @@ int i2c_device_id_check_p1003(unsigned int i2c_base_addr)
 	// route interrupt signal
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_ALE, ALT5);
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_ALE, 0x1A080);
- 	gpio_dir_config(HW_GPIO6, 8, GPIO_GDIR_INPUT);
+ 	gpio_set_direction(GPIO_PORT6, 8, GPIO_GDIR_INPUT);
 
     // set to idle
 //	unsigned char buf0[] = {0x03, 0x06, 0x0A, 0x04, 0x36, 0x3F, 0x01, 0x00, 0, 0};
@@ -79,7 +79,7 @@ int i2c_device_id_check_p1003(unsigned int i2c_base_addr)
 //    } else
 //    {
 //    	// wait for INT line to go low
-////    	while (gpio_read_data(HW_GPIO6, 8) == GPIO_HIGH_LEVEL)
+////    	while (gpio_get_level(GPIO_PORT6, 8) == GPIO_HIGH_LEVEL)
 ////    		printf(".");
 //
 //		if (p1003_version_reg_read(i2c_base_addr, 0, ret_buf1) != 0) {
@@ -98,7 +98,7 @@ int i2c_device_id_check_p1003(unsigned int i2c_base_addr)
     } else
     {
     	// wait for INT line to go low
-//    	while (gpio_read_data(HW_GPIO6, 8) == GPIO_HIGH_LEVEL)
+//    	while (gpio_get_level(GPIO_PORT6, 8) == GPIO_HIGH_LEVEL)
 //    		printf(".");
 
 		if (p1003_version_reg_read(i2c_base_addr, 0, ret_buf1) != 0) {
@@ -124,7 +124,7 @@ int i2c_device_id_check_p1003(unsigned int i2c_base_addr)
 //    } else
 //    {
 //    	// wait for INT line to go low
-//    	while (gpio_read_data(HW_GPIO6, 8) == GPIO_HIGH_LEVEL)
+//    	while (gpio_get_level(GPIO_PORT6, 8) == GPIO_HIGH_LEVEL)
 //    		printf(".");
 //
 //    	if (p1003_version_reg_read(i2c_base_addr, 0, ret_buf1) != 0) {

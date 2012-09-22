@@ -40,6 +40,14 @@
  */
 #define MAX_TEST_RETRY          10
 
+typedef int (*obds_test_t) (void);
+
+typedef struct _test_module {
+	obds_test_t func_ptr;
+    char name[MAX_TEST_NAME_LEN];
+    int result;
+}test_module_t;
+
 // OBDS tests
 int srtc_test(void);
 

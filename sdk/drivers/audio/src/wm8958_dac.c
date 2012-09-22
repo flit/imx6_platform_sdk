@@ -26,7 +26,7 @@ struct imx_i2c_request wm8958_i2c_req;
             return -1;	\
         } \
 	}while(0)
-/*
+
 #define WM8958_REG_READ(codec, reg_addr, reg_val)	\
  	do{     \
 		if(0 != WM8958_i2c_read(codec, reg_addr, &reg_val)){   \
@@ -35,11 +35,7 @@ struct imx_i2c_request wm8958_i2c_req;
         }   \
 	}while(0)
 
-int WM8958_DAC_init(void *priv);
-int WM8958_DAC_configure(void *priv, audio_dev_para_p para);
-int WM8958_DAC_deinit(void *priv);
-int WM8958_dump(void *priv);
-*/
+
 static void wm8958_i2c_init(audio_codec_p codec)
 {
     /* this init is needed only once */
@@ -63,7 +59,6 @@ static uint16_t WM8958_i2c_read(audio_codec_p codec, uint16_t reg_addr)
     i2c_xfer(&wm8958_i2c_req, 1);
 
     reg_data = (data[0] << 8) | data[1];
-//    *reg_val = reg_data;
 
     return reg_data;
 }
@@ -155,7 +150,6 @@ int32_t WM8958_DAC_configure(void *priv, audio_dev_para_p para)
 
     audio_codec_p codec = (audio_codec_p) priv;
     if (AUDIO_BUS_MODE_MASTER != para->bus_mode)  {
-//    if (!para->is_master) {
         TRACE("The WM8958 was configured as slave. \n");
         /*
          * The FLL must be configured in slave mode, and the BCLK, LRCLK was supposed to be povided by the master. 
@@ -202,14 +196,12 @@ int32_t WM8958_DAC_configure(void *priv, audio_dev_para_p para)
     WM8958_REG_WRITE(codec, 0x210, 0x0073);    //AIF1 Sample Rate = 44.1 kHz, AIF1CLK/Fs ratio = 256, so AIF1CLK is supposed to be 11.289MHz
     WM8958_REG_WRITE(codec, 0x300, 0x4010);    //AIF1 Word Length = 16-bits, AIF1 Format = I2S
     if (para->bus_mode == AUDIO_BUS_MODE_MASTER) {
-//    if (para->is_master) {
         WM8958_REG_WRITE(codec, 0x302, 0x4000);    //AIF1 Master Mode
     } else {
         WM8958_REG_WRITE(codec, 0x302, 0x0000);    //AIF1 Slave Mode
     }
     WM8958_REG_WRITE(codec, 0x208, 0x000A);    //Enable the DSP processing clock for AIF1, Enable the core clock
-if (para->bus_mode == AUDIO_BUS_MODE_MASTER) {
-//    if (para->is_master) {
+    if (para->bus_mode == AUDIO_BUS_MODE_MASTER) {
         WM8958_REG_WRITE(codec, 0x200, 0x0003);    //Enable AIF1 Clock, AIF1 Clock Source = MCLK1 pin, AIF1CLK_DIV = 1
         // The MCLK1 is supposed to be 22.5792MHz which is a very common value.
     } else {
@@ -241,7 +233,7 @@ if (para->bus_mode == AUDIO_BUS_MODE_MASTER) {
 int32_t WM8958_DAC_init(void *priv)
 {
     audio_codec_p codec = (audio_codec_p) priv;
-//    i2c_init(WM8958_I2C_BASE_ADDR, 100000);
+
     wm8958_i2c_init(codec);
     WM8958_Soft_Reset(codec);
 

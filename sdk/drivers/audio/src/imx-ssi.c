@@ -354,12 +354,12 @@ int32_t ssi_config(void *priv, audio_dev_para_p para)
     if (AUDIO_BUS_PROTOCOL_I2S == para->bus_protocol) {
         if (AUDIO_BUS_MODE_SLAVE == para->bus_mode) {
 	    val = HW_SSI_SSI_SCR_RD(instance);
-	    val |= BF_SSI_SSI_SCR_I2S_MODE(2);
+	    val |= BF_SSI_SSI_SCR_I2S_MODE(I2S_MODE_SLAVE);
 	    HW_SSI_SSI_SCR_WR(instance, val);
             ssi_set_hw_setting(ctrl, SSI_SETTING_CLK_FS_DIR, SSI_CLK_FS_DIR_INPUT);
         } else {
 	    val = HW_SSI_SSI_SCR_RD(instance);
-	    val |= BF_SSI_SSI_SCR_I2S_MODE(1);
+	    val |= BF_SSI_SSI_SCR_I2S_MODE(I2S_MODE_MASTER);
 	    HW_SSI_SSI_SCR_WR(instance, val);
             ssi_set_hw_setting(ctrl, SSI_SETTING_CLK_FS_DIR, SSI_CLK_FS_DIR_OUTPUT);
         }
@@ -373,6 +373,7 @@ int32_t ssi_config(void *priv, audio_dev_para_p para)
 	HW_SSI_SSI_STCR_WR(instance, val);
 
 	val = HW_SSI_SSI_STCCR_RD(instance);
+        val &= ~BM_SSI_SSI_STCCR_DIV2;
 	val |= BF_SSI_SSI_STCCR_DC4_DC0(1) | BF_SSI_SSI_STCCR_PM7_PM0(0xA);
 	HW_SSI_SSI_STCCR_WR(instance, val);
     } else {
@@ -391,7 +392,7 @@ int32_t ssi_config(void *priv, audio_dev_para_p para)
     ssi_hw_enable(ctrl, SSI_HW_ENABLE_RX, true);
     ssi_hw_enable(ctrl, SSI_HW_ENABLE_RXFIFO1, true);
 
-//    ssi_dump(ctrl);
+    ssi_dump(ctrl);
 
     return 0;
 }

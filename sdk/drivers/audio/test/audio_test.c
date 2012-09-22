@@ -33,30 +33,35 @@ audio_pcm_t pcm_music = {
 };
 
 static audio_test_t audio_tests[] = {
-#if defined(MX53_SMD)
-    {"SSI playback", ssi_playback},
-#endif
 #if defined(BOARD_SABRE_AI) || defined(BOARD_EVB)
     {"ESAI playback", esai_playback},
 #endif
 #if defined(BOARD_EVB)
     {"SPDIF playback", spdif_playback},
 #endif
-#if defined(BOARD_SMART_DEVICE)
+
+#if defined(BOARD_SMART_DEVICE) && defined(BOARD_REV_B)
     {"SSI playback", ssi_playback},
 #endif
 };
 
 int32_t audio_test(void)
 {
-    int32_t retv=-1, idx;
+    int32_t retv=-1, idx, num;
     uint8_t sel;
+
+    num = sizeof(audio_tests)/sizeof(audio_test_t);
+
+    if(0 == num){
+        printf("Audio test not supported on this board.\n");
+	return 0;
+    }
 
     printf("\n--- Running audio test, type 'x' to exit.\n");
 
     do {
         printf("Please select test type:\n");
-        for (idx = 0; idx < (sizeof(audio_tests) / sizeof(audio_test_t)); idx++) {
+        for (idx = 0; idx < num; idx++) {
             printf("\t%d - %s\n", idx, audio_tests[idx].name);
         }
         printf("\tx - to exit.\n");

@@ -164,12 +164,6 @@ static audio_dev_ops_t snd_card_ops = {
     .read = snd_card_read,
 };
 
-audio_card_t snd_card_ssi = {
-    .name = "i.MX SSI sound card",
-    .codec = &wm8962,   //&sgtl5000,
-    .ctrl = &imx_ssi_2,
-    .ops = &snd_card_ops,
-};
 audio_card_t snd_card_esai = {
     .name = "i.MX EASI sound card",
     .codec = &cs42888,

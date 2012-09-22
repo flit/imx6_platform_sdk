@@ -11,7 +11,12 @@
 #include "audio/audio.h"
 #include "audio/imx-audmux.h"
 
-extern audio_card_t snd_card_ssi;
+/*
+ * For smart_device board only.
+ */
+extern audio_card_t snd_card_ssi_wm8962;
+extern void audio_codec_power_on(void);
+extern void audio_clock_config(void);
 
 int32_t ssi_playback(audio_pcm_p pcm_file)
 {
@@ -19,7 +24,7 @@ int32_t ssi_playback(audio_pcm_p pcm_file)
     int32_t result;
     uint32_t bytes_written = 0;
     audio_dev_para_t dev_para;
-    audio_card_p snd_card = &snd_card_ssi;
+    audio_card_p snd_card = &snd_card_ssi_wm8962;
 
     printf("Please ensure headphones are plugged in to hear.\n");
 
@@ -27,14 +32,13 @@ int32_t ssi_playback(audio_pcm_p pcm_file)
         printf("  skip AUDIO test \n");
         return TEST_BYPASSED;
     }
-#if defined(BOARD_SMART_DEVICE) || (defined(CHIP_MX6SL) && defined(BOARD_EVB))
+    
+    audio_codec_power_on();
+    audio_clock_config();
+
     audmux_route(AUDMUX_PORT_2, AUDMUX_PORT_3, AUDMUX_SSI_MASTER);
-    dev_para.bus_mode = AUDIO_BUS_MODE_SLAVE;
-#endif
-#if defined(BOARD_SABRE_LITE)
-    audmux_route(AUDMUX_PORT_2, AUDMUX_PORT_4, AUDMUX_SSI_SLAVE);
-    dev_para.bus_mode = AUDIO_BUS_MODE_SLAVE;
-#endif
+    dev_para.bus_mode = AUDIO_BUS_MODE_MASTER;
+
     dev_para.bus_protocol = AUDIO_BUS_PROTOCOL_I2S;
     dev_para.sample_rate = SAMPLERATE_48KHz;
     dev_para.word_length = WL_16;

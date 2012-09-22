@@ -60,4 +60,10 @@ typedef enum {
     SSI_HW_ENABLE_RXFIFO2,
 } ssi_hw_enable_type_e;
 
+typedef enum{
+    I2S_MODE_NORMAL = 0,
+    I2S_MODE_MASTER = 1,
+    I2S_MODE_SLAVE = 2,
+} i2s_mode_e;
+
 #endif

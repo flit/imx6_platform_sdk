@@ -134,7 +134,7 @@ static int32_t esai_set_hw_para(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
         HW_ESAI_RCCR_WR(val);;
         break;
     case ESAI_HW_PARA_TFCR:
-        HW_ESAI_RFCR_WR(val);;
+        HW_ESAI_TFCR_WR(val);;
         break;
     case ESAI_HW_PARA_RFCR:
         HW_ESAI_RFCR_WR(val);;

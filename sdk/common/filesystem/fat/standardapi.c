@@ -18,9 +18,7 @@
 ----------------------------------------------------------------------------*/
 #include <types.h>
 #include "fstypes.h"
-#include <error.h>
-#include <filesystem/fsapi.h> //! \todo malinclusion
-#include "platform.h"
+#include "filesystem/fsapi.h"
 #include "fat_internal.h"
 #include "fs_steering.h"
 

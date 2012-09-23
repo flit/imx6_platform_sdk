@@ -12,7 +12,6 @@
 #include "types.h"
 #include <string.h>
 #include <stdlib.h>
-#include <error.h>
 #include "filesystem/fsapi.h"
 #include "filesystem/fat/fstypes.h"
 #include "filesystem/fat/fat_internal.h"

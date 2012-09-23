@@ -8,7 +8,48 @@
 #ifndef _OS_FILESYSTEM_ERRORDEFS_H
 #define _OS_FILESYSTEM_ERRORDEFS_H
 
-#include "os_errordefs.h"
+///////////////////////////////////////////////////////////////////////////////
+//! \addtogroup common
+//! @{
+//
+// Copyright (c) 2004-2005 SigmaTel, Inc.
+//
+//! \file error.h
+//! \brief  Contains error codes.
+//!
+//! \code
+//! 0x00000000, 0xFFFFFFFF, and 0x8000000 - 0xAFFFFFFF reserved for Sigmatel
+//! 0xB0000000 - 0xFFFFFFFE available for customer use
+//! \endcode
+//! 768 Major groups for Sigmatel, 1280 Major groups for customers\n
+//! 256 Minor groups per Major group\n
+//! 4096 errors per Minor group\n
+//! \code
+//! Bit            3322 2222 2222 1111 1111 11
+//!                1098 7654 3210 9876 5432 1098 7654 3210
+//!                ---------------------------------------
+//! Major Groups:  ---- MMMM MMMM ---- ---- ---- ---- ----
+//! Minor Groups:  ---- ---- ---- mmmm mmmm ---- ---- ----
+//! Errors:        ---- ---- ---- ---- ---- eeee eeee eeee
+//! \endcode
+//!
+
+#ifndef __LANGUAGE_ASM__
+#ifndef RT_STATUS_T_DEFINED
+#define RT_STATUS_T_DEFINED
+typedef int32_t RtStatus_t;
+#endif
+#endif
+
+#define SUCCESS                         (0x00000000)
+#define ERROR_GENERIC                          (-1)
+#define ERROR_OUT_OF_MEMORY             (0xfffffffe)
+
+#define ERROR_MASK                      (-268435456)
+
+#define OS_GROUP                  (0x00300000) //0x80300000
+#define OS_FILESYSTEM_GROUP       (OS_GROUP|0x00005000)
+#define ERROR_OS_FILESYSTEM_GROUP       (ERROR_MASK|OS_FILESYSTEM_GROUP)
 
 #define ERROR_OS_FILESYSTEM_GENERAL                              (ERROR_OS_FILESYSTEM_GROUP)
 #define ERROR_OS_FILESYSTEM_FILESYSTEM_NOT_FOUND                 (ERROR_OS_FILESYSTEM_GROUP + 1)

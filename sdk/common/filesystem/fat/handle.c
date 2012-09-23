@@ -19,9 +19,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include "fat_internal.h"
-#include <error.h>
-#include <filesystem/fsapi.h> //! \todo malinclusion
-#include "platform.h"
+#include "filesystem/fsapi.h"
 
 /*----------------------------------------------------------------------------
 >  Function Name:  RtStatus_t Freehandle(int32_t HandleNumber)

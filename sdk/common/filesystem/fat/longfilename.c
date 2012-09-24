@@ -19,9 +19,7 @@
 #include <types.h>
 #include "fstypes.h"
 #include "fat_internal.h"
-#include <error.h>
-#include <filesystem/fsapi.h> //! \todo malinclusion
-#include "platform.h"
+#include "filesystem/fsapi.h"
 #include "bootsecoffset.h" 
 #include "diroffset.h" 
 #include <string.h>

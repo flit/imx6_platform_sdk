@@ -20,9 +20,7 @@
 
 #include "types.h"
 #include "fstypes.h"
-#include <error.h>
 #include "filesystem/fsapi.h"
-#include "platform.h"
 #include "handletable.h"
 #include "devicetable.h"
 #include "filespec.h"

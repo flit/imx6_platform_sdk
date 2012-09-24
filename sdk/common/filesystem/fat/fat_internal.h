@@ -233,3 +233,15 @@ RtStatus_t  FileSystemPresent(int32_t Device);
 RtStatus_t  FileSystemBootSectorVerify( uint8_t* buf );
 
 void SeekPoint_InitializeBuffer(int32_t HandleNumber);
+
+int32_t FSGetByte(uint8_t *buffer, int32_t iOffsetInUint8);
+int32_t FSGetWord(uint8_t *buffer, int32_t iOffsetInUint8);
+uint32_t FSGetDWord(uint8_t *buffer, int32_t iOffsetInUint8);
+
+#define FS_GET_LITTLEENDIAN_INT32(buffer, Offset) (((uint32_t *)buffer)[(Offset)>>2])
+
+void PutByte(uint8_t *buffer, uint8_t byte,int32_t Offset);
+void PutWord(uint8_t *buffer, int32_t word, int32_t Offset);
+void PutDword(uint8_t *buffer, uint32_t dword, int32_t Offset);
+
+

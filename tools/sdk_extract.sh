@@ -93,7 +93,21 @@ echo "Writing exclusions list to $ExcludesFile..."
 cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 
 # Exclude the extraction directory.
-- ${ReleaseDirName}/
+#- ${ReleaseDirName}/
+
+# First, explicitly include only the dirs and files we want.
++ /apps
++ /board
++ /doc
++ /mk
++ /sdk
++ /tools
++ /Makefile
++ /Doxyfile
++ /README.pdf
+
+# Now exclude all other root files and directories.
+- /*
 
 # Remove documentation source files.
 - doc/*.docx
@@ -128,33 +142,24 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 # exclude the output directory
 - /output
 
-# exclude generated makefiles
-- makefile
-
 # exclude mx6sl stuff from this release
-- **/mx6sl/
-- mx6sl.*
+#- **/mx6sl/
+#- mx6sl.*
 
 # Exclude mx53 stuff
-- configs/mx53*
-- sdk/mx53/
-- sdk/include/mx53/
-- sdk/common/pmic/
-- MX53_TO2_DDR3_LCB_SMD_ARDb_v1.3.inc
+- sdma_script_code_mx53.h
 
 # Exclude perfmon
 - perfmon_imx.h
 - **/perfmon/
 
-# Exclude some stmp fs stuff
-- sdk/common/filesystem/drivers/media/*.c
-
 # Exclude Silicon Image sources
 - sdk/common/hdmi_transmitter
 
 # Exclude some stuff in tools
-- tools/src-format
 - tools/sdk_extract.sh
+- tools/makesdktags
+- tools/FreescaleNDAfooter.htm
 
 
 ***DONE-EXCLUDES***

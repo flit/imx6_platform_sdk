@@ -623,7 +623,8 @@ typedef union _hw_spdif_srpc
         unsigned RESERVED0 : 3; //!< [2:0] Reserved, return zeros when read
         unsigned GAINSEL : 3; //!< [5:3] Gain selection:
         unsigned LOCK : 1; //!< [6] LOCK bit to show that the internal DPLL is locked, read only
-        unsigned RESERVED1 : 17; //!< [23:7] Reserved.
+        unsigned CLKSRC_SEL : 4; //!< [10:7] Clock source selection, all other settings not shown are reserved:
+        unsigned RESERVED1 : 13; //!< [23:11] Reserved, return zeros when read
         unsigned UNIMPLEMENTED : 8; //!< [31:24] This is a 24-bit register the upper byte is unimplemented.
     } B;
 } hw_spdif_srpc_t;
@@ -691,6 +692,44 @@ typedef union _hw_spdif_srpc
 
 //! @brief Get value of SPDIF_SRPC_LOCK from a register value.
 #define BG_SPDIF_SRPC_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRPC_LOCK) >> BP_SPDIF_SRPC_LOCK)
+
+//@}
+
+/*! @name Register SPDIF_SRPC, field CLKSRC_SEL[10:7] (RW)
+ *
+ * Clock source selection, all other settings not shown are reserved:
+ *
+ * Values:
+ * - 0000 - if (DPLL Locked) SPDIF_RxClk else extal
+ * - 0001 - if (DPLL Locked) SPDIF_RxClk else spdif_clk
+ * - 0010 - if (DPLL Locked) SPDIF_RxClk else asrc_clk
+ * - 0011 - if (DPLL Locked) SPDIF_RxClk else spdif_extclk
+ * - 0100 - if (DPLL Locked) SPDIF_Rxclk else esai_hckt
+ * - 0101 - extal_clk
+ * - 0110 - spdif_clk
+ * - 0111 - asrc_clk
+ * - 1000 - spdif_extclk
+ * - 1001 - esai_hckt
+ * - 1010 - if (DPLL Locked) SPDIF_RxClk else mlb_clk
+ * - 1011 - if (DPLL Locked) SPDIF_RxClk else mlb_phy_clk
+ * - 1100 - mkb_clk
+ * - 1101 - mlb_phy_clk
+ */
+//@{
+
+#define BP_SPDIF_SRPC_CLKSRC_SEL      (7)      //!< Bit position for SPDIF_SRPC_CLKSRC_SEL.
+#define BM_SPDIF_SRPC_CLKSRC_SEL      (0x00000780)  //!< Bit mask for SPDIF_SRPC_CLKSRC_SEL.
+
+//! @brief Get value of SPDIF_SRPC_CLKSRC_SEL from a register value.
+#define BG_SPDIF_SRPC_CLKSRC_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRPC_CLKSRC_SEL) >> BP_SPDIF_SRPC_CLKSRC_SEL)
+
+//! @brief Format value for bitfield SPDIF_SRPC_CLKSRC_SEL.
+#define BF_SPDIF_SRPC_CLKSRC_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SRPC_CLKSRC_SEL) & BM_SPDIF_SRPC_CLKSRC_SEL)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the CLKSRC_SEL field to a new value.
+#define BW_SPDIF_SRPC_CLKSRC_SEL(v)   (HW_SPDIF_SRPC_WR((HW_SPDIF_SRPC_RD() & ~BM_SPDIF_SRPC_CLKSRC_SEL) | BF_SPDIF_SRPC_CLKSRC_SEL(v)))
+#endif
 
 //@}
 
@@ -2605,9 +2644,10 @@ typedef union _hw_spdif_stc
     struct _hw_spdif_stc_bitfields
     {
         unsigned TXCLK_DF : 7; //!< [6:0] Divider factor (1-128)
-        unsigned RESERVED0 : 4; //!< [10:7] Reserved.
+        unsigned TX_ALL_CLK_EN : 1; //!< [7] Spdif transfer clock enable.When data is going to be transfered, this bit should be set to1.
+        unsigned TXCLK_SOURCE : 3; //!< [10:8] 
         unsigned SYSCLK_DF : 9; //!< [19:11] system clock divider factor, 2~512.
-        unsigned RESERVED1 : 4; //!< [23:20] Reserved, return zeros when read
+        unsigned RESERVED0 : 4; //!< [23:20] Reserved, return zeros when read
         unsigned UNIMPLEMENTED : 8; //!< [31:24] This is a 24-bit register the upper byte is unimplemented.
     } B;
 } hw_spdif_stc_t;
@@ -2657,6 +2697,64 @@ typedef union _hw_spdif_stc
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXCLK_DF field to a new value.
 #define BW_SPDIF_STC_TXCLK_DF(v)   (HW_SPDIF_STC_WR((HW_SPDIF_STC_RD() & ~BM_SPDIF_STC_TXCLK_DF) | BF_SPDIF_STC_TXCLK_DF(v)))
+#endif
+
+//@}
+
+/*! @name Register SPDIF_STC, field TX_ALL_CLK_EN[7] (RW)
+ *
+ * Spdif transfer clock enable.When data is going to be transfered, this bit should be set to1.
+ *
+ * Values:
+ * - 0 - disable transfer clock.
+ * - 1 - enable transfer clock.
+ */
+//@{
+
+#define BP_SPDIF_STC_TX_ALL_CLK_EN      (7)      //!< Bit position for SPDIF_STC_TX_ALL_CLK_EN.
+#define BM_SPDIF_STC_TX_ALL_CLK_EN      (0x00000080)  //!< Bit mask for SPDIF_STC_TX_ALL_CLK_EN.
+
+//! @brief Get value of SPDIF_STC_TX_ALL_CLK_EN from a register value.
+#define BG_SPDIF_STC_TX_ALL_CLK_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_STC_TX_ALL_CLK_EN) >> BP_SPDIF_STC_TX_ALL_CLK_EN)
+
+//! @brief Format value for bitfield SPDIF_STC_TX_ALL_CLK_EN.
+#define BF_SPDIF_STC_TX_ALL_CLK_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_STC_TX_ALL_CLK_EN) & BM_SPDIF_STC_TX_ALL_CLK_EN)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TX_ALL_CLK_EN field to a new value.
+#define BW_SPDIF_STC_TX_ALL_CLK_EN(v)   (HW_SPDIF_STC_WR((HW_SPDIF_STC_RD() & ~BM_SPDIF_STC_TX_ALL_CLK_EN) | BF_SPDIF_STC_TX_ALL_CLK_EN(v)))
+#endif
+
+//@}
+
+/*! @name Register SPDIF_STC, field TXCLK_SOURCE[10:8] (RW)
+ *
+
+ *
+ * Values:
+ * - 000 - XTAL clk input
+ * - 001 - CCM spdif0_clk_root input
+ * - 010 - asrc_clk input
+ * - 011 - spdif_extclk input, from pads
+ * - 100 - esai_hckt input
+ * - 101 - frequency divided ipg_clk input
+ * - 110 - mlb_clk input
+ * - 111 - mlb phy clk input
+ */
+//@{
+
+#define BP_SPDIF_STC_TXCLK_SOURCE      (8)      //!< Bit position for SPDIF_STC_TXCLK_SOURCE.
+#define BM_SPDIF_STC_TXCLK_SOURCE      (0x00000700)  //!< Bit mask for SPDIF_STC_TXCLK_SOURCE.
+
+//! @brief Get value of SPDIF_STC_TXCLK_SOURCE from a register value.
+#define BG_SPDIF_STC_TXCLK_SOURCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_STC_TXCLK_SOURCE) >> BP_SPDIF_STC_TXCLK_SOURCE)
+
+//! @brief Format value for bitfield SPDIF_STC_TXCLK_SOURCE.
+#define BF_SPDIF_STC_TXCLK_SOURCE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_STC_TXCLK_SOURCE) & BM_SPDIF_STC_TXCLK_SOURCE)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the TXCLK_SOURCE field to a new value.
+#define BW_SPDIF_STC_TXCLK_SOURCE(v)   (HW_SPDIF_STC_WR((HW_SPDIF_STC_RD() & ~BM_SPDIF_STC_TXCLK_SOURCE) | BF_SPDIF_STC_TXCLK_SOURCE(v)))
 #endif
 
 //@}
@@ -2743,3 +2841,5 @@ typedef struct _hw_spdif
 #endif
 
 #endif // __HW_SPDIF_REGISTERS_H__
+// v14/120905/1.1.3
+// EOF

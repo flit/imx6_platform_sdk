@@ -34,23 +34,24 @@ static struct time_segment time_segments[18] = {
 
 void can_init(struct hw_module *port, uint32_t max_mb)
 {
-    volatile struct mx_can_control *can_ctl = (volatile struct mx_can_control *)port->base;
+    uint32_t instance = port->instance;
     uint32_t ctl;
     int i;
 
     /* configure the I/O for the port */
-    hw_can_iomux_config(port->instance);
+    hw_can_iomux_config(instance);
 
     can_sw_reset(port);         //software reset
 
-    ctl = can_ctl->mcr;
-    ctl &= 0xFFFFFF00;          //clear MAXMB field
-    ctl |= (max_mb & 0x3F);     // set MAXMB field (0-63)
-    can_ctl->mcr = ctl;
-    can_ctl->mcr &= 0x7fffffff; // enable the module
+    ctl = HW_FLEXCAN_MCR_RD(instance);
+    ctl &= ~BM_FLEXCAN_MCR_MAXMB;    	//clear MAXMB field
+    ctl |= BF_FLEXCAN_MCR_MAXMB(max_mb);     	// set MAXMB field (0-63)
+    HW_FLEXCAN_MCR_WR(instance, ctl);
+    ctl &= ~BM_FLEXCAN_MCR_MDIS;
+    HW_FLEXCAN_MCR_WR(instance, ctl);
 
     // Programming the bit timing segments"
-    can_ctl->ctrl1 = (CAN_TIMING_PARAMETERS << 16);
+    HW_FLEXCAN_CTRL_WR(instance, (CAN_TIMING_PARAMETERS << 16));
 
     // initialize MBs to zero
     for (i = 0; i < CAN_NUMBER_OF_BUFFERS; i++) {
@@ -58,20 +59,20 @@ void can_init(struct hw_module *port, uint32_t max_mb)
     }
 
     // disable all MB interrupts
-    can_ctl->imask1 = 0;
-    can_ctl->imask2 = 0;
+    HW_FLEXCAN_IMASK1_WR(instance, 0);
+    HW_FLEXCAN_IMASK2_WR(instance, 0);
 }
 
-void can_set_can_attributes(struct imx_flexcan *can_module, uint32_t bitrate, struct hw_module *hw_port){
+void can_set_can_attributes(struct imx_flexcan *can_module, uint32_t bitrate, struct hw_module *hw_port)
+{
     can_module->bitrate = bitrate;
     can_module->port = hw_port;
-    
-    // now set can_ctl address
-    can_module->can_ctl = (volatile struct mx_can_control *)can_module->port->base;
 }
 
 // CAN bit rate = sclk (aka Freq-TQ) / number-of-time-quanta
-void can_update_bitrate(struct imx_flexcan *can_module){
+void can_update_bitrate(struct imx_flexcan *can_module)
+{
+    uint32_t instance = can_module->port->instance;
     unsigned int can_PE_CLK = can_module->port->freq;  //can protocol engine clock, input from CCM
     unsigned int temp;
     
@@ -117,17 +118,19 @@ void can_update_bitrate(struct imx_flexcan *can_module){
     else { printf("CAN PE_CLK input to CAN module speed not supported\n");}
     
     // Update the the bit timing segments
-    temp = (can_module->can_ctl->ctrl1) & CAN_TIMING_MASK;
+    temp = HW_FLEXCAN_CTRL_RD(instance) & CAN_TIMING_MASK;
     temp += (can_module->presdiv <<24) + (can_module->ts.pseg1 <<19) + (can_module->ts.pseg2 <<16) + (can_module->ts.propseg); 
-    can_module->can_ctl->ctrl1 = temp;
+    HW_FLEXCAN_CTRL_WR(instance, temp);
 }
 
 void can_sw_reset(struct hw_module *port)
 {
-    volatile struct mx_can_control *can_ctl = (volatile struct mx_can_control *)port->base;
+    uint32_t instance = port->instance, val;
 
-    can_ctl->mcr |= (1 << 25);  //assert SOFT_RST
-    while (can_ctl->mcr & (1 << 25)) ;  // poll until complete
+    val = HW_FLEXCAN_MCR_RD(instance);
+    val |= BF_FLEXCAN_MCR_SOFT_RST(1);
+    HW_FLEXCAN_MCR_WR(instance, val);
+    while (HW_FLEXCAN_MCR_RD(instance) & BF_FLEXCAN_MCR_SOFT_RST(1)) ;  // poll until complete
 }
 
 void set_can_mb(struct hw_module *port, uint32_t mbID, uint32_t cs, uint32_t id, uint32_t data0,
@@ -154,36 +157,48 @@ void print_can_mb(struct hw_module *port, uint32_t mbID)
 
 void can_enable_mb_interrupt(struct hw_module *port, uint32_t mbID)
 {
-    volatile struct mx_can_control *can_ctl = (volatile struct mx_can_control *)port->base;
+    uint32_t instance = port->instance, val;
 
     if (mbID < 32) {
-        can_ctl->imask1 |= (1 << mbID);
+	val = HW_FLEXCAN_IMASK1_RD(instance);
+ 	val |= (1 << mbID);
+	HW_FLEXCAN_IMASK1_WR(instance, val);
     } else if (mbID < 64) {
-        can_ctl->imask2 |= (1 << (mbID - 32));
+	val = HW_FLEXCAN_IMASK2_RD(instance);
+ 	val |= (1 << (mbID - 32));
+	HW_FLEXCAN_IMASK1_WR(instance, val);
     }
 }
 
 void can_disable_mb_interrupt(struct hw_module *port, uint32_t mbID)
 {
-    volatile struct mx_can_control *can_ctl = (volatile struct mx_can_control *)port->base;
+    uint32_t instance = port->instance, val;
 
     if (mbID < 32) {
-        can_ctl->imask1 &= ~(1 << mbID);
+	val = HW_FLEXCAN_IMASK1_RD(instance);
+ 	val &= ~(1 << mbID);
+	HW_FLEXCAN_IMASK1_WR(instance, val);
     } else if (mbID < 64) {
-        can_ctl->imask2 &= ~(1 << (mbID - 32));
+	val = HW_FLEXCAN_IMASK2_RD(instance);
+ 	val &= ~(1 << (mbID - 32));
+	HW_FLEXCAN_IMASK1_WR(instance, val);
     }
 }
 
 void can_exit_freeze(struct hw_module *port)
 {
-    volatile struct mx_can_control *can_ctl = (volatile struct mx_can_control *)port->base;
+    uint32_t instance = port->instance, val;
 
-    can_ctl->mcr &= ~(1 << 28);
+    val = HW_FLEXCAN_MCR_RD(instance);
+    val &= ~BM_FLEXCAN_MCR_FRZ;
+    HW_FLEXCAN_MCR_WR(instance, val);
 }
 
 void can_freeze(struct hw_module *port)
 {
-    volatile struct mx_can_control *can_ctl = (volatile struct mx_can_control *)port->base;
+    uint32_t instance = port->instance, val;
 
-    can_ctl->mcr |= (1 << 28);
+    val = HW_FLEXCAN_MCR_RD(instance);
+    val |= BM_FLEXCAN_MCR_FRZ;
+    HW_FLEXCAN_MCR_WR(instance, val);
 }

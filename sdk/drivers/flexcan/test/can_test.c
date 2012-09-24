@@ -86,26 +86,30 @@ void flexcan_test(void)
 void can2_rx_handler(void)
 {
     int i = 0;
-    volatile struct mx_can_control *can_ctl = (volatile struct mx_can_control *)can2_port.base;
-//    volatile struct can_message_buffers *can_mb = (volatile struct can_message_buffers *)(can2_port.base + CAN_MB_OFFSET);
+    uint32_t instance = can2_port.instance, iflag1, iflag2;
 
-    if (can_ctl->iflag1 != 0) {
+    if ((iflag1 = HW_FLEXCAN_IFLAG1_RD(instance)) != 0) {
         for (i = 0; i < 32; i++) {
-            if (can_ctl->iflag1 & (1 << i)) {
-                can_ctl->iflag1 = (1 << i); //clear interrupt flag
+            if (iflag1 & (1 << i)) {
+                iflag1 = (1 << i); //clear interrupt flag
+                HW_FLEXCAN_IFLAG1_WR(instance, iflag1);
                 printf("\tCAN2 MB:%d Recieved:\n", i);
                 print_can_mb(&can2_port, i);
                 can_test_count++;
 
             }
         }
-    } else if (can_ctl->iflag2 != 0) {
+    }
+ 
+    if ((iflag2 = HW_FLEXCAN_IFLAG2_RD(instance)) != 0) {
         for (i = 0; i < 32; i++) {
-            if (can_ctl->iflag2 & (1 << i)) {
-                can_ctl->iflag1 = (1 << i); //clear interrupt flag
-                printf("\tCAN2 MB:%d Recieved:\n", i + 32);
-                print_can_mb(&can2_port, i + 32);
+            if (iflag2 & (1 << i)) {
+                iflag2 = (1 << i); //clear interrupt flag
+                HW_FLEXCAN_IFLAG2_WR(instance, iflag2);
+                printf("\tCAN2 MB:%d Recieved:\n", i);
+                print_can_mb(&can2_port, i);
                 can_test_count++;
+
             }
         }
     }

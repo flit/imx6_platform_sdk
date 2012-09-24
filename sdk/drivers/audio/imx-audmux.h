@@ -13,56 +13,8 @@
 #ifndef __AUDMUX_H__
 #define __AUDMUX_H__
 
-#define CSP_BITFMASK(bit) (((1U << (bit ## _WID)) - 1) << (bit ## _LSH))
-#define CSP_BITFVAL(bit, val) ((val) << (bit ## _LSH))
+#include "registers/regsaudmux.h"
 
-//------------------------------------------------------------------------------
-// REGISTER BIT FIELD POSITIONS (LEFT SHIFT)
-//------------------------------------------------------------------------------
-#define AUDMUX_PTCR_SYN_LSH                 11
-#define AUDMUX_PTCR_RCSEL_LSH               12
-#define AUDMUX_PTCR_RCLKDIR_LSH             16
-#define AUDMUX_PTCR_RFSEL_LSH               17
-#define AUDMUX_PTCR_RFSDIR_LSH              21
-#define AUDMUX_PTCR_TCSEL_LSH               22
-#define AUDMUX_PTCR_TCLKDIR_LSH             26
-#define AUDMUX_PTCR_TFSEL_LSH               27
-#define AUDMUX_PTCR_TFSDIR_LSH              31
-
-#define AUDMUX_PDCR_INMMASK_LSH             0
-#define AUDMUX_PDCR_MODE_LSH                8
-#define AUDMUX_PDCR_TXRXEN_LSH              12
-#define AUDMUX_PDCR_RXDSEL_LSH              13
-
-#define AUDMUX_CNMCR_CNTLOW_LSH             0
-#define AUDMUX_CNMCR_CNTHI_LSH              8
-#define AUDMUX_CNMCR_CLKPOL_LSH             16
-#define AUDMUX_CNMCR_FSPOL_LSH              17
-#define AUDMUX_CNMCR_CEN_LSH                18
-
-//------------------------------------------------------------------------------
-// REGISTER BIT FIELD WIDTHS
-//------------------------------------------------------------------------------
-#define AUDMUX_PTCR_SYN_WID                 1
-#define AUDMUX_PTCR_RCSEL_WID               4
-#define AUDMUX_PTCR_RCLKDIR_WID             1
-#define AUDMUX_PTCR_RFSEL_WID               4
-#define AUDMUX_PTCR_RFSDIR_WID              1
-#define AUDMUX_PTCR_TCSEL_WID               4
-#define AUDMUX_PTCR_TCLKDIR_WID             1
-#define AUDMUX_PTCR_TFSEL_WID               4
-#define AUDMUX_PTCR_TFSDIR_WID              1
-
-#define AUDMUX_PDCR_INMMASK_WID             8
-#define AUDMUX_PDCR_MODE_WID                2
-#define AUDMUX_PDCR_TXRXEN_WID              1
-#define AUDMUX_PDCR_RXDSEL_WID              3
-
-#define AUDMUX_CNMCR_CNTLOW_WID             8
-#define AUDMUX_CNMCR_CNTHI_WID              8
-#define AUDMUX_CNMCR_CLKPOL_WID             1
-#define AUDMUX_CNMCR_FSPOL_WID              1
-#define AUDMUX_CNMCR_CEN_WID                1
 
 //------------------------------------------------------------------------------
 // REGISTER BIT WRITE VALUES
@@ -171,8 +123,37 @@
 #define AUDMUX_PORT_INDEX_MIN		1
 #define AUDMUX_PORT_INDEX_MAX		7
 
-#define AUDMUX_PTCR_OFFSET(x)           ((x-1) * 8)
-#define AUDMUX_PDCR_OFFSET(x)           ((x-1) * 8 + 4)
+#define HW_AUDMUX_PTCR_RD(port)		(port) == AUDMUX_PORT_1 ? HW_AUDMUX_PTCR1_RD() : \
+					(port) == AUDMUX_PORT_2 ? HW_AUDMUX_PTCR2_RD() : \
+					(port) == AUDMUX_PORT_3 ? HW_AUDMUX_PTCR3_RD() : \
+					(port) == AUDMUX_PORT_4 ? HW_AUDMUX_PTCR4_RD() : \
+					(port) == AUDMUX_PORT_5 ? HW_AUDMUX_PTCR5_RD() : \
+					(port) == AUDMUX_PORT_6 ? HW_AUDMUX_PTCR6_RD() : \
+					HW_AUDMUX_PTCR7_RD()
+
+#define HW_AUDMUX_PTCR_WR(port, v)	(port) == AUDMUX_PORT_1 ? HW_AUDMUX_PTCR1_WR((v)) : \
+					(port) == AUDMUX_PORT_2 ? HW_AUDMUX_PTCR2_WR((v)) : \
+					(port) == AUDMUX_PORT_3 ? HW_AUDMUX_PTCR3_WR((v)) : \
+					(port) == AUDMUX_PORT_4 ? HW_AUDMUX_PTCR4_WR((v)) : \
+					(port) == AUDMUX_PORT_5 ? HW_AUDMUX_PTCR5_WR((v)) : \
+					(port) == AUDMUX_PORT_6 ? HW_AUDMUX_PTCR6_WR((v)) : \
+					HW_AUDMUX_PTCR7_WR((v))
+
+#define HW_AUDMUX_PDCR_RD(port)		(port) == AUDMUX_PORT_1 ? HW_AUDMUX_PDCR1_RD() : \
+					(port) == AUDMUX_PORT_2 ? HW_AUDMUX_PDCR2_RD() : \
+					(port) == AUDMUX_PORT_3 ? HW_AUDMUX_PDCR3_RD() : \
+					(port) == AUDMUX_PORT_4 ? HW_AUDMUX_PDCR4_RD() : \
+					(port) == AUDMUX_PORT_5 ? HW_AUDMUX_PDCR5_RD() : \
+					(port) == AUDMUX_PORT_6 ? HW_AUDMUX_PDCR6_RD() : \
+					HW_AUDMUX_PDCR7_RD()
+
+#define HW_AUDMUX_PDCR_WR(port, v)	(port) == AUDMUX_PORT_1 ? HW_AUDMUX_PDCR1_WR((v)) : \
+					(port) == AUDMUX_PORT_2 ? HW_AUDMUX_PDCR2_WR((v)) : \
+					(port) == AUDMUX_PORT_3 ? HW_AUDMUX_PDCR3_WR((v)) : \
+					(port) == AUDMUX_PORT_4 ? HW_AUDMUX_PDCR4_WR((v)) : \
+					(port) == AUDMUX_PORT_5 ? HW_AUDMUX_PDCR5_WR((v)) : \
+					(port) == AUDMUX_PORT_6 ? HW_AUDMUX_PDCR6_WR((v)) : \
+					HW_AUDMUX_PDCR7_WR((v))
 
 typedef enum {
     AUDMUX_PORT_1 = 1,

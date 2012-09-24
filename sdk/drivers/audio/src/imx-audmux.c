@@ -25,14 +25,11 @@
 static uint32_t audmux_dump(void)
 {
     uint32_t idx;
-    uint32_t pPTCR, pPDCR;
 
     printf("=======================AUDMUX dump===================\n");
-    for (idx = AUDMUX_PORT_INDEX_MIN; idx < AUDMUX_PORT_INDEX_MAX; idx++) {
-        pPTCR = AUDMUX_BASE_ADDR + AUDMUX_PTCR_OFFSET(idx);
-        pPDCR = AUDMUX_BASE_ADDR + AUDMUX_PDCR_OFFSET(idx);
-        printf("PTCR%d: 0x%x\n", idx, readl(pPTCR));
-        printf("PDCR%d: 0x%x\n", idx, readl(pPDCR));
+    for (idx = AUDMUX_PORT_INDEX_MIN; idx <= AUDMUX_PORT_INDEX_MAX; idx++) {
+        printf("PTCR%d: 0x%x\n", idx,  HW_AUDMUX_PTCR_RD(idx));
+        printf("PDCR%d: 0x%x\n", idx,  HW_AUDMUX_PDCR_RD(idx));
     }
 
     return 0;
@@ -49,17 +46,12 @@ static uint32_t audmux_dump(void)
  */
 uint32_t audmux_port_set(uint32_t port, uint32_t ptcr, uint32_t pdcr)
 {
-    uint32_t pPTCR, pPDCR;
-
     if ((port < AUDMUX_PORT_INDEX_MIN) || (port > AUDMUX_PORT_INDEX_MAX)) {
         return -1;
     }
 
-    pPTCR = AUDMUX_BASE_ADDR + AUDMUX_PTCR_OFFSET(port);
-    pPDCR = AUDMUX_BASE_ADDR + AUDMUX_PDCR_OFFSET(port);
-
-    writel(ptcr, pPTCR);
-    writel(pdcr, pPDCR);
+    HW_AUDMUX_PTCR_WR(port, ptcr);
+    HW_AUDMUX_PDCR_WR(port, pdcr);
 
     return 0;
 }
@@ -76,15 +68,10 @@ uint32_t audmux_port_set(uint32_t port, uint32_t ptcr, uint32_t pdcr)
  */
 uint32_t audmux_route(uint32_t intPort, uint32_t extPort, uint32_t is_master)
 {
-    uint32_t pPTCR, pPDCR;
-
     if ((intPort < AUDMUX_PORT_INDEX_MIN) || (intPort > AUDMUX_PORT_INDEX_MAX) ||
         (extPort < AUDMUX_PORT_INDEX_MIN) || (extPort > AUDMUX_PORT_INDEX_MAX)) {
         return -1;
     }
-    // Get pointers to the Audio MUX internal port registers.
-    pPTCR = AUDMUX_BASE_ADDR + AUDMUX_PTCR_OFFSET(intPort);
-    pPDCR = AUDMUX_BASE_ADDR + AUDMUX_PDCR_OFFSET(intPort);
 
     // Configure the Audio MUX internal port to connect with the SSI based
     // upon who is acting as the bus master.
@@ -100,27 +87,23 @@ uint32_t audmux_route(uint32_t intPort, uint32_t extPort, uint32_t is_master)
     if (AUDMUX_SSI_MASTER == is_master) {
         // All clock signals for the internal port are input signals for
         // SSI master mode.
-        writel(CSP_BITFVAL(AUDMUX_PTCR_TFSDIR, AUDMUX_PTCR_TFSDIR_INPUT) |
-               CSP_BITFVAL(AUDMUX_PTCR_TCLKDIR, AUDMUX_PTCR_TCLKDIR_INPUT) |
-               CSP_BITFVAL(AUDMUX_PTCR_SYN, AUDMUX_PTCR_SYN_SYNC), pPTCR);
+	HW_AUDMUX_PTCR_WR(intPort, BF_AUDMUX_PTCR1_RFS_DIR(AUDMUX_PTCR_TFSDIR_INPUT) |
+               BF_AUDMUX_PTCR1_TCLKDIR(AUDMUX_PTCR_TCLKDIR_INPUT) |
+               BF_AUDMUX_PTCR1_SYN(AUDMUX_PTCR_SYN_SYNC));
     } else {
         // All clock signals for the internal port are all output signals for
         //  slave mode. The source of the clock signals is the external
         // port that is connected to the PMIC.
-        writel(CSP_BITFVAL(AUDMUX_PTCR_TFSDIR, AUDMUX_PTCR_TFSDIR_OUTPUT) |
-               CSP_BITFVAL(AUDMUX_PTCR_TFSEL, extPort - 1) |
-               CSP_BITFVAL(AUDMUX_PTCR_TCLKDIR, AUDMUX_PTCR_TCLKDIR_OUTPUT) |
-               CSP_BITFVAL(AUDMUX_PTCR_TCSEL, extPort - 1) |
-               CSP_BITFVAL(AUDMUX_PTCR_SYN, AUDMUX_PTCR_SYN_SYNC), pPTCR);
+	HW_AUDMUX_PTCR_WR(intPort, BF_AUDMUX_PTCR1_TFS_DIR(AUDMUX_PTCR_TFSDIR_OUTPUT) |
+               BF_AUDMUX_PTCR1_TFSEL(extPort - 1) |
+               BF_AUDMUX_PTCR1_TCLKDIR(AUDMUX_PTCR_TCLKDIR_OUTPUT) |
+               BF_AUDMUX_PTCR1_TCSEL(extPort - 1) |
+               BF_AUDMUX_PTCR1_SYN(AUDMUX_PTCR_SYN_SYNC));
     }
 
-    writel(CSP_BITFVAL(AUDMUX_PDCR_RXDSEL, extPort - 1) |
-           CSP_BITFVAL(AUDMUX_PDCR_TXRXEN, AUDMUX_PDCR_TXRXEN_NO_SWAP) |
-           CSP_BITFVAL(AUDMUX_PDCR_MODE, AUDMUX_PDCR_MODE_NORMAL), pPDCR);
-
-    // Get pointers to the Audio MUX external port registers.
-    pPTCR = AUDMUX_BASE_ADDR + AUDMUX_PTCR_OFFSET(extPort);
-    pPDCR = AUDMUX_BASE_ADDR + AUDMUX_PDCR_OFFSET(extPort);
+    HW_AUDMUX_PDCR_WR(intPort, BF_AUDMUX_PDCR1_RXDSEL(extPort - 1) |
+           BF_AUDMUX_PDCR1_TXRXEN(AUDMUX_PDCR_TXRXEN_NO_SWAP) |
+           BF_AUDMUX_PDCR1_MODE(AUDMUX_PDCR_MODE_NORMAL));
 
     // Configure the Audio MUX external port to connect with the PMIC based
     // upon who is acting as the bus master.
@@ -133,22 +116,22 @@ uint32_t audmux_route(uint32_t intPort, uint32_t extPort, uint32_t is_master)
         // All clock signals for the external port are output signals for
         // SSI master mode. The source of the clock signals is the internal
         // port that is connected to the SSI.
-        writel(CSP_BITFVAL(AUDMUX_PTCR_TFSDIR, AUDMUX_PTCR_TFSDIR_OUTPUT) |
-               CSP_BITFVAL(AUDMUX_PTCR_TFSEL, intPort - 1) |
-               CSP_BITFVAL(AUDMUX_PTCR_TCLKDIR, AUDMUX_PTCR_TCLKDIR_OUTPUT) |
-               CSP_BITFVAL(AUDMUX_PTCR_TCSEL, intPort - 1) |
-               CSP_BITFVAL(AUDMUX_PTCR_SYN, AUDMUX_PTCR_SYN_SYNC), pPTCR);
+	HW_AUDMUX_PTCR_WR(extPort, BF_AUDMUX_PTCR1_TFS_DIR(AUDMUX_PTCR_TFSDIR_OUTPUT) |
+               BF_AUDMUX_PTCR1_TFSEL(intPort - 1) |
+               BF_AUDMUX_PTCR1_TCLKDIR(AUDMUX_PTCR_TCLKDIR_OUTPUT) |
+               BF_AUDMUX_PTCR1_TCSEL(intPort - 1) |
+               BF_AUDMUX_PTCR1_SYN(AUDMUX_PTCR_SYN_SYNC));
     } else {
         // All clock signals for the external port are input signals for
         // PMIC master mode.
-        writel(CSP_BITFVAL(AUDMUX_PTCR_TFSDIR, AUDMUX_PTCR_TFSDIR_INPUT) |
-               CSP_BITFVAL(AUDMUX_PTCR_TCLKDIR, AUDMUX_PTCR_TCLKDIR_INPUT) |
-               CSP_BITFVAL(AUDMUX_PTCR_SYN, AUDMUX_PTCR_SYN_SYNC), pPTCR);
+	HW_AUDMUX_PTCR_WR(extPort, BF_AUDMUX_PTCR1_TFS_DIR(AUDMUX_PTCR_TFSDIR_INPUT) |
+               BF_AUDMUX_PTCR1_TCLKDIR(AUDMUX_PTCR_TCLKDIR_INPUT) |
+               BF_AUDMUX_PTCR1_SYN(AUDMUX_PTCR_SYN_SYNC));
     }
 
-    writel(CSP_BITFVAL(AUDMUX_PDCR_RXDSEL, intPort - 1) |
-           CSP_BITFVAL(AUDMUX_PDCR_TXRXEN, AUDMUX_PDCR_TXRXEN_NO_SWAP) |
-           CSP_BITFVAL(AUDMUX_PDCR_MODE, AUDMUX_PDCR_MODE_NORMAL), pPDCR);
+    HW_AUDMUX_PDCR_WR(extPort, BF_AUDMUX_PDCR1_RXDSEL(intPort - 1) |
+           BF_AUDMUX_PDCR1_TXRXEN(AUDMUX_PDCR_TXRXEN_NO_SWAP) |
+           BF_AUDMUX_PDCR1_MODE(AUDMUX_PDCR_MODE_NORMAL));
 
     return 0;
 }

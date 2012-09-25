@@ -5,13 +5,12 @@
  * Freescale Semiconductor, Inc.
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #include "vdoa/vdoa.h"
-#include "hardware.h"
 #include "registers/regsvdoa.h"
+
+///////////////////////////////////////////////////////////////////////////////////
+// CODE
+///////////////////////////////////////////////////////////////////////////////////
 
 void vdoa_setup(int width, int height, int vpu_sl, int ipu_sl, int interlaced,
                 int ipu_sel, int bandLines, int pfs)
@@ -47,42 +46,29 @@ void vdoa_setup(int width, int height, int vpu_sl, int ipu_sl, int interlaced,
                       | BF_VDOA_VDOASL_VSLY(vpu_sl));
 }
 
-void vdoa_start(uint32_t src, uint32_t vubo, uint32_t dst, uint32_t iubo)
-{
-    // set the source
-    vdoa_set_vpu_buffer(src);
-    vdoa_set_vpu_ubo(vubo);
-
-    vdoa_set_ipu_buffer(dst);
-    vdoa_set_ipu_ubo(iubo);
-
-    // start transfer
-    vdoa_start_transfer();
-}
-
-void vdoa_set_vpu_buffer(uint32_t vbuf)
+static void vdoa_set_vpu_buffer(uint32_t vbuf)
 {
     if (!HW_VDOA_VDOAC.B.SYNC) {
         HW_VDOA_VDOAVEBA0_WR(vbuf);
     }
 }
 
-void vdoa_set_ipu_buffer(uint32_t ibuf)
+static void vdoa_set_ipu_buffer(uint32_t ibuf)
 {
     HW_VDOA_VDOAIEBA00_WR(ibuf);
 }
 
-void vdoa_set_vpu_ubo(uint32_t vubo)
+static void vdoa_set_vpu_ubo(uint32_t vubo)
 {
     HW_VDOA_VDOAVUBO_WR(vubo);
 }
 
-void vdoa_set_ipu_ubo(uint32_t iubo)
+static void vdoa_set_ipu_ubo(uint32_t iubo)
 {
     HW_VDOA_VDOAIUBO_WR(iubo);
 }
 
-void vdoa_start_transfer(void)
+static void vdoa_start_transfer(void)
 {
     HW_VDOA_VDOASRR.B.START = 1;
 }
@@ -106,3 +92,21 @@ bool vdoa_check_tx_eot(void)
 {
     return (HW_VDOA_VDOAIST.B.EOT == 1);
 }
+
+void vdoa_start(uint32_t src, uint32_t vubo, uint32_t dst, uint32_t iubo)
+{
+    // set the source
+    vdoa_set_vpu_buffer(src);
+    vdoa_set_vpu_ubo(vubo);
+
+	// set the destination
+    vdoa_set_ipu_buffer(dst);
+    vdoa_set_ipu_ubo(iubo);
+
+    // start transfer
+    vdoa_start_transfer();
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+// EOF
+///////////////////////////////////////////////////////////////////////////////////

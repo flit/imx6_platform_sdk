@@ -12,10 +12,11 @@
 
 static int32_t frameRateInfo = 0;
 
-uint8_t out_enc_file[] = "outdir/clip0_h264.mp4";
+uint8_t in_enc_file[] = "indir/raw_nv12.yuv";
 
 /*get the output of encoder to the destination*/
-static int32_t enc_read_line_buffer(struct encode *enc, PhysicalAddress paBsBufAddr, int32_t bsBufsize)
+static int32_t enc_read_line_buffer(struct encode *enc, PhysicalAddress paBsBufAddr,
+                                    int32_t bsBufsize)
 {
     uint32_t vbuf;
 
@@ -309,7 +310,7 @@ static int32_t encoder_start(struct encode *enc)
     uint32_t virt_bsbuf_end = virt_bsbuf_start + STREAM_BUF_SIZE;
     int32_t encode_end = 0;
 
-	/*put encode header*/
+    /*put encode header */
     ret = encoder_set_header(enc);
     if (ret) {
         err_msg("Encode fill headers failed\n");
@@ -407,7 +408,7 @@ static int32_t encoder_start(struct encode *enc)
     return ret;
 }
 
-int32_t encoder_configure(struct encode *enc)
+int32_t encoder_configure(struct encode * enc)
 {
     EncHandle handle = enc->handle;
     EncInitialInfo initinfo = { 0 };
@@ -676,25 +677,24 @@ int32_t encode_test(void *arg)
     int32_t count = 0;
     struct cmd_line *cmdl;
     int32_t err = 0;
-    int32_t file_out;
-    
+    int32_t file_in;
+
     cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
     if (cmdl == NULL) {
         err_msg("Failed to allocate command structure\n");
         return -1;
     }
 
-    if ((file_out = Fopen(out_enc_file, (uint8_t *) "w")) < 0)
-    {
-        printf("Can't open the file: %s !\n", out_enc_file);
+    if ((file_in = Fopen(in_enc_file, (uint8_t *) "r")) < 0) {
+        printf("Can't open the file: %s !\n", in_enc_file);
         err = 0;
     }
 
     /*now enable the INTERRUPT mode of usdhc */
-    SDHC_INTR_mode = 1;
-    SDHC_ADMA_mode = 1;
+    SDHC_INTR_mode = 0;
+    SDHC_ADMA_mode = 0;
     memset((void *)&bsmem, 0, sizeof(bs_mem_t));
-    cmdl->input = file_out;    /* Input file name */
+    cmdl->input = file_in;     /* Input file name */
     cmdl->format = STD_AVC;
     cmdl->src_scheme = PATH_FILE;
     cmdl->dst_scheme = PATH_MEM;
@@ -734,7 +734,7 @@ int32_t encode_test(void *arg)
             return -1;
         }
         /*set the decoder command args */
-        cmdl->input = 0;     /* Input file name */
+        cmdl->input = 0;        /* Input file name */
         cmdl->format = STD_AVC;
         cmdl->src_scheme = PATH_MEM;
         cmdl->dst_scheme = PATH_MEM;

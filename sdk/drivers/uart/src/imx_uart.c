@@ -13,10 +13,9 @@
 
 #include "hardware.h"
 
-#define UART_UFCR_RFDIV     UART_UFCR_RFDIV_2
+#define UART_UFCR_RFDIV    BF_UART_UFCR_RFDIV(4) 
 //#define UART_UFCR_RFDIV     UART_UFCR_RFDIV_4
 //#define UART_UFCR_RFDIV     UART_UFCR_RFDIV_7
-
 /*!
  * Obtain UART reference frequency
  *
@@ -28,11 +27,11 @@ uint32_t uart_get_reffreq(struct hw_module *port)
     uint32_t div = UART_UFCR_RFDIV;
     uint32_t ret = 0;
 
-    if (div == UART_UFCR_RFDIV_2)
+    if (div == BF_UART_UFCR_RFDIV(4))
         ret = port->freq / 2;
-    else if (div == UART_UFCR_RFDIV_4)
+    else if (div == BF_UART_UFCR_RFDIV(2))
         ret = port->freq / 4;
-    else if (div == UART_UFCR_RFDIV_7)
+    else if (div == BF_UART_UFCR_RFDIV(6))
         ret = port->freq / 7;
 
     return ret;
@@ -47,12 +46,12 @@ uint32_t uart_get_reffreq(struct hw_module *port)
  */
 uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
 {
-    volatile struct imx_uart *puart = (volatile struct imx_uart *)port->base;
+    uint32_t instance = port->instance;
 
     /* Wait for Tx FIFO not full */
-    while (puart->uts & UART_UTS_TXFULL) ;
+    while (HW_UART_UTS_RD(instance) & BF_UART_UTS_TXFULL(1)) ;
 
-    puart->utxd[0] = *ch;
+    HW_UART_UTXD_WR(instance, *ch);
 
     return *ch;
 }
@@ -66,14 +65,14 @@ uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
  */
 uint8_t uart_getchar(struct hw_module * port)
 {
-    volatile struct imx_uart *puart = (volatile struct imx_uart *)port->base;
+    uint32_t instance = port->instance;
     uint32_t read_data;
 
     /* If Rx FIFO has no data ready */
-    if (!(puart->usr2 & UART_USR2_RDR))
+    if (!(HW_UART_USR2_RD(instance)& 0x01))
         return NONE_CHAR;
 
-    read_data = puart->urxd[0];
+    read_data = HW_UART_URXD_RD(instance); 
 
     /* If error are detected */
     if (read_data & 0x7C00)
@@ -94,30 +93,29 @@ uint8_t uart_getchar(struct hw_module * port)
 void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
                         uint8_t service_mode)
 {
-    volatile struct imx_uart *puart = (volatile struct imx_uart *)port->base;
-
+    uint32_t instance = port->instance;
     if (fifo == TX_FIFO) {
         /* Configure the TX_FIFO trigger level */
-        puart->ufcr &= ~(0x3F << UART_UFCR_TXTL_SHF);
-        puart->ufcr |= (trigger_level << UART_UFCR_TXTL_SHF);
+        HW_UART_UFCR_CLR(instance, (0x3F << UART_UFCR_TXTL_SHF));
+        HW_UART_UFCR_SET(instance, (trigger_level << UART_UFCR_TXTL_SHF));
         /* Configure the TX_FIFO service mode */
         /* Default mode is polling: IRQ and DMA requests are disabled */
-        puart->ucr1 &= ~(UART_UCR1_TRDYEN | UART_UCR1_TXDMAEN);
+        HW_UART_UCR1_CLR(instance, (BF_UART_UCR1_TRDYEN(1)| BF_UART_UCR1_TXDMAEN(1)));
         if (service_mode == DMA_MODE)
-            puart->ucr1 |= UART_UCR1_TXDMAEN;
+           HW_UART_UCR1_SET(instance, BF_UART_UCR1_TXDMAEN(1));
         else if (service_mode == IRQ_MODE)
-            puart->ucr1 |= UART_UCR1_TRDYEN;
+            HW_UART_UCR1_SET(instance, BF_UART_UCR1_TRDYEN(1));
     } else {                    /* fifo = RX_FIFO */
         /* Configure the RX_FIFO trigger level */
-        puart->ufcr &= ~(0x3F << UART_UFCR_RXTL_SHF);
-        puart->ufcr |= (trigger_level << UART_UFCR_RXTL_SHF);
+         HW_UART_UFCR_CLR(instance, (0x3F << UART_UFCR_RXTL_SHF));
+        HW_UART_UFCR_SET(instance, (trigger_level << UART_UFCR_RXTL_SHF));
         /* Configure the RX_FIFO service mode */
         /* Default mode is polling: IRQ and DMA requests are disabled */
-        puart->ucr1 &= ~(UART_UCR1_RRDYEN | UART_UCR1_RXDMAEN);
+        HW_UART_UCR1_CLR(instance, (BF_UART_UCR1_RRDYEN(1)| BF_UART_UCR1_RXDMAEN(1)));
         if (service_mode == DMA_MODE)
-            puart->ucr1 |= UART_UCR1_RXDMAEN;
+            HW_UART_UCR1_SET(instance, BF_UART_UCR1_RXDMAEN(1));
         else if (service_mode == IRQ_MODE)
-            puart->ucr1 |= UART_UCR1_RRDYEN;
+            HW_UART_UCR1_SET(instance, BF_UART_UCR1_RRDYEN(1));
     }
 }
 
@@ -129,12 +127,11 @@ void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_le
  */
 void uart_set_loopback_mode(struct hw_module *port, uint8_t state)
 {
-    volatile struct imx_uart *puart = (volatile struct imx_uart *)port->base;
-
+    uint32_t instance = port->instance;
     if (state == TRUE)
-        puart->uts |= UART_UTS_LOOP;
+	HW_UART_UTS_SET(instance, BF_UART_UTS_LOOP(1));
     else
-        puart->uts &= ~UART_UTS_LOOP;
+        HW_UART_UTS_CLR(instance, BF_UART_UTS_LOOP(1));
 }
 
 /*!
@@ -172,8 +169,7 @@ void uart_setup_interrupt(struct hw_module *port, uint8_t state)
 void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
                uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol)
 {
-    volatile struct imx_uart *puart = (volatile struct imx_uart *)port->base;
-
+    uint32_t instance = port->instance;
    /* configure the I/O for the port */
     uart_iomux_config(port->instance);
 
@@ -181,69 +177,69 @@ void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
     clock_gating_config(port->base, CLOCK_ON);
 
     /* Wait for UART to finish transmitting before changing the configuration */
-    while (!(puart->uts & UART_UTS_TXEMPTY)) ;
+    while (!(HW_UART_UTS_RD(instance) & BF_UART_UTS_TXEMPTY(1))) ;
 
     /* Disable UART */
-    puart->ucr1 &= ~UART_UCR1_UARTEN;
+    HW_UART_UCR1_CLR(instance, BF_UART_UCR1_UARTEN(1));
 
     /* Configure FIFOs trigger level to half-full and half-empty */
-    puart->ufcr = (16 << UART_UFCR_RXTL_SHF) | UART_UFCR_RFDIV | (16 << UART_UFCR_TXTL_SHF);
+    HW_UART_UFCR_WR(instance, (16 << UART_UFCR_RXTL_SHF) | UART_UFCR_RFDIV | (16 << UART_UFCR_TXTL_SHF));
 
     /* Setup One Millisecond timer */
-    puart->onems = uart_get_reffreq(port) / 1000;
+    HW_UART_ONEMS_WR(instance, uart_get_reffreq(port) / 1000);
 
     /* Set parity */
     if (parity == PARITY_NONE)
-        puart->ucr2 &= ~(UART_UCR2_PREN | UART_UCR2_PROE);
+        HW_UART_UCR2_CLR(instance,(BF_UART_UCR2_PREN(1)| BF_UART_UCR2_PROE(1)));
     else if (parity == PARITY_ODD)
-        puart->ucr2 |= UART_UCR2_PREN | UART_UCR2_PROE;
+        HW_UART_UCR2_SET(instance,(BF_UART_UCR2_PREN(1)| BF_UART_UCR2_PROE(1)));
     else {                      /* parity == PARITY_EVEN */
-        puart->ucr2 |= UART_UCR2_PREN;
-        puart->ucr2 &= ~UART_UCR2_PROE;
+        HW_UART_UCR2_SET(instance, BF_UART_UCR2_PREN(1));
+        HW_UART_UCR2_CLR(instance, BF_UART_UCR2_PROE(1));
     }
 
     /* Set stop bit */
     if (stopbits == STOPBITS_ONE)
-        puart->ucr2 &= ~UART_UCR2_STPB;
+        HW_UART_UCR2_CLR(instance, BF_UART_UCR2_STPB(1));
     else                        /* stopbits == STOPBITS_TWO */
-        puart->ucr2 |= UART_UCR2_STPB;
+        HW_UART_UCR2_SET(instance, BF_UART_UCR2_STPB(1));
 
     /* Set data size */
     if (datasize == EIGHTBITS)
-        puart->ucr2 |= UART_UCR2_WS;
+        HW_UART_UCR2_SET(instance, BF_UART_UCR2_WS(1));
     else                        /* stopbits == STOPBITS_TWO */
-        puart->ucr2 &= ~UART_UCR2_WS;
+        HW_UART_UCR2_CLR(instance, BF_UART_UCR2_WS(1));
 
     /* Configure the flow control */
     if (flowcontrol == FLOWCTRL_ON) {
         /* transmit done when RTS asserted */
-        puart->ucr2 &= ~UART_UCR2_IRTS;
+        HW_UART_UCR2_CLR(instance,  BF_UART_UCR2_IRTS(1));
         /* CTS controlled by the receiver */
-        puart->ucr2 |= UART_UCR2_CTSC;
+        HW_UART_UCR2_SET(instance,  BF_UART_UCR2_CTSC(1));
     } else {                    /* flowcontrol == FLOWCTRL_OFF */
         /* Ignore RTS */
-        puart->ucr2 |= UART_UCR2_IRTS;
+        HW_UART_UCR2_SET(instance,  BF_UART_UCR2_IRTS(1));
         /* CTS controlled by the CTS bit */
-        puart->ucr2 &= ~UART_UCR2_CTSC;
+        HW_UART_UCR2_CLR(instance,  BF_UART_UCR2_CTSC(1));
     }
 
     /* the reference manual says that this bit must always be set */
-    puart->ucr3 |= UART_UCR3_RXDMUXSEL;
+    HW_UART_UCR3_SET(instance,  BF_UART_UCR3_RXDMUXSEL(1));
 
     /* Enable UART */
-    puart->ucr1 |= UART_UCR1_UARTEN;
+    HW_UART_UCR1_SET(instance, BF_UART_UCR1_UARTEN(1));
 
     /* Enable FIFOs and does software reset to clear status flags, reset
        the transmit and receive state machine, and reset the FIFOs */
-    puart->ucr2 |= UART_UCR2_TXEN | UART_UCR2_RXEN | UART_UCR2_SRST;
+    HW_UART_UCR2_SET(instance, BF_UART_UCR2_TXEN(1) | BF_UART_UCR2_RXEN(1) | BF_UART_UCR2_SRST(1));
 
     /* Set the numerator value minus one of the BRM ratio */
-    puart->ubir = (baudrate / 100) - 1;
+    HW_UART_UBIR_WR(instance, (baudrate / 100) - 1);
 
     /* Set the denominator value minus one of the BRM ratio */
-    puart->ubmr = ((uart_get_reffreq(port) / 1600) - 1);
+    HW_UART_UBMR_WR(instance,  ((uart_get_reffreq(port) / 1600) - 1));
 
     /* Optional: prevent the UART to enter debug state. Useful when debugging
        the code with a JTAG and without active IRQ */
-    puart->uts |= UART_UTS_DBGEN;
+    HW_UART_UTS_SET(instance, BF_UART_UTS_DBGEN(1));
 }

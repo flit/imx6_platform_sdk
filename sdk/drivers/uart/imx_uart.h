@@ -129,6 +129,7 @@ void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_le
 void uart_set_loopback_mode(struct hw_module *port, uint8_t state);
 void uart_setup_interrupt(struct hw_module *port, uint8_t state);
 
+#define UART_WIDTH_32
 /* UART Registers list */
 #ifdef UART_WIDTH_32
 struct imx_uart {

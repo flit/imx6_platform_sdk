@@ -65,9 +65,6 @@ ifdef is_dq_or_sdl
 SOURCES += \
 	enet/src/enet_drv.c \
 	flexcan/src/can.c \
-	gpu/src/rotate_texture.c \
-	gpu/src/sdk_gpu_utilities.c \
-	gpu/src/texture.c \
 	gpmi/src/bch_ecc.c \
 	gpmi/src/gpmi_dma_components.cpp \
 	gpmi/src/gpmi_dma_isr.cpp \

@@ -67,7 +67,6 @@ ifeq "$(BOARD)" "evb"
     SUBDIRS += \
         $(SDK_LIB_ROOT)/drivers/enet/test \
         $(SDK_LIB_ROOT)/drivers/gpmi/test \
-        $(SDK_LIB_ROOT)/drivers/gpu/test \
         $(SDK_LIB_ROOT)/drivers/keypad/test \
         $(SDK_LIB_ROOT)/drivers/pcie/test \
         $(SDK_LIB_ROOT)/drivers/spi/test \

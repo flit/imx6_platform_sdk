@@ -9,12 +9,16 @@
 #include "sdk.h"
 #include "soc_memory_map.h"
 #include "hardware.h"
-#include "gpu/gpu_test_common.h"
-#include "gpu/sdk_gpu_utilities.h"
-#include "gpu/texture.h"
+#include "gpu_test_common.h"
+#include "sdk_gpu_utilities.h"
+#include "texture.h"
 #include "iomux_config.h"
 #include "registers/regsipu.h"
 #include "ipu/ipu_common.h"
+#include "cortex_a9.h"
+#include "mmu.h"
+#include "version.h"
+#include "hardware.h"
 
 #define GPU_DEMO_WIDTH  	1024
 #define GPU_DEMO_HEIGHT 	768
@@ -24,6 +28,7 @@ extern uint8_t uart_getchar(struct hw_module *port);
 extern void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
        uint32_t buffer_addr);
 extern void enable_L1_cache(void);
+int gpu_test(void);
 
 int width = GPU_DEMO_WIDTH;
 int height = GPU_DEMO_HEIGHT;
@@ -42,6 +47,26 @@ int USE_FAST_CLEAR = 1;
 
 volatile int gpu_new_frame;
 static int panel_init = 0;
+
+int main(void)
+{
+    enable_neon_fpu();
+
+#if defined(BOARD_EVB)||defined(BOARD_SMART_DEVICE)
+    system_memory_arrange();
+    disable_strict_align_check();
+#endif
+
+    platform_init();
+    
+    print_version();
+
+	gpu_test();
+
+    _sys_exit(0);
+
+	return 0;
+}
 
 int gpu_test(void)
 {

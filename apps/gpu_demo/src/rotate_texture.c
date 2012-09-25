@@ -12,7 +12,7 @@
  * @ingroup diag_enet
  */
 
-#include "gpu/sdk_gpu_utilities.h"
+#include "sdk_gpu_utilities.h"
 
 void rotateTexture(unsigned long phys)
 {

@@ -48,7 +48,8 @@ SUBDIRS = \
 ALL_APPS = \
     sdk_unit_test \
     power_modes_test \
-    obds
+    obds \
+    gpu_demo
 
 # Default target.
 .PHONY: all

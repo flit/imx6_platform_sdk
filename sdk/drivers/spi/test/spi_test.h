@@ -13,12 +13,23 @@
 #define TEST_SRC_VAL  0x3569AC00
 #define TEST_ERASE_SZ (64 * 1024)
 
-/*  
+/*!  
  * Channel: SS1
  * Mode: master
  * pre_div, post_div: 2 - clock: 60M/4 = 15MHz
  */
-#define NUMONYX_INIT_PARAM ((uint32_t)0x00000445)
+#define NUMONYX_INIT_PARAM { \
+    .channel = 1, \
+    .mode = 1, \
+    .ss_pol = 0, \
+    .sclk_pol = 0, \
+    .sclk_pha = 0, \
+    .pre_div = 0, \
+    .post_div = 0 \
+    }
+
+
+// ((uint32_t)0x00000445)
 
 struct chip_id {
     uint8_t id0;
@@ -31,4 +42,7 @@ typedef struct {
     int (*test) (void);
 } spi_test_t;
 
-#endif
+int spi_test(void);
+
+
+#endif // __SPI_TEST_HDR__

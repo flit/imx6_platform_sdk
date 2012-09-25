@@ -5,29 +5,29 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include <stdio.h>
 #include "sdk.h"
-#include "soc_memory_map.h"
-#include "hardware.h"
-#include "gpu_test_common.h"
-#include "sdk_gpu_utilities.h"
-#include "texture.h"
-#include "iomux_config.h"
-#include "registers/regsipu.h"
-#include "ipu/ipu_common.h"
-#include "cortex_a9.h"
 #include "mmu.h"
 #include "version.h"
 #include "hardware.h"
+#include "cortex_a9.h"
+#include "iomux_config.h"
+
+#include "texture.h"
+#include "gpu_test_common.h"
+#include "sdk_gpu_utilities.h"
+#include "ipu/ipu_common.h"
+
+#include "registers/regsipu.h"
+#include "registers/regscsu.h"
+#include "registers/regsiomuxc.h"
+#include "registers/regsgpu3d.h"
 
 #define GPU_DEMO_WIDTH  	1024
 #define GPU_DEMO_HEIGHT 	768
+#define BG_BUFFER_ADDR      0x24000000
+#define FG_BUFFER_ADDR0     0x18000000
+#define FG_BUFFER_ADDR1     0x18800000
 
-extern hw_module_t g_debug_uart;
-extern uint8_t uart_getchar(struct hw_module *port);
-extern void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
-       uint32_t buffer_addr);
-extern void enable_L1_cache(void);
 int gpu_test(void);
 
 int width = GPU_DEMO_WIDTH;
@@ -58,32 +58,19 @@ int main(void)
 #endif
 
     platform_init();
-    
+
     print_version();
 
-	gpu_test();
+    gpu_test();
 
     _sys_exit(0);
 
-	return 0;
+    return 0;
 }
 
 int gpu_test(void)
 {
-    volatile uint8_t ch;
-    uint32_t val;
-
-    printf
-        ("\nRunning GPU test, please connect the panel to the LVDS0, type 'y' or 'Y' to comfirm.\n");
-    do {
-        ch = getchar();
-    } while (ch == (uint8_t) 0xFF);
-
-    if (('Y' != ch) && ('y' != ch)) {
-        return -1;
-    }
-
-    printf("GPU test running, press any key to exit.\n");
+    printf("\nRunning GPU test, please connect the Hannstar LVDS panel to the LVDS0\n");
 
     new_width.f = (float)width;
     new_height.f = (float)height;
@@ -92,39 +79,38 @@ int gpu_test(void)
     neg_new_half_height.f = -new_half_height.f;
 
     // enable GPU to access MMDC
-    val = reg32_read(CSU_BASE_ADDR + 0x64);
-    val |= 0xff;
-    reg32_write(CSU_BASE_ADDR + 0x64, val);
+    HW_CSU_CSL25_SET(0xFF);
 
     //IPU2 QoS
-    reg32_write(IOMUXC_GPR7, 0xffffffff);
+    HW_IOMUXC_GPR7_SET(0xFFFFFFFF);
 
     //Lower GPU frequency
-    val = reg32_read(GPU_3D_BASE_ADDR + 0x0);
-    val &= 0xfffffc03;
-    val |= 0x280;
-    reg32_write(GPU_3D_BASE_ADDR + 0x0, val);
-    val &= 0xfffffdff;
-    reg32_write(GPU_3D_BASE_ADDR + 0x0, val);
-	
-	/*initialize the display device*/
-	if(panel_init == 0) {
-		int32_t ipu_index = 2;
-		ipu_sw_reset(ipu_index, 1000000);
-		ips_dev_panel_t *panel = search_panel("HannStar XGA LVDS");
-		panel->panel_init(&ipu_index);
-		ipu_dual_display_setup(ipu_index, panel, INTERLEAVED_ARGB8888, width, height, 0, 0, 0x0);
-		ipu_dma_update_buffer(ipu_index, 23, 0, 0x24000000);
-		ipu_dma_update_buffer(ipu_index, 27, 0, 0x18000000);
-		ipu_dma_update_buffer(ipu_index, 27, 1, 0x18800000);
-		ipu_enable_display(ipu_index);
-		panel_init = 1;
-	}
-   
+    BW_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD(1);
+    BW_GPU3D_AQH_CLK_CTRL_FSCALE_VAL(0x60);
+    BW_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD(0);
+
+    /*initialize the display device */
+    if (panel_init == 0) {
+        int32_t ipu_index = 2;
+        ipu_sw_reset(ipu_index, 1000000);
+        ips_dev_panel_t *panel = search_panel("HannStar XGA LVDS");
+        panel->panel_init(&ipu_index);
+        ipu_dual_display_setup(ipu_index, panel, INTERLEAVED_ARGB8888, width, height, 0, 0, 0x0);
+        ipu_dma_update_buffer(ipu_index, 23, 0, BG_BUFFER_ADDR);
+		memset((void *)BG_BUFFER_ADDR, 0x00, width * height * pixel_format);
+		ipu_dma_update_buffer(ipu_index, 27, 0, FG_BUFFER_ADDR0);
+		memset((void *)FG_BUFFER_ADDR0, 0x00, width * height * pixel_format);
+        ipu_dma_update_buffer(ipu_index, 27, 1, FG_BUFFER_ADDR1);
+		memset((void *)FG_BUFFER_ADDR1, 0x00, width * height * pixel_format);
+        ipu_enable_display(ipu_index);
+        panel_init = 1;
+    }
+
     runTexture(CMD_BUFFER_ADDR, 0);
+
+    printf("GPU test running, press any key to exit.\n");
     while (1) {
-        ch = uart_getchar(&g_debug_uart);
-        if (ch != (uint8_t) 0xFF) {
+        if (getchar() != (uint8_t) 0xFF) {
             printf("GPU test exits.\n");
             break;
         }

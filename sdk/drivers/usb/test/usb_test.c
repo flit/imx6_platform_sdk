@@ -46,14 +46,12 @@ void usb_test(void) {
 		case 0:
 			// Initialize the OTG controller info structure.
 			usbPort->moduleName = "OTG controller";
-			usbPort->moduleBaseAddress = (usbRegisters_t *) USB_OTG_BASE_ADDR;
 			usbPort->controllerID = OTG;
 			usbPort->phyType = Utmi;
 			break;
 		case 1:
 			// Initialize the Host1 controller info structure.
 			usbPort->moduleName = "Host1 controller";
-			usbPort->moduleBaseAddress = (usbRegisters_t *) USB_H1_BASE_ADDR;
 			usbPort->controllerID = Host1;
 			usbPort->phyType = Utmi;
 			break;

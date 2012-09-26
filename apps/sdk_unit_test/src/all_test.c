@@ -34,7 +34,6 @@ extern int gpmi_test(void);
 extern int mipi_test();
 extern int pwm_test();
 extern int eim_test();
-extern int gpu_test(void);
 extern int camera_test(void);
 extern int wdog_test(void);
 extern int camera_test(void);
@@ -60,9 +59,6 @@ void ALL_test(void)
 #endif /* BOARD_SABRE_AI */
         epit_test();
 
-#if defined(BOARD_EVB)
-        gpu_test();
-#endif
         gpt_test();
         hdmi_test();
         i2c_test();

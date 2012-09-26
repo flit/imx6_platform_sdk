@@ -25,6 +25,7 @@ extern void usbDisableVbus(usb_module_t * port);
 
 int usbh_init(usb_module_t * port)
 {
+    uint32_t core = (uint32_t)port->controllerID;
     /*!
      *  Start clocks and PLL
      */
@@ -42,31 +43,29 @@ int usbh_init(usb_module_t * port)
     }
 
     if (port->phyType == Ulpi) {
-        port->moduleBaseAddress->USB_PORTSC &= (~(USB_PORTSC_PTS(3)));
-        port->moduleBaseAddress->USB_PORTSC |= (USB_PORTSC_PTS(2));
-
+	HW_USBC_PORTSC1_WR(core, (HW_USBC_PORTSC1_RD(core) & (~(BF_USBC_UH1_PORTSC1_PTS(3)))) | (BF_USBC_UH1_PORTSC1_PTS(2)));
     } else if (port->phyType == Utmi) {
-        port->moduleBaseAddress->USB_PORTSC &= (~(USB_PORTSC_PTS(3)));
+	HW_USBC_PORTSC1_WR(core, HW_USBC_PORTSC1_RD(core) & (~(BF_USBC_UH1_PORTSC1_PTS(3))));
     } else if (port->phyType == Serial) {
-        port->moduleBaseAddress->USB_PORTSC |= (USB_PORTSC_PTS(3));
+	HW_USBC_PORTSC1_WR(core, HW_USBC_PORTSC1_RD(core) | (BF_USBC_UH1_PORTSC1_PTS(3)));
     } else {
         /* Invalid PHY type */
         return (-1);
     }
 
     //! Reset controller after switching PHY's
-    port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_RST);
+    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | BM_USBC_UH1_USBCMD_RST);
 
     //! wait for reset to complete
-    while (port->moduleBaseAddress->USB_USBCMD & (USB_USBCMD_RST)) ;
+    while (HW_USBC_USBCMD_RD(core) & BM_USBC_UH1_USBCMD_RST);
 
     //! set controller to host mode
-    port->moduleBaseAddress->USB_USBMODE = (USB_USBMODE_CM_HOST);
+    HW_USBC_USBMODE_WR(core, USB_USBMODE_CM_HOST);
 
     //! Set Asynchronous schedule park mode to 3
     //! to allow up to 3 successive transactions same queue.
     //! set interrupt interval to 0 for immediate interrupt
-    port->moduleBaseAddress->USB_USBCMD = (0 | USB_USBCMD_ASP(3) | USB_USBCMD_ITC(0));
+    HW_USBC_USBCMD_WR(core, BF_USBC_UH1_USBCMD_ASP(3) | BF_USBC_UH1_USBCMD_ITC(0));
 
 #ifdef USB_USE_INT
     /* setup interrupt */
@@ -75,11 +74,11 @@ int usbh_init(usb_module_t * port)
 
     //! start the controller
     //! the controller will start running but the schedules are not yet enabled.
-    port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_RS);
+    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | BM_USBC_UH1_USBCMD_RS);
 
     //! Enable port power.
     //! Port power must be set for port to detect a device connection
-    port->moduleBaseAddress->USB_PORTSC |= (USB_PORTSC_PP);
+    HW_USBC_PORTSC1_WR(core, HW_USBC_PORTSC1_RD(core) | BM_USBC_UH1_PORTSC1_PP);
 
     //! Enable Vbus power when Vbus power is controlled by GPIO
     //! On some board hardware, Vbus is not controlled by PortPower
@@ -100,39 +99,40 @@ int usbh_init(usb_module_t * port)
 uint32_t usbh_periodic_schedule_init(struct usb_module * port, uint32_t frame_list_size,
                                      uint32_t * frame_list)
 {
+    uint32_t core = (uint32_t)port->controllerID;
     int i;
     uint32_t periodic_base;
 
     //! Initialize the USBCMD register for the desired frame list size
 
     //! Clear all FS bits before we start
-    port->moduleBaseAddress->USB_USBCMD &= ~(USB_USBCMD_FS_MASK);
+    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) & (~(BM_USBC_UH1_USBCMD_FS | BM_USBC_UH1_USBCMD_FS1)));
 
     //! Set the new size
     switch (frame_list_size) {
     case 1024:
-        port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_FS_1024);
+    	HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | USB_USBCMD_FS_1024);
         break;
     case 512:
-        port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_FS_512);
+    	HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | USB_USBCMD_FS_512);
         break;
     case 256:
-        port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_FS_256);
+    	HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | USB_USBCMD_FS_256);
         break;
     case 128:
-        port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_FS_128);
+    	HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | USB_USBCMD_FS_128);
         break;
     case 64:
-        port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_FS_64);
+    	HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | USB_USBCMD_FS_64);
         break;
     case 32:
-        port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_FS_32);
+    	HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | USB_USBCMD_FS_32);
         break;
     case 16:
-        port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_FS_16);
+    	HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | USB_USBCMD_FS_16);
         break;
     case 8:
-        port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_FS_8);
+    	HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | USB_USBCMD_FS_8);
         break;
     default:
         // Invalid frame list size
@@ -160,13 +160,13 @@ uint32_t usbh_periodic_schedule_init(struct usb_module * port, uint32_t frame_li
         *(frame_list++) = 1;
 
     //! Initialize the Periodic base address register
-    port->moduleBaseAddress->USB_PERIODICLISTBASE = periodic_base;
+    HW_USBC_PERIODICLISTBASE_WR(core, periodic_base);
 
     //! Enable the periodic schedule
-    port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_PSE);
+    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | BM_USBC_UH1_USBCMD_PSE);
 
     //! Wait for periodic schedule to become enabled
-    while (!(port->moduleBaseAddress->USB_USBSTS & (USB_USBSTS_PS))) ;
+    while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_PS));
 
 #ifdef DEBUG_PRINT
     printf("Periodic schedule is enabled.\n");
@@ -182,11 +182,13 @@ uint32_t usbh_periodic_schedule_init(struct usb_module * port, uint32_t frame_li
  */
 void usbh_bus_reset(struct usb_module *port)
 {
+    uint32_t core = (uint32_t)port->controllerID;
+
     //! Set Port Reset
-    port->moduleBaseAddress->USB_PORTSC |= (USB_PORTSC_PR);
+    HW_USBC_PORTSC1_WR(core, HW_USBC_PORTSC1_RD(core) | BM_USBC_UH1_PORTSC1_PR);
 
     //! Wait for reset to finish
-    while (port->moduleBaseAddress->USB_PORTSC & (USB_PORTSC_PR)) ;
+    while(HW_USBC_PORTSC1_RD(core) & BM_USBC_UH1_PORTSC1_PR);
 }
 
 /*!
@@ -197,11 +199,13 @@ void usbh_bus_reset(struct usb_module *port)
  */
 void usbh_enable_asynchronous_schedule(usb_module_t * port)
 {
+    uint32_t core = (uint32_t)port->controllerID;
+
     // Enable the Asynchronous schedule
-    port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_ASE);
+    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | BM_USBC_UH1_USBCMD_ASE);
 
     // Wait for asynchronous schedule to enable
-    while (!(port->moduleBaseAddress->USB_USBSTS & (USB_USBSTS_AS))) ;
+    while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_AS));
 }
 
 /*!
@@ -211,11 +215,13 @@ void usbh_enable_asynchronous_schedule(usb_module_t * port)
  */
 void usbh_disable_asynchronous_schedule(struct usb_module *port)
 {
+    uint32_t core = (uint32_t)port->controllerID;
+
     //! Disable the asynchronous schedule
-    port->moduleBaseAddress->USB_USBCMD &= (~USB_USBCMD_ASE);
+    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) & (~BM_USBC_UH1_USBCMD_ASE));
 
     //! Wait for asynchronous enable bit to clear
-    while (port->moduleBaseAddress->USB_USBCMD & (USB_USBCMD_ASE)) ;
+    while(HW_USBC_USBCMD_RD(core) & BM_USBC_UH1_USBCMD_ASE);
 }
 
 /*!
@@ -225,11 +231,13 @@ void usbh_disable_asynchronous_schedule(struct usb_module *port)
 */
 void usbh_disable_Periodic_list(struct usb_module *port)
 {
+    uint32_t core = (uint32_t)port->controllerID;
+
     //! Disable the periodic schedule
-    port->moduleBaseAddress->USB_USBCMD &= (~USB_USBCMD_PSE);
+    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) &(~BM_USBC_UH1_USBCMD_PSE));
 
     //! Wait for periodic schedule enable bit to clear
-    while (port->moduleBaseAddress->USB_USBCMD & (USB_USBCMD_PSE)) ;
+    while(HW_USBC_USBCMD_RD(core) & BM_USBC_UH1_USBCMD_PSE);
 }
 
 /*!

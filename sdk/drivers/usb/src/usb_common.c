@@ -19,33 +19,33 @@
 #include "usb/usb.h"
 #include <stdio.h>
 
-usbPortSpeed_t usb_get_port_speed(usb_module_t *port)
+usbPortSpeed_t usb_get_port_speed(usb_module_t * port)
 {
-	usbPortSpeed_t speed;
+    usbPortSpeed_t speed;
+    uint32_t core = (uint32_t)port->controllerID;
 
+    /* Determine the speed we are connected at. */
+    switch (BG_USBC_UH1_PORTSC1_PSPD(HW_USBC_PORTSC1_RD(core))) { 
+    case usbSpeedFull:
+        speed = usbSpeedFull;
+        printf("Connected at full-speed\n");
+        break;
+    case usbSpeedLow:
+        speed = usbSpeedLow;
+        printf("Connected at low-speed\n");
+        break;
+    case usbSpeedHigh:
+        speed = usbSpeedHigh;
+        printf("Connected at high-speed\n");
+        break;
+    default:
+        speed = usbSpeedUnknown;
+        printf("Invalid port speed\n");
+        break;
+    }
+    printf("PORTSC = 0x%08x\n", HW_USBC_PORTSC1_RD(core));
 
-	/* Determine the speed we are connected at. */
-		switch (port->moduleBaseAddress->USB_PORTSC & USB_PORTSC_PSPD(0x3))
-		{ case USB_PORTSC_PSPD_FULL:
-			speed = usbSpeedFull;
-			printf("Connected at full-speed\n");
-    		break;
-  		case USB_PORTSC_PSPD_LOW:
-  			speed = usbSpeedLow;
-	  		printf("Connected at low-speed\n");
-    		break;
-  		case USB_PORTSC_PSPD_HIGH:
-  			speed = usbSpeedHigh;
-	  		printf("Connected at high-speed\n");
-		    break;
-	  	default:
-	  		speed = usbSpeedUnknown;
-	  		printf("Invalid port speed\n");
-		    break;
-		}
-    	printf("PORTSC = 0x%08x\n", port->moduleBaseAddress->USB_PORTSC);
-
-	return speed;
+    return speed;
 }
 
 /*!
@@ -56,14 +56,14 @@ usbPortSpeed_t usb_get_port_speed(usb_module_t *port)
  */
 uint32_t swap32(uint32_t data)
 {
-	uint32_t temp = 0;
+    uint32_t temp = 0;
 
-	temp  = (data & 0xff) << 24;
-	temp |= ((data & 0xff00)<< 8);
-	temp |= ((data & 0xff0000) >>8);
-	temp |= ((data & 0xff000000) >> 24);
+    temp = (data & 0xff) << 24;
+    temp |= ((data & 0xff00) << 8);
+    temp |= ((data & 0xff0000) >> 8);
+    temp |= ((data & 0xff000000) >> 24);
 
-    return(temp);
+    return (temp);
 }
 
 /*!
@@ -88,9 +88,9 @@ int get_menu_item(char *menu_table[])
     while (menu_item == -1) {
         printf("Select > ");
 
-        do{
-        	input = getchar();
-        } while (input == NONE_CHAR) ;  // wait for a character
+        do {
+            input = getchar();
+        } while (input == NONE_CHAR);   // wait for a character
 
         if ((input >= '0') && (input <= '9')) {
             menu_item = input - '0';
@@ -103,4 +103,3 @@ int get_menu_item(char *menu_table[])
     }
     return (menu_item);
 }
-

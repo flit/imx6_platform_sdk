@@ -27,6 +27,7 @@ extern void usbDisableVbus(usb_module_t * port);
 
 uint32_t usbd_device_init(usb_module_t * port, usbdEndpointPair_t * endpointList)
 {
+    uint32_t core = (uint32_t)port->controllerID;
     /*!
      * Disable vbus in case it is enabled.\n
      * Devices never drive Vbus.
@@ -48,30 +49,27 @@ uint32_t usbd_device_init(usb_module_t * port, usbdEndpointPair_t * endpointList
     if (usbEnableTransceiver(port) == -1) {
         return -1;
     }
+
     //! - Select PHY type for this hardware
     if (port->phyType == Ulpi) {
-
-        port->moduleBaseAddress->USB_PORTSC =
-            (port->moduleBaseAddress->USB_PORTSC & (~(USB_PORTSC_PTS(3))))
-            | (USB_PORTSC_PTS(2));
-
+        HW_USBC_PORTSC1_WR(core, (HW_USBC_PORTSC1_RD(core) & (~BF_USBC_UH1_PORTSC1_PTS(3))) | BF_USBC_UH1_PORTSC1_PTS(2));
     } else {
-        port->moduleBaseAddress->USB_PORTSC &= (~(USB_PORTSC_PTS(3)));  // UTMI PHY
+        HW_USBC_PORTSC1_WR(core, HW_USBC_PORTSC1_RD(core) & (~BF_USBC_UH1_PORTSC1_PTS(3)));
     }
 
     // Reset controller after switching PHY's
-    port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_RST);
+    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | BM_USBC_UH1_USBCMD_RST);
 
     // wait for reset to complete
-    while (port->moduleBaseAddress->USB_USBCMD & (USB_USBCMD_RST)) ;
+    while (HW_USBC_USBCMD_RD(core) & (BM_USBC_UH1_USBCMD_RST)) ;
 
     //! - Set controller to device Mode
-    port->moduleBaseAddress->USB_USBMODE = (USB_USBMODE_CM_DEVICE);
+    HW_USBC_USBMODE_WR(core, USB_USBMODE_CM_DEVICE); 
 
     //! - Set initial configuration for controller
-    port->moduleBaseAddress->USB_USBCMD &= (~(USB_USBCMD_ITC(0xFF)));   // Set interrupt threshold control = 0
+    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) & (~(BF_USBC_UH1_USBCMD_ITC(0xFF))));	//Set interrupt threshold control = 0
 
-    port->moduleBaseAddress->USB_USBMODE |= (USB_USBMODE_SLOM); // Setup Lockouts Off
+    HW_USBC_USBMODE_WR(core,  HW_USBC_USBMODE_RD(core) | BM_USBC_UH1_USBMODE_SLOM);	// Setup Lockouts Off
 
     //! Setup the endpoint list
     // Check if endpoint list is aligned on a 4K boundary
@@ -80,7 +78,7 @@ uint32_t usbd_device_init(usb_module_t * port, usbdEndpointPair_t * endpointList
         return (-1);
     }
     //! - Set the device endpoint list address
-    port->moduleBaseAddress->USB_ASYNCLISTADDR = (uint32_t) & endpointList[0];
+    HW_USBC_ASYNCLISTADDR_WR(core, (uint32_t) & endpointList[0]);
 
     /*
      * Clear the entire endpoint list
@@ -92,7 +90,7 @@ uint32_t usbd_device_init(usb_module_t * port, usbdEndpointPair_t * endpointList
 
     //! - Configure Endpoint 0.
     //  Only the required EP0 for control traffic is initialized at this time.
-    port->moduleBaseAddress->USB_ENDPTCTRL[0] |= (USB_ENDPTCTRL_TXE | USB_ENDPTCTRL_RXE);   // Enable TX/RX of EP0
+    HW_USBC_ENDPTCTRL0_WR(core,  HW_USBC_ENDPTCTRL0_RD(core) | (USB_ENDPTCTRL_TXE | USB_ENDPTCTRL_RXE));
 
     //! - Initialize queue head for EP0 IN (device to host)
     usbdEndpointInfo_t endpoint0In, endpoint0Out;
@@ -115,7 +113,7 @@ uint32_t usbd_device_init(usb_module_t * port, usbdEndpointPair_t * endpointList
     usbd_endpoint_qh_init(&endpointList[0], &endpoint0Out, DTD_TERMINATE);  // No nextDtd at this time
 
     //! Start controller
-    port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_RS);
+    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | BM_USBC_UH1_USBCMD_RS);
 
     return (0);
 
@@ -130,27 +128,25 @@ uint32_t usbd_device_init(usb_module_t * port, usbdEndpointPair_t * endpointList
  */
 usbPortSpeed_t usbd_bus_reset(usb_module_t * port)
 {
-    uint32_t temp;
+    uint32_t core = (uint32_t)port->controllerID;
 
     //! - Clear all setup token semaphores
-    temp = port->moduleBaseAddress->USB_ENDPTSETUPSTAT;
-    port->moduleBaseAddress->USB_ENDPTSETUPSTAT = temp;
+    HW_USBC_ENDPTSETUPSTAT_WR(core, HW_USBC_ENDPTSETUPSTAT_RD(core));
 
     //! - Clear all complete status bits
-    temp = port->moduleBaseAddress->USB_ENDPTCOMPLETE;
-    port->moduleBaseAddress->USB_ENDPTCOMPLETE = temp;
+    HW_USBC_ENDPTCOMPLETE_WR(core, HW_USBC_ENDPTCOMPLETE_RD(core));
 
     //! - Wait for all primed status to clear
-    while (port->moduleBaseAddress->USB_ENDPTPRIME) ;
+    while(HW_USBC_ENDPTPRIME_RD(core));
 
     //! - Flush all endpoints
-    port->moduleBaseAddress->USB_ENDPTFLUSH = 0xFFFFFFFF;
+    HW_USBC_ENDPTFLUSH_WR(core, 0xFFFFFFFF);
 
     //! - Wait for host to stop signaling reset
-    while (port->moduleBaseAddress->USB_PORTSC & (USB_PORTSC_PR)) ;
+    while(HW_USBC_PORTSC1_RD(core) & BM_USBC_UH1_PORTSC1_PR);
 
     //! - Clear reset status bit
-    port->moduleBaseAddress->USB_USBSTS |= (USB_USBSTS_URI | USB_USBSTS_UI);
+    HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | (BM_USBC_UH1_USBSTS_URI | BM_USBC_UH1_USBSTS_UI));
 
     //! Return the connection speed (full/high speed)
     return (usb_get_port_speed(port));
@@ -167,13 +163,13 @@ usbPortSpeed_t usbd_bus_reset(usb_module_t * port)
 void usbd_get_setup_packet(usb_module_t * port, usbdEndpointPair_t * endpointList,
                            usbdSetupPacket_t * setupPacket)
 {
+    uint32_t core = (uint32_t)port->controllerID;
 
     usbdDeviceEndpointQueueHead_t *enpointQueueHead;    // reference to the queue head
     enpointQueueHead = (usbdDeviceEndpointQueueHead_t *) & (endpointList[0].out);   // endpoint 0 out
 
     //! - Wait for setup packet to arrive
-    while (!
-           (port->moduleBaseAddress->USB_ENDPTSETUPSTAT & (USB_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1)))) ;
+    while(!HW_USBC_ENDPTSETUPSTAT_RD(core) & (USB_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1)));
 
     /*! copy setup data from queue head to buffer and check semaphore\n
      * SUTW will be cleared when a new setup packet arrives.\n
@@ -181,22 +177,22 @@ void usbd_get_setup_packet(usb_module_t * port, usbdEndpointPair_t * endpointLis
      * and when it is cleared, we repeat the copy to get the new setup data.
      */
     do {
-        port->moduleBaseAddress->USB_USBCMD |= (USB_USBCMD_SUTW);   //! - Set setup tripwire
+	HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) | BM_USBC_UH1_USBCMD_SUTW);
         memcpy(setupPacket, &enpointQueueHead->setupBuffer, sizeof(usbdSetupPacket_t)); //! - copy the setup data
-    } while (!(port->moduleBaseAddress->USB_USBCMD & (USB_USBCMD_SUTW)));   //! - repeat if SUTW got cleared
+    } while (!(HW_USBC_USBCMD_RD(core) & BM_USBC_UH1_USBCMD_SUTW));   //! - repeat if SUTW got cleared
 
     //! - Clear setup identification
-    port->moduleBaseAddress->USB_ENDPTSETUPSTAT |= (USB_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1));
+    HW_USBC_ENDPTSETUPSTAT_WR(core, HW_USBC_ENDPTSETUPSTAT_RD(core) | (USB_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1)));
 
     //! - Clear Setup tripwire bit
-    port->moduleBaseAddress->USB_USBCMD &= (~USB_USBCMD_SUTW);
+    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) & (~BM_USBC_UH1_USBCMD_SUTW));
 
     //! - Flush Endpoint 0 IN and OUT in case some a previous transaction was left pending
-    port->moduleBaseAddress->USB_ENDPTSTATUS &= (USB_ENDPTSTATUS_ERBR(0) | USB_ENDPTSTATUS_ETBR(0));
+    HW_USBC_ENDPTFLUSH_WR(core, HW_USBC_ENDPTFLUSH_RD(core) & (USB_ENDPTFLUSH_FERB(0) | USB_ENDPTFLUSH_FETB(0)));
 
     //! - Wait for ENDPSETUPSTAT to clear.\n
     //! It must be clear before the status phase/data phase can be primed
-    while (port->moduleBaseAddress->USB_ENDPTSETUPSTAT & (USB_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1))) ;
+    while(HW_USBC_ENDPTSETUPSTAT_RD(core) & (USB_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1)));
 }
 
 //! Function to send an IN control packet to the host.
@@ -213,6 +209,7 @@ void usbd_device_send_control_packet(usb_module_t * port, usbdEndpointPair_t * e
 {
     usbdEndpointDtd_t *dtdIn, *dtdOut;
     uint8_t *receiveBuffer;     // Buffer to receive the data phase (i.e. zero length packet)
+    uint32_t core = (uint32_t)port->controllerID;
 
     receiveBuffer = (uint8_t *) malloc(MAX_USB_DESC_SIZE);
 
@@ -223,7 +220,7 @@ void usbd_device_send_control_packet(usb_module_t * port, usbdEndpointPair_t * e
     endpointList[0].in.nextDtd = (uint32_t) dtdIn;
 
     //! - Prime transmit endpoint (IN)
-    port->moduleBaseAddress->USB_ENDPTPRIME |= (USB_ENDPTPRIME_PETB(1));
+    HW_USBC_ENDPTPRIME_WR(core, HW_USBC_ENDPTPRIME_RD(core) | (USB_ENDPTPRIME_PETB(1))); 
 
     /*!
      * Initialize a transfer descriptor for receive.\n
@@ -239,7 +236,7 @@ void usbd_device_send_control_packet(usb_module_t * port, usbdEndpointPair_t * e
     endpointList[0].out.nextDtd = (uint32_t) dtdOut;
 
     //! - Prime prime receive endpoint (OUT)
-    port->moduleBaseAddress->USB_ENDPTPRIME |= (USB_ENDPTPRIME_PERB(1));
+    HW_USBC_ENDPTPRIME_WR(core, HW_USBC_ENDPTPRIME_RD(core) | (USB_ENDPTPRIME_PERB(1))); 
 
     /*!
      * Wait for OUT to complete and clear interrupt flag\n
@@ -248,13 +245,13 @@ void usbd_device_send_control_packet(usb_module_t * port, usbdEndpointPair_t * e
      */
 
     //! - Wait for interrupt flag
-    while (!(port->moduleBaseAddress->USB_USBSTS & (USB_USBSTS_UI))) ;
-    port->moduleBaseAddress->USB_USBSTS |= (USB_USBSTS_UI);
+    while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UI));
+    HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UI);
 
     //! - Check endpoint's complete flags and clear
     // This is normally used in the ISR to determine if and which endpoint generated an interrupt
-    if (port->moduleBaseAddress->USB_ENDPTCOMPLETE & USB_ENDPTCOMPLETE_ETCE0) {
-        port->moduleBaseAddress->USB_ENDPTCOMPLETE |= USB_ENDPTCOMPLETE_ETCE0;  // Clear complete Flag
+    if(HW_USBC_ENDPTCOMPLETE_RD(core) & USB_ENDPTCOMPLETE_ETCE0){
+	HW_USBC_ENDPTCOMPLETE_WR(core, HW_USBC_ENDPTCOMPLETE_RD(core) | USB_ENDPTCOMPLETE_ETCE0);
     } else {
         while (1) ;             // Not our endpoint. Do something else
     }
@@ -283,6 +280,7 @@ void usbd_device_send_control_packet(usb_module_t * port, usbdEndpointPair_t * e
 void usbd_device_send_zero_len_packet(usb_module_t * port, usbdEndpointPair_t * endpointList,
                                       uint32_t endpointNumber)
 {
+    uint32_t core = (uint32_t)port->controllerID;
     usbdEndpointDtd_t *usbDtd;
     uint32_t emptyBuffer = 0;
 
@@ -294,14 +292,14 @@ void usbd_device_send_zero_len_packet(usb_module_t * port, usbdEndpointPair_t * 
     endpointList[0].in.nextDtd = (uint32_t) usbDtd;
 
     //! - Prime Tx buffer for control endpoint
-    port->moduleBaseAddress->USB_ENDPTPRIME |= (USB_ENDPTPRIME_PETB(1 << endpointNumber));
+    HW_USBC_ENDPTPRIME_WR(core, HW_USBC_ENDPTPRIME_RD(core) | USB_ENDPTPRIME_PETB(1 << endpointNumber)); 
 
     //! - Wait for prime to complete
-    while (port->moduleBaseAddress->USB_ENDPTPRIME & (USB_ENDPTPRIME_PETB(1 << endpointNumber))) ;
+    while (HW_USBC_ENDPTPRIME_RD(core) & USB_ENDPTPRIME_PETB(1 << endpointNumber)) ;
 
     //! - Wait for IN to complete and clear flag
-    while (!(port->moduleBaseAddress->USB_USBSTS & (USB_USBSTS_UI))) ;
-    port->moduleBaseAddress->USB_USBSTS |= (USB_USBSTS_UI);
+    while(!(HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UI));
+    HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UI);
 
     //! - Check Active flag and wait for it to clear
     while (usbDtd->dtdToken & USB_DTD_TOKEN_STAT_ACTIVE) ;
@@ -428,7 +426,7 @@ usbdEndpointDtd_t *usbd_dtd_init(uint32_t transferSize, uint32_t interruptOnComp
 void usbd_add_dtd(usb_module_t * port, usbdEndpointPair_t * endpointList,
                   usbdEndpointInfo_t * usbdEndpoint, usbdEndpointDtd_t * new_dtd)
 {
-
+    uint32_t core = (uint32_t)port->controllerID;
     uint32_t endpointStat = 0;
     uint32_t bitmask = 0;
     usbdDeviceEndpointQueueHead_t *queue_head;
@@ -484,15 +482,14 @@ void usbd_add_dtd(usb_module_t * port, usbdEndpointPair_t * endpointList,
 
         //! Make sure the controller did not finish before the dtd was added
         //! if Prime bit is not set:
-        if (!(port->moduleBaseAddress->USB_ENDPTPRIME & bitmask)) {
+        if (!(HW_USBC_ENDPTPRIME_RD(core) & bitmask)) {
             do {                //! - loop until ATDTW bit remains set
                 //! - set ATDTW bit
-                port->moduleBaseAddress->USB_USBCMD |= USB_USBCMD_ATDTW;
+		HW_USBC_USBCMD_WR(core,HW_USBC_USBCMD_RD(core) | BM_USBC_UH1_USBCMD_ATDTW);
                 //! - Read ENDPTSTAT bit
-                endpointStat = port->moduleBaseAddress->USB_ENDPTSTATUS | bitmask;
-            } while ((port->moduleBaseAddress->USB_USBCMD & USB_USBCMD_ATDTW) == 0);
-
-            port->moduleBaseAddress->USB_USBCMD &= ~(USB_USBCMD_ATDTW); //! clear ATDTW bit
+		endpointStat = HW_USBC_ENDPTSTAT_RD(core) | bitmask;
+	    } while((HW_USBC_USBCMD_RD(core) & BM_USBC_UH1_USBCMD_ATDTW) == 0);
+	    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) & (~BM_USBC_UH1_USBCMD_ATDTW)); 	//! clear ATDTW bit
         } else {
             endpointStat = 0x8000;  // set endpointStat to non-zero to skip the "case 1" action
         }
@@ -503,7 +500,7 @@ void usbd_add_dtd(usb_module_t * port, usbdEndpointPair_t * endpointList,
         //! - Clear Active and Error flags
         queue_head->dtdToken &= ~(USB_QTD_TOKEN_STAT_ACTIVE | USB_QTD_TOKEN_STAT_HALTED);
         //! - Prime the endpoint
-        port->moduleBaseAddress->USB_ENDPTPRIME |= bitmask;
+        HW_USBC_ENDPTPRIME_WR(core, HW_USBC_ENDPTPRIME_RD(core) | bitmask);
     }
 }
 

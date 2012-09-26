@@ -32,10 +32,10 @@ enum usbPhyType {
 };
 
 typedef enum usbPortSpeed {
-    usbSpeedUnknown,
-    usbSpeedLow,
     usbSpeedFull,
-    usbSpeedHigh
+    usbSpeedLow,
+    usbSpeedHigh,
+    usbSpeedUnknown,
 } usbPortSpeed_t;
 
 typedef enum usbPeriodicListType {
@@ -47,7 +47,6 @@ typedef enum usbPeriodicListType {
 
 typedef struct usb_module {
     char *moduleName;
-    usbRegisters_t *moduleBaseAddress;
     enum usbController controllerID;
     enum usbPhyType phyType;    // UTMI, ULPI, Serial, HSIC
 } usb_module_t;

@@ -45,15 +45,13 @@ void usb0_host_test (usb_module_t *usbhModule)
 	uint8_t                *hid_descriptor;				// Pointer to the HID descriptor
 	uint8_t                *ep_descriptor;				// Pointer to the Endpoint descriptor
 	uint8_t                *report_descriptor;			// Pointer to the Report descriptor
-	usbRegisters_t         *UsbReg;
+        uint32_t core = (uint32_t)usbhModule->controllerID;    
 	
 	usbhQueueHead_t	*usb_qh_ep0, *usb_qh_ep1;			// Pointers to Queue Heads for the endpoints
 	usbhTransferDescriptor_t *int_qtd;					// Pointer to the transfer descriptor
 	
 	uint8_t usbhMouseData[MAX_USB_BUFFER_SIZE];			// Buffer to receive the mouse data (from the interrupt endpoint)
 	uint32_t int_transfer_size, int_packet_size, bytes_received;
-	
-	UsbReg = usbhModule->moduleBaseAddress;				// Pointer to the USB registers for this controller
 
 	//! Allocate memory for the descriptors.
 	device_descriptor = (usbDeviceDescriptor_t*) malloc (MAX_USB_DESC_SIZE);
@@ -67,7 +65,7 @@ void usb0_host_test (usb_module_t *usbhModule)
 	usbh_init(usbhModule);
 								
 	//! Wait for device connect.
-	while(!( UsbReg->USB_PORTSC & (USB_PORTSC_CCS)));
+        while(!(HW_USBC_PORTSC1_RD(core) & BM_USBC_UH1_PORTSC1_CCS));
 	printf("Connect detected.\n");	
 		
 	//! Reset the device
@@ -104,7 +102,7 @@ void usb0_host_test (usb_module_t *usbhModule)
      * This is our first queue head on the AS so we point the controller to this QH\n
      * Any further queue heads will be linked to this HQ.
      */
-    UsbReg->USB_ASYNCLISTADDR = (uint32_t)usb_qh_ep0;
+    HW_USBC_ASYNCLISTADDR_WR(core, (uint32_t)usb_qh_ep0);
 
     //! Enable the asynchronous schedule
     usbh_enable_asynchronous_schedule(usbhModule);
@@ -172,17 +170,17 @@ void usb0_host_test (usb_module_t *usbhModule)
 		while (bytes_received < int_transfer_size)
 		{
 			//! - Wait for a transaction to complete
-			while (!(UsbReg->USB_USBSTS & (USB_USBSTS_UI)));
-			UsbReg->USB_USBSTS |= (USB_USBSTS_UI);
+        		while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UI));
+        		HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UI);
 		
 		    //! - Check for errors
-		  	if( UsbReg->USB_USBSTS & (USB_USBSTS_UEI))
+			if(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UEI)
 		    {
 		    	printf("ERROR!!!\n");
-			    temp = *(uint32_t *)((UsbReg->USB_ASYNCLISTADDR) + 0x18);
+	    		    temp = *(uint32_t *)((HW_USBC_ASYNCLISTADDR_RD(core)) + 0x18);
 		        printf("qTD status = 0x%08x\n",temp);	
 		        // Clear error flag
-				UsbReg->USB_USBSTS |= (USB_USBSTS_UEI);
+				HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UEI);
 		    }
 		    else 	//! - Display data if no error occurred.
 		    {
@@ -292,8 +290,7 @@ void usbh_set_device_address(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, ui
 	usbhTransferDescriptor_t * usb_qtd1, *usb_qtd2;
 	uint32_t temp;
 	uint32_t usbhSetupCommand[2];
-
-	usbRegisters_t *UsbReg = port->moduleBaseAddress;
+        uint32_t core = (uint32_t)port->controllerID;    
 
 	/* data for Set Address command */
 	usbhSetupCommand[0] = 0x00000500 | ((0x7F & device_address) <<16);
@@ -311,26 +308,26 @@ void usbh_set_device_address(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, ui
 	while (usb_utmi_int_flag == 0);
 	usb_utmi_int_flag = 0;
 	#else
-	while (!(UsbReg->USB_USBSTS & (USB_USBSTS_UI )));
-	UsbReg->USB_USBSTS |= (USB_USBSTS_UI);
+	while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UI));
+        HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UI);
 	#endif
     	
     /* Check for errors */
-  	if( UsbReg->USB_USBSTS & (USB_USBSTS_UEI))
+  	if( HW_USBC_USBSTS_RD(core) & (BM_USBC_UH1_USBSTS_UEI))
     {
     	printf("ERROR!!!\n");
-	    temp = *(uint32_t *)((UsbReg->USB_ASYNCLISTADDR) + 0x18);
+	    temp = *(uint32_t *)((HW_USBC_ASYNCLISTADDR_RD(core)) + 0x18);
         printf("qTD status = 0x%08x\n",temp);	
      }
      else
      {
      	printf("Set address command complete!!\n\n");
 		#ifdef DEBUG_PRINT	
-        	printf("USBSTS = 0x%08x\n",(UsbReg->USB_USBSTS));
+        	printf("USBSTS = 0x%08x\n", HW_USBC_USBSTS_RD(core));
     	#endif
     }
 	/* Clear the USB Error bit */
-	UsbReg->USB_USBSTS |= (USB_USBSTS_UEI);
+	HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UEI);
 	
 	/* Change the device address in the QH to the new value */
 	usb_qh_ep0->endpointCharacteristics |= USB_QH_EP_CHAR_DEV_ADDR(device_address);
@@ -353,8 +350,7 @@ void usbh_get_dev_desc(usb_module_t *port, usbhQueueHead_t *usbh_qh_ep0, usbDevi
 	usbhTransferDescriptor_t *usb_qtd1, *usb_qtd2, *usb_qtd3;
 	uint32_t temp;
 	uint32_t usbhSetupCommand[2];
-
-	usbRegisters_t *UsbReg = port->moduleBaseAddress;  // Point to controllers registers
+        uint32_t core = (uint32_t)port->controllerID;    
 	
 	/* data for Get Descriptor command */
 	usbhSetupCommand[0] = 0x01000680;
@@ -372,8 +368,8 @@ void usbh_get_dev_desc(usb_module_t *port, usbhQueueHead_t *usbh_qh_ep0, usbDevi
 	usbh_qh_ep0->nextQtd = (uint32_t)usb_qtd1;
         	
 	/* Wait for transaction to complete and clear int flag*/
-	while (!(UsbReg->USB_USBSTS & (USB_USBSTS_UI)));
-	UsbReg->USB_USBSTS |= (USB_USBSTS_UI);
+        while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UI));
+        HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UI);
 	
 	/*!
 	 * Check if the last transaction completed
@@ -382,20 +378,20 @@ void usbh_get_dev_desc(usb_module_t *port, usbhQueueHead_t *usbh_qh_ep0, usbDevi
 	while (usb_qtd3->qtdToken & 0x80);
 
 	/* Check for errors */
-  	if(UsbReg->USB_USBSTS & (USB_USBSTS_UEI))
+        if(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UEI)
     {
     	
     	printf("ERROR!!!\n");
-	    temp = *(uint32_t *)((UsbReg->USB_ASYNCLISTADDR) + 0x18);
+	    temp = *(uint32_t *)((HW_USBC_ASYNCLISTADDR_RD(core)) + 0x18);
         printf("qTD status = 0x%08x\n",temp);	
 		/* Clear the USB Error bit */
-		UsbReg->USB_USBSTS |= (USB_USBSTS_UEI);
+		HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UEI);
     }
      else
      {
      	printf("Device descriptor has been read!!\n\n");
 		#ifdef DEBUG_PRINT	
-        	printf("USBSTS = 0x%08x\n",(UsbReg->USB_USBSTS));
+        	printf("USBSTS = 0x%08x\n",(HW_USBC_USBSTS_RD(core)));
     	#endif
     }
 
@@ -415,8 +411,7 @@ void usbh_get_config_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint
 	usbhTransferDescriptor_t * usb_qtd1, *usb_qtd2, *usb_qtd3;
 	uint32_t i, temp;
 	uint32_t usbhSetupCommand[2];
-	
-	usbRegisters_t *UsbReg = port->moduleBaseAddress;
+        uint32_t core = (uint32_t)port->controllerID;    
 
 	/* data for Get Configuration Descriptor command */
 	usbhSetupCommand[0] = 0x02000680;
@@ -434,8 +429,8 @@ void usbh_get_config_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint
 	usb_qh_ep0->nextQtd = (uint32_t)usb_qtd1;
         	
 	/* Wait for transaction to complete and clear interrpt flag */
-	while (!(UsbReg->USB_USBSTS & (USB_USBSTS_UI)));
-	UsbReg->USB_USBSTS |= (USB_USBSTS_UI);
+        while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UI));
+        HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UI);
 	
 	/*
 	 * check active bit in token word.
@@ -445,11 +440,11 @@ void usbh_get_config_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint
 	while (usb_qtd3->qtdToken & 0x80);
 	
     /* Check for errors */
-  	if( UsbReg->USB_USBSTS & (USB_USBSTS_UEI))
+	if(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UEI)
     {
 
     	printf("Error: ");
-	    temp = *(uint32_t *)((UsbReg->USB_ASYNCLISTADDR) + 0x18);
+	    temp = *(uint32_t *)((HW_USBC_ASYNCLISTADDR_RD(core)) + 0x18);
         printf("qTD status = 0x%08x\n",temp);	
         for(i=0; i<3; i++)
         	config_descriptor[i] = 0;
@@ -458,7 +453,7 @@ void usbh_get_config_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint
      {
 		#ifdef DEBUG_PRINT	
 	     	printf("Configuration descriptor has been read!!\n\n");
-        	printf("USBSTS = 0x%08x\n",(UsbReg->USB_USBSTS));
+        	printf("USBSTS = 0x%08x\n",(HW_USBC_USBSTS_RD(core)));
     	#endif
     }
 
@@ -468,7 +463,7 @@ void usbh_get_config_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint
 	#endif
     
 	/* Clear the USB error bit */
-	UsbReg->USB_USBSTS |= (USB_USBSTS_UEI);
+	HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UEI);
 	
 	/* Wait until the active bit is cleared in the last qtd. */
 	while(usb_qtd3->qtdToken & 0x80);
@@ -486,8 +481,7 @@ void usbh_get_interface_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, u
 	usbhTransferDescriptor_t * usb_qtd1, *usb_qtd2, *usb_qtd3;
 	uint32_t i, temp;
 	uint32_t usbhSetupCommand[2];
-
-	usbRegisters_t *UsbReg = port->moduleBaseAddress;
+        uint32_t core = (uint32_t)port->controllerID;    
 
 	/* data for Get Configuration Descriptor command */
 	usbhSetupCommand[0] = 0x02000680;
@@ -509,17 +503,17 @@ void usbh_get_interface_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, u
 	usb_qh_ep0->nextQtd = (uint32_t)usb_qtd1;
 
 	/* Wait for transaction to complete and clear interrpt flag */
-	while (!(UsbReg->USB_USBSTS & (USB_USBSTS_UI)));
-	UsbReg->USB_USBSTS |= (USB_USBSTS_UI);
+        while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UI));
+        HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UI);
 
 	/* Wait until the active bit is cleared in the last qtd. */
 	while(usb_qtd3->qtdToken & 0x80);
 	
     /* Check for errors */
-  	if( UsbReg->USB_USBSTS & (USB_USBSTS_UEI))
+	if(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UEI)
     {
     	printf("ERROR!!!\n");
-	    temp = *(uint32_t *)((UsbReg->USB_ASYNCLISTADDR) + 0x18);
+	    temp = *(uint32_t *)((HW_USBC_ASYNCLISTADDR_RD(core)) + 0x18);
         printf("qTD status = 0x%08x\n",temp);	
         for(i=0; i<3; i++)
        	interface_descriptor[i] = 0;
@@ -530,7 +524,7 @@ void usbh_get_interface_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, u
     {
 		#ifdef DEBUG_PRINT	
 	     	printf("Interface, hid, and endpoint descriptors have been read!!\n\n");
-        	printf("USBSTS = 0x%08x\n",(UsbReg->USB_USBSTS));
+        	printf("USBSTS = 0x%08x\n",(HW_USBC_USBSTS_RD(core)));
     	#endif
     }
 
@@ -552,7 +546,7 @@ void usbh_get_interface_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, u
 	#endif
     
 	/* Clear the USB error bit */
-	UsbReg->USB_USBSTS |= (USB_USBSTS_UEI);
+	HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UEI);
 	
     /* Return memory for descriptors to the heap */
     free((void *)usb_qtd1->mallocPointer);
@@ -565,8 +559,7 @@ void usbh_set_configuration(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, ui
 	usbhTransferDescriptor_t * usb_qtd1, *usb_qtd2;
 	uint32_t temp;
 	uint32_t usbhSetupCommand[2];
-
-	usbRegisters_t *UsbReg = port->moduleBaseAddress;
+        uint32_t core = (uint32_t)port->controllerID;    
 
 	/* data for Set Address command */
 	usbhSetupCommand[0] = 0x00000900 | ((0x7F & config_value) <<16);
@@ -593,29 +586,29 @@ void usbh_set_configuration(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, ui
 	while (usb_utmi_int_flag == 0);
 	usb_utmi_int_flag = 0;
 	#else
-	while (!(UsbReg->USB_USBSTS & (USB_USBSTS_UI)));
-	UsbReg->USB_USBSTS |= (USB_USBSTS_UI);
+        while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UI));
+        HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UI);
 	#endif
 	
 	/* Wait until the active bit is cleared in the last qtd. */
 	while(usb_qtd2->qtdToken & 0x80);
 
     /* Check for errors */
-  	if( UsbReg->USB_USBSTS & (USB_USBSTS_UEI))
+	if(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UEI)
     {
     	printf("ERROR!!!\n");
-	    temp = *(uint32_t *)((UsbReg->USB_ASYNCLISTADDR) + 0x18);
+	    temp = *(uint32_t *)((HW_USBC_ASYNCLISTADDR_RD(core)) + 0x18);
         printf("qTD status = 0x%08x\n",temp);	
      }
      else
      {
      	printf("Set configuration command complete!!\n\n");
 		#ifdef DEBUG_PRINT	
-        	printf("USBSTS = 0x%08x\n",(UsbReg->USB_USBSTS));
+        	printf("USBSTS = 0x%08x\n",(HW_USBC_USBSTS_RD(core)));
     	#endif
     }
 	/* Clear the USB error bit */
-	UsbReg->USB_USBSTS |= (USB_USBSTS_UEI);
+	HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UEI);
 	
     /* Return memory for descriptors to the heap */
     free((void *)usb_qtd1->mallocPointer);
@@ -627,8 +620,7 @@ void usbh_get_report_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint
 	usbhTransferDescriptor_t *usb_qtd1, *usb_qtd2, *usb_qtd3;
 	uint32_t i, temp;
 	uint32_t usbhSetupCommand[2];
-
-    usbRegisters_t *UsbReg = port->moduleBaseAddress;
+        uint32_t core = (uint32_t)port->controllerID;    
 
 	/* data for Get Configuration Descriptor command */
 	usbhSetupCommand[0] = 0x22000681;
@@ -646,17 +638,17 @@ void usbh_get_report_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint
 	usb_qh_ep0->nextQtd = (uint32_t)usb_qtd1;
         	
 	/* Wait for transaction to complete and clear interrupt flag */
-	while (!(UsbReg->USB_USBSTS & (USB_USBSTS_UI)));
-	UsbReg->USB_USBSTS |= (USB_USBSTS_UI);
+        while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UI));
+        HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UI);
 	
 	/* Wait until the active bit is cleared in the last qtd. */
 	while(usb_qtd3->qtdToken & 0x80);
 
     /* Check for errors */
-  	if( UsbReg->USB_USBSTS & (USB_USBSTS_UEI))
+	if(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UEI)
     {
     	printf("ERROR!!!\n");
-	    temp = *(uint32_t *)((UsbReg->USB_ASYNCLISTADDR) + 0x18);
+	    temp = *(uint32_t *)((HW_USBC_ASYNCLISTADDR_RD(core)) + 0x18);
         printf("qTD status = 0x%08x\n",temp);	
         for(i=0; i<3; i++)
         	report_descriptor[i] = 0;
@@ -665,7 +657,7 @@ void usbh_get_report_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint
     {
 		#ifdef DEBUG_PRINT	
 	     	printf("Report descriptor has been read!!\n\n");
-        	printf("USBSTS = 0x%08x\n",(UsbReg->USB_USBSTS));
+        	printf("USBSTS = 0x%08x\n", HW_USBC_USBSTS_RD(core));
     	#endif
     }
 
@@ -679,7 +671,7 @@ void usbh_get_report_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint
 	#endif
     
 	/* Clear the USB error bit */
-	UsbReg->USB_USBSTS |= (USB_USBSTS_UEI);
+	HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UEI);
 	
     /* Return memory for descriptors to the heap */
     free((void *)usb_qtd1->mallocPointer);

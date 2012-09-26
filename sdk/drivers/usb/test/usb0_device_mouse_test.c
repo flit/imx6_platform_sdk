@@ -57,7 +57,9 @@ uint8_t qf_Descriptor[] = {
 /*!
  * Main program loop.
  */
-void usb0_device_mouse_test(usb_module_t *port) {
+void usb0_device_mouse_test(usb_module_t *port) 
+{
+	uint32_t core = (uint32_t)port->controllerID;
 	usbdEndpointDtd_t *usbDtd1, *usbDtd2, *usbDtd3, *usbDtd4;
 	usbdEndpointDtd_t *head; // Pointer to the head of the current dTD list
 	uint32_t mouseData[8];
@@ -216,8 +218,8 @@ void usb0_device_mouse_test(usb_module_t *port) {
 
 	//! Setup our interrupt endpoint.
 	//! - Enable endpoint 1 for status polling
-	port->moduleBaseAddress->USB_ENDPTCTRL[1] = 0 | USB_ENDPTCTRL_TXE
-			| USB_ENDPTCTRL_TXT_INT | USB_ENDPTCTRL_RXT_BULK;
+	HW_USBC_ENDPTCTRL1_WR(core, USB_ENDPTCTRL_TXE
+                        | USB_ENDPTCTRL_TXT_INT | USB_ENDPTCTRL_RXT_BULK);
 
 	//! - Initialize IN endpoint queue head for endpoint 1
 	usbdEndpointInfo_t endpoint1Info;
@@ -265,7 +267,7 @@ void usb0_device_mouse_test(usb_module_t *port) {
 
 	//! - Prime the endpoint.
 	//! -- The controller is now ready to respond to an IN request from the host.
-	port->moduleBaseAddress->USB_ENDPTPRIME |= USB_ENDPTPRIME_PETB(2);
+	HW_USBC_ENDPTPRIME_WR(core, HW_USBC_ENDPTPRIME_RD(core) | USB_ENDPTPRIME_PETB(2));
 
 	/*!
 	 * We now have 4 descriptors on the list. The host will poll the endpoint every 10 ms
@@ -303,13 +305,12 @@ void usb0_device_mouse_test(usb_module_t *port) {
 		usbd_add_dtd(port, endpointListAddress, &endpoint1Info, usbDtdTop); // Add the dTD's to the endpoint
 
 		//! wait for previous dTDs to complete
-		while (!(port->moduleBaseAddress->USB_USBSTS & USB_USBSTS_UI));
+		while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UI));
 		//! Clear Interrupt bit
-		port->moduleBaseAddress->USB_USBSTS |= USB_USBSTS_UI;
+		HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UI);
 
 		//! reclaim used descriptors
 		head = usbd_reclaim_dtd(port, endpointListAddress, &endpoint1Info, head);
-
 	}
 }
 
@@ -331,7 +332,9 @@ void hid_device_enum(usb_module_t *port,
 		usbdEndpointPair_t *endpointListAddress,
 		usbDeviceDescriptor_t *deviceDescriptor,
 		usbConfigurationDescriptor_t *configDescriptor,
-		uint8_t *fullConfigBuffer, uint8_t *reportDescriptor) {
+		uint8_t *fullConfigBuffer, uint8_t *reportDescriptor)
+{
+	uint32_t core = (uint32_t)port->controllerID;
 	uint32_t request;
 	uint32_t transferSize;
 	uint32_t deviceAddress;
@@ -339,8 +342,7 @@ void hid_device_enum(usb_module_t *port,
 
 	printf("\nWaiting for reset to start enumeration.\n");
 	//! Wait for bus reset
-	while (!(port->moduleBaseAddress->USB_USBSTS & USB_USBSTS_URI))
-		;
+        while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_URI));
 
 	//! Handle USB bus reset
 	usbd_bus_reset(port);
@@ -381,7 +383,7 @@ void hid_device_enum(usb_module_t *port,
 			}
 			else {
 				// Stall the endpoint
-				port->moduleBaseAddress->USB_ENDPTCTRL[0] |= USB_ENDPTCTRL_TXS;
+				HW_USBC_ENDPTCTRL0_WR(core, HW_USBC_ENDPTCTRL0_RD(core) | USB_ENDPTCTRL_TXS);
 				printf("Unsupported descriptor request received\n");
 				printf("wValue: 0x%x\n",setupPacket.wValue);
 				printf("length: 0x%x\n",setupPacket.wLength);
@@ -425,7 +427,7 @@ void hid_device_enum(usb_module_t *port,
 
 				// - Set the requested test mode in PORTSC and wait for power cycle
 				testMode = setupPacket.wIndex & 0xFF00 << 8;
-				port->moduleBaseAddress->USB_PORTSC |= testMode;
+				HW_USBC_PORTSC1_WR(core, HW_USBC_PORTSC1_RD(core) | testMode); 
 
 				printf("Port set to test mode %d\n", setupPacket.wIndex >> 8);
 				while (1)
@@ -444,7 +446,7 @@ void hid_device_enum(usb_module_t *port,
 
 				//! - Set the new device address;
 				//! -- the new address will become effective after an IN transaction is acknowledged
-				port->moduleBaseAddress->USB_DEVICEADDR = deviceAddress;
+ 				HW_USBC_DEVICEADDR_WR(core, deviceAddress);
 
 				//! - Send zero-length packet to acknowledge.
 				usbd_device_send_zero_len_packet(port, endpointListAddress, 0);

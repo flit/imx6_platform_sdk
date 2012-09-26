@@ -11,6 +11,8 @@
 #define PMIC_DA9053_I2C_REG_BYTE    0x1 // Number of Bytes to transfer the PMIC reg number
 #define PMIC_DA9053_I2C_DATA_BYTE   0x1 // Number of Bytes to transfer the PMIC reg data
 
+void I2CDBG(char * x, ...) {}
+
 uint8_t da9053_i2c_reg(uint32_t reg, uint8_t val, uint32_t dir)
 {
     struct imx_i2c_request rq;

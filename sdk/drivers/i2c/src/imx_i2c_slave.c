@@ -230,6 +230,7 @@ void i2c_slave_xfer(hw_module_t *port, imx_i2c_request_t *rq)
         }
 
 #ifdef DEBUG
+        uint8_t i;
         printf("Master did a write access at address 0x");
         for(i=0;i<s_slaveState.addressCycle;i++)
             printf("%02X", rq->buffer[i]);

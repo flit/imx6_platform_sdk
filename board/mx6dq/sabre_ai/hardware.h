@@ -29,6 +29,7 @@
 #include "gic/gic.h"
 #include "ccm_pll.h"
 #include "i2c/imx_i2c.h"
+#include "uart/imx_uart.h"
 #include "registers/regsuart.h"
 #include "sata/imx_sata.h"
 #include "timer/timer.h"

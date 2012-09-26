@@ -22,31 +22,6 @@
 #define __HW_UART_REGISTERS_H__
 
 #include "regs.h"
-#include "sdk.h"
-#define TX_FIFO 0
-#define RX_FIFO 1
-#define DMA_MODE 2
-#define IRQ_MODE 1
-
-#define PARITY_NONE 0
-#define PARITY_EVEN 2
-#define PARITY_ODD  3
-#define STOPBITS_ONE 0
-#define STOPBITS_TWO 1
-#define SEVENBITS    0
-#define EIGHTBITS    1
-#define FLOWCTRL_OFF 0
-#define FLOWCTRL_ON  1
-#define UART_UFCR_RXTL_SHF 0
-#define UART_UFCR_TXTL_SHF 10
-void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
-               uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol);
-uint8_t uart_putchar(struct hw_module *port, uint8_t * ch);
-uint8_t uart_getchar(struct hw_module *port);
-void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
-                        uint8_t service_mode);
-void uart_set_loopback_mode(struct hw_module *port, uint8_t state);
-void uart_setup_interrupt(struct hw_module *port, uint8_t state);
 
 /*
  * i.MX6SDL UART

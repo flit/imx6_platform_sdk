@@ -274,7 +274,7 @@ void mipi_cam_power_on(void)
 
 void mipi_csi2_config(void)
 {
-    uint32_t timeout = 0x100000;
+    int32_t timeout = 0x100000;
 
     /*D-PHY initialize */
     mipi_csi2_clock_set();

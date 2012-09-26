@@ -62,7 +62,7 @@ LIBAPP = $(APP_OUTPUT_ROOT)/lib$(APP_NAME).a
 # Build the target lib path from the lib name.
 ifneq "$(TARGET_LIB_NAME)" ""
 TARGET_LIB ?= $(LIBS_ROOT)/lib$(TARGET_LIB_NAME).a
-else ifneq "$(ARCHIVE_APP_OBJECTS)" ""
+else ifeq "$(ARCHIVE_APP_OBJECTS)" "1"
 TARGET_LIB ?= $(LIBAPP)
 endif
 

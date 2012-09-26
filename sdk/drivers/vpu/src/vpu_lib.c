@@ -692,18 +692,16 @@ RetCode VPU_EncRegisterFrameBuffer(EncHandle handle, FrameBuffer * bufArray,
     pEncInfo->numFrameBuffers = num;
     pEncInfo->stride = frameBufStride;
 
-    if (cpu_is_mx6q() || cpu_is_mx5x()) {
-        if (pCodecInst->codecMode != MJPG_ENC) {
-            /* Need to swap word between Dword(64bit) */
-            for (i = 0; i < num; i += 2) {
-                virt_paraBuf[i * 3] = bufArray[i].bufCb;
-                virt_paraBuf[i * 3 + 1] = bufArray[i].bufY;
-                virt_paraBuf[i * 3 + 3] = bufArray[i].bufCr;
-                if (i + 1 < num) {
-                    virt_paraBuf[i * 3 + 2] = bufArray[i + 1].bufY;
-                    virt_paraBuf[i * 3 + 4] = bufArray[i + 1].bufCr;
-                    virt_paraBuf[i * 3 + 5] = bufArray[i + 1].bufCb;
-                }
+    if (pCodecInst->codecMode != MJPG_ENC) {
+        /* Need to swap word between Dword(64bit) */
+        for (i = 0; i < num; i += 2) {
+            virt_paraBuf[i * 3] = bufArray[i].bufCb;
+            virt_paraBuf[i * 3 + 1] = bufArray[i].bufY;
+            virt_paraBuf[i * 3 + 3] = bufArray[i].bufCr;
+            if (i + 1 < num) {
+                virt_paraBuf[i * 3 + 2] = bufArray[i + 1].bufY;
+                virt_paraBuf[i * 3 + 4] = bufArray[i + 1].bufCr;
+                virt_paraBuf[i * 3 + 5] = bufArray[i + 1].bufCb;
             }
         }
     }
@@ -1308,7 +1306,7 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
                 return RETCODE_INVALID_PARAM;
             }
 
-            angle = *(int32_t *)param;
+            angle = *(int32_t *) param;
             if (angle != 0 && angle != 90 && angle != 180 && angle != 270) {
                 return RETCODE_INVALID_PARAM;
             }
@@ -1443,7 +1441,7 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
 
     case ENC_SET_GOP_NUMBER:
         {
-            int32_t *pGopNumber = (int32_t *)param;
+            int32_t *pGopNumber = (int32_t *) param;
             if (pCodecInst->codecMode != MP4_ENC && pCodecInst->codecMode != AVC_ENC) {
                 return RETCODE_INVALID_COMMAND;
             }
@@ -1459,7 +1457,7 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
 
     case ENC_SET_INTRA_QP:
         {
-            int32_t *pIntraQp = (int32_t *)param;
+            int32_t *pIntraQp = (int32_t *) param;
             if (pCodecInst->codecMode != MP4_ENC && pCodecInst->codecMode != AVC_ENC) {
                 return RETCODE_INVALID_COMMAND;
             }
@@ -1481,7 +1479,7 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
 
     case ENC_SET_BITRATE:
         {
-            int32_t *pBitrate = (int32_t *)param;
+            int32_t *pBitrate = (int32_t *) param;
             if (pCodecInst->codecMode != MP4_ENC && pCodecInst->codecMode != AVC_ENC) {
                 return RETCODE_INVALID_COMMAND;
             }
@@ -1497,7 +1495,7 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
 
     case ENC_SET_FRAME_RATE:
         {
-            int32_t *pFramerate = (int32_t *)param;
+            int32_t *pFramerate = (int32_t *) param;
             if (pCodecInst->codecMode != MP4_ENC && pCodecInst->codecMode != AVC_ENC) {
                 return RETCODE_INVALID_COMMAND;
             }
@@ -1513,7 +1511,7 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
 
     case ENC_SET_INTRA_MB_REFRESH_NUMBER:
         {
-            int32_t *pIntraRefreshNum = (int32_t *)param;
+            int32_t *pIntraRefreshNum = (int32_t *) param;
 
             SetIntraRefreshNum(handle, (uint32_t *) pIntraRefreshNum);
 
@@ -1974,18 +1972,10 @@ RetCode VPU_DecGetInitialInfo(DecHandle handle, DecInitialInfo * info)
             info->picCropRect.top = 0;
             info->picCropRect.bottom = 0;
         } else {
-            if (!cpu_is_mx27()) {
-                info->picCropRect.left = ((val >> 16) & 0xFFFF);
-                info->picCropRect.right = info->picWidth - ((val & 0xFFFF));
-                info->picCropRect.top = ((val2 >> 16) & 0xFFFF);
-                info->picCropRect.bottom = info->picHeight - ((val2 & 0xFFFF));
-
-            } else {
-                info->picCropRect.left = ((val >> 10) & 0x3FF) * 2;
-                info->picCropRect.right = info->picWidth - ((val & 0x3FF) * 2);
-                info->picCropRect.top = ((val2 >> 10) & 0x3FF) * 2;
-                info->picCropRect.bottom = info->picHeight - ((val2 & 0x3FF) * 2);
-            }
+            info->picCropRect.left = ((val >> 16) & 0xFFFF);
+            info->picCropRect.right = info->picWidth - ((val & 0xFFFF));
+            info->picCropRect.top = ((val2 >> 16) & 0xFFFF);
+            info->picCropRect.bottom = info->picHeight - ((val2 & 0xFFFF));
         }
 
         val = info->picWidth * info->picHeight;
@@ -2514,7 +2504,7 @@ RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info)
     if (cpu_is_mx6q()) {
         info->frameStartPos = VpuReadReg(BIT_BYTE_POS_FRAME_START);
         info->frameEndPos = VpuReadReg(BIT_BYTE_POS_FRAME_END);
-        if (info->frameEndPos > (int32_t)pDecInfo->streamBufEndAddr) {
+        if (info->frameEndPos > (int32_t) pDecInfo->streamBufEndAddr) {
             info->consumedByte = pDecInfo->streamBufEndAddr - info->frameStartPos;
             info->consumedByte += info->frameEndPos - pDecInfo->streamBufStartAddr;
         } else
@@ -2883,7 +2873,7 @@ RetCode VPU_DecGiveCommand(DecHandle handle, CodecCommand cmd, void *param)
             if (param == 0) {
                 return RETCODE_INVALID_PARAM;
             }
-            angle = *(int32_t *)param;
+            angle = *(int32_t *) param;
             if (angle != 0 && angle != 90 && angle != 180 && angle != 270) {
                 return RETCODE_INVALID_PARAM;
             }
@@ -2926,7 +2916,7 @@ RetCode VPU_DecGiveCommand(DecHandle handle, CodecCommand cmd, void *param)
             if (param == 0) {
                 return RETCODE_INVALID_PARAM;
             }
-            stride = *(int32_t *)param;
+            stride = *(int32_t *) param;
             if (stride % 8 != 0 || stride == 0) {
                 return RETCODE_INVALID_STRIDE;
             }

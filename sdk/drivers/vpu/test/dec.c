@@ -980,7 +980,7 @@ int32_t decode_test(void *arg)
 
     if (vplay_mode != VPLAY_FREE_RUN) { /*Frame control used */
         hw_epit2.freq = get_main_clock(IPG_CLK);
-        epit_init(&hw_epit2, CLKSRC_IPG_CLK, hw_epit2.freq / 1000000, 39 + SET_AND_FORGET, 0, 0);
+        epit_init(&hw_epit2, CLKSRC_IPG_CLK, hw_epit2.freq / 1000000, SET_AND_FORGET, 0, 0);
         register_interrupt_routine(hw_epit2.irq_id, hw_epit2.irq_subroutine);
         epit_setup_interrupt(&hw_epit2, TRUE);
         epit_counter_enable(&hw_epit2, 1000000 / vplay_mode, IRQ_MODE);

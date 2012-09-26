@@ -5,47 +5,38 @@
  * Freescale Semiconductor, Inc.
 */
 
-/*!
- * @file ldb.c
- * @brief lvds bridge configuration.
- * @ingroup diag_ldb
- */
-
 #include <stdio.h>
 #include <string.h>
 #include "hardware.h"
 #include "ldb/ldb_def.h"
 #include "ipu/ipu_common.h"
+#include "registers/regsldb.h"
+#include "registers/regsiomuxc.h"
 
-inline void ldb_write_field(unsigned int reg, int bit_offset, int bit_width, unsigned int val)
-{
-    uint32_t data;
+/////////////////////////////////////////////////////////////////////////////
+// CODE
+/////////////////////////////////////////////////////////////////////////////
 
-    data = reg32_read(reg);
-    data &= ~(((1 << bit_width) - 1) << bit_offset);
-    data |= val << bit_offset;
-    reg32_write(reg, data);
-}
-
-inline void ldb_set_channel_route(int ipu_port, int lvds_port)
+//! @brief select the LDB port and data source
+static void ldb_set_channel_route(int ipu_port, int lvds_port)
 {
     if (ipu_port == IPU1_DI0 || ipu_port == IPU2_DI0) {
         if (lvds_port == LVDS_PORT0)
-            ldb_write_field(LDB_CTRL_REG, 0, 2, 1);
+            HW_LDB_CTRL.B.CH0_MODE = 1;
         else if (lvds_port == LVDS_PORT1)
-            ldb_write_field(LDB_CTRL_REG, 2, 2, 1);
+            HW_LDB_CTRL.B.CH1_MODE = 1;
         else {
-            ldb_write_field(LDB_CTRL_REG, 0, 2, 1);
-            ldb_write_field(LDB_CTRL_REG, 2, 2, 1);
+            HW_LDB_CTRL.B.CH0_MODE = 1;
+            HW_LDB_CTRL.B.CH1_MODE = 1;
         }
     } else if (ipu_port == IPU1_DI1 || ipu_port == IPU2_DI1) {
         if (lvds_port == LVDS_PORT0)
-            ldb_write_field(LDB_CTRL_REG, 0, 2, 3);
+            HW_LDB_CTRL.B.CH0_MODE = 3;
         else if (lvds_port == LVDS_PORT1)
-            ldb_write_field(LDB_CTRL_REG, 2, 2, 3);
+            HW_LDB_CTRL.B.CH1_MODE = 3;
         else {
-            ldb_write_field(LDB_CTRL_REG, 0, 2, 3);
-            ldb_write_field(LDB_CTRL_REG, 2, 2, 3);
+            HW_LDB_CTRL.B.CH0_MODE = 3;
+            HW_LDB_CTRL.B.CH1_MODE = 3;
         }
     } else {
         printf("Wrong IPU display port %d input!!\n", ipu_port);
@@ -53,51 +44,42 @@ inline void ldb_set_channel_route(int ipu_port, int lvds_port)
     }
 
     if (ipu_port == IPU1_DI0 || ipu_port == IPU1_DI1) {
-        ldb_write_field(LDB_MUX_REG, 6, 2, 0);
-        ldb_write_field(LDB_MUX_REG, 8, 2, 0);
+        HW_IOMUXC_GPR3.B.LVDS0_MUX_CTL = 0;
+        HW_IOMUXC_GPR3.B.LVDS1_MUX_CTL = 0;
     } else {
-        ldb_write_field(LDB_MUX_REG, 6, 2, 2);
-        ldb_write_field(LDB_MUX_REG, 8, 2, 2);
+        HW_IOMUXC_GPR3.B.LVDS0_MUX_CTL = 2;
+        HW_IOMUXC_GPR3.B.LVDS1_MUX_CTL = 2;
     }
 }
 
-/*!
- * lvds bridge configuration
- *
- * @param	ipu_port: 	ipu display port selection, di0 or di1
- * @param 	lvds_port:	lvds channel selection
- * @param   data_width:	18 or 24bit mode selection
- * @param 	bit_map:	SPWG or JEIDA mode selection
- *
- */
 void ldb_config(int ipu_port, int lvds_port, int data_width, int bit_map)
 {
     switch (lvds_port) {
     case LVDS_PORT0:
-        ldb_write_field(LDB_CTRL_REG, 6, 1, bit_map);
-        ldb_write_field(LDB_CTRL_REG, 5, 1, data_width);
+        HW_LDB_CTRL.B.BIT_MAPPING_CH0 = bit_map;
+        HW_LDB_CTRL.B.DATA_WIDTH_CH0 = data_width;
 #if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
-        ldb_write_field(IOMUXC_GPR3, 6, 2, ipu_port);
+        HW_IOMUXC_GPR3.B.LVDS0_MUX_CTL = ipu_port;
 #endif
         break;
     case LVDS_PORT1:
-        ldb_write_field(LDB_CTRL_REG, 8, 1, bit_map);
-        ldb_write_field(LDB_CTRL_REG, 7, 1, data_width);
+        HW_LDB_CTRL.B.BIT_MAPPING_CH1 = bit_map;
+        HW_LDB_CTRL.B.DATA_WIDTH_CH1 = data_width;
 #if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
-        ldb_write_field(IOMUXC_GPR3, 8, 2, ipu_port);
+        HW_IOMUXC_GPR3.B.LVDS1_MUX_CTL = ipu_port;
 #endif
         break;
     case LVDS_SPLIT_PORT:
-        ldb_write_field(LDB_CTRL_REG, 4, 1, 1);
+        HW_LDB_CTRL.B.SPLIT_MODE_EN = 1;
         break;
     case LVDS_DUAL_PORT:
-        ldb_write_field(LDB_CTRL_REG, 8, 1, bit_map);
-        ldb_write_field(LDB_CTRL_REG, 7, 1, data_width);
-        ldb_write_field(LDB_CTRL_REG, 6, 1, bit_map);
-        ldb_write_field(LDB_CTRL_REG, 5, 1, data_width);
+        HW_LDB_CTRL.B.BIT_MAPPING_CH0 = bit_map;
+        HW_LDB_CTRL.B.DATA_WIDTH_CH0 = data_width;
+        HW_LDB_CTRL.B.BIT_MAPPING_CH1 = bit_map;
+        HW_LDB_CTRL.B.DATA_WIDTH_CH1 = data_width;
 #if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
-        ldb_write_field(IOMUXC_GPR3, 6, 2, ipu_port);
-        ldb_write_field(IOMUXC_GPR3, 8, 2, ipu_port);
+        HW_IOMUXC_GPR3.B.LVDS0_MUX_CTL = ipu_port;
+        HW_IOMUXC_GPR3.B.LVDS1_MUX_CTL = ipu_port;
 #endif
         break;
     default:
@@ -105,29 +87,25 @@ void ldb_config(int ipu_port, int lvds_port, int data_width, int bit_map)
         return;
     }
     ldb_set_channel_route(ipu_port, lvds_port);
-
 }
 
-/*!
- * vsync polarity setting
- *
- * @param	ipu_port: 	ipu display port selection, di0 or di1
- * @param 	vs_pol:		vsync polarity setting
- *
- */
 void ldb_set_vs_polarity(int ipu_port, int vs_pol)
 {
     switch (ipu_port) {
     case IPU1_DI0:
     case IPU2_DI0:
-        ldb_write_field(LDB_CTRL_REG, 9, 1, vs_pol);
+        HW_LDB_CTRL.B.DI0_VS_POLARITY = vs_pol;
         break;
     case IPU1_DI1:
     case IPU2_DI1:
-        ldb_write_field(LDB_CTRL_REG, 10, 1, vs_pol);
+        HW_LDB_CTRL.B.DI1_VS_POLARITY = vs_pol;
         break;
     default:
-        printf("unkown display port %d!! please check.\n", ipu_port);
+        printf("Unkown display port %d!! please check.\n", ipu_port);
         break;
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+// CODE
+/////////////////////////////////////////////////////////////////////////////

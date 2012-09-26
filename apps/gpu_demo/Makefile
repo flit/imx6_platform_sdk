@@ -30,7 +30,7 @@ define SOURCES
     src/rotate_texture.c
     src/sdk_gpu_utilities.c
 	src/texture.c
-	test/gpu_test.c
+	src/gpu_test.c
     $(APPS_ROOT)/common/platform_init.c
 endef
 

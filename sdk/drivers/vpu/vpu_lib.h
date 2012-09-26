@@ -202,11 +202,11 @@ typedef struct {
     int32_t mp4DeblkEnable;
     int32_t reorderEnable;
     int32_t chromaInterleave;
-    int32_t filePlayEnable;         /* Not used on mx6 */
+    int32_t filePlayEnable;     /* Not used on mx6 */
     int32_t picWidth;
     int32_t picHeight;
-    int32_t avcExtension;           /* Not used on none mx6 */
-    int32_t dynamicAllocEnable;     /* Not used on mx6 */
+    int32_t avcExtension;       /* Not used on none mx6 */
+    int32_t dynamicAllocEnable; /* Not used on mx6 */
     int32_t streamStartByteOffset;
     int32_t mjpg_thumbNailDecEnable;    /* Not used on mx6 */
     PhysicalAddress psSaveBuffer;
@@ -216,14 +216,14 @@ typedef struct {
     int32_t mapType;
     int32_t tiled2LinearEnable;
     int32_t bitstreamMode;
-    int32_t jpgLineBufferMode;      /* mx6 */
+    int32_t jpgLineBufferMode;  /* mx6 */
 
 } DecOpenParam;
 
 typedef struct {
     int32_t frameBufStatBufSize;    /* Size of buffer to save Frame Buffer Status */
-    int32_t mbInfoBufSize;          /* Size of buffer to save Mb information for Error Concealment  */
-    int32_t mvInfoBufSize;          /* Size of buffer to save Motion vector information */
+    int32_t mbInfoBufSize;      /* Size of buffer to save Mb information for Error Concealment  */
+    int32_t mvInfoBufSize;      /* Size of buffer to save Motion vector information */
 } DecReportBufSize;
 
 typedef struct {
@@ -310,14 +310,14 @@ typedef enum {
 } ExtParaType;
 
 typedef struct {
-    int32_t prescanEnable;          /* Not used on mx6 */
-    int32_t prescanMode;            /* Not used on mx6 */
+    int32_t prescanEnable;      /* Not used on mx6 */
+    int32_t prescanMode;        /* Not used on mx6 */
     int32_t dispReorderBuf;
     int32_t iframeSearchEnable;
     int32_t skipframeMode;
     int32_t skipframeNum;
-    int32_t chunkSize;              /* Not used on mx6 */
-    int32_t picStartByteOffset;     /* Not used on mx6 */
+    int32_t chunkSize;          /* Not used on mx6 */
+    int32_t picStartByteOffset; /* Not used on mx6 */
     PhysicalAddress picStreamBufferAddr;    /* Not used on mx6 */
     int32_t mjpegScaleDownRatioWidth;   /* mx6 */
     int32_t mjpegScaleDownRatioHeight;  /* mx6 */
@@ -383,14 +383,14 @@ typedef struct {
     int32_t indexFrameDecoded;
     int32_t NumDecFrameBuf;
     int32_t picType;
-    int32_t picTypeFirst;           /* Not used on none mx6 */
-    int32_t idrFlg;                 /* Not used on none mx6 */
+    int32_t picTypeFirst;       /* Not used on none mx6 */
+    int32_t idrFlg;             /* Not used on none mx6 */
     int32_t numOfErrMBs;
     uint32_t *qpInfo;           /* Not used on mx5 and mx6 */
     int32_t hScaleFlag;
     int32_t vScaleFlag;
     int32_t indexFrameRangemap;
-    int32_t prescanresult;          /* Not used on mx6 */
+    int32_t prescanresult;      /* Not used on mx6 */
     int32_t notSufficientPsBuffer;
     int32_t notSufficientSliceBuffer;
     int32_t decodingSuccess;
@@ -419,9 +419,9 @@ typedef struct {
     MvcPicInfo mvcPicInfo;      /* Not used on none mx6 */
     AvcFpaSei avcFpaSei;
 
-    int32_t frameStartPos;          /* Not used on none mx6 */
-    int32_t frameEndPos;            /* Not used on none mx6 */
-    int32_t consumedByte;           /* Not used on none mx6 */
+    int32_t frameStartPos;      /* Not used on none mx6 */
+    int32_t frameEndPos;        /* Not used on none mx6 */
+    int32_t consumedByte;       /* Not used on none mx6 */
 
     DecReportInfo mbInfo;       /* Not used on mx6 */
     DecReportInfo mvInfo;       /* Not used on mx6 */
@@ -511,7 +511,7 @@ typedef struct {
 
     int32_t rcIntraQp;
     int32_t chromaInterleave;
-    int32_t dynamicAllocEnable;     /* Not used for mx6 */
+    int32_t dynamicAllocEnable; /* Not used for mx6 */
     int32_t ringBufferEnable;
 
     union {
@@ -527,19 +527,19 @@ typedef struct {
     int32_t userQpMaxEnable;
 
     uint32_t userGamma;
-    int32_t RcIntervalMode;         /* 0:normal, 1:frame_level, 2:slice_level, 3: user defined Mb_level */
-    int32_t MbInterval;             /* use when RcintervalMode is 3 */
+    int32_t RcIntervalMode;     /* 0:normal, 1:frame_level, 2:slice_level, 3: user defined Mb_level */
+    int32_t MbInterval;         /* use when RcintervalMode is 3 */
     int32_t avcIntra16x16OnlyModeEnable;
 
-    int32_t MESearchRange;          // 3: 16x16, 2:32x16, 1:64x32, 0:128x64, H.263(Short Header : always 3)
-    int32_t MEUseZeroPmv;           // 0: PMV_ENABLE, 1: PMV_DISABLE
-    int32_t IntraCostWeight;        // Additional weight of Intra Cost for mode decision to reduce Intra MB density
+    int32_t MESearchRange;      // 3: 16x16, 2:32x16, 1:64x32, 0:128x64, H.263(Short Header : always 3)
+    int32_t MEUseZeroPmv;       // 0: PMV_ENABLE, 1: PMV_DISABLE
+    int32_t IntraCostWeight;    // Additional weight of Intra Cost for mode decision to reduce Intra MB density
 } EncOpenParam;
 
 typedef struct {
-    int32_t sliceInfoBufSize;       /* Slice Info */
-    int32_t mbInfoBufSize;          /* Mb Param for Error Concealment */
-    int32_t mvInfoBufSize;          /* Motion vector */
+    int32_t sliceInfoBufSize;   /* Slice Info */
+    int32_t mbInfoBufSize;      /* Mb Param for Error Concealment */
+    int32_t mvInfoBufSize;      /* Motion vector */
 } EncReportBufSize;
 
 typedef struct {
@@ -631,10 +631,10 @@ typedef struct {
  * The library version convention:
  */
 typedef struct vpu_versioninfo {
-    int32_t fw_major;               /* firmware major version */
-    int32_t fw_minor;               /* firmware minor version */
-    int32_t fw_release;             /* firmware release version */
-    int32_t fw_code;                /* firmware checkin code number */
+    int32_t fw_major;           /* firmware major version */
+    int32_t fw_minor;           /* firmware minor version */
+    int32_t fw_release;         /* firmware release version */
+    int32_t fw_code;            /* firmware checkin code number */
 } vpu_versioninfo;
 
 #define VPU_FW_VERSION(major, minor, release)	 \
@@ -660,9 +660,6 @@ static inline int32_t type## _rev (int32_t rev)         \
         return (type() ? mxc_cpu_is_rev(rev) : 0);      \
 }
 
-#define cpu_is_mx27()		mxc_is_cpu(0x27)
-#define cpu_is_mx51()		mxc_is_cpu(0x51)
-#define cpu_is_mx53()		mxc_is_cpu(0x53)
 #define cpu_is_mx5x()		(mxc_is_cpu(0x51) || mxc_is_cpu(0x53))
 #define cpu_is_mx6q()		(mxc_is_cpu(0x61) || mxc_is_cpu(0x63))
 

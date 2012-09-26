@@ -89,7 +89,7 @@ int32_t ips_resize_test(ips_dev_panel_t * panel)
                 ipu_rotate_idmac_config(ipu_index, rot_chnl_in, rot_chnl_out, rot_info);
 
                 //set resize idma
-                memset(&res_info, 0x00, sizeof(ipu_rot_info_t));
+                memset(&res_info, 0x00, sizeof(ipu_res_info_t));
                 res_info.width_in = rot_info.width_out;
                 res_info.height_in = rot_info.height_out;
                 res_info.height_out = panel->height;

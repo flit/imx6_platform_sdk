@@ -683,6 +683,8 @@ void load_foreground_image(uint32_t addr, uint32_t width, uint32_t height);
 void set_background_margin(ips_dev_panel_t * panel, uint32_t width, uint32_t height);
 
 void load_horiz_image(uint32_t addr, uint32_t width, uint32_t height);
+void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
+                           uint32_t buffer_addr);
 
 extern ips_dev_panel_t disp_dev_list[];
 extern uint32_t num_of_panels;

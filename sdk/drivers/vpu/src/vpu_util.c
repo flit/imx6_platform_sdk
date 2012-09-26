@@ -123,14 +123,9 @@ RetCode CheckEncInstanceValidity(EncHandle handle)
         return RETCODE_INVALID_HANDLE;
     }
 
-    if (cpu_is_mx27()) {
-        if (pCodecInst->codecMode != MP4_ENC && pCodecInst->codecMode != AVC_ENC)
-            return RETCODE_INVALID_HANDLE;
-    } else {
-        if (pCodecInst->codecMode != MP4_ENC &&
-            pCodecInst->codecMode != AVC_ENC && pCodecInst->codecMode != MJPG_ENC)
-            return RETCODE_INVALID_HANDLE;
-    }
+    if (pCodecInst->codecMode != MP4_ENC &&
+        pCodecInst->codecMode != AVC_ENC && pCodecInst->codecMode != MJPG_ENC)
+        return RETCODE_INVALID_HANDLE;
     return RETCODE_SUCCESS;
 }
 
@@ -148,10 +143,7 @@ RetCode CheckDecInstanceValidity(DecHandle handle)
         return RETCODE_INVALID_HANDLE;
     }
 
-    if (cpu_is_mx27()) {
-        if (pCodecInst->codecMode != MP4_DEC && pCodecInst->codecMode != AVC_DEC)
-            return RETCODE_INVALID_HANDLE;
-    } else if (cpu_is_mx6q()) {
+    if (cpu_is_mx6q()) {
         if (pCodecInst->codecMode != MP4_DEC &&
             pCodecInst->codecMode != AVC_DEC &&
             pCodecInst->codecMode != VC1_DEC &&
@@ -247,14 +239,7 @@ RetCode CheckEncOpenParam(EncOpenParam * pop)
             return RETCODE_INVALID_PARAM;
         }
     }
-    if (cpu_is_mx27()) {
-        if (pop->sliceReport != 0 && pop->sliceReport != 1) {
-            return RETCODE_INVALID_PARAM;
-        }
-        if (pop->mbReport != 0 && pop->mbReport != 1) {
-            return RETCODE_INVALID_PARAM;
-        }
-    }
+
     if (pop->intraRefresh < 0 || pop->intraRefresh >= (picWidth * picHeight / 256)) {
         return RETCODE_INVALID_PARAM;
     }
@@ -466,10 +451,7 @@ RetCode CheckDecOpenParam(DecOpenParam * pop)
     if (pop->bitstreamFormat == STD_H263)
         pop->bitstreamFormat = STD_MPEG4;
 
-    if (cpu_is_mx27()) {
-        if (pop->bitstreamFormat != STD_MPEG4 && pop->bitstreamFormat != STD_AVC)
-            return RETCODE_INVALID_PARAM;
-    } else if (cpu_is_mx6q()) {
+    if (cpu_is_mx6q()) {
         if (pop->bitstreamFormat != STD_MPEG4 &&
             pop->bitstreamFormat != STD_AVC &&
             pop->bitstreamFormat != STD_VC1 &&
@@ -489,19 +471,11 @@ RetCode CheckDecOpenParam(DecOpenParam * pop)
             return RETCODE_INVALID_PARAM;
     }
 
-    if (cpu_is_mx27()) {
-        if (pop->bitstreamFormat == STD_MPEG4) {
-            if (pop->qpReport != 0 && pop->qpReport != 1) {
-                return RETCODE_INVALID_PARAM;
-            }
-        }
-    } else {
-        if (pop->mp4DeblkEnable == 1 && !(pop->bitstreamFormat ==
-                                          STD_MPEG4
-                                          || pop->bitstreamFormat ==
-                                          STD_MPEG2 || pop->bitstreamFormat == STD_DIV3)) {
-            return RETCODE_INVALID_PARAM;
-        }
+    if (pop->mp4DeblkEnable == 1 && !(pop->bitstreamFormat ==
+                                      STD_MPEG4
+                                      || pop->bitstreamFormat ==
+                                      STD_MPEG2 || pop->bitstreamFormat == STD_DIV3)) {
+        return RETCODE_INVALID_PARAM;
     }
     return RETCODE_SUCCESS;
 }
@@ -532,15 +506,13 @@ RetCode CopyBufferData(uint8_t * dst, uint8_t * src, int size)
     if (!dst || !src || !size)
         return RETCODE_FAILURE;
 
-    if (!cpu_is_mx27()) {
-        int i;
-        for (i = 0; i < size / 8; i++) {
-            /* swab odd and even words and swab32 */
-            temp = *((uint32_t *) src + i * 2 + 1);
-            *((uint32_t *) dst + i * 2) = swab32(temp);
-            temp = *((uint32_t *) src + i * 2);
-            *((uint32_t *) dst + i * 2 + 1) = swab32(temp);
-        }
+    int i;
+    for (i = 0; i < size / 8; i++) {
+        /* swab odd and even words and swab32 */
+        temp = *((uint32_t *) src + i * 2 + 1);
+        *((uint32_t *) dst + i * 2) = swab32(temp);
+        temp = *((uint32_t *) src + i * 2);
+        *((uint32_t *) dst + i * 2 + 1) = swab32(temp);
     }
     return RETCODE_SUCCESS;
 }
@@ -787,19 +759,12 @@ void SetDecSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
         }
     }
   out:
-    /* i.MX51 has no secondary AXI memory, but use on chip RAM
-       Set the useHoseXXX as 1 to enable corresponding IRAM
-       Set the useXXXX as 0 at the same time to use IRAM,
-       i.MX53 uses secondary AXI for IRAM access, also needs to
-       set the useXXXX. */
-    if (cpu_is_mx53() || cpu_is_mx6q()) {
-        /* i.MX53/i.MX6Q uses secondary AXI for IRAM access */
-        psecAxiIramInfo->useBitEnable = psecAxiIramInfo->useHostBitEnable;
-        psecAxiIramInfo->useIpEnable = psecAxiIramInfo->useHostIpEnable;
-        psecAxiIramInfo->useDbkEnable = psecAxiIramInfo->useHostDbkEnable;
-        psecAxiIramInfo->useOvlEnable = psecAxiIramInfo->useHostOvlEnable;
-        psecAxiIramInfo->useBtpEnable = psecAxiIramInfo->useHostBtpEnable = 0;
-    }
+    /* i.MX53/i.MX6Q uses secondary AXI for IRAM access */
+    psecAxiIramInfo->useBitEnable = psecAxiIramInfo->useHostBitEnable;
+    psecAxiIramInfo->useIpEnable = psecAxiIramInfo->useHostIpEnable;
+    psecAxiIramInfo->useDbkEnable = psecAxiIramInfo->useHostDbkEnable;
+    psecAxiIramInfo->useOvlEnable = psecAxiIramInfo->useHostOvlEnable;
+    psecAxiIramInfo->useBtpEnable = psecAxiIramInfo->useHostBtpEnable = 0;
 
     if (((parm->codecMode == VC1_DEC) && !psecAxiIramInfo->useHostOvlEnable) ||
         !psecAxiIramInfo->useHostIpEnable)
@@ -872,18 +837,11 @@ void SetEncSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
     psecAxiIramInfo->useBtpEnable = 0;
 
   out:
-    /* i.MX51 has no secondary AXI memory, but use on chip RAM
-       Set the useHoseXXX as 1 to enable corresponding IRAM
-       Set the useXXXX as 0 at the same time to use IRAM,
-       i.MX53/i.MX6Q uses secondary AXI for IRAM access, also needs to set
-       useXXXX. */
-    if (cpu_is_mx53() || cpu_is_mx6q()) {
-        /* i.MX53 uses secondary AXI for IRAM access */
-        psecAxiIramInfo->useBitEnable = psecAxiIramInfo->useHostBitEnable;
-        psecAxiIramInfo->useIpEnable = psecAxiIramInfo->useHostIpEnable;
-        psecAxiIramInfo->useDbkEnable = psecAxiIramInfo->useHostDbkEnable;
-        psecAxiIramInfo->useMeEnable = psecAxiIramInfo->useHostMeEnable;
-    }
+    /* i.MX53 uses secondary AXI for IRAM access */
+    psecAxiIramInfo->useBitEnable = psecAxiIramInfo->useHostBitEnable;
+    psecAxiIramInfo->useIpEnable = psecAxiIramInfo->useHostIpEnable;
+    psecAxiIramInfo->useDbkEnable = psecAxiIramInfo->useHostDbkEnable;
+    psecAxiIramInfo->useMeEnable = psecAxiIramInfo->useHostMeEnable;
 
     if (!psecAxiIramInfo->useHostIpEnable)
         warn_msg("VPU iram is less than needed, some parts don't use iram\n");

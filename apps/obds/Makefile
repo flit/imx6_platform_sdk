@@ -80,7 +80,7 @@ LIBRARIES = \
     $(LIBBOARD)
 
 # Specify our linker script.
-LD_FILE = $(APPS_ROOT)/common/obds_sdk_app.ld
+LD_FILE = $(APPS_ROOT)/obds/src/obds_sdk_app.ld
 
 # Add common to include paths.
 INCLUDES += -I$(APPS_ROOT)/common -I$(APPS_ROOT)/obds/src

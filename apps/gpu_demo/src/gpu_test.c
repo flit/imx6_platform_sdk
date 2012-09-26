@@ -11,6 +11,7 @@
 #include "hardware.h"
 #include "cortex_a9.h"
 #include "iomux_config.h"
+#include "platform_init.h"
 
 #include "texture.h"
 #include "gpu_test_common.h"

@@ -98,7 +98,7 @@ void check_android_button_status(void)
 /*!
  * @return      TEST_PASSED or  TEST_FAILED    
  */
-int android_buttons_test_enable = 0;    // global test flag, set in imx##.c platform_init function
+int android_buttons_test_enable = 0;
 int android_buttons_test(void)
 {
     unsigned char input;

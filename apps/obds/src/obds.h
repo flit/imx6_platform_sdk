@@ -49,7 +49,7 @@ typedef struct _test_module {
 }test_module_t;
 
 // OBDS tests
-int srtc_test(void);
+int snvs_srtc_test(void);
 
 //list of tests from obds
 extern int android_buttons_test_enable;
@@ -84,7 +84,6 @@ extern int sdio_test_enable;
 extern int gps_test_enable;
 extern int ipu_display_test_enable;
 extern int si476x_test_enable;
-extern int obds_snvs_srtc_test_enable;
 extern int enet_test_enable;
 extern int ar8031_test_enable;
 extern int KSZ9021RN_test_enable;
@@ -93,8 +92,7 @@ extern int i2s_audio_test_enable;
 extern int esai_test_enable;
 extern int program_board_id_enable;
 extern int spi_nor_test_enable;
-extern int obds_snvs_srtc_test_enable;
-extern int srtc_test_enable;
+extern int snvs_srtc_test_enable;
 extern int program_board_id_enable;
 
 //Add variables from obds
@@ -117,8 +115,6 @@ extern audio_card_t snd_card_ssi_wm8962;
 //Provide macros for test enter and exit outputs
 #define TEST_ENTER(name) printf("Running test: %s\n", name)
 #define TEST_EXIT(name) do {printf("..Test: %s\n", name); } while(0) 
-
-typedef unsigned int (*pmic_mc13892_reg_t) (unsigned int reg, unsigned int val, unsigned int write);
 
 #define PROMPT_RUN_TEST(name)           \
     do {                                \

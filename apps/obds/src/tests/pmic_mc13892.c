@@ -8,8 +8,6 @@
 /*!
  * @file pmic_mc13892.c
  * @brief This file uses abstracted pmic interface functions to talk to the PMIC.
- * @note    pmic_mc13892_reg is the abstracted function to be assigned during
- *          platform_init().
  *
  * @ingroup diag_pmic
  */
@@ -26,6 +24,9 @@
 #define PMIC_MC13892_I2C_ADDR       0x8 // PMIC I2C Slave address
 #define PMIC_MC13892_I2C_REG_BYTE   0x1 // Number of Bytes to transfer the PMIC reg number
 #define PMIC_MC13892_I2C_DATA_BYTE  0x3 // Number of Bytes to transfer the PMIC reg data
+
+
+typedef unsigned int (*pmic_mc13892_reg_t) (unsigned int reg, unsigned int val, unsigned int write);
 
 //Check PMIC ID
 unsigned int mc13892_i2c_reg(unsigned int reg, unsigned int val, unsigned int dir)
@@ -68,7 +69,7 @@ printf("before i2c_xfer\n");
 }
 
 /*!
- * This function pointer is assigned in platform_init()
+ * This function pointer
  */
 pmic_mc13892_reg_t pmic_mc13892_reg;
 

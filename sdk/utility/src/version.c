@@ -7,7 +7,7 @@
 
 /*!
  * @file  version.c
- * @brief Contains function to print out the diag release version.
+ * @brief Contains function to print out the app release version.
  *
  * @ingroup diag_init
  */

@@ -15,6 +15,8 @@
 #include <stdio.h>
 #include "hardware.h"
 #include "hdmi_tx.h"
+#include "registers/regshdmi.h"
+#include "registers/regsiomuxc.h"
 
 /*! ------------------------------------------------------------
  * HDMI TX Functions
@@ -29,12 +31,7 @@
  */
 void hdmi_config_input_source(uint32_t mux_value)
 {
-    uint32_t regval = 0;
-
-    regval = readl(IOMUXC_GPR3);
-    regval &= 0xFFFFFFF0;       // mask off hdmi mux bits 
-    regval |= mux_value << 2;   // shift value over to correct bit position
-    writel(regval, IOMUXC_GPR3);    // set hdmi input mux value
+    HW_IOMUXC_GPR3.B.HDMI_MUX_CTL = mux_value;
 }
 
 /*! ------------------------------------------------------------
@@ -92,17 +89,17 @@ void hdmi_video_sample(hdmi_data_info_s hdmi_instance)
         }
     }
 
-    writebf(color_format, HDMI_TX_INVID0, 0, 6);
-    writebf(0, HDMI_TX_INVID0, 7, 1);
+    HW_HDMI_TX_INVID0.B.VIDEO_MAPPING = color_format;
+    HW_HDMI_TX_INVID0.B.INTERNAL_DE_GENERATOR = 0;
 
     /*enable tx stuffing, when DE is inactive, fix the output data to 0 */
-    writeb(0x7, HDMI_TX_INSTUFFING);
-    writeb(0x0, HDMI_TX_GYDATA0);
-    writeb(0x0, HDMI_TX_GYDATA1);
-    writeb(0x0, HDMI_TX_RCRDATA0);
-    writeb(0x0, HDMI_TX_RCRDATA1);
-    writeb(0x0, HDMI_TX_BCBDATA0);
-    writeb(0x0, HDMI_TX_BCBDATA1);
+    HW_HDMI_TX_INSTUFFING.U = 0x7;
+    HW_HDMI_TX_GYDATA0.U = 0x0;
+    HW_HDMI_TX_GYDATA1.U = 0x0;
+    HW_HDMI_TX_RCRDATA0.U = 0x0;
+    HW_HDMI_TX_RCRDATA1.U = 0x0;
+    HW_HDMI_TX_BCBDATA0.U = 0x0;
+    HW_HDMI_TX_BCBDATA1.U = 0x0;
 }
 
 /*! ------------------------------------------------------------
@@ -216,34 +213,34 @@ void update_csc_coeffs(hdmi_data_info_s hdmi_instance)
     }
 
     /*update csc parameters in hdmi csc registers */
-    writeb((uint8_t) (csc_coeff[0][0] & 0xFF), HDMI_CSC_COEF_A1_LSB);
-    writeb((uint8_t) (csc_coeff[0][0] >> 8), HDMI_CSC_COEF_A1_MSB);
-    writeb((uint8_t) (csc_coeff[0][1] & 0xFF), HDMI_CSC_COEF_A2_LSB);
-    writeb((uint8_t) (csc_coeff[0][1] >> 8), HDMI_CSC_COEF_A2_MSB);
-    writeb((uint8_t) (csc_coeff[0][2] & 0xFF), HDMI_CSC_COEF_A3_LSB);
-    writeb((uint8_t) (csc_coeff[0][2] >> 8), HDMI_CSC_COEF_A3_MSB);
-    writeb((uint8_t) (csc_coeff[0][3] & 0xFF), HDMI_CSC_COEF_A4_LSB);
-    writeb((uint8_t) (csc_coeff[0][3] >> 8), HDMI_CSC_COEF_A4_MSB);
+    HW_HDMI_CSC_COEF_A1_LSB.U = (uint8_t) (csc_coeff[0][0] & 0xFF);
+    HW_HDMI_CSC_COEF_A1_MSB.U = (uint8_t) (csc_coeff[0][0] >> 8);
+    HW_HDMI_CSC_COEF_A2_LSB.U = (uint8_t) (csc_coeff[0][1] & 0xFF);
+    HW_HDMI_CSC_COEF_A2_MSB.U = (uint8_t) (csc_coeff[0][1] >> 8);
+    HW_HDMI_CSC_COEF_A3_LSB.U = (uint8_t) (csc_coeff[0][2] & 0xFF);
+    HW_HDMI_CSC_COEF_A3_MSB.U = (uint8_t) (csc_coeff[0][2] >> 8);
+    HW_HDMI_CSC_COEF_A4_LSB.U = (uint8_t) (csc_coeff[0][3] & 0xFF);
+    HW_HDMI_CSC_COEF_A4_MSB.U = (uint8_t) (csc_coeff[0][3] >> 8);
 
-    writeb((uint8_t) (csc_coeff[1][0] & 0xFF), HDMI_CSC_COEF_B1_LSB);
-    writeb((uint8_t) (csc_coeff[1][0] >> 8), HDMI_CSC_COEF_B1_MSB);
-    writeb((uint8_t) (csc_coeff[1][1] & 0xFF), HDMI_CSC_COEF_B2_LSB);
-    writeb((uint8_t) (csc_coeff[1][1] >> 8), HDMI_CSC_COEF_B2_MSB);
-    writeb((uint8_t) (csc_coeff[1][2] & 0xFF), HDMI_CSC_COEF_B3_LSB);
-    writeb((uint8_t) (csc_coeff[1][2] >> 8), HDMI_CSC_COEF_B3_MSB);
-    writeb((uint8_t) (csc_coeff[1][3] & 0xFF), HDMI_CSC_COEF_B4_LSB);
-    writeb((uint8_t) (csc_coeff[1][3] >> 8), HDMI_CSC_COEF_B4_MSB);
+    HW_HDMI_CSC_COEF_B1_LSB.U = (uint8_t) (csc_coeff[1][0] & 0xFF);
+    HW_HDMI_CSC_COEF_B1_MSB.U = (uint8_t) (csc_coeff[1][0] >> 8);
+    HW_HDMI_CSC_COEF_B2_LSB.U = (uint8_t) (csc_coeff[1][1] & 0xFF);
+    HW_HDMI_CSC_COEF_B2_MSB.U = (uint8_t) (csc_coeff[1][1] >> 8);
+    HW_HDMI_CSC_COEF_B3_LSB.U = (uint8_t) (csc_coeff[1][2] & 0xFF);
+    HW_HDMI_CSC_COEF_B3_MSB.U = (uint8_t) (csc_coeff[1][2] >> 8);
+    HW_HDMI_CSC_COEF_B4_LSB.U = (uint8_t) (csc_coeff[1][3] & 0xFF);
+    HW_HDMI_CSC_COEF_B4_MSB.U = (uint8_t) (csc_coeff[1][3] >> 8);
 
-    writeb((uint8_t) (csc_coeff[2][0] & 0xFF), HDMI_CSC_COEF_C1_LSB);
-    writeb((uint8_t) (csc_coeff[2][0] >> 8), HDMI_CSC_COEF_C1_MSB);
-    writeb((uint8_t) (csc_coeff[2][1] & 0xFF), HDMI_CSC_COEF_C2_LSB);
-    writeb((uint8_t) (csc_coeff[2][1] >> 8), HDMI_CSC_COEF_C2_MSB);
-    writeb((uint8_t) (csc_coeff[2][2] & 0xFF), HDMI_CSC_COEF_C3_LSB);
-    writeb((uint8_t) (csc_coeff[2][2] >> 8), HDMI_CSC_COEF_C3_MSB);
-    writeb((uint8_t) (csc_coeff[2][3] & 0xFF), HDMI_CSC_COEF_C4_LSB);
-    writeb((uint8_t) (csc_coeff[2][3] >> 8), HDMI_CSC_COEF_C4_MSB);
+    HW_HDMI_CSC_COEF_C1_LSB.U = (uint8_t) (csc_coeff[2][0] & 0xFF);
+    HW_HDMI_CSC_COEF_C1_MSB.U = (uint8_t) (csc_coeff[2][0] >> 8);
+    HW_HDMI_CSC_COEF_C2_LSB.U = (uint8_t) (csc_coeff[2][1] & 0xFF);
+    HW_HDMI_CSC_COEF_C2_MSB.U = (uint8_t) (csc_coeff[2][1] >> 8);
+    HW_HDMI_CSC_COEF_C3_LSB.U = (uint8_t) (csc_coeff[2][2] & 0xFF);
+    HW_HDMI_CSC_COEF_C3_MSB.U = (uint8_t) (csc_coeff[2][2] >> 8);
+    HW_HDMI_CSC_COEFC4_LSB.U = (uint8_t) (csc_coeff[2][3] & 0xFF);
+    HW_HDMI_CSC_COEFC4_MSB.U = (uint8_t) (csc_coeff[2][3] >> 8);
 
-    writeb((readb(HDMI_CSC_SCALE) & 0xF0) | csc_scale, HDMI_CSC_SCALE);
+    HW_HDMI_CSC_SCALE.B.RESERVED0 = csc_scale;  //Note by Ray: the bf defined is wrong in .h file
 }
 
 /*!
@@ -278,8 +275,9 @@ void hdmi_video_csc(hdmi_data_info_s hdmi_instance)
     }
 
     /*configure the CSC registers */
-    writeb((interpolation << 4) | decimation, HDMI_CSC_CFG);
-    writeb((readb(HDMI_CSC_SCALE) & 0x0F) | (color_depth << 4), HDMI_CSC_SCALE);
+    HW_HDMI_CSC_CFG.B.DECMODE = decimation;
+    HW_HDMI_CSC_CFG.B.INTMODE = interpolation;
+    HW_HDMI_CSC_SCALE.B.CSC_COLORDE_PTH = color_depth;  // Ray: Typo in .h file
     update_csc_coeffs(hdmi_instance);
 }
 
@@ -335,39 +333,41 @@ void hdmi_video_packetize(hdmi_data_info_s hdmi_instance)
     }
 
     /*set the packetizer registers. */
-    writeb(color_depth << 4 | hdmi_instance.pix_repet_factor, HDMI_VP_PR_CD);
-    writebf(0x1, HDMI_VP_STUFF, 0, 1);
+    HW_HDMI_VP_PR_CD.B.COLOR_DEPTH = color_depth;
+    HW_HDMI_VP_PR_CD.B.DESIRED_PR_FACTOR = hdmi_instance.pix_repet_factor;
+
+    HW_HDMI_VP_STUFF.B.PR_STUFFING = 0x1;
     if (hdmi_instance.pix_repet_factor > 1) // data from repeter block
     {
-        writebf(1, HDMI_VP_CONF, 4, 1);
-        writebf(0, HDMI_VP_CONF, 2, 1);
+        HW_HDMI_VP_CONF.B.PR_EN = 1;
+        HW_HDMI_VP_CONF.B.BYPASS_SELECT = 0;
     } else {                    //data from packetizer block
-        writebf(0, HDMI_VP_CONF, 4, 1);
-        writebf(1, HDMI_VP_CONF, 2, 1);
+        HW_HDMI_VP_CONF.B.PR_EN = 0;
+        HW_HDMI_VP_CONF.B.BYPASS_SELECT = 1;
     }
-    writebf(0x1, HDMI_VP_STUFF, 5, 1);
-    writebf(remap_size, HDMI_VP_REMAP, 0, 2);
+    HW_HDMI_VP_STUFF.B.IDEFAULT_PHASE = 0x1;
+    HW_HDMI_VP_REMAP.B.YCC422_SIZE = remap_size;
 
     if (output_select == 0) {
-        writebf(0, HDMI_VP_CONF, 6, 1);
-        writebf(1, HDMI_VP_CONF, 5, 1);
-        writebf(0, HDMI_VP_CONF, 3, 1);
+        HW_HDMI_VP_CONF.B.BYPASS_EN = 0;
+        HW_HDMI_VP_CONF.B.PP_EN = 1;
+        HW_HDMI_VP_CONF.B.YCC422_EN = 0;
     } else if (output_select == 1) {
-        writebf(0, HDMI_VP_CONF, 6, 1);
-        writebf(0, HDMI_VP_CONF, 5, 1);
-        writebf(1, HDMI_VP_CONF, 3, 1);
+        HW_HDMI_VP_CONF.B.BYPASS_EN = 0;
+        HW_HDMI_VP_CONF.B.PP_EN = 0;
+        HW_HDMI_VP_CONF.B.YCC422_EN = 1;
     } else if (output_select == 2 || output_select == 3) {
-        writebf(1, HDMI_VP_CONF, 6, 1);
-        writebf(0, HDMI_VP_CONF, 5, 1);
-        writebf(0, HDMI_VP_CONF, 3, 1);
+        HW_HDMI_VP_CONF.B.BYPASS_EN = 1;
+        HW_HDMI_VP_CONF.B.PP_EN = 0;
+        HW_HDMI_VP_CONF.B.YCC422_EN = 0;
     } else {
         printf("Invalid output option %d\n", output_select);
         return;
     }
 
-    writebf(1, HDMI_VP_STUFF, 2, 1);
-    writebf(1, HDMI_VP_STUFF, 1, 1);
-    writebf(output_select, HDMI_VP_CONF, 0, 2);
+    HW_HDMI_VP_STUFF.B.YCC422_STUFFING = 0x1;
+    HW_HDMI_VP_STUFF.B.PP_STUFFING = 0x1;
+    HW_HDMI_VP_CONF.B.OUTPUT_SELECTOR = output_select;
 }
 
 /*! ------------------------------------------------------------
@@ -385,11 +385,11 @@ void hdmi_video_packetize(hdmi_data_info_s hdmi_instance)
 void preamble_filter_set(uint8_t value, uint8_t channel)
 {
     if (channel == 0) {
-        writeb(value, HDMI_FC_CH0PREAM);
+        HW_HDMI_FC_CH0PREAM.B.CH0_PREAMBLE_FILTER = value;
     } else if (channel == 1) {
-        writebf(value, HDMI_FC_CH1PREAM, 0, 6);
+        HW_HDMI_FC_CH1PREAM.B.CH1_PREAMBLE_FILTER = value;
     } else if (channel == 2) {
-        writebf(value, HDMI_FC_CH2PREAM, 0, 6);
+        HW_HDMI_FC_CH2PREAM.B.CH2_PREAMBLE_FILTER = value;
     } else {
         printf("Invalid channel number %d\n", channel);
     }
@@ -409,7 +409,8 @@ void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance)
     hdmi_set_video_mode(hdmi_instance->video_mode);
 
     // configure HDMI_FC_INVIDCONF register
-    writebf((hdmi_instance->hdcp_enable == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 7, 1);
+#if 1 // Note by Ray: this part should be replaced once the new register header are ready
+	writebf((hdmi_instance->hdcp_enable == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 7, 1);
     writebf((hdmi_instance->video_mode->mVSyncPolarity == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 6, 1);
     writebf((hdmi_instance->video_mode->mHSyncPolarity == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 5, 1);
     writebf((hdmi_instance->video_mode->mDataEnablePolarity == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 4,
@@ -421,34 +422,32 @@ void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance)
         writebf((hdmi_instance->video_mode->mInterlaced == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 1, 1);
     }
     writebf((hdmi_instance->video_mode->mInterlaced == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 0, 1);
+#endif
 
-    writebf((unsigned char)hdmi_instance->video_mode->mHActive, HDMI_FC_INHACTV0, 0, 8);
-    writebf((unsigned char)(hdmi_instance->video_mode->mHActive >> 8), HDMI_FC_INHACTV1, 0, 4);
-    writebf((unsigned char)hdmi_instance->video_mode->mHBlanking, HDMI_FC_INHBLANK0, 0, 8);
-    writebf((unsigned char)(hdmi_instance->video_mode->mHBlanking >> 8), HDMI_FC_INHBLANK1, 0, 2);
-    writebf((unsigned char)hdmi_instance->video_mode->mVActive, HDMI_FC_INVACTV0, 0, 8);
-    writebf((unsigned char)(hdmi_instance->video_mode->mVActive >> 8), HDMI_FC_INVACTV1, 0, 3);
-    writebf((unsigned char)hdmi_instance->video_mode->mVBlanking, HDMI_FC_INVBLANK, 0, 8);
-    writebf((unsigned char)hdmi_instance->video_mode->mHSyncOffset, HDMI_FC_HSYNCINDELAY0, 0, 8);
-    writebf((unsigned char)(hdmi_instance->video_mode->mHSyncOffset >> 8), HDMI_FC_HSYNCINDELAY1, 0,
-            3);
-    writebf((unsigned char)hdmi_instance->video_mode->mHSyncPulseWidth, HDMI_FC_HSYNCINWIDTH0, 0,
-            8);
-    writebf((unsigned char)(hdmi_instance->video_mode->mHSyncPulseWidth >> 8),
-            HDMI_FC_HSYNCINWIDTH1, 0, 1);
-    writebf((unsigned char)hdmi_instance->video_mode->mVSyncOffset, HDMI_FC_VSYNCINDELAY, 0, 8);
-    writebf((unsigned char)hdmi_instance->video_mode->mVSyncPulseWidth, HDMI_FC_VSYNCINWIDTH, 0, 6);
-
-    writeb(12, HDMI_FC_CTRLDUR);    //control period minimum duration
-    writeb(32, HDMI_FC_EXCTRLDUR);
-    writeb(1, HDMI_FC_EXCTRLSPAC);
+	HW_HDMI_FC_INHACTIV0.U = hdmi_instance->video_mode->mHActive;
+    HW_HDMI_FC_INHACTIV1.B.H_IN_ACTIV = (hdmi_instance->video_mode->mHActive >> 8);
+    HW_HDMI_FC_INHBLANK0.U = hdmi_instance->video_mode->mHBlanking;
+    HW_HDMI_FC_INHBLANK1.B.H_IN_BLANK = (hdmi_instance->video_mode->mHBlanking >> 8);
+    HW_HDMI_FC_INVACTIV0.U = hdmi_instance->video_mode->mVActive;
+    HW_HDMI_FC_INVACTIV1.B.V_IN_ACTIV = (hdmi_instance->video_mode->mVActive >> 8);
+    HW_HDMI_FC_INVBLANK.U = (uint8_t)hdmi_instance->video_mode->mVBlanking;
+    HW_HDMI_FC_HSYNCINDELAY0.U = (uint8_t)hdmi_instance->video_mode->mHSyncOffset;
+    HW_HDMI_FC_HSYNCINDELAY1.B.H_IN_DELAY = (uint8_t)(hdmi_instance->video_mode->mHSyncOffset >> 8);
+	HW_HDMI_FC_HSYNCINWIDTH0.U = hdmi_instance->video_mode->mHSyncPulseWidth;
+	HW_HDMI_FC_HSYNCINWIDTH1.B.H_IN_WIDTH = (hdmi_instance->video_mode->mHSyncPulseWidth >> 8);
+	HW_HDMI_FC_VSYNCINDELAY.U = hdmi_instance->video_mode->mVSyncOffset;
+	HW_HDMI_FC_VSYNCINWIDTH.B.V_IN_WIDTH = hdmi_instance->video_mode->mVSyncPulseWidth;
+    
+	HW_HDMI_FC_CTRLDUR.U = 12; //control period minimum duration
+	HW_HDMI_FC_EXCTRLDUR.U = 32;
+	HW_HDMI_FC_EXCTRLSPAC.U = 1;
 
     for (i = 0; i < 3; i++) {
         preamble_filter_set((i + 1) * 11, i);
     }
 
     /*pixel repetition setting. */
-    writebf(hdmi_instance->video_mode->mPixelRepetitionInput + 1, HDMI_FC_PRCONF, 4, 4);
+	HW_HDMI_FC_PRCONF.B.INCOMING_PR_FACTOR = hdmi_instance->video_mode->mPixelRepetitionInput + 1;
 }
 
 /*! ------------------------------------------------------------
@@ -463,9 +462,11 @@ void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance)
  */
 void hdmi_tx_hdcp_config(uint32_t de)
 {
+#if 1 // Note by Ray: this part should be replaced once the new register header are ready
     writebf(0, HDMI_A_HDCPCFG0, 2, 1);  //disable rx detect
     writebf((de == TRUE) ? 1 : 0, HDMI_A_VIDPOLCFG, 4, 1);
     writebf(1, HDMI_A_HDCPCFG1, 1, 1);
+#endif
 }
 
 /*! ------------------------------------------------------------
@@ -480,13 +481,10 @@ void hdmi_tx_hdcp_config(uint32_t de)
  */
 void hdmi_config_force_video(uint8_t force)
 {
-    uint8_t regval = 0;
     if (force) {
-        regval = readb(HDMI_FC_DBGFORCE);
-        writeb((regval | 1), HDMI_FC_DBGFORCE); // set bit 0 to force video from FC_DBGTMDSx registers
+        HW_HDMI_FC_DBGFORCE.B.FORCEVIDEO = 0x1;
     } else {
-        regval = readb(HDMI_FC_DBGFORCE);
-        writeb((regval & 0xFE), HDMI_FC_DBGFORCE);  // clear bit 0 to disable forced video
+        HW_HDMI_FC_DBGFORCE.B.FORCEVIDEO = 0x0;
     }
 }
 
@@ -499,7 +497,7 @@ void hdmi_config_force_video(uint8_t force)
  */
 void hdmi_config_forced_pixels(uint8_t red, uint8_t green, uint8_t blue)
 {
-    writeb(red, HDMI_FC_DBGTMDS2);  //R
-    writeb(green, HDMI_FC_DBGTMDS1);    //G
-    writeb(blue, HDMI_FC_DBGTMDS0); //B
+    HW_HDMI_FC_DBGTMDS2.U = red;
+    HW_HDMI_FC_DBGTMDS1.U = green;
+    HW_HDMI_FC_DBGTMDS0.U = blue;
 }

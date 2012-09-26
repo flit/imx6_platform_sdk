@@ -15,13 +15,14 @@
 #include <stdio.h>
 #include "hardware.h"
 #include "hdmi_tx.h"
+#include "registers/regshdmi.h"
 
 /*!
  * configure the interrupt mask of source PHY.
  */
 void hdmi_phy_int_mask(int mask)
 {
-    writeb(mask, HDMI_PHY_MASK0);
+    HW_HDMI_PHY_MASK0.U = mask;
 }
 
 /*!
@@ -30,16 +31,16 @@ void hdmi_phy_int_mask(int mask)
  */
 void hdmi_phy_de_pol(int pol)
 {
-    writebf(pol, HDMI_PHY_CONF0, 1, 1);
+    HW_HDMI_PHY_CONF0.B.SELDATAENPOL = pol;
 }
 
 /*!
- * select the interface control??
+ * select the interface control
  * @param  seldipif: interface selection
  */
 void hdmi_phy_if_sel(int seldipif)
 {
-    writebf(seldipif, HDMI_PHY_CONF0, 0, 1);
+    HW_HDMI_PHY_CONF0.B.SELDIPIF = seldipif;
 }
 
 /*!
@@ -48,7 +49,7 @@ void hdmi_phy_if_sel(int seldipif)
  */
 void hdmi_phy_tmds(int en)
 {
-    writebf(en, HDMI_PHY_CONF0, 6, 1);
+    HW_HDMI_PHY_CONF0.B.ENTMDS = en;
 }
 
 /*!
@@ -59,7 +60,7 @@ void hdmi_phy_tmds(int en)
  */
 void hdmi_phy_pdown(int en)
 {
-    writebf(en, HDMI_PHY_CONF0, 7, 1);
+    HW_HDMI_PHY_CONF0.B.PDZ = en;
 }
 
 /*!
@@ -70,32 +71,32 @@ void hdmi_phy_pdown(int en)
  */
 void hdmi_phy_reset(uint8_t bit)
 {
-    writebf(bit ? 0 : 1, HDMI_MC_PHYRSTZ, 0, 1);
+    HW_HDMI_MC_PHYRSTZ.B.PHYRSTZ = bit ? 0 : 1;
 }
 
 static inline void hdmi_phy_test_clear(uint8_t bit)
 {
-    writebf(bit, HDMI_PHY_TST0, 5, 1);
+    HW_HDMI_PHY_TST0.B.TESTCLR = bit;
 }
 
 static inline void hdmi_phy_test_enable(uint8_t bit)
 {
-    writebf(bit, HDMI_PHY_TST0, 4, 1);
+    HW_HDMI_PHY_TST0.B.TESTEN = bit;
 }
 
 static inline void hdmi_phy_test_clock(uint8_t bit)
 {
-    writebf(bit, HDMI_PHY_TST0, 0, 1);
+    HW_HDMI_PHY_TST0.B.TESTCLK = bit;
 }
 
 static inline void hdmi_phy_test_din(uint8_t bit)
 {
-    writeb(bit, HDMI_PHY_TST1);
+    HW_HDMI_PHY_TST1.U = bit;
 }
 
 static inline void hdmi_phy_test_dout(uint8_t bit)
 {
-    writeb(bit, HDMI_PHY_TST2);
+    HW_HDMI_PHY_TST2.U = bit;
 }
 
 static int hdmi_phy_test_control(uint8_t value)
@@ -121,17 +122,17 @@ static int hdmi_phy_test_data(uint8_t value)
 
 static void hdmi_phy_gen2_tx_pon(uint8_t bit)
 {
-    writebf(bit, HDMI_PHY_CONF0, 3, 1); //gen2 tx power on
+    HW_HDMI_PHY_CONF0.B.GEN2_TXPWRON = bit;
 }
 
 static void hdmi_phy_gen2_pddq(uint8_t bit)
 {
-    writebf(bit, HDMI_PHY_CONF0, 4, 1); //gen2 pddq
+    HW_HDMI_PHY_CONF0.B.GEN2_PDDQ = bit;
 }
 
 static void hdmi_heacphy_reset(uint8_t bit)
 {
-    writebf(bit, HDMI_MC_HEACPHY_RST, 0, 1);    //gen2 pddq
+    HW_HDMI_MC_HEACPHY_RST.B.HEACPHYRST = bit;
 }
 
 /*!
@@ -143,14 +144,16 @@ static void hdmi_heacphy_reset(uint8_t bit)
 int hdmi_phy_wait_i2c_done(int msec)
 {
     unsigned char val = 0;
-    val = readb(HDMI_IH_I2CMPHY_STAT0) & 0x3;
+    val |= (HW_HDMI_IH_I2CMPHY_STAT0.B.I2CMPHYERROR << BP_HDMI_IH_I2CMPHY_STAT0_I2CMPHYERROR);
+    val |= (HW_HDMI_IH_I2CMPHY_STAT0.B.I2CMPHYDONE << BP_HDMI_IH_I2CMPHY_STAT0_I2CMPHYDONE);
     while (val == 0) {
         hal_delay_us(1000);
         if (msec-- == 0) {
             printf("HDMI PHY i2c operation time out!!\n");
             return FALSE;
         }
-        val = readb(HDMI_IH_I2CMPHY_STAT0) & 0x3;
+        val |= (HW_HDMI_IH_I2CMPHY_STAT0.B.I2CMPHYERROR << BP_HDMI_IH_I2CMPHY_STAT0_I2CMPHYERROR);
+        val |= (HW_HDMI_IH_I2CMPHY_STAT0.B.I2CMPHYDONE << BP_HDMI_IH_I2CMPHY_STAT0_I2CMPHYDONE);
     }
     return TRUE;
 }
@@ -166,11 +169,11 @@ int hdmi_phy_wait_i2c_done(int msec)
  */
 int hdmi_phy_i2c_write(uint16_t data, uint8_t addr)
 {
-    writeb(0xFF, HDMI_IH_I2CMPHY_STAT0);
-    writeb(addr, HDMI_PHY_I2CM_ADDRESS_ADDR);
-    writeb((uint8_t) (data >> 8), HDMI_PHY_I2CM_DATAO_1_ADDR);
-    writeb((uint8_t) (data >> 0), HDMI_PHY_I2CM_DATAO_0_ADDR);
-    writebf(1, HDMI_PHY_I2CM_OPERATION_ADDR, 4, 1);
+    HW_HDMI_IH_I2CMPHY_STAT0.U = 0xFF;
+    HW_HDMI_PHY_I2CM_ADDRESS_ADDR.U = addr;
+    HW_HDMI_PHY_I2CM_DATAO_1_ADDR.U = (uint8_t) (data >> 8);
+    HW_HDMI_PHY_I2CM_DATAO_0_ADDR.U = (uint8_t) data;
+    HW_HDMI_PHY_I2CM_OPERATION_ADDR.B.WRITE = 1;
     return hdmi_phy_wait_i2c_done(1000);
 }
 
@@ -185,12 +188,13 @@ uint16_t hdmi_phy_i2c_read(uint8_t addr)
 {
     uint16_t data;
     uint8_t msb = 0, lsb = 0;
-    writeb(0xFF, HDMI_IH_I2CMPHY_STAT0);
-    writeb(addr, HDMI_PHY_I2CM_ADDRESS_ADDR);
-    writebf(1, HDMI_PHY_I2CM_OPERATION_ADDR, 0, 1);
+
+    HW_HDMI_IH_I2CMPHY_STAT0.U = 0xFF;
+    HW_HDMI_PHY_I2CM_ADDRESS_ADDR.U = addr;
+    HW_HDMI_PHY_I2CM_OPERATION_ADDR.B.READ = 1;
     hdmi_phy_wait_i2c_done(1000);
-    msb = readb(HDMI_PHY_I2CM_DATAI_1_ADDR);
-    lsb = readb(HDMI_PHY_I2CM_DATAI_0_ADDR);
+    msb = HW_HDMI_PHY_I2CM_DATAI_1_ADDR.U;
+    lsb = HW_HDMI_PHY_I2CM_DATAI_0_ADDR.U;
     data = (msb << 8) | lsb;
     return data;
 }
@@ -247,7 +251,6 @@ int hdmi_phy_configure(uint16_t pClk, uint8_t pRep, uint8_t cRes, int cscOn,
         printf("color resolution not supported %d", cRes);
         return FALSE;
     }
-
 #ifndef PHY_TNP
     uint16_t clk = 0, rep = 0;
     switch (pClk) {
@@ -285,15 +288,15 @@ int hdmi_phy_configure(uint16_t pClk, uint8_t pRep, uint8_t cRes, int cscOn,
     }
 #endif
 
-	writebf((cscOn == TRUE) ? 1 : 0, HDMI_MC_FLOWCTRL, 0, 1);
+    HW_HDMI_MC_FLOWCTRL.B.FEED_THROUGH_OFF = (cscOn == TRUE) ? 1 : 0;
     // clock gate == 0 => turn on modules
-    writebf(0, HDMI_MC_CLKDIS, 0, 1);
-    writebf(0, HDMI_MC_CLKDIS, 1, 1);
-    writebf((pRep > 0) ? 1 : 0, HDMI_MC_CLKDIS, 2, 1);
-    writebf((audioOn == TRUE) ? 1 : 0, HDMI_MC_CLKDIS, 3, 1);
-    writebf((cscOn == TRUE) ? 1 : 0, HDMI_MC_CLKDIS, 4, 1);
-    writebf((cecOn == TRUE) ? 1 : 0, HDMI_MC_CLKDIS, 5, 1);
-    writebf((hdcpOn == TRUE) ? 1 : 0, HDMI_MC_CLKDIS, 6, 1);
+    HW_HDMI_MC_CLKDIS.B.PIXELCLK_DISABLE = 0;
+    HW_HDMI_MC_CLKDIS.B.TMDSCLK_DISABLE = 0;
+    HW_HDMI_MC_CLKDIS.B.PREPCLK_DISABLE = (pRep > 0) ? 1 : 0;
+    HW_HDMI_MC_CLKDIS.B.AUDCLK_DISABLE = (audioOn == TRUE) ? 1 : 0;
+    HW_HDMI_MC_CLKDIS.B.CSCCLK_DISABLE = (cscOn == TRUE) ? 1 : 0;
+    HW_HDMI_MC_CLKDIS.B.CECCLK_DISABLE = (cecOn == TRUE) ? 1 : 0;
+    HW_HDMI_MC_CLKDIS.B.HDCPCLK_DISABLE = (hdcpOn == TRUE) ? 1 : 0;
 
 #ifdef PHY_GEN2
     hdmi_phy_gen2_tx_pon(0);
@@ -667,7 +670,7 @@ int hdmi_phy_configure(uint16_t pClk, uint8_t pRep, uint8_t cRes, int cscOn,
     hdmi_phy_tmds(0);           // toggle TMDS
     hdmi_phy_tmds(1);
 #endif
-    if ((readb(HDMI_PHY_STAT0) & 0x01) == 0) {
+    if (HW_HDMI_IH_PHY_STAT0.B.TX_PHY_LOCK == 0) {
         //printf("PHY PLL not locked");
         return FALSE;
     }

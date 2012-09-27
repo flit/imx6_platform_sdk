@@ -10,58 +10,118 @@
 
 #include "sdk.h"
 
-#define PWMIR_MASK_FIE ((uint32_t)0x1)  /* FIFO empty */
-#define PWMIR_MASK_RIE ((uint32_t)0x2)  /* Rollover */
-#define PWMIR_MASK_CIE ((uint32_t)0x4)  /* Compare */
+//! @addtogroup diag_pwm
+//! @{
 
-#define PWMSR_MASK_FE  ((uint32_t)0x00000008)   /* FIFO empty */
-#define PWMSR_MASK_ROV ((uint32_t)0x00000010)   /* Rollover */
-#define PWMSR_MASK_CMP ((uint32_t)0x00000020)   /* Compare */
-#define PWMSR_MASK_FWE ((uint32_t)0x00000040)   /* FIFO write error */
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
 
-/*!
- * Initialize PWM module, setup samples and pulse width.
- *     Pulse Width = (prescale * period) / Fsrc (second)
- *     Duty Cycle = sample[idx] / period
- * Return
- *     TRUE on success
- *     FALSE on fail
- */
-extern int pwm_init(struct hw_module *, /* device instance */
-                    uint16_t,   /* frequency prescale */
-                    uint16_t,   /* period value */
-                    uint16_t *, /* sample list */
-                    uint32_t);  /* sample count */
+//! @name Available PWM interrupts.
+enum _pwm_interrupts
+{
+    kPwmFifoEmptyIrq = 1 << 0,       //!< FIFO empty interrupt.
+    kPwmRolloverIrq = 1 << 1,   //!< Rollover interrupt. The counter has reached the period and reset.
+    kPwmCompareIrq = 1 << 2     //!< Compare interrupt. The counter value matches the current sample value
+};
 
-/*!
- * Enable/Disable PWM interrupt.
- * Mask could be one or ORed of below:
- *     PWMIR_MASK_FIE
- *     PWMIR_MASK_RIE
- *     PWMIR_MASK_CIE
- */
-extern void pwm_setup_interrupt(struct hw_module *, /* device instance */
-                                uint8_t,    /* enable or disable */
-                                uint8_t);   /* interrupt mask */
+//! @name Clock sources for the PWM.
+//!
+//! Pass one of these values in the hw_module_t::freq member.
+enum _pwm_clksrc
+{
+    kPwmClockSourceNone = 0,
+    kPwmClockSourceIpg = 1,
+    kPwmClockSourceCkih = 2,
+    kPwmClockSourceCkil = 3
+};
 
-/*!
- * Clear interrupt status
- * Mask could be one or ORed of below:
- *     PWMSR_MASK_FE
- *     PWMSR_MASK_ROV
- *     PWMSR_MASK_CMP
- */
-void pwm_clear_int_status(struct hw_module *,   /* device instance */
-                          uint32_t);    /* status mask */
+////////////////////////////////////////////////////////////////////////////////
+// API
+////////////////////////////////////////////////////////////////////////////////
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
 
 /*!
- * Enable PWM output.
+ * @brief Initialize PWM module.
+ *
+ * Sets up samples and pulse width.
+ * - Pulse Width = (prescale * period) / Fsrc (second)
+ * - Duty Cycle = sample[idx] / period
+ *
+ * @param port Device instance.
+ * @param prescale Frequency prescale.
+ * @param period Period value.
+ * @param sample Sample list.
+ * @param smp_cnt Sample count.
+ *
+ * @retval TRUE on success
+ * @retval FALSE on fail
  */
-extern void pwm_enable(struct hw_module *);
+int pwm_init(struct hw_module * port,
+                    uint16_t prescale,
+                    uint16_t period,
+                    uint16_t * sample,
+                    uint32_t smp_cnt);
 
 /*!
- * Disable PWM ouput.
+ * @brief Setup interrupt service routine.
+ *
+ * The @a mask parameter should be composed of one or more of the below:
+ *    - #kPwmFifoEmptyIrq
+ *    - #kPwmRolloverIrq
+ *    - #kPwmCompareIrq
+ *
+ * @param port Device instance.
+ * @param state Pass true or false to enable or disable interrupts.
+ * @param mask Mask of interrupts to enable or disable.
  */
-extern void pwm_disable(struct hw_module *);
+void pwm_setup_interrupt(struct hw_module * port,
+                                bool state,
+                                uint8_t mask);
+
+/*!
+ * @brief Clear status that will issue interrupt.
+ *
+ * The @a mask parameter should be composed of one or more of the below:
+ *    - #kPwmFifoEmptyIrq
+ *    - #kPwmRolloverIrq
+ *    - #kPwmCompareIrq
+ *
+ * @param port Device instance.
+ * @param mask Mask of status bits to clear.
+ */
+void pwm_clear_int_status(struct hw_module * port,
+                          uint32_t mask);
+
+/*!
+ * @brief Enable PWM output.
+ *
+ * The PWM counter starts counting and the waveform is produced on the output
+ * pin. Interrupts will be triggered upon compare and rollover.
+ *
+ * @param port Device instance.
+ */
+void pwm_enable(struct hw_module * port);
+
+/*!
+ * @brief Disable PWM ouput.
+ *
+ * Stops the PWM counter.
+ *
+ * @param port Device instance.
+ */
+void pwm_disable(struct hw_module * port);
+
+#if defined(__cplusplus)
+}
+#endif
+
+//! @}
 
 #endif
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

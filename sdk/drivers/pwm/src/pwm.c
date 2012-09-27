@@ -6,123 +6,139 @@
 */
 
 #include "pwm/pwm_ifc.h"
-#include "pwm.h"
 #include "interrupt.h"
+#include "iomux_config.h"
+#include "registers/regspwm.h"
 
-/*!
- * Intialize the PWM module.
- */
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+
+//! Number of sample FIFO entries.
+#define PWM_CNT_FIFO_SZ       (4)
+
+////////////////////////////////////////////////////////////////////////////////
+// Code
+////////////////////////////////////////////////////////////////////////////////
+
 int pwm_init(struct hw_module *port, uint16_t prescale, uint16_t period,
              uint16_t * sample, uint32_t smp_cnt)
 {
     int idx;
 
-    pwm_reg_p reg_base = (pwm_reg_p) port->base;
+    // Configure pins.
+    pwm_iomux_config(port->instance);
 
-    /* IOMUX */
-    if (port->iomux_config != NULL) {
-        port->iomux_config();
-    }
+    // Disable PWM first 
+    HW_PWM_PWMCR(port->instance).B.EN = 0;
 
-    /* Disable PWM first */
-    reg_base->pwmcr &= ~PWMCR_MASK_ENABLE;
-
-    /* Set clock source */
-    if ((port->freq < CLK_SRC_IPG) || (port->freq > CLK_SRC_CKIL)) {
+    // Verify and set clock source 
+    if ((port->freq < kPwmClockSourceIpg) || (port->freq > kPwmClockSourceCkil))
+    {
+#if DEBUG
         printf("Invalid clock source selection.\n");
         return FALSE;
+#endif
     }
 
-    reg_base->pwmcr &= ~PWMCR_MASK_CLKSRC;
-    reg_base->pwmcr |= port->freq << PWMCR_SHIFT_CLKSRC;
+    HW_PWM_PWMCR(port->instance).B.CLKSRC = port->freq;
 
-    /* Set FIFO watermark to 4 empty slots */
-    reg_base->pwmcr &= ~PWMCR_MASK_FWM;
-    reg_base->pwmcr |= PWMCR_FWM_SLOT4;
+    // Set FIFO watermark to 4 empty slots 
+    HW_PWM_PWMCR(port->instance).B.FWM = 3;
 
-    /* Set prescale */
-    if (prescale >= PWMCR_PRESCALER_MAX) {
+    // Set prescale after checking its range.
+    if (prescale >= (BM_PWM_PWMCR_PRESCALER >> BP_PWM_PWMCR_PRESCALER))
+    {
+#if DEBUG
         printf("Invalid prescaler value.\n");
+#endif
         return FALSE;
     }
 
-    reg_base->pwmcr &= ~PWMCR_MASK_PRESCALER;
-    reg_base->pwmcr |= prescale << PWMCR_SHIFT_PRESCALER;
+    HW_PWM_PWMCR(port->instance).B.PRESCALER = prescale;
 
-    /* Set period */
-    reg_base->pwmpr = period;
+    // Set period 
+    HW_PWM_PWMPR(port->instance).B.PERIOD = period;
 
-    /* Write count to FIFO */
-    if ((smp_cnt > PWM_CNT_FIFO_SZ) || (smp_cnt < 1)) {
+    // Write count to FIFO 
+    if ((smp_cnt > PWM_CNT_FIFO_SZ) || (smp_cnt < 1))
+    {
+#if DEBUG
         printf("Invalid number of samples.\n");
+#endif
         return FALSE;
     }
 
-    for (idx = 0; idx < smp_cnt; idx++) {
-        reg_base->pwmsar = sample[idx];
+    for (idx = 0; idx < smp_cnt; idx++)
+    {
+        HW_PWM_PWMSAR(port->instance).B.SAMPLE = sample[idx];
     }
 
     return TRUE;
 }
 
-/*!
- * Clear status that will issue interrupt
- */
 void pwm_clear_int_status(struct hw_module *port, uint32_t mask)
 {
-    pwm_reg_p reg_base = (pwm_reg_p) port->base;
+    // Convert mask from abstract constants to register bitmasks.
+    uint32_t convertedMask = 0;
+    if (mask & kPwmFifoEmptyIrq)
+    {
+        convertedMask |= BM_PWM_PWMSR_FE;
+    }
+    if (mask & kPwmRolloverIrq)
+    {
+        convertedMask |= BM_PWM_PWMSR_ROV;
+    }
+    if (mask & kPwmCompareIrq)
+    {
+        convertedMask |= BM_PWM_PWMSR_CMP;
+    }
 
-    reg_base->pwmsr = mask;
+    // Clear status bits by writing 1s.
+    HW_PWM_PWMSR_WR(port->instance, convertedMask);
 }
 
-/*!
- * Setup interrupt service routine.
- */
-void pwm_setup_interrupt(struct hw_module *port, uint8_t state, uint8_t mask)
+void pwm_setup_interrupt(struct hw_module *port, bool state, uint8_t mask)
 {
-    pwm_reg_p reg_base = (pwm_reg_p) port->base;
-
-    if (state == TRUE) {
-        /* Disable the IRQ first */
+    if (state)
+    {
+        // Disable the IRQ first 
         disable_interrupt(port->irq_id, CPU_0);
 
-        /* Clear status register */
-        reg_base->pwmsr = PWMSR_MASK_ALL;
+        // Clear status register 
+        HW_PWM_PWMSR_WR(port->instance, BM_PWM_PWMSR_FE | BM_PWM_PWMSR_ROV | BM_PWM_PWMSR_CMP | BM_PWM_PWMSR_FWE);
 
-        /* Register the IRQ sub-routine */
+        // Register the IRQ sub-routine 
         register_interrupt_routine(port->irq_id, port->irq_subroutine);
 
-        /* Enable the IRQ at ARM core level */
+        // Enable the IRQ at ARM core level 
         enable_interrupt(port->irq_id, CPU_0, 0);
 
-        /* Enable interrupt to status */
-        reg_base->pwmir &= ~PWMIR_MASK_INT;
-        reg_base->pwmir |= mask;
-    } else {
-        /* Disalbe the IRQ at ARM core level */
+        // Enable interrupt to status 
+        HW_PWM_PWMIR(port->instance).B.FIE = ((mask & kPwmFifoEmptyIrq) != 0);
+        HW_PWM_PWMIR(port->instance).B.RIE = ((mask & kPwmRolloverIrq) != 0);
+        HW_PWM_PWMIR(port->instance).B.CIE = ((mask & kPwmCompareIrq) != 0);
+    }
+    else
+    {
+        // Disable the IRQ at ARM core level 
         disable_interrupt(port->irq_id, CPU_0);
 
-        /* Clear interrupt enable */
-        reg_base->pwmir &= PWMIR_MASK_INT;
+        // Clear all interrupt enables.
+        HW_PWM_PWMIR_WR(port->instance, 0);
     }
 }
 
-/*!
- * Enable PWM output
- */
 void pwm_enable(struct hw_module *port)
 {
-    pwm_reg_p reg_base = (pwm_reg_p) port->base;
-
-    reg_base->pwmcr |= PWMCR_MASK_ENABLE;
+    HW_PWM_PWMCR(port->instance).B.EN = 1;
 }
 
-/*!
- * Disable PWM output
- */
 void pwm_disable(struct hw_module *port)
 {
-    pwm_reg_p reg_base = (pwm_reg_p) port->base;
-
-    reg_base->pwmcr &= ~PWMCR_MASK_ENABLE;
+    HW_PWM_PWMCR(port->instance).B.EN = 0;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

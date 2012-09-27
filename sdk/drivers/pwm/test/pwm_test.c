@@ -6,33 +6,32 @@
 */
 
 #include <stdio.h>
-
 #include "hardware.h"
 #include "pwm/pwm_ifc.h"
+#include "iomux_config.h"
 
-extern void pwm1_iomux_config(void);
 static void pwm_isr(void);
 
 static uint32_t pwm_test_end;
 
 static hw_module_t pwm1 = {
-    "PWM 1",                    /* name */
-    1,                          /* instance number */
-    PWM1_BASE_ADDR,             /* register base */
-    3,                          /* clock source CKIL */
-    IMX_INT_PWM1,               /* IRQ ID */
-    pwm_isr,                    /* ISR callback */
-    pwm1_iomux_config,          /* IOMUX */
+    "PWM 1",                    // name 
+    1,                          // instance number 
+    PWM1_BASE_ADDR,             // register base 
+    kPwmClockSourceCkil,        // clock source CKIL 
+    IMX_INT_PWM1,               // IRQ ID 
+    pwm_isr,                    // ISR callback 
+    pwm1_iomux_config,          // IOMUX 
 };
 
 static void pwm_isr(void)
 {
     printf("PWM output end.\n");
 
-    /* Clear FIFO empty status */
-    pwm_clear_int_status(&pwm1, PWMSR_MASK_FE);
+    // Clear FIFO empty status 
+    pwm_clear_int_status(&pwm1, kPwmFifoEmptyIrq);
 
-    /* Set PWM output end flag */
+    // Set PWM output end flag 
     pwm_test_end = TRUE;
 }
 
@@ -42,28 +41,28 @@ static void pwm_launch_test(void)
 
     pwm_test_end = FALSE;
 
-    /* Initialize PWM module */
+    // Initialize PWM module 
     if (FALSE == pwm_init(&pwm1, 1024, 32, sample, 3)) {
         printf("PWM init failed.\n");
         return;
     }
 
-    /* Setup interrupt for FIFO empty */
-    pwm_setup_interrupt(&pwm1, TRUE, PWMIR_MASK_FIE);
+    // Setup interrupt for FIFO empty 
+    pwm_setup_interrupt(&pwm1, TRUE, kPwmFifoEmptyIrq);
 
     printf("PWM output start.\n");
 
-    /* Enable PWM output */
+    // Enable PWM output 
     pwm_enable(&pwm1);
 
-    /* Wait until FIFO empty */
+    // Wait until FIFO empty 
     while (pwm_test_end == FALSE) ;
 
-    /* Disable PWM output */
+    // Disable PWM output 
     pwm_disable(&pwm1);
 
-    /* Disable PWM interrupt */
-    pwm_setup_interrupt(&pwm1, FALSE, PWMIR_MASK_FIE);
+    // Disable PWM interrupt 
+    pwm_setup_interrupt(&pwm1, FALSE, kPwmFifoEmptyIrq);
 }
 
 int pwm_test(void)

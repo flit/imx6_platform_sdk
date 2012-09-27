@@ -13,6 +13,7 @@
 #include "usdhc.h"
 #include "hardware.h"
 #include "usdhc_host.h"
+#include "registers/regsusdhc.h"
 
 const unsigned int sd_ocr_value[SD_OCR_VALUE_COUNT] = {
     SD_OCR_VALUE_HV_HC,
@@ -115,22 +116,31 @@ static int sd_set_bus_width(int base_address, int bus_width)
 }
 
 /********************************************* Global Function ******************************************/
-int sd_init(int base_address, int bus_width)
+/*!
+ * @brief Initialize SD - Get Card ID, Set RCA, Frequency and bus width.
+ * 
+ * @param instance     Instance number of the uSDHC module.
+ * @param bus_width    bus width to be configured.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+//int sd_init(int base_address, int bus_width)
+int sd_init(uint32_t instance, int bus_width)
 {
     int status = FAIL;
 
     usdhc_printf("Get CID.\n");
 
     /* Read CID */
-    if (card_get_cid(base_address) == SUCCESS) {
+    if (card_get_cid(instance) == SUCCESS) {
         usdhc_printf("Get RCA.\n");
 
         /* Obtain RCA */
-        if (sd_get_rca(base_address) == SUCCESS) {
+        if (sd_get_rca(instance) == SUCCESS) {
             usdhc_printf("Set operating frequency.\n");
 
             /* Enable Operating Freq */
-            host_cfg_clock(base_address, OPERATING_FREQ);
+            host_cfg_clock(instance, OPERATING_FREQ);
 
             if (bus_width == EIGHT) {
                 bus_width = FOUR;
@@ -139,13 +149,13 @@ int sd_init(int base_address, int bus_width)
             usdhc_printf("Enter transfer state.\n");
 
             /* Enter Transfer State */
-            if (card_enter_trans(base_address) == SUCCESS) {
+            if (card_enter_trans(instance) == SUCCESS) {
                 usdhc_printf("Set bus width.\n");
 
                 /* Set Bus Width for SD card */
-                if (sd_set_bus_width(base_address, bus_width) == SUCCESS) {
+                if (sd_set_bus_width(instance, bus_width) == SUCCESS) {
                     /* Set Bus Width for Controller */
-                    host_set_bus_width(base_address, bus_width);
+                    host_set_bus_width(instance, bus_width);
 
                     /* Set High Speed Here */
                     {
@@ -159,7 +169,15 @@ int sd_init(int base_address, int bus_width)
     return status;
 }
 
-int sd_voltage_validation(int base_address)
+/*!
+ * @brief Valid the voltage.
+ * 
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+//int sd_voltage_validation(int base_address)
+int sd_voltage_validation(uint32_t instance)
 {
     command_t cmd;
     command_response_t response;
@@ -167,9 +185,9 @@ int sd_voltage_validation(int base_address)
     unsigned int ocr_value = ZERO, card_usable = FAIL;
 
     /* Check uSDHC Port from Base Address */
-    port = card_get_port(base_address);
+    port = card_get_port(instance);
     if (port == USDHC_NUMBER_PORTS) {
-        printf("Base address: 0x%x not in address table.\n", base_address);
+        printf("Base address: 0x%x not in address table.\n", REGS_USDHC_BASE(instance));
         return status;
     }
 
@@ -178,7 +196,7 @@ int sd_voltage_validation(int base_address)
     while (loop < SD_IF_CMD_ARG_COUNT) {
         card_cmd_config(&cmd, CMD8, sd_if_cmd_arg[loop], READ, RESPONSE_48, DATA_PRESENT_NONE,
                         TRUE, TRUE);
-        if (host_send_cmd(base_address, &cmd) == FAIL) {
+        if (host_send_cmd(instance, &cmd) == FAIL) {
             loop++;
 
             if ((loop >= SD_IF_CMD_ARG_COUNT) && (loop < SD_OCR_VALUE_COUNT)) {
@@ -189,7 +207,7 @@ int sd_voltage_validation(int base_address)
         } else {
             /* Card is supporting SD spec version >= 2.0 */
             response.format = RESPONSE_48;
-            host_read_response(base_address, &response);
+            host_read_response(instance, &response);
 
             /* Check if response lies in the expected volatge range */
             if ((response.cmd_rsp0 & sd_if_cmd_arg[loop]) == sd_if_cmd_arg[loop]) {
@@ -217,20 +235,20 @@ int sd_voltage_validation(int base_address)
     while ((loop < SD_VOLT_VALID_COUNT) && (status == FAIL)) {
         card_cmd_config(&cmd, CMD55, ZERO, READ, RESPONSE_48, DATA_PRESENT_NONE, TRUE, TRUE);
 
-        if (host_send_cmd(base_address, &cmd) == FAIL) {
+        if (host_send_cmd(instance, &cmd) == FAIL) {
             usdhc_printf("Send CMD55 failed.\n");
             break;
         } else {
             card_cmd_config(&cmd, ACMD41, ocr_value, READ, RESPONSE_48, DATA_PRESENT_NONE, FALSE,
                             FALSE);
 
-            if (host_send_cmd(base_address, &cmd) == FAIL) {
+            if (host_send_cmd(instance, &cmd) == FAIL) {
                 usdhc_printf("Send ACMD41 failed.\n");
                 break;
             } else {
                 /* Check Response */
                 response.format = RESPONSE_48;
-                host_read_response(base_address, &response);
+                host_read_response(instance, &response);
 
                 /* Check Busy Bit Cleared or NOT */
                 if (response.cmd_rsp0 & CARD_BUSY_BIT) {

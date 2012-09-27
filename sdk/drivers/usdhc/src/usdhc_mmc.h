@@ -37,8 +37,8 @@
 #define BT_ACK		(0x1<<6)
 #define BP_MASK		(0x7<<3)
 
-#define BP_SHIFT 3
-#define ACK_SHIFT 6
+//#define BP_SHIFT 3
+//#define ACK_SHIFT 6
 
 /* offset in esd */
 #define MMC_ESD_OFF_PRT_CFG 179

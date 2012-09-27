@@ -15,6 +15,7 @@
 #include "hardware.h"
 #include "interrupt.h"
 #include "usdhc_host.h"
+#include "registers/regsusdhc.h"
 
 /* Global Variables */
 
@@ -71,7 +72,15 @@ int SDHC_ADMA_mode = FALSE;
 int SDHC_INTR_mode = FALSE;
 
 /********************************************* Static Function ******************************************/
-static int card_software_reset(int base_address)
+/*!
+ * @brief Softreset card and then send CMD0 to card
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+//static int card_software_reset(int base_address)
+static int card_software_reset(uint32_t instance)
 {
     command_t cmd;
     int response = FAIL;
@@ -82,19 +91,27 @@ static int card_software_reset(int base_address)
     usdhc_printf("Send CMD0.\n");
 
     /* Issue CMD0 to Card */
-    if (host_send_cmd(base_address, &cmd) == SUCCESS) {
+    if (host_send_cmd(instance, &cmd) == SUCCESS) {
         response = SUCCESS;
     }
 
     return response;
 }
 
-static int card_init_interrupt(int base_address)
+/*!
+ * @brief Enable interrupt for the card
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+//static int card_init_interrupt(int base_address)
+static int card_init_interrupt(uint32_t instance)
 {
-    int idx = card_get_port(base_address);
+    int idx = card_get_port(instance);
 
     if (idx == USDHC_NUMBER_PORTS) {
-        printf("Base address: 0x%x not in address table.\n", base_address);
+        printf("Base address: 0x%x not in address table.\n", REGS_USDHC_BASE(instance));
         return FAIL;
     }
 
@@ -111,80 +128,97 @@ static int card_init_interrupt(int base_address)
 }
 
 /********************************************* Global Function ******************************************/
-int card_init(int base_address, int bus_width)
+/*!
+ * @brief Card initialization
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * @param bus_width    Bus width
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+//int card_init(int base_address, int bus_width)
+int card_init(uint32_t instance, int bus_width)
 {
     int init_status = FAIL;
 
     /* Initialize uSDHC Controller */
-    host_init(base_address);
+    host_init(instance);
 
     /* Software Reset to Interface Controller */
-    host_reset(base_address, ESDHC_ONE_BIT_SUPPORT, ESDHC_LITTLE_ENDIAN_MODE);
+    host_reset(instance, ESDHC_ONE_BIT_SUPPORT, ESDHC_LITTLE_ENDIAN_MODE);
 
     /* Initialize interrupt */
-    if (card_init_interrupt(base_address) == FAIL) {
+    if (card_init_interrupt(instance) == FAIL) {
         printf("Interrupt initialize failed.\n");
         return FAIL;
     }
 
     /* Enable Identification Frequency */
-    host_cfg_clock(base_address, IDENTIFICATION_FREQ);
+    host_cfg_clock(instance, IDENTIFICATION_FREQ);
 
     /* Send Init 80 Clock */
-    host_init_active(base_address);
+    host_init_active(instance);
 
     usdhc_printf("Reset card.\n");
 
     /* Issue Software Reset to card */
-    if (card_software_reset(base_address) == FAIL) {
+    if (card_software_reset(instance) == FAIL) {
         return FAIL;
     }
 
     /* SD Voltage Validation */
-    if (sd_voltage_validation(base_address) == SUCCESS) {
+    if (sd_voltage_validation(instance) == SUCCESS) {
         usdhc_printf("SD voltage validation passed.\n");
 
         /* SD Initialization */
-        init_status = sd_init(base_address, bus_width);
+        init_status = sd_init(instance, bus_width);
     }
 
     /* MMC Voltage Validation */
-    else if (mmc_voltage_validation(base_address) == SUCCESS) {
+    else if (mmc_voltage_validation(instance) == SUCCESS) {
         usdhc_printf("MMC voltage validation passed.\n");
 
         /* MMC Initialization */
-        init_status = mmc_init(base_address, bus_width);
+        init_status = mmc_init(instance, bus_width);
     }
 
     return init_status;
 }
 
-int card_emmc_init(int base_address)
+/*!
+ * @brief eMMC Card initialization
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+//int card_emmc_init(int base_address)
+int card_emmc_init(uint32_t instance)
 {
     int init_status = FAIL;
 
     /* Initialize uSDHC Controller */
-    host_init(base_address);
+    host_init(instance);
 
     /* Software Reset to Interface Controller */
-    host_reset(base_address, ESDHC_ONE_BIT_SUPPORT, ESDHC_LITTLE_ENDIAN_MODE);
+    host_reset(instance, ESDHC_ONE_BIT_SUPPORT, ESDHC_LITTLE_ENDIAN_MODE);
 
     /* Enable Identification Frequency */
-    host_cfg_clock(base_address, IDENTIFICATION_FREQ);
+    host_cfg_clock(instance, IDENTIFICATION_FREQ);
 
     /* Send Init 80 Clock */
-    host_init_active(base_address);
+    host_init_active(instance);
 
     /* Issue Software Reset to card */
-    if (card_software_reset(base_address) == FAIL) {
+    if (card_software_reset(instance) == FAIL) {
         return init_status;
     }
 
     /* MMC Voltage Validation */
-    else if (mmc_voltage_validation(base_address) == SUCCESS) {
+    else if (mmc_voltage_validation(instance) == SUCCESS) {
 
         /* MMC Initialization */
-        init_status = emmc_init(base_address);
+        init_status = emmc_init(instance);
     }
 
     return init_status;
@@ -218,6 +252,18 @@ int card_get_csd(int base_address)
 }
 #endif
 
+/*!
+ * @brief Build up command
+ *
+ * @param cmd      IPointer of command to be build up.
+ * @param index    Command index.
+ * @param argument Argument of the command.
+ * @param transfer Command transfer type - Read, Write or SD command.
+ * @param format   Command response format
+ * @param data     0 - no data present, 1 - data present.
+ * @param src      0 - no CRC check, 1 - do CRC check
+ * @param cmdindex 0 - no check on command index, 1 - Check comamnd index
+ */
 void card_cmd_config(command_t * cmd, int index, int argument, xfer_type_t transfer,
                      response_format_t format, data_present_select data,
                      crc_check_enable crc, cmdindex_check_enable cmdindex)
@@ -247,7 +293,15 @@ void card_cmd_config(command_t * cmd, int index, int argument, xfer_type_t trans
     }
 }
 
-int card_get_cid(int base_address)
+/*!
+ * @brief Get Card CID
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+//int card_get_cid(int base_address) 
+int card_get_cid(uint32_t instance)
 {
     command_t cmd;
     int status = FAIL;
@@ -259,9 +313,9 @@ int card_get_cid(int base_address)
     usdhc_printf("Send CMD2.\n");
 
     /* Send CMD2 */
-    if (host_send_cmd(base_address, &cmd) == SUCCESS) {
+    if (host_send_cmd(instance, &cmd) == SUCCESS) {
         response.format = RESPONSE_136;
-        host_read_response(base_address, &response);
+        host_read_response(instance, &response);
 
         /* No Need to Save CID */
 
@@ -271,13 +325,21 @@ int card_get_cid(int base_address)
     return status;
 }
 
-int card_enter_trans(int base_address)
+/*!
+ * @brief Toggle the card between the standby and transfer states
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+//int card_enter_trans(int base_address)
+int card_enter_trans(uint32_t instance)
 {
     command_t cmd;
     int card_address, port, status = FAIL;
 
     /* Get port from base address */
-    port = card_get_port(base_address);
+    port = card_get_port(instance);
 
     /* Get RCA */
     card_address = usdhc_device[port].rca << RCA_SHIFT;
@@ -289,9 +351,9 @@ int card_enter_trans(int base_address)
     usdhc_printf("Send CMD7.\n");
 
     /* Send CMD7 */
-    if (host_send_cmd(base_address, &cmd) == SUCCESS) {
+    if (host_send_cmd(instance, &cmd) == SUCCESS) {
         /* Check if the card in TRAN state */
-        if (card_trans_status(base_address) == SUCCESS) {
+        if (card_trans_status(instance) == SUCCESS) {
             status = SUCCESS;
         }
     }
@@ -299,14 +361,22 @@ int card_enter_trans(int base_address)
     return status;
 }
 
-int card_trans_status(int base_address)
+/*!
+ * @brief Addressed card send its status register
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+//int card_trans_status(int base_address)
+int card_trans_status(uint32_t instance)
 {
     command_t cmd;
     command_response_t response;
     int card_state, card_address, port, status = FAIL;
 
     /* Get Port */
-    port = card_get_port(base_address);
+    port = card_get_port(instance);
 
     /* Get RCA */
     card_address = usdhc_device[port].rca << RCA_SHIFT;
@@ -317,10 +387,10 @@ int card_trans_status(int base_address)
     usdhc_printf("Send CMD13.\n");
 
     /* Send CMD13 */
-    if (host_send_cmd(base_address, &cmd) == SUCCESS) {
+    if (host_send_cmd(instance, &cmd) == SUCCESS) {
         /* Get Response */
         response.format = RESPONSE_48;
-        host_read_response(base_address, &response);
+        host_read_response(instance, &response);
 
         /* Read card state from response */
         card_state = CURR_CARD_STATE(response.cmd_rsp0);
@@ -332,10 +402,19 @@ int card_trans_status(int base_address)
     return status;
 }
 
-int card_get_port(int base_address)
+/*!
+ * @brief Get the card port 
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             The index of port
+ */
+//int card_get_port(int base_address)
+int card_get_port(uint32_t instance)
 {
     int idx;
-
+    int base_address = REGS_USDHC_BASE(instance);
+    
     for (idx = 0; idx < USDHC_NUMBER_PORTS; idx++) {
         if (usdhc_device[idx].reg_base == base_address) {
             break;
@@ -345,7 +424,16 @@ int card_get_port(int base_address)
     return idx;
 }
 
-int card_set_blklen(int base_address, int len)
+/*!
+ * @brief Set block length (in bytes) for read and write
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * @param len          Block length to be set
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+//int card_set_blklen(int base_address, int len)
+int card_set_blklen(uint32_t instance, int len)
 {
     command_t cmd;
     int status = FAIL;
@@ -356,22 +444,33 @@ int card_set_blklen(int base_address, int len)
     usdhc_printf("Send CMD16.\n");
 
     /* Send CMD16 */
-    if (host_send_cmd(base_address, &cmd) == SUCCESS) {
+    if (host_send_cmd(instance, &cmd) == SUCCESS) {
         status = SUCCESS;
     }
 
     return status;
 }
 
-int card_data_read(int base_address, int *dst_ptr, int length, int offset)
+/*!
+ * @brief Read data from card
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * @param dst_ptr      Data destination pointer
+ * @param length       Data length to be read
+ * @param offset       Data reading offset
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+//int card_data_read(int base_address, int *dst_ptr, int length, int offset)
+int card_data_read(uint32_t instance, int *dst_ptr, int length, int offset)
 {
     int port, sector;
     command_t cmd;
 
-    /* Get uSDHC port according to base address */
-    port = card_get_port(base_address);
+    /* Get uSDHC port according to instance */
+    port = card_get_port(instance);
     if (port == USDHC_NUMBER_PORTS) {
-        printf("Base address: 0x%x not in address table.\n", base_address);
+        printf("Base address: 0x%x not in address table.\n", REGS_USDHC_BASE(instance));
         return FAIL;
     }
 
@@ -401,20 +500,20 @@ int card_data_read(int base_address, int *dst_ptr, int length, int offset)
     }
 
     /* Set block length to card */
-    if (card_set_blklen(base_address, BLK_LEN) == FAIL) {
+    if (card_set_blklen(instance, BLK_LEN) == FAIL) {
         printf("Fail to set block length to card.\n");
         return FAIL;
     }
 
     /* Clear Rx FIFO */
-    host_clear_fifo(base_address);
+    host_clear_fifo(instance);
 
     /* Configure block length/number and watermark */
-    host_cfg_block(base_address, BLK_LEN, sector, ESDHC_BLKATTR_WML_BLOCK);
+    host_cfg_block(instance, BLK_LEN, sector, ESDHC_BLKATTR_WML_BLOCK);
 
     /* If DMA mode enabled, configure BD chain */
     if (SDHC_ADMA_mode == TRUE) {
-        host_setup_adma(base_address, dst_ptr, length);
+        host_setup_adma(instance, dst_ptr, length);
     }
 
     /* Use CMD18 for multi-block read */
@@ -423,7 +522,7 @@ int card_data_read(int base_address, int *dst_ptr, int length, int offset)
     usdhc_printf("card_data_read: Send CMD18.\n");
 
     /* Send CMD18 */
-    if (host_send_cmd(base_address, &cmd) == FAIL) {
+    if (host_send_cmd(instance, &cmd) == FAIL) {
         printf("Fail to send CMD18.\n");
         return FAIL;
     } else {
@@ -431,7 +530,7 @@ int card_data_read(int base_address, int *dst_ptr, int length, int offset)
         if (SDHC_ADMA_mode == FALSE) {
             usdhc_printf("Non-DMA mode, read data from FIFO.\n");
 
-            if (host_data_read(base_address, dst_ptr, length, ESDHC_BLKATTR_WML_BLOCK) == FAIL) {
+            if (host_data_read(instance, dst_ptr, length, ESDHC_BLKATTR_WML_BLOCK) == FAIL) {
                 printf("Fail to read data from card.\n");
                 return FAIL;
             }
@@ -443,15 +542,26 @@ int card_data_read(int base_address, int *dst_ptr, int length, int offset)
     return SUCCESS;
 }
 
-int card_data_write(int base_address, int *src_ptr, int length, int offset)
+/*!
+ * @brief Write data to card
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * @param src_ptr      Data source pointer
+ * @param length       Data length to be writen
+ * @param offset       Data writing offset
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+//int card_data_write(int base_address, int *src_ptr, int length, int offset)
+int card_data_write(uint32_t instance, int *src_ptr, int length, int offset)
 {
     int port, sector;
     command_t cmd;
 
     /* Get uSDHC port according to base address */
-    port = card_get_port(base_address);
+    port = card_get_port(instance);
     if (port == USDHC_NUMBER_PORTS) {
-        printf("Base address: 0x%x not in address table.\n", base_address);
+        printf("Base address: 0x%x not in address table.\n", REGS_USDHC_BASE(instance));
         return FAIL;
     }
 
@@ -481,17 +591,17 @@ int card_data_write(int base_address, int *src_ptr, int length, int offset)
     }
 
     /* Set block length to card */
-    if (card_set_blklen(base_address, BLK_LEN) == FAIL) {
+    if (card_set_blklen(instance, BLK_LEN) == FAIL) {
         printf("Fail to set block length to card.\n");
         return FAIL;
     }
 
     /* Configure block length/number and watermark */
-    host_cfg_block(base_address, BLK_LEN, sector, ESDHC_BLKATTR_WML_BLOCK << ESDHC_WML_WRITE_SHIFT);
+    host_cfg_block(instance, BLK_LEN, sector, ESDHC_BLKATTR_WML_BLOCK << ESDHC_WML_WRITE_SHIFT);
 
     /* If DMA mode enabled, configure BD chain */
     if (SDHC_ADMA_mode == TRUE) {
-        host_setup_adma(base_address, src_ptr, length);
+        host_setup_adma(instance, src_ptr, length);
     }
 
     /* Use CMD25 for multi-block write */
@@ -500,14 +610,14 @@ int card_data_write(int base_address, int *src_ptr, int length, int offset)
     usdhc_printf("card_data_write: Send CMD25.\n");
 
     /* Send CMD25 */
-    if (host_send_cmd(base_address, &cmd) == FAIL) {
+    if (host_send_cmd(instance, &cmd) == FAIL) {
         printf("Fail to send CMD25.\n");
         return FAIL;
     } else {
         if (SDHC_ADMA_mode == FALSE) {
             usdhc_printf("Non-DMA mode, write to FIFO.\n");
 
-            if (host_data_write(base_address, src_ptr, length, ESDHC_BLKATTR_WML_BLOCK) == FAIL) {
+            if (host_data_write(instance, src_ptr, length, ESDHC_BLKATTR_WML_BLOCK) == FAIL) {
                 printf("Fail to write data to card.\n");
                 return FAIL;
             }
@@ -519,12 +629,21 @@ int card_data_write(int base_address, int *src_ptr, int length, int offset)
     return SUCCESS;
 }
 
-int card_xfer_result(int base_address, int *result)
+/*!
+ * @brief Get card status
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * @param result       Card status
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+//int card_xfer_result(int base_address, int *result)
+int card_xfer_result(uint32_t instance, int *result)
 {
-    int idx = card_get_port(base_address);
+    int idx = card_get_port(instance);
 
     if (idx == USDHC_NUMBER_PORTS) {
-        printf("Base address: 0x%x not in address table.\n", base_address);
+        printf("Base address: 0x%x not in address table.\n", REGS_USDHC_BASE(instance));
         return FAIL;
     }
 

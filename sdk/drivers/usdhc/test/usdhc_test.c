@@ -11,6 +11,7 @@
 #include "hardware.h"
 #include "usdhc_test.h"
 #include "usdhc/usdhc_ifc.h"
+#include "registers/regsusdhc.h"
 
 static int usdhc_test_pio(void);
 static int usdhc_test_adma(void);
@@ -20,7 +21,7 @@ static int emmc_test_dump(void);
 static int emmc_test_boot(void);
 static int emmc_test_width(void);
 static int emmc_test_ack(void);
-static int mmc_test(unsigned int, unsigned int);
+static int mmc_test(unsigned int bus_width, uint32_t instance);
 
 static usdhc_test_t usdhc_tests[] = {
     {"usdhc polling IO", usdhc_test_pio},
@@ -55,7 +56,7 @@ static char *emmc_boot_ack[] = {
     "disable",
 };
 
-static uint32_t emmc_base_addr;
+//static uint32_t emmc_base_addr;
 
 /* Buffer Definition */
 static int mmc_test_src[MMC_TEST_BUF_SIZE + MMC_CARD_SECTOR_BUFFER];
@@ -63,9 +64,10 @@ static int mmc_test_dst[MMC_TEST_BUF_SIZE + MMC_CARD_SECTOR_BUFFER];
 static int mmc_test_tmp[MMC_TEST_BUF_SIZE + MMC_CARD_SECTOR_BUFFER];
 
 /********************************************* Global Function ******************************************/
-int mmc_sd_test(unsigned int bus_width, unsigned int base_address)
+//int mmc_sd_test(unsigned int bus_width, unsigned int base_address)
+int mmc_sd_test(unsigned int bus_width, uint32_t instance)
 {
-    return mmc_test(bus_width, base_address);
+    return mmc_test(bus_width, instance);
 }
 
 int usdhc_test(void)
@@ -116,7 +118,8 @@ static int usdhc_test_pio(void)
     int retv = TRUE;
 
     /* MMC - 8 bit, SD - 4 bit  */
-    retv = mmc_test(8, USDHC3_BASE_ADDR);
+//    retv = mmc_test(8, USDHC3_BASE_ADDR);
+    retv = mmc_test(8, HW_USDHC3);
 
     return retv;
 }
@@ -128,7 +131,8 @@ static int usdhc_test_adma(void)
     SDHC_ADMA_mode = TRUE;
 
     /* MMC - 8 bit, SD - 4 bit  */
-    retv = mmc_test(8, USDHC3_BASE_ADDR);
+//    retv = mmc_test(8, USDHC3_BASE_ADDR);    
+    retv = mmc_test(8, HW_USDHC3);
 
     SDHC_ADMA_mode = FALSE;
 
@@ -142,8 +146,9 @@ static int usdhc_test_adma_intr(void)
     SDHC_INTR_mode = SDHC_ADMA_mode = TRUE;
 
     /* MMC - 8 bit, SD - 4 bit  */
-    retv = mmc_test(8, USDHC3_BASE_ADDR);
-
+//    retv = mmc_test(8, USDHC3_BASE_ADDR);
+    retv = mmc_test(8, HW_USDHC3);
+    
     SDHC_INTR_mode = SDHC_ADMA_mode = FALSE;
 
     return retv;
@@ -151,8 +156,9 @@ static int usdhc_test_adma_intr(void)
 
 static int emmc_test_dump(void)
 {
-    emmc_print_cfg_info(emmc_base_addr);
-
+//    emmc_print_cfg_info(emmc_base_addr);
+    emmc_print_cfg_info(HW_USDHC3);
+    
     return TRUE;
 }
 
@@ -180,7 +186,7 @@ static int emmc_test_boot(void)
         idx = sel - '0';
 
         if ((idx >= 0) && (idx < (sizeof(emmc_partition) / sizeof(char *)))) {
-            mmc_set_boot_partition(emmc_base_addr, idx);
+            mmc_set_boot_partition(HW_USDHC3, idx);
             break;
         }
     } while (TRUE);
@@ -212,7 +218,7 @@ static int emmc_test_width(void)
         idx = sel - '0';
 
         if ((idx >= 0) && (idx < (sizeof(emmc_bus_width) / sizeof(char *)))) {
-            mmc_set_boot_bus_width(emmc_base_addr, idx);
+            mmc_set_boot_bus_width(HW_USDHC3, idx);
             break;
         }
     } while (TRUE);
@@ -220,6 +226,11 @@ static int emmc_test_width(void)
     return TRUE;
 }
 
+/*!
+ * @brief Run eMMC Card Test - Initialize the card, read/write data from/to card
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
 static int emmc_test_ack(void)
 {
     int idx;
@@ -244,7 +255,7 @@ static int emmc_test_ack(void)
         idx = sel - '0';
 
         if ((idx >= 0) && (idx < (sizeof(emmc_boot_ack) / sizeof(char *)))) {
-            mmc_set_boot_ack(emmc_base_addr, !idx);
+            mmc_set_boot_ack(HW_USDHC3, !idx);
             break;
         }
     } while (TRUE);
@@ -252,16 +263,21 @@ static int emmc_test_ack(void)
     return TRUE;
 }
 
+/*!
+ * @brief Run eMMC Card Test - Initialize the card, read/write data from/to card
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
 static int usdhc_test_emmc(void)
 {
     int idx;
     char sel;
-
+    uint32_t instance = HW_USDHC3;
     printf("\n\tInitializing eMMC chip.\n");
+     
+//    emmc_base_addr = USDHC3_BASE_ADDR;
 
-    emmc_base_addr = USDHC3_BASE_ADDR;
-
-    if (FAIL == card_emmc_init(emmc_base_addr)) {
+    if (FAIL == card_emmc_init(instance)) {
         printf("Initialize eMMC failed.\n");
         return FALSE;
     }
@@ -294,14 +310,22 @@ static int usdhc_test_emmc(void)
     return TRUE;
 }
 
-static int mmc_test(unsigned int bus_width, unsigned int base_address)
+/*!
+ * @brief Run eMMC Card Test - Initialize the card, read/write data from/to card
+ *
+ * @param bus_width    Bus width
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+static int mmc_test(unsigned int bus_width, uint32_t instance)
 {
     int status, idx, result;
 
     printf("1. Init card.\n");
 
     /* Initialize card */
-    status = card_init(base_address, bus_width);
+    status = card_init(instance, bus_width);
 
     if (status == FAIL) {
         printf("SD/MMC initialize failed.\n");
@@ -316,7 +340,7 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
 
     /* Store card data to temporary buffer */
     status =
-        card_data_read(base_address, mmc_test_tmp, MMC_TEST_BUF_SIZE * sizeof(int),
+        card_data_read(instance, mmc_test_tmp, MMC_TEST_BUF_SIZE * sizeof(int),
                        MMC_TEST_OFFSET);
     if (status == FAIL) {
         printf("%d: SD/MMC data read failed.\n", __LINE__);
@@ -326,7 +350,7 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
     /* Wait for transfer complete */
     if (SDHC_INTR_mode == TRUE) {
         do {
-            card_xfer_result(base_address, &result);
+            card_xfer_result(instance, &result);
         } while (result == 0);
 
         if (result == 2) {
@@ -339,7 +363,7 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
 
     /* Copy from source to Card */
     status =
-        card_data_write(base_address, mmc_test_src, MMC_TEST_BUF_SIZE * sizeof(int),
+        card_data_write(instance, mmc_test_src, MMC_TEST_BUF_SIZE * sizeof(int),
                         MMC_TEST_OFFSET);
     if (status == FAIL) {
         printf("%d: SD/MMC data write failed.\n", __LINE__);
@@ -349,7 +373,7 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
     /* Wait for transfer complete */
     if (SDHC_INTR_mode == TRUE) {
         do {
-            card_xfer_result(base_address, &result);
+            card_xfer_result(instance, &result);
         } while (result == 0);
 
         if (result == 2) {
@@ -362,7 +386,7 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
 
     /* Copy from card to destination */
     status =
-        card_data_read(base_address, mmc_test_dst, MMC_TEST_BUF_SIZE * sizeof(int),
+        card_data_read(instance, mmc_test_dst, MMC_TEST_BUF_SIZE * sizeof(int),
                        MMC_TEST_OFFSET);
     if (status == FAIL) {
         printf("%d: SD/MMC data read failed.\n", __LINE__);
@@ -372,7 +396,7 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
     /* Wait for transfer complete */
     if (SDHC_INTR_mode == TRUE) {
         do {
-            card_xfer_result(base_address, &result);
+            card_xfer_result(instance, &result);
         } while (result == 0);
 
         if (result == 2) {
@@ -385,7 +409,7 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
 
     /* Restore from temporary buffer to card */
     status =
-        card_data_write(base_address, mmc_test_tmp, MMC_TEST_BUF_SIZE * sizeof(int),
+        card_data_write(instance, mmc_test_tmp, MMC_TEST_BUF_SIZE * sizeof(int),
                         MMC_TEST_OFFSET);
     if (status == FAIL) {
         printf("%d: SD/MMC data write failed.\n", __LINE__);
@@ -395,7 +419,7 @@ static int mmc_test(unsigned int bus_width, unsigned int base_address)
     /* Wait for transfer complete */
     if (SDHC_INTR_mode == TRUE) {
         do {
-            card_xfer_result(base_address, &result);
+            card_xfer_result(instance, &result);
         } while (result == 0);
 
         if (result == 2) {

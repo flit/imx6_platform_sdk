@@ -18,7 +18,7 @@ static void eim_hw_prepare(void)
 {
     /* Init EIM */
     eim_init(EIM_CS0, DSZ_16_HIGH, FALSE, FALSE);
-#if 1
+
     /* Nor flash */
     eim_cfg_set(EIM_CS0, GCR1_CREP, TRUE);
 
@@ -54,14 +54,6 @@ static void eim_hw_prepare(void)
 
     /* Write wait state control */
     eim_cfg_set(EIM_CS0, WCR1_WWSC, 8);
-#else
-    reg32_write(0x21B8090, 0x00000120);
-    reg32_write(0x21B8000, 0x00620081);
-    reg32_write(0x21B8004, 0x00000001);
-    reg32_write(0x21B8008, 0x1C020000);
-    reg32_write(0x21B800C, 0x00000000);
-    reg32_write(0x21B8010, 0x0804A240);
-#endif
 }
 
 static int eim_nor_test(void)

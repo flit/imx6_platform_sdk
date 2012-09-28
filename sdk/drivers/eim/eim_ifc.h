@@ -5,12 +5,20 @@
  * Freescale Semiconductor, Inc.
 */
 
+//!@addtogroup diag_eim
+//!@{
+
+/*!
+ * @file eim_ifc.h
+ * @brief External Interface Module (eim) driver public interface. 
+ */
+ 
 #ifndef __EIM_IFC__
 #define __EIM_IFC__
 
 #include "sdk.h"
 
-/* CS enumeration */
+/*! CS enumeration */
 enum eim_cs_e {
     EIM_CS0 = 0,
     EIM_CS1 = 1,
@@ -21,7 +29,7 @@ enum eim_cs_e {
     EIM_NUM_CS = 6
 };
 
-/* CFG ID enumeration */
+/*! CFG ID enumeration */
 enum eim_cfg_e {
     GCR1_CSEN = 0,              //GCR1
     GCR1_SWR,
@@ -87,40 +95,56 @@ enum eim_cfg_e {
     NUM_CFG
 };
 
-/* Data port size */
+/*! Data port size */
 enum eim_dsz_e {
-    DSZ_16_LOW = 1,
-    DSZ_16_HIGH = 2,
-    DSZ_32 = 3,
-    DSZ_8_LOW_LOW = 4,
-    DSZ_8_LOW_HIGH = 5,
-    DSZ_8_HIGH_LOW = 6,
-    DSZ_8_HIGH_HIGH = 7
+    DSZ_16_LOW = 1,        //!< 16 bit port resides on DATA[15:0]
+    DSZ_16_HIGH = 2,       //!< 16 bit port resides on DATA[31:16]
+    DSZ_32 = 3,            //!< 32 bit port resides on DATA[31:0]
+    DSZ_8_LOW_LOW = 4,     //!< 8 bit port resides on DATA[7:0]
+    DSZ_8_LOW_HIGH = 5,    //!< 8 bit port resides on DATA[15:8]
+    DSZ_8_HIGH_LOW = 6,    //!< 8 bit port resides on DATA[23:16]
+    DSZ_8_HIGH_HIGH = 7    //!< 8 bit port resides on DATA[31:24]
 };
 
+//////////////////////////////////////////////////////////////////////////////////
+// API
+//////////////////////////////////////////////////////////////////////////////////
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
 /*!
  * @brief Initialize EIM controller.
  *
  * Only setup the data port size and enable the chip select.
  * 
- * @param cs chip select
- * @param dsz data port size
- * @param mum multiplexed mode
- * @param aus address unshift
+ * @param cs     Chip select
+ * @param dsz    Data port size
+ * @param mum    Multiplexed Mode.
+ * @param aus    Address unshift
  * 
  * @return TRUE on success, FALSE on fail
  */
-extern uint32_t eim_init(uint32_t, uint32_t, uint32_t, uint32_t);
+extern uint32_t eim_init(uint32_t cs, uint32_t dsz, uint32_t mum, uint32_t aus);
 
 /*!
  * @brief Setup EIM configuration, each field per call.
  *
- * @param cs chip select
- * @param cfg CFG id
- * @param value CFG value
+ * @param cs     chip select
+ * @param cfg    CFG id
+ * @param value  CFG value
  *
  * @return TRUE on success, FALSE on fail
  */
-extern uint32_t eim_cfg_set(uint32_t, uint32_t, uint32_t);
+extern uint32_t eim_cfg_set(uint32_t cs, uint32_t cfg, uint32_t value);
 
+#if defined (__cplusplus)
+}
 #endif
+
+//! @}
+#endif  /*__EIM_IFC__ */ 
+/////////////////////////////////////////////////////////////////////////////////
+// EOF
+/////////////////////////////////////////////////////////////////////////////////
+

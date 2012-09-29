@@ -30,7 +30,6 @@
 #include "ccm_pll.h"
 #include "i2c/imx_i2c.h"
 #include "uart/imx_uart.h"
-#include "registers/regsuart.h"
 #include "timer/timer.h"
 #include "rtc/rtc.h"
 #include "snvs/srtc.h"

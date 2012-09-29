@@ -32,7 +32,7 @@ int32_t spdif_playback(audio_pcm_p pcm_file)
         (" 2. A rework should be done to connect \"TP6[SPDIF_OUT]\" with \"PORT2_P98\" on the MX6QVPC board\n");
     printf
         (" 3. The \"SPDIF_OUT\" socket is connected with a SPDIF recording device, such as \"M-AUDIO\".\n");
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  skip AUDIO test \n");
         return TEST_BYPASSED;
     }

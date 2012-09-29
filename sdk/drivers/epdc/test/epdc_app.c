@@ -44,7 +44,7 @@ int epd_display_test(void)
     if (!epd_test_enable) {
         return TEST_NOTPRESENT;
     }
-    PROMPT_RUN_TEST("EINK display test");
+    PROMPT_RUN_TEST("EINK display test", NULL);
 
     if (epdc_initialized == 0) {
         mxc_epdc_iomux_config();

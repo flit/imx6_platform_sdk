@@ -58,12 +58,12 @@ int32_t sensor_capture(void)
     /*test 2: sensor auto focus */
     if (sensor->auto_focus_enable) {
         printf("Do you want to test auto focus function? [y/n]\n");
-        if (is_input_char('y')) {
+        if (is_input_char('y', NULL)) {
             sensor_autofocus_init(sensor);
-            while (is_input_char('y')) {
+            while (is_input_char('y', NULL)) {
                 sensor_af_trigger(sensor);
                 printf("Do you see the viewfiner in the middle of camera?[y/n]\n");
-                if (!is_input_char('y')) {
+                if (!is_input_char('y', NULL)) {
                     return TEST_FAILED;
                 }
                 printf("Trigger more? [y/n]\n");
@@ -73,11 +73,11 @@ int32_t sensor_capture(void)
 
     /*test 3: sensor standby */
     printf("Do you want to test standby mode? [y/n]\n");
-    while (is_input_char('y')) {
+    while (is_input_char('y', NULL)) {
         sensor_standby(read_value);
         if (read_value == 1) {
             printf("Do you see the still camera image? [y/n]\n");
-            if (!is_input_char('y')) {
+            if (!is_input_char('y', NULL)) {
                 return TEST_FAILED;
             }
         }

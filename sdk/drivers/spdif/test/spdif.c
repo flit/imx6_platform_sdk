@@ -240,7 +240,7 @@ static int spdif_test(void)
     int i, result;
     unsigned char recvCh;
 
-    PROMPT_RUN_TEST("SPDIF");
+    PROMPT_RUN_TEST("SPDIF", NULL);
 
     SPDIFInit();
 

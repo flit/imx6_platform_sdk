@@ -45,7 +45,7 @@ static int i2c_eeprom_at24cxx_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("EEPROM test");
+    PROMPT_RUN_TEST("EEPROM test", NULL);
 
     i2c_init(AT24Cx_I2C_BASE, 170000);
 

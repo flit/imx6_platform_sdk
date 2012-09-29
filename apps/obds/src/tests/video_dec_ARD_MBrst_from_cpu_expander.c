@@ -23,7 +23,7 @@ int ard_mb_expander_reset_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("SABRE AI Main Board Reset via IO Expander");
+    PROMPT_RUN_TEST("SABRE AI Main Board Reset via IO Expander", NULL);
 
     result = 0;                 // fail
 

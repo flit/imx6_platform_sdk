@@ -31,12 +31,12 @@ int mmcsd_test(void)
     /* Always try maximum bus width */
     mmcsd_bus_width = 8;
 
-	PROMPT_RUN_TEST("MMC/SD");
+	PROMPT_RUN_TEST("MMC/SD", NULL);
 
 	/* USDHC2 test */
 	printf("Please insert MMC/SD card into SD2\n");
 
-	if (!is_input_char('y')) {
+	if (!is_input_char('y', NULL)) {
 		printf("skip MMC SD test on SD2\n");
 		ret_val = TEST_BYPASSED;
 	} else {
@@ -44,14 +44,14 @@ int mmcsd_test(void)
 		mmc_sd_base_address = USDHC2_BASE_ADDR;
 
         printf("Would you like to check the Card Detection status?");
-        if(is_input_char('y')) {
+        if(is_input_char('y', NULL)) {
             card_detect_en = 1;
         } else {
             card_detect_en = 0;
         }
 
 		printf("U-HSI(make sure voltage switch circuit on board) mode test?\n");
-		if (is_input_char('y')) {
+		if (is_input_char('y', NULL)) {
 			SDHC_UHSI_mode = 1;
 		} else {
 			SDHC_UHSI_mode = 0;
@@ -65,7 +65,7 @@ int mmcsd_test(void)
 	/* USDHC3 test */
 	printf("Please insert MMC/SD card into SD3\n");
 
-	if (!is_input_char('y')) {
+	if (!is_input_char('y', NULL)) {
 		printf("skip MMC SD test on SD3\n");
 		return ret_val == TEST_FAILED ? TEST_FAILED : TEST_BYPASSED;
 	}
@@ -73,14 +73,14 @@ int mmcsd_test(void)
 	mmc_sd_base_address = USDHC3_BASE_ADDR;
 
     printf("Would you like to check the Card Detection status?\n");
-    if(is_input_char('y')) {
+    if(is_input_char('y', NULL)) {
         card_detect_en = 1;
     } else {
         card_detect_en = 0;
     }
 
 	printf("U-HSI(make sure voltage switch circuit on board) mode test?\n");
-	if (is_input_char('y')) {
+	if (is_input_char('y', NULL)) {
 		SDHC_UHSI_mode = 1;
 	} else {
 		SDHC_UHSI_mode = 0;
@@ -105,9 +105,9 @@ int mmcsd_test(void)
 
 #if ((!defined(CHIP_MX6SL) && defined(BOARD_EVB)) || defined(BOARD_SMART_DEVICE) || defined(BOARD_SABRE_LITE) )
     if ((BOARD_TYPE_ID == BOARD_TYPE_EVB) || (BOARD_TYPE_ID == BOARD_TYPE_SABRE_LITE) || (BOARD_TYPE_ID == BOARD_TYPE_SMART_DEVICE)) {    //EVB/Sabre-Lite board, MMC/SD
-        PROMPT_RUN_TEST("MMC/SD");
+        PROMPT_RUN_TEST("MMC/SD", NULL);
         printf("Please make sure to insert an MMC/SD card into SD slot #3\n");
-        if (!is_input_char('y')) {
+        if (!is_input_char('y', NULL)) {
             printf("  skip MMC SD test \n");
             return TEST_BYPASSED;
         }
@@ -120,9 +120,9 @@ int mmcsd_test(void)
 
 #elif defined(BOARD_SABRE_AI)
 
-    PROMPT_RUN_TEST("MMC/SD");
+    PROMPT_RUN_TEST("MMC/SD", NULL);
     printf("Please insert an MMC/SD card into the SD slot on the bottom of the main board.\n");
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  skip MMC SD test \n");
         return TEST_BYPASSED;
     }
@@ -130,9 +130,9 @@ int mmcsd_test(void)
 
 #else
 
-    PROMPT_RUN_TEST("MMC/SD");
+    PROMPT_RUN_TEST("MMC/SD", NULL);
     printf("Please make sure to insert an MMC/SD card into SD slot 2 \n");
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  skip MMC SD test \n");
         return TEST_BYPASSED;
     }
@@ -141,7 +141,7 @@ int mmcsd_test(void)
 #endif
 
     printf("Would you like to check the Card Detection status?");
-    if(is_input_char('y')) {
+    if(is_input_char('y', NULL)) {
         card_detect_en = 1;
     } else {
         card_detect_en = 0;
@@ -150,7 +150,7 @@ int mmcsd_test(void)
 #if (!defined(CHIP_MX6SL) && defined(BOARD_EVB))
     /* Test for voltage switch & reset */
     printf("U-HSI(make sure voltage switch circuit on board) mode test?\n");
-    if (is_input_char('y')) {
+    if (is_input_char('y', NULL)) {
         SDHC_UHSI_mode = 1;
     } else {
         SDHC_UHSI_mode = 0;

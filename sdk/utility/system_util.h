@@ -22,7 +22,7 @@ extern "C" {
 
 void _sys_exit(int32_t return_code);
 
-int32_t is_input_char(uint8_t c);
+int32_t is_input_char(uint8_t c, const char* const indent);
 uint32_t get_input_hex(void);
 int read_int(void);
 

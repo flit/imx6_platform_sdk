@@ -110,7 +110,7 @@ int program_board_id(void)
     {
         printf("\nThis binary will work for both REV_B and REV_BX boards.\n");
         printf("Would you like to use the REV_BX board ID for this board?\n");
-        if (is_input_char('y')) {
+        if (is_input_char('y', NULL)) {
             printf("Using REV_BX board ID instead of REV_B board ID.\n\n");
             fw_board_rev = BOARD_REVISION_BX;
         }
@@ -122,7 +122,7 @@ int program_board_id(void)
     {
         printf("\nThis binary will work for both EVB and EVK boards.\n");
         printf("Would you like to use the EVK board ID for this board?\n");
-        if (is_input_char('y')) {
+        if (is_input_char('y', NULL)) {
             printf("Using BOARD_TYPE_EVK board ID instead of BOARD_TYPE_EVB board ID.\n\n");
             printf("Using BOARD_REVISION_A board ID instead of BOARD_REVISION_B board ID.\n\n");
             fw_board_type = BOARD_TYPE_EVK;
@@ -140,7 +140,7 @@ int program_board_id(void)
         printf("This OBDS binary will program Board ID to 0x%08X as detailed below:\n", board_id.U);
         show_board_id(board_id);
         printf("Continue with irreversible operation to program Board ID?\n");
-        if (!is_input_char('y')) {
+        if (!is_input_char('y', NULL)) {
             /* Do not program the suggested value to Board ID fuse bank */
             printf("NOT programming board ID to fuses.\n\n");
             return TEST_BYPASSED;
@@ -167,7 +167,7 @@ int program_board_id(void)
         printf("This OBDS binary will program Board ID to 0x%08X as detailed below:\n", board_id.U);
         show_board_id(board_id);
         printf("Continue with irreversible operation to program Board ID?\n");
-        if (!is_input_char('y')) {
+        if (!is_input_char('y', NULL)) {
             /* Do not program the suggested value to Board ID fuse bank */
             printf("NOT programming board ID to fuses.\n\n");
             return TEST_BYPASSED;

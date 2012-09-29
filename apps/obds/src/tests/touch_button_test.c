@@ -160,7 +160,7 @@ int touch_button_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("TOUCH BUTTON");
+    PROMPT_RUN_TEST("TOUCH BUTTON", NULL);
 
     printf("Please press four touch buttons and pressed information will be printed on screen.\n");
     printf("Pressing any key on the keyboard exits this test\n");

@@ -124,7 +124,7 @@ int os81050_test_main(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("MLB OS81050");
+    PROMPT_RUN_TEST("MLB OS81050", NULL);
 
     os81050_i2c_init();
     ret = os81050_read_status();

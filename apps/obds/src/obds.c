@@ -16,194 +16,18 @@
  * @ingroup diag_init
  */
 
-#include <stdio.h>
+//#include <stdio.h>
 #include "hardware.h"
-#include "menu.h"
 #include "obds.h"
 #include "obds_utils.h"
 #include "platform_init.h"
 #include "text_color.h"
 #include "version.h"
 
-
-//struct hw_module {
-//    char *name;
-//    u32 base;
-//    u32 freq;
-//};
-
-void record_test_result(char *name, int result);
-
-//typedef unsigned int (*pmic_mc13892_reg_t) (unsigned int reg, unsigned int val, unsigned int write);
-//
-//// ocotp.c
-//int fuse_blow_row(int bank, int row, unsigned int value);
-//unsigned int sense_fuse(int bank, int row);
-//int reload_otp_shadow_registers();
-//
-//void hal_delay_us(u32 usecs);
-//u32 get_freq(u32 module_base);
-//char receive_char(void);
-//int is_input_char(u8 c);
-//int get_menu_item(char *menu_table[]);
-//void _sys_exit(int return_code);
-//extern int program_mac_address_enable;
-//int set_mac(void);
-//int gpio_set_direction(int port, int pin, int dir);
-//int gpio_get_level(int port, int pin);
-//int gpio_set_level(int port, int pin, unsigned int attr);
-
-typedef enum {
-	SEL_CPU_ONLY_TESTS,
-	SEL_CPU_PLUS_BOARD_TESTS,
-	SEL_MENU_TESTS
-} SELECT_TESTS;
-
-void select_tests(SELECT_TESTS tests);
-
-// define RUN_TEST_COMMON(name, func)
-//	static void add_obds_##func (void)
-//	{
-//		obds_test_t test_func = (obds_test_t) func;
-//		add_test(name, test_func);
-//	}
-//    static int obds_##func (void)
-//    {
-//        obds_test_t test_func = (obds_test_t) func;
-//        record_test_result(name, test_func());
-//        return 0;
-//    }
-//#define TEST_PASSED     0
-//#define TEST_FAILED     -1
-//#define TEST_BYPASSED   2
-//#define TEST_NOTPRESENT 3
-
-
-#define RUN_TEST(name, func)            \
-    static obds_test_t __obds_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch"))) = func;              \
-    static char  __obds_name_##func[MAX_TEST_NAME_LEN] __attribute__ ((used)) __attribute__ ((section(".test_launch"))) = name; \
-	static int  __obds_result_##func __attribute__ ((used)) __attribute__ ((section(".test_launch"))) = TEST_NOTPRESENT;
-
-#define RUN_TEST_EARLY(name, func)      \
-    static obds_test_t __obds_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_early"))) = func;        \
-    static char __obds_name_##func[MAX_TEST_NAME_LEN] __attribute__ ((used)) __attribute__ ((section(".test_launch_early"))) = name;  \
-    static int __obds_result_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_early"))) = TEST_NOTPRESENT;
-
-#define RUN_TEST_LATE(name, func)       \
-    static obds_test_t __obds_test_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_late"))) = func;        \
-    static char __obds_name_##func[MAX_TEST_NAME_LEN] __attribute__ ((used)) __attribute__ ((section(".test_launch_late"))) = name; \
-    static int __obds_result_##func __attribute__ ((used)) __attribute__ ((section(".test_launch_late"))) = TEST_NOTPRESENT;
-
-#define RUN_TEST_INTERACTIVE(name, func)        RUN_TEST_LATE(name, func)
-
-#define PROMPT_RUN_TEST(name)           \
-    do {                                \
-        printf("\n---- Running < %s > test\n", name);       \
-        if (!auto_run_enable) {                             \
-            if (!is_input_char('y'))                        \
-                return TEST_BYPASSED;                       \
-        }                                                   \
-    } while (0)
-
-
 int total_tests = 0;
-test_module_t* obds_test_modules[MAX_TEST_NR];
-
 int auto_run_enable = 1; // global flag to indicate auto-run feature enabled or not
-
-extern test_module_t __test_launch_early_start[], __test_launch_early_end[];
-extern test_module_t __test_launch_start[], __test_launch_end[];
-extern test_module_t __test_launch_late_start[], __test_launch_late_end[];
-
-static int run_all_tests(void)
-{
-	SELECT_TESTS tests = SEL_CPU_PLUS_BOARD_TESTS;
-
-    if (BOARD_TYPE == BOARD_TYPE_SABRE_AI || BOARD_TYPE == BOARD_TYPE_EVB) {
-        printf("\nDo you wish to run the CPU only set of tests (y/n) \n");
-        if (is_input_char('y')) {
-        	tests = SEL_CPU_ONLY_TESTS;
-        }
-    }
-    //select_tests(tests);
-    snvs_srtc_test();
-
-    printf("\nEnable auto-run feature?\n");
-    if (is_input_char('y')) {
-        printf("  Auto-run enabled.\n");
-        auto_run_enable = 1;
-    } else {
-    	auto_run_enable = 0;
-    }
-
-    // run through the tests starting at 1 since run_tests() is at 0.
-    int idx = 1;
-    for ( idx=1; idx < total_tests; ++idx ) {
-    	obds_test_modules[idx]->result = (*obds_test_modules[idx]->func_ptr)();
-    }
-
-    return TEST_PASSED;
-}
-
-RUN_TEST_EARLY("ALL TESTS", run_all_tests)
-
-void build_test_array()
-{
-	test_module_t *test;
-
-	// start all normal tests at 1. Reserve 0 for run_tests().
-	total_tests = 1;
-
-    for (test = __test_launch_early_start; test < __test_launch_early_end; test++)
-    {
-    	if ( test->func_ptr == run_all_tests )
-    		obds_test_modules[0] = test;
-    	else
-    		obds_test_modules[total_tests++] = test;
-    }
-    for (test = __test_launch_start; test < __test_launch_end; test++)
-    	obds_test_modules[total_tests++] = test;
-    for (test = __test_launch_late_start; test < __test_launch_late_end; test++)
-    	obds_test_modules[total_tests++] = test;
-}
-
-static void report_test_results(void)
-{
-    int passed = 0, failed = 0, skipped = 0, unavail = 0, unknown = 0;
-    int i;
-
-    printf("\n----------------- TEST RESULTS -----------------\n");
-    for (i = 0; i < total_tests; i++) {
-        if (obds_test_modules[i]->result == TEST_PASSED) {
-            printf_color(PASS_COLOR, "\t<%s> PASSED\n", obds_test_modules[i]->name);
-            passed++;
-        } else if (obds_test_modules[i]->result == TEST_FAILED) {
-            printf_color(ERROR_COLOR, "\t<%s> FAILED\n", obds_test_modules[i]->name);
-            failed++;
-        } else if (obds_test_modules[i]->result == TEST_BYPASSED) {
-            printf_color(ATTENTION_COLOR, "\t<%s> SKIPPED\n", obds_test_modules[i]->name);
-            skipped++;
-        } else if (obds_test_modules[i]->result == TEST_NOTPRESENT) {
-            //printf_color(ATTENTION_COLOR, "\t<%s> NOT PRESENT\n", obds_test_modules[i]->name);
-            unavail++;
-        } else {
-            //printf_color(ERROR_COLOR, "\t<%s> UNKNOWN\n", obds_test_modules[i]->name);
-            unknown++;
-        }
-    }
-
-    textcolor(RESET, BLACK, WHITE);
-    printf("\n=================== SUMMARY ====================%s\n", "");
-    if (passed)
-        printf("PASSED:     \t%d\n", passed);
-    if (failed)
-        printf("FAILED:     \t%d\n", failed);
-    if (skipped)
-        printf("SKIPPED:    \t%d\n", skipped);
-
-    printf("TOTAL:      \t%d\n", total_tests - unavail - unknown);
-    printf("=================================================%s\n", "");
-}
+menuitem_t main_menuitems[MAX_TESTS];
+test_return_t test_results[MAX_TESTS];
 
 /*!
  * main function that decides which tests to run and prompts the user before
@@ -215,26 +39,209 @@ int main(void)
     auto_run_enable = 1;
 
     platform_init();
+    printf(TEXT_ATTRIB_DEFAULT); // reset terminal colors to default
     print_version();
 
     show_freq();
     show_ddr_config();
     show_boot_switch_info();
 
-    build_test_array();
+    //
+    // Initialize the test results and create the
+    // test list (menuitems) for the board.
+    //
+    memset(test_results, TEST_NOTPRESENT, MAX_TESTS * sizeof(int));
+    select_tests(&main_menuitems[0], SEL_MENU_TESTS);
 
-    // select_tests(SEL_MENU_TESTS);
-    snvs_srtc_test();
+    //
+    // Create the main menu header
+    //
+    char chip_str[64];
+    char chip_rev_str[64];
+    char board_str[64];
+    char board_rev_str[64];
 
+    fsl_board_id_t fsl_board_id = get_board_id();
 
-    menu();
+    chip_name(chip_str, fsl_board_id.B.CHIP_TYPE_ID, false);
+    chip_revision(chip_rev_str, fsl_board_id.B.CHIP_REV_MAJOR, fsl_board_id.B.CHIP_REV_MINOR);
+    board_name(board_str, BOARD_TYPE);
+    board_revision(board_rev_str, BOARD_REVISION);
 
+    char main_menu_desc[1024];
+	sprintf(main_menu_desc, "This is an interactive test menu for %s %s %s %s.",
+			chip_str, chip_rev_str, board_str, board_rev_str);
+
+	//
+	// Create the main menu
+	//
+	menu_t main_menu = MAKE_MENU(main_menu_desc, main_menuitems,
+			"Enter test number followed by the enter key, 'm' for menu, or 'q' to exit.");
+
+	//
+	// Show the main menu
+	//
+	menu_present(&main_menu);
+
+	//
+	// Report the results of the tests.
+	//
     report_test_results();
 
     _sys_exit(0);
 
     return 0;
 }
+
+//
+// Report the results of the tests.
+// NOTE: Only the last test result for a given test is reflected
+//       in the summary if a test was run more than once from the menu.
+//
+void report_test_results(void)
+{
+    int passed = 0, failed = 0, skipped = 0, not_present = 0, unknown = 0;
+    int i;
+
+    printf("\n----------------- TEST RESULTS -----------------\n");
+    for (i = 0; i < MAX_TESTS; i++)
+    {
+        if (test_results[i] == TEST_NOTPRESENT)
+        {
+        	++not_present;
+        }
+    	else if (test_results[i] == TEST_PASSED)
+        {
+            printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_GREEN, "\t<%s> PASSED\n", main_menuitems[i].description);
+            ++passed;
+        }
+        else if (test_results[i] == TEST_FAILED)
+        {
+            printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "\t<%s> FAILED\n", main_menuitems[i].description);
+            ++failed;
+        }
+        else if (test_results[i] == TEST_BYPASSED)
+        {
+            printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_YELLOW, "\t<%s> SKIPPED\n", main_menuitems[i].description);
+            ++skipped;
+        }
+        else
+        {
+            ++unknown;
+        }
+    }
+
+    printf("\n=================== SUMMARY ====================\n");
+    printf("PASSED:     \t%d\n", passed);
+    printf("FAILED:     \t%d\n", failed);
+    printf("SKIPPED:    \t%d\n", skipped);
+    printf("TOTAL:      \t%d\n", MAX_TESTS - not_present - unknown);
+    printf("=================================================\n");
+}
+
+//test_return_t prompt_run_test(const char * const name, const char* const indent)
+//{
+//    printf("\n%s---- Running < %s >\n", indent, name);
+//    if (!auto_run_enable)
+//    {
+//        if (!is_input_char('y', indent))
+//        {
+//            printf("\n");
+//            return TEST_BYPASSED;
+//        }
+//    }
+//    else
+//        printf("\n");
+//
+//    return TEST_CONTINUE;
+//}
+
+menu_action_t run_all_tests(const menu_context_t* context, void* param)
+{
+	select_tests_t tests = SEL_CPU_PLUS_BOARD_TESTS;
+	const char* indent = menu_get_indent(context);
+
+    if (BOARD_TYPE == BOARD_TYPE_SABRE_AI || BOARD_TYPE == BOARD_TYPE_EVB)
+    {
+        printf("%sDo you wish to run the CPU-ONLY set of tests?\n", indent);
+        if (is_input_char('y', indent)) {
+            printf("%s  Run CPU-ONLY tests.\n\n", indent);
+        	tests = SEL_CPU_ONLY_TESTS;
+        }
+    }
+    select_tests(main_menuitems, tests);
+
+    printf("%sEnable auto-run feature?\n", indent);
+    if (is_input_char('y', indent)) {
+        printf("%s  Auto-run enabled.\n\n", indent);
+        auto_run_enable = 1;
+    } else {
+    	auto_run_enable = 0;
+    }
+
+    // run through the tests starting at 1 since run_tests() is at 0.
+    int test_idx;
+    for (test_idx = 1; test_idx < MAX_TESTS; test_idx++)
+    {
+    	main_menuitems[test_idx].func(context, main_menuitems[test_idx].param);
+    }
+
+    return MENU_EXIT;
+}
+
+//menu_action_t list_tests(const menu_context_t* context, void* ret)
+//{
+//	const char* indent = menu_get_indent(context);
+//
+//	printf("%sListing OBDS Tests:\n", indent);
+//	printf("%s  SNVS-STRC Test\n", indent);
+//	printf("%s  I2C DeviceID Test\n", indent);
+//	printf("%s  Display Test\n", indent);
+//
+//	*(int*)ret = 3;
+//
+//	return MENU_CONTINUE;
+//}
+//
+//menu_action_t run_test(const menu_context_t* context, void* ret)
+//{
+//	const char* indent = menu_get_indent(context);
+//
+//	printf("%sExecuting SNVS-STRC Test\n", indent);
+//
+//	*(int*)ret = 2;
+//
+//	return MENU_BACK;
+//}
+
+void select_tests(menuitem_t* const menuitems, select_tests_t tests)
+{
+	int menu_idx = 0;
+
+#if defined (CHIP_MX6DQ) || defined(CHIP_MX6SDL)
+#if defined(BOARD_TYPE_SABRE_AI)
+
+	menu_make_group(&menuitems[menu_idx++], "CPU Board Tests");
+	menu_make_menuitem(&menuitems[menu_idx], "01", "SNVS - SRTC Test", snvs_srtc_test, &test_results[menu_idx]);menu_idx++;
+
+	menu_make_group(&menuitems[menu_idx++], "Main Board Tests");
+
+
+#elif defined(BOARD_TYPE_SMART_DEVICE)
+#elif defined(BOARD_TYPE_SABRE_LITE)
+#elif defined(BOARD_TYPE_EVB)
+#endif
+#elif defined(CHIP_MX6SL)
+#endif
+
+	menu_make_group(&menuitems[menu_idx++], "Menu functions");
+	menu_make_cmd_showmenu(&menuitems[menu_idx++]);
+	menu_make_cmd_exitmenu(&menuitems[menu_idx++]);
+	menu_make_end_menuitem(&menuitems[menu_idx]);
+}
+
+
+
 
 #if 0
 #if defined(CHIP_MX6DQ)

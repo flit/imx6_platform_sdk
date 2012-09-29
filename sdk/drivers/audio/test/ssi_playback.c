@@ -28,7 +28,7 @@ int32_t ssi_playback(audio_pcm_p pcm_file)
 
     printf("Please ensure headphones are plugged in to hear.\n");
 
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  skip AUDIO test \n");
         return TEST_BYPASSED;
     }

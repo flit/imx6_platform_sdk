@@ -194,7 +194,7 @@ int device_id_mc13892_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("PMIC ID test");
+    PROMPT_RUN_TEST("PMIC ID test", NULL);
     return device_id_check_mc13892();
 }
 

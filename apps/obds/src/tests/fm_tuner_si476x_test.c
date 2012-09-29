@@ -99,7 +99,7 @@ int si476x_test_main(void)
     if (!si476x_test_enable) {
         return TEST_NOTPRESENT;
     }
-    PROMPT_RUN_TEST("FM TUNER SI476x");
+    PROMPT_RUN_TEST("FM TUNER SI476x", NULL);
 
     si476x_i2c_init();
     return si476x_PowerUp();

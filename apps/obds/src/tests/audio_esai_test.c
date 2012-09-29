@@ -39,7 +39,7 @@ int esai_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("ESAI");
+    PROMPT_RUN_TEST("ESAI", NULL);
 #if defined(BOARD_SABRE_AI)
     printf
         ("Please make sure the SABRE AI board was mounted on the main board and headphone was plugged. Type 'y' to confirm.\n");

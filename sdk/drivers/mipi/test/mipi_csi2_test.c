@@ -46,7 +46,7 @@ int32_t mipi_csi2_test(void)
 
     while (1) {
         printf("Stop MIPI CSI? [y/n]\n");
-        if (is_input_char('y'))
+        if (is_input_char('y', NULL))
             break;
     }
 

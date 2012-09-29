@@ -2,6 +2,7 @@ include $(SDK_ROOT)/mk/common.mk
 
 
 SOURCES = \
+	src/menu.c \
 	src/spinlock.c \
 	src/system_util.c \
 	src/text_color.c \

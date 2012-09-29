@@ -94,13 +94,13 @@ int enet_test_main(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("ENET ETHERNET");
+    PROMPT_RUN_TEST("ENET ETHERNET", NULL);
 
     // Enet loopback test
     printf("\nWould you like to run the Ethernet loopback test?\n \
            (Please note that in order to run the test, you need to\n \
            first plug in a loopback cable to the Ethernet port) \n");
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  skip ETHERNET test \n");
         return TEST_BYPASSED;
     }
@@ -188,13 +188,13 @@ int ar8031_test_main(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("RGMII AR8031 G-Ethernet");
+    PROMPT_RUN_TEST("RGMII AR8031 G-Ethernet", NULL);
 
     // Enet loopback test
     printf("\nWould you like to run the Ethernet loopback test?\n \
            (Please note that in order to run the test, you need to\n \
            first plug in a loopback cable to the Ethernet port) \n");
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  skip ETHERNET test \n");
         return TEST_BYPASSED;
     }
@@ -285,13 +285,13 @@ int KSZ9021RN_test_main(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("RGMII KSZ9021RN G-Ethernet");
+    PROMPT_RUN_TEST("RGMII KSZ9021RN G-Ethernet", NULL);
 
     // Enet loopback test
     printf("\nWould you like to run the Ethernet loopback test?\n \
            (Please note that in order to run the test, you need to\n \
            first plug in a loopback cable to the Ethernet port) \n");
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  skip ETHERNET test \n");
         return TEST_BYPASSED;
     }

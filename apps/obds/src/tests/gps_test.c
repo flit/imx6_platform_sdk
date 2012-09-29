@@ -137,7 +137,7 @@ int gps_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("GPS");
+    PROMPT_RUN_TEST("GPS", NULL);
 
     /* IOMUX */
 //    writel(ALT3, IOMUXC_SW_MUX_CTL_PAD_PATA_BUFFER_EN); //uart2 rxd

@@ -84,7 +84,7 @@ int pf0100_i2c_device_id_check(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("PMIC PF0100 ID TEST");
+    PROMPT_RUN_TEST("PMIC PF0100 ID TEST", NULL);
 
     i2c_init(PMIC_PF0100_I2C_BASE, 170000);
 

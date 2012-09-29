@@ -75,7 +75,7 @@ static int sdio_card_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("SDIO");
+    PROMPT_RUN_TEST("SDIO", NULL);
 
     return sdio_test(sdio_bus_width, sdio_base_address);
 }

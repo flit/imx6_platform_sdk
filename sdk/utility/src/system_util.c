@@ -13,9 +13,10 @@
  */
 
 #include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
 #include <stdio.h>
+#include "sdk_types.h"
+#include "uart/imx_uart.h"
+#include "text_color.h"
 #include "hardware.h"
 
 /*!
@@ -211,11 +212,12 @@ void mybkpt(void)
 /*!
  * This function waits for an input char to be received from the UART. Once a char is received,
  * it tests against the passed in char and return 0 if they don't match. 
- * @param   c   the input character to be expected (NOT case sensitive)
- * @return  0   if input char doesn't match with c
+ * @param   c        the input character to be expected (NOT case sensitive)
+ * @param   indent   pointer to a character buffer to use for indenting text to screen
+ * @return  0        if input char doesn't match with c
  *          non-zero otherwise
  */
-int32_t is_input_char(uint8_t c)
+int32_t is_input_char(uint8_t c, const char* const indent)
 {
     uint8_t input, lc, uc;
 
@@ -226,14 +228,15 @@ int32_t is_input_char(uint8_t c)
         lc = c;
         uc = c - 'a' + 'A';
     } else {
-        printf("Error: not a valid letter: %c\n", c);
+        printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "%sError: not a valid letter: %c\n",
+        		indent == NULL ? "" : indent, c);
         return 0;
     }
-    printf("Please enter %c or %c to confirm\n", lc, uc);
+    printf("%sPlease enter %c or %c to confirm. ", indent == NULL ? "" : indent, lc, uc);
     do {
         input = uart_getchar(&g_debug_uart);
     } while (input == NONE_CHAR);
-    printf("input char is: %c\n", input);
+    printf("%c\n", input);
 
     if ((input == uc) || (input == lc))
         return 1;

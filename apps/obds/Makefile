@@ -40,7 +40,6 @@ define SOURCES
     $(APPS_ROOT)/common/platform_init.c
     src/obds.c
     src/obds_utils.c
-    src/menu.c
     src/program_board_id.c
     src/tests/android_buttons_test.c
     src/tests/ddr_test.c
@@ -64,8 +63,7 @@ define SOURCES
     src/tests/pmic_lt3589.c
     src/tests/pmic_max17135.c
     src/tests/pmic_mc13892.c
-    src/tests/snvs_srtc_obds_test.c
-    src/tests/srtc_test.c
+    src/tests/snvs_srtc_test.c
     src/tests/touch_button_test.c
     src/tests/touch_screen.c
     src/tests/touch_screen_max11801.c

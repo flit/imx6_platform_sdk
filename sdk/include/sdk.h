@@ -60,12 +60,14 @@ static inline void debug_printf(const char * format, ...)
 }
 
 //! @name Test results
-//@{
-#define TEST_PASSED     (0)
-#define TEST_FAILED     (-1)
-#define TEST_BYPASSED   (2)
-#define TEST_NOTPRESENT (3)
-//@}
+typedef enum _test_return
+{
+    TEST_FAILED     = -1,
+    TEST_PASSED     = 0,
+    TEST_BYPASSED   = 2,
+    TEST_NOTPRESENT = 3,
+    TEST_CONTINUE   = 4
+} test_return_t;
 
 //! @name Return codes
 //@{

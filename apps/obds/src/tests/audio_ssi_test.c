@@ -105,11 +105,11 @@ int i2s_audio_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("I2S AUDIO");
+    PROMPT_RUN_TEST("I2S AUDIO", NULL);
 
     printf("Please plug in headphones to the HEADPHONE OUT jack\n");
 
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf(" Skip AUDIO test \n");
         return TEST_BYPASSED;
     }

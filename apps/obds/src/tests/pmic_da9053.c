@@ -101,7 +101,7 @@ static void da9053_eval(void)
 
     printf(" Probe VDDGP, it should read 1.10V, does it? (y/n) \n");
 
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  BUCKCORE (VDDGP) voltage increased correctly \n");
     } else {
         printf("  BUCKORE voltage not raised correctly \n");
@@ -117,7 +117,7 @@ static void da9053_eval(void)
 
     printf(" Now re-probe VDDGP, it should read 1.05V, does it? (y/n) \n");
 
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  BUCKCORE (VDDGP) voltage decreased correctly \n");
     } else {
         printf("  BUCKCORE voltage not decreased correctly \n");
@@ -139,7 +139,7 @@ static void da9053_eval(void)
 
     printf(" Probe VCC, it should read 1.275V, does it? (y/n) \n");
 
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  BUCKPRO (VCC) voltage increased correctly \n");
     } else {
         printf("  BUCKPRO voltage not raised correctly \n");
@@ -155,7 +155,7 @@ static void da9053_eval(void)
 
     printf(" Now re-probe VCC, it should read 1.225V, does it? (y/n) \n");
 
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  BUCKPRO (VCC) voltage decreased correctly \n");
     } else {
         printf("  BUCKPRO voltage not decreased correctly \n");
@@ -172,7 +172,7 @@ static void da9053_eval(void)
 
     printf(" Probe VDDAL1, it should read 1.25V, does it? (y/n) \n");
 
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  LDO6 (VDDAL1) voltage increased correctly \n");
     } else {
         printf("  LDO6 voltage not raised correctly \n");
@@ -183,7 +183,7 @@ static void da9053_eval(void)
 
     printf(" Now re-probe VDDAL1, it should read 1.2V, does it? (y/n) \n");
 
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  LDO6 (VDDAL1) voltage decreased correctly \n");
     } else {
         printf("  LDO6 voltage not decreased correctly \n");
@@ -199,7 +199,7 @@ int i2c_device_id_check_DA9053(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("PMIC DA9053 Device ID test");
+    PROMPT_RUN_TEST("PMIC DA9053 Device ID test", NULL);
 
     reg_data = da9053_i2c_reg(0x78, 0, I2C_READ);
 
@@ -223,7 +223,7 @@ int i2c_device_id_check_DA9053(void)
             printf("\t Note, this is for evaluation purposes only, \n");
             printf("\t hence no pass/fail condition generated \n");
 
-            if (is_input_char('y')) {
+            if (is_input_char('y', NULL)) {
                 printf("\t Running Dialog test \n\n");
                 da9053_eval();
             }

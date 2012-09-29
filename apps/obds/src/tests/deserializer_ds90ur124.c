@@ -107,14 +107,14 @@ int ds90ur124_test_main(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("DE-SERIALIZER DS90UR124");
+    PROMPT_RUN_TEST("DE-SERIALIZER DS90UR124", NULL);
 
     printf(" Please ensure that the demo board is connected through a USB cable.\n");
     printf(" JP1 should be removed from this board.\n");
     printf
         (" A clock should be provided on J1.TCLK, and LED D56 of the SABRE AI should light up.\n");
 
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         return TEST_BYPASSED;
     }
 

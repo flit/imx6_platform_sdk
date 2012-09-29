@@ -196,7 +196,7 @@ int touch_screen_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("TOUCH SCREEN");
+    PROMPT_RUN_TEST("TOUCH SCREEN", NULL);
 
     printf("Touch screen test. Press the screen and you'll get the coordinate. \n");
     printf("To exit test, just left the screen un-touched for a while. \n");

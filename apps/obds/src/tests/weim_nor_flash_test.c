@@ -45,7 +45,7 @@ int weim_nor_flash_test(void)
     if (!weim_nor_flash_test_enable) {
         return TEST_NOTPRESENT;
     }
-    PROMPT_RUN_TEST("WEIM NOR FLASH");
+    PROMPT_RUN_TEST("WEIM NOR FLASH", NULL);
 
     /* init the weim interface for the NOR flash */
     weim_iomux_config();

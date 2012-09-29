@@ -493,7 +493,7 @@ int ltc3589_i2c_device_id_check(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("PMIC LTC3589");
+    PROMPT_RUN_TEST("PMIC LTC3589", NULL);
 
     i2c_init(PMIC_LTC3589_I2C_BASE, 170000);
 

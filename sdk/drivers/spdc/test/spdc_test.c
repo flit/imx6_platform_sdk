@@ -162,7 +162,7 @@ int spdc_display_test(void)
     if (!spdc_test_enable) {
         return TEST_NOTPRESENT;
     }
-    PROMPT_RUN_TEST("Sipix EINK display test");
+    PROMPT_RUN_TEST("Sipix EINK display test", NULL);
 
     spdc_iomux_config();
 

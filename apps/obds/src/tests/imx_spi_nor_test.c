@@ -99,13 +99,13 @@ int spi_nor_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("SPI NOR FLASH");
+    PROMPT_RUN_TEST("SPI NOR FLASH", NULL);
 
 #if defined(BOARD_SABRE_AI)
     printf("\nConfigure J3 to 2-3 position when running the test.\n");
     printf("and when test is over configure J3 to 1-2 position.\n");
     printf("Has jumper J3 been properly configured?\n");
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  skipping SPI NOR FLASH test \n");
         return TEST_BYPASSED;
     }

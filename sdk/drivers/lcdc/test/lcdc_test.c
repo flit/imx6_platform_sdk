@@ -204,7 +204,7 @@ int lcd_display_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("LCD WVGA Display test");
+    PROMPT_RUN_TEST("LCD WVGA Display test", NULL);
 
     lcdif_display_setup();
 

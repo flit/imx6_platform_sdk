@@ -8,7 +8,10 @@
 #define __OBDS_H__
 
 #include <stdint.h>
+#include "sdk.h"
 #include "audio/audio.h"
+#include "menu.h"
+#include "text_color.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -27,31 +30,48 @@
 #define printf2(fmt,args...)
 #endif
 
+// TODO Replasce this with function prompt_run_test
+#define PROMPT_RUN_TEST(name, indent)                       \
+    do {                                                    \
+        printf("\n%s---- Running < %s >\n", indent, name);  \
+        if (!auto_run_enable) {                             \
+            if (!is_input_char('y', indent))                \
+                return TEST_BYPASSED;                       \
+        }                                                   \
+        else                                                \
+            printf("\n");                                   \
+    } while (0)
+
 /*!
  * maximum number of tests currently supported
  */
-#define MAX_TEST_NR             200
-/*!
- * maximum test name length in byte
- */
-#define MAX_TEST_NAME_LEN       64
-/*!
- * maximum number of retries for a certain test
- */
-#define MAX_TEST_RETRY          10
+#define MAX_TESTS              200
 
-typedef int (*obds_test_t) (void);
+typedef enum _select_tests
+{
+	SEL_CPU_ONLY_TESTS,
+	SEL_CPU_PLUS_BOARD_TESTS,
+	SEL_MENU_TESTS
 
-typedef struct _test_module {
-	obds_test_t func_ptr;
-    char name[MAX_TEST_NAME_LEN];
-    int result;
-}test_module_t;
+} select_tests_t;
+
+extern int auto_run_enable;
 
 // OBDS tests
-int snvs_srtc_test(void);
+menu_action_t snvs_srtc_test(const menu_context_t* const context, void* const param);
+
+
+//
+// PRIVATE
+//
+extern menuitem_t main_menuitems[];
+
+void report_test_results(void);
+//test_return_t prompt_run_test(const char * const name, const char* const indent);
+void select_tests(menuitem_t* menuitems, select_tests_t tests);
 
 //list of tests from obds
+
 extern int android_buttons_test_enable;
 extern int touch_button_test_enable;
 extern int eeprom_test_enable;
@@ -116,16 +136,7 @@ extern audio_card_t snd_card_ssi_wm8962;
 #define TEST_ENTER(name) printf("Running test: %s\n", name)
 #define TEST_EXIT(name) do {printf("..Test: %s\n", name); } while(0) 
 
-#define PROMPT_RUN_TEST(name)           \
-    do {                                \
-        printf("\n---- Running < %s > test\n", name);       \
-        if (!auto_run_enable) {                             \
-            if (!is_input_char('y'))                        \
-                return TEST_BYPASSED;                       \
-        }                                                   \
-    } while (0)
 
-extern int auto_run_enable;
 
 #endif // __OBDS_H__
 ////////////////////////////////////////////////////////////////////////////////

@@ -75,7 +75,7 @@ int enet_test(void)
     printf("\nWould you like to run the Ethernet loopback test?\n \
            (Please note that in order to run the test, you need to\n \
            first plug in a loopback cable to the Ethernet port) \n");
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  skip ETHERNET test \n");
         return TEST_BYPASSED;
     }

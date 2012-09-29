@@ -3,39 +3,29 @@
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
-*/
+ */
+#include <stdarg.h>
 
 #ifndef __TEXT_COLOR_H__
 #define __TEXT_COLOR_H__
-#define RESET		0
-#define BRIGHT 		1
-#define DIM		2
-#define UNDERLINE 	3
 
-#define BLINK		5
-#define REVERSE		7
-#define HIDDEN		8
+static const char* const TEXT_ATTRIB_DEFAULT   = "\033[00m";
+static const char* const TEXT_ATTRIB_BOLD      = "\033[01m";
+static const char* const TEXT_ATTRIB_DIM       = "\033[02m";
+static const char* const TEXT_ATTRIB_UNDERLINE = "\033[03m";
+static const char* const TEXT_ATTRIB_BLINK     = "\033[05m";
+static const char* const TEXT_ATTRIB_REVERSE   = "\033[07m";
+static const char* const TEXT_ATTRIB_HIDDEN    = "\033[08m";
 
-#define BLACK 		0
-#define RED		1
-#define GREEN		2
-#define YELLOW		3
-#define BLUE		4
-#define MAGENTA		5
-#define CYAN		6
-#define	WHITE		7
-extern void textcolor(int attr, int fg, int bg);
+static const char* const TEXT_COLOR_BLACK      = "\033[30m";
+static const char* const TEXT_COLOR_RED        = "\033[31m";
+static const char* const TEXT_COLOR_GREEN      = "\033[32m";
+static const char* const TEXT_COLOR_YELLOW     = "\033[33m";
+static const char* const TEXT_COLOR_BLUE       = "\033[34m";
+static const char* const TEXT_COLOR_MAGENTA    = "\033[35m";
+static const char* const TEXT_COLOR_CYAN       = "\033[36m";
+static const char* const TEXT_COLOR_WHITE      = "\033[37m";
 
-#define DEFAULT_BG_COLOR    WHITE
-#define DEFAULT_FG_COLOR    BLACK
-#define ERROR_COLOR	        RED
-#define ATTENTION_COLOR     YELLOW
-#define PASS_COLOR          GREEN
+void printf_color(const char* const attrib, const char* const color, const char* format, ...);
 
-#define printf_color(color, fmt, args...)	                    \
-    do {					                                    \
-        textcolor(BRIGHT, color, DEFAULT_BG_COLOR);		        \
-        printf(fmt, args);		                                \
-        textcolor(BRIGHT, DEFAULT_FG_COLOR, DEFAULT_BG_COLOR);	\
-    } while(0)
-#endif
+#endif // __TEXT_COLOR_H__

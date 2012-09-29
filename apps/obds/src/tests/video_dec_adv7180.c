@@ -138,7 +138,7 @@ int adv7180_test_main(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("VIDEO INPUT");
+    PROMPT_RUN_TEST("VIDEO INPUT", NULL);
 
     adv7180_i2c_init_obds();
     ret = adv7180_i2c_device_id_check();

@@ -354,7 +354,7 @@ int EHCI_test_mode(void)
     if (!usbh_EHCI_test_mode_test_enable) {
         return TEST_NOTPRESENT;
     }
-    PROMPT_RUN_TEST("Set EHCI test modes");
+    PROMPT_RUN_TEST("Set EHCI test modes", NULL);
 
     /*initialize the USB host controller */
     controller = -1;
@@ -412,9 +412,9 @@ printf("usbh_dev_enum func\n");
     if (!usbh_dev_enum_test_enable) {
         return TEST_NOTPRESENT;
     }
-    PROMPT_RUN_TEST("USBH1 Dev Enumeration");
+    PROMPT_RUN_TEST("USBH1 Dev Enumeration", NULL);
     printf("\nRun the USBH1 device enumeration test? Make sure plug in a USB device!\n");
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         return TEST_BYPASSED;
     }
 
@@ -515,9 +515,9 @@ int usbo_dev_enum_test(void)
     if (!usbo_dev_enum_test_enable) {
         return TEST_NOTPRESENT;
     }
-    PROMPT_RUN_TEST("USBOTG Dev Enumeration");
+    PROMPT_RUN_TEST("USBOTG Dev Enumeration", NULL);
     printf("\nRun the USBOTG device enumeration test? Make sure plug in a USB device!\n");
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         return TEST_BYPASSED;
     }
 
@@ -565,10 +565,10 @@ int usbh_hub251x_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("USBH HUB");
+    PROMPT_RUN_TEST("USBH HUB", NULL);
     // USB HUB test
     printf("\nWould you like to run the USBH1 HUB test?\n");
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         return TEST_BYPASSED;
     }
     failCount = 0;

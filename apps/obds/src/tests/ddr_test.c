@@ -163,7 +163,7 @@ int run_ddr_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("DDR");
+    PROMPT_RUN_TEST("DDR", NULL);
 
     return ddr_test(ddr_density, ddr_num_of_cs);
 }

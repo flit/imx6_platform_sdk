@@ -38,7 +38,7 @@ int32_t esai_playback(audio_pcm_p pcm_file)
     printf
         (" 2. The converting cable's two plugs were plugged into the Automotive Card's AOUT1 and AOUT2 sockets.\n");
     printf(" 3. The headphone is plugged into the converting cable's socket.\n");
-    if (!is_input_char('y')) {
+    if (!is_input_char('y', NULL)) {
         printf("  skip AUDIO test \n");
         return TEST_BYPASSED;
     }

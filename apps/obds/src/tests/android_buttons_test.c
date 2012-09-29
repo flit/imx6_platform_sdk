@@ -106,7 +106,7 @@ int android_buttons_test(void)
     if (!android_buttons_test_enable)
         return TEST_NOTPRESENT;
 
-    PROMPT_RUN_TEST("ANDROID BUTTONS");
+    PROMPT_RUN_TEST("ANDROID BUTTONS", NULL);
 
     printf("Press all the Android buttons (on SABRE AI main board) you wish to test\n");
     printf("Pressing each button should result in an equivalent unique message to screen\n");
@@ -121,7 +121,7 @@ int android_buttons_test(void)
     }
 
     printf("Did you get unique message for HOME, PROG, VOL+, VOL-, and BACK buttons?\n");
-    if (is_input_char('y')) {
+    if (is_input_char('y', NULL)) {
         printf("  ANDROID BUTTONS test passed.\n");
         return TEST_PASSED;
     }

@@ -194,7 +194,7 @@ int single_image_disp(void)
     image_center_copy();
     printf("Do you see the image displayed on the %s panel?(Y/y for yes, other for no)\n",
            dispDev.panel_name);
-    if (is_input_char('y')) {
+    if (is_input_char('y', NULL)) {
         ret = TEST_PASSED;
     }
     return ret;
@@ -389,7 +389,7 @@ int ipu_display_test_main(void)
             break;
         }
         printf("\n---- Running < %s > test\n", display_type_name[panel_index]);
-        if (is_input_char('y')) {
+        if (is_input_char('y', NULL)) {
             if (ipu_display_test(panel_index) != TEST_PASSED) {
                 fail++;
                 printf("\t %s test FAILED\n", display_type_name[panel_index]);

@@ -24,7 +24,7 @@ int smbus_test_routine(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("SMB BUS");
+    PROMPT_RUN_TEST("SMB BUS", NULL);
 
     ret = smbus_prepare_to_arp();
     if (ret)

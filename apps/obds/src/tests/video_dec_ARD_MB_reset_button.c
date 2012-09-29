@@ -23,7 +23,7 @@ int ard_mb_reset_test(void)
         return TEST_NOTPRESENT;
     }
 
-    PROMPT_RUN_TEST("SABRE AI Main Board Reset Button");
+    PROMPT_RUN_TEST("SABRE AI Main Board Reset Button", NULL);
 
     result = 0;                 // fail
 

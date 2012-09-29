@@ -33,12 +33,8 @@
 #include "registers/regsuart.h"
 #include "sata/imx_sata.h"
 #include "timer/timer.h"
-#include "rtc/rtc.h"
-#include "snvs/srtc.h"
-#include "snvs/snvs.h"
 #include "hdmi_regs.h"
 #include "buffers.h"
-//#include "usb_regs.h"
 #include "usb/usb.h"
 #include "keypad/keypad_port.h"
 

@@ -1688,11 +1688,18 @@ typedef union _hw_snvs_hpsr
     reg32_t U;
     struct _hw_snvs_hpsr_bitfields
     {
-        unsigned RESERVED0 : 8; //!< [7:0] Reserved.
+        unsigned HPTA : 1; //!< [0] HP Time Alarm Indicates that the HP Time Alarm has occurred since this bit was last cleared.
+        unsigned PI : 1; //!< [1] Periodic Interrupt
+        unsigned RESERVED0 : 2; //!< [3:2] Reserved
+        unsigned LPDIS : 1; //!< [4] Low Power Disable
+        unsigned RESERVED1 : 3; //!< [7:5] Reserved
         unsigned SSM_ST : 4; //!< [11:8] System Security Monitor State
-        unsigned RESERVED1 : 15; //!< [26:12] Reserved.
+        unsigned SYS_SECURITY_CFG : 3; //!< [14:12] This field reflects the value of the sys_security_cfg input signal, which is defined as follows:
+        unsigned SYS_SECURE_BOOT : 1; //!< [15] This bit reflects the value of the sys_secure_boot input signal to SNVS .
+        unsigned OTPMK_SYNDROME : 9; //!< [24:16] One Time Programmable Master Key Syndrome Value
+        unsigned RESERVED2 : 2; //!< [26:25] Reserved
         unsigned OTPMK_ZERO : 1; //!< [27] One Time Programmable Master Key is Equal to Zero.
-        unsigned RESERVED2 : 3; //!< [30:28] Reserved
+        unsigned RESERVED3 : 3; //!< [30:28] Reserved
         unsigned ZMK_ZERO : 1; //!< [31] Zeroizable Master Key is Equal to Zero.
     } B;
 } hw_snvs_hpsr_t;
@@ -1718,21 +1725,97 @@ typedef union _hw_snvs_hpsr
  * constants & macros for individual SNVS_HPSR bitfields
  */
 
+/*! @name Register SNVS_HPSR, field HPTA[0] (RW)
+ *
+ * HP Time Alarm Indicates that the HP Time Alarm has occurred since this bit was last cleared.
+ *
+ * Values:
+ * - 0 - No time alarm interrupt occurred.
+ * - 1 - A time alarm interrupt occurred.
+ */
+//@{
+
+#define BP_SNVS_HPSR_HPTA      (0)      //!< Bit position for SNVS_HPSR_HPTA.
+#define BM_SNVS_HPSR_HPTA      (0x00000001)  //!< Bit mask for SNVS_HPSR_HPTA.
+
+//! @brief Get value of SNVS_HPSR_HPTA from a register value.
+#define BG_SNVS_HPSR_HPTA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_HPSR_HPTA) >> BP_SNVS_HPSR_HPTA)
+
+//! @brief Format value for bitfield SNVS_HPSR_HPTA.
+#define BF_SNVS_HPSR_HPTA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_HPSR_HPTA) & BM_SNVS_HPSR_HPTA)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the HPTA field to a new value.
+#define BW_SNVS_HPSR_HPTA(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_HPTA) | BF_SNVS_HPSR_HPTA(v)))
+#endif
+
+//@}
+
+/*! @name Register SNVS_HPSR, field PI[1] (RW)
+ *
+ * Periodic Interrupt Indicates that periodic interrupt has occurred since this bit was last
+ * cleared.
+ *
+ * Values:
+ * - 0 - No periodic interrupt occurred.
+ * - 1 - A periodic interrupt occurred.
+ */
+//@{
+
+#define BP_SNVS_HPSR_PI      (1)      //!< Bit position for SNVS_HPSR_PI.
+#define BM_SNVS_HPSR_PI      (0x00000002)  //!< Bit mask for SNVS_HPSR_PI.
+
+//! @brief Get value of SNVS_HPSR_PI from a register value.
+#define BG_SNVS_HPSR_PI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_HPSR_PI) >> BP_SNVS_HPSR_PI)
+
+//! @brief Format value for bitfield SNVS_HPSR_PI.
+#define BF_SNVS_HPSR_PI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_HPSR_PI) & BM_SNVS_HPSR_PI)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the PI field to a new value.
+#define BW_SNVS_HPSR_PI(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_PI) | BF_SNVS_HPSR_PI(v)))
+#endif
+
+//@}
+
+/*! @name Register SNVS_HPSR, field LPDIS[4] (RW)
+ *
+ * Low Power Disable If 1, the SNVS low power section has been disabled by means of an input signal
+ * to the SNVS .
+ */
+//@{
+
+#define BP_SNVS_HPSR_LPDIS      (4)      //!< Bit position for SNVS_HPSR_LPDIS.
+#define BM_SNVS_HPSR_LPDIS      (0x00000010)  //!< Bit mask for SNVS_HPSR_LPDIS.
+
+//! @brief Get value of SNVS_HPSR_LPDIS from a register value.
+#define BG_SNVS_HPSR_LPDIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_HPSR_LPDIS) >> BP_SNVS_HPSR_LPDIS)
+
+//! @brief Format value for bitfield SNVS_HPSR_LPDIS.
+#define BF_SNVS_HPSR_LPDIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_HPSR_LPDIS) & BM_SNVS_HPSR_LPDIS)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the LPDIS field to a new value.
+#define BW_SNVS_HPSR_LPDIS(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_LPDIS) | BF_SNVS_HPSR_LPDIS(v)))
+#endif
+
+//@}
+
 /*! @name Register SNVS_HPSR, field SSM_ST[11:8] (RW)
  *
  * System Security Monitor State This field contains the encoded state of the SSM's state machine.
  * The encoding of the possible states are:
  *
  * Values:
- * - 0000 - Init
- * - 0001 - Hard Fail
- * - 0011 - Soft Fail
- * - 1000 - Init Intermediate (transition state between Init and Check - SSM stays in this state only one clock
+ * - INIT = 0000 - Init
+ * - HARD_FAIL = 0001 - Hard Fail
+ * - SOFT_FAIL = 0011 - Soft Fail
+ * - INIT_INTERMEDIATE = 1000 - Init Intermediate (transition state between Init and Check - SSM stays in this state only one clock
  *     cycle)
- * - 1001 - Check
- * - 1011 - Non-Secure
- * - 1101 - Trusted
- * - 1111 - Secure
+ * - CHECK = 1001 - Check
+ * - NON_SECURE = 1011 - Non-Secure
+ * - TRUSTED = 1101 - Trusted
+ * - SECURE = 1111 - Secure
  */
 //@{
 
@@ -1750,6 +1833,105 @@ typedef union _hw_snvs_hpsr
 #define BW_SNVS_HPSR_SSM_ST(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_SSM_ST) | BF_SNVS_HPSR_SSM_ST(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_SNVS_HPSR_SSM_ST_V(v) BF_SNVS_HPSR_SSM_ST(BV_SNVS_HPSR_SSM_ST__##v)
+
+#define BV_SNVS_HPSR_SSM_ST__INIT (0x0) //!< Init
+#define BV_SNVS_HPSR_SSM_ST__HARD_FAIL (0x1) //!< Hard Fail
+#define BV_SNVS_HPSR_SSM_ST__SOFT_FAIL (0x3) //!< Soft Fail
+#define BV_SNVS_HPSR_SSM_ST__INIT_INTERMEDIATE (0x8) //!< Init Intermediate (transition state between Init and Check - SSM stays in this state only one clock cycle)
+#define BV_SNVS_HPSR_SSM_ST__CHECK (0x9) //!< Check
+#define BV_SNVS_HPSR_SSM_ST__NON_SECURE (0xb) //!< Non-Secure
+#define BV_SNVS_HPSR_SSM_ST__TRUSTED (0xd) //!< Trusted
+#define BV_SNVS_HPSR_SSM_ST__SECURE (0xf) //!< Secure
+
+//@}
+
+/*! @name Register SNVS_HPSR, field SYS_SECURITY_CFG[14:12] (RW)
+ *
+ * This field reflects the value of the sys_security_cfg input signal, which is defined as follows:
+ *
+ * Values:
+ * - FAB = 000 - Fab Configuration - the default configuration of newly fabricated chips
+ * - OPEN = 001 - Open Configuration - the configuration after Freescale- programmable fuses have been blown
+ * - CLOSED = 01x - Closed Configuration - the configuration after OEM-programmable fuses have been blown
+ * - FIELD_RETURN = 1xx - Field Return Configuration - the configuration of chips that are returned to Freescale for analysis
+ */
+//@{
+
+#define BP_SNVS_HPSR_SYS_SECURITY_CFG      (12)      //!< Bit position for SNVS_HPSR_SYS_SECURITY_CFG.
+#define BM_SNVS_HPSR_SYS_SECURITY_CFG      (0x00007000)  //!< Bit mask for SNVS_HPSR_SYS_SECURITY_CFG.
+
+//! @brief Get value of SNVS_HPSR_SYS_SECURITY_CFG from a register value.
+#define BG_SNVS_HPSR_SYS_SECURITY_CFG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_HPSR_SYS_SECURITY_CFG) >> BP_SNVS_HPSR_SYS_SECURITY_CFG)
+
+//! @brief Format value for bitfield SNVS_HPSR_SYS_SECURITY_CFG.
+#define BF_SNVS_HPSR_SYS_SECURITY_CFG(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_HPSR_SYS_SECURITY_CFG) & BM_SNVS_HPSR_SYS_SECURITY_CFG)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SYS_SECURITY_CFG field to a new value.
+#define BW_SNVS_HPSR_SYS_SECURITY_CFG(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_SYS_SECURITY_CFG) | BF_SNVS_HPSR_SYS_SECURITY_CFG(v)))
+#endif
+
+//! @brief Macro to simplify usage of value macros.
+#define BF_SNVS_HPSR_SYS_SECURITY_CFG_V(v) BF_SNVS_HPSR_SYS_SECURITY_CFG(BV_SNVS_HPSR_SYS_SECURITY_CFG__##v)
+
+#define BV_SNVS_HPSR_SYS_SECURITY_CFG__FAB (0x0) //!< Fab Configuration - the default configuration of newly fabricated chips
+#define BV_SNVS_HPSR_SYS_SECURITY_CFG__OPEN (0x1) //!< Open Configuration - the configuration after Freescale- programmable fuses have been blown
+#define BV_SNVS_HPSR_SYS_SECURITY_CFG__CLOSED (0x2) //!< Closed Configuration - the configuration after OEM-programmable fuses have been blown
+#define BV_SNVS_HPSR_SYS_SECURITY_CFG__FIELD_RETURN (0x4) //!< Field Return Configuration - the configuration of chips that are returned to Freescale for analysis
+
+//@}
+
+/*! @name Register SNVS_HPSR, field SYS_SECURE_BOOT[15] (RW)
+ *
+ * This bit reflects the value of the sys_secure_boot input signal to SNVS . If this bit is 1, the
+ * chip boots from internal ROM.
+ */
+//@{
+
+#define BP_SNVS_HPSR_SYS_SECURE_BOOT      (15)      //!< Bit position for SNVS_HPSR_SYS_SECURE_BOOT.
+#define BM_SNVS_HPSR_SYS_SECURE_BOOT      (0x00008000)  //!< Bit mask for SNVS_HPSR_SYS_SECURE_BOOT.
+
+//! @brief Get value of SNVS_HPSR_SYS_SECURE_BOOT from a register value.
+#define BG_SNVS_HPSR_SYS_SECURE_BOOT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_HPSR_SYS_SECURE_BOOT) >> BP_SNVS_HPSR_SYS_SECURE_BOOT)
+
+//! @brief Format value for bitfield SNVS_HPSR_SYS_SECURE_BOOT.
+#define BF_SNVS_HPSR_SYS_SECURE_BOOT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_HPSR_SYS_SECURE_BOOT) & BM_SNVS_HPSR_SYS_SECURE_BOOT)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SYS_SECURE_BOOT field to a new value.
+#define BW_SNVS_HPSR_SYS_SECURE_BOOT(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_SYS_SECURE_BOOT) | BF_SNVS_HPSR_SYS_SECURE_BOOT(v)))
+#endif
+
+//@}
+
+/*! @name Register SNVS_HPSR, field OTPMK_SYNDROME[24:16] (RW)
+ *
+ * One Time Programmable Master Key Syndrome Value The eight lower bits of this value indicate error
+ * location in case of a single-bit error. For example, syndrome word 10010110 indicates that key
+ * bit 150 has an error. The ninth bit of the syndrome word checks parity of the whole key value.
+ * This bit is 1 when the odd number of errors are occurred and it is 0 when the number of errors is
+ * even. For example, if one of the eight bits indicates a failure and the ninth bit is zero then
+ * the number of errors in the one time programmable master key is at least 2 and it cannot be
+ * corrected. when one of the syndrome bits is set, the bad key violation is always generated
+ */
+//@{
+
+#define BP_SNVS_HPSR_OTPMK_SYNDROME      (16)      //!< Bit position for SNVS_HPSR_OTPMK_SYNDROME.
+#define BM_SNVS_HPSR_OTPMK_SYNDROME      (0x01ff0000)  //!< Bit mask for SNVS_HPSR_OTPMK_SYNDROME.
+
+//! @brief Get value of SNVS_HPSR_OTPMK_SYNDROME from a register value.
+#define BG_SNVS_HPSR_OTPMK_SYNDROME(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_HPSR_OTPMK_SYNDROME) >> BP_SNVS_HPSR_OTPMK_SYNDROME)
+
+//! @brief Format value for bitfield SNVS_HPSR_OTPMK_SYNDROME.
+#define BF_SNVS_HPSR_OTPMK_SYNDROME(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_HPSR_OTPMK_SYNDROME) & BM_SNVS_HPSR_OTPMK_SYNDROME)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the OTPMK_SYNDROME field to a new value.
+#define BW_SNVS_HPSR_OTPMK_SYNDROME(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_OTPMK_SYNDROME) | BF_SNVS_HPSR_OTPMK_SYNDROME(v)))
+#endif
+
 //@}
 
 /*! @name Register SNVS_HPSR, field OTPMK_ZERO[27] (RW)
@@ -1758,8 +1940,8 @@ typedef union _hw_snvs_hpsr
  * violation
  *
  * Values:
- * - 0 - The OTPMK is not zero.
- * - 1 - The OTPMK is zero.
+ * - NOT_ZERO = 0 - The OTPMK is not zero.
+ * - IS_ZERO = 1 - The OTPMK is zero.
  */
 //@{
 
@@ -1777,6 +1959,12 @@ typedef union _hw_snvs_hpsr
 #define BW_SNVS_HPSR_OTPMK_ZERO(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_OTPMK_ZERO) | BF_SNVS_HPSR_OTPMK_ZERO(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_SNVS_HPSR_OTPMK_ZERO_V(v) BF_SNVS_HPSR_OTPMK_ZERO(BV_SNVS_HPSR_OTPMK_ZERO__##v)
+
+#define BV_SNVS_HPSR_OTPMK_ZERO__NOT_ZERO (0x0) //!< The OTPMK is not zero.
+#define BV_SNVS_HPSR_OTPMK_ZERO__IS_ZERO (0x1) //!< The OTPMK is zero.
+
 //@}
 
 /*! @name Register SNVS_HPSR, field ZMK_ZERO[31] (RW)
@@ -1785,8 +1973,8 @@ typedef union _hw_snvs_hpsr
  * ZMK is selected for use
  *
  * Values:
- * - 0 - The ZMK is not zero.
- * - 1 - The ZMK is zero.
+ * - NOT_ZERO = 0 - The ZMK is not zero.
+ * - IS_ZERO = 1 - The ZMK is zero.
  */
 //@{
 
@@ -1803,6 +1991,12 @@ typedef union _hw_snvs_hpsr
 //! @brief Set the ZMK_ZERO field to a new value.
 #define BW_SNVS_HPSR_ZMK_ZERO(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_ZMK_ZERO) | BF_SNVS_HPSR_ZMK_ZERO(v)))
 #endif
+
+//! @brief Macro to simplify usage of value macros.
+#define BF_SNVS_HPSR_ZMK_ZERO_V(v) BF_SNVS_HPSR_ZMK_ZERO(BV_SNVS_HPSR_ZMK_ZERO__##v)
+
+#define BV_SNVS_HPSR_ZMK_ZERO__NOT_ZERO (0x0) //!< The ZMK is not zero.
+#define BV_SNVS_HPSR_ZMK_ZERO__IS_ZERO (0x1) //!< The ZMK is zero.
 
 //@}
 
@@ -2019,9 +2213,9 @@ typedef union _hw_snvs_hpsvsr
 
 /*! @name Register SNVS_HPSVSR, field ZMK_SYNDROME[24:16] (RW)
  *
- * Zeroizable Master Key Syndrome Value The ZMK syndrome indicates error location and parity . This
- * value is set and locked when a ZMK ECC failure is detected. It is cleared by writing one into
- * ZMK_ECC_FAIL bit.
+ * Zeroizable Master Key Syndrome Value The ZMK syndrome indicates error location and parity similar
+ * to the OTPMK syndrome . This value is set and locked when a ZMK ECC failure is detected. It is
+ * cleared by writing one into ZMK_ECC_FAIL bit.
  */
 //@{
 
@@ -2252,8 +2446,8 @@ typedef union _hw_snvs_hprtcmr
 
 /*! @name Register SNVS_HPRTCMR, field RTC[14:0] (RW)
  *
- * HP Real Time Counter Most significant bits. This register can be programmed only when RTC is not
- * active (RTC_EN bit is not set).
+ * HP Real Time Counter Most significant 15 bits. This register can be programmed only when RTC is
+ * not active (RTC_EN bit is not set).
  */
 //@{
 
@@ -3519,14 +3713,11 @@ typedef union _hw_snvs_lptgfcr
     reg32_t U;
     struct _hw_snvs_lptgfcr_bitfields
     {
-        unsigned WMTGF : 5; //!< [4:0] Wire-Mesh Tamper Glitch Filter
-        unsigned RESERVED0 : 2; //!< [6:5] Reserved
-        unsigned WMTGF_EN : 1; //!< [7] Wire-Mesh Tamper Glitch Filter Enable
-        unsigned RESERVED1 : 8; //!< [15:8] Reserved
+        unsigned RESERVED0 : 16; //!< [15:0] Reserved.
         unsigned ETGF1 : 5; //!< [20:16] External Tamper Glitch Filter 1
-        unsigned RESERVED2 : 2; //!< [22:21] Reserved
+        unsigned RESERVED1 : 2; //!< [22:21] Reserved
         unsigned ETGF1_EN : 1; //!< [23] External Tamper Glitch Filter 1 Enable
-        unsigned RESERVED3 : 8; //!< [31:24] Reserved.
+        unsigned RESERVED2 : 8; //!< [31:24] Reserved.
     } B;
 } hw_snvs_lptgfcr_t;
 #endif
@@ -3550,59 +3741,6 @@ typedef union _hw_snvs_lptgfcr
 /*
  * constants & macros for individual SNVS_LPTGFCR bitfields
  */
-
-/*! @name Register SNVS_LPTGFCR, field WMTGF[4:0] (RW)
- *
- * Wire-Mesh Tamper Glitch Filter Configures the length of the digital glitch filter for the wire-
- * mesh tamper 1 and 2 pins between 1 and 63 SRTC clock cycles. Two wire-mesh tamper inputs share
- * this glitch filter. Any assertion on wire-mesh tamper 1 or 2 that is equal to or less than the
- * value of the digital glitch filter is ignored. The length of the glitches filtered out is: 1 +
- * (WMTGF x 2), where WMTGF = 0, ... , 31
- */
-//@{
-
-#define BP_SNVS_LPTGFCR_WMTGF      (0)      //!< Bit position for SNVS_LPTGFCR_WMTGF.
-#define BM_SNVS_LPTGFCR_WMTGF      (0x0000001f)  //!< Bit mask for SNVS_LPTGFCR_WMTGF.
-
-//! @brief Get value of SNVS_LPTGFCR_WMTGF from a register value.
-#define BG_SNVS_LPTGFCR_WMTGF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPTGFCR_WMTGF) >> BP_SNVS_LPTGFCR_WMTGF)
-
-//! @brief Format value for bitfield SNVS_LPTGFCR_WMTGF.
-#define BF_SNVS_LPTGFCR_WMTGF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPTGFCR_WMTGF) & BM_SNVS_LPTGFCR_WMTGF)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the WMTGF field to a new value.
-#define BW_SNVS_LPTGFCR_WMTGF(v)   (HW_SNVS_LPTGFCR_WR((HW_SNVS_LPTGFCR_RD() & ~BM_SNVS_LPTGFCR_WMTGF) | BF_SNVS_LPTGFCR_WMTGF(v)))
-#endif
-
-//@}
-
-/*! @name Register SNVS_LPTGFCR, field WMTGF_EN[7] (RW)
- *
- * Wire-Mesh Tamper Glitch Filter Enable When set, enables the wire-mesh tamper glitch filter. Note
- * that two wire-mesh tamper inputs (1 and 2) share this glitch filter.
- *
- * Values:
- * - 0 - Wire-mesh tamper glitch filter is bypassed.
- * - 1 - Wire-mesh tamper glitch filter is enabled.
- */
-//@{
-
-#define BP_SNVS_LPTGFCR_WMTGF_EN      (7)      //!< Bit position for SNVS_LPTGFCR_WMTGF_EN.
-#define BM_SNVS_LPTGFCR_WMTGF_EN      (0x00000080)  //!< Bit mask for SNVS_LPTGFCR_WMTGF_EN.
-
-//! @brief Get value of SNVS_LPTGFCR_WMTGF_EN from a register value.
-#define BG_SNVS_LPTGFCR_WMTGF_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPTGFCR_WMTGF_EN) >> BP_SNVS_LPTGFCR_WMTGF_EN)
-
-//! @brief Format value for bitfield SNVS_LPTGFCR_WMTGF_EN.
-#define BF_SNVS_LPTGFCR_WMTGF_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPTGFCR_WMTGF_EN) & BM_SNVS_LPTGFCR_WMTGF_EN)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the WMTGF_EN field to a new value.
-#define BW_SNVS_LPTGFCR_WMTGF_EN(v)   (HW_SNVS_LPTGFCR_WR((HW_SNVS_LPTGFCR_RD() & ~BM_SNVS_LPTGFCR_WMTGF_EN) | BF_SNVS_LPTGFCR_WMTGF_EN(v)))
-#endif
-
-//@}
 
 /*! @name Register SNVS_LPTGFCR, field ETGF1[20:16] (RW)
  *
@@ -3676,24 +3814,12 @@ typedef union _hw_snvs_lptdcr
         unsigned RESERVED0 : 1; //!< [0] Reserved
         unsigned SRTCR_EN : 1; //!< [1] SRTC Rollover Enable
         unsigned MCR_EN : 1; //!< [2] MC Rollover Enable
-        unsigned RESERVED1 : 1; //!< [3] Reserved
-        unsigned CT_EN : 1; //!< [4] Clock Tamper Enable
-        unsigned TT_EN : 1; //!< [5] Temperature Tamper Enable
-        unsigned VT_EN : 1; //!< [6] Voltage Tamper Enable
-        unsigned WMT1_EN : 1; //!< [7] Wire-Mesh Tampering 1 Enable
-        unsigned WMT2_EN : 1; //!< [8] Wire-Mesh Tampering 2 Enable
+        unsigned RESERVED1 : 6; //!< [8:3] Reserved.
         unsigned ET1_EN : 1; //!< [9] External Tampering 1 Enable
         unsigned RESERVED2 : 4; //!< [13:10] Reserved.
         unsigned PFD_OBSERV : 1; //!< [14] System Power Fail Detector (PFD) Observability Flop
         unsigned POR_OBSERV : 1; //!< [15] Power On Reset (POR) Observability Flop
-        unsigned LTDC : 3; //!< [18:16] Low Temperature Detect Configuration
-        unsigned RESERVED3 : 1; //!< [19] Reserved
-        unsigned HTDC : 3; //!< [22:20] High Temperature Detect Configuration
-        unsigned RESERVED4 : 1; //!< [23] Reserved
-        unsigned VRC : 3; //!< [26:24] Voltage Reference Configuration
-        unsigned RESERVED5 : 1; //!< [27] Reserved
-        unsigned OSCB : 1; //!< [28] Oscillator Bypass
-        unsigned RESERVED6 : 3; //!< [31:29] Reserved
+        unsigned RESERVED3 : 16; //!< [31:16] Reserved.
     } B;
 } hw_snvs_lptdcr_t;
 #endif
@@ -3766,139 +3892,6 @@ typedef union _hw_snvs_lptdcr
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MCR_EN field to a new value.
 #define BW_SNVS_LPTDCR_MCR_EN(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_MCR_EN) | BF_SNVS_LPTDCR_MCR_EN(v)))
-#endif
-
-//@}
-
-/*! @name Register SNVS_LPTDCR, field CT_EN[4] (RW)
- *
- * Clock Tamper Enable When set, a clock monitor tamper generates an LP security violation.
- *
- * Values:
- * - 0 - Clock tamper is disabled.
- * - 1 - Clock tamper is enabled.
- */
-//@{
-
-#define BP_SNVS_LPTDCR_CT_EN      (4)      //!< Bit position for SNVS_LPTDCR_CT_EN.
-#define BM_SNVS_LPTDCR_CT_EN      (0x00000010)  //!< Bit mask for SNVS_LPTDCR_CT_EN.
-
-//! @brief Get value of SNVS_LPTDCR_CT_EN from a register value.
-#define BG_SNVS_LPTDCR_CT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPTDCR_CT_EN) >> BP_SNVS_LPTDCR_CT_EN)
-
-//! @brief Format value for bitfield SNVS_LPTDCR_CT_EN.
-#define BF_SNVS_LPTDCR_CT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPTDCR_CT_EN) & BM_SNVS_LPTDCR_CT_EN)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CT_EN field to a new value.
-#define BW_SNVS_LPTDCR_CT_EN(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_CT_EN) | BF_SNVS_LPTDCR_CT_EN(v)))
-#endif
-
-//@}
-
-/*! @name Register SNVS_LPTDCR, field TT_EN[5] (RW)
- *
- * Temperature Tamper Enable When set, a temperature monitor tamper generates an LP security
- * violation.
- *
- * Values:
- * - 0 - Temperature tamper is disabled.
- * - 1 - Temperature tamper is enabled.
- */
-//@{
-
-#define BP_SNVS_LPTDCR_TT_EN      (5)      //!< Bit position for SNVS_LPTDCR_TT_EN.
-#define BM_SNVS_LPTDCR_TT_EN      (0x00000020)  //!< Bit mask for SNVS_LPTDCR_TT_EN.
-
-//! @brief Get value of SNVS_LPTDCR_TT_EN from a register value.
-#define BG_SNVS_LPTDCR_TT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPTDCR_TT_EN) >> BP_SNVS_LPTDCR_TT_EN)
-
-//! @brief Format value for bitfield SNVS_LPTDCR_TT_EN.
-#define BF_SNVS_LPTDCR_TT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPTDCR_TT_EN) & BM_SNVS_LPTDCR_TT_EN)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TT_EN field to a new value.
-#define BW_SNVS_LPTDCR_TT_EN(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_TT_EN) | BF_SNVS_LPTDCR_TT_EN(v)))
-#endif
-
-//@}
-
-/*! @name Register SNVS_LPTDCR, field VT_EN[6] (RW)
- *
- * Voltage Tamper Enable When set, a voltage monitor tamper generates an LP security violation.
- *
- * Values:
- * - 0 - Voltage tamper is disabled.
- * - 1 - Voltage tamper is enabled.
- */
-//@{
-
-#define BP_SNVS_LPTDCR_VT_EN      (6)      //!< Bit position for SNVS_LPTDCR_VT_EN.
-#define BM_SNVS_LPTDCR_VT_EN      (0x00000040)  //!< Bit mask for SNVS_LPTDCR_VT_EN.
-
-//! @brief Get value of SNVS_LPTDCR_VT_EN from a register value.
-#define BG_SNVS_LPTDCR_VT_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPTDCR_VT_EN) >> BP_SNVS_LPTDCR_VT_EN)
-
-//! @brief Format value for bitfield SNVS_LPTDCR_VT_EN.
-#define BF_SNVS_LPTDCR_VT_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPTDCR_VT_EN) & BM_SNVS_LPTDCR_VT_EN)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VT_EN field to a new value.
-#define BW_SNVS_LPTDCR_VT_EN(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_VT_EN) | BF_SNVS_LPTDCR_VT_EN(v)))
-#endif
-
-//@}
-
-/*! @name Register SNVS_LPTDCR, field WMT1_EN[7] (RW)
- *
- * Wire-Mesh Tampering 1 Enable When set, wire-mesh tampering 1 detection generates an LP security
- * violation.
- *
- * Values:
- * - 0 - Wire-mesh tamper 1 is disabled.
- * - 1 - Wire-mesh tamper 1 is enabled.
- */
-//@{
-
-#define BP_SNVS_LPTDCR_WMT1_EN      (7)      //!< Bit position for SNVS_LPTDCR_WMT1_EN.
-#define BM_SNVS_LPTDCR_WMT1_EN      (0x00000080)  //!< Bit mask for SNVS_LPTDCR_WMT1_EN.
-
-//! @brief Get value of SNVS_LPTDCR_WMT1_EN from a register value.
-#define BG_SNVS_LPTDCR_WMT1_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPTDCR_WMT1_EN) >> BP_SNVS_LPTDCR_WMT1_EN)
-
-//! @brief Format value for bitfield SNVS_LPTDCR_WMT1_EN.
-#define BF_SNVS_LPTDCR_WMT1_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPTDCR_WMT1_EN) & BM_SNVS_LPTDCR_WMT1_EN)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the WMT1_EN field to a new value.
-#define BW_SNVS_LPTDCR_WMT1_EN(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_WMT1_EN) | BF_SNVS_LPTDCR_WMT1_EN(v)))
-#endif
-
-//@}
-
-/*! @name Register SNVS_LPTDCR, field WMT2_EN[8] (RW)
- *
- * Wire-Mesh Tampering 2 Enable When set, wire-mesh tampering 2 detection generates an LP security
- * violation.
- *
- * Values:
- * - 0 - Wire-mesh tamper 2 is disabled.
- * - 1 - Wire-mesh tamper 2 is enabled.
- */
-//@{
-
-#define BP_SNVS_LPTDCR_WMT2_EN      (8)      //!< Bit position for SNVS_LPTDCR_WMT2_EN.
-#define BM_SNVS_LPTDCR_WMT2_EN      (0x00000100)  //!< Bit mask for SNVS_LPTDCR_WMT2_EN.
-
-//! @brief Get value of SNVS_LPTDCR_WMT2_EN from a register value.
-#define BG_SNVS_LPTDCR_WMT2_EN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPTDCR_WMT2_EN) >> BP_SNVS_LPTDCR_WMT2_EN)
-
-//! @brief Format value for bitfield SNVS_LPTDCR_WMT2_EN.
-#define BF_SNVS_LPTDCR_WMT2_EN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPTDCR_WMT2_EN) & BM_SNVS_LPTDCR_WMT2_EN)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the WMT2_EN field to a new value.
-#define BW_SNVS_LPTDCR_WMT2_EN(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_WMT2_EN) | BF_SNVS_LPTDCR_WMT2_EN(v)))
 #endif
 
 //@}
@@ -3978,103 +3971,6 @@ typedef union _hw_snvs_lptdcr
 
 //@}
 
-/*! @name Register SNVS_LPTDCR, field LTDC[18:16] (RW)
- *
- * Low Temperature Detect Configuration These configuration bits are wired as an output of the
- * module.
- */
-//@{
-
-#define BP_SNVS_LPTDCR_LTDC      (16)      //!< Bit position for SNVS_LPTDCR_LTDC.
-#define BM_SNVS_LPTDCR_LTDC      (0x00070000)  //!< Bit mask for SNVS_LPTDCR_LTDC.
-
-//! @brief Get value of SNVS_LPTDCR_LTDC from a register value.
-#define BG_SNVS_LPTDCR_LTDC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPTDCR_LTDC) >> BP_SNVS_LPTDCR_LTDC)
-
-//! @brief Format value for bitfield SNVS_LPTDCR_LTDC.
-#define BF_SNVS_LPTDCR_LTDC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPTDCR_LTDC) & BM_SNVS_LPTDCR_LTDC)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the LTDC field to a new value.
-#define BW_SNVS_LPTDCR_LTDC(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_LTDC) | BF_SNVS_LPTDCR_LTDC(v)))
-#endif
-
-//@}
-
-/*! @name Register SNVS_LPTDCR, field HTDC[22:20] (RW)
- *
- * High Temperature Detect Configuration These configuration bits are wired as an output of the
- * module.
- */
-//@{
-
-#define BP_SNVS_LPTDCR_HTDC      (20)      //!< Bit position for SNVS_LPTDCR_HTDC.
-#define BM_SNVS_LPTDCR_HTDC      (0x00700000)  //!< Bit mask for SNVS_LPTDCR_HTDC.
-
-//! @brief Get value of SNVS_LPTDCR_HTDC from a register value.
-#define BG_SNVS_LPTDCR_HTDC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPTDCR_HTDC) >> BP_SNVS_LPTDCR_HTDC)
-
-//! @brief Format value for bitfield SNVS_LPTDCR_HTDC.
-#define BF_SNVS_LPTDCR_HTDC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPTDCR_HTDC) & BM_SNVS_LPTDCR_HTDC)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the HTDC field to a new value.
-#define BW_SNVS_LPTDCR_HTDC(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_HTDC) | BF_SNVS_LPTDCR_HTDC(v)))
-#endif
-
-//@}
-
-/*! @name Register SNVS_LPTDCR, field VRC[26:24] (RW)
- *
- * Voltage Reference Configuration These configuration bits are wired as an output of the module.
- */
-//@{
-
-#define BP_SNVS_LPTDCR_VRC      (24)      //!< Bit position for SNVS_LPTDCR_VRC.
-#define BM_SNVS_LPTDCR_VRC      (0x07000000)  //!< Bit mask for SNVS_LPTDCR_VRC.
-
-//! @brief Get value of SNVS_LPTDCR_VRC from a register value.
-#define BG_SNVS_LPTDCR_VRC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPTDCR_VRC) >> BP_SNVS_LPTDCR_VRC)
-
-//! @brief Format value for bitfield SNVS_LPTDCR_VRC.
-#define BF_SNVS_LPTDCR_VRC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPTDCR_VRC) & BM_SNVS_LPTDCR_VRC)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VRC field to a new value.
-#define BW_SNVS_LPTDCR_VRC(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_VRC) | BF_SNVS_LPTDCR_VRC(v)))
-#endif
-
-//@}
-
-/*! @name Register SNVS_LPTDCR, field OSCB[28] (RW)
- *
- * Oscillator Bypass When set, this signal bypasses the internal SRTC clock oscillator, allowing
- * only an external clock to drive the SRTC clock source. This bit is an output of the SNVS ; the
- * oscillator bypass mechanism should be implemented at the chip level (outside of the SNVS ) if
- * required.
- *
- * Values:
- * - 0 - Oscillator not bypassed.
- * - 1 - Oscillator bypassed. External clock can drive the SRTC clock source.
- */
-//@{
-
-#define BP_SNVS_LPTDCR_OSCB      (28)      //!< Bit position for SNVS_LPTDCR_OSCB.
-#define BM_SNVS_LPTDCR_OSCB      (0x10000000)  //!< Bit mask for SNVS_LPTDCR_OSCB.
-
-//! @brief Get value of SNVS_LPTDCR_OSCB from a register value.
-#define BG_SNVS_LPTDCR_OSCB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPTDCR_OSCB) >> BP_SNVS_LPTDCR_OSCB)
-
-//! @brief Format value for bitfield SNVS_LPTDCR_OSCB.
-#define BF_SNVS_LPTDCR_OSCB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPTDCR_OSCB) & BM_SNVS_LPTDCR_OSCB)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the OSCB field to a new value.
-#define BW_SNVS_LPTDCR_OSCB(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_OSCB) | BF_SNVS_LPTDCR_OSCB(v)))
-#endif
-
-//@}
-
 //-------------------------------------------------------------------------------------------
 // HW_SNVS_LPSR - SNVS _LP Status Register
 //-------------------------------------------------------------------------------------------
@@ -4096,15 +3992,15 @@ typedef union _hw_snvs_lpsr
         unsigned SRTCR : 1; //!< [1] Secure Real Time Counter Rollover.
         unsigned MCR : 1; //!< [2] Monotonic Counter Rollover.
         unsigned PGD : 1; //!< [3] Power Supply Glitch Detected.
-        unsigned CTD : 1; //!< [4] Clock Tampering Detected.
-        unsigned TTD : 1; //!< [5] Temperature Tamper Detected.
-        unsigned VTD : 1; //!< [6] Voltage Tampering Detected.
-        unsigned WMT1D : 1; //!< [7] Wire-Mesh Tampering 1 Detected.
-        unsigned WMT2D : 1; //!< [8] Wire-Mesh Tampering 2 Detected.
+        unsigned RESERVED0 : 5; //!< [8:4] Reserved.
         unsigned ET1D : 1; //!< [9] External Tampering 1 Detected.
-        unsigned RESERVED0 : 6; //!< [15:10] Reserved.
+        unsigned RESERVED1 : 6; //!< [15:10] Reserved.
         unsigned ESVD : 1; //!< [16] External Security Violation Detected
-        unsigned RESERVED1 : 13; //!< [29:17] Reserved.
+        unsigned EO : 1; //!< [17] Emergency Off
+        unsigned SPO : 1; //!< [18] Set Power Off
+        unsigned RESERVED2 : 1; //!< [19] Reserved
+        unsigned SED : 1; //!< [20] Scan Exit Detected
+        unsigned RESERVED3 : 9; //!< [29:21] Reserved
         unsigned LPNS : 1; //!< [30] LP Section is Non-Secured
         unsigned LPS : 1; //!< [31] LP Section is Secured
     } B;
@@ -4231,136 +4127,6 @@ typedef union _hw_snvs_lpsr
 
 //@}
 
-/*! @name Register SNVS_LPSR, field CTD[4] (RW)
- *
- * Clock Tampering Detected.
- *
- * Values:
- * - 0 - No clock tamper.
- * - 1 - Clock tamper is detected.
- */
-//@{
-
-#define BP_SNVS_LPSR_CTD      (4)      //!< Bit position for SNVS_LPSR_CTD.
-#define BM_SNVS_LPSR_CTD      (0x00000010)  //!< Bit mask for SNVS_LPSR_CTD.
-
-//! @brief Get value of SNVS_LPSR_CTD from a register value.
-#define BG_SNVS_LPSR_CTD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPSR_CTD) >> BP_SNVS_LPSR_CTD)
-
-//! @brief Format value for bitfield SNVS_LPSR_CTD.
-#define BF_SNVS_LPSR_CTD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPSR_CTD) & BM_SNVS_LPSR_CTD)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the CTD field to a new value.
-#define BW_SNVS_LPSR_CTD(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_CTD) | BF_SNVS_LPSR_CTD(v)))
-#endif
-
-//@}
-
-/*! @name Register SNVS_LPSR, field TTD[5] (RW)
- *
- * Temperature Tamper Detected.
- *
- * Values:
- * - 0 - No temperature tamper.
- * - 1 - Temperature tamper is detected.
- */
-//@{
-
-#define BP_SNVS_LPSR_TTD      (5)      //!< Bit position for SNVS_LPSR_TTD.
-#define BM_SNVS_LPSR_TTD      (0x00000020)  //!< Bit mask for SNVS_LPSR_TTD.
-
-//! @brief Get value of SNVS_LPSR_TTD from a register value.
-#define BG_SNVS_LPSR_TTD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPSR_TTD) >> BP_SNVS_LPSR_TTD)
-
-//! @brief Format value for bitfield SNVS_LPSR_TTD.
-#define BF_SNVS_LPSR_TTD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPSR_TTD) & BM_SNVS_LPSR_TTD)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TTD field to a new value.
-#define BW_SNVS_LPSR_TTD(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_TTD) | BF_SNVS_LPSR_TTD(v)))
-#endif
-
-//@}
-
-/*! @name Register SNVS_LPSR, field VTD[6] (RW)
- *
- * Voltage Tampering Detected.
- *
- * Values:
- * - 0 - Voltage tampering not detected.
- * - 1 - Voltage tampering detected.
- */
-//@{
-
-#define BP_SNVS_LPSR_VTD      (6)      //!< Bit position for SNVS_LPSR_VTD.
-#define BM_SNVS_LPSR_VTD      (0x00000040)  //!< Bit mask for SNVS_LPSR_VTD.
-
-//! @brief Get value of SNVS_LPSR_VTD from a register value.
-#define BG_SNVS_LPSR_VTD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPSR_VTD) >> BP_SNVS_LPSR_VTD)
-
-//! @brief Format value for bitfield SNVS_LPSR_VTD.
-#define BF_SNVS_LPSR_VTD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPSR_VTD) & BM_SNVS_LPSR_VTD)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VTD field to a new value.
-#define BW_SNVS_LPSR_VTD(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_VTD) | BF_SNVS_LPSR_VTD(v)))
-#endif
-
-//@}
-
-/*! @name Register SNVS_LPSR, field WMT1D[7] (RW)
- *
- * Wire-Mesh Tampering 1 Detected.
- *
- * Values:
- * - 0 - Wire-mesh tampering 1 not detected.
- * - 1 - Wire-mesh tampering 1 detected.
- */
-//@{
-
-#define BP_SNVS_LPSR_WMT1D      (7)      //!< Bit position for SNVS_LPSR_WMT1D.
-#define BM_SNVS_LPSR_WMT1D      (0x00000080)  //!< Bit mask for SNVS_LPSR_WMT1D.
-
-//! @brief Get value of SNVS_LPSR_WMT1D from a register value.
-#define BG_SNVS_LPSR_WMT1D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPSR_WMT1D) >> BP_SNVS_LPSR_WMT1D)
-
-//! @brief Format value for bitfield SNVS_LPSR_WMT1D.
-#define BF_SNVS_LPSR_WMT1D(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPSR_WMT1D) & BM_SNVS_LPSR_WMT1D)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the WMT1D field to a new value.
-#define BW_SNVS_LPSR_WMT1D(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_WMT1D) | BF_SNVS_LPSR_WMT1D(v)))
-#endif
-
-//@}
-
-/*! @name Register SNVS_LPSR, field WMT2D[8] (RW)
- *
- * Wire-Mesh Tampering 2 Detected.
- *
- * Values:
- * - 0 - Wire-mesh tampering 2 not detected.
- * - 1 - Wire-mesh tampering 2 detected.
- */
-//@{
-
-#define BP_SNVS_LPSR_WMT2D      (8)      //!< Bit position for SNVS_LPSR_WMT2D.
-#define BM_SNVS_LPSR_WMT2D      (0x00000100)  //!< Bit mask for SNVS_LPSR_WMT2D.
-
-//! @brief Get value of SNVS_LPSR_WMT2D from a register value.
-#define BG_SNVS_LPSR_WMT2D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPSR_WMT2D) >> BP_SNVS_LPSR_WMT2D)
-
-//! @brief Format value for bitfield SNVS_LPSR_WMT2D.
-#define BF_SNVS_LPSR_WMT2D(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPSR_WMT2D) & BM_SNVS_LPSR_WMT2D)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the WMT2D field to a new value.
-#define BW_SNVS_LPSR_WMT2D(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_WMT2D) | BF_SNVS_LPSR_WMT2D(v)))
-#endif
-
-//@}
-
 /*! @name Register SNVS_LPSR, field ET1D[9] (W1C)
  *
  * External Tampering 1 Detected.
@@ -4411,6 +4177,85 @@ typedef union _hw_snvs_lpsr
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ESVD field to a new value.
 #define BW_SNVS_LPSR_ESVD(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_ESVD) | BF_SNVS_LPSR_ESVD(v)))
+#endif
+
+//@}
+
+/*! @name Register SNVS_LPSR, field EO[17] (W1C)
+ *
+ * Emergency Off This bit is set when a power off is requested.
+ *
+ * Values:
+ * - 0 - Emergency off was not detected.
+ * - 1 - Emergency off was detected.
+ */
+//@{
+
+#define BP_SNVS_LPSR_EO      (17)      //!< Bit position for SNVS_LPSR_EO.
+#define BM_SNVS_LPSR_EO      (0x00020000)  //!< Bit mask for SNVS_LPSR_EO.
+
+//! @brief Get value of SNVS_LPSR_EO from a register value.
+#define BG_SNVS_LPSR_EO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPSR_EO) >> BP_SNVS_LPSR_EO)
+
+//! @brief Format value for bitfield SNVS_LPSR_EO.
+#define BF_SNVS_LPSR_EO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPSR_EO) & BM_SNVS_LPSR_EO)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the EO field to a new value.
+#define BW_SNVS_LPSR_EO(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_EO) | BF_SNVS_LPSR_EO(v)))
+#endif
+
+//@}
+
+/*! @name Register SNVS_LPSR, field SPO[18] (W1C)
+ *
+ * Set Power Off This bit is set when power off was requested by a button press, but the button was
+ * not pressed for 5 seconds.
+ *
+ * Values:
+ * - 0 - Emergency Off was not detected.
+ * - 1 - Emergency Off was detected..
+ */
+//@{
+
+#define BP_SNVS_LPSR_SPO      (18)      //!< Bit position for SNVS_LPSR_SPO.
+#define BM_SNVS_LPSR_SPO      (0x00040000)  //!< Bit mask for SNVS_LPSR_SPO.
+
+//! @brief Get value of SNVS_LPSR_SPO from a register value.
+#define BG_SNVS_LPSR_SPO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPSR_SPO) >> BP_SNVS_LPSR_SPO)
+
+//! @brief Format value for bitfield SNVS_LPSR_SPO.
+#define BF_SNVS_LPSR_SPO(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPSR_SPO) & BM_SNVS_LPSR_SPO)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SPO field to a new value.
+#define BW_SNVS_LPSR_SPO(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_SPO) | BF_SNVS_LPSR_SPO(v)))
+#endif
+
+//@}
+
+/*! @name Register SNVS_LPSR, field SED[20] (W1C)
+ *
+ * Scan Exit Detected
+ *
+ * Values:
+ * - 0 - Scan exit was not detected.
+ * - 1 - Scan exit was detected.
+ */
+//@{
+
+#define BP_SNVS_LPSR_SED      (20)      //!< Bit position for SNVS_LPSR_SED.
+#define BM_SNVS_LPSR_SED      (0x00100000)  //!< Bit mask for SNVS_LPSR_SED.
+
+//! @brief Get value of SNVS_LPSR_SED from a register value.
+#define BG_SNVS_LPSR_SED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPSR_SED) >> BP_SNVS_LPSR_SED)
+
+//! @brief Format value for bitfield SNVS_LPSR_SED.
+#define BF_SNVS_LPSR_SED(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPSR_SED) & BM_SNVS_LPSR_SED)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the SED field to a new value.
+#define BW_SNVS_LPSR_SED(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_SED) | BF_SNVS_LPSR_SED(v)))
 #endif
 
 //@}
@@ -4475,7 +4320,7 @@ typedef union _hw_snvs_lpsrtcmr
     reg32_t U;
     struct _hw_snvs_lpsrtcmr_bitfields
     {
-        unsigned SRTC : 15; //!< [14:0] LP Secure Real Time Counter most significant bits
+        unsigned SRTC : 15; //!< [14:0] LP Secure Real Time Counter most significant 15 bits
         unsigned RESERVED0 : 17; //!< [31:15] Reserved
     } B;
 } hw_snvs_lpsrtcmr_t;
@@ -4503,8 +4348,8 @@ typedef union _hw_snvs_lpsrtcmr
 
 /*! @name Register SNVS_LPSRTCMR, field SRTC[14:0] (RW)
  *
- * LP Secure Real Time Counter most significant bits This register can be programmed only when SRTC
- * is not active and not locked, meaning the SRTC_ENV, SRTC_SL, and SRTC_HL bits are not set.
+ * LP Secure Real Time Counter most significant 15 bits This register can be programmed only when
+ * SRTC is not active and not locked, meaning the SRTC_ENV, SRTC_SL, and SRTC_HL bits are not set.
  */
 //@{
 
@@ -5738,3 +5583,5 @@ typedef struct _hw_snvs
 #endif
 
 #endif // __HW_SNVS_REGISTERS_H__
+// v14/120905/1.1.4
+// EOF

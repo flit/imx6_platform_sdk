@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include "hardware.h"
+#include "rtc/srtc.h"
 #include "snvs_srtc_test.h"
 
 static int32_t onetime_tick = 0;

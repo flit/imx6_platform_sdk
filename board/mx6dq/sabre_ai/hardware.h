@@ -42,7 +42,6 @@
 #include "audio/imx-audmux.h"
 #include "spi/ecspi_ifc.h"
 #include "enet/enet.h"
-#include "board_id/board_id.h"
 #include "sata/imx_sata.h"
 
 // Android_Buttons test defines
@@ -282,7 +281,6 @@ extern void max7310_set_gpio_output(uint32_t, uint32_t, uint32_t);
 extern int32_t board_id;
 extern int32_t board_rev;
 extern int32_t ipu_display_panel[];
-extern uint32_t ddr_density, ddr_num_of_cs;
 extern void gpio_backlight_lvds_en(void);
 extern void StartPerfCounter(void);
 extern uint32_t StopPerfCounter(void);

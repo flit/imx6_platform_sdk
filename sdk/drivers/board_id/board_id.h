@@ -38,13 +38,13 @@ typedef union _fsl_board_id {
 // Get the FSL Board ID  (fsl_board_id_t)
 fsl_board_id_t get_board_id(void);
 // Get strings describing the various components of the FSL Board ID  (fsl_board_id_t)
-void chip_name(char *name, uint32_t chip_id, bool long_name_flag);
-void chip_revision(char *rev_str, uint32_t major_rev, uint32_t minor_rev);
-void board_name(char *name, uint32_t board_id);
-void board_revision(char *name, uint32_t board_rev);
-void board_description(char *desc);
+void chip_name(char* const name, const uint32_t chip_id, const bool long_name_flag);
+void chip_revision(char* const rev_str, const uint32_t major_rev, const uint32_t minor_rev);
+void board_name(char* const name, const uint32_t board_id);
+void board_revision(char* const name, const uint32_t board_rev);
+void board_description(char* const desc);
 
-void show_board_id(fsl_board_id_t board_id);
+void show_board_id(const fsl_board_id_t board_id, const char* const indent);
 
 /* Chip Type */
 #define CHIP_TYPE_MX6SL         0x60

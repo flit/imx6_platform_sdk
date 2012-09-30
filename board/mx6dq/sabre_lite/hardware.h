@@ -284,10 +284,7 @@ void audio_clock_config(void);
 extern int32_t max7310_init(uint32_t, uint32_t, uint32_t);
 extern void max7310_set_gpio_output(uint32_t, uint32_t, uint32_t);
 
-extern int32_t board_id;
-extern int32_t board_rev;
 extern int32_t ipu_display_panel[];
-extern uint32_t ddr_density, ddr_num_of_cs;
 extern void gpio_backlight_lvds_en(void);
 extern void StartPerfCounter(void);
 extern uint32_t StopPerfCounter(void);

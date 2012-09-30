@@ -58,8 +58,15 @@ typedef enum _select_tests
 extern int auto_run_enable;
 
 // OBDS tests
+menu_action_t program_board_id(const menu_context_t* const context, void* const param);
+menu_action_t program_mac_address(const menu_context_t* const context, void* const param);
+menu_action_t ddr_test(const menu_context_t* const context, void* const param);
 menu_action_t snvs_srtc_test(const menu_context_t* const context, void* const param);
 
+test_return_t prompt_run_test(const char * const name, const char* const indent);
+void print_test_passed(const char* const test_name, const char* const indent);
+void print_test_skipped(const char* const test_name, const char* const indent);
+void print_test_failed(const char* const test_name, const char* const indent);
 
 //
 // PRIVATE
@@ -67,8 +74,8 @@ menu_action_t snvs_srtc_test(const menu_context_t* const context, void* const pa
 extern menuitem_t main_menuitems[];
 
 void report_test_results(void);
-//test_return_t prompt_run_test(const char * const name, const char* const indent);
-void select_tests(menuitem_t* menuitems, select_tests_t tests);
+menu_action_t run_all_tests(const menu_context_t* const context, void* const param);
+void select_tests(menuitem_t* const menuitems, const select_tests_t tests);
 
 //list of tests from obds
 
@@ -110,10 +117,8 @@ extern int KSZ9021RN_test_enable;
 extern int camera_flashtest_ebable;
 extern int i2s_audio_test_enable;
 extern int esai_test_enable;
-extern int program_board_id_enable;
 extern int spi_nor_test_enable;
 extern int snvs_srtc_test_enable;
-extern int program_board_id_enable;
 
 //Add variables from obds
 extern uint32_t usbh_EHCI_test_mode_base;

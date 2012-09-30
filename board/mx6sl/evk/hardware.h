@@ -290,8 +290,6 @@ void usb_io_config(void);
 void usb_vbus_power_on(void);
 void imx_ar8031_reset(void);
 void imx_KSZ9021RN_reset(void);
-int read_mac(u8 * mac_data);
-int program_mac(u8 * fuse_data);
 void mlb_io_config(void);
 int esai_codec_power_on(void);
 void hdmi_pgm_iomux(void);
@@ -325,7 +323,6 @@ extern u32 usbh_dev_enum_test_base;
 extern u32 usbo_dev_enum_test_base;
 extern u32 usbh_hub251x_test_base;
 extern int ipu_display_panel[];
-extern u32 ddr_density, ddr_num_of_cs;
 extern u32 mmcsd_bus_width, mmc_sd_base_address;
 
 /* list of tests */

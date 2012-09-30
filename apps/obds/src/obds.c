@@ -18,6 +18,7 @@
 
 //#include <stdio.h>
 #include "hardware.h"
+#include "board_id/board_id.h"
 #include "obds.h"
 #include "obds_utils.h"
 #include "platform_init.h"
@@ -93,6 +94,42 @@ int main(void)
     return 0;
 }
 
+test_return_t prompt_run_test(const char * const name, const char* const indent)
+{
+    printf_color(TEXT_ATTRIB_BOLD, NULL, "\n%s---- Running < %s >\n", indent, name);
+    if (!auto_run_enable)
+    {
+        if (!is_input_char('y', indent))
+        {
+            printf("\n");
+            return TEST_BYPASSED;
+        }
+    }
+    else
+        printf("\n");
+
+    return TEST_CONTINUE;
+}
+
+void print_test_passed(const char* const test_name, const char* const indent)
+{
+	 printf_color(NULL, TEXT_COLOR_GREEN, "\n%s%s PASSED.\n", indent, test_name);
+}
+
+void print_test_skipped(const char* const test_name, const char* const indent)
+{
+	 printf_color(NULL, TEXT_COLOR_YELLOW, "\n%s%s SKIPPED.\n", indent, test_name);
+}
+
+void print_test_failed(const char* const test_name, const char* const indent)
+{
+	 printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "\n%s%s FAILED.\n", indent, test_name);
+}
+
+//
+// PRIVATE
+//
+
 //
 // Report the results of the tests.
 // NOTE: Only the last test result for a given test is reflected
@@ -139,24 +176,7 @@ void report_test_results(void)
     printf("=================================================\n");
 }
 
-//test_return_t prompt_run_test(const char * const name, const char* const indent)
-//{
-//    printf("\n%s---- Running < %s >\n", indent, name);
-//    if (!auto_run_enable)
-//    {
-//        if (!is_input_char('y', indent))
-//        {
-//            printf("\n");
-//            return TEST_BYPASSED;
-//        }
-//    }
-//    else
-//        printf("\n");
-//
-//    return TEST_CONTINUE;
-//}
-
-menu_action_t run_all_tests(const menu_context_t* context, void* param)
+menu_action_t run_all_tests(const menu_context_t* const context, void* const param)
 {
 	select_tests_t tests = SEL_CPU_PLUS_BOARD_TESTS;
 	const char* indent = menu_get_indent(context);
@@ -179,50 +199,38 @@ menu_action_t run_all_tests(const menu_context_t* context, void* param)
     	auto_run_enable = 0;
     }
 
-    // run through the tests starting at 1 since run_tests() is at 0.
+    // run through the tests starting at 1 since run_all_tests() is at 0.
     int test_idx;
     for (test_idx = 1; test_idx < MAX_TESTS; test_idx++)
     {
-    	main_menuitems[test_idx].func(context, main_menuitems[test_idx].param);
+    	if ( main_menuitems[test_idx].func &&
+    		 strcmp(main_menuitems[test_idx].key, "m") != 0 &&
+    		 strcmp(main_menuitems[test_idx].key, "q") != 0	)
+
+    		main_menuitems[test_idx].func(context, main_menuitems[test_idx].param);
     }
 
     return MENU_EXIT;
 }
 
-//menu_action_t list_tests(const menu_context_t* context, void* ret)
-//{
-//	const char* indent = menu_get_indent(context);
-//
-//	printf("%sListing OBDS Tests:\n", indent);
-//	printf("%s  SNVS-STRC Test\n", indent);
-//	printf("%s  I2C DeviceID Test\n", indent);
-//	printf("%s  Display Test\n", indent);
-//
-//	*(int*)ret = 3;
-//
-//	return MENU_CONTINUE;
-//}
-//
-//menu_action_t run_test(const menu_context_t* context, void* ret)
-//{
-//	const char* indent = menu_get_indent(context);
-//
-//	printf("%sExecuting SNVS-STRC Test\n", indent);
-//
-//	*(int*)ret = 2;
-//
-//	return MENU_BACK;
-//}
-
-void select_tests(menuitem_t* const menuitems, select_tests_t tests)
+void select_tests(menuitem_t* const menuitems, const select_tests_t tests)
 {
 	int menu_idx = 0;
+
+	menu_make_menuitem(&menuitems[menu_idx], "00", "RUN ALL TESTS", run_all_tests, NULL);menu_idx++;
 
 #if defined (CHIP_MX6DQ) || defined(CHIP_MX6SDL)
 #if defined(BOARD_TYPE_SABRE_AI)
 
 	menu_make_group(&menuitems[menu_idx++], "CPU Board Tests");
-	menu_make_menuitem(&menuitems[menu_idx], "01", "SNVS - SRTC Test", snvs_srtc_test, &test_results[menu_idx]);menu_idx++;
+	menu_make_menuitem(&menuitems[menu_idx], "01", "BOARD ID Test", program_board_id, &test_results[menu_idx]);menu_idx++;
+	menu_make_menuitem(&menuitems[menu_idx], "02", "MAC Address Test", program_mac_address, &test_results[menu_idx]);menu_idx++;
+	menu_make_menuitem(&menuitems[menu_idx], "03", "DDR Test", ddr_test, &test_results[menu_idx]);menu_idx++;
+	menu_make_menuitem(&menuitems[menu_idx], "04", "SNVS - SRTC Test", snvs_srtc_test, &test_results[menu_idx]);menu_idx++;
+
+//	program_mac_address_enable = 1;
+//    etm_test_enable = 1;
+//    ddr_test_enable = 1;
 
 	menu_make_group(&menuitems[menu_idx++], "Main Board Tests");
 
@@ -249,12 +257,9 @@ void select_tests(SELECT_TESTS tests)
 {
     int display = 0;
 
-    program_board_id_enable = 1;
     program_mac_address_enable = 1;
 
     etm_test_enable = 1;
-
-    ddr_test_enable = 1;
 
     ipu_display_test_enable = 1;
 
@@ -528,9 +533,7 @@ void select_tests(SELECT_TESTS tests)
 {
     int display = 0;
 
-    program_board_id_enable = 1;
     program_mac_address_enable = 1;
-    ddr_test_enable = 1;
     ipu_display_test_enable = 1;
 
     if (BOARD_TYPE == BOARD_TYPE_SABRE_AI) {
@@ -789,9 +792,7 @@ void select_tests(SELECT_TESTS tests)
 void select_tests(SELECT_TESTS tests)
 {
     mmcsd_test_enable = 1;
-    program_board_id_enable = 1;
     program_mac_address_enable = 1;
-    ddr_test_enable = 1;
 
     if (BOARD_TYPE == BOARD_TYPE_EVB) {
 

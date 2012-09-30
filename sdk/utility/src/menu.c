@@ -38,7 +38,7 @@ menu_action_t menu_present(const menu_t* const menu)
 
 	while (1) // processing menu selections
 	{
-		while (getchar() != NONE_CHAR); // empty key buffer
+		while (fgetc(stdin) != NONE_CHAR); // empty key buffer
 		char key[KEY_MAX] = {'\0'};
 		int key_idx = 0;
 		char key_pressed = NONE_CHAR;
@@ -48,7 +48,7 @@ menu_action_t menu_present(const menu_t* const menu)
 		{
 			// get a key press
 			// printf(prompt);
-			while ((key_pressed = getchar()) == NONE_CHAR);
+			while ((key_pressed = fgetc(stdin)) == NONE_CHAR);
 //{
 //	key_pressed = getchar();
 //	printf("\ngetchar() =  %8x\n", key_pressed);
@@ -85,7 +85,7 @@ menu_action_t menu_present(const menu_t* const menu)
 				// user hit something other than ENTER_KEY
 
 				// echo the key
-				printf("%c", key_pressed);
+				fputc(key_pressed, stdout);
 
 				key[key_idx++] = key_pressed;
 
@@ -225,8 +225,8 @@ void menu_print_footer(const char* const indent, const menu_t* const menu)
 
 const char* const menu_get_indent(const menu_context_t* const context)
 {
-	static char indent[INDENT_MAX];
-	strncpy(indent, "        ", INDENT_MAX);
+	static char indent[INDENT_MAX+1];
+	memset(indent, ' ', INDENT_MAX);
 	if (context)
 		indent[INDENT * context->depth + 2] = '\0';
 	else

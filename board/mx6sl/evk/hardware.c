@@ -14,7 +14,6 @@
 
 #include <math.h>
 #include "hardware.h"
-//#include "board_id.h"
 #include "registers/regsccmanalog.h"
 #include "registers/regsusbphy.h"
 #include "registers/regsusbnoncore.h"
@@ -1418,85 +1417,6 @@ void board_init(void)
     AUDMUXRoute(2, 5, 0);
 #endif
 #endif
-}
-
-/*! Read the ENET MAC address fuses
- *
- * @param mac_data pointer to an array to store mac address read from the fuses
- *
- * @return  0 if successful; non-zero otherwise
- */
-int read_mac(u8 * mac_data)
-{
-    unsigned int temp;
-    // need to read out backwards since priting is done via old mx53 map where MSB is first in fuse map
-    temp = readl(OCOTP_BASE_ADDR + 0x630);
-    mac_data[0] = ((temp >> 8) & 0xFF);
-    mac_data[1] = (temp & 0xFF);
-    temp = readl(OCOTP_BASE_ADDR + 0x620);
-    mac_data[2] = ((temp >> 24) & 0xFF);
-    mac_data[3] = ((temp >> 16) & 0xFF);
-    mac_data[4] = ((temp >> 8) & 0xFF);
-    mac_data[5] = (temp & 0xFF);
-    return 0;
-}
-
-/*! Program the ENET MAC address value to the hardware fuses
- *
- * @param   fuse_data pointer to an array with mac address to program to fuses
- *
- * @return  0 if successful; non-zero otherwise
- */
-int program_mac(u8 * fuse_data)
-{
-    unsigned int temp;
-    u32 bank_mac = 4;
-    u32 row_mac = 2;
-    int failcount = 0, i = 0;
-    u32 mac_word[2], read_mac;
-
-    mac_word[0] = 0;
-    mac_word[1] = 0;
-
-    /* create a 32-bit formated MAC address from fuse_data ptr */
-    mac_word[0] =
-        (((fuse_data[2] & 0xFF) << 24) | ((fuse_data[3] & 0xFF) << 16) |
-         ((fuse_data[4] & 0xFF) << 8) | (fuse_data[5] & 0xFF));
-    mac_word[1] = (((fuse_data[0] & 0xFF) << 8) | (fuse_data[1] & 0xFF));
-
-    /* Is it still needed? => ask design */
-    /* First, allow fuse programming in the CCM CGPR register by setting the 'efuse_prog_supply_gate' bit */
-    temp = readl(CCM_BASE_ADDR + CCM_CGPR_OFFSET);
-    temp |= 0x00000010;         // set bit 4, efuse_prog_supply_gate bit
-    writel(temp, (CCM_BASE_ADDR + CCM_CGPR_OFFSET));
-
-    /* Proceed to program the MAC addr fuses */
-    fuse_blow_row(bank_mac, row_mac, mac_word[0]);
-    fuse_blow_row(bank_mac, row_mac + 1, mac_word[1]);
-
-    /* Now sense the fuses to confirm the fuses were programmed correctly */
-    for (i = 0; i <= 1; i++) {
-        read_mac = sense_fuse(bank_mac, row_mac + i);
-        if (read_mac != mac_word[i]) {
-            printf("MAC%d doesn't match, it read 0x%02x, but it should be 0x%02x, \n", i,
-                   read_mac, mac_word[i]);
-            failcount++;
-            break;
-        } else {
-            printf("MAC%d programmed correctly \n", i);
-        }
-    }
-
-    /* Is it still needed? => ask design */
-    /* Disable fuse programming in the CCM CGPR register by clearing the 'efuse_prog_supply_gate' bit */
-    temp = readl(CCM_BASE_ADDR + CCM_CGPR_OFFSET);
-    temp &= ~0x00000010;        // clear bit 4, efuse_prog_supply_gate bit
-    writel(temp, (CCM_BASE_ADDR + CCM_CGPR_OFFSET));
-
-    if (failcount != 0)
-        return 1;               // return failure
-
-    return 0;
 }
 
 /*!

@@ -16,28 +16,54 @@
  * @ingroup diag_ddr_test
  */
 
+#include "obds.h"
+
+// TODO: PUT #DEFINES WHERE THEY GO
 /*
 * Note, this file depends that in the SoC header file, CSD0_BASE_ADDR
 * CSD1_BASE_ADDR are properly defined.
 */
-#include "obds.h"
-#include "hardware.h"           /* note, this is where the SoC specific header file is included */
+#if defined(CHIP_MX6SL)
+#define MMDC0_ARB_BASE_ADDR			0x80000000
+#define MMDC0_ARB_BASE_ADDR			NULL
+#define CSD0_BASE_ADDR      MMDC0_ARB_BASE_ADDR
+#define CSD1_BASE_ADDR      MMDC1_ARB_BASE_ADDR
+#else
+#define MMDC0_BASE_ADDR			0x10000000
+#if defined (BOARD_SABRE_AI)
+#define MMDC1_BASE_ADDR			0x90000000
+#else
+#define MMDC1_BASE_ADDR			NULL
+#endif
+#define CSD0_BASE_ADDR      MMDC0_BASE_ADDR
+#define CSD1_BASE_ADDR      MMDC1_BASE_ADDR
+#endif
+
+static const char * const test_name = "DDR Test";
 
 /*!
- * test DDR
- *
- * @param   density        memory size.
- * @param   number_of_cs   chip select number.
+ * Run the DDR test.
  *
  * @return      TEST_PASSED or TEST_FAILED
  */
-int ddr_test(u32 density, u32 number_of_cs)
+menu_action_t ddr_test(const menu_context_t* const context, void* const param)
 {
-    unsigned int failCount = 0;
+	//
+	// TODO: Get DDR density and nnumber of chip selects from DDR driver?
+	//
+	const uint32_t ddr_density = 1024 * 1024 * 1024;
+	const uint32_t ddr_num_of_cs = 1;
+
+	unsigned int failCount = 0;
     unsigned int i;
     unsigned int mem_src;
     unsigned int *ps;
-    int bank_size = density / 8;
+    int bank_size = ddr_density / 8;
+
+	const char* indent = menu_get_indent(context);
+
+    if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
+    	*(test_return_t*)param = TEST_BYPASSED;
 
     /* Data bus, walking ones test */
     /* Looking for shorts on the board, so no need to test both chip selects */
@@ -80,7 +106,7 @@ int ddr_test(u32 density, u32 number_of_cs)
         }
     }
 
-    if (number_of_cs == 2) {
+    if (ddr_num_of_cs == 2) {
         /* CS1 bank address test */
         /* First, write data to each bank */
         for (i = 0; i <= 7; i++) {
@@ -119,7 +145,7 @@ int ddr_test(u32 density, u32 number_of_cs)
         }
     }
 
-    if (number_of_cs == 2) {
+    if (ddr_num_of_cs == 2) {
         /* CS1 */
         /* First, write data to each row */
         mem_src = CSD1_BASE_ADDR + bank_size * 6;
@@ -141,31 +167,18 @@ int ddr_test(u32 density, u32 number_of_cs)
         }
     }
 
-    if (failCount == 0) {
-        printf(" DDR test passed \n");
-        return TEST_PASSED;
-    } else {
-        printf(" DDR test failed \n");
-        return TEST_FAILED;
+    if (failCount == 0)
+    {
+        print_test_passed(test_name, indent);
+
+        *(test_return_t*)param = TEST_PASSED;
+        return MENU_CONTINUE;
+    }
+    else
+    {
+        print_test_failed(test_name, indent);
+
+        *(test_return_t*)param = TEST_FAILED;
+        return MENU_CONTINUE;
     }
 }
-
-int ddr_test_enable;
-uint32_t ddr_density, ddr_num_of_cs;
-
-/*!
- * Run the DDR test.
- * @return      TEST_PASSED or TEST_FAILED
- */
-int run_ddr_test(void)
-{
-    if (!ddr_test_enable) {
-        return TEST_NOTPRESENT;
-    }
-
-    PROMPT_RUN_TEST("DDR", NULL);
-
-    return ddr_test(ddr_density, ddr_num_of_cs);
-}
-
-//RUN_TEST_EARLY("DDR", run_ddr_test)

@@ -16,7 +16,7 @@
 #include "sdk_types.h"
 #include "board_id/board_id.h"
 
-void chip_name(char *name, uint32_t chip_id, bool long_name_flag)
+void chip_name(char* const name, const uint32_t chip_id, const bool long_name_flag)
 {
     char long_name[64] = { 0 };
 
@@ -44,7 +44,7 @@ void chip_name(char *name, uint32_t chip_id, bool long_name_flag)
     }
 }
 
-void chip_revision(char *rev_str, uint32_t major_rev, uint32_t minor_rev)
+void chip_revision(char* const rev_str, const uint32_t major_rev, const uint32_t minor_rev)
 {
     char major = 'x';
     char minor = 'x';
@@ -82,7 +82,7 @@ void chip_revision(char *rev_str, uint32_t major_rev, uint32_t minor_rev)
 #define SIPIX_DISABLED_MASK 0x01000000
 #define EPDC_DISABLED_MASK  0x02000000
 
-void board_name(char *name, uint32_t board_id)
+void board_name(char* const name, const uint32_t board_id)
 {
     switch (board_id)
     {
@@ -115,7 +115,7 @@ void board_name(char *name, uint32_t board_id)
     }
 }
 
-void board_revision(char *name, uint32_t board_rev)
+void board_revision(char* const name, const uint32_t board_rev)
 {
     char revision[8] = "rev. x\0\0";
 
@@ -141,7 +141,7 @@ void board_revision(char *name, uint32_t board_rev)
     sprintf(name, revision);
 }
 
-void board_description(char *desc)
+void board_description(char* const desc)
 {
     fsl_board_id_t board_id = get_board_id();
 
@@ -182,9 +182,11 @@ fsl_board_id_t get_board_id(void)
 /*!
  * Display board id info
  */
-void show_board_id(fsl_board_id_t board_id)
+void show_board_id(const fsl_board_id_t board_id, const char* const indent)
 {
-    printf("========== board id\n");
+    const char* const loc_indent = indent == NULL ? "" : indent;
+
+	printf("%s========== board id\n", loc_indent);
 
     char chip_str[64] = { 0 };
     char chip_str_full[64] = { 0 };
@@ -198,14 +200,14 @@ void show_board_id(fsl_board_id_t board_id)
     board_name(board_str, board_id.B.BOARD_TYPE_ID);
     board_revision(board_rev_str, board_id.B.BOARD_REV);
 
-    printf("\n%s %s %s %s (0x%08X)\n", chip_str, chip_rev_str, board_str, board_rev_str,
+    printf("\n%s%s %s %s %s (0x%08X)\n", loc_indent, chip_str, chip_rev_str, board_str, board_rev_str,
            board_id.U);
-    printf("    Chip Type       = %s (0x%02X)\n", chip_str_full, board_id.B.CHIP_TYPE_ID);
-    printf("    Chip Revision   = %s (0x%02X)(0x%02X)\n", chip_rev_str, board_id.B.CHIP_REV_MAJOR,
-           board_id.B.CHIP_REV_MINOR);
-    printf("    Board Type      = %s (0x%02X)\n", board_str, board_id.B.BOARD_TYPE_ID);
-    printf("    Board Revision  = %s (0x%02X)\n", board_rev_str, board_id.B.BOARD_REV);
+    printf("%s    Chip Type       = %s (0x%02X)\n", loc_indent, chip_str_full, board_id.B.CHIP_TYPE_ID);
+    printf("%s    Chip Revision   = %s (0x%02X)(0x%02X)\n", loc_indent, chip_rev_str,
+    		board_id.B.CHIP_REV_MAJOR, board_id.B.CHIP_REV_MINOR);
+    printf("%s    Board Type      = %s (0x%02X)\n", loc_indent, board_str, board_id.B.BOARD_TYPE_ID);
+    printf("%s    Board Revision  = %s (0x%02X)\n", loc_indent, board_rev_str, board_id.B.BOARD_REV);
 
-    printf("==================================\n\n");
+    printf("%s==================================\n", loc_indent);
 }
 

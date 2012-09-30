@@ -148,7 +148,10 @@ menu_action_t program_mac_address(const menu_context_t* const context, void* con
 	const char* const indent = menu_get_indent(context);
 
     if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
+    {
     	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
 
     //
     // Get existing MAC Address

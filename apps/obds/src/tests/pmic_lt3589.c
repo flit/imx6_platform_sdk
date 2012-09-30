@@ -490,7 +490,7 @@ int ltc3589_i2c_device_id_check(void)
     unsigned char data;
 
     if (!ltc3589_i2c_device_id_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("PMIC LTC3589", NULL);

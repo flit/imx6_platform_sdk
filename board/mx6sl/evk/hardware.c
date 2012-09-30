@@ -1781,50 +1781,6 @@ int esai_codec_power_on(void)
     return 0;
 }
 
-void can_io_cfg(unsigned int base_address)
-{
-#if !defined(MX6SL)             // todo: remove this function
-#ifdef SABRE_AI
-    io_cfg_i2c(I2C3_BASE_ADDR);
-    /* CAN_EN active high output */
-    max7310_set_gpio_output(1, 7, GPIO_HIGH_LEVEL); //expander b, io7
-
-    /* CAN_STBY active high output */
-    max7310_set_gpio_output(1, 6, GPIO_HIGH_LEVEL); //expander b, io6 
-#endif
-
-    switch (base_address) {
-    case CAN0_BASE_ADDR:
-        printf("Configure CAN1 io\n");
-        can1_iomux_config();
-#ifdef SABRE_AI
-        /* Select CAN, ENET_CAN1_STEER(PORT_EXP_B3) */
-        max7310_set_gpio_output(1, 3, GPIO_HIGH_LEVEL); //expander b, io3 
-        /* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */
-        /* active low input */
-        writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_GPIO_4);
-        gpio_set_direction(GPIO_PORT1, 4, GPIO_GDIR_INPUT);
-#endif
-        break;
-
-    case CAN1_BASE_ADDR:
-        printf("Configure CAN2 io\n");
-        can2_iomux_config();
-#ifdef SABRE_AI
-        /* Select ALT5 mode of SD4_DAT3 for GPIO2_11 - CAN2_NERR_B */
-        /* active low input */
-        writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
-        gpio_set_direction(GPIO_PORT2, 11, GPIO_GDIR_INPUT);
-#endif
-        break;
-
-    default:
-        printf("CAN port (base address) is not supported.\n");
-        break;
-    }
-#endif
-}
-
 int ssi_get_sysclk_freq(void)
 {
     return 63500000;

@@ -83,7 +83,10 @@ menu_action_t program_board_id(const menu_context_t* const context, void* const 
 	const char* const indent = menu_get_indent(context);
 
     if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
+    {
     	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
 
     char chip_str[64];
     char chip_str_full[64];

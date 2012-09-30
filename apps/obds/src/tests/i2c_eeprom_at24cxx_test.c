@@ -42,7 +42,7 @@ static int i2c_eeprom_at24cxx_test(void)
     unsigned char buf1[4], buf2[4];
 
     if (!eeprom_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("EEPROM test", NULL);

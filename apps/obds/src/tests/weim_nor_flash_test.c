@@ -43,7 +43,7 @@ int weim_nor_flash_test(void)
     int rc = 0;
 
     if (!weim_nor_flash_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
     PROMPT_RUN_TEST("WEIM NOR FLASH", NULL);
 

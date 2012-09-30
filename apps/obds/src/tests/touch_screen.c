@@ -193,7 +193,7 @@ int touch_screen_test(void)
     unsigned int x = 0, y = 0;
 
     if (!touch_screen_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("TOUCH SCREEN", NULL);

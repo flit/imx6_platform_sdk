@@ -196,7 +196,7 @@ int i2c_device_id_check_DA9053(void)
     uint8_t reg_data = 0;
 
     if (!i2c_device_id_check_DA9053_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
 //    PROMPT_RUN_TEST("PMIC DA9053 Device ID test", NULL);

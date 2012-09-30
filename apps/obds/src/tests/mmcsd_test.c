@@ -22,10 +22,10 @@ uint32_t mmcsd_bus_width, mmc_sd_base_address;
 #if defined(CHIP_MX6SL) && defined(BOARD_EVB)
 int mmcsd_test(void)
 {
-    int ret_val = TEST_NOTPRESENT;
+    int ret_val = TEST_NOT_PRESENT;
 
 	if (!mmcsd_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     /* Always try maximum bus width */
@@ -91,13 +91,13 @@ int mmcsd_test(void)
 		ret_val = TEST_FAILED;
 	}
 
-	return ret_val == TEST_NOTPRESENT ? TEST_PASSED : ret_val;
+	return ret_val == TEST_NOT_PRESENT ? TEST_PASSED : ret_val;
 }
 #else // #if defined(MX6SL) && defined(EVB)
 int mmcsd_test(void)
 {
     if (!mmcsd_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     /* Always try maximum bus width */

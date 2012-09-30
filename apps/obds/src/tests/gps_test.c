@@ -134,7 +134,7 @@ int gps_test(void)
     int result = 0;
 
     if (!gps_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("GPS", NULL);

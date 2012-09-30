@@ -96,7 +96,7 @@ int spi_nor_test(void)
     uint8_t id[4];
 
     if (!spi_nor_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("SPI NOR FLASH", NULL);

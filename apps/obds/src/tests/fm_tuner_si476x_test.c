@@ -97,7 +97,7 @@ int si476x_test_enable;
 int si476x_test_main(void)
 {
     if (!si476x_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
     PROMPT_RUN_TEST("FM TUNER SI476x", NULL);
 

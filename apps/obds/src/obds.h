@@ -17,6 +17,14 @@
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
+extern int auto_run_enable;
+
+test_return_t prompt_run_test(const char * const test_name, const char* const indent);
+void print_test_passed(const char* const test_name, const char* const indent);
+void print_test_skipped(const char* const test_name, const char* const indent);
+void print_test_failed(const char* const test_name, const char* const indent);
+void print_test_not_implemented(const char* const test_name, const char* const indent);
+
 //#define OBDS_DEBUG
 #ifdef OBDS_DEBUG
 #define printf1    printf
@@ -49,25 +57,21 @@
 
 typedef enum _select_tests
 {
-	SEL_CPU_ONLY_TESTS,
-	SEL_CPU_PLUS_BOARD_TESTS,
+	SEL_CPU_BOARD_ONLY_TESTS,
+	SEL_MAIN_BOARD_ONLY_TESTS,
+	SEL_CPU_AND_MAIN_BOARD_TESTS,
 	SEL_MENU_TESTS
 
 } select_tests_t;
-
-extern int auto_run_enable;
 
 // OBDS tests
 menu_action_t program_board_id(const menu_context_t* const context, void* const param);
 menu_action_t program_mac_address(const menu_context_t* const context, void* const param);
 menu_action_t ddr_test(const menu_context_t* const context, void* const param);
 menu_action_t snvs_srtc_test(const menu_context_t* const context, void* const param);
-
-test_return_t prompt_run_test(const char * const name, const char* const indent);
-void print_test_passed(const char* const test_name, const char* const indent);
-void print_test_skipped(const char* const test_name, const char* const indent);
-void print_test_failed(const char* const test_name, const char* const indent);
-
+menu_action_t ar8031_test_main(const menu_context_t* const context, void* const param);
+menu_action_t android_buttons_test(const menu_context_t* const context, void* const param);
+menu_action_t flexcan_test(const menu_context_t* const context, void* const param);
 //
 // PRIVATE
 //
@@ -75,11 +79,10 @@ extern menuitem_t main_menuitems[];
 
 void report_test_results(void);
 menu_action_t run_all_tests(const menu_context_t* const context, void* const param);
-void select_tests(menuitem_t* const menuitems, const select_tests_t tests);
+void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests);
 
 //list of tests from obds
 
-extern int android_buttons_test_enable;
 extern int touch_button_test_enable;
 extern int eeprom_test_enable;
 extern int ddr_test_enable;

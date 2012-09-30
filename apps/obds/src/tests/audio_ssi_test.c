@@ -102,7 +102,7 @@ int i2s_audio_test(void)
 //    int time_out = SSI_WRITE_TIMEOUT;
 
     if (!i2s_audio_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("I2S AUDIO", NULL);

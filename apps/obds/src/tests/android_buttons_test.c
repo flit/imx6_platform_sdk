@@ -10,6 +10,8 @@
 #include "gpio/gpio.h"
 #include "io.h"
 
+static const char * const test_name = "ANDROID BUTTONS Test";
+
 extern void android_buttons_iomux_config(void); // define in hardware.c
 
 void configure_android_button(int32_t gpio_port, int32_t gpio_pin)
@@ -53,7 +55,7 @@ void init_android_buttons(void)
     configure_android_button(VOLMINUS_BUTTON_GPIO_INST, VOLMINUS_BUTTON_GPIO_NUM);
 }
 
-void check_android_button_status(void)
+void check_android_button_status(const char* const indent)
 {
     int i;
     // first add some debouncing delay, flag will be set no matter how long wait since its an interrupt trigger
@@ -61,35 +63,35 @@ void check_android_button_status(void)
 
     if ( gpio_get_interrupt_status(HOME_BUTTON_GPIO_INST, HOME_BUTTON_GPIO_NUM) == GPIO_ISR_ASSERTED )
     {
-        printf("  HOME button pressed \n");
+        printf("%s  HOME button pressed.\n", indent);
         // Clear interrupt.
         gpio_clear_interrupt(HOME_BUTTON_GPIO_INST, HOME_BUTTON_GPIO_NUM);
     }
 
     if ( gpio_get_interrupt_status(BACK_BUTTON_GPIO_INST, BACK_BUTTON_GPIO_NUM) == GPIO_ISR_ASSERTED )
     {
-        printf("  BACK button pressed \n");
+        printf("%s  BACK button pressed \n", indent);
         // Clear interrupt.
         gpio_clear_interrupt(BACK_BUTTON_GPIO_INST, BACK_BUTTON_GPIO_NUM);
     }
 
     if ( gpio_get_interrupt_status(PROG_BUTTON_GPIO_INST, PROG_BUTTON_GPIO_NUM) == GPIO_ISR_ASSERTED )
     {
-        printf("  PROG button pressed \n");
+        printf("%s  PROG button pressed \n", indent);
         // Clear interrupt.
         gpio_clear_interrupt(PROG_BUTTON_GPIO_INST, PROG_BUTTON_GPIO_NUM);
     }
 
     if ( gpio_get_interrupt_status(VOLPLUS_BUTTON_GPIO_INST, VOLPLUS_BUTTON_GPIO_NUM) == GPIO_ISR_ASSERTED )
     {
-        printf("  VOL+ button pressed \n");
+        printf("%s  VOL+ button pressed \n", indent);
         // Clear interrupt.
         gpio_clear_interrupt(VOLPLUS_BUTTON_GPIO_INST, VOLPLUS_BUTTON_GPIO_NUM);
     }
 
     if ( gpio_get_interrupt_status(VOLMINUS_BUTTON_GPIO_INST, VOLMINUS_BUTTON_GPIO_NUM) == GPIO_ISR_ASSERTED )
     {
-        printf("  VOL- button pressed \n");
+        printf("%s  VOL- button pressed \n", indent);
         // Clear interrupt.
         gpio_clear_interrupt(VOLMINUS_BUTTON_GPIO_INST, VOLMINUS_BUTTON_GPIO_NUM);
     }
@@ -98,38 +100,41 @@ void check_android_button_status(void)
 /*!
  * @return      TEST_PASSED or  TEST_FAILED    
  */
-int android_buttons_test_enable = 0;
-int android_buttons_test(void)
+menu_action_t android_buttons_test(const menu_context_t* const context, void* const param)
 {
-    unsigned char input;
+	const char* const indent = menu_get_indent(context);
 
-    if (!android_buttons_test_enable)
-        return TEST_NOTPRESENT;
+    if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
 
-    PROMPT_RUN_TEST("ANDROID BUTTONS", NULL);
-
-    printf("Press all the Android buttons (on SABRE AI main board) you wish to test\n");
-    printf("Pressing each button should result in an equivalent unique message to screen\n");
-    printf("Pressing any key on the keyboard exits this test\n");
+    printf("%sPress all the Android buttons (on SABRE AI main board) you wish to test\n", indent);
+    printf("%sPressing each button should result in an equivalent unique message to screen\n", indent);
+    printf("%sPressing any key on the keyboard exits this test\n", indent);
     while (1)
     {
-        check_android_button_status();
+        check_android_button_status(indent);
 
-        input = getchar();
-        if (input != NONE_CHAR)
+        char key_pressed = fgetc(stdin);
+        if (key_pressed != NONE_CHAR)
             break;
     }
 
-    printf("Did you get unique message for HOME, PROG, VOL+, VOL-, and BACK buttons?\n");
-    if (is_input_char('y', NULL)) {
-        printf("  ANDROID BUTTONS test passed.\n");
-        return TEST_PASSED;
+    printf("%sDid you get unique message for HOME, PROG, VOL+, VOL-, and BACK buttons?\n", indent);
+    if (is_input_char('y', indent))
+    {
+        print_test_passed(test_name, indent);
+
+        *(test_return_t*)param = TEST_PASSED;
+        return MENU_CONTINUE;
     }
     else
     {
-        printf("  ** ANDROID BUTTONS test failed ** \n");
-        return TEST_FAILED;
+        print_test_failed(test_name, indent);
+
+        *(test_return_t*)param = TEST_FAILED;
+        return MENU_CONTINUE;
     }
 }
-
-//RUN_TEST("ANDROID BUTTONS", android_buttons_test)

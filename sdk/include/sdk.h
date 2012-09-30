@@ -62,11 +62,12 @@ static inline void debug_printf(const char * format, ...)
 //! @name Test results
 typedef enum _test_return
 {
-    TEST_FAILED     = -1,
-    TEST_PASSED     = 0,
-    TEST_BYPASSED   = 2,
-    TEST_NOTPRESENT = 3,
-    TEST_CONTINUE   = 4
+	TEST_NOT_IMPLEMENTED = -2, // present in the menu, but not functional
+	TEST_FAILED          = -1,
+    TEST_PASSED          = 0,
+    TEST_BYPASSED        = 2,  // user elected to exit the test before it was run
+    TEST_NOT_PRESENT     = 3,  // not present in the menu.
+    TEST_CONTINUE        = 4   // proceed with the test. opposite of TEST_BYPASSED
 } test_return_t;
 
 //! @name Return codes

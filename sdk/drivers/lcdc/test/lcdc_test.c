@@ -201,7 +201,7 @@ int lcd_display_test(void)
     char recvCh = NONE_CHAR;
 
     if (!lcd_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("LCD WVGA Display test", NULL);

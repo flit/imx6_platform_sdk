@@ -21,7 +21,7 @@ int smbus_test_routine(void)
     smbus_device_udid_t udid;
 
     if (!smbus_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("SMB BUS", NULL);

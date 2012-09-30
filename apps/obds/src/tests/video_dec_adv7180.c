@@ -135,7 +135,7 @@ int adv7180_test_main(void)
     char recvCh;
 
     if (!adv7180_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("VIDEO INPUT", NULL);

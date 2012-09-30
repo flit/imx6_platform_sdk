@@ -157,7 +157,7 @@ int touch_button_test(void)
     int i;
 
     if (!touch_button_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("TOUCH BUTTON", NULL);

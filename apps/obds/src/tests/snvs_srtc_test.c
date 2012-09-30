@@ -23,11 +23,13 @@ static const char * const test_name = "SNVS - SRTC Test";
  */
 menu_action_t snvs_srtc_test(const menu_context_t* const context, void* const param)
 {
-    u32 c1, c2;
 	const char* indent = menu_get_indent(context);
 
     if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
+    {
     	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
 
     // Check to see if Secure Clock can run
     // SEC_CONFIG[0] ( 0x440[7:0] bit 1 )
@@ -58,8 +60,8 @@ menu_action_t snvs_srtc_test(const menu_context_t* const context, void* const pa
     // enable SNVS HP
     BW_SNVS_HPCR_RTC_EN(1); // writel(0x1, SNVS_HPCR);
 
-    c1 = HW_SNVS_HPRTCMR_RD(); // readl(SNVS_HPCMR);
-    c2 = HW_SNVS_HPRTCLR_RD(); // readl(SNVS_HPCLR);
+    reg32_t c1 = HW_SNVS_HPRTCMR_RD(); // readl(SNVS_HPCMR);
+    reg32_t c2 = HW_SNVS_HPRTCLR_RD(); // readl(SNVS_HPCLR);
 
     hal_delay_us(10000);
 

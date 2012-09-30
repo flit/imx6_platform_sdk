@@ -44,6 +44,7 @@ define SOURCES
     src/tests/ddr_test.c
     src/tests/deserializer_ds90ur124.c
     src/tests/enet_mx6dldq_test.c
+    src/tests/flexcan_test.c
     src/tests/fm_tuner_si476x_test.c
     src/tests/gps_test.c
     src/tests/i2c_check_light_sensor_isl29023.c

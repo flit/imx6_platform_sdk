@@ -370,7 +370,7 @@ int32_t ipu_display_panel[20];
 /*!
  * IPU display test main entry
  *
- * @return  TEST_NOTPRESENT if no IPU tests are enabled for the platform;
+ * @return  TEST_NOT_PRESENT if no IPU tests are enabled for the platform;
  *          TEST_BYPASSED if no IPU test enabled on the platform is chosen to run,
  *                        or no display at all on that platform;
  *          TEST_FAILED if any of the chosen tests fail;
@@ -381,7 +381,7 @@ int ipu_display_test_main(void)
     int i, fail = 0, pass = 0, panel_index;
 
     if (!ipu_display_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
     for (i = 0;; i++) {
         panel_index = ipu_display_panel[i];
@@ -400,7 +400,7 @@ int ipu_display_test_main(void)
         }
     }
     if (i == 0)
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
 
     if (fail == 0 && pass == 0) {
         printf("WARNING: No display type selected\n");

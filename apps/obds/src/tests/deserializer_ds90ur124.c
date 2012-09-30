@@ -104,7 +104,7 @@ int ds90ur124_test_enable;
 int ds90ur124_test_main(void)
 {
     if (!ds90ur124_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("DE-SERIALIZER DS90UR124", NULL);

@@ -191,7 +191,7 @@ int pmic_mc13892_test_enable;
 int device_id_mc13892_test(void)
 {
     if (!pmic_mc13892_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("PMIC ID test", NULL);

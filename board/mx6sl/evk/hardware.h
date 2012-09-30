@@ -366,8 +366,6 @@ extern int mmcsd_test_enable;
 extern int eeprom_test_enable;
 extern int mipi_test_enable;
 extern int touch_button_test_enable;
-extern int android_buttons_test_enable;
-extern int can_test_enable;
 extern int camera_flashtest_enable;
 extern int camera_test_enable;
 extern int epd_test_enable;

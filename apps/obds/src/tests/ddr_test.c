@@ -56,14 +56,17 @@ menu_action_t ddr_test(const menu_context_t* const context, void* const param)
 
 	unsigned int failCount = 0;
     unsigned int i;
-    unsigned int mem_src;
+    unsigned int *mem_src;
     unsigned int *ps;
     int bank_size = ddr_density / 8;
 
 	const char* indent = menu_get_indent(context);
 
     if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
+    {
     	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
 
     /* Data bus, walking ones test */
     /* Looking for shorts on the board, so no need to test both chip selects */
@@ -127,18 +130,18 @@ menu_action_t ddr_test(const menu_context_t* const context, void* const param)
     /* DDR ADDRESS test, test the last two banks for each chip select */
     /* CS0 */
     /* First, write data to each row */
-    mem_src = CSD0_BASE_ADDR + bank_size * 6;
+    mem_src = (unsigned int*)(CSD0_BASE_ADDR + bank_size * 6);
 
     for (i = 0; i < bank_size * 2; i = i + 512) {
-        ps = (unsigned int *)(mem_src + i);
+        ps = mem_src + i;
         *ps = 0x12345678 + 0x11111111 * i;
     }
 
     /* Second, read back data from each row to verify */
-    mem_src = CSD0_BASE_ADDR + bank_size * 6;
+    mem_src = (unsigned int*)(CSD0_BASE_ADDR + bank_size * 6);
 
     for (i = 0; i < bank_size * 2; i = i + 512) {
-        ps = (unsigned int *)(mem_src + i);
+        ps = mem_src + i;
 
         if (*ps != (0x12345678 + 0x11111111 * i)) {
             failCount++;
@@ -148,18 +151,18 @@ menu_action_t ddr_test(const menu_context_t* const context, void* const param)
     if (ddr_num_of_cs == 2) {
         /* CS1 */
         /* First, write data to each row */
-        mem_src = CSD1_BASE_ADDR + bank_size * 6;
+        mem_src = (unsigned int*)(CSD1_BASE_ADDR + bank_size * 6);
 
         for (i = 0; i < bank_size * 2; i = i + 512) {
-            ps = (unsigned int *)(mem_src + i);
+            ps = mem_src + i;
             *ps = 0x87654321 + 0x11111111 * i;
         }
 
         /* Second, read back data from each row to verify */
-        mem_src = CSD1_BASE_ADDR + bank_size * 6;
+        mem_src = (unsigned int*)(CSD1_BASE_ADDR + bank_size * 6);
 
         for (i = 0; i < bank_size * 2; i = i + 512) {
-            ps = (unsigned int *)(mem_src + i);
+            ps = mem_src + i;
 
             if (*ps != (0x87654321 + 0x11111111 * i)) {
                 failCount++;

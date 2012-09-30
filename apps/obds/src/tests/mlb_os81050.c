@@ -121,7 +121,7 @@ int os81050_test_main(void)
     int ret;
 
     if (!mlb_os81050_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("MLB OS81050", NULL);

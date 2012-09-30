@@ -42,7 +42,7 @@ int epd_display_test(void)
 
     char recvCh = NONE_CHAR;
     if (!epd_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
     PROMPT_RUN_TEST("EINK display test", NULL);
 

@@ -72,7 +72,7 @@ uint32_t sdio_bus_width, sdio_base_address;
 static int sdio_card_test(void)
 {
     if (!sdio_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("SDIO", NULL);

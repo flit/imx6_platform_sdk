@@ -51,7 +51,7 @@ int main(void)
     // Initialize the test results and create the
     // test list (menuitems) for the board.
     //
-    memset(test_results, TEST_NOTPRESENT, MAX_TESTS * sizeof(int));
+    memset(test_results, TEST_NOT_PRESENT, MAX_TESTS * sizeof(int));
     select_tests(&main_menuitems[0], SEL_MENU_TESTS);
 
     //
@@ -94,14 +94,14 @@ int main(void)
     return 0;
 }
 
-test_return_t prompt_run_test(const char * const name, const char* const indent)
+test_return_t prompt_run_test(const char * const test_name, const char* const indent)
 {
-    printf_color(TEXT_ATTRIB_BOLD, NULL, "\n%s---- Running < %s >\n", indent, name);
+    printf_color(TEXT_ATTRIB_BOLD, NULL, "\n%s---- Running < %s >\n", indent, test_name);
     if (!auto_run_enable)
     {
         if (!is_input_char('y', indent))
         {
-            printf("\n");
+        	print_test_skipped(test_name, indent);
             return TEST_BYPASSED;
         }
     }
@@ -126,6 +126,11 @@ void print_test_failed(const char* const test_name, const char* const indent)
 	 printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "\n%s%s FAILED.\n", indent, test_name);
 }
 
+void print_test_not_implemented(const char* const test_name, const char* const indent)
+{
+	 printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "\n%s%s is NOT IMPLEMENTED.\n", indent, test_name);
+}
+
 //
 // PRIVATE
 //
@@ -137,13 +142,13 @@ void print_test_failed(const char* const test_name, const char* const indent)
 //
 void report_test_results(void)
 {
-    int passed = 0, failed = 0, skipped = 0, not_present = 0, unknown = 0;
+    int passed = 0, failed = 0, not_implemented = 0, skipped = 0, not_present = 0, unknown = 0;
     int i;
 
     printf("\n----------------- TEST RESULTS -----------------\n");
     for (i = 0; i < MAX_TESTS; i++)
     {
-        if (test_results[i] == TEST_NOTPRESENT)
+        if (test_results[i] == TEST_NOT_PRESENT)
         {
         	++not_present;
         }
@@ -157,6 +162,11 @@ void report_test_results(void)
             printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "\t<%s> FAILED\n", main_menuitems[i].description);
             ++failed;
         }
+        else if (test_results[i] == TEST_NOT_IMPLEMENTED)
+        {
+            printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "\t<%s> is NOT IMPLEMENTED\n", main_menuitems[i].description);
+            ++not_implemented;
+        }
         else if (test_results[i] == TEST_BYPASSED)
         {
             printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_YELLOW, "\t<%s> SKIPPED\n", main_menuitems[i].description);
@@ -169,16 +179,17 @@ void report_test_results(void)
     }
 
     printf("\n=================== SUMMARY ====================\n");
-    printf("PASSED:     \t%d\n", passed);
-    printf("FAILED:     \t%d\n", failed);
-    printf("SKIPPED:    \t%d\n", skipped);
-    printf("TOTAL:      \t%d\n", MAX_TESTS - not_present - unknown);
+    printf("PASSED:          \t%d\n", passed);
+    printf("FAILED:          \t%d\n", failed);
+    printf("NOT IMPLEMENTED: \t%d\n", not_implemented);
+    printf("SKIPPED:         \t%d\n", skipped);
+    printf("TOTAL:           \t%d\n", MAX_TESTS - not_present - unknown);
     printf("=================================================\n");
 }
 
 menu_action_t run_all_tests(const menu_context_t* const context, void* const param)
 {
-	select_tests_t tests = SEL_CPU_PLUS_BOARD_TESTS;
+	select_tests_t tests = SEL_CPU_AND_MAIN_BOARD_TESTS;
 	const char* indent = menu_get_indent(context);
 
     if (BOARD_TYPE == BOARD_TYPE_SABRE_AI || BOARD_TYPE == BOARD_TYPE_EVB)
@@ -186,7 +197,7 @@ menu_action_t run_all_tests(const menu_context_t* const context, void* const par
         printf("%sDo you wish to run the CPU-ONLY set of tests?\n", indent);
         if (is_input_char('y', indent)) {
             printf("%s  Run CPU-ONLY tests.\n\n", indent);
-        	tests = SEL_CPU_ONLY_TESTS;
+        	tests = SEL_CPU_BOARD_ONLY_TESTS;
         }
     }
     select_tests(main_menuitems, tests);
@@ -213,33 +224,64 @@ menu_action_t run_all_tests(const menu_context_t* const context, void* const par
     return MENU_EXIT;
 }
 
-void select_tests(menuitem_t* const menuitems, const select_tests_t tests)
+void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests)
 {
 	int menu_idx = 0;
+	memset(menuitems, 0, sizeof(menuitem_t) * MAX_TESTS);
 
 	menu_make_menuitem(&menuitems[menu_idx], "00", "RUN ALL TESTS", run_all_tests, NULL);menu_idx++;
 
 #if defined (CHIP_MX6DQ) || defined(CHIP_MX6SDL)
 #if defined(BOARD_TYPE_SABRE_AI)
-
-	menu_make_group(&menuitems[menu_idx++], "CPU Board Tests");
-	menu_make_menuitem(&menuitems[menu_idx], "01", "BOARD ID Test", program_board_id, &test_results[menu_idx]);menu_idx++;
-	menu_make_menuitem(&menuitems[menu_idx], "02", "MAC Address Test", program_mac_address, &test_results[menu_idx]);menu_idx++;
-	menu_make_menuitem(&menuitems[menu_idx], "03", "DDR Test", ddr_test, &test_results[menu_idx]);menu_idx++;
-	menu_make_menuitem(&menuitems[menu_idx], "04", "SNVS - SRTC Test", snvs_srtc_test, &test_results[menu_idx]);menu_idx++;
-
-//	program_mac_address_enable = 1;
+	if ( select_tests != SEL_MAIN_BOARD_ONLY_TESTS )
+	{
+		menu_make_group(&menuitems[menu_idx++], "CPU Board Tests");
+		menu_make_menuitem(&menuitems[menu_idx], "01", "BOARD ID Test", program_board_id, &test_results[menu_idx]);menu_idx++;
+		menu_make_menuitem(&menuitems[menu_idx], "02", "MAC Address Test", program_mac_address, &test_results[menu_idx]);menu_idx++;
+		menu_make_menuitem(&menuitems[menu_idx], "03", "DDR Test", ddr_test, &test_results[menu_idx]);menu_idx++;
+		menu_make_menuitem(&menuitems[menu_idx], "04", "SNVS - SRTC Test", snvs_srtc_test, &test_results[menu_idx]);menu_idx++;
+#if defined(BOARD_REV_A)
+	// use micrel ethernet for rev A board
+	// KSZ9021RN_test_enable = 1;
+#else
+    // use Atheros ethernet for all other revs (rev B)
+	menu_make_menuitem(&menuitems[menu_idx], "05", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+#endif
+#if defined(CHIP_MX6DQ)
+//    sata_test_enable = 1;
+#endif
 //    etm_test_enable = 1;
-//    ddr_test_enable = 1;
+	}
 
-	menu_make_group(&menuitems[menu_idx++], "Main Board Tests");
-
+	if ( select_tests != SEL_CPU_BOARD_ONLY_TESTS )
+	{
+		menu_make_group(&menuitems[menu_idx++], "Main Board Tests");
+		menu_make_menuitem(&menuitems[menu_idx], "10", "ANDROID BUTTONS Test", android_buttons_test, &test_results[menu_idx]);menu_idx++;
+		menu_make_menuitem(&menuitems[menu_idx], "11", "FLEXCAN1/2 LOOPBACK Test", flexcan_test, &test_results[menu_idx]);menu_idx++;
+//		menu_make_menuitem(&menuitems[menu_idx], "12", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+//		menu_make_menuitem(&menuitems[menu_idx], "13", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+//		can_test_enable = 1;
+//		ard_mb_reset_test_enable = 1;
+//		ard_mb_expander_reset_test_enable = 1;
+	}
 
 #elif defined(BOARD_TYPE_SMART_DEVICE)
+#if defined(CHIP_MX6DQ)
+//    sata_test_enable = 1;
+#endif
 #elif defined(BOARD_TYPE_SABRE_LITE)
+#if defined(CHIP_MX6DQ)
+//    sata_test_enable = 1;
+#endif
 #elif defined(BOARD_TYPE_EVB)
+#if defined(CHIP_MX6DQ)
+//    sata_test_enable = 1;
+#endif
 #endif
 #elif defined(CHIP_MX6SL)
+#if defined (BOARD_EVB)
+#elif defined(BOARD_EVK)
+#endif
 #endif
 
 	menu_make_group(&menuitems[menu_idx++], "Menu functions");
@@ -257,8 +299,6 @@ void select_tests(SELECT_TESTS tests)
 {
     int display = 0;
 
-    program_mac_address_enable = 1;
-
     etm_test_enable = 1;
 
     ipu_display_test_enable = 1;
@@ -267,11 +307,6 @@ void select_tests(SELECT_TESTS tests)
         // these tests apply to SABRE AI CPU Board
 
         //ds90ur124_test_enable = 0;
-#if defined(BOARD_REV_A)        // use micrel ethernet for rev A board
-        KSZ9021RN_test_enable = 1;
-#else // use Atheros ethernet for all other revs (rev B)
-        ar8031_test_enable = 1; // ethernet
-#endif
 
         weim_nor_flash_test_enable = 1;
 
@@ -293,35 +328,14 @@ void select_tests(SELECT_TESTS tests)
         {
 			case SEL_CPU_ONLY_TESTS:
 
-	            adv7180_test_enable = 0;    // VIDEO INPUT
-	            esai_test_enable = 0;       // AUDIO
-
 	            ipu_display_panel[display++] = DISP_DEV_TFTLCD;
 	            ipu_display_panel[display++] = DISP_DEV_LVDS;
 	            ipu_display_panel[display++] = DISP_DEV_HDMI;
 //              ipu_display_panel[display++] = DISP_DEV_MIPI;
 
-	            usbh_EHCI_test_mode_base = USBOH3_BASE_ADDR;
-	            usbh_EHCI_test_mode_test_enable = 0;
-	            usbh_dev_enum_test_base = USBH1_BASE_ADDR;      //J30 on the main board
-	            usbh_dev_enum_test_enable = 0;
-
 	            pf0100_i2c_device_id_test_enable = 1;           // PMIC PF0100 ID test
-	            i2c_device_id_check_cs42888_test_enable = 0;    // codec
 	            i2c_device_id_check_isl29023_test_enable = 1;   // light sensor
-	            i2c_device_id_check_mag3112_test_enable = 0;    // eCompass - no pop on sabre_ai
 	            i2c_device_id_check_mma8451_test_enable = 1;    // accelerometer
-
-	            android_buttons_test_enable = 0;
-	            can_test_enable = 0;
-	            ard_mb_reset_test_enable = 0;
-	            ard_mb_expander_reset_test_enable = 0;
-
-	            mmcsd_test_enable = 0;
-	            mmcsd_bus_width = 8;
-	            mmc_sd_base_address = USDHC3_BASE_ADDR;
-
-	            sata_test_enable = 1;
 
 				break;
 
@@ -330,13 +344,8 @@ void select_tests(SELECT_TESTS tests)
 				adv7180_test_enable = 1;    // VIDEO INPUT
 	            esai_test_enable = 1;       // AUDIO
 
-//	            ipu_display_panel[display++] = DISP_DEV_TFTLCD;
 	            ipu_display_panel[display++] = DISP_DEV_LVDS;
-//	            ipu_display_panel[display++] = DISP_DEV_HDMI;
-//              ipu_display_panel[display++] = DISP_DEV_MIPI;
 
-	            usbh_EHCI_test_mode_base = USBOH3_BASE_ADDR;
-	            usbh_EHCI_test_mode_test_enable = 0;
 	            usbh_dev_enum_test_base = USBH1_BASE_ADDR;      //J30 on the main board
 	            usbh_dev_enum_test_enable = 1;
 
@@ -345,11 +354,6 @@ void select_tests(SELECT_TESTS tests)
 	            i2c_device_id_check_isl29023_test_enable = 1;   // light sensor
 	            i2c_device_id_check_mag3112_test_enable = 0;    // eCompass - no pop on sabre_ai
 	            i2c_device_id_check_mma8451_test_enable = 1;    // accelerometer
-
-	            android_buttons_test_enable = 1;
-	            can_test_enable = 1;
-	            ard_mb_reset_test_enable = 1;
-	            ard_mb_expander_reset_test_enable = 1;
 
 	            mmcsd_test_enable = 1;
 	            mmcsd_bus_width = 8;

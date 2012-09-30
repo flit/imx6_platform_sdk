@@ -160,7 +160,7 @@ int spdc_display_test(void)
 
     char recvCh = NONE_CHAR;
     if (!spdc_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
     PROMPT_RUN_TEST("Sipix EINK display test", NULL);
 

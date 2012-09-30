@@ -36,7 +36,7 @@ int esai_test(void)
     dev_para.channel_number = (pcm_music.para)->channel_number;
 
     if (!esai_test_enable) {
-        return TEST_NOTPRESENT;
+        return TEST_NOT_PRESENT;
     }
 
     PROMPT_RUN_TEST("ESAI", NULL);

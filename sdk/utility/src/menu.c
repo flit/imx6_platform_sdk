@@ -21,8 +21,8 @@ menu_action_t menu_present(const menu_t* const menu)
 {
 	menu_action_t ret_val = MENU_EXIT;
 	static int depth = -1;
-	//                           000000000011111111112222222222333333333344444444445555555555666666666677777777778888888888999999999900000000001111111111
-	char indent[INDENT_MAX+1] = "                                                                                                                        ";
+	char indent[INDENT_MAX+1];
+	memset(indent, ' ', INDENT_MAX);
 
 	++depth;
 
@@ -47,23 +47,16 @@ menu_action_t menu_present(const menu_t* const menu)
 		while (1) // getting user input to specify which menu_idx to run
 		{
 			// get a key press
-			// printf(prompt);
 			while ((key_pressed = fgetc(stdin)) == NONE_CHAR);
-//{
-//	key_pressed = getchar();
-//	printf("\ngetchar() =  %8x\n", key_pressed);
-//}
 
-//continue;
 			if ( key_pressed == '\n' || key_pressed == '\r' )
 			{
-				// user hit ENTER_KEY
-//printf("user hit enter\n");
+				// User hit ENTER_KEY
+
 				// if previously MENU_KEY_FIND_MORE_THAN_ONE
 				// then run 1st matching menuitem
 				if ( menu_idx == MENU_KEY_FIND_MORE_THAN_ONE )
 				{
-//printf("menu_idx == MENU_KEY_FIND_MORE_THAN_ONE\n");
 					// we need to run menu_idx
 					menu_idx = menu_key_find_first(menu, key);
 					break;
@@ -82,9 +75,9 @@ menu_action_t menu_present(const menu_t* const menu)
 			}
 			else
 			{
-				// user hit something other than ENTER_KEY
+				// User hit something other than ENTER_KEY
 
-				// echo the key
+				// Echo the key
 				fputc(key_pressed, stdout);
 
 				key[key_idx++] = key_pressed;
@@ -162,7 +155,6 @@ menu_action_t menu_present(const menu_t* const menu)
 
 	} // while (1) - process menu items
 
-	indent[indent_idx] = ' ';
 	--depth;
 
 	return ret_val;

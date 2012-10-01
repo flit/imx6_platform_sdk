@@ -12,23 +12,57 @@
  * @ingroup diag_keypad
  */
 
-#include "hardware.h"
+#include "keypad/keypad_port.h"
+#include "registers/regskpp.h"
+#include "iomux_config.h"
+#include "utility/spinlock.h"
+#include "timer/timer.h"
+#include "core/interrupt.h"
+#include "irq_numbers.h"
 
-static volatile uint8_t g_col_inuse;
-static volatile uint8_t g_row_inuse;
-static volatile uint8_t g_wait_for_irq;
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+
+//! @brief Bit mask with all column bits set.
+#define ALL_COLUMNS 0xff
+
+//! @brief Global state for the keypad driver.
+typedef struct kpp_state {
+    uint8_t activeColumns;
+    uint8_t activeRows;
+    spinlock_t irqLock;
+} kpp_state_t;
+
+////////////////////////////////////////////////////////////////////////////////
+// Variables
+////////////////////////////////////////////////////////////////////////////////
+
+//! @brief Global state for the keypad driver.
+static kpp_state_t s_kpp;
+
+////////////////////////////////////////////////////////////////////////////////
+// Code
+////////////////////////////////////////////////////////////////////////////////
+
+//! @brief Clear status flags and synchronizer chains.
+static inline void kpp_clear_status(void)
+{
+    HW_KPP_KPSR_WR(BM_KPP_KPSR_KPKD | BM_KPP_KPSR_KPKR | BM_KPP_KPSR_KDSC | BM_KPP_KPSR_KRSS);
+}
 
 /*!
- * Keypad port function to scan the keypad matrix and return the read key(s).
+ * @brief Keypad port function to scan the keypad matrix and return the read key(s).
+ *
  * The scan sequence is described into the reference manual into "Key press
  * interrupt scanning sequence".
  * To debounce, this sequence is at least executed 3 times, and if the result
- * of the 3 scans is the same, it exists.
+ * of the 3 scans is the same, it exits.
  * Likely if a key was detected active 3 times, it's because it is pressed.
  * This is an implementation of the "Keypad matrix Scanning" section presented
  * in the reference manual.
  *
- * @param   keypad_state - variable that returns the keypad read state.
+ * @param keypad_state Variable that returns the keypad read state.
  */
 void kpp_scan_matrix(uint16_t *keypad_state)
 {
@@ -44,125 +78,103 @@ void kpp_scan_matrix(uint16_t *keypad_state)
     memset(port_state_3, 0x0000, sizeof(port_state_3));
 
     loop = 1;
-    while(loop != 0)
+    while (loop != 0)
     {
-        if(loop == 1)
+        if (loop == 1)
+        {
             port_state = port_state_1;
-        else if(loop == 2)
+        }
+        else if (loop == 2)
+        {
             port_state = port_state_2;
-        else if(loop == 3)
+        }
+        else if (loop == 3)
         {
             port_state = port_state_3;
             loop = 0;
         }
         loop++;
 
-        /* Execute the scan sequence on the whole keypad.
-         * it clears consecutively each active column and
-         * sample the row state each time.
-         */
-        for(tested_col=0 ; tested_col < 8 ; tested_col++)
+        // Execute the scan sequence on the whole keypad.
+        // it clears consecutively each active column and
+        // sample the row state each time.
+        for (tested_col=0 ; tested_col < 8 ; tested_col++)
         {
-            col_mask = g_col_inuse & (1 << tested_col);
-            if(col_mask)
+            col_mask = s_kpp.activeColumns & (1 << tested_col);
+            if (col_mask)
             {
-                writew((~col_mask << 8),KPP_KPDR);
+                HW_KPP_KPDR_WR(~col_mask << 8);
                 hal_delay_us(1);
-                port_state[tested_col] = ~readw(KPP_KPDR);
+                port_state[tested_col] = ~HW_KPP_KPDR_RD();
             }
             else
+            {
                 port_state[tested_col] = 0x0;
+            }
         }
 
-        /* For key pressed detection:
-         * exit from here when 3 consecutive scans of the full
-         * keypad matrix give the same result.
-         * The read of the KPP_KPDR is inverted, so that the software
-         * looks for a value different from 0
-         *  => at least one key is pressed.
-         */
-        for(i=0 ; i < 8 ; i++)
+        // For key pressed detection:
+        // exit from here when 3 consecutive scans of the full
+        // keypad matrix give the same result.
+        // The read of the KPP_KPDR is inverted, so that the software
+        // looks for a value different from 0
+        //  => at least one key is pressed.
+        for (i=0 ; i < 8 ; i++)
         {
-            if((port_state_1[i] & port_state_2[i] &
+            if ((port_state_1[i] & port_state_2[i] &
                port_state_3[i] & 0xFF) != 0x00)
+            {
                 loop = 0;
+            }
         }
     }
 
-    /* copy the result into the global keypad state variable */
+    // copy the result into the global keypad state variable 
     memcpy(keypad_state, port_state_1, sizeof(port_state_1));
 }
 
-/*!
- * Keypad port function to return the read key.
- *
- * @param   rd_keys - active columns in the keypad.
- * @param   condition - keypad state is read immediately (IMMEDIATE)
- *                      or it waits for key pressed interrupt (WF_INTERRUPT).
- */
-void kpp_get_keypad_state(uint16_t *rd_keys, uint8_t condition)
+void kpp_get_keypad_state(uint16_t *rd_keys, bool returnImmediately)
 {
-    uint16_t keypad_state[8];
+    // Clear status flags and synchronizer chains 
+    kpp_clear_status();
 
-    /* enter WFI now - TO DO */
-    /* might be a problem when in debug mode with JTAG !!!! */
-
-    g_wait_for_irq = 1;
-
-    /* Clear status flags and synchronizer chains */
-    writew(0xF, KPP_KPSR);
-
-    /* Either the application waits for a pressed key event
-     * or it runs immediately the scanning sequence.
-     */
-    if(condition == WF_INTERRUPT)
+    // Either the application waits for a pressed key event
+    // or it runs immediately the scanning sequence.
+    if (!returnImmediately)
     {
-        enable_irq(KDIE);
-        while(g_wait_for_irq);
+        HW_KPP_KPSR_SET(BM_KPP_KPSR_KDIE);
+        
+        spinlock_lock(&s_kpp.irqLock, kSpinlockWaitForever);
     }
 
-    /* Start the scanning routine */
-    /* Set a high level on each columns */
-    writew(0xFF00, KPP_KPDR);
+    // Start the scanning routine 
+    // Set a high level on each columns 
+    HW_KPP_KPDR_WR(BF_KPP_KPDR_KCD(ALL_COLUMNS));
 
-    /* For quick discharging of keypad capacitance */
-    /* configure the column in totem pole */
-    writew(COL_IN_TTPOLE | g_row_inuse, KPP_KPCR);
+    // For quick discharging of keypad capacitance 
+    // configure the column in totem pole 
+    HW_KPP_KPCR.B.KCO = 0;
 
-    /* re-configure the column to open-drain */
-    writew(COL_IN_ODRAIN | g_row_inuse, KPP_KPCR);
+    // re-configure the column to open-drain 
+    HW_KPP_KPCR.B.KCO = ALL_COLUMNS;
 
-    /* Scan sequence function */
-    kpp_scan_matrix(keypad_state);
+    // Scan sequence function 
+    kpp_scan_matrix(rd_keys);
 
-    /* copy the result to the application */
-    memcpy(rd_keys, keypad_state, sizeof(keypad_state));
-
-    /* Set a low level on each columns */
-    writew(0, KPP_KPDR);
+    // Set a low level on each columns 
+    HW_KPP_KPDR_WR(0);
 }
 
-/*!
- * Keypad port function that waits for all keys to release.
- * The hardware can only detect this condition, and couldn't
- * detect the release of a single key but by doing it
- * by software.
- */
 void kpp_wait_for_release_state(void)
 {
-    /* enter WFI now - TO DO */
-    /* might be a problem when in debug mode with JTAG !!!! */
+    // Clear status flags and synchronizer chains 
+    kpp_clear_status();
 
-    g_wait_for_irq = 1;
-
-    /* Clear status flags and synchronizer chains */
-    writew(0xF, KPP_KPSR);
-
-    /* There's nothing to return. This event only occurs
-     * when all key are released.
-     */
-    enable_irq(KRIE);
-    while(g_wait_for_irq);
+    // There's nothing to return. This event only occurs
+    // when all key are released.
+    HW_KPP_KPSR_SET(BM_KPP_KPSR_KRIE);
+    
+    spinlock_lock(&s_kpp.irqLock, kSpinlockWaitForever);
 }
 
 /*!
@@ -170,71 +182,85 @@ void kpp_wait_for_release_state(void)
  */
 void kpp_interrupt_routine(void)
 {
-    disable_irq(KDIE | KRIE);
-    g_wait_for_irq = 0;
+    HW_KPP_KPSR_CLR(BM_KPP_KPSR_KDIE | BM_KPP_KPSR_KRIE);
+
+    spinlock_unlock(&s_kpp.irqLock);
 }
 
 /*!
- * Setup keypad interrupt. It enables or disables the related HW module
- * interrupt, and attached the related sub-routine into the vector table.
+ * @brief Setup keypad interrupt.
  *
- * @param   state - ENABLE or DISABLE the interrupt.
+ * Enables or disables the related HW module interrupt, and attached the related sub-routine
+ * into the vector table.
+ *
+ * @param state Flag indicating whether to enable (true) or disable (false) the interrupt.
  */
-void kpp_setup_interrupt(uint8_t state)
+void kpp_setup_interrupt(bool state)
 {
-    if (state == TRUE) {    
-        /* clear status flags and synchronizer chains */
-        writew(0xF, KPP_KPSR);
-        /* register the IRQ sub-routine */
+    if (state)
+    {    
+        // clear status flags and synchronizer chains 
+        kpp_clear_status();
+        
+        // register the IRQ sub-routine 
         register_interrupt_routine(IMX_INT_KPP, &kpp_interrupt_routine);
-        /* enable the IRQ */
+        
+        // enable the IRQ 
         enable_interrupt(IMX_INT_KPP, CPU_0, 0);
     }
-    else {
-        /* disable the IRQ */
+    else
+    {
+        // disable the IRQ 
         disable_interrupt(IMX_INT_KPP, CPU_0);
-        /* clear status flags and synchronizer chains */
-        writew(0xF, KPP_KPSR);
+        
+        // clear status flags and synchronizer chains 
+        kpp_clear_status();
     }
 }
 
-/*!
- * Initialize the keypad controller.
- *
- * @param   kpp_col - active columns in the keypad.
- * @param   kpp_row - active rows in the keypad.
- */
 void kpp_open(uint8_t kpp_col, uint8_t kpp_row)
 {
-    /* Initialize global variables to store the board's keypad usage */
-    g_col_inuse = kpp_col;
-    g_row_inuse = kpp_row;
+    // Initialize global variables to store the board's keypad usage 
+    s_kpp.activeColumns = kpp_col;
+    s_kpp.activeRows = kpp_row;
+    
+    // Init the spinlock used for interrupt synchronization and lock it.
+    spinlock_init(&s_kpp.irqLock);
+    spinlock_lock(&s_kpp.irqLock, kSpinlockNoWait);
 
-    /* there's no clock to enable for the keypad port */
+    // there's no clock to enable for the keypad port 
 
-    /* configure the IOMUX */
+    // configure the IOMUX 
     kpp_iomux_config();
 
-    /* configure the columns in open-drain & set the active rows */
-    writew(COL_IN_ODRAIN | g_row_inuse, KPP_KPCR);
-    /* configure columns as outputs and rows as inputs */
-    writew(0xFF00, KPP_KDDR);
-    /* set a low level on each columns */
-    writew(0, KPP_KPDR);
-    /* clear status flags and synchronizer chains */
-    writew(0xF, KPP_KPSR);
+    // configure the columns in open-drain & set the active rows 
+    HW_KPP_KPCR_WR(BF_KPP_KPCR_KCO(ALL_COLUMNS)
+                | BF_KPP_KPCR_KRE(s_kpp.activeRows));
 
-    /* set up the interrupt */
-    kpp_setup_interrupt(TRUE);
+    // Set a low level on each columns. Must do this before configuring outputs.
+    HW_KPP_KPDR_WR(0);
+
+    // configure columns as outputs and rows as inputs 
+    HW_KPP_KDDR_WR(BF_KPP_KDDR_KCDD(s_kpp.activeColumns) | BF_KPP_KDDR_KRDD(0));
+
+    // clear status flags and synchronizer chains 
+    kpp_clear_status();
+
+    // set up the interrupt 
+    kpp_setup_interrupt(true);
 }
 
-/*!
- * Leave the keypad controller in a known state.
- *
- */
 void kpp_close(void)
 {
-    /* disable the interrupts */
-    disable_irq(KDIE | KRIE);
-    kpp_setup_interrupt(FALSE);
+    // disable the interrupts 
+    HW_KPP_KPSR_CLR(BM_KPP_KPSR_KDIE | BM_KPP_KPSR_KRIE);
+    
+    kpp_setup_interrupt(false);
+    
+    // Disable all rows.
+    HW_KPP_KPCR_WR(0);
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

@@ -157,6 +157,25 @@ int gpmi_test(void)
         return status;
     }
     
+    // Read page 0 of erased block. Compare against erased page.
+    printf("Raw read from page 0...\n");
+    status = gpmi_nand_read_raw(0, 0, (uint8_t *)&s_read_buffer, 0, 4096);
+    if (status)
+    {
+        printf("Raw read failed with error %d\n", status);
+        return status;
+    }
+
+    memset(s_page_buffer, 0xff, 4096);
+    if (compare_buffers((uint8_t *)&s_page_buffer, (uint8_t *)&s_read_buffer, 4096))
+    {
+        printf("No bit errors in raw read/write test\n");
+    }
+    else
+    {
+        printf("Raw read back comparison failed (may be due to bit errors and not a real problem)!\n");
+    }
+    
     // Fill buffer with pattern.
     fill_data_buffer((uint8_t *)&s_page_buffer, 0, 0);
     fill_aux((uint8_t *)&s_aux_buffer, 0);

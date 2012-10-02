@@ -4,29 +4,29 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
-#if !defined(__PLATFORM_INIT_H__)
-#define __PLATFORM_INIT_H__
+#if !defined(__OBDS_HARDWARE_H__)
+#define __OBDS_HARDWARE_H__
+
+#include <stdint.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+//! @brief SPI-NOR device types
+enum
+{
+    AT45DB321D = 1,
+    M25P32 = 2
+};
 
-//! @brief Do basic hardware initialization to make the system usable.
-//!
-//! Performs minimal initialization to enable most drivers to work. The GIC,
-//! CCM, and UART drivers are inited. The systme timer is inited. And
-//! board_ioexpander_init() is called.
-void platform_init(void);
+//! @brief Flag decides the SPI-NOR device type
+extern uint32_t spi_nor_flash_type;
 
-#if defined(__cplusplus)
-}
-#endif
+//! @brief List of displays supported by the board.
+extern int32_t ipu_display_panel[];
 
-#endif // __PLATFORM_INIT_H__
+#endif // __OBDS_HARDWARE_H__
 ////////////////////////////////////////////////////////////////////////////////
 // EOF
 ////////////////////////////////////////////////////////////////////////////////

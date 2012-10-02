@@ -4,29 +4,20 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
-#if !defined(__PLATFORM_INIT_H__)
-#define __PLATFORM_INIT_H__
+#if !defined(__PROFILE_H__)
+#define __PROFILE_H__
+
+#include "sdk.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
+void StartPerfCounter(void);
 
-//! @brief Do basic hardware initialization to make the system usable.
-//!
-//! Performs minimal initialization to enable most drivers to work. The GIC,
-//! CCM, and UART drivers are inited. The systme timer is inited. And
-//! board_ioexpander_init() is called.
-void platform_init(void);
+uint32_t StopPerfCounter(void);
 
-#if defined(__cplusplus)
-}
-#endif
-
-#endif // __PLATFORM_INIT_H__
+#endif // __PROFILE_H__
 ////////////////////////////////////////////////////////////////////////////////
 // EOF
 ////////////////////////////////////////////////////////////////////////////////

@@ -12,6 +12,7 @@
 #include "audio/audio.h"
 #include "menu.h"
 #include "text_color.h"
+#include "obds_hardware.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions

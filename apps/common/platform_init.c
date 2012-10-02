@@ -6,6 +6,7 @@
 */
 
 #include "hardware.h"
+#include "board_io_expanders.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -37,7 +38,7 @@ void platform_init(void)
     } while (c != NONE_CHAR);
 
     // Some init for the board 
-    board_init();
+    board_ioexpander_init();
 }
 
 ////////////////////////////////////////////////////////////////////////////////

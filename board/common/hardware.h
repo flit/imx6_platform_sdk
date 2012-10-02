@@ -36,12 +36,16 @@
 #include "buffers.h"
 #include "usb/usb.h"
 #include "keypad/keypad_port.h"
+#include "ioexpander/max7310.h"
+#include "board_io_expanders.h"
 
 //Add for obds tests
 #include "audio/audio.h"
 #include "audio/imx-audmux.h"
 #include "spi/ecspi_ifc.h"
 #include "enet/enet.h"
+#include "board_id/board_id.h"
+
 // Android_Buttons test defines
 #define HOME_BUTTON_GPIO_INST     GPIO_PORT1
 #define HOME_BUTTON_GPIO_NUM      11
@@ -86,17 +90,9 @@
 
 #define WM8962_I2C_DEV_ADDR             (0x34>>1)
 #define WM8962_I2C_BASE_ADDR            I2C1_BASE_ADDR
+
 #define SGTL5000_I2C_BASE   I2C2_BASE_ADDR  // audio codec on i2c2
 #define SGTL5000_I2C_ID     0x0A
-// SGTL5000 specific register values
-#define CHIP_REF_CTRL_REG_VALUE 0x01FF  // VDDA/2
-#define CHIP_LINE_OUT_CTRL_REG_VALUE 0x0322 // VDDIO/2
-#define CHIP_LINE_OUT_VOL_REG_VALUE 0x0F0F  // based on VDDA and VDDIO values
-#define CHIP_CLK_TOP_CTRL_REG_VALUE 0   // pass through, Input OSC 13.5MHz, default configuration for sample rate, 48KHz
-#define CHIP_PLL_CTRL_REG_VALUE ((14 << 11) | (1154))
-#define CHIP_CLK_CTRL_REG_VALUE ((0x2 << 2) | (0x3))
-#define CHIP_CLK_CTRL_REG_MCLK_FREQ_VALUE 0x3   /*12MHz =256*Fs */
-#define CHIP_PLL_CTRL_REG_VALUE2     ((16 << 11) | (786))   // for CodecInit2
 
 #define SI476x_I2C_BASE    I2C2_BASE_ADDR
 #define SI476x_I2C_ID      (0xC6 >> 1)
@@ -104,61 +100,15 @@
 #define OS81050_I2C_BASE    I2C3_BASE_ADDR
 #define OS81050_I2C_ID      (0x40 >> 1)
 
-#define ADV7180_I2C_BASE    I2C3_BASE_ADDR
 #define ADV7180_I2C_ID      (0x42 >> 1)
-
-/* 
- * BOARD_SMART_DEVICE/BOARD_SABRE_LITE for compile error
- */
-#if defined(BOARD_SMART_DEVICE) || defined(BOARD_SABRE_LITE)
-#define MAX7310_NBR 0
-#endif
-/*******************************************************
- *      I/O expander MAX7310 I2C settings
- *******************************************************/
-/* For the ARD board which has 3 MAX7310 */
-#ifdef BOARD_SABRE_AI
-#define MAX7310_NBR 3
-/* I/O expander A */
-#define MAX7310_I2C_BASE_ID0  I2C3_BASE_ADDR
-#define MAX7310_I2C_ID0          (0x30 >> 1)
-#define MAX7310_ID0_DEF_DIR      0x00   // init direction for the I/O
-#define MAX7310_ID0_DEF_VAL      0xFF   // init value for the output
-
-/* I/O expander B */
-#define MAX7310_I2C_BASE_ID1  I2C3_BASE_ADDR
-#define MAX7310_I2C_ID1          (0x32 >> 1)
-#define MAX7310_ID1_DEF_DIR      0x00   // init direction for the I/O
-#define MAX7310_ID1_DEF_VAL      0xE7   // init value for the output
-
-/* I/O expander C */
-#define MAX7310_I2C_BASE_ID2  I2C3_BASE_ADDR
-#define MAX7310_I2C_ID2          (0x34 >> 1)
-#define MAX7310_ID2_DEF_DIR      0x00   // init direction for the I/O
-#define MAX7310_ID2_DEF_VAL      0x57   // init value for the output
+#if defined (BOARD_EVB)
+#define ADV7180_I2C_BASE 	I2C1_BASE_ADDR
+#else
+#define ADV7180_I2C_BASE    I2C3_BASE_ADDR
 #endif
 
-#ifdef BOARD_EVB
-/* For the EVB board which has 2 MAX7310 */
-#define MAX7310_NBR 2
-/* Number 1 controls: BACKLIGHT_ON, PORT3_P114, CPU_PER_RST_B, PORT3_P110,
-   PORT3_P105, PORT3_P112, PORT3_P107, PORT3_P109.
-*/
-#define MAX7310_I2C_BASE_ID0  I2C3_BASE_ADDR
-#define MAX7310_I2C_ID0     (0x36 >> 1)
-#define MAX7310_ID0_DEF_DIR      0x00   // init direction for the I/O
-#define MAX7310_ID0_DEF_VAL      0xFF   // init value for the output
-/* Number 2 controls: CTRL_0, CTRL_1, CTRL_2, CTRL_3, CTRL_4, PORT3_P116,
-   PORT2_P81, PORT3_P101
-*/
-#define MAX7310_I2C_BASE_ID1  I2C3_BASE_ADDR
-#define MAX7310_I2C_ID1     (0x3E >> 1)
-#define MAX7310_ID1_DEF_DIR      0x00   // init direction for the I/O
-#define MAX7310_ID1_DEF_VAL      0x09   // init value for the output
-#endif
 
-//! @brief Create an array of I2C requests for all used expanders on the board.
-extern imx_i2c_request_t max7310_i2c_req_array[];
+
 
 #define MMA8450_I2C_ID      0x1C
 #define MMA8451_I2C_ID      0x1C
@@ -186,6 +136,7 @@ extern imx_i2c_request_t max7310_i2c_req_array[];
 #define P1003_TSC_I2C_BASE   I2C2_BASE_ADDR
 #endif
 #define P1003_TSC_I2C_ID     4
+
 // USB test defines
 #define MX53_USBH1_BASE_ADDR    0x53F80200
 #define MX53_USBH2_BASE_ADDR    0x53F80400
@@ -197,11 +148,11 @@ extern imx_i2c_request_t max7310_i2c_req_array[];
 #define USBH2_VIEWPORT      (USBH2_BASE_ADDR + 0x170)
 #define USB_CTRL_1      (USBOH3_BASE_ADDR + 0x810)
 #define UH2_PORTSC1 (USBH2_BASE_ADDR + 0x184)
+
 #define USBOH3_BASE_ADDR      USBOH3_USB_BASE_ADDR
 
-#define FEC_BASE_ADDR         ENET_BASE_ADDR
 
-#define ESDCTL_REGISTERS_BASE_ADDR 0x021b0000
+#define FEC_BASE_ADDR         ENET_BASE_ADDR
 
 //0x00907000 D IRAM_FREE_SPACE_START
 //0x00937FFC D IRAM_FREE_SPACE_END
@@ -219,44 +170,19 @@ extern imx_i2c_request_t max7310_i2c_req_array[];
 #define FREQ_24MHZ  24000000
 #define CKIH        22579200
 
-// register defines for the SRTC function of the SNVS
-#define SRTC_LPSCMR     (SNVS_BASE_ADDR + 0x50)
-#define SRTC_LPSCLR     (SNVS_BASE_ADDR + 0x54)
-#define SRTC_LPCR       (SNVS_BASE_ADDR + 0x38)
-#define SRTC_HPSCMR     (SNVS_BASE_ADDR + 0x24)
-#define SRTC_HPSCLR     (SNVS_BASE_ADDR + 0x28)
-#define SRTC_HPCR       (SNVS_BASE_ADDR + 0x08)
 
-/* uSDHC specific defines */
-#define ESDHC_IDENT_FREQ   ((unsigned int)0x00002080)
-#define ESDHC_OPERT_FREQ   ((unsigned int)0x00000130)
-#define ESDHC_HS_FREQ      ((unsigned int)0x00000110)
+extern hw_module_t g_debug_uart;
+extern hw_module_t g_system_timer;
 
-extern uint32_t spi_nor_flash_type; // Flag decides the SPI-NOR device
-/* SPI-NOR defines */
-#define AT45DB321D  1
-#define M25P32      2
 
-enum display_type {
-    DISP_DEV_NULL = 0,
-    DISP_DEV_TFTLCD,
-    DISP_DEV_LVDS,
-    DISP_DEV_VGA,
-    DISP_DEV_HDMI,
-    DISP_DEV_TV,
-    DISP_DEV_MIPI,
-};
 
 void freq_populate(void);
-void show_freq(void);
 uint32_t get_freq(uint32_t module_base);
-void show_ddr_config(void);
 void board_init(void);
 void reset_usb_hub(void);
 void usb_clock_enable(void);
 void imx_enet_setup(void);
 void gpmi_nand_clk_setup(void);
-void ecspi_iomux_cfg(uint32_t);
 void hw_can_iomux_config(uint32_t module_instance);
 
 //OBDS-SDK Merge, add according to hardware.c
@@ -265,22 +191,12 @@ void mlb_io_config(void);
 void weim_nor_flash_cs_setup(void);
 void audio_codec_power_on(void);
 void audio_clock_config(void);
-extern hw_module_t g_debug_uart;
-extern hw_module_t g_system_timer;
 
-//OBDS-SDK merge, add according to hardware.c
-void audio_clock_config(void);
+void gpio_backlight_lvds_en(void);
 
-extern int32_t max7310_init(uint32_t, uint32_t, uint32_t);
-extern void max7310_set_gpio_output(uint32_t, uint32_t, uint32_t);
+void camera_power_on(void);
+void csi_port0_iomux_config(void);
 
-extern int32_t ipu_display_panel[];
-extern void gpio_backlight_lvds_en(void);
-extern void StartPerfCounter(void);
-extern uint32_t StopPerfCounter(void);
-
-extern void camera_power_on(void);
-extern void csi_port0_iomux_config(void);
 
 //Copy from obds
 #define PMIC_MC13892_I2C_BASE      I2C2_BASE_ADDR
@@ -289,6 +205,5 @@ extern void csi_port0_iomux_config(void);
 #define PMIC_PF0100_I2C_BASE       I2C2_BASE_ADDR 
 #define PMIC_MAX17135_I2C_BASE     I2C1_BASE_ADDR
 
-#define CSPI_BASE_ADDR             ECSPI1_BASE_ADDR
 
 #endif /* __HARDWARE_H__ */

@@ -56,6 +56,17 @@ typedef struct hw_module {
     void (*iomux_config) (void);   //!< Module I/O mux configuration function.
 } hw_module_t;
 
+//! @brief Possible types of displays.
+enum display_type {
+    DISP_DEV_NULL = 0,
+    DISP_DEV_TFTLCD,
+    DISP_DEV_LVDS,
+    DISP_DEV_VGA,
+    DISP_DEV_HDMI,
+    DISP_DEV_TV,
+    DISP_DEV_MIPI,
+};
+
 #endif // __SDK_TYPES_H__
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

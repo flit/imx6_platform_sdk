@@ -1,32 +1,45 @@
 /*
- * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
  * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
-#if !defined(__PLATFORM_INIT_H__)
-#define __PLATFORM_INIT_H__
+
+#if !defined(__PRINT_CLOCK_INFO_H__)
+#define __PRINT_CLOCK_INFO_H__
+
+#include "sdk.h"
+
+//! @addtogroup app_common
+//! @{
 
 ////////////////////////////////////////////////////////////////////////////////
-// Definitions
+// API
 ////////////////////////////////////////////////////////////////////////////////
 
 #if defined(__cplusplus)
 extern "C" {
 #endif
 
-//! @brief Do basic hardware initialization to make the system usable.
-//!
-//! Performs minimal initialization to enable most drivers to work. The GIC,
-//! CCM, and UART drivers are inited. The systme timer is inited. And
-//! board_ioexpander_init() is called.
-void platform_init(void);
+
+/*!
+ * @brief Display module frequency
+ */
+void show_freq(void);
+
+/*!
+ * @brief Display the board's DDR configuration
+ */
+void show_ddr_config(void);
+
 
 #if defined(__cplusplus)
 }
 #endif
 
-#endif // __PLATFORM_INIT_H__
+//! @}
+
+#endif // __PRINT_CLOCK_INFO_H__
 ////////////////////////////////////////////////////////////////////////////////
 // EOF
 ////////////////////////////////////////////////////////////////////////////////

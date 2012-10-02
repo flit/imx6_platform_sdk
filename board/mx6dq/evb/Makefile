@@ -19,7 +19,8 @@ include $(SDK_ROOT)/mk/common.mk
 TARGET_LIB_NAME := board_$(BOARD_WITH_REV)
 
 SOURCES := \
-	hardware.c \
+	$(SDK_ROOT)/board/common/hardware.c \
+	$(SDK_ROOT)/board/common/board_io_expanders.c \
 	$(wildcard iomux/*.c)
 
 

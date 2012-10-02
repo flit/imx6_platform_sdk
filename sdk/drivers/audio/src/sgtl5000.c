@@ -22,6 +22,16 @@ extern void SGTL5000PowerUp_and_clockinit(void);
 
 struct imx_i2c_request sgtl5000_i2c_req;
 
+// SGTL5000 specific register values
+#define CHIP_REF_CTRL_REG_VALUE 0x01FF  // VDDA/2
+#define CHIP_LINE_OUT_CTRL_REG_VALUE 0x0322 // VDDIO/2
+#define CHIP_LINE_OUT_VOL_REG_VALUE 0x0F0F  // based on VDDA and VDDIO values
+#define CHIP_CLK_TOP_CTRL_REG_VALUE 0   // pass through, Input OSC 13.5MHz, default configuration for sample rate, 48KHz
+#define CHIP_PLL_CTRL_REG_VALUE ((14 << 11) | (1154))
+#define CHIP_CLK_CTRL_REG_VALUE ((0x2 << 2) | (0x3))
+#define CHIP_CLK_CTRL_REG_MCLK_FREQ_VALUE 0x3   /*12MHz =256*Fs */
+#define CHIP_PLL_CTRL_REG_VALUE2     ((16 << 11) | (786))   // for CodecInit2
+
 ////////////////////////////// Macros  ///////////////////////////////////////////
 #define DEBUG_ENABLE	1
 #if DEBUG_ENABLE

@@ -11,6 +11,7 @@
 #include "cortex_a9.h"
 #include "mmu.h"
 #include "version.h"
+#include "print_clock_info.h"
 //#include "board_id/board_id.h"
 
 extern int SDK_TEST(void);

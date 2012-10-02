@@ -38,6 +38,7 @@ LINK_APP = 1
 #   src/tests/weim_nor_flash_test.c
 define SOURCES
     $(APPS_ROOT)/common/platform_init.c
+    $(APPS_ROOT)/common/print_clock_info.c
     src/obds.c
     src/obds_utils.c
     src/tests/android_buttons_test.c

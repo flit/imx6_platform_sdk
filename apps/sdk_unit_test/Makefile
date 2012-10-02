@@ -107,6 +107,7 @@ endif
 # Local source files.
 define SOURCES
     $(APPS_ROOT)/common/platform_init.c
+    $(APPS_ROOT)/common/print_clock_info.c
     src/unit_test_main.c
     src/all_test.c
 endef

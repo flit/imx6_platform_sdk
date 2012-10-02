@@ -20,15 +20,11 @@
 #include "registers/regsccm.h"
 #include "hardware.h"
 
-#define ON 1
-#define OFF 0
-
 extern sata_phy_ref_clk_t sata_phy_clk_sel;
 
-struct imx_i2c_request max7310_i2c_req_array[MAX7310_NBR];
+#define DUMMY_ARM_CORE_BASE_ADDR 0x12345789
 
 // ARM core.
-#define DUMMY_ARM_CORE_BASE_ADDR 0x12345789
 hw_module_t arm_core = {
     "Cortex A9 core",
     1,
@@ -128,118 +124,6 @@ void freq_populate(void)
     for (i = 0; (tmp = mx6dq_module[i]) != NULL; i++) {
         tmp->freq = get_freq(tmp->base);
     }
-}
-
-/*!
- * Display module frequency
- */
-void show_freq(void)
-{
-    int32_t i;
-    hw_module_t *tmp;
-    printf("======== Clock frequencies(HZ) =========\n");
-
-    for (i = 0; (tmp = mx6dq_module[i]) != NULL; i++) {
-        printf("%s\t: %d,%03d,%03d\n", tmp->name, tmp->freq / 1000000,
-               (tmp->freq % 1000000) / 1000, tmp->freq % 1000);
-    }
-
-    printf("========================================\n\n");
-}
-
-/*!
- * Display the board's DDR configuration
- */
-void show_ddr_config(void)
-{
-    uint32_t temp1, dsiz, row, col, cs_info;
-    uint32_t temp2, num_banks, ddr_type;
-    uint32_t density, megabyte;
-    uint32_t num_rows = 1, num_cols = 1, num_dsiz = 1, i = 1;
-
-    printf("========== DDR configuration ===========\n");
-
-    megabyte = 1024 * 1024;
-    /* read ESDCTL and gather information */
-    temp1 = readl(ESDCTL_REGISTERS_BASE_ADDR + 0x00);
-    dsiz = ((temp1 & (0x00030000)) >> 16);
-    /*Calculate dsize */
-    while (i <= dsiz) {
-        num_dsiz *= 2;
-        i++;
-    }
-    dsiz = 16 * num_dsiz;
-
-    row = ((temp1 & (0x07000000)) >> 24) + 11;
-    col = ((temp1 & (0x00700000)) >> 20) + 9;
-    cs_info = (temp1 & (0xC0000000)) >> 30;
-    /* read ESDMISC to get # of BANK info */
-    temp2 = readl(ESDCTL_REGISTERS_BASE_ADDR + 0x18);
-    num_banks = (!((temp2 & (0x00000020)) >> 5)) * 4 + 4;
-    ddr_type = (temp2 & (0x00000018)) >> 3;
-    printf("data bits: %d, num_banks: %d \n", dsiz, num_banks);
-    printf("row: %d, col: %d \n", row, col);
-
-    if (ddr_type == 1)
-        printf("DDR type is DDR2 \n");
-    else if (ddr_type == 2)
-        printf("DDR type is LPDDR2\n");
-    else
-        printf("DDR type is DDR3 \n");
-
-    if (cs_info == 0)
-        printf("No chip select is enabled \n");
-    else if (cs_info == 2)
-        printf("Chip select CSD0 is used \n");
-    else if (cs_info == 1)
-        printf("Chip select CSD1 is used  \n");
-    else
-        printf("Both chip select CSD0 and CSD1 are used  \n");
-
-    /* Now calculate the DDR density per chip select */
-
-    i = 1;
-    /* First need to calculate the number of rows and cols 2^row and 2^col */
-    while (i <= row) {
-        num_rows *= 2;
-        i++;
-    }
-
-    debug_printf("num_rows= %d\n", num_rows);
-    i = 1;
-
-    while (i <= col) {
-        num_cols *= 2;
-        i++;
-    }
-
-    debug_printf("num_cols= %d\n", num_cols);
-    density = num_rows * num_cols / megabyte;
-    density = density * dsiz * num_banks / 8;
-    printf("Density per chip select: %dMB \n", density);
-    printf("========================================\n\n");
-}
-
-/*!
- * Board initialization and UART IOMUX set up
- */
-void board_init(void)
-{
-#if defined(BOARD_EVB) || defined(BOARD_SABRE_AI)
-    // Configure some board signals through I/O expanders
-    max7310_i2c_req_array[0].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
-    max7310_i2c_req_array[0].dev_addr = MAX7310_I2C_ID0;    // the I2C DEVICE address
-    max7310_init(0, MAX7310_ID0_DEF_DIR, MAX7310_ID0_DEF_VAL);
-    max7310_i2c_req_array[1].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
-    max7310_i2c_req_array[1].dev_addr = MAX7310_I2C_ID1;    // the I2C DEVICE address
-    max7310_init(1, MAX7310_ID1_DEF_DIR, MAX7310_ID1_DEF_VAL);
-#if defined(BOARD_SABRE_AI)
-    max7310_i2c_req_array[2].ctl_addr = I2C3_BASE_ADDR; // the I2C controller base address
-    max7310_i2c_req_array[2].dev_addr = MAX7310_I2C_ID2;    // the I2C DEVICE address
-    max7310_init(2, MAX7310_ID2_DEF_DIR, MAX7310_ID2_DEF_VAL);
-#endif
-#endif
-
 }
 
 /*!
@@ -359,20 +243,6 @@ void hdmi_tx_cec_pgm_iomux(void)
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_A25, 0x1f8b0);
 }
 
-/* MLB iomux configuration */
-void mlb_io_config(void)
-{
-#ifdef MLB_SUPPORT
-    /* default board will use I2C3, but might be I2C2 */
-    io_cfg_i2c(OS81050_I2C_BASE);
-    mlb_iomux_config();
-    /* MLB_PWRDN input */
-    writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT15);
-    gpio_set_direction(GPIO_PORT5, 9, GPIO_GDIR_INPUT);
-#endif
-}
-
-
 /*!
  * config instance hdmi_tx of Module HDMI_TX to Protocol DDC
  * ports including DDC_SCL, DDC_SDA.
@@ -447,25 +317,25 @@ void hw_can_iomux_config(uint32_t module_instance)
 #ifdef BOARD_SABRE_AI
     switch (module_instance)
     {
-    	case HW_FLEXCAN1:
-			/* Select CAN, ENET_CAN1_STEER(PORT_EXP_B3) */
-			max7310_set_gpio_output(1, 3, GPIO_HIGH_LEVEL); //expander b, io3
-			/* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */
-			/* active low input */
-			writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_GPIO_4);
-			gpio_set_direction(GPIO_PORT1, 4, GPIO_GDIR_INPUT);
-			break;
+    case HW_FLEXCAN1:
+        /* Select CAN, ENET_CAN1_STEER(PORT_EXP_B3) */
+        max7310_set_gpio_output(1, 3, GPIO_HIGH_LEVEL); //expander b, io3
+        /* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */
+        /* active low input */
+        writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_GPIO_4);
+        gpio_set_direction(GPIO_PORT1, 4, GPIO_GDIR_INPUT);
+        break;
 
-    	case HW_FLEXCAN2:
-			/* Select ALT5 mode of SD4_DAT3 for GPIO2_11 - CAN2_NERR_B */
-			/* active low input */
-			writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
-			gpio_set_direction(GPIO_PORT2, 11, GPIO_GDIR_INPUT);
-			break;
+    case HW_FLEXCAN2:
+        /* Select ALT5 mode of SD4_DAT3 for GPIO2_11 - CAN2_NERR_B */
+        /* active low input */
+        writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
+        gpio_set_direction(GPIO_PORT2, 11, GPIO_GDIR_INPUT);
+        break;
 
-    	default:
-			printf("ERR: invalid FLEXCAN instance for iomux config\n");
-			break;
+    default:
+        printf("ERR: invalid FLEXCAN instance for iomux config\n");
+        break;
     }
 #endif
 }
@@ -530,15 +400,58 @@ void imx_ar8031_iomux()
 /*CPU_PER_RST_B low to high*/
 void imx_ar8031_reset(void)
 {
+#if defined(BOARD_SMART_DEVICE)
+    /* Select ALT5 mode of ENET_CRS-DV for GPIO1_25 - PGMII_NRST */
+    /* active low output */
+    gpio_set_direction(GPIO_PORT1, 25, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT1, 25, GPIO_LOW_LEVEL);
+    hal_delay_us(500);
+    gpio_set_level(GPIO_PORT1, 25, GPIO_HIGH_LEVEL);
+#elif defined(BOARD_SABRE_AI) && !defined(BOARD_REV_A)
+    /* CPU_PER_RST_B low to high */
+//    max7310_set_gpio_output(0, 2, GPIO_LOW_LEVEL);
+//    hal_delay_us(1000);
+//    max7310_set_gpio_output(0, 2, GPIO_HIGH_LEVEL);
+#endif
 }
 
+/*CPU_PER_RST_B low to high*/
+void imx_KSZ9021RN_reset(void)
+{
+    //max7310_set_gpio_output(0, 2, GPIO_LOW_LEVEL);
+    //hal_delay_us(1000000);
+    //max7310_set_gpio_output(0, 2, GPIO_HIGH_LEVEL);
+#ifdef BOARD_SABRE_LITE
+    // Config gpio3_GPIO[23] to pad EIM_D23(D25)
+    writel((SION_DISABLED & 0x1) << 4 | (ALT5 & 0x7), IOMUXC_SW_MUX_CTL_PAD_EIM_D23);
+    writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
+           (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
+           (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_D23);
+    writel((readl(GPIO3_BASE_ADDR + 0x4) | (1 << 23)), GPIO3_BASE_ADDR + 0x4);  /*output */
+    writel(readl(GPIO3_BASE_ADDR + 0x0) & ~(1 << 23), GPIO3_BASE_ADDR + 0x0);   // output low
+    hal_delay_us(1000000);      // hold in reset for a delay
+    writel(readl(GPIO3_BASE_ADDR + 0x0) | (1 << 23), GPIO3_BASE_ADDR + 0x0);
+#endif
+}
+
+// SATA is only available on the mx6dq
+#if defined(CHIP_MX6DQ)
 /*!
  * SATA power on
  */
 void sata_power_on(void)
 {
     //enable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0
+#ifdef BOARD_SMART_DEVICE
+    //AUX_5V_EN
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
+    gpio_set_direction(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
+#else
+    //enable SATA_3V3 and SATA_5V with MX7310 CTRL_0
     max7310_set_gpio_output(1, 0, GPIO_HIGH_LEVEL);
+//     sata_phy_clk_sel = CCM_PLL_ENET;
+#endif
 }
 
 /*!
@@ -549,6 +462,7 @@ void sata_power_off(void)
     //disable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0
     max7310_set_gpio_output(1, 0, GPIO_LOW_LEVEL);
 }
+#endif // defined(CHIP_MX6DQ)
 
 void SGTL5000PowerUp_and_clockinit(void)
 {
@@ -604,6 +518,8 @@ void pcie_card_pwr_setup(uint32_t enable)
     }
 }
 
+// The external 100 MHz clock is used by SATA, which is only present on the mx6dq.
+#if defined(CHIP_MX6DQ)
 void enable_extrn_100mhz_clk(uint32_t enable)
 {
     if (enable) {
@@ -616,6 +532,7 @@ void enable_extrn_100mhz_clk(uint32_t enable)
         HW_PMU_MISC1_SET(BM_PMU_MISC1_LVDSCLK1_OBEN);
     }
 }
+#endif // defined(CHIP_MX6DQ)
 
 void enable_extrn_125mhz_clk(uint32_t enable)
 {
@@ -641,6 +558,48 @@ void pcie_card_rst(void)
     max7310_set_gpio_output(0, 2, 1);
 }
 
+//copied from obds
+/* IOMUX configuration for the Android_Buttons */
+void android_buttons_iomux_config()
+{
+    //HOME_(SD2_CMD_GPI1_11)
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD2_CMD, ALT5);   //GPIO1[11]
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD2_CMD, 0x00E0); // pull-up enabled at pad
+    //BACK_(SD2_DAT3_GPI1_12)
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD2_DAT3, ALT5);  //GPIO1[12]
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD2_DAT3, 0x00E0);    // pull-up enabled at pad
+    //PROG_(SD4_DAT4_GPI2_12)
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT4, ALT5);  //GPIO2[12]
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD4_DAT4, 0x00E0);    // pull-up enabled at pad
+    //VOL+_(SD4_DAT7_GPI2_15)
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT7, ALT5);  //GPIO2[15]
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD4_DAT7, 0x00E0);    // pull-up enabled at pad
+    //VOL-_(DISP0_DAT20_GPI5_14)
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT20, ALT5);   //GPIO5[14]
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT20, 0x00E0); // pull-up enabled at pad
+}
+
+//Copied from obds
+/* I/O config for the DS90UR124QVS - LVDS camera in */
+void deserializer_io_config(void)
+{
+   // REN and RPWDB controlled by ADV7180 configured in the driver
+   csi_port0_iomux_config();
+}
+
+//MLB iomux configuration
+void mlb_io_config(void)
+{
+#ifdef MLB_SUPPORT
+   //default board will use I2C3, but might be I2C2
+   io_cfg_i2c(OS81050_I2C_BASE);
+   mlb_iomux_config();
+   //MLB_PWRDN input
+   writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT15);
+   gpio_set_direction(GPIO_PORT5, 9, GPIO_GDIR_INPUT);
+#endif
+}
+
 /*!
  * This function enables Vbus for the given USB port\n
  * The procedure to enable Vbus depends on both the Chip and board hardware\n
@@ -656,7 +615,7 @@ void usbEnableVbus(usb_module_t * port)
         // Vbus control is on I2C port expander C1 for the ARD board.
         max7310_set_gpio_output(MAX7310_I2C_ID2, 1, 1);
 #endif
-#ifdef BOARD_EVB
+#if defined(BOARD_EVB) || defined(BOARD_SMART_DEVICE)
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D22, ALT5);
         gpio_set_direction(GPIO_PORT3, 22, GPIO_GDIR_OUTPUT);
         gpio_set_level(GPIO_PORT3, 22, GPIO_HIGH_LEVEL);
@@ -673,6 +632,11 @@ void usbEnableVbus(usb_module_t * port)
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D31, ALT5);
         gpio_set_direction(GPIO_PORT3, 31, GPIO_GDIR_OUTPUT);
         gpio_set_level(GPIO_PORT3, 31, GPIO_HIGH_LEVEL);
+#endif
+#ifdef BOARD_SMART_DEVICE
+        reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D30, ALT5);
+        gpio_set_direction(GPIO_PORT3, 30, GPIO_GDIR_OUTPUT);
+        gpio_set_level(GPIO_PORT3, 30, GPIO_HIGH_LEVEL);
 #endif
 
         break;
@@ -704,7 +668,7 @@ void usbDisableVbus(usb_module_t * port)
 #ifdef BOARD_SABRE_AI
         max7310_set_gpio_output(MAX7310_I2C_ID2, 1, 0);
 #endif
-#ifdef BOARD_EVB
+#if defined(BOARD_EVB) || defined(BOARD_SMART_DEVICE)
         gpio_set_level(GPIO_PORT3, 22, GPIO_LOW_LEVEL);
 #endif
         break;
@@ -714,6 +678,9 @@ void usbDisableVbus(usb_module_t * port)
 #endif
 #ifdef BOARD_EVB
         gpio_set_level(GPIO_PORT3, 31, GPIO_LOW_LEVEL);
+#endif
+#ifdef BOARD_SMART_DEVICE
+        gpio_set_level(GPIO_PORT3, 30, GPIO_LOW_LEVEL);
 #endif
     case Host2:
 #ifdef BOARD_EVB
@@ -729,45 +696,174 @@ void usbDisableVbus(usb_module_t * port)
     }
 }
 
-//copied from obds
-/* IOMUX configuration for the Android_Buttons */
-void android_buttons_iomux_config()
+//copy from OBDS
+// Set up the chip select registers for the weim "parallel" nor flash
+void weim_nor_flash_cs_setup(void)
 {
-    //HOME_(SD2_CMD_GPI1_11)
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD2_CMD, ALT5);   //GPIO1[11]
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD2_CMD, 0x00E0); // pull-up enabled at pad
-    //BACK_(SD2_DAT3_GPI1_12)
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD2_DAT3, ALT5);  //GPIO1[12]
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD2_DAT3, 0x00E0);    // pull-up enabled at pad
-    //PROG_(SD4_DAT4_GPI2_12)
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT4, ALT5);  //GPIO2[12]
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD4_DAT4, 0x00E0);    // pull-up enabled at pad
-    //VOL+_(SD4_DAT7_GPI2_15)
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT7, ALT5);  //GPIO2[15]
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD4_DAT7, 0x00E0);    // pull-up enabled at pad
-    //VOL-_(DISP0_DAT20_GPI5_14)
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT20, ALT5);   //GPIO5[14]
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_DISP0_DAT20, 0x00E0); // pull-up enabled at pad
+   //DSIZ=010 (map 16-bit to D[31:16], csen=1
+   // writel(0x00020001, WEIM_REGISTERS_BASE_ADDR + 0x000);
+   writel(0x00620081, WEIM_REGISTERS_BASE_ADDR + 0x0000);
+
+   // CS0 Read Config reg1
+   // RWCS=11, OEA=2, OEN=1
+   //writel(0x0B002100, WEIM_REGISTERS_BASE_ADDR + 0x008);
+   writel(0x1C022000, WEIM_REGISTERS_BASE_ADDR + 0x0008);
+
+   // CS0 Write Config Reg 1
+   // WWCS=11, WEA=2, WEN=1
+   //writel(0x0B000440, WEIM_REGISTERS_BASE_ADDR + 0x010);
+   writel(0x0804a240, WEIM_REGISTERS_BASE_ADDR + 0x010); 
 }
 
-/*IOMUX configuration for CSI port0*/
-/*  I/O config for the DS90UR124QVS - LVDS camera in */
-void deserializer_io_config(void)
+/*!
+ * USB HUB reset function
+ */
+void reset_usb_hub(void)
 {
-    /* REN and RPWDB controlled by ADV7180 configured in the driver */
-	csi_port0_iomux_config();
 }
 
-/* ENET iomux config */
+/*! Copy from OBDS
+ * Provide the power for TFT LCD backlight
+ */
+void tftlcd_backlight_en(char *panel_name)
+{
+    if (!strcmp(panel_name, "CLAA 070VC01")) {
+        /*GPIO to provide backlight */
+        reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
+        gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_OUTPUT);
+        gpio_set_level(GPIO_PORT4, 20, GPIO_HIGH_LEVEL);
+    } else if (!strcmp(panel_name, "BoundaryDev WVGA")) {
+#if defined (BOARD_REV_A)
+        /*lvds/parallel display backlight enable, GPIO2_0 */
+        reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1, ALT5);
+        gpio_set_direction(GPIO_PORT2, 9, GPIO_GDIR_OUTPUT);
+        gpio_set_level(GPIO_PORT2, 9, GPIO_HIGH_LEVEL);
+
+        // lcd_contrast conflict with actual BoundaryDev display so seeting to input
+        // since TSC not used on SABRE AI
+        reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
+        gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_INPUT);
+#elif defined (BOARD_REV_B)
+        reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
+        gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_OUTPUT);
+        gpio_set_level(GPIO_PORT4, 20, GPIO_HIGH_LEVEL);
+#endif
+    } else {
+        printf("Unsupported panel!\n");
+    }
+#if 0
+#ifdef BOARD_SABRE_AI
+    /*lvds/parallel display backlight enable, GPIO2_0 */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1, ALT5);
+    gpio_set_direction(GPIO_PORT2, 9, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 9, GPIO_LOW_LEVEL);
+
+    // lcd_contrast conflict with actual BoundaryDev display so seeting to input
+    // since TSC not used on SABRE AI
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
+    gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_INPUT);
+#endif
+#ifdef BOARD_SMART_DEVICE
+    /* AUX_3V15 */
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B, ALT5);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_WP_B, 0x1B0B0);
+    gpio_set_direction(GPIO_PORT6, 9, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT6, 9, GPIO_HIGH_LEVEL);
+    // backlight both lvds1/0, disp0_contrast/disp0_pwm, gpio1[21]
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT3, ALT5);
+    gpio_set_direction(GPIO_PORT1, 21, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT1, 21, GPIO_HIGH_LEVEL);
+    // AUX_5V_EN LVDS0 power
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
+    gpio_set_direction(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
+#endif
+#endif
+
+}
+
+/*! Copy from OBDS
+ * Reset the TFT LCD
+ */
+void tftlcd_reset(char *panel_name)
+{
+    if (!strcmp(panel_name, "CLAA 070VC01")) {
+#ifdef BOARD_EVB
+        reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_EB3, ALT5);
+        reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_EB3, 0x1B0B0);
+        gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
+        gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
+        hal_delay_us(1000);
+        gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
+        hal_delay_us(1000);
+#endif
+#ifdef BOARD_SMART_DEVICE
+        reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_DA8, ALT5);
+        reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_DA8, 0x1B0B0);
+        gpio_set_direction(GPIO_PORT3, 8, GPIO_GDIR_OUTPUT);
+        gpio_set_level(GPIO_PORT3, 8, GPIO_LOW_LEVEL);
+        hal_delay_us(1000);
+        gpio_set_level(GPIO_PORT3, 8, GPIO_HIGH_LEVEL);
+        hal_delay_us(1000);
+#endif
+    }
+}
+
+/*! From obds
+ * Disable the display panel
+ */
+void disable_para_panel(void)
+{
+    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_EB3, ALT5);
+    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_EB3, 0x1B0B0);
+    gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
+}
+
+/*! From obds
+ * ENET iomux config
+ */
 void imx_enet_iomux(void)
 {
     enet_iomux_config();
+#ifdef BOARD_SABRE_AI
+    /* Select ENET, ENET_CAN1_STEER(PORT_EXP_B3) */
+    max7310_set_gpio_output(1, 2, GPIO_LOW_LEVEL);
+    /* Select ALT5 mode of GPIO_19 for GPIO4_5 - PGMIT_INT_B */
+    /* active low input */
+    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_GPIO_19);
+    gpio_set_direction(GPIO_PORT4, 5, GPIO_GDIR_INPUT);
+#endif
 }
 
-/*CPU_PER_RST_B low to high*/
-void imx_KSZ9021RN_reset(void)
+/*! From obds
+ * Audio Codec Power on
+ */
+void audio_codec_power_on (void)
 {
-    //max7310_set_gpio_output(0, 2, GPIO_LOW_LEVEL);
-    //hal_delay_us(1000000);
-    //max7310_set_gpio_output(0, 2, GPIO_HIGH_LEVEL);
+#ifdef BOARD_SMART_DEVICE
+    //CODEC PWR_EN, key_col12
+    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_KEY_COL2);
+    gpio_set_direction(GPIO_PORT4, 10, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT4, 10, GPIO_HIGH_LEVEL);
+#endif
+}
+
+/*! From obds
+ * Audio Clock Config
+ */
+void audio_clock_config(void)
+{
+#if defined(CHIP_MX6DQ) && defined(BOARD_SMART_DEVICE) 
+    uint32_t val = 0;
+    
+    ccm_iomux_config();
+
+    val = (0x01 << 24) |      //clko2 en
+          (0x05 << 21) |     //div 6
+          (0x13 << 16) |     //ssi2 root clk
+          (0x01 << 8);       //CKO1 output drives cko2 clock
+//    writel(val, CCM_CCOSR);
+    writel(val, (CCM_BASE_ADDR + CCM_CCOSR_OFFSET));
+#endif
 }

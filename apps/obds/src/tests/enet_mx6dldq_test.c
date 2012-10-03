@@ -19,10 +19,10 @@
 #include "obds.h"
 #include "hardware.h"
 #include "io.h"
-//#include "enet.h"
 
+static const char * const enet_test_name = "Ethernet Test";
 static const char * const ar8031_test_name = "RGMII AR8031 G-Ethernet Test";
-
+static const char * const KSZ9021RN_test_name = "RGMII KSZ9021RN G-Ethernet Test";
 
 #if defined(BOARD_SMART_DEVICE) || defined(BOARD_SABRE_AI) || (defined(CHIPMX6SL) && defined(BOARD_EVB))
 #define ENET_PHY_ADDR 1
@@ -86,26 +86,29 @@ static int pkt_compare(unsigned char *packet1, unsigned char *packet2, int lengt
  * 
  * @return TEST_PASSED or TEST_FAILED
  */
-int enet_test_enable;
-int enet_test_main(void)
+menu_action_t enet_test_main(const menu_context_t* const context, void* const param) 
 {
     imx_enet_priv_t *dev0 = &enet0;
     int pkt_len_send = 0, pkt_len_recv = 0, ret = 0, i;
     unsigned int enet_events = 0;
 
-    if (!enet_test_enable) {
-        return TEST_NOT_PRESENT;
-    }
+	const char* indent = menu_get_indent(context);
 
-    PROMPT_RUN_TEST("ENET ETHERNET", NULL);
+    if ( prompt_run_test(enet_test_name, indent) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }    
 
     // Enet loopback test
-    printf("\nWould you like to run the Ethernet loopback test?\n \
-           (Please note that in order to run the test, you need to\n \
-           first plug in a loopback cable to the Ethernet port) \n");
-    if (!is_input_char('y', NULL)) {
-        printf("  skip ETHERNET test \n");
-        return TEST_BYPASSED;
+    printf("\n%sWould you like to run the Ethernet loopback test?\n", indent);
+    printf("%s (Please note that in order to run the test, you need to\n", indent);
+    printf("%s first plug in a loopback cable to the Ethernet port.)\n", indent);
+    if (!is_input_char('y', indent)) {
+    	print_test_skipped(enet_test_name, indent);
+    	
+        *(test_return_t*)param = TEST_BYPASSED;
+        return MENU_CONTINUE;
     }
     //setup iomux for ENET
     imx_enet_iomux();
@@ -115,15 +118,19 @@ int enet_test_main(void)
     imx_enet_phy_init(dev0);
 
     //check phy status
-    if (!(dev0->status & ENET_STATUS_LINK_ON)) {
-        printf("ENET link status check fail\n");
-        return TEST_FAILED;
+    if (!(dev0->status & ENET_STATUS_LINK_ON)) 
+    {
+        printf("%sENET link status check failed.\n", indent);
+        print_test_failed(enet_test_name, indent);
+
+        *(test_return_t*)param = TEST_FAILED;
+        return MENU_CONTINUE;        
     }
 
     imx_enet_start(dev0, mac_addr0);
 
     //send packet
-    printf("send packet\n");
+    debug_printf("%sSend packet.\n", indent);
     pkt_len_send = 120;
     pkt_fill(pkt_send, mac_addr0, 0x23, pkt_len_send);
     imx_enet_send(dev0, pkt_send, pkt_len_send, 1);
@@ -133,45 +140,64 @@ int enet_test_main(void)
         enet_events = imx_enet_poll(dev0);
 
         if (ENET_EVENT_TX & enet_events) {
-            printf("enet_events = %08x\n", enet_events);
+            debug_printf("%senet_events = %08x\n", indent, enet_events);
             break;
         }
 
         hal_delay_us(100);
     }
 
-    if (!(ENET_EVENT_TX & enet_events)) {
-        printf("ENET tx fail\n");
-        return TEST_FAILED;
+    if (!(ENET_EVENT_TX & enet_events)) 
+    {
+        printf("%sENET TX failed.\n", indent);
+        print_test_failed(enet_test_name, indent);
+
+        *(test_return_t*)param = TEST_FAILED;
+        return MENU_CONTINUE;        
     }
 
-    if (!(ENET_EVENT_RX & enet_events)) {
-        printf("ENET rx fail\n");
-        return TEST_FAILED;
+    if (!(ENET_EVENT_RX & enet_events)) 
+    {
+        printf("%sENET RX failed.\n", indent);
+        print_test_failed(ar8031_test_name, indent);
+
+        *(test_return_t*)param = TEST_FAILED;
+        return MENU_CONTINUE;        
     }
 
     pkt_len_recv = 0;
     imx_enet_recv(dev0, pkt_recv, &pkt_len_recv);
 
-    if (pkt_len_recv != pkt_len_send) {
-        printf("ENET rx length check fail \n");
-        return TEST_FAILED;
+    if (pkt_len_recv != pkt_len_send) 
+    {
+        printf("%sENET RX length check failed.\n", indent);
+        print_test_failed(enet_test_name, indent);
+
+        *(test_return_t*)param = TEST_FAILED;
+        return MENU_CONTINUE;        
     }
 
     ret = pkt_compare(pkt_send, pkt_recv, pkt_len_send);
 
-    if (ret != 0) {
-        printf("ENET rx packet check fail \n");
-        return TEST_FAILED;
+    if (ret != 0) 
+    {
+        printf("%sENET RX packet check failed.\n", indent);
+        print_test_failed(enet_test_name, indent);
+
+        *(test_return_t*)param = TEST_FAILED;
+        return MENU_CONTINUE;        
     }
 #ifdef DEBUG_PRINT
     printf("ENET rx ok\n");
 #endif
+    
+    imx_enet_stop(dev0);
 
     printf(" ENET loopback test pass\n");
+    print_test_passed(enet_test_name, indent);
 
-    imx_enet_stop(dev0);
-    return TEST_PASSED;
+    *(test_return_t*)param = TEST_PASSED;
+    return MENU_CONTINUE;    
 }
 
 /*!
@@ -304,27 +330,31 @@ menu_action_t ar8031_test_main(const menu_context_t* const context, void* const 
  * 
  * @return TEST_PASSED or TEST_FAILED
  */
-int KSZ9021RN_test_enable;
-int KSZ9021RN_test_main(void)
+menu_action_t KSZ9021RN_test_main(const menu_context_t* const context, void* const param)
 {
     imx_enet_priv_t *dev0 = &enet0;
     int pkt_len_send = 0, pkt_len_recv = 0, ret = 0, i;
     unsigned int enet_events = 0;
 
-    if (!KSZ9021RN_test_enable) {
-        return TEST_NOT_PRESENT;
-    }
+	const char* indent = menu_get_indent(context);
 
-    PROMPT_RUN_TEST("RGMII KSZ9021RN G-Ethernet", NULL);
+    if ( prompt_run_test(KSZ9021RN_test_name, indent) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
 
     // Enet loopback test
-    printf("\nWould you like to run the Ethernet loopback test?\n \
-           (Please note that in order to run the test, you need to\n \
-           first plug in a loopback cable to the Ethernet port) \n");
-    if (!is_input_char('y', NULL)) {
-        printf("  skip ETHERNET test \n");
-        return TEST_BYPASSED;
-    }
+    printf("\n%sWould you like to run the Ethernet loopback test?\n", indent);
+    printf("%s (Please note that in order to run the test, you need to\n", indent);
+    printf("%s first plug in a loopback cable to the Ethernet port.)\n", indent);
+    if (!is_input_char('y', indent))
+    {
+        print_test_skipped(KSZ9021RN_test_name, indent);
+
+        *(test_return_t*)param = TEST_BYPASSED;
+        return MENU_CONTINUE;
+    }    
     //setup iomux for ENET
     imx_KSZ9021RN_reset();
     imx_enet_iomux();
@@ -336,15 +366,19 @@ int KSZ9021RN_test_main(void)
     imx_enet_phy_init(dev0);
 
     //check phy status
-    if (!(dev0->status & ENET_STATUS_LINK_ON)) {
-        printf("ENET link status check fail\n");
-        return TEST_FAILED;
+    if (!(dev0->status & ENET_STATUS_LINK_ON)) 
+    {  
+        printf("%sENET link status check failed.\n", indent);
+        print_test_failed(KSZ9021RN_test_name, indent);
+
+        *(test_return_t*)param = TEST_FAILED;
+        return MENU_CONTINUE;        
     }
 
     imx_enet_start(dev0, mac_addr0);
 
     //send packet
-    printf("send packet\n");
+    debug_printf("%sSend packet.\n", indent);
     pkt_len_send = 1500;
     pkt_fill(pkt_send, mac_addr0, 0x23, pkt_len_send);
     imx_enet_send(dev0, pkt_send, pkt_len_send, 1);
@@ -354,47 +388,63 @@ int KSZ9021RN_test_main(void)
         enet_events = imx_enet_poll(dev0);
 
         if (ENET_EVENT_TX & enet_events) {
-            printf("enet_events = %08x\n", enet_events);
+            debug_printf("%senet_events = %08x\n", indent, enet_events);
             break;
         }
 
         hal_delay_us(100);
     }
 
-    if (!(ENET_EVENT_TX & enet_events)) {
-        printf("ENET tx fail\n");
-        return TEST_FAILED;
+    if (!(ENET_EVENT_TX & enet_events))
+    {
+        printf("%sENET TX failed.\n", indent);
+        print_test_failed(KSZ9021RN_test_name, indent);
+
+        *(test_return_t*)param = TEST_FAILED;
+        return MENU_CONTINUE;
     }
 
-    if (!(ENET_EVENT_RX & enet_events)) {
-        printf("ENET rx fail\n");
-        return TEST_FAILED;
+    if (!(ENET_EVENT_RX & enet_events))
+    {
+        printf("%sENET RX failed.\n", indent);
+        print_test_failed(KSZ9021RN_test_name, indent);
+
+        *(test_return_t*)param = TEST_FAILED;
+        return MENU_CONTINUE;
     }
 
     pkt_len_recv = 0;
     imx_enet_recv(dev0, pkt_recv, &pkt_len_recv);
 
-    if (pkt_len_recv != pkt_len_send) {
-        printf("ENET rx length check fail \n");
-        return TEST_FAILED;
+    if (pkt_len_recv != pkt_len_send)
+    {
+        printf("%sENET RX length check failed.\n", indent);
+        print_test_failed(KSZ9021RN_test_name, indent);
+
+        *(test_return_t*)param = TEST_FAILED;
+        return MENU_CONTINUE;
     }
 
     ret = pkt_compare(pkt_send, pkt_recv, pkt_len_send);
 
-    if (ret != 0) {
-        printf("ENET rx packet check fail \n");
-        return TEST_FAILED;
+    if (ret != 0)
+    {
+        printf("%sENET RX packet check failed.\n", indent);
+        print_test_failed(KSZ9021RN_test_name, indent);
+
+        *(test_return_t*)param = TEST_FAILED;
+        return MENU_CONTINUE;
     }
 #ifdef DEBUG_PRINT
     printf("ENET rx ok\n");
 #endif
 
-    printf(" ENET loopback test pass\n");
-
     imx_enet_stop(dev0);
-    return TEST_PASSED;
+
+    printf(" ENET loopback test pass\n");
+    print_test_passed(KSZ9021RN_test_name, indent);
+
+    *(test_return_t*)param = TEST_PASSED;
+    return MENU_CONTINUE;
 }
 
-//RUN_TEST_INTERACTIVE("ETHERNET", enet_test_main);
-//RUN_TEST_INTERACTIVE("RGMII AR8031 G-Ethernet", ar8031_test_main);
-//RUN_TEST_INTERACTIVE("RGMII KSZ9021RN G-Ethernet", KSZ9021RN_test_main);

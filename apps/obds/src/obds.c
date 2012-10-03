@@ -246,7 +246,11 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
 	// KSZ9021RN_test_enable = 1;
 #else
     // use Atheros ethernet for all other revs (rev B)
-	menu_make_menuitem(&menuitems[menu_idx], "05", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+	menu_make_menuitem(&menuitems[menu_idx], "05", "Ethernet Test", enet_test_main, &test_results[menu_idx]);menu_idx++;    
+	menu_make_menuitem(&menuitems[menu_idx], "06", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+	menu_make_menuitem(&menuitems[menu_idx], "07", "RGMII AR8031 G-Ethernet Test", KSZ9021RN_test_main, &test_results[menu_idx]);menu_idx++;
+	menu_make_menuitem(&menuitems[menu_idx], "08", "I2C Device ID Test", i2c_device_id_check, &test_results[menu_idx]);menu_idx++;		
+	menu_make_menuitem(&menuitems[menu_idx], "09", "I2S Audio Test", i2s_audio_test, &test_results[menu_idx]);menu_idx++;
 #endif
 #if defined(CHIP_MX6DQ)
 //    sata_test_enable = 1;

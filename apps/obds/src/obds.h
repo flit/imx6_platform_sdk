@@ -70,9 +70,13 @@ menu_action_t program_board_id(const menu_context_t* const context, void* const 
 menu_action_t program_mac_address(const menu_context_t* const context, void* const param);
 menu_action_t ddr_test(const menu_context_t* const context, void* const param);
 menu_action_t snvs_srtc_test(const menu_context_t* const context, void* const param);
+menu_action_t enet_test_main(const menu_context_t* const context, void* const param);
 menu_action_t ar8031_test_main(const menu_context_t* const context, void* const param);
+menu_action_t KSZ9021RN_test_main(const menu_context_t* const context, void* const param);
 menu_action_t android_buttons_test(const menu_context_t* const context, void* const param);
 menu_action_t flexcan_test(const menu_context_t* const context, void* const param);
+menu_action_t i2c_device_id_check(const menu_context_t* const context, void* const param);
+menu_action_t i2s_audio_test(const menu_context_t* const context, void* const param);
 //
 // PRIVATE
 //
@@ -115,9 +119,9 @@ extern int sdio_test_enable;
 extern int gps_test_enable;
 extern int ipu_display_test_enable;
 extern int si476x_test_enable;
-extern int enet_test_enable;
-extern int ar8031_test_enable;
-extern int KSZ9021RN_test_enable;
+//extern int enet_test_enable;
+//extern int ar8031_test_enable;
+//extern int KSZ9021RN_test_enable;
 extern int camera_flashtest_ebable;
 extern int i2s_audio_test_enable;
 extern int esai_test_enable;

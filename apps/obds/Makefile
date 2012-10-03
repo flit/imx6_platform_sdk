@@ -26,10 +26,8 @@ LINK_APP = 1
 
 # Local source files.
 #    $(wildcard src/tests/*)
-#    src/tests/i2c_dev_tests_origin.c
 #    src/tests/audio_esai_test.c
 #    src/tests/audio_ssi_test.c
-#    src/tests/i2c_dev_tests.c
 #    src/tests/imx_spi_nor_test.c
 #    src/tests/ipu_test.c
 #    src/tests/mmcsd_test.c
@@ -42,12 +40,14 @@ define SOURCES
     src/obds.c
     src/obds_utils.c
     src/tests/android_buttons_test.c
+    src/tests/audio_ssi_test.c
     src/tests/ddr_test.c
     src/tests/deserializer_ds90ur124.c
     src/tests/enet_mx6dldq_test.c
     src/tests/flexcan_test.c
     src/tests/fm_tuner_si476x_test.c
     src/tests/gps_test.c
+    src/tests/i2c_dev_tests.c
     src/tests/i2c_check_light_sensor_isl29023.c
     src/tests/i2c_device_barometer_ppl3115.c
     src/tests/i2c_device_digital_compass_mag3110.c

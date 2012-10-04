@@ -251,6 +251,8 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
 	menu_make_menuitem(&menuitems[menu_idx], "07", "RGMII AR8031 G-Ethernet Test", KSZ9021RN_test_main, &test_results[menu_idx]);menu_idx++;
 	menu_make_menuitem(&menuitems[menu_idx], "08", "I2C Device ID Test", i2c_device_id_check, &test_results[menu_idx]);menu_idx++;		
 	menu_make_menuitem(&menuitems[menu_idx], "09", "I2S Audio Test", i2s_audio_test, &test_results[menu_idx]);menu_idx++;
+	menu_make_menuitem(&menuitems[menu_idx], "12", "UART Test", uart_test, &test_results[menu_idx]);menu_idx++;
+	menu_make_menuitem(&menuitems[menu_idx], "13", "SPI NOR FLASH Test", spi_nor_test, &test_results[menu_idx]);menu_idx++;	
 #endif
 #if defined(CHIP_MX6DQ)
 //    sata_test_enable = 1;

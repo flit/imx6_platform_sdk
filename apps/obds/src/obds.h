@@ -77,6 +77,8 @@ menu_action_t android_buttons_test(const menu_context_t* const context, void* co
 menu_action_t flexcan_test(const menu_context_t* const context, void* const param);
 menu_action_t i2c_device_id_check(const menu_context_t* const context, void* const param);
 menu_action_t i2s_audio_test(const menu_context_t* const context, void* const param);
+menu_action_t uart_test(const menu_context_t* const context, void* const param);
+menu_action_t spi_nor_test(const menu_context_t* const context, void* const param);
 //
 // PRIVATE
 //
@@ -90,13 +92,13 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
 
 extern int touch_button_test_enable;
 extern int eeprom_test_enable;
-extern int ddr_test_enable;
-extern int i2c_device_id_check_p1003_test_enable;
-extern int i2c_device_id_check_mma8451_test_enable;
-extern int i2c_device_id_check_mag3110_test_enable;
-extern int i2c_device_id_check_mag3112_test_enable;
-extern int i2c_device_id_check_isl29023_test_enable;
-extern int i2c_device_id_check_cs42888_test_enable;
+//extern int ddr_test_enable;
+//extern int i2c_device_id_check_p1003_test_enable;
+//extern int i2c_device_id_check_mma8451_test_enable;
+//extern int i2c_device_id_check_mag3110_test_enable;
+//extern int i2c_device_id_check_mag3112_test_enable;
+//extern int i2c_device_id_check_isl29023_test_enable;
+//extern int i2c_device_id_check_cs42888_test_enable;
 extern int touch_screen_test_enable;
 extern int adv7180_test_enable;
 extern int ard_mb_reset_test_enable;
@@ -109,7 +111,7 @@ extern int usbh_EHCI_test_mode_test_enable;
 extern int usbh_dev_enum_test_enable;
 extern int usbo_dev_enum_test_enable;
 extern int usbh_hub251x_test_enable;
-extern int spi_nor_test_enable;
+//extern int spi_nor_test_enable;
 extern int smbus_test_enable;
 extern int i2c_device_id_check_DA9053_test_enable;
 extern int ltc3589_i2c_device_id_test_enable;
@@ -123,10 +125,10 @@ extern int si476x_test_enable;
 //extern int ar8031_test_enable;
 //extern int KSZ9021RN_test_enable;
 extern int camera_flashtest_ebable;
-extern int i2s_audio_test_enable;
+//extern int i2s_audio_test_enable;
 extern int esai_test_enable;
-extern int spi_nor_test_enable;
-extern int snvs_srtc_test_enable;
+//extern int spi_nor_test_enable;
+//extern int snvs_srtc_test_enable;
 
 //Add variables from obds
 extern uint32_t usbh_EHCI_test_mode_base;

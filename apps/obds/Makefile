@@ -27,7 +27,6 @@ LINK_APP = 1
 # Local source files.
 #    $(wildcard src/tests/*)
 #    src/tests/audio_esai_test.c
-#    src/tests/audio_ssi_test.c
 #    src/tests/imx_spi_nor_test.c
 #    src/tests/ipu_test.c
 #    src/tests/mmcsd_test.c
@@ -37,6 +36,9 @@ LINK_APP = 1
 define SOURCES
     $(APPS_ROOT)/common/platform_init.c
     $(APPS_ROOT)/common/print_clock_info.c
+    $(SDK_LIB_ROOT)/drivers/spi/test/spi_nor_numonyx.c
+    $(SDK_LIB_ROOT)/drivers/spi/test/imx_spi_nor_atmel.c
+    $(SDK_LIB_ROOT)/drivers/spi/test/spi_test.c
     src/obds.c
     src/obds_utils.c
     src/tests/android_buttons_test.c
@@ -59,6 +61,7 @@ define SOURCES
     src/tests/i2c_device_temp_sensor_emc1046.c
     src/tests/i2c_device_zigbee_mc1323.c
     src/tests/i2c_eeprom_at24cxx_test.c
+    src/tests/imx_spi_nor_test.c
     src/tests/mlb_os81050.c
     src/tests/pmic_da9053.c
     src/tests/pmic_lt3589.c
@@ -70,6 +73,7 @@ define SOURCES
     src/tests/touch_button_test.c
     src/tests/touch_screen.c
     src/tests/touch_screen_max11801.c
+    src/tests/uart_test.c
     src/tests/video_dec_adv7180.c
     src/tests/video_dec_ARD_MB_reset_button.c
     src/tests/video_dec_ARD_MBrst_from_cpu_expander.c

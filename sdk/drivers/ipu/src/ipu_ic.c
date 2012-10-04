@@ -192,12 +192,7 @@ int32_t ipu_ic_config_resize_rate(int32_t ipu_index, char *task_type, uint32_t r
                               uint32_t down_horiz)
 {
     uint32_t val;
-    uint32_t ipu_base_addr = 0;
-
-    if (ipu_index == 1)
-        ipu_base_addr = IPU1_CTRL_BASE_ADDR;
-    else
-        ipu_base_addr = IPU2_CTRL_BASE_ADDR;
+    uint32_t ipu_base_addr = REGS_IPU_BASE(ipu_index);
 
     val = (down_vert << 30) | (res_vert << 16) | (down_horiz << 14) | (res_horiz);
 
@@ -263,12 +258,7 @@ int32_t ipu_ic_combine_config(int32_t ipu_index, ic_comb_params_t comb_params)
 int32_t ipu_ic_csc_config(int32_t ipu_index, int32_t csc_set_index, ic_csc_params_t csc_params)
 {
     unsigned int param;
-    unsigned int ipu_base_addr = 0;
-
-    if (ipu_index == 1)
-        ipu_base_addr = IPU1_CTRL_BASE_ADDR;
-    else
-        ipu_base_addr = IPU2_CTRL_BASE_ADDR;
+    unsigned int ipu_base_addr = REGS_IPU_BASE(ipu_index);
 
     unsigned int tpmBaseAddr = ipu_base_addr + TPM_BASE_OFFSET;
     unsigned int *base = NULL;

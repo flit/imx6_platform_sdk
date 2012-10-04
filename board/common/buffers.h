@@ -54,13 +54,31 @@
 #endif
 
 /*OCRAM partition table*/
+#if defined(CHIP_MX6DQ)
 #define VPU_SEC_AXI_START	0x00910000
 #define VPU_SEC_AXI_END		0x0092FFFF
 #define TLB_ENTRY_START		0x00930000
 #define TLB_ENTRY_END		0x00932800
+#elif defined(CHIP_MX6SDL)
+#define VPU_SEC_AXI_START	0x00910000
+#define VPU_SEC_AXI_END		0x0091FFFF
+#define TLB_ENTRY_START		0x0090B000
+#define TLB_ENTRY_END		0x0090EFFF
+#else
+#error need to add defines
+#endif
 
 /* OCRAM ADMA buffer */
 #define USDHC_ADMA_BUFFER1 0x00907000
 #define USDHC_ADMA_BUFFER2 0x00908000
 #define USDHC_ADMA_BUFFER3 0x00909000
 #define USDHC_ADMA_BUFFER4 0x0090A000
+
+// USB buffers
+#define QH_BUFFER               0x00908000  // internal RAM
+#define TD_BUFFER               0x00908100  // internal RAM
+
+#define SATA_PROTOCOL_BUFFER_BASE 0x0090a000
+#define SATA_PROTOCOL_BUFFER_SIZE 0x1000
+#define SATA_TRANSFER_BUFFER_BASE 0x0090c000
+

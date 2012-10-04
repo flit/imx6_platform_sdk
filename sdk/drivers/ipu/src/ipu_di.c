@@ -234,12 +234,7 @@ void ipu_di_pointer_config(int32_t ipu_index, int32_t di, int32_t pointer, int32
                            int32_t cst, int32_t *pt)
 {
     uint32_t regVal = 0;
-    uint32_t ipu_base_addr = 0;
-
-    if (ipu_index == 1)
-        ipu_base_addr = IPU1_CTRL_BASE_ADDR;
-    else
-        ipu_base_addr = IPU2_CTRL_BASE_ADDR;
+    uint32_t ipu_base_addr = REGS_IPU_BASE(ipu_index);
 
     regVal =
         (access << 24) | (component << 16) | (cst << 14) | (pt[6] << 12) | (pt[5] << 10) | (pt[4] <<

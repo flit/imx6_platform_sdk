@@ -34,14 +34,7 @@ void ipu_write_field(int32_t ipu_index, uint32_t ID_addr, uint32_t ID_mask, uint
 {
     uint32_t rdata;
 
-    if (ipu_index == 1)
-        ID_addr += IPU1_CTRL_BASE_ADDR;
-    else if (ipu_index == 2)
-        ID_addr += IPU2_CTRL_BASE_ADDR;
-    else {
-        printf("wrong ipu index %d\n", ipu_index);
-        return;
-    }
+    ID_addr += REGS_IPU_BASE(ipu_index);
 
     rdata = reg32_read(ID_addr);
     rdata &= ~ID_mask;

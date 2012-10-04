@@ -13,10 +13,12 @@
 
 #ifndef __IPU_COMMON_H__
 #define __IPU_COMMON_H__
+
 #include "hardware.h"
 #include "ipu_reg_def.h"
 #include "buffers.h"
 #include "ldb/ldb_def.h"
+#include "registers/regsipu.h"
 
 #define FRAME_MAX_WIDTH		1920
 #define FRAME_MAX_HEIGHT	1088
@@ -68,12 +70,7 @@ typedef struct ipu_cpmem {
 } ipu_cpmem_t;
 
 #define ipu_cpmem_addr(ipu, ch) ({ \
-	uint32_t temp; \
-	if(ipu==1) { \
-		temp = (uint32_t)(((struct ipu_cpmem *)(IPU1_CTRL_BASE_ADDR+IPU_MEMORY_OFFSET)) + (ch)); \
-		}else{ \
-		temp = (uint32_t)(((struct ipu_cpmem *)(IPU2_CTRL_BASE_ADDR+IPU_MEMORY_OFFSET)) + (ch)); \
-		}\
+	uint32_t temp = (uint32_t)(((struct ipu_cpmem *)(REGS_IPU_BASE(1)+IPU_MEMORY_OFFSET)) + (ch)); \
 		temp;\
 })
 

@@ -46,6 +46,8 @@
 #include "enet/enet.h"
 #include "board_id/board_id.h"
 
+
+
 // Android_Buttons test defines
 #define HOME_BUTTON_GPIO_INST     GPIO_PORT1
 #define HOME_BUTTON_GPIO_NUM      11
@@ -58,31 +60,8 @@
 #define VOLMINUS_BUTTON_GPIO_INST GPIO_PORT7
 #define VOLMINUS_BUTTON_GPIO_NUM  8
 
-#define WEIM_REGISTERS_BASE_ADDR WEIM_BASE_ADDR
-#define WEIM_CS_BASE_ADDR   0x08000000
 
-#if defined(BOARD_EVB) || defined(BOARD_SMART_DEVICE) || defined(BOARD_SABRE_LITE)
-#define MMDC0_BASE_ADDR			0x10000000
-#define MMDC0_END_ADDR			0x4FFFFFFF
-/*For SMD and QSB, there is no DDR_CS1, just define them to avoid build error, but the memory region can not be accessed */
-#define MMDC1_BASE_ADDR			0x50000000
-#define MMDC1_END_ADDR			0x8FFFFFFF
-#endif
-#if defined(BOARD_SABRE_AI)
-#define MMDC0_BASE_ADDR			0x10000000
-#define MMDC0_END_ADDR			0x8FFFFFFF  //Maybe should be modified according the ddr init file.
-/*Actually, ARD has no DDR_CS1, just define them to avoid build error, but the memory region can not be accessed */
-#define MMDC1_BASE_ADDR			0x90000000
-#define MMDC1_END_ADDR			0xFFFFFFFF
-#endif
 
-#define CSD0_BASE_ADDR      MMDC0_BASE_ADDR
-#define CSD1_BASE_ADDR      MMDC1_BASE_ADDR
-
-#define IPU1_CTRL_BASE_ADDR  IPU1_BASE_ADDR
-#define IPU2_CTRL_BASE_ADDR  IPU2_BASE_ADDR
-
-#define ESDCTL_ESDSCR_OFFSET  0x1C
 
 // audio defines
 #define WM8958_I2C_DEV_ADDR 		(0x34>>1)
@@ -106,9 +85,6 @@
 #else
 #define ADV7180_I2C_BASE    I2C3_BASE_ADDR
 #endif
-
-
-
 
 #define MMA8450_I2C_ID      0x1C
 #define MMA8451_I2C_ID      0x1C
@@ -137,33 +113,18 @@
 #endif
 #define P1003_TSC_I2C_ID     4
 
-// USB test defines
-#define MX53_USBH1_BASE_ADDR    0x53F80200
-#define MX53_USBH2_BASE_ADDR    0x53F80400
-#define MX53_USBH3_BASE_ADDR    0x53F80600
-#define USBH1_BASE_ADDR          MX53_USBH1_BASE_ADDR
-#define USBH2_BASE_ADDR         MX53_USBH2_BASE_ADDR
-#define USB_OTG_MIRROR_REG  (USBOH3_BASE_ADDR+0x804)
-#define USB_CLKONOFF_CTRL          (USBOH3_BASE_ADDR+0x824)
-#define USBH2_VIEWPORT      (USBH2_BASE_ADDR + 0x170)
-#define USB_CTRL_1      (USBOH3_BASE_ADDR + 0x810)
-#define UH2_PORTSC1 (USBH2_BASE_ADDR + 0x184)
-
-#define USBOH3_BASE_ADDR      USBOH3_USB_BASE_ADDR
+//Copy from obds
+#define PMIC_MC13892_I2C_BASE      I2C2_BASE_ADDR
+#define PMIC_LTC3589_I2C_BASE      I2C2_BASE_ADDR
+#define PMIC_DA9053_I2C_BASE       I2C1_BASE_ADDR
+#define PMIC_PF0100_I2C_BASE       I2C2_BASE_ADDR 
+#define PMIC_MAX17135_I2C_BASE     I2C1_BASE_ADDR
 
 
-#define FEC_BASE_ADDR         ENET_BASE_ADDR
 
-//0x00907000 D IRAM_FREE_SPACE_START
-//0x00937FFC D IRAM_FREE_SPACE_END
 
-/*qh and td pointers definition*/
-#define QH_BUFFER               0x00908000  // internal RAM
-#define TD_BUFFER               0x00908100  // internal RAM
 
-#define SATA_PROTOCOL_BUFFER_BASE 0x0090a000
-#define SATA_PROTOCOL_BUFFER_SIZE 0x1000
-#define SATA_TRANSFER_BUFFER_BASE 0x0090c000
+
 
 // input clocks
 #define CKIL        32768
@@ -178,11 +139,14 @@ extern hw_module_t g_system_timer;
 
 void freq_populate(void);
 uint32_t get_freq(uint32_t module_base);
-void board_init(void);
+
 void reset_usb_hub(void);
 void usb_clock_enable(void);
+
 void imx_enet_setup(void);
+
 void gpmi_nand_clk_setup(void);
+
 void hw_can_iomux_config(uint32_t module_instance);
 
 //OBDS-SDK Merge, add according to hardware.c
@@ -198,12 +162,6 @@ void camera_power_on(void);
 void csi_port0_iomux_config(void);
 
 
-//Copy from obds
-#define PMIC_MC13892_I2C_BASE      I2C2_BASE_ADDR
-#define PMIC_LTC3589_I2C_BASE      I2C2_BASE_ADDR
-#define PMIC_DA9053_I2C_BASE       I2C1_BASE_ADDR
-#define PMIC_PF0100_I2C_BASE       I2C2_BASE_ADDR 
-#define PMIC_MAX17135_I2C_BASE     I2C1_BASE_ADDR
 
 
 #endif /* __HARDWARE_H__ */

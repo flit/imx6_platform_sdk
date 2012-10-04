@@ -273,12 +273,7 @@ void ipu_dc_microcode_config(int32_t ipu_index, dc_microcode_t microcode)
     uint32_t LowWord = 0;
     uint32_t HighWord = 0;
     uint32_t opcode_fixed;
-    uint32_t ipu_base_addr = 0;
-
-    if (ipu_index == 1)
-        ipu_base_addr = IPU1_CTRL_BASE_ADDR;
-    else
-        ipu_base_addr = IPU2_CTRL_BASE_ADDR;
+    uint32_t ipu_base_addr = REGS_IPU_BASE(ipu_index);
 
     switch (microcode.opcode) {
     case HLG:

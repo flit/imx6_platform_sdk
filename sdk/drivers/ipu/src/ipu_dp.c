@@ -62,10 +62,7 @@ void ipu_dp_csc_config(uint32_t ipu_index, uint32_t dp, uint32_t csc_type)
         {0x0, 0x0, 0x0},        /*S0,S1,S2 */
     };
 
-    if (ipu_index == 1)
-        ipu_base_addr = IPU1_CTRL_BASE_ADDR;
-    else
-        ipu_base_addr = IPU2_CTRL_BASE_ADDR;
+    ipu_base_addr = REGS_IPU_BASE(ipu_index);
 
     ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_CSC_YUV_SAT_MODE_SYNC, 0);  //SAT mode is zero
     ipu_write_field(ipu_index, SRM_DP_COM_CONF_SYNC__DP_CSC_GAMUT_SAT_EN_SYNC, 0);  //GAMUT en (RGB...)

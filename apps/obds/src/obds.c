@@ -325,7 +325,7 @@ void select_tests(SELECT_TESTS tests)
         spi_nor_test_enable = 1;
         spi_nor_flash_type = M25P32;
 
-        usbo_dev_enum_test_base = USBOH3_BASE_ADDR;
+        usbo_dev_enum_test_base = USBOH3_USB_BASE_ADDR;
         usbo_dev_enum_test_enable = 1;
 
         // include further testing of the SABRE AI MAIN board if selected
@@ -378,7 +378,7 @@ void select_tests(SELECT_TESTS tests)
 	            ipu_display_panel[display++] = DISP_DEV_HDMI;
 //              ipu_display_panel[display++] = DISP_DEV_MIPI;
 
-	            usbh_EHCI_test_mode_base = USBOH3_BASE_ADDR;
+	            usbh_EHCI_test_mode_base = USBOH3_USB_BASE_ADDR;
 	            usbh_EHCI_test_mode_test_enable = 1;
 	            usbh_dev_enum_test_base = USBH1_BASE_ADDR;      //J30 on the main board
 	            usbh_dev_enum_test_enable = 1;
@@ -428,7 +428,7 @@ void select_tests(SELECT_TESTS tests)
         spi_nor_flash_type = M25P32;
         weim_nor_flash_test_enable = 0;
 
-        usbo_dev_enum_test_base = USBOH3_BASE_ADDR;
+        usbo_dev_enum_test_base = USBOH3_USB_BASE_ADDR;
         usbo_dev_enum_test_enable = 1;
 
         i2c_device_id_check_isl29023_test_enable = 1;   // light sensor
@@ -514,7 +514,7 @@ void select_tests(SELECT_TESTS tests)
 		        // include further testing of the EVB MAIN board if selected
 	            //adv7180_test_enable = 1;
 	            esai_test_enable = 1;
-	            usbh_EHCI_test_mode_base = USBOH3_BASE_ADDR;
+	            usbh_EHCI_test_mode_base = USBOH3_USB_BASE_ADDR;
 	            usbh_EHCI_test_mode_test_enable = 1;
 	            usbh_dev_enum_test_base = USBH1_BASE_ADDR;
 	            usbh_dev_enum_test_enable = 1;
@@ -523,7 +523,7 @@ void select_tests(SELECT_TESTS tests)
 			case SEL_MENU_TESTS:
 	            //adv7180_test_enable = 1;
 	            esai_test_enable = 1;
-	            usbh_EHCI_test_mode_base = USBOH3_BASE_ADDR;
+	            usbh_EHCI_test_mode_base = USBOH3_USB_BASE_ADDR;
 	            usbh_EHCI_test_mode_test_enable = 1;
 	            usbh_dev_enum_test_base = USBH1_BASE_ADDR;
 	            usbh_dev_enum_test_enable = 1;
@@ -566,7 +566,7 @@ void select_tests(SELECT_TESTS tests)
         spi_nor_test_enable = 1;
         spi_nor_flash_type = M25P32;
 
-        usbo_dev_enum_test_base = USBOH3_BASE_ADDR;
+        usbo_dev_enum_test_base = USBOH3_USB_BASE_ADDR;
         usbo_dev_enum_test_enable = 1;
 
         // include further testing of the SABRE AI MAIN board if selected
@@ -582,7 +582,7 @@ void select_tests(SELECT_TESTS tests)
 	            ipu_display_panel[display++] = DISP_DEV_HDMI;
 //              ipu_display_panel[display++] = DISP_DEV_MIPI;
 
-	            usbh_EHCI_test_mode_base = USBOH3_BASE_ADDR;
+	            usbh_EHCI_test_mode_base = USBOH3_USB_BASE_ADDR;
 	            usbh_EHCI_test_mode_test_enable = 0;
 	            usbh_dev_enum_test_base = USBH1_BASE_ADDR;      //J30 on the main board
 	            usbh_dev_enum_test_enable = 0;
@@ -614,7 +614,7 @@ void select_tests(SELECT_TESTS tests)
 //	            ipu_display_panel[display++] = DISP_DEV_HDMI;
 //              ipu_display_panel[display++] = DISP_DEV_MIPI;
 
-	            usbh_EHCI_test_mode_base = USBOH3_BASE_ADDR;
+	            usbh_EHCI_test_mode_base = USBOH3_USB_BASE_ADDR;
 	            usbh_EHCI_test_mode_test_enable = 0;
 	            usbh_dev_enum_test_base = USBH1_BASE_ADDR;      //J30 on the main board
 	            usbh_dev_enum_test_enable = 1;
@@ -646,7 +646,7 @@ void select_tests(SELECT_TESTS tests)
 	            ipu_display_panel[display++] = DISP_DEV_HDMI;
 //              ipu_display_panel[display++] = DISP_DEV_MIPI;
 
-	            usbh_EHCI_test_mode_base = USBOH3_BASE_ADDR;
+	            usbh_EHCI_test_mode_base = USBOH3_USB_BASE_ADDR;
 	            usbh_EHCI_test_mode_test_enable = 1;
 	            usbh_dev_enum_test_base = USBH1_BASE_ADDR;      //J30 on the main board
 	            usbh_dev_enum_test_enable = 1;
@@ -692,7 +692,7 @@ void select_tests(SELECT_TESTS tests)
         spi_nor_flash_type = M25P32;
         weim_nor_flash_test_enable = 0;
 
-        usbo_dev_enum_test_base = USBOH3_BASE_ADDR;
+        usbo_dev_enum_test_base = USBOH3_USB_BASE_ADDR;
         usbo_dev_enum_test_enable = 1;
 
         i2c_device_id_check_isl29023_test_enable = 1;   // light sensor
@@ -774,7 +774,7 @@ void select_tests(SELECT_TESTS tests)
 		        // include further testing of the EVB MAIN board if selected
 	            //adv7180_test_enable = 1;
 	            esai_test_enable = 1;
-	            usbh_EHCI_test_mode_base = USBOH3_BASE_ADDR;
+	            usbh_EHCI_test_mode_base = USBOH3_USB_BASE_ADDR;
 	            usbh_EHCI_test_mode_test_enable = 1;
 	            usbh_dev_enum_test_base = USBH1_BASE_ADDR;
 	            usbh_dev_enum_test_enable = 1;
@@ -783,7 +783,7 @@ void select_tests(SELECT_TESTS tests)
 			case SEL_MENU_TESTS:
 	            //adv7180_test_enable = 1;
 	            esai_test_enable = 1;
-	            usbh_EHCI_test_mode_base = USBOH3_BASE_ADDR;
+	            usbh_EHCI_test_mode_base = USBOH3_USB_BASE_ADDR;
 	            usbh_EHCI_test_mode_test_enable = 1;
 	            usbh_dev_enum_test_base = USBH1_BASE_ADDR;
 	            usbh_dev_enum_test_enable = 1;
@@ -812,11 +812,11 @@ void select_tests(SELECT_TESTS tests)
 		fec_test_enable = 1;
 		i2s_audio_test_enable = 1;
 		keypad_test_enable = 1;
-		usbh_EHCI_test_mode_base = USBOH3_BASE_ADDR;
+		usbh_EHCI_test_mode_base = USBOH3_USB_BASE_ADDR;
 		usbh_EHCI_test_mode_test_enable = 0;          // for debug
 		usbh_dev_enum_test_base = USBH1_BASE_ADDR;
 		usbh_dev_enum_test_enable = 1;                //J10 on CPU board
-		usbo_dev_enum_test_base = USBOH3_BASE_ADDR;
+		usbo_dev_enum_test_base = USBOH3_USB_BASE_ADDR;
 		usbo_dev_enum_test_enable = 1;                // J9 on CPU board
 //		weim_nor_flash_test_enable = 1;
 

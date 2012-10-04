@@ -157,16 +157,8 @@ void ipu_idmac_channel_enable(int32_t ipu_index, int32_t channel, int32_t enable
 int32_t ipu_idmac_channel_busy(int32_t ipu_index, int32_t channel)
 {
     int32_t idx, offset;
-    uint32_t ipu_base_addr = IPU1_CTRL_BASE_ADDR;
+    uint32_t ipu_base_addr = REGS_IPU_BASE(ipu_index);
 
-    if (ipu_index == 1)
-        ipu_base_addr = IPU1_CTRL_BASE_ADDR;
-    else if (ipu_index == 2)
-        ipu_base_addr = IPU2_CTRL_BASE_ADDR;
-    else {
-        printf("wrong ipu index !!\n");
-        return false;
-    }
     idx = channel / 32;
     offset = channel % 32;
     return ((readl(ipu_base_addr + IPU_IDMAC_CH_BUSY_1__ADDR + 4 * idx) & (1 << offset)) >> offset);
@@ -308,15 +300,9 @@ int32_t ipu_idmac_chan_cur_buff(uint32_t ipu_index, uint32_t channel)
     int32_t idx, offset, cur_buf = 0;
     idx = channel / 32;
     offset = channel % 32;
-    if (ipu_index == 1) {
-        cur_buf =
-            (readl(IPU1_CTRL_BASE_ADDR + IPU_IPU_CUR_BUF_0__ADDR + 4 * idx) & (1 << offset)) >>
-            offset;
-    } else if (ipu_index == 2) {
-        cur_buf =
-            (readl(IPU2_CTRL_BASE_ADDR + IPU_IPU_CUR_BUF_0__ADDR + 4 * idx) & (1 << offset)) >>
-            offset;
-    }
+    cur_buf =
+        (readl(REGS_IPU_BASE(ipu_index) + IPU_IPU_CUR_BUF_0__ADDR + 4 * idx) & (1 << offset)) >>
+        offset;
     return cur_buf;
 }
 

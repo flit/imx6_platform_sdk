@@ -126,7 +126,7 @@ menu_action_t spi_nor_test(const menu_context_t* const context, void* const para
 
     if (!is_input_char('y', indent)) 
     {
-    	print_test_skipped(spinorfalsh_test_name, indent);
+    	print_test_skipped(spinorflash_test_name, indent);
     	
         *(test_return_t*)param = TEST_BYPASSED;
         return MENU_CONTINUE;

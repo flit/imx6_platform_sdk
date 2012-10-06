@@ -53,6 +53,11 @@ static int rx_bytes(uint8_t * data, uint32_t instance, int sz);
 // Code
 ////////////////////////////////////////////////////////////////////////////////
 
+unsigned i2c_get_request_instance(const imx_i2c_request_t * rq)
+{
+    return (rq->port > 0) ? rq->port : REGS_I2C_INSTANCE(rq->ctl_addr);
+}
+
 /*!
  * @brief Loop status register for IBB to go 0.
  *
@@ -241,7 +246,7 @@ int i2c_xfer(const imx_i2c_request_t *rq, int dir)
     uint16_t i2cr;
     uint8_t i;
     uint8_t data;
-    uint32_t instance = REGS_I2C_INSTANCE(rq->ctl_addr);
+    uint32_t instance = i2c_get_request_instance(rq);
 
     if (rq->buffer_sz == 0 || rq->buffer == NULL) {
         debug_printf("Invalid register address size=%x, buffer size=%x, buffer=%x\n",
@@ -398,8 +403,18 @@ int i2c_init(uint32_t base, uint32_t baud)
 {
     uint32_t src_clk, divider;
     uint8_t index;
-    int instance = REGS_I2C_INSTANCE(base);
-
+    int instance;
+    
+    // Accept either an instance or base address for the base param.
+    if (base >= 1 && base <= HW_I2C_INSTANCE_COUNT)
+    {
+        instance = base;
+    }
+    else
+    {
+        instance = REGS_I2C_INSTANCE(base);
+    }
+    
     // enable the source clocks to the I2C port 
     clock_gating_config(base, CLOCK_ON);
 

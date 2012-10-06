@@ -45,6 +45,9 @@ void i2c_setup_interrupt(const hw_module_t *port, bool state);
  */
 void i2c_slave_interrupt_routine(void);
 
+//! @brief Returns the I2C controller instance from a request struct.
+unsigned i2c_get_request_instance(const imx_i2c_request_t * rq);
+
 #if defined(__cplusplus)
 }
 #endif

@@ -53,7 +53,7 @@ void i2c_slave_handler(const imx_i2c_request_t *rq)
     uint16_t i2cr;
     uint16_t i2sr;
     uint8_t data, offset;
-    uint32_t instance = REGS_I2C_INSTANCE(rq->ctl_addr);
+    uint32_t instance = i2c_get_request_instance(rq);
 
     // use a local version of the status updated during the last interrupt 
     i2sr = s_slaveState.statusRegister;
@@ -159,7 +159,7 @@ void i2c_slave_handler(const imx_i2c_request_t *rq)
 
 void i2c_slave_xfer(hw_module_t *port, imx_i2c_request_t *rq)
 {
-    uint32_t instance = REGS_I2C_INSTANCE(rq->ctl_addr);
+    uint32_t instance = i2c_get_request_instance(rq);
 
     // enable the I2C controller 
     HW_I2C_I2CR_WR(instance, BM_I2C_I2CR_IEN);

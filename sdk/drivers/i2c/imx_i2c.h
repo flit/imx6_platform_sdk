@@ -48,8 +48,12 @@ enum _i2c_slave_id {
  *
  * To perform an I2C transfer, the caller first fills in an instance of this struct. Then
  * i2c_xfer() is called, passing a pointer to the #imx_i2c_request_t struct.
+ *
+ * Either @a port or @a ctl_addr should be specified, with @a port taking precedence if
+ * both are set to a non-zero value.
  */
 typedef struct imx_i2c_request {
+    uint32_t port;              //!< The I2C controller instance number, starting at 1.
     uint32_t ctl_addr;          //!< The I2C controller base address.
     uint32_t dev_addr;          //!< The I2C device address.
     uint32_t reg_addr;          //!< The register address within the target device.
@@ -69,28 +73,34 @@ extern "C" {
 #endif
 
 /*!
- * Initialize the I2C module -- mainly enable the I2C clock, module
- * itself and the I2C clock prescaler.
+ * @brief Initialize the I2C module
  *
- * @param   base        base address of I2C module (also assigned for I2Cx_CLK)
- * @param   baud        the desired data rate in bps
+ * Mainly enable the I2C clock, module itself and the I2C clock prescaler.
+ *
+ * @param   base Either the base address of I2C module or the module's instance number. (also assigned for I2Cx_CLK)
+ * @param   baud The desired data rate in bits per second.
  *
  * @return  0 if successful; non-zero otherwise
  */
 int i2c_init(uint32_t base, uint32_t baud);
 
 /*!
+ * @brief Perform a single I2C transfer in the selected direction.
+ *
  * This is a rather simple function that can be used for most I2C devices.
+ *
  * Common steps for both READ and WRITE:
  *     - step 1: issue start signal
  *     - step 2: put I2C device addr on the bus (always 1 byte write. the dir always I2C_WRITE)
  *     - step 3: offset of the I2C device write (offset within the device. can be 1-4 bytes)
+ *
  * For READ:
  *     - step 4: do repeat-start
  *     - step 5: send slave address again, but indicate a READ operation by setting LSB bit
  *     - Step 6: change to receive mode
  *     - Step 7: dummy read
  *     - Step 8: reading
+ *
  * For WRITE:
  *     - Step 4: do data write
  *     - Step 5: generate STOP by clearing MSTA bit

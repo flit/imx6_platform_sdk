@@ -4,41 +4,23 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
-
-/*!
- * @file sdk_types.h
- * @brief       Basic defines
- *
- * @ingroup diag_init
- */
 #ifndef __SDK_TYPES_H__
 #define __SDK_TYPES_H__
 
-#define USE_STDINT 1
+//! @addtogroup sdk_common
+//! @{
+
+/*!
+ * @file sdk_types.h
+ * @brief Basic types used throughout the SDK.
+ */
 
 #include <stdbool.h>
-
-#if USE_STDINT
-#  include <stdint.h>
-#endif // USE_STDINT
+#include <stdint.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
-
-#if !USE_STDINT
-
-typedef unsigned long long uint64_t;
-typedef unsigned int uint32_t;
-typedef unsigned short uint16_t;
-typedef unsigned char uint8_t;
-
-typedef long long int64_t;
-typedef int int32_t;
-typedef short int16_t;
-typedef char int8_t;
-
-#endif // USE_STDINT
 
 //! @brief Defines a pointer to a function.
 typedef void (*funct_t) (void);
@@ -66,6 +48,8 @@ enum display_type {
     DISP_DEV_TV,
     DISP_DEV_MIPI,
 };
+
+//! @}
 
 #endif // __SDK_TYPES_H__
 ////////////////////////////////////////////////////////////////////////////////

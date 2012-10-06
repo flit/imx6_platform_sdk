@@ -52,7 +52,7 @@ void ltc3589_eval(void)
     unsigned char buf[4];
     int rc = 0;
     unsigned char byteOutData;
-    u8 recvCh;
+    uint8_t recvCh;
     i2c_init(PMIC_LTC3589_I2C_BASE, 170000);
     /* Initialize some of the I2C imx_i2c_request structure, these parameters shouldn't need to be changed */
     rq.ctl_addr = PMIC_LTC3589_I2C_BASE;

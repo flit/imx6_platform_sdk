@@ -25,7 +25,7 @@ hw_module_t uart2 = {
  * @param   uart        pointer to the uart module structure
  * @param   baud        desired baud rate for ommunicating to external device
  */
-void init_gps_uart(struct hw_module *uart, u32 baud)
+void init_gps_uart(struct hw_module *uart, uint32_t baud)
 {
     struct mx_uart *puart = (volatile struct mx_uart *)uart->base;
 
@@ -123,12 +123,12 @@ char receive_char(struct mx_uart *puart)
     if (puart->uts & UART_UTS_RXEMPTY)
         return 0xFF;
 
-    return (u8) puart->urxd[0];
+    return (uint8_t) puart->urxd[0];
 }
 #endif
 
 int gps_test_enable;
-extern void init_uart(struct hw_module *uart, u32 baud);
+extern void init_uart(struct hw_module *uart, uint32_t baud);
 int gps_test(void)
 {
     int result = 0;

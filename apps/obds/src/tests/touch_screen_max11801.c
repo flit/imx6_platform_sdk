@@ -130,7 +130,7 @@ static int max11801_aux_read(unsigned int i2c_base_addr)
 {
 		unsigned int ret;
 		unsigned char data;
-        u8 buf[14] = { 0 };
+        uint8_t buf[14] = { 0 };
         int x = -1;
 
 		max11801_reg_write(i2c_base_addr, OP_MODE_CONF_REG_B, 0x00);      // Direct conversion mode                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
@@ -165,7 +165,7 @@ static void max11801_ts_interrupt(unsigned int i2c_base_addr)
 		unsigned int i;
 		unsigned int ret;
 		unsigned char data;
-        u8 buf[XY_BUFSIZE];
+        uint8_t buf[XY_BUFSIZE];
         int x = -1;
         int y = -1;
 

@@ -13,15 +13,13 @@
 #define PMIC_PF0100_I2C_REG_BYTE   0x1  // Number of Bytes to transfer the PMIC reg number
 #define PMIC_PF0100_I2C_DATA_BYTE  0x1  // Number of Bytes to transfer the PMIC reg data
 
-#define PMIC_PF0100_I2C_ID         (0x10 >> 1)  //0x08
-
 unsigned char pf0100_reg_read(unsigned char reg_addr)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf;
 
-    rq.ctl_addr = PMIC_PF0100_I2C_BASE;
-    rq.dev_addr = PMIC_PF0100_I2C_ID;
+    rq.ctl_addr = g_pmic_pf0100_i2c_device.port;
+    rq.dev_addr = g_pmic_pf0100_i2c_device.address;
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 1;
     rq.buffer_sz = 1;
@@ -35,10 +33,10 @@ unsigned char pf0100_reg_read(unsigned char reg_addr)
 
 void pf0100_reg_write(unsigned char reg_addr, unsigned char reg_data)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
 
-    rq.ctl_addr = PMIC_PF0100_I2C_BASE;
-    rq.dev_addr = PMIC_PF0100_I2C_ID;
+    rq.ctl_addr = g_pmic_pf0100_i2c_device.port;
+    rq.dev_addr = g_pmic_pf0100_i2c_device.address;
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 1;
     rq.buffer_sz = 1;
@@ -52,7 +50,7 @@ void pf0100_enable_vgen2_1v5(void)
 {
     unsigned char data;
 
-    i2c_init(PMIC_PF0100_I2C_BASE, 170000);
+    i2c_init(g_pmic_pf0100_i2c_device.port, g_pmic_pf0100_i2c_device.freq);
     data = pf0100_reg_read(109);
     pf0100_reg_write(109, 0x1E);
 }
@@ -61,7 +59,7 @@ void pf0100_enable_vgen4_1v8(void)
 {
     unsigned char data;
 
-    i2c_init(PMIC_PF0100_I2C_BASE, 170000);
+    i2c_init(g_pmic_pf0100_i2c_device.port, g_pmic_pf0100_i2c_device.freq);
     data = pf0100_reg_read(111);
     pf0100_reg_write(111, 0x10);
 }
@@ -70,7 +68,7 @@ void pf0100_enable_vgen6_2v8(void)
 {
     unsigned char data;
 
-    i2c_init(PMIC_PF0100_I2C_BASE, 170000);
+    i2c_init(g_pmic_pf0100_i2c_device.port, g_pmic_pf0100_i2c_device.freq);
     data = pf0100_reg_read(113);
     pf0100_reg_write(113, 0x1A);
 }
@@ -86,7 +84,7 @@ int pf0100_i2c_device_id_check(void)
 
     PROMPT_RUN_TEST("PMIC PF0100 ID TEST", NULL);
 
-    i2c_init(PMIC_PF0100_I2C_BASE, 170000);
+    i2c_init(g_pmic_pf0100_i2c_device.port, g_pmic_pf0100_i2c_device.freq);
 
     data = 0x0;
     data = pf0100_reg_read(0x0);    //Device ID

@@ -15,7 +15,7 @@ int mma8451_show_accel(unsigned int i2c_base_addr);
 
 static unsigned char mma8451_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[1];
     unsigned char reg_data = 0;
 
@@ -35,7 +35,7 @@ static unsigned char mma8451_reg_read(unsigned int i2c_base_addr, unsigned char 
 static int mma8451_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr,
                              unsigned char reg_val)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[1];
 
     buf[0] = reg_val;

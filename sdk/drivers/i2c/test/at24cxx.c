@@ -50,12 +50,13 @@ int32_t i2c_eeprom_at24cxx_test(void)
     printf("  Starting EEPROM test...\n");
 
     // Initialize the request
-    at24cxx_i2c_req.ctl_addr = AT24Cx_I2C_BASE; // the I2C controller base address
-    at24cxx_i2c_req.dev_addr = AT24Cx_I2C_ID;   // the I2C DEVICE address
+    at24cxx_i2c_req.device = &g_at24cx_i2c_device;
+//     at24cxx_i2c_req.ctl_addr = AT24Cx_I2C_BASE; // the I2C controller base address
+//     at24cxx_i2c_req.dev_addr = AT24Cx_I2C_ID;   // the I2C DEVICE address
     at24cxx_i2c_req.reg_addr_sz = 2;
     at24cxx_i2c_req.buffer_sz = buffer_size;
 
-    i2c_init(AT24Cx_I2C_BASE, 170000);
+    i2c_init(g_at24cx_i2c_device.port, g_at24cx_i2c_device.freq);
 
 #if defined(BOARD_EVB)
     /*Set iomux and daisy chain for eeprom test */
@@ -83,7 +84,7 @@ int32_t i2c_eeprom_at24cxx_test(void)
 
 #if defined(BOARD_EVB)
     /*Restore iomux and daisy chain setting */
-    i2c_init(AT24Cx_I2C_BASE, 170000);
+    i2c_init(g_at24cx_i2c_device.port, g_at24cx_i2c_device.freq);
 #endif
 
     for(i=0;i<buffer_size;i++) {

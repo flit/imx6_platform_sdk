@@ -302,7 +302,7 @@ static int32_t sensor_write_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t *
                                 uint16_t is_16bits)
 {
     int32_t ret = 0;
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
 
     reg_addr = ((reg_addr & 0x00FF) << 8) | ((reg_addr & 0xFF00) >> 8); //swap MSB and LSB
     rq.ctl_addr = i2c_base;
@@ -331,7 +331,7 @@ static int32_t sensor_read_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * 
                                uint16_t is_16bits)
 {
     int32_t ret = 0;
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
 
     reg_addr = ((reg_addr & 0x00FF) << 8) | ((reg_addr & 0xFF00) >> 8); //swap MSB and LSB
     rq.ctl_addr = i2c_base;

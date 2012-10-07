@@ -48,12 +48,13 @@ struct imx_i2c_request cs42888_i2c_req;
 static void cs42888_i2c_init(audio_codec_p codec)
 {
     /* this init is needed only once */
-    cs42888_i2c_req.ctl_addr = codec->i2c_base;      // the I2C controller base address
-    cs42888_i2c_req.dev_addr = codec->i2c_dev_addr;  // the I2C DEVICE address
+//     cs42888_i2c_req.ctl_addr = codec->i2c_base;      // the I2C controller base address
+//     cs42888_i2c_req.dev_addr = codec->i2c_dev_addr;  // the I2C DEVICE address
+    cs42888_i2c_req.device = codec->device;
     cs42888_i2c_req.reg_addr_sz = 1;         // number of bytes of I2C device register's address
     cs42888_i2c_req.buffer_sz = 1;           // number of data bytes
 
-    i2c_init(codec->i2c_base, codec->i2c_freq);
+    i2c_init(codec->device->port, codec->device->freq);
 }
 
 static int32_t cs42888_reg_read(audio_codec_p codec, uint8_t reg_addr, uint8_t *ret_val)
@@ -134,8 +135,9 @@ audio_dev_ops_t cs42888_ops = {
 
 audio_codec_t cs42888 = {
     .name = "cs42888",
-    .i2c_base = CS42888_I2C_BASE,
-    .i2c_freq = 100000,
-    .i2c_dev_addr = CS42888_I2C_ID,
+    .device = &g_cs42888_i2c_device,
+//     .i2c_base = CS42888_I2C_BASE,
+//     .i2c_freq = 100000,
+//     .i2c_dev_addr = CS42888_I2C_ID,
     .ops = &cs42888_ops,
 };

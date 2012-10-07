@@ -13,18 +13,16 @@
 #define PMIC_LTC3589_I2C_REG_BYTE   0x1 // Number of Bytes to transfer the PMIC reg number
 #define PMIC_LTC3589_I2C_DATA_BYTE  0x1 // Number of Bytes to transfer the PMIC reg data
 
-#define PMIC_LTC3589_I2C_ID         (0x68 >> 1)
-
 #define PGSTAT_REG 0x13
 
 unsigned char ltc3589_reg_read(unsigned char reg_addr)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[1];
     unsigned char reg_data = 0;
 
-    rq.ctl_addr = PMIC_LTC3589_I2C_BASE;
-    rq.dev_addr = PMIC_LTC3589_I2C_ID;
+    rq.ctl_addr = g_pmic_ltc3589_i2c_device.port;
+    rq.dev_addr = g_pmic_ltc3589_i2c_device.address;
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 1;
     rq.buffer_sz = 1;
@@ -36,9 +34,9 @@ unsigned char ltc3589_reg_read(unsigned char reg_addr)
 
 void ltc3589_reg_write(unsigned char reg_addr, unsigned char reg_data)
 {
-    struct imx_i2c_request rq;
-    rq.ctl_addr = PMIC_LTC3589_I2C_BASE;
-    rq.dev_addr = PMIC_LTC3589_I2C_ID;
+    struct imx_i2c_request rq = {0};
+    rq.ctl_addr = g_pmic_ltc3589_i2c_device.port;
+    rq.dev_addr = g_pmic_ltc3589_i2c_device.address;
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 1;
     rq.buffer_sz = 1;
@@ -48,15 +46,16 @@ void ltc3589_reg_write(unsigned char reg_addr, unsigned char reg_data)
 
 void ltc3589_eval(void)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[4];
     int rc = 0;
     unsigned char byteOutData;
     uint8_t recvCh;
-    i2c_init(PMIC_LTC3589_I2C_BASE, 170000);
+    i2c_init(g_pmic_ltc3589_i2c_device.port, g_pmic_ltc3589_i2c_device.freq);
+    
     /* Initialize some of the I2C imx_i2c_request structure, these parameters shouldn't need to be changed */
-    rq.ctl_addr = PMIC_LTC3589_I2C_BASE;
-    rq.dev_addr = PMIC_LTC3589_I2C_ID;
+    rq.ctl_addr = g_pmic_ltc3589_i2c_device.port;
+    rq.dev_addr = g_pmic_ltc3589_i2c_device.address;
     rq.reg_addr_sz = PMIC_LTC3589_I2C_REG_BYTE;
     rq.buffer_sz = PMIC_LTC3589_I2C_DATA_BYTE;
     /* Read BUCKCORE register */
@@ -361,14 +360,15 @@ void ltc3589_eval(void)
 
 void ltc3589_backlight_en(void)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     int rc = 0;
     unsigned char byteOutData;
 
-    i2c_init(PMIC_LTC3589_I2C_BASE, 170000);
+    i2c_init(g_pmic_ltc3589_i2c_device.port, g_pmic_ltc3589_i2c_device.freq);
+    
     /* Initialize some of the I2C imx_i2c_request structure, these parameters shouldn't need to be changed */
-    rq.ctl_addr = PMIC_LTC3589_I2C_BASE;
-    rq.dev_addr = PMIC_LTC3589_I2C_ID;
+    rq.ctl_addr = g_pmic_ltc3589_i2c_device.port;
+    rq.dev_addr = g_pmic_ltc3589_i2c_device.address;
     rq.reg_addr_sz = PMIC_LTC3589_I2C_REG_BYTE;
     rq.buffer_sz = PMIC_LTC3589_I2C_DATA_BYTE;
     /* Write to R73 with value of 0xAF */
@@ -418,13 +418,14 @@ void ltc3589_backlight_en(void)
 
 void ltc3589_camera_power_on(void)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     int rc = 0;
     unsigned char byteOutData;
-    i2c_init(PMIC_LTC3589_I2C_BASE, 170000);
+    i2c_init(g_pmic_ltc3589_i2c_device.port, g_pmic_ltc3589_i2c_device.freq);
+    
     /* Initialize some of the I2C imx_i2c_request structure, these parameters shouldn't need to be changed */
-    rq.ctl_addr = PMIC_LTC3589_I2C_BASE;
-    rq.dev_addr = PMIC_LTC3589_I2C_ID;
+    rq.ctl_addr = g_pmic_ltc3589_i2c_device.port;
+    rq.dev_addr = g_pmic_ltc3589_i2c_device.address;
     rq.reg_addr_sz = PMIC_LTC3589_I2C_REG_BYTE;
     rq.buffer_sz = PMIC_LTC3589_I2C_DATA_BYTE;
     /* Write to R56 for 2V75 LDO7 output */
@@ -463,13 +464,14 @@ void ltc3589_camera_power_on(void)
 
 void sil9024_hdmi_power_on1(void)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     int rc = 0;
     unsigned char byteOutData;
-    i2c_init(PMIC_LTC3589_I2C_BASE, 170000);
+    i2c_init(g_pmic_ltc3589_i2c_device.port, g_pmic_ltc3589_i2c_device.freq);
+    
     /* Initialize some of the I2C imx_i2c_request structure, these parameters shouldn't need to be changed */
-    rq.ctl_addr = PMIC_LTC3589_I2C_BASE;
-    rq.dev_addr = PMIC_LTC3589_I2C_ID;
+    rq.ctl_addr = g_pmic_ltc3589_i2c_device.port;
+    rq.dev_addr = g_pmic_ltc3589_i2c_device.address;
     rq.reg_addr_sz = PMIC_LTC3589_I2C_REG_BYTE;
     rq.buffer_sz = PMIC_LTC3589_I2C_DATA_BYTE;
     /* Write to R55 for 1V2 LDO6 output */
@@ -495,7 +497,7 @@ int ltc3589_i2c_device_id_check(void)
 
     PROMPT_RUN_TEST("PMIC LTC3589", NULL);
 
-    i2c_init(PMIC_LTC3589_I2C_BASE, 170000);
+    i2c_init(g_pmic_ltc3589_i2c_device.port, g_pmic_ltc3589_i2c_device.freq);
 
 #ifdef UNDER_REDESIGN
     for (ret = 0; ret < 0x30; ret++) {

@@ -273,7 +273,7 @@ int max11801_ts_test(unsigned int i2c_base_addr)
 
 unsigned char max11801_reg_read_single(unsigned int i2c_base_addr, unsigned char reg_addr, unsigned char *ret_val)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[1];
 
     rq.ctl_addr = i2c_base_addr;
@@ -297,7 +297,7 @@ unsigned char max11801_reg_read_single(unsigned int i2c_base_addr, unsigned char
 
 unsigned char max11801_reg_read_multi(unsigned int i2c_base_addr, unsigned char reg_addr, unsigned char *ret_val, int count)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
 
     rq.ctl_addr = i2c_base_addr;	
     rq.dev_addr = MAX11801_I2C_ID;
@@ -317,7 +317,7 @@ unsigned char max11801_reg_read_multi(unsigned int i2c_base_addr, unsigned char 
 
 void max11801_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr, unsigned char reg_data)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
 
     rq.ctl_addr = i2c_base_addr;
     rq.dev_addr = MAX11801_I2C_ID;

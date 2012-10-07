@@ -8,8 +8,8 @@
 #include "obds.h"
 #include "hardware.h"
 
-#define EMC1046_I2C_ID			0x4C
 #define EMC1046_REG_DEVICE_ID_OFF	0xFD
+
 enum {
     INTERNAL_DIODE,
     EXTERNAL_DIODE1,
@@ -22,7 +22,7 @@ enum {
 
 static unsigned char emc1046_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[1];
     unsigned char reg_data = 0;
 
@@ -41,7 +41,7 @@ static unsigned char emc1046_reg_read(unsigned int i2c_base_addr, unsigned char 
 static int emc1046_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr,
                              unsigned char reg_val)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[1];
     //unsigned char reg_data = 0;
     buf[0] = reg_val;

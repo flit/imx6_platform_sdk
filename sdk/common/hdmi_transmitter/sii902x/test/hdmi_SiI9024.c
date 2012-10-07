@@ -13,7 +13,7 @@ unsigned int hdmi_i2c_base = 0;
 int sil9024_write_reg(unsigned short regAddrs, unsigned char *regVal, int data_len)
 {
     int retVal = 0;
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     rq.ctl_addr = hdmi_i2c_base;
     rq.dev_addr = 0x72 >> 1;
     rq.reg_addr = regAddrs;
@@ -27,7 +27,7 @@ int sil9024_write_reg(unsigned short regAddrs, unsigned char *regVal, int data_l
 int sil9024_read_reg(unsigned short regAddrs, unsigned char *regVal, int data_len)
 {
     int retVal = 0;
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     rq.ctl_addr = hdmi_i2c_base;
     rq.dev_addr = 0x72 >> 1;
     rq.reg_addr = regAddrs;

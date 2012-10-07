@@ -15,7 +15,7 @@
 
 static unsigned char isl29023_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[1];
     unsigned char reg_data = 0;
 
@@ -34,7 +34,7 @@ static unsigned char isl29023_reg_read(unsigned int i2c_base_addr, unsigned char
 static int isl29023_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr,
                               unsigned char reg_val)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[1];
     buf[0] = reg_val;
 

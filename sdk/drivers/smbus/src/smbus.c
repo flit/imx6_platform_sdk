@@ -403,7 +403,7 @@ int smbus_init(uint32_t base, uint32_t baud)
  */
 int smbus_prepare_to_arp(void)
 {
-    struct imx_i2c_request req;
+    struct imx_i2c_request req = {0};
     uint8_t cmd = SMBUS_CMD_PREPARE_TO_ARP;
 
     req.dev_addr = SMBUS_DEVICE_DEFAULT_ADDRESS;
@@ -432,7 +432,7 @@ int smbus_prepare_to_arp(void)
  */
 int smbus_reset_device(uint8_t dev_addr)
 {
-    struct imx_i2c_request req;
+    struct imx_i2c_request req = {0};
     uint8_t cmd = SMBUS_CMD_RESET_DEVICE_GENERAL;
 
     req.dev_addr = SMBUS_DEVICE_DEFAULT_ADDRESS;
@@ -461,7 +461,7 @@ int smbus_reset_device(uint8_t dev_addr)
  */
 int smbus_get_udid(uint8_t * dev_addr, smbus_device_udid_t * ptr)
 {
-    struct imx_i2c_request req;
+    struct imx_i2c_request req = {0};
     uint8_t cmd = SMBUS_CMD_GET_UDID_GENERAL;
     uint8_t data[18];
 
@@ -508,7 +508,7 @@ int smbus_get_udid(uint8_t * dev_addr, smbus_device_udid_t * ptr)
  */
 int smbus_assign_address(uint8_t * dev_addr, smbus_device_udid_t * ptr)
 {
-    struct imx_i2c_request req;
+    struct imx_i2c_request req = {0};
     uint8_t cmd = SMBUS_CMD_ASSIGN_ADDRESS;
     uint8_t data[20];
 

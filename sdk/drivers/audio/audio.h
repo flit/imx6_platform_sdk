@@ -7,6 +7,8 @@
 #ifndef __AUDIO_H
 #define __AUDIO_H
 
+#include "i2c/imx_i2c.h"
+
 #define AUDIO_RECORD_BUF_LEN    0x100000
 
 typedef enum {
@@ -83,9 +85,10 @@ typedef struct {
 
 typedef struct {
     const char *name;
-    uint32_t i2c_base;          //the i2c connect with the codec
-    uint32_t i2c_freq;          // i2c operate freq;
-    uint32_t i2c_dev_addr;      //Device address for I2C bus
+    const i2c_device_info_t * device;   //!< Pointer to I2C device info.
+//     uint32_t i2c_base;          //the i2c connect with the codec
+//     uint32_t i2c_freq;          // i2c operate freq;
+//     uint32_t i2c_dev_addr;      //Device address for I2C bus
     audio_bus_type_e bus_type;  //The bus type(ssi, esai or spdif) the codec supports
     audio_bus_mode_e bus_mode;  //the bus mode(master, slave or both)the codec supports
     audio_dev_ops_p ops;

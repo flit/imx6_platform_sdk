@@ -34,10 +34,10 @@ static void si476x_i2c_init(void)
     hal_delay_us(5000);
     max7310_set_gpio_output(0, 3, GPIO_HIGH_LEVEL);
     /* I2C initialization */
-    i2c_init(SI476x_I2C_BASE, 50000);
+    i2c_init(g_si476x_i2c_device.port, g_si476x_i2c_device.freq);
     
-    si476x_i2c_req.ctl_addr = SI476x_I2C_BASE; 
-    si476x_i2c_req.dev_addr = SI476x_I2C_ID;    // the I2C DEVICE address
+    si476x_i2c_req.ctl_addr = g_si476x_i2c_device.port; 
+    si476x_i2c_req.dev_addr = g_si476x_i2c_device.address;    // the I2C DEVICE address
     /* this device does not use registers but command passed through data buffer */
     si476x_i2c_req.reg_addr_sz = 0; // number of bytes of I2C device register's address
 }

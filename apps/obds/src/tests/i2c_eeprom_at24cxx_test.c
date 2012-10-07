@@ -12,9 +12,9 @@
 
 static int at24cx_read(unsigned int i2c_base_addr, unsigned int addr, unsigned char buf[])
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     rq.ctl_addr = i2c_base_addr;
-    rq.dev_addr = AT24Cx_I2C_ID;
+    rq.dev_addr = g_at24cx_i2c_device.address;
     rq.reg_addr = addr;
     rq.reg_addr_sz = 2;
     rq.buffer_sz = 3;
@@ -25,9 +25,9 @@ static int at24cx_read(unsigned int i2c_base_addr, unsigned int addr, unsigned c
 
 static int at24cx_write(unsigned int i2c_base_addr, unsigned int addr, unsigned char buf[])
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     rq.ctl_addr = i2c_base_addr;
-    rq.dev_addr = AT24Cx_I2C_ID;
+    rq.dev_addr = g_at24cx_i2c_device.address;
     rq.reg_addr = addr;
     rq.reg_addr_sz = 2;
     rq.buffer_sz = 3;
@@ -47,7 +47,7 @@ static int i2c_eeprom_at24cxx_test(void)
 
     PROMPT_RUN_TEST("EEPROM test", NULL);
 
-    i2c_init(AT24Cx_I2C_BASE, 170000);
+    i2c_init(g_at24cx_i2c_device.port, g_at24cx_i2c_device.freq);
 
 #if (!defined(CHIP_MX6SL) && defined(BOARD_EVB))
     /*Set iomux and daisy chain for eeprom test */
@@ -64,16 +64,16 @@ static int i2c_eeprom_at24cxx_test(void)
     buf1[1] = 'S';              //0x11;
     buf1[2] = 'L';
 
-    at24cx_write(AT24Cx_I2C_BASE, 0, buf1);
+    at24cx_write(g_at24cx_i2c_device.port, 0, buf1);
 
     buf2[0] = 0;
     buf2[1] = 0;
     buf2[2] = 0;
-    at24cx_read(AT24Cx_I2C_BASE, 0, buf2);
+    at24cx_read(g_at24cx_i2c_device.port, 0, buf2);
 
 #if (!defined(CHIP_MX6SL) && defined(BOARD_EVB))
     /*Restore iomux and daisy chain setting */
-    i2c_init(AT24Cx_I2C_BASE, 170000);
+    i2c_init(g_at24cx_i2c_device.port, g_at24cx_i2c_device.freq);
 #endif
 
     if ((buf2[0] != buf1[0]) || (buf2[1] != buf1[1]) || (buf2[2] != buf1[2])) {

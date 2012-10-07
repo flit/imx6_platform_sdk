@@ -34,8 +34,8 @@ void os81050_i2c_init(void)
     hal_delay_us(100000);
 
     /* I2C initialization */
-    i2c_init(OS81050_I2C_BASE, 50000);
-    os81050_i2c_req.dev_addr = OS81050_I2C_ID;  // the I2C DEVICE address
+    i2c_init(g_os81050_i2c_device.port, g_os81050_i2c_device.freq);
+    os81050_i2c_req.dev_addr = g_os81050_i2c_device.address;  // the I2C DEVICE address
 }
 
 /*!
@@ -50,7 +50,7 @@ int os81050_read_status(void)
 
     os81050_i2c_req.buffer = buf;
 
-    os81050_i2c_req.ctl_addr = OS81050_I2C_BASE;
+    os81050_i2c_req.ctl_addr = g_os81050_i2c_device.port;
     os81050_i2c_req.reg_addr_sz = 0;
     os81050_i2c_req.buffer_sz = 6;
     i2c_xfer(&os81050_i2c_req, I2C_READ);
@@ -76,7 +76,7 @@ int os81050_get_message(void)
 {
     unsigned char buf[30];
 
-    os81050_i2c_req.ctl_addr = OS81050_I2C_BASE;
+    os81050_i2c_req.ctl_addr = g_os81050_i2c_device.port;
     os81050_i2c_req.buffer = buf;
     os81050_i2c_req.reg_addr_sz = 0;
 

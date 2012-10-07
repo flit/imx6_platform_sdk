@@ -43,18 +43,37 @@ enum _i2c_slave_id {
     IMX6_DEFAULT_SLAVE_ID = 0x60
 };
 
+//! @brief Info required to talk to an I2C device.
+//!
+//! Pairs an I2C port number with a device address.
+//!
+//! While the device address is often fixed and known in advance by the driver,
+//! some devices have configurable addresses that can be changed with pin
+//! settings. Thus, the same device may have different adresses on different
+//! boards depending on how these pins are tied.
+//!
+//! Note that the @a address member's value is @i not pre-shifted. The 7-bit
+//! address is right aligned within the byte, and the top bit is always set to 0.
+typedef struct i2c_device_info {
+    uint8_t port;       //!< I2C controller instance to which the device is connected. Starts at 1.
+    uint8_t address;    //!< I2C device address in lower 7 bits.
+    uint32_t freq;       //!< Maximum transfer speed in bits per second.
+} i2c_device_info_t;
+
 /*!
  * @brief An I2C transfer descriptor.
  *
  * To perform an I2C transfer, the caller first fills in an instance of this struct. Then
  * i2c_xfer() is called, passing a pointer to the #imx_i2c_request_t struct.
  *
- * Either @a port or @a ctl_addr should be specified, with @a port taking precedence if
- * both are set to a non-zero value.
+ * @a ctl_addr should be set to either a valid controller instance number from 1 through
+ * the number of I2C instances on the chip, or the base address of the controller.
+ *
+ * If @a device is set to a non-NULL value, it is a pointer to an #i2c_device_info_t struct
+ * to use instead of the @a ctl_addr and @a dev_addr members of this struct.
  */
 typedef struct imx_i2c_request {
-    uint32_t port;              //!< The I2C controller instance number, starting at 1.
-    uint32_t ctl_addr;          //!< The I2C controller base address.
+    uint32_t ctl_addr;          //!< Either the I2C controller base address or instance number starting at 1.
     uint32_t dev_addr;          //!< The I2C device address.
     uint32_t reg_addr;          //!< The register address within the target device.
     uint32_t reg_addr_sz;       //!< Number of bytes for the address of I2C device register.
@@ -62,6 +81,7 @@ typedef struct imx_i2c_request {
     uint32_t buffer_sz;         //!< The number of bytes for read/write.
     int32_t (*slave_receive) (const struct imx_i2c_request *rq);  //!< Function for slave to receive data from master.
     int32_t (*slave_transmit) (const struct imx_i2c_request *rq); //!< Function for slave to transmit data to master.
+    const i2c_device_info_t * device; //!< Optional pointer to device info struct. Overrides @a ctl_addr and @a dev_addr if set.
 } imx_i2c_request_t;
 
 ////////////////////////////////////////////////////////////////////////////////

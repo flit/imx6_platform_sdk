@@ -10,7 +10,7 @@
 
 unsigned char mag3112_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[1];
     unsigned char reg_data = 0;
 

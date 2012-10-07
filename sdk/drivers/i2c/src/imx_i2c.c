@@ -48,6 +48,7 @@ static inline void imx_send_stop(unsigned int instance);
 static int wait_op_done(uint32_t instance, int is_tx);
 static int tx_byte(uint8_t * data, uint32_t instance);
 static int rx_bytes(uint8_t * data, uint32_t instance, int sz);
+static void set_i2c_clock(uint32_t instance, uint32_t baud);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -55,7 +56,24 @@ static int rx_bytes(uint8_t * data, uint32_t instance, int sz);
 
 unsigned i2c_get_request_instance(const imx_i2c_request_t * rq)
 {
-    return (rq->port > 0) ? rq->port : REGS_I2C_INSTANCE(rq->ctl_addr);
+    // First see if there device info is set.
+    if (rq->device)
+    {
+        // Use the instance number in the device info.
+        return rq->device->port;
+    }
+    
+    // Check if the ctl_addr is within the range of instances.
+    if (rq->ctl_addr >= 1 && rq->ctl_addr <= HW_I2C_INSTANCE_COUNT)
+    {
+        // Valid instance number, so use it directly.
+        return rq->ctl_addr;
+    }
+    else
+    {
+        // Not a valid instance, so treat it as a base address.
+        return REGS_I2C_INSTANCE(rq->ctl_addr);
+    }
 }
 
 /*!
@@ -239,6 +257,36 @@ static int rx_bytes(uint8_t * data, uint32_t instance, int sz)
     return 0;
 }
 
+static void set_i2c_clock(uint32_t instance, uint32_t baud)
+{
+    // Adjust the divider to get the closest SCL frequency to baud rate 
+    uint32_t src_clk = get_main_clock(IPG_PER_CLK);
+    uint32_t divider = src_clk / baud;
+    uint8_t index = 0;
+    
+    if (divider < i2c_freq_div[0][0])
+    {
+        divider = i2c_freq_div[0][0];
+        index = 0;
+        debug_printf("Warning :can't find a smaller divider than %d.\n", divider);
+        debug_printf("SCL frequency is set at %d - expected was %d.\n", src_clk/divider, baud);
+    }
+    else if (divider > i2c_freq_div[49][0])
+    {
+        divider = i2c_freq_div[49][0];
+        index = 49;
+        debug_printf("Warning: can't find a bigger divider than %d.\n", divider);
+        debug_printf("SCL frequency is set at %d - expected was %d.\n", src_clk/divider, baud);
+    }
+    else
+    {
+        for (index = 0; i2c_freq_div[index][0] < divider; index++);
+        divider = i2c_freq_div[index][0];
+    }
+    
+    HW_I2C_IFDR_WR(instance, BF_I2C_IFDR_IC(i2c_freq_div[index][1]));
+}
+
 int i2c_xfer(const imx_i2c_request_t *rq, int dir)
 {
     uint32_t reg;
@@ -247,6 +295,7 @@ int i2c_xfer(const imx_i2c_request_t *rq, int dir)
     uint8_t i;
     uint8_t data;
     uint32_t instance = i2c_get_request_instance(rq);
+    uint8_t address = (rq->device ? rq->device->address : rq->dev_addr) << 1;
 
     if (rq->buffer_sz == 0 || rq->buffer == NULL) {
         debug_printf("Invalid register address size=%x, buffer size=%x, buffer=%x\n",
@@ -264,6 +313,13 @@ int i2c_xfer(const imx_i2c_request_t *rq, int dir)
     if (is_bus_free(instance) != 0) {
         return -1;
     }
+    
+    // If the request has device info attached and it has a non-zero bit rate, then
+    // change the clock to the specified rate.
+    if (rq->device && rq->device->freq)
+    {
+        set_i2c_clock(instance, rq->device->freq);
+    }
 
     // Step 1: Select master mode, assert START signal and also indicate TX mode 
     HW_I2C_I2CR_WR(instance, BM_I2C_I2CR_IEN | BM_I2C_I2CR_MSTA | BM_I2C_I2CR_MTX);
@@ -275,7 +331,7 @@ int i2c_xfer(const imx_i2c_request_t *rq, int dir)
     }
     
     // Step 2: send slave address + read/write at the LSB 
-    data = (rq->dev_addr << 1) | I2C_WRITE;
+    data = address | I2C_WRITE;
 
     if ((ret = tx_byte(&data, instance)) != 0) {
         debug_printf("START TX ERR %d\n", ret);
@@ -315,7 +371,7 @@ int i2c_xfer(const imx_i2c_request_t *rq, int dir)
         }
         
         // send slave address again, but indicate read operation 
-        data = (rq->dev_addr << 1) | I2C_READ;
+        data = address | I2C_READ;
 
         if (tx_byte(&data, instance) != 0) {
             return -1;
@@ -401,8 +457,6 @@ void i2c_setup_interrupt(const hw_module_t *port, bool state)
 
 int i2c_init(uint32_t base, uint32_t baud)
 {
-    uint32_t src_clk, divider;
-    uint8_t index;
     int instance;
     
     // Accept either an instance or base address for the base param.
@@ -424,29 +478,8 @@ int i2c_init(uint32_t base, uint32_t baud)
     // reset I2C 
     HW_I2C_I2CR_WR(instance, 0);
 
-    // Adjust the divider to get the closest SCL frequency to baud rate 
-    src_clk = get_main_clock(IPG_PER_CLK);
-    divider = src_clk / baud;
-    if(divider < i2c_freq_div[0][0])
-    {
-        divider = i2c_freq_div[0][0];
-        index = 0;
-        debug_printf("Warning :can't find a smaller divider than %d.\n", divider);
-        debug_printf("SCL frequency is set at %d - expected was %d.\n", src_clk/divider, baud);
-    }
-    else if(divider > i2c_freq_div[49][0])
-    {
-        divider = i2c_freq_div[49][0];
-        index = 49;
-        debug_printf("Warning: can't find a bigger divider than %d.\n", divider);
-        debug_printf("SCL frequency is set at %d - expected was %d.\n", src_clk/divider, baud);
-    }
-    else
-    {
-        for(index=0;i2c_freq_div[index][0]<divider;index++);
-        divider = i2c_freq_div[index][0];
-    }
-    HW_I2C_IFDR_WR(instance, BF_I2C_IFDR_IC(i2c_freq_div[index][1]));
+    // Set clock.
+    set_i2c_clock(instance, baud);
 
     // set an I2C slave address 
     HW_I2C_IADR_WR(instance, IMX6_DEFAULT_SLAVE_ID);

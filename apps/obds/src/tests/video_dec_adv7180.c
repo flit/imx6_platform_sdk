@@ -31,11 +31,12 @@ void adv7180_i2c_init_obds(void)
     max7310_set_gpio_output(0, 3, GPIO_LOW_LEVEL);
     hal_delay_us(5000);
     max7310_set_gpio_output(0, 3, GPIO_HIGH_LEVEL);
+    
     /* I2C initialization */
-    i2c_init(ADV7180_I2C_BASE, 50000);
+    i2c_init(g_adv7180_i2c_device.port, g_adv7180_i2c_device.freq);
 
-    adv7180_i2c_req.ctl_addr = ADV7180_I2C_BASE;
-    adv7180_i2c_req.dev_addr = ADV7180_I2C_ID;  // the I2C DEVICE address
+    adv7180_i2c_req.ctl_addr = g_adv7180_i2c_device.port;
+    adv7180_i2c_req.dev_addr = g_adv7180_i2c_device.address;  // the I2C DEVICE address
     adv7180_i2c_req.reg_addr_sz = 1;    // number of bytes of I2C device register's address
     adv7180_i2c_req.buffer_sz = 1;  // number of data bytes
 }
@@ -50,7 +51,7 @@ void adv7180_i2c_init_obds(void)
 unsigned char adv7180_reg_read(unsigned char reg_addr)
 {
     unsigned char buf[1];
-    adv7180_i2c_req.ctl_addr = ADV7180_I2C_BASE;
+    adv7180_i2c_req.ctl_addr = g_adv7180_i2c_device.port;
     adv7180_i2c_req.reg_addr = reg_addr;
     adv7180_i2c_req.buffer = buf;
 //    i2c_xfer(ADV7180_I2C_BASE, &adv7180_i2c_req, I2C_READ);
@@ -68,7 +69,7 @@ unsigned char adv7180_reg_read(unsigned char reg_addr)
  */
 int adv7180_reg_write(unsigned char reg_addr, unsigned char data)
 {
-    adv7180_i2c_req.ctl_addr = ADV7180_I2C_BASE; 
+    adv7180_i2c_req.ctl_addr = g_adv7180_i2c_device.port; 
     adv7180_i2c_req.reg_addr = reg_addr;
     adv7180_i2c_req.buffer = &data;
   

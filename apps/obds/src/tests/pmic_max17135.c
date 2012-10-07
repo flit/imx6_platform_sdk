@@ -8,18 +8,17 @@
 #include "obds.h"
 #include "hardware.h"
 
-#define PMIC_MAX17135_I2C_ADDR        (0x90 >> 1)   // PMIC I2C Slave address
 #define PMIC_MAX17135_I2C_REG_BYTE    0x1   // Number of Bytes to transfer the PMIC reg number
 #define PMIC_MAX17135_I2C_DATA_BYTE   0x1   // Number of Bytes to transfer the PMIC reg data
 
 unsigned char max17135_reg_read(unsigned char reg)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf = 0;
 
     /* Initialize some of the I2C imx_i2c_request structure, these parameters shouldn't need to be changed */
-    rq.ctl_addr = PMIC_MAX17135_I2C_BASE;
-    rq.dev_addr = PMIC_MAX17135_I2C_ADDR;
+    rq.ctl_addr = g_pmic_max17135_i2c_device.port;
+    rq.dev_addr = g_pmic_max17135_i2c_device.address;
     rq.reg_addr_sz = PMIC_MAX17135_I2C_REG_BYTE;
     rq.buffer_sz = PMIC_MAX17135_I2C_DATA_BYTE;
     rq.reg_addr = reg;
@@ -32,10 +31,10 @@ unsigned char max17135_reg_read(unsigned char reg)
 
 void max17135_reg_write(unsigned char reg, unsigned char reg_data)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
 
-    rq.ctl_addr = PMIC_MAX17135_I2C_BASE;
-    rq.dev_addr = PMIC_MAX17135_I2C_ADDR;
+    rq.ctl_addr = g_pmic_max17135_i2c_device.port;
+    rq.dev_addr = g_pmic_max17135_i2c_device.address;
     rq.reg_addr_sz = PMIC_MAX17135_I2C_REG_BYTE;
     rq.buffer_sz = PMIC_MAX17135_I2C_DATA_BYTE;
     rq.reg_addr = reg;
@@ -66,7 +65,7 @@ int i2c_device_id_check_MAX17135(void)
 
     printf("Test MAX17135 Device ID - ");
 
-    i2c_init(PMIC_MAX17135_I2C_BASE, 170000);
+    i2c_init(g_pmic_max17135_i2c_device.port, g_pmic_max17135_i2c_device.freq);
 
     reg_data = max17135_reg_read(0x07);
     if (0x4D == reg_data) {

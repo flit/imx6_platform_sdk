@@ -170,7 +170,7 @@ void i2c_slave_xfer(hw_module_t *port, imx_i2c_request_t *rq)
     s_slaveState.readAccess = 0;
 
     // set the chosen I2C slave address 
-    HW_I2C_IADR_WR(instance, rq->dev_addr);
+    HW_I2C_IADR_WR(instance, (rq->device ? rq->device->address : rq->dev_addr));
 
     // assign the IRQ handler to the used port 
     port->irq_subroutine = &i2c_slave_interrupt_routine;

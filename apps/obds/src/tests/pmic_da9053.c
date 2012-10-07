@@ -8,24 +8,23 @@
 #include "obds.h"
 #include "hardware.h"
 
-#define PMIC_DA9053_I2C_ADDR        (0x90 >> 1) // PMIC I2C Slave address
 #define PMIC_DA9053_I2C_REG_BYTE    0x1 // Number of Bytes to transfer the PMIC reg number
 #define PMIC_DA9053_I2C_DATA_BYTE   0x1 // Number of Bytes to transfer the PMIC reg data
 
 unsigned char da9053_i2c_reg(unsigned int reg, unsigned char val, unsigned int dir)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf = 0;
 
     if (dir == I2C_WRITE) {
         buf = val;
     }
 
-    i2c_init(PMIC_DA9053_I2C_BASE, 170000);
+    i2c_init(g_pmic_da9053_i2c_device.port, g_pmic_da9053_i2c_device.freq);
 
     /* Initialize some of the I2C imx_i2c_request structure, these parameters shouldn't need to be changed */
-    rq.ctl_addr = PMIC_DA9053_I2C_BASE;
-    rq.dev_addr = PMIC_DA9053_I2C_ADDR;
+    rq.ctl_addr = g_pmic_da9053_i2c_device.port;
+    rq.dev_addr = g_pmic_da9053_i2c_device.address;
     rq.reg_addr_sz = PMIC_DA9053_I2C_REG_BYTE;
     rq.buffer_sz = PMIC_DA9053_I2C_DATA_BYTE;
     rq.reg_addr = reg;

@@ -21,7 +21,6 @@
 #define MC13892_ID                  0x8
 #define LTC2495_ID                  0x14
 #define PMIC_MC13892_I2C_NUM        1   // Which I2C used to interface with the PMIC; 0=I2C1, 1=I2C2
-#define PMIC_MC13892_I2C_ADDR       0x8 // PMIC I2C Slave address
 #define PMIC_MC13892_I2C_REG_BYTE   0x1 // Number of Bytes to transfer the PMIC reg number
 #define PMIC_MC13892_I2C_DATA_BYTE  0x3 // Number of Bytes to transfer the PMIC reg data
 

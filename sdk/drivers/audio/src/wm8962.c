@@ -44,12 +44,13 @@ struct imx_i2c_request wm8962_i2c_req;
 static void wm8962_i2c_init(audio_codec_p codec)
 {
     /* this init is needed only once */
-    wm8962_i2c_req.ctl_addr = codec->i2c_base;
-    wm8962_i2c_req.dev_addr = codec->i2c_dev_addr;
+//     wm8962_i2c_req.ctl_addr = codec->i2c_base;
+//     wm8962_i2c_req.dev_addr = codec->i2c_dev_addr;
+    wm8962_i2c_req.device = codec->device;
     wm8962_i2c_req.reg_addr_sz = 2;
     wm8962_i2c_req.buffer_sz = 2;
 
-    i2c_init(codec->i2c_base, codec->i2c_freq);
+    i2c_init(codec->device->port, codec->device->freq);
 }
 
 static uint16_t WM8962_i2c_read(audio_codec_p codec, uint16_t reg_addr)
@@ -271,9 +272,10 @@ audio_dev_ops_t wm8962_ops = {
 
 audio_codec_t wm8962 = {
     .name = "wm8962",
-    .i2c_base = WM8962_I2C_BASE_ADDR,
-    .i2c_freq = 48000,
-    .i2c_dev_addr = WM8962_I2C_DEV_ADDR,
+    .device = &g_wm8962_i2c_device,
+//     .i2c_base = WM8962_I2C_BASE_ADDR,
+//     .i2c_freq = 48000,
+//     .i2c_dev_addr = WM8962_I2C_DEV_ADDR,
     .ops = &wm8962_ops,
 };
 

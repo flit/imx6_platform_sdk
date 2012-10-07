@@ -20,7 +20,7 @@
 #include "registers/regsccm.h"
 #include "hardware.h"
 
-extern sata_phy_ref_clk_t sata_phy_clk_sel;
+// extern sata_phy_ref_clk_t sata_phy_clk_sel;
 
 #define DUMMY_ARM_CORE_BASE_ADDR 0x12345789
 

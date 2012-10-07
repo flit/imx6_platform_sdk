@@ -8,7 +8,6 @@
 #include "obds.h"
 #include "hardware.h"
 
-#define MC1323_I2C_ID           0x4C
 #define MC1323_REG_SDIDH	0x06
 #define MC1323_REG_SDIDL	0x07
 
@@ -16,7 +15,7 @@ unsigned char buf[] = { 0, 0, 0, 0 };
 
 static unsigned int mc1323_reg_read(unsigned int i2c_base_addr, unsigned int reg_addr)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned int reg_data;
 
     reg_data = 0;
@@ -37,7 +36,7 @@ static unsigned int mc1323_reg_read(unsigned int i2c_base_addr, unsigned int reg
 
 static int mc1323_reg_write(unsigned int i2c_base_addr, unsigned int reg_addr, unsigned int reg_val)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
 
     buf[0] = reg_val;
     rq.ctl_addr = i2c_base_addr;

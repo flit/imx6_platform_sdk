@@ -21,6 +21,7 @@ TARGET_LIB_NAME := board_$(BOARD_WITH_REV)
 SOURCES := \
 	$(SDK_ROOT)/board/common/hardware.c \
 	$(SDK_ROOT)/board/common/board_io_expanders.c \
+	$(SDK_ROOT)/board/common/board_i2c.c \
 	$(wildcard iomux/*.c)
 
 

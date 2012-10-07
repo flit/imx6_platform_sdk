@@ -42,7 +42,7 @@ static void mipi_sensor_i2c_init(unsigned int base, unsigned int baud)
 static int32_t mipi_sensor_write_reg(uint32_t i2c_base, uint16_t reg, uint8_t pval)
 {
     int ret = 0;
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
 //  printf("reg 0x%04x : 0x%02x\n", reg, pval);
 
     reg = ((reg & 0x00FF) << 8) | ((reg & 0xFF00) >> 8);    //swap MSB and LSB
@@ -61,7 +61,7 @@ static int32_t mipi_sensor_write_reg(uint32_t i2c_base, uint16_t reg, uint8_t pv
 static int32_t mipi_sensor_read_reg(uint32_t i2c_base, uint16_t reg, uint8_t * pval)
 {
     int ret = 0;
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
 
     reg = ((reg & 0x00FF) << 8) | ((reg & 0xFF00) >> 8);    //swap MSB and LSB
     rq.ctl_addr = i2c_base;
@@ -81,7 +81,7 @@ static int dev_check_reg(unsigned int i2c_base, unsigned int slave_addr, unsigne
                          unsigned char *pval)
 {
     int ret = 0;
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
 
     rq.ctl_addr = i2c_base;
     rq.dev_addr = slave_addr >> 1;

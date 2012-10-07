@@ -70,17 +70,17 @@ menu_action_t i2c_device_id_check(const menu_context_t* const context, void* con
         }
         if (i2c_device_id_check_p1003_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_p1003(P1003_TSC_I2C_BASE);    // hannstar display TSC via lvds
+            rc |= i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port);    // hannstar display TSC via lvds
         }
 #elif defined(BOARD_TYPE_SABRE_LITE)
         if (i2c_device_id_check_p1003_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_p1003(P1003_TSC_I2C_BASE);    // hannstar display TSC via lvds
+            rc |= i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port);    // hannstar display TSC via lvds
         }
 #elif defined(BOARD_TYPE_SABRE_AI) 
         if (i2c_device_id_check_p1003_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_p1003(P1003_TSC_I2C_BASE);    // hannstar display TSC via lvds
+            rc |= i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port);    // hannstar display TSC via lvds
         }
         if (i2c_device_id_check_cs42888_test_enable == 1) {
             ++test_count;
@@ -165,7 +165,7 @@ int i2c_device_id_check(void)
         }
         if (i2c_device_id_check_p1003_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_p1003(P1003_TSC_I2C_BASE);    // hannstar display TSC via lvds
+            rc |= i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port);    // hannstar display TSC via lvds
         }
         //rc |= i2c_device_id_check_emc1046(I2C3_BASE_ADDR);
     } 
@@ -173,14 +173,14 @@ int i2c_device_id_check(void)
     {
         if (i2c_device_id_check_p1003_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_p1003(P1003_TSC_I2C_BASE);    // hannstar display TSC via lvds
+            rc |= i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port);    // hannstar display TSC via lvds
         }
     } 
     else if (BOARD_TYPE_ID == BOARD_TYPE_SABRE_AI) 
     {
         if (i2c_device_id_check_p1003_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_p1003(P1003_TSC_I2C_BASE);    // hannstar display TSC via lvds
+            rc |= i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port);    // hannstar display TSC via lvds
         }
         if (i2c_device_id_check_cs42888_test_enable == 1) {
             ++test_count;

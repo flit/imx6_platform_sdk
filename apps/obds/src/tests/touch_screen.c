@@ -15,8 +15,8 @@
 #define PMIC_DA9053_I2C_ADDR                (0x90>>1)   // PMIC I2C Slave address
 #define PMIC_DA9053_I2C_REG_BYTE         0x1    // Number of Bytes to transfer the PMIC reg number
 #define PMIC_DA9053_I2C_DATA_BYTE      0x1  // Number of Bytes to transfer the PMIC reg data
-#define PMIC_DA9053_I2C_BASE       		I2C1_BASE_ADDR  // pmic on i2c1
-#define PMIC_DA9053_I2C_ID         		0x90
+// #define PMIC_DA9053_I2C_BASE       		I2C1_BASE_ADDR  // pmic on i2c1
+// #define PMIC_DA9053_I2C_ID         		0x90
 
 #define  DA9053_IRQ_MASK_A		10
 #define  DA9053_IRQ_MASK_B  	11
@@ -47,13 +47,13 @@ bool pen_status[2] = { false, false };
 
 void DA9053_Write(unsigned char val, unsigned int reg_addr)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[4];
 
     buf[0] = val;
 
-    rq.ctl_addr = PMIC_DA9053_I2C_BASE;
-    rq.dev_addr = PMIC_DA9053_I2C_ADDR;
+    rq.ctl_addr = g_pmic_da9053_i2c_device.port;
+    rq.dev_addr = g_pmic_da9053_i2c_device.address;
     rq.reg_addr_sz = PMIC_DA9053_I2C_REG_BYTE;
     rq.buffer_sz = PMIC_DA9053_I2C_DATA_BYTE;
     rq.buffer = buf;
@@ -65,11 +65,11 @@ void DA9053_Write(unsigned char val, unsigned int reg_addr)
 
 unsigned char DA9053_Read(unsigned int reg_addr)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[4];
 
-    rq.ctl_addr = PMIC_DA9053_I2C_BASE;
-    rq.dev_addr = PMIC_DA9053_I2C_ADDR;
+    rq.ctl_addr = g_pmic_da9053_i2c_device.port;
+    rq.dev_addr = g_pmic_da9053_i2c_device.address;
     rq.reg_addr_sz = PMIC_DA9053_I2C_REG_BYTE;
     rq.buffer_sz = PMIC_DA9053_I2C_DATA_BYTE;
     rq.buffer = buf;
@@ -83,7 +83,7 @@ unsigned char DA9053_Read(unsigned int reg_addr)
 
 void touch_init(void)
 {
-    i2c_init(I2C1_BASE_ADDR, 170000);
+    i2c_init(g_pmic_da9053_i2c_device.port, g_pmic_da9053_i2c_device.freq);
 
     //Clear the event bit.
     DA9053_Write(0xFF, DA9053_EVENT_B);

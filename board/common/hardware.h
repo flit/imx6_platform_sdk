@@ -30,7 +30,9 @@
 #include "ccm_pll.h"
 #include "i2c/imx_i2c.h"
 #include "uart/imx_uart.h"
+#if defined(CHIP_MX6DQ)
 #include "sata/imx_sata.h"
+#endif
 #include "timer/timer.h"
 #include "hdmi_regs.h"
 #include "buffers.h"
@@ -38,6 +40,7 @@
 #include "keypad/keypad_port.h"
 #include "ioexpander/max7310.h"
 #include "board_io_expanders.h"
+#include "board_i2c.h"
 
 //Add for obds tests
 #include "audio/audio.h"
@@ -59,69 +62,6 @@
 #define VOLPLUS_BUTTON_GPIO_NUM   15
 #define VOLMINUS_BUTTON_GPIO_INST GPIO_PORT7
 #define VOLMINUS_BUTTON_GPIO_NUM  8
-
-
-
-
-// audio defines
-#define WM8958_I2C_DEV_ADDR 		(0x34>>1)
-#define WM8958_I2C_BASE_ADDR		I2C2_BASE_ADDR
-
-#define WM8962_I2C_DEV_ADDR             (0x34>>1)
-#define WM8962_I2C_BASE_ADDR            I2C1_BASE_ADDR
-
-#define SGTL5000_I2C_BASE   I2C2_BASE_ADDR  // audio codec on i2c2
-#define SGTL5000_I2C_ID     0x0A
-
-#define SI476x_I2C_BASE    I2C2_BASE_ADDR
-#define SI476x_I2C_ID      (0xC6 >> 1)
-
-#define OS81050_I2C_BASE    I2C3_BASE_ADDR
-#define OS81050_I2C_ID      (0x40 >> 1)
-
-#define ADV7180_I2C_ID      (0x42 >> 1)
-#if defined (BOARD_EVB)
-#define ADV7180_I2C_BASE 	I2C1_BASE_ADDR
-#else
-#define ADV7180_I2C_BASE    I2C3_BASE_ADDR
-#endif
-
-#define MMA8450_I2C_ID      0x1C
-#define MMA8451_I2C_ID      0x1C
-#define MAG3112_I2C_ID      0x1D
-#define ISL29023_I2C_ID	    0x44
-#define MAG3110_I2C_ID      0x0E
-
-#define MAX11801_I2C_BASE	I2C3_BASE_ADDR
-#define MAX11801_I2C_ID     (0x90 >> 1)
-
-#define CS42888_I2C_BASE	I2C1_BASE_ADDR
-#define CS42888_I2C_ID      (0x90 >> 1)
-
-#define AT24Cx_I2C_BASE		I2C3_BASE_ADDR
-#define AT24Cx_I2C_ID		(0xA0 >> 1)
-
-// For LTC2495 Board ID
-#define LTC2495_I2C_BASE    I2C2_BASE_ADDR
-#define LTC2495_I2C_ID      (0x28 >> 1)
-
-//copied from OBDS
-#if defined(BOARD_SABRE_LITE)
-#define P1003_TSC_I2C_BASE   I2C3_BASE_ADDR
-#else
-#define P1003_TSC_I2C_BASE   I2C2_BASE_ADDR
-#endif
-#define P1003_TSC_I2C_ID     4
-
-//Copy from obds
-#define PMIC_MC13892_I2C_BASE      I2C2_BASE_ADDR
-#define PMIC_LTC3589_I2C_BASE      I2C2_BASE_ADDR
-#define PMIC_DA9053_I2C_BASE       I2C1_BASE_ADDR
-#define PMIC_PF0100_I2C_BASE       I2C2_BASE_ADDR 
-#define PMIC_MAX17135_I2C_BASE     I2C1_BASE_ADDR
-
-
-
 
 
 

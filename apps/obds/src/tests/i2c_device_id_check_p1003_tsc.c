@@ -14,10 +14,10 @@ int p1003_show_touch(unsigned int i2c_base_addr);
 unsigned char p1003_version_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr,
                                      unsigned char *ret_val)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
 
     rq.ctl_addr = i2c_base_addr;
-    rq.dev_addr = P1003_TSC_I2C_ID; // 4
+    rq.dev_addr = g_p1003_tsc_i2c_device.address; // 4
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 1;
     rq.buffer_sz = 10;
@@ -35,9 +35,9 @@ unsigned char p1003_version_reg_read(unsigned int i2c_base_addr, unsigned char r
 unsigned char p1003_version_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr,
                                      unsigned char *buffer)
 {
-	struct imx_i2c_request rq;
+	struct imx_i2c_request rq = {0};
     rq.ctl_addr = i2c_base_addr;
-    rq.dev_addr = P1003_TSC_I2C_ID; // 4
+    rq.dev_addr = g_p1003_tsc_i2c_device.address; // 4
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 1;
     rq.buffer_sz = 2 + buffer[1];

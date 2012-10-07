@@ -12,8 +12,12 @@
  */
 
 #include "video/adv7180_def.h"
-
-#define ADV7180_ADDR			0x42 >> 1
+#include "sdk_types.h"
+#include "timer/timer.h"
+#include "iomux_config.h"
+#include "iomux_register.h"
+#include "soc_memory_map.h"
+#include "hardware.h"
 
 /*! Description of video formats supported.
  *
@@ -67,10 +71,10 @@ int32_t adv7180_i2c_init(uint32_t base, uint32_t baud)
 static int32_t adv7180_write_reg(uint8_t reg, uint8_t pval)
 {
     int ret = 0;
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
 
-    rq.ctl_addr = ADV7180_I2C_BASE;
-    rq.dev_addr = ADV7180_ADDR;
+    rq.ctl_addr = g_adv7180_i2c_device.port;
+    rq.dev_addr = g_adv7180_i2c_device.address;
     rq.reg_addr = reg;
     rq.reg_addr_sz = 1;
 
@@ -84,11 +88,11 @@ static int32_t adv7180_write_reg(uint8_t reg, uint8_t pval)
 static int32_t adv7180_read_reg(uint8_t reg)
 {
     int ret = 0;
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
 	uint8_t pval = 0;
 
-    rq.ctl_addr = ADV7180_I2C_BASE;
-    rq.dev_addr = ADV7180_ADDR;
+    rq.ctl_addr = g_adv7180_i2c_device.port;
+    rq.dev_addr = g_adv7180_i2c_device.address;
     rq.reg_addr = reg;
     rq.reg_addr_sz = 1;
 
@@ -179,7 +183,7 @@ int32_t adv7180_init(void)
 
 	csi0_tvin_io_init();
 
-	adv7180_i2c_init(ADV7180_I2C_BASE, 50000);
+	adv7180_i2c_init(g_adv7180_i2c_device.port, 50000);
 	/* read the revision ID of the tvin chip */
 	rev_id = adv7180_read_reg(ADV7180_IDENT);
 	if (!((rev_id == 0x1B) || (rev_id == 0x1C) || (rev_id == 0x1E))) {
@@ -200,7 +204,7 @@ int32_t adv7180_get_std(void)
 	uint32_t reg_val;
 	int32_t idx;
 
-	adv7180_i2c_init(ADV7180_I2C_BASE, 50000);
+	adv7180_i2c_init(g_adv7180_i2c_device.port, 50000);
 
 	/* Read the AD_RESULT to get the output video standard */
 	reg_val = adv7180_read_reg(ADV7180_STATUS_1) & 0x70;
@@ -226,7 +230,7 @@ int32_t adv7180_is_interlaced_mode(void)
 {
 	uint32_t reg_val;
 
-	adv7180_i2c_init(ADV7180_I2C_BASE, 50000);
+	adv7180_i2c_init(g_adv7180_i2c_device.port, 50000);
 	/* Read the AD_RESULT to get the output video if interlaced or progressive */
 	reg_val = adv7180_read_reg(ADV7180_STATUS_3) & 0x40;
 
@@ -238,7 +242,7 @@ int32_t adv7180_is_interlaced_mode(void)
 
 static void adv7180_hard_reset(uint8_t cvbs)
 {
-	adv7180_i2c_init(ADV7180_I2C_BASE, 50000);
+	adv7180_i2c_init(g_adv7180_i2c_device.port, 50000);
 
 	if (cvbs) {
 		/* Set CVBS input on AIN1 */

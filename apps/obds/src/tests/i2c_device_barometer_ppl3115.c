@@ -8,12 +8,11 @@
 #include "obds.h"
 #include "hardware.h"
 
-#define PPL3115_I2C_ID			0x60
 #define PPL3115_REG_DEVICE_ID_OFF	0x0C
 
 static unsigned char ppl3115_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[1];
     unsigned char reg_data = 0;
 
@@ -33,7 +32,7 @@ static unsigned char ppl3115_reg_read(unsigned int i2c_base_addr, unsigned char 
 static int ppl3115_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr,
                              unsigned char reg_val)
 {
-    struct imx_i2c_request rq;
+    struct imx_i2c_request rq = {0};
     unsigned char buf[1];
 //    unsigned char reg_data = 0;
     buf[0] = reg_val;

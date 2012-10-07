@@ -72,12 +72,13 @@ static int32_t sgtl5000_init_status = 0;
 static void sgtl5000_i2c_init(audio_codec_p codec)
 {
     /* this init is needed only once */
-    sgtl5000_i2c_req.ctl_addr = codec->i2c_base;
-    sgtl5000_i2c_req.dev_addr = codec->i2c_dev_addr;
+//     sgtl5000_i2c_req.ctl_addr = codec->i2c_base;
+//     sgtl5000_i2c_req.dev_addr = codec->i2c_dev_addr;
+    sgtl5000_i2c_req.device = codec->device;
     sgtl5000_i2c_req.reg_addr_sz = 2;
     sgtl5000_i2c_req.buffer_sz = 2;
 
-    i2c_init(codec->i2c_base, codec->i2c_freq);
+    i2c_init(codec->device->port, codec->device->freq);
 }
 
 static int32_t sgtl5000_read_reg(audio_codec_p codec, uint16_t reg_addr, uint16_t *reg_val)
@@ -373,8 +374,9 @@ audio_dev_ops_t sgtl5000_ops = {
 
 audio_codec_t sgtl5000 = {
     .name = "sgtl5000",
-    .i2c_base = SGTL5000_I2C_BASE,
-    .i2c_freq = 100000,
-    .i2c_dev_addr = SGTL5000_I2C_ID,
+    .device = &g_sgtl5000_i2c_device,
+//     .i2c_base = SGTL5000_I2C_BASE,
+//     .i2c_freq = 100000,
+//     .i2c_dev_addr = SGTL5000_I2C_ID,
     .ops = &sgtl5000_ops,
 };

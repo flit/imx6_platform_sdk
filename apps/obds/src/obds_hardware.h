@@ -13,6 +13,21 @@
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
+//! @brief I2C addresses for devices tested by OBDS.
+enum
+{
+    MMA8450_I2C_ID = 0x1C,
+    MMA8451_I2C_ID = 0x1C,
+    MAG3112_I2C_ID = 0x1D,
+    ISL29023_I2C_ID = 0x44,
+    MAG3110_I2C_ID = 0x0E,
+    PPL3115_I2C_ID = 0x60,
+    EMC1046_I2C_ID = 0x4C,
+    MC1323_I2C_ID = 0x4C,
+    MAX11801_I2C_ID = (0x90 >> 1),
+    PMIC_MC13892_I2C_ADDR = 0x8
+};
+
 //! @brief SPI-NOR device types
 enum
 {

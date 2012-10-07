@@ -15,7 +15,8 @@
 #define __ADV7180_DEF_H__
 
 #include "i2c/imx_i2c.h"
-#include "hardware.h"
+//#include "hardware.h"
+#include "sdk_types.h"
 
 typedef enum {
 	ADV7180_NTSC = 0,	/*!< Locked on (M) NTSC video signal. */
@@ -103,6 +104,8 @@ typedef struct {
 #define ADV7180_ICR3_ADI	0x4B
 #define ADV7180_IMR3_ADI	0x4C
 #define ADV7180_IMR4_ADI	0x50
+
+extern const i2c_device_info_t g_adv7180_i2c_device;
 
 extern video_fmt_t video_fmts[];
 extern int32_t adv7180_init(void);

@@ -9,8 +9,19 @@
 
 #include "audio.h"
 
-extern audio_card_t snd_card_ssi;
+//! @brief i.MX SSI sound card - sgtl5000
+extern audio_card_t snd_card_ssi_sgtl5000;
+
+//! @brief i.MX SSI sound card - wm8958
+extern audio_card_t snd_card_ssi_wm8958;
+
+//! @brief i.MX SSI sound card - wm8962
+extern audio_card_t snd_card_ssi_wm8962;
+
+//! @brief i.MX ESAI sound card - cs42888
 extern audio_card_t snd_card_esai;
+
+//! @brief i.MX SPDIF sound card
 extern audio_card_t snd_card_spdif;
 
 #endif //_SND_CARD_H_

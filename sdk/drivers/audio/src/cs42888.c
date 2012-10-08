@@ -15,7 +15,7 @@
 #include "sdk.h"
 #include "hardware.h"
 #include "audio/audio.h"
-#include "audio/cs42888.h"
+#include "cs42888.h"
 
 extern int32_t esai_codec_power_on(void);
 

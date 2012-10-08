@@ -10,6 +10,8 @@
 #include "sdk.h"
 #include "hardware.h"
 #include "audio/test/wav_data.data"
+#include "audio/imx-audmux.h"
+#include "audio/audio.h"
 
 #define SSI_WRITE_TIMEOUT	0x400000
 

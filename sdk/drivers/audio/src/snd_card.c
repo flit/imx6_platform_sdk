@@ -165,7 +165,7 @@ static audio_dev_ops_t snd_card_ops = {
 };
 
 audio_card_t snd_card_esai = {
-    .name = "i.MX EASI sound card",
+    .name = "i.MX ESAI sound card - cs42888",
     .codec = &cs42888,
     .ctrl = &imx_esai_1,
     .ops = &snd_card_ops,

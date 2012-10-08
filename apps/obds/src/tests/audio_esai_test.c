@@ -12,6 +12,7 @@
 #include "io.h"
 #include "hardware.h"
 #include "soc_memory_map.h"
+#include "audio/audio.h"
 
 extern audio_pcm_t pcm_music;
 extern audio_pcm_para_t pcm_para;

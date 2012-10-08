@@ -15,7 +15,7 @@
 #include "sdk.h"
 #include "hardware.h"
 #include "audio/audio.h"
-#include "audio/sgtl5000.h"
+#include "sgtl5000.h"
 #include "sgtl5000_priv.h"
 
 extern void SGTL5000PowerUp_and_clockinit(void);

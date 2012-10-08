@@ -15,7 +15,7 @@
 #include "sdk.h"
 #include "hardware.h"
 #include "audio/audio.h"
-#include "audio/imx_esai.h"
+#include "imx_esai.h"
 #include "registers/regsesai.h"
 
 #define ESAI_DEBUG	1

@@ -43,8 +43,6 @@
 #include "board_i2c.h"
 
 //Add for obds tests
-#include "audio/audio.h"
-#include "audio/imx-audmux.h"
 #include "spi/ecspi_ifc.h"
 #include "enet/enet.h"
 #include "board_id/board_id.h"

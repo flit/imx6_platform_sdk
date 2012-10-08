@@ -7,7 +7,7 @@
 
 #include "hardware.h"
 #include "audio/audio.h"
-#include "audio/wm8962.h"
+#include "wm8962.h"
 
 extern int32_t esai_codec_power_on(void);
 

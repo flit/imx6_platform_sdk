@@ -7,7 +7,7 @@
 
 #include "hardware.h"
 #include "audio/audio.h"
-#include "audio/wm8958_dac.h"
+#include "wm8958_dac.h"
 
 struct imx_i2c_request wm8958_i2c_req;
 

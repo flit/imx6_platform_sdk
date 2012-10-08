@@ -16,7 +16,7 @@
 #include "sdk.h"
 #include "hardware.h"
 #include "audio/audio.h"
-#include "audio/imx-ssi.h"
+#include "imx-ssi.h"
 #include "registers/regsssi.h"
 
 #define SSI_DEBUG 0

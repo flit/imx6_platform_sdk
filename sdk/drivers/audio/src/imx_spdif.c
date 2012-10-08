@@ -15,7 +15,7 @@
 #include "sdk.h"
 #include "hardware.h"
 #include "audio/audio.h"
-#include "audio/imx_spdif.h"
+#include "imx_spdif.h"
 #include "registers/regsspdif.h"
 
 #define SPDIF_DEBUG 1

@@ -22,8 +22,7 @@ extern void usdhc_test(void);
 extern void hdmi_test(void);
 extern void audio_test(void);
 extern void i2c_test(void);
-extern void gic_sgi_test(void);
-extern void gic_multicore_test(void);
+extern void gic_test(void);
 extern void snvs_rtc_test(void);
 extern void snvs_srtc_test(void);
 extern void flexcan_test(void);
@@ -46,8 +45,6 @@ extern int pcie_test(void);
 
 void ALL_test(void)
 {
-    uint8_t gic_test_done = 0;
-
     while (1) {
         printf("Starting the tests suite...\n");
 #if defined(BOARD_EVB)
@@ -93,13 +90,9 @@ void ALL_test(void)
 #if defined(BOARD_SMART_DEVICE) && defined(BOARD_REV_B)
 // 		usb_test();
 #endif
-        gic_sgi_test();
 
-        /* GIC test can only be executed once, and requires a board reset */
-        if (gic_test_done == 0) {
-            gic_test_done = 0xFF;
-            gic_multicore_test();
-        }
+        gic_test();
+
 #ifdef BOARD_SABRE_AI
     /* need to be here */
         flexcan_test();

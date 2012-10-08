@@ -25,12 +25,16 @@
 #  - sdk_unit_test
 #  - power_modes_test
 #  - obds
+#  - gpu_demo
+#  - multicore_demo
 #  - clean
 #  - clean_sdk
 #  - clean_board
 #  - clean_sdk_unit_test
 #  - clean_power_modes_test
 #  - clean_obds
+#  - clean_gpu_demo
+#  - clean_multicore_demo
 #
 # The clean targets work with any combination of configuration variables. For
 # example, clean_sdk with TARGET set will clean libsdk for only that TARGET, while
@@ -49,7 +53,8 @@ ALL_APPS = \
     sdk_unit_test \
     power_modes_test \
     obds \
-    gpu_demo
+    gpu_demo \
+    multicore_demo
 
 # Default target.
 .PHONY: all

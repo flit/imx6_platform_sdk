@@ -34,7 +34,9 @@
 #include "sata/imx_sata.h"
 #endif
 #include "timer/timer.h"
+#if !defined(CHIP_MX6SL)
 #include "hdmi_regs.h"
+#endif
 #include "buffers.h"
 #include "usb/usb.h"
 #include "keypad/keypad_port.h"

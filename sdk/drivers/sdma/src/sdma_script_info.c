@@ -16,7 +16,7 @@
 #include "sdma_script_code_mx53.h"
 #elif defined (CHIP_MX6DQ)
 #include "sdma_script_code_mx6dq.h"
-#elif defined (CHIP_MX6SDL)
+#elif defined (CHIP_MX6SDL) || defined (CHIP_MX6SL)
 #include "sdma_script_code_mx6sdl.h"
 #endif
 

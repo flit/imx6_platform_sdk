@@ -22,6 +22,7 @@ SOURCES := \
 	$(SDK_ROOT)/board/common/hardware.c \
 	$(SDK_ROOT)/board/common/board_io_expanders.c \
 	$(SDK_ROOT)/board/common/board_i2c.c \
+	$(SDK_ROOT)/board/$(TARGET)/$(BOARD)/dcd.c \
 	$(wildcard rev_$(BOARD_REVISION)_iomux/*.c)
 
 

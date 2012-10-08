@@ -11,7 +11,6 @@ endif
 
 define SOURCES
 audio/src/cs42888.c
-audio/src/imx_esai.c
 audio/src/imx_spdif.c
 audio/src/imx-audmux.c
 audio/src/imx-ssi.c
@@ -21,10 +20,8 @@ audio/src/wm8958_dac.c
 audio/src/wm8962.c
 board_id/src/board_id.c
 camera/src/camera_profile.c
-camera/src/smd_sensor.c
 cpu_utility/src/cpu_get_cores.c
 eim/src/eim.c
-flexcan/src/can.c
 gic/src/gic.c
 gpio/src/gpio.c
 i2c/src/imx_i2c_slave.c
@@ -63,6 +60,8 @@ endif
 # Add drivers that are only available of mx6dq or mx6sdl.
 ifdef is_dq_or_sdl
 SOURCES += \
+    audio/src/imx_esai.c \
+    camera/src/smd_sensor.c \
 	enet/src/enet_drv.c \
 	flexcan/src/can.c \
 	gpmi/src/bch_ecc.c \

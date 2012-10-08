@@ -91,7 +91,8 @@ valid_builds=( "mx6dq"  "sabre_ai"     "a"
                "mx6sdl" "evb"          "a"
                "mx6sdl" "sabre_lite"   "a"
                "mx6sdl" "smart_device" "a"
-               "mx6sdl" "smart_device" "b")
+               "mx6sdl" "smart_device" "b"
+               "mx6sl"  "evk"          "a")
 
 do_build()
 {

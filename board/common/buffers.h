@@ -64,6 +64,11 @@
 #define VPU_SEC_AXI_END		0x0091FFFF
 #define TLB_ENTRY_START		0x0090B000
 #define TLB_ENTRY_END		0x0090EFFF
+#elif defined(CHIP_MX6SL)
+#define VPU_SEC_AXI_START	0x00910000
+#define VPU_SEC_AXI_END		0x0091FFFF
+#define TLB_ENTRY_START		0x0090B000
+#define TLB_ENTRY_END		0x0090EFFF
 #else
 #error need to add defines
 #endif

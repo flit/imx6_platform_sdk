@@ -17,16 +17,41 @@ MEMORY
 SECTIONS
 {
     _start_image_add = ORIGIN(DDR);
-
+       
+    .ivt :
+    {
+        . = . + 0x400;
+        *o(.ivt)
+    } 
+    
+    .boot_data :
+    {
+        __start_boot_data = .;
+        *o(.boot_data)
+    } 
+    
+    .dcd_hdr :
+    {
+        __start_dcd = .;
+        *o(.dcd_hdr)
+    }
+    .dcd_wrt_cmd :
+    {
+        *o(.dcd_wrt_cmd)
+    }
+    .dcd_data :
+    {
+        *o(.dcd_data)
+    }
+    
+    . = ALIGN (32);
     .vectors :
     {
-        __vectors_start = .;
         *o(.vectors)
-        __vectors_end = .;
-    }>DDR
+    } 
 
     . = ALIGN (32);
-    .text : 
+    .text :
     {
          *(.text)
     }
@@ -49,7 +74,10 @@ SECTIONS
     .ARM.exidx : { *(.ARM.exidx* .gnu.linkonce.armexidx.*) }
     __exidx_end = .;
 
-    . = ALIGN (32);
+    . = ALIGN (4);
+    __hab_data = .;
+    . = . + 0x2000;
+    __hab_data_end = .;
     _end_image_add = .;
     _image_size = _end_image_add - _start_image_add;
 

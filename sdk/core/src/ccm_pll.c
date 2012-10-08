@@ -50,7 +50,9 @@ void ccm_init(void)
      * => by default, ipg_podf divides by 2 => IPG_CLK@66MHz.
      */
     HW_CCM_CBCDR.U = BF_CCM_CBCDR_AHB_PODF(3)
+#if !defined (CHIP_MX6SL)
         | BF_CCM_CBCDR_AXI_PODF(1)
+#endif
         | BF_CCM_CBCDR_IPG_PODF(1);
 
     /*
@@ -78,12 +80,14 @@ uint32_t get_main_clock(main_clocks_t clock)
     case CPU_CLK:
         ret_val = PLL1_OUTPUT;
         break;
-    case AXI_CLK:
+#if !defined (CHIP_MX6SL)
+   case AXI_CLK:
         ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AXI_PODF + 1);
         break;
-    case MMDC_CH0_AXI_CLK:
+   case MMDC_CH0_AXI_CLK:
         ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.MMDC_CH0_AXI_PODF + 1);
         break;
+#endif
     case AHB_CLK:
         ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.AHB_PODF + 1);
         break;
@@ -98,9 +102,11 @@ uint32_t get_main_clock(main_clocks_t clock)
                                                1) / (HW_CCM_CBCDR.B.IPG_PODF +
                                                      1) / (HW_CCM_CSCMR1.B.PERCLK_PODF + 1);
         break;
+#if !defined (CHIP_MX6SL)
     case MMDC_CH1_AXI_CLK:
         ret_val = PLL2_OUTPUT[pre_periph_clk_sel] / (HW_CCM_CBCDR.B.MMDC_CH1_AXI_PODF + 1);
         break;
+#endif
     default:
         break;
     }
@@ -120,13 +126,13 @@ uint32_t get_peri_clock(peri_clocks_t clock)
         // UART source clock is a fixed PLL3 / 6
         ret_val = PLL3_OUTPUT[0] / 6 / (HW_CCM_CSCDR1.B.UART_CLK_PODF + 1);
         break;
-
+#if !defined (CHIP_MX6SL)
     case RAWNAND_CLK:
         ret_val =
             PLL3_OUTPUT[0] / (HW_CCM_CS2CDR.B.ENFC_CLK_PRED + 1) / (HW_CCM_CS2CDR.B.ENFC_CLK_PODF +
                                                                     1);
         break;
-
+#endif
     default:
         break;
     }
@@ -216,6 +222,7 @@ void clock_gating_config(uint32_t base_address, uint32_t gating_mode)
         ccm_ccgrx = HW_CCM_CCGR2_ADDR;
         cgx_offset = CG(5);
         break;
+#if !defined (CHIP_MX6SL)
     case PERFMON1_BASE_ADDR:
         ccm_ccgrx = HW_CCM_CCGR4_ADDR;
         cgx_offset = CG(1);
@@ -242,6 +249,7 @@ void clock_gating_config(uint32_t base_address, uint32_t gating_mode)
         ccm_ccgrx = HW_CCM_CCGR1_ADDR;
         cgx_offset = CG(8);
         break;
+#endif
     default:
         break;
     }
@@ -252,6 +260,7 @@ void clock_gating_config(uint32_t base_address, uint32_t gating_mode)
     }
 }
 
+#if !defined (CHIP_MX6SL)
 /*!
  * @brief Configure ipu 1 and 2 hsp clk to default 264MHz
  *
@@ -362,7 +371,7 @@ void esai_clk_sel_gate_on()
 
     clock_gating_config(ESAI1_BASE_ADDR, CLOCK_ON);
 }
-
+#endif
 /*!
  * @brief SATA related clocks enable function
  */
@@ -463,7 +472,10 @@ void ccm_enter_low_power(lp_modes_t lp_mode)
 
     // if MMDC channel 1 is not used, the handshake must be masked 
     // set disable core clock in wait - set disable oscillator in stop
-    ccm_clpcr = BM_CCM_CLPCR_BYPASS_MMDC_CH1_LPM_HS |
+    ccm_clpcr = 
+#if !defined (CHIP_MX6SL)
+        BM_CCM_CLPCR_BYPASS_MMDC_CH1_LPM_HS |
+#endif
         BM_CCM_CLPCR_SBYOS | BM_CCM_CLPCR_ARM_CLK_DIS_ON_LPM | lp_mode;
 
     if (lp_mode == STOP_MODE) {
@@ -489,6 +501,7 @@ void mipi_clock_set(void)
     BW_CCM_ANALOG_PFD_480_PFD1_FRAC(0x10);
 }
 
+#if !defined (CHIP_MX6SL)
 void mipi_csi2_clock_set(void)
 {
     //set VIDPLL(PLL5) to 596MHz 
@@ -543,7 +556,7 @@ void gpu_clock_config(void)
     HW_CCM_CSCDR2.B.IPU2_DI1_CLK_SEL = 3;   // derive clock from 352M PFD
 #endif // CHIP_MX6DQ
 }
-
+#endif
 ////////////////////////////////////////////////////////////////////////////////
 // End of file
 ////////////////////////////////////////////////////////////////////////////////

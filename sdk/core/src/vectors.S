@@ -11,15 +11,11 @@
  *
  * @ingroup diag_init
  */
-#include "plat_startup.h"
 #include "asm_defines.h"
 
     .code 32
     .section ".vectors","ax"
     
-#ifdef PLATFORM_INIT
-    PLATFORM_INIT                       // beginning of the image can put dcd here
-#endif
 
     .global startup
     .func startup 

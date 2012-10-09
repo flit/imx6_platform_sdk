@@ -437,6 +437,7 @@ void imx_KSZ9021RN_reset(void)
 #endif
 }
 
+#if !defined (CHIP_MX6SL)
 /*!
  *
  * Additional code related to clock configuration
@@ -446,7 +447,7 @@ unsigned int spdif_get_tx_clk_freq(void)
 {
     return 30000000;
 }
-#if !defined (CHIP_MX6SL)
+
 void pcie_clk_setup(uint32_t enable)
 {
     if (enable) {

@@ -48,7 +48,6 @@ define SOURCES
     $(SDK_LIB_ROOT)/drivers/spi/test/spi_test.c
     src/obds.c
     src/obds_utils.c
-    src/tests/audio_ssi_test.c
     src/tests/ddr_test.c
     src/tests/flexcan_test.c
     src/tests/gps_test.c
@@ -80,6 +79,7 @@ endef
 # Add drivers that are only available of mx6dq or mx6sdl.
 ifdef is_dq_or_sdl
 SOURCES += \
+    src/tests/audio_ssi_test.c \
     src/tests/android_buttons_test.c \
     src/tests/deserializer_ds90ur124.c \
     src/tests/enet_mx6dldq_test.c \

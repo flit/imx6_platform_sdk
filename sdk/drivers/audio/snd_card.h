@@ -4,6 +4,13 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
  */
+
+/*!
+ * @file snd_card.h
+ * @brief Sound card instances 
+ *
+ * @ingroup diag_audio
+ */
 #ifndef _SND_CARD_H_
 #define _SND_CARD_H_
 

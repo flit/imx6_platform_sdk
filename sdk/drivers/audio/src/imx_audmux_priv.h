@@ -5,16 +5,13 @@
  * Freescale Semiconductor, Inc.
 */
 
-/*!
- * @file imx-audmux.h
- * @brief Macro and data struct definition for imx-audmux.
- *
+//! @addtogroup diag_audio
+//! @{
+
+/*! 
+ * @file imx-audmux-priv.h
+ * @brief imx-audmux private macros.
  */
-#ifndef __AUDMUX_H__
-#define __AUDMUX_H__
-
-#include "registers/regsaudmux.h"
-
 
 //------------------------------------------------------------------------------
 // REGISTER BIT WRITE VALUES
@@ -123,6 +120,7 @@
 #define AUDMUX_PORT_INDEX_MIN		1
 #define AUDMUX_PORT_INDEX_MAX		7
 
+//! Macro for PTCR reading
 #define HW_AUDMUX_PTCR_RD(port)		(port) == AUDMUX_PORT_1 ? HW_AUDMUX_PTCR1_RD() : \
 					(port) == AUDMUX_PORT_2 ? HW_AUDMUX_PTCR2_RD() : \
 					(port) == AUDMUX_PORT_3 ? HW_AUDMUX_PTCR3_RD() : \
@@ -131,6 +129,7 @@
 					(port) == AUDMUX_PORT_6 ? HW_AUDMUX_PTCR6_RD() : \
 					HW_AUDMUX_PTCR7_RD()
 
+//! Macro for PTCR writting
 #define HW_AUDMUX_PTCR_WR(port, v)	(port) == AUDMUX_PORT_1 ? HW_AUDMUX_PTCR1_WR((v)) : \
 					(port) == AUDMUX_PORT_2 ? HW_AUDMUX_PTCR2_WR((v)) : \
 					(port) == AUDMUX_PORT_3 ? HW_AUDMUX_PTCR3_WR((v)) : \
@@ -139,6 +138,7 @@
 					(port) == AUDMUX_PORT_6 ? HW_AUDMUX_PTCR6_WR((v)) : \
 					HW_AUDMUX_PTCR7_WR((v))
 
+//! Macro for PDCR reading
 #define HW_AUDMUX_PDCR_RD(port)		(port) == AUDMUX_PORT_1 ? HW_AUDMUX_PDCR1_RD() : \
 					(port) == AUDMUX_PORT_2 ? HW_AUDMUX_PDCR2_RD() : \
 					(port) == AUDMUX_PORT_3 ? HW_AUDMUX_PDCR3_RD() : \
@@ -147,6 +147,7 @@
 					(port) == AUDMUX_PORT_6 ? HW_AUDMUX_PDCR6_RD() : \
 					HW_AUDMUX_PDCR7_RD()
 
+//! Macro for PDCR writting
 #define HW_AUDMUX_PDCR_WR(port, v)	(port) == AUDMUX_PORT_1 ? HW_AUDMUX_PDCR1_WR((v)) : \
 					(port) == AUDMUX_PORT_2 ? HW_AUDMUX_PDCR2_WR((v)) : \
 					(port) == AUDMUX_PORT_3 ? HW_AUDMUX_PDCR3_WR((v)) : \
@@ -154,31 +155,3 @@
 					(port) == AUDMUX_PORT_5 ? HW_AUDMUX_PDCR5_WR((v)) : \
 					(port) == AUDMUX_PORT_6 ? HW_AUDMUX_PDCR6_WR((v)) : \
 					HW_AUDMUX_PDCR7_WR((v))
-
-typedef enum {
-    AUDMUX_PORT_1 = 1,
-    AUDMUX_PORT_2,
-    AUDMUX_PORT_3,
-    AUDMUX_PORT_4,
-    AUDMUX_PORT_5,
-    AUDMUX_PORT_6,
-    AUDMUX_PORT_7,
-} audmux_port_e;
-
-typedef enum {
-    AUDMUX_SSI_SLAVE = 0,
-    AUDMUX_SSI_MASTER,
-} audmux_ssi_dir_e;
-
-//////////////////////////////////API functions declaration////////////////////////////////
-#if defined(__cplusplus)
-extern "C" {
-#endif                          // __cplusplus
-
-    uint32_t audmux_port_set(uint32_t port, uint32_t ptcr, uint32_t pdcr);
-    uint32_t audmux_route(uint32_t intPort, uint32_t extPort, uint32_t is_master);
-
-#if defined(__cplusplus)
-}
-#endif                          // __cplusplus
-#endif

@@ -44,8 +44,6 @@ struct imx_i2c_request wm8962_i2c_req;
 static void wm8962_i2c_init(audio_codec_p codec)
 {
     /* this init is needed only once */
-//     wm8962_i2c_req.ctl_addr = codec->i2c_base;
-//     wm8962_i2c_req.dev_addr = codec->i2c_dev_addr;
     wm8962_i2c_req.device = codec->device;
     wm8962_i2c_req.reg_addr_sz = 2;
     wm8962_i2c_req.buffer_sz = 2;

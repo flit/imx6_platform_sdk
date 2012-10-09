@@ -5,6 +5,14 @@
  * Freescale Semiconductor, Inc.
 */
 
+//! @addtogroup diag_pcie
+//! @{
+
+/*!
+ * @file pcie.c
+ * @brief PCIE driver.
+ */
+
 #include "sdk.h"
 #include "soc_memory_map.h"
 #include "iomux_register.h"
@@ -89,7 +97,6 @@ static int wait_link_up(int wait_ms)
 
     count = wait_ms;
     do {
-//        val = reg32_read(PCIE_DBI_BASE_ADDR + DB_R1) & (0x1 << (36 - 32));  // link is debug bit 36 debug 1 start in bit 32
 	val = HW_PCIE_PL_DEBUG1_RD() & (0x01 << (36 - 32));	//link is debug bit 36 debug 1 start in bit 32
         count--;
         hal_delay_us(1000);
@@ -103,30 +110,9 @@ static int wait_link_up(int wait_ms)
 
 /**************** Common routines **************************/
 
-/*! 
- * Map endpoint's space to CPU side.
- *
- * @param    viewport:	the viewport number of iATU	
- * @param    tlp_type:	the type of the transaction layer package
- * @param	 addr_base_cpu_side: base address in CPU side
- * @param	 addr_base_pcie_side: base address in PCIE side
- * @param	 size: the size of the space to be mapped
- *
- * @return   base address in CPU side
- */
 uint32_t pcie_map_space(uint32_t viewport, uint32_t tlp_type,
                         uint32_t addr_base_cpu_side, uint32_t addr_base_pcie_side, uint32_t size)
 {
-/*
-    reg32_write(PCIE_DBI_BASE_ADDR + ATU_VIEWPORT_R, (viewport & 0x0F) | (0 << 31));
-    reg32_write(PCIE_DBI_BASE_ADDR + ATU_REGION_LOWBASE_R, addr_base_cpu_side);
-    reg32_write(PCIE_DBI_BASE_ADDR + ATU_REGION_UPBASE_R, 0);
-    reg32_write(PCIE_DBI_BASE_ADDR + ATU_REGION_LIMIT_ADDR_R, addr_base_cpu_side + size - 1);
-    reg32_write(PCIE_DBI_BASE_ADDR + ATU_REGION_UP_TRGT_ADDR_R, 0);
-    reg32_write(PCIE_DBI_BASE_ADDR + ATU_REGION_LOW_TRGT_ADDR_R, addr_base_pcie_side);
-    reg32_write(PCIE_DBI_BASE_ADDR + ATU_REGION_CTRL1_R, tlp_type & 0x0F);
-    reg32_write(PCIE_DBI_BASE_ADDR + ATU_REGION_CTRL2_R, ((unsigned int)(1 << 31)));
-*/
     HW_PCIE_PL_IATUVR_WR((viewport & 0x0F) | (0 << 31));
     HW_PCIE_PL_IATURLBA_WR(addr_base_cpu_side);
     HW_PCIE_PL_IATURUBA_WR(0);
@@ -139,13 +125,6 @@ uint32_t pcie_map_space(uint32_t viewport, uint32_t tlp_type,
     return addr_base_cpu_side;
 }
 
-/*! 
- * This function initialized the PCIE controller.
- *
- * @param    dev_mode: the Mode of the PCIE controller, root complex or endpoint	
- *
- * @return   0 if succeed, -1 if failed
- */
 int pcie_init(pcie_dm_mode_e dev_mode)
 {
     uint32_t val;
@@ -197,13 +176,10 @@ int pcie_init(pcie_dm_mode_e dev_mode)
         return -1;
     }
     //enable master, io, memory
-    //val = reg32_read(PCIE_DBI_BASE_ADDR + STS_CMD_RGSTR);
     val = HW_PCIE_RC_COMMAND_RD();
-    //val |= 0x07;
     val |= BM_PCIE_RC_COMMAND_I_O_SPACE_ENABLE |
 	BM_PCIE_RC_COMMAND_MEMORY_SPACE_ENABLE |
 	BM_PCIE_RC_COMMAND_BUS_MASTER_ENABLE;
-    //reg32_write(PCIE_DBI_BASE_ADDR + STS_CMD_RGSTR, val);
     HW_PCIE_RC_COMMAND_WR(val);
 
     return 0;

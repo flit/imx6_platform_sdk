@@ -28,6 +28,21 @@
 
 #define UNUSED_VARIABLE(x)	(x) = (x)
 
+/* Register value definitions */
+#define SCR_TXFIFO_ESEL_0_SAMPLE	(0x0 << 15)
+#define SCR_TXFIFO_ESEL_4_SAMPLE	(0x1 << 15)
+#define SCR_TXFIFO_ESEL_8_SAMPLE	(0x2 << 15)
+#define SCR_TXFIFO_ESEL_12_SAMPLE	(0x3 << 15)
+#define SCR_TXFIFO_ZERO		(0 << 10)
+#define SCR_TXFIFO_NORMAL	(1 << 10)
+#define SCR_VAL_CLEAR		(1 << 5)
+#define SCR_TXSEL_OFF		(0 << 2)
+#define SCR_TXSEL_RX		(1 << 2)
+#define SCR_TXSEL_NORMAL	(0x5 << 2)
+#define SCR_USRC_SEL_NONE	(0x0)
+#define SCR_USRC_SEL_RECV	(0x1)
+#define SCR_USRC_SEL_CHIP	(0x3)
+
 extern void spdif_clk_cfg(void);
 extern unsigned int spdif_get_tx_clk_freq(void);
 

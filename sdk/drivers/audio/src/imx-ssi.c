@@ -29,6 +29,29 @@
 #define D(fmt,args...)
 #endif
 
+//! Default tx/rx watermakr
+#define SSI_SFCSR_TX_WATERMARK      4   // Default 4
+#define SSI_SFCSR_RX_WATERMARK      4   // Default 4
+
+//! Default values for SSI registers
+#define SSI_SCR_RESET_VAL	0x00000000
+#define SSI_SISR_RESET_VAL      0x00003003
+#define SSI_SIER_RESET_VAL      0x00003003
+#define SSI_STCR_RESET_VAL      0x00000200
+#define SSI_SRCR_RESET_VAL      0x00000200
+#define SSI_STCCR_RESET_VAL	0x00040000
+#define SSI_SRCCR_RESET_VAL	0x00040000
+#define SSI_SFCSR_RESET_VAL	0x00810081
+#define SSI_SACNT_RESET_VAL	0x00000000
+#define SSI_SACADD_RESET_VAL	0x00000000
+#define SSI_SACDAT_RESET_VAL	0x00000000
+#define SSI_SATAG_RESET_VAL	0x00000000
+#define SSI_STMSK_RESET_VAL	0x00000000
+#define SSI_SRMSK_RESET_VAL	0x00000000
+#define SSI_SACCST_RESET_VAL	0x00000000
+#define SSI_SACCEN_RESET_VAL	0x00000000
+#define SSI_SACCDIS_RESET_VAL	0x00000000
+
 ////////////////////////////////////Local variables and functions/////////////////////////// 
 
 /*!
@@ -313,16 +336,6 @@ static uint32_t ssi_hw_enable(audio_ctrl_p ctrl, uint32_t type, bool enable)
 
 //////////////////////////////////////// APIs //////////////////////////////////////////////////////////////
 
-/*!
- * Initialize the ssi module and set the ssi to default status. 
- * This function will be called by the snd_card driver. 
- *
- * @param       priv    a pointer passed by audio card driver, SSI driver should change it 
- *			to a audio_ctrl_p pointer which presents the SSI controller.
- *
- * @return      0 if succeeded
- *              -1 if failed
- */
 int32_t ssi_init(void *priv)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
@@ -334,17 +347,6 @@ int32_t ssi_init(void *priv)
     return 0;
 }
 
-/*!
- * Configure the SSI module according the parameters which was passed by audio_card driver.
- *
- * @param       priv    a pointer passed by audio card driver, SSI driver should change it
- *                      to a audio_ctrl_p pointer which presents the SSI controller.
- * @param       para	a pointer passed by audio card driver, consists of configuration parameters
- *                      for SSI controller.
- *
- * @return      0 if succeeded
- *              -1 if failed
- */
 int32_t ssi_config(void *priv, audio_dev_para_p para)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
@@ -397,17 +399,6 @@ int32_t ssi_config(void *priv, audio_dev_para_p para)
     return 0;
 }
 
-/*!
- * Write datas to the ssi fifo in polling mode.
- * @param       priv    a pointer passed by audio card driver, SSI driver should change it
- *                      to a audio_ctrl_p pointer which presents the SSI controller.
- * @param       buf	points to the buffer which hold the data to be written to the SSI tx fifo
- * @param       size    the size of the buffer pointed by buf.
- * @param       bytes_written	bytes be written to the SSI tx fifo
- *
- * @return      0 if succeeded
- *              -1 if failed
- */
 int32_t ssi_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_written)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
@@ -462,14 +453,6 @@ int32_t ssi_read_fifo(void *priv, uint8_t *buf, uint32_t byte2read, uint32_t * b
     return 0; 
 }
 
-/*!
- * Close the SSI module
- * @param       priv    a pointer passed by audio card driver, SSI driver should change it
- *                      to a audio_ctrl_p pointer which presents the SSI controller.
- *
- * @return      0 if succeeded
- *              -1 if failed
- */
 int32_t ssi_deinit(void *priv)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;

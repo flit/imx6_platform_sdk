@@ -12,7 +12,7 @@ endif
 define SOURCES
 audio/src/cs42888.c
 audio/src/imx_spdif.c
-audio/src/imx-audmux.c
+audio/src/imx_audmux.c
 audio/src/imx-ssi.c
 audio/src/sgtl5000.c
 audio/src/snd_card.c

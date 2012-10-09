@@ -9,7 +9,7 @@
 #include "sdk.h"
 #include "hardware.h"
 #include "audio/audio.h"
-#include "audio/imx-audmux.h"
+#include "audio/imx_audmux.h"
 
 /*
  * For smart_device board only.

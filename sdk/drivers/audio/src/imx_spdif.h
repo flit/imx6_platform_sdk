@@ -16,25 +16,7 @@
 #ifndef __IMX_SPDIF_H__
 #define __IMX_SPDIF_H__
 
-/* Register fields */
-#define SCR_RXFIFO_FSEL_BIT	(19)
-#define SCR_RXFIFO_FSEL_MASK	(0x3 << SCR_RXFIFO_FSEL_BIT)
-#define SCR_TXFIFO_ESEL_BIT	(15)
-#define SCR_TXFIFO_ESEL_MASK	(0x3 << SCR_TXFIFO_ESEL_BIT)
-#define SCR_TXFIFO_ESEL_0_SAMPLE	(0x0 << SCR_TXFIFO_ESEL_BIT)
-#define SCR_TXFIFO_ESEL_4_SAMPLE	(0x1 << SCR_TXFIFO_ESEL_BIT)
-#define SCR_TXFIFO_ESEL_8_SAMPLE	(0x2 << SCR_TXFIFO_ESEL_BIT)
-#define SCR_TXFIFO_ESEL_12_SAMPLE	(0x3 << SCR_TXFIFO_ESEL_BIT)
-#define SCR_TXFIFO_ZERO		(0 << 10)
-#define SCR_TXFIFO_NORMAL	(1 << 10)
-#define SCR_VAL_CLEAR		(1 << 5)
-#define SCR_TXSEL_OFF		(0 << 2)
-#define SCR_TXSEL_RX		(1 << 2)
-#define SCR_TXSEL_NORMAL	(0x5 << 2)
-#define SCR_USRC_SEL_NONE	(0x0)
-#define SCR_USRC_SEL_RECV	(0x1)
-#define SCR_USRC_SEL_CHIP	(0x3)
-
+//! @breif Clock source enumeration for spidf
 typedef enum {
     CLK_TO_MEAS_RXCLK_EXTAL = 0,
     CLK_TO_MEAS_RXCLK_SPDIF_CLK,
@@ -52,6 +34,7 @@ typedef enum {
     CLK_TO_MEAS_PHY_CLK,
 } spdif_clk_to_meas_e;
 
+//! @brief Gain selctors for spidf
 enum spdif_gainsel {
     GAINSEL_MULTI_24 = 0,
     GAINSEL_MULTI_16,
@@ -65,6 +48,8 @@ enum spdif_gainsel {
 
 #define SPDIF_DEFAULT_GAINSEL	GAINSEL_MULTI_8
 
+
+//! @brief Clock source for TX
 typedef enum {
     TX_CLK_SEL_XTAL0 = 0,
     TX_CLK_SEL_SPDIF0_CLK,
@@ -80,9 +65,8 @@ typedef enum {
 #define SPDIF_UBITS_SIZE	96
 #define SPDIF_QSUB_SIZE		(SPDIF_UBITS_SIZE/8)
 
-//------------------------------------------------------------------------------
-// Channel Status for Consumer use according to IEC60959-3
-//------------------------------------------------------------------------------
+//! @brief Channel Status for Consumer use according to IEC60959-3
+//! SPDIF controller will transmit MSB first. 
 typedef struct {
     union {
         uint32_t data;
@@ -98,7 +82,6 @@ typedef struct {
             uint32_t dummy:8;
         } ctrl;
     } h;                        //bits [0:23] of c channel
-    //todo : need check if place of h,l right?
     union {
         uint32_t data;
         struct {
@@ -116,6 +99,7 @@ typedef struct {
 
 } iec958_cchannel_t, *iec958_cchannel_p;
 
+//! IEC958 definitions
 #define IEC958_CON_CTRL_CONS        (0x0 << 0)  //Consumer use of channel status block
 #define IEC958_CON_AUDIO_PCM        (0x0 << 0)
 #define IEC958_CON_AUDIO_COMPRESSED (0x1 << 0)
@@ -162,6 +146,7 @@ typedef struct {
 #define IEC958_CON_SAMPLE_LENGTH_24_20   (0x5 << 0)
 #define IEC958_CON_SAMPLE_LENGTH_21_17   (0x3 << 0)
 
+//! @brief Setting types supported by the routine spdif_get_hw_setting 
 typedef enum {
     SPDIF_GET_FREQMEAS = 0,
     SPDIF_GET_GAIN_SEL,
@@ -172,15 +157,10 @@ typedef enum {
     SPDIF_GET_INT_STATUS,
 } spdif_get_setting_e;
 
-typedef enum {
-    SPDIF_HW_SETTING_SCR = 0,
-    SPDIF_HW_SETTING_USYNCMODE,
-    SPDIF_HW_SETTING_TX_CHANNEL_INFO_H,
-    SPDIF_HW_SETTING_TX_CHANNEL_INFO_L,
-    SPDIF_HW_SETTING_TX_CLK_CFG,
-} spdif_set_hw_setting_e;
 
-static uint32_t spdif_cal_txclk_div(audio_ctrl_p ctrl, uint32_t sample_rate);
-static uint32_t spdif_cal_txclk_div(audio_ctrl_p ctrl, uint32_t sample_rate);
+int32_t spdif_init(void *priv);
+int32_t spdif_config(void *priv, audio_dev_para_p para);
+int32_t spdif_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_written);
+int32_t spdif_deinit(void *priv);
 
 #endif //__IMX_SPDIF_H__

@@ -15,7 +15,9 @@
 #include <stdio.h>
 #include "sdk.h"
 #include "hardware.h"
-#include "audio/imx-audmux.h"
+#include "audio/imx_audmux.h"
+#include "imx_audmux_priv.h"
+#include "registers/regsaudmux.h"
 
 /*!
  * Dump the registers of audmux
@@ -35,15 +37,6 @@ static uint32_t audmux_dump(void)
     return 0;
 }
 
-/*!
- * Set ptcr and pdcr of the audmux port
- *
- * @param   port	the port to be set
- * @param   ptcr	ptcr value to be set
- * @param   pdcr	pdcr value to be set
- * @return  0 if succeeded
- *	    -1 if failed. 
- */
 uint32_t audmux_port_set(uint32_t port, uint32_t ptcr, uint32_t pdcr)
 {
     if ((port < AUDMUX_PORT_INDEX_MIN) || (port > AUDMUX_PORT_INDEX_MAX)) {
@@ -56,16 +49,6 @@ uint32_t audmux_port_set(uint32_t port, uint32_t ptcr, uint32_t pdcr)
     return 0;
 }
 
-/*!
- * Set audmux port according the ssi mode(master/slave).
- * we set the audumx ports in sync mode which is the default status for most codec.
- * 
- * @param   intPort	the internal port to be set
- * @param   extPort	the external port to be set
- * @param   is_master	ssi mode(master/slave)
- * @return  0 if succeeded
- *	    -1 if failed. 
- */
 uint32_t audmux_route(uint32_t intPort, uint32_t extPort, uint32_t is_master)
 {
     if ((intPort < AUDMUX_PORT_INDEX_MIN) || (intPort > AUDMUX_PORT_INDEX_MAX) ||

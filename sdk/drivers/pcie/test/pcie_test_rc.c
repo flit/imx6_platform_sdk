@@ -65,20 +65,6 @@ int pcie_test(void)
         printf("PCIE init succeed. Link setup\n");
     }
 
-    uint32_t phy_jtag_id_hi, phy_jtag_id_lo;
-
-    pcie_phy_cr_read(SSP_CR_SUP_DIG_IDCODE_LO, &phy_jtag_id_lo);
-    pcie_phy_cr_read(SSP_CR_SUP_DIG_IDCODE_HI, &phy_jtag_id_hi);
-
-    if ((phy_jtag_id_lo == SSP_JTAG_DR_IDCODE_VAL_LO)
-        && (phy_jtag_id_hi == SSP_JTAG_DR_IDCODE_VAL_HI)) {
-        printf("Read phy's JTAG ID succeesefully. The ID is 0x%08x.\n",
-               (phy_jtag_id_hi << 16) | phy_jtag_id_lo);
-    } else {
-        printf("Read phy's JTAG ID failed.\n");
-        return -1;
-    }
-
     printf("Remap the endpoint's configuration space to arm's memory space.\n");
     uint32_t cfg_hdr_base = pcie_map_space(PCIE_IATU_VIEWPORT_0,
                                            TLP_TYPE_CfgRdWr0,

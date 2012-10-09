@@ -5,103 +5,18 @@
  * Freescale Semiconductor, Inc.
 */
 
+//! @addtogroup diag_audio
+//! @{
+
+/*!
+ * @file imx-esai.h
+ * @brief ESAI header file.
+ */
+
 #ifndef __IMX_ESAI_H__
 #define __IMX_ESAI_H__
 
-#define ESAI_TFCR_TE(x) ((0x3f >> (6 - (((x) + 1) >> 1))) << 2)
-#define ESAI_TFCR_TFWM(x)	(((x) - 1) << 8)
-
-#define ESAI_RFCR_RE(x) ((0xf >> (4 - (((x) + 1) >> 1))) << 2)
-#define ESAI_RFCR_RFWM(x)       (((x)-1) << 8)
-
-#define ESAI_WORD_LEN_32	(0x00 << 16)
-#define ESAI_WORD_LEN_28	(0x01 << 16)
-#define ESAI_WORD_LEN_24	(0x02 << 16)
-#define ESAI_WORD_LEN_20	(0x03 << 16)
-#define ESAI_WORD_LEN_16	(0x04 << 16)
-#define ESAI_WORD_LEN_12	(0x05 << 16)
-#define ESAI_WORD_LEN_8		(0x06 << 16)
-#define ESAI_WORD_LEN_4		(0x07 << 16)
-#define ESAI_WORD_LEN_MSK	(0x7 << 16)
-#define ESAI_WORD_LEN_SHT	16
-
-#define ESAI_TCR_TE(x) (0x3f >> (6 - (((x) + 1) >> 1)))
-
-#define ESAI_TCR_TSWS_STL8_WDL8	(0x00 << 10)
-#define ESAI_TCR_TSWS_STL12_WDL8	(0x04 << 10)
-#define ESAI_TCR_TSWS_STL12_WDL12	(0x01 << 10)
-#define ESAI_TCR_TSWS_STL16_WDL8	(0x08 << 10)
-#define ESAI_TCR_TSWS_STL16_WDL12	(0x05 << 10)
-#define ESAI_TCR_TSWS_STL16_WDL16	(0x02 << 10)
-#define ESAI_TCR_TSWS_STL20_WDL8	(0x0c << 10)
-#define ESAI_TCR_TSWS_STL20_WDL12	(0x09 << 10)
-#define ESAI_TCR_TSWS_STL20_WDL16	(0x06 << 10)
-#define ESAI_TCR_TSWS_STL20_WDL20	(0x03 << 10)
-#define ESAI_TCR_TSWS_STL24_WDL8	(0x10 << 10)
-#define ESAI_TCR_TSWS_STL24_WDL12	(0x0d << 10)
-#define ESAI_TCR_TSWS_STL24_WDL16	(0x0a << 10)
-#define ESAI_TCR_TSWS_STL24_WDL20	(0x07 << 10)
-#define ESAI_TCR_TSWS_STL24_WDL24	(0x1e << 10)
-#define ESAI_TCR_TSWS_STL32_WDL8	(0x18 << 10)
-#define ESAI_TCR_TSWS_STL32_WDL12	(0x15 << 10)
-#define ESAI_TCR_TSWS_STL32_WDL16	(0x12 << 10)
-#define ESAI_TCR_TSWS_STL32_WDL20	(0x0f << 10)
-#define ESAI_TCR_TSWS_STL32_WDL24	(0x1f << 10)
-
-#define ESAI_TCR_TMOD_NORMAL	(0x00 << 8)
-#define ESAI_TCR_TMOD_ONDEMAND	(0x01 << 8)
-#define ESAI_TCR_TMOD_NETWORK	(0x01 << 8)
-#define ESAI_TCR_TMOD_RESERVED (0x02 << 8)
-#define ESAI_TCR_TMOD_AC97	(0x03 << 8)
-
-#define ESAI_TCCR_TPSR_BYPASS (1 << 8)
-#define ESAI_TCCR_TPSR_DIV8 (0 << 8)
-
-#define ESAI_TCCR_TFP(x)	((x & 0xf) << 14)
-
-#define ESAI_TCCR_TDC(x)	(((x) & 0x1f) << 9)
-
-#define ESAI_TCCR_TPM(x)	(x & 0xff)
-
-#define ESAI_RCR_RE_MSK	(0xF << 0)
-#define ESAI_RCR_RE(x) (0xf >> (4 - ((x + 1) >> 1)))
-
-#define ESAI_RCR_RSWS_STL8_WDL8	(0x00 << 10)
-#define ESAI_RCR_RSWS_STL12_WDL8	(0x04 << 10)
-#define ESAI_RCR_RSWS_STL12_WDL12	(0x01 << 10)
-#define ESAI_RCR_RSWS_STL16_WDL8	(0x08 << 10)
-#define ESAI_RCR_RSWS_STL16_WDL12	(0x05 << 10)
-#define ESAI_RCR_RSWS_STL16_WDL16	(0x02 << 10)
-#define ESAI_RCR_RSWS_STL20_WDL8	(0x0c << 10)
-#define ESAI_RCR_RSWS_STL20_WDL12	(0x09 << 10)
-#define ESAI_RCR_RSWS_STL20_WDL16	(0x06 << 10)
-#define ESAI_RCR_RSWS_STL20_WDL20	(0x03 << 10)
-#define ESAI_RCR_RSWS_STL24_WDL8	(0x10 << 10)
-#define ESAI_RCR_RSWS_STL24_WDL12	(0x0d << 10)
-#define ESAI_RCR_RSWS_STL24_WDL16	(0x0a << 10)
-#define ESAI_RCR_RSWS_STL24_WDL20	(0x07 << 10)
-#define ESAI_RCR_RSWS_STL24_WDL24	(0x1e << 10)
-#define ESAI_RCR_RSWS_STL32_WDL8	(0x18 << 10)
-#define ESAI_RCR_RSWS_STL32_WDL12	(0x15 << 10)
-#define ESAI_RCR_RSWS_STL32_WDL16	(0x12 << 10)
-#define ESAI_RCR_RSWS_STL32_WDL20	(0x0f << 10)
-#define ESAI_RCR_RSWS_STL32_WDL24	(0x1f << 10)
-
-#define ESAI_RCCR_RPSR_BYPASS (1 << 8)
-#define ESAI_RCCR_RPSR_DIV8 (0 << 8)
-
-#define ESAI_RCCR_RFP(x)	((x & 0xf) << 14)
-
-#define ESAI_RCCR_RDC(x)	(((x) & 0x1f) << 9)
-
-#define ESAI_RCCR_RPM(x)	(x & 0xff)
-
-#define ESAI_TSM_NUM(x)  (0xffffffff >> (32-x))
-
-#define ESAI_GPIO_ESAI		0xfff
-
-#define ESAI_WATERMARK 		64
-/////////////////////////////////
+//! @brief Parameter types supported by get/set routine
 typedef enum {
     ESAI_HW_PARA_ECR,
     ESAI_HW_PARA_TCR,
@@ -118,6 +33,7 @@ typedef enum {
     ESAI_HW_PARA_RX_WL,         //word len in bits
 } esai_hw_para_type_e;
 
+//! @brief Status supported by get_status routine
 typedef enum {
     ESAI_STATUS_ESR,
     ESAI_STATUS_TFSR,
@@ -125,6 +41,7 @@ typedef enum {
     ESAI_STATUS_SAISR,
 } esai_status_e;
 
+//! @brief Types supported by enable routine
 typedef enum {
     ESAI_SUB_ENABLE_TYPE_ESAI,
     ESAI_SUB_ENABLE_TYPE_TX,
@@ -132,5 +49,57 @@ typedef enum {
     ESAI_SUB_ENABLE_TYPE_TXFIFO,
     ESAI_SUB_ENABLE_TYPE_RXFIFO,
 } esai_sub_enable_type_e;
+
+////////////////////////////////////////////////////////////////////////////////
+// APIs
+////////////////////////////////////////////////////////////////////////////////
+
+/*!
+ * Configure the ESAI module according the parameters which was passed by audio_card driver.
+ *
+ * @param       priv    a pointer passed by audio card driver, ESAI driver should change it
+ *                      to a audio_ctrl_p pointer which presents the ESAI controller.
+ * @param       para    a pointer passed by audio card driver, consists of configuration parameters
+ *              for ESAI controller.
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
+ */
+int32_t esai_config(void *priv, audio_dev_para_p para);
+
+/*!
+ * Initialize the esai module and set the esai to default status. 
+ * This function will be called by the snd_card driver. 
+ *
+ * @param       priv    a pointer passed by audio card driver, ESAI driver should change it 
+ *                      to a audio_ctrl_p pointer which presents the ESAI controller.
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
+ */
+int32_t esai_init(void *priv);
+
+/*!
+ * Close the ESAI module
+ * @param       priv    a pointer passed by audio card driver, ESAI driver should change it
+ *                      to a audio_ctrl_p pointer which presents the ESAI controller.
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
+ */
+int32_t esai_deinit(void *priv);
+
+/*!
+ * Write datas to the esai fifo in polling mode.
+ * @param       priv    a pointer passed by audio card driver, esai driver should change it
+ *                      to a audio_ctrl_p pointer which presents the ESAI controller.
+ * @param       buf     points to the buffer which hold the data to be written to the ESAI tx fifo
+ * @param       size    the size of the buffer pointed by buf.
+ * @param       bytes_written	bytes be written to the ESAI tx fifo
+ *
+ * @return      0 if succeeded
+ *              -1 if failed
+ */
+int32_t esai_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_written);
 
 #endif

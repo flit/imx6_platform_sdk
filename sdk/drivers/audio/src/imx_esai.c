@@ -16,6 +16,7 @@
 #include "hardware.h"
 #include "audio/audio.h"
 #include "imx_esai.h"
+#include "imx_esai_priv.h"
 #include "registers/regsesai.h"
 
 #define ESAI_DEBUG	1
@@ -26,8 +27,6 @@
 #endif
 
 #define UNUSED_VARIABLE(x) (x) = (x)
-
-#define ESAI_TX_FIFO_SIZE	120
 
 extern void esai_clk_sel_gate_on(void);
 
@@ -204,11 +203,11 @@ static uint32_t esai_get_hw_para(audio_ctrl_p ctrl, uint32_t type)
         val = ((HW_ESAI_RSMB_RD() << 16) & 0xFFFF0000) | (HW_ESAI_RSMA_RD() & 0xFFFF);
         break;
     case ESAI_HW_PARA_TX_WL:
-        val = (HW_ESAI_TFCR_RD() & ESAI_WORD_LEN_MSK) >> ESAI_WORD_LEN_SHT;
+	val = BG_ESAI_TFCR_TWA(HW_ESAI_TFCR_RD());
         val = 32 - val * 4;
         break;
     case ESAI_HW_PARA_RX_WL:
-        val = (HW_ESAI_RFCR_RD() & ESAI_WORD_LEN_MSK) >> ESAI_WORD_LEN_SHT;
+	val = BG_ESAI_RFCR_RWA(HW_ESAI_RFCR_RD());
         val = 32 - val * 4;
         break;
     }
@@ -328,17 +327,6 @@ static int32_t esai_stuff_tx_fifo(audio_ctrl_p ctrl)
 
 ////////////////////////////// APIs /////////////////////////////////////
 
-/*!
- * Configure the ESAI module according the parameters which was passed by audio_card driver.
- *
- * @param       priv    a pointer passed by audio card driver, ESAI driver should change it
- *                      to a audio_ctrl_p pointer which presents the ESAI controller.
- * @param       para    a pointer passed by audio card driver, consists of configuration parameters
- *              for ESAI controller.
- *
- * @return      0 if succeeded
- *              -1 if failed
- */
 int32_t esai_config(void *priv, audio_dev_para_p para)
 {
     uint32_t val;
@@ -398,16 +386,6 @@ int32_t esai_config(void *priv, audio_dev_para_p para)
     return 0;
 }
 
-/*!
- * Initialize the esai module and set the esai to default status. 
- * This function will be called by the snd_card driver. 
- *
- * @param       priv    a pointer passed by audio card driver, ESAI driver should change it 
- *                      to a audio_ctrl_p pointer which presents the ESAI controller.
- *
- * @return      0 if succeeded
- *              -1 if failed
- */
 int32_t esai_init(void *priv)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
@@ -436,17 +414,6 @@ int32_t esai_deinit(void *priv)
     return 0;
 }
 
-/*!
- * Write datas to the esai fifo in polling mode.
- * @param       priv    a pointer passed by audio card driver, esai driver should change it
- *                      to a audio_ctrl_p pointer which presents the ESAI controller.
- * @param       buf     points to the buffer which hold the data to be written to the ESAI tx fifo
- * @param       size    the size of the buffer pointed by buf.
- * @param       bytes_written	bytes be written to the ESAI tx fifo
- *
- * @return      0 if succeeded
- *              -1 if failed
- */
 int32_t esai_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * bytes_written)
 {
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;

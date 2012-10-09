@@ -5,11 +5,20 @@
  * Freescale Semiconductor, Inc.
 */
 
+//! @addtogroup diag_pcie
+//! @{
+
+/*!
+ * @file pcie_prot.h
+ * @brief Interface for PCIE protocal
+ */
+
 #ifndef __PCIE_PROT__
 #define __PCIE_PROT__
 
 #include "sdk.h"
 
+//! @brief PCIE configuration header(type0)
 typedef struct {
     uint16_t vendor_id;
     uint16_t dev_id;
@@ -49,6 +58,7 @@ typedef struct {
     uint8_t max_latency;
 } __attribute__ ((packed)) pcie_cfg_hdr_type0_t, *pcie_cfg_hdr_type0_p;
 
+//! @brief PCIE configuration header(type1)
 typedef struct {
     uint16_t vendor_id;
     uint16_t dev_id;
@@ -95,12 +105,14 @@ typedef struct {
     uint16_t bridge_ctrl;
 } __attribute__ ((packed)) pcie_cfg_hdr_type1_t, *pcie_cfg_hdr_type1_p;
 
+//! @brief PCIE recource types 
 typedef enum {
     RESOURCE_TYPE_IO,
     RESOURCE_TYPE_MEM,
     RESOURCE_TYPE_INIT,
 } resource_type_e;
 
+//! @brief PCIE BARs
 typedef enum {
     PCIE_BAR_0,
     PCIE_BAR_1,
@@ -110,6 +122,7 @@ typedef enum {
     PCIE_BAR_5,
 } pcie_bar_e;
 
+//! @brief PCIE resource structure
 typedef struct {
     pcie_bar_e bar;
     resource_type_e type;
@@ -118,8 +131,42 @@ typedef struct {
     uint32_t size;
 } pcie_resource_t, *pcie_resource_p;
 
+////////////////////////////////////////////////////////////////////////////////
+// API
+///////////////////////////////////////////////////////////////////////////////
+
+/*! 
+ * @brief This function dump the PCIE configuration header 
+ *
+ * @param    header_base: the base address of the configuration header to be dumped	
+ *
+ * @return   0 on success,
+ *           -1 if failed
+ */
 int pcie_dump_cfg_header(uint32_t * header_base);
+
+/*! 
+ * @brief This function enumerate the PCIE endpoint's IO/memory recource 
+ *
+ * @param    header_base: the base address of the configuration header to be enumerated
+ * @param	 res:	the array to save the resources enumerated
+ * @param	 num:	the number of the resources
+ *
+ * @return   0 on success,
+ *           -1 if failed
+ */
 int pcie_enum_resources(uint32_t * header_base, pcie_resource_t res[], uint32_t * num);
+
+/*! 
+ * @brief This function configure the endpoint's BARs 
+ *
+ * @param    header_base: the base address of the configuration header
+ * @param	 bar:	the index of the BAR to be configured
+ * @param	 base:	the base address to be written to the BAR
+ * @param	 base_msk:	the mask of the base
+ *
+ * @return   the base addrss of the BAR
+ */
 uint32_t pcie_cfg_ep_bar(uint32_t header_base, uint32_t bar, uint32_t base, uint32_t base_msk);
 
 #endif

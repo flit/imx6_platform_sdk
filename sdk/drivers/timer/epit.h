@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-//! @addtogroup diag_timer
+//! @addtogroup diag_epit
 //! @{
 
 /*!

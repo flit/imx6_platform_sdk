@@ -9,7 +9,8 @@
 #define _OS_FILESYSTEM_ERRORDEFS_H
 
 ///////////////////////////////////////////////////////////////////////////////
-//! \addtogroup common
+//! \addtogroup os_fat_errors
+//! \ingroup os_fat
 //! @{
 //
 // Copyright (c) 2004-2005 SigmaTel, Inc.
@@ -41,16 +42,27 @@ typedef int32_t RtStatus_t;
 #endif
 #endif
 
+//! @name Generic errors
+//@{
 #define SUCCESS                         (0x00000000)
 #define ERROR_GENERIC                          (-1)
 #define ERROR_OUT_OF_MEMORY             (0xfffffffe)
+//@}
 
+//! @name Error mask
+//@{
 #define ERROR_MASK                      (-268435456)
+//@}
 
+//! @name Error groups
+//@{
 #define OS_GROUP                  (0x00300000) //0x80300000
 #define OS_FILESYSTEM_GROUP       (OS_GROUP|0x00005000)
 #define ERROR_OS_FILESYSTEM_GROUP       (ERROR_MASK|OS_FILESYSTEM_GROUP)
+//@}
 
+//! @name Filesystem errors
+//@{
 #define ERROR_OS_FILESYSTEM_GENERAL                              (ERROR_OS_FILESYSTEM_GROUP)
 #define ERROR_OS_FILESYSTEM_FILESYSTEM_NOT_FOUND                 (ERROR_OS_FILESYSTEM_GROUP + 1)
 #define ERROR_OS_FILESYSTEM_HANDLE_NOT_ACTIVE                    (ERROR_OS_FILESYSTEM_GROUP + 2)
@@ -103,6 +115,7 @@ typedef int32_t RtStatus_t;
 #define ERROR_OS_FILESYSTEM_UNSUPPORTED_FS_TYPE                  (ERROR_OS_FILESYSTEM_GROUP + 49)
 #define ERROR_OS_FILESYSTEM_MEMORY                               (ERROR_OS_FILESYSTEM_GROUP + 50)
 #define ERROR_OS_FILESYSTEM_NOT_EOF                              (ERROR_OS_FILESYSTEM_GROUP + 51)
+//@}
 
 #endif//_OS_FILESYSTEM_ERRORDEFS_H 
 

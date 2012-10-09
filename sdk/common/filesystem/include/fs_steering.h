@@ -4,7 +4,8 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
  */
-//! \addtogroup os_file
+//! \addtogroup os_fat_steering
+//! @ingroup os_fat
 //! @{
 // Copyright (c) 2004-2005 SigmaTel, Inc.
 //

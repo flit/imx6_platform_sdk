@@ -6,7 +6,9 @@
  */
 
 ///////////////////////////////////////////////////////////////////////////////
-//! \addtogroup fs_fat
+//! \addtogroup os_fat_io
+//! @brief Low level IO interface for FAT32 driver.
+//! @ingroup os_fat
 //! @{
 //! \file cache_wrappers.c
 //! \brief Contains wrappers for the cache read and write calls.

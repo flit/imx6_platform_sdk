@@ -5,7 +5,9 @@
  * Freescale Semiconductor, Inc.
  */
 ////////////////////////////////////////////////////////////////////////////////
-//! \addtogroup os_file
+//! \addtogroup os_fat_memory
+//! @brief Memory for FAT32 filesystem.
+//! @ingroup os_fat
 //! @{
 //!
 //  Copyright (c) 2005-2007 SigmaTel, Inc.

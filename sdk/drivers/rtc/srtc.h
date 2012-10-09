@@ -4,21 +4,18 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
+#ifndef __SRTC_H__
+#define __SRTC_H__
+
+//! @addtogroup diag_srtc
+//! @{
 
 /*!
  * @file srtc.h
  * @brief  SNVS SRTC driver header file.
- *
- * @ingroup diag_timer
  */
 
-#ifndef __SRTC_H__
-#define __SRTC_H__
-
 #include "sdk.h"
-
-//! @addtogroup diag_srtc
-//! @{
 
 ////////////////////////////////////////////////////////////////////////////////
 // API

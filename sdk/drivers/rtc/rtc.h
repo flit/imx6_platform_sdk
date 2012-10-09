@@ -4,21 +4,18 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
+#ifndef __RTC_H__
+#define __RTC_H__
+
+//! @addtogroup diag_rtc
+//! @{
 
 /*!
  * @file rtc.h
  * @brief  RTC driver header file.
- *
- * @ingroup diag_timer
  */
 
-#ifndef __RTC_H__
-#define __RTC_H__
-
 #include "sdk.h"
-
-//! @addtogroup diag_rtc
-//! @{
 
 ////////////////////////////////////////////////////////////////////////////////
 // API

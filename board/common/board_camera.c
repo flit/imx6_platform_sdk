@@ -6,6 +6,21 @@
 */
 
 #include "hardware.h"
+#include "camera/camera_def.h"
+#include "registers/regsiomuxc.h"
+#include "registers/regsccm.h"
+
+#if defined (CHIP_MX6SL)
+#define CAMERA_I2C_PORT (3)
+#else
+#define CAMERA_I2C_PORT (1)
+#endif
+
+////////////////////////////////////////////////////////////////////////////////
+// Variables
+////////////////////////////////////////////////////////////////////////////////
+
+uint8_t g_camera_i2c_port = CAMERA_I2C_PORT;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -81,6 +96,77 @@ void deserializer_io_config(void)
     csi_port0_iomux_config();
 #endif
 }
+
+#if !defined(CHIP_MX6SL)
+/*!
+ * reset camera sensor through GPIO on SMD board 
+ *
+ */
+void sensor_reset(void)
+{
+    int32_t reset_occupy = 1000, reset_delay = 1000;
+
+    sensor_standby(0);
+
+    /* MX6DQ/SDL_SMART_DEVICE: camera reset through GPIO1_17 */
+	BW_IOMUXC_SW_MUX_CTL_PAD_SD1_DAT1_MUX_MODE(ALT5);
+	gpio_set_direction(GPIO_PORT1, 17, GPIO_GDIR_OUTPUT);
+
+	gpio_set_level(GPIO_PORT1, 17, GPIO_LOW_LEVEL);
+    hal_delay_us(reset_occupy);
+
+	gpio_set_level(GPIO_PORT1, 17, GPIO_HIGH_LEVEL);
+    hal_delay_us(reset_delay);
+}
+
+/*!
+ * set camera sensor to standby mode.
+ *
+ * @param	enable: specify whether set camera sensor to standby mode
+ * 
+ */
+int32_t sensor_standby(int32_t enable)
+{
+    int32_t ret = 0;
+
+    /* MX6DQ/SDL_SMART_DEVICE: setting to gpio1_16, power down high active */
+	BW_IOMUXC_SW_MUX_CTL_PAD_SD1_DAT0_MUX_MODE(ALT5);
+	gpio_set_direction(GPIO_PORT1, 16, GPIO_GDIR_OUTPUT);
+    if (enable)
+		gpio_set_level(GPIO_PORT1, 16, GPIO_HIGH_LEVEL);
+    else
+		gpio_set_level(GPIO_PORT1, 16, GPIO_LOW_LEVEL);
+
+    return ret;
+}
+
+/*!
+ * set camera sensor clock to 24MHz. 
+ *
+ */
+void sensor_clock_setting(void)
+{
+    int32_t clock_delay = 1000;
+
+    /*MX6DQ/SDL_SMART_DEVICE: config clko */
+    /*config gpio_0 to be clko */
+	BW_IOMUXC_SW_MUX_CTL_PAD_GPIO_0_MUX_MODE(ALT0);
+
+	BW_IOMUXC_SW_PAD_CTL_PAD_GPIO_0_SRE(SRE_FAST);
+	BW_IOMUXC_SW_PAD_CTL_PAD_GPIO_0_DSE(DSE_80OHM);
+
+    /*select osc_clk 24MHz, CKO1 output drives cko2 clock */
+	HW_CCM_CCOSR_WR(
+			BF_CCM_CCOSR_CLKO2_EN(1) |
+			BF_CCM_CCOSR_CLKO2_DIV(0) | /*div 1*/
+			BF_CCM_CCOSR_CLKO2_SEL(0xe) | /*osc_clk*/
+			BF_CCM_CCOSR_CLKO1_CLKO2_SEL(1) |
+			BF_CCM_CCOSR_CLKO1_EN(1) |
+			BF_CCM_CCOSR_CLKO1_DIV(0)); /*div 1*/
+
+    hal_delay_us(clock_delay);
+}
+#endif // !defined(CHIP_MX6SL)
 
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

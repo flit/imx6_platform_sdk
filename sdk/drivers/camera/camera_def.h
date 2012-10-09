@@ -83,14 +83,28 @@ extern reg_param_t mt9p111_af_firmware[];
 extern reg_param_t mt9p111_af_trigger[];
 extern reg_param_t mt9p111_af_ready[];
 
+//! @name Board APIs
+//!
+//! These functions must be implemented by the board library or application.
+//@{
 void sensor_reset(void);
 int32_t sensor_standby(int32_t enable);
 void sensor_clock_setting(void);
+//@}
+
+//! @brief The I2C port number to which the camera is connected.
+//!
+//! This global must be provided by the board library or application.
+extern uint8_t g_camera_i2c_port;
+
+//! @name Camera sensor APIs
+//@{
 camera_profile_t *sensor_search(void);
 int32_t sensor_config(camera_profile_t * sensor);
 int32_t sensor_init(camera_profile_t * sensor);
 int32_t sensor_af_trigger(camera_profile_t * sensor);
 int32_t sensor_autofocus_init(camera_profile_t * sensor);
 int32_t sensor_i2c_init(uint32_t base, uint32_t baud);
+//@}
 
 #endif

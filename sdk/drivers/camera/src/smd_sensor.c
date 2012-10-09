@@ -15,12 +15,6 @@
 #include "registers/regsiomuxc.h"
 #include "registers/regsccm.h"
 
-#if defined (CHIP_MX6SL)
-#define i2c_base I2C3_BASE_ADDR
-#else
-#define i2c_base I2C1_BASE_ADDR
-#endif
-
 reg_param_t ov5642_strobe_on[] = {
     {0x3004, 0xff, 0, 0, 0},
     {0x3016, 0x02, 0, 0, 0},
@@ -32,74 +26,6 @@ static int32_t sensor_write_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t *
 static int32_t sensor_read_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * pval,
                                uint16_t is_16bits);
 
-/*!
- * reset camera sensor through GPIO on SMD board 
- *
- */
-void sensor_reset(void)
-{
-    int32_t reset_occupy = 1000, reset_delay = 1000;
-
-    sensor_standby(0);
-
-    /* MX6DQ/SDL_SMART_DEVICE: camera reset through GPIO1_17 */
-	BW_IOMUXC_SW_MUX_CTL_PAD_SD1_DAT1_MUX_MODE(ALT5);
-	gpio_set_direction(GPIO_PORT1, 17, GPIO_GDIR_OUTPUT);
-
-	gpio_set_level(GPIO_PORT1, 17, GPIO_LOW_LEVEL);
-    hal_delay_us(reset_occupy);
-
-	gpio_set_level(GPIO_PORT1, 17, GPIO_HIGH_LEVEL);
-    hal_delay_us(reset_delay);
-}
-
-/*!
- * set camera sensor to standby mode.
- *
- * @param	enable: specify whether set camera sensor to standby mode
- * 
- */
-int32_t sensor_standby(int32_t enable)
-{
-    int32_t ret = 0;
-
-    /* MX6DQ/SDL_SMART_DEVICE: setting to gpio1_16, power down high active */
-	BW_IOMUXC_SW_MUX_CTL_PAD_SD1_DAT0_MUX_MODE(ALT5);
-	gpio_set_direction(GPIO_PORT1, 16, GPIO_GDIR_OUTPUT);
-    if (enable)
-		gpio_set_level(GPIO_PORT1, 16, GPIO_HIGH_LEVEL);
-    else
-		gpio_set_level(GPIO_PORT1, 16, GPIO_LOW_LEVEL);
-
-    return ret;
-}
-
-/*!
- * set camera sensor clock to 24MHz. 
- *
- */
-void sensor_clock_setting(void)
-{
-    int32_t clock_delay = 1000;
-
-    /*MX6DQ/SDL_SMART_DEVICE: config clko */
-    /*config gpio_0 to be clko */
-	BW_IOMUXC_SW_MUX_CTL_PAD_GPIO_0_MUX_MODE(ALT0);
-
-	BW_IOMUXC_SW_PAD_CTL_PAD_GPIO_0_SRE(SRE_FAST);
-	BW_IOMUXC_SW_PAD_CTL_PAD_GPIO_0_DSE(DSE_80OHM);
-
-    /*select osc_clk 24MHz, CKO1 output drives cko2 clock */
-	HW_CCM_CCOSR_WR(
-			BF_CCM_CCOSR_CLKO2_EN(1) |
-			BF_CCM_CCOSR_CLKO2_DIV(0) | /*div 1*/
-			BF_CCM_CCOSR_CLKO2_SEL(0xe) | /*osc_clk*/
-			BF_CCM_CCOSR_CLKO1_CLKO2_SEL(1) |
-			BF_CCM_CCOSR_CLKO1_EN(1) |
-			BF_CCM_CCOSR_CLKO1_DIV(0)); /*div 1*/
-
-    hal_delay_us(clock_delay);
-}
 
 /*!
  * configure camera sensor according to sensor profile 
@@ -134,7 +60,7 @@ camera_profile_t *sensor_search(void)
         camera_power_on();
         sensor_reset();
         sensor_clock_setting();
-        sensor_i2c_init(i2c_base, 170000);
+        sensor_i2c_init(g_camera_i2c_port, 170000);
 hal_delay_us(1000000);
         for (j = 0; j < sensor_on->sensor_detection_size; ++j) {
             reg_param_t *setting = &sensor_on->sensor_detection[j];
@@ -172,7 +98,7 @@ int32_t sensor_init(camera_profile_t * sensor)
     int32_t i;
     uint16_t read_value;
 
-    sensor_i2c_init(i2c_base, 170000);
+    sensor_i2c_init(g_camera_i2c_port, 170000);
     camera_mode_t *preview_mode = &sensor->modes[sensor->mode_id];
 
     for (i = 0; i < preview_mode->size; ++i) {
@@ -205,7 +131,7 @@ int32_t sensor_af_trigger(camera_profile_t * sensor)
     int32_t ret = 0, i;
     reg_param_t *setting;
 
-    sensor_i2c_init(i2c_base, 170000);
+    sensor_i2c_init(g_camera_i2c_port, 170000);
 
     for (i = 0; i < sensor->af_trigger_size; ++i) {
         setting = &sensor->af_trigger[i];
@@ -225,7 +151,7 @@ int32_t sensor_autofocus_init(camera_profile_t * sensor)
     if (sensor->auto_focus_enable) {
         printf("Download auto-focus firmware......\n");
 
-        sensor_i2c_init(i2c_base, 170000);
+        sensor_i2c_init(g_camera_i2c_port, 170000);
 
         for (i = 0; i < sensor->af_firmware_size; ++i) {
             reg_param_t *setting = &sensor->af_firmware[i];
@@ -281,7 +207,7 @@ static int32_t sensor_write_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t *
     struct imx_i2c_request rq = {0};
 
     reg_addr = ((reg_addr & 0x00FF) << 8) | ((reg_addr & 0xFF00) >> 8); //swap MSB and LSB
-    rq.ctl_addr = i2c_base;
+    rq.ctl_addr = g_camera_i2c_port;
     rq.dev_addr = dev_addr >> 1;
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 2;
@@ -310,7 +236,7 @@ static int32_t sensor_read_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * 
     struct imx_i2c_request rq = {0};
 
     reg_addr = ((reg_addr & 0x00FF) << 8) | ((reg_addr & 0xFF00) >> 8); //swap MSB and LSB
-    rq.ctl_addr = i2c_base;
+    rq.ctl_addr = g_camera_i2c_port;
     rq.dev_addr = dev_addr >> 1;
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 2;

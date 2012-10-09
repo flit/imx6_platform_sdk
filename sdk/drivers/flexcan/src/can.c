@@ -7,10 +7,10 @@
 
 #include "hardware.h"
 #include "flexcan/flexcan.h"
+#include "registers/regsflexcan.h"
 
-#define CAN_TIMING_MASK  0x00C0FFF8  // to zero out presdiv, pseg1, pseg2, prop_seg
 
-// possible time segment settings for propseg, pseg1, pseg2
+//! possible time segment settings for propseg, pseg1, pseg2
 static struct time_segment time_segments[18] = {
     {1, 2, 1},  /* 0: total 8 timequanta */
     {1, 2, 2},  /* 1: total 9 timequanta */
@@ -69,7 +69,6 @@ void can_set_can_attributes(struct imx_flexcan *can_module, uint32_t bitrate, st
     can_module->port = hw_port;
 }
 
-// CAN bit rate = sclk (aka Freq-TQ) / number-of-time-quanta
 void can_update_bitrate(struct imx_flexcan *can_module)
 {
     uint32_t instance = can_module->port->instance;
@@ -144,7 +143,6 @@ void set_can_mb(struct hw_module *port, uint32_t mbID, uint32_t cs, uint32_t id,
     can_mb->MB[mbID].data0 = data0;
     can_mb->MB[mbID].data1 = data1;
 }
-
 void print_can_mb(struct hw_module *port, uint32_t mbID)
 {
     volatile struct can_message_buffers *can_mb =
@@ -201,4 +199,32 @@ void can_freeze(struct hw_module *port)
     val = HW_FLEXCAN_MCR_RD(instance);
     val |= BM_FLEXCAN_MCR_FRZ;
     HW_FLEXCAN_MCR_WR(instance, val);
+}
+
+uint64_t can_mb_int_flag(struct hw_module *port)
+{
+    uint32_t instance = port->instance;
+    uint64_t val;
+
+    val = (uint64_t)HW_FLEXCAN_IFLAG2_RD(instance);
+    val <<= 32;
+    val |=(uint64_t)HW_FLEXCAN_IFLAG1_RD(instance);	
+
+    return val;
+}
+
+void can_mb_int_ack(struct hw_module *port, uint32_t mbID)
+{
+    uint32_t instance = port->instance;
+    uint32_t val;
+
+    if(mbID < 32){
+    	val = HW_FLEXCAN_IFLAG1_RD(instance);
+    	val |= (0x01 << mbID);
+	HW_FLEXCAN_IFLAG1_WR(instance, val);
+    }else{
+    	val = HW_FLEXCAN_IFLAG2_RD(instance);	
+    	val |= (0x01 << (mbID - 32));
+	HW_FLEXCAN_IFLAG2_WR(instance, val);
+    }
 }

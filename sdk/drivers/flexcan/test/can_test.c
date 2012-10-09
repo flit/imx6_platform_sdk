@@ -86,30 +86,16 @@ void flexcan_test(void)
 void can2_rx_handler(void)
 {
     int i = 0;
-    uint32_t instance = can2_port.instance, iflag1, iflag2;
+    uint64_t iflag;
 
-    if ((iflag1 = HW_FLEXCAN_IFLAG1_RD(instance)) != 0) {
-        for (i = 0; i < 32; i++) {
-            if (iflag1 & (1 << i)) {
-                iflag1 = (1 << i); //clear interrupt flag
-                HW_FLEXCAN_IFLAG1_WR(instance, iflag1);
+    iflag = can_mb_int_flag(&can2_port); 
+    if(iflag !=0L){
+        for (i = 0; i < 64; i++) {
+            if (iflag & (1L << i)) {
+		can_mb_int_ack(&can2_port, i);
                 printf("\tCAN2 MB:%d Recieved:\n", i);
                 print_can_mb(&can2_port, i);
                 can_test_count++;
-
-            }
-        }
-    }
- 
-    if ((iflag2 = HW_FLEXCAN_IFLAG2_RD(instance)) != 0) {
-        for (i = 0; i < 32; i++) {
-            if (iflag2 & (1 << i)) {
-                iflag2 = (1 << i); //clear interrupt flag
-                HW_FLEXCAN_IFLAG2_WR(instance, iflag2);
-                printf("\tCAN2 MB:%d Recieved:\n", i);
-                print_can_mb(&can2_port, i);
-                can_test_count++;
-
             }
         }
     }

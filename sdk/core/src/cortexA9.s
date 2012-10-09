@@ -30,15 +30,15 @@
 	.equ L2CC_DAT_R_CTRL,	0x00A0210C
 	.equ L2CC_PREFETCH_CTRL,0x00A02F60
 
-  .global getCPUnum
-  @ int getCPUnum(void);
+  .global cpu_get_current
+  @ int cpu_get_current(void);
   @ get current CPU ID
-  .func getCPUnum
-getCPUnum: 
+  .func cpu_get_current
+cpu_get_current: 
     MRC   p15, 0, r0, c0, c0, 5
     AND   r0, r0, #3
 	BX	  lr
-  .endfunc    @getCPUnum();
+  .endfunc    @cpu_get_current();
 
   .global enable_neon_fpu
   .func enable_neon_fpu

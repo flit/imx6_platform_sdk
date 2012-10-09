@@ -33,7 +33,7 @@ unsigned int isTestDone;
 
 void SGI3_ISR(void)
 {
-    uint32_t cpu_id = getCPUnum();
+    uint32_t cpu_id = cpu_get_current();
     int cpuCount = cpu_get_cores();
     
     //while(1); // debug
@@ -90,7 +90,7 @@ void start_secondary_cpu(uint32_t cpu_num, void functPtr(void))
 //! it will print a message and send an SGI to the next CPU in sequence.
 void multicore_test(void)
 {
-    uint32_t cpu_id = getCPUnum();
+    uint32_t cpu_id = cpu_get_current();
     int cpuCount = cpu_get_cores();
     
     if (cpuCount == 1)

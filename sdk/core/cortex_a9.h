@@ -7,6 +7,8 @@
 #if !defined(__CORTEX_A9_H__)
 #define __CORTEX_A9_H__
 
+#include <stdint.h>
+
 //! @addtogroup cortexa9
 //! @{
 
@@ -20,7 +22,7 @@ extern "C" {
 
 
 //! @brief Get current CPU ID.
-int getCPUnum(void);
+int cpu_get_current(void);
 
 //! @brief Enable the NEON MPE.
 void enable_neon_fpu(void);

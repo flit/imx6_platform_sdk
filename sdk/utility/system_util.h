@@ -16,6 +16,9 @@
 
 #include "sdk.h"
 
+//! @addtogroup diag_util
+//! @{
+
 #if defined(__cplusplus)
 extern "C" {
 #endif
@@ -29,5 +32,7 @@ int read_int(void);
 #if defined(__cplusplus)
 }
 #endif
+
+//! @}
 
 #endif //_SYSTEM_UTIL_H_

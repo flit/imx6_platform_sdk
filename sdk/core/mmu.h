@@ -5,11 +5,12 @@
  * Freescale Semiconductor, Inc.
 */
 
+//! @addtogroup diag_mmu
+//! @{
+
 /*!
  * @file  mmu.h
  * @brief System memory arangement.
- *
- * @ingroup diag_init
  */
 
 #ifndef _MMU_H_
@@ -112,6 +113,7 @@ void system_memory_arrange(void);
 }
 #endif
 
+//! @}
 
 #endif // _MMU_H_
 

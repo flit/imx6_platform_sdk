@@ -133,6 +133,26 @@ peripherals present on the i.MX6 Series SoCs.
 @defgroup diag_pcie PCIe
 @brief PCIe driver
 
+@defgroup atomics Atomic Operations
+@brief Atomic operation routines
+
+@defgroup spinlock Spinlock
+@brief Simple spinlock API
+
+@defgroup diag_clocks Clocks
+@brief Clock management driver
+
+@defgroup cortexa9 Cortex-A9
+@brief CPU related functions
+
+@defgroup diag_interrupt Interrupts
+@brief Interrupt manager
+
+@defgroup diag_mmu MMU
+@brief MMU related routines
+
+@defgroup cpu_utility CPU Utility
+@brief Miscellaneous CPU utility routines
 
 
 @defgroup timers Timers

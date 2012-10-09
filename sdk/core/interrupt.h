@@ -7,10 +7,11 @@
 #ifndef __INTERRUPT_H__
 #define __INTERRUPT_H__
 
+//! @addtogroup diag_interrupt
+//! @{
+
 /*!
  * @file  interrupt.h
- *
- * @ingroup diag_init
  */
 
 #define ATTACH_INTERRUPT(index,routine) ( g_interrupt_handlers[index] = routine )
@@ -45,6 +46,8 @@ void enableALL_interrupts_non_secure(void);
 #if defined(__cplusplus)
 }
 #endif
+
+//! @}
 
 #endif
 ////////////////////////////////////////////////////////////////////////////////

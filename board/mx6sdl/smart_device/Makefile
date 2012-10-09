@@ -22,6 +22,19 @@ SOURCES := \
 	$(SDK_ROOT)/board/common/hardware.c \
 	$(SDK_ROOT)/board/common/board_io_expanders.c \
 	$(SDK_ROOT)/board/common/board_i2c.c \
+	$(SDK_ROOT)/board/common/board_audio.c \
+	$(SDK_ROOT)/board/common/board_buttons.c \
+	$(SDK_ROOT)/board/common/board_camera.c \
+	$(SDK_ROOT)/board/common/board_can.c \
+	$(SDK_ROOT)/board/common/board_display.c \
+	$(SDK_ROOT)/board/common/board_hdmi.c \
+	$(SDK_ROOT)/board/common/board_mipi.c \
+	$(SDK_ROOT)/board/common/board_mlb.c \
+	$(SDK_ROOT)/board/common/board_nand.c \
+	$(SDK_ROOT)/board/common/board_network.c \
+	$(SDK_ROOT)/board/common/board_parallel_nor.c \
+	$(SDK_ROOT)/board/common/board_pcie.c \
+	$(SDK_ROOT)/board/common/board_usb.c \
 	$(SDK_ROOT)/board/$(TARGET)/$(BOARD)/dcd.c \
 	$(wildcard rev_$(BOARD_REVISION)_iomux/*.c)
 

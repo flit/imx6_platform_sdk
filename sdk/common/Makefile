@@ -4,10 +4,21 @@ include $(SDK_ROOT)/mk/common.mk
 # Recurse into the filesystem.
 SUBDIRS = filesystem
 
+# Determine if the target is either the MX6DQ or MX6SDL.
+ifeq "$(TARGET)" "mx6dq"
+is_dq_or_sdl = 1
+endif
+ifeq "$(TARGET)" "mx6sdl"
+is_dq_or_sdl = 1
+endif
+
 # Compile these sources directly.
 SOURCES = \
-	profile/profile.c \
-	ioexpander/src/max7310.c
+	profile/profile.c 
 
+ifdef is_dq_or_sdl
+SOURCES += \
+	ioexpander/src/max7310.c
+endif
 
 include $(SDK_ROOT)/mk/targets.mk

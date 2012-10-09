@@ -19,6 +19,13 @@
 
 include $(SDK_ROOT)/mk/common.mk
 
+# Determine if the target is either the MX6DQ or MX6SDL.
+ifeq "$(TARGET)" "mx6dq"
+is_dq_or_sdl = 1
+endif
+ifeq "$(TARGET)" "mx6sdl"
+is_dq_or_sdl = 1
+endif
 
 # Set up to link application.
 APP_NAME = obds
@@ -41,13 +48,9 @@ define SOURCES
     $(SDK_LIB_ROOT)/drivers/spi/test/spi_test.c
     src/obds.c
     src/obds_utils.c
-    src/tests/android_buttons_test.c
     src/tests/audio_ssi_test.c
     src/tests/ddr_test.c
-    src/tests/deserializer_ds90ur124.c
-    src/tests/enet_mx6dldq_test.c
     src/tests/flexcan_test.c
-    src/tests/fm_tuner_si476x_test.c
     src/tests/gps_test.c
     src/tests/i2c_dev_tests.c
     src/tests/i2c_check_light_sensor_isl29023.c
@@ -56,13 +59,11 @@ define SOURCES
     src/tests/i2c_device_digital_compass_mag3112.c
     src/tests/i2c_device_id_check_mma8450.c
     src/tests/i2c_device_id_check_mma8451.c
-    src/tests/i2c_device_id_check_p1003_tsc.c
     src/tests/i2c_device_pmic_pf0100.c
     src/tests/i2c_device_temp_sensor_emc1046.c
     src/tests/i2c_device_zigbee_mc1323.c
     src/tests/i2c_eeprom_at24cxx_test.c
     src/tests/imx_spi_nor_test.c
-    src/tests/mlb_os81050.c
     src/tests/pmic_da9053.c
     src/tests/pmic_lt3589.c
     src/tests/pmic_max17135.c
@@ -74,10 +75,21 @@ define SOURCES
     src/tests/touch_screen.c
     src/tests/touch_screen_max11801.c
     src/tests/uart_test.c
-    src/tests/video_dec_adv7180.c
-    src/tests/video_dec_ARD_MB_reset_button.c
-    src/tests/video_dec_ARD_MBrst_from_cpu_expander.c
 endef
+
+# Add drivers that are only available of mx6dq or mx6sdl.
+ifdef is_dq_or_sdl
+SOURCES += \
+    src/tests/android_buttons_test.c \
+    src/tests/deserializer_ds90ur124.c \
+    src/tests/enet_mx6dldq_test.c \
+    src/tests/fm_tuner_si476x_test.c \
+    src/tests/i2c_device_id_check_p1003_tsc.c \
+    src/tests/mlb_os81050.c \
+    src/tests/video_dec_adv7180.c \
+    src/tests/video_dec_ARD_MB_reset_button.c \
+    src/tests/video_dec_ARD_MBrst_from_cpu_expander.c
+endif
 
 # Need to include the SDK library!
 LIBRARIES = \

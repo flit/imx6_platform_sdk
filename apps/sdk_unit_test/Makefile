@@ -47,9 +47,7 @@ define SUBDIRS
     $(SDK_LIB_ROOT)/drivers/cpu_utility/test
     $(SDK_LIB_ROOT)/common/filesystem/test
     $(SDK_LIB_ROOT)/drivers/gic/test
-    $(SDK_LIB_ROOT)/drivers/hdmi/test
     $(SDK_LIB_ROOT)/drivers/i2c/test
-    $(SDK_LIB_ROOT)/drivers/ipu/test
     $(SDK_LIB_ROOT)/drivers/ocotp/test
     $(SDK_LIB_ROOT)/drivers/pmu/test
     $(SDK_LIB_ROOT)/drivers/rtc/test
@@ -58,9 +56,16 @@ define SUBDIRS
     $(SDK_LIB_ROOT)/drivers/timer/test
     $(SDK_LIB_ROOT)/drivers/uart/test
     $(SDK_LIB_ROOT)/drivers/usdhc/test
-    $(SDK_LIB_ROOT)/drivers/vdoa/test
-    $(SDK_LIB_ROOT)/drivers/vpu/test
 endef
+
+# Tests that are not available for CHIP_MX6SL only.
+ifneq "$(BOARD)" "evk"
+    SUBDIRS += \
+    $(SDK_LIB_ROOT)/drivers/hdmi/test \
+    $(SDK_LIB_ROOT)/drivers/ipu/test \
+    $(SDK_LIB_ROOT)/drivers/vdoa/test \
+    $(SDK_LIB_ROOT)/drivers/vpu/test
+endif
 
 # Tests that are only available on the evb.
 ifeq "$(BOARD)" "evb"

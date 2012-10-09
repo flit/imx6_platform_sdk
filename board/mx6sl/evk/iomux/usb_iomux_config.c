@@ -61,8 +61,8 @@ void usb_iomux_config(void)
     //     SEL_LCD_DAT1_ALT2 (2) - Selecting Pad: LCD_DAT1 for Mode: ALT2.
     //     SEL_REF_CLK_32K_ALT3 (3) - Selecting Pad: REF_CLK_32K for Mode: ALT3.
     //     SEL_SD3_DAT0_ALT4 (4) - Selecting Pad: SD3_DAT0 for Mode: ALT4.
-    HW_IOMUXC_ANALOG_USB_OTG_ID_SELECT_INPUT_WR(
-            BF_IOMUXC_ANALOG_USB_OTG_ID_SELECT_INPUT_DAISY(SEL_EPDC_PWRCOM_ALT4));
+    HW_IOMUXC_USB_OTG_ID_SELECT_INPUT_WR(
+            BF_IOMUXC_USB_OTG_ID_SELECT_INPUT_DAISY(SEL_EPDC_PWRCOM_ALT4));
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_EPDC_PWRCOM(0x020E03D0)
     //   LVE [22] - Low Voltage Enable Field Reset: LVE_DISABLED
@@ -241,8 +241,8 @@ void usb_iomux_config(void)
     //     SEL_LCD_DAT0_ALT2 (1) - Selecting Pad: LCD_DAT0 for Mode: ALT2.
     //     SEL_REF_CLK_24M_ALT3 (2) - Selecting Pad: REF_CLK_24M for Mode: ALT3.
     //     SEL_SD3_CMD_ALT4 (3) - Selecting Pad: SD3_CMD for Mode: ALT4.
-    HW_IOMUXC_ANALOG_USB_UH1_ID_SELECT_INPUT_WR(
-            BF_IOMUXC_ANALOG_USB_UH1_ID_SELECT_INPUT_DAISY(SEL_REF_CLK_24M_ALT3));
+    HW_IOMUXC_USB_IPP_IND_H1_ID_SELECT_INPUT_WR(
+            BF_IOMUXC_USB_IPP_IND_H1_ID_SELECT_INPUT_DAISY(SEL_REF_CLK_24M_ALT3));
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_REF_CLK_24M(0x020E052C)
     //   LVE [22] - Low Voltage Enable Field Reset: LVE_DISABLED

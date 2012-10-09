@@ -27,7 +27,9 @@ extern audio_codec_t sgtl5000;
 extern audio_codec_t wm8958;
 extern audio_codec_t wm8962;
 
+#if !defined (CHIP_MX6SL)
 extern audio_ctrl_t imx_esai_1;
+#endif
 extern audio_codec_t cs42888;
 
 extern audio_ctrl_t imx_spdif;
@@ -164,12 +166,14 @@ static audio_dev_ops_t snd_card_ops = {
     .read = snd_card_read,
 };
 
+#if !defined (CHIP_MX6SL)
 audio_card_t snd_card_esai = {
     .name = "i.MX ESAI sound card - cs42888",
     .codec = &cs42888,
     .ctrl = &imx_esai_1,
     .ops = &snd_card_ops,
 };
+#endif
 audio_card_t snd_card_spdif = {
     .name = "i.MX SPDIF sound card",
     .codec = NULL,

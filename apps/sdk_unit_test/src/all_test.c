@@ -57,9 +57,12 @@ void ALL_test(void)
         epit_test();
 
         gpt_test();
+#if !defined (CHIP_MX6SL)
         hdmi_test();
-        i2c_test();
         ipu_test();
+#endif
+        i2c_test();
+
 #if defined(BOARD_EVB) || defined(BOARD_SABRE_AI)
         mipi_test();
 #endif /* BOARD_EVB || BOARD_SABRE_AI */

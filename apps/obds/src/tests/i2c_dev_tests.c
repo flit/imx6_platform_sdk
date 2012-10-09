@@ -47,7 +47,7 @@ menu_action_t i2c_device_id_check(const menu_context_t* const context, void* con
     	return MENU_CONTINUE;
     }  
     
-#if defined(BOARD_TYPE_SMART_DEVICE)
+#if (BOARD_TYPE == BOARD_TYPE_SMART_DEVICE)
         //  USB_OTG_PWR_EN (EIM_D22)
         writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_EB3);
         gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
@@ -72,12 +72,12 @@ menu_action_t i2c_device_id_check(const menu_context_t* const context, void* con
             ++test_count;
             rc |= i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port);    // hannstar display TSC via lvds
         }
-#elif defined(BOARD_TYPE_SABRE_LITE)
+#elif (BOARD_TYPE == BOARD_TYPE_SABRE_LITE)
         if (i2c_device_id_check_p1003_test_enable == 1) {
             ++test_count;
             rc |= i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port);    // hannstar display TSC via lvds
         }
-#elif defined(BOARD_TYPE_SABRE_AI) 
+#elif (BOARD_TYPE == BOARD_TYPE_SABRE_AI) 
         if (i2c_device_id_check_p1003_test_enable == 1) {
             ++test_count;
             rc |= i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port);    // hannstar display TSC via lvds

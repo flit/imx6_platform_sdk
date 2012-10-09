@@ -191,7 +191,7 @@
 
 //Add from mx53 for ds90ur124.c
 #define GPR_BASE_ADDR      (IOMUXC_BASE_ADDR + 0x0)
-#define OBSRV_BASE_ADDR    (GPR_BASE_ADDR + 0xc)
+#define OBSRV_BASE_ADDR    (GPR_BASE_ADDR + 0x38)
 #define SW_MUX_BASE_ADDR   (OBSRV_BASE_ADDR + 0x14)
 
 

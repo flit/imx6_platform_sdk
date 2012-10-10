@@ -470,7 +470,7 @@ int i2c_init(uint32_t base, uint32_t baud)
     }
     
     // enable the source clocks to the I2C port 
-    clock_gating_config(base, CLOCK_ON);
+    clock_gating_config(REGS_I2C_BASE(instance), CLOCK_ON);
 
     // Set iomux configuration 
     i2c_iomux_config(instance);

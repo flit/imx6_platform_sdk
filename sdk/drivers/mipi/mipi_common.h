@@ -196,23 +196,6 @@
 #define    OFFSET_CSI2_DPHY_STATUS                 0xf10
 #define    OFFSET_DPHY_TEST_CTRL                   0xf14
 
-/*MIPI CSI registers*/
-#define    CSI2_VERSION         (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_VERSION         )
-#define    CSI2_N_LANES		    (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_N_LANES	       )
-#define    CSI2_PHY_SHUTDOWNZ   (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_PHY_SHUTDOWNZ   )
-#define    CSI2_DPHY_RSTZ       (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_DPHY_RSTZ       )
-#define    CSI2_RESETN          (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_RESETN          )
-#define    CSI2_PHY_STATE       (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_PHY_STATE       )
-#define    CSI2_DATA_IDS_1      (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_DATA_IDS_1      )
-#define    CSI2_DATA_IDS_2      (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_DATA_IDS_2      )
-#define    CSI2_ERR1            (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_ERR1            )
-#define    CSI2_ERR2            (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_ERR2            )
-#define    CSI2_MSK1            (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_MSK1            )
-#define    CSI2_MSK2            (MIPI_CSI2_BASE_ADDR + OFFSET_CSI2_MSK2            )
-#define    CSI2_PHY_TST_CTRL0   (MIPI_CSI2_BASE_ADDR+ OFFSET_CSI2_PHY_TST_CTRL0   )
-#define    CSI2_PHY_TST_CTRL1   (MIPI_CSI2_BASE_ADDR+ OFFSET_CSI2_PHY_TST_CTRL1   )
-#define    CSI2_SFT_RESET       (MIPI_CSI2_BASE_ADDR+ OFFSET_CSI2_SFT_RESET   )
-
 /*MIPI DSI registers*/
 #define    DSI_VERSION         (MIPI_DSI_BASE_ADDR+ OFFSET_DSI_VERSION         )
 #define    DSI_PWR_UP          (MIPI_DSI_BASE_ADDR+ OFFSET_DSI_PWR_UP          )

@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include "mipi/mipi_common.h"
 #include "ipu/ipu_common.h"
+#include "registers/regsmipicsi.h"
 
 #define PREVIEW 1
 #define MIPI_SENSOR_ADDR 0x3C
@@ -28,7 +29,7 @@ extern void mipi_csi2_clock_set(void);
 static void mipi_sensor_i2c_init(unsigned int base, unsigned int baud)
 {
     int ret = 0;
-    int i2c_delay = 500;
+    int i2c_delay = 500 * 100;
 
     ret = i2c_init(base, baud);
     if (ret != 0) {
@@ -105,9 +106,8 @@ void mipi_sensor_id_check(unsigned int i2c_base)
     unsigned char data_high, data_low;
     char revchar;
     do {
-//          dev_check_reg(i2c_base, 0x90, 0x01<<1, &data_low);
-        mipi_sensor_read_reg(i2c_base, 0x300a, &data_high);
         mipi_sensor_read_reg(i2c_base, 0x300b, &data_low);
+        mipi_sensor_read_reg(i2c_base, 0x300a, &data_high);
         printf("The sensor chip id is 0x%04x\n", (data_high << 8) | data_low);
         if (((data_high << 8) | data_low) == 0x5640)
             break;
@@ -196,7 +196,7 @@ int32_t mipi_csi2_set_lanes(uint32_t lanes)
 {
     if (lanes > 4 || lanes < 1)
         return FALSE;
-    reg32_write(CSI2_N_LANES, lanes - 1);
+	BW_MIPI_CSI_N_LANES_N_LANES(lanes - 1);
     return TRUE;
 }
 
@@ -206,24 +206,46 @@ void mipi_csi2_controller_program(void)
     mipi_csi2_set_lanes(2);
 
     /*PHY loopback test */
-    reg32_write(CSI2_PHY_TST_CTRL0, 0x00000001);    //{phy_testclk,phy_testclr} = {0,1}
-    reg32_write(CSI2_PHY_TST_CTRL1, 0x00000000);    //{phy_testen,phy_testdout,phy_testdin}
-    reg32_write(CSI2_PHY_TST_CTRL0, 0x00000000);    //{phy_testclk,phy_testclr} = {0,1}
-    reg32_write(CSI2_PHY_TST_CTRL0, 0x00000002);    //{phy_testclk,phy_testclr} = {0,1}
-    reg32_write(CSI2_PHY_TST_CTRL1, 0x00010044);    //{phy_testen,phy_testdout,phy_testdin}
-    reg32_write(CSI2_PHY_TST_CTRL0, 0x00000000);    //{phy_testclk,phy_testclr} = {0,1}
-    reg32_write(CSI2_PHY_TST_CTRL1, 0x00000014);    //{phy_testen,phy_testdout,phy_testdin}
-    reg32_write(CSI2_PHY_TST_CTRL0, 0x00000002);    //{phy_testclk,phy_testclr} = {0,1}
-    reg32_write(CSI2_PHY_TST_CTRL0, 0x00000000);    //{phy_testclk,phy_testclr} = {0,1}
+	//{phy_testclk,phy_testclr} = {0,1}
+	BW_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK(0);
+	BW_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR(1);
+
+	//{phy_testen,phy_testdout,phy_testdin}
+	HW_MIPI_CSI_PHY_TST_CTRL1_CLR(
+			BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN |
+			BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDOUT |
+			BM_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN);
+
+	//{phy_testclk,phy_testclr} = {0,1} --> {0,0}
+	BW_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLR(0);
+	//{phy_testclk,phy_testclr} = {0,0} --> {1,0}
+	BW_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK(1);
+
+	//{phy_testen,phy_testdout,phy_testdin}
+	BW_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN(0x44);
+	BW_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN(1);
+
+	//{phy_testclk,phy_testclr} = {1,0} --> {0,0}
+	BW_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK(0);
+
+	//{phy_testen,phy_testdout,phy_testdin}
+	BW_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTEN(0);
+	BW_MIPI_CSI_PHY_TST_CTRL1_PHY_TESTDIN(0x14);
+
+	//{phy_testclk,phy_testclr} = {0,0} --> {1,0}
+	BW_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK(1);
+
+	//{phy_testclk,phy_testclr} = {1,0} --> {0,0}
+	BW_MIPI_CSI_PHY_TST_CRTL0_PHY_TESTCLK(0);
 
     // raise phy shutdown
-    reg32_write(CSI2_PHY_SHUTDOWNZ, 1);
+	BW_MIPI_CSI_PHY_SHUTDOWNZ_PHY_SHUTDOWNZ(1);
 
     //raise phy reset
-    reg32_write(CSI2_DPHY_RSTZ, 1);
+	BW_MIPI_CSI_DPHY_RSTZ_DPHY_RSTZ(1);
 
     //raise csi2 reset
-    reg32_write(CSI2_RESETN, 1);
+	BW_MIPI_CSI_CSI2_RESETN_CSI2_RESETN(1);
 }
 
 /*!
@@ -285,7 +307,9 @@ void mipi_csi2_config(void)
 
     /*check if D-PHY is ready to receive: clock lane and data lane in stop state */
     timeout = 0x100000;
-    while ((reg32_read(CSI2_PHY_STATE) & 0xffffffff) == 0x00000230) {
+	while(HW_MIPI_CSI_PHY_STATE.B.PHY_RXULPSCLKNOT &&
+		  HW_MIPI_CSI_PHY_STATE.B.PHY_STOPSTATEDATA_1 &&
+		  HW_MIPI_CSI_PHY_STATE.B.PHY_STOPSTATEDATA_0) {
         if (timeout-- < 0) {
             printf("Waiting for PHY ready timeout!!\n");
             return;
@@ -297,10 +321,10 @@ void mipi_csi2_config(void)
 
     /*check if ddr clock is received */
     timeout = 0x100000;
-    while ((reg32_read(CSI2_PHY_STATE) & 0xffffffff) == 0x00000100) {
-        if (timeout-- < 0) {
-            printf("Waiting for DDR clock ready timeout!!\n");
-            return;
-        }
-    }
+	while(!HW_MIPI_CSI_PHY_STATE.B.PHY_RXCLKACTIVEHS) {
+		if (timeout-- < 0) {
+			printf("Waiting for DDR clock ready timeout!!\n");
+			return;
+		}
+	}
 }

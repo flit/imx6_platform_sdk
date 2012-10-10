@@ -34,7 +34,7 @@ extern int spi_nor_read_numonyx(void *src, void *dest, int len);
 extern int spi_nor_erase_numonyx(uint32_t addr, uint32_t length);
 
 uint32_t spi_nor_flash_type;
-extern dev_ecspi_e dev_spi_nor;
+dev_ecspi_e dev_spi_nor;
 
 uint8_t __attribute__ ((aligned(4))) spi_nor_tx_buf[SPI_NOR_XFER_SZ];
 uint8_t __attribute__ ((aligned(4))) spi_nor_rx_buf[SPI_NOR_XFER_SZ];

@@ -18,8 +18,8 @@
 //#define ESDHC_BUS_WIDTH_MASK          ((unsigned int)0x00000006)
 //#define ESDHC_ENDIAN_MODE_MASK        ((unsigned int)0x00000030)
 
-#define ESDHC_LITTLE_ENDIAN_MODE      ((unsigned int)0x00000020)
-//#define ESDHC_HW_BIG_ENDIAN_MODE      ((unsigned int)0x00000010)
+#define ESDHC_LITTLE_ENDIAN_MODE      ((unsigned int)0x00000002)
+#define ESDHC_HW_BIG_ENDIAN_MODE      ((unsigned int)0x00000001)
 
 //#define ESDHC_SYSCTL_SDCLKEN_MASK     ((unsigned int)0x00000008)
 //#define ESDHC_PRSSTAT_SDSTB_BIT       ((unsigned int)0x00000008)
@@ -29,7 +29,8 @@
 //#define ESDHC_SYSCTL_INPUT_CLOCK_MASK ((unsigned int)0x00000007)
 //#define ESDHC_IRQSTATEN_DTOESEN       ((unsigned int)0x00100000)
 
-#define ESDHC_SYSCTL_DTOCV_VAL        ((unsigned int)0x000E0000)
+//#define ESDHC_SYSCTL_DTOCV_VAL        ((unsigned int)0x000E0000)
+#define ESDHC_SYSCTL_DTOCV_VAL        ((unsigned int)0x0000000E)
 
 //#define ESDHC_CLEAR_INTERRUPT         ((unsigned int)0x117F01FF)
 #define ESDHC_CLEAR_INTERRUPT         (BM_USDHC_INT_STATUS_CC | \
@@ -118,7 +119,9 @@
                                                  BM_USDHC_INT_STATUS_DEBE)
 
 //#define ESDHC_PRTCTL_DMAS_MASK        ((unsigned int)0x00000300)
-#define ESDHC_PRTCTL_ADMA2_VAL        ((unsigned int)0x00000200)
+//#define ESDHC_PRTCTL_ADMA2_VAL        ((unsigned int)0x00000200)
+#define ESDHC_PRTCTL_ADMA2_VAL        ((unsigned int)0x00000002)
+
 //#define ESDHC_MIXER_CTRL_CMD_MASK     ((unsigned int)0xFFFFFFC0)
 #define ESDHC_MIXER_CTRL_CMD_MASK       (BM_USDHC_MIX_CTRL_NIBBLE_POS | \
                                          BM_USDHC_MIX_CTRL_AC23EN | \

@@ -23,7 +23,7 @@ static uint32_t mmc_version = MMC_CARD_INV;
 
 /********************************************* Static Function ******************************************/
 /*!
- * @brief Set the card a RCA 
+ * @brief Set the mmc card a RCA 
  * 
  * @param instance     Instance number of the uSDHC module.
  * 
@@ -66,42 +66,7 @@ static int mmc_set_rca(uint32_t instance)
 
     return status;
 }
-//static int mmc_set_rca(int base_address)
-//{
-//    command_t cmd;
-//    int port, card_state, status = FAIL;
-//    command_response_t response;
 
-    /* Check uSDHC Port */
-//    port = card_get_port(base_address);
-//    if (port == USDHC_NUMBER_PORTS) {
-//        printf("Base address: 0x%x not in address table.\n", base_address);
-//        return status;
-//    }
-
-    /* Set RCA to ONE */
- //   usdhc_device[port].rca = ONE;
-
-    /* Configure CMD3 */
-//    card_cmd_config(&cmd, CMD3, (usdhc_device[port].rca << RCA_SHIFT), READ, RESPONSE_48,
-//                    DATA_PRESENT_NONE, TRUE, TRUE);
-//
-//    usdhc_printf("Send CMD3.\n");
-
-//    /* Send CMD3 */
-//    if (host_send_cmd(base_address, &cmd) == SUCCESS) {
-//        response.format = RESPONSE_48;
-//        host_read_response(base_address, &response);
-//
-        /* Check the IDENT card state */
-//        card_state = CURR_CARD_STATE(response.cmd_rsp0);
-//
-//        if (card_state == IDENT) {
-//            status = SUCCESS;
-//        }
-//    }
-//    return status;
-//}
 /*!
  * @brief Check switch ability and switch function 
  * 
@@ -127,23 +92,6 @@ static int mmc_switch(uint32_t instance, uint32_t arg)
 
     return status;
 }
-//static int mmc_switch(int base_address, uint32_t arg)
-//{
-//    command_t cmd;
-//    int status = FAIL;
-
-    /* Configure MMC Switch Command */
-//    card_cmd_config(&cmd, CMD6, arg, READ, RESPONSE_48, DATA_PRESENT_NONE, TRUE, TRUE);
-
-//    usdhc_printf("Send CMD6.\n");
-
-    /* Send CMD6 */
-//    if (SUCCESS == host_send_cmd(base_address, &cmd)) {
-//        status = card_trans_status(base_address);
-//    }
-//
-//    return status;
-//}
 
 /*!
  * @brief Set data transfer width. 
@@ -205,7 +153,6 @@ static int mmc_read_csd(uint32_t instance)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//static int mmc_read_esd(int base_address)
 static int mmc_read_esd(uint32_t instance)
 {
     command_t cmd;
@@ -242,7 +189,6 @@ static int mmc_read_esd(uint32_t instance)
  * 
  * @return             CSD value if successful; 0 otherwise
  */
-//static uint32_t mmc_get_spec_ver(int base_address)
 static uint32_t mmc_get_spec_ver(uint32_t instance)
 {
     int retv = 0;
@@ -277,7 +223,6 @@ static uint32_t mmc_get_spec_ver(uint32_t instance)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int mmc_init(int base_address, int bus_width)
 int mmc_init(uint32_t instance, int bus_width)
 {
     int status = FAIL;
@@ -326,7 +271,6 @@ int mmc_init(uint32_t instance, int bus_width)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int emmc_init(int base_address)
 int emmc_init(uint32_t instance)
 {
     uint8_t byte;
@@ -383,7 +327,6 @@ int emmc_init(uint32_t instance)
  * @param instance     Instance number of the uSDHC module.
  * 
  */
-//void emmc_print_cfg_info(int base_address)
 void emmc_print_cfg_info(uint32_t instance)
 {
     uint8_t byte, *ptr;
@@ -439,7 +382,6 @@ void emmc_print_cfg_info(uint32_t instance)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int mmc_set_boot_bus_width(int base_address, emmc_bus_width_e width)
 int mmc_set_boot_bus_width(uint32_t instance, emmc_bus_width_e width)
 {
     int bus_width;

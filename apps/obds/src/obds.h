@@ -79,6 +79,7 @@ menu_action_t i2c_device_id_check(const menu_context_t* const context, void* con
 menu_action_t i2s_audio_test(const menu_context_t* const context, void* const param);
 menu_action_t uart_test(const menu_context_t* const context, void* const param);
 menu_action_t spi_nor_test(const menu_context_t* const context, void* const param);
+menu_action_t mmcsd_test(const menu_context_t* const context, void* const param);
 //
 // PRIVATE
 //
@@ -116,7 +117,7 @@ extern int smbus_test_enable;
 extern int i2c_device_id_check_DA9053_test_enable;
 extern int ltc3589_i2c_device_id_test_enable;
 extern int pmic_mc13892_test_enable;
-extern int mmcsd_test_enable;
+//extern int mmcsd_test_enable;
 extern int sdio_test_enable;
 extern int gps_test_enable;
 extern int ipu_display_test_enable;
@@ -135,8 +136,8 @@ extern uint32_t usbh_EHCI_test_mode_base;
 extern uint32_t usbh_dev_enum_test_base;
 extern uint32_t usbo_dev_enum_test_base;
 extern uint32_t usbh_hub251x_test_base;
-extern uint32_t mmcsd_bus_width;
-extern uint32_t mmc_sd_base_address;
+//extern uint32_t mmcsd_bus_width;
+//extern uint32_t mmc_sd_base_address;
 extern uint32_t sdio_bus_width;
 extern uint32_t sdio_base_address;
 

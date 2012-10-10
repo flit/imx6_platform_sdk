@@ -34,9 +34,7 @@ LINK_APP = 1
 # Local source files.
 #    $(wildcard src/tests/*)
 #    src/tests/audio_esai_test.c
-#    src/tests/imx_spi_nor_test.c
 #    src/tests/ipu_test.c
-#    src/tests/mmcsd_test.c
 #    src/tests/sdio_card_test.c
 #    src/tests/usb_tests_obds.c
 #   src/tests/weim_nor_flash_test.c
@@ -45,7 +43,7 @@ define SOURCES
     $(APPS_ROOT)/common/print_clock_info.c
     $(SDK_LIB_ROOT)/drivers/spi/test/spi_nor_numonyx.c
     $(SDK_LIB_ROOT)/drivers/spi/test/imx_spi_nor_atmel.c
-    $(SDK_LIB_ROOT)/drivers/spi/test/spi_test.c
+    $(SDK_LIB_ROOT)/drivers/usdhc/test/usdhc_test.c
     src/obds.c
     src/obds_utils.c
     src/tests/ddr_test.c
@@ -63,6 +61,7 @@ define SOURCES
     src/tests/i2c_device_zigbee_mc1323.c
     src/tests/i2c_eeprom_at24cxx_test.c
     src/tests/imx_spi_nor_test.c
+    src/tests/mmcsd_test.c
     src/tests/pmic_da9053.c
     src/tests/pmic_lt3589.c
     src/tests/pmic_max17135.c

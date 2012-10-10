@@ -27,16 +27,23 @@ const unsigned int sd_if_cmd_arg[SD_IF_CMD_ARG_COUNT] = {
 };
 
 /********************************************* Static Function ******************************************/
-static int sd_get_rca(int base_address)
+/*!
+ * @brief Read RCA (relative card address) of SD card
+ * 
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+static int sd_get_rca(uint32_t instance)
 {
     command_t cmd;
     int port, card_state, status = FAIL;
     command_response_t response;
 
     /* Check uSDHC Port */
-    port = card_get_port(base_address);
+    port = card_get_port(instance);
     if (port == USDHC_NUMBER_PORTS) {
-        printf("Base address: 0x%x not in address table.\n", base_address);
+        printf("Base address: 0x%x not in address table.\n", REGS_USDHC_BASE(instance));
         return status;
     }
 
@@ -46,9 +53,9 @@ static int sd_get_rca(int base_address)
     usdhc_printf("Send CMD3.\n");
 
     /* Send CMD3 */
-    if (host_send_cmd(base_address, &cmd) == SUCCESS) {
+    if (host_send_cmd(instance, &cmd) == SUCCESS) {
         response.format = RESPONSE_48;
-        host_read_response(base_address, &response);
+        host_read_response(instance, &response);
 
         /* Set RCA to Value Read */
         usdhc_device[port].rca = response.cmd_rsp0 >> RCA_SHIFT;
@@ -64,16 +71,24 @@ static int sd_get_rca(int base_address)
     return status;
 }
 
-static int sd_set_bus_width(int base_address, int bus_width)
+/*!
+ * @brief Set SD card bus width
+ * 
+ * @param instance     Instance number of the uSDHC module.
+ * @param data_width   Data transfer width
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+static int sd_set_bus_width(uint32_t instance, int bus_width)
 {
     command_t cmd;
     int port, address, status = FAIL;
     command_response_t response;
 
     /* Check uSDHC Port */
-    port = card_get_port(base_address);
+    port = card_get_port(instance);
     if (port == USDHC_NUMBER_PORTS) {
-        printf("Base address: 0x%x not in address table.\n", base_address);
+        printf("Base address: 0x%x not in address table.\n", REGS_USDHC_BASE(instance));
         return status;
     }
 
@@ -91,22 +106,21 @@ static int sd_set_bus_width(int base_address, int bus_width)
     usdhc_printf("Send CMD55.\n");
 
     /* Send ACMD6 */
-    if (host_send_cmd(base_address, &cmd) == SUCCESS) {
+    if (host_send_cmd(instance, &cmd) == SUCCESS) {
         /* Check Response of Application Command */
         response.format = RESPONSE_48;
-        host_read_response(base_address, &response);
+        host_read_response(instance, &response);
 
         if (response.cmd_rsp0 & SD_R1_STATUS_APP_CMD_MSK) {
             bus_width = bus_width >> ONE;
 
             /* Configure ACMD6 */
-            card_cmd_config(&cmd, ACMD6, bus_width, READ, RESPONSE_48, DATA_PRESENT_NONE, TRUE,
-                            TRUE);
+            card_cmd_config(&cmd, ACMD6, bus_width, READ, RESPONSE_48, DATA_PRESENT_NONE, TRUE, TRUE);
 
             usdhc_printf("Send CMD6.\n");
 
             /* Send ACMD6 */
-            if (host_send_cmd(base_address, &cmd) == SUCCESS) {
+            if (host_send_cmd(instance, &cmd) == SUCCESS) {
                 status = SUCCESS;
             }
         }
@@ -124,7 +138,6 @@ static int sd_set_bus_width(int base_address, int bus_width)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int sd_init(int base_address, int bus_width)
 int sd_init(uint32_t instance, int bus_width)
 {
     int status = FAIL;
@@ -176,7 +189,6 @@ int sd_init(uint32_t instance, int bus_width)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int sd_voltage_validation(int base_address)
 int sd_voltage_validation(uint32_t instance)
 {
     command_t cmd;
@@ -194,8 +206,7 @@ int sd_voltage_validation(uint32_t instance)
     usdhc_printf("Send CMD8.\n");
 
     while (loop < SD_IF_CMD_ARG_COUNT) {
-        card_cmd_config(&cmd, CMD8, sd_if_cmd_arg[loop], READ, RESPONSE_48, DATA_PRESENT_NONE,
-                        TRUE, TRUE);
+        card_cmd_config(&cmd, CMD8, sd_if_cmd_arg[loop], READ, RESPONSE_48, DATA_PRESENT_NONE, TRUE, TRUE);
         if (host_send_cmd(instance, &cmd) == FAIL) {
             loop++;
 
@@ -239,8 +250,7 @@ int sd_voltage_validation(uint32_t instance)
             usdhc_printf("Send CMD55 failed.\n");
             break;
         } else {
-            card_cmd_config(&cmd, ACMD41, ocr_value, READ, RESPONSE_48, DATA_PRESENT_NONE, FALSE,
-                            FALSE);
+            card_cmd_config(&cmd, ACMD41, ocr_value, READ, RESPONSE_48, DATA_PRESENT_NONE, FALSE, FALSE);
 
             if (host_send_cmd(instance, &cmd) == FAIL) {
                 usdhc_printf("Send ACMD41 failed.\n");

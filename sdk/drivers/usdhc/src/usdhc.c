@@ -79,7 +79,6 @@ int SDHC_INTR_mode = FALSE;
  * 
  * @return             0 if successful; 1 otherwise
  */
-//static int card_software_reset(int base_address)
 static int card_software_reset(uint32_t instance)
 {
     command_t cmd;
@@ -105,7 +104,6 @@ static int card_software_reset(uint32_t instance)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//static int card_init_interrupt(int base_address)
 static int card_init_interrupt(uint32_t instance)
 {
     int idx = card_get_port(instance);
@@ -136,7 +134,6 @@ static int card_init_interrupt(uint32_t instance)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int card_init(int base_address, int bus_width)
 int card_init(uint32_t instance, int bus_width)
 {
     int init_status = FAIL;
@@ -192,7 +189,6 @@ int card_init(uint32_t instance, int bus_width)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int card_emmc_init(int base_address)
 int card_emmc_init(uint32_t instance)
 {
     int init_status = FAIL;
@@ -300,7 +296,6 @@ void card_cmd_config(command_t * cmd, int index, int argument, xfer_type_t trans
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int card_get_cid(int base_address) 
 int card_get_cid(uint32_t instance)
 {
     command_t cmd;
@@ -332,7 +327,6 @@ int card_get_cid(uint32_t instance)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int card_enter_trans(int base_address)
 int card_enter_trans(uint32_t instance)
 {
     command_t cmd;
@@ -368,7 +362,6 @@ int card_enter_trans(uint32_t instance)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int card_trans_status(int base_address)
 int card_trans_status(uint32_t instance)
 {
     command_t cmd;
@@ -409,7 +402,6 @@ int card_trans_status(uint32_t instance)
  * 
  * @return             The index of port
  */
-//int card_get_port(int base_address)
 int card_get_port(uint32_t instance)
 {
     int idx;
@@ -432,7 +424,6 @@ int card_get_port(uint32_t instance)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int card_set_blklen(int base_address, int len)
 int card_set_blklen(uint32_t instance, int len)
 {
     command_t cmd;
@@ -461,7 +452,6 @@ int card_set_blklen(uint32_t instance, int len)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int card_data_read(int base_address, int *dst_ptr, int length, int offset)
 int card_data_read(uint32_t instance, int *dst_ptr, int length, int offset)
 {
     int port, sector;
@@ -552,7 +542,6 @@ int card_data_read(uint32_t instance, int *dst_ptr, int length, int offset)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int card_data_write(int base_address, int *src_ptr, int length, int offset)
 int card_data_write(uint32_t instance, int *src_ptr, int length, int offset)
 {
     int port, sector;
@@ -637,7 +626,6 @@ int card_data_write(uint32_t instance, int *src_ptr, int length, int offset)
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int card_xfer_result(int base_address, int *result)
 int card_xfer_result(uint32_t instance, int *result)
 {
     int idx = card_get_port(instance);

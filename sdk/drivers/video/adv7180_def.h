@@ -34,6 +34,11 @@ typedef struct {
 	uint16_t active_height;	/*!< Active height. */
 } video_fmt_t;
 
+typedef struct {
+    uint8_t addr;
+    uint8_t value;
+} t_adv7180_i2c_reg_param;
+
 #define IF_NAME                    "adv7180"
 #define ADV7180_INPUT_CTL              0x00	/* Input Control */
 #define ADV7180_STATUS_1               0x10	/* Status #1 */

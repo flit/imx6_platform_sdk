@@ -75,7 +75,8 @@ ifeq "$(BOARD)" "evb"
         $(SDK_LIB_ROOT)/drivers/keypad/test \
         $(SDK_LIB_ROOT)/drivers/pcie/test \
         $(SDK_LIB_ROOT)/drivers/spi/test \
-        $(SDK_LIB_ROOT)/drivers/wdog/test
+        $(SDK_LIB_ROOT)/drivers/wdog/test \
+        $(SDK_LIB_ROOT)/drivers/camera/test
 endif
 
 # Tests that apply to either evb or sabre_ai.

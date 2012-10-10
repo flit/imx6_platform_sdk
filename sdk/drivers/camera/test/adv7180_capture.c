@@ -14,9 +14,9 @@
 #if defined(BOARD_EVB)
 
 #include <stdio.h>
-#include "ipu/inc/ipu_common.h"
-#include "camera_def.h"
-#include "video/inc/adv7180_def.h"
+#include "ipu/ipu_common.h"
+#include "camera/camera_def.h"
+#include "video/adv7180_def.h"
 
 int32_t adv7180_capture(void)
 {

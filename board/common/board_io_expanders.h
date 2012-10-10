@@ -49,7 +49,7 @@
    PORT3_P105, PORT3_P112, PORT3_P107, PORT3_P109.
 */
 #define MAX7310_I2C_BASE_ID0     3
-#define MAX7310_I2C_ID0          0x36
+#define MAX7310_I2C_ID0          (0x36 >> 1)
 #define MAX7310_ID0_DEF_DIR      0x00   // init direction for the I/O
 #define MAX7310_ID0_DEF_VAL      0xFF   // init value for the output
 
@@ -57,7 +57,7 @@
    PORT2_P81, PORT3_P101
 */
 #define MAX7310_I2C_BASE_ID1     3
-#define MAX7310_I2C_ID1          0x3E
+#define MAX7310_I2C_ID1          (0x3E >> 1)
 #define MAX7310_ID1_DEF_DIR      0x00   // init direction for the I/O
 #define MAX7310_ID1_DEF_VAL      0x09   // init value for the output
 #endif

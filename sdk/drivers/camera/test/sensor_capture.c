@@ -26,7 +26,7 @@ int32_t sensor_capture(void)
 {
     int32_t ipu_index = 1, read_value = 1;
     ips_dev_panel_t *panel;
-    t_camera_profile *sensor;
+    camera_profile_t *sensor;
     uint8_t revchar;
 
     /*step 1: enable panel */
@@ -39,7 +39,7 @@ int32_t sensor_capture(void)
     ipu_capture_setup(ipu_index, CSI_PARALLEL, 640, 480, 640, 480, panel);
 
     /*step 3: setup sensor */
-    sensor = search_sensor();
+    sensor = sensor_search();
     if (sensor == NULL)
         return FALSE;
     sensor_config(sensor);

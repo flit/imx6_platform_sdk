@@ -25,29 +25,29 @@ typedef struct {
     uint16_t is_16bits;
     uint32_t delay_ms;
     uint8_t verify;
-} t_reg_param;
+} reg_param_t;
 
 typedef struct {
-    t_reg_param *setting;
+    reg_param_t *setting;
     int32_t size;
-} t_camera_mode;
+} camera_mode_t;
 
 typedef struct {
     int8_t sensor_name[30];
     uint32_t avdd_mv, dovdd_mv, dvdd_mv;
     int32_t i2c_dev_addr;
-    t_reg_param *sensor_detection;
+    reg_param_t *sensor_detection;
     int32_t sensor_detection_size;
     int32_t mode_id;
-    t_camera_mode *modes;
+    camera_mode_t *modes;
     int32_t auto_focus_enable;
-    t_reg_param *af_firmware;
+    reg_param_t *af_firmware;
     int32_t af_firmware_size;
-    t_reg_param *af_trigger;
+    reg_param_t *af_trigger;
     int32_t af_trigger_size;
-    t_reg_param *af_ready;
+    reg_param_t *af_ready;
     int32_t af_ready_size;
-} t_camera_profile;
+} camera_profile_t;
 
 enum {
     OV3640_MODE_VGA_640_480_30FPS = 0,
@@ -65,32 +65,32 @@ enum {
     SENSOR_NUM
 };
 
-extern t_camera_mode camera_modes[CAMERA_MODE_NUM];
-extern t_camera_profile camera_profiles[SENSOR_NUM];
+extern camera_mode_t camera_modes[CAMERA_MODE_NUM];
+extern camera_profile_t camera_profiles[SENSOR_NUM];
 
-extern t_reg_param ov3640_sensor_detection[];
-extern t_reg_param ov5640_sensor_detection[];
-extern t_reg_param ov5642_sensor_detection[];
-extern t_reg_param mt9p111_sensor_detection[];
-extern t_reg_param ov3640_mode_vga_640_480_30fps[];
-extern t_reg_param ov5640_mode_vga_640_480_30fps[];
-extern t_reg_param ov5642_mode_vga_640_480_30fps[];
-extern t_reg_param ov5642_af_firmware[];
-extern t_reg_param ov5642_af_trigger[];
-extern t_reg_param ov5642_af_ready[];
-extern t_reg_param mt9p111_mode_vga_640_480_30fps[];
-extern t_reg_param mt9p111_af_firmware[];
-extern t_reg_param mt9p111_af_trigger[];
-extern t_reg_param mt9p111_af_ready[];
+extern reg_param_t ov3640_sensor_detection[];
+extern reg_param_t ov5640_sensor_detection[];
+extern reg_param_t ov5642_sensor_detection[];
+extern reg_param_t mt9p111_sensor_detection[];
+extern reg_param_t ov3640_mode_vga_640_480_30fps[];
+extern reg_param_t ov5640_mode_vga_640_480_30fps[];
+extern reg_param_t ov5642_mode_vga_640_480_30fps[];
+extern reg_param_t ov5642_af_firmware[];
+extern reg_param_t ov5642_af_trigger[];
+extern reg_param_t ov5642_af_ready[];
+extern reg_param_t mt9p111_mode_vga_640_480_30fps[];
+extern reg_param_t mt9p111_af_firmware[];
+extern reg_param_t mt9p111_af_trigger[];
+extern reg_param_t mt9p111_af_ready[];
 
 void sensor_reset(void);
 int32_t sensor_standby(int32_t enable);
 void sensor_clock_setting(void);
-t_camera_profile *search_sensor(void);
-int32_t sensor_config(t_camera_profile * sensor);
-int32_t sensor_init(t_camera_profile * sensor);
-int32_t sensor_af_trigger(t_camera_profile * sensor);
-int32_t sensor_autofocus_init(t_camera_profile * sensor);
+camera_profile_t *sensor_search(void);
+int32_t sensor_config(camera_profile_t * sensor);
+int32_t sensor_init(camera_profile_t * sensor);
+int32_t sensor_af_trigger(camera_profile_t * sensor);
+int32_t sensor_autofocus_init(camera_profile_t * sensor);
 int32_t sensor_i2c_init(uint32_t base, uint32_t baud);
 
 #endif

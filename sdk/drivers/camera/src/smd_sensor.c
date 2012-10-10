@@ -12,6 +12,8 @@
  */
 
 #include "camera/camera_def.h"
+#include "registers/regsiomuxc.h"
+#include "registers/regsccm.h"
 
 #if defined (CHIP_MX6SL)
 #define i2c_base I2C3_BASE_ADDR
@@ -19,7 +21,7 @@
 #define i2c_base I2C1_BASE_ADDR
 #endif
 
-t_reg_param ov5642_strobe_on[] = {
+reg_param_t ov5642_strobe_on[] = {
     {0x3004, 0xff, 0, 0, 0},
     {0x3016, 0x02, 0, 0, 0},
     {0x3B00, 0x8c, 0, 0, }
@@ -40,23 +42,15 @@ void sensor_reset(void)
 
     sensor_standby(0);
 
-#if defined(BOARD_SMART_DEVICE)
     /* MX6DQ/SDL_SMART_DEVICE: camera reset through GPIO1_17 */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT1, 0x5);
-    reg32setbit(GPIO1_BASE_ADDR + 0x0004, 17);  //set GPIO1_17 as output
-    reg32clrbit(GPIO1_BASE_ADDR, 17);
+	BW_IOMUXC_SW_MUX_CTL_PAD_SD1_DAT1_MUX_MODE(ALT5);
+	gpio_set_direction(GPIO_PORT1, 17, GPIO_GDIR_OUTPUT);
+
+	gpio_set_level(GPIO_PORT1, 17, GPIO_LOW_LEVEL);
     hal_delay_us(reset_occupy);
-    reg32setbit(GPIO1_BASE_ADDR, 17);
+
+	gpio_set_level(GPIO_PORT1, 17, GPIO_HIGH_LEVEL);
     hal_delay_us(reset_delay);
-#else
-    /* MX53_SMD camera reset through GPIO6_9 */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B, 0x1);
-    reg32setbit(GPIO6_BASE_ADDR + 0x0004, 9);
-    reg32clrbit(GPIO6_BASE_ADDR, 9);
-    hal_delay_us(reset_occupy);
-    reg32setbit(GPIO6_BASE_ADDR, 9);
-    hal_delay_us(reset_delay);
-#endif
 }
 
 /*!
@@ -69,23 +63,13 @@ int32_t sensor_standby(int32_t enable)
 {
     int32_t ret = 0;
 
-#if defined(BOARD_SMART_DEVICE)
     /* MX6DQ/SDL_SMART_DEVICE: setting to gpio1_16, power down high active */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT0, 0x5);
-    reg32setbit(GPIO1_BASE_ADDR + 0x0004, 16);  //set GPIO1_16 as output
+	BW_IOMUXC_SW_MUX_CTL_PAD_SD1_DAT0_MUX_MODE(ALT5);
+	gpio_set_direction(GPIO_PORT1, 16, GPIO_GDIR_OUTPUT);
     if (enable)
-        reg32setbit(GPIO1_BASE_ADDR, 16);
+		gpio_set_level(GPIO_PORT1, 16, GPIO_HIGH_LEVEL);
     else
-        reg32clrbit(GPIO1_BASE_ADDR, 16);
-#else
-    /* MX53_SMD: setting to gpio6_10, power down high active */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, 0x1);
-    reg32setbit(GPIO6_BASE_ADDR + 0x0004, 10);
-    if (enable)
-        reg32setbit(GPIO6_BASE_ADDR, 10);
-    else
-        reg32clrbit(GPIO6_BASE_ADDR, 10);
-#endif
+		gpio_set_level(GPIO_PORT1, 16, GPIO_LOW_LEVEL);
 
     return ret;
 }
@@ -98,25 +82,21 @@ void sensor_clock_setting(void)
 {
     int32_t clock_delay = 1000;
 
-#if defined(BOARD_SMART_DEVICE)
-    /*config gpio_0 to be clko */
-    writel(0x0, IOMUXC_SW_MUX_CTL_PAD_GPIO_0);
     /*MX6DQ/SDL_SMART_DEVICE: config clko */
-    writel(0x00031, IOMUXC_SW_PAD_CTL_PAD_GPIO_0);  // Set GPIO0
-    /*select osc_clk 24MHz, CKO1 output drives cko2 clock */
-    writel(0x10e0180, CCM_BASE_ADDR + 0x60);
-#else
-    uint32_t value = 0;
-
     /*config gpio_0 to be clko */
-    writel(0x0, IOMUXC_SW_MUX_CTL_PAD_GPIO_0);
-    /*MX53_SMD: config clko select ahb_clk / 5 */
-    writel(0x1E4, IOMUXC_SW_PAD_CTL_PAD_GPIO_0);
-    value = readl(CCM_BASE_ADDR + 0x60) & (~0xFF);
+	BW_IOMUXC_SW_MUX_CTL_PAD_GPIO_0_MUX_MODE(ALT0);
 
-    /*ahb_clk divided by 8 to provide mclk */
-    writel(value | 0xCB, CCM_BASE_ADDR + 0x60);
-#endif
+	BW_IOMUXC_SW_PAD_CTL_PAD_GPIO_0_SRE(SRE_FAST);
+	BW_IOMUXC_SW_PAD_CTL_PAD_GPIO_0_DSE(DSE_80OHM);
+
+    /*select osc_clk 24MHz, CKO1 output drives cko2 clock */
+	HW_CCM_CCOSR_WR(
+			BF_CCM_CCOSR_CLKO2_EN(1) |
+			BF_CCM_CCOSR_CLKO2_DIV(0) | /*div 1*/
+			BF_CCM_CCOSR_CLKO2_SEL(0xe) | /*osc_clk*/
+			BF_CCM_CCOSR_CLKO1_CLKO2_SEL(1) |
+			BF_CCM_CCOSR_CLKO1_EN(1) |
+			BF_CCM_CCOSR_CLKO1_DIV(0)); /*div 1*/
 
     hal_delay_us(clock_delay);
 }
@@ -126,7 +106,7 @@ void sensor_clock_setting(void)
  * @param	sensor: sensor profile information
  *
  */
-int32_t sensor_config(t_camera_profile * sensor)
+int32_t sensor_config(camera_profile_t * sensor)
 {
     int32_t ret = 0;
 
@@ -142,26 +122,22 @@ int32_t sensor_config(t_camera_profile * sensor)
  * @return sensor profile for the camera pluged in
  *
  */
-t_camera_profile *search_sensor(void)
+camera_profile_t *sensor_search(void)
 {
     int32_t i, j;
     uint16_t read_value, error;
-    t_camera_profile *sensor_on;
+    camera_profile_t *sensor_on;
 
     for (i = 0; i < SENSOR_NUM; i++) {
         error = 0;
         sensor_on = &camera_profiles[i];
-#ifdef MX53_SMD
-        camera_power_on(sensor_on->avdd_mv, sensor_on->dovdd_mv, sensor_on->dvdd_mv);
-#else
         camera_power_on();
-#endif
         sensor_reset();
         sensor_clock_setting();
         sensor_i2c_init(i2c_base, 170000);
 hal_delay_us(1000000);
         for (j = 0; j < sensor_on->sensor_detection_size; ++j) {
-            t_reg_param *setting = &sensor_on->sensor_detection[j];
+            reg_param_t *setting = &sensor_on->sensor_detection[j];
             sensor_read_reg(sensor_on->i2c_dev_addr, setting->addr, &read_value,
                             setting->is_16bits);
             if (setting->delay_ms != 0)
@@ -191,16 +167,16 @@ hal_delay_us(1000000);
  * @param	sensor: sensor profile information
  *
  */
-int32_t sensor_init(t_camera_profile * sensor)
+int32_t sensor_init(camera_profile_t * sensor)
 {
     int32_t i;
     uint16_t read_value;
 
     sensor_i2c_init(i2c_base, 170000);
-    t_camera_mode *preview_mode = &sensor->modes[sensor->mode_id];
+    camera_mode_t *preview_mode = &sensor->modes[sensor->mode_id];
 
     for (i = 0; i < preview_mode->size; ++i) {
-        t_reg_param *setting = &preview_mode->setting[i];
+        reg_param_t *setting = &preview_mode->setting[i];
         sensor_write_reg(sensor->i2c_dev_addr, setting->addr, &setting->value, setting->is_16bits);
         if (setting->delay_ms != 0)
             hal_delay_us(setting->delay_ms);
@@ -224,10 +200,10 @@ int32_t sensor_init(t_camera_profile * sensor)
  * @param	sensor: sensor profile information
  *
  */
-int32_t sensor_af_trigger(t_camera_profile * sensor)
+int32_t sensor_af_trigger(camera_profile_t * sensor)
 {
     int32_t ret = 0, i;
-    t_reg_param *setting;
+    reg_param_t *setting;
 
     sensor_i2c_init(i2c_base, 170000);
 
@@ -241,7 +217,7 @@ int32_t sensor_af_trigger(t_camera_profile * sensor)
     return ret;
 }
 
-int32_t sensor_autofocus_init(t_camera_profile * sensor)
+int32_t sensor_autofocus_init(camera_profile_t * sensor)
 {
     int32_t ret = 0, i;
     uint16_t read_value;
@@ -252,7 +228,7 @@ int32_t sensor_autofocus_init(t_camera_profile * sensor)
         sensor_i2c_init(i2c_base, 170000);
 
         for (i = 0; i < sensor->af_firmware_size; ++i) {
-            t_reg_param *setting = &sensor->af_firmware[i];
+            reg_param_t *setting = &sensor->af_firmware[i];
             sensor_write_reg(sensor->i2c_dev_addr, setting->addr, &setting->value,
                              setting->is_16bits);
             if (setting->delay_ms != 0)
@@ -286,7 +262,7 @@ int32_t sensor_autofocus_init(t_camera_profile * sensor)
 int32_t sensor_i2c_init(uint32_t base, uint32_t baud)
 {
     int32_t ret = 0;
-    int32_t i2c_delay = 500;
+    int32_t i2c_delay = 5000;
 
     ret = i2c_init(base, baud);
     if (ret != 0) {
@@ -359,7 +335,7 @@ static int32_t sensor_read_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * 
 int camera_strobeflash_on(uint32_t i2cbase)
 {
     int ret, i;
-    t_reg_param *setting;
+    reg_param_t *setting;
 
     sensor_i2c_init(i2cbase, 170000);
 

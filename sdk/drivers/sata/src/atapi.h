@@ -7,9 +7,14 @@
 #ifndef _ATAPI_H_
 #define _ATAPI_H_
 
-///////////////////////////////////////////////////////////////////
-//                      ATAPI Commands                           //
-///////////////////////////////////////////////////////////////////
+//! @addtogroup diag_sata
+//! @{
+
+//////////////////////////////////////////////////////////////////////////////
+// Definitions
+//////////////////////////////////////////////////////////////////////////////
+
+//! @brief Enumeration of ATAPI COMMAND
 typedef enum ATAPI_COMMAND {
     ATAPI_COMMAND_IDENTIFY_DEVICE = 0xEC,
     ATAPI_COMMAND_READ_DMA = 0xC8,
@@ -34,8 +39,8 @@ typedef enum ATAPI_COMMAND {
     ATAPI_COMMAND_CFA_WRITE_SECTOR_W_OUT_ERASE = 0xCD,
 } atapi_cmd_t;
 
-/*The data structure is defined based on ATAPI7 specification(T13/1532D)
-ide_disk.h has another similar defintions*/
+//! @brief Data structure defined based on ATAPI7 specification(T13/1532D)
+//! ide_disk.h has another similar defintions
 typedef struct sata_identify_data_t_ {
     u16 general_conf;           // 00    : general configuration
     u16 num_cylinders;          // 01    : number of cylinders (default CHS trans)
@@ -108,4 +113,11 @@ typedef struct sata_identify_data_t_ {
     u16 rsv25[49];              // 206-254: reserved
     u16 integrity;              // 255   : 15-8 -> checksum; 7-0 -> signature;
 } sata_identify_data_t;
-#endif /*_ATAPI_H_*/
+
+//! @}
+
+#endif
+
+//////////////////////////////////////////////////////////////////////////////
+// EOF
+//////////////////////////////////////////////////////////////////////////////

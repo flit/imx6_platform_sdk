@@ -8,16 +8,13 @@
 #include "atapi.h"
 #include "registers/regsccm.h"
 
-///////////////////////////////////////////////////////////////////
-//                      Macro Definitions                        //
-///////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+// Definitions
+/////////////////////////////////////////////////////////////////////////////
 #define PRINT(opt,fmt,args...) \
 	if(opt) \
 		printf(fmt, ## args)
 
-///////////////////////////////////////////////////////////////////
-//                      Global Variables                         //
-///////////////////////////////////////////////////////////////////
 sata_command_header_t *cmdhdr = NULL;
 sata_command_table_t *cmdtbl = NULL;
 sata_ahci_regs_t *imx_sata_host = (sata_ahci_regs_t *) SATA_BASE_ADDR;
@@ -28,23 +25,13 @@ disk_identify_t ident;
 
 static sata_phy_ref_clk_t sata_phy_clk_sel = OSC_UNKNOWN;
 
-///////////////////////////////////////////////////////////////////
-//                Extern Variables Re-declaration                //
-///////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////
-//                  Extern Function Re-declaration               //
-///////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+// CODE
+/////////////////////////////////////////////////////////////////////////////
 extern void sata_clock_enable(void);
 extern void sata_power_on(void);
 void sata_get_phy_src_clk(sata_phy_ref_clk_t *);
-//////////////////////////////////////////////////////////////////
-//                      Local Variables                          //
-///////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////
-//                  Local Function Declarations                  //
-///////////////////////////////////////////////////////////////////
 static void sata_ahci_host_info_print(sata_ahci_regs_t * ahci);
 
 static sata_return_t sata_ahci_set_port_idle(sata_port_regs_t * port_n_regs);
@@ -55,40 +42,31 @@ static sata_return_t sata_hdd_init(void);
 static sata_return_t ahci_find_empty_slot(sata_port_regs_t * port);
 static sata_return_t sata_wait_command_done(u32 port_no);
 
-static sata_return_t sata_reg_fis_h2d(sata_port_regs_t * port,  //the base address of the SATA port to run the command
-                                      u32 sect_addr,    //start address of the first sector
-                                      u32 sect_cnt, //the sector number to read or write
-                                      u32 rw,   //the data transfer direction: read or write
-                                      u32 command,  //ATAPI command code
-                                      char features,    //content in feature register of the shadow register block
-                                      u32 size, //the data transfer size in byte
-                                      u32 data_addr,    //base address of data buffer
-                                      sata_command_header_t * cmdh, //the pointer of command header
-                                      sata_command_table_t * cmdt); //the pointer of command table
+static sata_return_t sata_reg_fis_h2d(sata_port_regs_t * port, 
+                                      u32 sect_addr,
+                                      u32 sect_cnt,
+                                      u32 rw, 
+                                      u32 command, 
+                                      char features, 
+                                      u32 size, 
+                                      u32 data_addr,  
+                                      sata_command_header_t * cmdh, 
+                                      sata_command_table_t * cmdt); 
 static sata_return_t sata_non_queued_error_recovery(void);
-//SATA PHY Control Functions
 static sata_return_t sata_phy_cr_ack_polling(u32 max_iterations, u32 expected_val);
 static sata_return_t sata_phy_cr_write(u32 addr, u32 val);
 static sata_return_t sata_phy_cr_read(u32 addr, u32 * data);
 static sata_return_t sata_phy_cr_addr(u32 addr);
 static void sata_phy_config_mpll(char prop_ctl, char int_ctl, char ncy5, char ncy, char prescale);
-///////////////////////////////////////////////////////////////////
-//                  Global Function Declarations                 //
-///////////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////////
-//                  Function Defintions                          //
-///////////////////////////////////////////////////////////////////
-/*=============================================================================
-FUNCTION:			sata_pio_read_sector
-DESCRIPTION:		This function read some sectors from SATA HDD.
-ARGUMENTS PASSED:   start_block - the address of start sector
-                    buf         - the pointer of destination buffer
-                    len         - the length to read
-RETURN VALUE:		Pass  - True
-                    Faile - False
-IMPORTANT NOTES:
-===============================================================================*/
+/*!
+ * @brief Read some sectors to SATA disk from SATA HDD
+ *
+ * @param start_block Address of start sector
+ * @param buf Pointer of destination buffer
+ * @param len Length to read
+ * @return SATA_PASS or SATA_FAIL
+ */
 sata_return_t sata_pio_read_sector(u32 start_block, u8 * buf, u32 len)
 {
     u32 sect_cnt = 0;
@@ -140,16 +118,14 @@ sata_return_t sata_pio_read_sector(u32 start_block, u8 * buf, u32 len)
     return (!ret);
 }
 
-/*=============================================================================
-FUNCTION:			sata_pio_write_sector
-DESCRIPTION:		This function write some sectors from SATA HDD.
-ARGUMENTS PASSED:   start_block - the number of start sector
-                    buf         - the pointer of destination buffer
-                    len         - the length to write
-RETURN VALUE:		Pass  - True
-                    Faile - False
-IMPORTANT NOTES:
-===============================================================================*/
+/*!
+ * @brief Write some sectors to SATA disk from SATA HDD
+ *
+ * @param start_block Address of start sector
+ * @param buf Pointer of destination buffer
+ * @param len Length to read
+ * @return SATA_PASS or SATA_FAIL
+ */
 sata_return_t sata_pio_write_sector(u32 start_block, u8 * buf, u32 len)
 {
     u32 sect_cnt = 0;
@@ -202,17 +178,14 @@ sata_return_t sata_pio_write_sector(u32 start_block, u8 * buf, u32 len)
     return (!ret);
 }
 
-/*=============================================================================
-FUNCTION:			sata_dma_read_sector
-DESCRIPTION:		This function read some sectors from SATA HDD through Port
-                    DMA
-ARGUMENTS PASSED:   start_block - the address of start sector
-                    buf         - the pointer of destination buffer
-                    len         - the length to read
-RETURN VALUE:		Pass  - True
-                    Faile - False
-IMPORTANT NOTES:
-===============================================================================*/
+/*!
+ * @brief This function read some sectors from SATA HDD through Port DMA
+ *
+ * @param start_block Address of start sector
+ * @param ident_data Pointer of destination buffer
+ * @param len Length to read
+ * @return SATA_PASS or SATA_FAIL
+ */
 sata_return_t sata_dma_read_sector(u32 start_block, u8 * buf, u32 len)
 {
     u32 sect_cnt = 0;
@@ -262,17 +235,6 @@ sata_return_t sata_dma_read_sector(u32 start_block, u8 * buf, u32 len)
     return (!ret);
 }
 
-/*=============================================================================
-FUNCTION:			sata_dma_write_sector
-DESCRIPTION:		This function write some sectors into SATA HDD through Port
-                    DMA
-ARGUMENTS PASSED:   start_block - the number of start sector
-                    buf         - the pointer of destination buffer
-                    len         - the length to write
-RETURN VALUE:		Pass  - True
-                    Faile - False
-IMPORTANT NOTES:
-===============================================================================*/
 sata_return_t sata_dma_write_sector(u32 start_block, u8 * buf, u32 len)
 {
     u32 sect_cnt = 0;
@@ -325,17 +287,6 @@ sata_return_t sata_dma_write_sector(u32 start_block, u8 * buf, u32 len)
     return (!ret);
 }
 
-/*=============================================================================
-FUNCTION:			sata_disk_read_sector
-DESCRIPTION:		This function read some sectors from SATA disk with r/w
-                    thread
-ARGUMENTS PASSED:   start_block - the address of start sector
-                    buf         - the pointer of destination buffer
-                    len         - the length to read
-RETURN VALUE:		Pass  - True
-                    Faile - False
-IMPORTANT NOTES:
-==============================================================================*/
 sata_return_t sata_disk_read_sector(u32 start_block, u8 * buf, u32 len)
 {
     u32 i = 0;
@@ -381,17 +332,6 @@ sata_return_t sata_disk_read_sector(u32 start_block, u8 * buf, u32 len)
     return SATA_PASS;
 }
 
-/*=============================================================================
-FUNCTION:			sata_disk_write_sector
-DESCRIPTION:		This function write some sectors to SATA disk with r/w
-                    thread
-ARGUMENTS PASSED:   start_block - the address of start sector
-                    buf         - the pointer of destination buffer
-                    len         - the length to read
-RETURN VALUE:		Pass  - True
-                    Faile - False
-IMPORTANT NOTES:
-==============================================================================*/
 sata_return_t sata_disk_write_sector(u32 start_block, u8 * buf, u32 len)
 {
     u32 i = 0;
@@ -439,13 +379,6 @@ sata_return_t sata_disk_write_sector(u32 start_block, u8 * buf, u32 len)
     return SATA_PASS;
 }
 
-/*=============================================================================
-FUNCTION: 			printf_buffer
-DESCRIPTION:    	print a buffer
-ARGUMENTS PASSED: 	None
-RETURN VALUE:		None
-IMPORTANT NOTES:	None
-==============================================================================*/
 void printf_buffer(u32 buff, u32 size, u32 enable)
 {
     u32 i;
@@ -465,6 +398,11 @@ void printf_buffer(u32 buff, u32 size, u32 enable)
     }
 }
 
+/*!
+ * @brief Print the identify data
+ *
+ * @param ident_data Pointer to the identify data
+ */
 void print_identify_data(disk_identify_t * ident_data)
 {
     PRINT(1, "HDD Identification Data:\n");
@@ -478,10 +416,13 @@ void print_identify_data(disk_identify_t * ident_data)
     PRINT(1, "\tMax Trans Sz  : %d\n", ident_data->max_transfer * 512);
 }
 
-///////////////////////////////////////////////////////////////////
-//                  Local Function Defintions                    //
-///////////////////////////////////////////////////////////////////
-
+/*!
+ * @brief Copy sata identify data
+ *
+ * @param dest Destination buffer address
+ * @param src Source buffer address
+ * @param size Data size
+ */
 static void _sata_identify_data_strcpy(char *dest, u16 * src, u16 size)
 {
     u32 i;
@@ -500,26 +441,24 @@ static void _sata_identify_data_strcpy(char *dest, u16 * src, u16 size)
     *dest = '\0';
 }
 
-/*=============================================================================
-FUNCTION: 			sata_ahci_set_port_idle
-DESCRIPTION:    	make sure SATA Port in IDLE state
-ARGUMENTS PASSED: 	sata_port_regs_t * port_n_regs - base address of port regs
-RETURN VALUE:		pass - 0; fail - 1
-IMPORTANT NOTES:	None
-
-    Reading each implemented port's PxCMD register to ensure the controller
-	is not in the running state.
-	PxCMD.ST/CR/FRE/FR are all cleared -> idle state
-	If the port is not idle, it should be placed in the idle state prior to
-	manipulating HBA and port specific register
-	Method:
-	   1.clearing PxCMD.ST and waiting for PxCMD.CR to return '0' to place a port
-	    into idle. At least 500ms waiting is required.
-	   2.if PxCMD.FRE is set to '1', software should clear it to '0' and wait at
-	    least 500ms for PxCMD.FR returning '0'
-	   3.PxCMD.CR or PxCMD.FR don't clear to '0' correctly, then software may
-	    attempt a port reset or a full HBA reset to recover
-==============================================================================*/
+/*!
+ * @brief Make sure SATA Port in IDLE state
+ * Reading each implemented port's PxCMD register to ensure the controller
+ * is not in the running state.
+ * PxCMD.ST/CR/FRE/FR are all cleared -> idle state
+ * If the port is not idle, it should be placed in the idle state prior to
+ * manipulating HBA and port specific register
+ * Method:
+ *   1.clearing PxCMD.ST and waiting for PxCMD.CR to return '0' to place a port
+ *    into idle. At least 500ms waiting is required.
+ *   2.if PxCMD.FRE is set to '1', software should clear it to '0' and wait at
+ *    least 500ms for PxCMD.FR returning '0'
+ *   3.PxCMD.CR or PxCMD.FR don't clear to '0' correctly, then software may
+ *    attempt a port reset or a full HBA reset to recover
+ *
+ * @param port_n_regs Base address of port regs
+ * @return SATA_PASS or SATA_FAIL
+ */
 static sata_return_t sata_ahci_set_port_idle(sata_port_regs_t * port_n_regs)
 {
     u32 v;
@@ -568,13 +507,12 @@ static sata_return_t sata_ahci_set_port_idle(sata_port_regs_t * port_n_regs)
 
 }
 
-/*=============================================================================
-FUNCTION: 			sata_ahci_port_reset
-DESCRIPTION:    	sata_port_regs_t * port_n_regs - base address of port regs
-ARGUMENTS PASSED: 	None
-RETURN VALUE:		None
-IMPORTANT NOTES:	None
-==============================================================================*/
+/*!
+ * @brief Reset sata AHCI port
+ *
+ * @param port_n_regs Base address of port regs
+ * @return SATA_PASS or SATA_FAIL
+ */
 static sata_return_t sata_ahci_port_reset(sata_port_regs_t * port_n_regs)
 {
     sata_return_t ret;
@@ -591,13 +529,11 @@ static sata_return_t sata_ahci_port_reset(sata_port_regs_t * port_n_regs)
     return SATA_PASS;
 }
 
-/*=============================================================================
-FUNCTION: 			sata_ahci_host_info_print
-DESCRIPTION:    	parsing the SATA host information by reading host regs
-ARGUMENTS PASSED: 	None
-RETURN VALUE:		None
-IMPORTANT NOTES:	None
-==============================================================================*/
+/*!
+ * @brief Parsing the SATA host information by reading host regs
+ *
+ * @param ahci AHCI register handle
+ */
 static void sata_ahci_host_info_print(sata_ahci_regs_t * ahci)
 {
     u32 vers, cap, speed, ip_vers;
@@ -656,15 +592,11 @@ static void sata_ahci_host_info_print(sata_ahci_regs_t * ahci)
 
 }
 
-/*=============================================================================
-FUNCTION: 			sata_clock_init
-DESCRIPTION:    	Enable the clocks of SATA, and configure the reference clock
-ARGUMENTS PASSED: 	None
-RETURN VALUE:		pass - 0
-                    fail - 1
-IMPORTANT NOTES:
-     Referene clock will come from CLKO2, which is GPIO_3
-==============================================================================*/
+/*!
+ * @brief Enable the clocks of SATA, and configure the reference clock
+ *
+ * @param phyclk Phy clock
+ */
 static void sata_clock_init(sata_phy_ref_clk_t * phyclk)
 {
 //     u32 v;
@@ -714,15 +646,9 @@ static void sata_clock_init(sata_phy_ref_clk_t * phyclk)
 
 }
 
-/*=============================================================================
-FUNCTION: 			sata_hdd_init
-DESCRIPTION:    	Read the first sector of the attached hard disk drive to
-                    get the critical information
-ARGUMENTS PASSED: 	None
-RETURN VALUE:		pass - 0
-                    fail - 1
-IMPORTANT NOTES:	None
-==============================================================================*/
+/*!
+ * @brief Initialize sata HDD
+ */
 static sata_return_t sata_hdd_init(void)
 {
     sata_return_t ret = SATA_FAIL;
@@ -791,13 +717,9 @@ static sata_return_t sata_hdd_init(void)
 
 }
 
-/*=============================================================================
-FUNCTION: 			sata_port_status_parser
-DESCRIPTION:    	parsing the status of SATA
-ARGUMENTS PASSED: 	u32 status - the value of SATA PORT IS register
-RETURN VALUE:		None
-IMPORTANT NOTES:	None
-==============================================================================*/
+/*!
+ * @brief Parsing the status of SATA
+ */
 static void sata_port_status_parser(u32 status)
 {
 
@@ -870,13 +792,12 @@ static void sata_port_status_parser(u32 status)
     }
 }
 
-/*=============================================================================
-FUNCTION: 			ahci_find_empty_slot
-DESCRIPTION:    	find an empty command slot
-ARGUMENTS PASSED: 	sata_ahci_regs_t * ahci - the AHCI base address
-RETURN VALUE:		return the first empty command slot during tranversing
-IMPORTANT NOTES:	None
-==============================================================================*/
+/*!
+ * @brief Find an empty command slot
+ *
+ * @param port Sata port handle
+ * @return SATA_PASS or SATA_FAIL
+ */
 static sata_return_t ahci_find_empty_slot(sata_port_regs_t * port)
 {
     u32 idx;
@@ -903,6 +824,12 @@ static sata_return_t ahci_find_empty_slot(sata_port_regs_t * port)
     return empty_cmd_slot;
 }
 
+/*!
+ * @brief Wait for the sata command execution done
+ *
+ * @param port Sata port number
+ * @return SATA_PASS or SATA_FAIL
+ */
 static sata_return_t sata_wait_command_done(u32 port_no)
 {
     u32 i;
@@ -950,23 +877,31 @@ static sata_return_t sata_wait_command_done(u32 port_no)
     return ret;
 }
 
-/*=============================================================================
-FUNCTION: 			sata_reg_fis_h2d
-DESCRIPTION:    	send a RFIS to SATA device
-ARGUMENTS PASSED: 	sata_ahci_regs_t * ahci - the AHCI base address
-RETURN VALUE:		return the first empty command slot during tranversing
-IMPORTANT NOTES:	None
-==============================================================================*/
-static sata_return_t sata_reg_fis_h2d(sata_port_regs_t * port,  //the base address of the SATA port to run the command
-                                      u32 sect_addr,    //start address of the first sector
-                                      u32 sect_cnt, //the sector number to read or write
-                                      u32 rw,   //the data transfer direction: read or write
-                                      u32 command,  //ATAPI command code
-                                      char features,    //content in feature register of the shadow register block
-                                      u32 size, //the data transfer size in byte
-                                      u32 data_addr,    //base address of data buffer
-                                      sata_command_header_t * cmdh, //the pointer of command header
-                                      sata_command_table_t * cmdt)  //the pointer of command table
+/*!
+ * @brief send a RFIS to SATA device
+ *
+ * @param port Base address of the SATA port to run the command
+ * @param sect_addr Start address of the first sector
+ * @param sect_cnt Sector number to read or write
+ * @param rw Data transfer direction: read or write
+ * @param command ATAPI command code
+ * @param features Content in feature register of the shadow register block
+ * @param size Data transfer size in byte
+ * @param data_addr Base address of data buffer
+ * @param cmdh Pointer of command header
+ * @param cmdt Pointer of command table
+ * @return SATA_PASS or SATA_FAIL
+ */
+static sata_return_t sata_reg_fis_h2d(sata_port_regs_t * port,  
+                                      u32 sect_addr, 
+                                      u32 sect_cnt, 
+                                      u32 rw, 
+                                      u32 command,  
+                                      char features,    
+                                      u32 size,
+                                      u32 data_addr,
+                                      sata_command_header_t * cmdh,
+                                      sata_command_table_t * cmdt)
 {
     s32 ept_cmd_slot = -1;
     sata_command_header_t *cmd_hdr;
@@ -1022,13 +957,11 @@ static sata_return_t sata_reg_fis_h2d(sata_port_regs_t * port,  //the base addre
     return SATA_PASS;
 }
 
-/*=============================================================================
-FUNCTION: 			sata_non_queued_error_recovery
-DESCRIPTION:    	sata attempts to recover from an error
-ARGUMENTS PASSED: 	None
-RETURN VALUE:		pass or fail
-IMPORTANT NOTES:	None
-==============================================================================*/
+/*!
+ * @brief Sata attempts to recover from an error
+ *
+ * @return SATA_PASS or SATA_FAIL
+ */
 static sata_return_t sata_non_queued_error_recovery(void)
 {
     sata_return_t ret;
@@ -1099,15 +1032,13 @@ static sata_return_t sata_non_queued_error_recovery(void)
     return SATA_PASS;
 }
 
-//SATA PHY Control Functions
-/*=============================================================================
-FUNCTION: 			sata_phy_cr_ack_polling
-DESCRIPTION:    	check the PHY control register acknowledge
-ARGUMENTS PASSED: 	u32 expected_val - expected value in PHY status
-                    register
-RETURN VALUE:		return the first empty command slot during tranversing
-IMPORTANT NOTES:	None
-==============================================================================*/
+/*!
+ * @brief Check the PHY control register acknowledge
+ *
+ * @param max_iterations Maximum iteration number
+ * @param expected_val Expected value
+ * @return SATA_PASS or SATA_FAIL
+ */
 static sata_return_t sata_phy_cr_ack_polling(u32 max_iterations, u32 expected_val)
 {
     u32 v, ack;
@@ -1128,6 +1059,13 @@ static sata_return_t sata_phy_cr_ack_polling(u32 max_iterations, u32 expected_va
         return SATA_PASS;
 }
 
+/*!
+ * @brief Write the PHY control register
+ *
+ * @param addr register address
+ * @param val value
+ * @return SATA_PASS or SATA_FAIL
+ */
 static sata_return_t sata_phy_cr_write(u32 addr, u32 val)
 {
     u32 v;
@@ -1197,6 +1135,14 @@ static sata_return_t sata_phy_cr_write(u32 addr, u32 val)
     return SATA_PASS;
 }
 
+
+/*!
+ * @brief Read the PHY control register
+ *
+ * @param addr register address
+ * @param data value read
+ * @return SATA_PASS or SATA_FAIL
+ */
 static sata_return_t sata_phy_cr_read(u32 addr, u32 * data)
 {
     u32 temp_rd_data;
@@ -1248,6 +1194,12 @@ static sata_return_t sata_phy_cr_read(u32 addr, u32 * data)
     return 0;
 }
 
+/*!
+ * @brief Set the PHY capture address
+ *
+ * @param addr capture address
+ * @return SATA_PASS or SATA_FAIL
+ */
 static sata_return_t sata_phy_cr_addr(u32 addr)
 {
     u32 temp_wr_data;
@@ -1277,44 +1229,15 @@ static sata_return_t sata_phy_cr_addr(u32 addr)
     return SATA_PASS;
 }
 
-/* freq overide reg
-prop_ctl 2:0 RWCr Proportional charge pump control Proportional current = (n + 1) / 8 x full_scale
-int_ctl 5:3 RWCr Integral charge pump control Integral current = (n + 1) / 8 x full_scale
-ncy5 7:6 RWCr Divide-by-5 control MPLL Divider period = 4 x (NCY + 1) + NCY5.  Valid only when NCY5  NCY.
-ncy 12:8 RWCr Divide-by-4 cycle control MPLL Divider period = 4 x (NCY + 1) + NCY5.  Valid only when NCY5  NCY.
-prescale 14:13 RWCr Prescaler control:
- 00: No scaling
- 01: Doubles refclk frequency
- 10: Halves refclk frequency
- 11: Reserved
-ovrd 15 RWCr Enables override of all bits in this register
-The SATA Baudrate is 1.5Gpbs
-Baudrate = MPLL_DIV * CLK
-for 25Mhz, CLK = ref_clk * prescaler = 50Mhz
-for 100Mhz, CLK = ref_clk /prescaler = 50Mhz
-
-MPLL_DIV are both 30 for 25Mhz and 100Mhz ref clock
-
-asuuming 25MHZ input:
-sata_configure_mpll
-(
-    7,   // prop_ctl
-    0,   // int_ctl
-    2,   // ncy5
-    6,   // ncy
-    1,   // prescale
-)
-
-asuuming 50MHZ input:
-sata_configure_mpll
-(
-    7,   // prop_ctl
-    0,   // int_ctl
-    2,   // ncy5
-    6,   // ncy
-    0,   // prescale
-)
-*/
+/*!
+ * @brief Configure the PHY mpll for clock generation
+ *
+ * @param prop_ctl Proportional charge pump control
+ * @param int_ctl Integral charge pump control
+ * @param ncy5 Divide-by-5 control
+ * @param ncy Divide-by-4 cycle control
+ * @param prescale Prescaler control
+ */
 static void sata_phy_config_mpll(char prop_ctl, char int_ctl, char ncy5, char ncy, char prescale)
 {
     u32 freq_ovrd;
@@ -1327,17 +1250,6 @@ static void sata_phy_config_mpll(char prop_ctl, char int_ctl, char ncy5, char nc
     hal_delay_us(10);
 }
 
-///////////////////////////////////////////////////////////////////
-//                  Global Function Defintions                   //
-///////////////////////////////////////////////////////////////////
-
-/*=============================================================================
-FUNCTION: 			sata_init
-DESCRIPTION:    	Initialize SATA Controller and also identify an attached hdd
-ARGUMENTS PASSED: 	None
-RETURN VALUE:		None
-IMPORTANT NOTES:	None
-==============================================================================*/
 sata_return_t sata_init(sata_ahci_regs_t * ahci)
 {
     sata_return_t ret = SATA_PASS;
@@ -1554,13 +1466,6 @@ sata_return_t sata_init(sata_ahci_regs_t * ahci)
     return ret;
 }
 
-/*=============================================================================
-FUNCTION: 			sata_deinit
-DESCRIPTION:    	Initialize SATA Controller and also identify an attached hdd
-ARGUMENTS PASSED: 	None
-RETURN VALUE:		None
-IMPORTANT NOTES:	None
-==============================================================================*/
 sata_return_t sata_deinit(sata_ahci_regs_t * ahci)
 {
     sata_return_t ret = SATA_PASS;
@@ -1606,14 +1511,6 @@ sata_return_t sata_deinit(sata_ahci_regs_t * ahci)
     return ret;
 }
 
-/*=============================================================================
-FUNCTION: 			identify_sata_hdd
-DESCRIPTION:    	detect the attached HDD and try to initialize it
-ARGUMENTS PASSED: 	sata_ahci_regs_t * ahci - the base address of HBA controller
-                    u32 port_number - the port to detect
-RETURN VALUE:		None
-IMPORTANT NOTES:	None
-==============================================================================*/
 sata_return_t sata_identify(sata_ahci_regs_t * ahci, u32 port_number)
 {
     sata_port_regs_t *port;
@@ -1664,4 +1561,6 @@ sata_return_t sata_identify(sata_ahci_regs_t * ahci, u32 port_number)
     return SATA_PASS;
 }
 
-//EOF sata_imx.c
+//////////////////////////////////////////////////////////////////////////////
+// EOF
+//////////////////////////////////////////////////////////////////////////////

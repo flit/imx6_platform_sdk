@@ -10,13 +10,15 @@
 #include "sdk.h"
 #include "hardware.h"
 
+//////////////////////////////////////////////////////////////////////////////
+// Definitions
+//////////////////////////////////////////////////////////////////////////////
+
 typedef unsigned int u32;
 typedef unsigned short u16;
 typedef unsigned char u8;
 typedef signed int s32;
-///////////////////////////////////////////////////////////////////
-//                      Macro Definitions                        //
-///////////////////////////////////////////////////////////////////
+
 #define SATA_FAT_BLOCK_SIZE           4096
 #define SATA_HDD_SECTOR_SIZE          512
 
@@ -44,7 +46,7 @@ typedef signed int s32;
 
 #define SATA_PORT_N_BASE_ADDRESS(n,achi_base)   ((u32)achi_base+(0x100+n*0x80))
 
-/*SATA FIS Types Definitions*/
+//! @brief SATA FIS Types Definitions
 #define SATA_FIS_TYPE_RFIS_H2D             0x27 //Register FIS - Host to Device
 #define SATA_FIS_TYPE_RFIS_D2H             0x34 //Register FIS - Device to Host
 #define SATA_FIS_TYPE_DAFIS                0x39 //DMA Activate FIS - Device to Host
@@ -54,13 +56,14 @@ typedef signed int s32;
 #define SATA_FIS_TYPE_PSFIS                0x5F //PIO Setup FIS - Device to Host
 #define SATA_FIS_TYPE_SDBFIS               0xA1 //Set Device Bits FIS - Device to Host
 
-/*SATA OPERATION Direction*/
+//! @brief SATA OPERATION Direction
 #define SATA_READ                          0x0
 #define SATA_WRITE                         0x1
 
 #define IOC                                0x1  //Interrupt On Complete
-/*SATA Host Registers Macros*/
-//CAP
+
+//! @brief SATA Host Registers Macros
+//! @brief CAP
 #define SATA_AHCI_HOST_CAP_NP_SHIFT        0
 #define SATA_AHCI_HOST_CAP_NP_MASK         (0x1F<<0)    //Number of Ports
 #define SATA_AHCI_HOST_CAP_SXS             (1<<5)   //Supports External SATA
@@ -86,19 +89,19 @@ typedef signed int s32;
 #define SATA_AHCI_HOST_CAP_SNCQ            (1<<30)  //Supports Native Command Queuing
 #define SATA_AHCI_HOST_CAP_S64A            (1<<31)  //Supports 64-bit Addressing
 
-//GHC
+//! @brief GHC 
 #define SATA_AHCI_HOST_GHC_AHCI_ENABLED    (1<<31)
 #define SATA_AHCI_HOST_GHC_INTR_ENABLED    (1<<1)
 #define SATA_AHCI_HOST_GHC_HBA_RESET       (1<<0)
 
-//TIMER1MS
-/* 1ms is AHB Frequency 133MHz/1000, the default value is 100000 for 100Mhz frequency*/
+//! @brief TIMER1MS
+//! @brief 1ms is AHB Frequency 133MHz/1000, the default value is 100000 for 100Mhz frequency
 #define SATA_AHCI_HOST_TIMER1MS_MASK       133000
 
-//Interrupt Status
+//! @brief Interrupt Status
 #define SATA_AHCI_HOST_IS_PORT_N_INTR_ISSUED(n) (1<<n)
 
-//OOBR
+//! @brief OOBR
 #define SATA_AHCI_HOST_OOBR_WE               (1<<31)
 #define SATA_AHCI_HOST_OOBR_COMWAKE_MIN_MASK (0x7F<<24)
 #define SATA_AHCI_HOST_OOBR_COMWAKE_MIN_VAL  (0x02<<24)
@@ -108,10 +111,9 @@ typedef signed int s32;
 #define SATA_AHCI_HOST_OOBR_COMINIT_MIN_VAL  (0x0b<<8)
 #define SATA_AHCI_HOST_OOBR_COMINIT_MAX_MASK (0xFF<<0)
 #define SATA_AHCI_HOST_OOBR_COMINIT_MAX_VAL  (0x14<<0)
-/****************************/
-/*SATA Port Registers Macros*/
-/****************************/
-//PxCMD Macros
+
+//! @brief SATA Port Registers Macros
+//! @brief PxCMD Macros
 #define SATA_AHCI_PORT_N_CMD_START         (1<<0)   //Start to process command-list
 #define SATA_AHCI_PORT_N_CMD_SUD           (1<<1)   //Spin-Up Device
 #define SATA_AHCI_PORT_N_CMD_POD           (1<<2)   //Power On Device
@@ -137,7 +139,7 @@ typedef signed int s32;
 #define SATA_AHCI_PORT_N_CMD_ICC__PARTIAL  (0x2<<28)    //Partial
 #define SATA_AHCI_PORT_N_CMD_ICC__SLUMBER  (0x6<<28)    //Slumber
 
-//PxIS Macros
+//! @brief PxIS Macros
 #define SATA_AHCI_PORT_N_IS_CPDS           (0x1<<31)    //Cold Port Detect Status
 #define SATA_AHCI_PORT_N_IS_ERR_TFES       (0x1<<30)    //Task File Error Status
 #define SATA_AHCI_PORT_N_IS_ERR_HBFS       (0x1<<29)    //Host Bus Fatal Error Status
@@ -167,7 +169,7 @@ typedef signed int s32;
                                            |SATA_AHCI_PORT_N_IS_PCS \
                                            )
 
-//PxIE Macros
+//! @brief PxIE Macros
 #define SATA_AHCI_PORT_N_IE_CPDE           (0x1<<31)    //Cold Port Detect Enable
 #define SATA_AHCI_PORT_N_IE_TFEE           (0x1<<30)    //Task File Error Enable
 #define SATA_AHCI_PORT_N_IE_HBFE           (0x1<<29)    //Host Bus Fatal Error Enable
@@ -198,8 +200,8 @@ typedef signed int s32;
                                             |SATA_AHCI_PORT_N_IE_UFE \
                                             |SATA_AHCI_PORT_N_IE_PCE \
                                             |SATA_AHCI_PORT_N_IE_OFE);
-// |SATA_AHCI_PORT_N_IE_PRCE)
-//PxDMACR Macros
+
+//! @brief PxDMACR Macros
 #define SATA_AHCI_PORT_N_DMACR_RXABL_MASK  (0xF<<12)    //Receive AHB Burst Limit
 #define SATA_AHCI_PORT_N_DMACR_RXABL_SHIFT 12
 #define SATA_AHCI_PORT_N_DMACR_TXABL_MASK  (0xF<<8) //Transmit AHB Burst Limit
@@ -229,7 +231,7 @@ typedef signed int s32;
 #define DMACR_TRANSAC_SIZE_512_DWORDS      0x9
 #define DMACR_TRANSAC_SIZE_1K_DWORDS       0xA
 
-//PxSSTS Macros
+//! @brief PxSSTS Macros
 #define SATA_AHCI_PORT_N_SSTS_DET_MASK     0xF  //Device Detection
 #define SATA_AHCI_PORT_N_SSTS_DET_SHIFT    0
 #define  SSTS_DET_NO_DEVICE_NO_PHY         0x0  //No device detected and PHY communication not established
@@ -250,7 +252,7 @@ typedef signed int s32;
 #define  SSTS_IPM_PARTIAL                  0x2  //interface in Partial power management state
 #define  SSTS_IPM_SLUMBER                  0x6  //interface in Slumber power management state
 
-//PxSCTL Macros
+//! @brief PxSCTL Macros
 #define SATA_AHCI_PORT_N_SCTL_DET_MASK     0xF  //Device Detection Initialization
 #define  SCTL_DET_COMM_INIT                (0x1<<0) //Perform interface communication initialization sequence
 #define  SCTL_DET_PHY_OFFLINE              (0x4<<0) //Disable the SATA interface and put PHY in offline mode
@@ -266,7 +268,7 @@ typedef signed int s32;
 #define  SCTL_IPM_TRANS_TO_SLUMBER_DIS     (0x2<<8) //Transition to Slumber state disabled
 #define  SCTL_IPM_TRANS_TO_BOTH_PM_DIS     (0x3<<8) //Transition to Both PM state disabled
 
-//PxSERR Macros
+//! @brief PxSERR Macros
 #define SATA_AHCI_PORT_N_SERR_DIAG_X       (0x1<<26)
 #define SATA_AHCI_PORT_N_SERR_DIAG_F       (0x1<<25)
 #define SATA_AHCI_PORT_N_SERR_DIAG_T       (0x1<<24)
@@ -286,16 +288,13 @@ typedef signed int s32;
 #define SATA_AHCI_PORT_N_SERR_ERR_M        (0x1<<1)
 #define SATA_AHCI_PORT_N_SERR_ERR_I        (0x1<<0)
 
-//PxTFD Macros
+//! @brief PxTFD Macros
 #define SATA_AHCI_PORT_N_TFD_BSY           (0x1<<7)
 #define SATA_AHCI_PORT_N_TFD_DRQ           (0x1<<3)
 #define SATA_AHCI_PORT_N_TFD_ERR           (0x1<<0)
 #define SATA_AHCI_PORT_N_TFD_MASK          (SATA_AHCI_PORT_N_TFD_BSY|SATA_AHCI_PORT_N_TFD_DRQ|SATA_AHCI_PORT_N_TFD_ERR)
 
-///////////////////////////////////////////
-//    SATA PHY Control Registers         //
-///////////////////////////////////////////
-// bits location on cr registers
+//! @brief bits location on cr registers
 #define SATA_CR_CTL_DATA_LOC               0
 #define SATA_CR_CTL_CAP_ADR_LOC            16
 #define SATA_CR_CTL_CAP_DAT_LOC            17
@@ -304,62 +303,59 @@ typedef signed int s32;
 #define SATA_CR_STAT_DATA_LOC              0
 #define SATA_CR_STAT_ACK_LOC               18
 
-// SATA PHY Control Registers
-// Reset Register
+//! @brief SATA PHY Control Registers
+//! @brief Reset Register
 #define SATA_PHY_CR_RESET                  0x7F3F
-// Creg Compare Upper Limit Register
+//! @brief Creg Compare Upper Limit Register
 #define SATA_PHY_CR_CLOCK_CRCMP_LT_LIMIT   0x0001
-// Creg Compare Lower Lim:it Register
+//! @brief Creg Compare Lower Lim:it Register
 #define SATA_PHY_CR_CLOCK_CRCMP_GT_LIMIT   0x0002
-// Creg Compare Mask Register
+//! @brief Creg Compare Mask Register
 #define SATA_PHY_CR_CLOCK_CRCMP_MASK       0x0003
-// Creg Compare Control Register
+//! @brief Creg Compare Control Register
 #define SATA_PHY_CR_CLOCK_CRCMP_CTL        0x0004
-// Creg Compare Status Register
+//! @brief Creg Compare Status Register
 #define SATA_PHY_CR_CLOCK_CRCMP_STAT       0x0005
-// Scope Sample Count Register
+//! @brief Scope Sample Count Register
 #define SATA_PHY_CR_CLOCK_SCOPE_SAMPLES    0x0006
-// Scope Count Result Register
+//! @brief Scope Count Result Register
 #define SATA_PHY_CR_CLOCK_SCOPE_COUNT      0x0007
-// DAC Control Register
+//! @brief DAC Control Register
 #define SATA_PHY_CR_CLOCK_DAC_CTL          0x0008
-// Resistor Tuning Control Register
+//! @brief Resistor Tuning Control Register
 #define SATA_PHY_CR_CLOCK_RTUNE_CTL        0x0009
-// ADC Output Register
+//! @brief ADC Output Register
 #define SATA_PHY_CR_CLOCK_ADC_OUT          0x000A
-// Spread Spectrum Phase Register
+//! @brief Spread Spectrum Phase Register
 #define SATA_PHY_CR_CLOCK_SS_PHASE         0x000B
-// JTAG Chip ID (High Bits) Register
+//! @brief JTAG Chip ID (High Bits) Register
 #define SATA_PHY_CR_CLOCK_CHIP_ID_HI       0x000C
-// JTAG Chip ID (Low Bits) Register
+//! @brief JTAG Chip ID (Low Bits) Register
 #define SATA_PHY_CR_CLOCK_CHIP_ID_LO       0x000D
-// Frequency Status Register
+//! @brief Frequency Status Register
 #define SATA_PHY_CR_CLOCK_FREQ_STAT        0x000E
-// Control Status Register
+//! @brief Control Status Register
 #define SATA_PHY_CR_CLOCK_CTL_STAT         0x000F
-// Level Status Register
+//! @brief Level Status Register
 #define SATA_PHY_CR_CLOCK_LVL_STAT         0x0010
-// Creg Status Register
+//! @brief Creg Status Register
 #define SATA_PHY_CR_CLOCK_CREG_STAT        0x0011
-// Frequency Override Register
+//! @brief Frequency Override Register
 #define SATA_PHY_CR_CLOCK_FREQ_OVRD        0x0012
-// Control Override Register
+//! @brief Control Override Register
 #define SATA_PHY_CR_CLOCK_CTL_OVRD         0x0013
-// Level Override Register
+//! @brief Level Override Register
 #define SATA_PHY_CR_CLOCK_LVL_OVRD         0x0014
-// Creg Override Register
+//! @brief Creg Override Register
 #define SATA_PHY_CR_CLOCK_CREG_OVRD        0x0015
-// MPLL Control Register
+//! @brief MPLL Control Register
 #define SATA_PHY_CR_CLOCK_MPLL_CTL         0x0016
-// MPLL Test Register
+//! @brief MPLL Test Register
 #define SATA_PHY_CR_CLOCK_MPLL_TST         0x0017
-// Clock Select Override Register
+//! @brief Clock Select Override Register
 #define SATA_PHY_CR_CLOCK_SEL_OVRD         0x001A
 
-///////////////////////////////////////////////////////////////////
-//                 Data Structures Definitions                   //
-///////////////////////////////////////////////////////////////////
-
+//! @brief sata port enumeration
 enum {
     PORT0 = 0,
     PORT1,
@@ -395,16 +391,13 @@ enum {
     PORT31,
 };
 
+//! @brief sata return code
 typedef enum SATA_RETURN {
     SATA_PASS = 0,
     SATA_FAIL = 1,
 } sata_return_t;
 
-/*
-	MX53 Armadillo Board and reworked MX53 EVK Rev.A use 100MHZ OSC clock as SATA PHY ref clock.
-	MX53 Rev.A uses 25MHz oscillator in default.
-	MX53 Rev.B uses 50MHz oscillator in default
-*/
+//! @brief Enumeration of sata phy reference clock 
 typedef enum sata_phy_ref_clk {
     FREQ_100MHZ = 0,
     OSC_25MHZ,
@@ -414,6 +407,7 @@ typedef enum sata_phy_ref_clk {
     OSC_UNKNOWN = -1,
 } sata_phy_ref_clk_t;
 
+//! @brief HDD identify data structure
 typedef struct hdd_identify_data {
     u16 general_conf;           // 00    : general configuration
     u16 num_cylinders;          // 01    : number of cylinders (default CHS trans)
@@ -453,6 +447,7 @@ typedef struct hdd_identify_data {
     u16 reserved4[187];         // 69-255: reserved
 } hdd_identify_data_t;
 
+//! @brief sata disk identify structure
 typedef struct _disk_identify_t {
     char serial[20 + 1];        // serial number
     char firmware_rev[8 + 1];   // firmware revision
@@ -465,11 +460,13 @@ typedef struct _disk_identify_t {
     u32 max_transfer;           // Maximum transfer size in bytes
 } disk_identify_t;
 
+//! @brief sata disk information
 typedef struct sata_disk_info {
     u8 port;
     u8 chan;
 } sata_disk_info_t;
 
+//! @brief sata device signature structure
 typedef struct ata_dev_signature {
     u8 nsect;
     u8 lbal;
@@ -477,6 +474,7 @@ typedef struct ata_dev_signature {
     u8 lbah;
 } ata_dev_sig_t __attribute__ ((aligned(4)));
 
+//! @brief sata AHCI registers
 typedef struct sata_ahci_regs {
     /*Generic Host Control */
     volatile u32 cap;           //0x00, HBA Capabilities Register
@@ -509,6 +507,7 @@ typedef struct sata_ahci_regs {
     volatile u32 id;            //0xfc, ID Register
 } sata_ahci_regs_t;
 
+//! @brief Sata port registers
 typedef struct sata_port_regs {
     volatile u32 clb;           //0x00, Command List Base Address Register
     volatile u32 clbu;          //0x04, Command List Base Address Upper 32-bit Register
@@ -533,7 +532,7 @@ typedef struct sata_port_regs {
     volatile u32 physr;         //0x7c, PHY Status Register
 } sata_port_regs_t;
 
-/*SATA AHCI FIS Organization, 256 Bytes*/
+//! @brief SATA AHCI FIS Organization, 256 Bytes
 typedef struct SATA_RX_FIS_STRUCT {
     u32 dsfis[7];               //@00h~1Bh, DMA Setup FIS
     u32 rsv0;                   //@1Ch~1Fh, Reserved
@@ -546,7 +545,7 @@ typedef struct SATA_RX_FIS_STRUCT {
     u32 rsv3[25];               //@A0h~FFh, Reserved
 } sata_rx_fis_t;
 
-/*SATA Command List Entry - Command Header, 32 Bytes*/
+//! @brief SATA Command List Entry - Command Header, 32 Bytes
 typedef struct SATA_COMMAND_HEADER_STRUCT {
     /*DW0 */
     union {
@@ -578,7 +577,7 @@ typedef struct SATA_COMMAND_HEADER_STRUCT {
     u32 rsv1[4];                //Reserved
 } sata_command_header_t;
 
-/*SATA Physical Region Descriptor, 16 Bytes*/
+//! @brief SATA Physical Region Descriptor, 16 Bytes
 typedef struct SATA_PHYSICAL_REGION_DESCRIPTOR {
     /*DW0 */
     u32 dba;                    //Data Base Address, bit0 must be zero
@@ -601,7 +600,7 @@ typedef struct SATA_PHYSICAL_REGION_DESCRIPTOR {
     u32 dbc_ioc;
 } sata_prd_t;
 
-/* SATA Command FIS, this structure will cover all the FIS types*/
+//! @brief SATA Command FIS, this structure will cover all the FIS types
 typedef struct SATA_COMMAND_FIS {
     u8 fisType;
     u8 pmPort_Cbit;
@@ -622,7 +621,7 @@ typedef struct SATA_COMMAND_FIS {
     u8 rsv2[48];
 } sata_cfis_t;
 
-/*SATA Command Table*/
+//! @brief SATA Command Table
 typedef struct SATA_COMMAND_TABLE {
     sata_cfis_t cfis;           //defintion of
     u32 acmd[4];                //ATAPI Command, up to 16 Bytes
@@ -630,14 +629,70 @@ typedef struct SATA_COMMAND_TABLE {
     sata_prd_t prdt;            //Base Address Physical Region Descriptor Table, max 65535 entries
     //there is only one prdt
 } sata_command_table_t;
-///////////////////////////////////////////////////////////////////
-//                      Function Declaration Definitions         //
-///////////////////////////////////////////////////////////////////
-extern sata_return_t sata_init(sata_ahci_regs_t * ahci);
-extern sata_return_t sata_deinit(sata_ahci_regs_t * ahci);
-extern sata_return_t sata_identify(sata_ahci_regs_t * ahci, u32 port_number);
-extern sata_return_t sata_disk_write_sector(u32 start_block, u8 * buf, u32 len);
-extern sata_return_t sata_disk_read_sector(u32 start_block, u8 * buf, u32 len);
-extern void printf_buffer(u32 buff, u32 size, u32 enable);
 
-#endif // _IMX_SATA_H_
+//////////////////////////////////////////////////////////////////////////////
+// API
+//////////////////////////////////////////////////////////////////////////////
+
+/*!
+ * @brief Initialize SATA Controller and also identify an attached hdd
+ *
+ * @param ahci Sata AHCI registers handle
+ * @return SATA_PASS or SATA_FAIL
+ */
+sata_return_t sata_init(sata_ahci_regs_t * ahci);
+
+/*!
+ * @brief Deinitialize SATA Controller and also identify an attached hdd
+ *
+ * @param ahci Sata AHCI registers handle
+ * @return SATA_PASS or SATA_FAIL
+ */
+sata_return_t sata_deinit(sata_ahci_regs_t * ahci);
+
+/*!
+ * @brief Detect the attached HDD and try to initialize it
+ *
+ * @param ahci Base address of HBA controller
+ * @param port_number Port to detect
+ * @return SATA_PASS or SATA_FAIL
+ */
+sata_return_t sata_identify(sata_ahci_regs_t * ahci, u32 port_number);
+
+
+/*!
+ * @brief Write some sectors to SATA disk with r/w thread
+ *
+ * @param start_block Address of start sector
+ * @param buf Pointer of destination buffer
+ * @param len Length to read
+ * @return SATA_PASS or SATA_FAIL
+ */
+sata_return_t sata_disk_write_sector(u32 start_block, u8 * buf, u32 len);
+
+/*!
+ * @brief Read some sectors to SATA disk with r/w thread
+ *
+ * @param start_block Address of start sector
+ * @param buf Pointer of destination buffer
+ * @param len Length to read
+ * @return SATA_PASS or SATA_FAIL
+ */
+sata_return_t sata_disk_read_sector(u32 start_block, u8 * buf, u32 len);
+
+/*!
+ * @brief Print out buffer data
+ *
+ * @param buff Address of the buffer
+ * @param size Buffer size
+ * @param enable Print or not
+ */
+void printf_buffer(u32 buff, u32 size, u32 enable);
+
+//! @}
+
+#endif
+
+//////////////////////////////////////////////////////////////////////////////
+// EOF
+//////////////////////////////////////////////////////////////////////////////

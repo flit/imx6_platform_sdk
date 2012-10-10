@@ -35,9 +35,9 @@ static int32_t hannstar_lvds_panel_init(int32_t *ipu_index)
     ldb_clock_config(65000000, *ipu_index);
     lvds_power_on();
     if (*ipu_index == 1)
-        ldb_config(IPU1_DI0, LVDS_DUAL_PORT, SPWG, LVDS_PANEL_18BITS_MODE);
+        ldb_config(IPU1_DI0, LVDS_DUAL_PORT, LVDS_PANEL_18BITS_MODE, SPWG);
     else
-        ldb_config(IPU2_DI0, LVDS_DUAL_PORT, SPWG, LVDS_PANEL_18BITS_MODE);
+        ldb_config(IPU2_DI0, LVDS_DUAL_PORT, LVDS_PANEL_18BITS_MODE, SPWG);
     return true;
 }
 

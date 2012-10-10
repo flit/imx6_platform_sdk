@@ -8,21 +8,16 @@
 #include "hardware.h"
 #include "registers/regsccm.h"
 
+#if !defined(CHIP_MX6SL)
+#include "registers/regsesai.h"
+#endif
+
 ////////////////////////////////////////////////////////////////////////////////
 // Code
 ////////////////////////////////////////////////////////////////////////////////
 
 void SGTL5000PowerUp_and_clockinit(void)
 {
-}
-
-/*!
- * Power no esai codec.
- */
-int esai_codec_power_on(void)
-{
-    //No need to do anything for BOARD_SABRE_AI
-    return 0;
 }
 
 /*!
@@ -85,13 +80,24 @@ void spdif_clk_cfg(void)
     return;
 }
 
-void esai_clk_sel_gate_on()
+#if !defined(CHIP_MX6SL)
+/*!
+ * Power no esai codec.
+ */
+int esai_codec_power_on(void)
 {
-    HW_CCM_CSCMR2.B.ESAI_CLK_SEL = 1;   // source from PLL3_508
-
-    clock_gating_config(ESAI1_BASE_ADDR, CLOCK_ON);
+    // No need to do anything for BOARD_SABRE_AI
+    return 0;
 }
 
+void esai_clk_sel_gate_on()
+{
+    // source from PLL3_508
+    HW_CCM_CSCMR2.B.ESAI_CLK_SEL = 1;
+
+    clock_gating_config(REGS_ESAI_BASE, CLOCK_ON);
+}
+#endif // !defined(CHIP_MX6SL)
 
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

@@ -52,6 +52,7 @@ define SOURCES
     src/tests/i2c_dev_tests.c
     src/tests/i2c_check_light_sensor_isl29023.c
     src/tests/i2c_device_barometer_ppl3115.c
+    src/tests/i2c_device_check_cs42888.c
     src/tests/i2c_device_digital_compass_mag3110.c
     src/tests/i2c_device_digital_compass_mag3112.c
     src/tests/i2c_device_id_check_mma8450.c

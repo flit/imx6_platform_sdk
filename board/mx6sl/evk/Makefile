@@ -22,6 +22,11 @@ SOURCES := \
 	$(SDK_ROOT)/board/common/hardware.c \
 	$(SDK_ROOT)/board/common/board_io_expanders.c \
 	$(SDK_ROOT)/board/common/board_i2c.c \
+	$(SDK_ROOT)/board/common/board_audio.c \
+	$(SDK_ROOT)/board/common/board_camera.c \
+	$(SDK_ROOT)/board/common/board_network.c \
+	$(SDK_ROOT)/board/common/board_parallel_nor.c \
+	$(SDK_ROOT)/board/common/board_usb.c \
 	$(SDK_ROOT)/board/$(TARGET)/$(BOARD)/dcd.c \
 	$(wildcard iomux/*.c)
 

@@ -18,7 +18,7 @@
 //#define UART_UFCR_RFDIV     UART_UFCR_RFDIV_4
 //#define UART_UFCR_RFDIV     UART_UFCR_RFDIV_7
 /*!
- * Obtain UART reference frequency
+ * @brief   Obtain UART reference frequency
  *
  * @param   port - pointer to the UART module structure
  * @return  reference frequency in Hz
@@ -39,7 +39,7 @@ uint32_t uart_get_reffreq(struct hw_module *port)
 }
 
 /*!
- * Output a character to UART port
+ * @brief   Output a character to UART port
  *
  * @param   port - pointer to the UART module structure
  * @param   ch - pointer to the character for output
@@ -58,7 +58,7 @@ uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
 }
 
 /*!
- * Receive a character on the UART port
+ * @brief   Receive a character on the UART port
  *
  * @param   port - pointer to the UART module structure
  * @return  a character received from the UART port; if the RX FIFO
@@ -83,7 +83,7 @@ uint8_t uart_getchar(struct hw_module * port)
 }
 
 /*!
- * Configure the RX or TX FIFO level and trigger mode
+ * @brief   Configure the RX or TX FIFO level and trigger mode
  *
  * @param   port - pointer to the UART module structure
  * @param   fifo - FIFO to configure: RX_FIFO or TX_FIFO.
@@ -121,7 +121,7 @@ void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_le
 }
 
 /*!
- * Enables UART loopback test mode
+ * @brief   Enables UART loopback test mode
  *
  * @param   port - pointer to the UART module structure
  * @param   state - enable/disable the loopback mode
@@ -136,7 +136,7 @@ void uart_set_loopback_mode(struct hw_module *port, uint8_t state)
 }
 
 /*!
- * Setup UART interrupt. It enables or disables the related HW module
+ * @brief   Setup UART interrupt. It enables or disables the related HW module
  * interrupt, and attached the related sub-routine into the vector table.
  *
  * @param   port - pointer to the UART module structure.
@@ -155,7 +155,7 @@ void uart_setup_interrupt(struct hw_module *port, uint8_t state)
 }
 
 /*!
- * Initialize the UART port
+ * @brief   Initialize the UART port
  *
  * @param   port - pointer to the UART module structure.
  * @param   baudrate - serial baud rate such 9600, 57600, 115200, etc.

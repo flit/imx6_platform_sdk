@@ -119,9 +119,7 @@
 #define DMA_MODE 2
 #define IRQ_MODE 1
 
-/* UART driver list of functions */
-void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
-               uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol);
+void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol);
 uint8_t uart_putchar(struct hw_module *port, uint8_t * ch);
 uint8_t uart_getchar(struct hw_module *port);
 void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,

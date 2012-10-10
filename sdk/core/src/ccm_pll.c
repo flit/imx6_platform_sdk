@@ -10,6 +10,23 @@
 #include "registers/regsccmanalog.h"
 #include "registers/regsgpc.h"
 #include "registers/regsiomuxc.h"
+#include "registers/regsuart.h"
+#include "registers/regsssi.h"
+#include "registers/regsepit.h"
+#include "registers/regsgpt.h"
+#include "registers/regsi2c.h"
+#include "registers/regsspdif.h"
+#include "registers/regsspba.h"
+#include "registers/regssdmaarm.h"
+
+#if defined(CHIP_MX6DQ)
+#include "registers/regssata.h"
+#endif
+
+#if !defined(CHIP_MX6SL)
+#include "registers/regsgpmi.h"
+#include "registers/regsesai.h"
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////
 // Variables
@@ -149,9 +166,13 @@ uint32_t get_peri_clock(peri_clocks_t clock)
 void ccm_ccgr_config(uint32_t ccm_ccgrx, uint32_t cgx_offset, uint32_t gating_mode)
 {
     if (gating_mode == CLOCK_ON)
+    {
         *(volatile uint32_t *)(ccm_ccgrx) |= cgx_offset;
+    }
     else
+    {
         *(volatile uint32_t *)(ccm_ccgrx) &= ~cgx_offset;
+    }
 }
 
 void clock_gating_config(uint32_t base_address, uint32_t gating_mode)
@@ -159,103 +180,87 @@ void clock_gating_config(uint32_t base_address, uint32_t gating_mode)
     uint32_t ccm_ccgrx = 0;
     uint32_t cgx_offset = 0;
 
-    switch (base_address) {
-    case UART1_BASE_ADDR:
-    case UART2_BASE_ADDR:
-    case UART3_BASE_ADDR:
-    case UART4_BASE_ADDR:
-    case UART5_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR5_ADDR;
-        cgx_offset = CG(13) | CG(12);
-        break;
-    case SSI3_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR5_ADDR;
-        cgx_offset = CG(11);
-        break;
-    case SSI2_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR5_ADDR;
-        cgx_offset = CG(10);
-        break;
-    case SSI1_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR5_ADDR;
-        cgx_offset = CG(9);
-        break;
-    case SPDIF_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR5_ADDR;
-        cgx_offset = CG(7);
-        break;
-    case SPBA_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR5_ADDR;
-        cgx_offset = CG(6);
-        break;
-    case SDMA_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR5_ADDR;
-        cgx_offset = CG(3);
-        break;
+    switch (base_address)
+    {
+        case REGS_UART1_BASE:
+        case REGS_UART2_BASE:
+        case REGS_UART3_BASE:
+        case REGS_UART4_BASE:
+        case REGS_UART5_BASE:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(13) | CG(12);
+            break;
+        case REGS_SSI3_BASE:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(11);
+            break;
+        case REGS_SSI2_BASE:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(10);
+            break;
+        case REGS_SSI1_BASE:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(9);
+            break;
+        case REGS_SPDIF_BASE:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(7);
+            break;
+        case REGS_SPBA_BASE:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(6);
+            break;
+        case REGS_SDMAARM_BASE:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(3);
+            break;
 #if CHIP_MX6DQ
-    case SATA_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR5_ADDR;
-        cgx_offset = CG(2);
-        break;
+        case REGS_SATA_BASE:
+            ccm_ccgrx = HW_CCM_CCGR5_ADDR;
+            cgx_offset = CG(2);
+            break;
 #endif
-    case EPIT1_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR1_ADDR;
-        cgx_offset = CG(6);
-        break;
-    case EPIT2_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR1_ADDR;
-        cgx_offset = CG(7);
-        break;
-    case GPT_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR1_ADDR;
-        cgx_offset = CG(10);
-        break;
-    case I2C1_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR2_ADDR;
-        cgx_offset = CG(3);
-        break;
-    case I2C2_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR2_ADDR;
-        cgx_offset = CG(4);
-        break;
-    case I2C3_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR2_ADDR;
-        cgx_offset = CG(5);
-        break;
+        case REGS_EPIT1_BASE:
+            ccm_ccgrx = HW_CCM_CCGR1_ADDR;
+            cgx_offset = CG(6);
+            break;
+        case REGS_EPIT2_BASE:
+            ccm_ccgrx = HW_CCM_CCGR1_ADDR;
+            cgx_offset = CG(7);
+            break;
+        case REGS_GPT_BASE:
+            ccm_ccgrx = HW_CCM_CCGR1_ADDR;
+            cgx_offset = CG(10);
+            break;
+        case REGS_I2C1_BASE:
+            ccm_ccgrx = HW_CCM_CCGR2_ADDR;
+            cgx_offset = CG(3);
+            break;
+        case REGS_I2C2_BASE:
+            ccm_ccgrx = HW_CCM_CCGR2_ADDR;
+            cgx_offset = CG(4);
+            break;
+        case REGS_I2C3_BASE:
+            ccm_ccgrx = HW_CCM_CCGR2_ADDR;
+            cgx_offset = CG(5);
+            break;
 #if !defined (CHIP_MX6SL)
-    case PERFMON1_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR4_ADDR;
-        cgx_offset = CG(1);
-        // specific bit 16 to enable 
-        HW_IOMUXC_GPR11_WR((gating_mode & 0x1) << 16);
-        break;
-    case PERFMON2_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR4_ADDR;
-        cgx_offset = CG(2);
-        // specific bit 16 to enable 
-        HW_IOMUXC_GPR11_WR((gating_mode & 0x1) << 16);
-        break;
-    case PERFMON3_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR4_ADDR;
-        cgx_offset = CG(3);
-        // specific bit 16 to enable 
-        HW_IOMUXC_GPR11_WR((gating_mode & 0x1) << 16);
-        break;
-    case GPMI_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR4_ADDR;
-        cgx_offset = CG(15) | CG(14) | CG(13) | CG(12);
-        break;
-    case ESAI1_BASE_ADDR:
-        ccm_ccgrx = HW_CCM_CCGR1_ADDR;
-        cgx_offset = CG(8);
-        break;
+        case REGS_GPMI_BASE:
+            ccm_ccgrx = HW_CCM_CCGR4_ADDR;
+            cgx_offset = CG(15) | CG(14) | CG(13) | CG(12);
+            break;
+        case REGS_ESAI_BASE:
+            ccm_ccgrx = HW_CCM_CCGR1_ADDR;
+            cgx_offset = CG(8);
+            break;
 #endif
-    default:
-        break;
+        default:
+            break;
     }
 
     // apply changes only if a valid address was found 
-    if (ccm_ccgrx != 0) {
+    if (ccm_ccgrx != 0)
+    {
         ccm_ccgr_config(ccm_ccgrx, cgx_offset, gating_mode);
     }
 }

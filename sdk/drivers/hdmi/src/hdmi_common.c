@@ -5,30 +5,14 @@
  * Freescale Semiconductor, Inc.
  */
 
-/*!
- * @file hdmi_common.c
- * @brief Common functions for the HDMI controller.
- *
- * @ingroup diag_hdmi
- */
-
 #include <stdio.h>
 #include "hardware.h"
 #include "hdmi_tx.h"
 
-/*! ------------------------------------------------------------
- * HDMI TX common Functions
- *  ------------------------------------------------------------
- */
+///////////////////////////////////////////////////////////////////////////////////
+// CODE
+///////////////////////////////////////////////////////////////////////////////////
 
-/*!
- * write bit fields of hdmi internal regiters
- *
- * @param  	data:	written value of the bit fields
- * @param  	addr:	address of the register
- * @param  	shift:	lsb offset of the bit-field
- * @param  	width:	width of the bit-field
- */
 void writebf(uint8_t data, uint32_t addr, uint8_t shift, uint8_t width)
 {
     uint8_t temp = 0;
@@ -66,11 +50,6 @@ int isPixelRepetition(hdmi_data_info_s hdmi_instance)
     return (hdmi_instance.pix_repet_factor > 0) ? TRUE : FALSE;
 }
 
-/*!
- * this submodule is responsible for the video/audio data composition.
- *
- * @param	vmode:	video mode parameters
- */
 void hdmi_set_video_mode(hdmi_vmode_s * vmode)
 {
     vmode->mHBorder = 0;
@@ -648,3 +627,7 @@ void hdmi_set_video_mode(hdmi_vmode_s * vmode)
     }
     return;
 }
+
+///////////////////////////////////////////////////////////////////////////////////
+// EOF
+///////////////////////////////////////////////////////////////////////////////////

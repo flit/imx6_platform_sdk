@@ -5,18 +5,19 @@
  * Freescale Semiconductor, Inc.
  */
 
-/*!
- * @file hdmi_tx.h
- * @brief Common definitions for hdmi driver.
- *
- * @ingroup diag_hdmi
- */
-
 #ifndef __HDMI_COMMON_H__
 #define __HDMI_COMMON_H__
 
 #include "sdk.h"
 
+//! @addtogroup diag_hdmi
+//! @{
+
+//////////////////////////////////////////////////////////////////////////////
+// Definitions
+//////////////////////////////////////////////////////////////////////////////
+
+//! @brief Enumeration of variable pixel format for HDMI transmitter
 enum hdmi_datamap {
     RGB444_8B = 0x01,
     RGB444_10B = 0x03,
@@ -31,6 +32,7 @@ enum hdmi_datamap {
     YCbCr422_12B = 0x12,
 };
 
+//! @brief Enumeration of HDMI CSC encode format
 enum hdmi_csc_enc_format {
     eRGB = 0x0,
     eYCC444 = 0x01,
@@ -38,11 +40,13 @@ enum hdmi_csc_enc_format {
     eExtended = 0x3,
 };
 
+//! @brief HDMI colorimetry defined by ITU
 enum hdmi_colorimetry {
     eITU601,
     eITU709,
 };
 
+//! @brief HDMI input source list
 enum hdmi_input_source {
     IPU1_DI0 = 0x0,
     IPU1_DI1 = 0x1,
@@ -50,6 +54,10 @@ enum hdmi_input_source {
     IPU2_DI1 = 0x3,
 };
 
+//! @brief HDMI video mode structure
+//
+//! this is used to set the timming of HDMI output
+//! must follow the VESA standard or EDID information embedded in the display
 typedef struct hdmi_vmode {
     unsigned int mCode;
     unsigned int mHdmiDviSel;
@@ -75,6 +83,7 @@ typedef struct hdmi_vmode {
     unsigned int mPixelRepetitionInput;
 } hdmi_vmode_s;
 
+//! @brief HDMI input and output data information
 typedef struct hdmi_data_info {
     unsigned int enc_in_format;
     unsigned int enc_out_format;
@@ -85,6 +94,7 @@ typedef struct hdmi_data_info {
     hdmi_vmode_s *video_mode;
 } hdmi_data_info_s;
 
+//! @brief HDMI audio params
 typedef struct hdmi_AudioParam {
     unsigned char IecCgmsA;
     int IecCopyright;
@@ -98,6 +108,7 @@ typedef struct hdmi_AudioParam {
     unsigned char SampleSize;
 } hdmi_audioparam_s;
 
+//! @brief Enumeration of HDMI audio data codec format
 typedef enum {
     PCM = 1,
     AC3,
@@ -115,11 +126,13 @@ typedef enum {
     WMAPRO
 } codingType_t;
 
+//! @brief Enumeration of HDMI data packet type
 typedef enum {
     AUDIO_SAMPLE = 1,
     HBR_STREAM
 } packet_t;
 
+//! @brief HDMI DMA access type
 typedef enum {
     DMA_4_BEAT_INCREMENT = 0,
     DMA_8_BEAT_INCREMENT,
@@ -128,6 +141,7 @@ typedef enum {
     DMA_UNSPECIFIED_INCREMENT
 } dmaIncrement_t;
 
+//! @brief HDMI audio params
 typedef struct {
     codingType_t mCodingType; /** (audioParams_t *params, see InfoFrame) */
 
@@ -167,81 +181,199 @@ typedef struct {
     unsigned char mDmaHlock; /** Master burst lock mechanism */
 } audioParams_t;
 
-/*! ------------------------------------------------------------
- * HDMI TX common Functions
- *  ------------------------------------------------------------
+//////////////////////////////////////////////////////////////////////////////
+// API
+//////////////////////////////////////////////////////////////////////////////
+
+/*!
+ * @brief Write bit fields of hdmi internal regiters
+ *
+ * @param data Written value of the bit fields
+ * @param addr Address of the register
+ * @param shift Lsb offset of the bit-field
+ * @param width Width of the bit-field
  */
 void writebf(uint8_t data, uint32_t addr, uint8_t shift, uint8_t width);
+
+/*!
+ * @brief This submodule is responsible for the video/audio data composition
+ *
+ * @param vmode Video mode parameters
+ */
 void hdmi_set_video_mode(hdmi_vmode_s * vmode);
+
+/*!
+ * @brief Check if color space conversion is needed
+ *
+ * @param hdmi_instance HDMI instance information containing all the parameters 
+ * of input and output
+ */
 int isColorSpaceConversion(hdmi_data_info_s hdmi_instance);
+
+/*!
+ * @brief Check if color space decimition is needed
+ *
+ * @param hdmi_instance HDMI instance information containing all the parameters 
+ * of input and output
+ */
 int isColorSpaceDecimation(hdmi_data_info_s hdmi_instance);
+
+/*!
+ * @brief Check if color space interpolation is needed
+ *
+ * @param hdmi_instance HDMI instance information containing all the parameters 
+ * of input and output
+ */
 int isColorSpaceInterpolation(hdmi_data_info_s hdmi_instance);
+
+/*!
+ * @brief Check if pixel repetition is needed
+ *
+ * @param hdmi_instance HDMI instance information containing all the parameters 
+ * of input and output
+ */
 int isPixelRepetition(hdmi_data_info_s hdmi_instance);
 
-/*! ------------------------------------------------------------
- * HDMI TX Functions
- *  ------------------------------------------------------------
+/*! 
+ * @brief program the input source mux for the hdmi input
+ * this is set up in IOMUXC_GPR3 register
+ * 
+ * @param mux_value HDMI input source slection between the mux options
  */
 void hdmi_config_input_source(uint32_t mux_value);
 
-/*! ------------------------------------------------------------
- * HDMI TX Video Sampler
- *  ------------------------------------------------------------
+/*!
+ * @brief This is responsible for the video data synchronization.
+ * for example, for RGB 4:4:4 input, the data map is defined as
+ * 			pin{47~40} <==> R[7:0]
+ * 			pin{31~24} <==> G[7:0]
+ * 			pin{15~8}  <==> B[7:0]
+ *
+ * @param hdmi_instance Instance of the HDMI
  */
 void hdmi_video_sample(hdmi_data_info_s hdmi_instance);
 
-/*! ------------------------------------------------------------
- * HDMI TX Color Space Converter
- *  ------------------------------------------------------------
+/*!
+ * @brief Update the color space conversion coefficients.
+ *
+ * @param hdmi_instance Instance of the HDMI
  */
 void update_csc_coeffs(hdmi_data_info_s hdmi_instance);
+
+/*!
+ * @brief Set HDMI color space conversion module.
+ *
+ * @param hdmi_instance Instance of the HDMI
+ */
 void hdmi_video_csc(hdmi_data_info_s hdmi_instance);
 
-/*! ------------------------------------------------------------
- * HDMI TX Video Packetizer
- *  ------------------------------------------------------------
+/*!
+ * @brief HDMI video packetizer is used to packetize the data.
+ * for example, if input is YCC422 mode or repeater is used, data should be repacked
+ * this module can be bypassed.
+ *
+ * @param hdmi_instance Instance of the HDMI
  */
 void hdmi_video_packetize(hdmi_data_info_s hdmi_instance);
 
-/*! ------------------------------------------------------------
- * HDMI TX Frame Composer
- *  ------------------------------------------------------------
+/*!
+ * @brief Preamble filter setting. this is used to indicate whether the 
+ * upcoming data period is a VDP(video data period) or DI(data island)
+ *
+ * @param	value Data value for configuration
+ * @param	channel Channel number, 0~2
  */
 void preamble_filter_set(uint8_t value, uint8_t channel);
+
+/*!
+ * @brief This function is responsible for the video/audio data composition.
+ * video mode is set here, but the actual flow is determined by the input.
+ *
+ * @param hdmi_instance Instance of the HDMI
+ */
 void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance);
 
-/*! ------------------------------------------------------------
- * HDMI TX Audio
- *  ------------------------------------------------------------
+/*!
+ * @brief Mute or un-mute the audio of HDMI output
+ *
+ * @param en Enable or Disable
+ * @return TRUE
  */
 uint32_t hdmi_audio_mute(uint32_t en);
+
+/*!
+ * @brief Get the audio channel count according to the channel allocation
+ *
+ * @param mChannelAllocation Channel allocation for audio
+ * @return channel numbers
+ */
 uint8_t Audio_ChannelCount(uint8_t mChannelAllocation);
-uint8_t Audio_IecOriginalSamplingFrequency(uint32_t mOriginalSamplingFrequency);
-uint8_t Audio_IecSamplingFrequency(uint32_t mSamplingFrequency);
-uint8_t Audio_IecWordLength(uint8_t mSampleSize);
-void audio_info_config();
+
+/*!
+ * @brief Audio information configuration
+ */
+void audio_info_config(void);
+
+/*!
+ * @brief Configure the audio submodule
+ *
+ * @param hdmi_audioparam_insttance Audio instance containing all the parameters
+ * @param pixelClk HDMI output pixel clock
+ * @param ratioClk Ratio clock
+ * @return TRUE
+ */
 int audio_Configure(hdmi_audioparam_s hdmi_audioparam_instance, uint16_t pixelClk,
                     unsigned ratioClk);
+
+
+/*!
+ * @brief Configure the audio DMA
+ *
+ * @param startAddr Transfer start address
+ * @param stopAddr Transfer stop address
+ * @param hlockEn Lock enable bit
+ * @param incrType DMA addressing increment type
+ * @param audioChnl Audio channle
+ * @param intMask Interrupt mask
+ */
 void audio_Configure_DMA(uint32_t startAddr, uint32_t stopAddr, uint8_t hlockEn, uint8_t incrType,
                          uint8_t threshold, uint32_t audioChnl, uint8_t intMask);
 
-/*! ------------------------------------------------------------
- * HDMI TX HDCP
- *  ------------------------------------------------------------
+/*!
+ * @brief HDCP configuration, disabled here
+ *
+ * @param de Data enable polarity
  */
 void hdmi_tx_hdcp_config(uint32_t de);
 
-/*! ------------------------------------------------------------
- * HDMI TX PHY
- *  ------------------------------------------------------------
+/*!
+ * @brief HDMI phy initialization
+ *
+ * @param	de Data enable polarity, 1 for positive and 0 for negative
+ * @param	pclk Pixel clock
  */
 void hdmi_phy_init(uint8_t de, uint16_t pclk);
 
-/*! ------------------------------------------------------------
- * Functions for Debugging
- *  ------------------------------------------------------------
+/*!
+ * @brief Force the HDMI video output to be fixed value! from FC_DBGTMDSx registers
+ * 
+ * @param force True/false or enable/disable, if true enabled force video setting, if false disable it
  */
 void hdmi_config_force_video(uint8_t force);
+
+/*! 
+ * configure the RGB pixel settings to be used when fixed video mode is enabled
+ * 
+ * @param red Pixel settings for red component.
+ * @param green Pixel settings for green component.
+ * @param blue Pixel settings for blue component.
+ */
 void hdmi_config_forced_pixels(uint8_t red, uint8_t green, uint8_t blue);
 
+//! @}
+
 #endif
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

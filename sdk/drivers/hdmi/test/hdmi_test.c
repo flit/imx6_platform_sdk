@@ -14,6 +14,7 @@
 
 #include "hardware.h"
 #include "hdmi/src/hdmi_tx.h"
+#include "registers/regshdmi.h"
 
 extern int ips_hdmi_stream(void);
 extern int ips_hdmi_1080P60_stream(int ipu_index);
@@ -82,10 +83,10 @@ void hdmi_test(void)
     enable_interrupt(IMX_INT_HDMI_TX, CPU_0, 0);    // to cpu0, max priority (0)
 
     audio_Configure(myHDMI_audio_info, 14850, 100); //audio_Configure(14850,100);
-    writeb(0x00, HDMI_IH_MUTE_AHBDMAAUD_STAT0); //reg8_write(HDMI_IH_MUTE_AHBDMAAUD_STAT0,0x00);
+    HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0.U = 0x00;
     audio_Configure_DMA(HDMI_AUDIO_BUF_START, (HDMI_AUDIO_BUF_START + 0x17ff), 1, 4, 64, 4, 0x7f);
 
-    writeb(0x2, HDMI_IH_MUTE);  //reg8_write(HDMI_IH_MUTE,0x2);
+    HW_HDMI_IH_MUTE.U = 0x2;
 
     // configure IPU to output stream for hdmi input
     if (ips_hdmi_stream()) {    // set up ipu1 disp0  1080P60 display stream 
@@ -103,29 +104,29 @@ void hdmi_test(void)
 
 void init_hdmi_interrupt(void)
 {
-    writeb(0xff, HDMI_IH_MUTE_FC_STAT0);    // reg8_write(HDMI_IH_MUTE_FC_STAT0,mask);
-    writeb(0xff, HDMI_IH_MUTE_FC_STAT1);    // reg8_write(HDMI_IH_MUTE_FC_STAT1,mask);
-    writeb(0xff, HDMI_IH_MUTE_FC_STAT2);    // reg8_write(HDMI_IH_MUTE_FC_STAT2,mask);
-    writeb(0xff, HDMI_IH_MUTE_AS_STAT0);    // reg8_write(HDMI_IH_MUTE_AS_STAT0,mask);
-    writeb(0xff, HDMI_IH_MUTE_PHY_STAT0);   // reg8_write(HDMI_IH_MUTE_PHY_STAT0,mask);
-    writeb(0xff, HDMI_IH_MUTE_I2CM_STAT0);  // reg8_write(HDMI_IH_MUTE_I2CM_STAT0,mask);
-    writeb(0xff, HDMI_IH_MUTE_CEC_STAT0);   // reg8_write(HDMI_IH_MUTE_CEC_STAT0,mask);
-    writeb(0xff, HDMI_IH_MUTE_VP_STAT0);    // reg8_write(HDMI_IH_MUTE_VP_STAT0,mask);
-    writeb(0xff, HDMI_IH_MUTE_I2CMPHY_STAT0);   // reg8_write(HDMI_IH_MUTE_I2CMPHY_STAT0,mask);
-    writeb(0xff, HDMI_IH_MUTE_AHBDMAAUD_STAT0); // reg8_write(HDMI_IH_MUTE_AHBDMAAUD_STAT0,mask);
+    HW_HDMI_IH_MUTE_FC_STAT0.U = 0xFF;
+    HW_HDMI_IH_MUTE_FC_STAT1.U = 0xFF;
+    HW_HDMI_IH_MUTE_FC_STAT2.U = 0xFF;
+    HW_HDMI_IH_MUTE_AS_STAT0.U = 0xFF;
+    HW_HDMI_IH_MUTE_PHY_STAT0.U = 0xFF;
+    HW_HDMI_IH_MUTE_I2CM_STAT0.U = 0xFF;
+    HW_HDMI_IH_MUTE_CEC_STAT0.U = 0xFF;
+    HW_HDMI_IH_MUTE_VP_STAT0.U = 0xFF;
+    HW_HDMI_IH_MUTE_I2CMPHY_STAT0.U = 0xFF;
+    HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0.U = 0xFF;
 }
 
 void hdmi_tx_ISR(void)
 {
     char status;
 
-    status = readb(HDMI_IH_AHBDMAAUD_STAT0);
+    status = HW_HDMI_IH_AHBDMAAUD_STAT0.U;
     init_hdmi_interrupt();
 
-    writeb(0x00, HDMI_IH_MUTE_AHBDMAAUD_STAT0); // reg8_write(HDMI_IH_MUTE_AHBDMAAUD_STAT0,0x00);
+    HW_HDMI_IH_MUTE_AHBDMAAUD_STAT0.U = 0x00;
 
     if (status & 0x4) {
-        writeb(0x4, HDMI_IH_AHBDMAAUD_STAT0);   //reg8_write(HDMI_IH_AHBDMAAUD_STAT0,0x4);
+        HW_HDMI_IH_AHBDMAAUD_STAT0.U = 0x4;
         audio_Configure_DMA(HDMI_AUDIO_BUF_START, (HDMI_AUDIO_BUF_START + 0x17ff), 1, 4, 64, 4,
                             0x7f);
     }

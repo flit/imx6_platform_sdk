@@ -5,48 +5,20 @@
  * Freescale Semiconductor, Inc.
  */
 
-/*!
- * @file hdmi_tx.c
- * @brief Transmit functions for the HDMI controller.
- *
- * @ingroup diag_hdmi
- */
-
-#include <stdio.h>
 #include "hardware.h"
 #include "hdmi_tx.h"
 #include "registers/regshdmi.h"
 #include "registers/regsiomuxc.h"
 
-/*! ------------------------------------------------------------
- * HDMI TX Functions
- *  ------------------------------------------------------------
- */
+////////////////////////////////////////////////////////////////////////////////
+// CODE
+////////////////////////////////////////////////////////////////////////////////
 
-/*! 
- * program the input source mux for the hdmi input
- * this is set up in IOMUXC_GPR3 register
- * 
- * @param  	mux_value: type hdmi_input_source slecting between the mux options
- */
 void hdmi_config_input_source(uint32_t mux_value)
 {
     HW_IOMUXC_GPR3.B.HDMI_MUX_CTL = mux_value;
 }
 
-/*! ------------------------------------------------------------
- * HDMI TX Video Sampler
- *  ------------------------------------------------------------
- */
-/*!
- * this submodule is responsible for the video data synchronization.
- * for example, for RGB 4:4:4 input, the data map is defined as
- * 			pin{47~40} <==> R[7:0]
- * 			pin{31~24} <==> G[7:0]
- * 			pin{15~8}  <==> B[7:0]
- *
- * @param hdmi_instance - instance of the HDMI
- */
 void hdmi_video_sample(hdmi_data_info_s hdmi_instance)
 {
     int color_format = 0;
@@ -102,15 +74,6 @@ void hdmi_video_sample(hdmi_data_info_s hdmi_instance)
     HW_HDMI_TX_BCBDATA1.U = 0x0;
 }
 
-/*! ------------------------------------------------------------
- * HDMI TX Color Space Converter
- *  ------------------------------------------------------------
- */
-/*!
- * update the color space conversion coefficients.
- *
- * @param hdmi_instance - instance of the HDMI
- */
 void update_csc_coeffs(hdmi_data_info_s hdmi_instance)
 {
     uint16_t csc_coeff[3][4];
@@ -243,11 +206,6 @@ void update_csc_coeffs(hdmi_data_info_s hdmi_instance)
     HW_HDMI_CSC_SCALE.B.RESERVED0 = csc_scale;  //Note by Ray: the bf defined is wrong in .h file
 }
 
-/*!
- * set HDMI color space conversion module.
- *
- * @param hdmi_instance - instance of the HDMI
- */
 void hdmi_video_csc(hdmi_data_info_s hdmi_instance)
 {
     int color_depth = 0;
@@ -281,18 +239,6 @@ void hdmi_video_csc(hdmi_data_info_s hdmi_instance)
     update_csc_coeffs(hdmi_instance);
 }
 
-/*! ------------------------------------------------------------
- * HDMI TX Video Packetizer
- *  ------------------------------------------------------------
- */
-
-/*!
- * HDMI video packetizer is used to packetize the data.
- * for example, if input is YCC422 mode or repeater is used, data should be repacked
- * this module can be bypassed.
- *
- * @param hdmi_instance - instance of the HDMI
- */
 void hdmi_video_packetize(hdmi_data_info_s hdmi_instance)
 {
     unsigned int color_depth = 0;
@@ -370,18 +316,6 @@ void hdmi_video_packetize(hdmi_data_info_s hdmi_instance)
     HW_HDMI_VP_CONF.B.OUTPUT_SELECTOR = output_select;
 }
 
-/*! ------------------------------------------------------------
- * HDMI TX Frame Composer
- *  ------------------------------------------------------------
- */
-
-/*!
- * preamble filter setting. this is used to indicate whether the 
- * upcoming data period is a VDP(video data period) or DI(data island)
- *
- * @param	value: 		data value for configuration
- * @param	channel:	channel number, 0~2
- */
 void preamble_filter_set(uint8_t value, uint8_t channel)
 {
     if (channel == 0) {
@@ -396,12 +330,6 @@ void preamble_filter_set(uint8_t value, uint8_t channel)
     return;
 }
 
-/*!
- * this submodule is responsible for the video/audio data composition.
- * video mode is set here, but the actual flow is determined by the input.
- *
- * @param hdmi_instance - instance of the HDMI
- */
 void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance)
 {
     uint8_t i = 0;
@@ -409,8 +337,8 @@ void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance)
     hdmi_set_video_mode(hdmi_instance->video_mode);
 
     // configure HDMI_FC_INVIDCONF register
-#if 1 // Note by Ray: this part should be replaced once the new register header are ready
-	writebf((hdmi_instance->hdcp_enable == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 7, 1);
+#if 1                           // Note by Ray: this part should be replaced once the new register header are ready
+    writebf((hdmi_instance->hdcp_enable == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 7, 1);
     writebf((hdmi_instance->video_mode->mVSyncPolarity == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 6, 1);
     writebf((hdmi_instance->video_mode->mHSyncPolarity == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 5, 1);
     writebf((hdmi_instance->video_mode->mDataEnablePolarity == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 4,
@@ -424,61 +352,42 @@ void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance)
     writebf((hdmi_instance->video_mode->mInterlaced == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 0, 1);
 #endif
 
-	HW_HDMI_FC_INHACTIV0.U = hdmi_instance->video_mode->mHActive;
+    HW_HDMI_FC_INHACTIV0.U = hdmi_instance->video_mode->mHActive;
     HW_HDMI_FC_INHACTIV1.B.H_IN_ACTIV = (hdmi_instance->video_mode->mHActive >> 8);
     HW_HDMI_FC_INHBLANK0.U = hdmi_instance->video_mode->mHBlanking;
     HW_HDMI_FC_INHBLANK1.B.H_IN_BLANK = (hdmi_instance->video_mode->mHBlanking >> 8);
     HW_HDMI_FC_INVACTIV0.U = hdmi_instance->video_mode->mVActive;
     HW_HDMI_FC_INVACTIV1.B.V_IN_ACTIV = (hdmi_instance->video_mode->mVActive >> 8);
-    HW_HDMI_FC_INVBLANK.U = (uint8_t)hdmi_instance->video_mode->mVBlanking;
-    HW_HDMI_FC_HSYNCINDELAY0.U = (uint8_t)hdmi_instance->video_mode->mHSyncOffset;
-    HW_HDMI_FC_HSYNCINDELAY1.B.H_IN_DELAY = (uint8_t)(hdmi_instance->video_mode->mHSyncOffset >> 8);
-	HW_HDMI_FC_HSYNCINWIDTH0.U = hdmi_instance->video_mode->mHSyncPulseWidth;
-	HW_HDMI_FC_HSYNCINWIDTH1.B.H_IN_WIDTH = (hdmi_instance->video_mode->mHSyncPulseWidth >> 8);
-	HW_HDMI_FC_VSYNCINDELAY.U = hdmi_instance->video_mode->mVSyncOffset;
-	HW_HDMI_FC_VSYNCINWIDTH.B.V_IN_WIDTH = hdmi_instance->video_mode->mVSyncPulseWidth;
-    
-	HW_HDMI_FC_CTRLDUR.U = 12; //control period minimum duration
-	HW_HDMI_FC_EXCTRLDUR.U = 32;
-	HW_HDMI_FC_EXCTRLSPAC.U = 1;
+    HW_HDMI_FC_INVBLANK.U = (uint8_t) hdmi_instance->video_mode->mVBlanking;
+    HW_HDMI_FC_HSYNCINDELAY0.U = (uint8_t) hdmi_instance->video_mode->mHSyncOffset;
+    HW_HDMI_FC_HSYNCINDELAY1.B.H_IN_DELAY =
+        (uint8_t) (hdmi_instance->video_mode->mHSyncOffset >> 8);
+    HW_HDMI_FC_HSYNCINWIDTH0.U = hdmi_instance->video_mode->mHSyncPulseWidth;
+    HW_HDMI_FC_HSYNCINWIDTH1.B.H_IN_WIDTH = (hdmi_instance->video_mode->mHSyncPulseWidth >> 8);
+    HW_HDMI_FC_VSYNCINDELAY.U = hdmi_instance->video_mode->mVSyncOffset;
+    HW_HDMI_FC_VSYNCINWIDTH.B.V_IN_WIDTH = hdmi_instance->video_mode->mVSyncPulseWidth;
+
+    HW_HDMI_FC_CTRLDUR.U = 12;  //control period minimum duration
+    HW_HDMI_FC_EXCTRLDUR.U = 32;
+    HW_HDMI_FC_EXCTRLSPAC.U = 1;
 
     for (i = 0; i < 3; i++) {
         preamble_filter_set((i + 1) * 11, i);
     }
 
     /*pixel repetition setting. */
-	HW_HDMI_FC_PRCONF.B.INCOMING_PR_FACTOR = hdmi_instance->video_mode->mPixelRepetitionInput + 1;
+    HW_HDMI_FC_PRCONF.B.INCOMING_PR_FACTOR = hdmi_instance->video_mode->mPixelRepetitionInput + 1;
 }
 
-/*! ------------------------------------------------------------
- * HDMI TX HDCP
- *  ------------------------------------------------------------
- */
-
-/*!
- * HDCP configuration, disabled here
- *
- * @param 	de:	data enable polarity
- */
 void hdmi_tx_hdcp_config(uint32_t de)
 {
-#if 1 // Note by Ray: this part should be replaced once the new register header are ready
+#if 1                           // Note by Ray: this part should be replaced once the new register header are ready
     writebf(0, HDMI_A_HDCPCFG0, 2, 1);  //disable rx detect
     writebf((de == TRUE) ? 1 : 0, HDMI_A_VIDPOLCFG, 4, 1);
     writebf(1, HDMI_A_HDCPCFG1, 1, 1);
 #endif
 }
 
-/*! ------------------------------------------------------------
- * Functions for Debugging
- *  ------------------------------------------------------------
- */
-
-/*!
- * Force the HDMI video output to be fixed value! from FC_DBGTMDSx registers
- * 
- * @param  	force: true/false or enable/disable, if true enabled force video setting, if false disable it
- */
 void hdmi_config_force_video(uint8_t force)
 {
     if (force) {
@@ -488,16 +397,13 @@ void hdmi_config_force_video(uint8_t force)
     }
 }
 
-/*! 
- * configure the RGB pixel settings to be used when fixed video mode is enabled
- * 
- * @param  	red: pixel settings for red component.
- * @param  	green: pixel settings for green component.
- * @param  	blue: pixel settings for blue component.
- */
 void hdmi_config_forced_pixels(uint8_t red, uint8_t green, uint8_t blue)
 {
     HW_HDMI_FC_DBGTMDS2.U = red;
     HW_HDMI_FC_DBGTMDS1.U = green;
     HW_HDMI_FC_DBGTMDS0.U = blue;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// EOF
+///////////////////////////////////////////////////////////////////////////////

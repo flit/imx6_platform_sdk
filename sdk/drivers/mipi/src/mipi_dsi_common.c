@@ -12,29 +12,45 @@
  * @ingroup diag_mipi
  */
 
+#include "registers/regsmipidsi.h"
 #include "mipi/mipi_common.h"
 #include "ipu/ipu_common.h"
 
 void dphy_write_control(unsigned long testcode, unsigned long testwrite)
 {
-    reg32_write(DSI_PHY_TST_CTRL0, 0x00000000);
-    reg32_write(DSI_PHY_TST_CTRL1, (0x00010000 | testcode));
-    reg32_write(DSI_PHY_TST_CTRL0, 0x00000002);
-    reg32_write(DSI_PHY_TST_CTRL0, 0x00000000);
-    reg32_write(DSI_PHY_TST_CTRL1, (0x00000000 | testwrite));
-    reg32_write(DSI_PHY_TST_CTRL0, 0x00000002);
-    reg32_write(DSI_PHY_TST_CTRL0, 0x00000000);
+	/* {phy_testclk, phy_testclr} = {0, 0} */
+	BW_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK(0);
+	BW_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLR(0);
 
+	/* {phy_testen, phy_testdout, phy_testdin}*/
+	HW_MIPI_DSI_PHY_TST_CTRL1_WR(testcode);
+	BW_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTEN(1);
+
+	/* {phy_testclk, phy_testclr} = {0, 0} --> {1, 0}*/
+	BW_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK(1);
+
+	/* {phy_testclk, phy_testclr} = {1, 0} --> {0, 0}*/
+	BW_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK(0);
+
+	/* {phy_testen, phy_testdout, phy_testdin}*/
+	HW_MIPI_DSI_PHY_TST_CTRL1_WR(testwrite);
+	BW_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTEN(0);
+
+	/* {phy_testclk, phy_testclr} = {0, 0} --> {1, 0}*/
+	BW_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK(1);
+
+	/* {phy_testclk, phy_testclr} = {1, 0} --> {0, 0}*/
+	BW_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK(0);
 }
 
 void gen_write_cmd(unsigned long gen_hdr)
 {
-    reg32_write(DSI_GEN_HDR, gen_hdr);
+	HW_MIPI_DSI_GEN_HDR_WR(gen_hdr);
 }
 
 void gen_write_data(unsigned long gen_pld_data)
 {
-    reg32_write(DSI_GEN_PLD_DATA, gen_pld_data);
+	HW_MIPI_DSI_GEN_PLD_DATA_WR(gen_pld_data);
 }
 
 void mipi_lcd_init(void)
@@ -135,19 +151,21 @@ void mipi_dsi_init(void)
 	float pperiod = 0;
 
 	/*step 1: keeping core and d-phy in reset state */
-    reg32_write(DSI_PWR_UP, 0x0);
-    reg32_write(DSI_PHY_RSTZ, 0x00000000);
+	HW_MIPI_DSI_PWR_UP_WR(0x0);
+	HW_MIPI_DSI_PHY_RSTZ_WR(0x0);
 
     /*step 2: set the DSI DPI interface */
-    reg32_write(DSI_PHY_IF_CFG, ((PHY_STOP_WAIT_TIME << 2) | (dlane - 1)));
+	BW_MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME(PHY_STOP_WAIT_TIME);
+	BW_MIPI_DSI_PHY_IF_CFG_N_LANES(dlane - 1);
+
     /*virtual id = 0, 24bit color normal color mode, and also the sync polarities */
-    reg32_write(DSI_DPI_CFG, DPI_CFG);
+	HW_MIPI_DSI_DPI_CFG_WR(DPI_CFG);
     /*set the video transmission mode, select burst mode */
-    reg32_write(DSI_VID_MODE_CFG, VID_MODE_CFG);
+	HW_MIPI_DSI_VID_MODE_CFG_WR(VID_MODE_CFG);
     /*set timeout clock and escape clock divisions. */
-    reg32_write(DSI_CLKMGR_CFG, DSI_CLK_DIV);
-    reg32_write(DSI_TMR_CFG, PHY_TIMING_CFG);
-    reg32_write(DSI_VID_PKT_CFG, VID_PKT_CFG);  //pixel per packet is 480, one line 
+	HW_MIPI_DSI_CLKMGR_CFG_WR(DSI_CLK_DIV);
+	HW_MIPI_DSI_PHY_TMR_CFG_WR(PHY_TIMING_CFG);
+	HW_MIPI_DSI_VID_PKT_CFG_WR(VID_PKT_CFG);
     /*calculate and set the timing */
 	pclk = (264/((int)(264/24.55+0.5)));   //MHz, 264M is the IPU frequency
 	pperiod = ((float)(1000/pclk)); //ns
@@ -155,22 +173,27 @@ void mipi_dsi_init(void)
 	thsa = (int)(((float)DPITHSA)*dpi2_laneclk_ratio);
 	thbp = (int)(((float)DPITHBP)*dpi2_laneclk_ratio);
 	thline = (int)(((float)(DPITHSA+DPITHBP+DPITHACT+DPITHFP))*dpi2_laneclk_ratio);
-    reg32_write(DSI_TMR_LINE_CFG, (thline<<18)|(thbp<<9)|thsa);
-    reg32_write(DSI_VTIMING_CFG, VTIMING_CFG);
+	BW_MIPI_DSI_TMR_LINE_CFG_HSA_TIME(thsa);
+	BW_MIPI_DSI_TMR_LINE_CFG_HBP_TIME(thbp);
+	BW_MIPI_DSI_TMR_LINE_CFG_HLINE_TIME(thline);
+	HW_MIPI_DSI_VTIMING_CFG_WR(VTIMING_CFG);
     /*set the packet handleri, including the packet size and sync timing */
-    reg32_write(DSI_PCKHDL_CFG, PCKHDL_CFG);
-    reg32_write(DSI_CMD_MODE_CFG, 0x00001fff);
+	HW_MIPI_DSI_PCKHDL_CFG_WR(PCKHDL_CFG);
+	HW_MIPI_DSI_CMD_MODE_CFG_WR(0x00001fff);
     /*enable DSI controller */
-    reg32_write(DSI_PWR_UP, PWR_UP);
+	HW_MIPI_DSI_PWR_UP_WR(PWR_UP);
 
     /*step 4: configure the DPHY PLL clock frequency */
     dphy_write_control(0x44, 0x32); //set clock to be 800Mhz
-    reg32_write(DSI_PHY_RSTZ, 0x7);
-    while ((reg32_read(DSI_PHY_STATUS) & 0x1) != 0x1) ;
-    while ((reg32_read(DSI_PHY_STATUS) & 0x4) != 0x4) ;
+	BW_MIPI_DSI_PHY_RSTZ_PHY_SHUTDOWNZ(1);
+	BW_MIPI_DSI_PHY_RSTZ_PHY_RSTZ(1);
+	BW_MIPI_DSI_PHY_RSTZ_PHY_ENABLECLK(1);
+
+	while(!HW_MIPI_DSI_PHY_STATUS.B.PHYLOCK);
+	while(!HW_MIPI_DSI_PHY_STATUS.B.PHYSTOPSTATECLKLANE);
 
     /*configure the TRULY panel through the generic data interface */
     mipi_lcd_init();
 
-    reg32_write(DSI_PHY_IF_CTRL, PHY_IF_CTRL);
+	HW_MIPI_DSI_PHY_IF_CTRL_WR(PHY_IF_CTRL);
 }

@@ -25,10 +25,18 @@
 //@}
 
 //! @name Number of cores constants in OTP register
+//!
+//! The same OTP bits are used for both MX6DQ and MX6SDL to determine the number
+//! of available cores. But the default value of 0 has a different meaning for
+//! the two chips.
 //!{
+#if defined(CHIP_MX6DQ)
 #define FOUR_CORES (0)            //!< Four cores available register value.
 #define TWO_CORES (2)             //!< Two cores available register value.
+#elif defined(CHIP_MX6SDL)
+#define TWO_CORES (0)             //!< Two cores available register value.
 #define ONE_CORE (1)             //!< One cores available register value.
+#endif
 //@}
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -37,11 +45,9 @@
 
 int cpu_get_cores(void)
 {
-    // Declare variables for number of cores and temporary storage
-    // for the content of the NUM_CORES register.
-    int core_count;             
+    int core_count = GET_CORES_ERROR;             
 
-#if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)    
+#if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
     // Mask and shift the contents of the control register so bit 21 and 20, which
     // are responsible for tracking cpu accessbility, are isolated.
     uint32_t raw_data = (HW_OCOTP_CFG2_RD() & CORE_NUM_MASK) >> CORE_NUM_SHIFT;
@@ -50,15 +56,21 @@ int cpu_get_cores(void)
     // value accordingly. If no core is active, return error.
     switch(raw_data)
     {
+// 4 cores only available on mx6dq
+#if defined(CHIP_MX6DQ)
         case FOUR_CORES:
             core_count = FOUR_CORES_ACTIVE;
             break;
+#endif // defined(CHIP_MX6DQ)
         case TWO_CORES:
             core_count = TWO_CORES_ACTIVE;
             break;
+// 1 core only available on mx6sdl
+#if defined(CHIP_MX6SDL)
         case ONE_CORE:
             core_count = ONE_CORE_ACTIVE;
             break;
+#endif // defined(CHIP_MX6SDL)
         default:
             core_count = GET_CORES_ERROR;
     }

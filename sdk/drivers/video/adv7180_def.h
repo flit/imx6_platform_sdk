@@ -15,28 +15,34 @@
 #define __ADV7180_DEF_H__
 
 #include "i2c/imx_i2c.h"
-//#include "hardware.h"
 #include "sdk_types.h"
 
+//! @addtogroup diag_adv7180
+
+//! @{
+
+//! @brief ADV7180 video signal mode
 typedef enum {
-	ADV7180_NTSC = 0,	/*!< Locked on (M) NTSC video signal. */
-	ADV7180_PAL = 1,	/*!< (B, G, H, I, N)PAL video signal. */
-	ADV7180_NOT_LOCKED,	/*!< Not locked on a signal. */
+	ADV7180_NTSC = 0,	//!< Locked on (M) NTSC video signal.
+	ADV7180_PAL = 1,	//!< (B, G, H, I, N)PAL video signal.
+	ADV7180_NOT_LOCKED,	//!< Not locked on a signal.
 } video_fmt_idx;
 
-/*! Video format structure. */
+//! @brief Video format structure.
 typedef struct {
-	int32_t fmt_id;		/*!< Video for linux ID. */
-	char name[16];		/*!< Name (e.g., "NTSC", "PAL", etc.) */
-	uint16_t raw_width;		/*!< Raw width. */
-	uint16_t raw_height;		/*!< Raw height. */
-	uint16_t active_width;	/*!< Active width. */
-	uint16_t active_height;	/*!< Active height. */
+	int32_t fmt_id;			//!< Video for linux ID.
+	char name[16];			//!< Name (e.g., "NTSC", "PAL", etc.)
+	uint16_t raw_width;		//!< Raw width.
+	uint16_t raw_height;	//!< Raw height.
+	uint16_t active_width;	//!< Active width.
+	uint16_t active_height;	//!< Active height.
 } video_fmt_t;
 
+
+//! @brief The common structure for accessing adv7180 I2C interface.
 typedef struct {
-    uint8_t addr;
-    uint8_t value;
+    uint8_t addr;	//!< adv7180 register address
+    uint8_t value;	//!< value along with the register address
 } t_adv7180_i2c_reg_param;
 
 #define IF_NAME                    "adv7180"
@@ -110,11 +116,35 @@ typedef struct {
 #define ADV7180_IMR3_ADI	0x4C
 #define ADV7180_IMR4_ADI	0x50
 
+
+//! @brief The I2C port number to which the adv7180 is connected.
+//!
+//! This global must be provided by the board library or application.
 extern const i2c_device_info_t g_adv7180_i2c_device;
 
 extern video_fmt_t video_fmts[];
+
+/*!
+ * @brief Hardware and software initialize adv7180
+ *
+ * @return 0 on success; non-zero otherwise
+ */
 extern int32_t adv7180_init(void);
+
+/*!
+ * @brief Get adv7180 video format
+ *
+ * @return ADV7180_NTSC when the video input is NTSC, ADV7180_PAL(1) when the video input is PAL; ADV7180_NOT_LOCKED otherwise
+ */
 extern int32_t adv7180_get_std(void);
+
+/*!
+ * @brief Check if video format is in a interlaced mode
+ *
+ * @return 1 for interlaced mode, 0 for progressive mode
+ */
 extern int32_t adv7180_is_interlaced_mode(void);
+
+//! @}
 
 #endif

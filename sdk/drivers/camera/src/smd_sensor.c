@@ -21,17 +21,108 @@ reg_param_t ov5642_strobe_on[] = {
     {0x3B00, 0x8c, 0, 0, }
 };
 
-static int32_t sensor_write_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * pval,
-                                uint16_t is_16bits);
-static int32_t sensor_read_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * pval,
-                               uint16_t is_16bits);
+/*!
+ * @brief initialize the i2c module for camera sensor -- mainly enable the i2c clock, module itself and the i2c clock prescaler.
+ *
+ * @param   base        base address of i2c module (also assigned for i2cx_clk)
+ * @param   baud        the desired data rate in bps
+ *
+ * @return  0 if successful; non-zero otherwise
+ */
+static int32_t sensor_i2c_init(uint32_t base, uint32_t baud)
+{
+    int32_t ret = 0;
+    int32_t i2c_delay = 5000;
 
+    ret = i2c_init(base, baud);
+    if (ret != 0) {
+        printf("I2C initialization failed!\n");
+        return ret;
+    }
+    hal_delay_us(i2c_delay);
+
+    return ret;
+}
 
 /*!
- * configure camera sensor according to sensor profile 
- * @param	sensor: sensor profile information
+ * @brief Perform I2C write operation for camera sensor
  *
+ * @param   dev_addr	sensor i2c slave device address
+ * @param   reg_addr 	sensor i2c register address
+ * @param	pval 		value write to i2c register
+ * @param	is_16bits	indicate value write to i2c register is 16 bits
+ *
+ * @return  0 if successful; non-zero otherwise
  */
+static int32_t sensor_write_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * pval,
+                                uint16_t is_16bits)
+{
+    int32_t ret = 0;
+    struct imx_i2c_request rq = {0};
+
+    reg_addr = ((reg_addr & 0x00FF) << 8) | ((reg_addr & 0xFF00) >> 8); //swap MSB and LSB
+    rq.ctl_addr = g_camera_i2c_port;
+    rq.dev_addr = dev_addr >> 1;
+    rq.reg_addr = reg_addr;
+    rq.reg_addr_sz = 2;
+
+    if (is_16bits == 0) {
+        uint8_t value = *pval;
+        rq.buffer_sz = 1;
+        rq.buffer = &value;
+        ret = i2c_xfer(&rq, I2C_WRITE);
+    } else {
+        uint8_t value[2];
+        value[0] = ((*pval) & 0xFF00) >> 8;
+        value[1] = (*pval) & 0x00FF;
+        rq.buffer_sz = 2;
+        rq.buffer = value;
+        ret = i2c_xfer(&rq, I2C_WRITE);
+    }
+
+    return ret;
+}
+
+/*!
+ * @brief Perform I2C read operation for camera sensor
+ *
+ * @param   dev_addr	sensor i2c slave device address
+ * @param   reg_addr 	sensor i2c register address
+ * @param	pval 		value read from i2c register
+ * @param	is_16bits	indicate value read from i2c register is 16 bits
+ *
+ * @return  0 if successful; non-zero otherwise
+ */
+static int32_t sensor_read_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * pval,
+                               uint16_t is_16bits)
+{
+    int32_t ret = 0;
+    struct imx_i2c_request rq = {0};
+
+    reg_addr = ((reg_addr & 0x00FF) << 8) | ((reg_addr & 0xFF00) >> 8); //swap MSB and LSB
+    rq.ctl_addr = g_camera_i2c_port;
+    rq.dev_addr = dev_addr >> 1;
+    rq.reg_addr = reg_addr;
+    rq.reg_addr_sz = 2;
+
+    if (is_16bits == 0) {
+        uint8_t value = *pval;
+        rq.buffer_sz = 1;
+        rq.buffer = &value;
+        ret = i2c_xfer(&rq, I2C_READ);
+        *pval = value;
+    } else {
+        uint8_t value[2];
+        rq.buffer_sz = 2;
+        rq.buffer = value;
+        ret = i2c_xfer(&rq, I2C_READ);
+        *pval = (value[0] << 8) | (value[1]);
+    }
+
+    return ret;
+}
+
+
 int32_t sensor_config(camera_profile_t * sensor)
 {
     int32_t ret = 0;
@@ -42,12 +133,6 @@ int32_t sensor_config(camera_profile_t * sensor)
     return ret;
 }
 
-/*!
- * search which camera sensor is pluged in 
- *
- * @return sensor profile for the camera pluged in
- *
- */
 camera_profile_t *sensor_search(void)
 {
     int32_t i, j;
@@ -88,17 +173,13 @@ hal_delay_us(1000000);
     return sensor_on;
 }
 
-/*!
- * initialize camera sensor 
- * @param	sensor: sensor profile information
- *
- */
 int32_t sensor_init(camera_profile_t * sensor)
 {
     int32_t i;
     uint16_t read_value;
+	int32_t ret = 0;
 
-    sensor_i2c_init(g_camera_i2c_port, 170000);
+    ret = sensor_i2c_init(g_camera_i2c_port, 170000);
     camera_mode_t *preview_mode = &sensor->modes[sensor->mode_id];
 
     for (i = 0; i < preview_mode->size; ++i) {
@@ -112,26 +193,22 @@ int32_t sensor_init(camera_profile_t * sensor)
             if (read_value != setting->value) {
                 printf("reg[0x%x]=0x%x, but expected=0x%x\n", setting->addr, read_value,
                        setting->value);
+				return -1;
             } else {
                 //printf ("I2C RIGHT: [reg 0x%x], real = 0x%x, expected = 0x%x\n", regAddr, tmpVal, regVal);
             }
         }
     }
 
-    return 0;
+    return ret;
 }
 
-/*!
- * configure camera sensor to af trigger mode 
- * @param	sensor: sensor profile information
- *
- */
 int32_t sensor_af_trigger(camera_profile_t * sensor)
 {
     int32_t ret = 0, i;
     reg_param_t *setting;
 
-    sensor_i2c_init(g_camera_i2c_port, 170000);
+    ret = sensor_i2c_init(g_camera_i2c_port, 170000);
 
     for (i = 0; i < sensor->af_trigger_size; ++i) {
         setting = &sensor->af_trigger[i];
@@ -151,7 +228,7 @@ int32_t sensor_autofocus_init(camera_profile_t * sensor)
     if (sensor->auto_focus_enable) {
         printf("Download auto-focus firmware......\n");
 
-        sensor_i2c_init(g_camera_i2c_port, 170000);
+        ret = sensor_i2c_init(g_camera_i2c_port, 170000);
 
         for (i = 0; i < sensor->af_firmware_size; ++i) {
             reg_param_t *setting = &sensor->af_firmware[i];
@@ -166,93 +243,13 @@ int32_t sensor_autofocus_init(camera_profile_t * sensor)
                 if (read_value != setting->value) {
                     printf("reg[0x%x]=0x%x, but expected=0x%x\n", setting->addr, read_value,
                            setting->value);
+					return -1;
                 } else {
                     //printf ("I2C RIGHT: [reg 0x%x], real = 0x%x, expected = 0x%x\n", regAddr, tmpVal, regVal);
                 }
             }
         }
         printf("Auto-focus ready\n");
-    }
-
-    return ret;
-}
-
-/*!
- * initialize the i2c module for camera sensor -- mainly enable the i2c clock, module itself and the i2c clock prescaler.
- *
- * @param   base        base address of i2c module (also assigned for i2cx_clk)
- * @param   baud        the desired data rate in bps
- *
- * @return  0 if successful; non-zero otherwise
- */
-int32_t sensor_i2c_init(uint32_t base, uint32_t baud)
-{
-    int32_t ret = 0;
-    int32_t i2c_delay = 5000;
-
-    ret = i2c_init(base, baud);
-    if (ret != 0) {
-        printf("I2C initialization failed!\n");
-        return ret;
-    }
-    hal_delay_us(i2c_delay);
-
-    return ret;
-}
-
-static int32_t sensor_write_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * pval,
-                                uint16_t is_16bits)
-{
-    int32_t ret = 0;
-    struct imx_i2c_request rq = {0};
-
-    reg_addr = ((reg_addr & 0x00FF) << 8) | ((reg_addr & 0xFF00) >> 8); //swap MSB and LSB
-    rq.ctl_addr = g_camera_i2c_port;
-    rq.dev_addr = dev_addr >> 1;
-    rq.reg_addr = reg_addr;
-    rq.reg_addr_sz = 2;
-
-    if (is_16bits == 0) {
-        uint8_t value = *pval;
-        rq.buffer_sz = 1;
-        rq.buffer = &value;
-        ret = i2c_xfer(&rq, I2C_WRITE);
-    } else {
-        uint8_t value[2];
-        value[0] = ((*pval) & 0xFF00) >> 8;
-        value[1] = (*pval) & 0x00FF;
-        rq.buffer_sz = 2;
-        rq.buffer = value;
-        ret = i2c_xfer(&rq, I2C_WRITE);
-    }
-
-    return ret;
-}
-
-static int32_t sensor_read_reg(uint32_t dev_addr, uint16_t reg_addr, uint16_t * pval,
-                               uint16_t is_16bits)
-{
-    int32_t ret = 0;
-    struct imx_i2c_request rq = {0};
-
-    reg_addr = ((reg_addr & 0x00FF) << 8) | ((reg_addr & 0xFF00) >> 8); //swap MSB and LSB
-    rq.ctl_addr = g_camera_i2c_port;
-    rq.dev_addr = dev_addr >> 1;
-    rq.reg_addr = reg_addr;
-    rq.reg_addr_sz = 2;
-
-    if (is_16bits == 0) {
-        uint8_t value = *pval;
-        rq.buffer_sz = 1;
-        rq.buffer = &value;
-        ret = i2c_xfer(&rq, I2C_READ);
-        *pval = value;
-    } else {
-        uint8_t value[2];
-        rq.buffer_sz = 2;
-        rq.buffer = value;
-        ret = i2c_xfer(&rq, I2C_READ);
-        *pval = (value[0] << 8) | (value[1]);
     }
 
     return ret;

@@ -98,6 +98,7 @@ void deserializer_io_config(void)
 }
 
 #if !defined(CHIP_MX6SL)
+
 /*!
  * reset camera sensor through GPIO on SMD board 
  *
@@ -125,10 +126,8 @@ void sensor_reset(void)
  * @param	enable: specify whether set camera sensor to standby mode
  * 
  */
-int32_t sensor_standby(int32_t enable)
+void sensor_standby(int32_t enable)
 {
-    int32_t ret = 0;
-
     /* MX6DQ/SDL_SMART_DEVICE: setting to gpio1_16, power down high active */
 	BW_IOMUXC_SW_MUX_CTL_PAD_SD1_DAT0_MUX_MODE(ALT5);
 	gpio_set_direction(GPIO_PORT1, 16, GPIO_GDIR_OUTPUT);
@@ -136,8 +135,6 @@ int32_t sensor_standby(int32_t enable)
 		gpio_set_level(GPIO_PORT1, 16, GPIO_HIGH_LEVEL);
     else
 		gpio_set_level(GPIO_PORT1, 16, GPIO_LOW_LEVEL);
-
-    return ret;
 }
 
 /*!

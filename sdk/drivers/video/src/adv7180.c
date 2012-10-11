@@ -12,12 +12,8 @@
  */
 
 #include "video/adv7180_def.h"
-#include "sdk_types.h"
-#include "timer/timer.h"
-#include "iomux_config.h"
-#include "iomux_register.h"
-#include "soc_memory_map.h"
 #include "hardware.h"
+#include "registers/regsiomuxc.h"
 
 /*! Description of video formats supported.
  *
@@ -120,7 +116,15 @@ t_adv7180_i2c_reg_param adv7180_work_mode[] = {
 
 static void adv7180_hard_reset(uint8_t cvbs);
 
-int32_t adv7180_i2c_init(uint32_t base, uint32_t baud)
+/*!
+ * @brief initialize the i2c module for adv7180 -- mainly enable the i2c clock, module itself and the i2c clock prescaler.
+ *
+ * @param   base        base address of i2c module (also assigned for i2cx_clk)
+ * @param   baud        the desired data rate in bps
+ *
+ * @return  0 if successful; non-zero otherwise
+ */
+static int32_t adv7180_i2c_init(uint32_t base, uint32_t baud)
 {
     int32_t ret = 0;
     int32_t i2c_delay = 500 * 1000;
@@ -135,6 +139,14 @@ int32_t adv7180_i2c_init(uint32_t base, uint32_t baud)
     return ret;
 }
 
+/*!
+ * @brief Perform I2C write operation for adv7180 
+ *
+ * @param   reg 	sensor i2c register address
+ * @param	pval 	value write to i2c register
+ *
+ * @return  0 if successful; non-zero otherwise
+ */
 static int32_t adv7180_write_reg(uint8_t reg, uint8_t pval)
 {
     int ret = 0;
@@ -152,6 +164,14 @@ static int32_t adv7180_write_reg(uint8_t reg, uint8_t pval)
     return ret;
 }
 
+/*!
+ * @brief Perform I2C read operation for adv7180
+ *
+ * @param   reg 	sensor i2c register address
+ * @param	pval 	value read from i2c register
+ *
+ * @return  0 if successful; non-zero otherwise
+ */
 static int32_t adv7180_read_reg(uint8_t reg)
 {
     int ret = 0;
@@ -173,10 +193,18 @@ static int32_t adv7180_read_reg(uint8_t reg)
 		return -1;
 }
 
+/*!
+ * @brief Perform adv7180 hardware power-down operation
+ *
+ * When @pwdn equals 0, it initiates hardware power-down mode
+ * Before entering work mode, make sure call this function with @pwdn equals 1.
+ *
+ * @param	pwdn parameter controlis if initiate a hardware power-down mode or normal work mode. 0 for power-down mode, 1 for normal work mode.
+ */
 static void adv7180_pwdn(int32_t pwdn)
 {
 	/*Tvin power down: PORT2_P97 -- CSI0_DAT5 (GPIO5_23) */
-	reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT5, ALT5);
+	BW_IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT5_MUX_MODE(ALT5);
 	gpio_set_direction(GPIO_PORT5, 23, GPIO_GDIR_OUTPUT);
 
 	if (pwdn == 1)
@@ -185,12 +213,18 @@ static void adv7180_pwdn(int32_t pwdn)
 		gpio_set_level(GPIO_PORT5, 23, GPIO_LOW_LEVEL);
 }
 
+/*!
+ * @brief Perform adv7180 reset operation
+ *
+ * Reset adv7180 through GPIO according to the timing specified by datasheet
+ *
+ */
 static void adv7180_reset(void)
 {
 	int32_t reset_delay = 100000;
 
 	/*Tvin reset: PORT2_P95 -- CSI0_DAT7 ALT5 (GPIO5-25) */
-	reg32_write(IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT7, ALT5);
+	BW_IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT7_MUX_MODE(ALT5);
 	gpio_set_direction(GPIO_PORT5, 25, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT5, 25, GPIO_HIGH_LEVEL);
 
@@ -203,9 +237,11 @@ static void adv7180_reset(void)
 }
 
 /*!
- * Sets the camera power.
+ * @brief Software set the adv7180 power.
  *
- * on if 1, power is to be turned on.  0 means power is to be turned off
+ * @param	on whether turn on the adv7180 power on register.  1 for power on. 0 for power off.
+ *
+ * @return 0 on success; non-zero otherwise
  */
 static int32_t adv7180_power_on(int32_t on)
 {
@@ -220,6 +256,10 @@ static int32_t adv7180_power_on(int32_t on)
 	return TEST_PASSED;
 }
 
+/*!
+ * @brief Initialize CSI and adv7180 io interface
+ *
+ */
 static void csi0_tvin_io_init(void)
 {
 	/* iomux setting for csi0 */
@@ -278,9 +318,6 @@ int32_t adv7180_get_std(void)
 	return idx;
 }
 
-/*
- * return 1 if the video is in interlaced mode 
- * 0 for progressive mode */
 int32_t adv7180_is_interlaced_mode(void)
 {
 	uint32_t reg_val;
@@ -295,6 +332,11 @@ int32_t adv7180_is_interlaced_mode(void)
 		return 0;
 }
 
+/*!
+ * @brief Reset and configure adv7180 into auto work mode
+ *
+ * @param	cvbs specify if the video input is CVBS input or YPbPr input. 1 for CVBS input on AIN1. 0 for YPbPr input on AIN1, 4, 5
+ */
 static void adv7180_hard_reset(uint8_t cvbs)
 {
 	int i;

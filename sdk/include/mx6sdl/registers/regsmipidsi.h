@@ -111,13 +111,11 @@ typedef union _hw_mipi_dsi_version
  * Version of the DSI host controller
  */
 //@{
-
 #define BP_MIPI_DSI_VERSION_VERSION      (0)      //!< Bit position for MIPI_DSI_VERSION_VERSION.
 #define BM_MIPI_DSI_VERSION_VERSION      (0xffffffff)  //!< Bit mask for MIPI_DSI_VERSION_VERSION.
 
 //! @brief Get value of MIPI_DSI_VERSION_VERSION from a register value.
 #define BG_MIPI_DSI_VERSION_VERSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_DSI_VERSION_VERSION) >> BP_MIPI_DSI_VERSION_VERSION)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -172,7 +170,6 @@ typedef union _hw_mipi_dsi_pwr_up
  * - 1 - power up)
  */
 //@{
-
 #define BP_MIPI_DSI_PWR_UP_SHUTDOWNZ      (0)      //!< Bit position for MIPI_DSI_PWR_UP_SHUTDOWNZ.
 #define BM_MIPI_DSI_PWR_UP_SHUTDOWNZ      (0x00000001)  //!< Bit mask for MIPI_DSI_PWR_UP_SHUTDOWNZ.
 
@@ -186,7 +183,6 @@ typedef union _hw_mipi_dsi_pwr_up
 //! @brief Set the SHUTDOWNZ field to a new value.
 #define BW_MIPI_DSI_PWR_UP_SHUTDOWNZ(v)   (HW_MIPI_DSI_PWR_UP_WR((HW_MIPI_DSI_PWR_UP_RD() & ~BM_MIPI_DSI_PWR_UP_SHUTDOWNZ) | BF_MIPI_DSI_PWR_UP_SHUTDOWNZ(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -239,7 +235,6 @@ typedef union _hw_mipi_dsi_clkmgr_cfg
  * generation.
  */
 //@{
-
 #define BP_MIPI_DSI_CLKMGR_CFG_TX_ESC_CLK_DIVIDSION      (0)      //!< Bit position for MIPI_DSI_CLKMGR_CFG_TX_ESC_CLK_DIVIDSION.
 #define BM_MIPI_DSI_CLKMGR_CFG_TX_ESC_CLK_DIVIDSION      (0x000000ff)  //!< Bit mask for MIPI_DSI_CLKMGR_CFG_TX_ESC_CLK_DIVIDSION.
 
@@ -253,7 +248,6 @@ typedef union _hw_mipi_dsi_clkmgr_cfg
 //! @brief Set the TX_ESC_CLK_DIVIDSION field to a new value.
 #define BW_MIPI_DSI_CLKMGR_CFG_TX_ESC_CLK_DIVIDSION(v)   (HW_MIPI_DSI_CLKMGR_CFG_WR((HW_MIPI_DSI_CLKMGR_CFG_RD() & ~BM_MIPI_DSI_CLKMGR_CFG_TX_ESC_CLK_DIVIDSION) | BF_MIPI_DSI_CLKMGR_CFG_TX_ESC_CLK_DIVIDSION(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CLKMGR_CFG, field TO_CLK_DIVIDSION[15:8] (RW)
@@ -262,7 +256,6 @@ typedef union _hw_mipi_dsi_clkmgr_cfg
  * HS transition error.
  */
 //@{
-
 #define BP_MIPI_DSI_CLKMGR_CFG_TO_CLK_DIVIDSION      (8)      //!< Bit position for MIPI_DSI_CLKMGR_CFG_TO_CLK_DIVIDSION.
 #define BM_MIPI_DSI_CLKMGR_CFG_TO_CLK_DIVIDSION      (0x0000ff00)  //!< Bit mask for MIPI_DSI_CLKMGR_CFG_TO_CLK_DIVIDSION.
 
@@ -276,7 +269,6 @@ typedef union _hw_mipi_dsi_clkmgr_cfg
 //! @brief Set the TO_CLK_DIVIDSION field to a new value.
 #define BW_MIPI_DSI_CLKMGR_CFG_TO_CLK_DIVIDSION(v)   (HW_MIPI_DSI_CLKMGR_CFG_WR((HW_MIPI_DSI_CLKMGR_CFG_RD() & ~BM_MIPI_DSI_CLKMGR_CFG_TO_CLK_DIVIDSION) | BF_MIPI_DSI_CLKMGR_CFG_TO_CLK_DIVIDSION(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -334,7 +326,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
  * Configures the DPI Virtual Channel ID that will be indexed to the Video mode packets.
  */
 //@{
-
 #define BP_MIPI_DSI_DPI_CFG_DPI_VID      (0)      //!< Bit position for MIPI_DSI_DPI_CFG_DPI_VID.
 #define BM_MIPI_DSI_DPI_CFG_DPI_VID      (0x00000003)  //!< Bit mask for MIPI_DSI_DPI_CFG_DPI_VID.
 
@@ -348,7 +339,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
 //! @brief Set the DPI_VID field to a new value.
 #define BW_MIPI_DSI_DPI_CFG_DPI_VID(v)   (HW_MIPI_DSI_DPI_CFG_WR((HW_MIPI_DSI_DPI_CFG_RD() & ~BM_MIPI_DSI_DPI_CFG_DPI_VID) | BF_MIPI_DSI_DPI_CFG_DPI_VID(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_DPI_CFG, field DPI_COLOR_CODING[4:2] (RW)
@@ -364,7 +354,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
  * - 5 - to 7 24 bit.
  */
 //@{
-
 #define BP_MIPI_DSI_DPI_CFG_DPI_COLOR_CODING      (2)      //!< Bit position for MIPI_DSI_DPI_CFG_DPI_COLOR_CODING.
 #define BM_MIPI_DSI_DPI_CFG_DPI_COLOR_CODING      (0x0000001c)  //!< Bit mask for MIPI_DSI_DPI_CFG_DPI_COLOR_CODING.
 
@@ -378,7 +367,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
 //! @brief Set the DPI_COLOR_CODING field to a new value.
 #define BW_MIPI_DSI_DPI_CFG_DPI_COLOR_CODING(v)   (HW_MIPI_DSI_DPI_CFG_WR((HW_MIPI_DSI_DPI_CFG_RD() & ~BM_MIPI_DSI_DPI_CFG_DPI_COLOR_CODING) | BF_MIPI_DSI_DPI_CFG_DPI_COLOR_CODING(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_DPI_CFG, field DATAEN_ACTIVE_LOW[5] (RW)
@@ -386,7 +374,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
  * Set to configure Data enable pin (dpidaten) as Active low
  */
 //@{
-
 #define BP_MIPI_DSI_DPI_CFG_DATAEN_ACTIVE_LOW      (5)      //!< Bit position for MIPI_DSI_DPI_CFG_DATAEN_ACTIVE_LOW.
 #define BM_MIPI_DSI_DPI_CFG_DATAEN_ACTIVE_LOW      (0x00000020)  //!< Bit mask for MIPI_DSI_DPI_CFG_DATAEN_ACTIVE_LOW.
 
@@ -400,7 +387,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
 //! @brief Set the DATAEN_ACTIVE_LOW field to a new value.
 #define BW_MIPI_DSI_DPI_CFG_DATAEN_ACTIVE_LOW(v)   (HW_MIPI_DSI_DPI_CFG_WR((HW_MIPI_DSI_DPI_CFG_RD() & ~BM_MIPI_DSI_DPI_CFG_DATAEN_ACTIVE_LOW) | BF_MIPI_DSI_DPI_CFG_DATAEN_ACTIVE_LOW(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_DPI_CFG, field VSYNC_ACTIVE_LOW[6] (RW)
@@ -408,7 +394,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
  * Set to configure Vertical Synchronism pin (dpivsync) as Active low
  */
 //@{
-
 #define BP_MIPI_DSI_DPI_CFG_VSYNC_ACTIVE_LOW      (6)      //!< Bit position for MIPI_DSI_DPI_CFG_VSYNC_ACTIVE_LOW.
 #define BM_MIPI_DSI_DPI_CFG_VSYNC_ACTIVE_LOW      (0x00000040)  //!< Bit mask for MIPI_DSI_DPI_CFG_VSYNC_ACTIVE_LOW.
 
@@ -422,7 +407,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
 //! @brief Set the VSYNC_ACTIVE_LOW field to a new value.
 #define BW_MIPI_DSI_DPI_CFG_VSYNC_ACTIVE_LOW(v)   (HW_MIPI_DSI_DPI_CFG_WR((HW_MIPI_DSI_DPI_CFG_RD() & ~BM_MIPI_DSI_DPI_CFG_VSYNC_ACTIVE_LOW) | BF_MIPI_DSI_DPI_CFG_VSYNC_ACTIVE_LOW(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_DPI_CFG, field HSYNC_ACTIVE_LOW[7] (RW)
@@ -430,7 +414,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
  * Set to configure Horizontal Synchronism pin (dpihsync) as Active low
  */
 //@{
-
 #define BP_MIPI_DSI_DPI_CFG_HSYNC_ACTIVE_LOW      (7)      //!< Bit position for MIPI_DSI_DPI_CFG_HSYNC_ACTIVE_LOW.
 #define BM_MIPI_DSI_DPI_CFG_HSYNC_ACTIVE_LOW      (0x00000080)  //!< Bit mask for MIPI_DSI_DPI_CFG_HSYNC_ACTIVE_LOW.
 
@@ -444,7 +427,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
 //! @brief Set the HSYNC_ACTIVE_LOW field to a new value.
 #define BW_MIPI_DSI_DPI_CFG_HSYNC_ACTIVE_LOW(v)   (HW_MIPI_DSI_DPI_CFG_WR((HW_MIPI_DSI_DPI_CFG_RD() & ~BM_MIPI_DSI_DPI_CFG_HSYNC_ACTIVE_LOW) | BF_MIPI_DSI_DPI_CFG_HSYNC_ACTIVE_LOW(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_DPI_CFG, field SHUTD_ACTIVE_LOW[8] (RW)
@@ -452,7 +434,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
  * Set to configure Shut Down pin (dpishutdn) as Active low
  */
 //@{
-
 #define BP_MIPI_DSI_DPI_CFG_SHUTD_ACTIVE_LOW      (8)      //!< Bit position for MIPI_DSI_DPI_CFG_SHUTD_ACTIVE_LOW.
 #define BM_MIPI_DSI_DPI_CFG_SHUTD_ACTIVE_LOW      (0x00000100)  //!< Bit mask for MIPI_DSI_DPI_CFG_SHUTD_ACTIVE_LOW.
 
@@ -466,7 +447,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
 //! @brief Set the SHUTD_ACTIVE_LOW field to a new value.
 #define BW_MIPI_DSI_DPI_CFG_SHUTD_ACTIVE_LOW(v)   (HW_MIPI_DSI_DPI_CFG_WR((HW_MIPI_DSI_DPI_CFG_RD() & ~BM_MIPI_DSI_DPI_CFG_SHUTD_ACTIVE_LOW) | BF_MIPI_DSI_DPI_CFG_SHUTD_ACTIVE_LOW(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_DPI_CFG, field COLORM_ACTIVE_LOW[9] (RW)
@@ -474,7 +454,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
  * Set to configure Color Mode pin (dpicolcorm) as Active low
  */
 //@{
-
 #define BP_MIPI_DSI_DPI_CFG_COLORM_ACTIVE_LOW      (9)      //!< Bit position for MIPI_DSI_DPI_CFG_COLORM_ACTIVE_LOW.
 #define BM_MIPI_DSI_DPI_CFG_COLORM_ACTIVE_LOW      (0x00000200)  //!< Bit mask for MIPI_DSI_DPI_CFG_COLORM_ACTIVE_LOW.
 
@@ -488,7 +467,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
 //! @brief Set the COLORM_ACTIVE_LOW field to a new value.
 #define BW_MIPI_DSI_DPI_CFG_COLORM_ACTIVE_LOW(v)   (HW_MIPI_DSI_DPI_CFG_WR((HW_MIPI_DSI_DPI_CFG_RD() & ~BM_MIPI_DSI_DPI_CFG_COLORM_ACTIVE_LOW) | BF_MIPI_DSI_DPI_CFG_COLORM_ACTIVE_LOW(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_DPI_CFG, field EN18_LOOSELY[10] (RW)
@@ -496,7 +474,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
  * Enable 18 loosely packet pixel stream.
  */
 //@{
-
 #define BP_MIPI_DSI_DPI_CFG_EN18_LOOSELY      (10)      //!< Bit position for MIPI_DSI_DPI_CFG_EN18_LOOSELY.
 #define BM_MIPI_DSI_DPI_CFG_EN18_LOOSELY      (0x00000400)  //!< Bit mask for MIPI_DSI_DPI_CFG_EN18_LOOSELY.
 
@@ -510,7 +487,6 @@ typedef union _hw_mipi_dsi_dpi_cfg
 //! @brief Set the EN18_LOOSELY field to a new value.
 #define BW_MIPI_DSI_DPI_CFG_EN18_LOOSELY(v)   (HW_MIPI_DSI_DPI_CFG_WR((HW_MIPI_DSI_DPI_CFG_RD() & ~BM_MIPI_DSI_DPI_CFG_EN18_LOOSELY) | BF_MIPI_DSI_DPI_CFG_EN18_LOOSELY(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -565,7 +541,6 @@ typedef union _hw_mipi_dsi_dbi_cfg
  * Configures the DBI Virtual Channel ID that will be indexed to the DCS packets.
  */
 //@{
-
 #define BP_MIPI_DSI_DBI_CFG_DBI_VID      (0)      //!< Bit position for MIPI_DSI_DBI_CFG_DBI_VID.
 #define BM_MIPI_DSI_DBI_CFG_DBI_VID      (0x00000003)  //!< Bit mask for MIPI_DSI_DBI_CFG_DBI_VID.
 
@@ -579,7 +554,6 @@ typedef union _hw_mipi_dsi_dbi_cfg
 //! @brief Set the DBI_VID field to a new value.
 #define BW_MIPI_DSI_DBI_CFG_DBI_VID(v)   (HW_MIPI_DSI_DBI_CFG_WR((HW_MIPI_DSI_DBI_CFG_RD() & ~BM_MIPI_DSI_DBI_CFG_DBI_VID) | BF_MIPI_DSI_DBI_CFG_DBI_VID(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_DBI_CFG, field IN_DBI_CONF[5:2] (RW)
@@ -602,7 +576,6 @@ typedef union _hw_mipi_dsi_dbi_cfg
  * - 12 - 16bit 24bpp, option2
  */
 //@{
-
 #define BP_MIPI_DSI_DBI_CFG_IN_DBI_CONF      (2)      //!< Bit position for MIPI_DSI_DBI_CFG_IN_DBI_CONF.
 #define BM_MIPI_DSI_DBI_CFG_IN_DBI_CONF      (0x0000003c)  //!< Bit mask for MIPI_DSI_DBI_CFG_IN_DBI_CONF.
 
@@ -616,7 +589,6 @@ typedef union _hw_mipi_dsi_dbi_cfg
 //! @brief Set the IN_DBI_CONF field to a new value.
 #define BW_MIPI_DSI_DBI_CFG_IN_DBI_CONF(v)   (HW_MIPI_DSI_DBI_CFG_WR((HW_MIPI_DSI_DBI_CFG_RD() & ~BM_MIPI_DSI_DBI_CFG_IN_DBI_CONF) | BF_MIPI_DSI_DBI_CFG_IN_DBI_CONF(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_DBI_CFG, field LUT_SIZE_CONF[7:6] (RW)
@@ -630,7 +602,6 @@ typedef union _hw_mipi_dsi_dbi_cfg
  * - 3 - 16-bit color display
  */
 //@{
-
 #define BP_MIPI_DSI_DBI_CFG_LUT_SIZE_CONF      (6)      //!< Bit position for MIPI_DSI_DBI_CFG_LUT_SIZE_CONF.
 #define BM_MIPI_DSI_DBI_CFG_LUT_SIZE_CONF      (0x000000c0)  //!< Bit mask for MIPI_DSI_DBI_CFG_LUT_SIZE_CONF.
 
@@ -644,7 +615,6 @@ typedef union _hw_mipi_dsi_dbi_cfg
 //! @brief Set the LUT_SIZE_CONF field to a new value.
 #define BW_MIPI_DSI_DBI_CFG_LUT_SIZE_CONF(v)   (HW_MIPI_DSI_DBI_CFG_WR((HW_MIPI_DSI_DBI_CFG_RD() & ~BM_MIPI_DSI_DBI_CFG_LUT_SIZE_CONF) | BF_MIPI_DSI_DBI_CFG_LUT_SIZE_CONF(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_DBI_CFG, field PARTITIONING_EN[8] (RW)
@@ -653,7 +623,6 @@ typedef union _hw_mipi_dsi_dbi_cfg
  * of Long Write commands)
  */
 //@{
-
 #define BP_MIPI_DSI_DBI_CFG_PARTITIONING_EN      (8)      //!< Bit position for MIPI_DSI_DBI_CFG_PARTITIONING_EN.
 #define BM_MIPI_DSI_DBI_CFG_PARTITIONING_EN      (0x00000100)  //!< Bit mask for MIPI_DSI_DBI_CFG_PARTITIONING_EN.
 
@@ -667,7 +636,6 @@ typedef union _hw_mipi_dsi_dbi_cfg
 //! @brief Set the PARTITIONING_EN field to a new value.
 #define BW_MIPI_DSI_DBI_CFG_PARTITIONING_EN(v)   (HW_MIPI_DSI_DBI_CFG_WR((HW_MIPI_DSI_DBI_CFG_RD() & ~BM_MIPI_DSI_DBI_CFG_PARTITIONING_EN) | BF_MIPI_DSI_DBI_CFG_PARTITIONING_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_DBI_CFG, field OUT_DBI_CONF[12:9] (RW)
@@ -690,7 +658,6 @@ typedef union _hw_mipi_dsi_dbi_cfg
  * - 12 - 16bit 24bpp, option2
  */
 //@{
-
 #define BP_MIPI_DSI_DBI_CFG_OUT_DBI_CONF      (9)      //!< Bit position for MIPI_DSI_DBI_CFG_OUT_DBI_CONF.
 #define BM_MIPI_DSI_DBI_CFG_OUT_DBI_CONF      (0x00001e00)  //!< Bit mask for MIPI_DSI_DBI_CFG_OUT_DBI_CONF.
 
@@ -704,7 +671,6 @@ typedef union _hw_mipi_dsi_dbi_cfg
 //! @brief Set the OUT_DBI_CONF field to a new value.
 #define BW_MIPI_DSI_DBI_CFG_OUT_DBI_CONF(v)   (HW_MIPI_DSI_DBI_CFG_WR((HW_MIPI_DSI_DBI_CFG_RD() & ~BM_MIPI_DSI_DBI_CFG_OUT_DBI_CONF) | BF_MIPI_DSI_DBI_CFG_OUT_DBI_CONF(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -756,7 +722,6 @@ typedef union _hw_mipi_dsi_dbis_cmdsize
  * payload size minus 1 since the DCS command is in the DSI packet payload.
  */
 //@{
-
 #define BP_MIPI_DSI_DBIS_CMDSIZE_WR_CMD_SIZE      (0)      //!< Bit position for MIPI_DSI_DBIS_CMDSIZE_WR_CMD_SIZE.
 #define BM_MIPI_DSI_DBIS_CMDSIZE_WR_CMD_SIZE      (0x0000ffff)  //!< Bit mask for MIPI_DSI_DBIS_CMDSIZE_WR_CMD_SIZE.
 
@@ -770,7 +735,6 @@ typedef union _hw_mipi_dsi_dbis_cmdsize
 //! @brief Set the WR_CMD_SIZE field to a new value.
 #define BW_MIPI_DSI_DBIS_CMDSIZE_WR_CMD_SIZE(v)   (HW_MIPI_DSI_DBIS_CMDSIZE_WR((HW_MIPI_DSI_DBIS_CMDSIZE_RD() & ~BM_MIPI_DSI_DBIS_CMDSIZE_WR_CMD_SIZE) | BF_MIPI_DSI_DBIS_CMDSIZE_WR_CMD_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_DBIS_CMDSIZE, field ALLOWED_CMD_SIZE[31:16] (RW)
@@ -781,7 +745,6 @@ typedef union _hw_mipi_dsi_dbis_cmdsize
  * since the DCS command is in the DSI packet payload.
  */
 //@{
-
 #define BP_MIPI_DSI_DBIS_CMDSIZE_ALLOWED_CMD_SIZE      (16)      //!< Bit position for MIPI_DSI_DBIS_CMDSIZE_ALLOWED_CMD_SIZE.
 #define BM_MIPI_DSI_DBIS_CMDSIZE_ALLOWED_CMD_SIZE      (0xffff0000)  //!< Bit mask for MIPI_DSI_DBIS_CMDSIZE_ALLOWED_CMD_SIZE.
 
@@ -795,7 +758,6 @@ typedef union _hw_mipi_dsi_dbis_cmdsize
 //! @brief Set the ALLOWED_CMD_SIZE field to a new value.
 #define BW_MIPI_DSI_DBIS_CMDSIZE_ALLOWED_CMD_SIZE(v)   (HW_MIPI_DSI_DBIS_CMDSIZE_WR((HW_MIPI_DSI_DBIS_CMDSIZE_RD() & ~BM_MIPI_DSI_DBIS_CMDSIZE_ALLOWED_CMD_SIZE) | BF_MIPI_DSI_DBIS_CMDSIZE_ALLOWED_CMD_SIZE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -851,7 +813,6 @@ typedef union _hw_mipi_dsi_pckhdl_cfg
  * Enables EOTp transmission
  */
 //@{
-
 #define BP_MIPI_DSI_PCKHDL_CFG_EN_EOTP_TX      (0)      //!< Bit position for MIPI_DSI_PCKHDL_CFG_EN_EOTP_TX.
 #define BM_MIPI_DSI_PCKHDL_CFG_EN_EOTP_TX      (0x00000001)  //!< Bit mask for MIPI_DSI_PCKHDL_CFG_EN_EOTP_TX.
 
@@ -865,7 +826,6 @@ typedef union _hw_mipi_dsi_pckhdl_cfg
 //! @brief Set the EN_EOTP_TX field to a new value.
 #define BW_MIPI_DSI_PCKHDL_CFG_EN_EOTP_TX(v)   (HW_MIPI_DSI_PCKHDL_CFG_WR((HW_MIPI_DSI_PCKHDL_CFG_RD() & ~BM_MIPI_DSI_PCKHDL_CFG_EN_EOTP_TX) | BF_MIPI_DSI_PCKHDL_CFG_EN_EOTP_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PCKHDL_CFG, field EN_EOTN_RX[1] (RW)
@@ -873,7 +833,6 @@ typedef union _hw_mipi_dsi_pckhdl_cfg
  * Enables EOTp reception
  */
 //@{
-
 #define BP_MIPI_DSI_PCKHDL_CFG_EN_EOTN_RX      (1)      //!< Bit position for MIPI_DSI_PCKHDL_CFG_EN_EOTN_RX.
 #define BM_MIPI_DSI_PCKHDL_CFG_EN_EOTN_RX      (0x00000002)  //!< Bit mask for MIPI_DSI_PCKHDL_CFG_EN_EOTN_RX.
 
@@ -887,7 +846,6 @@ typedef union _hw_mipi_dsi_pckhdl_cfg
 //! @brief Set the EN_EOTN_RX field to a new value.
 #define BW_MIPI_DSI_PCKHDL_CFG_EN_EOTN_RX(v)   (HW_MIPI_DSI_PCKHDL_CFG_WR((HW_MIPI_DSI_PCKHDL_CFG_RD() & ~BM_MIPI_DSI_PCKHDL_CFG_EN_EOTN_RX) | BF_MIPI_DSI_PCKHDL_CFG_EN_EOTN_RX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PCKHDL_CFG, field EN_BTA[2] (RW)
@@ -895,7 +853,6 @@ typedef union _hw_mipi_dsi_pckhdl_cfg
  * Enables Bus Turn-Around request
  */
 //@{
-
 #define BP_MIPI_DSI_PCKHDL_CFG_EN_BTA      (2)      //!< Bit position for MIPI_DSI_PCKHDL_CFG_EN_BTA.
 #define BM_MIPI_DSI_PCKHDL_CFG_EN_BTA      (0x00000004)  //!< Bit mask for MIPI_DSI_PCKHDL_CFG_EN_BTA.
 
@@ -909,7 +866,6 @@ typedef union _hw_mipi_dsi_pckhdl_cfg
 //! @brief Set the EN_BTA field to a new value.
 #define BW_MIPI_DSI_PCKHDL_CFG_EN_BTA(v)   (HW_MIPI_DSI_PCKHDL_CFG_WR((HW_MIPI_DSI_PCKHDL_CFG_RD() & ~BM_MIPI_DSI_PCKHDL_CFG_EN_BTA) | BF_MIPI_DSI_PCKHDL_CFG_EN_BTA(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PCKHDL_CFG, field EN_ECC_RX[3] (RW)
@@ -917,7 +873,6 @@ typedef union _hw_mipi_dsi_pckhdl_cfg
  * Enables ECC reception, error correction and reporting
  */
 //@{
-
 #define BP_MIPI_DSI_PCKHDL_CFG_EN_ECC_RX      (3)      //!< Bit position for MIPI_DSI_PCKHDL_CFG_EN_ECC_RX.
 #define BM_MIPI_DSI_PCKHDL_CFG_EN_ECC_RX      (0x00000008)  //!< Bit mask for MIPI_DSI_PCKHDL_CFG_EN_ECC_RX.
 
@@ -931,7 +886,6 @@ typedef union _hw_mipi_dsi_pckhdl_cfg
 //! @brief Set the EN_ECC_RX field to a new value.
 #define BW_MIPI_DSI_PCKHDL_CFG_EN_ECC_RX(v)   (HW_MIPI_DSI_PCKHDL_CFG_WR((HW_MIPI_DSI_PCKHDL_CFG_RD() & ~BM_MIPI_DSI_PCKHDL_CFG_EN_ECC_RX) | BF_MIPI_DSI_PCKHDL_CFG_EN_ECC_RX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PCKHDL_CFG, field EN_CRC_RX[4] (RW)
@@ -939,7 +893,6 @@ typedef union _hw_mipi_dsi_pckhdl_cfg
  * Enables CRC reception and error reporting
  */
 //@{
-
 #define BP_MIPI_DSI_PCKHDL_CFG_EN_CRC_RX      (4)      //!< Bit position for MIPI_DSI_PCKHDL_CFG_EN_CRC_RX.
 #define BM_MIPI_DSI_PCKHDL_CFG_EN_CRC_RX      (0x00000010)  //!< Bit mask for MIPI_DSI_PCKHDL_CFG_EN_CRC_RX.
 
@@ -953,7 +906,6 @@ typedef union _hw_mipi_dsi_pckhdl_cfg
 //! @brief Set the EN_CRC_RX field to a new value.
 #define BW_MIPI_DSI_PCKHDL_CFG_EN_CRC_RX(v)   (HW_MIPI_DSI_PCKHDL_CFG_WR((HW_MIPI_DSI_PCKHDL_CFG_RD() & ~BM_MIPI_DSI_PCKHDL_CFG_EN_CRC_RX) | BF_MIPI_DSI_PCKHDL_CFG_EN_CRC_RX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PCKHDL_CFG, field GEN_VID_RX[6:5] (RW)
@@ -961,7 +913,6 @@ typedef union _hw_mipi_dsi_pckhdl_cfg
  * Generic interface read-back Virtual Channel identification
  */
 //@{
-
 #define BP_MIPI_DSI_PCKHDL_CFG_GEN_VID_RX      (5)      //!< Bit position for MIPI_DSI_PCKHDL_CFG_GEN_VID_RX.
 #define BM_MIPI_DSI_PCKHDL_CFG_GEN_VID_RX      (0x00000060)  //!< Bit mask for MIPI_DSI_PCKHDL_CFG_GEN_VID_RX.
 
@@ -975,7 +926,6 @@ typedef union _hw_mipi_dsi_pckhdl_cfg
 //! @brief Set the GEN_VID_RX field to a new value.
 #define BW_MIPI_DSI_PCKHDL_CFG_GEN_VID_RX(v)   (HW_MIPI_DSI_PCKHDL_CFG_WR((HW_MIPI_DSI_PCKHDL_CFG_RD() & ~BM_MIPI_DSI_PCKHDL_CFG_GEN_VID_RX) | BF_MIPI_DSI_PCKHDL_CFG_GEN_VID_RX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1036,7 +986,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
  * Enables DPI Video mode transmission
  */
 //@{
-
 #define BP_MIPI_DSI_VID_MODE_CFG_EN_VIDEO_MODE      (0)      //!< Bit position for MIPI_DSI_VID_MODE_CFG_EN_VIDEO_MODE.
 #define BM_MIPI_DSI_VID_MODE_CFG_EN_VIDEO_MODE      (0x00000001)  //!< Bit mask for MIPI_DSI_VID_MODE_CFG_EN_VIDEO_MODE.
 
@@ -1050,7 +999,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
 //! @brief Set the EN_VIDEO_MODE field to a new value.
 #define BW_MIPI_DSI_VID_MODE_CFG_EN_VIDEO_MODE(v)   (HW_MIPI_DSI_VID_MODE_CFG_WR((HW_MIPI_DSI_VID_MODE_CFG_RD() & ~BM_MIPI_DSI_VID_MODE_CFG_EN_VIDEO_MODE) | BF_MIPI_DSI_VID_MODE_CFG_EN_VIDEO_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VID_MODE_CFG, field VID_MODE_TYPE[2:1] (RW)
@@ -1059,7 +1007,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
  * events; 2-3: Burst with Sync pulses.
  */
 //@{
-
 #define BP_MIPI_DSI_VID_MODE_CFG_VID_MODE_TYPE      (1)      //!< Bit position for MIPI_DSI_VID_MODE_CFG_VID_MODE_TYPE.
 #define BM_MIPI_DSI_VID_MODE_CFG_VID_MODE_TYPE      (0x00000006)  //!< Bit mask for MIPI_DSI_VID_MODE_CFG_VID_MODE_TYPE.
 
@@ -1073,7 +1020,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
 //! @brief Set the VID_MODE_TYPE field to a new value.
 #define BW_MIPI_DSI_VID_MODE_CFG_VID_MODE_TYPE(v)   (HW_MIPI_DSI_VID_MODE_CFG_WR((HW_MIPI_DSI_VID_MODE_CFG_RD() & ~BM_MIPI_DSI_VID_MODE_CFG_VID_MODE_TYPE) | BF_MIPI_DSI_VID_MODE_CFG_VID_MODE_TYPE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VID_MODE_CFG, field EN_LP_VSA[3] (RW)
@@ -1081,7 +1027,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
  * Enables return to Low Power inside VSA period when timing allows
  */
 //@{
-
 #define BP_MIPI_DSI_VID_MODE_CFG_EN_LP_VSA      (3)      //!< Bit position for MIPI_DSI_VID_MODE_CFG_EN_LP_VSA.
 #define BM_MIPI_DSI_VID_MODE_CFG_EN_LP_VSA      (0x00000008)  //!< Bit mask for MIPI_DSI_VID_MODE_CFG_EN_LP_VSA.
 
@@ -1095,7 +1040,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
 //! @brief Set the EN_LP_VSA field to a new value.
 #define BW_MIPI_DSI_VID_MODE_CFG_EN_LP_VSA(v)   (HW_MIPI_DSI_VID_MODE_CFG_WR((HW_MIPI_DSI_VID_MODE_CFG_RD() & ~BM_MIPI_DSI_VID_MODE_CFG_EN_LP_VSA) | BF_MIPI_DSI_VID_MODE_CFG_EN_LP_VSA(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VID_MODE_CFG, field EN_LP_VBP[4] (RW)
@@ -1103,7 +1047,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
  * Enables return to Low Power inside VBP period when timing allows
  */
 //@{
-
 #define BP_MIPI_DSI_VID_MODE_CFG_EN_LP_VBP      (4)      //!< Bit position for MIPI_DSI_VID_MODE_CFG_EN_LP_VBP.
 #define BM_MIPI_DSI_VID_MODE_CFG_EN_LP_VBP      (0x00000010)  //!< Bit mask for MIPI_DSI_VID_MODE_CFG_EN_LP_VBP.
 
@@ -1117,7 +1060,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
 //! @brief Set the EN_LP_VBP field to a new value.
 #define BW_MIPI_DSI_VID_MODE_CFG_EN_LP_VBP(v)   (HW_MIPI_DSI_VID_MODE_CFG_WR((HW_MIPI_DSI_VID_MODE_CFG_RD() & ~BM_MIPI_DSI_VID_MODE_CFG_EN_LP_VBP) | BF_MIPI_DSI_VID_MODE_CFG_EN_LP_VBP(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VID_MODE_CFG, field EN_LP_VFP[5] (RW)
@@ -1125,7 +1067,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
  * Enables return to Low Power inside VFP period when timing allows
  */
 //@{
-
 #define BP_MIPI_DSI_VID_MODE_CFG_EN_LP_VFP      (5)      //!< Bit position for MIPI_DSI_VID_MODE_CFG_EN_LP_VFP.
 #define BM_MIPI_DSI_VID_MODE_CFG_EN_LP_VFP      (0x00000020)  //!< Bit mask for MIPI_DSI_VID_MODE_CFG_EN_LP_VFP.
 
@@ -1139,7 +1080,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
 //! @brief Set the EN_LP_VFP field to a new value.
 #define BW_MIPI_DSI_VID_MODE_CFG_EN_LP_VFP(v)   (HW_MIPI_DSI_VID_MODE_CFG_WR((HW_MIPI_DSI_VID_MODE_CFG_RD() & ~BM_MIPI_DSI_VID_MODE_CFG_EN_LP_VFP) | BF_MIPI_DSI_VID_MODE_CFG_EN_LP_VFP(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VID_MODE_CFG, field EN_LP_VACT[6] (RW)
@@ -1147,7 +1087,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
  * Enables return to Low Power inside VACT period when timing allows
  */
 //@{
-
 #define BP_MIPI_DSI_VID_MODE_CFG_EN_LP_VACT      (6)      //!< Bit position for MIPI_DSI_VID_MODE_CFG_EN_LP_VACT.
 #define BM_MIPI_DSI_VID_MODE_CFG_EN_LP_VACT      (0x00000040)  //!< Bit mask for MIPI_DSI_VID_MODE_CFG_EN_LP_VACT.
 
@@ -1161,7 +1100,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
 //! @brief Set the EN_LP_VACT field to a new value.
 #define BW_MIPI_DSI_VID_MODE_CFG_EN_LP_VACT(v)   (HW_MIPI_DSI_VID_MODE_CFG_WR((HW_MIPI_DSI_VID_MODE_CFG_RD() & ~BM_MIPI_DSI_VID_MODE_CFG_EN_LP_VACT) | BF_MIPI_DSI_VID_MODE_CFG_EN_LP_VACT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VID_MODE_CFG, field EN_LP_HBP[7] (RW)
@@ -1169,7 +1107,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
  * Enables return to Low Power inside HBP period when timing allows
  */
 //@{
-
 #define BP_MIPI_DSI_VID_MODE_CFG_EN_LP_HBP      (7)      //!< Bit position for MIPI_DSI_VID_MODE_CFG_EN_LP_HBP.
 #define BM_MIPI_DSI_VID_MODE_CFG_EN_LP_HBP      (0x00000080)  //!< Bit mask for MIPI_DSI_VID_MODE_CFG_EN_LP_HBP.
 
@@ -1183,7 +1120,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
 //! @brief Set the EN_LP_HBP field to a new value.
 #define BW_MIPI_DSI_VID_MODE_CFG_EN_LP_HBP(v)   (HW_MIPI_DSI_VID_MODE_CFG_WR((HW_MIPI_DSI_VID_MODE_CFG_RD() & ~BM_MIPI_DSI_VID_MODE_CFG_EN_LP_HBP) | BF_MIPI_DSI_VID_MODE_CFG_EN_LP_HBP(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VID_MODE_CFG, field EN_LP_HFP[8] (RW)
@@ -1191,7 +1127,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
  * Enables return to Low Power inside HFP period when timing allows
  */
 //@{
-
 #define BP_MIPI_DSI_VID_MODE_CFG_EN_LP_HFP      (8)      //!< Bit position for MIPI_DSI_VID_MODE_CFG_EN_LP_HFP.
 #define BM_MIPI_DSI_VID_MODE_CFG_EN_LP_HFP      (0x00000100)  //!< Bit mask for MIPI_DSI_VID_MODE_CFG_EN_LP_HFP.
 
@@ -1205,7 +1140,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
 //! @brief Set the EN_LP_HFP field to a new value.
 #define BW_MIPI_DSI_VID_MODE_CFG_EN_LP_HFP(v)   (HW_MIPI_DSI_VID_MODE_CFG_WR((HW_MIPI_DSI_VID_MODE_CFG_RD() & ~BM_MIPI_DSI_VID_MODE_CFG_EN_LP_HFP) | BF_MIPI_DSI_VID_MODE_CFG_EN_LP_HFP(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VID_MODE_CFG, field EN_MULTI_PKT[9] (RW)
@@ -1213,7 +1147,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
  * Enables the tranmission of multi video packets in the HACT period
  */
 //@{
-
 #define BP_MIPI_DSI_VID_MODE_CFG_EN_MULTI_PKT      (9)      //!< Bit position for MIPI_DSI_VID_MODE_CFG_EN_MULTI_PKT.
 #define BM_MIPI_DSI_VID_MODE_CFG_EN_MULTI_PKT      (0x00000200)  //!< Bit mask for MIPI_DSI_VID_MODE_CFG_EN_MULTI_PKT.
 
@@ -1227,7 +1160,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
 //! @brief Set the EN_MULTI_PKT field to a new value.
 #define BW_MIPI_DSI_VID_MODE_CFG_EN_MULTI_PKT(v)   (HW_MIPI_DSI_VID_MODE_CFG_WR((HW_MIPI_DSI_VID_MODE_CFG_RD() & ~BM_MIPI_DSI_VID_MODE_CFG_EN_MULTI_PKT) | BF_MIPI_DSI_VID_MODE_CFG_EN_MULTI_PKT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VID_MODE_CFG, field EN_NULL_PKT[10] (RW)
@@ -1235,7 +1167,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
  * Enables the tranmission of null packets in the HACT period
  */
 //@{
-
 #define BP_MIPI_DSI_VID_MODE_CFG_EN_NULL_PKT      (10)      //!< Bit position for MIPI_DSI_VID_MODE_CFG_EN_NULL_PKT.
 #define BM_MIPI_DSI_VID_MODE_CFG_EN_NULL_PKT      (0x00000400)  //!< Bit mask for MIPI_DSI_VID_MODE_CFG_EN_NULL_PKT.
 
@@ -1249,7 +1180,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
 //! @brief Set the EN_NULL_PKT field to a new value.
 #define BW_MIPI_DSI_VID_MODE_CFG_EN_NULL_PKT(v)   (HW_MIPI_DSI_VID_MODE_CFG_WR((HW_MIPI_DSI_VID_MODE_CFG_RD() & ~BM_MIPI_DSI_VID_MODE_CFG_EN_NULL_PKT) | BF_MIPI_DSI_VID_MODE_CFG_EN_NULL_PKT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VID_MODE_CFG, field FRAME_BTA_ACK[11] (RW)
@@ -1257,7 +1187,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
  * Enables the request for an acknowledge response at the end of a frame
  */
 //@{
-
 #define BP_MIPI_DSI_VID_MODE_CFG_FRAME_BTA_ACK      (11)      //!< Bit position for MIPI_DSI_VID_MODE_CFG_FRAME_BTA_ACK.
 #define BM_MIPI_DSI_VID_MODE_CFG_FRAME_BTA_ACK      (0x00000800)  //!< Bit mask for MIPI_DSI_VID_MODE_CFG_FRAME_BTA_ACK.
 
@@ -1271,7 +1200,6 @@ typedef union _hw_mipi_dsi_vid_mode_cfg
 //! @brief Set the FRAME_BTA_ACK field to a new value.
 #define BW_MIPI_DSI_VID_MODE_CFG_FRAME_BTA_ACK(v)   (HW_MIPI_DSI_VID_MODE_CFG_WR((HW_MIPI_DSI_VID_MODE_CFG_RD() & ~BM_MIPI_DSI_VID_MODE_CFG_FRAME_BTA_ACK) | BF_MIPI_DSI_VID_MODE_CFG_FRAME_BTA_ACK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1325,7 +1253,6 @@ typedef union _hw_mipi_dsi_vid_pkt_cfg
  * loosely packet stream this value must be a multiple of 4)
  */
 //@{
-
 #define BP_MIPI_DSI_VID_PKT_CFG_VID_PKT_SIZE      (0)      //!< Bit position for MIPI_DSI_VID_PKT_CFG_VID_PKT_SIZE.
 #define BM_MIPI_DSI_VID_PKT_CFG_VID_PKT_SIZE      (0x000007ff)  //!< Bit mask for MIPI_DSI_VID_PKT_CFG_VID_PKT_SIZE.
 
@@ -1339,7 +1266,6 @@ typedef union _hw_mipi_dsi_vid_pkt_cfg
 //! @brief Set the VID_PKT_SIZE field to a new value.
 #define BW_MIPI_DSI_VID_PKT_CFG_VID_PKT_SIZE(v)   (HW_MIPI_DSI_VID_PKT_CFG_WR((HW_MIPI_DSI_VID_PKT_CFG_RD() & ~BM_MIPI_DSI_VID_PKT_CFG_VID_PKT_SIZE) | BF_MIPI_DSI_VID_PKT_CFG_VID_PKT_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VID_PKT_CFG, field NUM_CHUNKS[20:11] (RW)
@@ -1348,7 +1274,6 @@ typedef union _hw_mipi_dsi_vid_pkt_cfg
  * packet or a null packet)
  */
 //@{
-
 #define BP_MIPI_DSI_VID_PKT_CFG_NUM_CHUNKS      (11)      //!< Bit position for MIPI_DSI_VID_PKT_CFG_NUM_CHUNKS.
 #define BM_MIPI_DSI_VID_PKT_CFG_NUM_CHUNKS      (0x001ff800)  //!< Bit mask for MIPI_DSI_VID_PKT_CFG_NUM_CHUNKS.
 
@@ -1362,7 +1287,6 @@ typedef union _hw_mipi_dsi_vid_pkt_cfg
 //! @brief Set the NUM_CHUNKS field to a new value.
 #define BW_MIPI_DSI_VID_PKT_CFG_NUM_CHUNKS(v)   (HW_MIPI_DSI_VID_PKT_CFG_WR((HW_MIPI_DSI_VID_PKT_CFG_RD() & ~BM_MIPI_DSI_VID_PKT_CFG_NUM_CHUNKS) | BF_MIPI_DSI_VID_PKT_CFG_NUM_CHUNKS(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VID_PKT_CFG, field NULL_PKT_SIZE[30:21] (RW)
@@ -1370,7 +1294,6 @@ typedef union _hw_mipi_dsi_vid_pkt_cfg
  * Configures the number of bytes in a null packet
  */
 //@{
-
 #define BP_MIPI_DSI_VID_PKT_CFG_NULL_PKT_SIZE      (21)      //!< Bit position for MIPI_DSI_VID_PKT_CFG_NULL_PKT_SIZE.
 #define BM_MIPI_DSI_VID_PKT_CFG_NULL_PKT_SIZE      (0x7fe00000)  //!< Bit mask for MIPI_DSI_VID_PKT_CFG_NULL_PKT_SIZE.
 
@@ -1384,7 +1307,6 @@ typedef union _hw_mipi_dsi_vid_pkt_cfg
 //! @brief Set the NULL_PKT_SIZE field to a new value.
 #define BW_MIPI_DSI_VID_PKT_CFG_NULL_PKT_SIZE(v)   (HW_MIPI_DSI_VID_PKT_CFG_WR((HW_MIPI_DSI_VID_PKT_CFG_RD() & ~BM_MIPI_DSI_VID_PKT_CFG_NULL_PKT_SIZE) | BF_MIPI_DSI_VID_PKT_CFG_NULL_PKT_SIZE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1449,7 +1371,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * Enables the Command Mode Protocol for transmissions.
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_EN_CMD_MODE      (0)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_EN_CMD_MODE.
 #define BM_MIPI_DSI_CMD_MODE_CFG_EN_CMD_MODE      (0x00000001)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_EN_CMD_MODE.
 
@@ -1463,7 +1384,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the EN_CMD_MODE field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_EN_CMD_MODE(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_EN_CMD_MODE) | BF_MIPI_DSI_CMD_MODE_CFG_EN_CMD_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field GEN_SW_0P_TX[1] (RW)
@@ -1475,7 +1395,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * - 1 - Low Power
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_GEN_SW_0P_TX      (1)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_GEN_SW_0P_TX.
 #define BM_MIPI_DSI_CMD_MODE_CFG_GEN_SW_0P_TX      (0x00000002)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_GEN_SW_0P_TX.
 
@@ -1489,7 +1408,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the GEN_SW_0P_TX field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_GEN_SW_0P_TX(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_GEN_SW_0P_TX) | BF_MIPI_DSI_CMD_MODE_CFG_GEN_SW_0P_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field GEN_SW_1P_TX[2] (RW)
@@ -1501,7 +1419,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * - 1 - Low Power
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_GEN_SW_1P_TX      (2)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_GEN_SW_1P_TX.
 #define BM_MIPI_DSI_CMD_MODE_CFG_GEN_SW_1P_TX      (0x00000004)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_GEN_SW_1P_TX.
 
@@ -1515,7 +1432,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the GEN_SW_1P_TX field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_GEN_SW_1P_TX(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_GEN_SW_1P_TX) | BF_MIPI_DSI_CMD_MODE_CFG_GEN_SW_1P_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field GEN_SW_2P_TX[3] (RW)
@@ -1527,7 +1443,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * - 1 - Low Power
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_GEN_SW_2P_TX      (3)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_GEN_SW_2P_TX.
 #define BM_MIPI_DSI_CMD_MODE_CFG_GEN_SW_2P_TX      (0x00000008)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_GEN_SW_2P_TX.
 
@@ -1541,7 +1456,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the GEN_SW_2P_TX field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_GEN_SW_2P_TX(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_GEN_SW_2P_TX) | BF_MIPI_DSI_CMD_MODE_CFG_GEN_SW_2P_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field GEN_SR_0P_TX[4] (RW)
@@ -1553,7 +1467,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * - 1 - Low Power
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_GEN_SR_0P_TX      (4)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_GEN_SR_0P_TX.
 #define BM_MIPI_DSI_CMD_MODE_CFG_GEN_SR_0P_TX      (0x00000010)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_GEN_SR_0P_TX.
 
@@ -1567,7 +1480,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the GEN_SR_0P_TX field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_GEN_SR_0P_TX(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_GEN_SR_0P_TX) | BF_MIPI_DSI_CMD_MODE_CFG_GEN_SR_0P_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field GEN_SR_1P_TX[5] (RW)
@@ -1579,7 +1491,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * - 1 - Low Power
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_GEN_SR_1P_TX      (5)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_GEN_SR_1P_TX.
 #define BM_MIPI_DSI_CMD_MODE_CFG_GEN_SR_1P_TX      (0x00000020)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_GEN_SR_1P_TX.
 
@@ -1593,7 +1504,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the GEN_SR_1P_TX field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_GEN_SR_1P_TX(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_GEN_SR_1P_TX) | BF_MIPI_DSI_CMD_MODE_CFG_GEN_SR_1P_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field GEN_SR_2P_TX[6] (RW)
@@ -1605,7 +1515,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * - 1 - Low Power
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_GEN_SR_2P_TX      (6)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_GEN_SR_2P_TX.
 #define BM_MIPI_DSI_CMD_MODE_CFG_GEN_SR_2P_TX      (0x00000040)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_GEN_SR_2P_TX.
 
@@ -1619,7 +1528,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the GEN_SR_2P_TX field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_GEN_SR_2P_TX(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_GEN_SR_2P_TX) | BF_MIPI_DSI_CMD_MODE_CFG_GEN_SR_2P_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field DCS_SW_0P_TX[7] (RW)
@@ -1631,7 +1539,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * - 1 - Low Power
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_DCS_SW_0P_TX      (7)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_DCS_SW_0P_TX.
 #define BM_MIPI_DSI_CMD_MODE_CFG_DCS_SW_0P_TX      (0x00000080)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_DCS_SW_0P_TX.
 
@@ -1645,7 +1552,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the DCS_SW_0P_TX field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_DCS_SW_0P_TX(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_DCS_SW_0P_TX) | BF_MIPI_DSI_CMD_MODE_CFG_DCS_SW_0P_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field DCS_SW_1P_TX[8] (RW)
@@ -1657,7 +1563,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * - 1 - Low Power
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_DCS_SW_1P_TX      (8)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_DCS_SW_1P_TX.
 #define BM_MIPI_DSI_CMD_MODE_CFG_DCS_SW_1P_TX      (0x00000100)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_DCS_SW_1P_TX.
 
@@ -1671,7 +1576,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the DCS_SW_1P_TX field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_DCS_SW_1P_TX(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_DCS_SW_1P_TX) | BF_MIPI_DSI_CMD_MODE_CFG_DCS_SW_1P_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field DCS_SW_2P_TX[9] (RW)
@@ -1683,7 +1587,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * - 1 - Low Power
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_DCS_SW_2P_TX      (9)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_DCS_SW_2P_TX.
 #define BM_MIPI_DSI_CMD_MODE_CFG_DCS_SW_2P_TX      (0x00000200)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_DCS_SW_2P_TX.
 
@@ -1697,7 +1600,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the DCS_SW_2P_TX field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_DCS_SW_2P_TX(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_DCS_SW_2P_TX) | BF_MIPI_DSI_CMD_MODE_CFG_DCS_SW_2P_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field MAX_RD_PKT_SIZE[10] (RW)
@@ -1709,7 +1611,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * - 1 - Low Power
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_MAX_RD_PKT_SIZE      (10)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_MAX_RD_PKT_SIZE.
 #define BM_MIPI_DSI_CMD_MODE_CFG_MAX_RD_PKT_SIZE      (0x00000400)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_MAX_RD_PKT_SIZE.
 
@@ -1723,7 +1624,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the MAX_RD_PKT_SIZE field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_MAX_RD_PKT_SIZE(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_MAX_RD_PKT_SIZE) | BF_MIPI_DSI_CMD_MODE_CFG_MAX_RD_PKT_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field GEN_LW_TX[11] (RW)
@@ -1735,7 +1635,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * - 1 - Low Power
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_GEN_LW_TX      (11)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_GEN_LW_TX.
 #define BM_MIPI_DSI_CMD_MODE_CFG_GEN_LW_TX      (0x00000800)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_GEN_LW_TX.
 
@@ -1749,7 +1648,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the GEN_LW_TX field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_GEN_LW_TX(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_GEN_LW_TX) | BF_MIPI_DSI_CMD_MODE_CFG_GEN_LW_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field DCS_LW_TX[12] (RW)
@@ -1761,7 +1659,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * - 1 - Low Power
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_DCS_LW_TX      (12)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_DCS_LW_TX.
 #define BM_MIPI_DSI_CMD_MODE_CFG_DCS_LW_TX      (0x00001000)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_DCS_LW_TX.
 
@@ -1775,7 +1672,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the DCS_LW_TX field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_DCS_LW_TX(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_DCS_LW_TX) | BF_MIPI_DSI_CMD_MODE_CFG_DCS_LW_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field EN_ACK_RQST[13] (RW)
@@ -1783,7 +1679,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * Enables the acknowledge request after each packet transmission
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_EN_ACK_RQST      (13)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_EN_ACK_RQST.
 #define BM_MIPI_DSI_CMD_MODE_CFG_EN_ACK_RQST      (0x00002000)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_EN_ACK_RQST.
 
@@ -1797,7 +1692,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the EN_ACK_RQST field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_EN_ACK_RQST(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_EN_ACK_RQST) | BF_MIPI_DSI_CMD_MODE_CFG_EN_ACK_RQST(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_MODE_CFG, field EN_TEAR_FX[14] (RW)
@@ -1805,7 +1699,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
  * Enables the tearing effect acknowledge request
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_MODE_CFG_EN_TEAR_FX      (14)      //!< Bit position for MIPI_DSI_CMD_MODE_CFG_EN_TEAR_FX.
 #define BM_MIPI_DSI_CMD_MODE_CFG_EN_TEAR_FX      (0x00004000)  //!< Bit mask for MIPI_DSI_CMD_MODE_CFG_EN_TEAR_FX.
 
@@ -1819,7 +1712,6 @@ typedef union _hw_mipi_dsi_cmd_mode_cfg
 //! @brief Set the EN_TEAR_FX field to a new value.
 #define BW_MIPI_DSI_CMD_MODE_CFG_EN_TEAR_FX(v)   (HW_MIPI_DSI_CMD_MODE_CFG_WR((HW_MIPI_DSI_CMD_MODE_CFG_RD() & ~BM_MIPI_DSI_CMD_MODE_CFG_EN_TEAR_FX) | BF_MIPI_DSI_CMD_MODE_CFG_EN_TEAR_FX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1871,7 +1763,6 @@ typedef union _hw_mipi_dsi_tmr_line_cfg
  * Configures the Horizontal Synchronism Active period in lane byte clock cycles
  */
 //@{
-
 #define BP_MIPI_DSI_TMR_LINE_CFG_HSA_TIME      (0)      //!< Bit position for MIPI_DSI_TMR_LINE_CFG_HSA_TIME.
 #define BM_MIPI_DSI_TMR_LINE_CFG_HSA_TIME      (0x000001ff)  //!< Bit mask for MIPI_DSI_TMR_LINE_CFG_HSA_TIME.
 
@@ -1885,7 +1776,6 @@ typedef union _hw_mipi_dsi_tmr_line_cfg
 //! @brief Set the HSA_TIME field to a new value.
 #define BW_MIPI_DSI_TMR_LINE_CFG_HSA_TIME(v)   (HW_MIPI_DSI_TMR_LINE_CFG_WR((HW_MIPI_DSI_TMR_LINE_CFG_RD() & ~BM_MIPI_DSI_TMR_LINE_CFG_HSA_TIME) | BF_MIPI_DSI_TMR_LINE_CFG_HSA_TIME(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_TMR_LINE_CFG, field HBP_TIME[17:9] (RW)
@@ -1893,7 +1783,6 @@ typedef union _hw_mipi_dsi_tmr_line_cfg
  * Configures the Horizontal Back Porch period in lane byte clock cycles
  */
 //@{
-
 #define BP_MIPI_DSI_TMR_LINE_CFG_HBP_TIME      (9)      //!< Bit position for MIPI_DSI_TMR_LINE_CFG_HBP_TIME.
 #define BM_MIPI_DSI_TMR_LINE_CFG_HBP_TIME      (0x0003fe00)  //!< Bit mask for MIPI_DSI_TMR_LINE_CFG_HBP_TIME.
 
@@ -1907,7 +1796,6 @@ typedef union _hw_mipi_dsi_tmr_line_cfg
 //! @brief Set the HBP_TIME field to a new value.
 #define BW_MIPI_DSI_TMR_LINE_CFG_HBP_TIME(v)   (HW_MIPI_DSI_TMR_LINE_CFG_WR((HW_MIPI_DSI_TMR_LINE_CFG_RD() & ~BM_MIPI_DSI_TMR_LINE_CFG_HBP_TIME) | BF_MIPI_DSI_TMR_LINE_CFG_HBP_TIME(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_TMR_LINE_CFG, field HLINE_TIME[31:18] (RW)
@@ -1915,7 +1803,6 @@ typedef union _hw_mipi_dsi_tmr_line_cfg
  * Configures the size of the total line counted in lane byte cycles
  */
 //@{
-
 #define BP_MIPI_DSI_TMR_LINE_CFG_HLINE_TIME      (18)      //!< Bit position for MIPI_DSI_TMR_LINE_CFG_HLINE_TIME.
 #define BM_MIPI_DSI_TMR_LINE_CFG_HLINE_TIME      (0xfffc0000)  //!< Bit mask for MIPI_DSI_TMR_LINE_CFG_HLINE_TIME.
 
@@ -1929,7 +1816,6 @@ typedef union _hw_mipi_dsi_tmr_line_cfg
 //! @brief Set the HLINE_TIME field to a new value.
 #define BW_MIPI_DSI_TMR_LINE_CFG_HLINE_TIME(v)   (HW_MIPI_DSI_TMR_LINE_CFG_WR((HW_MIPI_DSI_TMR_LINE_CFG_RD() & ~BM_MIPI_DSI_TMR_LINE_CFG_HLINE_TIME) | BF_MIPI_DSI_TMR_LINE_CFG_HLINE_TIME(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1983,7 +1869,6 @@ typedef union _hw_mipi_dsi_vtiming_cfg
  * Configures the Vertical Synchronism Active period measured in horizontal lines
  */
 //@{
-
 #define BP_MIPI_DSI_VTIMING_CFG_VSA_LINES      (0)      //!< Bit position for MIPI_DSI_VTIMING_CFG_VSA_LINES.
 #define BM_MIPI_DSI_VTIMING_CFG_VSA_LINES      (0x0000000f)  //!< Bit mask for MIPI_DSI_VTIMING_CFG_VSA_LINES.
 
@@ -1997,7 +1882,6 @@ typedef union _hw_mipi_dsi_vtiming_cfg
 //! @brief Set the VSA_LINES field to a new value.
 #define BW_MIPI_DSI_VTIMING_CFG_VSA_LINES(v)   (HW_MIPI_DSI_VTIMING_CFG_WR((HW_MIPI_DSI_VTIMING_CFG_RD() & ~BM_MIPI_DSI_VTIMING_CFG_VSA_LINES) | BF_MIPI_DSI_VTIMING_CFG_VSA_LINES(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VTIMING_CFG, field VBP_LINES[9:4] (RW)
@@ -2005,7 +1889,6 @@ typedef union _hw_mipi_dsi_vtiming_cfg
  * Configures the Vertical Back Porch period measured in horizontal lines
  */
 //@{
-
 #define BP_MIPI_DSI_VTIMING_CFG_VBP_LINES      (4)      //!< Bit position for MIPI_DSI_VTIMING_CFG_VBP_LINES.
 #define BM_MIPI_DSI_VTIMING_CFG_VBP_LINES      (0x000003f0)  //!< Bit mask for MIPI_DSI_VTIMING_CFG_VBP_LINES.
 
@@ -2019,7 +1902,6 @@ typedef union _hw_mipi_dsi_vtiming_cfg
 //! @brief Set the VBP_LINES field to a new value.
 #define BW_MIPI_DSI_VTIMING_CFG_VBP_LINES(v)   (HW_MIPI_DSI_VTIMING_CFG_WR((HW_MIPI_DSI_VTIMING_CFG_RD() & ~BM_MIPI_DSI_VTIMING_CFG_VBP_LINES) | BF_MIPI_DSI_VTIMING_CFG_VBP_LINES(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VTIMING_CFG, field VFP_LINES[15:10] (RW)
@@ -2027,7 +1909,6 @@ typedef union _hw_mipi_dsi_vtiming_cfg
  * Configures the Vertical Front Porch period measured in horizontal lines
  */
 //@{
-
 #define BP_MIPI_DSI_VTIMING_CFG_VFP_LINES      (10)      //!< Bit position for MIPI_DSI_VTIMING_CFG_VFP_LINES.
 #define BM_MIPI_DSI_VTIMING_CFG_VFP_LINES      (0x0000fc00)  //!< Bit mask for MIPI_DSI_VTIMING_CFG_VFP_LINES.
 
@@ -2041,7 +1922,6 @@ typedef union _hw_mipi_dsi_vtiming_cfg
 //! @brief Set the VFP_LINES field to a new value.
 #define BW_MIPI_DSI_VTIMING_CFG_VFP_LINES(v)   (HW_MIPI_DSI_VTIMING_CFG_WR((HW_MIPI_DSI_VTIMING_CFG_RD() & ~BM_MIPI_DSI_VTIMING_CFG_VFP_LINES) | BF_MIPI_DSI_VTIMING_CFG_VFP_LINES(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_VTIMING_CFG, field V_ACTIVE_LINES[26:16] (RW)
@@ -2049,7 +1929,6 @@ typedef union _hw_mipi_dsi_vtiming_cfg
  * Configures the Vertical Active period measured in horizontal lines
  */
 //@{
-
 #define BP_MIPI_DSI_VTIMING_CFG_V_ACTIVE_LINES      (16)      //!< Bit position for MIPI_DSI_VTIMING_CFG_V_ACTIVE_LINES.
 #define BM_MIPI_DSI_VTIMING_CFG_V_ACTIVE_LINES      (0x07ff0000)  //!< Bit mask for MIPI_DSI_VTIMING_CFG_V_ACTIVE_LINES.
 
@@ -2063,7 +1942,6 @@ typedef union _hw_mipi_dsi_vtiming_cfg
 //! @brief Set the V_ACTIVE_LINES field to a new value.
 #define BW_MIPI_DSI_VTIMING_CFG_V_ACTIVE_LINES(v)   (HW_MIPI_DSI_VTIMING_CFG_WR((HW_MIPI_DSI_VTIMING_CFG_RD() & ~BM_MIPI_DSI_VTIMING_CFG_V_ACTIVE_LINES) | BF_MIPI_DSI_VTIMING_CFG_V_ACTIVE_LINES(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2117,7 +1995,6 @@ typedef union _hw_mipi_dsi_phy_tmr_cfg
  * byte clock cycles
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_TMR_CFG_BTA_TIME      (0)      //!< Bit position for MIPI_DSI_PHY_TMR_CFG_BTA_TIME.
 #define BM_MIPI_DSI_PHY_TMR_CFG_BTA_TIME      (0x00000fff)  //!< Bit mask for MIPI_DSI_PHY_TMR_CFG_BTA_TIME.
 
@@ -2131,7 +2008,6 @@ typedef union _hw_mipi_dsi_phy_tmr_cfg
 //! @brief Set the BTA_TIME field to a new value.
 #define BW_MIPI_DSI_PHY_TMR_CFG_BTA_TIME(v)   (HW_MIPI_DSI_PHY_TMR_CFG_WR((HW_MIPI_DSI_PHY_TMR_CFG_RD() & ~BM_MIPI_DSI_PHY_TMR_CFG_BTA_TIME) | BF_MIPI_DSI_PHY_TMR_CFG_BTA_TIME(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_TMR_CFG, field PHY_LP2HS_TIME[19:12] (RW)
@@ -2140,7 +2016,6 @@ typedef union _hw_mipi_dsi_phy_tmr_cfg
  * measured in lane byte clock cycles
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_TMR_CFG_PHY_LP2HS_TIME      (12)      //!< Bit position for MIPI_DSI_PHY_TMR_CFG_PHY_LP2HS_TIME.
 #define BM_MIPI_DSI_PHY_TMR_CFG_PHY_LP2HS_TIME      (0x000ff000)  //!< Bit mask for MIPI_DSI_PHY_TMR_CFG_PHY_LP2HS_TIME.
 
@@ -2154,7 +2029,6 @@ typedef union _hw_mipi_dsi_phy_tmr_cfg
 //! @brief Set the PHY_LP2HS_TIME field to a new value.
 #define BW_MIPI_DSI_PHY_TMR_CFG_PHY_LP2HS_TIME(v)   (HW_MIPI_DSI_PHY_TMR_CFG_WR((HW_MIPI_DSI_PHY_TMR_CFG_RD() & ~BM_MIPI_DSI_PHY_TMR_CFG_PHY_LP2HS_TIME) | BF_MIPI_DSI_PHY_TMR_CFG_PHY_LP2HS_TIME(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_TMR_CFG, field PHY_HS2LP_TIME[27:20] (RW)
@@ -2163,7 +2037,6 @@ typedef union _hw_mipi_dsi_phy_tmr_cfg
  * measured in lane byte clock cycles
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_TMR_CFG_PHY_HS2LP_TIME      (20)      //!< Bit position for MIPI_DSI_PHY_TMR_CFG_PHY_HS2LP_TIME.
 #define BM_MIPI_DSI_PHY_TMR_CFG_PHY_HS2LP_TIME      (0x0ff00000)  //!< Bit mask for MIPI_DSI_PHY_TMR_CFG_PHY_HS2LP_TIME.
 
@@ -2177,7 +2050,6 @@ typedef union _hw_mipi_dsi_phy_tmr_cfg
 //! @brief Set the PHY_HS2LP_TIME field to a new value.
 #define BW_MIPI_DSI_PHY_TMR_CFG_PHY_HS2LP_TIME(v)   (HW_MIPI_DSI_PHY_TMR_CFG_WR((HW_MIPI_DSI_PHY_TMR_CFG_RD() & ~BM_MIPI_DSI_PHY_TMR_CFG_PHY_HS2LP_TIME) | BF_MIPI_DSI_PHY_TMR_CFG_PHY_HS2LP_TIME(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2230,7 +2102,6 @@ typedef union _hw_mipi_dsi_gen_hdr
  * register triggers packet transmission (Payload must be written in advance)
  */
 //@{
-
 #define BP_MIPI_DSI_GEN_HDR_GEN_HTYPE      (0)      //!< Bit position for MIPI_DSI_GEN_HDR_GEN_HTYPE.
 #define BM_MIPI_DSI_GEN_HDR_GEN_HTYPE      (0x000000ff)  //!< Bit mask for MIPI_DSI_GEN_HDR_GEN_HTYPE.
 
@@ -2244,7 +2115,6 @@ typedef union _hw_mipi_dsi_gen_hdr
 //! @brief Set the GEN_HTYPE field to a new value.
 #define BW_MIPI_DSI_GEN_HDR_GEN_HTYPE(v)   (HW_MIPI_DSI_GEN_HDR_WR((HW_MIPI_DSI_GEN_HDR_RD() & ~BM_MIPI_DSI_GEN_HDR_GEN_HTYPE) | BF_MIPI_DSI_GEN_HDR_GEN_HTYPE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_GEN_HDR, field GEN_HDATA[23:8] (RW)
@@ -2252,7 +2122,6 @@ typedef union _hw_mipi_dsi_gen_hdr
  * Configures the packet data to be transmitted through the generic interface
  */
 //@{
-
 #define BP_MIPI_DSI_GEN_HDR_GEN_HDATA      (8)      //!< Bit position for MIPI_DSI_GEN_HDR_GEN_HDATA.
 #define BM_MIPI_DSI_GEN_HDR_GEN_HDATA      (0x00ffff00)  //!< Bit mask for MIPI_DSI_GEN_HDR_GEN_HDATA.
 
@@ -2266,7 +2135,6 @@ typedef union _hw_mipi_dsi_gen_hdr
 //! @brief Set the GEN_HDATA field to a new value.
 #define BW_MIPI_DSI_GEN_HDR_GEN_HDATA(v)   (HW_MIPI_DSI_GEN_HDR_WR((HW_MIPI_DSI_GEN_HDR_RD() & ~BM_MIPI_DSI_GEN_HDR_GEN_HDATA) | BF_MIPI_DSI_GEN_HDR_GEN_HDATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2317,7 +2185,6 @@ typedef union _hw_mipi_dsi_gen_pld_data
  * content of the packet payload. Read access reads the incoming generic read data
  */
 //@{
-
 #define BP_MIPI_DSI_GEN_PLD_DATA_GEN_PLD_DATA      (0)      //!< Bit position for MIPI_DSI_GEN_PLD_DATA_GEN_PLD_DATA.
 #define BM_MIPI_DSI_GEN_PLD_DATA_GEN_PLD_DATA      (0xffffffff)  //!< Bit mask for MIPI_DSI_GEN_PLD_DATA_GEN_PLD_DATA.
 
@@ -2331,7 +2198,6 @@ typedef union _hw_mipi_dsi_gen_pld_data
 //! @brief Set the GEN_PLD_DATA field to a new value.
 #define BW_MIPI_DSI_GEN_PLD_DATA_GEN_PLD_DATA(v)   (HW_MIPI_DSI_GEN_PLD_DATA_WR((HW_MIPI_DSI_GEN_PLD_DATA_RD() & ~BM_MIPI_DSI_GEN_PLD_DATA_GEN_PLD_DATA) | BF_MIPI_DSI_GEN_PLD_DATA_GEN_PLD_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2396,7 +2262,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Reports the empty status of the generic command FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_EMPTY      (0)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_EMPTY.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_EMPTY      (0x00000001)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_EMPTY.
 
@@ -2410,7 +2275,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the GEN_CMD_EMPTY field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_EMPTY(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_EMPTY) | BF_MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_EMPTY(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_PKT_STATUS, field GEN_CMD_FULL[1] (RW)
@@ -2418,7 +2282,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Reports the full status of the generic command FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_FULL      (1)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_FULL.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_FULL      (0x00000002)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_FULL.
 
@@ -2432,7 +2295,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the GEN_CMD_FULL field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_FULL(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_FULL) | BF_MIPI_DSI_CMD_PKT_STATUS_GEN_CMD_FULL(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_PKT_STATUS, field GEN_PLD_W_EMPTY[2] (RW)
@@ -2440,7 +2302,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Reports the empty status of the generic write payload FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_EMPTY      (2)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_EMPTY.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_EMPTY      (0x00000004)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_EMPTY.
 
@@ -2454,7 +2315,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the GEN_PLD_W_EMPTY field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_EMPTY(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_EMPTY) | BF_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_EMPTY(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_PKT_STATUS, field GEN_PLD_W_FULL[3] (RW)
@@ -2462,7 +2322,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Reports the full status of the generic write payload FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_FULL      (3)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_FULL.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_FULL      (0x00000008)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_FULL.
 
@@ -2476,7 +2335,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the GEN_PLD_W_FULL field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_FULL(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_FULL) | BF_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_W_FULL(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_PKT_STATUS, field GEN_PLD_R_EMPTY[4] (RW)
@@ -2484,7 +2342,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Reports the empty status of the generic read payload FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_EMPTY      (4)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_EMPTY.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_EMPTY      (0x00000010)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_EMPTY.
 
@@ -2498,7 +2355,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the GEN_PLD_R_EMPTY field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_EMPTY(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_EMPTY) | BF_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_EMPTY(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_PKT_STATUS, field GEN_PLD_R_FULL[5] (RW)
@@ -2506,7 +2362,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Reports the full status of the generic read payload FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_FULL      (5)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_FULL.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_FULL      (0x00000020)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_FULL.
 
@@ -2520,7 +2375,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the GEN_PLD_R_FULL field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_FULL(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_FULL) | BF_MIPI_DSI_CMD_PKT_STATUS_GEN_PLD_R_FULL(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_PKT_STATUS, field GEN_RD_CMD_BUSY[6] (RW)
@@ -2528,7 +2382,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Set when a read command is issued and cleared once the entire response is stored in the FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_GEN_RD_CMD_BUSY      (6)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_GEN_RD_CMD_BUSY.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_GEN_RD_CMD_BUSY      (0x00000040)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_GEN_RD_CMD_BUSY.
 
@@ -2542,7 +2395,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the GEN_RD_CMD_BUSY field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_GEN_RD_CMD_BUSY(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_GEN_RD_CMD_BUSY) | BF_MIPI_DSI_CMD_PKT_STATUS_GEN_RD_CMD_BUSY(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_PKT_STATUS, field DBI_CMD_EMPTY[8] (RW)
@@ -2550,7 +2402,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Reports the empty status of the DBI command FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_EMPTY      (8)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_EMPTY.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_EMPTY      (0x00000100)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_EMPTY.
 
@@ -2564,7 +2415,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the DBI_CMD_EMPTY field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_EMPTY(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_EMPTY) | BF_MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_EMPTY(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_PKT_STATUS, field DBI_CMD_FULL[9] (RW)
@@ -2572,7 +2422,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Reports the full status of the DBI command FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_FULL      (9)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_FULL.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_FULL      (0x00000200)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_FULL.
 
@@ -2586,7 +2435,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the DBI_CMD_FULL field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_FULL(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_FULL) | BF_MIPI_DSI_CMD_PKT_STATUS_DBI_CMD_FULL(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_PKT_STATUS, field DBI_PLD_W_EMPTY[10] (RW)
@@ -2594,7 +2442,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Reports the empty status of the DBI write payload FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_EMPTY      (10)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_EMPTY.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_EMPTY      (0x00000400)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_EMPTY.
 
@@ -2608,7 +2455,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the DBI_PLD_W_EMPTY field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_EMPTY(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_EMPTY) | BF_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_EMPTY(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_PKT_STATUS, field DBI_PLD_W_FULL[11] (RW)
@@ -2616,7 +2462,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Reports the full status of the DBI write payload FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_FULL      (11)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_FULL.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_FULL      (0x00000800)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_FULL.
 
@@ -2630,7 +2475,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the DBI_PLD_W_FULL field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_FULL(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_FULL) | BF_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_W_FULL(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_PKT_STATUS, field DBI_PLD_R_EMPTY[12] (RW)
@@ -2638,7 +2482,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Reports the empty status of the DBI read payload FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_EMPTY      (12)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_EMPTY.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_EMPTY      (0x00001000)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_EMPTY.
 
@@ -2652,7 +2495,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the DBI_PLD_R_EMPTY field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_EMPTY(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_EMPTY) | BF_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_EMPTY(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_PKT_STATUS, field DBI_PLD_R_FULL[13] (RW)
@@ -2660,7 +2502,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Reports the full status of the DBI read payload FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_FULL      (13)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_FULL.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_FULL      (0x00002000)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_FULL.
 
@@ -2674,7 +2515,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the DBI_PLD_R_FULL field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_FULL(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_FULL) | BF_MIPI_DSI_CMD_PKT_STATUS_DBI_PLD_R_FULL(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_CMD_PKT_STATUS, field DBI_RD_CMD_BUSY[14] (RW)
@@ -2682,7 +2522,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
  * Set when a read command is issued and cleared once the entire response is stored in the FIFO
  */
 //@{
-
 #define BP_MIPI_DSI_CMD_PKT_STATUS_DBI_RD_CMD_BUSY      (14)      //!< Bit position for MIPI_DSI_CMD_PKT_STATUS_DBI_RD_CMD_BUSY.
 #define BM_MIPI_DSI_CMD_PKT_STATUS_DBI_RD_CMD_BUSY      (0x00004000)  //!< Bit mask for MIPI_DSI_CMD_PKT_STATUS_DBI_RD_CMD_BUSY.
 
@@ -2696,7 +2535,6 @@ typedef union _hw_mipi_dsi_cmd_pkt_status
 //! @brief Set the DBI_RD_CMD_BUSY field to a new value.
 #define BW_MIPI_DSI_CMD_PKT_STATUS_DBI_RD_CMD_BUSY(v)   (HW_MIPI_DSI_CMD_PKT_STATUS_WR((HW_MIPI_DSI_CMD_PKT_STATUS_RD() & ~BM_MIPI_DSI_CMD_PKT_STATUS_DBI_RD_CMD_BUSY) | BF_MIPI_DSI_CMD_PKT_STATUS_DBI_RD_CMD_BUSY(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2748,7 +2586,6 @@ typedef union _hw_mipi_dsi_to_cnt_cfg0
  * Detection (Measured in TO_CLK_DIVISION cycles)
  */
 //@{
-
 #define BP_MIPI_DSI_TO_CNT_CFG0_HSTX_TO_CNT      (0)      //!< Bit position for MIPI_DSI_TO_CNT_CFG0_HSTX_TO_CNT.
 #define BM_MIPI_DSI_TO_CNT_CFG0_HSTX_TO_CNT      (0x0000ffff)  //!< Bit mask for MIPI_DSI_TO_CNT_CFG0_HSTX_TO_CNT.
 
@@ -2762,7 +2599,6 @@ typedef union _hw_mipi_dsi_to_cnt_cfg0
 //! @brief Set the HSTX_TO_CNT field to a new value.
 #define BW_MIPI_DSI_TO_CNT_CFG0_HSTX_TO_CNT(v)   (HW_MIPI_DSI_TO_CNT_CFG0_WR((HW_MIPI_DSI_TO_CNT_CFG0_RD() & ~BM_MIPI_DSI_TO_CNT_CFG0_HSTX_TO_CNT) | BF_MIPI_DSI_TO_CNT_CFG0_HSTX_TO_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_TO_CNT_CFG0, field LPRX_TO_CNT[31:16] (RW)
@@ -2771,7 +2607,6 @@ typedef union _hw_mipi_dsi_to_cnt_cfg0
  * Detection. (Measured in TO_CLK_DIVISION cycles)
  */
 //@{
-
 #define BP_MIPI_DSI_TO_CNT_CFG0_LPRX_TO_CNT      (16)      //!< Bit position for MIPI_DSI_TO_CNT_CFG0_LPRX_TO_CNT.
 #define BM_MIPI_DSI_TO_CNT_CFG0_LPRX_TO_CNT      (0xffff0000)  //!< Bit mask for MIPI_DSI_TO_CNT_CFG0_LPRX_TO_CNT.
 
@@ -2785,7 +2620,6 @@ typedef union _hw_mipi_dsi_to_cnt_cfg0
 //! @brief Set the LPRX_TO_CNT field to a new value.
 #define BW_MIPI_DSI_TO_CNT_CFG0_LPRX_TO_CNT(v)   (HW_MIPI_DSI_TO_CNT_CFG0_WR((HW_MIPI_DSI_TO_CNT_CFG0_RD() & ~BM_MIPI_DSI_TO_CNT_CFG0_LPRX_TO_CNT) | BF_MIPI_DSI_TO_CNT_CFG0_LPRX_TO_CNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2856,7 +2690,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves SoT Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_0      (0)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_0.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_0      (0x00000001)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_0.
 
@@ -2870,7 +2703,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_0 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_0(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_0) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_1[1] (RW)
@@ -2878,7 +2710,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves SoT Sync Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_1      (1)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_1.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_1      (0x00000002)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_1.
 
@@ -2892,7 +2723,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_1 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_1(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_1) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_2[2] (RW)
@@ -2900,7 +2730,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves EoT Sync Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_2      (2)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_2.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_2      (0x00000004)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_2.
 
@@ -2914,7 +2743,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_2 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_2(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_2) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_3[3] (RW)
@@ -2922,7 +2750,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves Escape Mode Entry Command Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_3      (3)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_3.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_3      (0x00000008)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_3.
 
@@ -2936,7 +2763,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_3 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_3(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_3) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_4[4] (RW)
@@ -2944,7 +2770,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves Low-Power Transmit Sync Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_4      (4)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_4.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_4      (0x00000010)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_4.
 
@@ -2958,7 +2783,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_4 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_4(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_4) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_5[5] (RW)
@@ -2966,7 +2790,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves HS Receive Timeout Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_5      (5)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_5.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_5      (0x00000020)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_5.
 
@@ -2980,7 +2803,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_5 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_5(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_5) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_6[6] (RW)
@@ -2988,7 +2810,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves False Control Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_6      (6)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_6.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_6      (0x00000040)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_6.
 
@@ -3002,7 +2823,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_6 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_6(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_6) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_7[7] (RW)
@@ -3010,7 +2830,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves Reserved (specific to device) from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_7      (7)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_7.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_7      (0x00000080)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_7.
 
@@ -3024,7 +2843,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_7 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_7(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_7) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_7(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_8[8] (RW)
@@ -3032,7 +2850,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves ECC Error, single-bit (detected and corrected) from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_8      (8)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_8.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_8      (0x00000100)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_8.
 
@@ -3046,7 +2863,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_8 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_8(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_8) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_9[9] (RW)
@@ -3054,7 +2870,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves ECC Error, multi-bit (detected, not corrected) from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_9      (9)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_9.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_9      (0x00000200)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_9.
 
@@ -3068,7 +2883,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_9 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_9(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_9) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_10[10] (RW)
@@ -3076,7 +2890,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves Checksum Error (Long packet only) from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_10      (10)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_10.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_10      (0x00000400)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_10.
 
@@ -3090,7 +2903,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_10 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_10(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_10) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_11[11] (RW)
@@ -3098,7 +2910,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves DSI Data Type Not Recognized from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_11      (11)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_11.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_11      (0x00000800)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_11.
 
@@ -3112,7 +2923,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_11 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_11(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_11) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_12[12] (RW)
@@ -3120,7 +2930,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves DSI VC ID Invalid from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_12      (12)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_12.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_12      (0x00001000)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_12.
 
@@ -3134,7 +2943,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_12 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_12(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_12) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_13[13] (RW)
@@ -3142,7 +2950,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves Invalid Transmission Length from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_13      (13)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_13.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_13      (0x00002000)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_13.
 
@@ -3156,7 +2963,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_13 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_13(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_13) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_14[14] (RW)
@@ -3164,7 +2970,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves Reserved (specific to device) from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_14      (14)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_14.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_14      (0x00004000)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_14.
 
@@ -3178,7 +2983,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_14 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_14(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_14) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field ACK_WITH_ERR_15[15] (RW)
@@ -3186,7 +2990,6 @@ typedef union _hw_mipi_dsi_error_st0
  * Retrieves DSI Protocol Violation from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_15      (15)      //!< Bit position for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_15.
 #define BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_15      (0x00008000)  //!< Bit mask for MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_15.
 
@@ -3200,7 +3003,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the ACK_WITH_ERR_15 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_15(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_15) | BF_MIPI_DSI_ERROR_ST0_ACK_WITH_ERR_15(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field DPHY_ERRORS_0[16] (RW)
@@ -3208,7 +3010,6 @@ typedef union _hw_mipi_dsi_error_st0
  * ErrEsc Escape Entry Error from Lane 0
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_0      (16)      //!< Bit position for MIPI_DSI_ERROR_ST0_DPHY_ERRORS_0.
 #define BM_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_0      (0x00010000)  //!< Bit mask for MIPI_DSI_ERROR_ST0_DPHY_ERRORS_0.
 
@@ -3222,7 +3023,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the DPHY_ERRORS_0 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_0(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_0) | BF_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field DPHY_ERRORS_1[17] (RW)
@@ -3230,7 +3030,6 @@ typedef union _hw_mipi_dsi_error_st0
  * ErrSyncEsc Low-Power Data Transmission Synchronization Error from Lane 0
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_1      (17)      //!< Bit position for MIPI_DSI_ERROR_ST0_DPHY_ERRORS_1.
 #define BM_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_1      (0x00020000)  //!< Bit mask for MIPI_DSI_ERROR_ST0_DPHY_ERRORS_1.
 
@@ -3244,7 +3043,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the DPHY_ERRORS_1 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_1(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_1) | BF_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field DPHY_ERRORS_2[18] (RW)
@@ -3252,7 +3050,6 @@ typedef union _hw_mipi_dsi_error_st0
  * ErrControl Control Error from Lane 0
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_2      (18)      //!< Bit position for MIPI_DSI_ERROR_ST0_DPHY_ERRORS_2.
 #define BM_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_2      (0x00040000)  //!< Bit mask for MIPI_DSI_ERROR_ST0_DPHY_ERRORS_2.
 
@@ -3266,7 +3063,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the DPHY_ERRORS_2 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_2(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_2) | BF_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field DPHY_ERRORS_3[19] (RW)
@@ -3274,7 +3070,6 @@ typedef union _hw_mipi_dsi_error_st0
  * ErrContentionLP0 LP0 Contention Error from Lane 0
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_3      (19)      //!< Bit position for MIPI_DSI_ERROR_ST0_DPHY_ERRORS_3.
 #define BM_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_3      (0x00080000)  //!< Bit mask for MIPI_DSI_ERROR_ST0_DPHY_ERRORS_3.
 
@@ -3288,7 +3083,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the DPHY_ERRORS_3 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_3(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_3) | BF_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST0, field DPHY_ERRORS_4[20] (RW)
@@ -3296,7 +3090,6 @@ typedef union _hw_mipi_dsi_error_st0
  * ErrContentionLP1 LP1 Contention Error from Lane 0
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_4      (20)      //!< Bit position for MIPI_DSI_ERROR_ST0_DPHY_ERRORS_4.
 #define BM_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_4      (0x00100000)  //!< Bit mask for MIPI_DSI_ERROR_ST0_DPHY_ERRORS_4.
 
@@ -3310,7 +3103,6 @@ typedef union _hw_mipi_dsi_error_st0
 //! @brief Set the DPHY_ERRORS_4 field to a new value.
 #define BW_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_4(v)   (HW_MIPI_DSI_ERROR_ST0_WR((HW_MIPI_DSI_ERROR_ST0_RD() & ~BM_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_4) | BF_MIPI_DSI_ERROR_ST0_DPHY_ERRORS_4(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3379,7 +3171,6 @@ typedef union _hw_mipi_dsi_error_st1
  * detected
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_TO_HS_TX      (0)      //!< Bit position for MIPI_DSI_ERROR_ST1_TO_HS_TX.
 #define BM_MIPI_DSI_ERROR_ST1_TO_HS_TX      (0x00000001)  //!< Bit mask for MIPI_DSI_ERROR_ST1_TO_HS_TX.
 
@@ -3393,7 +3184,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the TO_HS_TX field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_TO_HS_TX(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_TO_HS_TX) | BF_MIPI_DSI_ERROR_ST1_TO_HS_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field TO_LP_RX[1] (RW)
@@ -3401,7 +3191,6 @@ typedef union _hw_mipi_dsi_error_st1
  * Low Power Reception Time Out Counter reached the end and Contention Detection as been detected
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_TO_LP_RX      (1)      //!< Bit position for MIPI_DSI_ERROR_ST1_TO_LP_RX.
 #define BM_MIPI_DSI_ERROR_ST1_TO_LP_RX      (0x00000002)  //!< Bit mask for MIPI_DSI_ERROR_ST1_TO_LP_RX.
 
@@ -3415,7 +3204,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the TO_LP_RX field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_TO_LP_RX(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_TO_LP_RX) | BF_MIPI_DSI_ERROR_ST1_TO_LP_RX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field ECC_SINLGE_ERR[2] (RW)
@@ -3423,7 +3211,6 @@ typedef union _hw_mipi_dsi_error_st1
  * ECC single error was detected and corrected in a received packet
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_ECC_SINLGE_ERR      (2)      //!< Bit position for MIPI_DSI_ERROR_ST1_ECC_SINLGE_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_ECC_SINLGE_ERR      (0x00000004)  //!< Bit mask for MIPI_DSI_ERROR_ST1_ECC_SINLGE_ERR.
 
@@ -3437,7 +3224,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the ECC_SINLGE_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_ECC_SINLGE_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_ECC_SINLGE_ERR) | BF_MIPI_DSI_ERROR_ST1_ECC_SINLGE_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field ECC_MULTI_ERR[3] (RW)
@@ -3445,7 +3231,6 @@ typedef union _hw_mipi_dsi_error_st1
  * ECC multiple error was detected in a received packet
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_ECC_MULTI_ERR      (3)      //!< Bit position for MIPI_DSI_ERROR_ST1_ECC_MULTI_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_ECC_MULTI_ERR      (0x00000008)  //!< Bit mask for MIPI_DSI_ERROR_ST1_ECC_MULTI_ERR.
 
@@ -3459,7 +3244,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the ECC_MULTI_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_ECC_MULTI_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_ECC_MULTI_ERR) | BF_MIPI_DSI_ERROR_ST1_ECC_MULTI_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field CRC_ERR[4] (RW)
@@ -3467,7 +3251,6 @@ typedef union _hw_mipi_dsi_error_st1
  * CRC error was detected in the received packet payload
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_CRC_ERR      (4)      //!< Bit position for MIPI_DSI_ERROR_ST1_CRC_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_CRC_ERR      (0x00000010)  //!< Bit mask for MIPI_DSI_ERROR_ST1_CRC_ERR.
 
@@ -3481,7 +3264,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the CRC_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_CRC_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_CRC_ERR) | BF_MIPI_DSI_ERROR_ST1_CRC_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field PKT_SIZE_ERR[5] (RW)
@@ -3489,7 +3271,6 @@ typedef union _hw_mipi_dsi_error_st1
  * Packet size error was detected during packet reception
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_PKT_SIZE_ERR      (5)      //!< Bit position for MIPI_DSI_ERROR_ST1_PKT_SIZE_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_PKT_SIZE_ERR      (0x00000020)  //!< Bit mask for MIPI_DSI_ERROR_ST1_PKT_SIZE_ERR.
 
@@ -3503,7 +3284,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the PKT_SIZE_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_PKT_SIZE_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_PKT_SIZE_ERR) | BF_MIPI_DSI_ERROR_ST1_PKT_SIZE_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field EOPT_ERR[6] (RW)
@@ -3511,7 +3291,6 @@ typedef union _hw_mipi_dsi_error_st1
  * EOTp Packet not received at the end of the incoming peripheral transmission
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_EOPT_ERR      (6)      //!< Bit position for MIPI_DSI_ERROR_ST1_EOPT_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_EOPT_ERR      (0x00000040)  //!< Bit mask for MIPI_DSI_ERROR_ST1_EOPT_ERR.
 
@@ -3525,7 +3304,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the EOPT_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_EOPT_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_EOPT_ERR) | BF_MIPI_DSI_ERROR_ST1_EOPT_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field DPI_PLD_WR_ERR[7] (RW)
@@ -3533,7 +3311,6 @@ typedef union _hw_mipi_dsi_error_st1
  * During a DPI pixel line storage the payload FIFO went full and data stored is corrupted
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_DPI_PLD_WR_ERR      (7)      //!< Bit position for MIPI_DSI_ERROR_ST1_DPI_PLD_WR_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_DPI_PLD_WR_ERR      (0x00000080)  //!< Bit mask for MIPI_DSI_ERROR_ST1_DPI_PLD_WR_ERR.
 
@@ -3547,7 +3324,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the DPI_PLD_WR_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_DPI_PLD_WR_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_DPI_PLD_WR_ERR) | BF_MIPI_DSI_ERROR_ST1_DPI_PLD_WR_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field GEN_CMD_WR_ERR[8] (RW)
@@ -3556,7 +3332,6 @@ typedef union _hw_mipi_dsi_error_st1
  * command was not written
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_GEN_CMD_WR_ERR      (8)      //!< Bit position for MIPI_DSI_ERROR_ST1_GEN_CMD_WR_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_GEN_CMD_WR_ERR      (0x00000100)  //!< Bit mask for MIPI_DSI_ERROR_ST1_GEN_CMD_WR_ERR.
 
@@ -3570,7 +3345,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the GEN_CMD_WR_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_GEN_CMD_WR_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_GEN_CMD_WR_ERR) | BF_MIPI_DSI_ERROR_ST1_GEN_CMD_WR_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field GEN_PLD_WR_ERR[9] (RW)
@@ -3579,7 +3353,6 @@ typedef union _hw_mipi_dsi_error_st1
  * the payload was not written
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_GEN_PLD_WR_ERR      (9)      //!< Bit position for MIPI_DSI_ERROR_ST1_GEN_PLD_WR_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_GEN_PLD_WR_ERR      (0x00000200)  //!< Bit mask for MIPI_DSI_ERROR_ST1_GEN_PLD_WR_ERR.
 
@@ -3593,7 +3366,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the GEN_PLD_WR_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_GEN_PLD_WR_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_GEN_PLD_WR_ERR) | BF_MIPI_DSI_ERROR_ST1_GEN_PLD_WR_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field GEN_PLD_SEND_ERR[10] (RW)
@@ -3601,7 +3373,6 @@ typedef union _hw_mipi_dsi_error_st1
  * During a generic interface packet build, the payload FIFO went empty and data was sent corrupted
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_GEN_PLD_SEND_ERR      (10)      //!< Bit position for MIPI_DSI_ERROR_ST1_GEN_PLD_SEND_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_GEN_PLD_SEND_ERR      (0x00000400)  //!< Bit mask for MIPI_DSI_ERROR_ST1_GEN_PLD_SEND_ERR.
 
@@ -3615,7 +3386,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the GEN_PLD_SEND_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_GEN_PLD_SEND_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_GEN_PLD_SEND_ERR) | BF_MIPI_DSI_ERROR_ST1_GEN_PLD_SEND_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field GEN_PLD_RD_ERR[11] (RW)
@@ -3623,7 +3393,6 @@ typedef union _hw_mipi_dsi_error_st1
  * During a DCS read data, the payload FIFO went empty and data was send to the interface corrupted
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_GEN_PLD_RD_ERR      (11)      //!< Bit position for MIPI_DSI_ERROR_ST1_GEN_PLD_RD_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_GEN_PLD_RD_ERR      (0x00000800)  //!< Bit mask for MIPI_DSI_ERROR_ST1_GEN_PLD_RD_ERR.
 
@@ -3637,7 +3406,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the GEN_PLD_RD_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_GEN_PLD_RD_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_GEN_PLD_RD_ERR) | BF_MIPI_DSI_ERROR_ST1_GEN_PLD_RD_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field GEN_PLD_RECV_ERR[12] (RW)
@@ -3646,7 +3414,6 @@ typedef union _hw_mipi_dsi_error_st1
  * corrupted
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_GEN_PLD_RECV_ERR      (12)      //!< Bit position for MIPI_DSI_ERROR_ST1_GEN_PLD_RECV_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_GEN_PLD_RECV_ERR      (0x00001000)  //!< Bit mask for MIPI_DSI_ERROR_ST1_GEN_PLD_RECV_ERR.
 
@@ -3660,7 +3427,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the GEN_PLD_RECV_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_GEN_PLD_RECV_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_GEN_PLD_RECV_ERR) | BF_MIPI_DSI_ERROR_ST1_GEN_PLD_RECV_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field DBI_CMD_WR_ERR[13] (RW)
@@ -3669,7 +3435,6 @@ typedef union _hw_mipi_dsi_error_st1
  * command was not written
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_DBI_CMD_WR_ERR      (13)      //!< Bit position for MIPI_DSI_ERROR_ST1_DBI_CMD_WR_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_DBI_CMD_WR_ERR      (0x00002000)  //!< Bit mask for MIPI_DSI_ERROR_ST1_DBI_CMD_WR_ERR.
 
@@ -3683,7 +3448,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the DBI_CMD_WR_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_DBI_CMD_WR_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_DBI_CMD_WR_ERR) | BF_MIPI_DSI_ERROR_ST1_DBI_CMD_WR_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field DBI_PLD_WR_ERR[14] (RW)
@@ -3692,7 +3456,6 @@ typedef union _hw_mipi_dsi_error_st1
  * Command was not written
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_DBI_PLD_WR_ERR      (14)      //!< Bit position for MIPI_DSI_ERROR_ST1_DBI_PLD_WR_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_DBI_PLD_WR_ERR      (0x00004000)  //!< Bit mask for MIPI_DSI_ERROR_ST1_DBI_PLD_WR_ERR.
 
@@ -3706,7 +3469,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the DBI_PLD_WR_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_DBI_PLD_WR_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_DBI_PLD_WR_ERR) | BF_MIPI_DSI_ERROR_ST1_DBI_PLD_WR_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field DBI_PLD_RD_ERR[15] (RW)
@@ -3714,7 +3476,6 @@ typedef union _hw_mipi_dsi_error_st1
  * During a DCS read data, the payload FIFO went empty and data was send to the interface corrupted
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_DBI_PLD_RD_ERR      (15)      //!< Bit position for MIPI_DSI_ERROR_ST1_DBI_PLD_RD_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_DBI_PLD_RD_ERR      (0x00008000)  //!< Bit mask for MIPI_DSI_ERROR_ST1_DBI_PLD_RD_ERR.
 
@@ -3728,7 +3489,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the DBI_PLD_RD_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_DBI_PLD_RD_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_DBI_PLD_RD_ERR) | BF_MIPI_DSI_ERROR_ST1_DBI_PLD_RD_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field DBI_PLD_RECV_ERR[16] (RW)
@@ -3736,7 +3496,6 @@ typedef union _hw_mipi_dsi_error_st1
  * During a DBI read back packet, the payload FIFO went full and received data was corrupted
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_DBI_PLD_RECV_ERR      (16)      //!< Bit position for MIPI_DSI_ERROR_ST1_DBI_PLD_RECV_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_DBI_PLD_RECV_ERR      (0x00010000)  //!< Bit mask for MIPI_DSI_ERROR_ST1_DBI_PLD_RECV_ERR.
 
@@ -3750,7 +3509,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the DBI_PLD_RECV_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_DBI_PLD_RECV_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_DBI_PLD_RECV_ERR) | BF_MIPI_DSI_ERROR_ST1_DBI_PLD_RECV_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_ST1, field DBI_ILLEGAL_COMM_ERR[17] (RW)
@@ -3758,7 +3516,6 @@ typedef union _hw_mipi_dsi_error_st1
  * Attempt to write an illegal command on the DPI interface and core blocked by transmission
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_ST1_DBI_ILLEGAL_COMM_ERR      (17)      //!< Bit position for MIPI_DSI_ERROR_ST1_DBI_ILLEGAL_COMM_ERR.
 #define BM_MIPI_DSI_ERROR_ST1_DBI_ILLEGAL_COMM_ERR      (0x00020000)  //!< Bit mask for MIPI_DSI_ERROR_ST1_DBI_ILLEGAL_COMM_ERR.
 
@@ -3772,7 +3529,6 @@ typedef union _hw_mipi_dsi_error_st1
 //! @brief Set the DBI_ILLEGAL_COMM_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_ST1_DBI_ILLEGAL_COMM_ERR(v)   (HW_MIPI_DSI_ERROR_ST1_WR((HW_MIPI_DSI_ERROR_ST1_RD() & ~BM_MIPI_DSI_ERROR_ST1_DBI_ILLEGAL_COMM_ERR) | BF_MIPI_DSI_ERROR_ST1_DBI_ILLEGAL_COMM_ERR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3843,7 +3599,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks SoT Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_0      (0)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_0.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_0      (0x00000001)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_0.
 
@@ -3857,7 +3612,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_0 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_0(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_0) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_1[1] (RW)
@@ -3865,7 +3619,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks SoT Sync Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_1      (1)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_1.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_1      (0x00000002)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_1.
 
@@ -3879,7 +3632,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_1 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_1(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_1) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_2[2] (RW)
@@ -3887,7 +3639,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks EoT Sync Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_2      (2)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_2.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_2      (0x00000004)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_2.
 
@@ -3901,7 +3652,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_2 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_2(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_2) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_3[3] (RW)
@@ -3909,7 +3659,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks Escape Mode Entry Command Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_3      (3)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_3.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_3      (0x00000008)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_3.
 
@@ -3923,7 +3672,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_3 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_3(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_3) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_4[4] (RW)
@@ -3931,7 +3679,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks Low-Power Transmit Sync Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_4      (4)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_4.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_4      (0x00000010)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_4.
 
@@ -3945,7 +3692,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_4 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_4(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_4) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_5[5] (RW)
@@ -3953,7 +3699,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks HS Receive Timeout Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_5      (5)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_5.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_5      (0x00000020)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_5.
 
@@ -3967,7 +3712,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_5 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_5(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_5) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_6[6] (RW)
@@ -3975,7 +3719,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks False Control Error from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_6      (6)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_6.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_6      (0x00000040)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_6.
 
@@ -3989,7 +3732,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_6 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_6(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_6) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_7[7] (RW)
@@ -3997,7 +3739,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks Reserved (specific to device) from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_7      (7)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_7.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_7      (0x00000080)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_7.
 
@@ -4011,7 +3752,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_7 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_7(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_7) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_7(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_8[8] (RW)
@@ -4019,7 +3759,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks ECC Error, single-bit (detected and corrected) from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_8      (8)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_8.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_8      (0x00000100)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_8.
 
@@ -4033,7 +3772,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_8 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_8(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_8) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_9[9] (RW)
@@ -4041,7 +3779,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks ECC Error, multi-bit (detected, not corrected) from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_9      (9)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_9.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_9      (0x00000200)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_9.
 
@@ -4055,7 +3792,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_9 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_9(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_9) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_10[10] (RW)
@@ -4063,7 +3799,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks Checksum Error (Long packet only) from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_10      (10)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_10.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_10      (0x00000400)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_10.
 
@@ -4077,7 +3812,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_10 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_10(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_10) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_11[11] (RW)
@@ -4085,7 +3819,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks DSI Data Type Not Recognized from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_11      (11)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_11.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_11      (0x00000800)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_11.
 
@@ -4099,7 +3832,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_11 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_11(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_11) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_12[12] (RW)
@@ -4107,7 +3839,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks DSI VC ID Invalid from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_12      (12)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_12.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_12      (0x00001000)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_12.
 
@@ -4121,7 +3852,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_12 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_12(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_12) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_13[13] (RW)
@@ -4129,7 +3859,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks Invalid Transmission Length from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_13      (13)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_13.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_13      (0x00002000)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_13.
 
@@ -4143,7 +3872,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_13 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_13(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_13) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_14[14] (RW)
@@ -4151,7 +3879,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks Reserved (specific to device) from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_14      (14)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_14.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_14      (0x00004000)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_14.
 
@@ -4165,7 +3892,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_14 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_14(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_14) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field ACK_WITH_ERR_15[15] (RW)
@@ -4173,7 +3899,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * Masks DSI Protocol Violation from Display Acknowledge Error Report
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_15      (15)      //!< Bit position for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_15.
 #define BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_15      (0x00008000)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_15.
 
@@ -4187,7 +3912,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the ACK_WITH_ERR_15 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_15(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_15) | BF_MIPI_DSI_ERROR_MSK0_ACK_WITH_ERR_15(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field DPHY_ERRORS_0[16] (RW)
@@ -4195,7 +3919,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * ErrEsc Escape Entry Error from Lane 0
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_0      (16)      //!< Bit position for MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_0.
 #define BM_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_0      (0x00010000)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_0.
 
@@ -4209,7 +3932,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the DPHY_ERRORS_0 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_0(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_0) | BF_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field DPHY_ERRORS_1[17] (RW)
@@ -4217,7 +3939,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * ErrSyncEsc Low-Power Data Transmission Synchronization Error from Lane 0
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_1      (17)      //!< Bit position for MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_1.
 #define BM_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_1      (0x00020000)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_1.
 
@@ -4231,7 +3952,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the DPHY_ERRORS_1 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_1(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_1) | BF_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field DPHY_ERRORS_2[18] (RW)
@@ -4239,7 +3959,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * ErrControl Control Error from Lane 0
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_2      (18)      //!< Bit position for MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_2.
 #define BM_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_2      (0x00040000)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_2.
 
@@ -4253,7 +3972,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the DPHY_ERRORS_2 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_2(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_2) | BF_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field DPHY_ERRORS_3[19] (RW)
@@ -4261,7 +3979,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * ErrContentionLP0 LP0 Contention Error from Lane 0
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_3      (19)      //!< Bit position for MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_3.
 #define BM_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_3      (0x00080000)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_3.
 
@@ -4275,7 +3992,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the DPHY_ERRORS_3 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_3(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_3) | BF_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK0, field DPHY_ERRORS_4[20] (RW)
@@ -4283,7 +3999,6 @@ typedef union _hw_mipi_dsi_error_msk0
  * ErrContentionLP1 LP1 Contention Error from Lane 0
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_4      (20)      //!< Bit position for MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_4.
 #define BM_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_4      (0x00100000)  //!< Bit mask for MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_4.
 
@@ -4297,7 +4012,6 @@ typedef union _hw_mipi_dsi_error_msk0
 //! @brief Set the DPHY_ERRORS_4 field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_4(v)   (HW_MIPI_DSI_ERROR_MSK0_WR((HW_MIPI_DSI_ERROR_MSK0_RD() & ~BM_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_4) | BF_MIPI_DSI_ERROR_MSK0_DPHY_ERRORS_4(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4365,7 +4079,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks High Speed Transmission Time Out Counter error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_TO_HS_TX      (0)      //!< Bit position for MIPI_DSI_ERROR_MSK1_TO_HS_TX.
 #define BM_MIPI_DSI_ERROR_MSK1_TO_HS_TX      (0x00000001)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_TO_HS_TX.
 
@@ -4379,7 +4092,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the TO_HS_TX field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_TO_HS_TX(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_TO_HS_TX) | BF_MIPI_DSI_ERROR_MSK1_TO_HS_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field TO_LP_RX[1] (RW)
@@ -4387,7 +4099,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks Low Power Reception Time Out Counter error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_TO_LP_RX      (1)      //!< Bit position for MIPI_DSI_ERROR_MSK1_TO_LP_RX.
 #define BM_MIPI_DSI_ERROR_MSK1_TO_LP_RX      (0x00000002)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_TO_LP_RX.
 
@@ -4401,7 +4112,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the TO_LP_RX field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_TO_LP_RX(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_TO_LP_RX) | BF_MIPI_DSI_ERROR_MSK1_TO_LP_RX(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field ECC_SINLGE_ERR[2] (RW)
@@ -4409,7 +4119,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks ECC single error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_ECC_SINLGE_ERR      (2)      //!< Bit position for MIPI_DSI_ERROR_MSK1_ECC_SINLGE_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_ECC_SINLGE_ERR      (0x00000004)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_ECC_SINLGE_ERR.
 
@@ -4423,7 +4132,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the ECC_SINLGE_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_ECC_SINLGE_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_ECC_SINLGE_ERR) | BF_MIPI_DSI_ERROR_MSK1_ECC_SINLGE_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field ECC_MULTI_ERR[3] (RW)
@@ -4431,7 +4139,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks ECC multiple error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_ECC_MULTI_ERR      (3)      //!< Bit position for MIPI_DSI_ERROR_MSK1_ECC_MULTI_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_ECC_MULTI_ERR      (0x00000008)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_ECC_MULTI_ERR.
 
@@ -4445,7 +4152,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the ECC_MULTI_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_ECC_MULTI_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_ECC_MULTI_ERR) | BF_MIPI_DSI_ERROR_MSK1_ECC_MULTI_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field CRC_ERR[4] (RW)
@@ -4453,7 +4159,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks CRC error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_CRC_ERR      (4)      //!< Bit position for MIPI_DSI_ERROR_MSK1_CRC_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_CRC_ERR      (0x00000010)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_CRC_ERR.
 
@@ -4467,7 +4172,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the CRC_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_CRC_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_CRC_ERR) | BF_MIPI_DSI_ERROR_MSK1_CRC_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field PKT_SIZE_ERR[5] (RW)
@@ -4475,7 +4179,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks Packet size error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_PKT_SIZE_ERR      (5)      //!< Bit position for MIPI_DSI_ERROR_MSK1_PKT_SIZE_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_PKT_SIZE_ERR      (0x00000020)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_PKT_SIZE_ERR.
 
@@ -4489,7 +4192,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the PKT_SIZE_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_PKT_SIZE_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_PKT_SIZE_ERR) | BF_MIPI_DSI_ERROR_MSK1_PKT_SIZE_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field EOPT_ERR[6] (RW)
@@ -4497,7 +4199,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks EOTp Packet not received error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_EOPT_ERR      (6)      //!< Bit position for MIPI_DSI_ERROR_MSK1_EOPT_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_EOPT_ERR      (0x00000040)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_EOPT_ERR.
 
@@ -4511,7 +4212,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the EOPT_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_EOPT_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_EOPT_ERR) | BF_MIPI_DSI_ERROR_MSK1_EOPT_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field DPI_PLD_WR_ERR[7] (RW)
@@ -4519,7 +4219,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks DPI pixel line payload FIFO full error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_DPI_PLD_WR_ERR      (7)      //!< Bit position for MIPI_DSI_ERROR_MSK1_DPI_PLD_WR_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_DPI_PLD_WR_ERR      (0x00000080)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_DPI_PLD_WR_ERR.
 
@@ -4533,7 +4232,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the DPI_PLD_WR_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_DPI_PLD_WR_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_DPI_PLD_WR_ERR) | BF_MIPI_DSI_ERROR_MSK1_DPI_PLD_WR_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field GEN_CMD_WR_ERR[8] (RW)
@@ -4541,7 +4239,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks command FIFO of generic interface full error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_GEN_CMD_WR_ERR      (8)      //!< Bit position for MIPI_DSI_ERROR_MSK1_GEN_CMD_WR_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_GEN_CMD_WR_ERR      (0x00000100)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_GEN_CMD_WR_ERR.
 
@@ -4555,7 +4252,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the GEN_CMD_WR_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_GEN_CMD_WR_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_GEN_CMD_WR_ERR) | BF_MIPI_DSI_ERROR_MSK1_GEN_CMD_WR_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field GEN_PLD_WR_ERR[9] (RW)
@@ -4563,7 +4259,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks payload data FIFO of generic interface full error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_GEN_PLD_WR_ERR      (9)      //!< Bit position for MIPI_DSI_ERROR_MSK1_GEN_PLD_WR_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_GEN_PLD_WR_ERR      (0x00000200)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_GEN_PLD_WR_ERR.
 
@@ -4577,7 +4272,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the GEN_PLD_WR_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_GEN_PLD_WR_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_GEN_PLD_WR_ERR) | BF_MIPI_DSI_ERROR_MSK1_GEN_PLD_WR_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field GEN_PLD_SEND_ERR[10] (RW)
@@ -4585,7 +4279,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks generic interface packet build FIFO empty error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_GEN_PLD_SEND_ERR      (10)      //!< Bit position for MIPI_DSI_ERROR_MSK1_GEN_PLD_SEND_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_GEN_PLD_SEND_ERR      (0x00000400)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_GEN_PLD_SEND_ERR.
 
@@ -4599,7 +4292,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the GEN_PLD_SEND_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_GEN_PLD_SEND_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_GEN_PLD_SEND_ERR) | BF_MIPI_DSI_ERROR_MSK1_GEN_PLD_SEND_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field GEN_PLD_RD_ERR[11] (RW)
@@ -4607,7 +4299,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks DCS read data payload FIFO empty error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_GEN_PLD_RD_ERR      (11)      //!< Bit position for MIPI_DSI_ERROR_MSK1_GEN_PLD_RD_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_GEN_PLD_RD_ERR      (0x00000800)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_GEN_PLD_RD_ERR.
 
@@ -4621,7 +4312,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the GEN_PLD_RD_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_GEN_PLD_RD_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_GEN_PLD_RD_ERR) | BF_MIPI_DSI_ERROR_MSK1_GEN_PLD_RD_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field GEN_PLD_RECV_ERR[12] (RW)
@@ -4629,7 +4319,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks generic interface packet read back FIFO full error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_GEN_PLD_RECV_ERR      (12)      //!< Bit position for MIPI_DSI_ERROR_MSK1_GEN_PLD_RECV_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_GEN_PLD_RECV_ERR      (0x00001000)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_GEN_PLD_RECV_ERR.
 
@@ -4643,7 +4332,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the GEN_PLD_RECV_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_GEN_PLD_RECV_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_GEN_PLD_RECV_ERR) | BF_MIPI_DSI_ERROR_MSK1_GEN_PLD_RECV_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field DBI_CMD_WR_ERR[13] (RW)
@@ -4651,7 +4339,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks DBI command FIFO full error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_DBI_CMD_WR_ERR      (13)      //!< Bit position for MIPI_DSI_ERROR_MSK1_DBI_CMD_WR_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_DBI_CMD_WR_ERR      (0x00002000)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_DBI_CMD_WR_ERR.
 
@@ -4665,7 +4352,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the DBI_CMD_WR_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_DBI_CMD_WR_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_DBI_CMD_WR_ERR) | BF_MIPI_DSI_ERROR_MSK1_DBI_CMD_WR_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field DBI_PLD_WR_ERR[14] (RW)
@@ -4673,7 +4359,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks write payload data DBI FIFO full error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_DBI_PLD_WR_ERR      (14)      //!< Bit position for MIPI_DSI_ERROR_MSK1_DBI_PLD_WR_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_DBI_PLD_WR_ERR      (0x00004000)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_DBI_PLD_WR_ERR.
 
@@ -4687,7 +4372,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the DBI_PLD_WR_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_DBI_PLD_WR_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_DBI_PLD_WR_ERR) | BF_MIPI_DSI_ERROR_MSK1_DBI_PLD_WR_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field DBI_PLD_RD_ERR[15] (RW)
@@ -4695,7 +4379,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks payload DBI FIFO empty error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_DBI_PLD_RD_ERR      (15)      //!< Bit position for MIPI_DSI_ERROR_MSK1_DBI_PLD_RD_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_DBI_PLD_RD_ERR      (0x00008000)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_DBI_PLD_RD_ERR.
 
@@ -4709,7 +4392,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the DBI_PLD_RD_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_DBI_PLD_RD_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_DBI_PLD_RD_ERR) | BF_MIPI_DSI_ERROR_MSK1_DBI_PLD_RD_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field DBI_PLD_RECV_ERR[16] (RW)
@@ -4717,7 +4399,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks DBI read back packet payload FIFO full error
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_DBI_PLD_RECV_ERR      (16)      //!< Bit position for MIPI_DSI_ERROR_MSK1_DBI_PLD_RECV_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_DBI_PLD_RECV_ERR      (0x00010000)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_DBI_PLD_RECV_ERR.
 
@@ -4731,7 +4412,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the DBI_PLD_RECV_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_DBI_PLD_RECV_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_DBI_PLD_RECV_ERR) | BF_MIPI_DSI_ERROR_MSK1_DBI_PLD_RECV_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_ERROR_MSK1, field DBI_ILLEGAL_COMM_ERR[17] (RW)
@@ -4739,7 +4419,6 @@ typedef union _hw_mipi_dsi_error_msk1
  * Masks error attempt to write an illegal command on DPI
  */
 //@{
-
 #define BP_MIPI_DSI_ERROR_MSK1_DBI_ILLEGAL_COMM_ERR      (17)      //!< Bit position for MIPI_DSI_ERROR_MSK1_DBI_ILLEGAL_COMM_ERR.
 #define BM_MIPI_DSI_ERROR_MSK1_DBI_ILLEGAL_COMM_ERR      (0x00020000)  //!< Bit mask for MIPI_DSI_ERROR_MSK1_DBI_ILLEGAL_COMM_ERR.
 
@@ -4753,7 +4432,6 @@ typedef union _hw_mipi_dsi_error_msk1
 //! @brief Set the DBI_ILLEGAL_COMM_ERR field to a new value.
 #define BW_MIPI_DSI_ERROR_MSK1_DBI_ILLEGAL_COMM_ERR(v)   (HW_MIPI_DSI_ERROR_MSK1_WR((HW_MIPI_DSI_ERROR_MSK1_RD() & ~BM_MIPI_DSI_ERROR_MSK1_DBI_ILLEGAL_COMM_ERR) | BF_MIPI_DSI_ERROR_MSK1_DBI_ILLEGAL_COMM_ERR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4806,7 +4484,6 @@ typedef union _hw_mipi_dsi_phy_rstz
  * D-PHY Shutdown disable when 1, used to place the complete D-PHY macro in power down
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_RSTZ_PHY_SHUTDOWNZ      (0)      //!< Bit position for MIPI_DSI_PHY_RSTZ_PHY_SHUTDOWNZ.
 #define BM_MIPI_DSI_PHY_RSTZ_PHY_SHUTDOWNZ      (0x00000001)  //!< Bit mask for MIPI_DSI_PHY_RSTZ_PHY_SHUTDOWNZ.
 
@@ -4820,7 +4497,6 @@ typedef union _hw_mipi_dsi_phy_rstz
 //! @brief Set the PHY_SHUTDOWNZ field to a new value.
 #define BW_MIPI_DSI_PHY_RSTZ_PHY_SHUTDOWNZ(v)   (HW_MIPI_DSI_PHY_RSTZ_WR((HW_MIPI_DSI_PHY_RSTZ_RD() & ~BM_MIPI_DSI_PHY_RSTZ_PHY_SHUTDOWNZ) | BF_MIPI_DSI_PHY_RSTZ_PHY_SHUTDOWNZ(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_RSTZ, field PHY_RSTZ[1] (RW)
@@ -4828,7 +4504,6 @@ typedef union _hw_mipi_dsi_phy_rstz
  * D-PHY Reset disable when 1, used to place the digital section of D-PHY in reset state
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_RSTZ_PHY_RSTZ      (1)      //!< Bit position for MIPI_DSI_PHY_RSTZ_PHY_RSTZ.
 #define BM_MIPI_DSI_PHY_RSTZ_PHY_RSTZ      (0x00000002)  //!< Bit mask for MIPI_DSI_PHY_RSTZ_PHY_RSTZ.
 
@@ -4842,7 +4517,6 @@ typedef union _hw_mipi_dsi_phy_rstz
 //! @brief Set the PHY_RSTZ field to a new value.
 #define BW_MIPI_DSI_PHY_RSTZ_PHY_RSTZ(v)   (HW_MIPI_DSI_PHY_RSTZ_WR((HW_MIPI_DSI_PHY_RSTZ_RD() & ~BM_MIPI_DSI_PHY_RSTZ_PHY_RSTZ) | BF_MIPI_DSI_PHY_RSTZ_PHY_RSTZ(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_RSTZ, field PHY_ENABLECLK[2] (RW)
@@ -4850,7 +4524,6 @@ typedef union _hw_mipi_dsi_phy_rstz
  * Enables D-PHY Clock Lane Module when 1
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_RSTZ_PHY_ENABLECLK      (2)      //!< Bit position for MIPI_DSI_PHY_RSTZ_PHY_ENABLECLK.
 #define BM_MIPI_DSI_PHY_RSTZ_PHY_ENABLECLK      (0x00000004)  //!< Bit mask for MIPI_DSI_PHY_RSTZ_PHY_ENABLECLK.
 
@@ -4864,7 +4537,6 @@ typedef union _hw_mipi_dsi_phy_rstz
 //! @brief Set the PHY_ENABLECLK field to a new value.
 #define BW_MIPI_DSI_PHY_RSTZ_PHY_ENABLECLK(v)   (HW_MIPI_DSI_PHY_RSTZ_WR((HW_MIPI_DSI_PHY_RSTZ_RD() & ~BM_MIPI_DSI_PHY_RSTZ_PHY_ENABLECLK) | BF_MIPI_DSI_PHY_RSTZ_PHY_ENABLECLK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4922,7 +4594,6 @@ typedef union _hw_mipi_dsi_phy_if_cfg
  * - 11 - Reserved
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_IF_CFG_N_LANES      (0)      //!< Bit position for MIPI_DSI_PHY_IF_CFG_N_LANES.
 #define BM_MIPI_DSI_PHY_IF_CFG_N_LANES      (0x00000003)  //!< Bit mask for MIPI_DSI_PHY_IF_CFG_N_LANES.
 
@@ -4936,7 +4607,6 @@ typedef union _hw_mipi_dsi_phy_if_cfg
 //! @brief Set the N_LANES field to a new value.
 #define BW_MIPI_DSI_PHY_IF_CFG_N_LANES(v)   (HW_MIPI_DSI_PHY_IF_CFG_WR((HW_MIPI_DSI_PHY_IF_CFG_RD() & ~BM_MIPI_DSI_PHY_IF_CFG_N_LANES) | BF_MIPI_DSI_PHY_IF_CFG_N_LANES(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_IF_CFG, field PHY_STOP_WAIT_TIME[9:2] (RW)
@@ -4945,7 +4615,6 @@ typedef union _hw_mipi_dsi_phy_if_cfg
  * clock lane cycles
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME      (2)      //!< Bit position for MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME.
 #define BM_MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME      (0x000003fc)  //!< Bit mask for MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME.
 
@@ -4959,7 +4628,6 @@ typedef union _hw_mipi_dsi_phy_if_cfg
 //! @brief Set the PHY_STOP_WAIT_TIME field to a new value.
 #define BW_MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME(v)   (HW_MIPI_DSI_PHY_IF_CFG_WR((HW_MIPI_DSI_PHY_IF_CFG_RD() & ~BM_MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME) | BF_MIPI_DSI_PHY_IF_CFG_PHY_STOP_WAIT_TIME(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5015,7 +4683,6 @@ typedef union _hw_mipi_dsi_phy_if_ctrl
  * Controls D-PHY PPI txrequestclkHS
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQUESTCLKHS      (0)      //!< Bit position for MIPI_DSI_PHY_IF_CTRL_PHY_TXREQUESTCLKHS.
 #define BM_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQUESTCLKHS      (0x00000001)  //!< Bit mask for MIPI_DSI_PHY_IF_CTRL_PHY_TXREQUESTCLKHS.
 
@@ -5029,7 +4696,6 @@ typedef union _hw_mipi_dsi_phy_if_ctrl
 //! @brief Set the PHY_TXREQUESTCLKHS field to a new value.
 #define BW_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQUESTCLKHS(v)   (HW_MIPI_DSI_PHY_IF_CTRL_WR((HW_MIPI_DSI_PHY_IF_CTRL_RD() & ~BM_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQUESTCLKHS) | BF_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQUESTCLKHS(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_IF_CTRL, field PHY_TXREQULPSCLK[1] (RW)
@@ -5037,7 +4703,6 @@ typedef union _hw_mipi_dsi_phy_if_ctrl
  * ULPS mode Request on Clock Lane
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSCLK      (1)      //!< Bit position for MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSCLK.
 #define BM_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSCLK      (0x00000002)  //!< Bit mask for MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSCLK.
 
@@ -5051,7 +4716,6 @@ typedef union _hw_mipi_dsi_phy_if_ctrl
 //! @brief Set the PHY_TXREQULPSCLK field to a new value.
 #define BW_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSCLK(v)   (HW_MIPI_DSI_PHY_IF_CTRL_WR((HW_MIPI_DSI_PHY_IF_CTRL_RD() & ~BM_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSCLK) | BF_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSCLK(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_IF_CTRL, field PHY_TXEXITULPSCLK[2] (RW)
@@ -5059,7 +4723,6 @@ typedef union _hw_mipi_dsi_phy_if_ctrl
  * ULPS mode Exit on Clock Lane
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSCLK      (2)      //!< Bit position for MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSCLK.
 #define BM_MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSCLK      (0x00000004)  //!< Bit mask for MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSCLK.
 
@@ -5073,7 +4736,6 @@ typedef union _hw_mipi_dsi_phy_if_ctrl
 //! @brief Set the PHY_TXEXITULPSCLK field to a new value.
 #define BW_MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSCLK(v)   (HW_MIPI_DSI_PHY_IF_CTRL_WR((HW_MIPI_DSI_PHY_IF_CTRL_RD() & ~BM_MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSCLK) | BF_MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSCLK(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_IF_CTRL, field PHY_TXREQULPSLAN[3] (RW)
@@ -5081,7 +4743,6 @@ typedef union _hw_mipi_dsi_phy_if_ctrl
  * ULPS mode Request on all active data lanes
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSLAN      (3)      //!< Bit position for MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSLAN.
 #define BM_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSLAN      (0x00000008)  //!< Bit mask for MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSLAN.
 
@@ -5095,7 +4756,6 @@ typedef union _hw_mipi_dsi_phy_if_ctrl
 //! @brief Set the PHY_TXREQULPSLAN field to a new value.
 #define BW_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSLAN(v)   (HW_MIPI_DSI_PHY_IF_CTRL_WR((HW_MIPI_DSI_PHY_IF_CTRL_RD() & ~BM_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSLAN) | BF_MIPI_DSI_PHY_IF_CTRL_PHY_TXREQULPSLAN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_IF_CTRL, field PHY_TXEXITULPSLAN[4] (RW)
@@ -5103,7 +4763,6 @@ typedef union _hw_mipi_dsi_phy_if_ctrl
  * ULPS mode Exit on on all active data lanes
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSLAN      (4)      //!< Bit position for MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSLAN.
 #define BM_MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSLAN      (0x00000010)  //!< Bit mask for MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSLAN.
 
@@ -5117,7 +4776,6 @@ typedef union _hw_mipi_dsi_phy_if_ctrl
 //! @brief Set the PHY_TXEXITULPSLAN field to a new value.
 #define BW_MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSLAN(v)   (HW_MIPI_DSI_PHY_IF_CTRL_WR((HW_MIPI_DSI_PHY_IF_CTRL_RD() & ~BM_MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSLAN) | BF_MIPI_DSI_PHY_IF_CTRL_PHY_TXEXITULPSLAN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_IF_CTRL, field PHY_TX_TRIGGERS[8:5] (RW)
@@ -5125,7 +4783,6 @@ typedef union _hw_mipi_dsi_phy_if_ctrl
  * Controls the trigger transmissions
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_IF_CTRL_PHY_TX_TRIGGERS      (5)      //!< Bit position for MIPI_DSI_PHY_IF_CTRL_PHY_TX_TRIGGERS.
 #define BM_MIPI_DSI_PHY_IF_CTRL_PHY_TX_TRIGGERS      (0x000001e0)  //!< Bit mask for MIPI_DSI_PHY_IF_CTRL_PHY_TX_TRIGGERS.
 
@@ -5139,7 +4796,6 @@ typedef union _hw_mipi_dsi_phy_if_ctrl
 //! @brief Set the PHY_TX_TRIGGERS field to a new value.
 #define BW_MIPI_DSI_PHY_IF_CTRL_PHY_TX_TRIGGERS(v)   (HW_MIPI_DSI_PHY_IF_CTRL_WR((HW_MIPI_DSI_PHY_IF_CTRL_RD() & ~BM_MIPI_DSI_PHY_IF_CTRL_PHY_TX_TRIGGERS) | BF_MIPI_DSI_PHY_IF_CTRL_PHY_TX_TRIGGERS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5202,7 +4858,6 @@ typedef union _hw_mipi_dsi_phy_status
  * Reports status of phylock D-PHY pin
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_STATUS_PHYLOCK      (0)      //!< Bit position for MIPI_DSI_PHY_STATUS_PHYLOCK.
 #define BM_MIPI_DSI_PHY_STATUS_PHYLOCK      (0x00000001)  //!< Bit mask for MIPI_DSI_PHY_STATUS_PHYLOCK.
 
@@ -5216,7 +4871,6 @@ typedef union _hw_mipi_dsi_phy_status
 //! @brief Set the PHYLOCK field to a new value.
 #define BW_MIPI_DSI_PHY_STATUS_PHYLOCK(v)   (HW_MIPI_DSI_PHY_STATUS_WR((HW_MIPI_DSI_PHY_STATUS_RD() & ~BM_MIPI_DSI_PHY_STATUS_PHYLOCK) | BF_MIPI_DSI_PHY_STATUS_PHYLOCK(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_STATUS, field PHYDIRECTION[1] (RW)
@@ -5224,7 +4878,6 @@ typedef union _hw_mipi_dsi_phy_status
  * Reports status of phydirection D-PHY pin
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_STATUS_PHYDIRECTION      (1)      //!< Bit position for MIPI_DSI_PHY_STATUS_PHYDIRECTION.
 #define BM_MIPI_DSI_PHY_STATUS_PHYDIRECTION      (0x00000002)  //!< Bit mask for MIPI_DSI_PHY_STATUS_PHYDIRECTION.
 
@@ -5238,7 +4891,6 @@ typedef union _hw_mipi_dsi_phy_status
 //! @brief Set the PHYDIRECTION field to a new value.
 #define BW_MIPI_DSI_PHY_STATUS_PHYDIRECTION(v)   (HW_MIPI_DSI_PHY_STATUS_WR((HW_MIPI_DSI_PHY_STATUS_RD() & ~BM_MIPI_DSI_PHY_STATUS_PHYDIRECTION) | BF_MIPI_DSI_PHY_STATUS_PHYDIRECTION(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_STATUS, field PHYSTOPSTATECLKLANE[2] (RW)
@@ -5246,7 +4898,6 @@ typedef union _hw_mipi_dsi_phy_status
  * Reports status of phystopstateclklane D-PHY pin
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_STATUS_PHYSTOPSTATECLKLANE      (2)      //!< Bit position for MIPI_DSI_PHY_STATUS_PHYSTOPSTATECLKLANE.
 #define BM_MIPI_DSI_PHY_STATUS_PHYSTOPSTATECLKLANE      (0x00000004)  //!< Bit mask for MIPI_DSI_PHY_STATUS_PHYSTOPSTATECLKLANE.
 
@@ -5260,7 +4911,6 @@ typedef union _hw_mipi_dsi_phy_status
 //! @brief Set the PHYSTOPSTATECLKLANE field to a new value.
 #define BW_MIPI_DSI_PHY_STATUS_PHYSTOPSTATECLKLANE(v)   (HW_MIPI_DSI_PHY_STATUS_WR((HW_MIPI_DSI_PHY_STATUS_RD() & ~BM_MIPI_DSI_PHY_STATUS_PHYSTOPSTATECLKLANE) | BF_MIPI_DSI_PHY_STATUS_PHYSTOPSTATECLKLANE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_STATUS, field PHYRXULPSCLKNOT[3] (RW)
@@ -5268,7 +4918,6 @@ typedef union _hw_mipi_dsi_phy_status
  * Reports status of phyrxulpsclknot D-PHY pin
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_STATUS_PHYRXULPSCLKNOT      (3)      //!< Bit position for MIPI_DSI_PHY_STATUS_PHYRXULPSCLKNOT.
 #define BM_MIPI_DSI_PHY_STATUS_PHYRXULPSCLKNOT      (0x00000008)  //!< Bit mask for MIPI_DSI_PHY_STATUS_PHYRXULPSCLKNOT.
 
@@ -5282,7 +4931,6 @@ typedef union _hw_mipi_dsi_phy_status
 //! @brief Set the PHYRXULPSCLKNOT field to a new value.
 #define BW_MIPI_DSI_PHY_STATUS_PHYRXULPSCLKNOT(v)   (HW_MIPI_DSI_PHY_STATUS_WR((HW_MIPI_DSI_PHY_STATUS_RD() & ~BM_MIPI_DSI_PHY_STATUS_PHYRXULPSCLKNOT) | BF_MIPI_DSI_PHY_STATUS_PHYRXULPSCLKNOT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_STATUS, field PHYSTOPSTATE0LANE[4] (RW)
@@ -5290,7 +4938,6 @@ typedef union _hw_mipi_dsi_phy_status
  * Reports status of phystopstate0lane D-PHY pin
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE0LANE      (4)      //!< Bit position for MIPI_DSI_PHY_STATUS_PHYSTOPSTATE0LANE.
 #define BM_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE0LANE      (0x00000010)  //!< Bit mask for MIPI_DSI_PHY_STATUS_PHYSTOPSTATE0LANE.
 
@@ -5304,7 +4951,6 @@ typedef union _hw_mipi_dsi_phy_status
 //! @brief Set the PHYSTOPSTATE0LANE field to a new value.
 #define BW_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE0LANE(v)   (HW_MIPI_DSI_PHY_STATUS_WR((HW_MIPI_DSI_PHY_STATUS_RD() & ~BM_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE0LANE) | BF_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE0LANE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_STATUS, field ULPSACTIVENOT0LANE[5] (RW)
@@ -5312,7 +4958,6 @@ typedef union _hw_mipi_dsi_phy_status
  * Reports status of ulpsactivenot0lane D-PHY pin
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT0LANE      (5)      //!< Bit position for MIPI_DSI_PHY_STATUS_ULPSACTIVENOT0LANE.
 #define BM_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT0LANE      (0x00000020)  //!< Bit mask for MIPI_DSI_PHY_STATUS_ULPSACTIVENOT0LANE.
 
@@ -5326,7 +4971,6 @@ typedef union _hw_mipi_dsi_phy_status
 //! @brief Set the ULPSACTIVENOT0LANE field to a new value.
 #define BW_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT0LANE(v)   (HW_MIPI_DSI_PHY_STATUS_WR((HW_MIPI_DSI_PHY_STATUS_RD() & ~BM_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT0LANE) | BF_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT0LANE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_STATUS, field RXULPSESC0LANE[6] (RW)
@@ -5334,7 +4978,6 @@ typedef union _hw_mipi_dsi_phy_status
  * Reports status of rxulpsEsc0lane D-PHY pin
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_STATUS_RXULPSESC0LANE      (6)      //!< Bit position for MIPI_DSI_PHY_STATUS_RXULPSESC0LANE.
 #define BM_MIPI_DSI_PHY_STATUS_RXULPSESC0LANE      (0x00000040)  //!< Bit mask for MIPI_DSI_PHY_STATUS_RXULPSESC0LANE.
 
@@ -5348,7 +4991,6 @@ typedef union _hw_mipi_dsi_phy_status
 //! @brief Set the RXULPSESC0LANE field to a new value.
 #define BW_MIPI_DSI_PHY_STATUS_RXULPSESC0LANE(v)   (HW_MIPI_DSI_PHY_STATUS_WR((HW_MIPI_DSI_PHY_STATUS_RD() & ~BM_MIPI_DSI_PHY_STATUS_RXULPSESC0LANE) | BF_MIPI_DSI_PHY_STATUS_RXULPSESC0LANE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_STATUS, field PHYSTOPSTATE1LANE[7] (RW)
@@ -5356,7 +4998,6 @@ typedef union _hw_mipi_dsi_phy_status
  * Reports status of phystopstate1lane D-PHY pin
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE1LANE      (7)      //!< Bit position for MIPI_DSI_PHY_STATUS_PHYSTOPSTATE1LANE.
 #define BM_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE1LANE      (0x00000080)  //!< Bit mask for MIPI_DSI_PHY_STATUS_PHYSTOPSTATE1LANE.
 
@@ -5370,7 +5011,6 @@ typedef union _hw_mipi_dsi_phy_status
 //! @brief Set the PHYSTOPSTATE1LANE field to a new value.
 #define BW_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE1LANE(v)   (HW_MIPI_DSI_PHY_STATUS_WR((HW_MIPI_DSI_PHY_STATUS_RD() & ~BM_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE1LANE) | BF_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE1LANE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_STATUS, field ULPSACTIVENOT1LANE[8] (RW)
@@ -5378,7 +5018,6 @@ typedef union _hw_mipi_dsi_phy_status
  * Reports status of ulpsactivenot1lane D-PHY pin
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT1LANE      (8)      //!< Bit position for MIPI_DSI_PHY_STATUS_ULPSACTIVENOT1LANE.
 #define BM_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT1LANE      (0x00000100)  //!< Bit mask for MIPI_DSI_PHY_STATUS_ULPSACTIVENOT1LANE.
 
@@ -5392,7 +5031,6 @@ typedef union _hw_mipi_dsi_phy_status
 //! @brief Set the ULPSACTIVENOT1LANE field to a new value.
 #define BW_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT1LANE(v)   (HW_MIPI_DSI_PHY_STATUS_WR((HW_MIPI_DSI_PHY_STATUS_RD() & ~BM_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT1LANE) | BF_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT1LANE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_STATUS, field PHYSTOPSTATE2LANE[9] (RW)
@@ -5400,7 +5038,6 @@ typedef union _hw_mipi_dsi_phy_status
  * Reports status of phystopstate2lane D-PHY pin
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE2LANE      (9)      //!< Bit position for MIPI_DSI_PHY_STATUS_PHYSTOPSTATE2LANE.
 #define BM_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE2LANE      (0x00000200)  //!< Bit mask for MIPI_DSI_PHY_STATUS_PHYSTOPSTATE2LANE.
 
@@ -5414,7 +5051,6 @@ typedef union _hw_mipi_dsi_phy_status
 //! @brief Set the PHYSTOPSTATE2LANE field to a new value.
 #define BW_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE2LANE(v)   (HW_MIPI_DSI_PHY_STATUS_WR((HW_MIPI_DSI_PHY_STATUS_RD() & ~BM_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE2LANE) | BF_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE2LANE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_STATUS, field ULPSACTIVENOT2LANE[10] (RW)
@@ -5422,7 +5058,6 @@ typedef union _hw_mipi_dsi_phy_status
  * Reports status of ulpsactivenot2lane D-PHY pin
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT2LANE      (10)      //!< Bit position for MIPI_DSI_PHY_STATUS_ULPSACTIVENOT2LANE.
 #define BM_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT2LANE      (0x00000400)  //!< Bit mask for MIPI_DSI_PHY_STATUS_ULPSACTIVENOT2LANE.
 
@@ -5436,7 +5071,6 @@ typedef union _hw_mipi_dsi_phy_status
 //! @brief Set the ULPSACTIVENOT2LANE field to a new value.
 #define BW_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT2LANE(v)   (HW_MIPI_DSI_PHY_STATUS_WR((HW_MIPI_DSI_PHY_STATUS_RD() & ~BM_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT2LANE) | BF_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT2LANE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_STATUS, field PHYSTOPSTATE3LANE[11] (RW)
@@ -5444,7 +5078,6 @@ typedef union _hw_mipi_dsi_phy_status
  * Reports status of phystopstate3lane D-PHY pin
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE3LANE      (11)      //!< Bit position for MIPI_DSI_PHY_STATUS_PHYSTOPSTATE3LANE.
 #define BM_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE3LANE      (0x00000800)  //!< Bit mask for MIPI_DSI_PHY_STATUS_PHYSTOPSTATE3LANE.
 
@@ -5458,7 +5091,6 @@ typedef union _hw_mipi_dsi_phy_status
 //! @brief Set the PHYSTOPSTATE3LANE field to a new value.
 #define BW_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE3LANE(v)   (HW_MIPI_DSI_PHY_STATUS_WR((HW_MIPI_DSI_PHY_STATUS_RD() & ~BM_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE3LANE) | BF_MIPI_DSI_PHY_STATUS_PHYSTOPSTATE3LANE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_STATUS, field ULPSACTIVENOT3LANE[12] (RW)
@@ -5466,7 +5098,6 @@ typedef union _hw_mipi_dsi_phy_status
  * Reports status of ulpsactivenot3lane D-PHY pin
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT3LANE      (12)      //!< Bit position for MIPI_DSI_PHY_STATUS_ULPSACTIVENOT3LANE.
 #define BM_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT3LANE      (0x00001000)  //!< Bit mask for MIPI_DSI_PHY_STATUS_ULPSACTIVENOT3LANE.
 
@@ -5480,7 +5111,6 @@ typedef union _hw_mipi_dsi_phy_status
 //! @brief Set the ULPSACTIVENOT3LANE field to a new value.
 #define BW_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT3LANE(v)   (HW_MIPI_DSI_PHY_STATUS_WR((HW_MIPI_DSI_PHY_STATUS_RD() & ~BM_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT3LANE) | BF_MIPI_DSI_PHY_STATUS_ULPSACTIVENOT3LANE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5533,7 +5163,6 @@ typedef union _hw_mipi_dsi_phy_tst_ctrl0
  * High)
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLR      (0)      //!< Bit position for MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLR.
 #define BM_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLR      (0x00000001)  //!< Bit mask for MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLR.
 
@@ -5547,7 +5176,6 @@ typedef union _hw_mipi_dsi_phy_tst_ctrl0
 //! @brief Set the PHY_TESTCLR field to a new value.
 #define BW_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLR(v)   (HW_MIPI_DSI_PHY_TST_CTRL0_WR((HW_MIPI_DSI_PHY_TST_CTRL0_RD() & ~BM_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLR) | BF_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_TST_CTRL0, field PHY_TESTCLK[1] (RW)
@@ -5556,7 +5184,6 @@ typedef union _hw_mipi_dsi_phy_tst_ctrl0
  * TESTEN signal controls the operation selection
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK      (1)      //!< Bit position for MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK.
 #define BM_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK      (0x00000002)  //!< Bit mask for MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK.
 
@@ -5570,7 +5197,6 @@ typedef union _hw_mipi_dsi_phy_tst_ctrl0
 //! @brief Set the PHY_TESTCLK field to a new value.
 #define BW_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK(v)   (HW_MIPI_DSI_PHY_TST_CTRL0_WR((HW_MIPI_DSI_PHY_TST_CTRL0_RD() & ~BM_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK) | BF_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5624,7 +5250,6 @@ typedef union _hw_mipi_dsi_phy_tst_ctrl1
  * functionalities access
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDIN      (0)      //!< Bit position for MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDIN.
 #define BM_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDIN      (0x000000ff)  //!< Bit mask for MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDIN.
 
@@ -5638,7 +5263,6 @@ typedef union _hw_mipi_dsi_phy_tst_ctrl1
 //! @brief Set the PHY_TESTDIN field to a new value.
 #define BW_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDIN(v)   (HW_MIPI_DSI_PHY_TST_CTRL1_WR((HW_MIPI_DSI_PHY_TST_CTRL1_RD() & ~BM_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDIN) | BF_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDIN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_TST_CTRL1, field PHY_TESTDOUT[15:8] (RW)
@@ -5646,7 +5270,6 @@ typedef union _hw_mipi_dsi_phy_tst_ctrl1
  * PHY output 8-bit data bus for read-back and internal probing functionalities
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDOUT      (8)      //!< Bit position for MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDOUT.
 #define BM_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDOUT      (0x0000ff00)  //!< Bit mask for MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDOUT.
 
@@ -5660,7 +5283,6 @@ typedef union _hw_mipi_dsi_phy_tst_ctrl1
 //! @brief Set the PHY_TESTDOUT field to a new value.
 #define BW_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDOUT(v)   (HW_MIPI_DSI_PHY_TST_CTRL1_WR((HW_MIPI_DSI_PHY_TST_CTRL1_RD() & ~BM_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDOUT) | BF_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTDOUT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_DSI_PHY_TST_CTRL1, field PHY_TESTEN[16] (RW)
@@ -5669,7 +5291,6 @@ typedef union _hw_mipi_dsi_phy_tst_ctrl1
  * edge of TESTCLK; when 0 configures a data write operation on the rising edge of TESTCLK
  */
 //@{
-
 #define BP_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTEN      (16)      //!< Bit position for MIPI_DSI_PHY_TST_CTRL1_PHY_TESTEN.
 #define BM_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTEN      (0x00010000)  //!< Bit mask for MIPI_DSI_PHY_TST_CTRL1_PHY_TESTEN.
 
@@ -5683,7 +5304,6 @@ typedef union _hw_mipi_dsi_phy_tst_ctrl1
 //! @brief Set the PHY_TESTEN field to a new value.
 #define BW_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTEN(v)   (HW_MIPI_DSI_PHY_TST_CTRL1_WR((HW_MIPI_DSI_PHY_TST_CTRL1_RD() & ~BM_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTEN) | BF_MIPI_DSI_PHY_TST_CTRL1_PHY_TESTEN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5733,3 +5353,5 @@ typedef struct _hw_mipi_dsi
 #endif
 
 #endif // __HW_MIPI_DSI_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

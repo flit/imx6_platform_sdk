@@ -138,7 +138,6 @@ typedef union _hw_fec_eir
  * the frame is discarded.
  */
 //@{
-
 #define BP_FEC_EIR_UN      (19)      //!< Bit position for FEC_EIR_UN.
 #define BM_FEC_EIR_UN      (0x00080000)  //!< Bit mask for FEC_EIR_UN.
 
@@ -152,7 +151,6 @@ typedef union _hw_fec_eir
 //! @brief Set the UN field to a new value.
 #define BW_FEC_EIR_UN(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_UN) | BF_FEC_EIR_UN(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIR, field RL[20] (RW)
@@ -162,7 +160,6 @@ typedef union _hw_fec_eir
  * of the next frame commences. Can only occur in half-duplex mode.
  */
 //@{
-
 #define BP_FEC_EIR_RL      (20)      //!< Bit position for FEC_EIR_RL.
 #define BM_FEC_EIR_RL      (0x00100000)  //!< Bit mask for FEC_EIR_RL.
 
@@ -176,7 +173,6 @@ typedef union _hw_fec_eir
 //! @brief Set the RL field to a new value.
 #define BW_FEC_EIR_RL(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_RL) | BF_FEC_EIR_RL(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIR, field LC[21] (RW)
@@ -186,7 +182,6 @@ typedef union _hw_fec_eir
  * is discarded.
  */
 //@{
-
 #define BP_FEC_EIR_LC      (21)      //!< Bit position for FEC_EIR_LC.
 #define BM_FEC_EIR_LC      (0x00200000)  //!< Bit mask for FEC_EIR_LC.
 
@@ -200,7 +195,6 @@ typedef union _hw_fec_eir
 //! @brief Set the LC field to a new value.
 #define BW_FEC_EIR_LC(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_LC) | BF_FEC_EIR_LC(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIR, field EBERR[22] (RW)
@@ -211,7 +205,6 @@ typedef union _hw_fec_eir
  * soft reset.
  */
 //@{
-
 #define BP_FEC_EIR_EBERR      (22)      //!< Bit position for FEC_EIR_EBERR.
 #define BM_FEC_EIR_EBERR      (0x00400000)  //!< Bit mask for FEC_EIR_EBERR.
 
@@ -225,7 +218,6 @@ typedef union _hw_fec_eir
 //! @brief Set the EBERR field to a new value.
 #define BW_FEC_EIR_EBERR(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_EBERR) | BF_FEC_EIR_EBERR(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIR, field MII[23] (RW)
@@ -233,7 +225,6 @@ typedef union _hw_fec_eir
  * MII interrupt. This bit indicates that the MII has completed the data transfer requested.
  */
 //@{
-
 #define BP_FEC_EIR_MII      (23)      //!< Bit position for FEC_EIR_MII.
 #define BM_FEC_EIR_MII      (0x00800000)  //!< Bit mask for FEC_EIR_MII.
 
@@ -247,7 +238,6 @@ typedef union _hw_fec_eir
 //! @brief Set the MII field to a new value.
 #define BW_FEC_EIR_MII(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_MII) | BF_FEC_EIR_MII(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIR, field RXB[24] (RW)
@@ -256,7 +246,6 @@ typedef union _hw_fec_eir
  * that was not the last in the frame.
  */
 //@{
-
 #define BP_FEC_EIR_RXB      (24)      //!< Bit position for FEC_EIR_RXB.
 #define BM_FEC_EIR_RXB      (0x01000000)  //!< Bit mask for FEC_EIR_RXB.
 
@@ -270,7 +259,6 @@ typedef union _hw_fec_eir
 //! @brief Set the RXB field to a new value.
 #define BW_FEC_EIR_RXB(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_RXB) | BF_FEC_EIR_RXB(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIR, field RXF[25] (RW)
@@ -279,7 +267,6 @@ typedef union _hw_fec_eir
  * corresponding buffer descriptor has been updated.
  */
 //@{
-
 #define BP_FEC_EIR_RXF      (25)      //!< Bit position for FEC_EIR_RXF.
 #define BM_FEC_EIR_RXF      (0x02000000)  //!< Bit mask for FEC_EIR_RXF.
 
@@ -293,7 +280,6 @@ typedef union _hw_fec_eir
 //! @brief Set the RXF field to a new value.
 #define BW_FEC_EIR_RXF(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_RXF) | BF_FEC_EIR_RXF(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIR, field TXB[26] (RW)
@@ -301,7 +287,6 @@ typedef union _hw_fec_eir
  * Transmit buffer interrupt. This bit indicates that a transmit buffer descriptor has been updated.
  */
 //@{
-
 #define BP_FEC_EIR_TXB      (26)      //!< Bit position for FEC_EIR_TXB.
 #define BM_FEC_EIR_TXB      (0x04000000)  //!< Bit mask for FEC_EIR_TXB.
 
@@ -315,7 +300,6 @@ typedef union _hw_fec_eir
 //! @brief Set the TXB field to a new value.
 #define BW_FEC_EIR_TXB(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_TXB) | BF_FEC_EIR_TXB(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIR, field TXF[27] (RW)
@@ -324,7 +308,6 @@ typedef union _hw_fec_eir
  * corresponding buffer descriptor has been updated.
  */
 //@{
-
 #define BP_FEC_EIR_TXF      (27)      //!< Bit position for FEC_EIR_TXF.
 #define BM_FEC_EIR_TXF      (0x08000000)  //!< Bit mask for FEC_EIR_TXF.
 
@@ -338,7 +321,6 @@ typedef union _hw_fec_eir
 //! @brief Set the TXF field to a new value.
 #define BW_FEC_EIR_TXF(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_TXF) | BF_FEC_EIR_TXF(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIR, field GRA[28] (RW)
@@ -352,7 +334,6 @@ typedef union _hw_fec_eir
  * the Functional Description chapter.
  */
 //@{
-
 #define BP_FEC_EIR_GRA      (28)      //!< Bit position for FEC_EIR_GRA.
 #define BM_FEC_EIR_GRA      (0x10000000)  //!< Bit mask for FEC_EIR_GRA.
 
@@ -366,7 +347,6 @@ typedef union _hw_fec_eir
 //! @brief Set the GRA field to a new value.
 #define BW_FEC_EIR_GRA(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_GRA) | BF_FEC_EIR_GRA(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIR, field BABT[29] (RW)
@@ -376,7 +356,6 @@ typedef union _hw_fec_eir
  * into the transmit data buffer(s). Truncation does not occur.
  */
 //@{
-
 #define BP_FEC_EIR_BABT      (29)      //!< Bit position for FEC_EIR_BABT.
 #define BM_FEC_EIR_BABT      (0x20000000)  //!< Bit mask for FEC_EIR_BABT.
 
@@ -390,7 +369,6 @@ typedef union _hw_fec_eir
 //! @brief Set the BABT field to a new value.
 #define BW_FEC_EIR_BABT(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_BABT) | BF_FEC_EIR_BABT(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIR, field BABR[30] (RW)
@@ -399,7 +377,6 @@ typedef union _hw_fec_eir
  * FEC_RCR[MAX_FL] bytes.
  */
 //@{
-
 #define BP_FEC_EIR_BABR      (30)      //!< Bit position for FEC_EIR_BABR.
 #define BM_FEC_EIR_BABR      (0x40000000)  //!< Bit mask for FEC_EIR_BABR.
 
@@ -413,7 +390,6 @@ typedef union _hw_fec_eir
 //! @brief Set the BABR field to a new value.
 #define BW_FEC_EIR_BABR(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_BABR) | BF_FEC_EIR_BABR(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIR, field HBERR[31] (RW)
@@ -422,7 +398,6 @@ typedef union _hw_fec_eir
  * COL input was not asserted within the Heartbeat window following a transmission.
  */
 //@{
-
 #define BP_FEC_EIR_HBERR      (31)      //!< Bit position for FEC_EIR_HBERR.
 #define BM_FEC_EIR_HBERR      (0x80000000)  //!< Bit mask for FEC_EIR_HBERR.
 
@@ -436,7 +411,6 @@ typedef union _hw_fec_eir
 //! @brief Set the HBERR field to a new value.
 #define BW_FEC_EIR_HBERR(v)   (HW_FEC_EIR_WR((HW_FEC_EIR_RD() & ~BM_FEC_EIR_HBERR) | BF_FEC_EIR_HBERR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -512,7 +486,6 @@ typedef union _hw_fec_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_FEC_EIMR_UN      (19)      //!< Bit position for FEC_EIMR_UN.
 #define BM_FEC_EIMR_UN      (0x00080000)  //!< Bit mask for FEC_EIMR_UN.
 
@@ -526,7 +499,6 @@ typedef union _hw_fec_eimr
 //! @brief Set the UN field to a new value.
 #define BW_FEC_EIMR_UN(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_UN) | BF_FEC_EIMR_UN(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIMR, field RL[20] (RW)
@@ -542,7 +514,6 @@ typedef union _hw_fec_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_FEC_EIMR_RL      (20)      //!< Bit position for FEC_EIMR_RL.
 #define BM_FEC_EIMR_RL      (0x00100000)  //!< Bit mask for FEC_EIMR_RL.
 
@@ -556,7 +527,6 @@ typedef union _hw_fec_eimr
 //! @brief Set the RL field to a new value.
 #define BW_FEC_EIMR_RL(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_RL) | BF_FEC_EIMR_RL(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIMR, field LC[21] (RW)
@@ -572,7 +542,6 @@ typedef union _hw_fec_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_FEC_EIMR_LC      (21)      //!< Bit position for FEC_EIMR_LC.
 #define BM_FEC_EIMR_LC      (0x00200000)  //!< Bit mask for FEC_EIMR_LC.
 
@@ -586,7 +555,6 @@ typedef union _hw_fec_eimr
 //! @brief Set the LC field to a new value.
 #define BW_FEC_EIMR_LC(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_LC) | BF_FEC_EIMR_LC(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIMR, field EBERR[22] (RW)
@@ -602,7 +570,6 @@ typedef union _hw_fec_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_FEC_EIMR_EBERR      (22)      //!< Bit position for FEC_EIMR_EBERR.
 #define BM_FEC_EIMR_EBERR      (0x00400000)  //!< Bit mask for FEC_EIMR_EBERR.
 
@@ -616,7 +583,6 @@ typedef union _hw_fec_eimr
 //! @brief Set the EBERR field to a new value.
 #define BW_FEC_EIMR_EBERR(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_EBERR) | BF_FEC_EIMR_EBERR(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIMR, field MII[23] (RW)
@@ -632,7 +598,6 @@ typedef union _hw_fec_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_FEC_EIMR_MII      (23)      //!< Bit position for FEC_EIMR_MII.
 #define BM_FEC_EIMR_MII      (0x00800000)  //!< Bit mask for FEC_EIMR_MII.
 
@@ -646,7 +611,6 @@ typedef union _hw_fec_eimr
 //! @brief Set the MII field to a new value.
 #define BW_FEC_EIMR_MII(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_MII) | BF_FEC_EIMR_MII(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIMR, field RXB[24] (RW)
@@ -662,7 +626,6 @@ typedef union _hw_fec_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_FEC_EIMR_RXB      (24)      //!< Bit position for FEC_EIMR_RXB.
 #define BM_FEC_EIMR_RXB      (0x01000000)  //!< Bit mask for FEC_EIMR_RXB.
 
@@ -676,7 +639,6 @@ typedef union _hw_fec_eimr
 //! @brief Set the RXB field to a new value.
 #define BW_FEC_EIMR_RXB(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_RXB) | BF_FEC_EIMR_RXB(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIMR, field RXF[25] (RW)
@@ -692,7 +654,6 @@ typedef union _hw_fec_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_FEC_EIMR_RXF      (25)      //!< Bit position for FEC_EIMR_RXF.
 #define BM_FEC_EIMR_RXF      (0x02000000)  //!< Bit mask for FEC_EIMR_RXF.
 
@@ -706,7 +667,6 @@ typedef union _hw_fec_eimr
 //! @brief Set the RXF field to a new value.
 #define BW_FEC_EIMR_RXF(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_RXF) | BF_FEC_EIMR_RXF(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIMR, field TXB[26] (RW)
@@ -722,7 +682,6 @@ typedef union _hw_fec_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_FEC_EIMR_TXB      (26)      //!< Bit position for FEC_EIMR_TXB.
 #define BM_FEC_EIMR_TXB      (0x04000000)  //!< Bit mask for FEC_EIMR_TXB.
 
@@ -736,7 +695,6 @@ typedef union _hw_fec_eimr
 //! @brief Set the TXB field to a new value.
 #define BW_FEC_EIMR_TXB(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_TXB) | BF_FEC_EIMR_TXB(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIMR, field TXF[27] (RW)
@@ -752,7 +710,6 @@ typedef union _hw_fec_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_FEC_EIMR_TXF      (27)      //!< Bit position for FEC_EIMR_TXF.
 #define BM_FEC_EIMR_TXF      (0x08000000)  //!< Bit mask for FEC_EIMR_TXF.
 
@@ -766,7 +723,6 @@ typedef union _hw_fec_eimr
 //! @brief Set the TXF field to a new value.
 #define BW_FEC_EIMR_TXF(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_TXF) | BF_FEC_EIMR_TXF(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIMR, field GRA[28] (RW)
@@ -782,7 +738,6 @@ typedef union _hw_fec_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_FEC_EIMR_GRA      (28)      //!< Bit position for FEC_EIMR_GRA.
 #define BM_FEC_EIMR_GRA      (0x10000000)  //!< Bit mask for FEC_EIMR_GRA.
 
@@ -796,7 +751,6 @@ typedef union _hw_fec_eimr
 //! @brief Set the GRA field to a new value.
 #define BW_FEC_EIMR_GRA(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_GRA) | BF_FEC_EIMR_GRA(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIMR, field BABT[29] (RW)
@@ -812,7 +766,6 @@ typedef union _hw_fec_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_FEC_EIMR_BABT      (29)      //!< Bit position for FEC_EIMR_BABT.
 #define BM_FEC_EIMR_BABT      (0x20000000)  //!< Bit mask for FEC_EIMR_BABT.
 
@@ -826,7 +779,6 @@ typedef union _hw_fec_eimr
 //! @brief Set the BABT field to a new value.
 #define BW_FEC_EIMR_BABT(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_BABT) | BF_FEC_EIMR_BABT(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIMR, field BABR[30] (RW)
@@ -842,7 +794,6 @@ typedef union _hw_fec_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_FEC_EIMR_BABR      (30)      //!< Bit position for FEC_EIMR_BABR.
 #define BM_FEC_EIMR_BABR      (0x40000000)  //!< Bit mask for FEC_EIMR_BABR.
 
@@ -856,7 +807,6 @@ typedef union _hw_fec_eimr
 //! @brief Set the BABR field to a new value.
 #define BW_FEC_EIMR_BABR(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_BABR) | BF_FEC_EIMR_BABR(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_EIMR, field HBERR[31] (RW)
@@ -872,7 +822,6 @@ typedef union _hw_fec_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_FEC_EIMR_HBERR      (31)      //!< Bit position for FEC_EIMR_HBERR.
 #define BM_FEC_EIMR_HBERR      (0x80000000)  //!< Bit mask for FEC_EIMR_HBERR.
 
@@ -886,7 +835,6 @@ typedef union _hw_fec_eimr
 //! @brief Set the HBERR field to a new value.
 #define BW_FEC_EIMR_HBERR(v)   (HW_FEC_EIMR_WR((HW_FEC_EIMR_RD() & ~BM_FEC_EIMR_HBERR) | BF_FEC_EIMR_HBERR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -948,7 +896,6 @@ typedef union _hw_fec_rdar
  * FEC_ECR[ETHER_EN] is cleared.
  */
 //@{
-
 #define BP_FEC_RDAR_R_DES_ACTIVE      (24)      //!< Bit position for FEC_RDAR_R_DES_ACTIVE.
 #define BM_FEC_RDAR_R_DES_ACTIVE      (0x01000000)  //!< Bit mask for FEC_RDAR_R_DES_ACTIVE.
 
@@ -962,7 +909,6 @@ typedef union _hw_fec_rdar
 //! @brief Set the R_DES_ACTIVE field to a new value.
 #define BW_FEC_RDAR_R_DES_ACTIVE(v)   (HW_FEC_RDAR_WR((HW_FEC_RDAR_RD() & ~BM_FEC_RDAR_R_DES_ACTIVE) | BF_FEC_RDAR_R_DES_ACTIVE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1024,7 +970,6 @@ typedef union _hw_fec_tdar
  * FEC_ECR[ETHER_EN] is cleared.
  */
 //@{
-
 #define BP_FEC_TDAR_X_DES_ACTIVE      (24)      //!< Bit position for FEC_TDAR_X_DES_ACTIVE.
 #define BM_FEC_TDAR_X_DES_ACTIVE      (0x01000000)  //!< Bit mask for FEC_TDAR_X_DES_ACTIVE.
 
@@ -1038,7 +983,6 @@ typedef union _hw_fec_tdar
 //! @brief Set the X_DES_ACTIVE field to a new value.
 #define BW_FEC_TDAR_X_DES_ACTIVE(v)   (HW_FEC_TDAR_WR((HW_FEC_TDAR_RD() & ~BM_FEC_TDAR_X_DES_ACTIVE) | BF_FEC_TDAR_X_DES_ACTIVE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1095,7 +1039,6 @@ typedef union _hw_fec_ecr
  * clock cycles after RESET is written with a 1.
  */
 //@{
-
 #define BP_FEC_ECR_RESET      (0)      //!< Bit position for FEC_ECR_RESET.
 #define BM_FEC_ECR_RESET      (0x00000001)  //!< Bit mask for FEC_ECR_RESET.
 
@@ -1109,7 +1052,6 @@ typedef union _hw_fec_ecr
 //! @brief Set the RESET field to a new value.
 #define BW_FEC_ECR_RESET(v)   (HW_FEC_ECR_WR((HW_FEC_ECR_RD() & ~BM_FEC_ECR_RESET) | BF_FEC_ECR_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_ECR, field ETHER_EN[1] (RW)
@@ -1124,7 +1066,6 @@ typedef union _hw_fec_ecr
  * set, in which case ETHER_EN is cleared
  */
 //@{
-
 #define BP_FEC_ECR_ETHER_EN      (1)      //!< Bit position for FEC_ECR_ETHER_EN.
 #define BM_FEC_ECR_ETHER_EN      (0x00000002)  //!< Bit mask for FEC_ECR_ETHER_EN.
 
@@ -1138,7 +1079,6 @@ typedef union _hw_fec_ecr
 //! @brief Set the ETHER_EN field to a new value.
 #define BW_FEC_ECR_ETHER_EN(v)   (HW_FEC_ECR_WR((HW_FEC_ECR_RD() & ~BM_FEC_ECR_ETHER_EN) | BF_FEC_ECR_ETHER_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1219,7 +1159,6 @@ typedef union _hw_fec_mmfr
  * Management frame data. This is the field for data to be written to or read from the PHY register.
  */
 //@{
-
 #define BP_FEC_MMFR_DATA      (0)      //!< Bit position for FEC_MMFR_DATA.
 #define BM_FEC_MMFR_DATA      (0x0000ffff)  //!< Bit mask for FEC_MMFR_DATA.
 
@@ -1233,7 +1172,6 @@ typedef union _hw_fec_mmfr
 //! @brief Set the DATA field to a new value.
 #define BW_FEC_MMFR_DATA(v)   (HW_FEC_MMFR_WR((HW_FEC_MMFR_RD() & ~BM_FEC_MMFR_DATA) | BF_FEC_MMFR_DATA(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_MMFR, field TA[17:16] (RW)
@@ -1241,7 +1179,6 @@ typedef union _hw_fec_mmfr
  * Turn around. This field must be programmed to 10 to generate a valid MII management frame.
  */
 //@{
-
 #define BP_FEC_MMFR_TA      (16)      //!< Bit position for FEC_MMFR_TA.
 #define BM_FEC_MMFR_TA      (0x00030000)  //!< Bit mask for FEC_MMFR_TA.
 
@@ -1255,7 +1192,6 @@ typedef union _hw_fec_mmfr
 //! @brief Set the TA field to a new value.
 #define BW_FEC_MMFR_TA(v)   (HW_FEC_MMFR_WR((HW_FEC_MMFR_RD() & ~BM_FEC_MMFR_TA) | BF_FEC_MMFR_TA(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_MMFR, field RA[22:18] (RW)
@@ -1263,7 +1199,6 @@ typedef union _hw_fec_mmfr
  * Register address. This field specifies one of up to 32 registers within the specified PHY device.
  */
 //@{
-
 #define BP_FEC_MMFR_RA      (18)      //!< Bit position for FEC_MMFR_RA.
 #define BM_FEC_MMFR_RA      (0x007c0000)  //!< Bit mask for FEC_MMFR_RA.
 
@@ -1277,7 +1212,6 @@ typedef union _hw_fec_mmfr
 //! @brief Set the RA field to a new value.
 #define BW_FEC_MMFR_RA(v)   (HW_FEC_MMFR_WR((HW_FEC_MMFR_RD() & ~BM_FEC_MMFR_RA) | BF_FEC_MMFR_RA(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_MMFR, field PA[27:23] (RW)
@@ -1285,7 +1219,6 @@ typedef union _hw_fec_mmfr
  * PHY address. This field specifies one of up to 32 attached PHY devices.
  */
 //@{
-
 #define BP_FEC_MMFR_PA      (23)      //!< Bit position for FEC_MMFR_PA.
 #define BM_FEC_MMFR_PA      (0x0f800000)  //!< Bit mask for FEC_MMFR_PA.
 
@@ -1299,7 +1232,6 @@ typedef union _hw_fec_mmfr
 //! @brief Set the PA field to a new value.
 #define BW_FEC_MMFR_PA(v)   (HW_FEC_MMFR_WR((HW_FEC_MMFR_RD() & ~BM_FEC_MMFR_PA) | BF_FEC_MMFR_PA(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_MMFR, field OP[29:28] (RW)
@@ -1309,7 +1241,6 @@ typedef union _hw_fec_mmfr
  * "write" frame operation, but these frames is not MII compliant.
  */
 //@{
-
 #define BP_FEC_MMFR_OP      (28)      //!< Bit position for FEC_MMFR_OP.
 #define BM_FEC_MMFR_OP      (0x30000000)  //!< Bit mask for FEC_MMFR_OP.
 
@@ -1323,7 +1254,6 @@ typedef union _hw_fec_mmfr
 //! @brief Set the OP field to a new value.
 #define BW_FEC_MMFR_OP(v)   (HW_FEC_MMFR_WR((HW_FEC_MMFR_RD() & ~BM_FEC_MMFR_OP) | BF_FEC_MMFR_OP(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_MMFR, field ST[31:30] (RW)
@@ -1331,7 +1261,6 @@ typedef union _hw_fec_mmfr
  * Start of frame delimiter. These bits must be programmed to 01 for a valid MII management frame.
  */
 //@{
-
 #define BP_FEC_MMFR_ST      (30)      //!< Bit position for FEC_MMFR_ST.
 #define BM_FEC_MMFR_ST      (0xc0000000)  //!< Bit mask for FEC_MMFR_ST.
 
@@ -1345,7 +1274,6 @@ typedef union _hw_fec_mmfr
 //! @brief Set the ST field to a new value.
 #define BW_FEC_MMFR_ST(v)   (HW_FEC_MMFR_WR((HW_FEC_MMFR_RD() & ~BM_FEC_MMFR_ST) | BF_FEC_MMFR_ST(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1414,7 +1342,6 @@ typedef union _hw_fec_mscr
  * frequency.
  */
 //@{
-
 #define BP_FEC_MSCR_MII_SPEED      (1)      //!< Bit position for FEC_MSCR_MII_SPEED.
 #define BM_FEC_MSCR_MII_SPEED      (0x0000007e)  //!< Bit mask for FEC_MSCR_MII_SPEED.
 
@@ -1428,7 +1355,6 @@ typedef union _hw_fec_mscr
 //! @brief Set the MII_SPEED field to a new value.
 #define BW_FEC_MSCR_MII_SPEED(v)   (HW_FEC_MSCR_WR((HW_FEC_MSCR_RD() & ~BM_FEC_MSCR_MII_SPEED) | BF_FEC_MSCR_MII_SPEED(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_MSCR, field DIS_PREAMBLE[7] (RW)
@@ -1438,7 +1364,6 @@ typedef union _hw_fec_mscr
  * it.
  */
 //@{
-
 #define BP_FEC_MSCR_DIS_PREAMBLE      (7)      //!< Bit position for FEC_MSCR_DIS_PREAMBLE.
 #define BM_FEC_MSCR_DIS_PREAMBLE      (0x00000080)  //!< Bit mask for FEC_MSCR_DIS_PREAMBLE.
 
@@ -1452,7 +1377,6 @@ typedef union _hw_fec_mscr
 //! @brief Set the DIS_PREAMBLE field to a new value.
 #define BW_FEC_MSCR_DIS_PREAMBLE(v)   (HW_FEC_MSCR_WR((HW_FEC_MSCR_RD() & ~BM_FEC_MSCR_DIS_PREAMBLE) | BF_FEC_MSCR_DIS_PREAMBLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1509,13 +1433,11 @@ typedef union _hw_fec_mibc
  * A read-only status bit. If set, the MIB block is not currently updating any MIB counters.
  */
 //@{
-
 #define BP_FEC_MIBC_MB_IDLE      (30)      //!< Bit position for FEC_MIBC_MB_IDLE.
 #define BM_FEC_MIBC_MB_IDLE      (0x40000000)  //!< Bit mask for FEC_MIBC_MB_IDLE.
 
 //! @brief Get value of FEC_MIBC_MB_IDLE from a register value.
 #define BG_FEC_MIBC_MB_IDLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_MIBC_MB_IDLE) >> BP_FEC_MIBC_MB_IDLE)
-
 //@}
 
 /*! @name Register FEC_MIBC, field MIB_DISABLE[31] (RW)
@@ -1523,7 +1445,6 @@ typedef union _hw_fec_mibc
  * A read/write control bit. If set, the MIB logic halts and does not update any MIB counters.
  */
 //@{
-
 #define BP_FEC_MIBC_MIB_DISABLE      (31)      //!< Bit position for FEC_MIBC_MIB_DISABLE.
 #define BM_FEC_MIBC_MIB_DISABLE      (0x80000000)  //!< Bit mask for FEC_MIBC_MIB_DISABLE.
 
@@ -1537,7 +1458,6 @@ typedef union _hw_fec_mibc
 //! @brief Set the MIB_DISABLE field to a new value.
 #define BW_FEC_MIBC_MIB_DISABLE(v)   (HW_FEC_MIBC_WR((HW_FEC_MIBC_RD() & ~BM_FEC_MIBC_MIB_DISABLE) | BF_FEC_MIBC_MIB_DISABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1598,7 +1518,6 @@ typedef union _hw_fec_rcr
  * FEC_TX_CLK when LOOP is set to 1. DRT must be set to 0 when setting LOOP to 1.
  */
 //@{
-
 #define BP_FEC_RCR_LOOP      (0)      //!< Bit position for FEC_RCR_LOOP.
 #define BM_FEC_RCR_LOOP      (0x00000001)  //!< Bit mask for FEC_RCR_LOOP.
 
@@ -1612,7 +1531,6 @@ typedef union _hw_fec_rcr
 //! @brief Set the LOOP field to a new value.
 #define BW_FEC_RCR_LOOP(v)   (HW_FEC_RCR_WR((HW_FEC_RCR_RD() & ~BM_FEC_RCR_LOOP) | BF_FEC_RCR_LOOP(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_RCR, field DRT[1] (RW)
@@ -1625,7 +1543,6 @@ typedef union _hw_fec_rcr
  * - 1 - Disable reception of frames while transmitting (normally used for half-duplex mode).
  */
 //@{
-
 #define BP_FEC_RCR_DRT      (1)      //!< Bit position for FEC_RCR_DRT.
 #define BM_FEC_RCR_DRT      (0x00000002)  //!< Bit mask for FEC_RCR_DRT.
 
@@ -1639,7 +1556,6 @@ typedef union _hw_fec_rcr
 //! @brief Set the DRT field to a new value.
 #define BW_FEC_RCR_DRT(v)   (HW_FEC_RCR_WR((HW_FEC_RCR_RD() & ~BM_FEC_RCR_DRT) | BF_FEC_RCR_DRT(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_RCR, field MII_MODE[2] (RW)
@@ -1649,7 +1565,6 @@ typedef union _hw_fec_rcr
  * mode for both transmit and receive blocks.
  */
 //@{
-
 #define BP_FEC_RCR_MII_MODE      (2)      //!< Bit position for FEC_RCR_MII_MODE.
 #define BM_FEC_RCR_MII_MODE      (0x00000004)  //!< Bit mask for FEC_RCR_MII_MODE.
 
@@ -1663,7 +1578,6 @@ typedef union _hw_fec_rcr
 //! @brief Set the MII_MODE field to a new value.
 #define BW_FEC_RCR_MII_MODE(v)   (HW_FEC_RCR_WR((HW_FEC_RCR_RD() & ~BM_FEC_RCR_MII_MODE) | BF_FEC_RCR_MII_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_RCR, field PROM[3] (RW)
@@ -1671,7 +1585,6 @@ typedef union _hw_fec_rcr
  * Promiscuous mode. All frames are accepted regardless of address matching.
  */
 //@{
-
 #define BP_FEC_RCR_PROM      (3)      //!< Bit position for FEC_RCR_PROM.
 #define BM_FEC_RCR_PROM      (0x00000008)  //!< Bit mask for FEC_RCR_PROM.
 
@@ -1685,7 +1598,6 @@ typedef union _hw_fec_rcr
 //! @brief Set the PROM field to a new value.
 #define BW_FEC_RCR_PROM(v)   (HW_FEC_RCR_WR((HW_FEC_RCR_RD() & ~BM_FEC_RCR_PROM) | BF_FEC_RCR_PROM(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_RCR, field BC_REJ[4] (RW)
@@ -1696,7 +1608,6 @@ typedef union _hw_fec_rcr
  * descriptor.
  */
 //@{
-
 #define BP_FEC_RCR_BC_REJ      (4)      //!< Bit position for FEC_RCR_BC_REJ.
 #define BM_FEC_RCR_BC_REJ      (0x00000010)  //!< Bit mask for FEC_RCR_BC_REJ.
 
@@ -1710,7 +1621,6 @@ typedef union _hw_fec_rcr
 //! @brief Set the BC_REJ field to a new value.
 #define BW_FEC_RCR_BC_REJ(v)   (HW_FEC_RCR_WR((HW_FEC_RCR_RD() & ~BM_FEC_RCR_BC_REJ) | BF_FEC_RCR_BC_REJ(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_RCR, field FCE[5] (RW)
@@ -1719,7 +1629,6 @@ typedef union _hw_fec_rcr
  * detection, the transmitter stops transmitting data frames for a given duration.
  */
 //@{
-
 #define BP_FEC_RCR_FCE      (5)      //!< Bit position for FEC_RCR_FCE.
 #define BM_FEC_RCR_FCE      (0x00000020)  //!< Bit mask for FEC_RCR_FCE.
 
@@ -1733,7 +1642,6 @@ typedef union _hw_fec_rcr
 //! @brief Set the FCE field to a new value.
 #define BW_FEC_RCR_FCE(v)   (HW_FEC_RCR_WR((HW_FEC_RCR_RD() & ~BM_FEC_RCR_FCE) | BF_FEC_RCR_FCE(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_RCR, field MAX_FL[26:16] (RW)
@@ -1745,7 +1653,6 @@ typedef union _hw_fec_rcr
  * 1518 or 1522 (if VLAN Tags are supported).
  */
 //@{
-
 #define BP_FEC_RCR_MAX_FL      (16)      //!< Bit position for FEC_RCR_MAX_FL.
 #define BM_FEC_RCR_MAX_FL      (0x07ff0000)  //!< Bit mask for FEC_RCR_MAX_FL.
 
@@ -1759,7 +1666,6 @@ typedef union _hw_fec_rcr
 //! @brief Set the MAX_FL field to a new value.
 #define BW_FEC_RCR_MAX_FL(v)   (HW_FEC_RCR_WR((HW_FEC_RCR_RD() & ~BM_FEC_RCR_MAX_FL) | BF_FEC_RCR_MAX_FL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1828,7 +1734,6 @@ typedef union _hw_fec_tcr
  * - 1 - Graceful transmit stop is enabled.
  */
 //@{
-
 #define BP_FEC_TCR_GTS      (0)      //!< Bit position for FEC_TCR_GTS.
 #define BM_FEC_TCR_GTS      (0x00000001)  //!< Bit mask for FEC_TCR_GTS.
 
@@ -1842,7 +1747,6 @@ typedef union _hw_fec_tcr
 //! @brief Set the GTS field to a new value.
 #define BW_FEC_TCR_GTS(v)   (HW_FEC_TCR_WR((HW_FEC_TCR_RD() & ~BM_FEC_TCR_GTS) | BF_FEC_TCR_GTS(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_TCR, field HBC[1] (RW)
@@ -1856,7 +1760,6 @@ typedef union _hw_fec_tcr
  * - 1 - Heartbeat check is performed after end of transmission
  */
 //@{
-
 #define BP_FEC_TCR_HBC      (1)      //!< Bit position for FEC_TCR_HBC.
 #define BM_FEC_TCR_HBC      (0x00000002)  //!< Bit mask for FEC_TCR_HBC.
 
@@ -1870,7 +1773,6 @@ typedef union _hw_fec_tcr
 //! @brief Set the HBC field to a new value.
 #define BW_FEC_TCR_HBC(v)   (HW_FEC_TCR_WR((HW_FEC_TCR_RD() & ~BM_FEC_TCR_HBC) | BF_FEC_TCR_HBC(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_TCR, field FDEN[2] (RW)
@@ -1883,7 +1785,6 @@ typedef union _hw_fec_tcr
  * - 1 - Full duplex is enabled
  */
 //@{
-
 #define BP_FEC_TCR_FDEN      (2)      //!< Bit position for FEC_TCR_FDEN.
 #define BM_FEC_TCR_FDEN      (0x00000004)  //!< Bit mask for FEC_TCR_FDEN.
 
@@ -1897,7 +1798,6 @@ typedef union _hw_fec_tcr
 //! @brief Set the FDEN field to a new value.
 #define BW_FEC_TCR_FDEN(v)   (HW_FEC_TCR_WR((HW_FEC_TCR_RD() & ~BM_FEC_TCR_FDEN) | BF_FEC_TCR_FDEN(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_TCR, field TFC_PAUSE[3] (RW)
@@ -1914,7 +1814,6 @@ typedef union _hw_fec_tcr
  * - 1 - Pause frame is transmitted
  */
 //@{
-
 #define BP_FEC_TCR_TFC_PAUSE      (3)      //!< Bit position for FEC_TCR_TFC_PAUSE.
 #define BM_FEC_TCR_TFC_PAUSE      (0x00000008)  //!< Bit mask for FEC_TCR_TFC_PAUSE.
 
@@ -1928,7 +1827,6 @@ typedef union _hw_fec_tcr
 //! @brief Set the TFC_PAUSE field to a new value.
 #define BW_FEC_TCR_TFC_PAUSE(v)   (HW_FEC_TCR_WR((HW_FEC_TCR_RD() & ~BM_FEC_TCR_TFC_PAUSE) | BF_FEC_TCR_TFC_PAUSE(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_TCR, field RFC_PAUSE[4] (RO)
@@ -1942,13 +1840,11 @@ typedef union _hw_fec_tcr
  * - 1 - Transmitter is paused after reception of full-duplex flow control pause frame
  */
 //@{
-
 #define BP_FEC_TCR_RFC_PAUSE      (4)      //!< Bit position for FEC_TCR_RFC_PAUSE.
 #define BM_FEC_TCR_RFC_PAUSE      (0x00000010)  //!< Bit mask for FEC_TCR_RFC_PAUSE.
 
 //! @brief Get value of FEC_TCR_RFC_PAUSE from a register value.
 #define BG_FEC_TCR_RFC_PAUSE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_TCR_RFC_PAUSE) >> BP_FEC_TCR_RFC_PAUSE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2003,7 +1899,6 @@ typedef union _hw_fec_palr
  * address to be used for exact match, and the source address field in pause frames.
  */
 //@{
-
 #define BP_FEC_PALR_PADDR1      (0)      //!< Bit position for FEC_PALR_PADDR1.
 #define BM_FEC_PALR_PADDR1      (0xffffffff)  //!< Bit mask for FEC_PALR_PADDR1.
 
@@ -2017,7 +1912,6 @@ typedef union _hw_fec_palr
 //! @brief Set the PADDR1 field to a new value.
 #define BW_FEC_PALR_PADDR1(v)   (HW_FEC_PALR_WR((HW_FEC_PALR_RD() & ~BM_FEC_PALR_PADDR1) | BF_FEC_PALR_PADDR1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2073,13 +1967,11 @@ typedef union _hw_fec_paur
  * Type field in pause frames. This field has a constant value of 0x8808.
  */
 //@{
-
 #define BP_FEC_PAUR_TYPE      (0)      //!< Bit position for FEC_PAUR_TYPE.
 #define BM_FEC_PAUR_TYPE      (0x0000ffff)  //!< Bit mask for FEC_PAUR_TYPE.
 
 //! @brief Get value of FEC_PAUR_TYPE from a register value.
 #define BG_FEC_PAUR_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_PAUR_TYPE) >> BP_FEC_PAUR_TYPE)
-
 //@}
 
 /*! @name Register FEC_PAUR, field PADDR2[31:16] (RW)
@@ -2088,7 +1980,6 @@ typedef union _hw_fec_paur
  * match, and the source address field in pause frames.
  */
 //@{
-
 #define BP_FEC_PAUR_PADDR2      (16)      //!< Bit position for FEC_PAUR_PADDR2.
 #define BM_FEC_PAUR_PADDR2      (0xffff0000)  //!< Bit mask for FEC_PAUR_PADDR2.
 
@@ -2102,7 +1993,6 @@ typedef union _hw_fec_paur
 //! @brief Set the PADDR2 field to a new value.
 #define BW_FEC_PAUR_PADDR2(v)   (HW_FEC_PAUR_WR((HW_FEC_PAUR_RD() & ~BM_FEC_PAUR_PADDR2) | BF_FEC_PAUR_PADDR2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2156,7 +2046,6 @@ typedef union _hw_fec_opdr
  * Pause duration field used in pause frames.
  */
 //@{
-
 #define BP_FEC_OPDR_PAUSE_DUR      (0)      //!< Bit position for FEC_OPDR_PAUSE_DUR.
 #define BM_FEC_OPDR_PAUSE_DUR      (0x0000ffff)  //!< Bit mask for FEC_OPDR_PAUSE_DUR.
 
@@ -2170,7 +2059,6 @@ typedef union _hw_fec_opdr
 //! @brief Set the PAUSE_DUR field to a new value.
 #define BW_FEC_OPDR_PAUSE_DUR(v)   (HW_FEC_OPDR_WR((HW_FEC_OPDR_RD() & ~BM_FEC_OPDR_PAUSE_DUR) | BF_FEC_OPDR_PAUSE_DUR(v)))
 #endif
-
 //@}
 
 /*! @name Register FEC_OPDR, field OPCODE[31:16] (RO)
@@ -2178,13 +2066,11 @@ typedef union _hw_fec_opdr
  * Opcode field used in pause frames. These bits are a constant, 0x0001.
  */
 //@{
-
 #define BP_FEC_OPDR_OPCODE      (16)      //!< Bit position for FEC_OPDR_OPCODE.
 #define BM_FEC_OPDR_OPCODE      (0xffff0000)  //!< Bit mask for FEC_OPDR_OPCODE.
 
 //! @brief Get value of FEC_OPDR_OPCODE from a register value.
 #define BG_FEC_OPDR_OPCODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_OPDR_OPCODE) >> BP_FEC_OPDR_OPCODE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2239,7 +2125,6 @@ typedef union _hw_fec_iaur
  * contains hash index bit 32.
  */
 //@{
-
 #define BP_FEC_IAUR_IADDR1      (0)      //!< Bit position for FEC_IAUR_IADDR1.
 #define BM_FEC_IAUR_IADDR1      (0xffffffff)  //!< Bit mask for FEC_IAUR_IADDR1.
 
@@ -2253,7 +2138,6 @@ typedef union _hw_fec_iaur
 //! @brief Set the IADDR1 field to a new value.
 #define BW_FEC_IAUR_IADDR1(v)   (HW_FEC_IAUR_WR((HW_FEC_IAUR_RD() & ~BM_FEC_IAUR_IADDR1) | BF_FEC_IAUR_IADDR1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2308,7 +2192,6 @@ typedef union _hw_fec_ialr
  * contains hash index bit 0.
  */
 //@{
-
 #define BP_FEC_IALR_IADDR2      (0)      //!< Bit position for FEC_IALR_IADDR2.
 #define BM_FEC_IALR_IADDR2      (0xffffffff)  //!< Bit mask for FEC_IALR_IADDR2.
 
@@ -2322,7 +2205,6 @@ typedef union _hw_fec_ialr
 //! @brief Set the IADDR2 field to a new value.
 #define BW_FEC_IALR_IADDR2(v)   (HW_FEC_IALR_WR((HW_FEC_IALR_RD() & ~BM_FEC_IALR_IADDR2) | BF_FEC_IALR_IADDR2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2376,7 +2258,6 @@ typedef union _hw_fec_gaur
  * index bit 63. Bit 0 of GADDR1 contains hash index bit 32.
  */
 //@{
-
 #define BP_FEC_GAUR_GADDR1      (0)      //!< Bit position for FEC_GAUR_GADDR1.
 #define BM_FEC_GAUR_GADDR1      (0xffffffff)  //!< Bit mask for FEC_GAUR_GADDR1.
 
@@ -2390,7 +2271,6 @@ typedef union _hw_fec_gaur
 //! @brief Set the GADDR1 field to a new value.
 #define BW_FEC_GAUR_GADDR1(v)   (HW_FEC_GAUR_WR((HW_FEC_GAUR_RD() & ~BM_FEC_GAUR_GADDR1) | BF_FEC_GAUR_GADDR1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2444,7 +2324,6 @@ typedef union _hw_fec_galr
  * index bit 31. Bit 0 of GADDR2 contains hash index bit 0.
  */
 //@{
-
 #define BP_FEC_GALR_GADDR2      (0)      //!< Bit position for FEC_GALR_GADDR2.
 #define BM_FEC_GALR_GADDR2      (0xffffffff)  //!< Bit mask for FEC_GALR_GADDR2.
 
@@ -2458,7 +2337,6 @@ typedef union _hw_fec_galr
 //! @brief Set the GADDR2 field to a new value.
 #define BW_FEC_GALR_GADDR2(v)   (HW_FEC_GALR_WR((HW_FEC_GALR_RD() & ~BM_FEC_GALR_GADDR2) | BF_FEC_GALR_GADDR2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2520,7 +2398,6 @@ typedef union _hw_fec_tfwr
  * - 11 - 192 bytes written
  */
 //@{
-
 #define BP_FEC_TFWR_X_WMRK      (0)      //!< Bit position for FEC_TFWR_X_WMRK.
 #define BM_FEC_TFWR_X_WMRK      (0x00000003)  //!< Bit mask for FEC_TFWR_X_WMRK.
 
@@ -2534,7 +2411,6 @@ typedef union _hw_fec_tfwr
 //! @brief Set the X_WMRK field to a new value.
 #define BW_FEC_TFWR_X_WMRK(v)   (HW_FEC_TFWR_WR((HW_FEC_TFWR_RD() & ~BM_FEC_TFWR_X_WMRK) | BF_FEC_TFWR_X_WMRK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2584,13 +2460,11 @@ typedef union _hw_fec_frbr
  * Read-only. Highest valid FIFO RAM address.
  */
 //@{
-
 #define BP_FEC_FRBR_R_BOUND      (2)      //!< Bit position for FEC_FRBR_R_BOUND.
 #define BM_FEC_FRBR_R_BOUND      (0x000003fc)  //!< Bit mask for FEC_FRBR_R_BOUND.
 
 //! @brief Get value of FEC_FRBR_R_BOUND from a register value.
 #define BG_FEC_FRBR_R_BOUND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FEC_FRBR_R_BOUND) >> BP_FEC_FRBR_R_BOUND)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2647,7 +2521,6 @@ typedef union _hw_fec_frsr
  * Address of first receive FIFO location. Acts as delimiter between receive and transmit FIFOs.
  */
 //@{
-
 #define BP_FEC_FRSR_R_FSTART      (2)      //!< Bit position for FEC_FRSR_R_FSTART.
 #define BM_FEC_FRSR_R_FSTART      (0x000003fc)  //!< Bit mask for FEC_FRSR_R_FSTART.
 
@@ -2661,7 +2534,6 @@ typedef union _hw_fec_frsr
 //! @brief Set the R_FSTART field to a new value.
 #define BW_FEC_FRSR_R_FSTART(v)   (HW_FEC_FRSR_WR((HW_FEC_FRSR_RD() & ~BM_FEC_FRSR_R_FSTART) | BF_FEC_FRSR_R_FSTART(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2715,7 +2587,6 @@ typedef union _hw_fec_erdsr
  * Pointer to start of receive buffer descriptor queue.
  */
 //@{
-
 #define BP_FEC_ERDSR_R_DES_START      (2)      //!< Bit position for FEC_ERDSR_R_DES_START.
 #define BM_FEC_ERDSR_R_DES_START      (0xfffffffc)  //!< Bit mask for FEC_ERDSR_R_DES_START.
 
@@ -2729,7 +2600,6 @@ typedef union _hw_fec_erdsr
 //! @brief Set the R_DES_START field to a new value.
 #define BW_FEC_ERDSR_R_DES_START(v)   (HW_FEC_ERDSR_WR((HW_FEC_ERDSR_RD() & ~BM_FEC_ERDSR_R_DES_START) | BF_FEC_ERDSR_R_DES_START(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2783,7 +2653,6 @@ typedef union _hw_fec_etdsr
  * Pointer to start of transmit buffer descriptor queue.
  */
 //@{
-
 #define BP_FEC_ETDSR_X_DES_START      (2)      //!< Bit position for FEC_ETDSR_X_DES_START.
 #define BM_FEC_ETDSR_X_DES_START      (0xfffffffc)  //!< Bit mask for FEC_ETDSR_X_DES_START.
 
@@ -2797,7 +2666,6 @@ typedef union _hw_fec_etdsr
 //! @brief Set the X_DES_START field to a new value.
 #define BW_FEC_ETDSR_X_DES_START(v)   (HW_FEC_ETDSR_WR((HW_FEC_ETDSR_RD() & ~BM_FEC_ETDSR_X_DES_START) | BF_FEC_ETDSR_X_DES_START(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2856,7 +2724,6 @@ typedef union _hw_fec_emrbr
  * Receive buffer size.
  */
 //@{
-
 #define BP_FEC_EMRBR_R_BUF_SIZE      (4)      //!< Bit position for FEC_EMRBR_R_BUF_SIZE.
 #define BM_FEC_EMRBR_R_BUF_SIZE      (0x000007f0)  //!< Bit mask for FEC_EMRBR_R_BUF_SIZE.
 
@@ -2870,7 +2737,6 @@ typedef union _hw_fec_emrbr
 //! @brief Set the R_BUF_SIZE field to a new value.
 #define BW_FEC_EMRBR_R_BUF_SIZE(v)   (HW_FEC_EMRBR_WR((HW_FEC_EMRBR_RD() & ~BM_FEC_EMRBR_R_BUF_SIZE) | BF_FEC_EMRBR_R_BUF_SIZE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2928,3 +2794,5 @@ typedef struct _hw_fec
 #endif
 
 #endif // __HW_FEC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

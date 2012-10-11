@@ -146,7 +146,6 @@ typedef union _hw_snvs_hplr
  * - 1 - Write access is not allowed
  */
 //@{
-
 #define BP_SNVS_HPLR_ZMK_WSL      (0)      //!< Bit position for SNVS_HPLR_ZMK_WSL.
 #define BM_SNVS_HPLR_ZMK_WSL      (0x00000001)  //!< Bit mask for SNVS_HPLR_ZMK_WSL.
 
@@ -160,7 +159,6 @@ typedef union _hw_snvs_hplr
 //! @brief Set the ZMK_WSL field to a new value.
 #define BW_SNVS_HPLR_ZMK_WSL(v)   (HW_SNVS_HPLR_WR((HW_SNVS_HPLR_RD() & ~BM_SNVS_HPLR_ZMK_WSL) | BF_SNVS_HPLR_ZMK_WSL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPLR, field ZMK_RSL[1] (RW)
@@ -175,7 +173,6 @@ typedef union _hw_snvs_hplr
  * - 1 - Read access is not allowed
  */
 //@{
-
 #define BP_SNVS_HPLR_ZMK_RSL      (1)      //!< Bit position for SNVS_HPLR_ZMK_RSL.
 #define BM_SNVS_HPLR_ZMK_RSL      (0x00000002)  //!< Bit mask for SNVS_HPLR_ZMK_RSL.
 
@@ -189,7 +186,6 @@ typedef union _hw_snvs_hplr
 //! @brief Set the ZMK_RSL field to a new value.
 #define BW_SNVS_HPLR_ZMK_RSL(v)   (HW_SNVS_HPLR_WR((HW_SNVS_HPLR_RD() & ~BM_SNVS_HPLR_ZMK_RSL) | BF_SNVS_HPLR_ZMK_RSL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPLR, field SRTC_SL[2] (RW)
@@ -202,7 +198,6 @@ typedef union _hw_snvs_hplr
  * - 1 - Write access is not allowed
  */
 //@{
-
 #define BP_SNVS_HPLR_SRTC_SL      (2)      //!< Bit position for SNVS_HPLR_SRTC_SL.
 #define BM_SNVS_HPLR_SRTC_SL      (0x00000004)  //!< Bit mask for SNVS_HPLR_SRTC_SL.
 
@@ -216,7 +211,6 @@ typedef union _hw_snvs_hplr
 //! @brief Set the SRTC_SL field to a new value.
 #define BW_SNVS_HPLR_SRTC_SL(v)   (HW_SNVS_HPLR_WR((HW_SNVS_HPLR_RD() & ~BM_SNVS_HPLR_SRTC_SL) | BF_SNVS_HPLR_SRTC_SL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPLR, field LPCALB_SL[3] (RW)
@@ -229,7 +223,6 @@ typedef union _hw_snvs_hplr
  * - 1 - Write access is not allowed
  */
 //@{
-
 #define BP_SNVS_HPLR_LPCALB_SL      (3)      //!< Bit position for SNVS_HPLR_LPCALB_SL.
 #define BM_SNVS_HPLR_LPCALB_SL      (0x00000008)  //!< Bit mask for SNVS_HPLR_LPCALB_SL.
 
@@ -243,7 +236,6 @@ typedef union _hw_snvs_hplr
 //! @brief Set the LPCALB_SL field to a new value.
 #define BW_SNVS_HPLR_LPCALB_SL(v)   (HW_SNVS_HPLR_WR((HW_SNVS_HPLR_RD() & ~BM_SNVS_HPLR_LPCALB_SL) | BF_SNVS_HPLR_LPCALB_SL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPLR, field MC_SL[4] (RW)
@@ -256,7 +248,6 @@ typedef union _hw_snvs_hplr
  * - 1 - Write access (increment) is not allowed
  */
 //@{
-
 #define BP_SNVS_HPLR_MC_SL      (4)      //!< Bit position for SNVS_HPLR_MC_SL.
 #define BM_SNVS_HPLR_MC_SL      (0x00000010)  //!< Bit mask for SNVS_HPLR_MC_SL.
 
@@ -270,7 +261,6 @@ typedef union _hw_snvs_hplr
 //! @brief Set the MC_SL field to a new value.
 #define BW_SNVS_HPLR_MC_SL(v)   (HW_SNVS_HPLR_WR((HW_SNVS_HPLR_RD() & ~BM_SNVS_HPLR_MC_SL) | BF_SNVS_HPLR_MC_SL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPLR, field GPR_SL[5] (RW)
@@ -283,7 +273,6 @@ typedef union _hw_snvs_hplr
  * - 1 - Write access is not allowed
  */
 //@{
-
 #define BP_SNVS_HPLR_GPR_SL      (5)      //!< Bit position for SNVS_HPLR_GPR_SL.
 #define BM_SNVS_HPLR_GPR_SL      (0x00000020)  //!< Bit mask for SNVS_HPLR_GPR_SL.
 
@@ -297,7 +286,6 @@ typedef union _hw_snvs_hplr
 //! @brief Set the GPR_SL field to a new value.
 #define BW_SNVS_HPLR_GPR_SL(v)   (HW_SNVS_HPLR_WR((HW_SNVS_HPLR_RD() & ~BM_SNVS_HPLR_GPR_SL) | BF_SNVS_HPLR_GPR_SL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPLR, field LPSVCR_SL[6] (RW)
@@ -310,7 +298,6 @@ typedef union _hw_snvs_hplr
  * - 1 - Write access is not allowed
  */
 //@{
-
 #define BP_SNVS_HPLR_LPSVCR_SL      (6)      //!< Bit position for SNVS_HPLR_LPSVCR_SL.
 #define BM_SNVS_HPLR_LPSVCR_SL      (0x00000040)  //!< Bit mask for SNVS_HPLR_LPSVCR_SL.
 
@@ -324,7 +311,6 @@ typedef union _hw_snvs_hplr
 //! @brief Set the LPSVCR_SL field to a new value.
 #define BW_SNVS_HPLR_LPSVCR_SL(v)   (HW_SNVS_HPLR_WR((HW_SNVS_HPLR_RD() & ~BM_SNVS_HPLR_LPSVCR_SL) | BF_SNVS_HPLR_LPSVCR_SL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPLR, field LPTGFCR_SL[7] (RW)
@@ -337,7 +323,6 @@ typedef union _hw_snvs_hplr
  * - 1 - Write access is not allowed
  */
 //@{
-
 #define BP_SNVS_HPLR_LPTGFCR_SL      (7)      //!< Bit position for SNVS_HPLR_LPTGFCR_SL.
 #define BM_SNVS_HPLR_LPTGFCR_SL      (0x00000080)  //!< Bit mask for SNVS_HPLR_LPTGFCR_SL.
 
@@ -351,7 +336,6 @@ typedef union _hw_snvs_hplr
 //! @brief Set the LPTGFCR_SL field to a new value.
 #define BW_SNVS_HPLR_LPTGFCR_SL(v)   (HW_SNVS_HPLR_WR((HW_SNVS_HPLR_RD() & ~BM_SNVS_HPLR_LPTGFCR_SL) | BF_SNVS_HPLR_LPTGFCR_SL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPLR, field LPTDCR_SL[8] (RW)
@@ -364,7 +348,6 @@ typedef union _hw_snvs_hplr
  * - 1 - Write access is not allowed
  */
 //@{
-
 #define BP_SNVS_HPLR_LPTDCR_SL      (8)      //!< Bit position for SNVS_HPLR_LPTDCR_SL.
 #define BM_SNVS_HPLR_LPTDCR_SL      (0x00000100)  //!< Bit mask for SNVS_HPLR_LPTDCR_SL.
 
@@ -378,7 +361,6 @@ typedef union _hw_snvs_hplr
 //! @brief Set the LPTDCR_SL field to a new value.
 #define BW_SNVS_HPLR_LPTDCR_SL(v)   (HW_SNVS_HPLR_WR((HW_SNVS_HPLR_RD() & ~BM_SNVS_HPLR_LPTDCR_SL) | BF_SNVS_HPLR_LPTDCR_SL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPLR, field MKS_SL[9] (RW)
@@ -391,7 +373,6 @@ typedef union _hw_snvs_hplr
  * - 1 - Write access is not allowed
  */
 //@{
-
 #define BP_SNVS_HPLR_MKS_SL      (9)      //!< Bit position for SNVS_HPLR_MKS_SL.
 #define BM_SNVS_HPLR_MKS_SL      (0x00000200)  //!< Bit mask for SNVS_HPLR_MKS_SL.
 
@@ -405,7 +386,6 @@ typedef union _hw_snvs_hplr
 //! @brief Set the MKS_SL field to a new value.
 #define BW_SNVS_HPLR_MKS_SL(v)   (HW_SNVS_HPLR_WR((HW_SNVS_HPLR_RD() & ~BM_SNVS_HPLR_MKS_SL) | BF_SNVS_HPLR_MKS_SL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPLR, field HPSVCR_L[16] (RW)
@@ -418,7 +398,6 @@ typedef union _hw_snvs_hplr
  * - 1 - Write access is not allowed
  */
 //@{
-
 #define BP_SNVS_HPLR_HPSVCR_L      (16)      //!< Bit position for SNVS_HPLR_HPSVCR_L.
 #define BM_SNVS_HPLR_HPSVCR_L      (0x00010000)  //!< Bit mask for SNVS_HPLR_HPSVCR_L.
 
@@ -432,7 +411,6 @@ typedef union _hw_snvs_hplr
 //! @brief Set the HPSVCR_L field to a new value.
 #define BW_SNVS_HPLR_HPSVCR_L(v)   (HW_SNVS_HPLR_WR((HW_SNVS_HPLR_RD() & ~BM_SNVS_HPLR_HPSVCR_L) | BF_SNVS_HPLR_HPSVCR_L(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPLR, field HPSICR_L[17] (RW)
@@ -445,7 +423,6 @@ typedef union _hw_snvs_hplr
  * - 1 - Write access is not allowed
  */
 //@{
-
 #define BP_SNVS_HPLR_HPSICR_L      (17)      //!< Bit position for SNVS_HPLR_HPSICR_L.
 #define BM_SNVS_HPLR_HPSICR_L      (0x00020000)  //!< Bit mask for SNVS_HPLR_HPSICR_L.
 
@@ -459,7 +436,6 @@ typedef union _hw_snvs_hplr
 //! @brief Set the HPSICR_L field to a new value.
 #define BW_SNVS_HPLR_HPSICR_L(v)   (HW_SNVS_HPLR_WR((HW_SNVS_HPLR_RD() & ~BM_SNVS_HPLR_HPSICR_L) | BF_SNVS_HPLR_HPSICR_L(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPLR, field HAC_L[18] (RW)
@@ -472,7 +448,6 @@ typedef union _hw_snvs_hplr
  * - 1 - Write access is not allowed
  */
 //@{
-
 #define BP_SNVS_HPLR_HAC_L      (18)      //!< Bit position for SNVS_HPLR_HAC_L.
 #define BM_SNVS_HPLR_HAC_L      (0x00040000)  //!< Bit mask for SNVS_HPLR_HAC_L.
 
@@ -486,7 +461,6 @@ typedef union _hw_snvs_hplr
 //! @brief Set the HAC_L field to a new value.
 #define BW_SNVS_HPLR_HAC_L(v)   (HW_SNVS_HPLR_WR((HW_SNVS_HPLR_RD() & ~BM_SNVS_HPLR_HAC_L) | BF_SNVS_HPLR_HAC_L(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -561,7 +535,6 @@ typedef union _hw_snvs_hpcomr
  * disabled by SSM_ST_DIS bit) Soft Fail → Non-Secure (if not disabled by SSM_SFNS_DIS bit)
  */
 //@{
-
 #define BP_SNVS_HPCOMR_SSM_ST      (0)      //!< Bit position for SNVS_HPCOMR_SSM_ST.
 #define BM_SNVS_HPCOMR_SSM_ST      (0x00000001)  //!< Bit mask for SNVS_HPCOMR_SSM_ST.
 
@@ -570,7 +543,6 @@ typedef union _hw_snvs_hpcomr
 
 //! @brief Format value for bitfield SNVS_HPCOMR_SSM_ST.
 #define BF_SNVS_HPCOMR_SSM_ST(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_HPCOMR_SSM_ST) & BM_SNVS_HPCOMR_SSM_ST)
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field SSM_ST_DIS[1] (RW)
@@ -583,7 +555,6 @@ typedef union _hw_snvs_hpcomr
  * - 1 - Secure to Trusted State transition is disabled
  */
 //@{
-
 #define BP_SNVS_HPCOMR_SSM_ST_DIS      (1)      //!< Bit position for SNVS_HPCOMR_SSM_ST_DIS.
 #define BM_SNVS_HPCOMR_SSM_ST_DIS      (0x00000002)  //!< Bit mask for SNVS_HPCOMR_SSM_ST_DIS.
 
@@ -597,7 +568,6 @@ typedef union _hw_snvs_hpcomr
 //! @brief Set the SSM_ST_DIS field to a new value.
 #define BW_SNVS_HPCOMR_SSM_ST_DIS(v)   (HW_SNVS_HPCOMR_WR((HW_SNVS_HPCOMR_RD() & ~BM_SNVS_HPCOMR_SSM_ST_DIS) | BF_SNVS_HPCOMR_SSM_ST_DIS(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field SSM_SFNS_DIS[2] (RW)
@@ -610,7 +580,6 @@ typedef union _hw_snvs_hpcomr
  * - 1 - Soft Fail to Non-Secure State transition is disabled
  */
 //@{
-
 #define BP_SNVS_HPCOMR_SSM_SFNS_DIS      (2)      //!< Bit position for SNVS_HPCOMR_SSM_SFNS_DIS.
 #define BM_SNVS_HPCOMR_SSM_SFNS_DIS      (0x00000004)  //!< Bit mask for SNVS_HPCOMR_SSM_SFNS_DIS.
 
@@ -624,7 +593,6 @@ typedef union _hw_snvs_hpcomr
 //! @brief Set the SSM_SFNS_DIS field to a new value.
 #define BW_SNVS_HPCOMR_SSM_SFNS_DIS(v)   (HW_SNVS_HPCOMR_WR((HW_SNVS_HPCOMR_RD() & ~BM_SNVS_HPCOMR_SSM_SFNS_DIS) | BF_SNVS_HPCOMR_SSM_SFNS_DIS(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field LP_SWR[4] (WO)
@@ -637,7 +605,6 @@ typedef union _hw_snvs_hpcomr
  * - 1 - Reset LP section
  */
 //@{
-
 #define BP_SNVS_HPCOMR_LP_SWR      (4)      //!< Bit position for SNVS_HPCOMR_LP_SWR.
 #define BM_SNVS_HPCOMR_LP_SWR      (0x00000010)  //!< Bit mask for SNVS_HPCOMR_LP_SWR.
 
@@ -646,7 +613,6 @@ typedef union _hw_snvs_hpcomr
 
 //! @brief Format value for bitfield SNVS_HPCOMR_LP_SWR.
 #define BF_SNVS_HPCOMR_LP_SWR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_HPCOMR_LP_SWR) & BM_SNVS_HPCOMR_LP_SWR)
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field LP_SWR_DIS[5] (RW)
@@ -659,7 +625,6 @@ typedef union _hw_snvs_hpcomr
  * - 1 - LP software reset is disabled
  */
 //@{
-
 #define BP_SNVS_HPCOMR_LP_SWR_DIS      (5)      //!< Bit position for SNVS_HPCOMR_LP_SWR_DIS.
 #define BM_SNVS_HPCOMR_LP_SWR_DIS      (0x00000020)  //!< Bit mask for SNVS_HPCOMR_LP_SWR_DIS.
 
@@ -673,7 +638,6 @@ typedef union _hw_snvs_hpcomr
 //! @brief Set the LP_SWR_DIS field to a new value.
 #define BW_SNVS_HPCOMR_LP_SWR_DIS(v)   (HW_SNVS_HPCOMR_WR((HW_SNVS_HPCOMR_RD() & ~BM_SNVS_HPCOMR_LP_SWR_DIS) | BF_SNVS_HPCOMR_LP_SWR_DIS(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field SW_SV[8] (RW)
@@ -684,7 +648,6 @@ typedef union _hw_snvs_hpcomr
  * Soft Fail
  */
 //@{
-
 #define BP_SNVS_HPCOMR_SW_SV      (8)      //!< Bit position for SNVS_HPCOMR_SW_SV.
 #define BM_SNVS_HPCOMR_SW_SV      (0x00000100)  //!< Bit mask for SNVS_HPCOMR_SW_SV.
 
@@ -698,7 +661,6 @@ typedef union _hw_snvs_hpcomr
 //! @brief Set the SW_SV field to a new value.
 #define BW_SNVS_HPCOMR_SW_SV(v)   (HW_SNVS_HPCOMR_WR((HW_SNVS_HPCOMR_RD() & ~BM_SNVS_HPCOMR_SW_SV) | BF_SNVS_HPCOMR_SW_SV(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field SW_FSV[9] (RW)
@@ -709,7 +671,6 @@ typedef union _hw_snvs_hpcomr
  * Soft Fail Trusted State → Soft Fail Secure State → Soft Fail
  */
 //@{
-
 #define BP_SNVS_HPCOMR_SW_FSV      (9)      //!< Bit position for SNVS_HPCOMR_SW_FSV.
 #define BM_SNVS_HPCOMR_SW_FSV      (0x00000200)  //!< Bit mask for SNVS_HPCOMR_SW_FSV.
 
@@ -723,7 +684,6 @@ typedef union _hw_snvs_hpcomr
 //! @brief Set the SW_FSV field to a new value.
 #define BW_SNVS_HPCOMR_SW_FSV(v)   (HW_SNVS_HPCOMR_WR((HW_SNVS_HPCOMR_RD() & ~BM_SNVS_HPCOMR_SW_FSV) | BF_SNVS_HPCOMR_SW_FSV(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field SW_LPSV[10] (RW)
@@ -734,7 +694,6 @@ typedef union _hw_snvs_hpcomr
  * SNVS _HP Security Violation Control Register.
  */
 //@{
-
 #define BP_SNVS_HPCOMR_SW_LPSV      (10)      //!< Bit position for SNVS_HPCOMR_SW_LPSV.
 #define BM_SNVS_HPCOMR_SW_LPSV      (0x00000400)  //!< Bit mask for SNVS_HPCOMR_SW_LPSV.
 
@@ -748,7 +707,6 @@ typedef union _hw_snvs_hpcomr
 //! @brief Set the SW_LPSV field to a new value.
 #define BW_SNVS_HPCOMR_SW_LPSV(v)   (HW_SNVS_HPCOMR_WR((HW_SNVS_HPCOMR_RD() & ~BM_SNVS_HPCOMR_SW_LPSV) | BF_SNVS_HPCOMR_SW_LPSV(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field PROG_ZMK[12] (WO)
@@ -762,7 +720,6 @@ typedef union _hw_snvs_hpcomr
  * - 1 - Activate hardware key programming mechanism
  */
 //@{
-
 #define BP_SNVS_HPCOMR_PROG_ZMK      (12)      //!< Bit position for SNVS_HPCOMR_PROG_ZMK.
 #define BM_SNVS_HPCOMR_PROG_ZMK      (0x00001000)  //!< Bit mask for SNVS_HPCOMR_PROG_ZMK.
 
@@ -771,7 +728,6 @@ typedef union _hw_snvs_hpcomr
 
 //! @brief Format value for bitfield SNVS_HPCOMR_PROG_ZMK.
 #define BF_SNVS_HPCOMR_PROG_ZMK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_HPCOMR_PROG_ZMK) & BM_SNVS_HPCOMR_PROG_ZMK)
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field MKS_EN[13] (RW)
@@ -785,7 +741,6 @@ typedef union _hw_snvs_hpcomr
  * - 1 - SNVS master key is selected according to the setting of the MASTER_KEY_SEL field of LPMKCR
  */
 //@{
-
 #define BP_SNVS_HPCOMR_MKS_EN      (13)      //!< Bit position for SNVS_HPCOMR_MKS_EN.
 #define BM_SNVS_HPCOMR_MKS_EN      (0x00002000)  //!< Bit mask for SNVS_HPCOMR_MKS_EN.
 
@@ -799,7 +754,6 @@ typedef union _hw_snvs_hpcomr
 //! @brief Set the MKS_EN field to a new value.
 #define BW_SNVS_HPCOMR_MKS_EN(v)   (HW_SNVS_HPCOMR_WR((HW_SNVS_HPCOMR_RD() & ~BM_SNVS_HPCOMR_MKS_EN) | BF_SNVS_HPCOMR_MKS_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field HAC_EN[16] (RW)
@@ -813,7 +767,6 @@ typedef union _hw_snvs_hpcomr
  * - 1 - High Assurance Configuration is enabled
  */
 //@{
-
 #define BP_SNVS_HPCOMR_HAC_EN      (16)      //!< Bit position for SNVS_HPCOMR_HAC_EN.
 #define BM_SNVS_HPCOMR_HAC_EN      (0x00010000)  //!< Bit mask for SNVS_HPCOMR_HAC_EN.
 
@@ -827,7 +780,6 @@ typedef union _hw_snvs_hpcomr
 //! @brief Set the HAC_EN field to a new value.
 #define BW_SNVS_HPCOMR_HAC_EN(v)   (HW_SNVS_HPCOMR_WR((HW_SNVS_HPCOMR_RD() & ~BM_SNVS_HPCOMR_HAC_EN) | BF_SNVS_HPCOMR_HAC_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field HAC_LOAD[17] (WO)
@@ -841,7 +793,6 @@ typedef union _hw_snvs_hpcomr
  * - 1 - Load the HAC
  */
 //@{
-
 #define BP_SNVS_HPCOMR_HAC_LOAD      (17)      //!< Bit position for SNVS_HPCOMR_HAC_LOAD.
 #define BM_SNVS_HPCOMR_HAC_LOAD      (0x00020000)  //!< Bit mask for SNVS_HPCOMR_HAC_LOAD.
 
@@ -850,7 +801,6 @@ typedef union _hw_snvs_hpcomr
 
 //! @brief Format value for bitfield SNVS_HPCOMR_HAC_LOAD.
 #define BF_SNVS_HPCOMR_HAC_LOAD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_HPCOMR_HAC_LOAD) & BM_SNVS_HPCOMR_HAC_LOAD)
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field HAC_CLEAR[18] (WO)
@@ -865,7 +815,6 @@ typedef union _hw_snvs_hpcomr
  * - 1 - Clear the HAC
  */
 //@{
-
 #define BP_SNVS_HPCOMR_HAC_CLEAR      (18)      //!< Bit position for SNVS_HPCOMR_HAC_CLEAR.
 #define BM_SNVS_HPCOMR_HAC_CLEAR      (0x00040000)  //!< Bit mask for SNVS_HPCOMR_HAC_CLEAR.
 
@@ -874,7 +823,6 @@ typedef union _hw_snvs_hpcomr
 
 //! @brief Format value for bitfield SNVS_HPCOMR_HAC_CLEAR.
 #define BF_SNVS_HPCOMR_HAC_CLEAR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_HPCOMR_HAC_CLEAR) & BM_SNVS_HPCOMR_HAC_CLEAR)
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field HAC_STOP[19] (RW)
@@ -886,7 +834,6 @@ typedef union _hw_snvs_hpcomr
  * down 1 HAC counter is stopped
  */
 //@{
-
 #define BP_SNVS_HPCOMR_HAC_STOP      (19)      //!< Bit position for SNVS_HPCOMR_HAC_STOP.
 #define BM_SNVS_HPCOMR_HAC_STOP      (0x00080000)  //!< Bit mask for SNVS_HPCOMR_HAC_STOP.
 
@@ -900,7 +847,6 @@ typedef union _hw_snvs_hpcomr
 //! @brief Set the HAC_STOP field to a new value.
 #define BW_SNVS_HPCOMR_HAC_STOP(v)   (HW_SNVS_HPCOMR_WR((HW_SNVS_HPCOMR_RD() & ~BM_SNVS_HPCOMR_HAC_STOP) | BF_SNVS_HPCOMR_HAC_STOP(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCOMR, field NPSWA_EN[31] (RW)
@@ -910,7 +856,6 @@ typedef union _hw_snvs_hpcomr
  * software can access privileged registers 1 Any software can access privileged registers
  */
 //@{
-
 #define BP_SNVS_HPCOMR_NPSWA_EN      (31)      //!< Bit position for SNVS_HPCOMR_NPSWA_EN.
 #define BM_SNVS_HPCOMR_NPSWA_EN      (0x80000000)  //!< Bit mask for SNVS_HPCOMR_NPSWA_EN.
 
@@ -924,7 +869,6 @@ typedef union _hw_snvs_hpcomr
 //! @brief Set the NPSWA_EN field to a new value.
 #define BW_SNVS_HPCOMR_NPSWA_EN(v)   (HW_SNVS_HPCOMR_WR((HW_SNVS_HPCOMR_RD() & ~BM_SNVS_HPCOMR_NPSWA_EN) | BF_SNVS_HPCOMR_NPSWA_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -988,7 +932,6 @@ typedef union _hw_snvs_hpcr
  * - 1 - RTC is enabled
  */
 //@{
-
 #define BP_SNVS_HPCR_RTC_EN      (0)      //!< Bit position for SNVS_HPCR_RTC_EN.
 #define BM_SNVS_HPCR_RTC_EN      (0x00000001)  //!< Bit mask for SNVS_HPCR_RTC_EN.
 
@@ -1002,7 +945,6 @@ typedef union _hw_snvs_hpcr
 //! @brief Set the RTC_EN field to a new value.
 #define BW_SNVS_HPCR_RTC_EN(v)   (HW_SNVS_HPCR_WR((HW_SNVS_HPCR_RD() & ~BM_SNVS_HPCR_RTC_EN) | BF_SNVS_HPCR_RTC_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCR, field HPTA_EN[1] (RW)
@@ -1015,7 +957,6 @@ typedef union _hw_snvs_hpcr
  * - 1 - HP Time Alarm Interrupt is enabled
  */
 //@{
-
 #define BP_SNVS_HPCR_HPTA_EN      (1)      //!< Bit position for SNVS_HPCR_HPTA_EN.
 #define BM_SNVS_HPCR_HPTA_EN      (0x00000002)  //!< Bit mask for SNVS_HPCR_HPTA_EN.
 
@@ -1029,7 +970,6 @@ typedef union _hw_snvs_hpcr
 //! @brief Set the HPTA_EN field to a new value.
 #define BW_SNVS_HPCR_HPTA_EN(v)   (HW_SNVS_HPCR_WR((HW_SNVS_HPCR_RD() & ~BM_SNVS_HPCR_HPTA_EN) | BF_SNVS_HPCR_HPTA_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCR, field PI_EN[3] (RW)
@@ -1042,7 +982,6 @@ typedef union _hw_snvs_hpcr
  * - 1 - HP Periodic Interrupt is enabled
  */
 //@{
-
 #define BP_SNVS_HPCR_PI_EN      (3)      //!< Bit position for SNVS_HPCR_PI_EN.
 #define BM_SNVS_HPCR_PI_EN      (0x00000008)  //!< Bit mask for SNVS_HPCR_PI_EN.
 
@@ -1056,7 +995,6 @@ typedef union _hw_snvs_hpcr
 //! @brief Set the PI_EN field to a new value.
 #define BW_SNVS_HPCR_PI_EN(v)   (HW_SNVS_HPCR_WR((HW_SNVS_HPCR_RD() & ~BM_SNVS_HPCR_PI_EN) | BF_SNVS_HPCR_PI_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCR, field PI_FREQ[7:4] (RW)
@@ -1086,7 +1024,6 @@ typedef union _hw_snvs_hpcr
  * - 1111 - - bit 15 of the RTC is selected as a source of the periodic interrupt
  */
 //@{
-
 #define BP_SNVS_HPCR_PI_FREQ      (4)      //!< Bit position for SNVS_HPCR_PI_FREQ.
 #define BM_SNVS_HPCR_PI_FREQ      (0x000000f0)  //!< Bit mask for SNVS_HPCR_PI_FREQ.
 
@@ -1100,7 +1037,6 @@ typedef union _hw_snvs_hpcr
 //! @brief Set the PI_FREQ field to a new value.
 #define BW_SNVS_HPCR_PI_FREQ(v)   (HW_SNVS_HPCR_WR((HW_SNVS_HPCR_RD() & ~BM_SNVS_HPCR_PI_FREQ) | BF_SNVS_HPCR_PI_FREQ(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCR, field HPCALB_EN[8] (RW)
@@ -1113,7 +1049,6 @@ typedef union _hw_snvs_hpcr
  * - 1 - HP Timer calibration enabled
  */
 //@{
-
 #define BP_SNVS_HPCR_HPCALB_EN      (8)      //!< Bit position for SNVS_HPCR_HPCALB_EN.
 #define BM_SNVS_HPCR_HPCALB_EN      (0x00000100)  //!< Bit mask for SNVS_HPCR_HPCALB_EN.
 
@@ -1127,7 +1062,6 @@ typedef union _hw_snvs_hpcr
 //! @brief Set the HPCALB_EN field to a new value.
 #define BW_SNVS_HPCR_HPCALB_EN(v)   (HW_SNVS_HPCR_WR((HW_SNVS_HPCR_RD() & ~BM_SNVS_HPCR_HPCALB_EN) | BF_SNVS_HPCR_HPCALB_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCR, field HPCALB_VAL[14:10] (RW)
@@ -1148,7 +1082,6 @@ typedef union _hw_snvs_hpcr
  * - 11111 - -1 counts per each 32768 ticks of the counter
  */
 //@{
-
 #define BP_SNVS_HPCR_HPCALB_VAL      (10)      //!< Bit position for SNVS_HPCR_HPCALB_VAL.
 #define BM_SNVS_HPCR_HPCALB_VAL      (0x00007c00)  //!< Bit mask for SNVS_HPCR_HPCALB_VAL.
 
@@ -1162,7 +1095,6 @@ typedef union _hw_snvs_hpcr
 //! @brief Set the HPCALB_VAL field to a new value.
 #define BW_SNVS_HPCR_HPCALB_VAL(v)   (HW_SNVS_HPCR_WR((HW_SNVS_HPCR_RD() & ~BM_SNVS_HPCR_HPCALB_VAL) | BF_SNVS_HPCR_HPCALB_VAL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPCR, field HP_TS[16] (RW)
@@ -1175,7 +1107,6 @@ typedef union _hw_snvs_hpcr
  * - 1 - Synchronize the HP Time Counter to the LP Time Counter
  */
 //@{
-
 #define BP_SNVS_HPCR_HP_TS      (16)      //!< Bit position for SNVS_HPCR_HP_TS.
 #define BM_SNVS_HPCR_HP_TS      (0x00010000)  //!< Bit mask for SNVS_HPCR_HP_TS.
 
@@ -1189,7 +1120,6 @@ typedef union _hw_snvs_hpcr
 //! @brief Set the HP_TS field to a new value.
 #define BW_SNVS_HPCR_HP_TS(v)   (HW_SNVS_HPCR_WR((HW_SNVS_HPCR_RD() & ~BM_SNVS_HPCR_HP_TS) | BF_SNVS_HPCR_HP_TS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1252,7 +1182,6 @@ typedef union _hw_snvs_hpsicr
  * - 1 - Security Violation Interrupt 0 is Enabled
  */
 //@{
-
 #define BP_SNVS_HPSICR_SVI_EN0      (0)      //!< Bit position for SNVS_HPSICR_SVI_EN0.
 #define BM_SNVS_HPSICR_SVI_EN0      (0x00000001)  //!< Bit mask for SNVS_HPSICR_SVI_EN0.
 
@@ -1266,7 +1195,6 @@ typedef union _hw_snvs_hpsicr
 //! @brief Set the SVI_EN0 field to a new value.
 #define BW_SNVS_HPSICR_SVI_EN0(v)   (HW_SNVS_HPSICR_WR((HW_SNVS_HPSICR_RD() & ~BM_SNVS_HPSICR_SVI_EN0) | BF_SNVS_HPSICR_SVI_EN0(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSICR, field SVI_EN1[1] (RW)
@@ -1279,7 +1207,6 @@ typedef union _hw_snvs_hpsicr
  * - 1 - Security Violation Interrupt 1 is Enabled
  */
 //@{
-
 #define BP_SNVS_HPSICR_SVI_EN1      (1)      //!< Bit position for SNVS_HPSICR_SVI_EN1.
 #define BM_SNVS_HPSICR_SVI_EN1      (0x00000002)  //!< Bit mask for SNVS_HPSICR_SVI_EN1.
 
@@ -1293,7 +1220,6 @@ typedef union _hw_snvs_hpsicr
 //! @brief Set the SVI_EN1 field to a new value.
 #define BW_SNVS_HPSICR_SVI_EN1(v)   (HW_SNVS_HPSICR_WR((HW_SNVS_HPSICR_RD() & ~BM_SNVS_HPSICR_SVI_EN1) | BF_SNVS_HPSICR_SVI_EN1(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSICR, field SVI_EN2[2] (RW)
@@ -1306,7 +1232,6 @@ typedef union _hw_snvs_hpsicr
  * - 1 - Security Violation Interrupt 2 is Enabled
  */
 //@{
-
 #define BP_SNVS_HPSICR_SVI_EN2      (2)      //!< Bit position for SNVS_HPSICR_SVI_EN2.
 #define BM_SNVS_HPSICR_SVI_EN2      (0x00000004)  //!< Bit mask for SNVS_HPSICR_SVI_EN2.
 
@@ -1320,7 +1245,6 @@ typedef union _hw_snvs_hpsicr
 //! @brief Set the SVI_EN2 field to a new value.
 #define BW_SNVS_HPSICR_SVI_EN2(v)   (HW_SNVS_HPSICR_WR((HW_SNVS_HPSICR_RD() & ~BM_SNVS_HPSICR_SVI_EN2) | BF_SNVS_HPSICR_SVI_EN2(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSICR, field SVI_EN3[3] (RW)
@@ -1333,7 +1257,6 @@ typedef union _hw_snvs_hpsicr
  * - 1 - Security Violation Interrupt 3 is Enabled
  */
 //@{
-
 #define BP_SNVS_HPSICR_SVI_EN3      (3)      //!< Bit position for SNVS_HPSICR_SVI_EN3.
 #define BM_SNVS_HPSICR_SVI_EN3      (0x00000008)  //!< Bit mask for SNVS_HPSICR_SVI_EN3.
 
@@ -1347,7 +1270,6 @@ typedef union _hw_snvs_hpsicr
 //! @brief Set the SVI_EN3 field to a new value.
 #define BW_SNVS_HPSICR_SVI_EN3(v)   (HW_SNVS_HPSICR_WR((HW_SNVS_HPSICR_RD() & ~BM_SNVS_HPSICR_SVI_EN3) | BF_SNVS_HPSICR_SVI_EN3(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSICR, field SVI_EN4[4] (RW)
@@ -1360,7 +1282,6 @@ typedef union _hw_snvs_hpsicr
  * - 1 - Security Violation Interrupt 4 is Enabled
  */
 //@{
-
 #define BP_SNVS_HPSICR_SVI_EN4      (4)      //!< Bit position for SNVS_HPSICR_SVI_EN4.
 #define BM_SNVS_HPSICR_SVI_EN4      (0x00000010)  //!< Bit mask for SNVS_HPSICR_SVI_EN4.
 
@@ -1374,7 +1295,6 @@ typedef union _hw_snvs_hpsicr
 //! @brief Set the SVI_EN4 field to a new value.
 #define BW_SNVS_HPSICR_SVI_EN4(v)   (HW_SNVS_HPSICR_WR((HW_SNVS_HPSICR_RD() & ~BM_SNVS_HPSICR_SVI_EN4) | BF_SNVS_HPSICR_SVI_EN4(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSICR, field SVI_EN5[5] (RW)
@@ -1387,7 +1307,6 @@ typedef union _hw_snvs_hpsicr
  * - 1 - Security Violation Interrupt 5 is Enabled
  */
 //@{
-
 #define BP_SNVS_HPSICR_SVI_EN5      (5)      //!< Bit position for SNVS_HPSICR_SVI_EN5.
 #define BM_SNVS_HPSICR_SVI_EN5      (0x00000020)  //!< Bit mask for SNVS_HPSICR_SVI_EN5.
 
@@ -1401,7 +1320,6 @@ typedef union _hw_snvs_hpsicr
 //! @brief Set the SVI_EN5 field to a new value.
 #define BW_SNVS_HPSICR_SVI_EN5(v)   (HW_SNVS_HPSICR_WR((HW_SNVS_HPSICR_RD() & ~BM_SNVS_HPSICR_SVI_EN5) | BF_SNVS_HPSICR_SVI_EN5(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSICR, field LPSVI_EN[31] (RW)
@@ -1414,7 +1332,6 @@ typedef union _hw_snvs_hpsicr
  * - 1 - LP Security Violation Interrupt is Enabled
  */
 //@{
-
 #define BP_SNVS_HPSICR_LPSVI_EN      (31)      //!< Bit position for SNVS_HPSICR_LPSVI_EN.
 #define BM_SNVS_HPSICR_LPSVI_EN      (0x80000000)  //!< Bit mask for SNVS_HPSICR_LPSVI_EN.
 
@@ -1428,7 +1345,6 @@ typedef union _hw_snvs_hpsicr
 //! @brief Set the LPSVI_EN field to a new value.
 #define BW_SNVS_HPSICR_LPSVI_EN(v)   (HW_SNVS_HPSICR_WR((HW_SNVS_HPSICR_RD() & ~BM_SNVS_HPSICR_LPSVI_EN) | BF_SNVS_HPSICR_LPSVI_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1491,7 +1407,6 @@ typedef union _hw_snvs_hpsvcr
  * - 1 - Security Violation 0 is a fatal violation
  */
 //@{
-
 #define BP_SNVS_HPSVCR_SV_CFG0      (0)      //!< Bit position for SNVS_HPSVCR_SV_CFG0.
 #define BM_SNVS_HPSVCR_SV_CFG0      (0x00000001)  //!< Bit mask for SNVS_HPSVCR_SV_CFG0.
 
@@ -1505,7 +1420,6 @@ typedef union _hw_snvs_hpsvcr
 //! @brief Set the SV_CFG0 field to a new value.
 #define BW_SNVS_HPSVCR_SV_CFG0(v)   (HW_SNVS_HPSVCR_WR((HW_SNVS_HPSVCR_RD() & ~BM_SNVS_HPSVCR_SV_CFG0) | BF_SNVS_HPSVCR_SV_CFG0(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSVCR, field SV_CFG1[1] (RW)
@@ -1518,7 +1432,6 @@ typedef union _hw_snvs_hpsvcr
  * - 1 - Security Violation 1 is a fatal violation
  */
 //@{
-
 #define BP_SNVS_HPSVCR_SV_CFG1      (1)      //!< Bit position for SNVS_HPSVCR_SV_CFG1.
 #define BM_SNVS_HPSVCR_SV_CFG1      (0x00000002)  //!< Bit mask for SNVS_HPSVCR_SV_CFG1.
 
@@ -1532,7 +1445,6 @@ typedef union _hw_snvs_hpsvcr
 //! @brief Set the SV_CFG1 field to a new value.
 #define BW_SNVS_HPSVCR_SV_CFG1(v)   (HW_SNVS_HPSVCR_WR((HW_SNVS_HPSVCR_RD() & ~BM_SNVS_HPSVCR_SV_CFG1) | BF_SNVS_HPSVCR_SV_CFG1(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSVCR, field SV_CFG2[2] (RW)
@@ -1545,7 +1457,6 @@ typedef union _hw_snvs_hpsvcr
  * - 1 - Security Violation 2 is a fatal violation
  */
 //@{
-
 #define BP_SNVS_HPSVCR_SV_CFG2      (2)      //!< Bit position for SNVS_HPSVCR_SV_CFG2.
 #define BM_SNVS_HPSVCR_SV_CFG2      (0x00000004)  //!< Bit mask for SNVS_HPSVCR_SV_CFG2.
 
@@ -1559,7 +1470,6 @@ typedef union _hw_snvs_hpsvcr
 //! @brief Set the SV_CFG2 field to a new value.
 #define BW_SNVS_HPSVCR_SV_CFG2(v)   (HW_SNVS_HPSVCR_WR((HW_SNVS_HPSVCR_RD() & ~BM_SNVS_HPSVCR_SV_CFG2) | BF_SNVS_HPSVCR_SV_CFG2(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSVCR, field SV_CFG3[3] (RW)
@@ -1572,7 +1482,6 @@ typedef union _hw_snvs_hpsvcr
  * - 1 - Security Violation 3 is a fatal violation
  */
 //@{
-
 #define BP_SNVS_HPSVCR_SV_CFG3      (3)      //!< Bit position for SNVS_HPSVCR_SV_CFG3.
 #define BM_SNVS_HPSVCR_SV_CFG3      (0x00000008)  //!< Bit mask for SNVS_HPSVCR_SV_CFG3.
 
@@ -1586,7 +1495,6 @@ typedef union _hw_snvs_hpsvcr
 //! @brief Set the SV_CFG3 field to a new value.
 #define BW_SNVS_HPSVCR_SV_CFG3(v)   (HW_SNVS_HPSVCR_WR((HW_SNVS_HPSVCR_RD() & ~BM_SNVS_HPSVCR_SV_CFG3) | BF_SNVS_HPSVCR_SV_CFG3(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSVCR, field SV_CFG4[4] (RW)
@@ -1599,7 +1507,6 @@ typedef union _hw_snvs_hpsvcr
  * - 1 - Security Violation 4 is a fatal violation
  */
 //@{
-
 #define BP_SNVS_HPSVCR_SV_CFG4      (4)      //!< Bit position for SNVS_HPSVCR_SV_CFG4.
 #define BM_SNVS_HPSVCR_SV_CFG4      (0x00000010)  //!< Bit mask for SNVS_HPSVCR_SV_CFG4.
 
@@ -1613,7 +1520,6 @@ typedef union _hw_snvs_hpsvcr
 //! @brief Set the SV_CFG4 field to a new value.
 #define BW_SNVS_HPSVCR_SV_CFG4(v)   (HW_SNVS_HPSVCR_WR((HW_SNVS_HPSVCR_RD() & ~BM_SNVS_HPSVCR_SV_CFG4) | BF_SNVS_HPSVCR_SV_CFG4(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSVCR, field SV_CFG5[6:5] (RW)
@@ -1627,7 +1533,6 @@ typedef union _hw_snvs_hpsvcr
  * - 1x - Security Violation 5 is a fatal violation
  */
 //@{
-
 #define BP_SNVS_HPSVCR_SV_CFG5      (5)      //!< Bit position for SNVS_HPSVCR_SV_CFG5.
 #define BM_SNVS_HPSVCR_SV_CFG5      (0x00000060)  //!< Bit mask for SNVS_HPSVCR_SV_CFG5.
 
@@ -1641,7 +1546,6 @@ typedef union _hw_snvs_hpsvcr
 //! @brief Set the SV_CFG5 field to a new value.
 #define BW_SNVS_HPSVCR_SV_CFG5(v)   (HW_SNVS_HPSVCR_WR((HW_SNVS_HPSVCR_RD() & ~BM_SNVS_HPSVCR_SV_CFG5) | BF_SNVS_HPSVCR_SV_CFG5(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSVCR, field LPSV_CFG[31:30] (RW)
@@ -1654,7 +1558,6 @@ typedef union _hw_snvs_hpsvcr
  * - 1x - LP security violation is a fatal violation
  */
 //@{
-
 #define BP_SNVS_HPSVCR_LPSV_CFG      (30)      //!< Bit position for SNVS_HPSVCR_LPSV_CFG.
 #define BM_SNVS_HPSVCR_LPSV_CFG      (0xc0000000)  //!< Bit mask for SNVS_HPSVCR_LPSV_CFG.
 
@@ -1668,7 +1571,6 @@ typedef union _hw_snvs_hpsvcr
 //! @brief Set the LPSV_CFG field to a new value.
 #define BW_SNVS_HPSVCR_LPSV_CFG(v)   (HW_SNVS_HPSVCR_WR((HW_SNVS_HPSVCR_RD() & ~BM_SNVS_HPSVCR_LPSV_CFG) | BF_SNVS_HPSVCR_LPSV_CFG(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1734,7 +1636,6 @@ typedef union _hw_snvs_hpsr
  * - 1 - A time alarm interrupt occurred.
  */
 //@{
-
 #define BP_SNVS_HPSR_HPTA      (0)      //!< Bit position for SNVS_HPSR_HPTA.
 #define BM_SNVS_HPSR_HPTA      (0x00000001)  //!< Bit mask for SNVS_HPSR_HPTA.
 
@@ -1748,7 +1649,6 @@ typedef union _hw_snvs_hpsr
 //! @brief Set the HPTA field to a new value.
 #define BW_SNVS_HPSR_HPTA(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_HPTA) | BF_SNVS_HPSR_HPTA(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSR, field PI[1] (RW)
@@ -1761,7 +1661,6 @@ typedef union _hw_snvs_hpsr
  * - 1 - A periodic interrupt occurred.
  */
 //@{
-
 #define BP_SNVS_HPSR_PI      (1)      //!< Bit position for SNVS_HPSR_PI.
 #define BM_SNVS_HPSR_PI      (0x00000002)  //!< Bit mask for SNVS_HPSR_PI.
 
@@ -1775,7 +1674,6 @@ typedef union _hw_snvs_hpsr
 //! @brief Set the PI field to a new value.
 #define BW_SNVS_HPSR_PI(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_PI) | BF_SNVS_HPSR_PI(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSR, field LPDIS[4] (RW)
@@ -1784,7 +1682,6 @@ typedef union _hw_snvs_hpsr
  * to the SNVS .
  */
 //@{
-
 #define BP_SNVS_HPSR_LPDIS      (4)      //!< Bit position for SNVS_HPSR_LPDIS.
 #define BM_SNVS_HPSR_LPDIS      (0x00000010)  //!< Bit mask for SNVS_HPSR_LPDIS.
 
@@ -1798,7 +1695,6 @@ typedef union _hw_snvs_hpsr
 //! @brief Set the LPDIS field to a new value.
 #define BW_SNVS_HPSR_LPDIS(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_LPDIS) | BF_SNVS_HPSR_LPDIS(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSR, field SSM_ST[11:8] (RW)
@@ -1818,7 +1714,6 @@ typedef union _hw_snvs_hpsr
  * - SECURE = 1111 - Secure
  */
 //@{
-
 #define BP_SNVS_HPSR_SSM_ST      (8)      //!< Bit position for SNVS_HPSR_SSM_ST.
 #define BM_SNVS_HPSR_SSM_ST      (0x00000f00)  //!< Bit mask for SNVS_HPSR_SSM_ST.
 
@@ -1844,7 +1739,6 @@ typedef union _hw_snvs_hpsr
 #define BV_SNVS_HPSR_SSM_ST__NON_SECURE (0xb) //!< Non-Secure
 #define BV_SNVS_HPSR_SSM_ST__TRUSTED (0xd) //!< Trusted
 #define BV_SNVS_HPSR_SSM_ST__SECURE (0xf) //!< Secure
-
 //@}
 
 /*! @name Register SNVS_HPSR, field SYS_SECURITY_CFG[14:12] (RW)
@@ -1858,7 +1752,6 @@ typedef union _hw_snvs_hpsr
  * - FIELD_RETURN = 1xx - Field Return Configuration - the configuration of chips that are returned to Freescale for analysis
  */
 //@{
-
 #define BP_SNVS_HPSR_SYS_SECURITY_CFG      (12)      //!< Bit position for SNVS_HPSR_SYS_SECURITY_CFG.
 #define BM_SNVS_HPSR_SYS_SECURITY_CFG      (0x00007000)  //!< Bit mask for SNVS_HPSR_SYS_SECURITY_CFG.
 
@@ -1880,7 +1773,6 @@ typedef union _hw_snvs_hpsr
 #define BV_SNVS_HPSR_SYS_SECURITY_CFG__OPEN (0x1) //!< Open Configuration - the configuration after Freescale- programmable fuses have been blown
 #define BV_SNVS_HPSR_SYS_SECURITY_CFG__CLOSED (0x2) //!< Closed Configuration - the configuration after OEM-programmable fuses have been blown
 #define BV_SNVS_HPSR_SYS_SECURITY_CFG__FIELD_RETURN (0x4) //!< Field Return Configuration - the configuration of chips that are returned to Freescale for analysis
-
 //@}
 
 /*! @name Register SNVS_HPSR, field SYS_SECURE_BOOT[15] (RW)
@@ -1889,7 +1781,6 @@ typedef union _hw_snvs_hpsr
  * chip boots from internal ROM.
  */
 //@{
-
 #define BP_SNVS_HPSR_SYS_SECURE_BOOT      (15)      //!< Bit position for SNVS_HPSR_SYS_SECURE_BOOT.
 #define BM_SNVS_HPSR_SYS_SECURE_BOOT      (0x00008000)  //!< Bit mask for SNVS_HPSR_SYS_SECURE_BOOT.
 
@@ -1903,7 +1794,6 @@ typedef union _hw_snvs_hpsr
 //! @brief Set the SYS_SECURE_BOOT field to a new value.
 #define BW_SNVS_HPSR_SYS_SECURE_BOOT(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_SYS_SECURE_BOOT) | BF_SNVS_HPSR_SYS_SECURE_BOOT(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSR, field OTPMK_SYNDROME[24:16] (RW)
@@ -1917,7 +1807,6 @@ typedef union _hw_snvs_hpsr
  * corrected. when one of the syndrome bits is set, the bad key violation is always generated
  */
 //@{
-
 #define BP_SNVS_HPSR_OTPMK_SYNDROME      (16)      //!< Bit position for SNVS_HPSR_OTPMK_SYNDROME.
 #define BM_SNVS_HPSR_OTPMK_SYNDROME      (0x01ff0000)  //!< Bit mask for SNVS_HPSR_OTPMK_SYNDROME.
 
@@ -1931,7 +1820,6 @@ typedef union _hw_snvs_hpsr
 //! @brief Set the OTPMK_SYNDROME field to a new value.
 #define BW_SNVS_HPSR_OTPMK_SYNDROME(v)   (HW_SNVS_HPSR_WR((HW_SNVS_HPSR_RD() & ~BM_SNVS_HPSR_OTPMK_SYNDROME) | BF_SNVS_HPSR_OTPMK_SYNDROME(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSR, field OTPMK_ZERO[27] (RW)
@@ -1944,7 +1832,6 @@ typedef union _hw_snvs_hpsr
  * - IS_ZERO = 1 - The OTPMK is zero.
  */
 //@{
-
 #define BP_SNVS_HPSR_OTPMK_ZERO      (27)      //!< Bit position for SNVS_HPSR_OTPMK_ZERO.
 #define BM_SNVS_HPSR_OTPMK_ZERO      (0x08000000)  //!< Bit mask for SNVS_HPSR_OTPMK_ZERO.
 
@@ -1964,7 +1851,6 @@ typedef union _hw_snvs_hpsr
 
 #define BV_SNVS_HPSR_OTPMK_ZERO__NOT_ZERO (0x0) //!< The OTPMK is not zero.
 #define BV_SNVS_HPSR_OTPMK_ZERO__IS_ZERO (0x1) //!< The OTPMK is zero.
-
 //@}
 
 /*! @name Register SNVS_HPSR, field ZMK_ZERO[31] (RW)
@@ -1977,7 +1863,6 @@ typedef union _hw_snvs_hpsr
  * - IS_ZERO = 1 - The ZMK is zero.
  */
 //@{
-
 #define BP_SNVS_HPSR_ZMK_ZERO      (31)      //!< Bit position for SNVS_HPSR_ZMK_ZERO.
 #define BM_SNVS_HPSR_ZMK_ZERO      (0x80000000)  //!< Bit mask for SNVS_HPSR_ZMK_ZERO.
 
@@ -1997,7 +1882,6 @@ typedef union _hw_snvs_hpsr
 
 #define BV_SNVS_HPSR_ZMK_ZERO__NOT_ZERO (0x0) //!< The ZMK is not zero.
 #define BV_SNVS_HPSR_ZMK_ZERO__IS_ZERO (0x1) //!< The ZMK is zero.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2064,7 +1948,6 @@ typedef union _hw_snvs_hpsvsr
  * - 1 - Security violation occurred on port 0.
  */
 //@{
-
 #define BP_SNVS_HPSVSR_SEC_VIO0      (0)      //!< Bit position for SNVS_HPSVSR_SEC_VIO0.
 #define BM_SNVS_HPSVSR_SEC_VIO0      (0x00000001)  //!< Bit mask for SNVS_HPSVSR_SEC_VIO0.
 
@@ -2078,7 +1961,6 @@ typedef union _hw_snvs_hpsvsr
 //! @brief Set the SEC_VIO0 field to a new value.
 #define BW_SNVS_HPSVSR_SEC_VIO0(v)   (HW_SNVS_HPSVSR_WR((HW_SNVS_HPSVSR_RD() & ~BM_SNVS_HPSVSR_SEC_VIO0) | BF_SNVS_HPSVSR_SEC_VIO0(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSVSR, field SEC_VIO1[1] (W1C)
@@ -2090,7 +1972,6 @@ typedef union _hw_snvs_hpsvsr
  * - 1 - Security violation occurred on port 1.
  */
 //@{
-
 #define BP_SNVS_HPSVSR_SEC_VIO1      (1)      //!< Bit position for SNVS_HPSVSR_SEC_VIO1.
 #define BM_SNVS_HPSVSR_SEC_VIO1      (0x00000002)  //!< Bit mask for SNVS_HPSVSR_SEC_VIO1.
 
@@ -2104,7 +1985,6 @@ typedef union _hw_snvs_hpsvsr
 //! @brief Set the SEC_VIO1 field to a new value.
 #define BW_SNVS_HPSVSR_SEC_VIO1(v)   (HW_SNVS_HPSVSR_WR((HW_SNVS_HPSVSR_RD() & ~BM_SNVS_HPSVSR_SEC_VIO1) | BF_SNVS_HPSVSR_SEC_VIO1(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSVSR, field SEC_VIO2[2] (W1C)
@@ -2116,7 +1996,6 @@ typedef union _hw_snvs_hpsvsr
  * - 1 - Security violation occurred on port 2.
  */
 //@{
-
 #define BP_SNVS_HPSVSR_SEC_VIO2      (2)      //!< Bit position for SNVS_HPSVSR_SEC_VIO2.
 #define BM_SNVS_HPSVSR_SEC_VIO2      (0x00000004)  //!< Bit mask for SNVS_HPSVSR_SEC_VIO2.
 
@@ -2130,7 +2009,6 @@ typedef union _hw_snvs_hpsvsr
 //! @brief Set the SEC_VIO2 field to a new value.
 #define BW_SNVS_HPSVSR_SEC_VIO2(v)   (HW_SNVS_HPSVSR_WR((HW_SNVS_HPSVSR_RD() & ~BM_SNVS_HPSVSR_SEC_VIO2) | BF_SNVS_HPSVSR_SEC_VIO2(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSVSR, field SEC_VIO3[3] (W1C)
@@ -2142,7 +2020,6 @@ typedef union _hw_snvs_hpsvsr
  * - 1 - Security violation occurred on port 3.
  */
 //@{
-
 #define BP_SNVS_HPSVSR_SEC_VIO3      (3)      //!< Bit position for SNVS_HPSVSR_SEC_VIO3.
 #define BM_SNVS_HPSVSR_SEC_VIO3      (0x00000008)  //!< Bit mask for SNVS_HPSVSR_SEC_VIO3.
 
@@ -2156,7 +2033,6 @@ typedef union _hw_snvs_hpsvsr
 //! @brief Set the SEC_VIO3 field to a new value.
 #define BW_SNVS_HPSVSR_SEC_VIO3(v)   (HW_SNVS_HPSVSR_WR((HW_SNVS_HPSVSR_RD() & ~BM_SNVS_HPSVSR_SEC_VIO3) | BF_SNVS_HPSVSR_SEC_VIO3(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSVSR, field SEC_VIO4[4] (W1C)
@@ -2168,7 +2044,6 @@ typedef union _hw_snvs_hpsvsr
  * - 1 - Security violation occurred on port 4.
  */
 //@{
-
 #define BP_SNVS_HPSVSR_SEC_VIO4      (4)      //!< Bit position for SNVS_HPSVSR_SEC_VIO4.
 #define BM_SNVS_HPSVSR_SEC_VIO4      (0x00000010)  //!< Bit mask for SNVS_HPSVSR_SEC_VIO4.
 
@@ -2182,7 +2057,6 @@ typedef union _hw_snvs_hpsvsr
 //! @brief Set the SEC_VIO4 field to a new value.
 #define BW_SNVS_HPSVSR_SEC_VIO4(v)   (HW_SNVS_HPSVSR_WR((HW_SNVS_HPSVSR_RD() & ~BM_SNVS_HPSVSR_SEC_VIO4) | BF_SNVS_HPSVSR_SEC_VIO4(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSVSR, field SEC_VIO5[5] (W1C)
@@ -2194,7 +2068,6 @@ typedef union _hw_snvs_hpsvsr
  * - 1 - Security violation occurred on port 5.
  */
 //@{
-
 #define BP_SNVS_HPSVSR_SEC_VIO5      (5)      //!< Bit position for SNVS_HPSVSR_SEC_VIO5.
 #define BM_SNVS_HPSVSR_SEC_VIO5      (0x00000020)  //!< Bit mask for SNVS_HPSVSR_SEC_VIO5.
 
@@ -2208,7 +2081,6 @@ typedef union _hw_snvs_hpsvsr
 //! @brief Set the SEC_VIO5 field to a new value.
 #define BW_SNVS_HPSVSR_SEC_VIO5(v)   (HW_SNVS_HPSVSR_WR((HW_SNVS_HPSVSR_RD() & ~BM_SNVS_HPSVSR_SEC_VIO5) | BF_SNVS_HPSVSR_SEC_VIO5(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSVSR, field ZMK_SYNDROME[24:16] (RW)
@@ -2218,7 +2090,6 @@ typedef union _hw_snvs_hpsvsr
  * cleared by writing one into ZMK_ECC_FAIL bit.
  */
 //@{
-
 #define BP_SNVS_HPSVSR_ZMK_SYNDROME      (16)      //!< Bit position for SNVS_HPSVSR_ZMK_SYNDROME.
 #define BM_SNVS_HPSVSR_ZMK_SYNDROME      (0x01ff0000)  //!< Bit mask for SNVS_HPSVSR_ZMK_SYNDROME.
 
@@ -2232,7 +2103,6 @@ typedef union _hw_snvs_hpsvsr
 //! @brief Set the ZMK_SYNDROME field to a new value.
 #define BW_SNVS_HPSVSR_ZMK_SYNDROME(v)   (HW_SNVS_HPSVSR_WR((HW_SNVS_HPSVSR_RD() & ~BM_SNVS_HPSVSR_ZMK_SYNDROME) | BF_SNVS_HPSVSR_ZMK_SYNDROME(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_HPSVSR, field ZMK_ECC_FAIL[27] (RW)
@@ -2247,7 +2117,6 @@ typedef union _hw_snvs_hpsvsr
  * - 1 - ZMK ECC Failure was detected.
  */
 //@{
-
 #define BP_SNVS_HPSVSR_ZMK_ECC_FAIL      (27)      //!< Bit position for SNVS_HPSVSR_ZMK_ECC_FAIL.
 #define BM_SNVS_HPSVSR_ZMK_ECC_FAIL      (0x08000000)  //!< Bit mask for SNVS_HPSVSR_ZMK_ECC_FAIL.
 
@@ -2261,7 +2130,6 @@ typedef union _hw_snvs_hpsvsr
 //! @brief Set the ZMK_ECC_FAIL field to a new value.
 #define BW_SNVS_HPSVSR_ZMK_ECC_FAIL(v)   (HW_SNVS_HPSVSR_WR((HW_SNVS_HPSVSR_RD() & ~BM_SNVS_HPSVSR_ZMK_ECC_FAIL) | BF_SNVS_HPSVSR_ZMK_ECC_FAIL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2313,7 +2181,6 @@ typedef union _hw_snvs_hphacivr
  * high assurance counter. This register cannot be programmed when HAC_L bit is set.
  */
 //@{
-
 #define BP_SNVS_HPHACIVR_HAC_COUNTER_IV      (0)      //!< Bit position for SNVS_HPHACIVR_HAC_COUNTER_IV.
 #define BM_SNVS_HPHACIVR_HAC_COUNTER_IV      (0xffffffff)  //!< Bit mask for SNVS_HPHACIVR_HAC_COUNTER_IV.
 
@@ -2327,7 +2194,6 @@ typedef union _hw_snvs_hphacivr
 //! @brief Set the HAC_COUNTER_IV field to a new value.
 #define BW_SNVS_HPHACIVR_HAC_COUNTER_IV(v)   (HW_SNVS_HPHACIVR_WR((HW_SNVS_HPHACIVR_RD() & ~BM_SNVS_HPHACIVR_HAC_COUNTER_IV) | BF_SNVS_HPHACIVR_HAC_COUNTER_IV(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2383,7 +2249,6 @@ typedef union _hw_snvs_hphacr
  * loaded with the value of the HPHACIVR.
  */
 //@{
-
 #define BP_SNVS_HPHACR_HAC_COUNTER      (0)      //!< Bit position for SNVS_HPHACR_HAC_COUNTER.
 #define BM_SNVS_HPHACR_HAC_COUNTER      (0xffffffff)  //!< Bit mask for SNVS_HPHACR_HAC_COUNTER.
 
@@ -2397,7 +2262,6 @@ typedef union _hw_snvs_hphacr
 //! @brief Set the HAC_COUNTER field to a new value.
 #define BW_SNVS_HPHACR_HAC_COUNTER(v)   (HW_SNVS_HPHACR_WR((HW_SNVS_HPHACR_RD() & ~BM_SNVS_HPHACR_HAC_COUNTER) | BF_SNVS_HPHACR_HAC_COUNTER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2450,7 +2314,6 @@ typedef union _hw_snvs_hprtcmr
  * not active (RTC_EN bit is not set).
  */
 //@{
-
 #define BP_SNVS_HPRTCMR_RTC      (0)      //!< Bit position for SNVS_HPRTCMR_RTC.
 #define BM_SNVS_HPRTCMR_RTC      (0x00007fff)  //!< Bit mask for SNVS_HPRTCMR_RTC.
 
@@ -2464,7 +2327,6 @@ typedef union _hw_snvs_hprtcmr
 //! @brief Set the RTC field to a new value.
 #define BW_SNVS_HPRTCMR_RTC(v)   (HW_SNVS_HPRTCMR_WR((HW_SNVS_HPRTCMR_RD() & ~BM_SNVS_HPRTCMR_RTC) | BF_SNVS_HPRTCMR_RTC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2516,7 +2378,6 @@ typedef union _hw_snvs_hprtclr
  * not active (RTC_EN bit is not set).
  */
 //@{
-
 #define BP_SNVS_HPRTCLR_RTC      (0)      //!< Bit position for SNVS_HPRTCLR_RTC.
 #define BM_SNVS_HPRTCLR_RTC      (0xffffffff)  //!< Bit mask for SNVS_HPRTCLR_RTC.
 
@@ -2530,7 +2391,6 @@ typedef union _hw_snvs_hprtclr
 //! @brief Set the RTC field to a new value.
 #define BW_SNVS_HPRTCLR_RTC(v)   (HW_SNVS_HPRTCLR_WR((HW_SNVS_HPRTCLR_RD() & ~BM_SNVS_HPRTCLR_RTC) | BF_SNVS_HPRTCLR_RTC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2583,7 +2443,6 @@ typedef union _hw_snvs_hptamr
  * is disabled (HPTA_EN bit is not set).
  */
 //@{
-
 #define BP_SNVS_HPTAMR_HPTA      (0)      //!< Bit position for SNVS_HPTAMR_HPTA.
 #define BM_SNVS_HPTAMR_HPTA      (0x00007fff)  //!< Bit mask for SNVS_HPTAMR_HPTA.
 
@@ -2597,7 +2456,6 @@ typedef union _hw_snvs_hptamr
 //! @brief Set the HPTA field to a new value.
 #define BW_SNVS_HPTAMR_HPTA(v)   (HW_SNVS_HPTAMR_WR((HW_SNVS_HPTAMR_RD() & ~BM_SNVS_HPTAMR_HPTA) | BF_SNVS_HPTAMR_HPTA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2649,7 +2507,6 @@ typedef union _hw_snvs_hptalr
  * disabled (HPTA_EN bit is not set).
  */
 //@{
-
 #define BP_SNVS_HPTALR_HPTA      (0)      //!< Bit position for SNVS_HPTALR_HPTA.
 #define BM_SNVS_HPTALR_HPTA      (0xffffffff)  //!< Bit mask for SNVS_HPTALR_HPTA.
 
@@ -2663,7 +2520,6 @@ typedef union _hw_snvs_hptalr
 //! @brief Set the HPTA field to a new value.
 #define BW_SNVS_HPTALR_HPTA(v)   (HW_SNVS_HPTALR_WR((HW_SNVS_HPTALR_RD() & ~BM_SNVS_HPTALR_HPTA) | BF_SNVS_HPTALR_HPTA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2729,7 +2585,6 @@ typedef union _hw_snvs_lplr
  * - 1 - Write access is not allowed.
  */
 //@{
-
 #define BP_SNVS_LPLR_ZMK_WHL      (0)      //!< Bit position for SNVS_LPLR_ZMK_WHL.
 #define BM_SNVS_LPLR_ZMK_WHL      (0x00000001)  //!< Bit mask for SNVS_LPLR_ZMK_WHL.
 
@@ -2743,7 +2598,6 @@ typedef union _hw_snvs_lplr
 //! @brief Set the ZMK_WHL field to a new value.
 #define BW_SNVS_LPLR_ZMK_WHL(v)   (HW_SNVS_LPLR_WR((HW_SNVS_LPLR_RD() & ~BM_SNVS_LPLR_ZMK_WHL) | BF_SNVS_LPLR_ZMK_WHL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPLR, field ZMK_RHL[1] (RW)
@@ -2758,7 +2612,6 @@ typedef union _hw_snvs_lplr
  * - 1 - Read access is not allowed.
  */
 //@{
-
 #define BP_SNVS_LPLR_ZMK_RHL      (1)      //!< Bit position for SNVS_LPLR_ZMK_RHL.
 #define BM_SNVS_LPLR_ZMK_RHL      (0x00000002)  //!< Bit mask for SNVS_LPLR_ZMK_RHL.
 
@@ -2772,7 +2625,6 @@ typedef union _hw_snvs_lplr
 //! @brief Set the ZMK_RHL field to a new value.
 #define BW_SNVS_LPLR_ZMK_RHL(v)   (HW_SNVS_LPLR_WR((HW_SNVS_LPLR_RD() & ~BM_SNVS_LPLR_ZMK_RHL) | BF_SNVS_LPLR_ZMK_RHL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPLR, field SRTC_HL[2] (RW)
@@ -2785,7 +2637,6 @@ typedef union _hw_snvs_lplr
  * - 1 - Write access is not allowed.
  */
 //@{
-
 #define BP_SNVS_LPLR_SRTC_HL      (2)      //!< Bit position for SNVS_LPLR_SRTC_HL.
 #define BM_SNVS_LPLR_SRTC_HL      (0x00000004)  //!< Bit mask for SNVS_LPLR_SRTC_HL.
 
@@ -2799,7 +2650,6 @@ typedef union _hw_snvs_lplr
 //! @brief Set the SRTC_HL field to a new value.
 #define BW_SNVS_LPLR_SRTC_HL(v)   (HW_SNVS_LPLR_WR((HW_SNVS_LPLR_RD() & ~BM_SNVS_LPLR_SRTC_HL) | BF_SNVS_LPLR_SRTC_HL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPLR, field LPCALB_HL[3] (RW)
@@ -2812,7 +2662,6 @@ typedef union _hw_snvs_lplr
  * - 1 - Write access is not allowed.
  */
 //@{
-
 #define BP_SNVS_LPLR_LPCALB_HL      (3)      //!< Bit position for SNVS_LPLR_LPCALB_HL.
 #define BM_SNVS_LPLR_LPCALB_HL      (0x00000008)  //!< Bit mask for SNVS_LPLR_LPCALB_HL.
 
@@ -2826,7 +2675,6 @@ typedef union _hw_snvs_lplr
 //! @brief Set the LPCALB_HL field to a new value.
 #define BW_SNVS_LPLR_LPCALB_HL(v)   (HW_SNVS_LPLR_WR((HW_SNVS_LPLR_RD() & ~BM_SNVS_LPLR_LPCALB_HL) | BF_SNVS_LPLR_LPCALB_HL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPLR, field MC_HL[4] (RW)
@@ -2839,7 +2687,6 @@ typedef union _hw_snvs_lplr
  * - 1 - Write access (increment) is not allowed.
  */
 //@{
-
 #define BP_SNVS_LPLR_MC_HL      (4)      //!< Bit position for SNVS_LPLR_MC_HL.
 #define BM_SNVS_LPLR_MC_HL      (0x00000010)  //!< Bit mask for SNVS_LPLR_MC_HL.
 
@@ -2853,7 +2700,6 @@ typedef union _hw_snvs_lplr
 //! @brief Set the MC_HL field to a new value.
 #define BW_SNVS_LPLR_MC_HL(v)   (HW_SNVS_LPLR_WR((HW_SNVS_LPLR_RD() & ~BM_SNVS_LPLR_MC_HL) | BF_SNVS_LPLR_MC_HL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPLR, field GPR_HL[5] (RW)
@@ -2866,7 +2712,6 @@ typedef union _hw_snvs_lplr
  * - 1 - Write access is not allowed.
  */
 //@{
-
 #define BP_SNVS_LPLR_GPR_HL      (5)      //!< Bit position for SNVS_LPLR_GPR_HL.
 #define BM_SNVS_LPLR_GPR_HL      (0x00000020)  //!< Bit mask for SNVS_LPLR_GPR_HL.
 
@@ -2880,7 +2725,6 @@ typedef union _hw_snvs_lplr
 //! @brief Set the GPR_HL field to a new value.
 #define BW_SNVS_LPLR_GPR_HL(v)   (HW_SNVS_LPLR_WR((HW_SNVS_LPLR_RD() & ~BM_SNVS_LPLR_GPR_HL) | BF_SNVS_LPLR_GPR_HL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPLR, field LPSVCR_HL[6] (RW)
@@ -2893,7 +2737,6 @@ typedef union _hw_snvs_lplr
  * - 1 - Write access is not allowed.
  */
 //@{
-
 #define BP_SNVS_LPLR_LPSVCR_HL      (6)      //!< Bit position for SNVS_LPLR_LPSVCR_HL.
 #define BM_SNVS_LPLR_LPSVCR_HL      (0x00000040)  //!< Bit mask for SNVS_LPLR_LPSVCR_HL.
 
@@ -2907,7 +2750,6 @@ typedef union _hw_snvs_lplr
 //! @brief Set the LPSVCR_HL field to a new value.
 #define BW_SNVS_LPLR_LPSVCR_HL(v)   (HW_SNVS_LPLR_WR((HW_SNVS_LPLR_RD() & ~BM_SNVS_LPLR_LPSVCR_HL) | BF_SNVS_LPLR_LPSVCR_HL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPLR, field LPTGFCR_HL[7] (RW)
@@ -2920,7 +2762,6 @@ typedef union _hw_snvs_lplr
  * - 1 - Write access is not allowed.
  */
 //@{
-
 #define BP_SNVS_LPLR_LPTGFCR_HL      (7)      //!< Bit position for SNVS_LPLR_LPTGFCR_HL.
 #define BM_SNVS_LPLR_LPTGFCR_HL      (0x00000080)  //!< Bit mask for SNVS_LPLR_LPTGFCR_HL.
 
@@ -2934,7 +2775,6 @@ typedef union _hw_snvs_lplr
 //! @brief Set the LPTGFCR_HL field to a new value.
 #define BW_SNVS_LPLR_LPTGFCR_HL(v)   (HW_SNVS_LPLR_WR((HW_SNVS_LPLR_RD() & ~BM_SNVS_LPLR_LPTGFCR_HL) | BF_SNVS_LPLR_LPTGFCR_HL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPLR, field LPTDCR_HL[8] (RW)
@@ -2947,7 +2787,6 @@ typedef union _hw_snvs_lplr
  * - 1 - Write access is not allowed.
  */
 //@{
-
 #define BP_SNVS_LPLR_LPTDCR_HL      (8)      //!< Bit position for SNVS_LPLR_LPTDCR_HL.
 #define BM_SNVS_LPLR_LPTDCR_HL      (0x00000100)  //!< Bit mask for SNVS_LPLR_LPTDCR_HL.
 
@@ -2961,7 +2800,6 @@ typedef union _hw_snvs_lplr
 //! @brief Set the LPTDCR_HL field to a new value.
 #define BW_SNVS_LPLR_LPTDCR_HL(v)   (HW_SNVS_LPLR_WR((HW_SNVS_LPLR_RD() & ~BM_SNVS_LPLR_LPTDCR_HL) | BF_SNVS_LPLR_LPTDCR_HL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPLR, field MKS_HL[9] (RW)
@@ -2974,7 +2812,6 @@ typedef union _hw_snvs_lplr
  * - 1 - Write access is not allowed.
  */
 //@{
-
 #define BP_SNVS_LPLR_MKS_HL      (9)      //!< Bit position for SNVS_LPLR_MKS_HL.
 #define BM_SNVS_LPLR_MKS_HL      (0x00000200)  //!< Bit mask for SNVS_LPLR_MKS_HL.
 
@@ -2988,7 +2825,6 @@ typedef union _hw_snvs_lplr
 //! @brief Set the MKS_HL field to a new value.
 #define BW_SNVS_LPLR_MKS_HL(v)   (HW_SNVS_LPLR_WR((HW_SNVS_LPLR_RD() & ~BM_SNVS_LPLR_MKS_HL) | BF_SNVS_LPLR_MKS_HL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3054,7 +2890,6 @@ typedef union _hw_snvs_lpcr
  * - 1 - SRTC is enabled and valid.
  */
 //@{
-
 #define BP_SNVS_LPCR_SRTC_ENV      (0)      //!< Bit position for SNVS_LPCR_SRTC_ENV.
 #define BM_SNVS_LPCR_SRTC_ENV      (0x00000001)  //!< Bit mask for SNVS_LPCR_SRTC_ENV.
 
@@ -3068,7 +2903,6 @@ typedef union _hw_snvs_lpcr
 //! @brief Set the SRTC_ENV field to a new value.
 #define BW_SNVS_LPCR_SRTC_ENV(v)   (HW_SNVS_LPCR_WR((HW_SNVS_LPCR_RD() & ~BM_SNVS_LPCR_SRTC_ENV) | BF_SNVS_LPCR_SRTC_ENV(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPCR, field LPTA_EN[1] (RW)
@@ -3081,7 +2915,6 @@ typedef union _hw_snvs_lpcr
  * - 1 - LP time alarm interrupt is enabled.
  */
 //@{
-
 #define BP_SNVS_LPCR_LPTA_EN      (1)      //!< Bit position for SNVS_LPCR_LPTA_EN.
 #define BM_SNVS_LPCR_LPTA_EN      (0x00000002)  //!< Bit mask for SNVS_LPCR_LPTA_EN.
 
@@ -3095,7 +2928,6 @@ typedef union _hw_snvs_lpcr
 //! @brief Set the LPTA_EN field to a new value.
 #define BW_SNVS_LPCR_LPTA_EN(v)   (HW_SNVS_LPCR_WR((HW_SNVS_LPCR_RD() & ~BM_SNVS_LPCR_LPTA_EN) | BF_SNVS_LPCR_LPTA_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPCR, field MC_ENV[2] (RW)
@@ -3108,7 +2940,6 @@ typedef union _hw_snvs_lpcr
  * - 1 - MC is enabled and valid.
  */
 //@{
-
 #define BP_SNVS_LPCR_MC_ENV      (2)      //!< Bit position for SNVS_LPCR_MC_ENV.
 #define BM_SNVS_LPCR_MC_ENV      (0x00000004)  //!< Bit mask for SNVS_LPCR_MC_ENV.
 
@@ -3122,7 +2953,6 @@ typedef union _hw_snvs_lpcr
 //! @brief Set the MC_ENV field to a new value.
 #define BW_SNVS_LPCR_MC_ENV(v)   (HW_SNVS_LPCR_WR((HW_SNVS_LPCR_RD() & ~BM_SNVS_LPCR_MC_ENV) | BF_SNVS_LPCR_MC_ENV(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPCR, field LPWUI_EN[3] (RW)
@@ -3134,7 +2964,6 @@ typedef union _hw_snvs_lpcr
  * interrupt is enabled.
  */
 //@{
-
 #define BP_SNVS_LPCR_LPWUI_EN      (3)      //!< Bit position for SNVS_LPCR_LPWUI_EN.
 #define BM_SNVS_LPCR_LPWUI_EN      (0x00000008)  //!< Bit mask for SNVS_LPCR_LPWUI_EN.
 
@@ -3148,7 +2977,6 @@ typedef union _hw_snvs_lpcr
 //! @brief Set the LPWUI_EN field to a new value.
 #define BW_SNVS_LPCR_LPWUI_EN(v)   (HW_SNVS_LPCR_WR((HW_SNVS_LPCR_RD() & ~BM_SNVS_LPCR_LPWUI_EN) | BF_SNVS_LPCR_LPWUI_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPCR, field SRTC_INV_EN[4] (RW)
@@ -3162,7 +2990,6 @@ typedef union _hw_snvs_lpcr
  * - 1 - SRTC is invalidated in the case of security violation.
  */
 //@{
-
 #define BP_SNVS_LPCR_SRTC_INV_EN      (4)      //!< Bit position for SNVS_LPCR_SRTC_INV_EN.
 #define BM_SNVS_LPCR_SRTC_INV_EN      (0x00000010)  //!< Bit mask for SNVS_LPCR_SRTC_INV_EN.
 
@@ -3176,7 +3003,6 @@ typedef union _hw_snvs_lpcr
 //! @brief Set the SRTC_INV_EN field to a new value.
 #define BW_SNVS_LPCR_SRTC_INV_EN(v)   (HW_SNVS_LPCR_WR((HW_SNVS_LPCR_RD() & ~BM_SNVS_LPCR_SRTC_INV_EN) | BF_SNVS_LPCR_SRTC_INV_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPCR, field DP_EN[5] (RW)
@@ -3188,7 +3014,6 @@ typedef union _hw_snvs_lpcr
  * - 1 - Dumb PMIC enabled.
  */
 //@{
-
 #define BP_SNVS_LPCR_DP_EN      (5)      //!< Bit position for SNVS_LPCR_DP_EN.
 #define BM_SNVS_LPCR_DP_EN      (0x00000020)  //!< Bit mask for SNVS_LPCR_DP_EN.
 
@@ -3202,7 +3027,6 @@ typedef union _hw_snvs_lpcr
 //! @brief Set the DP_EN field to a new value.
 #define BW_SNVS_LPCR_DP_EN(v)   (HW_SNVS_LPCR_WR((HW_SNVS_LPCR_RD() & ~BM_SNVS_LPCR_DP_EN) | BF_SNVS_LPCR_DP_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPCR, field TOP[6] (RW)
@@ -3215,7 +3039,6 @@ typedef union _hw_snvs_lpcr
  * - 1 - Turn off system power.
  */
 //@{
-
 #define BP_SNVS_LPCR_TOP      (6)      //!< Bit position for SNVS_LPCR_TOP.
 #define BM_SNVS_LPCR_TOP      (0x00000040)  //!< Bit mask for SNVS_LPCR_TOP.
 
@@ -3229,7 +3052,6 @@ typedef union _hw_snvs_lpcr
 //! @brief Set the TOP field to a new value.
 #define BW_SNVS_LPCR_TOP(v)   (HW_SNVS_LPCR_WR((HW_SNVS_LPCR_RD() & ~BM_SNVS_LPCR_TOP) | BF_SNVS_LPCR_TOP(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPCR, field LPCALB_EN[8] (RW)
@@ -3242,7 +3064,6 @@ typedef union _hw_snvs_lpcr
  * - 1 - SRTC Time calibration is enabled.
  */
 //@{
-
 #define BP_SNVS_LPCR_LPCALB_EN      (8)      //!< Bit position for SNVS_LPCR_LPCALB_EN.
 #define BM_SNVS_LPCR_LPCALB_EN      (0x00000100)  //!< Bit mask for SNVS_LPCR_LPCALB_EN.
 
@@ -3256,7 +3077,6 @@ typedef union _hw_snvs_lpcr
 //! @brief Set the LPCALB_EN field to a new value.
 #define BW_SNVS_LPCR_LPCALB_EN(v)   (HW_SNVS_LPCR_WR((HW_SNVS_LPCR_RD() & ~BM_SNVS_LPCR_LPCALB_EN) | BF_SNVS_LPCR_LPCALB_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPCR, field LPCALB_VAL[14:10] (RW)
@@ -3277,7 +3097,6 @@ typedef union _hw_snvs_lpcr
  * - 11111 - -1 counts per each 32768 ticks of the counter clock
  */
 //@{
-
 #define BP_SNVS_LPCR_LPCALB_VAL      (10)      //!< Bit position for SNVS_LPCR_LPCALB_VAL.
 #define BM_SNVS_LPCR_LPCALB_VAL      (0x00007c00)  //!< Bit mask for SNVS_LPCR_LPCALB_VAL.
 
@@ -3291,7 +3110,6 @@ typedef union _hw_snvs_lpcr
 //! @brief Set the LPCALB_VAL field to a new value.
 #define BW_SNVS_LPCR_LPCALB_VAL(v)   (HW_SNVS_LPCR_WR((HW_SNVS_LPCR_RD() & ~BM_SNVS_LPCR_LPCALB_VAL) | BF_SNVS_LPCR_LPCALB_VAL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3355,7 +3173,6 @@ typedef union _hw_snvs_lpmkcr
  * - 11 - Select combined master key when MKS_EN bit is set .
  */
 //@{
-
 #define BP_SNVS_LPMKCR_MASTER_KEY_SEL      (0)      //!< Bit position for SNVS_LPMKCR_MASTER_KEY_SEL.
 #define BM_SNVS_LPMKCR_MASTER_KEY_SEL      (0x00000003)  //!< Bit mask for SNVS_LPMKCR_MASTER_KEY_SEL.
 
@@ -3369,7 +3186,6 @@ typedef union _hw_snvs_lpmkcr
 //! @brief Set the MASTER_KEY_SEL field to a new value.
 #define BW_SNVS_LPMKCR_MASTER_KEY_SEL(v)   (HW_SNVS_LPMKCR_WR((HW_SNVS_LPMKCR_RD() & ~BM_SNVS_LPMKCR_MASTER_KEY_SEL) | BF_SNVS_LPMKCR_MASTER_KEY_SEL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPMKCR, field ZMK_HWP[2] (RW)
@@ -3384,7 +3200,6 @@ typedef union _hw_snvs_lpmkcr
  * - 1 - ZMK is in the hardware programming mode.
  */
 //@{
-
 #define BP_SNVS_LPMKCR_ZMK_HWP      (2)      //!< Bit position for SNVS_LPMKCR_ZMK_HWP.
 #define BM_SNVS_LPMKCR_ZMK_HWP      (0x00000004)  //!< Bit mask for SNVS_LPMKCR_ZMK_HWP.
 
@@ -3398,7 +3213,6 @@ typedef union _hw_snvs_lpmkcr
 //! @brief Set the ZMK_HWP field to a new value.
 #define BW_SNVS_LPMKCR_ZMK_HWP(v)   (HW_SNVS_LPMKCR_WR((HW_SNVS_LPMKCR_RD() & ~BM_SNVS_LPMKCR_ZMK_HWP) | BF_SNVS_LPMKCR_ZMK_HWP(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPMKCR, field ZMK_VAL[3] (RW)
@@ -3413,7 +3227,6 @@ typedef union _hw_snvs_lpmkcr
  * - 1 - ZMK is valid.
  */
 //@{
-
 #define BP_SNVS_LPMKCR_ZMK_VAL      (3)      //!< Bit position for SNVS_LPMKCR_ZMK_VAL.
 #define BM_SNVS_LPMKCR_ZMK_VAL      (0x00000008)  //!< Bit mask for SNVS_LPMKCR_ZMK_VAL.
 
@@ -3427,7 +3240,6 @@ typedef union _hw_snvs_lpmkcr
 //! @brief Set the ZMK_VAL field to a new value.
 #define BW_SNVS_LPMKCR_ZMK_VAL(v)   (HW_SNVS_LPMKCR_WR((HW_SNVS_LPMKCR_RD() & ~BM_SNVS_LPMKCR_ZMK_VAL) | BF_SNVS_LPMKCR_ZMK_VAL(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPMKCR, field ZMK_ECC_EN[4] (RW)
@@ -3444,7 +3256,6 @@ typedef union _hw_snvs_lpmkcr
  * - 1 - ZMK ECC check is enabled.
  */
 //@{
-
 #define BP_SNVS_LPMKCR_ZMK_ECC_EN      (4)      //!< Bit position for SNVS_LPMKCR_ZMK_ECC_EN.
 #define BM_SNVS_LPMKCR_ZMK_ECC_EN      (0x00000010)  //!< Bit mask for SNVS_LPMKCR_ZMK_ECC_EN.
 
@@ -3458,7 +3269,6 @@ typedef union _hw_snvs_lpmkcr
 //! @brief Set the ZMK_ECC_EN field to a new value.
 #define BW_SNVS_LPMKCR_ZMK_ECC_EN(v)   (HW_SNVS_LPMKCR_WR((HW_SNVS_LPMKCR_RD() & ~BM_SNVS_LPMKCR_ZMK_ECC_EN) | BF_SNVS_LPMKCR_ZMK_ECC_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPMKCR, field ZMK_ECC_VALUE[15:7] (RO)
@@ -3472,13 +3282,11 @@ typedef union _hw_snvs_lpmkcr
  * applied to this field (see LPZMKR SNVS_LP Zeroizable Master Key Register n ).
  */
 //@{
-
 #define BP_SNVS_LPMKCR_ZMK_ECC_VALUE      (7)      //!< Bit position for SNVS_LPMKCR_ZMK_ECC_VALUE.
 #define BM_SNVS_LPMKCR_ZMK_ECC_VALUE      (0x0000ff80)  //!< Bit mask for SNVS_LPMKCR_ZMK_ECC_VALUE.
 
 //! @brief Get value of SNVS_LPMKCR_ZMK_ECC_VALUE from a register value.
 #define BG_SNVS_LPMKCR_ZMK_ECC_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPMKCR_ZMK_ECC_VALUE) >> BP_SNVS_LPMKCR_ZMK_ECC_VALUE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3542,7 +3350,6 @@ typedef union _hw_snvs_lpsvcr
  * - 1 - Security Violation 0 is enabled in the LP domain.
  */
 //@{
-
 #define BP_SNVS_LPSVCR_SV_EN0      (0)      //!< Bit position for SNVS_LPSVCR_SV_EN0.
 #define BM_SNVS_LPSVCR_SV_EN0      (0x00000001)  //!< Bit mask for SNVS_LPSVCR_SV_EN0.
 
@@ -3556,7 +3363,6 @@ typedef union _hw_snvs_lpsvcr
 //! @brief Set the SV_EN0 field to a new value.
 #define BW_SNVS_LPSVCR_SV_EN0(v)   (HW_SNVS_LPSVCR_WR((HW_SNVS_LPSVCR_RD() & ~BM_SNVS_LPSVCR_SV_EN0) | BF_SNVS_LPSVCR_SV_EN0(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSVCR, field SV_EN1[1] (RW)
@@ -3569,7 +3375,6 @@ typedef union _hw_snvs_lpsvcr
  * - 1 - Security Violation 1 is enabled in the LP domain.
  */
 //@{
-
 #define BP_SNVS_LPSVCR_SV_EN1      (1)      //!< Bit position for SNVS_LPSVCR_SV_EN1.
 #define BM_SNVS_LPSVCR_SV_EN1      (0x00000002)  //!< Bit mask for SNVS_LPSVCR_SV_EN1.
 
@@ -3583,7 +3388,6 @@ typedef union _hw_snvs_lpsvcr
 //! @brief Set the SV_EN1 field to a new value.
 #define BW_SNVS_LPSVCR_SV_EN1(v)   (HW_SNVS_LPSVCR_WR((HW_SNVS_LPSVCR_RD() & ~BM_SNVS_LPSVCR_SV_EN1) | BF_SNVS_LPSVCR_SV_EN1(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSVCR, field SV_EN2[2] (RW)
@@ -3596,7 +3400,6 @@ typedef union _hw_snvs_lpsvcr
  * - 1 - Security Violation 2 is enabled in the LP domain.
  */
 //@{
-
 #define BP_SNVS_LPSVCR_SV_EN2      (2)      //!< Bit position for SNVS_LPSVCR_SV_EN2.
 #define BM_SNVS_LPSVCR_SV_EN2      (0x00000004)  //!< Bit mask for SNVS_LPSVCR_SV_EN2.
 
@@ -3610,7 +3413,6 @@ typedef union _hw_snvs_lpsvcr
 //! @brief Set the SV_EN2 field to a new value.
 #define BW_SNVS_LPSVCR_SV_EN2(v)   (HW_SNVS_LPSVCR_WR((HW_SNVS_LPSVCR_RD() & ~BM_SNVS_LPSVCR_SV_EN2) | BF_SNVS_LPSVCR_SV_EN2(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSVCR, field SV_EN3[3] (RW)
@@ -3623,7 +3425,6 @@ typedef union _hw_snvs_lpsvcr
  * - 1 - Security Violation 3 is enabled in the LP domain.
  */
 //@{
-
 #define BP_SNVS_LPSVCR_SV_EN3      (3)      //!< Bit position for SNVS_LPSVCR_SV_EN3.
 #define BM_SNVS_LPSVCR_SV_EN3      (0x00000008)  //!< Bit mask for SNVS_LPSVCR_SV_EN3.
 
@@ -3637,7 +3438,6 @@ typedef union _hw_snvs_lpsvcr
 //! @brief Set the SV_EN3 field to a new value.
 #define BW_SNVS_LPSVCR_SV_EN3(v)   (HW_SNVS_LPSVCR_WR((HW_SNVS_LPSVCR_RD() & ~BM_SNVS_LPSVCR_SV_EN3) | BF_SNVS_LPSVCR_SV_EN3(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSVCR, field SV_EN4[4] (RW)
@@ -3650,7 +3450,6 @@ typedef union _hw_snvs_lpsvcr
  * - 1 - Security Violation 4 is enabled in the LP domain.
  */
 //@{
-
 #define BP_SNVS_LPSVCR_SV_EN4      (4)      //!< Bit position for SNVS_LPSVCR_SV_EN4.
 #define BM_SNVS_LPSVCR_SV_EN4      (0x00000010)  //!< Bit mask for SNVS_LPSVCR_SV_EN4.
 
@@ -3664,7 +3463,6 @@ typedef union _hw_snvs_lpsvcr
 //! @brief Set the SV_EN4 field to a new value.
 #define BW_SNVS_LPSVCR_SV_EN4(v)   (HW_SNVS_LPSVCR_WR((HW_SNVS_LPSVCR_RD() & ~BM_SNVS_LPSVCR_SV_EN4) | BF_SNVS_LPSVCR_SV_EN4(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSVCR, field SV_EN5[5] (RW)
@@ -3677,7 +3475,6 @@ typedef union _hw_snvs_lpsvcr
  * - 1 - Security Violation 5 is enabled in the LP domain.
  */
 //@{
-
 #define BP_SNVS_LPSVCR_SV_EN5      (5)      //!< Bit position for SNVS_LPSVCR_SV_EN5.
 #define BM_SNVS_LPSVCR_SV_EN5      (0x00000020)  //!< Bit mask for SNVS_LPSVCR_SV_EN5.
 
@@ -3691,7 +3488,6 @@ typedef union _hw_snvs_lpsvcr
 //! @brief Set the SV_EN5 field to a new value.
 #define BW_SNVS_LPSVCR_SV_EN5(v)   (HW_SNVS_LPSVCR_WR((HW_SNVS_LPSVCR_RD() & ~BM_SNVS_LPSVCR_SV_EN5) | BF_SNVS_LPSVCR_SV_EN5(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3750,7 +3546,6 @@ typedef union _hw_snvs_lptgfcr
  * the glitches filtered out is: 128 + (ETGF1 x 256), where ETGF1 = 0, ... , 31
  */
 //@{
-
 #define BP_SNVS_LPTGFCR_ETGF1      (16)      //!< Bit position for SNVS_LPTGFCR_ETGF1.
 #define BM_SNVS_LPTGFCR_ETGF1      (0x001f0000)  //!< Bit mask for SNVS_LPTGFCR_ETGF1.
 
@@ -3764,7 +3559,6 @@ typedef union _hw_snvs_lptgfcr
 //! @brief Set the ETGF1 field to a new value.
 #define BW_SNVS_LPTGFCR_ETGF1(v)   (HW_SNVS_LPTGFCR_WR((HW_SNVS_LPTGFCR_RD() & ~BM_SNVS_LPTGFCR_ETGF1) | BF_SNVS_LPTGFCR_ETGF1(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPTGFCR, field ETGF1_EN[23] (RW)
@@ -3776,7 +3570,6 @@ typedef union _hw_snvs_lptgfcr
  * - 1 - External tamper glitch filter 1 is enabled.
  */
 //@{
-
 #define BP_SNVS_LPTGFCR_ETGF1_EN      (23)      //!< Bit position for SNVS_LPTGFCR_ETGF1_EN.
 #define BM_SNVS_LPTGFCR_ETGF1_EN      (0x00800000)  //!< Bit mask for SNVS_LPTGFCR_ETGF1_EN.
 
@@ -3790,7 +3583,6 @@ typedef union _hw_snvs_lptgfcr
 //! @brief Set the ETGF1_EN field to a new value.
 #define BW_SNVS_LPTGFCR_ETGF1_EN(v)   (HW_SNVS_LPTGFCR_WR((HW_SNVS_LPTGFCR_RD() & ~BM_SNVS_LPTGFCR_ETGF1_EN) | BF_SNVS_LPTGFCR_ETGF1_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3853,7 +3645,6 @@ typedef union _hw_snvs_lptdcr
  * - 1 - SRTC rollover is enabled.
  */
 //@{
-
 #define BP_SNVS_LPTDCR_SRTCR_EN      (1)      //!< Bit position for SNVS_LPTDCR_SRTCR_EN.
 #define BM_SNVS_LPTDCR_SRTCR_EN      (0x00000002)  //!< Bit mask for SNVS_LPTDCR_SRTCR_EN.
 
@@ -3867,7 +3658,6 @@ typedef union _hw_snvs_lptdcr
 //! @brief Set the SRTCR_EN field to a new value.
 #define BW_SNVS_LPTDCR_SRTCR_EN(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_SRTCR_EN) | BF_SNVS_LPTDCR_SRTCR_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPTDCR, field MCR_EN[2] (RW)
@@ -3879,7 +3669,6 @@ typedef union _hw_snvs_lptdcr
  * - 1 - MC rollover is enabled.
  */
 //@{
-
 #define BP_SNVS_LPTDCR_MCR_EN      (2)      //!< Bit position for SNVS_LPTDCR_MCR_EN.
 #define BM_SNVS_LPTDCR_MCR_EN      (0x00000004)  //!< Bit mask for SNVS_LPTDCR_MCR_EN.
 
@@ -3893,7 +3682,6 @@ typedef union _hw_snvs_lptdcr
 //! @brief Set the MCR_EN field to a new value.
 #define BW_SNVS_LPTDCR_MCR_EN(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_MCR_EN) | BF_SNVS_LPTDCR_MCR_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPTDCR, field ET1_EN[9] (RW)
@@ -3906,7 +3694,6 @@ typedef union _hw_snvs_lptdcr
  * - 1 - External tamper 1 is enabled.
  */
 //@{
-
 #define BP_SNVS_LPTDCR_ET1_EN      (9)      //!< Bit position for SNVS_LPTDCR_ET1_EN.
 #define BM_SNVS_LPTDCR_ET1_EN      (0x00000200)  //!< Bit mask for SNVS_LPTDCR_ET1_EN.
 
@@ -3920,7 +3707,6 @@ typedef union _hw_snvs_lptdcr
 //! @brief Set the ET1_EN field to a new value.
 #define BW_SNVS_LPTDCR_ET1_EN(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_ET1_EN) | BF_SNVS_LPTDCR_ET1_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPTDCR, field PFD_OBSERV[14] (RW)
@@ -3930,7 +3716,6 @@ typedef union _hw_snvs_lptdcr
  * block). This flop can be used to detect brown-out voltage of the PFD circuitry.
  */
 //@{
-
 #define BP_SNVS_LPTDCR_PFD_OBSERV      (14)      //!< Bit position for SNVS_LPTDCR_PFD_OBSERV.
 #define BM_SNVS_LPTDCR_PFD_OBSERV      (0x00004000)  //!< Bit mask for SNVS_LPTDCR_PFD_OBSERV.
 
@@ -3944,7 +3729,6 @@ typedef union _hw_snvs_lptdcr
 //! @brief Set the PFD_OBSERV field to a new value.
 #define BW_SNVS_LPTDCR_PFD_OBSERV(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_PFD_OBSERV) | BF_SNVS_LPTDCR_PFD_OBSERV(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPTDCR, field POR_OBSERV[15] (RW)
@@ -3954,7 +3738,6 @@ typedef union _hw_snvs_lptdcr
  * used to detect brown-out voltage of the POR circuitry.
  */
 //@{
-
 #define BP_SNVS_LPTDCR_POR_OBSERV      (15)      //!< Bit position for SNVS_LPTDCR_POR_OBSERV.
 #define BM_SNVS_LPTDCR_POR_OBSERV      (0x00008000)  //!< Bit mask for SNVS_LPTDCR_POR_OBSERV.
 
@@ -3968,7 +3751,6 @@ typedef union _hw_snvs_lptdcr
 //! @brief Set the POR_OBSERV field to a new value.
 #define BW_SNVS_LPTDCR_POR_OBSERV(v)   (HW_SNVS_LPTDCR_WR((HW_SNVS_LPTDCR_RD() & ~BM_SNVS_LPTDCR_POR_OBSERV) | BF_SNVS_LPTDCR_POR_OBSERV(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4036,7 +3818,6 @@ typedef union _hw_snvs_lpsr
  * - 1 - A time alarm interrupt occurred.
  */
 //@{
-
 #define BP_SNVS_LPSR_LPTA      (0)      //!< Bit position for SNVS_LPSR_LPTA.
 #define BM_SNVS_LPSR_LPTA      (0x00000001)  //!< Bit mask for SNVS_LPSR_LPTA.
 
@@ -4050,7 +3831,6 @@ typedef union _hw_snvs_lpsr
 //! @brief Set the LPTA field to a new value.
 #define BW_SNVS_LPSR_LPTA(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_LPTA) | BF_SNVS_LPSR_LPTA(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSR, field SRTCR[1] (W1C)
@@ -4062,7 +3842,6 @@ typedef union _hw_snvs_lpsr
  * - 1 - SRTC has reached its maximum value.
  */
 //@{
-
 #define BP_SNVS_LPSR_SRTCR      (1)      //!< Bit position for SNVS_LPSR_SRTCR.
 #define BM_SNVS_LPSR_SRTCR      (0x00000002)  //!< Bit mask for SNVS_LPSR_SRTCR.
 
@@ -4076,7 +3855,6 @@ typedef union _hw_snvs_lpsr
 //! @brief Set the SRTCR field to a new value.
 #define BW_SNVS_LPSR_SRTCR(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_SRTCR) | BF_SNVS_LPSR_SRTCR(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSR, field MCR[2] (W1C)
@@ -4088,7 +3866,6 @@ typedef union _hw_snvs_lpsr
  * - 1 - MC has reached its maximum value.
  */
 //@{
-
 #define BP_SNVS_LPSR_MCR      (2)      //!< Bit position for SNVS_LPSR_MCR.
 #define BM_SNVS_LPSR_MCR      (0x00000004)  //!< Bit mask for SNVS_LPSR_MCR.
 
@@ -4102,7 +3879,6 @@ typedef union _hw_snvs_lpsr
 //! @brief Set the MCR field to a new value.
 #define BW_SNVS_LPSR_MCR(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_MCR) | BF_SNVS_LPSR_MCR(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSR, field PGD[3] (W1C)
@@ -4110,7 +3886,6 @@ typedef union _hw_snvs_lpsr
  * Power Supply Glitch Detected. 0 No power supply glitch. 1 Power supply glitch is detected.
  */
 //@{
-
 #define BP_SNVS_LPSR_PGD      (3)      //!< Bit position for SNVS_LPSR_PGD.
 #define BM_SNVS_LPSR_PGD      (0x00000008)  //!< Bit mask for SNVS_LPSR_PGD.
 
@@ -4124,7 +3899,6 @@ typedef union _hw_snvs_lpsr
 //! @brief Set the PGD field to a new value.
 #define BW_SNVS_LPSR_PGD(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_PGD) | BF_SNVS_LPSR_PGD(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSR, field ET1D[9] (W1C)
@@ -4136,7 +3910,6 @@ typedef union _hw_snvs_lpsr
  * - 1 - External tampering 1 detected.
  */
 //@{
-
 #define BP_SNVS_LPSR_ET1D      (9)      //!< Bit position for SNVS_LPSR_ET1D.
 #define BM_SNVS_LPSR_ET1D      (0x00000200)  //!< Bit mask for SNVS_LPSR_ET1D.
 
@@ -4150,7 +3923,6 @@ typedef union _hw_snvs_lpsr
 //! @brief Set the ET1D field to a new value.
 #define BW_SNVS_LPSR_ET1D(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_ET1D) | BF_SNVS_LPSR_ET1D(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSR, field ESVD[16] (W1C)
@@ -4164,7 +3936,6 @@ typedef union _hw_snvs_lpsr
  * - 1 - External security violation is detected.
  */
 //@{
-
 #define BP_SNVS_LPSR_ESVD      (16)      //!< Bit position for SNVS_LPSR_ESVD.
 #define BM_SNVS_LPSR_ESVD      (0x00010000)  //!< Bit mask for SNVS_LPSR_ESVD.
 
@@ -4178,7 +3949,6 @@ typedef union _hw_snvs_lpsr
 //! @brief Set the ESVD field to a new value.
 #define BW_SNVS_LPSR_ESVD(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_ESVD) | BF_SNVS_LPSR_ESVD(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSR, field EO[17] (W1C)
@@ -4190,7 +3960,6 @@ typedef union _hw_snvs_lpsr
  * - 1 - Emergency off was detected.
  */
 //@{
-
 #define BP_SNVS_LPSR_EO      (17)      //!< Bit position for SNVS_LPSR_EO.
 #define BM_SNVS_LPSR_EO      (0x00020000)  //!< Bit mask for SNVS_LPSR_EO.
 
@@ -4204,7 +3973,6 @@ typedef union _hw_snvs_lpsr
 //! @brief Set the EO field to a new value.
 #define BW_SNVS_LPSR_EO(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_EO) | BF_SNVS_LPSR_EO(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSR, field SPO[18] (W1C)
@@ -4217,7 +3985,6 @@ typedef union _hw_snvs_lpsr
  * - 1 - Emergency Off was detected..
  */
 //@{
-
 #define BP_SNVS_LPSR_SPO      (18)      //!< Bit position for SNVS_LPSR_SPO.
 #define BM_SNVS_LPSR_SPO      (0x00040000)  //!< Bit mask for SNVS_LPSR_SPO.
 
@@ -4231,7 +3998,6 @@ typedef union _hw_snvs_lpsr
 //! @brief Set the SPO field to a new value.
 #define BW_SNVS_LPSR_SPO(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_SPO) | BF_SNVS_LPSR_SPO(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSR, field SED[20] (W1C)
@@ -4243,7 +4009,6 @@ typedef union _hw_snvs_lpsr
  * - 1 - Scan exit was detected.
  */
 //@{
-
 #define BP_SNVS_LPSR_SED      (20)      //!< Bit position for SNVS_LPSR_SED.
 #define BM_SNVS_LPSR_SED      (0x00100000)  //!< Bit mask for SNVS_LPSR_SED.
 
@@ -4257,7 +4022,6 @@ typedef union _hw_snvs_lpsr
 //! @brief Set the SED field to a new value.
 #define BW_SNVS_LPSR_SED(v)   (HW_SNVS_LPSR_WR((HW_SNVS_LPSR_RD() & ~BM_SNVS_LPSR_SED) | BF_SNVS_LPSR_SED(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSR, field LPNS[30] (RO)
@@ -4272,13 +4036,11 @@ typedef union _hw_snvs_lpsr
  * - 1 - LP section was programmed in the non-secure state.
  */
 //@{
-
 #define BP_SNVS_LPSR_LPNS      (30)      //!< Bit position for SNVS_LPSR_LPNS.
 #define BM_SNVS_LPSR_LPNS      (0x40000000)  //!< Bit mask for SNVS_LPSR_LPNS.
 
 //! @brief Get value of SNVS_LPSR_LPNS from a register value.
 #define BG_SNVS_LPSR_LPNS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPSR_LPNS) >> BP_SNVS_LPSR_LPNS)
-
 //@}
 
 /*! @name Register SNVS_LPSR, field LPS[31] (RO)
@@ -4293,13 +4055,11 @@ typedef union _hw_snvs_lpsr
  * - 1 - LP section was programmed in secure or trusted state.
  */
 //@{
-
 #define BP_SNVS_LPSR_LPS      (31)      //!< Bit position for SNVS_LPSR_LPS.
 #define BM_SNVS_LPSR_LPS      (0x80000000)  //!< Bit mask for SNVS_LPSR_LPS.
 
 //! @brief Get value of SNVS_LPSR_LPS from a register value.
 #define BG_SNVS_LPSR_LPS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPSR_LPS) >> BP_SNVS_LPSR_LPS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4352,7 +4112,6 @@ typedef union _hw_snvs_lpsrtcmr
  * SRTC is not active and not locked, meaning the SRTC_ENV, SRTC_SL, and SRTC_HL bits are not set.
  */
 //@{
-
 #define BP_SNVS_LPSRTCMR_SRTC      (0)      //!< Bit position for SNVS_LPSRTCMR_SRTC.
 #define BM_SNVS_LPSRTCMR_SRTC      (0x00007fff)  //!< Bit mask for SNVS_LPSRTCMR_SRTC.
 
@@ -4366,7 +4125,6 @@ typedef union _hw_snvs_lpsrtcmr
 //! @brief Set the SRTC field to a new value.
 #define BW_SNVS_LPSRTCMR_SRTC(v)   (HW_SNVS_LPSRTCMR_WR((HW_SNVS_LPSRTCMR_RD() & ~BM_SNVS_LPSRTCMR_SRTC) | BF_SNVS_LPSRTCMR_SRTC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4418,7 +4176,6 @@ typedef union _hw_snvs_lpsrtclr
  * SRTC is not active and not locked, meaning the SRTC_ENV, SRTC_SL, and SRTC_HL bits are not set.
  */
 //@{
-
 #define BP_SNVS_LPSRTCLR_SRTC      (0)      //!< Bit position for SNVS_LPSRTCLR_SRTC.
 #define BM_SNVS_LPSRTCLR_SRTC      (0xffffffff)  //!< Bit mask for SNVS_LPSRTCLR_SRTC.
 
@@ -4432,7 +4189,6 @@ typedef union _hw_snvs_lpsrtclr
 //! @brief Set the SRTC field to a new value.
 #define BW_SNVS_LPSRTCLR_SRTC(v)   (HW_SNVS_LPSRTCLR_WR((HW_SNVS_LPSRTCLR_RD() & ~BM_SNVS_LPSRTCLR_SRTC) | BF_SNVS_LPSRTCLR_SRTC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4483,7 +4239,6 @@ typedef union _hw_snvs_lptar
  * bit is not set).
  */
 //@{
-
 #define BP_SNVS_LPTAR_LPTA      (0)      //!< Bit position for SNVS_LPTAR_LPTA.
 #define BM_SNVS_LPTAR_LPTA      (0xffffffff)  //!< Bit mask for SNVS_LPTAR_LPTA.
 
@@ -4497,7 +4252,6 @@ typedef union _hw_snvs_lptar
 //! @brief Set the LPTA field to a new value.
 #define BW_SNVS_LPTAR_LPTA(v)   (HW_SNVS_LPTAR_WR((HW_SNVS_LPTAR_RD() & ~BM_SNVS_LPTAR_LPTA) | BF_SNVS_LPTAR_LPTA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4552,7 +4306,6 @@ typedef union _hw_snvs_lpsmcmr
  * not set.
  */
 //@{
-
 #define BP_SNVS_LPSMCMR_MON_COUNTER      (0)      //!< Bit position for SNVS_LPSMCMR_MON_COUNTER.
 #define BM_SNVS_LPSMCMR_MON_COUNTER      (0x0000ffff)  //!< Bit mask for SNVS_LPSMCMR_MON_COUNTER.
 
@@ -4566,7 +4319,6 @@ typedef union _hw_snvs_lpsmcmr
 //! @brief Set the MON_COUNTER field to a new value.
 #define BW_SNVS_LPSMCMR_MON_COUNTER(v)   (HW_SNVS_LPSMCMR_WR((HW_SNVS_LPSMCMR_RD() & ~BM_SNVS_LPSMCMR_MON_COUNTER) | BF_SNVS_LPSMCMR_MON_COUNTER(v)))
 #endif
-
 //@}
 
 /*! @name Register SNVS_LPSMCMR, field MC_ERA_BITS[31:16] (RW)
@@ -4574,7 +4326,6 @@ typedef union _hw_snvs_lpsmcmr
  * Monotonic Counter Era Bits These bits are inputs to the module and typically connect to fuses.
  */
 //@{
-
 #define BP_SNVS_LPSMCMR_MC_ERA_BITS      (16)      //!< Bit position for SNVS_LPSMCMR_MC_ERA_BITS.
 #define BM_SNVS_LPSMCMR_MC_ERA_BITS      (0xffff0000)  //!< Bit mask for SNVS_LPSMCMR_MC_ERA_BITS.
 
@@ -4588,7 +4339,6 @@ typedef union _hw_snvs_lpsmcmr
 //! @brief Set the MC_ERA_BITS field to a new value.
 #define BW_SNVS_LPSMCMR_MC_ERA_BITS(v)   (HW_SNVS_LPSMCMR_WR((HW_SNVS_LPSMCMR_RD() & ~BM_SNVS_LPSMCMR_MC_ERA_BITS) | BF_SNVS_LPSMCMR_MC_ERA_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4641,7 +4391,6 @@ typedef union _hw_snvs_lpsmclr
  * LPSMCLR Register is detected. The MC_ENV bit is set. MC_SL and MC_HL bits are not set.
  */
 //@{
-
 #define BP_SNVS_LPSMCLR_MON_COUNTER      (0)      //!< Bit position for SNVS_LPSMCLR_MON_COUNTER.
 #define BM_SNVS_LPSMCLR_MON_COUNTER      (0xffffffff)  //!< Bit mask for SNVS_LPSMCLR_MON_COUNTER.
 
@@ -4655,7 +4404,6 @@ typedef union _hw_snvs_lpsmclr
 //! @brief Set the MON_COUNTER field to a new value.
 #define BW_SNVS_LPSMCLR_MON_COUNTER(v)   (HW_SNVS_LPSMCLR_WR((HW_SNVS_LPSMCLR_RD() & ~BM_SNVS_LPSMCLR_MON_COUNTER) | BF_SNVS_LPSMCLR_MON_COUNTER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4706,7 +4454,6 @@ typedef union _hw_snvs_lppgdr
  * Power Glitch Detector Value
  */
 //@{
-
 #define BP_SNVS_LPPGDR_PGD      (0)      //!< Bit position for SNVS_LPPGDR_PGD.
 #define BM_SNVS_LPPGDR_PGD      (0xffffffff)  //!< Bit mask for SNVS_LPPGDR_PGD.
 
@@ -4720,7 +4467,6 @@ typedef union _hw_snvs_lppgdr
 //! @brief Set the PGD field to a new value.
 #define BW_SNVS_LPPGDR_PGD(v)   (HW_SNVS_LPPGDR_WR((HW_SNVS_LPPGDR_RD() & ~BM_SNVS_LPPGDR_PGD) | BF_SNVS_LPPGDR_PGD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4771,7 +4517,6 @@ typedef union _hw_snvs_lpgpr
  * General Purpose Register When GPR_SL or GPR_HL bit is set, the register cannot be programmed.
  */
 //@{
-
 #define BP_SNVS_LPGPR_GPR      (0)      //!< Bit position for SNVS_LPGPR_GPR.
 #define BM_SNVS_LPGPR_GPR      (0xffffffff)  //!< Bit mask for SNVS_LPGPR_GPR.
 
@@ -4785,7 +4530,6 @@ typedef union _hw_snvs_lpgpr
 //! @brief Set the GPR field to a new value.
 #define BW_SNVS_LPGPR_GPR(v)   (HW_SNVS_LPGPR_WR((HW_SNVS_LPGPR_RD() & ~BM_SNVS_LPGPR_GPR) | BF_SNVS_LPGPR_GPR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4842,7 +4586,6 @@ typedef union _hw_snvs_lpzmkr0
  * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
  */
 //@{
-
 #define BP_SNVS_LPZMKR0_ZMK      (0)      //!< Bit position for SNVS_LPZMKR0_ZMK.
 #define BM_SNVS_LPZMKR0_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR0_ZMK.
 
@@ -4856,7 +4599,6 @@ typedef union _hw_snvs_lpzmkr0
 //! @brief Set the ZMK field to a new value.
 #define BW_SNVS_LPZMKR0_ZMK(v)   (HW_SNVS_LPZMKR0_WR((HW_SNVS_LPZMKR0_RD() & ~BM_SNVS_LPZMKR0_ZMK) | BF_SNVS_LPZMKR0_ZMK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4913,7 +4655,6 @@ typedef union _hw_snvs_lpzmkr1
  * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
  */
 //@{
-
 #define BP_SNVS_LPZMKR1_ZMK      (0)      //!< Bit position for SNVS_LPZMKR1_ZMK.
 #define BM_SNVS_LPZMKR1_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR1_ZMK.
 
@@ -4927,7 +4668,6 @@ typedef union _hw_snvs_lpzmkr1
 //! @brief Set the ZMK field to a new value.
 #define BW_SNVS_LPZMKR1_ZMK(v)   (HW_SNVS_LPZMKR1_WR((HW_SNVS_LPZMKR1_RD() & ~BM_SNVS_LPZMKR1_ZMK) | BF_SNVS_LPZMKR1_ZMK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4984,7 +4724,6 @@ typedef union _hw_snvs_lpzmkr2
  * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
  */
 //@{
-
 #define BP_SNVS_LPZMKR2_ZMK      (0)      //!< Bit position for SNVS_LPZMKR2_ZMK.
 #define BM_SNVS_LPZMKR2_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR2_ZMK.
 
@@ -4998,7 +4737,6 @@ typedef union _hw_snvs_lpzmkr2
 //! @brief Set the ZMK field to a new value.
 #define BW_SNVS_LPZMKR2_ZMK(v)   (HW_SNVS_LPZMKR2_WR((HW_SNVS_LPZMKR2_RD() & ~BM_SNVS_LPZMKR2_ZMK) | BF_SNVS_LPZMKR2_ZMK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5055,7 +4793,6 @@ typedef union _hw_snvs_lpzmkr3
  * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
  */
 //@{
-
 #define BP_SNVS_LPZMKR3_ZMK      (0)      //!< Bit position for SNVS_LPZMKR3_ZMK.
 #define BM_SNVS_LPZMKR3_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR3_ZMK.
 
@@ -5069,7 +4806,6 @@ typedef union _hw_snvs_lpzmkr3
 //! @brief Set the ZMK field to a new value.
 #define BW_SNVS_LPZMKR3_ZMK(v)   (HW_SNVS_LPZMKR3_WR((HW_SNVS_LPZMKR3_RD() & ~BM_SNVS_LPZMKR3_ZMK) | BF_SNVS_LPZMKR3_ZMK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5126,7 +4862,6 @@ typedef union _hw_snvs_lpzmkr4
  * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
  */
 //@{
-
 #define BP_SNVS_LPZMKR4_ZMK      (0)      //!< Bit position for SNVS_LPZMKR4_ZMK.
 #define BM_SNVS_LPZMKR4_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR4_ZMK.
 
@@ -5140,7 +4875,6 @@ typedef union _hw_snvs_lpzmkr4
 //! @brief Set the ZMK field to a new value.
 #define BW_SNVS_LPZMKR4_ZMK(v)   (HW_SNVS_LPZMKR4_WR((HW_SNVS_LPZMKR4_RD() & ~BM_SNVS_LPZMKR4_ZMK) | BF_SNVS_LPZMKR4_ZMK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5197,7 +4931,6 @@ typedef union _hw_snvs_lpzmkr5
  * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
  */
 //@{
-
 #define BP_SNVS_LPZMKR5_ZMK      (0)      //!< Bit position for SNVS_LPZMKR5_ZMK.
 #define BM_SNVS_LPZMKR5_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR5_ZMK.
 
@@ -5211,7 +4944,6 @@ typedef union _hw_snvs_lpzmkr5
 //! @brief Set the ZMK field to a new value.
 #define BW_SNVS_LPZMKR5_ZMK(v)   (HW_SNVS_LPZMKR5_WR((HW_SNVS_LPZMKR5_RD() & ~BM_SNVS_LPZMKR5_ZMK) | BF_SNVS_LPZMKR5_ZMK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5268,7 +5000,6 @@ typedef union _hw_snvs_lpzmkr6
  * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
  */
 //@{
-
 #define BP_SNVS_LPZMKR6_ZMK      (0)      //!< Bit position for SNVS_LPZMKR6_ZMK.
 #define BM_SNVS_LPZMKR6_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR6_ZMK.
 
@@ -5282,7 +5013,6 @@ typedef union _hw_snvs_lpzmkr6
 //! @brief Set the ZMK field to a new value.
 #define BW_SNVS_LPZMKR6_ZMK(v)   (HW_SNVS_LPZMKR6_WR((HW_SNVS_LPZMKR6_RD() & ~BM_SNVS_LPZMKR6_ZMK) | BF_SNVS_LPZMKR6_ZMK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5339,7 +5069,6 @@ typedef union _hw_snvs_lpzmkr7
  * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
  */
 //@{
-
 #define BP_SNVS_LPZMKR7_ZMK      (0)      //!< Bit position for SNVS_LPZMKR7_ZMK.
 #define BM_SNVS_LPZMKR7_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR7_ZMK.
 
@@ -5353,7 +5082,6 @@ typedef union _hw_snvs_lpzmkr7
 //! @brief Set the ZMK field to a new value.
 #define BW_SNVS_LPZMKR7_ZMK(v)   (HW_SNVS_LPZMKR7_WR((HW_SNVS_LPZMKR7_RD() & ~BM_SNVS_LPZMKR7_ZMK) | BF_SNVS_LPZMKR7_ZMK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5403,13 +5131,11 @@ typedef union _hw_snvs_hpvidr1
  * SNVS block minor version number
  */
 //@{
-
 #define BP_SNVS_HPVIDR1_MINOR_REV      (0)      //!< Bit position for SNVS_HPVIDR1_MINOR_REV.
 #define BM_SNVS_HPVIDR1_MINOR_REV      (0x000000ff)  //!< Bit mask for SNVS_HPVIDR1_MINOR_REV.
 
 //! @brief Get value of SNVS_HPVIDR1_MINOR_REV from a register value.
 #define BG_SNVS_HPVIDR1_MINOR_REV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_HPVIDR1_MINOR_REV) >> BP_SNVS_HPVIDR1_MINOR_REV)
-
 //@}
 
 /*! @name Register SNVS_HPVIDR1, field MAJOR_REV[15:8] (RO)
@@ -5417,13 +5143,11 @@ typedef union _hw_snvs_hpvidr1
  * SNVS block major version number
  */
 //@{
-
 #define BP_SNVS_HPVIDR1_MAJOR_REV      (8)      //!< Bit position for SNVS_HPVIDR1_MAJOR_REV.
 #define BM_SNVS_HPVIDR1_MAJOR_REV      (0x0000ff00)  //!< Bit mask for SNVS_HPVIDR1_MAJOR_REV.
 
 //! @brief Get value of SNVS_HPVIDR1_MAJOR_REV from a register value.
 #define BG_SNVS_HPVIDR1_MAJOR_REV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_HPVIDR1_MAJOR_REV) >> BP_SNVS_HPVIDR1_MAJOR_REV)
-
 //@}
 
 /*! @name Register SNVS_HPVIDR1, field IP_ID[31:16] (RO)
@@ -5431,13 +5155,11 @@ typedef union _hw_snvs_hpvidr1
  * SNVS block ID
  */
 //@{
-
 #define BP_SNVS_HPVIDR1_IP_ID      (16)      //!< Bit position for SNVS_HPVIDR1_IP_ID.
 #define BM_SNVS_HPVIDR1_IP_ID      (0xffff0000)  //!< Bit mask for SNVS_HPVIDR1_IP_ID.
 
 //! @brief Get value of SNVS_HPVIDR1_IP_ID from a register value.
 #define BG_SNVS_HPVIDR1_IP_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_HPVIDR1_IP_ID) >> BP_SNVS_HPVIDR1_IP_ID)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5488,13 +5210,11 @@ typedef union _hw_snvs_hpvidr2
  * SNVS Configuration Option
  */
 //@{
-
 #define BP_SNVS_HPVIDR2_CONFIG_OPT      (0)      //!< Bit position for SNVS_HPVIDR2_CONFIG_OPT.
 #define BM_SNVS_HPVIDR2_CONFIG_OPT      (0x000000ff)  //!< Bit mask for SNVS_HPVIDR2_CONFIG_OPT.
 
 //! @brief Get value of SNVS_HPVIDR2_CONFIG_OPT from a register value.
 #define BG_SNVS_HPVIDR2_CONFIG_OPT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_HPVIDR2_CONFIG_OPT) >> BP_SNVS_HPVIDR2_CONFIG_OPT)
-
 //@}
 
 /*! @name Register SNVS_HPVIDR2, field ECO_REV[15:8] (RO)
@@ -5502,13 +5222,11 @@ typedef union _hw_snvs_hpvidr2
  * SNVS ECO Revision
  */
 //@{
-
 #define BP_SNVS_HPVIDR2_ECO_REV      (8)      //!< Bit position for SNVS_HPVIDR2_ECO_REV.
 #define BM_SNVS_HPVIDR2_ECO_REV      (0x0000ff00)  //!< Bit mask for SNVS_HPVIDR2_ECO_REV.
 
 //! @brief Get value of SNVS_HPVIDR2_ECO_REV from a register value.
 #define BG_SNVS_HPVIDR2_ECO_REV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_HPVIDR2_ECO_REV) >> BP_SNVS_HPVIDR2_ECO_REV)
-
 //@}
 
 /*! @name Register SNVS_HPVIDR2, field INTG_OPT[23:16] (RO)
@@ -5516,13 +5234,11 @@ typedef union _hw_snvs_hpvidr2
  * SNVS Integration Option
  */
 //@{
-
 #define BP_SNVS_HPVIDR2_INTG_OPT      (16)      //!< Bit position for SNVS_HPVIDR2_INTG_OPT.
 #define BM_SNVS_HPVIDR2_INTG_OPT      (0x00ff0000)  //!< Bit mask for SNVS_HPVIDR2_INTG_OPT.
 
 //! @brief Get value of SNVS_HPVIDR2_INTG_OPT from a register value.
 #define BG_SNVS_HPVIDR2_INTG_OPT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_HPVIDR2_INTG_OPT) >> BP_SNVS_HPVIDR2_INTG_OPT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5583,5 +5299,5 @@ typedef struct _hw_snvs
 #endif
 
 #endif // __HW_SNVS_REGISTERS_H__
-// v14/120905/1.1.4
+// v16/121010/1.1.4
 // EOF

@@ -200,7 +200,6 @@ typedef union _hw_pcie_rc_command
  * I/O Space Enable
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_I_O_SPACE_ENABLE      (0)      //!< Bit position for PCIE_RC_COMMAND_I_O_SPACE_ENABLE.
 #define BM_PCIE_RC_COMMAND_I_O_SPACE_ENABLE      (0x00000001)  //!< Bit mask for PCIE_RC_COMMAND_I_O_SPACE_ENABLE.
 
@@ -214,7 +213,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the I_O_SPACE_ENABLE field to a new value.
 #define BW_PCIE_RC_COMMAND_I_O_SPACE_ENABLE(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_I_O_SPACE_ENABLE) | BF_PCIE_RC_COMMAND_I_O_SPACE_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field MEMORY_SPACE_ENABLE[1] (RW)
@@ -222,7 +220,6 @@ typedef union _hw_pcie_rc_command
  * Memory Space Enable
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_MEMORY_SPACE_ENABLE      (1)      //!< Bit position for PCIE_RC_COMMAND_MEMORY_SPACE_ENABLE.
 #define BM_PCIE_RC_COMMAND_MEMORY_SPACE_ENABLE      (0x00000002)  //!< Bit mask for PCIE_RC_COMMAND_MEMORY_SPACE_ENABLE.
 
@@ -236,7 +233,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the MEMORY_SPACE_ENABLE field to a new value.
 #define BW_PCIE_RC_COMMAND_MEMORY_SPACE_ENABLE(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_MEMORY_SPACE_ENABLE) | BF_PCIE_RC_COMMAND_MEMORY_SPACE_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field BUS_MASTER_ENABLE[2] (RW)
@@ -244,7 +240,6 @@ typedef union _hw_pcie_rc_command
  * Bus Master Enable
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_BUS_MASTER_ENABLE      (2)      //!< Bit position for PCIE_RC_COMMAND_BUS_MASTER_ENABLE.
 #define BM_PCIE_RC_COMMAND_BUS_MASTER_ENABLE      (0x00000004)  //!< Bit mask for PCIE_RC_COMMAND_BUS_MASTER_ENABLE.
 
@@ -258,7 +253,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the BUS_MASTER_ENABLE field to a new value.
 #define BW_PCIE_RC_COMMAND_BUS_MASTER_ENABLE(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_BUS_MASTER_ENABLE) | BF_PCIE_RC_COMMAND_BUS_MASTER_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field SPECIAL_CYCLE_ENABLE[3] (RW)
@@ -266,7 +260,6 @@ typedef union _hw_pcie_rc_command
  * Special Cycle Enable Not applicable for PCI Express. Must be hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_SPECIAL_CYCLE_ENABLE      (3)      //!< Bit position for PCIE_RC_COMMAND_SPECIAL_CYCLE_ENABLE.
 #define BM_PCIE_RC_COMMAND_SPECIAL_CYCLE_ENABLE      (0x00000008)  //!< Bit mask for PCIE_RC_COMMAND_SPECIAL_CYCLE_ENABLE.
 
@@ -280,7 +273,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the SPECIAL_CYCLE_ENABLE field to a new value.
 #define BW_PCIE_RC_COMMAND_SPECIAL_CYCLE_ENABLE(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_SPECIAL_CYCLE_ENABLE) | BF_PCIE_RC_COMMAND_SPECIAL_CYCLE_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field MEMORY_WRITE_AND_INVALIDATE[4] (RW)
@@ -288,7 +280,6 @@ typedef union _hw_pcie_rc_command
  * Memory Write and Invalidate Not applicable for PCI Express. Must be hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_MEMORY_WRITE_AND_INVALIDATE      (4)      //!< Bit position for PCIE_RC_COMMAND_MEMORY_WRITE_AND_INVALIDATE.
 #define BM_PCIE_RC_COMMAND_MEMORY_WRITE_AND_INVALIDATE      (0x00000010)  //!< Bit mask for PCIE_RC_COMMAND_MEMORY_WRITE_AND_INVALIDATE.
 
@@ -302,7 +293,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the MEMORY_WRITE_AND_INVALIDATE field to a new value.
 #define BW_PCIE_RC_COMMAND_MEMORY_WRITE_AND_INVALIDATE(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_MEMORY_WRITE_AND_INVALIDATE) | BF_PCIE_RC_COMMAND_MEMORY_WRITE_AND_INVALIDATE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field VGA_PALETTE_SNOOP[5] (RW)
@@ -310,7 +300,6 @@ typedef union _hw_pcie_rc_command
  * VGA Palette Snoop Not applicable for PCI Express. Must be hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_VGA_PALETTE_SNOOP      (5)      //!< Bit position for PCIE_RC_COMMAND_VGA_PALETTE_SNOOP.
 #define BM_PCIE_RC_COMMAND_VGA_PALETTE_SNOOP      (0x00000020)  //!< Bit mask for PCIE_RC_COMMAND_VGA_PALETTE_SNOOP.
 
@@ -324,7 +313,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the VGA_PALETTE_SNOOP field to a new value.
 #define BW_PCIE_RC_COMMAND_VGA_PALETTE_SNOOP(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_VGA_PALETTE_SNOOP) | BF_PCIE_RC_COMMAND_VGA_PALETTE_SNOOP(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field PARITY_ERROR_RESPONSE[6] (RW)
@@ -332,7 +320,6 @@ typedef union _hw_pcie_rc_command
  * Parity Error Response
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_PARITY_ERROR_RESPONSE      (6)      //!< Bit position for PCIE_RC_COMMAND_PARITY_ERROR_RESPONSE.
 #define BM_PCIE_RC_COMMAND_PARITY_ERROR_RESPONSE      (0x00000040)  //!< Bit mask for PCIE_RC_COMMAND_PARITY_ERROR_RESPONSE.
 
@@ -346,7 +333,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the PARITY_ERROR_RESPONSE field to a new value.
 #define BW_PCIE_RC_COMMAND_PARITY_ERROR_RESPONSE(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_PARITY_ERROR_RESPONSE) | BF_PCIE_RC_COMMAND_PARITY_ERROR_RESPONSE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field IDSEL_STEPPING[7] (RW)
@@ -354,7 +340,6 @@ typedef union _hw_pcie_rc_command
  * IDSEL Stepping/Wait Cycle Control Not applicable for PCI Express. Must be hardwired to 0
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_IDSEL_STEPPING      (7)      //!< Bit position for PCIE_RC_COMMAND_IDSEL_STEPPING.
 #define BM_PCIE_RC_COMMAND_IDSEL_STEPPING      (0x00000080)  //!< Bit mask for PCIE_RC_COMMAND_IDSEL_STEPPING.
 
@@ -368,7 +353,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the IDSEL_STEPPING field to a new value.
 #define BW_PCIE_RC_COMMAND_IDSEL_STEPPING(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_IDSEL_STEPPING) | BF_PCIE_RC_COMMAND_IDSEL_STEPPING(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field SERR_ENABLE[8] (RW)
@@ -376,7 +360,6 @@ typedef union _hw_pcie_rc_command
  * SERR# Enable
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_SERR_ENABLE      (8)      //!< Bit position for PCIE_RC_COMMAND_SERR_ENABLE.
 #define BM_PCIE_RC_COMMAND_SERR_ENABLE      (0x00000100)  //!< Bit mask for PCIE_RC_COMMAND_SERR_ENABLE.
 
@@ -390,7 +373,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the SERR_ENABLE field to a new value.
 #define BW_PCIE_RC_COMMAND_SERR_ENABLE(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_SERR_ENABLE) | BF_PCIE_RC_COMMAND_SERR_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field FAST_BACK_TO_BACK_ENABLE[9] (RW)
@@ -398,7 +380,6 @@ typedef union _hw_pcie_rc_command
  * Fast Back-to-Back Enable Not applicable for PCI Express. Must be hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_FAST_BACK_TO_BACK_ENABLE      (9)      //!< Bit position for PCIE_RC_COMMAND_FAST_BACK_TO_BACK_ENABLE.
 #define BM_PCIE_RC_COMMAND_FAST_BACK_TO_BACK_ENABLE      (0x00000200)  //!< Bit mask for PCIE_RC_COMMAND_FAST_BACK_TO_BACK_ENABLE.
 
@@ -412,7 +393,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the FAST_BACK_TO_BACK_ENABLE field to a new value.
 #define BW_PCIE_RC_COMMAND_FAST_BACK_TO_BACK_ENABLE(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_FAST_BACK_TO_BACK_ENABLE) | BF_PCIE_RC_COMMAND_FAST_BACK_TO_BACK_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field INTX_ASSERTION_DISABLE[10] (RW)
@@ -420,7 +400,6 @@ typedef union _hw_pcie_rc_command
  * INTx Assertion Disable
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_INTX_ASSERTION_DISABLE      (10)      //!< Bit position for PCIE_RC_COMMAND_INTX_ASSERTION_DISABLE.
 #define BM_PCIE_RC_COMMAND_INTX_ASSERTION_DISABLE      (0x00000400)  //!< Bit mask for PCIE_RC_COMMAND_INTX_ASSERTION_DISABLE.
 
@@ -434,7 +413,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the INTX_ASSERTION_DISABLE field to a new value.
 #define BW_PCIE_RC_COMMAND_INTX_ASSERTION_DISABLE(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_INTX_ASSERTION_DISABLE) | BF_PCIE_RC_COMMAND_INTX_ASSERTION_DISABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field INTX_STATUS[19] (RW)
@@ -442,7 +420,6 @@ typedef union _hw_pcie_rc_command
  * INTx Status
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_INTX_STATUS      (19)      //!< Bit position for PCIE_RC_COMMAND_INTX_STATUS.
 #define BM_PCIE_RC_COMMAND_INTX_STATUS      (0x00080000)  //!< Bit mask for PCIE_RC_COMMAND_INTX_STATUS.
 
@@ -456,7 +433,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the INTX_STATUS field to a new value.
 #define BW_PCIE_RC_COMMAND_INTX_STATUS(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_INTX_STATUS) | BF_PCIE_RC_COMMAND_INTX_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field CAPABILITIES_LIST[20] (RW)
@@ -464,7 +440,6 @@ typedef union _hw_pcie_rc_command
  * Capabilities List Indicates presence of an extended capability item. Hardwired to 1.
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_CAPABILITIES_LIST      (20)      //!< Bit position for PCIE_RC_COMMAND_CAPABILITIES_LIST.
 #define BM_PCIE_RC_COMMAND_CAPABILITIES_LIST      (0x00100000)  //!< Bit mask for PCIE_RC_COMMAND_CAPABILITIES_LIST.
 
@@ -478,7 +453,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the CAPABILITIES_LIST field to a new value.
 #define BW_PCIE_RC_COMMAND_CAPABILITIES_LIST(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_CAPABILITIES_LIST) | BF_PCIE_RC_COMMAND_CAPABILITIES_LIST(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field SIXTYSIX_MHZ_CAPABLE[21] (RW)
@@ -486,7 +460,6 @@ typedef union _hw_pcie_rc_command
  * 66 MHz Capable Not applicable for PCI Express. Hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_SIXTYSIX_MHZ_CAPABLE      (21)      //!< Bit position for PCIE_RC_COMMAND_SIXTYSIX_MHZ_CAPABLE.
 #define BM_PCIE_RC_COMMAND_SIXTYSIX_MHZ_CAPABLE      (0x00200000)  //!< Bit mask for PCIE_RC_COMMAND_SIXTYSIX_MHZ_CAPABLE.
 
@@ -500,7 +473,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the SIXTYSIX_MHZ_CAPABLE field to a new value.
 #define BW_PCIE_RC_COMMAND_SIXTYSIX_MHZ_CAPABLE(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_SIXTYSIX_MHZ_CAPABLE) | BF_PCIE_RC_COMMAND_SIXTYSIX_MHZ_CAPABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field FAST_BACK_TO_BACK_CAPABLE[23] (RW)
@@ -508,7 +480,6 @@ typedef union _hw_pcie_rc_command
  * Fast Back-to-Back Capable Not applicable for PCI Express. Hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_FAST_BACK_TO_BACK_CAPABLE      (23)      //!< Bit position for PCIE_RC_COMMAND_FAST_BACK_TO_BACK_CAPABLE.
 #define BM_PCIE_RC_COMMAND_FAST_BACK_TO_BACK_CAPABLE      (0x00800000)  //!< Bit mask for PCIE_RC_COMMAND_FAST_BACK_TO_BACK_CAPABLE.
 
@@ -522,7 +493,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the FAST_BACK_TO_BACK_CAPABLE field to a new value.
 #define BW_PCIE_RC_COMMAND_FAST_BACK_TO_BACK_CAPABLE(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_FAST_BACK_TO_BACK_CAPABLE) | BF_PCIE_RC_COMMAND_FAST_BACK_TO_BACK_CAPABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field MASTER_DATA_PARITY_ERROR[24] (RW)
@@ -530,7 +500,6 @@ typedef union _hw_pcie_rc_command
  * Master Data Parity Error
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_MASTER_DATA_PARITY_ERROR      (24)      //!< Bit position for PCIE_RC_COMMAND_MASTER_DATA_PARITY_ERROR.
 #define BM_PCIE_RC_COMMAND_MASTER_DATA_PARITY_ERROR      (0x01000000)  //!< Bit mask for PCIE_RC_COMMAND_MASTER_DATA_PARITY_ERROR.
 
@@ -544,7 +513,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the MASTER_DATA_PARITY_ERROR field to a new value.
 #define BW_PCIE_RC_COMMAND_MASTER_DATA_PARITY_ERROR(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_MASTER_DATA_PARITY_ERROR) | BF_PCIE_RC_COMMAND_MASTER_DATA_PARITY_ERROR(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field DEVSEL_TIMING[26:25] (RW)
@@ -552,7 +520,6 @@ typedef union _hw_pcie_rc_command
  * DEVSEL Timing Not applicable for PCI Express. Hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_DEVSEL_TIMING      (25)      //!< Bit position for PCIE_RC_COMMAND_DEVSEL_TIMING.
 #define BM_PCIE_RC_COMMAND_DEVSEL_TIMING      (0x06000000)  //!< Bit mask for PCIE_RC_COMMAND_DEVSEL_TIMING.
 
@@ -566,7 +533,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the DEVSEL_TIMING field to a new value.
 #define BW_PCIE_RC_COMMAND_DEVSEL_TIMING(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_DEVSEL_TIMING) | BF_PCIE_RC_COMMAND_DEVSEL_TIMING(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field SIGNALED_TARGET_ABORT[27] (RW)
@@ -574,7 +540,6 @@ typedef union _hw_pcie_rc_command
  * Signaled Target Abort
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_SIGNALED_TARGET_ABORT      (27)      //!< Bit position for PCIE_RC_COMMAND_SIGNALED_TARGET_ABORT.
 #define BM_PCIE_RC_COMMAND_SIGNALED_TARGET_ABORT      (0x08000000)  //!< Bit mask for PCIE_RC_COMMAND_SIGNALED_TARGET_ABORT.
 
@@ -588,7 +553,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the SIGNALED_TARGET_ABORT field to a new value.
 #define BW_PCIE_RC_COMMAND_SIGNALED_TARGET_ABORT(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_SIGNALED_TARGET_ABORT) | BF_PCIE_RC_COMMAND_SIGNALED_TARGET_ABORT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field RECEIVED_TARGET_ABORT[28] (RW)
@@ -596,7 +560,6 @@ typedef union _hw_pcie_rc_command
  * Received Target Abort
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_RECEIVED_TARGET_ABORT      (28)      //!< Bit position for PCIE_RC_COMMAND_RECEIVED_TARGET_ABORT.
 #define BM_PCIE_RC_COMMAND_RECEIVED_TARGET_ABORT      (0x10000000)  //!< Bit mask for PCIE_RC_COMMAND_RECEIVED_TARGET_ABORT.
 
@@ -610,7 +573,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the RECEIVED_TARGET_ABORT field to a new value.
 #define BW_PCIE_RC_COMMAND_RECEIVED_TARGET_ABORT(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_RECEIVED_TARGET_ABORT) | BF_PCIE_RC_COMMAND_RECEIVED_TARGET_ABORT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field RECEIVED_MASTER_ABORT[29] (RW)
@@ -618,7 +580,6 @@ typedef union _hw_pcie_rc_command
  * Received Master Abort
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_RECEIVED_MASTER_ABORT      (29)      //!< Bit position for PCIE_RC_COMMAND_RECEIVED_MASTER_ABORT.
 #define BM_PCIE_RC_COMMAND_RECEIVED_MASTER_ABORT      (0x20000000)  //!< Bit mask for PCIE_RC_COMMAND_RECEIVED_MASTER_ABORT.
 
@@ -632,7 +593,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the RECEIVED_MASTER_ABORT field to a new value.
 #define BW_PCIE_RC_COMMAND_RECEIVED_MASTER_ABORT(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_RECEIVED_MASTER_ABORT) | BF_PCIE_RC_COMMAND_RECEIVED_MASTER_ABORT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field DETECTED_PARITY_ERROR[30] (RW)
@@ -640,7 +600,6 @@ typedef union _hw_pcie_rc_command
  * Detected Parity Error
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_DETECTED_PARITY_ERROR      (30)      //!< Bit position for PCIE_RC_COMMAND_DETECTED_PARITY_ERROR.
 #define BM_PCIE_RC_COMMAND_DETECTED_PARITY_ERROR      (0x40000000)  //!< Bit mask for PCIE_RC_COMMAND_DETECTED_PARITY_ERROR.
 
@@ -654,7 +613,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the DETECTED_PARITY_ERROR field to a new value.
 #define BW_PCIE_RC_COMMAND_DETECTED_PARITY_ERROR(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_DETECTED_PARITY_ERROR) | BF_PCIE_RC_COMMAND_DETECTED_PARITY_ERROR(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_COMMAND, field SIGNALED_SYSTEM_ERROR[31] (RW)
@@ -662,7 +620,6 @@ typedef union _hw_pcie_rc_command
  * Signaled System Error
  */
 //@{
-
 #define BP_PCIE_RC_COMMAND_SIGNALED_SYSTEM_ERROR      (31)      //!< Bit position for PCIE_RC_COMMAND_SIGNALED_SYSTEM_ERROR.
 #define BM_PCIE_RC_COMMAND_SIGNALED_SYSTEM_ERROR      (0x80000000)  //!< Bit mask for PCIE_RC_COMMAND_SIGNALED_SYSTEM_ERROR.
 
@@ -676,7 +633,6 @@ typedef union _hw_pcie_rc_command
 //! @brief Set the SIGNALED_SYSTEM_ERROR field to a new value.
 #define BW_PCIE_RC_COMMAND_SIGNALED_SYSTEM_ERROR(v)   (HW_PCIE_RC_COMMAND_WR((HW_PCIE_RC_COMMAND_RD() & ~BM_PCIE_RC_COMMAND_SIGNALED_SYSTEM_ERROR) | BF_PCIE_RC_COMMAND_SIGNALED_SYSTEM_ERROR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -725,13 +681,11 @@ typedef union _hw_pcie_rc_revid
  * Revision ID, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_REVID_CX_REVISION_ID_N      (0)      //!< Bit position for PCIE_RC_REVID_CX_REVISION_ID_N.
 #define BM_PCIE_RC_REVID_CX_REVISION_ID_N      (0x000000ff)  //!< Bit mask for PCIE_RC_REVID_CX_REVISION_ID_N.
 
 //! @brief Get value of PCIE_RC_REVID_CX_REVISION_ID_N from a register value.
 #define BG_PCIE_RC_REVID_CX_REVISION_ID_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_REVID_CX_REVISION_ID_N) >> BP_PCIE_RC_REVID_CX_REVISION_ID_N)
-
 //@}
 
 /*! @name Register PCIE_RC_REVID, field IF_CODE_N[15:8] (RO)
@@ -739,13 +693,11 @@ typedef union _hw_pcie_rc_revid
  * Programming Interface, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_REVID_IF_CODE_N      (8)      //!< Bit position for PCIE_RC_REVID_IF_CODE_N.
 #define BM_PCIE_RC_REVID_IF_CODE_N      (0x0000ff00)  //!< Bit mask for PCIE_RC_REVID_IF_CODE_N.
 
 //! @brief Get value of PCIE_RC_REVID_IF_CODE_N from a register value.
 #define BG_PCIE_RC_REVID_IF_CODE_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_REVID_IF_CODE_N) >> BP_PCIE_RC_REVID_IF_CODE_N)
-
 //@}
 
 /*! @name Register PCIE_RC_REVID, field SUB_CLASS_CODE_N[23:16] (RO)
@@ -753,13 +705,11 @@ typedef union _hw_pcie_rc_revid
  * Subclass Code, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_REVID_SUB_CLASS_CODE_N      (16)      //!< Bit position for PCIE_RC_REVID_SUB_CLASS_CODE_N.
 #define BM_PCIE_RC_REVID_SUB_CLASS_CODE_N      (0x00ff0000)  //!< Bit mask for PCIE_RC_REVID_SUB_CLASS_CODE_N.
 
 //! @brief Get value of PCIE_RC_REVID_SUB_CLASS_CODE_N from a register value.
 #define BG_PCIE_RC_REVID_SUB_CLASS_CODE_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_REVID_SUB_CLASS_CODE_N) >> BP_PCIE_RC_REVID_SUB_CLASS_CODE_N)
-
 //@}
 
 /*! @name Register PCIE_RC_REVID, field BASE_CLASS_CODE_N[31:24] (RO)
@@ -767,13 +717,11 @@ typedef union _hw_pcie_rc_revid
  * Base Class Code, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_REVID_BASE_CLASS_CODE_N      (24)      //!< Bit position for PCIE_RC_REVID_BASE_CLASS_CODE_N.
 #define BM_PCIE_RC_REVID_BASE_CLASS_CODE_N      (0xff000000)  //!< Bit mask for PCIE_RC_REVID_BASE_CLASS_CODE_N.
 
 //! @brief Get value of PCIE_RC_REVID_BASE_CLASS_CODE_N from a register value.
 #define BG_PCIE_RC_REVID_BASE_CLASS_CODE_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_REVID_BASE_CLASS_CODE_N) >> BP_PCIE_RC_REVID_BASE_CLASS_CODE_N)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -829,7 +777,6 @@ typedef union _hw_pcie_rc_bist
  * impact functionality of the core.
  */
 //@{
-
 #define BP_PCIE_RC_BIST_CACHE_LINE_SIZE      (0)      //!< Bit position for PCIE_RC_BIST_CACHE_LINE_SIZE.
 #define BM_PCIE_RC_BIST_CACHE_LINE_SIZE      (0x000000ff)  //!< Bit mask for PCIE_RC_BIST_CACHE_LINE_SIZE.
 
@@ -843,7 +790,6 @@ typedef union _hw_pcie_rc_bist
 //! @brief Set the CACHE_LINE_SIZE field to a new value.
 #define BW_PCIE_RC_BIST_CACHE_LINE_SIZE(v)   (HW_PCIE_RC_BIST_WR((HW_PCIE_RC_BIST_RD() & ~BM_PCIE_RC_BIST_CACHE_LINE_SIZE) | BF_PCIE_RC_BIST_CACHE_LINE_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_BIST, field MASTER_LATENCY_TIMER[15:8] (RW)
@@ -851,7 +797,6 @@ typedef union _hw_pcie_rc_bist
  * Master Latency Timer Not applicable for PCI Express, hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_RC_BIST_MASTER_LATENCY_TIMER      (8)      //!< Bit position for PCIE_RC_BIST_MASTER_LATENCY_TIMER.
 #define BM_PCIE_RC_BIST_MASTER_LATENCY_TIMER      (0x0000ff00)  //!< Bit mask for PCIE_RC_BIST_MASTER_LATENCY_TIMER.
 
@@ -865,7 +810,6 @@ typedef union _hw_pcie_rc_bist
 //! @brief Set the MASTER_LATENCY_TIMER field to a new value.
 #define BW_PCIE_RC_BIST_MASTER_LATENCY_TIMER(v)   (HW_PCIE_RC_BIST_WR((HW_PCIE_RC_BIST_RD() & ~BM_PCIE_RC_BIST_MASTER_LATENCY_TIMER) | BF_PCIE_RC_BIST_MASTER_LATENCY_TIMER(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_BIST, field CONFIGURATION_HEADER_FORMAT[22:16] (RW)
@@ -873,7 +817,6 @@ typedef union _hw_pcie_rc_bist
  * Configuration Header Format Hardwired to 0 for type 0.
  */
 //@{
-
 #define BP_PCIE_RC_BIST_CONFIGURATION_HEADER_FORMAT      (16)      //!< Bit position for PCIE_RC_BIST_CONFIGURATION_HEADER_FORMAT.
 #define BM_PCIE_RC_BIST_CONFIGURATION_HEADER_FORMAT      (0x007f0000)  //!< Bit mask for PCIE_RC_BIST_CONFIGURATION_HEADER_FORMAT.
 
@@ -887,7 +830,6 @@ typedef union _hw_pcie_rc_bist
 //! @brief Set the CONFIGURATION_HEADER_FORMAT field to a new value.
 #define BW_PCIE_RC_BIST_CONFIGURATION_HEADER_FORMAT(v)   (HW_PCIE_RC_BIST_WR((HW_PCIE_RC_BIST_RD() & ~BM_PCIE_RC_BIST_CONFIGURATION_HEADER_FORMAT) | BF_PCIE_RC_BIST_CONFIGURATION_HEADER_FORMAT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_BIST, field MULTI_FUNCTION_DEVICE[23] (RW)
@@ -897,7 +839,6 @@ typedef union _hw_pcie_rc_bist
  * the DBI.
  */
 //@{
-
 #define BP_PCIE_RC_BIST_MULTI_FUNCTION_DEVICE      (23)      //!< Bit position for PCIE_RC_BIST_MULTI_FUNCTION_DEVICE.
 #define BM_PCIE_RC_BIST_MULTI_FUNCTION_DEVICE      (0x00800000)  //!< Bit mask for PCIE_RC_BIST_MULTI_FUNCTION_DEVICE.
 
@@ -911,7 +852,6 @@ typedef union _hw_pcie_rc_bist
 //! @brief Set the MULTI_FUNCTION_DEVICE field to a new value.
 #define BW_PCIE_RC_BIST_MULTI_FUNCTION_DEVICE(v)   (HW_PCIE_RC_BIST_WR((HW_PCIE_RC_BIST_RD() & ~BM_PCIE_RC_BIST_MULTI_FUNCTION_DEVICE) | BF_PCIE_RC_BIST_MULTI_FUNCTION_DEVICE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_BIST, field NOT_SUPPORTED_BY__CORE[31:24] (RW)
@@ -920,7 +860,6 @@ typedef union _hw_pcie_rc_bist
  * hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_RC_BIST_NOT_SUPPORTED_BY__CORE      (24)      //!< Bit position for PCIE_RC_BIST_NOT_SUPPORTED_BY__CORE.
 #define BM_PCIE_RC_BIST_NOT_SUPPORTED_BY__CORE      (0xff000000)  //!< Bit mask for PCIE_RC_BIST_NOT_SUPPORTED_BY__CORE.
 
@@ -934,7 +873,6 @@ typedef union _hw_pcie_rc_bist
 //! @brief Set the NOT_SUPPORTED_BY__CORE field to a new value.
 #define BW_PCIE_RC_BIST_NOT_SUPPORTED_BY__CORE(v)   (HW_PCIE_RC_BIST_WR((HW_PCIE_RC_BIST_RD() & ~BM_PCIE_RC_BIST_NOT_SUPPORTED_BY__CORE) | BF_PCIE_RC_BIST_NOT_SUPPORTED_BY__CORE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1020,13 +958,11 @@ typedef union _hw_pcie_rc_bar0
  * - 1 - = BAR 0 is an I/O BAR
  */
 //@{
-
 #define BP_PCIE_RC_BAR0_MEM_I_O      (0)      //!< Bit position for PCIE_RC_BAR0_MEM_I_O.
 #define BM_PCIE_RC_BAR0_MEM_I_O      (0x00000001)  //!< Bit mask for PCIE_RC_BAR0_MEM_I_O.
 
 //! @brief Get value of PCIE_RC_BAR0_MEM_I_O from a register value.
 #define BG_PCIE_RC_BAR0_MEM_I_O(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_BAR0_MEM_I_O) >> BP_PCIE_RC_BAR0_MEM_I_O)
-
 //@}
 
 /*! @name Register PCIE_RC_BAR0, field TYPE[2:1] (RO)
@@ -1039,13 +975,11 @@ typedef union _hw_pcie_rc_bar0
  * - 10 - = 64-bit BAR
  */
 //@{
-
 #define BP_PCIE_RC_BAR0_TYPE      (1)      //!< Bit position for PCIE_RC_BAR0_TYPE.
 #define BM_PCIE_RC_BAR0_TYPE      (0x00000006)  //!< Bit mask for PCIE_RC_BAR0_TYPE.
 
 //! @brief Get value of PCIE_RC_BAR0_TYPE from a register value.
 #define BG_PCIE_RC_BAR0_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_BAR0_TYPE) >> BP_PCIE_RC_BAR0_TYPE)
-
 //@}
 
 /*! @name Register PCIE_RC_BAR0, field PREF[3] (RO)
@@ -1059,13 +993,11 @@ typedef union _hw_pcie_rc_bar0
  * - 1 - = Prefetchable
  */
 //@{
-
 #define BP_PCIE_RC_BAR0_PREF      (3)      //!< Bit position for PCIE_RC_BAR0_PREF.
 #define BM_PCIE_RC_BAR0_PREF      (0x00000008)  //!< Bit mask for PCIE_RC_BAR0_PREF.
 
 //! @brief Get value of PCIE_RC_BAR0_PREF from a register value.
 #define BG_PCIE_RC_BAR0_PREF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_BAR0_PREF) >> BP_PCIE_RC_BAR0_PREF)
-
 //@}
 
 /*! @name Register PCIE_RC_BAR0, field ADDRESS[31:4] (RO)
@@ -1074,13 +1006,11 @@ typedef union _hw_pcie_rc_bar0
  * BAR 0 Mask value determines which address bits are masked.
  */
 //@{
-
 #define BP_PCIE_RC_BAR0_ADDRESS      (4)      //!< Bit position for PCIE_RC_BAR0_ADDRESS.
 #define BM_PCIE_RC_BAR0_ADDRESS      (0xfffffff0)  //!< Bit mask for PCIE_RC_BAR0_ADDRESS.
 
 //! @brief Get value of PCIE_RC_BAR0_ADDRESS from a register value.
 #define BG_PCIE_RC_BAR0_ADDRESS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_BAR0_ADDRESS) >> BP_PCIE_RC_BAR0_ADDRESS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1126,13 +1056,11 @@ typedef union _hw_pcie_rc_bar1
  * BAR 1 contains the upper 32 bits of the BAR 0 base address (bits [63:32]).
  */
 //@{
-
 #define BP_PCIE_RC_BAR1_ADDRESS      (0)      //!< Bit position for PCIE_RC_BAR1_ADDRESS.
 #define BM_PCIE_RC_BAR1_ADDRESS      (0xffffffff)  //!< Bit mask for PCIE_RC_BAR1_ADDRESS.
 
 //! @brief Get value of PCIE_RC_BAR1_ADDRESS from a register value.
 #define BG_PCIE_RC_BAR1_ADDRESS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_BAR1_ADDRESS) >> BP_PCIE_RC_BAR1_ADDRESS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1181,13 +1109,11 @@ typedef union _hw_pcie_rc_bnr
  * Primary bus number.
  */
 //@{
-
 #define BP_PCIE_RC_BNR_PRIMARY_BUS_NUM      (0)      //!< Bit position for PCIE_RC_BNR_PRIMARY_BUS_NUM.
 #define BM_PCIE_RC_BNR_PRIMARY_BUS_NUM      (0x000000ff)  //!< Bit mask for PCIE_RC_BNR_PRIMARY_BUS_NUM.
 
 //! @brief Get value of PCIE_RC_BNR_PRIMARY_BUS_NUM from a register value.
 #define BG_PCIE_RC_BNR_PRIMARY_BUS_NUM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_BNR_PRIMARY_BUS_NUM) >> BP_PCIE_RC_BNR_PRIMARY_BUS_NUM)
-
 //@}
 
 /*! @name Register PCIE_RC_BNR, field SECONDARY_BUS_NUM[15:8] (RW)
@@ -1195,13 +1121,11 @@ typedef union _hw_pcie_rc_bnr
  * Secondary bus number.
  */
 //@{
-
 #define BP_PCIE_RC_BNR_SECONDARY_BUS_NUM      (8)      //!< Bit position for PCIE_RC_BNR_SECONDARY_BUS_NUM.
 #define BM_PCIE_RC_BNR_SECONDARY_BUS_NUM      (0x0000ff00)  //!< Bit mask for PCIE_RC_BNR_SECONDARY_BUS_NUM.
 
 //! @brief Get value of PCIE_RC_BNR_SECONDARY_BUS_NUM from a register value.
 #define BG_PCIE_RC_BNR_SECONDARY_BUS_NUM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_BNR_SECONDARY_BUS_NUM) >> BP_PCIE_RC_BNR_SECONDARY_BUS_NUM)
-
 //@}
 
 /*! @name Register PCIE_RC_BNR, field SUBORD_BUS_NUM[23:16] (RW)
@@ -1209,13 +1133,11 @@ typedef union _hw_pcie_rc_bnr
  * Subordinate bus number.
  */
 //@{
-
 #define BP_PCIE_RC_BNR_SUBORD_BUS_NUM      (16)      //!< Bit position for PCIE_RC_BNR_SUBORD_BUS_NUM.
 #define BM_PCIE_RC_BNR_SUBORD_BUS_NUM      (0x00ff0000)  //!< Bit mask for PCIE_RC_BNR_SUBORD_BUS_NUM.
 
 //! @brief Get value of PCIE_RC_BNR_SUBORD_BUS_NUM from a register value.
 #define BG_PCIE_RC_BNR_SUBORD_BUS_NUM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_BNR_SUBORD_BUS_NUM) >> BP_PCIE_RC_BNR_SUBORD_BUS_NUM)
-
 //@}
 
 /*! @name Register PCIE_RC_BNR, field SECONDARY_LAT_TMR[31:24] (RO)
@@ -1223,13 +1145,11 @@ typedef union _hw_pcie_rc_bnr
  * Secondary latency timer.
  */
 //@{
-
 #define BP_PCIE_RC_BNR_SECONDARY_LAT_TMR      (24)      //!< Bit position for PCIE_RC_BNR_SECONDARY_LAT_TMR.
 #define BM_PCIE_RC_BNR_SECONDARY_LAT_TMR      (0xff000000)  //!< Bit mask for PCIE_RC_BNR_SECONDARY_LAT_TMR.
 
 //! @brief Get value of PCIE_RC_BNR_SECONDARY_LAT_TMR from a register value.
 #define BG_PCIE_RC_BNR_SECONDARY_LAT_TMR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_BNR_SECONDARY_LAT_TMR) >> BP_PCIE_RC_BNR_SECONDARY_LAT_TMR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1293,7 +1213,6 @@ typedef union _hw_pcie_rc_ioblssr
  * I/O Space Base.
  */
 //@{
-
 #define BP_PCIE_RC_IOBLSSR_IO_SB      (4)      //!< Bit position for PCIE_RC_IOBLSSR_IO_SB.
 #define BM_PCIE_RC_IOBLSSR_IO_SB      (0x000000f0)  //!< Bit mask for PCIE_RC_IOBLSSR_IO_SB.
 
@@ -1307,7 +1226,6 @@ typedef union _hw_pcie_rc_ioblssr
 //! @brief Set the IO_SB field to a new value.
 #define BW_PCIE_RC_IOBLSSR_IO_SB(v)   (HW_PCIE_RC_IOBLSSR_WR((HW_PCIE_RC_IOBLSSR_RD() & ~BM_PCIE_RC_IOBLSSR_IO_SB) | BF_PCIE_RC_IOBLSSR_IO_SB(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_IOBLSSR, field IO_SL[15:12] (RW)
@@ -1315,7 +1233,6 @@ typedef union _hw_pcie_rc_ioblssr
  * I/O Space Limit.
  */
 //@{
-
 #define BP_PCIE_RC_IOBLSSR_IO_SL      (12)      //!< Bit position for PCIE_RC_IOBLSSR_IO_SL.
 #define BM_PCIE_RC_IOBLSSR_IO_SL      (0x0000f000)  //!< Bit mask for PCIE_RC_IOBLSSR_IO_SL.
 
@@ -1329,7 +1246,6 @@ typedef union _hw_pcie_rc_ioblssr
 //! @brief Set the IO_SL field to a new value.
 #define BW_PCIE_RC_IOBLSSR_IO_SL(v)   (HW_PCIE_RC_IOBLSSR_WR((HW_PCIE_RC_IOBLSSR_RD() & ~BM_PCIE_RC_IOBLSSR_IO_SL) | BF_PCIE_RC_IOBLSSR_IO_SL(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_IOBLSSR, field _66M_CAP[21] (RO)
@@ -1337,13 +1253,11 @@ typedef union _hw_pcie_rc_ioblssr
  * 66 MHz Capable. Not applicable to PCI Express, hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_RC_IOBLSSR__66M_CAP      (21)      //!< Bit position for PCIE_RC_IOBLSSR__66M_CAP.
 #define BM_PCIE_RC_IOBLSSR__66M_CAP      (0x00200000)  //!< Bit mask for PCIE_RC_IOBLSSR__66M_CAP.
 
 //! @brief Get value of PCIE_RC_IOBLSSR__66M_CAP from a register value.
 #define BG_PCIE_RC_IOBLSSR__66M_CAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_IOBLSSR__66M_CAP) >> BP_PCIE_RC_IOBLSSR__66M_CAP)
-
 //@}
 
 /*! @name Register PCIE_RC_IOBLSSR, field FAST_B2B_CAP[23] (RO)
@@ -1351,13 +1265,11 @@ typedef union _hw_pcie_rc_ioblssr
  * Reserved.
  */
 //@{
-
 #define BP_PCIE_RC_IOBLSSR_FAST_B2B_CAP      (23)      //!< Bit position for PCIE_RC_IOBLSSR_FAST_B2B_CAP.
 #define BM_PCIE_RC_IOBLSSR_FAST_B2B_CAP      (0x00800000)  //!< Bit mask for PCIE_RC_IOBLSSR_FAST_B2B_CAP.
 
 //! @brief Get value of PCIE_RC_IOBLSSR_FAST_B2B_CAP from a register value.
 #define BG_PCIE_RC_IOBLSSR_FAST_B2B_CAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_IOBLSSR_FAST_B2B_CAP) >> BP_PCIE_RC_IOBLSSR_FAST_B2B_CAP)
-
 //@}
 
 /*! @name Register PCIE_RC_IOBLSSR, field MSTR_DAT_PARITY_ERR[24] (W1C)
@@ -1365,7 +1277,6 @@ typedef union _hw_pcie_rc_ioblssr
  * Master Data Parity Error.
  */
 //@{
-
 #define BP_PCIE_RC_IOBLSSR_MSTR_DAT_PARITY_ERR      (24)      //!< Bit position for PCIE_RC_IOBLSSR_MSTR_DAT_PARITY_ERR.
 #define BM_PCIE_RC_IOBLSSR_MSTR_DAT_PARITY_ERR      (0x01000000)  //!< Bit mask for PCIE_RC_IOBLSSR_MSTR_DAT_PARITY_ERR.
 
@@ -1379,7 +1290,6 @@ typedef union _hw_pcie_rc_ioblssr
 //! @brief Set the MSTR_DAT_PARITY_ERR field to a new value.
 #define BW_PCIE_RC_IOBLSSR_MSTR_DAT_PARITY_ERR(v)   (HW_PCIE_RC_IOBLSSR_WR((HW_PCIE_RC_IOBLSSR_RD() & ~BM_PCIE_RC_IOBLSSR_MSTR_DAT_PARITY_ERR) | BF_PCIE_RC_IOBLSSR_MSTR_DAT_PARITY_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_IOBLSSR, field SIG_TARGET_ABORT[27] (W1C)
@@ -1387,7 +1297,6 @@ typedef union _hw_pcie_rc_ioblssr
  * Signaled Target Abort.
  */
 //@{
-
 #define BP_PCIE_RC_IOBLSSR_SIG_TARGET_ABORT      (27)      //!< Bit position for PCIE_RC_IOBLSSR_SIG_TARGET_ABORT.
 #define BM_PCIE_RC_IOBLSSR_SIG_TARGET_ABORT      (0x08000000)  //!< Bit mask for PCIE_RC_IOBLSSR_SIG_TARGET_ABORT.
 
@@ -1401,7 +1310,6 @@ typedef union _hw_pcie_rc_ioblssr
 //! @brief Set the SIG_TARGET_ABORT field to a new value.
 #define BW_PCIE_RC_IOBLSSR_SIG_TARGET_ABORT(v)   (HW_PCIE_RC_IOBLSSR_WR((HW_PCIE_RC_IOBLSSR_RD() & ~BM_PCIE_RC_IOBLSSR_SIG_TARGET_ABORT) | BF_PCIE_RC_IOBLSSR_SIG_TARGET_ABORT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_IOBLSSR, field RX_TARGET_ABORT[28] (W1C)
@@ -1409,7 +1317,6 @@ typedef union _hw_pcie_rc_ioblssr
  * Received Target Abort.
  */
 //@{
-
 #define BP_PCIE_RC_IOBLSSR_RX_TARGET_ABORT      (28)      //!< Bit position for PCIE_RC_IOBLSSR_RX_TARGET_ABORT.
 #define BM_PCIE_RC_IOBLSSR_RX_TARGET_ABORT      (0x10000000)  //!< Bit mask for PCIE_RC_IOBLSSR_RX_TARGET_ABORT.
 
@@ -1423,7 +1330,6 @@ typedef union _hw_pcie_rc_ioblssr
 //! @brief Set the RX_TARGET_ABORT field to a new value.
 #define BW_PCIE_RC_IOBLSSR_RX_TARGET_ABORT(v)   (HW_PCIE_RC_IOBLSSR_WR((HW_PCIE_RC_IOBLSSR_RD() & ~BM_PCIE_RC_IOBLSSR_RX_TARGET_ABORT) | BF_PCIE_RC_IOBLSSR_RX_TARGET_ABORT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_IOBLSSR, field RX_MASTER_ABORT[29] (W1C)
@@ -1431,7 +1337,6 @@ typedef union _hw_pcie_rc_ioblssr
  * Received Master Abort.
  */
 //@{
-
 #define BP_PCIE_RC_IOBLSSR_RX_MASTER_ABORT      (29)      //!< Bit position for PCIE_RC_IOBLSSR_RX_MASTER_ABORT.
 #define BM_PCIE_RC_IOBLSSR_RX_MASTER_ABORT      (0x20000000)  //!< Bit mask for PCIE_RC_IOBLSSR_RX_MASTER_ABORT.
 
@@ -1445,7 +1350,6 @@ typedef union _hw_pcie_rc_ioblssr
 //! @brief Set the RX_MASTER_ABORT field to a new value.
 #define BW_PCIE_RC_IOBLSSR_RX_MASTER_ABORT(v)   (HW_PCIE_RC_IOBLSSR_WR((HW_PCIE_RC_IOBLSSR_RD() & ~BM_PCIE_RC_IOBLSSR_RX_MASTER_ABORT) | BF_PCIE_RC_IOBLSSR_RX_MASTER_ABORT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_IOBLSSR, field RX_SYS_ERR[30] (W1C)
@@ -1453,7 +1357,6 @@ typedef union _hw_pcie_rc_ioblssr
  * Received System Error.
  */
 //@{
-
 #define BP_PCIE_RC_IOBLSSR_RX_SYS_ERR      (30)      //!< Bit position for PCIE_RC_IOBLSSR_RX_SYS_ERR.
 #define BM_PCIE_RC_IOBLSSR_RX_SYS_ERR      (0x40000000)  //!< Bit mask for PCIE_RC_IOBLSSR_RX_SYS_ERR.
 
@@ -1467,7 +1370,6 @@ typedef union _hw_pcie_rc_ioblssr
 //! @brief Set the RX_SYS_ERR field to a new value.
 #define BW_PCIE_RC_IOBLSSR_RX_SYS_ERR(v)   (HW_PCIE_RC_IOBLSSR_WR((HW_PCIE_RC_IOBLSSR_RD() & ~BM_PCIE_RC_IOBLSSR_RX_SYS_ERR) | BF_PCIE_RC_IOBLSSR_RX_SYS_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_IOBLSSR, field DET_PARITY_ERR[31] (W1C)
@@ -1475,7 +1377,6 @@ typedef union _hw_pcie_rc_ioblssr
  * Detected Parity Error.
  */
 //@{
-
 #define BP_PCIE_RC_IOBLSSR_DET_PARITY_ERR      (31)      //!< Bit position for PCIE_RC_IOBLSSR_DET_PARITY_ERR.
 #define BM_PCIE_RC_IOBLSSR_DET_PARITY_ERR      (0x80000000)  //!< Bit mask for PCIE_RC_IOBLSSR_DET_PARITY_ERR.
 
@@ -1489,7 +1390,6 @@ typedef union _hw_pcie_rc_ioblssr
 //! @brief Set the DET_PARITY_ERR field to a new value.
 #define BW_PCIE_RC_IOBLSSR_DET_PARITY_ERR(v)   (HW_PCIE_RC_IOBLSSR_WR((HW_PCIE_RC_IOBLSSR_RD() & ~BM_PCIE_RC_IOBLSSR_DET_PARITY_ERR) | BF_PCIE_RC_IOBLSSR_DET_PARITY_ERR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1542,7 +1442,6 @@ typedef union _hw_pcie_rc_mem_blr
  * Memory Base Address.
  */
 //@{
-
 #define BP_PCIE_RC_MEM_BLR_MEM_BASE_ADD      (8)      //!< Bit position for PCIE_RC_MEM_BLR_MEM_BASE_ADD.
 #define BM_PCIE_RC_MEM_BLR_MEM_BASE_ADD      (0x0000ff00)  //!< Bit mask for PCIE_RC_MEM_BLR_MEM_BASE_ADD.
 
@@ -1556,7 +1455,6 @@ typedef union _hw_pcie_rc_mem_blr
 //! @brief Set the MEM_BASE_ADD field to a new value.
 #define BW_PCIE_RC_MEM_BLR_MEM_BASE_ADD(v)   (HW_PCIE_RC_MEM_BLR_WR((HW_PCIE_RC_MEM_BLR_RD() & ~BM_PCIE_RC_MEM_BLR_MEM_BASE_ADD) | BF_PCIE_RC_MEM_BLR_MEM_BASE_ADD(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_MEM_BLR, field MEM_LIM_ADD[31:24] (RW)
@@ -1564,7 +1462,6 @@ typedef union _hw_pcie_rc_mem_blr
  * Memory Limit Address.
  */
 //@{
-
 #define BP_PCIE_RC_MEM_BLR_MEM_LIM_ADD      (24)      //!< Bit position for PCIE_RC_MEM_BLR_MEM_LIM_ADD.
 #define BM_PCIE_RC_MEM_BLR_MEM_LIM_ADD      (0xff000000)  //!< Bit mask for PCIE_RC_MEM_BLR_MEM_LIM_ADD.
 
@@ -1578,7 +1475,6 @@ typedef union _hw_pcie_rc_mem_blr
 //! @brief Set the MEM_LIM_ADD field to a new value.
 #define BW_PCIE_RC_MEM_BLR_MEM_LIM_ADD(v)   (HW_PCIE_RC_MEM_BLR_WR((HW_PCIE_RC_MEM_BLR_RD() & ~BM_PCIE_RC_MEM_BLR_MEM_LIM_ADD) | BF_PCIE_RC_MEM_BLR_MEM_LIM_ADD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1631,7 +1527,6 @@ typedef union _hw_pcie_rc_pref_mem_blr
  * Upper 12 bits of 32-bit Prefetchable Memory Start Address.
  */
 //@{
-
 #define BP_PCIE_RC_PREF_MEM_BLR_UPPER12_START_ADD      (4)      //!< Bit position for PCIE_RC_PREF_MEM_BLR_UPPER12_START_ADD.
 #define BM_PCIE_RC_PREF_MEM_BLR_UPPER12_START_ADD      (0x0000fff0)  //!< Bit mask for PCIE_RC_PREF_MEM_BLR_UPPER12_START_ADD.
 
@@ -1645,7 +1540,6 @@ typedef union _hw_pcie_rc_pref_mem_blr
 //! @brief Set the UPPER12_START_ADD field to a new value.
 #define BW_PCIE_RC_PREF_MEM_BLR_UPPER12_START_ADD(v)   (HW_PCIE_RC_PREF_MEM_BLR_WR((HW_PCIE_RC_PREF_MEM_BLR_RD() & ~BM_PCIE_RC_PREF_MEM_BLR_UPPER12_START_ADD) | BF_PCIE_RC_PREF_MEM_BLR_UPPER12_START_ADD(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_PREF_MEM_BLR, field UPPER12_END_ADD[31:20] (RW)
@@ -1653,7 +1547,6 @@ typedef union _hw_pcie_rc_pref_mem_blr
  * Upper 12 bits of 32-bit Prefetchable Memory End Address.
  */
 //@{
-
 #define BP_PCIE_RC_PREF_MEM_BLR_UPPER12_END_ADD      (20)      //!< Bit position for PCIE_RC_PREF_MEM_BLR_UPPER12_END_ADD.
 #define BM_PCIE_RC_PREF_MEM_BLR_UPPER12_END_ADD      (0xfff00000)  //!< Bit mask for PCIE_RC_PREF_MEM_BLR_UPPER12_END_ADD.
 
@@ -1667,7 +1560,6 @@ typedef union _hw_pcie_rc_pref_mem_blr
 //! @brief Set the UPPER12_END_ADD field to a new value.
 #define BW_PCIE_RC_PREF_MEM_BLR_UPPER12_END_ADD(v)   (HW_PCIE_RC_PREF_MEM_BLR_WR((HW_PCIE_RC_PREF_MEM_BLR_RD() & ~BM_PCIE_RC_PREF_MEM_BLR_UPPER12_END_ADD) | BF_PCIE_RC_PREF_MEM_BLR_UPPER12_END_ADD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1718,7 +1610,6 @@ typedef union _hw_pcie_rc_pref_base_u32
  * memory addressing is enabled.
  */
 //@{
-
 #define BP_PCIE_RC_PREF_BASE_U32_UPPER32_BASE_PREF_MEM_ADD      (0)      //!< Bit position for PCIE_RC_PREF_BASE_U32_UPPER32_BASE_PREF_MEM_ADD.
 #define BM_PCIE_RC_PREF_BASE_U32_UPPER32_BASE_PREF_MEM_ADD      (0xffffffff)  //!< Bit mask for PCIE_RC_PREF_BASE_U32_UPPER32_BASE_PREF_MEM_ADD.
 
@@ -1732,7 +1623,6 @@ typedef union _hw_pcie_rc_pref_base_u32
 //! @brief Set the UPPER32_BASE_PREF_MEM_ADD field to a new value.
 #define BW_PCIE_RC_PREF_BASE_U32_UPPER32_BASE_PREF_MEM_ADD(v)   (HW_PCIE_RC_PREF_BASE_U32_WR((HW_PCIE_RC_PREF_BASE_U32_RD() & ~BM_PCIE_RC_PREF_BASE_U32_UPPER32_BASE_PREF_MEM_ADD) | BF_PCIE_RC_PREF_BASE_U32_UPPER32_BASE_PREF_MEM_ADD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1783,7 +1673,6 @@ typedef union _hw_pcie_rc_pref_lim_u32
  * memory addressing is enabled.
  */
 //@{
-
 #define BP_PCIE_RC_PREF_LIM_U32_UPPER32_LIM_PREF_MEM_ADD      (0)      //!< Bit position for PCIE_RC_PREF_LIM_U32_UPPER32_LIM_PREF_MEM_ADD.
 #define BM_PCIE_RC_PREF_LIM_U32_UPPER32_LIM_PREF_MEM_ADD      (0xffffffff)  //!< Bit mask for PCIE_RC_PREF_LIM_U32_UPPER32_LIM_PREF_MEM_ADD.
 
@@ -1797,7 +1686,6 @@ typedef union _hw_pcie_rc_pref_lim_u32
 //! @brief Set the UPPER32_LIM_PREF_MEM_ADD field to a new value.
 #define BW_PCIE_RC_PREF_LIM_U32_UPPER32_LIM_PREF_MEM_ADD(v)   (HW_PCIE_RC_PREF_LIM_U32_WR((HW_PCIE_RC_PREF_LIM_U32_RD() & ~BM_PCIE_RC_PREF_LIM_U32_UPPER32_LIM_PREF_MEM_ADD) | BF_PCIE_RC_PREF_LIM_U32_UPPER32_LIM_PREF_MEM_ADD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1849,7 +1737,6 @@ typedef union _hw_pcie_rc_io_base_lim_u16
  * side).
  */
 //@{
-
 #define BP_PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_BASE      (0)      //!< Bit position for PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_BASE.
 #define BM_PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_BASE      (0x0000ffff)  //!< Bit mask for PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_BASE.
 
@@ -1863,7 +1750,6 @@ typedef union _hw_pcie_rc_io_base_lim_u16
 //! @brief Set the UPPER16_IO_BASE field to a new value.
 #define BW_PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_BASE(v)   (HW_PCIE_RC_IO_BASE_LIM_U16_WR((HW_PCIE_RC_IO_BASE_LIM_U16_RD() & ~BM_PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_BASE) | BF_PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_BASE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_IO_BASE_LIM_U16, field UPPER16_IO_LIM[31:16] (RW)
@@ -1872,7 +1758,6 @@ typedef union _hw_pcie_rc_io_base_lim_u16
  * side).
  */
 //@{
-
 #define BP_PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_LIM      (16)      //!< Bit position for PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_LIM.
 #define BM_PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_LIM      (0xffff0000)  //!< Bit mask for PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_LIM.
 
@@ -1886,7 +1771,6 @@ typedef union _hw_pcie_rc_io_base_lim_u16
 //! @brief Set the UPPER16_IO_LIM field to a new value.
 #define BW_PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_LIM(v)   (HW_PCIE_RC_IO_BASE_LIM_U16_WR((HW_PCIE_RC_IO_BASE_LIM_U16_RD() & ~BM_PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_LIM) | BF_PCIE_RC_IO_BASE_LIM_U16_UPPER16_IO_LIM(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1933,13 +1817,11 @@ typedef union _hw_pcie_rc_cappr
  * First Capability Pointer. See Tables 5-2 and 5-3 on page 510.
  */
 //@{
-
 #define BP_PCIE_RC_CAPPR_CFG_NEXT_PTR      (0)      //!< Bit position for PCIE_RC_CAPPR_CFG_NEXT_PTR.
 #define BM_PCIE_RC_CAPPR_CFG_NEXT_PTR      (0x000000ff)  //!< Bit mask for PCIE_RC_CAPPR_CFG_NEXT_PTR.
 
 //! @brief Get value of PCIE_RC_CAPPR_CFG_NEXT_PTR from a register value.
 #define BG_PCIE_RC_CAPPR_CFG_NEXT_PTR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_CAPPR_CFG_NEXT_PTR) >> BP_PCIE_RC_CAPPR_CFG_NEXT_PTR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1991,7 +1873,6 @@ typedef union _hw_pcie_rc_erombar
  * Expansion ROM Enable
  */
 //@{
-
 #define BP_PCIE_RC_EROMBAR_ENABLE      (0)      //!< Bit position for PCIE_RC_EROMBAR_ENABLE.
 #define BM_PCIE_RC_EROMBAR_ENABLE      (0x00000001)  //!< Bit mask for PCIE_RC_EROMBAR_ENABLE.
 
@@ -2005,7 +1886,6 @@ typedef union _hw_pcie_rc_erombar
 //! @brief Set the ENABLE field to a new value.
 #define BW_PCIE_RC_EROMBAR_ENABLE(v)   (HW_PCIE_RC_EROMBAR_WR((HW_PCIE_RC_EROMBAR_RD() & ~BM_PCIE_RC_EROMBAR_ENABLE) | BF_PCIE_RC_EROMBAR_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_EROMBAR, field ADDRESS[31:11] (RW)
@@ -2013,7 +1893,6 @@ typedef union _hw_pcie_rc_erombar
  * Expansion ROM Address
  */
 //@{
-
 #define BP_PCIE_RC_EROMBAR_ADDRESS      (11)      //!< Bit position for PCIE_RC_EROMBAR_ADDRESS.
 #define BM_PCIE_RC_EROMBAR_ADDRESS      (0xfffff800)  //!< Bit mask for PCIE_RC_EROMBAR_ADDRESS.
 
@@ -2027,7 +1906,6 @@ typedef union _hw_pcie_rc_erombar
 //! @brief Set the ADDRESS field to a new value.
 #define BW_PCIE_RC_EROMBAR_ADDRESS(v)   (HW_PCIE_RC_EROMBAR_WR((HW_PCIE_RC_EROMBAR_RD() & ~BM_PCIE_RC_EROMBAR_ADDRESS) | BF_PCIE_RC_EROMBAR_ADDRESS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2082,7 +1960,6 @@ typedef union _hw_pcie_rc_erommask
  * - 1 - Expansion ROM BAR is enabled
  */
 //@{
-
 #define BP_PCIE_RC_EROMMASK_ROM_BAR_ENABLED_N      (0)      //!< Bit position for PCIE_RC_EROMMASK_ROM_BAR_ENABLED_N.
 #define BM_PCIE_RC_EROMMASK_ROM_BAR_ENABLED_N      (0x00000001)  //!< Bit mask for PCIE_RC_EROMMASK_ROM_BAR_ENABLED_N.
 
@@ -2096,7 +1973,6 @@ typedef union _hw_pcie_rc_erommask
 //! @brief Set the ROM_BAR_ENABLED_N field to a new value.
 #define BW_PCIE_RC_EROMMASK_ROM_BAR_ENABLED_N(v)   (HW_PCIE_RC_EROMMASK_WR((HW_PCIE_RC_EROMMASK_RD() & ~BM_PCIE_RC_EROMMASK_ROM_BAR_ENABLED_N) | BF_PCIE_RC_EROMMASK_ROM_BAR_ENABLED_N(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_EROMMASK, field ROM_MASK_N[31:1] (RW)
@@ -2110,7 +1986,6 @@ typedef union _hw_pcie_rc_erommask
  * register is writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_RC_EROMMASK_ROM_MASK_N      (1)      //!< Bit position for PCIE_RC_EROMMASK_ROM_MASK_N.
 #define BM_PCIE_RC_EROMMASK_ROM_MASK_N      (0xfffffffe)  //!< Bit mask for PCIE_RC_EROMMASK_ROM_MASK_N.
 
@@ -2124,7 +1999,6 @@ typedef union _hw_pcie_rc_erommask
 //! @brief Set the ROM_MASK_N field to a new value.
 #define BW_PCIE_RC_EROMMASK_ROM_MASK_N(v)   (HW_PCIE_RC_EROMMASK_WR((HW_PCIE_RC_EROMMASK_RD() & ~BM_PCIE_RC_EROMMASK_ROM_MASK_N) | BF_PCIE_RC_EROMMASK_ROM_MASK_N(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2185,13 +2059,11 @@ typedef union _hw_pcie_rc_pmcr
  * Power Management Capability ID
  */
 //@{
-
 #define BP_PCIE_RC_PMCR_POWER_MANAGEMENT_CAPABILITY_ID      (0)      //!< Bit position for PCIE_RC_PMCR_POWER_MANAGEMENT_CAPABILITY_ID.
 #define BM_PCIE_RC_PMCR_POWER_MANAGEMENT_CAPABILITY_ID      (0x000000ff)  //!< Bit mask for PCIE_RC_PMCR_POWER_MANAGEMENT_CAPABILITY_ID.
 
 //! @brief Get value of PCIE_RC_PMCR_POWER_MANAGEMENT_CAPABILITY_ID from a register value.
 #define BG_PCIE_RC_PMCR_POWER_MANAGEMENT_CAPABILITY_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PMCR_POWER_MANAGEMENT_CAPABILITY_ID) >> BP_PCIE_RC_PMCR_POWER_MANAGEMENT_CAPABILITY_ID)
-
 //@}
 
 /*! @name Register PCIE_RC_PMCR, field NEXT_CAPABILITY_POINTER[15:8] (RO)
@@ -2199,13 +2071,11 @@ typedef union _hw_pcie_rc_pmcr
  * Next Capability Pointer See and .
  */
 //@{
-
 #define BP_PCIE_RC_PMCR_NEXT_CAPABILITY_POINTER      (8)      //!< Bit position for PCIE_RC_PMCR_NEXT_CAPABILITY_POINTER.
 #define BM_PCIE_RC_PMCR_NEXT_CAPABILITY_POINTER      (0x0000ff00)  //!< Bit mask for PCIE_RC_PMCR_NEXT_CAPABILITY_POINTER.
 
 //! @brief Get value of PCIE_RC_PMCR_NEXT_CAPABILITY_POINTER from a register value.
 #define BG_PCIE_RC_PMCR_NEXT_CAPABILITY_POINTER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PMCR_NEXT_CAPABILITY_POINTER) >> BP_PCIE_RC_PMCR_NEXT_CAPABILITY_POINTER)
-
 //@}
 
 /*! @name Register PCIE_RC_PMCR, field POWER_MANAGEMENT_SPECIFICATION_VERSION[18:16] (RO)
@@ -2213,13 +2083,11 @@ typedef union _hw_pcie_rc_pmcr
  * Power Management specification version, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_PMCR_POWER_MANAGEMENT_SPECIFICATION_VERSION      (16)      //!< Bit position for PCIE_RC_PMCR_POWER_MANAGEMENT_SPECIFICATION_VERSION.
 #define BM_PCIE_RC_PMCR_POWER_MANAGEMENT_SPECIFICATION_VERSION      (0x00070000)  //!< Bit mask for PCIE_RC_PMCR_POWER_MANAGEMENT_SPECIFICATION_VERSION.
 
 //! @brief Get value of PCIE_RC_PMCR_POWER_MANAGEMENT_SPECIFICATION_VERSION from a register value.
 #define BG_PCIE_RC_PMCR_POWER_MANAGEMENT_SPECIFICATION_VERSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PMCR_POWER_MANAGEMENT_SPECIFICATION_VERSION) >> BP_PCIE_RC_PMCR_POWER_MANAGEMENT_SPECIFICATION_VERSION)
-
 //@}
 
 /*! @name Register PCIE_RC_PMCR, field PME_CLOCK[19] (RO)
@@ -2227,13 +2095,11 @@ typedef union _hw_pcie_rc_pmcr
  * PME Clock, hardwired to 0
  */
 //@{
-
 #define BP_PCIE_RC_PMCR_PME_CLOCK      (19)      //!< Bit position for PCIE_RC_PMCR_PME_CLOCK.
 #define BM_PCIE_RC_PMCR_PME_CLOCK      (0x00080000)  //!< Bit mask for PCIE_RC_PMCR_PME_CLOCK.
 
 //! @brief Get value of PCIE_RC_PMCR_PME_CLOCK from a register value.
 #define BG_PCIE_RC_PMCR_PME_CLOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PMCR_PME_CLOCK) >> BP_PCIE_RC_PMCR_PME_CLOCK)
-
 //@}
 
 /*! @name Register PCIE_RC_PMCR, field DSI[21] (RO)
@@ -2241,13 +2107,11 @@ typedef union _hw_pcie_rc_pmcr
  * Device Specific Initialization (DSI), writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_PMCR_DSI      (21)      //!< Bit position for PCIE_RC_PMCR_DSI.
 #define BM_PCIE_RC_PMCR_DSI      (0x00200000)  //!< Bit mask for PCIE_RC_PMCR_DSI.
 
 //! @brief Get value of PCIE_RC_PMCR_DSI from a register value.
 #define BG_PCIE_RC_PMCR_DSI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PMCR_DSI) >> BP_PCIE_RC_PMCR_DSI)
-
 //@}
 
 /*! @name Register PCIE_RC_PMCR, field AUX_CURRENT[24:22] (RO)
@@ -2255,13 +2119,11 @@ typedef union _hw_pcie_rc_pmcr
  * AUX Current, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_PMCR_AUX_CURRENT      (22)      //!< Bit position for PCIE_RC_PMCR_AUX_CURRENT.
 #define BM_PCIE_RC_PMCR_AUX_CURRENT      (0x01c00000)  //!< Bit mask for PCIE_RC_PMCR_AUX_CURRENT.
 
 //! @brief Get value of PCIE_RC_PMCR_AUX_CURRENT from a register value.
 #define BG_PCIE_RC_PMCR_AUX_CURRENT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PMCR_AUX_CURRENT) >> BP_PCIE_RC_PMCR_AUX_CURRENT)
-
 //@}
 
 /*! @name Register PCIE_RC_PMCR, field D1_SUPPORT[25] (RO)
@@ -2269,13 +2131,11 @@ typedef union _hw_pcie_rc_pmcr
  * D1 Support, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_PMCR_D1_SUPPORT      (25)      //!< Bit position for PCIE_RC_PMCR_D1_SUPPORT.
 #define BM_PCIE_RC_PMCR_D1_SUPPORT      (0x02000000)  //!< Bit mask for PCIE_RC_PMCR_D1_SUPPORT.
 
 //! @brief Get value of PCIE_RC_PMCR_D1_SUPPORT from a register value.
 #define BG_PCIE_RC_PMCR_D1_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PMCR_D1_SUPPORT) >> BP_PCIE_RC_PMCR_D1_SUPPORT)
-
 //@}
 
 /*! @name Register PCIE_RC_PMCR, field D2_SUPPORT[26] (RO)
@@ -2283,13 +2143,11 @@ typedef union _hw_pcie_rc_pmcr
  * D2 Support, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_PMCR_D2_SUPPORT      (26)      //!< Bit position for PCIE_RC_PMCR_D2_SUPPORT.
 #define BM_PCIE_RC_PMCR_D2_SUPPORT      (0x04000000)  //!< Bit mask for PCIE_RC_PMCR_D2_SUPPORT.
 
 //! @brief Get value of PCIE_RC_PMCR_D2_SUPPORT from a register value.
 #define BG_PCIE_RC_PMCR_D2_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PMCR_D2_SUPPORT) >> BP_PCIE_RC_PMCR_D2_SUPPORT)
-
 //@}
 
 /*! @name Register PCIE_RC_PMCR, field PME_SUPPORT[31:27] (RO)
@@ -2302,13 +2160,11 @@ typedef union _hw_pcie_rc_pmcr
  * generated from D3 cold The PME_Support field is writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_RC_PMCR_PME_SUPPORT      (27)      //!< Bit position for PCIE_RC_PMCR_PME_SUPPORT.
 #define BM_PCIE_RC_PMCR_PME_SUPPORT      (0xf8000000)  //!< Bit mask for PCIE_RC_PMCR_PME_SUPPORT.
 
 //! @brief Get value of PCIE_RC_PMCR_PME_SUPPORT from a register value.
 #define BG_PCIE_RC_PMCR_PME_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PMCR_PME_SUPPORT) >> BP_PCIE_RC_PMCR_PME_SUPPORT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2376,7 +2232,6 @@ typedef union _hw_pcie_rc_pmcsr
  * - 11 - D3
  */
 //@{
-
 #define BP_PCIE_RC_PMCSR_POWER_STATE      (0)      //!< Bit position for PCIE_RC_PMCSR_POWER_STATE.
 #define BM_PCIE_RC_PMCSR_POWER_STATE      (0x00000003)  //!< Bit mask for PCIE_RC_PMCSR_POWER_STATE.
 
@@ -2390,7 +2245,6 @@ typedef union _hw_pcie_rc_pmcsr
 //! @brief Set the POWER_STATE field to a new value.
 #define BW_PCIE_RC_PMCSR_POWER_STATE(v)   (HW_PCIE_RC_PMCSR_WR((HW_PCIE_RC_PMCSR_RD() & ~BM_PCIE_RC_PMCSR_POWER_STATE) | BF_PCIE_RC_PMCSR_POWER_STATE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_PMCSR, field NO_SOFT_RESET[3] (RW)
@@ -2398,7 +2252,6 @@ typedef union _hw_pcie_rc_pmcsr
  * No Soft Reset, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_PMCSR_NO_SOFT_RESET      (3)      //!< Bit position for PCIE_RC_PMCSR_NO_SOFT_RESET.
 #define BM_PCIE_RC_PMCSR_NO_SOFT_RESET      (0x00000008)  //!< Bit mask for PCIE_RC_PMCSR_NO_SOFT_RESET.
 
@@ -2412,7 +2265,6 @@ typedef union _hw_pcie_rc_pmcsr
 //! @brief Set the NO_SOFT_RESET field to a new value.
 #define BW_PCIE_RC_PMCSR_NO_SOFT_RESET(v)   (HW_PCIE_RC_PMCSR_WR((HW_PCIE_RC_PMCSR_RD() & ~BM_PCIE_RC_PMCSR_NO_SOFT_RESET) | BF_PCIE_RC_PMCSR_NO_SOFT_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_PMCSR, field PME_ENABLE[8] (RW)
@@ -2420,7 +2272,6 @@ typedef union _hw_pcie_rc_pmcsr
  * PME Enable (sticky bit) A value of 1 indicates that the device is enabled to generate PME.
  */
 //@{
-
 #define BP_PCIE_RC_PMCSR_PME_ENABLE      (8)      //!< Bit position for PCIE_RC_PMCSR_PME_ENABLE.
 #define BM_PCIE_RC_PMCSR_PME_ENABLE      (0x00000100)  //!< Bit mask for PCIE_RC_PMCSR_PME_ENABLE.
 
@@ -2434,7 +2285,6 @@ typedef union _hw_pcie_rc_pmcsr
 //! @brief Set the PME_ENABLE field to a new value.
 #define BW_PCIE_RC_PMCSR_PME_ENABLE(v)   (HW_PCIE_RC_PMCSR_WR((HW_PCIE_RC_PMCSR_RD() & ~BM_PCIE_RC_PMCSR_PME_ENABLE) | BF_PCIE_RC_PMCSR_PME_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_PMCSR, field DATA_SELECT[12:9] (RW)
@@ -2442,7 +2292,6 @@ typedef union _hw_pcie_rc_pmcsr
  * Data Select (not supported)
  */
 //@{
-
 #define BP_PCIE_RC_PMCSR_DATA_SELECT      (9)      //!< Bit position for PCIE_RC_PMCSR_DATA_SELECT.
 #define BM_PCIE_RC_PMCSR_DATA_SELECT      (0x00001e00)  //!< Bit mask for PCIE_RC_PMCSR_DATA_SELECT.
 
@@ -2456,7 +2305,6 @@ typedef union _hw_pcie_rc_pmcsr
 //! @brief Set the DATA_SELECT field to a new value.
 #define BW_PCIE_RC_PMCSR_DATA_SELECT(v)   (HW_PCIE_RC_PMCSR_WR((HW_PCIE_RC_PMCSR_RD() & ~BM_PCIE_RC_PMCSR_DATA_SELECT) | BF_PCIE_RC_PMCSR_DATA_SELECT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_PMCSR, field DATA_SCALE[14:13] (RW)
@@ -2464,7 +2312,6 @@ typedef union _hw_pcie_rc_pmcsr
  * Data Scale (not supported)
  */
 //@{
-
 #define BP_PCIE_RC_PMCSR_DATA_SCALE      (13)      //!< Bit position for PCIE_RC_PMCSR_DATA_SCALE.
 #define BM_PCIE_RC_PMCSR_DATA_SCALE      (0x00006000)  //!< Bit mask for PCIE_RC_PMCSR_DATA_SCALE.
 
@@ -2478,7 +2325,6 @@ typedef union _hw_pcie_rc_pmcsr
 //! @brief Set the DATA_SCALE field to a new value.
 #define BW_PCIE_RC_PMCSR_DATA_SCALE(v)   (HW_PCIE_RC_PMCSR_WR((HW_PCIE_RC_PMCSR_RD() & ~BM_PCIE_RC_PMCSR_DATA_SCALE) | BF_PCIE_RC_PMCSR_DATA_SCALE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_PMCSR, field PME_STATUS[15] (RW)
@@ -2486,7 +2332,6 @@ typedef union _hw_pcie_rc_pmcsr
  * PME Status Indicates if a previously enabled PME event occurred or not.
  */
 //@{
-
 #define BP_PCIE_RC_PMCSR_PME_STATUS      (15)      //!< Bit position for PCIE_RC_PMCSR_PME_STATUS.
 #define BM_PCIE_RC_PMCSR_PME_STATUS      (0x00008000)  //!< Bit mask for PCIE_RC_PMCSR_PME_STATUS.
 
@@ -2500,7 +2345,6 @@ typedef union _hw_pcie_rc_pmcsr
 //! @brief Set the PME_STATUS field to a new value.
 #define BW_PCIE_RC_PMCSR_PME_STATUS(v)   (HW_PCIE_RC_PMCSR_WR((HW_PCIE_RC_PMCSR_RD() & ~BM_PCIE_RC_PMCSR_PME_STATUS) | BF_PCIE_RC_PMCSR_PME_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_PMCSR, field B2_B3_SUPPORT[22] (RW)
@@ -2508,7 +2352,6 @@ typedef union _hw_pcie_rc_pmcsr
  * B2/B3 Support, hardwired to 0
  */
 //@{
-
 #define BP_PCIE_RC_PMCSR_B2_B3_SUPPORT      (22)      //!< Bit position for PCIE_RC_PMCSR_B2_B3_SUPPORT.
 #define BM_PCIE_RC_PMCSR_B2_B3_SUPPORT      (0x00400000)  //!< Bit mask for PCIE_RC_PMCSR_B2_B3_SUPPORT.
 
@@ -2522,7 +2365,6 @@ typedef union _hw_pcie_rc_pmcsr
 //! @brief Set the B2_B3_SUPPORT field to a new value.
 #define BW_PCIE_RC_PMCSR_B2_B3_SUPPORT(v)   (HW_PCIE_RC_PMCSR_WR((HW_PCIE_RC_PMCSR_RD() & ~BM_PCIE_RC_PMCSR_B2_B3_SUPPORT) | BF_PCIE_RC_PMCSR_B2_B3_SUPPORT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_PMCSR, field BUS_POWER_CLOCK_CONTROL_ENABLE[23] (RW)
@@ -2530,7 +2372,6 @@ typedef union _hw_pcie_rc_pmcsr
  * Bus Power/Clock Control Enable, hardwired to 0
  */
 //@{
-
 #define BP_PCIE_RC_PMCSR_BUS_POWER_CLOCK_CONTROL_ENABLE      (23)      //!< Bit position for PCIE_RC_PMCSR_BUS_POWER_CLOCK_CONTROL_ENABLE.
 #define BM_PCIE_RC_PMCSR_BUS_POWER_CLOCK_CONTROL_ENABLE      (0x00800000)  //!< Bit mask for PCIE_RC_PMCSR_BUS_POWER_CLOCK_CONTROL_ENABLE.
 
@@ -2544,7 +2385,6 @@ typedef union _hw_pcie_rc_pmcsr
 //! @brief Set the BUS_POWER_CLOCK_CONTROL_ENABLE field to a new value.
 #define BW_PCIE_RC_PMCSR_BUS_POWER_CLOCK_CONTROL_ENABLE(v)   (HW_PCIE_RC_PMCSR_WR((HW_PCIE_RC_PMCSR_RD() & ~BM_PCIE_RC_PMCSR_BUS_POWER_CLOCK_CONTROL_ENABLE) | BF_PCIE_RC_PMCSR_BUS_POWER_CLOCK_CONTROL_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_PMCSR, field DATA_REGISTER_FOR_ADDITIONAL_INFORMATION[31:24] (RW)
@@ -2552,7 +2392,6 @@ typedef union _hw_pcie_rc_pmcsr
  * Data register for additional information (not supported)
  */
 //@{
-
 #define BP_PCIE_RC_PMCSR_DATA_REGISTER_FOR_ADDITIONAL_INFORMATION      (24)      //!< Bit position for PCIE_RC_PMCSR_DATA_REGISTER_FOR_ADDITIONAL_INFORMATION.
 #define BM_PCIE_RC_PMCSR_DATA_REGISTER_FOR_ADDITIONAL_INFORMATION      (0xff000000)  //!< Bit mask for PCIE_RC_PMCSR_DATA_REGISTER_FOR_ADDITIONAL_INFORMATION.
 
@@ -2566,7 +2405,6 @@ typedef union _hw_pcie_rc_pmcsr
 //! @brief Set the DATA_REGISTER_FOR_ADDITIONAL_INFORMATION field to a new value.
 #define BW_PCIE_RC_PMCSR_DATA_REGISTER_FOR_ADDITIONAL_INFORMATION(v)   (HW_PCIE_RC_PMCSR_WR((HW_PCIE_RC_PMCSR_RD() & ~BM_PCIE_RC_PMCSR_DATA_REGISTER_FOR_ADDITIONAL_INFORMATION) | BF_PCIE_RC_PMCSR_DATA_REGISTER_FOR_ADDITIONAL_INFORMATION(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2619,13 +2457,11 @@ typedef union _hw_pcie_rc_cidr
  * PCI Express Capability ID
  */
 //@{
-
 #define BP_PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_ID      (0)      //!< Bit position for PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_ID.
 #define BM_PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_ID      (0x000000ff)  //!< Bit mask for PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_ID.
 
 //! @brief Get value of PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_ID from a register value.
 #define BG_PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_ID) >> BP_PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_ID)
-
 //@}
 
 /*! @name Register PCIE_RC_CIDR, field NEXT_CAPABILITY_POINTER[15:8] (RO)
@@ -2633,13 +2469,11 @@ typedef union _hw_pcie_rc_cidr
  * Next Capability Pointer See Tables 5-214 and 5-215 on page 638.
  */
 //@{
-
 #define BP_PCIE_RC_CIDR_NEXT_CAPABILITY_POINTER      (8)      //!< Bit position for PCIE_RC_CIDR_NEXT_CAPABILITY_POINTER.
 #define BM_PCIE_RC_CIDR_NEXT_CAPABILITY_POINTER      (0x0000ff00)  //!< Bit mask for PCIE_RC_CIDR_NEXT_CAPABILITY_POINTER.
 
 //! @brief Get value of PCIE_RC_CIDR_NEXT_CAPABILITY_POINTER from a register value.
 #define BG_PCIE_RC_CIDR_NEXT_CAPABILITY_POINTER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_CIDR_NEXT_CAPABILITY_POINTER) >> BP_PCIE_RC_CIDR_NEXT_CAPABILITY_POINTER)
-
 //@}
 
 /*! @name Register PCIE_RC_CIDR, field PCI_EXPRESS_CAPABILITY_VERSION[19:16] (RO)
@@ -2647,13 +2481,11 @@ typedef union _hw_pcie_rc_cidr
  * PCI Express Capability Version
  */
 //@{
-
 #define BP_PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_VERSION      (16)      //!< Bit position for PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_VERSION.
 #define BM_PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_VERSION      (0x000f0000)  //!< Bit mask for PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_VERSION.
 
 //! @brief Get value of PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_VERSION from a register value.
 #define BG_PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_VERSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_VERSION) >> BP_PCIE_RC_CIDR_PCI_EXPRESS_CAPABILITY_VERSION)
-
 //@}
 
 /*! @name Register PCIE_RC_CIDR, field DEVICE_PORT_TYPE[23:20] (RO)
@@ -2663,13 +2495,11 @@ typedef union _hw_pcie_rc_cidr
  * encodings (including those for PCI/PCI-X bridges and RC Integrated Endpoint) are NOT supported.
  */
 //@{
-
 #define BP_PCIE_RC_CIDR_DEVICE_PORT_TYPE      (20)      //!< Bit position for PCIE_RC_CIDR_DEVICE_PORT_TYPE.
 #define BM_PCIE_RC_CIDR_DEVICE_PORT_TYPE      (0x00f00000)  //!< Bit mask for PCIE_RC_CIDR_DEVICE_PORT_TYPE.
 
 //! @brief Get value of PCIE_RC_CIDR_DEVICE_PORT_TYPE from a register value.
 #define BG_PCIE_RC_CIDR_DEVICE_PORT_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_CIDR_DEVICE_PORT_TYPE) >> BP_PCIE_RC_CIDR_DEVICE_PORT_TYPE)
-
 //@}
 
 /*! @name Register PCIE_RC_CIDR, field SLOT_IMPLEMENTED[24] (RO)
@@ -2677,13 +2507,11 @@ typedef union _hw_pcie_rc_cidr
  * Slot Implemented, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_CIDR_SLOT_IMPLEMENTED      (24)      //!< Bit position for PCIE_RC_CIDR_SLOT_IMPLEMENTED.
 #define BM_PCIE_RC_CIDR_SLOT_IMPLEMENTED      (0x01000000)  //!< Bit mask for PCIE_RC_CIDR_SLOT_IMPLEMENTED.
 
 //! @brief Get value of PCIE_RC_CIDR_SLOT_IMPLEMENTED from a register value.
 #define BG_PCIE_RC_CIDR_SLOT_IMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_CIDR_SLOT_IMPLEMENTED) >> BP_PCIE_RC_CIDR_SLOT_IMPLEMENTED)
-
 //@}
 
 /*! @name Register PCIE_RC_CIDR, field INTERRUPT_MESSAGE_NUMBER[29:25] (RO)
@@ -2691,13 +2519,11 @@ typedef union _hw_pcie_rc_cidr
  * Interrupt Message Number Updated by hardware, writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_RC_CIDR_INTERRUPT_MESSAGE_NUMBER      (25)      //!< Bit position for PCIE_RC_CIDR_INTERRUPT_MESSAGE_NUMBER.
 #define BM_PCIE_RC_CIDR_INTERRUPT_MESSAGE_NUMBER      (0x3e000000)  //!< Bit mask for PCIE_RC_CIDR_INTERRUPT_MESSAGE_NUMBER.
 
 //! @brief Get value of PCIE_RC_CIDR_INTERRUPT_MESSAGE_NUMBER from a register value.
 #define BG_PCIE_RC_CIDR_INTERRUPT_MESSAGE_NUMBER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_CIDR_INTERRUPT_MESSAGE_NUMBER) >> BP_PCIE_RC_CIDR_INTERRUPT_MESSAGE_NUMBER)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2757,7 +2583,6 @@ typedef union _hw_pcie_rc_dcr
  * Max_Payload_Size Supported, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_DCR_MAX_PAYLOAD_SIZE_SUPPORTED      (0)      //!< Bit position for PCIE_RC_DCR_MAX_PAYLOAD_SIZE_SUPPORTED.
 #define BM_PCIE_RC_DCR_MAX_PAYLOAD_SIZE_SUPPORTED      (0x00000007)  //!< Bit mask for PCIE_RC_DCR_MAX_PAYLOAD_SIZE_SUPPORTED.
 
@@ -2771,7 +2596,6 @@ typedef union _hw_pcie_rc_dcr
 //! @brief Set the MAX_PAYLOAD_SIZE_SUPPORTED field to a new value.
 #define BW_PCIE_RC_DCR_MAX_PAYLOAD_SIZE_SUPPORTED(v)   (HW_PCIE_RC_DCR_WR((HW_PCIE_RC_DCR_RD() & ~BM_PCIE_RC_DCR_MAX_PAYLOAD_SIZE_SUPPORTED) | BF_PCIE_RC_DCR_MAX_PAYLOAD_SIZE_SUPPORTED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCR, field PHANTOM_FUNCTION_SUPPORTED[4:3] (RW)
@@ -2780,7 +2604,6 @@ typedef union _hw_pcie_rc_dcr
  * not supported. Therefore, the application must not write any value other than 0x0 to this field.
  */
 //@{
-
 #define BP_PCIE_RC_DCR_PHANTOM_FUNCTION_SUPPORTED      (3)      //!< Bit position for PCIE_RC_DCR_PHANTOM_FUNCTION_SUPPORTED.
 #define BM_PCIE_RC_DCR_PHANTOM_FUNCTION_SUPPORTED      (0x00000018)  //!< Bit mask for PCIE_RC_DCR_PHANTOM_FUNCTION_SUPPORTED.
 
@@ -2794,7 +2617,6 @@ typedef union _hw_pcie_rc_dcr
 //! @brief Set the PHANTOM_FUNCTION_SUPPORTED field to a new value.
 #define BW_PCIE_RC_DCR_PHANTOM_FUNCTION_SUPPORTED(v)   (HW_PCIE_RC_DCR_WR((HW_PCIE_RC_DCR_RD() & ~BM_PCIE_RC_DCR_PHANTOM_FUNCTION_SUPPORTED) | BF_PCIE_RC_DCR_PHANTOM_FUNCTION_SUPPORTED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCR, field EXTENDED_TAG_FIELD_SUPPORTED[5] (RW)
@@ -2804,7 +2626,6 @@ typedef union _hw_pcie_rc_dcr
  * support more than 32 tags are not implemented.
  */
 //@{
-
 #define BP_PCIE_RC_DCR_EXTENDED_TAG_FIELD_SUPPORTED      (5)      //!< Bit position for PCIE_RC_DCR_EXTENDED_TAG_FIELD_SUPPORTED.
 #define BM_PCIE_RC_DCR_EXTENDED_TAG_FIELD_SUPPORTED      (0x00000020)  //!< Bit mask for PCIE_RC_DCR_EXTENDED_TAG_FIELD_SUPPORTED.
 
@@ -2818,7 +2639,6 @@ typedef union _hw_pcie_rc_dcr
 //! @brief Set the EXTENDED_TAG_FIELD_SUPPORTED field to a new value.
 #define BW_PCIE_RC_DCR_EXTENDED_TAG_FIELD_SUPPORTED(v)   (HW_PCIE_RC_DCR_WR((HW_PCIE_RC_DCR_RD() & ~BM_PCIE_RC_DCR_EXTENDED_TAG_FIELD_SUPPORTED) | BF_PCIE_RC_DCR_EXTENDED_TAG_FIELD_SUPPORTED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCR, field ENDPOINT_L0S_ACCEPTABLE_LATENCY[8:6] (RW)
@@ -2826,7 +2646,6 @@ typedef union _hw_pcie_rc_dcr
  * Endpoint L0s Acceptable Latency Must be 0x0 for non-Endpoint devices.
  */
 //@{
-
 #define BP_PCIE_RC_DCR_ENDPOINT_L0S_ACCEPTABLE_LATENCY      (6)      //!< Bit position for PCIE_RC_DCR_ENDPOINT_L0S_ACCEPTABLE_LATENCY.
 #define BM_PCIE_RC_DCR_ENDPOINT_L0S_ACCEPTABLE_LATENCY      (0x000001c0)  //!< Bit mask for PCIE_RC_DCR_ENDPOINT_L0S_ACCEPTABLE_LATENCY.
 
@@ -2840,7 +2659,6 @@ typedef union _hw_pcie_rc_dcr
 //! @brief Set the ENDPOINT_L0S_ACCEPTABLE_LATENCY field to a new value.
 #define BW_PCIE_RC_DCR_ENDPOINT_L0S_ACCEPTABLE_LATENCY(v)   (HW_PCIE_RC_DCR_WR((HW_PCIE_RC_DCR_RD() & ~BM_PCIE_RC_DCR_ENDPOINT_L0S_ACCEPTABLE_LATENCY) | BF_PCIE_RC_DCR_ENDPOINT_L0S_ACCEPTABLE_LATENCY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCR, field ENDPOINT_L1_ACCEPTABLE_LATENCY[11:9] (RW)
@@ -2848,7 +2666,6 @@ typedef union _hw_pcie_rc_dcr
  * Endpoint L1 Acceptable Latency Must be 0x0 for non-Endpoint devices.
  */
 //@{
-
 #define BP_PCIE_RC_DCR_ENDPOINT_L1_ACCEPTABLE_LATENCY      (9)      //!< Bit position for PCIE_RC_DCR_ENDPOINT_L1_ACCEPTABLE_LATENCY.
 #define BM_PCIE_RC_DCR_ENDPOINT_L1_ACCEPTABLE_LATENCY      (0x00000e00)  //!< Bit mask for PCIE_RC_DCR_ENDPOINT_L1_ACCEPTABLE_LATENCY.
 
@@ -2862,7 +2679,6 @@ typedef union _hw_pcie_rc_dcr
 //! @brief Set the ENDPOINT_L1_ACCEPTABLE_LATENCY field to a new value.
 #define BW_PCIE_RC_DCR_ENDPOINT_L1_ACCEPTABLE_LATENCY(v)   (HW_PCIE_RC_DCR_WR((HW_PCIE_RC_DCR_RD() & ~BM_PCIE_RC_DCR_ENDPOINT_L1_ACCEPTABLE_LATENCY) | BF_PCIE_RC_DCR_ENDPOINT_L1_ACCEPTABLE_LATENCY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCR, field ROLE_BASED_ERROR_REPORTING[15] (RW)
@@ -2871,7 +2687,6 @@ typedef union _hw_pcie_rc_dcr
  * 1.1 spec and later.
  */
 //@{
-
 #define BP_PCIE_RC_DCR_ROLE_BASED_ERROR_REPORTING      (15)      //!< Bit position for PCIE_RC_DCR_ROLE_BASED_ERROR_REPORTING.
 #define BM_PCIE_RC_DCR_ROLE_BASED_ERROR_REPORTING      (0x00008000)  //!< Bit mask for PCIE_RC_DCR_ROLE_BASED_ERROR_REPORTING.
 
@@ -2885,7 +2700,6 @@ typedef union _hw_pcie_rc_dcr
 //! @brief Set the ROLE_BASED_ERROR_REPORTING field to a new value.
 #define BW_PCIE_RC_DCR_ROLE_BASED_ERROR_REPORTING(v)   (HW_PCIE_RC_DCR_WR((HW_PCIE_RC_DCR_RD() & ~BM_PCIE_RC_DCR_ROLE_BASED_ERROR_REPORTING) | BF_PCIE_RC_DCR_ROLE_BASED_ERROR_REPORTING(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCR, field CAPTURED_SLOT_POWER_LIMIT_VALUE[25:18] (RW)
@@ -2893,7 +2707,6 @@ typedef union _hw_pcie_rc_dcr
  * Captured Slot Power Limit Value Upstream port only.
  */
 //@{
-
 #define BP_PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_VALUE      (18)      //!< Bit position for PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_VALUE.
 #define BM_PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_VALUE      (0x03fc0000)  //!< Bit mask for PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_VALUE.
 
@@ -2907,7 +2720,6 @@ typedef union _hw_pcie_rc_dcr
 //! @brief Set the CAPTURED_SLOT_POWER_LIMIT_VALUE field to a new value.
 #define BW_PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_VALUE(v)   (HW_PCIE_RC_DCR_WR((HW_PCIE_RC_DCR_RD() & ~BM_PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_VALUE) | BF_PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_VALUE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCR, field CAPTURED_SLOT_POWER_LIMIT_SCALE[27:26] (RW)
@@ -2915,7 +2727,6 @@ typedef union _hw_pcie_rc_dcr
  * Captured Slot Power Limit Scale Upstream port only.
  */
 //@{
-
 #define BP_PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_SCALE      (26)      //!< Bit position for PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_SCALE.
 #define BM_PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_SCALE      (0x0c000000)  //!< Bit mask for PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_SCALE.
 
@@ -2929,7 +2740,6 @@ typedef union _hw_pcie_rc_dcr
 //! @brief Set the CAPTURED_SLOT_POWER_LIMIT_SCALE field to a new value.
 #define BW_PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_SCALE(v)   (HW_PCIE_RC_DCR_WR((HW_PCIE_RC_DCR_RD() & ~BM_PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_SCALE) | BF_PCIE_RC_DCR_CAPTURED_SLOT_POWER_LIMIT_SCALE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2997,7 +2807,6 @@ typedef union _hw_pcie_rc_dconr
  * Correctable Error Reporting Enable
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_CORRECTABLE_ERROR_REPORTING_ENABLE      (0)      //!< Bit position for PCIE_RC_DCONR_CORRECTABLE_ERROR_REPORTING_ENABLE.
 #define BM_PCIE_RC_DCONR_CORRECTABLE_ERROR_REPORTING_ENABLE      (0x00000001)  //!< Bit mask for PCIE_RC_DCONR_CORRECTABLE_ERROR_REPORTING_ENABLE.
 
@@ -3011,7 +2820,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the CORRECTABLE_ERROR_REPORTING_ENABLE field to a new value.
 #define BW_PCIE_RC_DCONR_CORRECTABLE_ERROR_REPORTING_ENABLE(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_CORRECTABLE_ERROR_REPORTING_ENABLE) | BF_PCIE_RC_DCONR_CORRECTABLE_ERROR_REPORTING_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field NON_FATAL_ERROR_REPORTING_ENABLE[1] (RW)
@@ -3019,7 +2827,6 @@ typedef union _hw_pcie_rc_dconr
  * Non-Fatal Error Reporting Enable
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_NON_FATAL_ERROR_REPORTING_ENABLE      (1)      //!< Bit position for PCIE_RC_DCONR_NON_FATAL_ERROR_REPORTING_ENABLE.
 #define BM_PCIE_RC_DCONR_NON_FATAL_ERROR_REPORTING_ENABLE      (0x00000002)  //!< Bit mask for PCIE_RC_DCONR_NON_FATAL_ERROR_REPORTING_ENABLE.
 
@@ -3033,7 +2840,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the NON_FATAL_ERROR_REPORTING_ENABLE field to a new value.
 #define BW_PCIE_RC_DCONR_NON_FATAL_ERROR_REPORTING_ENABLE(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_NON_FATAL_ERROR_REPORTING_ENABLE) | BF_PCIE_RC_DCONR_NON_FATAL_ERROR_REPORTING_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field FATAL_ERROR_REPORTING_ENABLE[2] (RW)
@@ -3041,7 +2847,6 @@ typedef union _hw_pcie_rc_dconr
  * Fatal Error Reporting Enable
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_FATAL_ERROR_REPORTING_ENABLE      (2)      //!< Bit position for PCIE_RC_DCONR_FATAL_ERROR_REPORTING_ENABLE.
 #define BM_PCIE_RC_DCONR_FATAL_ERROR_REPORTING_ENABLE      (0x00000004)  //!< Bit mask for PCIE_RC_DCONR_FATAL_ERROR_REPORTING_ENABLE.
 
@@ -3055,7 +2860,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the FATAL_ERROR_REPORTING_ENABLE field to a new value.
 #define BW_PCIE_RC_DCONR_FATAL_ERROR_REPORTING_ENABLE(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_FATAL_ERROR_REPORTING_ENABLE) | BF_PCIE_RC_DCONR_FATAL_ERROR_REPORTING_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field UNSUPPORTED_REQUEST_REPORTING_ENABLE[3] (RW)
@@ -3063,7 +2867,6 @@ typedef union _hw_pcie_rc_dconr
  * Unsupported Request Reporting Enable
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_UNSUPPORTED_REQUEST_REPORTING_ENABLE      (3)      //!< Bit position for PCIE_RC_DCONR_UNSUPPORTED_REQUEST_REPORTING_ENABLE.
 #define BM_PCIE_RC_DCONR_UNSUPPORTED_REQUEST_REPORTING_ENABLE      (0x00000008)  //!< Bit mask for PCIE_RC_DCONR_UNSUPPORTED_REQUEST_REPORTING_ENABLE.
 
@@ -3077,7 +2880,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the UNSUPPORTED_REQUEST_REPORTING_ENABLE field to a new value.
 #define BW_PCIE_RC_DCONR_UNSUPPORTED_REQUEST_REPORTING_ENABLE(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_UNSUPPORTED_REQUEST_REPORTING_ENABLE) | BF_PCIE_RC_DCONR_UNSUPPORTED_REQUEST_REPORTING_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field ENABLE_RELAXED_ORDERING[4] (RW)
@@ -3085,7 +2887,6 @@ typedef union _hw_pcie_rc_dconr
  * Enable Relaxed Ordering
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_ENABLE_RELAXED_ORDERING      (4)      //!< Bit position for PCIE_RC_DCONR_ENABLE_RELAXED_ORDERING.
 #define BM_PCIE_RC_DCONR_ENABLE_RELAXED_ORDERING      (0x00000010)  //!< Bit mask for PCIE_RC_DCONR_ENABLE_RELAXED_ORDERING.
 
@@ -3099,7 +2900,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the ENABLE_RELAXED_ORDERING field to a new value.
 #define BW_PCIE_RC_DCONR_ENABLE_RELAXED_ORDERING(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_ENABLE_RELAXED_ORDERING) | BF_PCIE_RC_DCONR_ENABLE_RELAXED_ORDERING(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field MAX_PAYLOAD_SIZE[7:5] (RW)
@@ -3107,7 +2907,6 @@ typedef union _hw_pcie_rc_dconr
  * Max_Payload_Size
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_MAX_PAYLOAD_SIZE      (5)      //!< Bit position for PCIE_RC_DCONR_MAX_PAYLOAD_SIZE.
 #define BM_PCIE_RC_DCONR_MAX_PAYLOAD_SIZE      (0x000000e0)  //!< Bit mask for PCIE_RC_DCONR_MAX_PAYLOAD_SIZE.
 
@@ -3121,7 +2920,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the MAX_PAYLOAD_SIZE field to a new value.
 #define BW_PCIE_RC_DCONR_MAX_PAYLOAD_SIZE(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_MAX_PAYLOAD_SIZE) | BF_PCIE_RC_DCONR_MAX_PAYLOAD_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field EXTENDED_TAG_FIELD_ENABLE[8] (RW)
@@ -3129,7 +2927,6 @@ typedef union _hw_pcie_rc_dconr
  * Extended Tag Field Enable
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_EXTENDED_TAG_FIELD_ENABLE      (8)      //!< Bit position for PCIE_RC_DCONR_EXTENDED_TAG_FIELD_ENABLE.
 #define BM_PCIE_RC_DCONR_EXTENDED_TAG_FIELD_ENABLE      (0x00000100)  //!< Bit mask for PCIE_RC_DCONR_EXTENDED_TAG_FIELD_ENABLE.
 
@@ -3143,7 +2940,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the EXTENDED_TAG_FIELD_ENABLE field to a new value.
 #define BW_PCIE_RC_DCONR_EXTENDED_TAG_FIELD_ENABLE(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_EXTENDED_TAG_FIELD_ENABLE) | BF_PCIE_RC_DCONR_EXTENDED_TAG_FIELD_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field PHANTOM_FUNCTION_ENABLE[9] (RW)
@@ -3151,7 +2947,6 @@ typedef union _hw_pcie_rc_dconr
  * Phantom Function Enable
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_PHANTOM_FUNCTION_ENABLE      (9)      //!< Bit position for PCIE_RC_DCONR_PHANTOM_FUNCTION_ENABLE.
 #define BM_PCIE_RC_DCONR_PHANTOM_FUNCTION_ENABLE      (0x00000200)  //!< Bit mask for PCIE_RC_DCONR_PHANTOM_FUNCTION_ENABLE.
 
@@ -3165,7 +2960,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the PHANTOM_FUNCTION_ENABLE field to a new value.
 #define BW_PCIE_RC_DCONR_PHANTOM_FUNCTION_ENABLE(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_PHANTOM_FUNCTION_ENABLE) | BF_PCIE_RC_DCONR_PHANTOM_FUNCTION_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field AUX_POWER_PM_ENABLE[10] (RW)
@@ -3173,7 +2967,6 @@ typedef union _hw_pcie_rc_dconr
  * AUX Power PM Enable
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_AUX_POWER_PM_ENABLE      (10)      //!< Bit position for PCIE_RC_DCONR_AUX_POWER_PM_ENABLE.
 #define BM_PCIE_RC_DCONR_AUX_POWER_PM_ENABLE      (0x00000400)  //!< Bit mask for PCIE_RC_DCONR_AUX_POWER_PM_ENABLE.
 
@@ -3187,7 +2980,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the AUX_POWER_PM_ENABLE field to a new value.
 #define BW_PCIE_RC_DCONR_AUX_POWER_PM_ENABLE(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_AUX_POWER_PM_ENABLE) | BF_PCIE_RC_DCONR_AUX_POWER_PM_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field ENABLE_NO_SNOOP[11] (RW)
@@ -3195,7 +2987,6 @@ typedef union _hw_pcie_rc_dconr
  * Enable No Snoop
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_ENABLE_NO_SNOOP      (11)      //!< Bit position for PCIE_RC_DCONR_ENABLE_NO_SNOOP.
 #define BM_PCIE_RC_DCONR_ENABLE_NO_SNOOP      (0x00000800)  //!< Bit mask for PCIE_RC_DCONR_ENABLE_NO_SNOOP.
 
@@ -3209,7 +3000,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the ENABLE_NO_SNOOP field to a new value.
 #define BW_PCIE_RC_DCONR_ENABLE_NO_SNOOP(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_ENABLE_NO_SNOOP) | BF_PCIE_RC_DCONR_ENABLE_NO_SNOOP(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field MAX_READ_REQUEST_SIZE[14:12] (RW)
@@ -3217,7 +3007,6 @@ typedef union _hw_pcie_rc_dconr
  * Max_Read_Request_Size
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_MAX_READ_REQUEST_SIZE      (12)      //!< Bit position for PCIE_RC_DCONR_MAX_READ_REQUEST_SIZE.
 #define BM_PCIE_RC_DCONR_MAX_READ_REQUEST_SIZE      (0x00007000)  //!< Bit mask for PCIE_RC_DCONR_MAX_READ_REQUEST_SIZE.
 
@@ -3231,7 +3020,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the MAX_READ_REQUEST_SIZE field to a new value.
 #define BW_PCIE_RC_DCONR_MAX_READ_REQUEST_SIZE(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_MAX_READ_REQUEST_SIZE) | BF_PCIE_RC_DCONR_MAX_READ_REQUEST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field CORRECTABLE_ERROR_DETECTED[16] (RW)
@@ -3240,7 +3028,6 @@ typedef union _hw_pcie_rc_dconr
  * reporting is enabled in the Device Control register.
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_CORRECTABLE_ERROR_DETECTED      (16)      //!< Bit position for PCIE_RC_DCONR_CORRECTABLE_ERROR_DETECTED.
 #define BM_PCIE_RC_DCONR_CORRECTABLE_ERROR_DETECTED      (0x00010000)  //!< Bit mask for PCIE_RC_DCONR_CORRECTABLE_ERROR_DETECTED.
 
@@ -3254,7 +3041,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the CORRECTABLE_ERROR_DETECTED field to a new value.
 #define BW_PCIE_RC_DCONR_CORRECTABLE_ERROR_DETECTED(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_CORRECTABLE_ERROR_DETECTED) | BF_PCIE_RC_DCONR_CORRECTABLE_ERROR_DETECTED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field NON_FATAL_ERROR_DETECTED[17] (RW)
@@ -3263,7 +3049,6 @@ typedef union _hw_pcie_rc_dconr
  * is enabled in the Device Control register.
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_NON_FATAL_ERROR_DETECTED      (17)      //!< Bit position for PCIE_RC_DCONR_NON_FATAL_ERROR_DETECTED.
 #define BM_PCIE_RC_DCONR_NON_FATAL_ERROR_DETECTED      (0x00020000)  //!< Bit mask for PCIE_RC_DCONR_NON_FATAL_ERROR_DETECTED.
 
@@ -3277,7 +3062,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the NON_FATAL_ERROR_DETECTED field to a new value.
 #define BW_PCIE_RC_DCONR_NON_FATAL_ERROR_DETECTED(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_NON_FATAL_ERROR_DETECTED) | BF_PCIE_RC_DCONR_NON_FATAL_ERROR_DETECTED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field FATAL_ERROR_DETECTED[18] (RW)
@@ -3286,7 +3070,6 @@ typedef union _hw_pcie_rc_dconr
  * enabled in the Device Control register.
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_FATAL_ERROR_DETECTED      (18)      //!< Bit position for PCIE_RC_DCONR_FATAL_ERROR_DETECTED.
 #define BM_PCIE_RC_DCONR_FATAL_ERROR_DETECTED      (0x00040000)  //!< Bit mask for PCIE_RC_DCONR_FATAL_ERROR_DETECTED.
 
@@ -3300,7 +3083,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the FATAL_ERROR_DETECTED field to a new value.
 #define BW_PCIE_RC_DCONR_FATAL_ERROR_DETECTED(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_FATAL_ERROR_DETECTED) | BF_PCIE_RC_DCONR_FATAL_ERROR_DETECTED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field UNSUPPORTED_REQUEST_DETECTED[19] (RW)
@@ -3309,7 +3091,6 @@ typedef union _hw_pcie_rc_dconr
  * reporting is enabled in the Device Control register.
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_UNSUPPORTED_REQUEST_DETECTED      (19)      //!< Bit position for PCIE_RC_DCONR_UNSUPPORTED_REQUEST_DETECTED.
 #define BM_PCIE_RC_DCONR_UNSUPPORTED_REQUEST_DETECTED      (0x00080000)  //!< Bit mask for PCIE_RC_DCONR_UNSUPPORTED_REQUEST_DETECTED.
 
@@ -3323,7 +3104,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the UNSUPPORTED_REQUEST_DETECTED field to a new value.
 #define BW_PCIE_RC_DCONR_UNSUPPORTED_REQUEST_DETECTED(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_UNSUPPORTED_REQUEST_DETECTED) | BF_PCIE_RC_DCONR_UNSUPPORTED_REQUEST_DETECTED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field AUX_POWER_DETECTED[20] (RW)
@@ -3331,7 +3111,6 @@ typedef union _hw_pcie_rc_dconr
  * Aux Power Detected From sys_aux_pwr_det input port.
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_AUX_POWER_DETECTED      (20)      //!< Bit position for PCIE_RC_DCONR_AUX_POWER_DETECTED.
 #define BM_PCIE_RC_DCONR_AUX_POWER_DETECTED      (0x00100000)  //!< Bit mask for PCIE_RC_DCONR_AUX_POWER_DETECTED.
 
@@ -3345,7 +3124,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the AUX_POWER_DETECTED field to a new value.
 #define BW_PCIE_RC_DCONR_AUX_POWER_DETECTED(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_AUX_POWER_DETECTED) | BF_PCIE_RC_DCONR_AUX_POWER_DETECTED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCONR, field TRANSACTION_PENDING[21] (RW)
@@ -3353,7 +3131,6 @@ typedef union _hw_pcie_rc_dconr
  * Transaction Pending Hard-wired to 0.
  */
 //@{
-
 #define BP_PCIE_RC_DCONR_TRANSACTION_PENDING      (21)      //!< Bit position for PCIE_RC_DCONR_TRANSACTION_PENDING.
 #define BM_PCIE_RC_DCONR_TRANSACTION_PENDING      (0x00200000)  //!< Bit mask for PCIE_RC_DCONR_TRANSACTION_PENDING.
 
@@ -3367,7 +3144,6 @@ typedef union _hw_pcie_rc_dconr
 //! @brief Set the TRANSACTION_PENDING field to a new value.
 #define BW_PCIE_RC_DCONR_TRANSACTION_PENDING(v)   (HW_PCIE_RC_DCONR_WR((HW_PCIE_RC_DCONR_RD() & ~BM_PCIE_RC_DCONR_TRANSACTION_PENDING) | BF_PCIE_RC_DCONR_TRANSACTION_PENDING(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3426,13 +3202,11 @@ typedef union _hw_pcie_rc_lcr
  * through the DBI.
  */
 //@{
-
 #define BP_PCIE_RC_LCR_MAX_LINK_SPEEDS      (0)      //!< Bit position for PCIE_RC_LCR_MAX_LINK_SPEEDS.
 #define BM_PCIE_RC_LCR_MAX_LINK_SPEEDS      (0x0000000f)  //!< Bit mask for PCIE_RC_LCR_MAX_LINK_SPEEDS.
 
 //! @brief Get value of PCIE_RC_LCR_MAX_LINK_SPEEDS from a register value.
 #define BG_PCIE_RC_LCR_MAX_LINK_SPEEDS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_LCR_MAX_LINK_SPEEDS) >> BP_PCIE_RC_LCR_MAX_LINK_SPEEDS)
-
 //@}
 
 /*! @name Register PCIE_RC_LCR, field MAXIMUM_LINK_WIDTH[9:4] (RO)
@@ -3440,13 +3214,11 @@ typedef union _hw_pcie_rc_lcr
  * Maximum Link Width Writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_RC_LCR_MAXIMUM_LINK_WIDTH      (4)      //!< Bit position for PCIE_RC_LCR_MAXIMUM_LINK_WIDTH.
 #define BM_PCIE_RC_LCR_MAXIMUM_LINK_WIDTH      (0x000003f0)  //!< Bit mask for PCIE_RC_LCR_MAXIMUM_LINK_WIDTH.
 
 //! @brief Get value of PCIE_RC_LCR_MAXIMUM_LINK_WIDTH from a register value.
 #define BG_PCIE_RC_LCR_MAXIMUM_LINK_WIDTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_LCR_MAXIMUM_LINK_WIDTH) >> BP_PCIE_RC_LCR_MAXIMUM_LINK_WIDTH)
-
 //@}
 
 /*! @name Register PCIE_RC_LCR, field ACTIVE_STATE_LINK_PM_SUPPORT[11:10] (RO)
@@ -3455,13 +3227,11 @@ typedef union _hw_pcie_rc_lcr
  * configuration, writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_RC_LCR_ACTIVE_STATE_LINK_PM_SUPPORT      (10)      //!< Bit position for PCIE_RC_LCR_ACTIVE_STATE_LINK_PM_SUPPORT.
 #define BM_PCIE_RC_LCR_ACTIVE_STATE_LINK_PM_SUPPORT      (0x00000c00)  //!< Bit mask for PCIE_RC_LCR_ACTIVE_STATE_LINK_PM_SUPPORT.
 
 //! @brief Get value of PCIE_RC_LCR_ACTIVE_STATE_LINK_PM_SUPPORT from a register value.
 #define BG_PCIE_RC_LCR_ACTIVE_STATE_LINK_PM_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_LCR_ACTIVE_STATE_LINK_PM_SUPPORT) >> BP_PCIE_RC_LCR_ACTIVE_STATE_LINK_PM_SUPPORT)
-
 //@}
 
 /*! @name Register PCIE_RC_LCR, field L0S_EXIT_LATENCY[14:12] (RO)
@@ -3469,13 +3239,11 @@ typedef union _hw_pcie_rc_lcr
  * L0s Exit Latency Writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_RC_LCR_L0S_EXIT_LATENCY      (12)      //!< Bit position for PCIE_RC_LCR_L0S_EXIT_LATENCY.
 #define BM_PCIE_RC_LCR_L0S_EXIT_LATENCY      (0x00007000)  //!< Bit mask for PCIE_RC_LCR_L0S_EXIT_LATENCY.
 
 //! @brief Get value of PCIE_RC_LCR_L0S_EXIT_LATENCY from a register value.
 #define BG_PCIE_RC_LCR_L0S_EXIT_LATENCY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_LCR_L0S_EXIT_LATENCY) >> BP_PCIE_RC_LCR_L0S_EXIT_LATENCY)
-
 //@}
 
 /*! @name Register PCIE_RC_LCR, field L1_EXIT_LATENCY[17:15] (RO)
@@ -3483,13 +3251,11 @@ typedef union _hw_pcie_rc_lcr
  * L1 Exit Latency Writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_RC_LCR_L1_EXIT_LATENCY      (15)      //!< Bit position for PCIE_RC_LCR_L1_EXIT_LATENCY.
 #define BM_PCIE_RC_LCR_L1_EXIT_LATENCY      (0x00038000)  //!< Bit mask for PCIE_RC_LCR_L1_EXIT_LATENCY.
 
 //! @brief Get value of PCIE_RC_LCR_L1_EXIT_LATENCY from a register value.
 #define BG_PCIE_RC_LCR_L1_EXIT_LATENCY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_LCR_L1_EXIT_LATENCY) >> BP_PCIE_RC_LCR_L1_EXIT_LATENCY)
-
 //@}
 
 /*! @name Register PCIE_RC_LCR, field CLOCK_POWER_MANAGEMENT[18] (RO)
@@ -3498,13 +3264,11 @@ typedef union _hw_pcie_rc_lcr
  * Hardwired to 0 for downstream ports. Writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_RC_LCR_CLOCK_POWER_MANAGEMENT      (18)      //!< Bit position for PCIE_RC_LCR_CLOCK_POWER_MANAGEMENT.
 #define BM_PCIE_RC_LCR_CLOCK_POWER_MANAGEMENT      (0x00040000)  //!< Bit mask for PCIE_RC_LCR_CLOCK_POWER_MANAGEMENT.
 
 //! @brief Get value of PCIE_RC_LCR_CLOCK_POWER_MANAGEMENT from a register value.
 #define BG_PCIE_RC_LCR_CLOCK_POWER_MANAGEMENT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_LCR_CLOCK_POWER_MANAGEMENT) >> BP_PCIE_RC_LCR_CLOCK_POWER_MANAGEMENT)
-
 //@}
 
 /*! @name Register PCIE_RC_LCR, field SURPRISE_DOWN_ERROR_REPORTING_CAPABLE[19] (RO)
@@ -3512,13 +3276,11 @@ typedef union _hw_pcie_rc_lcr
  * Surprise Down Error Reporting Capable Not supported, hardwired to 0x0.
  */
 //@{
-
 #define BP_PCIE_RC_LCR_SURPRISE_DOWN_ERROR_REPORTING_CAPABLE      (19)      //!< Bit position for PCIE_RC_LCR_SURPRISE_DOWN_ERROR_REPORTING_CAPABLE.
 #define BM_PCIE_RC_LCR_SURPRISE_DOWN_ERROR_REPORTING_CAPABLE      (0x00080000)  //!< Bit mask for PCIE_RC_LCR_SURPRISE_DOWN_ERROR_REPORTING_CAPABLE.
 
 //! @brief Get value of PCIE_RC_LCR_SURPRISE_DOWN_ERROR_REPORTING_CAPABLE from a register value.
 #define BG_PCIE_RC_LCR_SURPRISE_DOWN_ERROR_REPORTING_CAPABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_LCR_SURPRISE_DOWN_ERROR_REPORTING_CAPABLE) >> BP_PCIE_RC_LCR_SURPRISE_DOWN_ERROR_REPORTING_CAPABLE)
-
 //@}
 
 /*! @name Register PCIE_RC_LCR, field DATA_LINK_LAYER_ACTIVE_REPORTING_CAPABLE[20] (RO)
@@ -3527,13 +3289,11 @@ typedef union _hw_pcie_rc_lcr
  * Ports.
  */
 //@{
-
 #define BP_PCIE_RC_LCR_DATA_LINK_LAYER_ACTIVE_REPORTING_CAPABLE      (20)      //!< Bit position for PCIE_RC_LCR_DATA_LINK_LAYER_ACTIVE_REPORTING_CAPABLE.
 #define BM_PCIE_RC_LCR_DATA_LINK_LAYER_ACTIVE_REPORTING_CAPABLE      (0x00100000)  //!< Bit mask for PCIE_RC_LCR_DATA_LINK_LAYER_ACTIVE_REPORTING_CAPABLE.
 
 //! @brief Get value of PCIE_RC_LCR_DATA_LINK_LAYER_ACTIVE_REPORTING_CAPABLE from a register value.
 #define BG_PCIE_RC_LCR_DATA_LINK_LAYER_ACTIVE_REPORTING_CAPABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_LCR_DATA_LINK_LAYER_ACTIVE_REPORTING_CAPABLE) >> BP_PCIE_RC_LCR_DATA_LINK_LAYER_ACTIVE_REPORTING_CAPABLE)
-
 //@}
 
 /*! @name Register PCIE_RC_LCR, field LINK_BANDWIDTH_NOTIFICATION_CAPABILITY[21] (RO)
@@ -3542,13 +3302,11 @@ typedef union _hw_pcie_rc_lcr
  * Ports.
  */
 //@{
-
 #define BP_PCIE_RC_LCR_LINK_BANDWIDTH_NOTIFICATION_CAPABILITY      (21)      //!< Bit position for PCIE_RC_LCR_LINK_BANDWIDTH_NOTIFICATION_CAPABILITY.
 #define BM_PCIE_RC_LCR_LINK_BANDWIDTH_NOTIFICATION_CAPABILITY      (0x00200000)  //!< Bit mask for PCIE_RC_LCR_LINK_BANDWIDTH_NOTIFICATION_CAPABILITY.
 
 //! @brief Get value of PCIE_RC_LCR_LINK_BANDWIDTH_NOTIFICATION_CAPABILITY from a register value.
 #define BG_PCIE_RC_LCR_LINK_BANDWIDTH_NOTIFICATION_CAPABILITY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_LCR_LINK_BANDWIDTH_NOTIFICATION_CAPABILITY) >> BP_PCIE_RC_LCR_LINK_BANDWIDTH_NOTIFICATION_CAPABILITY)
-
 //@}
 
 /*! @name Register PCIE_RC_LCR, field PORT_NUMBER[31:24] (RO)
@@ -3556,13 +3314,11 @@ typedef union _hw_pcie_rc_lcr
  * Port Number
  */
 //@{
-
 #define BP_PCIE_RC_LCR_PORT_NUMBER      (24)      //!< Bit position for PCIE_RC_LCR_PORT_NUMBER.
 #define BM_PCIE_RC_LCR_PORT_NUMBER      (0xff000000)  //!< Bit mask for PCIE_RC_LCR_PORT_NUMBER.
 
 //! @brief Get value of PCIE_RC_LCR_PORT_NUMBER from a register value.
 #define BG_PCIE_RC_LCR_PORT_NUMBER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_LCR_PORT_NUMBER) >> BP_PCIE_RC_LCR_PORT_NUMBER)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3631,7 +3387,6 @@ typedef union _hw_pcie_rc_lcsr
  * Active State Link PM Control
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_ACTIVE_STATE_LINK_PM_CONTROL      (0)      //!< Bit position for PCIE_RC_LCSR_ACTIVE_STATE_LINK_PM_CONTROL.
 #define BM_PCIE_RC_LCSR_ACTIVE_STATE_LINK_PM_CONTROL      (0x00000003)  //!< Bit mask for PCIE_RC_LCSR_ACTIVE_STATE_LINK_PM_CONTROL.
 
@@ -3645,7 +3400,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the ACTIVE_STATE_LINK_PM_CONTROL field to a new value.
 #define BW_PCIE_RC_LCSR_ACTIVE_STATE_LINK_PM_CONTROL(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_ACTIVE_STATE_LINK_PM_CONTROL) | BF_PCIE_RC_LCSR_ACTIVE_STATE_LINK_PM_CONTROL(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field RCB[3] (RW)
@@ -3653,7 +3407,6 @@ typedef union _hw_pcie_rc_lcsr
  * Read Completion Boundary (RCB) RC: Writable through DBI
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_RCB      (3)      //!< Bit position for PCIE_RC_LCSR_RCB.
 #define BM_PCIE_RC_LCSR_RCB      (0x00000008)  //!< Bit mask for PCIE_RC_LCSR_RCB.
 
@@ -3667,7 +3420,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the RCB field to a new value.
 #define BW_PCIE_RC_LCSR_RCB(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_RCB) | BF_PCIE_RC_LCSR_RCB(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field LINK_DISABLE[4] (RW)
@@ -3675,7 +3427,6 @@ typedef union _hw_pcie_rc_lcsr
  * Link Disable This bit is reserved for PCI Express-to-PCI/PCI-X bridges.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_LINK_DISABLE      (4)      //!< Bit position for PCIE_RC_LCSR_LINK_DISABLE.
 #define BM_PCIE_RC_LCSR_LINK_DISABLE      (0x00000010)  //!< Bit mask for PCIE_RC_LCSR_LINK_DISABLE.
 
@@ -3689,7 +3440,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the LINK_DISABLE field to a new value.
 #define BW_PCIE_RC_LCSR_LINK_DISABLE(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_LINK_DISABLE) | BF_PCIE_RC_LCSR_LINK_DISABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field RETRAIN_LINK[5] (RW)
@@ -3697,7 +3447,6 @@ typedef union _hw_pcie_rc_lcsr
  * Retrain Link This bit is reserved for PCI Express-to-PCI/PCI-X bridges.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_RETRAIN_LINK      (5)      //!< Bit position for PCIE_RC_LCSR_RETRAIN_LINK.
 #define BM_PCIE_RC_LCSR_RETRAIN_LINK      (0x00000020)  //!< Bit mask for PCIE_RC_LCSR_RETRAIN_LINK.
 
@@ -3711,7 +3460,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the RETRAIN_LINK field to a new value.
 #define BW_PCIE_RC_LCSR_RETRAIN_LINK(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_RETRAIN_LINK) | BF_PCIE_RC_LCSR_RETRAIN_LINK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field COMMON_CLOCK_CONFIGURATION[6] (RW)
@@ -3719,7 +3467,6 @@ typedef union _hw_pcie_rc_lcsr
  * Common Clock Configuration
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_COMMON_CLOCK_CONFIGURATION      (6)      //!< Bit position for PCIE_RC_LCSR_COMMON_CLOCK_CONFIGURATION.
 #define BM_PCIE_RC_LCSR_COMMON_CLOCK_CONFIGURATION      (0x00000040)  //!< Bit mask for PCIE_RC_LCSR_COMMON_CLOCK_CONFIGURATION.
 
@@ -3733,7 +3480,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the COMMON_CLOCK_CONFIGURATION field to a new value.
 #define BW_PCIE_RC_LCSR_COMMON_CLOCK_CONFIGURATION(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_COMMON_CLOCK_CONFIGURATION) | BF_PCIE_RC_LCSR_COMMON_CLOCK_CONFIGURATION(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field EXTENDED_SYNCH[7] (RW)
@@ -3741,7 +3487,6 @@ typedef union _hw_pcie_rc_lcsr
  * Extended Synch
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_EXTENDED_SYNCH      (7)      //!< Bit position for PCIE_RC_LCSR_EXTENDED_SYNCH.
 #define BM_PCIE_RC_LCSR_EXTENDED_SYNCH      (0x00000080)  //!< Bit mask for PCIE_RC_LCSR_EXTENDED_SYNCH.
 
@@ -3755,7 +3500,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the EXTENDED_SYNCH field to a new value.
 #define BW_PCIE_RC_LCSR_EXTENDED_SYNCH(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_EXTENDED_SYNCH) | BF_PCIE_RC_LCSR_EXTENDED_SYNCH(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field ENABLE_CLOCK_POWER_MANAGEMENT[8] (RW)
@@ -3764,7 +3508,6 @@ typedef union _hw_pcie_rc_lcsr
  * Capabilities register.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_ENABLE_CLOCK_POWER_MANAGEMENT      (8)      //!< Bit position for PCIE_RC_LCSR_ENABLE_CLOCK_POWER_MANAGEMENT.
 #define BM_PCIE_RC_LCSR_ENABLE_CLOCK_POWER_MANAGEMENT      (0x00000100)  //!< Bit mask for PCIE_RC_LCSR_ENABLE_CLOCK_POWER_MANAGEMENT.
 
@@ -3778,7 +3521,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the ENABLE_CLOCK_POWER_MANAGEMENT field to a new value.
 #define BW_PCIE_RC_LCSR_ENABLE_CLOCK_POWER_MANAGEMENT(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_ENABLE_CLOCK_POWER_MANAGEMENT) | BF_PCIE_RC_LCSR_ENABLE_CLOCK_POWER_MANAGEMENT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field HARDWARE_AUTONOMOUS_WIDTH_DISABLE[9] (RW)
@@ -3786,7 +3528,6 @@ typedef union _hw_pcie_rc_lcsr
  * Hardware Autonomous Width Disable Not supported, hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_HARDWARE_AUTONOMOUS_WIDTH_DISABLE      (9)      //!< Bit position for PCIE_RC_LCSR_HARDWARE_AUTONOMOUS_WIDTH_DISABLE.
 #define BM_PCIE_RC_LCSR_HARDWARE_AUTONOMOUS_WIDTH_DISABLE      (0x00000200)  //!< Bit mask for PCIE_RC_LCSR_HARDWARE_AUTONOMOUS_WIDTH_DISABLE.
 
@@ -3800,7 +3541,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the HARDWARE_AUTONOMOUS_WIDTH_DISABLE field to a new value.
 #define BW_PCIE_RC_LCSR_HARDWARE_AUTONOMOUS_WIDTH_DISABLE(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_HARDWARE_AUTONOMOUS_WIDTH_DISABLE) | BF_PCIE_RC_LCSR_HARDWARE_AUTONOMOUS_WIDTH_DISABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field LINK_BANDWIDTH_MANAGEMENT_INTERRUPT_ENABLE[10] (RW)
@@ -3810,7 +3550,6 @@ typedef union _hw_pcie_rc_lcsr
  * applicable and is reserved for Endpoints, PCI Express-to-PCI/PCI-X bridges.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_INTERRUPT_ENABLE      (10)      //!< Bit position for PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_INTERRUPT_ENABLE.
 #define BM_PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_INTERRUPT_ENABLE      (0x00000400)  //!< Bit mask for PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_INTERRUPT_ENABLE.
 
@@ -3824,7 +3563,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the LINK_BANDWIDTH_MANAGEMENT_INTERRUPT_ENABLE field to a new value.
 #define BW_PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_INTERRUPT_ENABLE(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_INTERRUPT_ENABLE) | BF_PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_INTERRUPT_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field LINK_AUTONOMOUS_BANDWIDTH_INTERRUPT_ENABLE[11] (RW)
@@ -3834,7 +3572,6 @@ typedef union _hw_pcie_rc_lcsr
  * applicable and is reserved for Endpoints, PCI Express-to-PCI/PCI-X bridges.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_INTERRUPT_ENABLE      (11)      //!< Bit position for PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_INTERRUPT_ENABLE.
 #define BM_PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_INTERRUPT_ENABLE      (0x00000800)  //!< Bit mask for PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_INTERRUPT_ENABLE.
 
@@ -3848,7 +3585,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the LINK_AUTONOMOUS_BANDWIDTH_INTERRUPT_ENABLE field to a new value.
 #define BW_PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_INTERRUPT_ENABLE(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_INTERRUPT_ENABLE) | BF_PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_INTERRUPT_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field LINK_SPEED[19:16] (RW)
@@ -3862,7 +3598,6 @@ typedef union _hw_pcie_rc_lcsr
  * - 0010 - Gen2 5.0 GT/s
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_LINK_SPEED      (16)      //!< Bit position for PCIE_RC_LCSR_LINK_SPEED.
 #define BM_PCIE_RC_LCSR_LINK_SPEED      (0x000f0000)  //!< Bit mask for PCIE_RC_LCSR_LINK_SPEED.
 
@@ -3876,7 +3611,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the LINK_SPEED field to a new value.
 #define BW_PCIE_RC_LCSR_LINK_SPEED(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_LINK_SPEED) | BF_PCIE_RC_LCSR_LINK_SPEED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field NEGOTIATED_LINK_WIDTH[25:20] (RW)
@@ -3885,7 +3619,6 @@ typedef union _hw_pcie_rc_lcsr
  * undefined when link is not up.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_NEGOTIATED_LINK_WIDTH      (20)      //!< Bit position for PCIE_RC_LCSR_NEGOTIATED_LINK_WIDTH.
 #define BM_PCIE_RC_LCSR_NEGOTIATED_LINK_WIDTH      (0x03f00000)  //!< Bit mask for PCIE_RC_LCSR_NEGOTIATED_LINK_WIDTH.
 
@@ -3899,7 +3632,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the NEGOTIATED_LINK_WIDTH field to a new value.
 #define BW_PCIE_RC_LCSR_NEGOTIATED_LINK_WIDTH(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_NEGOTIATED_LINK_WIDTH) | BF_PCIE_RC_LCSR_NEGOTIATED_LINK_WIDTH(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field LINK_TRAINING[27] (RW)
@@ -3908,7 +3640,6 @@ typedef union _hw_pcie_rc_lcsr
  * bridges.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_LINK_TRAINING      (27)      //!< Bit position for PCIE_RC_LCSR_LINK_TRAINING.
 #define BM_PCIE_RC_LCSR_LINK_TRAINING      (0x08000000)  //!< Bit mask for PCIE_RC_LCSR_LINK_TRAINING.
 
@@ -3922,7 +3653,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the LINK_TRAINING field to a new value.
 #define BW_PCIE_RC_LCSR_LINK_TRAINING(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_LINK_TRAINING) | BF_PCIE_RC_LCSR_LINK_TRAINING(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field SLOT_CLOCK_CONFIGURATION[28] (RW)
@@ -3932,7 +3662,6 @@ typedef union _hw_pcie_rc_lcsr
  * configuration, writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_SLOT_CLOCK_CONFIGURATION      (28)      //!< Bit position for PCIE_RC_LCSR_SLOT_CLOCK_CONFIGURATION.
 #define BM_PCIE_RC_LCSR_SLOT_CLOCK_CONFIGURATION      (0x10000000)  //!< Bit mask for PCIE_RC_LCSR_SLOT_CLOCK_CONFIGURATION.
 
@@ -3946,7 +3675,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the SLOT_CLOCK_CONFIGURATION field to a new value.
 #define BW_PCIE_RC_LCSR_SLOT_CLOCK_CONFIGURATION(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_SLOT_CLOCK_CONFIGURATION) | BF_PCIE_RC_LCSR_SLOT_CLOCK_CONFIGURATION(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field DATA_LINK_LAYER_ACTIVE[29] (RW)
@@ -3955,7 +3683,6 @@ typedef union _hw_pcie_rc_lcsr
  * Active Reporting capability bit is implemented. Otherwise, this bit must be hardwired to 0b.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_DATA_LINK_LAYER_ACTIVE      (29)      //!< Bit position for PCIE_RC_LCSR_DATA_LINK_LAYER_ACTIVE.
 #define BM_PCIE_RC_LCSR_DATA_LINK_LAYER_ACTIVE      (0x20000000)  //!< Bit mask for PCIE_RC_LCSR_DATA_LINK_LAYER_ACTIVE.
 
@@ -3969,7 +3696,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the DATA_LINK_LAYER_ACTIVE field to a new value.
 #define BW_PCIE_RC_LCSR_DATA_LINK_LAYER_ACTIVE(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_DATA_LINK_LAYER_ACTIVE) | BF_PCIE_RC_LCSR_DATA_LINK_LAYER_ACTIVE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field LINK_BANDWIDTH_MANAGEMENT_STATUS[30] (RW)
@@ -3985,7 +3711,6 @@ typedef union _hw_pcie_rc_lcsr
  * Endpoints, PCI Express-to-PCI/PCI-X bridges.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_STATUS      (30)      //!< Bit position for PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_STATUS.
 #define BM_PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_STATUS      (0x40000000)  //!< Bit mask for PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_STATUS.
 
@@ -3999,7 +3724,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the LINK_BANDWIDTH_MANAGEMENT_STATUS field to a new value.
 #define BW_PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_STATUS(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_STATUS) | BF_PCIE_RC_LCSR_LINK_BANDWIDTH_MANAGEMENT_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR, field LINK_AUTONOMOUS_BANDWIDTH_STATUS[31] (RW)
@@ -4012,7 +3736,6 @@ typedef union _hw_pcie_rc_lcsr
  * Endpoints, PCI Express-to-PCI/PCI-X bridges.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_STATUS      (31)      //!< Bit position for PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_STATUS.
 #define BM_PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_STATUS      (0x80000000)  //!< Bit mask for PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_STATUS.
 
@@ -4026,7 +3749,6 @@ typedef union _hw_pcie_rc_lcsr
 //! @brief Set the LINK_AUTONOMOUS_BANDWIDTH_STATUS field to a new value.
 #define BW_PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_STATUS(v)   (HW_PCIE_RC_LCSR_WR((HW_PCIE_RC_LCSR_RD() & ~BM_PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_STATUS) | BF_PCIE_RC_LCSR_LINK_AUTONOMOUS_BANDWIDTH_STATUS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4083,13 +3805,11 @@ typedef union _hw_pcie_rc_scr
  * Attention Indicator Present, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT      (0)      //!< Bit position for PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT.
 #define BM_PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT      (0x00000001)  //!< Bit mask for PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT.
 
 //! @brief Get value of PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT from a register value.
 #define BG_PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT) >> BP_PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT)
-
 //@}
 
 /*! @name Register PCIE_RC_SCR, field POWER_CONTROLLER_PRESENT_0[1] (RO)
@@ -4097,13 +3817,11 @@ typedef union _hw_pcie_rc_scr
  * Power Controller Present, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_SCR_POWER_CONTROLLER_PRESENT_0      (1)      //!< Bit position for PCIE_RC_SCR_POWER_CONTROLLER_PRESENT_0.
 #define BM_PCIE_RC_SCR_POWER_CONTROLLER_PRESENT_0      (0x00000002)  //!< Bit mask for PCIE_RC_SCR_POWER_CONTROLLER_PRESENT_0.
 
 //! @brief Get value of PCIE_RC_SCR_POWER_CONTROLLER_PRESENT_0 from a register value.
 #define BG_PCIE_RC_SCR_POWER_CONTROLLER_PRESENT_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_SCR_POWER_CONTROLLER_PRESENT_0) >> BP_PCIE_RC_SCR_POWER_CONTROLLER_PRESENT_0)
-
 //@}
 
 /*! @name Register PCIE_RC_SCR, field MRL_SENSOR_PRESENT[2] (RO)
@@ -4111,13 +3829,11 @@ typedef union _hw_pcie_rc_scr
  * MRL Sensor Present, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_SCR_MRL_SENSOR_PRESENT      (2)      //!< Bit position for PCIE_RC_SCR_MRL_SENSOR_PRESENT.
 #define BM_PCIE_RC_SCR_MRL_SENSOR_PRESENT      (0x00000004)  //!< Bit mask for PCIE_RC_SCR_MRL_SENSOR_PRESENT.
 
 //! @brief Get value of PCIE_RC_SCR_MRL_SENSOR_PRESENT from a register value.
 #define BG_PCIE_RC_SCR_MRL_SENSOR_PRESENT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_SCR_MRL_SENSOR_PRESENT) >> BP_PCIE_RC_SCR_MRL_SENSOR_PRESENT)
-
 //@}
 
 /*! @name Register PCIE_RC_SCR, field ATTENTION_INDICATOR_PRESENT_1[3] (RO)
@@ -4125,13 +3841,11 @@ typedef union _hw_pcie_rc_scr
  * Attention Indicator Present, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT_1      (3)      //!< Bit position for PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT_1.
 #define BM_PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT_1      (0x00000008)  //!< Bit mask for PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT_1.
 
 //! @brief Get value of PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT_1 from a register value.
 #define BG_PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT_1) >> BP_PCIE_RC_SCR_ATTENTION_INDICATOR_PRESENT_1)
-
 //@}
 
 /*! @name Register PCIE_RC_SCR, field POWER_INDICATOR_PRESENT[4] (RO)
@@ -4139,13 +3853,11 @@ typedef union _hw_pcie_rc_scr
  * Power Indicator Present, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_SCR_POWER_INDICATOR_PRESENT      (4)      //!< Bit position for PCIE_RC_SCR_POWER_INDICATOR_PRESENT.
 #define BM_PCIE_RC_SCR_POWER_INDICATOR_PRESENT      (0x00000010)  //!< Bit mask for PCIE_RC_SCR_POWER_INDICATOR_PRESENT.
 
 //! @brief Get value of PCIE_RC_SCR_POWER_INDICATOR_PRESENT from a register value.
 #define BG_PCIE_RC_SCR_POWER_INDICATOR_PRESENT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_SCR_POWER_INDICATOR_PRESENT) >> BP_PCIE_RC_SCR_POWER_INDICATOR_PRESENT)
-
 //@}
 
 /*! @name Register PCIE_RC_SCR, field HOT_PLUG_SURPRISE[5] (RO)
@@ -4153,13 +3865,11 @@ typedef union _hw_pcie_rc_scr
  * Hot-Plug Surprise, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_SCR_HOT_PLUG_SURPRISE      (5)      //!< Bit position for PCIE_RC_SCR_HOT_PLUG_SURPRISE.
 #define BM_PCIE_RC_SCR_HOT_PLUG_SURPRISE      (0x00000020)  //!< Bit mask for PCIE_RC_SCR_HOT_PLUG_SURPRISE.
 
 //! @brief Get value of PCIE_RC_SCR_HOT_PLUG_SURPRISE from a register value.
 #define BG_PCIE_RC_SCR_HOT_PLUG_SURPRISE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_SCR_HOT_PLUG_SURPRISE) >> BP_PCIE_RC_SCR_HOT_PLUG_SURPRISE)
-
 //@}
 
 /*! @name Register PCIE_RC_SCR, field HOT_PLUG_CAPABLE[6] (RO)
@@ -4167,13 +3877,11 @@ typedef union _hw_pcie_rc_scr
  * Hot-Plug Capable, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_SCR_HOT_PLUG_CAPABLE      (6)      //!< Bit position for PCIE_RC_SCR_HOT_PLUG_CAPABLE.
 #define BM_PCIE_RC_SCR_HOT_PLUG_CAPABLE      (0x00000040)  //!< Bit mask for PCIE_RC_SCR_HOT_PLUG_CAPABLE.
 
 //! @brief Get value of PCIE_RC_SCR_HOT_PLUG_CAPABLE from a register value.
 #define BG_PCIE_RC_SCR_HOT_PLUG_CAPABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_SCR_HOT_PLUG_CAPABLE) >> BP_PCIE_RC_SCR_HOT_PLUG_CAPABLE)
-
 //@}
 
 /*! @name Register PCIE_RC_SCR, field SLOT_POWER_LIMIT_VALUE[14:7] (RO)
@@ -4181,13 +3889,11 @@ typedef union _hw_pcie_rc_scr
  * Slot Power Limit Value, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_SCR_SLOT_POWER_LIMIT_VALUE      (7)      //!< Bit position for PCIE_RC_SCR_SLOT_POWER_LIMIT_VALUE.
 #define BM_PCIE_RC_SCR_SLOT_POWER_LIMIT_VALUE      (0x00007f80)  //!< Bit mask for PCIE_RC_SCR_SLOT_POWER_LIMIT_VALUE.
 
 //! @brief Get value of PCIE_RC_SCR_SLOT_POWER_LIMIT_VALUE from a register value.
 #define BG_PCIE_RC_SCR_SLOT_POWER_LIMIT_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_SCR_SLOT_POWER_LIMIT_VALUE) >> BP_PCIE_RC_SCR_SLOT_POWER_LIMIT_VALUE)
-
 //@}
 
 /*! @name Register PCIE_RC_SCR, field SLOT_POWER_LIMIT_SCALE[16:15] (RO)
@@ -4195,13 +3901,11 @@ typedef union _hw_pcie_rc_scr
  * Slot Power Limit Scale, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_SCR_SLOT_POWER_LIMIT_SCALE      (15)      //!< Bit position for PCIE_RC_SCR_SLOT_POWER_LIMIT_SCALE.
 #define BM_PCIE_RC_SCR_SLOT_POWER_LIMIT_SCALE      (0x00018000)  //!< Bit mask for PCIE_RC_SCR_SLOT_POWER_LIMIT_SCALE.
 
 //! @brief Get value of PCIE_RC_SCR_SLOT_POWER_LIMIT_SCALE from a register value.
 #define BG_PCIE_RC_SCR_SLOT_POWER_LIMIT_SCALE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_SCR_SLOT_POWER_LIMIT_SCALE) >> BP_PCIE_RC_SCR_SLOT_POWER_LIMIT_SCALE)
-
 //@}
 
 /*! @name Register PCIE_RC_SCR, field ELECTROMECHANICAL_INTERLOCK_PRESENT[17] (RO)
@@ -4209,13 +3913,11 @@ typedef union _hw_pcie_rc_scr
  * Electromechanical Interlock Present, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_SCR_ELECTROMECHANICAL_INTERLOCK_PRESENT      (17)      //!< Bit position for PCIE_RC_SCR_ELECTROMECHANICAL_INTERLOCK_PRESENT.
 #define BM_PCIE_RC_SCR_ELECTROMECHANICAL_INTERLOCK_PRESENT      (0x00020000)  //!< Bit mask for PCIE_RC_SCR_ELECTROMECHANICAL_INTERLOCK_PRESENT.
 
 //! @brief Get value of PCIE_RC_SCR_ELECTROMECHANICAL_INTERLOCK_PRESENT from a register value.
 #define BG_PCIE_RC_SCR_ELECTROMECHANICAL_INTERLOCK_PRESENT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_SCR_ELECTROMECHANICAL_INTERLOCK_PRESENT) >> BP_PCIE_RC_SCR_ELECTROMECHANICAL_INTERLOCK_PRESENT)
-
 //@}
 
 /*! @name Register PCIE_RC_SCR, field NO_COMMAND_COMPLETE_SUPPORT[18] (RO)
@@ -4223,13 +3925,11 @@ typedef union _hw_pcie_rc_scr
  * No Command Complete Support, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_SCR_NO_COMMAND_COMPLETE_SUPPORT      (18)      //!< Bit position for PCIE_RC_SCR_NO_COMMAND_COMPLETE_SUPPORT.
 #define BM_PCIE_RC_SCR_NO_COMMAND_COMPLETE_SUPPORT      (0x00040000)  //!< Bit mask for PCIE_RC_SCR_NO_COMMAND_COMPLETE_SUPPORT.
 
 //! @brief Get value of PCIE_RC_SCR_NO_COMMAND_COMPLETE_SUPPORT from a register value.
 #define BG_PCIE_RC_SCR_NO_COMMAND_COMPLETE_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_SCR_NO_COMMAND_COMPLETE_SUPPORT) >> BP_PCIE_RC_SCR_NO_COMMAND_COMPLETE_SUPPORT)
-
 //@}
 
 /*! @name Register PCIE_RC_SCR, field PHYSICAL_SLOT_NUMBER[31:19] (RO)
@@ -4237,13 +3937,11 @@ typedef union _hw_pcie_rc_scr
  * Physical Slot Number, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_SCR_PHYSICAL_SLOT_NUMBER      (19)      //!< Bit position for PCIE_RC_SCR_PHYSICAL_SLOT_NUMBER.
 #define BM_PCIE_RC_SCR_PHYSICAL_SLOT_NUMBER      (0xfff80000)  //!< Bit mask for PCIE_RC_SCR_PHYSICAL_SLOT_NUMBER.
 
 //! @brief Get value of PCIE_RC_SCR_PHYSICAL_SLOT_NUMBER from a register value.
 #define BG_PCIE_RC_SCR_PHYSICAL_SLOT_NUMBER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_SCR_PHYSICAL_SLOT_NUMBER) >> BP_PCIE_RC_SCR_PHYSICAL_SLOT_NUMBER)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4314,7 +4012,6 @@ typedef union _hw_pcie_rc_scsr
  * Attention Button Pressed Enable
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED_ENABLE      (0)      //!< Bit position for PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED_ENABLE.
 #define BM_PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED_ENABLE      (0x00000001)  //!< Bit mask for PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED_ENABLE.
 
@@ -4328,7 +4025,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the ATTENTION_BUTTON_PRESSED_ENABLE field to a new value.
 #define BW_PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED_ENABLE(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED_ENABLE) | BF_PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field POWER_FAULT_DETECTED_ENABLE[1] (RW)
@@ -4336,7 +4032,6 @@ typedef union _hw_pcie_rc_scsr
  * Power Fault Detected Enable
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_POWER_FAULT_DETECTED_ENABLE      (1)      //!< Bit position for PCIE_RC_SCSR_POWER_FAULT_DETECTED_ENABLE.
 #define BM_PCIE_RC_SCSR_POWER_FAULT_DETECTED_ENABLE      (0x00000002)  //!< Bit mask for PCIE_RC_SCSR_POWER_FAULT_DETECTED_ENABLE.
 
@@ -4350,7 +4045,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the POWER_FAULT_DETECTED_ENABLE field to a new value.
 #define BW_PCIE_RC_SCSR_POWER_FAULT_DETECTED_ENABLE(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_POWER_FAULT_DETECTED_ENABLE) | BF_PCIE_RC_SCSR_POWER_FAULT_DETECTED_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field MRL_SENSOR_CHANGED_ENABLE[2] (RW)
@@ -4358,7 +4052,6 @@ typedef union _hw_pcie_rc_scsr
  * MRL Sensor Changed Enable
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_MRL_SENSOR_CHANGED_ENABLE      (2)      //!< Bit position for PCIE_RC_SCSR_MRL_SENSOR_CHANGED_ENABLE.
 #define BM_PCIE_RC_SCSR_MRL_SENSOR_CHANGED_ENABLE      (0x00000004)  //!< Bit mask for PCIE_RC_SCSR_MRL_SENSOR_CHANGED_ENABLE.
 
@@ -4372,7 +4065,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the MRL_SENSOR_CHANGED_ENABLE field to a new value.
 #define BW_PCIE_RC_SCSR_MRL_SENSOR_CHANGED_ENABLE(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_MRL_SENSOR_CHANGED_ENABLE) | BF_PCIE_RC_SCSR_MRL_SENSOR_CHANGED_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field PRESENCE_DETECT_CHANGED_ENABLE[3] (RW)
@@ -4380,7 +4072,6 @@ typedef union _hw_pcie_rc_scsr
  * Presence Detect Changed Enable
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED_ENABLE      (3)      //!< Bit position for PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED_ENABLE.
 #define BM_PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED_ENABLE      (0x00000008)  //!< Bit mask for PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED_ENABLE.
 
@@ -4394,7 +4085,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the PRESENCE_DETECT_CHANGED_ENABLE field to a new value.
 #define BW_PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED_ENABLE(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED_ENABLE) | BF_PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field COMMAND_COMPLETED_INTERRUPT_ENABLE[4] (RW)
@@ -4402,7 +4092,6 @@ typedef union _hw_pcie_rc_scsr
  * Command Completed Interrupt Enable
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_COMMAND_COMPLETED_INTERRUPT_ENABLE      (4)      //!< Bit position for PCIE_RC_SCSR_COMMAND_COMPLETED_INTERRUPT_ENABLE.
 #define BM_PCIE_RC_SCSR_COMMAND_COMPLETED_INTERRUPT_ENABLE      (0x00000010)  //!< Bit mask for PCIE_RC_SCSR_COMMAND_COMPLETED_INTERRUPT_ENABLE.
 
@@ -4416,7 +4105,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the COMMAND_COMPLETED_INTERRUPT_ENABLE field to a new value.
 #define BW_PCIE_RC_SCSR_COMMAND_COMPLETED_INTERRUPT_ENABLE(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_COMMAND_COMPLETED_INTERRUPT_ENABLE) | BF_PCIE_RC_SCSR_COMMAND_COMPLETED_INTERRUPT_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field HOT_PLUG_INTERRUPT_ENABLE[5] (RW)
@@ -4424,7 +4112,6 @@ typedef union _hw_pcie_rc_scsr
  * Hot-Plug Interrupt Enable
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_HOT_PLUG_INTERRUPT_ENABLE      (5)      //!< Bit position for PCIE_RC_SCSR_HOT_PLUG_INTERRUPT_ENABLE.
 #define BM_PCIE_RC_SCSR_HOT_PLUG_INTERRUPT_ENABLE      (0x00000020)  //!< Bit mask for PCIE_RC_SCSR_HOT_PLUG_INTERRUPT_ENABLE.
 
@@ -4438,7 +4125,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the HOT_PLUG_INTERRUPT_ENABLE field to a new value.
 #define BW_PCIE_RC_SCSR_HOT_PLUG_INTERRUPT_ENABLE(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_HOT_PLUG_INTERRUPT_ENABLE) | BF_PCIE_RC_SCSR_HOT_PLUG_INTERRUPT_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field ATTENTION_INDICATOR_CONTROL[7:6] (RW)
@@ -4446,7 +4132,6 @@ typedef union _hw_pcie_rc_scsr
  * Attention Indicator Control
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_ATTENTION_INDICATOR_CONTROL      (6)      //!< Bit position for PCIE_RC_SCSR_ATTENTION_INDICATOR_CONTROL.
 #define BM_PCIE_RC_SCSR_ATTENTION_INDICATOR_CONTROL      (0x000000c0)  //!< Bit mask for PCIE_RC_SCSR_ATTENTION_INDICATOR_CONTROL.
 
@@ -4460,7 +4145,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the ATTENTION_INDICATOR_CONTROL field to a new value.
 #define BW_PCIE_RC_SCSR_ATTENTION_INDICATOR_CONTROL(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_ATTENTION_INDICATOR_CONTROL) | BF_PCIE_RC_SCSR_ATTENTION_INDICATOR_CONTROL(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field POWER_INDICATOR_CONTROL[9:8] (RW)
@@ -4468,7 +4152,6 @@ typedef union _hw_pcie_rc_scsr
  * Power Indicator Control
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_POWER_INDICATOR_CONTROL      (8)      //!< Bit position for PCIE_RC_SCSR_POWER_INDICATOR_CONTROL.
 #define BM_PCIE_RC_SCSR_POWER_INDICATOR_CONTROL      (0x00000300)  //!< Bit mask for PCIE_RC_SCSR_POWER_INDICATOR_CONTROL.
 
@@ -4482,7 +4165,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the POWER_INDICATOR_CONTROL field to a new value.
 #define BW_PCIE_RC_SCSR_POWER_INDICATOR_CONTROL(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_POWER_INDICATOR_CONTROL) | BF_PCIE_RC_SCSR_POWER_INDICATOR_CONTROL(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field POWER_CONTROLLER_CONTROL[10] (RW)
@@ -4490,7 +4172,6 @@ typedef union _hw_pcie_rc_scsr
  * Power Controller Control
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_POWER_CONTROLLER_CONTROL      (10)      //!< Bit position for PCIE_RC_SCSR_POWER_CONTROLLER_CONTROL.
 #define BM_PCIE_RC_SCSR_POWER_CONTROLLER_CONTROL      (0x00000400)  //!< Bit mask for PCIE_RC_SCSR_POWER_CONTROLLER_CONTROL.
 
@@ -4504,7 +4185,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the POWER_CONTROLLER_CONTROL field to a new value.
 #define BW_PCIE_RC_SCSR_POWER_CONTROLLER_CONTROL(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_POWER_CONTROLLER_CONTROL) | BF_PCIE_RC_SCSR_POWER_CONTROLLER_CONTROL(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field ELECTROMECHANICAL_INTERLOCK_CONTROL[11] (RW)
@@ -4512,7 +4192,6 @@ typedef union _hw_pcie_rc_scsr
  * Electromechanical Interlock Control
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_CONTROL      (11)      //!< Bit position for PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_CONTROL.
 #define BM_PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_CONTROL      (0x00000800)  //!< Bit mask for PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_CONTROL.
 
@@ -4526,7 +4205,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the ELECTROMECHANICAL_INTERLOCK_CONTROL field to a new value.
 #define BW_PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_CONTROL(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_CONTROL) | BF_PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_CONTROL(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field DATA_LINK_LAYER_STATE_CHANGED_ENABLE[12] (RW)
@@ -4534,7 +4212,6 @@ typedef union _hw_pcie_rc_scsr
  * Data Link Layer State Changed Enable
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED_ENABLE      (12)      //!< Bit position for PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED_ENABLE.
 #define BM_PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED_ENABLE      (0x00001000)  //!< Bit mask for PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED_ENABLE.
 
@@ -4548,7 +4225,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the DATA_LINK_LAYER_STATE_CHANGED_ENABLE field to a new value.
 #define BW_PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED_ENABLE(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED_ENABLE) | BF_PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field ATTENTION_BUTTON_PRESSED[16] (RW)
@@ -4556,7 +4232,6 @@ typedef union _hw_pcie_rc_scsr
  * Attention Button Pressed
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED      (16)      //!< Bit position for PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED.
 #define BM_PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED      (0x00010000)  //!< Bit mask for PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED.
 
@@ -4570,7 +4245,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the ATTENTION_BUTTON_PRESSED field to a new value.
 #define BW_PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED) | BF_PCIE_RC_SCSR_ATTENTION_BUTTON_PRESSED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field POWER_FAULT_DETECTED[17] (RW)
@@ -4578,7 +4252,6 @@ typedef union _hw_pcie_rc_scsr
  * Power Fault Detected
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_POWER_FAULT_DETECTED      (17)      //!< Bit position for PCIE_RC_SCSR_POWER_FAULT_DETECTED.
 #define BM_PCIE_RC_SCSR_POWER_FAULT_DETECTED      (0x00020000)  //!< Bit mask for PCIE_RC_SCSR_POWER_FAULT_DETECTED.
 
@@ -4592,7 +4265,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the POWER_FAULT_DETECTED field to a new value.
 #define BW_PCIE_RC_SCSR_POWER_FAULT_DETECTED(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_POWER_FAULT_DETECTED) | BF_PCIE_RC_SCSR_POWER_FAULT_DETECTED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field MRL_SENSOR_CHANGED[18] (RW)
@@ -4600,7 +4272,6 @@ typedef union _hw_pcie_rc_scsr
  * MRL Sensor Changed
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_MRL_SENSOR_CHANGED      (18)      //!< Bit position for PCIE_RC_SCSR_MRL_SENSOR_CHANGED.
 #define BM_PCIE_RC_SCSR_MRL_SENSOR_CHANGED      (0x00040000)  //!< Bit mask for PCIE_RC_SCSR_MRL_SENSOR_CHANGED.
 
@@ -4614,7 +4285,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the MRL_SENSOR_CHANGED field to a new value.
 #define BW_PCIE_RC_SCSR_MRL_SENSOR_CHANGED(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_MRL_SENSOR_CHANGED) | BF_PCIE_RC_SCSR_MRL_SENSOR_CHANGED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field PRESENCE_DETECT_CHANGED[19] (RW)
@@ -4622,7 +4292,6 @@ typedef union _hw_pcie_rc_scsr
  * Presence Detect Changed
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED      (19)      //!< Bit position for PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED.
 #define BM_PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED      (0x00080000)  //!< Bit mask for PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED.
 
@@ -4636,7 +4305,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the PRESENCE_DETECT_CHANGED field to a new value.
 #define BW_PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED) | BF_PCIE_RC_SCSR_PRESENCE_DETECT_CHANGED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field COMMAND_COMPLETED[20] (RW)
@@ -4644,7 +4312,6 @@ typedef union _hw_pcie_rc_scsr
  * Command Completed
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_COMMAND_COMPLETED      (20)      //!< Bit position for PCIE_RC_SCSR_COMMAND_COMPLETED.
 #define BM_PCIE_RC_SCSR_COMMAND_COMPLETED      (0x00100000)  //!< Bit mask for PCIE_RC_SCSR_COMMAND_COMPLETED.
 
@@ -4658,7 +4325,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the COMMAND_COMPLETED field to a new value.
 #define BW_PCIE_RC_SCSR_COMMAND_COMPLETED(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_COMMAND_COMPLETED) | BF_PCIE_RC_SCSR_COMMAND_COMPLETED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field MRL_SENSOR_STATE[21] (RW)
@@ -4666,7 +4332,6 @@ typedef union _hw_pcie_rc_scsr
  * MRL Sensor State
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_MRL_SENSOR_STATE      (21)      //!< Bit position for PCIE_RC_SCSR_MRL_SENSOR_STATE.
 #define BM_PCIE_RC_SCSR_MRL_SENSOR_STATE      (0x00200000)  //!< Bit mask for PCIE_RC_SCSR_MRL_SENSOR_STATE.
 
@@ -4680,7 +4345,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the MRL_SENSOR_STATE field to a new value.
 #define BW_PCIE_RC_SCSR_MRL_SENSOR_STATE(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_MRL_SENSOR_STATE) | BF_PCIE_RC_SCSR_MRL_SENSOR_STATE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field PRESENCE_DETECT_STATE[22] (RW)
@@ -4688,7 +4352,6 @@ typedef union _hw_pcie_rc_scsr
  * Presence Detect State
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_PRESENCE_DETECT_STATE      (22)      //!< Bit position for PCIE_RC_SCSR_PRESENCE_DETECT_STATE.
 #define BM_PCIE_RC_SCSR_PRESENCE_DETECT_STATE      (0x00400000)  //!< Bit mask for PCIE_RC_SCSR_PRESENCE_DETECT_STATE.
 
@@ -4702,7 +4365,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the PRESENCE_DETECT_STATE field to a new value.
 #define BW_PCIE_RC_SCSR_PRESENCE_DETECT_STATE(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_PRESENCE_DETECT_STATE) | BF_PCIE_RC_SCSR_PRESENCE_DETECT_STATE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field ELECTROMECHANICAL_INTERLOCK_STATUS[23] (RW)
@@ -4710,7 +4372,6 @@ typedef union _hw_pcie_rc_scsr
  * Electromechanical Interlock Status
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_STATUS      (23)      //!< Bit position for PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_STATUS.
 #define BM_PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_STATUS      (0x00800000)  //!< Bit mask for PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_STATUS.
 
@@ -4724,7 +4385,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the ELECTROMECHANICAL_INTERLOCK_STATUS field to a new value.
 #define BW_PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_STATUS(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_STATUS) | BF_PCIE_RC_SCSR_ELECTROMECHANICAL_INTERLOCK_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_SCSR, field DATA_LINK_LAYER_STATE_CHANGED[24] (RW)
@@ -4732,7 +4392,6 @@ typedef union _hw_pcie_rc_scsr
  * Data Link Layer State Changed
  */
 //@{
-
 #define BP_PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED      (24)      //!< Bit position for PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED.
 #define BM_PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED      (0x01000000)  //!< Bit mask for PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED.
 
@@ -4746,7 +4405,6 @@ typedef union _hw_pcie_rc_scsr
 //! @brief Set the DATA_LINK_LAYER_STATE_CHANGED field to a new value.
 #define BW_PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED(v)   (HW_PCIE_RC_SCSR_WR((HW_PCIE_RC_SCSR_RD() & ~BM_PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED) | BF_PCIE_RC_SCSR_DATA_LINK_LAYER_STATE_CHANGED(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4803,7 +4461,6 @@ typedef union _hw_pcie_rc_rccr
  * System Error on Correctable Error Enable
  */
 //@{
-
 #define BP_PCIE_RC_RCCR_SYSTEM_ERROR_ON_CORRECTABLE_ERROR_ENABLE      (0)      //!< Bit position for PCIE_RC_RCCR_SYSTEM_ERROR_ON_CORRECTABLE_ERROR_ENABLE.
 #define BM_PCIE_RC_RCCR_SYSTEM_ERROR_ON_CORRECTABLE_ERROR_ENABLE      (0x00000001)  //!< Bit mask for PCIE_RC_RCCR_SYSTEM_ERROR_ON_CORRECTABLE_ERROR_ENABLE.
 
@@ -4817,7 +4474,6 @@ typedef union _hw_pcie_rc_rccr
 //! @brief Set the SYSTEM_ERROR_ON_CORRECTABLE_ERROR_ENABLE field to a new value.
 #define BW_PCIE_RC_RCCR_SYSTEM_ERROR_ON_CORRECTABLE_ERROR_ENABLE(v)   (HW_PCIE_RC_RCCR_WR((HW_PCIE_RC_RCCR_RD() & ~BM_PCIE_RC_RCCR_SYSTEM_ERROR_ON_CORRECTABLE_ERROR_ENABLE) | BF_PCIE_RC_RCCR_SYSTEM_ERROR_ON_CORRECTABLE_ERROR_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RCCR, field SYSTEM_ERROR_ON_NON_FATAL_ERROR_ENABLE[1] (RW)
@@ -4825,7 +4481,6 @@ typedef union _hw_pcie_rc_rccr
  * System Error on Non-fatal Error Enable
  */
 //@{
-
 #define BP_PCIE_RC_RCCR_SYSTEM_ERROR_ON_NON_FATAL_ERROR_ENABLE      (1)      //!< Bit position for PCIE_RC_RCCR_SYSTEM_ERROR_ON_NON_FATAL_ERROR_ENABLE.
 #define BM_PCIE_RC_RCCR_SYSTEM_ERROR_ON_NON_FATAL_ERROR_ENABLE      (0x00000002)  //!< Bit mask for PCIE_RC_RCCR_SYSTEM_ERROR_ON_NON_FATAL_ERROR_ENABLE.
 
@@ -4839,7 +4494,6 @@ typedef union _hw_pcie_rc_rccr
 //! @brief Set the SYSTEM_ERROR_ON_NON_FATAL_ERROR_ENABLE field to a new value.
 #define BW_PCIE_RC_RCCR_SYSTEM_ERROR_ON_NON_FATAL_ERROR_ENABLE(v)   (HW_PCIE_RC_RCCR_WR((HW_PCIE_RC_RCCR_RD() & ~BM_PCIE_RC_RCCR_SYSTEM_ERROR_ON_NON_FATAL_ERROR_ENABLE) | BF_PCIE_RC_RCCR_SYSTEM_ERROR_ON_NON_FATAL_ERROR_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RCCR, field SYSTEM_ERROR_ON_FATAL_ERROR_ENABLE[2] (RW)
@@ -4847,7 +4501,6 @@ typedef union _hw_pcie_rc_rccr
  * System Error on Fatal Error Enable
  */
 //@{
-
 #define BP_PCIE_RC_RCCR_SYSTEM_ERROR_ON_FATAL_ERROR_ENABLE      (2)      //!< Bit position for PCIE_RC_RCCR_SYSTEM_ERROR_ON_FATAL_ERROR_ENABLE.
 #define BM_PCIE_RC_RCCR_SYSTEM_ERROR_ON_FATAL_ERROR_ENABLE      (0x00000004)  //!< Bit mask for PCIE_RC_RCCR_SYSTEM_ERROR_ON_FATAL_ERROR_ENABLE.
 
@@ -4861,7 +4514,6 @@ typedef union _hw_pcie_rc_rccr
 //! @brief Set the SYSTEM_ERROR_ON_FATAL_ERROR_ENABLE field to a new value.
 #define BW_PCIE_RC_RCCR_SYSTEM_ERROR_ON_FATAL_ERROR_ENABLE(v)   (HW_PCIE_RC_RCCR_WR((HW_PCIE_RC_RCCR_RD() & ~BM_PCIE_RC_RCCR_SYSTEM_ERROR_ON_FATAL_ERROR_ENABLE) | BF_PCIE_RC_RCCR_SYSTEM_ERROR_ON_FATAL_ERROR_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RCCR, field PME_INTERRUPT_ENABLE[3] (RW)
@@ -4869,7 +4521,6 @@ typedef union _hw_pcie_rc_rccr
  * PME Interrupt Enable
  */
 //@{
-
 #define BP_PCIE_RC_RCCR_PME_INTERRUPT_ENABLE      (3)      //!< Bit position for PCIE_RC_RCCR_PME_INTERRUPT_ENABLE.
 #define BM_PCIE_RC_RCCR_PME_INTERRUPT_ENABLE      (0x00000008)  //!< Bit mask for PCIE_RC_RCCR_PME_INTERRUPT_ENABLE.
 
@@ -4883,7 +4534,6 @@ typedef union _hw_pcie_rc_rccr
 //! @brief Set the PME_INTERRUPT_ENABLE field to a new value.
 #define BW_PCIE_RC_RCCR_PME_INTERRUPT_ENABLE(v)   (HW_PCIE_RC_RCCR_WR((HW_PCIE_RC_RCCR_RD() & ~BM_PCIE_RC_RCCR_PME_INTERRUPT_ENABLE) | BF_PCIE_RC_RCCR_PME_INTERRUPT_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RCCR, field CRS_SOFTWARE_VISIBILITY_ENABLE[4] (RW)
@@ -4891,7 +4541,6 @@ typedef union _hw_pcie_rc_rccr
  * CRS Software Visibility Enable Not supported, hardwired to 0x0.
  */
 //@{
-
 #define BP_PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY_ENABLE      (4)      //!< Bit position for PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY_ENABLE.
 #define BM_PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY_ENABLE      (0x00000010)  //!< Bit mask for PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY_ENABLE.
 
@@ -4905,7 +4554,6 @@ typedef union _hw_pcie_rc_rccr
 //! @brief Set the CRS_SOFTWARE_VISIBILITY_ENABLE field to a new value.
 #define BW_PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY_ENABLE(v)   (HW_PCIE_RC_RCCR_WR((HW_PCIE_RC_RCCR_RD() & ~BM_PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY_ENABLE) | BF_PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RCCR, field CRS_SOFTWARE_VISIBILITY[16] (RW)
@@ -4913,7 +4561,6 @@ typedef union _hw_pcie_rc_rccr
  * CRS Software Visibility Not supported, hardwired to 0x0.
  */
 //@{
-
 #define BP_PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY      (16)      //!< Bit position for PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY.
 #define BM_PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY      (0x00010000)  //!< Bit mask for PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY.
 
@@ -4927,7 +4574,6 @@ typedef union _hw_pcie_rc_rccr
 //! @brief Set the CRS_SOFTWARE_VISIBILITY field to a new value.
 #define BW_PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY(v)   (HW_PCIE_RC_RCCR_WR((HW_PCIE_RC_RCCR_RD() & ~BM_PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY) | BF_PCIE_RC_RCCR_CRS_SOFTWARE_VISIBILITY(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4980,7 +4626,6 @@ typedef union _hw_pcie_rc_rsr
  * PME Requester ID
  */
 //@{
-
 #define BP_PCIE_RC_RSR_PME_REQUESTER_ID      (0)      //!< Bit position for PCIE_RC_RSR_PME_REQUESTER_ID.
 #define BM_PCIE_RC_RSR_PME_REQUESTER_ID      (0x0000ffff)  //!< Bit mask for PCIE_RC_RSR_PME_REQUESTER_ID.
 
@@ -4994,7 +4639,6 @@ typedef union _hw_pcie_rc_rsr
 //! @brief Set the PME_REQUESTER_ID field to a new value.
 #define BW_PCIE_RC_RSR_PME_REQUESTER_ID(v)   (HW_PCIE_RC_RSR_WR((HW_PCIE_RC_RSR_RD() & ~BM_PCIE_RC_RSR_PME_REQUESTER_ID) | BF_PCIE_RC_RSR_PME_REQUESTER_ID(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RSR, field PME_STATUS[16] (W1C)
@@ -5002,7 +4646,6 @@ typedef union _hw_pcie_rc_rsr
  * PME Status
  */
 //@{
-
 #define BP_PCIE_RC_RSR_PME_STATUS      (16)      //!< Bit position for PCIE_RC_RSR_PME_STATUS.
 #define BM_PCIE_RC_RSR_PME_STATUS      (0x00010000)  //!< Bit mask for PCIE_RC_RSR_PME_STATUS.
 
@@ -5016,7 +4659,6 @@ typedef union _hw_pcie_rc_rsr
 //! @brief Set the PME_STATUS field to a new value.
 #define BW_PCIE_RC_RSR_PME_STATUS(v)   (HW_PCIE_RC_RSR_WR((HW_PCIE_RC_RSR_RD() & ~BM_PCIE_RC_RSR_PME_STATUS) | BF_PCIE_RC_RSR_PME_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RSR, field PME_PENDING[17] (W1C)
@@ -5024,7 +4666,6 @@ typedef union _hw_pcie_rc_rsr
  * PME Pending
  */
 //@{
-
 #define BP_PCIE_RC_RSR_PME_PENDING      (17)      //!< Bit position for PCIE_RC_RSR_PME_PENDING.
 #define BM_PCIE_RC_RSR_PME_PENDING      (0x00020000)  //!< Bit mask for PCIE_RC_RSR_PME_PENDING.
 
@@ -5038,7 +4679,6 @@ typedef union _hw_pcie_rc_rsr
 //! @brief Set the PME_PENDING field to a new value.
 #define BW_PCIE_RC_RSR_PME_PENDING(v)   (HW_PCIE_RC_RSR_WR((HW_PCIE_RC_RSR_RD() & ~BM_PCIE_RC_RSR_PME_PENDING) | BF_PCIE_RC_RSR_PME_PENDING(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5088,13 +4728,11 @@ typedef union _hw_pcie_rc_dcr2
  * Requests issued on PCI Express. the default value is 0xf (A, B, C and D ranges supported)
  */
 //@{
-
 #define BP_PCIE_RC_DCR2_COMPLETION_TIMEOUT_RANGES_SUPPORTED      (0)      //!< Bit position for PCIE_RC_DCR2_COMPLETION_TIMEOUT_RANGES_SUPPORTED.
 #define BM_PCIE_RC_DCR2_COMPLETION_TIMEOUT_RANGES_SUPPORTED      (0x0000000f)  //!< Bit mask for PCIE_RC_DCR2_COMPLETION_TIMEOUT_RANGES_SUPPORTED.
 
 //! @brief Get value of PCIE_RC_DCR2_COMPLETION_TIMEOUT_RANGES_SUPPORTED from a register value.
 #define BG_PCIE_RC_DCR2_COMPLETION_TIMEOUT_RANGES_SUPPORTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_DCR2_COMPLETION_TIMEOUT_RANGES_SUPPORTED) >> BP_PCIE_RC_DCR2_COMPLETION_TIMEOUT_RANGES_SUPPORTED)
-
 //@}
 
 /*! @name Register PCIE_RC_DCR2, field COMPLETION_TIMEOUT_DISABLE_SUPPORTED[4] (RO)
@@ -5102,13 +4740,11 @@ typedef union _hw_pcie_rc_dcr2
  * Completion Timeout Disable Supported
  */
 //@{
-
 #define BP_PCIE_RC_DCR2_COMPLETION_TIMEOUT_DISABLE_SUPPORTED      (4)      //!< Bit position for PCIE_RC_DCR2_COMPLETION_TIMEOUT_DISABLE_SUPPORTED.
 #define BM_PCIE_RC_DCR2_COMPLETION_TIMEOUT_DISABLE_SUPPORTED      (0x00000010)  //!< Bit mask for PCIE_RC_DCR2_COMPLETION_TIMEOUT_DISABLE_SUPPORTED.
 
 //! @brief Get value of PCIE_RC_DCR2_COMPLETION_TIMEOUT_DISABLE_SUPPORTED from a register value.
 #define BG_PCIE_RC_DCR2_COMPLETION_TIMEOUT_DISABLE_SUPPORTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_DCR2_COMPLETION_TIMEOUT_DISABLE_SUPPORTED) >> BP_PCIE_RC_DCR2_COMPLETION_TIMEOUT_DISABLE_SUPPORTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5172,7 +4808,6 @@ typedef union _hw_pcie_rc_dcsr2
  * - 1110 - 17 s to 64 s
  */
 //@{
-
 #define BP_PCIE_RC_DCSR2_COMPLETION_TIMEOUT_VALUE      (0)      //!< Bit position for PCIE_RC_DCSR2_COMPLETION_TIMEOUT_VALUE.
 #define BM_PCIE_RC_DCSR2_COMPLETION_TIMEOUT_VALUE      (0x0000000f)  //!< Bit mask for PCIE_RC_DCSR2_COMPLETION_TIMEOUT_VALUE.
 
@@ -5186,7 +4821,6 @@ typedef union _hw_pcie_rc_dcsr2
 //! @brief Set the COMPLETION_TIMEOUT_VALUE field to a new value.
 #define BW_PCIE_RC_DCSR2_COMPLETION_TIMEOUT_VALUE(v)   (HW_PCIE_RC_DCSR2_WR((HW_PCIE_RC_DCSR2_RD() & ~BM_PCIE_RC_DCSR2_COMPLETION_TIMEOUT_VALUE) | BF_PCIE_RC_DCSR2_COMPLETION_TIMEOUT_VALUE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_DCSR2, field COMPLETION_TIMEOUT_DISABLE[4] (RW)
@@ -5194,7 +4828,6 @@ typedef union _hw_pcie_rc_dcsr2
  * Completion Timeout Disable
  */
 //@{
-
 #define BP_PCIE_RC_DCSR2_COMPLETION_TIMEOUT_DISABLE      (4)      //!< Bit position for PCIE_RC_DCSR2_COMPLETION_TIMEOUT_DISABLE.
 #define BM_PCIE_RC_DCSR2_COMPLETION_TIMEOUT_DISABLE      (0x00000010)  //!< Bit mask for PCIE_RC_DCSR2_COMPLETION_TIMEOUT_DISABLE.
 
@@ -5208,7 +4841,6 @@ typedef union _hw_pcie_rc_dcsr2
 //! @brief Set the COMPLETION_TIMEOUT_DISABLE field to a new value.
 #define BW_PCIE_RC_DCSR2_COMPLETION_TIMEOUT_DISABLE(v)   (HW_PCIE_RC_DCSR2_WR((HW_PCIE_RC_DCSR2_RD() & ~BM_PCIE_RC_DCSR2_COMPLETION_TIMEOUT_DISABLE) | BF_PCIE_RC_DCSR2_COMPLETION_TIMEOUT_DISABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5260,13 +4892,11 @@ typedef union _hw_pcie_rc_lcr2
  * 7:4 reserved This field is writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_RC_LCR2_SUPPORTED_LINK_SPEEDS_VECTOR      (1)      //!< Bit position for PCIE_RC_LCR2_SUPPORTED_LINK_SPEEDS_VECTOR.
 #define BM_PCIE_RC_LCR2_SUPPORTED_LINK_SPEEDS_VECTOR      (0x000000fe)  //!< Bit mask for PCIE_RC_LCR2_SUPPORTED_LINK_SPEEDS_VECTOR.
 
 //! @brief Get value of PCIE_RC_LCR2_SUPPORTED_LINK_SPEEDS_VECTOR from a register value.
 #define BG_PCIE_RC_LCR2_SUPPORTED_LINK_SPEEDS_VECTOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_LCR2_SUPPORTED_LINK_SPEEDS_VECTOR) >> BP_PCIE_RC_LCR2_SUPPORTED_LINK_SPEEDS_VECTOR)
-
 //@}
 
 /*! @name Register PCIE_RC_LCR2, field CROSSLINK_SUPPORTED[8] (RO)
@@ -5274,13 +4904,11 @@ typedef union _hw_pcie_rc_lcr2
  * Crosslink Supported
  */
 //@{
-
 #define BP_PCIE_RC_LCR2_CROSSLINK_SUPPORTED      (8)      //!< Bit position for PCIE_RC_LCR2_CROSSLINK_SUPPORTED.
 #define BM_PCIE_RC_LCR2_CROSSLINK_SUPPORTED      (0x00000100)  //!< Bit mask for PCIE_RC_LCR2_CROSSLINK_SUPPORTED.
 
 //! @brief Get value of PCIE_RC_LCR2_CROSSLINK_SUPPORTED from a register value.
 #define BG_PCIE_RC_LCR2_CROSSLINK_SUPPORTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_LCR2_CROSSLINK_SUPPORTED) >> BP_PCIE_RC_LCR2_CROSSLINK_SUPPORTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5357,7 +4985,6 @@ typedef union _hw_pcie_rc_lcsr2
  * - 0000010 - Gen2 5.0 GT/s
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_TARGET_LINK_SPEED      (0)      //!< Bit position for PCIE_RC_LCSR2_TARGET_LINK_SPEED.
 #define BM_PCIE_RC_LCSR2_TARGET_LINK_SPEED      (0x0000000f)  //!< Bit mask for PCIE_RC_LCSR2_TARGET_LINK_SPEED.
 
@@ -5371,7 +4998,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the TARGET_LINK_SPEED field to a new value.
 #define BW_PCIE_RC_LCSR2_TARGET_LINK_SPEED(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_TARGET_LINK_SPEED) | BF_PCIE_RC_LCSR2_TARGET_LINK_SPEED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR2, field ENTER_COMPLIANCE[4] (RW)
@@ -5382,7 +5008,6 @@ typedef union _hw_pcie_rc_lcsr2
  * Fundamental Reset is 0b.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_ENTER_COMPLIANCE      (4)      //!< Bit position for PCIE_RC_LCSR2_ENTER_COMPLIANCE.
 #define BM_PCIE_RC_LCSR2_ENTER_COMPLIANCE      (0x00000010)  //!< Bit mask for PCIE_RC_LCSR2_ENTER_COMPLIANCE.
 
@@ -5396,7 +5021,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the ENTER_COMPLIANCE field to a new value.
 #define BW_PCIE_RC_LCSR2_ENTER_COMPLIANCE(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_ENTER_COMPLIANCE) | BF_PCIE_RC_LCSR2_ENTER_COMPLIANCE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR2, field HARDWARE_AUTONOMOUS_SPEED_DISABLE[5] (RW)
@@ -5407,7 +5031,6 @@ typedef union _hw_pcie_rc_lcsr2
  * highest supported common link speed is not blocked by this signal.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_HARDWARE_AUTONOMOUS_SPEED_DISABLE      (5)      //!< Bit position for PCIE_RC_LCSR2_HARDWARE_AUTONOMOUS_SPEED_DISABLE.
 #define BM_PCIE_RC_LCSR2_HARDWARE_AUTONOMOUS_SPEED_DISABLE      (0x00000020)  //!< Bit mask for PCIE_RC_LCSR2_HARDWARE_AUTONOMOUS_SPEED_DISABLE.
 
@@ -5421,7 +5044,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the HARDWARE_AUTONOMOUS_SPEED_DISABLE field to a new value.
 #define BW_PCIE_RC_LCSR2_HARDWARE_AUTONOMOUS_SPEED_DISABLE(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_HARDWARE_AUTONOMOUS_SPEED_DISABLE) | BF_PCIE_RC_LCSR2_HARDWARE_AUTONOMOUS_SPEED_DISABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR2, field SELECTABLE_DEEMPHASIS[6] (RW)
@@ -5437,7 +5059,6 @@ typedef union _hw_pcie_rc_lcsr2
  * - 1 - -3.5 dB
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_SELECTABLE_DEEMPHASIS      (6)      //!< Bit position for PCIE_RC_LCSR2_SELECTABLE_DEEMPHASIS.
 #define BM_PCIE_RC_LCSR2_SELECTABLE_DEEMPHASIS      (0x00000040)  //!< Bit mask for PCIE_RC_LCSR2_SELECTABLE_DEEMPHASIS.
 
@@ -5451,7 +5072,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the SELECTABLE_DEEMPHASIS field to a new value.
 #define BW_PCIE_RC_LCSR2_SELECTABLE_DEEMPHASIS(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_SELECTABLE_DEEMPHASIS) | BF_PCIE_RC_LCSR2_SELECTABLE_DEEMPHASIS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR2, field TRANSMIT_MARGIN[9:7] (RW)
@@ -5469,7 +5089,6 @@ typedef union _hw_pcie_rc_lcsr2
  * - 100-111 - reserved
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_TRANSMIT_MARGIN      (7)      //!< Bit position for PCIE_RC_LCSR2_TRANSMIT_MARGIN.
 #define BM_PCIE_RC_LCSR2_TRANSMIT_MARGIN      (0x00000380)  //!< Bit mask for PCIE_RC_LCSR2_TRANSMIT_MARGIN.
 
@@ -5483,7 +5102,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the TRANSMIT_MARGIN field to a new value.
 #define BW_PCIE_RC_LCSR2_TRANSMIT_MARGIN(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_TRANSMIT_MARGIN) | BF_PCIE_RC_LCSR2_TRANSMIT_MARGIN(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR2, field ENTER_MODIFIED_COMPLIANCE[10] (RW)
@@ -5492,7 +5110,6 @@ typedef union _hw_pcie_rc_lcsr2
  * pattern if the LTSSM enters Polling. Compliance state.
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_ENTER_MODIFIED_COMPLIANCE      (10)      //!< Bit position for PCIE_RC_LCSR2_ENTER_MODIFIED_COMPLIANCE.
 #define BM_PCIE_RC_LCSR2_ENTER_MODIFIED_COMPLIANCE      (0x00000400)  //!< Bit mask for PCIE_RC_LCSR2_ENTER_MODIFIED_COMPLIANCE.
 
@@ -5506,7 +5123,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the ENTER_MODIFIED_COMPLIANCE field to a new value.
 #define BW_PCIE_RC_LCSR2_ENTER_MODIFIED_COMPLIANCE(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_ENTER_MODIFIED_COMPLIANCE) | BF_PCIE_RC_LCSR2_ENTER_MODIFIED_COMPLIANCE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR2, field COMPLIANCE_SOS[11] (RW)
@@ -5517,7 +5133,6 @@ typedef union _hw_pcie_rc_lcsr2
  * support only 2.5
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_COMPLIANCE_SOS      (11)      //!< Bit position for PCIE_RC_LCSR2_COMPLIANCE_SOS.
 #define BM_PCIE_RC_LCSR2_COMPLIANCE_SOS      (0x00000800)  //!< Bit mask for PCIE_RC_LCSR2_COMPLIANCE_SOS.
 
@@ -5531,7 +5146,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the COMPLIANCE_SOS field to a new value.
 #define BW_PCIE_RC_LCSR2_COMPLIANCE_SOS(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_COMPLIANCE_SOS) | BF_PCIE_RC_LCSR2_COMPLIANCE_SOS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR2, field COMPLIANCE_PRE_SET_DEEMPHASIS[15:12] (RW)
@@ -5539,7 +5153,6 @@ typedef union _hw_pcie_rc_lcsr2
  * Compliance Pre-set/ De-emphasis
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_COMPLIANCE_PRE_SET_DEEMPHASIS      (12)      //!< Bit position for PCIE_RC_LCSR2_COMPLIANCE_PRE_SET_DEEMPHASIS.
 #define BM_PCIE_RC_LCSR2_COMPLIANCE_PRE_SET_DEEMPHASIS      (0x0000f000)  //!< Bit mask for PCIE_RC_LCSR2_COMPLIANCE_PRE_SET_DEEMPHASIS.
 
@@ -5553,7 +5166,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the COMPLIANCE_PRE_SET_DEEMPHASIS field to a new value.
 #define BW_PCIE_RC_LCSR2_COMPLIANCE_PRE_SET_DEEMPHASIS(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_COMPLIANCE_PRE_SET_DEEMPHASIS) | BF_PCIE_RC_LCSR2_COMPLIANCE_PRE_SET_DEEMPHASIS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR2, field CURRENT_DEEMPHASIS_LEVEL[16] (RW)
@@ -5561,7 +5173,6 @@ typedef union _hw_pcie_rc_lcsr2
  * Current De-emphasis Level
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_CURRENT_DEEMPHASIS_LEVEL      (16)      //!< Bit position for PCIE_RC_LCSR2_CURRENT_DEEMPHASIS_LEVEL.
 #define BM_PCIE_RC_LCSR2_CURRENT_DEEMPHASIS_LEVEL      (0x00010000)  //!< Bit mask for PCIE_RC_LCSR2_CURRENT_DEEMPHASIS_LEVEL.
 
@@ -5575,7 +5186,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the CURRENT_DEEMPHASIS_LEVEL field to a new value.
 #define BW_PCIE_RC_LCSR2_CURRENT_DEEMPHASIS_LEVEL(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_CURRENT_DEEMPHASIS_LEVEL) | BF_PCIE_RC_LCSR2_CURRENT_DEEMPHASIS_LEVEL(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR2, field EQUALIZATION_COMPLETE[17] (RW)
@@ -5583,7 +5193,6 @@ typedef union _hw_pcie_rc_lcsr2
  * Equalization Complete
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_EQUALIZATION_COMPLETE      (17)      //!< Bit position for PCIE_RC_LCSR2_EQUALIZATION_COMPLETE.
 #define BM_PCIE_RC_LCSR2_EQUALIZATION_COMPLETE      (0x00020000)  //!< Bit mask for PCIE_RC_LCSR2_EQUALIZATION_COMPLETE.
 
@@ -5597,7 +5206,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the EQUALIZATION_COMPLETE field to a new value.
 #define BW_PCIE_RC_LCSR2_EQUALIZATION_COMPLETE(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_EQUALIZATION_COMPLETE) | BF_PCIE_RC_LCSR2_EQUALIZATION_COMPLETE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR2, field EQUALIZATION_PHASE_1_SUCCESSFUL[18] (RW)
@@ -5605,7 +5213,6 @@ typedef union _hw_pcie_rc_lcsr2
  * Equalization Phase 1 Successful
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_EQUALIZATION_PHASE_1_SUCCESSFUL      (18)      //!< Bit position for PCIE_RC_LCSR2_EQUALIZATION_PHASE_1_SUCCESSFUL.
 #define BM_PCIE_RC_LCSR2_EQUALIZATION_PHASE_1_SUCCESSFUL      (0x00040000)  //!< Bit mask for PCIE_RC_LCSR2_EQUALIZATION_PHASE_1_SUCCESSFUL.
 
@@ -5619,7 +5226,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the EQUALIZATION_PHASE_1_SUCCESSFUL field to a new value.
 #define BW_PCIE_RC_LCSR2_EQUALIZATION_PHASE_1_SUCCESSFUL(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_EQUALIZATION_PHASE_1_SUCCESSFUL) | BF_PCIE_RC_LCSR2_EQUALIZATION_PHASE_1_SUCCESSFUL(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR2, field EQUALIZATION_PHASE_2_SUCCESSFUL[19] (RW)
@@ -5627,7 +5233,6 @@ typedef union _hw_pcie_rc_lcsr2
  * Equalization Phase 2 Successful
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_EQUALIZATION_PHASE_2_SUCCESSFUL      (19)      //!< Bit position for PCIE_RC_LCSR2_EQUALIZATION_PHASE_2_SUCCESSFUL.
 #define BM_PCIE_RC_LCSR2_EQUALIZATION_PHASE_2_SUCCESSFUL      (0x00080000)  //!< Bit mask for PCIE_RC_LCSR2_EQUALIZATION_PHASE_2_SUCCESSFUL.
 
@@ -5641,7 +5246,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the EQUALIZATION_PHASE_2_SUCCESSFUL field to a new value.
 #define BW_PCIE_RC_LCSR2_EQUALIZATION_PHASE_2_SUCCESSFUL(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_EQUALIZATION_PHASE_2_SUCCESSFUL) | BF_PCIE_RC_LCSR2_EQUALIZATION_PHASE_2_SUCCESSFUL(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR2, field EQUALIZATION_PHASE_3_SUCCESSFUL[20] (RW)
@@ -5649,7 +5253,6 @@ typedef union _hw_pcie_rc_lcsr2
  * Equalization Phase 3 Successful
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_EQUALIZATION_PHASE_3_SUCCESSFUL      (20)      //!< Bit position for PCIE_RC_LCSR2_EQUALIZATION_PHASE_3_SUCCESSFUL.
 #define BM_PCIE_RC_LCSR2_EQUALIZATION_PHASE_3_SUCCESSFUL      (0x00100000)  //!< Bit mask for PCIE_RC_LCSR2_EQUALIZATION_PHASE_3_SUCCESSFUL.
 
@@ -5663,7 +5266,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the EQUALIZATION_PHASE_3_SUCCESSFUL field to a new value.
 #define BW_PCIE_RC_LCSR2_EQUALIZATION_PHASE_3_SUCCESSFUL(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_EQUALIZATION_PHASE_3_SUCCESSFUL) | BF_PCIE_RC_LCSR2_EQUALIZATION_PHASE_3_SUCCESSFUL(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_LCSR2, field LINK_EQUALIZATION_REQUEST[21] (RW)
@@ -5671,7 +5273,6 @@ typedef union _hw_pcie_rc_lcsr2
  * Link Equalization Request
  */
 //@{
-
 #define BP_PCIE_RC_LCSR2_LINK_EQUALIZATION_REQUEST      (21)      //!< Bit position for PCIE_RC_LCSR2_LINK_EQUALIZATION_REQUEST.
 #define BM_PCIE_RC_LCSR2_LINK_EQUALIZATION_REQUEST      (0x00200000)  //!< Bit mask for PCIE_RC_LCSR2_LINK_EQUALIZATION_REQUEST.
 
@@ -5685,7 +5286,6 @@ typedef union _hw_pcie_rc_lcsr2
 //! @brief Set the LINK_EQUALIZATION_REQUEST field to a new value.
 #define BW_PCIE_RC_LCSR2_LINK_EQUALIZATION_REQUEST(v)   (HW_PCIE_RC_LCSR2_WR((HW_PCIE_RC_LCSR2_RD() & ~BM_PCIE_RC_LCSR2_LINK_EQUALIZATION_REQUEST) | BF_PCIE_RC_LCSR2_LINK_EQUALIZATION_REQUEST(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5738,7 +5338,6 @@ typedef union _hw_pcie_rc_aer
  * PCI Express Extended Capability ID Value is 0x1 for Advanced Error Reporting.
  */
 //@{
-
 #define BP_PCIE_RC_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID      (0)      //!< Bit position for PCIE_RC_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID.
 #define BM_PCIE_RC_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID      (0x0000ffff)  //!< Bit mask for PCIE_RC_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID.
 
@@ -5752,7 +5351,6 @@ typedef union _hw_pcie_rc_aer
 //! @brief Set the PCI_EXPRESS_EXTENDED_CAPABILITY_ID field to a new value.
 #define BW_PCIE_RC_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID(v)   (HW_PCIE_RC_AER_WR((HW_PCIE_RC_AER_RD() & ~BM_PCIE_RC_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID) | BF_PCIE_RC_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_AER, field CAPABILITY_VERSION[19:16] (RW)
@@ -5760,7 +5358,6 @@ typedef union _hw_pcie_rc_aer
  * Capability Version
  */
 //@{
-
 #define BP_PCIE_RC_AER_CAPABILITY_VERSION      (16)      //!< Bit position for PCIE_RC_AER_CAPABILITY_VERSION.
 #define BM_PCIE_RC_AER_CAPABILITY_VERSION      (0x000f0000)  //!< Bit mask for PCIE_RC_AER_CAPABILITY_VERSION.
 
@@ -5774,7 +5371,6 @@ typedef union _hw_pcie_rc_aer
 //! @brief Set the CAPABILITY_VERSION field to a new value.
 #define BW_PCIE_RC_AER_CAPABILITY_VERSION(v)   (HW_PCIE_RC_AER_WR((HW_PCIE_RC_AER_RD() & ~BM_PCIE_RC_AER_CAPABILITY_VERSION) | BF_PCIE_RC_AER_CAPABILITY_VERSION(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_AER, field NEXT_CAPABILITY_OFFSET[31:20] (RW)
@@ -5782,7 +5378,6 @@ typedef union _hw_pcie_rc_aer
  * Next Capability Offset See Table 5-222 on page 641.
  */
 //@{
-
 #define BP_PCIE_RC_AER_NEXT_CAPABILITY_OFFSET      (20)      //!< Bit position for PCIE_RC_AER_NEXT_CAPABILITY_OFFSET.
 #define BM_PCIE_RC_AER_NEXT_CAPABILITY_OFFSET      (0xfff00000)  //!< Bit mask for PCIE_RC_AER_NEXT_CAPABILITY_OFFSET.
 
@@ -5796,7 +5391,6 @@ typedef union _hw_pcie_rc_aer
 //! @brief Set the NEXT_CAPABILITY_OFFSET field to a new value.
 #define BW_PCIE_RC_AER_NEXT_CAPABILITY_OFFSET(v)   (HW_PCIE_RC_AER_WR((HW_PCIE_RC_AER_RD() & ~BM_PCIE_RC_AER_NEXT_CAPABILITY_OFFSET) | BF_PCIE_RC_AER_NEXT_CAPABILITY_OFFSET(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5859,7 +5453,6 @@ typedef union _hw_pcie_rc_uesr
  * Data Link Protocol Error Status
  */
 //@{
-
 #define BP_PCIE_RC_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS      (4)      //!< Bit position for PCIE_RC_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS.
 #define BM_PCIE_RC_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS      (0x00000010)  //!< Bit mask for PCIE_RC_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS.
 
@@ -5873,7 +5466,6 @@ typedef union _hw_pcie_rc_uesr
 //! @brief Set the DATA_LINK_PROTOCOL_ERROR_STATUS field to a new value.
 #define BW_PCIE_RC_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS(v)   (HW_PCIE_RC_UESR_WR((HW_PCIE_RC_UESR_RD() & ~BM_PCIE_RC_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS) | BF_PCIE_RC_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESR, field SURPRISE_DOWN_ERROR_STATUS[5] (RW)
@@ -5881,7 +5473,6 @@ typedef union _hw_pcie_rc_uesr
  * Surprise Down Error Status (not supported)
  */
 //@{
-
 #define BP_PCIE_RC_UESR_SURPRISE_DOWN_ERROR_STATUS      (5)      //!< Bit position for PCIE_RC_UESR_SURPRISE_DOWN_ERROR_STATUS.
 #define BM_PCIE_RC_UESR_SURPRISE_DOWN_ERROR_STATUS      (0x00000020)  //!< Bit mask for PCIE_RC_UESR_SURPRISE_DOWN_ERROR_STATUS.
 
@@ -5895,7 +5486,6 @@ typedef union _hw_pcie_rc_uesr
 //! @brief Set the SURPRISE_DOWN_ERROR_STATUS field to a new value.
 #define BW_PCIE_RC_UESR_SURPRISE_DOWN_ERROR_STATUS(v)   (HW_PCIE_RC_UESR_WR((HW_PCIE_RC_UESR_RD() & ~BM_PCIE_RC_UESR_SURPRISE_DOWN_ERROR_STATUS) | BF_PCIE_RC_UESR_SURPRISE_DOWN_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESR, field POISONED_TLP_STATUS[12] (RW)
@@ -5903,7 +5493,6 @@ typedef union _hw_pcie_rc_uesr
  * Poisoned TLP Status
  */
 //@{
-
 #define BP_PCIE_RC_UESR_POISONED_TLP_STATUS      (12)      //!< Bit position for PCIE_RC_UESR_POISONED_TLP_STATUS.
 #define BM_PCIE_RC_UESR_POISONED_TLP_STATUS      (0x00001000)  //!< Bit mask for PCIE_RC_UESR_POISONED_TLP_STATUS.
 
@@ -5917,7 +5506,6 @@ typedef union _hw_pcie_rc_uesr
 //! @brief Set the POISONED_TLP_STATUS field to a new value.
 #define BW_PCIE_RC_UESR_POISONED_TLP_STATUS(v)   (HW_PCIE_RC_UESR_WR((HW_PCIE_RC_UESR_RD() & ~BM_PCIE_RC_UESR_POISONED_TLP_STATUS) | BF_PCIE_RC_UESR_POISONED_TLP_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESR, field FLOW_CONTROL_PROTOCOL_ERROR_STATUS[13] (RW)
@@ -5925,7 +5513,6 @@ typedef union _hw_pcie_rc_uesr
  * Flow Control Protocol Error Status
  */
 //@{
-
 #define BP_PCIE_RC_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS      (13)      //!< Bit position for PCIE_RC_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS.
 #define BM_PCIE_RC_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS      (0x00002000)  //!< Bit mask for PCIE_RC_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS.
 
@@ -5939,7 +5526,6 @@ typedef union _hw_pcie_rc_uesr
 //! @brief Set the FLOW_CONTROL_PROTOCOL_ERROR_STATUS field to a new value.
 #define BW_PCIE_RC_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS(v)   (HW_PCIE_RC_UESR_WR((HW_PCIE_RC_UESR_RD() & ~BM_PCIE_RC_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS) | BF_PCIE_RC_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESR, field COMPLETION_TIMEOUT_STATUS[14] (RW)
@@ -5947,7 +5533,6 @@ typedef union _hw_pcie_rc_uesr
  * Completion Timeout Status
  */
 //@{
-
 #define BP_PCIE_RC_UESR_COMPLETION_TIMEOUT_STATUS      (14)      //!< Bit position for PCIE_RC_UESR_COMPLETION_TIMEOUT_STATUS.
 #define BM_PCIE_RC_UESR_COMPLETION_TIMEOUT_STATUS      (0x00004000)  //!< Bit mask for PCIE_RC_UESR_COMPLETION_TIMEOUT_STATUS.
 
@@ -5961,7 +5546,6 @@ typedef union _hw_pcie_rc_uesr
 //! @brief Set the COMPLETION_TIMEOUT_STATUS field to a new value.
 #define BW_PCIE_RC_UESR_COMPLETION_TIMEOUT_STATUS(v)   (HW_PCIE_RC_UESR_WR((HW_PCIE_RC_UESR_RD() & ~BM_PCIE_RC_UESR_COMPLETION_TIMEOUT_STATUS) | BF_PCIE_RC_UESR_COMPLETION_TIMEOUT_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESR, field COMPLETER_ABORT_STATUS[15] (RW)
@@ -5969,7 +5553,6 @@ typedef union _hw_pcie_rc_uesr
  * Completer Abort Status
  */
 //@{
-
 #define BP_PCIE_RC_UESR_COMPLETER_ABORT_STATUS      (15)      //!< Bit position for PCIE_RC_UESR_COMPLETER_ABORT_STATUS.
 #define BM_PCIE_RC_UESR_COMPLETER_ABORT_STATUS      (0x00008000)  //!< Bit mask for PCIE_RC_UESR_COMPLETER_ABORT_STATUS.
 
@@ -5983,7 +5566,6 @@ typedef union _hw_pcie_rc_uesr
 //! @brief Set the COMPLETER_ABORT_STATUS field to a new value.
 #define BW_PCIE_RC_UESR_COMPLETER_ABORT_STATUS(v)   (HW_PCIE_RC_UESR_WR((HW_PCIE_RC_UESR_RD() & ~BM_PCIE_RC_UESR_COMPLETER_ABORT_STATUS) | BF_PCIE_RC_UESR_COMPLETER_ABORT_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESR, field UNEXPECTED_COMPLETION_STATUS[16] (RW)
@@ -5991,7 +5573,6 @@ typedef union _hw_pcie_rc_uesr
  * Unexpected Completion Status
  */
 //@{
-
 #define BP_PCIE_RC_UESR_UNEXPECTED_COMPLETION_STATUS      (16)      //!< Bit position for PCIE_RC_UESR_UNEXPECTED_COMPLETION_STATUS.
 #define BM_PCIE_RC_UESR_UNEXPECTED_COMPLETION_STATUS      (0x00010000)  //!< Bit mask for PCIE_RC_UESR_UNEXPECTED_COMPLETION_STATUS.
 
@@ -6005,7 +5586,6 @@ typedef union _hw_pcie_rc_uesr
 //! @brief Set the UNEXPECTED_COMPLETION_STATUS field to a new value.
 #define BW_PCIE_RC_UESR_UNEXPECTED_COMPLETION_STATUS(v)   (HW_PCIE_RC_UESR_WR((HW_PCIE_RC_UESR_RD() & ~BM_PCIE_RC_UESR_UNEXPECTED_COMPLETION_STATUS) | BF_PCIE_RC_UESR_UNEXPECTED_COMPLETION_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESR, field RECEIVER_OVERFLOW_STATUS[17] (RW)
@@ -6013,7 +5593,6 @@ typedef union _hw_pcie_rc_uesr
  * Receiver Overflow Status
  */
 //@{
-
 #define BP_PCIE_RC_UESR_RECEIVER_OVERFLOW_STATUS      (17)      //!< Bit position for PCIE_RC_UESR_RECEIVER_OVERFLOW_STATUS.
 #define BM_PCIE_RC_UESR_RECEIVER_OVERFLOW_STATUS      (0x00020000)  //!< Bit mask for PCIE_RC_UESR_RECEIVER_OVERFLOW_STATUS.
 
@@ -6027,7 +5606,6 @@ typedef union _hw_pcie_rc_uesr
 //! @brief Set the RECEIVER_OVERFLOW_STATUS field to a new value.
 #define BW_PCIE_RC_UESR_RECEIVER_OVERFLOW_STATUS(v)   (HW_PCIE_RC_UESR_WR((HW_PCIE_RC_UESR_RD() & ~BM_PCIE_RC_UESR_RECEIVER_OVERFLOW_STATUS) | BF_PCIE_RC_UESR_RECEIVER_OVERFLOW_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESR, field MALFORMED_TLP_STATUS[18] (RW)
@@ -6035,7 +5613,6 @@ typedef union _hw_pcie_rc_uesr
  * Malformed TLP Status
  */
 //@{
-
 #define BP_PCIE_RC_UESR_MALFORMED_TLP_STATUS      (18)      //!< Bit position for PCIE_RC_UESR_MALFORMED_TLP_STATUS.
 #define BM_PCIE_RC_UESR_MALFORMED_TLP_STATUS      (0x00040000)  //!< Bit mask for PCIE_RC_UESR_MALFORMED_TLP_STATUS.
 
@@ -6049,7 +5626,6 @@ typedef union _hw_pcie_rc_uesr
 //! @brief Set the MALFORMED_TLP_STATUS field to a new value.
 #define BW_PCIE_RC_UESR_MALFORMED_TLP_STATUS(v)   (HW_PCIE_RC_UESR_WR((HW_PCIE_RC_UESR_RD() & ~BM_PCIE_RC_UESR_MALFORMED_TLP_STATUS) | BF_PCIE_RC_UESR_MALFORMED_TLP_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESR, field ECRC_ERROR_STATUS[19] (RW)
@@ -6057,7 +5633,6 @@ typedef union _hw_pcie_rc_uesr
  * ECRC Error Status
  */
 //@{
-
 #define BP_PCIE_RC_UESR_ECRC_ERROR_STATUS      (19)      //!< Bit position for PCIE_RC_UESR_ECRC_ERROR_STATUS.
 #define BM_PCIE_RC_UESR_ECRC_ERROR_STATUS      (0x00080000)  //!< Bit mask for PCIE_RC_UESR_ECRC_ERROR_STATUS.
 
@@ -6071,7 +5646,6 @@ typedef union _hw_pcie_rc_uesr
 //! @brief Set the ECRC_ERROR_STATUS field to a new value.
 #define BW_PCIE_RC_UESR_ECRC_ERROR_STATUS(v)   (HW_PCIE_RC_UESR_WR((HW_PCIE_RC_UESR_RD() & ~BM_PCIE_RC_UESR_ECRC_ERROR_STATUS) | BF_PCIE_RC_UESR_ECRC_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESR, field UNSUPPORTED_REQUEST_ERROR_STATUS[20] (RW)
@@ -6079,7 +5653,6 @@ typedef union _hw_pcie_rc_uesr
  * Unsupported Request Error Status
  */
 //@{
-
 #define BP_PCIE_RC_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS      (20)      //!< Bit position for PCIE_RC_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS.
 #define BM_PCIE_RC_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS      (0x00100000)  //!< Bit mask for PCIE_RC_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS.
 
@@ -6093,7 +5666,6 @@ typedef union _hw_pcie_rc_uesr
 //! @brief Set the UNSUPPORTED_REQUEST_ERROR_STATUS field to a new value.
 #define BW_PCIE_RC_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS(v)   (HW_PCIE_RC_UESR_WR((HW_PCIE_RC_UESR_RD() & ~BM_PCIE_RC_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS) | BF_PCIE_RC_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6156,7 +5728,6 @@ typedef union _hw_pcie_rc_uemr
  * Data Link Protocol Error Mask
  */
 //@{
-
 #define BP_PCIE_RC_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK      (4)      //!< Bit position for PCIE_RC_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK.
 #define BM_PCIE_RC_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK      (0x00000010)  //!< Bit mask for PCIE_RC_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK.
 
@@ -6170,7 +5741,6 @@ typedef union _hw_pcie_rc_uemr
 //! @brief Set the DATA_LINK_PROTOCOL_ERROR_MASK field to a new value.
 #define BW_PCIE_RC_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK(v)   (HW_PCIE_RC_UEMR_WR((HW_PCIE_RC_UEMR_RD() & ~BM_PCIE_RC_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK) | BF_PCIE_RC_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UEMR, field SURPRISE_DOWN_ERROR_MASK[5] (RW)
@@ -6178,7 +5748,6 @@ typedef union _hw_pcie_rc_uemr
  * Surprise Down Error Mask (not supported)
  */
 //@{
-
 #define BP_PCIE_RC_UEMR_SURPRISE_DOWN_ERROR_MASK      (5)      //!< Bit position for PCIE_RC_UEMR_SURPRISE_DOWN_ERROR_MASK.
 #define BM_PCIE_RC_UEMR_SURPRISE_DOWN_ERROR_MASK      (0x00000020)  //!< Bit mask for PCIE_RC_UEMR_SURPRISE_DOWN_ERROR_MASK.
 
@@ -6192,7 +5761,6 @@ typedef union _hw_pcie_rc_uemr
 //! @brief Set the SURPRISE_DOWN_ERROR_MASK field to a new value.
 #define BW_PCIE_RC_UEMR_SURPRISE_DOWN_ERROR_MASK(v)   (HW_PCIE_RC_UEMR_WR((HW_PCIE_RC_UEMR_RD() & ~BM_PCIE_RC_UEMR_SURPRISE_DOWN_ERROR_MASK) | BF_PCIE_RC_UEMR_SURPRISE_DOWN_ERROR_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UEMR, field POISONED_TLP_MASK[12] (RW)
@@ -6200,7 +5768,6 @@ typedef union _hw_pcie_rc_uemr
  * Poisoned TLP Mask
  */
 //@{
-
 #define BP_PCIE_RC_UEMR_POISONED_TLP_MASK      (12)      //!< Bit position for PCIE_RC_UEMR_POISONED_TLP_MASK.
 #define BM_PCIE_RC_UEMR_POISONED_TLP_MASK      (0x00001000)  //!< Bit mask for PCIE_RC_UEMR_POISONED_TLP_MASK.
 
@@ -6214,7 +5781,6 @@ typedef union _hw_pcie_rc_uemr
 //! @brief Set the POISONED_TLP_MASK field to a new value.
 #define BW_PCIE_RC_UEMR_POISONED_TLP_MASK(v)   (HW_PCIE_RC_UEMR_WR((HW_PCIE_RC_UEMR_RD() & ~BM_PCIE_RC_UEMR_POISONED_TLP_MASK) | BF_PCIE_RC_UEMR_POISONED_TLP_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UEMR, field FLOW_CONTROL_PROTOCOL_ERROR_MASK[13] (RW)
@@ -6222,7 +5788,6 @@ typedef union _hw_pcie_rc_uemr
  * Flow Control Protocol Error Mask
  */
 //@{
-
 #define BP_PCIE_RC_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK      (13)      //!< Bit position for PCIE_RC_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK.
 #define BM_PCIE_RC_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK      (0x00002000)  //!< Bit mask for PCIE_RC_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK.
 
@@ -6236,7 +5801,6 @@ typedef union _hw_pcie_rc_uemr
 //! @brief Set the FLOW_CONTROL_PROTOCOL_ERROR_MASK field to a new value.
 #define BW_PCIE_RC_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK(v)   (HW_PCIE_RC_UEMR_WR((HW_PCIE_RC_UEMR_RD() & ~BM_PCIE_RC_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK) | BF_PCIE_RC_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UEMR, field COMPLETION_TIMEOUT_MASK[14] (RW)
@@ -6244,7 +5808,6 @@ typedef union _hw_pcie_rc_uemr
  * Completion Timeout Mask
  */
 //@{
-
 #define BP_PCIE_RC_UEMR_COMPLETION_TIMEOUT_MASK      (14)      //!< Bit position for PCIE_RC_UEMR_COMPLETION_TIMEOUT_MASK.
 #define BM_PCIE_RC_UEMR_COMPLETION_TIMEOUT_MASK      (0x00004000)  //!< Bit mask for PCIE_RC_UEMR_COMPLETION_TIMEOUT_MASK.
 
@@ -6258,7 +5821,6 @@ typedef union _hw_pcie_rc_uemr
 //! @brief Set the COMPLETION_TIMEOUT_MASK field to a new value.
 #define BW_PCIE_RC_UEMR_COMPLETION_TIMEOUT_MASK(v)   (HW_PCIE_RC_UEMR_WR((HW_PCIE_RC_UEMR_RD() & ~BM_PCIE_RC_UEMR_COMPLETION_TIMEOUT_MASK) | BF_PCIE_RC_UEMR_COMPLETION_TIMEOUT_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UEMR, field COMPLETER_ABORT_MASK[15] (RW)
@@ -6266,7 +5828,6 @@ typedef union _hw_pcie_rc_uemr
  * Completer Abort Mask
  */
 //@{
-
 #define BP_PCIE_RC_UEMR_COMPLETER_ABORT_MASK      (15)      //!< Bit position for PCIE_RC_UEMR_COMPLETER_ABORT_MASK.
 #define BM_PCIE_RC_UEMR_COMPLETER_ABORT_MASK      (0x00008000)  //!< Bit mask for PCIE_RC_UEMR_COMPLETER_ABORT_MASK.
 
@@ -6280,7 +5841,6 @@ typedef union _hw_pcie_rc_uemr
 //! @brief Set the COMPLETER_ABORT_MASK field to a new value.
 #define BW_PCIE_RC_UEMR_COMPLETER_ABORT_MASK(v)   (HW_PCIE_RC_UEMR_WR((HW_PCIE_RC_UEMR_RD() & ~BM_PCIE_RC_UEMR_COMPLETER_ABORT_MASK) | BF_PCIE_RC_UEMR_COMPLETER_ABORT_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UEMR, field UNEXPECTED_COMPLETION_MASK[16] (RW)
@@ -6288,7 +5848,6 @@ typedef union _hw_pcie_rc_uemr
  * Unexpected Completion Mask
  */
 //@{
-
 #define BP_PCIE_RC_UEMR_UNEXPECTED_COMPLETION_MASK      (16)      //!< Bit position for PCIE_RC_UEMR_UNEXPECTED_COMPLETION_MASK.
 #define BM_PCIE_RC_UEMR_UNEXPECTED_COMPLETION_MASK      (0x00010000)  //!< Bit mask for PCIE_RC_UEMR_UNEXPECTED_COMPLETION_MASK.
 
@@ -6302,7 +5861,6 @@ typedef union _hw_pcie_rc_uemr
 //! @brief Set the UNEXPECTED_COMPLETION_MASK field to a new value.
 #define BW_PCIE_RC_UEMR_UNEXPECTED_COMPLETION_MASK(v)   (HW_PCIE_RC_UEMR_WR((HW_PCIE_RC_UEMR_RD() & ~BM_PCIE_RC_UEMR_UNEXPECTED_COMPLETION_MASK) | BF_PCIE_RC_UEMR_UNEXPECTED_COMPLETION_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UEMR, field RECEIVER_OVERFLOW_MASK[17] (RW)
@@ -6310,7 +5868,6 @@ typedef union _hw_pcie_rc_uemr
  * Receiver Overflow Mask
  */
 //@{
-
 #define BP_PCIE_RC_UEMR_RECEIVER_OVERFLOW_MASK      (17)      //!< Bit position for PCIE_RC_UEMR_RECEIVER_OVERFLOW_MASK.
 #define BM_PCIE_RC_UEMR_RECEIVER_OVERFLOW_MASK      (0x00020000)  //!< Bit mask for PCIE_RC_UEMR_RECEIVER_OVERFLOW_MASK.
 
@@ -6324,7 +5881,6 @@ typedef union _hw_pcie_rc_uemr
 //! @brief Set the RECEIVER_OVERFLOW_MASK field to a new value.
 #define BW_PCIE_RC_UEMR_RECEIVER_OVERFLOW_MASK(v)   (HW_PCIE_RC_UEMR_WR((HW_PCIE_RC_UEMR_RD() & ~BM_PCIE_RC_UEMR_RECEIVER_OVERFLOW_MASK) | BF_PCIE_RC_UEMR_RECEIVER_OVERFLOW_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UEMR, field MALFORMED_TLP_MASK[18] (RW)
@@ -6332,7 +5888,6 @@ typedef union _hw_pcie_rc_uemr
  * Malformed TLP Mask
  */
 //@{
-
 #define BP_PCIE_RC_UEMR_MALFORMED_TLP_MASK      (18)      //!< Bit position for PCIE_RC_UEMR_MALFORMED_TLP_MASK.
 #define BM_PCIE_RC_UEMR_MALFORMED_TLP_MASK      (0x00040000)  //!< Bit mask for PCIE_RC_UEMR_MALFORMED_TLP_MASK.
 
@@ -6346,7 +5901,6 @@ typedef union _hw_pcie_rc_uemr
 //! @brief Set the MALFORMED_TLP_MASK field to a new value.
 #define BW_PCIE_RC_UEMR_MALFORMED_TLP_MASK(v)   (HW_PCIE_RC_UEMR_WR((HW_PCIE_RC_UEMR_RD() & ~BM_PCIE_RC_UEMR_MALFORMED_TLP_MASK) | BF_PCIE_RC_UEMR_MALFORMED_TLP_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UEMR, field ECRC_ERROR_MASK[19] (RW)
@@ -6354,7 +5908,6 @@ typedef union _hw_pcie_rc_uemr
  * ECRC Error Mask
  */
 //@{
-
 #define BP_PCIE_RC_UEMR_ECRC_ERROR_MASK      (19)      //!< Bit position for PCIE_RC_UEMR_ECRC_ERROR_MASK.
 #define BM_PCIE_RC_UEMR_ECRC_ERROR_MASK      (0x00080000)  //!< Bit mask for PCIE_RC_UEMR_ECRC_ERROR_MASK.
 
@@ -6368,7 +5921,6 @@ typedef union _hw_pcie_rc_uemr
 //! @brief Set the ECRC_ERROR_MASK field to a new value.
 #define BW_PCIE_RC_UEMR_ECRC_ERROR_MASK(v)   (HW_PCIE_RC_UEMR_WR((HW_PCIE_RC_UEMR_RD() & ~BM_PCIE_RC_UEMR_ECRC_ERROR_MASK) | BF_PCIE_RC_UEMR_ECRC_ERROR_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UEMR, field UNSUPPORTED_REQUEST_ERROR_MASK[20] (RW)
@@ -6376,7 +5928,6 @@ typedef union _hw_pcie_rc_uemr
  * Unsupported Request Error Mask
  */
 //@{
-
 #define BP_PCIE_RC_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK      (20)      //!< Bit position for PCIE_RC_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK.
 #define BM_PCIE_RC_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK      (0x00100000)  //!< Bit mask for PCIE_RC_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK.
 
@@ -6390,7 +5941,6 @@ typedef union _hw_pcie_rc_uemr
 //! @brief Set the UNSUPPORTED_REQUEST_ERROR_MASK field to a new value.
 #define BW_PCIE_RC_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK(v)   (HW_PCIE_RC_UEMR_WR((HW_PCIE_RC_UEMR_RD() & ~BM_PCIE_RC_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK) | BF_PCIE_RC_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6453,7 +6003,6 @@ typedef union _hw_pcie_rc_uesevr
  * Data Link Protocol Error Severity
  */
 //@{
-
 #define BP_PCIE_RC_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY      (4)      //!< Bit position for PCIE_RC_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY.
 #define BM_PCIE_RC_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY      (0x00000010)  //!< Bit mask for PCIE_RC_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY.
 
@@ -6467,7 +6016,6 @@ typedef union _hw_pcie_rc_uesevr
 //! @brief Set the DATA_LINK_PROTOCOL_ERROR_SEVERITY field to a new value.
 #define BW_PCIE_RC_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY(v)   (HW_PCIE_RC_UESEVR_WR((HW_PCIE_RC_UESEVR_RD() & ~BM_PCIE_RC_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY) | BF_PCIE_RC_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESEVR, field SURPRISE_DOWN_ERROR_SEVERITY[5] (RW)
@@ -6475,7 +6023,6 @@ typedef union _hw_pcie_rc_uesevr
  * Surprise Down Error Severity (not supported)
  */
 //@{
-
 #define BP_PCIE_RC_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY      (5)      //!< Bit position for PCIE_RC_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY.
 #define BM_PCIE_RC_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY      (0x00000020)  //!< Bit mask for PCIE_RC_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY.
 
@@ -6489,7 +6036,6 @@ typedef union _hw_pcie_rc_uesevr
 //! @brief Set the SURPRISE_DOWN_ERROR_SEVERITY field to a new value.
 #define BW_PCIE_RC_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY(v)   (HW_PCIE_RC_UESEVR_WR((HW_PCIE_RC_UESEVR_RD() & ~BM_PCIE_RC_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY) | BF_PCIE_RC_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESEVR, field POISONED_TLP_SEVERITY[12] (RW)
@@ -6497,7 +6043,6 @@ typedef union _hw_pcie_rc_uesevr
  * Poisoned TLP Severity
  */
 //@{
-
 #define BP_PCIE_RC_UESEVR_POISONED_TLP_SEVERITY      (12)      //!< Bit position for PCIE_RC_UESEVR_POISONED_TLP_SEVERITY.
 #define BM_PCIE_RC_UESEVR_POISONED_TLP_SEVERITY      (0x00001000)  //!< Bit mask for PCIE_RC_UESEVR_POISONED_TLP_SEVERITY.
 
@@ -6511,7 +6056,6 @@ typedef union _hw_pcie_rc_uesevr
 //! @brief Set the POISONED_TLP_SEVERITY field to a new value.
 #define BW_PCIE_RC_UESEVR_POISONED_TLP_SEVERITY(v)   (HW_PCIE_RC_UESEVR_WR((HW_PCIE_RC_UESEVR_RD() & ~BM_PCIE_RC_UESEVR_POISONED_TLP_SEVERITY) | BF_PCIE_RC_UESEVR_POISONED_TLP_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESEVR, field FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY[13] (RW)
@@ -6519,7 +6063,6 @@ typedef union _hw_pcie_rc_uesevr
  * Flow Control Protocol Error Severity
  */
 //@{
-
 #define BP_PCIE_RC_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY      (13)      //!< Bit position for PCIE_RC_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY.
 #define BM_PCIE_RC_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY      (0x00002000)  //!< Bit mask for PCIE_RC_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY.
 
@@ -6533,7 +6076,6 @@ typedef union _hw_pcie_rc_uesevr
 //! @brief Set the FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY field to a new value.
 #define BW_PCIE_RC_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY(v)   (HW_PCIE_RC_UESEVR_WR((HW_PCIE_RC_UESEVR_RD() & ~BM_PCIE_RC_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY) | BF_PCIE_RC_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESEVR, field COMPLETION_TIMEOUT_SEVERITY[14] (RW)
@@ -6541,7 +6083,6 @@ typedef union _hw_pcie_rc_uesevr
  * Completion Timeout Severity
  */
 //@{
-
 #define BP_PCIE_RC_UESEVR_COMPLETION_TIMEOUT_SEVERITY      (14)      //!< Bit position for PCIE_RC_UESEVR_COMPLETION_TIMEOUT_SEVERITY.
 #define BM_PCIE_RC_UESEVR_COMPLETION_TIMEOUT_SEVERITY      (0x00004000)  //!< Bit mask for PCIE_RC_UESEVR_COMPLETION_TIMEOUT_SEVERITY.
 
@@ -6555,7 +6096,6 @@ typedef union _hw_pcie_rc_uesevr
 //! @brief Set the COMPLETION_TIMEOUT_SEVERITY field to a new value.
 #define BW_PCIE_RC_UESEVR_COMPLETION_TIMEOUT_SEVERITY(v)   (HW_PCIE_RC_UESEVR_WR((HW_PCIE_RC_UESEVR_RD() & ~BM_PCIE_RC_UESEVR_COMPLETION_TIMEOUT_SEVERITY) | BF_PCIE_RC_UESEVR_COMPLETION_TIMEOUT_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESEVR, field COMPLETER_ABORT_SEVERITY[15] (RW)
@@ -6563,7 +6103,6 @@ typedef union _hw_pcie_rc_uesevr
  * Completer Abort Severity
  */
 //@{
-
 #define BP_PCIE_RC_UESEVR_COMPLETER_ABORT_SEVERITY      (15)      //!< Bit position for PCIE_RC_UESEVR_COMPLETER_ABORT_SEVERITY.
 #define BM_PCIE_RC_UESEVR_COMPLETER_ABORT_SEVERITY      (0x00008000)  //!< Bit mask for PCIE_RC_UESEVR_COMPLETER_ABORT_SEVERITY.
 
@@ -6577,7 +6116,6 @@ typedef union _hw_pcie_rc_uesevr
 //! @brief Set the COMPLETER_ABORT_SEVERITY field to a new value.
 #define BW_PCIE_RC_UESEVR_COMPLETER_ABORT_SEVERITY(v)   (HW_PCIE_RC_UESEVR_WR((HW_PCIE_RC_UESEVR_RD() & ~BM_PCIE_RC_UESEVR_COMPLETER_ABORT_SEVERITY) | BF_PCIE_RC_UESEVR_COMPLETER_ABORT_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESEVR, field UNEXPECTED_COMPLETION_SEVERITY[16] (RW)
@@ -6585,7 +6123,6 @@ typedef union _hw_pcie_rc_uesevr
  * Unexpected Completion Severity
  */
 //@{
-
 #define BP_PCIE_RC_UESEVR_UNEXPECTED_COMPLETION_SEVERITY      (16)      //!< Bit position for PCIE_RC_UESEVR_UNEXPECTED_COMPLETION_SEVERITY.
 #define BM_PCIE_RC_UESEVR_UNEXPECTED_COMPLETION_SEVERITY      (0x00010000)  //!< Bit mask for PCIE_RC_UESEVR_UNEXPECTED_COMPLETION_SEVERITY.
 
@@ -6599,7 +6136,6 @@ typedef union _hw_pcie_rc_uesevr
 //! @brief Set the UNEXPECTED_COMPLETION_SEVERITY field to a new value.
 #define BW_PCIE_RC_UESEVR_UNEXPECTED_COMPLETION_SEVERITY(v)   (HW_PCIE_RC_UESEVR_WR((HW_PCIE_RC_UESEVR_RD() & ~BM_PCIE_RC_UESEVR_UNEXPECTED_COMPLETION_SEVERITY) | BF_PCIE_RC_UESEVR_UNEXPECTED_COMPLETION_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESEVR, field RECEIVER_OVERFLOW_SEVERITY[17] (RW)
@@ -6607,7 +6143,6 @@ typedef union _hw_pcie_rc_uesevr
  * Receiver Overflow Severity
  */
 //@{
-
 #define BP_PCIE_RC_UESEVR_RECEIVER_OVERFLOW_SEVERITY      (17)      //!< Bit position for PCIE_RC_UESEVR_RECEIVER_OVERFLOW_SEVERITY.
 #define BM_PCIE_RC_UESEVR_RECEIVER_OVERFLOW_SEVERITY      (0x00020000)  //!< Bit mask for PCIE_RC_UESEVR_RECEIVER_OVERFLOW_SEVERITY.
 
@@ -6621,7 +6156,6 @@ typedef union _hw_pcie_rc_uesevr
 //! @brief Set the RECEIVER_OVERFLOW_SEVERITY field to a new value.
 #define BW_PCIE_RC_UESEVR_RECEIVER_OVERFLOW_SEVERITY(v)   (HW_PCIE_RC_UESEVR_WR((HW_PCIE_RC_UESEVR_RD() & ~BM_PCIE_RC_UESEVR_RECEIVER_OVERFLOW_SEVERITY) | BF_PCIE_RC_UESEVR_RECEIVER_OVERFLOW_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESEVR, field MALFORMED_TLP_SEVERITY[18] (RW)
@@ -6629,7 +6163,6 @@ typedef union _hw_pcie_rc_uesevr
  * Malformed TLP Severity
  */
 //@{
-
 #define BP_PCIE_RC_UESEVR_MALFORMED_TLP_SEVERITY      (18)      //!< Bit position for PCIE_RC_UESEVR_MALFORMED_TLP_SEVERITY.
 #define BM_PCIE_RC_UESEVR_MALFORMED_TLP_SEVERITY      (0x00040000)  //!< Bit mask for PCIE_RC_UESEVR_MALFORMED_TLP_SEVERITY.
 
@@ -6643,7 +6176,6 @@ typedef union _hw_pcie_rc_uesevr
 //! @brief Set the MALFORMED_TLP_SEVERITY field to a new value.
 #define BW_PCIE_RC_UESEVR_MALFORMED_TLP_SEVERITY(v)   (HW_PCIE_RC_UESEVR_WR((HW_PCIE_RC_UESEVR_RD() & ~BM_PCIE_RC_UESEVR_MALFORMED_TLP_SEVERITY) | BF_PCIE_RC_UESEVR_MALFORMED_TLP_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESEVR, field ECRC_ERROR_SEVERITY[19] (RW)
@@ -6651,7 +6183,6 @@ typedef union _hw_pcie_rc_uesevr
  * ECRC Error Severity
  */
 //@{
-
 #define BP_PCIE_RC_UESEVR_ECRC_ERROR_SEVERITY      (19)      //!< Bit position for PCIE_RC_UESEVR_ECRC_ERROR_SEVERITY.
 #define BM_PCIE_RC_UESEVR_ECRC_ERROR_SEVERITY      (0x00080000)  //!< Bit mask for PCIE_RC_UESEVR_ECRC_ERROR_SEVERITY.
 
@@ -6665,7 +6196,6 @@ typedef union _hw_pcie_rc_uesevr
 //! @brief Set the ECRC_ERROR_SEVERITY field to a new value.
 #define BW_PCIE_RC_UESEVR_ECRC_ERROR_SEVERITY(v)   (HW_PCIE_RC_UESEVR_WR((HW_PCIE_RC_UESEVR_RD() & ~BM_PCIE_RC_UESEVR_ECRC_ERROR_SEVERITY) | BF_PCIE_RC_UESEVR_ECRC_ERROR_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_UESEVR, field UNSUPPORTED_REQUEST_ERROR_SEVERITY[20] (RW)
@@ -6673,7 +6203,6 @@ typedef union _hw_pcie_rc_uesevr
  * Unsupported Request Error Severity
  */
 //@{
-
 #define BP_PCIE_RC_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY      (20)      //!< Bit position for PCIE_RC_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY.
 #define BM_PCIE_RC_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY      (0x00100000)  //!< Bit mask for PCIE_RC_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY.
 
@@ -6687,7 +6216,6 @@ typedef union _hw_pcie_rc_uesevr
 //! @brief Set the UNSUPPORTED_REQUEST_ERROR_SEVERITY field to a new value.
 #define BW_PCIE_RC_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY(v)   (HW_PCIE_RC_UESEVR_WR((HW_PCIE_RC_UESEVR_RD() & ~BM_PCIE_RC_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY) | BF_PCIE_RC_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6745,7 +6273,6 @@ typedef union _hw_pcie_rc_cesr
  * Receiver Error Status
  */
 //@{
-
 #define BP_PCIE_RC_CESR_RECEIVER_ERROR_STATUS      (0)      //!< Bit position for PCIE_RC_CESR_RECEIVER_ERROR_STATUS.
 #define BM_PCIE_RC_CESR_RECEIVER_ERROR_STATUS      (0x00000001)  //!< Bit mask for PCIE_RC_CESR_RECEIVER_ERROR_STATUS.
 
@@ -6759,7 +6286,6 @@ typedef union _hw_pcie_rc_cesr
 //! @brief Set the RECEIVER_ERROR_STATUS field to a new value.
 #define BW_PCIE_RC_CESR_RECEIVER_ERROR_STATUS(v)   (HW_PCIE_RC_CESR_WR((HW_PCIE_RC_CESR_RD() & ~BM_PCIE_RC_CESR_RECEIVER_ERROR_STATUS) | BF_PCIE_RC_CESR_RECEIVER_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_CESR, field BAD_TLP_STATUS[6] (RW)
@@ -6767,7 +6293,6 @@ typedef union _hw_pcie_rc_cesr
  * Bad TLP Status
  */
 //@{
-
 #define BP_PCIE_RC_CESR_BAD_TLP_STATUS      (6)      //!< Bit position for PCIE_RC_CESR_BAD_TLP_STATUS.
 #define BM_PCIE_RC_CESR_BAD_TLP_STATUS      (0x00000040)  //!< Bit mask for PCIE_RC_CESR_BAD_TLP_STATUS.
 
@@ -6781,7 +6306,6 @@ typedef union _hw_pcie_rc_cesr
 //! @brief Set the BAD_TLP_STATUS field to a new value.
 #define BW_PCIE_RC_CESR_BAD_TLP_STATUS(v)   (HW_PCIE_RC_CESR_WR((HW_PCIE_RC_CESR_RD() & ~BM_PCIE_RC_CESR_BAD_TLP_STATUS) | BF_PCIE_RC_CESR_BAD_TLP_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_CESR, field BAD_DLLP_STATUS[7] (RW)
@@ -6789,7 +6313,6 @@ typedef union _hw_pcie_rc_cesr
  * Bad DLLP Status
  */
 //@{
-
 #define BP_PCIE_RC_CESR_BAD_DLLP_STATUS      (7)      //!< Bit position for PCIE_RC_CESR_BAD_DLLP_STATUS.
 #define BM_PCIE_RC_CESR_BAD_DLLP_STATUS      (0x00000080)  //!< Bit mask for PCIE_RC_CESR_BAD_DLLP_STATUS.
 
@@ -6803,7 +6326,6 @@ typedef union _hw_pcie_rc_cesr
 //! @brief Set the BAD_DLLP_STATUS field to a new value.
 #define BW_PCIE_RC_CESR_BAD_DLLP_STATUS(v)   (HW_PCIE_RC_CESR_WR((HW_PCIE_RC_CESR_RD() & ~BM_PCIE_RC_CESR_BAD_DLLP_STATUS) | BF_PCIE_RC_CESR_BAD_DLLP_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_CESR, field REPLAY_NUM_ROLLOVER_STATUS[8] (RW)
@@ -6811,7 +6333,6 @@ typedef union _hw_pcie_rc_cesr
  * REPLAY_NUM Rollover Status
  */
 //@{
-
 #define BP_PCIE_RC_CESR_REPLAY_NUM_ROLLOVER_STATUS      (8)      //!< Bit position for PCIE_RC_CESR_REPLAY_NUM_ROLLOVER_STATUS.
 #define BM_PCIE_RC_CESR_REPLAY_NUM_ROLLOVER_STATUS      (0x00000100)  //!< Bit mask for PCIE_RC_CESR_REPLAY_NUM_ROLLOVER_STATUS.
 
@@ -6825,7 +6346,6 @@ typedef union _hw_pcie_rc_cesr
 //! @brief Set the REPLAY_NUM_ROLLOVER_STATUS field to a new value.
 #define BW_PCIE_RC_CESR_REPLAY_NUM_ROLLOVER_STATUS(v)   (HW_PCIE_RC_CESR_WR((HW_PCIE_RC_CESR_RD() & ~BM_PCIE_RC_CESR_REPLAY_NUM_ROLLOVER_STATUS) | BF_PCIE_RC_CESR_REPLAY_NUM_ROLLOVER_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_CESR, field REPLY_TIMER_TIMEOUT_STATUS[12] (RW)
@@ -6833,7 +6353,6 @@ typedef union _hw_pcie_rc_cesr
  * Reply Timer Timeout Status
  */
 //@{
-
 #define BP_PCIE_RC_CESR_REPLY_TIMER_TIMEOUT_STATUS      (12)      //!< Bit position for PCIE_RC_CESR_REPLY_TIMER_TIMEOUT_STATUS.
 #define BM_PCIE_RC_CESR_REPLY_TIMER_TIMEOUT_STATUS      (0x00001000)  //!< Bit mask for PCIE_RC_CESR_REPLY_TIMER_TIMEOUT_STATUS.
 
@@ -6847,7 +6366,6 @@ typedef union _hw_pcie_rc_cesr
 //! @brief Set the REPLY_TIMER_TIMEOUT_STATUS field to a new value.
 #define BW_PCIE_RC_CESR_REPLY_TIMER_TIMEOUT_STATUS(v)   (HW_PCIE_RC_CESR_WR((HW_PCIE_RC_CESR_RD() & ~BM_PCIE_RC_CESR_REPLY_TIMER_TIMEOUT_STATUS) | BF_PCIE_RC_CESR_REPLY_TIMER_TIMEOUT_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_CESR, field ADVISORY_NON_FATAL_ERROR_STATUS[13] (RW)
@@ -6855,7 +6373,6 @@ typedef union _hw_pcie_rc_cesr
  * Advisory Non-Fatal Error Status
  */
 //@{
-
 #define BP_PCIE_RC_CESR_ADVISORY_NON_FATAL_ERROR_STATUS      (13)      //!< Bit position for PCIE_RC_CESR_ADVISORY_NON_FATAL_ERROR_STATUS.
 #define BM_PCIE_RC_CESR_ADVISORY_NON_FATAL_ERROR_STATUS      (0x00002000)  //!< Bit mask for PCIE_RC_CESR_ADVISORY_NON_FATAL_ERROR_STATUS.
 
@@ -6869,7 +6386,6 @@ typedef union _hw_pcie_rc_cesr
 //! @brief Set the ADVISORY_NON_FATAL_ERROR_STATUS field to a new value.
 #define BW_PCIE_RC_CESR_ADVISORY_NON_FATAL_ERROR_STATUS(v)   (HW_PCIE_RC_CESR_WR((HW_PCIE_RC_CESR_RD() & ~BM_PCIE_RC_CESR_ADVISORY_NON_FATAL_ERROR_STATUS) | BF_PCIE_RC_CESR_ADVISORY_NON_FATAL_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6927,7 +6443,6 @@ typedef union _hw_pcie_rc_cemr
  * Receiver Error Mask
  */
 //@{
-
 #define BP_PCIE_RC_CEMR_RECEIVER_ERROR_MASK      (0)      //!< Bit position for PCIE_RC_CEMR_RECEIVER_ERROR_MASK.
 #define BM_PCIE_RC_CEMR_RECEIVER_ERROR_MASK      (0x00000001)  //!< Bit mask for PCIE_RC_CEMR_RECEIVER_ERROR_MASK.
 
@@ -6941,7 +6456,6 @@ typedef union _hw_pcie_rc_cemr
 //! @brief Set the RECEIVER_ERROR_MASK field to a new value.
 #define BW_PCIE_RC_CEMR_RECEIVER_ERROR_MASK(v)   (HW_PCIE_RC_CEMR_WR((HW_PCIE_RC_CEMR_RD() & ~BM_PCIE_RC_CEMR_RECEIVER_ERROR_MASK) | BF_PCIE_RC_CEMR_RECEIVER_ERROR_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_CEMR, field BAD_TLP_MASK[6] (RW)
@@ -6949,7 +6463,6 @@ typedef union _hw_pcie_rc_cemr
  * Bad TLP Mask
  */
 //@{
-
 #define BP_PCIE_RC_CEMR_BAD_TLP_MASK      (6)      //!< Bit position for PCIE_RC_CEMR_BAD_TLP_MASK.
 #define BM_PCIE_RC_CEMR_BAD_TLP_MASK      (0x00000040)  //!< Bit mask for PCIE_RC_CEMR_BAD_TLP_MASK.
 
@@ -6963,7 +6476,6 @@ typedef union _hw_pcie_rc_cemr
 //! @brief Set the BAD_TLP_MASK field to a new value.
 #define BW_PCIE_RC_CEMR_BAD_TLP_MASK(v)   (HW_PCIE_RC_CEMR_WR((HW_PCIE_RC_CEMR_RD() & ~BM_PCIE_RC_CEMR_BAD_TLP_MASK) | BF_PCIE_RC_CEMR_BAD_TLP_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_CEMR, field BAD_DLLP_MASK[7] (RW)
@@ -6971,7 +6483,6 @@ typedef union _hw_pcie_rc_cemr
  * Bad DLLP Mask
  */
 //@{
-
 #define BP_PCIE_RC_CEMR_BAD_DLLP_MASK      (7)      //!< Bit position for PCIE_RC_CEMR_BAD_DLLP_MASK.
 #define BM_PCIE_RC_CEMR_BAD_DLLP_MASK      (0x00000080)  //!< Bit mask for PCIE_RC_CEMR_BAD_DLLP_MASK.
 
@@ -6985,7 +6496,6 @@ typedef union _hw_pcie_rc_cemr
 //! @brief Set the BAD_DLLP_MASK field to a new value.
 #define BW_PCIE_RC_CEMR_BAD_DLLP_MASK(v)   (HW_PCIE_RC_CEMR_WR((HW_PCIE_RC_CEMR_RD() & ~BM_PCIE_RC_CEMR_BAD_DLLP_MASK) | BF_PCIE_RC_CEMR_BAD_DLLP_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_CEMR, field REPLAY_NUM_ROLLOVER_MASK[8] (RW)
@@ -6993,7 +6503,6 @@ typedef union _hw_pcie_rc_cemr
  * REPLAY_NUM Rollover Mask
  */
 //@{
-
 #define BP_PCIE_RC_CEMR_REPLAY_NUM_ROLLOVER_MASK      (8)      //!< Bit position for PCIE_RC_CEMR_REPLAY_NUM_ROLLOVER_MASK.
 #define BM_PCIE_RC_CEMR_REPLAY_NUM_ROLLOVER_MASK      (0x00000100)  //!< Bit mask for PCIE_RC_CEMR_REPLAY_NUM_ROLLOVER_MASK.
 
@@ -7007,7 +6516,6 @@ typedef union _hw_pcie_rc_cemr
 //! @brief Set the REPLAY_NUM_ROLLOVER_MASK field to a new value.
 #define BW_PCIE_RC_CEMR_REPLAY_NUM_ROLLOVER_MASK(v)   (HW_PCIE_RC_CEMR_WR((HW_PCIE_RC_CEMR_RD() & ~BM_PCIE_RC_CEMR_REPLAY_NUM_ROLLOVER_MASK) | BF_PCIE_RC_CEMR_REPLAY_NUM_ROLLOVER_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_CEMR, field REPLY_TIMER_TIMEOUT_MASK[12] (RW)
@@ -7015,7 +6523,6 @@ typedef union _hw_pcie_rc_cemr
  * Reply Timer Timeout Mask
  */
 //@{
-
 #define BP_PCIE_RC_CEMR_REPLY_TIMER_TIMEOUT_MASK      (12)      //!< Bit position for PCIE_RC_CEMR_REPLY_TIMER_TIMEOUT_MASK.
 #define BM_PCIE_RC_CEMR_REPLY_TIMER_TIMEOUT_MASK      (0x00001000)  //!< Bit mask for PCIE_RC_CEMR_REPLY_TIMER_TIMEOUT_MASK.
 
@@ -7029,7 +6536,6 @@ typedef union _hw_pcie_rc_cemr
 //! @brief Set the REPLY_TIMER_TIMEOUT_MASK field to a new value.
 #define BW_PCIE_RC_CEMR_REPLY_TIMER_TIMEOUT_MASK(v)   (HW_PCIE_RC_CEMR_WR((HW_PCIE_RC_CEMR_RD() & ~BM_PCIE_RC_CEMR_REPLY_TIMER_TIMEOUT_MASK) | BF_PCIE_RC_CEMR_REPLY_TIMER_TIMEOUT_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_CEMR, field ADVISORY_NON_FATAL_ERROR_MASK[13] (RW)
@@ -7037,7 +6543,6 @@ typedef union _hw_pcie_rc_cemr
  * Advisory Non-Fatal Error Mask
  */
 //@{
-
 #define BP_PCIE_RC_CEMR_ADVISORY_NON_FATAL_ERROR_MASK      (13)      //!< Bit position for PCIE_RC_CEMR_ADVISORY_NON_FATAL_ERROR_MASK.
 #define BM_PCIE_RC_CEMR_ADVISORY_NON_FATAL_ERROR_MASK      (0x00002000)  //!< Bit mask for PCIE_RC_CEMR_ADVISORY_NON_FATAL_ERROR_MASK.
 
@@ -7051,7 +6556,6 @@ typedef union _hw_pcie_rc_cemr
 //! @brief Set the ADVISORY_NON_FATAL_ERROR_MASK field to a new value.
 #define BW_PCIE_RC_CEMR_ADVISORY_NON_FATAL_ERROR_MASK(v)   (HW_PCIE_RC_CEMR_WR((HW_PCIE_RC_CEMR_RD() & ~BM_PCIE_RC_CEMR_ADVISORY_NON_FATAL_ERROR_MASK) | BF_PCIE_RC_CEMR_ADVISORY_NON_FATAL_ERROR_MASK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7106,7 +6610,6 @@ typedef union _hw_pcie_rc_accr
  * First Error Pointer
  */
 //@{
-
 #define BP_PCIE_RC_ACCR_FIRST_ERROR_POINTER      (0)      //!< Bit position for PCIE_RC_ACCR_FIRST_ERROR_POINTER.
 #define BM_PCIE_RC_ACCR_FIRST_ERROR_POINTER      (0x0000001f)  //!< Bit mask for PCIE_RC_ACCR_FIRST_ERROR_POINTER.
 
@@ -7120,7 +6623,6 @@ typedef union _hw_pcie_rc_accr
 //! @brief Set the FIRST_ERROR_POINTER field to a new value.
 #define BW_PCIE_RC_ACCR_FIRST_ERROR_POINTER(v)   (HW_PCIE_RC_ACCR_WR((HW_PCIE_RC_ACCR_RD() & ~BM_PCIE_RC_ACCR_FIRST_ERROR_POINTER) | BF_PCIE_RC_ACCR_FIRST_ERROR_POINTER(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_ACCR, field ECRC_GENERATION_CAPABILITY[5] (RW)
@@ -7128,7 +6630,6 @@ typedef union _hw_pcie_rc_accr
  * ECRC Generation Capability
  */
 //@{
-
 #define BP_PCIE_RC_ACCR_ECRC_GENERATION_CAPABILITY      (5)      //!< Bit position for PCIE_RC_ACCR_ECRC_GENERATION_CAPABILITY.
 #define BM_PCIE_RC_ACCR_ECRC_GENERATION_CAPABILITY      (0x00000020)  //!< Bit mask for PCIE_RC_ACCR_ECRC_GENERATION_CAPABILITY.
 
@@ -7142,7 +6643,6 @@ typedef union _hw_pcie_rc_accr
 //! @brief Set the ECRC_GENERATION_CAPABILITY field to a new value.
 #define BW_PCIE_RC_ACCR_ECRC_GENERATION_CAPABILITY(v)   (HW_PCIE_RC_ACCR_WR((HW_PCIE_RC_ACCR_RD() & ~BM_PCIE_RC_ACCR_ECRC_GENERATION_CAPABILITY) | BF_PCIE_RC_ACCR_ECRC_GENERATION_CAPABILITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_ACCR, field ECRC_GENERATION_ENABLE[6] (RW)
@@ -7150,7 +6650,6 @@ typedef union _hw_pcie_rc_accr
  * ECRC Generation Enable
  */
 //@{
-
 #define BP_PCIE_RC_ACCR_ECRC_GENERATION_ENABLE      (6)      //!< Bit position for PCIE_RC_ACCR_ECRC_GENERATION_ENABLE.
 #define BM_PCIE_RC_ACCR_ECRC_GENERATION_ENABLE      (0x00000040)  //!< Bit mask for PCIE_RC_ACCR_ECRC_GENERATION_ENABLE.
 
@@ -7164,7 +6663,6 @@ typedef union _hw_pcie_rc_accr
 //! @brief Set the ECRC_GENERATION_ENABLE field to a new value.
 #define BW_PCIE_RC_ACCR_ECRC_GENERATION_ENABLE(v)   (HW_PCIE_RC_ACCR_WR((HW_PCIE_RC_ACCR_RD() & ~BM_PCIE_RC_ACCR_ECRC_GENERATION_ENABLE) | BF_PCIE_RC_ACCR_ECRC_GENERATION_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_ACCR, field ECRC_CHECK_CAPABLE[7] (RW)
@@ -7172,7 +6670,6 @@ typedef union _hw_pcie_rc_accr
  * ECRC Check Capable
  */
 //@{
-
 #define BP_PCIE_RC_ACCR_ECRC_CHECK_CAPABLE      (7)      //!< Bit position for PCIE_RC_ACCR_ECRC_CHECK_CAPABLE.
 #define BM_PCIE_RC_ACCR_ECRC_CHECK_CAPABLE      (0x00000080)  //!< Bit mask for PCIE_RC_ACCR_ECRC_CHECK_CAPABLE.
 
@@ -7186,7 +6683,6 @@ typedef union _hw_pcie_rc_accr
 //! @brief Set the ECRC_CHECK_CAPABLE field to a new value.
 #define BW_PCIE_RC_ACCR_ECRC_CHECK_CAPABLE(v)   (HW_PCIE_RC_ACCR_WR((HW_PCIE_RC_ACCR_RD() & ~BM_PCIE_RC_ACCR_ECRC_CHECK_CAPABLE) | BF_PCIE_RC_ACCR_ECRC_CHECK_CAPABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_ACCR, field ECRC_CHECK_ENABLE[8] (RW)
@@ -7194,7 +6690,6 @@ typedef union _hw_pcie_rc_accr
  * ECRC Check Enable
  */
 //@{
-
 #define BP_PCIE_RC_ACCR_ECRC_CHECK_ENABLE      (8)      //!< Bit position for PCIE_RC_ACCR_ECRC_CHECK_ENABLE.
 #define BM_PCIE_RC_ACCR_ECRC_CHECK_ENABLE      (0x00000100)  //!< Bit mask for PCIE_RC_ACCR_ECRC_CHECK_ENABLE.
 
@@ -7208,7 +6703,6 @@ typedef union _hw_pcie_rc_accr
 //! @brief Set the ECRC_CHECK_ENABLE field to a new value.
 #define BW_PCIE_RC_ACCR_ECRC_CHECK_ENABLE(v)   (HW_PCIE_RC_ACCR_WR((HW_PCIE_RC_ACCR_RD() & ~BM_PCIE_RC_ACCR_ECRC_CHECK_ENABLE) | BF_PCIE_RC_ACCR_ECRC_CHECK_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7301,7 +6795,6 @@ typedef union _hw_pcie_rc_recr
  * Correctable Error Reporting Enable
  */
 //@{
-
 #define BP_PCIE_RC_RECR_CORRECTABLE_ERROR_REPORTING_ENABLE      (0)      //!< Bit position for PCIE_RC_RECR_CORRECTABLE_ERROR_REPORTING_ENABLE.
 #define BM_PCIE_RC_RECR_CORRECTABLE_ERROR_REPORTING_ENABLE      (0x00000001)  //!< Bit mask for PCIE_RC_RECR_CORRECTABLE_ERROR_REPORTING_ENABLE.
 
@@ -7315,7 +6808,6 @@ typedef union _hw_pcie_rc_recr
 //! @brief Set the CORRECTABLE_ERROR_REPORTING_ENABLE field to a new value.
 #define BW_PCIE_RC_RECR_CORRECTABLE_ERROR_REPORTING_ENABLE(v)   (HW_PCIE_RC_RECR_WR((HW_PCIE_RC_RECR_RD() & ~BM_PCIE_RC_RECR_CORRECTABLE_ERROR_REPORTING_ENABLE) | BF_PCIE_RC_RECR_CORRECTABLE_ERROR_REPORTING_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RECR, field NON_FATAL_ERROR_REPORTING_ENABLE[1] (RW)
@@ -7323,7 +6815,6 @@ typedef union _hw_pcie_rc_recr
  * Non-Fatal Error Reporting Enable
  */
 //@{
-
 #define BP_PCIE_RC_RECR_NON_FATAL_ERROR_REPORTING_ENABLE      (1)      //!< Bit position for PCIE_RC_RECR_NON_FATAL_ERROR_REPORTING_ENABLE.
 #define BM_PCIE_RC_RECR_NON_FATAL_ERROR_REPORTING_ENABLE      (0x00000002)  //!< Bit mask for PCIE_RC_RECR_NON_FATAL_ERROR_REPORTING_ENABLE.
 
@@ -7337,7 +6828,6 @@ typedef union _hw_pcie_rc_recr
 //! @brief Set the NON_FATAL_ERROR_REPORTING_ENABLE field to a new value.
 #define BW_PCIE_RC_RECR_NON_FATAL_ERROR_REPORTING_ENABLE(v)   (HW_PCIE_RC_RECR_WR((HW_PCIE_RC_RECR_RD() & ~BM_PCIE_RC_RECR_NON_FATAL_ERROR_REPORTING_ENABLE) | BF_PCIE_RC_RECR_NON_FATAL_ERROR_REPORTING_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RECR, field FATAL_ERROR_REPORTING_ENABLE[2] (RW)
@@ -7345,7 +6835,6 @@ typedef union _hw_pcie_rc_recr
  * Fatal Error Reporting Enable
  */
 //@{
-
 #define BP_PCIE_RC_RECR_FATAL_ERROR_REPORTING_ENABLE      (2)      //!< Bit position for PCIE_RC_RECR_FATAL_ERROR_REPORTING_ENABLE.
 #define BM_PCIE_RC_RECR_FATAL_ERROR_REPORTING_ENABLE      (0x00000004)  //!< Bit mask for PCIE_RC_RECR_FATAL_ERROR_REPORTING_ENABLE.
 
@@ -7359,7 +6848,6 @@ typedef union _hw_pcie_rc_recr
 //! @brief Set the FATAL_ERROR_REPORTING_ENABLE field to a new value.
 #define BW_PCIE_RC_RECR_FATAL_ERROR_REPORTING_ENABLE(v)   (HW_PCIE_RC_RECR_WR((HW_PCIE_RC_RECR_RD() & ~BM_PCIE_RC_RECR_FATAL_ERROR_REPORTING_ENABLE) | BF_PCIE_RC_RECR_FATAL_ERROR_REPORTING_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7417,7 +6905,6 @@ typedef union _hw_pcie_rc_resr
  * ERR_COR Received
  */
 //@{
-
 #define BP_PCIE_RC_RESR_ERR_COR_RECEIVED      (0)      //!< Bit position for PCIE_RC_RESR_ERR_COR_RECEIVED.
 #define BM_PCIE_RC_RESR_ERR_COR_RECEIVED      (0x00000001)  //!< Bit mask for PCIE_RC_RESR_ERR_COR_RECEIVED.
 
@@ -7431,7 +6918,6 @@ typedef union _hw_pcie_rc_resr
 //! @brief Set the ERR_COR_RECEIVED field to a new value.
 #define BW_PCIE_RC_RESR_ERR_COR_RECEIVED(v)   (HW_PCIE_RC_RESR_WR((HW_PCIE_RC_RESR_RD() & ~BM_PCIE_RC_RESR_ERR_COR_RECEIVED) | BF_PCIE_RC_RESR_ERR_COR_RECEIVED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RESR, field MULTIPLE_ERR_COR_RECEIVED[1] (RW)
@@ -7439,7 +6925,6 @@ typedef union _hw_pcie_rc_resr
  * Multiple ERR_COR Received
  */
 //@{
-
 #define BP_PCIE_RC_RESR_MULTIPLE_ERR_COR_RECEIVED      (1)      //!< Bit position for PCIE_RC_RESR_MULTIPLE_ERR_COR_RECEIVED.
 #define BM_PCIE_RC_RESR_MULTIPLE_ERR_COR_RECEIVED      (0x00000002)  //!< Bit mask for PCIE_RC_RESR_MULTIPLE_ERR_COR_RECEIVED.
 
@@ -7453,7 +6938,6 @@ typedef union _hw_pcie_rc_resr
 //! @brief Set the MULTIPLE_ERR_COR_RECEIVED field to a new value.
 #define BW_PCIE_RC_RESR_MULTIPLE_ERR_COR_RECEIVED(v)   (HW_PCIE_RC_RESR_WR((HW_PCIE_RC_RESR_RD() & ~BM_PCIE_RC_RESR_MULTIPLE_ERR_COR_RECEIVED) | BF_PCIE_RC_RESR_MULTIPLE_ERR_COR_RECEIVED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RESR, field ERR_FATAL_NONFATAL_RECEIVED[2] (RW)
@@ -7461,7 +6945,6 @@ typedef union _hw_pcie_rc_resr
  * ERR_FATAL/NONFATAL Received
  */
 //@{
-
 #define BP_PCIE_RC_RESR_ERR_FATAL_NONFATAL_RECEIVED      (2)      //!< Bit position for PCIE_RC_RESR_ERR_FATAL_NONFATAL_RECEIVED.
 #define BM_PCIE_RC_RESR_ERR_FATAL_NONFATAL_RECEIVED      (0x00000004)  //!< Bit mask for PCIE_RC_RESR_ERR_FATAL_NONFATAL_RECEIVED.
 
@@ -7475,7 +6958,6 @@ typedef union _hw_pcie_rc_resr
 //! @brief Set the ERR_FATAL_NONFATAL_RECEIVED field to a new value.
 #define BW_PCIE_RC_RESR_ERR_FATAL_NONFATAL_RECEIVED(v)   (HW_PCIE_RC_RESR_WR((HW_PCIE_RC_RESR_RD() & ~BM_PCIE_RC_RESR_ERR_FATAL_NONFATAL_RECEIVED) | BF_PCIE_RC_RESR_ERR_FATAL_NONFATAL_RECEIVED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RESR, field MULTIPLE_ERR_FATAL_NONFATAL_RECEIVED[3] (RW)
@@ -7483,7 +6965,6 @@ typedef union _hw_pcie_rc_resr
  * Multiple ERR_FATAL/NONFATAL Received
  */
 //@{
-
 #define BP_PCIE_RC_RESR_MULTIPLE_ERR_FATAL_NONFATAL_RECEIVED      (3)      //!< Bit position for PCIE_RC_RESR_MULTIPLE_ERR_FATAL_NONFATAL_RECEIVED.
 #define BM_PCIE_RC_RESR_MULTIPLE_ERR_FATAL_NONFATAL_RECEIVED      (0x00000008)  //!< Bit mask for PCIE_RC_RESR_MULTIPLE_ERR_FATAL_NONFATAL_RECEIVED.
 
@@ -7497,7 +6978,6 @@ typedef union _hw_pcie_rc_resr
 //! @brief Set the MULTIPLE_ERR_FATAL_NONFATAL_RECEIVED field to a new value.
 #define BW_PCIE_RC_RESR_MULTIPLE_ERR_FATAL_NONFATAL_RECEIVED(v)   (HW_PCIE_RC_RESR_WR((HW_PCIE_RC_RESR_RD() & ~BM_PCIE_RC_RESR_MULTIPLE_ERR_FATAL_NONFATAL_RECEIVED) | BF_PCIE_RC_RESR_MULTIPLE_ERR_FATAL_NONFATAL_RECEIVED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RESR, field FIRST_UNCORRECTABLE_FATAL[4] (RW)
@@ -7505,7 +6985,6 @@ typedef union _hw_pcie_rc_resr
  * First Uncorrectable Fatal
  */
 //@{
-
 #define BP_PCIE_RC_RESR_FIRST_UNCORRECTABLE_FATAL      (4)      //!< Bit position for PCIE_RC_RESR_FIRST_UNCORRECTABLE_FATAL.
 #define BM_PCIE_RC_RESR_FIRST_UNCORRECTABLE_FATAL      (0x00000010)  //!< Bit mask for PCIE_RC_RESR_FIRST_UNCORRECTABLE_FATAL.
 
@@ -7519,7 +6998,6 @@ typedef union _hw_pcie_rc_resr
 //! @brief Set the FIRST_UNCORRECTABLE_FATAL field to a new value.
 #define BW_PCIE_RC_RESR_FIRST_UNCORRECTABLE_FATAL(v)   (HW_PCIE_RC_RESR_WR((HW_PCIE_RC_RESR_RD() & ~BM_PCIE_RC_RESR_FIRST_UNCORRECTABLE_FATAL) | BF_PCIE_RC_RESR_FIRST_UNCORRECTABLE_FATAL(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RESR, field NON_FATAL_ERROR_MESSAGES_RECEIVED[5] (RW)
@@ -7527,7 +7005,6 @@ typedef union _hw_pcie_rc_resr
  * Non-Fatal Error Messages Received
  */
 //@{
-
 #define BP_PCIE_RC_RESR_NON_FATAL_ERROR_MESSAGES_RECEIVED      (5)      //!< Bit position for PCIE_RC_RESR_NON_FATAL_ERROR_MESSAGES_RECEIVED.
 #define BM_PCIE_RC_RESR_NON_FATAL_ERROR_MESSAGES_RECEIVED      (0x00000020)  //!< Bit mask for PCIE_RC_RESR_NON_FATAL_ERROR_MESSAGES_RECEIVED.
 
@@ -7541,7 +7018,6 @@ typedef union _hw_pcie_rc_resr
 //! @brief Set the NON_FATAL_ERROR_MESSAGES_RECEIVED field to a new value.
 #define BW_PCIE_RC_RESR_NON_FATAL_ERROR_MESSAGES_RECEIVED(v)   (HW_PCIE_RC_RESR_WR((HW_PCIE_RC_RESR_RD() & ~BM_PCIE_RC_RESR_NON_FATAL_ERROR_MESSAGES_RECEIVED) | BF_PCIE_RC_RESR_NON_FATAL_ERROR_MESSAGES_RECEIVED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RESR, field FATAL_ERROR_MESSAGES_RECEIVED[6] (RW)
@@ -7549,7 +7025,6 @@ typedef union _hw_pcie_rc_resr
  * Fatal Error Messages Received
  */
 //@{
-
 #define BP_PCIE_RC_RESR_FATAL_ERROR_MESSAGES_RECEIVED      (6)      //!< Bit position for PCIE_RC_RESR_FATAL_ERROR_MESSAGES_RECEIVED.
 #define BM_PCIE_RC_RESR_FATAL_ERROR_MESSAGES_RECEIVED      (0x00000040)  //!< Bit mask for PCIE_RC_RESR_FATAL_ERROR_MESSAGES_RECEIVED.
 
@@ -7563,7 +7038,6 @@ typedef union _hw_pcie_rc_resr
 //! @brief Set the FATAL_ERROR_MESSAGES_RECEIVED field to a new value.
 #define BW_PCIE_RC_RESR_FATAL_ERROR_MESSAGES_RECEIVED(v)   (HW_PCIE_RC_RESR_WR((HW_PCIE_RC_RESR_RD() & ~BM_PCIE_RC_RESR_FATAL_ERROR_MESSAGES_RECEIVED) | BF_PCIE_RC_RESR_FATAL_ERROR_MESSAGES_RECEIVED(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_RESR, field ADVANCED_ERROR_INTERRUPT_MESSAGE_NUMBER[31:27] (RW)
@@ -7571,7 +7045,6 @@ typedef union _hw_pcie_rc_resr
  * Advanced Error Interrupt Message Number, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_RESR_ADVANCED_ERROR_INTERRUPT_MESSAGE_NUMBER      (27)      //!< Bit position for PCIE_RC_RESR_ADVANCED_ERROR_INTERRUPT_MESSAGE_NUMBER.
 #define BM_PCIE_RC_RESR_ADVANCED_ERROR_INTERRUPT_MESSAGE_NUMBER      (0xf8000000)  //!< Bit mask for PCIE_RC_RESR_ADVANCED_ERROR_INTERRUPT_MESSAGE_NUMBER.
 
@@ -7585,7 +7058,6 @@ typedef union _hw_pcie_rc_resr
 //! @brief Set the ADVANCED_ERROR_INTERRUPT_MESSAGE_NUMBER field to a new value.
 #define BW_PCIE_RC_RESR_ADVANCED_ERROR_INTERRUPT_MESSAGE_NUMBER(v)   (HW_PCIE_RC_RESR_WR((HW_PCIE_RC_RESR_RD() & ~BM_PCIE_RC_RESR_ADVANCED_ERROR_INTERRUPT_MESSAGE_NUMBER) | BF_PCIE_RC_RESR_ADVANCED_ERROR_INTERRUPT_MESSAGE_NUMBER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7632,13 +7104,11 @@ typedef union _hw_pcie_rc_esir
  * ERR_COR Source Identification
  */
 //@{
-
 #define BP_PCIE_RC_ESIR_ERR_COR_SID      (0)      //!< Bit position for PCIE_RC_ESIR_ERR_COR_SID.
 #define BM_PCIE_RC_ESIR_ERR_COR_SID      (0x0000ffff)  //!< Bit mask for PCIE_RC_ESIR_ERR_COR_SID.
 
 //! @brief Get value of PCIE_RC_ESIR_ERR_COR_SID from a register value.
 #define BG_PCIE_RC_ESIR_ERR_COR_SID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_ESIR_ERR_COR_SID) >> BP_PCIE_RC_ESIR_ERR_COR_SID)
-
 //@}
 
 /*! @name Register PCIE_RC_ESIR, field ERR_FATAL_NONFATAL_SID[31:16] (RO)
@@ -7646,13 +7116,11 @@ typedef union _hw_pcie_rc_esir
  * ERR_FATAL/NONFATAL Source Identification
  */
 //@{
-
 #define BP_PCIE_RC_ESIR_ERR_FATAL_NONFATAL_SID      (16)      //!< Bit position for PCIE_RC_ESIR_ERR_FATAL_NONFATAL_SID.
 #define BM_PCIE_RC_ESIR_ERR_FATAL_NONFATAL_SID      (0xffff0000)  //!< Bit mask for PCIE_RC_ESIR_ERR_FATAL_NONFATAL_SID.
 
 //! @brief Get value of PCIE_RC_ESIR_ERR_FATAL_NONFATAL_SID from a register value.
 #define BG_PCIE_RC_ESIR_ERR_FATAL_NONFATAL_SID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_ESIR_ERR_FATAL_NONFATAL_SID) >> BP_PCIE_RC_ESIR_ERR_FATAL_NONFATAL_SID)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7700,13 +7168,11 @@ typedef union _hw_pcie_rc_vcechr
  * PCI Express Extended Capability The default value is 0x2 for VC Capability.
  */
 //@{
-
 #define BP_PCIE_RC_VCECHR_EXTENDED_CAPABILITY      (0)      //!< Bit position for PCIE_RC_VCECHR_EXTENDED_CAPABILITY.
 #define BM_PCIE_RC_VCECHR_EXTENDED_CAPABILITY      (0x0000ffff)  //!< Bit mask for PCIE_RC_VCECHR_EXTENDED_CAPABILITY.
 
 //! @brief Get value of PCIE_RC_VCECHR_EXTENDED_CAPABILITY from a register value.
 #define BG_PCIE_RC_VCECHR_EXTENDED_CAPABILITY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_VCECHR_EXTENDED_CAPABILITY) >> BP_PCIE_RC_VCECHR_EXTENDED_CAPABILITY)
-
 //@}
 
 /*! @name Register PCIE_RC_VCECHR, field CAPABILITY_VERSION[19:16] (RO)
@@ -7714,13 +7180,11 @@ typedef union _hw_pcie_rc_vcechr
  * Capability Version
  */
 //@{
-
 #define BP_PCIE_RC_VCECHR_CAPABILITY_VERSION      (16)      //!< Bit position for PCIE_RC_VCECHR_CAPABILITY_VERSION.
 #define BM_PCIE_RC_VCECHR_CAPABILITY_VERSION      (0x000f0000)  //!< Bit mask for PCIE_RC_VCECHR_CAPABILITY_VERSION.
 
 //! @brief Get value of PCIE_RC_VCECHR_CAPABILITY_VERSION from a register value.
 #define BG_PCIE_RC_VCECHR_CAPABILITY_VERSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_VCECHR_CAPABILITY_VERSION) >> BP_PCIE_RC_VCECHR_CAPABILITY_VERSION)
-
 //@}
 
 /*! @name Register PCIE_RC_VCECHR, field NEXT_CAPABILITY_OFFSET[31:20] (RO)
@@ -7728,13 +7192,11 @@ typedef union _hw_pcie_rc_vcechr
  * Next Capability Offset See Table 5-222 on page 641.
  */
 //@{
-
 #define BP_PCIE_RC_VCECHR_NEXT_CAPABILITY_OFFSET      (20)      //!< Bit position for PCIE_RC_VCECHR_NEXT_CAPABILITY_OFFSET.
 #define BM_PCIE_RC_VCECHR_NEXT_CAPABILITY_OFFSET      (0xfff00000)  //!< Bit mask for PCIE_RC_VCECHR_NEXT_CAPABILITY_OFFSET.
 
 //! @brief Get value of PCIE_RC_VCECHR_NEXT_CAPABILITY_OFFSET from a register value.
 #define BG_PCIE_RC_VCECHR_NEXT_CAPABILITY_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_VCECHR_NEXT_CAPABILITY_OFFSET) >> BP_PCIE_RC_VCECHR_NEXT_CAPABILITY_OFFSET)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7786,13 +7248,11 @@ typedef union _hw_pcie_rc_pvccr1
  * Extended VC Count The default value is the one less than the number of VCs that
  */
 //@{
-
 #define BP_PCIE_RC_PVCCR1_EXTENDED_VC_COUNT      (0)      //!< Bit position for PCIE_RC_PVCCR1_EXTENDED_VC_COUNT.
 #define BM_PCIE_RC_PVCCR1_EXTENDED_VC_COUNT      (0x00000007)  //!< Bit mask for PCIE_RC_PVCCR1_EXTENDED_VC_COUNT.
 
 //! @brief Get value of PCIE_RC_PVCCR1_EXTENDED_VC_COUNT from a register value.
 #define BG_PCIE_RC_PVCCR1_EXTENDED_VC_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PVCCR1_EXTENDED_VC_COUNT) >> BP_PCIE_RC_PVCCR1_EXTENDED_VC_COUNT)
-
 //@}
 
 /*! @name Register PCIE_RC_PVCCR1, field LOW_PRIORITY_EXTENDED_VC_COUNT[6:4] (RO)
@@ -7800,13 +7260,11 @@ typedef union _hw_pcie_rc_pvccr1
  * Low Priority Extended VC Count, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_RC_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT      (4)      //!< Bit position for PCIE_RC_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT.
 #define BM_PCIE_RC_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT      (0x00000070)  //!< Bit mask for PCIE_RC_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT.
 
 //! @brief Get value of PCIE_RC_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT from a register value.
 #define BG_PCIE_RC_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT) >> BP_PCIE_RC_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT)
-
 //@}
 
 /*! @name Register PCIE_RC_PVCCR1, field REFERENCE_CLOCK[9:8] (RO)
@@ -7814,13 +7272,11 @@ typedef union _hw_pcie_rc_pvccr1
  * Reference Clock
  */
 //@{
-
 #define BP_PCIE_RC_PVCCR1_REFERENCE_CLOCK      (8)      //!< Bit position for PCIE_RC_PVCCR1_REFERENCE_CLOCK.
 #define BM_PCIE_RC_PVCCR1_REFERENCE_CLOCK      (0x00000300)  //!< Bit mask for PCIE_RC_PVCCR1_REFERENCE_CLOCK.
 
 //! @brief Get value of PCIE_RC_PVCCR1_REFERENCE_CLOCK from a register value.
 #define BG_PCIE_RC_PVCCR1_REFERENCE_CLOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PVCCR1_REFERENCE_CLOCK) >> BP_PCIE_RC_PVCCR1_REFERENCE_CLOCK)
-
 //@}
 
 /*! @name Register PCIE_RC_PVCCR1, field PORT_ARBITRATION_TABLE_ENTRY_SIZE[11:10] (RO)
@@ -7828,13 +7284,11 @@ typedef union _hw_pcie_rc_pvccr1
  * Port Arbitration Table Entry Size
  */
 //@{
-
 #define BP_PCIE_RC_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE      (10)      //!< Bit position for PCIE_RC_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE.
 #define BM_PCIE_RC_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE      (0x00000c00)  //!< Bit mask for PCIE_RC_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE.
 
 //! @brief Get value of PCIE_RC_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE from a register value.
 #define BG_PCIE_RC_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE) >> BP_PCIE_RC_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7885,13 +7339,11 @@ typedef union _hw_pcie_rc_pvccr2
  * Device supports 64-phase WRR •Bit 3: Device supports 128-phase WRR •Bits 4-7: Reserved
  */
 //@{
-
 #define BP_PCIE_RC_PVCCR2_VC_ARBITRATION_CAPABILITY      (0)      //!< Bit position for PCIE_RC_PVCCR2_VC_ARBITRATION_CAPABILITY.
 #define BM_PCIE_RC_PVCCR2_VC_ARBITRATION_CAPABILITY      (0x000000ff)  //!< Bit mask for PCIE_RC_PVCCR2_VC_ARBITRATION_CAPABILITY.
 
 //! @brief Get value of PCIE_RC_PVCCR2_VC_ARBITRATION_CAPABILITY from a register value.
 #define BG_PCIE_RC_PVCCR2_VC_ARBITRATION_CAPABILITY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PVCCR2_VC_ARBITRATION_CAPABILITY) >> BP_PCIE_RC_PVCCR2_VC_ARBITRATION_CAPABILITY)
-
 //@}
 
 /*! @name Register PCIE_RC_PVCCR2, field VC_ARBITRATION_TABLE_OFFSET[31:24] (RO)
@@ -7900,13 +7352,11 @@ typedef union _hw_pcie_rc_pvccr2
  * present).
  */
 //@{
-
 #define BP_PCIE_RC_PVCCR2_VC_ARBITRATION_TABLE_OFFSET      (24)      //!< Bit position for PCIE_RC_PVCCR2_VC_ARBITRATION_TABLE_OFFSET.
 #define BM_PCIE_RC_PVCCR2_VC_ARBITRATION_TABLE_OFFSET      (0xff000000)  //!< Bit mask for PCIE_RC_PVCCR2_VC_ARBITRATION_TABLE_OFFSET.
 
 //! @brief Get value of PCIE_RC_PVCCR2_VC_ARBITRATION_TABLE_OFFSET from a register value.
 #define BG_PCIE_RC_PVCCR2_VC_ARBITRATION_TABLE_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_PVCCR2_VC_ARBITRATION_TABLE_OFFSET) >> BP_PCIE_RC_PVCCR2_VC_ARBITRATION_TABLE_OFFSET)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7960,7 +7410,6 @@ typedef union _hw_pcie_rc_pvccsr
  * Load VC Arbitration Table
  */
 //@{
-
 #define BP_PCIE_RC_PVCCSR_LOAD_VC_ARBITRATION_TABLE      (0)      //!< Bit position for PCIE_RC_PVCCSR_LOAD_VC_ARBITRATION_TABLE.
 #define BM_PCIE_RC_PVCCSR_LOAD_VC_ARBITRATION_TABLE      (0x00000001)  //!< Bit mask for PCIE_RC_PVCCSR_LOAD_VC_ARBITRATION_TABLE.
 
@@ -7974,7 +7423,6 @@ typedef union _hw_pcie_rc_pvccsr
 //! @brief Set the LOAD_VC_ARBITRATION_TABLE field to a new value.
 #define BW_PCIE_RC_PVCCSR_LOAD_VC_ARBITRATION_TABLE(v)   (HW_PCIE_RC_PVCCSR_WR((HW_PCIE_RC_PVCCSR_RD() & ~BM_PCIE_RC_PVCCSR_LOAD_VC_ARBITRATION_TABLE) | BF_PCIE_RC_PVCCSR_LOAD_VC_ARBITRATION_TABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_PVCCSR, field VC_ARBITRATION_SELECT[3:1] (RW)
@@ -7982,7 +7430,6 @@ typedef union _hw_pcie_rc_pvccsr
  * VC Arbitration Select
  */
 //@{
-
 #define BP_PCIE_RC_PVCCSR_VC_ARBITRATION_SELECT      (1)      //!< Bit position for PCIE_RC_PVCCSR_VC_ARBITRATION_SELECT.
 #define BM_PCIE_RC_PVCCSR_VC_ARBITRATION_SELECT      (0x0000000e)  //!< Bit mask for PCIE_RC_PVCCSR_VC_ARBITRATION_SELECT.
 
@@ -7996,7 +7443,6 @@ typedef union _hw_pcie_rc_pvccsr
 //! @brief Set the VC_ARBITRATION_SELECT field to a new value.
 #define BW_PCIE_RC_PVCCSR_VC_ARBITRATION_SELECT(v)   (HW_PCIE_RC_PVCCSR_WR((HW_PCIE_RC_PVCCSR_RD() & ~BM_PCIE_RC_PVCCSR_VC_ARBITRATION_SELECT) | BF_PCIE_RC_PVCCSR_VC_ARBITRATION_SELECT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_PVCCSR, field ARBITRATION_TABLE_STATUS[16] (RW)
@@ -8004,7 +7450,6 @@ typedef union _hw_pcie_rc_pvccsr
  * Arbitration Table Status
  */
 //@{
-
 #define BP_PCIE_RC_PVCCSR_ARBITRATION_TABLE_STATUS      (16)      //!< Bit position for PCIE_RC_PVCCSR_ARBITRATION_TABLE_STATUS.
 #define BM_PCIE_RC_PVCCSR_ARBITRATION_TABLE_STATUS      (0x00010000)  //!< Bit mask for PCIE_RC_PVCCSR_ARBITRATION_TABLE_STATUS.
 
@@ -8018,7 +7463,6 @@ typedef union _hw_pcie_rc_pvccsr
 //! @brief Set the ARBITRATION_TABLE_STATUS field to a new value.
 #define BW_PCIE_RC_PVCCSR_ARBITRATION_TABLE_STATUS(v)   (HW_PCIE_RC_PVCCSR_WR((HW_PCIE_RC_PVCCSR_RD() & ~BM_PCIE_RC_PVCCSR_ARBITRATION_TABLE_STATUS) | BF_PCIE_RC_PVCCSR_ARBITRATION_TABLE_STATUS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8069,13 +7513,11 @@ typedef union _hw_pcie_rc_vcrcr
  * Port Arbitration Capability
  */
 //@{
-
 #define BP_PCIE_RC_VCRCR_PORT_ARBITRATION_CAPABILITY      (0)      //!< Bit position for PCIE_RC_VCRCR_PORT_ARBITRATION_CAPABILITY.
 #define BM_PCIE_RC_VCRCR_PORT_ARBITRATION_CAPABILITY      (0x000000ff)  //!< Bit mask for PCIE_RC_VCRCR_PORT_ARBITRATION_CAPABILITY.
 
 //! @brief Get value of PCIE_RC_VCRCR_PORT_ARBITRATION_CAPABILITY from a register value.
 #define BG_PCIE_RC_VCRCR_PORT_ARBITRATION_CAPABILITY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_VCRCR_PORT_ARBITRATION_CAPABILITY) >> BP_PCIE_RC_VCRCR_PORT_ARBITRATION_CAPABILITY)
-
 //@}
 
 /*! @name Register PCIE_RC_VCRCR, field REJECT_SNOOP_TRANSACTIONS[15] (RO)
@@ -8083,13 +7525,11 @@ typedef union _hw_pcie_rc_vcrcr
  * Reject Snoop Transactions
  */
 //@{
-
 #define BP_PCIE_RC_VCRCR_REJECT_SNOOP_TRANSACTIONS      (15)      //!< Bit position for PCIE_RC_VCRCR_REJECT_SNOOP_TRANSACTIONS.
 #define BM_PCIE_RC_VCRCR_REJECT_SNOOP_TRANSACTIONS      (0x00008000)  //!< Bit mask for PCIE_RC_VCRCR_REJECT_SNOOP_TRANSACTIONS.
 
 //! @brief Get value of PCIE_RC_VCRCR_REJECT_SNOOP_TRANSACTIONS from a register value.
 #define BG_PCIE_RC_VCRCR_REJECT_SNOOP_TRANSACTIONS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_VCRCR_REJECT_SNOOP_TRANSACTIONS) >> BP_PCIE_RC_VCRCR_REJECT_SNOOP_TRANSACTIONS)
-
 //@}
 
 /*! @name Register PCIE_RC_VCRCR, field MAXIMUM_TIME_SLOTS[22:16] (RO)
@@ -8097,13 +7537,11 @@ typedef union _hw_pcie_rc_vcrcr
  * Maximum Time Slots
  */
 //@{
-
 #define BP_PCIE_RC_VCRCR_MAXIMUM_TIME_SLOTS      (16)      //!< Bit position for PCIE_RC_VCRCR_MAXIMUM_TIME_SLOTS.
 #define BM_PCIE_RC_VCRCR_MAXIMUM_TIME_SLOTS      (0x007f0000)  //!< Bit mask for PCIE_RC_VCRCR_MAXIMUM_TIME_SLOTS.
 
 //! @brief Get value of PCIE_RC_VCRCR_MAXIMUM_TIME_SLOTS from a register value.
 #define BG_PCIE_RC_VCRCR_MAXIMUM_TIME_SLOTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_VCRCR_MAXIMUM_TIME_SLOTS) >> BP_PCIE_RC_VCRCR_MAXIMUM_TIME_SLOTS)
-
 //@}
 
 /*! @name Register PCIE_RC_VCRCR, field PORT_ARBITRATION_TABLE_OFFSET[31:24] (RO)
@@ -8111,13 +7549,11 @@ typedef union _hw_pcie_rc_vcrcr
  * Port Arbitration Table Offset
  */
 //@{
-
 #define BP_PCIE_RC_VCRCR_PORT_ARBITRATION_TABLE_OFFSET      (24)      //!< Bit position for PCIE_RC_VCRCR_PORT_ARBITRATION_TABLE_OFFSET.
 #define BM_PCIE_RC_VCRCR_PORT_ARBITRATION_TABLE_OFFSET      (0xff000000)  //!< Bit mask for PCIE_RC_VCRCR_PORT_ARBITRATION_TABLE_OFFSET.
 
 //! @brief Get value of PCIE_RC_VCRCR_PORT_ARBITRATION_TABLE_OFFSET from a register value.
 #define BG_PCIE_RC_VCRCR_PORT_ARBITRATION_TABLE_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_VCRCR_PORT_ARBITRATION_TABLE_OFFSET) >> BP_PCIE_RC_VCRCR_PORT_ARBITRATION_TABLE_OFFSET)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8174,7 +7610,6 @@ typedef union _hw_pcie_rc_vcrconr
  * TC/VC Map Bit 0 is hardwired to 1; bits 7:1 are RW.
  */
 //@{
-
 #define BP_PCIE_RC_VCRCONR_TC_VC_MAP      (0)      //!< Bit position for PCIE_RC_VCRCONR_TC_VC_MAP.
 #define BM_PCIE_RC_VCRCONR_TC_VC_MAP      (0x000000ff)  //!< Bit mask for PCIE_RC_VCRCONR_TC_VC_MAP.
 
@@ -8188,7 +7623,6 @@ typedef union _hw_pcie_rc_vcrconr
 //! @brief Set the TC_VC_MAP field to a new value.
 #define BW_PCIE_RC_VCRCONR_TC_VC_MAP(v)   (HW_PCIE_RC_VCRCONR_WR((HW_PCIE_RC_VCRCONR_RD() & ~BM_PCIE_RC_VCRCONR_TC_VC_MAP) | BF_PCIE_RC_VCRCONR_TC_VC_MAP(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_VCRCONR, field LOAD_PORT_ARBITRATION_TABLE[16] (RW)
@@ -8196,7 +7630,6 @@ typedef union _hw_pcie_rc_vcrconr
  * Load Port Arbitration Table
  */
 //@{
-
 #define BP_PCIE_RC_VCRCONR_LOAD_PORT_ARBITRATION_TABLE      (16)      //!< Bit position for PCIE_RC_VCRCONR_LOAD_PORT_ARBITRATION_TABLE.
 #define BM_PCIE_RC_VCRCONR_LOAD_PORT_ARBITRATION_TABLE      (0x00010000)  //!< Bit mask for PCIE_RC_VCRCONR_LOAD_PORT_ARBITRATION_TABLE.
 
@@ -8210,7 +7643,6 @@ typedef union _hw_pcie_rc_vcrconr
 //! @brief Set the LOAD_PORT_ARBITRATION_TABLE field to a new value.
 #define BW_PCIE_RC_VCRCONR_LOAD_PORT_ARBITRATION_TABLE(v)   (HW_PCIE_RC_VCRCONR_WR((HW_PCIE_RC_VCRCONR_RD() & ~BM_PCIE_RC_VCRCONR_LOAD_PORT_ARBITRATION_TABLE) | BF_PCIE_RC_VCRCONR_LOAD_PORT_ARBITRATION_TABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_VCRCONR, field PORT_ARBITRATION_SELECT[19:17] (RW)
@@ -8218,7 +7650,6 @@ typedef union _hw_pcie_rc_vcrconr
  * Port Arbitration Select
  */
 //@{
-
 #define BP_PCIE_RC_VCRCONR_PORT_ARBITRATION_SELECT      (17)      //!< Bit position for PCIE_RC_VCRCONR_PORT_ARBITRATION_SELECT.
 #define BM_PCIE_RC_VCRCONR_PORT_ARBITRATION_SELECT      (0x000e0000)  //!< Bit mask for PCIE_RC_VCRCONR_PORT_ARBITRATION_SELECT.
 
@@ -8232,7 +7663,6 @@ typedef union _hw_pcie_rc_vcrconr
 //! @brief Set the PORT_ARBITRATION_SELECT field to a new value.
 #define BW_PCIE_RC_VCRCONR_PORT_ARBITRATION_SELECT(v)   (HW_PCIE_RC_VCRCONR_WR((HW_PCIE_RC_VCRCONR_RD() & ~BM_PCIE_RC_VCRCONR_PORT_ARBITRATION_SELECT) | BF_PCIE_RC_VCRCONR_PORT_ARBITRATION_SELECT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_VCRCONR, field VC_ID[26:24] (RW)
@@ -8240,7 +7670,6 @@ typedef union _hw_pcie_rc_vcrconr
  * VC ID Hardwired to 0 for VC0.
  */
 //@{
-
 #define BP_PCIE_RC_VCRCONR_VC_ID      (24)      //!< Bit position for PCIE_RC_VCRCONR_VC_ID.
 #define BM_PCIE_RC_VCRCONR_VC_ID      (0x07000000)  //!< Bit mask for PCIE_RC_VCRCONR_VC_ID.
 
@@ -8254,7 +7683,6 @@ typedef union _hw_pcie_rc_vcrconr
 //! @brief Set the VC_ID field to a new value.
 #define BW_PCIE_RC_VCRCONR_VC_ID(v)   (HW_PCIE_RC_VCRCONR_WR((HW_PCIE_RC_VCRCONR_RD() & ~BM_PCIE_RC_VCRCONR_VC_ID) | BF_PCIE_RC_VCRCONR_VC_ID(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_RC_VCRCONR, field VC_ENABLE[31] (RW)
@@ -8262,7 +7690,6 @@ typedef union _hw_pcie_rc_vcrconr
  * VC Enable Hardwired to 1 for the first VC.
  */
 //@{
-
 #define BP_PCIE_RC_VCRCONR_VC_ENABLE      (31)      //!< Bit position for PCIE_RC_VCRCONR_VC_ENABLE.
 #define BM_PCIE_RC_VCRCONR_VC_ENABLE      (0x80000000)  //!< Bit mask for PCIE_RC_VCRCONR_VC_ENABLE.
 
@@ -8276,7 +7703,6 @@ typedef union _hw_pcie_rc_vcrconr
 //! @brief Set the VC_ENABLE field to a new value.
 #define BW_PCIE_RC_VCRCONR_VC_ENABLE(v)   (HW_PCIE_RC_VCRCONR_WR((HW_PCIE_RC_VCRCONR_RD() & ~BM_PCIE_RC_VCRCONR_VC_ENABLE) | BF_PCIE_RC_VCRCONR_VC_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8325,13 +7751,11 @@ typedef union _hw_pcie_rc_vcrsr
  * Port Arbitration Table Status
  */
 //@{
-
 #define BP_PCIE_RC_VCRSR_PORT_ARBITRATION_TABLE_STATUS      (16)      //!< Bit position for PCIE_RC_VCRSR_PORT_ARBITRATION_TABLE_STATUS.
 #define BM_PCIE_RC_VCRSR_PORT_ARBITRATION_TABLE_STATUS      (0x00010000)  //!< Bit mask for PCIE_RC_VCRSR_PORT_ARBITRATION_TABLE_STATUS.
 
 //! @brief Get value of PCIE_RC_VCRSR_PORT_ARBITRATION_TABLE_STATUS from a register value.
 #define BG_PCIE_RC_VCRSR_PORT_ARBITRATION_TABLE_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_VCRSR_PORT_ARBITRATION_TABLE_STATUS) >> BP_PCIE_RC_VCRSR_PORT_ARBITRATION_TABLE_STATUS)
-
 //@}
 
 /*! @name Register PCIE_RC_VCRSR, field VC_NEGOTIATION_PENDING[17] (RO)
@@ -8339,13 +7763,11 @@ typedef union _hw_pcie_rc_vcrsr
  * VC Negotiation Pending
  */
 //@{
-
 #define BP_PCIE_RC_VCRSR_VC_NEGOTIATION_PENDING      (17)      //!< Bit position for PCIE_RC_VCRSR_VC_NEGOTIATION_PENDING.
 #define BM_PCIE_RC_VCRSR_VC_NEGOTIATION_PENDING      (0x00020000)  //!< Bit mask for PCIE_RC_VCRSR_VC_NEGOTIATION_PENDING.
 
 //! @brief Get value of PCIE_RC_VCRSR_VC_NEGOTIATION_PENDING from a register value.
 #define BG_PCIE_RC_VCRSR_VC_NEGOTIATION_PENDING(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_RC_VCRSR_VC_NEGOTIATION_PENDING) >> BP_PCIE_RC_VCRSR_VC_NEGOTIATION_PENDING)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8421,3 +7843,5 @@ typedef struct _hw_pcie_rc
 #endif
 
 #endif // __HW_PCIE_RC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

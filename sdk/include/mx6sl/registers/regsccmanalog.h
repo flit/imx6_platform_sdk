@@ -121,7 +121,6 @@ typedef union _hw_ccm_analog_pll_arm
  * div_select/2.0.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_DIV_SELECT      (0)      //!< Bit position for CCM_ANALOG_PLL_ARM_DIV_SELECT.
 #define BM_CCM_ANALOG_PLL_ARM_DIV_SELECT      (0x0000007f)  //!< Bit mask for CCM_ANALOG_PLL_ARM_DIV_SELECT.
 
@@ -135,7 +134,6 @@ typedef union _hw_ccm_analog_pll_arm
 //! @brief Set the DIV_SELECT field to a new value.
 #define BW_CCM_ANALOG_PLL_ARM_DIV_SELECT(v)   BF_CS1(CCM_ANALOG_PLL_ARM, DIV_SELECT, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ARM, field HALF_LF[7] (RW)
@@ -143,7 +141,6 @@ typedef union _hw_ccm_analog_pll_arm
  * Reserved by Freescale.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_HALF_LF      (7)      //!< Bit position for CCM_ANALOG_PLL_ARM_HALF_LF.
 #define BM_CCM_ANALOG_PLL_ARM_HALF_LF      (0x00000080)  //!< Bit mask for CCM_ANALOG_PLL_ARM_HALF_LF.
 
@@ -157,7 +154,6 @@ typedef union _hw_ccm_analog_pll_arm
 //! @brief Set the HALF_LF field to a new value.
 #define BW_CCM_ANALOG_PLL_ARM_HALF_LF(v)   BF_CS1(CCM_ANALOG_PLL_ARM, HALF_LF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ARM, field DOUBLE_LF[8] (RW)
@@ -165,7 +161,6 @@ typedef union _hw_ccm_analog_pll_arm
  * Reserved by Freescale.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_DOUBLE_LF      (8)      //!< Bit position for CCM_ANALOG_PLL_ARM_DOUBLE_LF.
 #define BM_CCM_ANALOG_PLL_ARM_DOUBLE_LF      (0x00000100)  //!< Bit mask for CCM_ANALOG_PLL_ARM_DOUBLE_LF.
 
@@ -179,7 +174,6 @@ typedef union _hw_ccm_analog_pll_arm
 //! @brief Set the DOUBLE_LF field to a new value.
 #define BW_CCM_ANALOG_PLL_ARM_DOUBLE_LF(v)   BF_CS1(CCM_ANALOG_PLL_ARM, DOUBLE_LF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ARM, field HALF_CP[9] (RW)
@@ -187,7 +181,6 @@ typedef union _hw_ccm_analog_pll_arm
  * Reserved by Freescale.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_HALF_CP      (9)      //!< Bit position for CCM_ANALOG_PLL_ARM_HALF_CP.
 #define BM_CCM_ANALOG_PLL_ARM_HALF_CP      (0x00000200)  //!< Bit mask for CCM_ANALOG_PLL_ARM_HALF_CP.
 
@@ -201,7 +194,6 @@ typedef union _hw_ccm_analog_pll_arm
 //! @brief Set the HALF_CP field to a new value.
 #define BW_CCM_ANALOG_PLL_ARM_HALF_CP(v)   BF_CS1(CCM_ANALOG_PLL_ARM, HALF_CP, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ARM, field DOUBLE_CP[10] (RW)
@@ -209,7 +201,6 @@ typedef union _hw_ccm_analog_pll_arm
  * Reserved by Freescale.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_DOUBLE_CP      (10)      //!< Bit position for CCM_ANALOG_PLL_ARM_DOUBLE_CP.
 #define BM_CCM_ANALOG_PLL_ARM_DOUBLE_CP      (0x00000400)  //!< Bit mask for CCM_ANALOG_PLL_ARM_DOUBLE_CP.
 
@@ -223,7 +214,6 @@ typedef union _hw_ccm_analog_pll_arm
 //! @brief Set the DOUBLE_CP field to a new value.
 #define BW_CCM_ANALOG_PLL_ARM_DOUBLE_CP(v)   BF_CS1(CCM_ANALOG_PLL_ARM, DOUBLE_CP, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ARM, field HOLD_RING_OFF[11] (RW)
@@ -231,7 +221,6 @@ typedef union _hw_ccm_analog_pll_arm
  * Analog debug bit.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_HOLD_RING_OFF      (11)      //!< Bit position for CCM_ANALOG_PLL_ARM_HOLD_RING_OFF.
 #define BM_CCM_ANALOG_PLL_ARM_HOLD_RING_OFF      (0x00000800)  //!< Bit mask for CCM_ANALOG_PLL_ARM_HOLD_RING_OFF.
 
@@ -245,7 +234,6 @@ typedef union _hw_ccm_analog_pll_arm
 //! @brief Set the HOLD_RING_OFF field to a new value.
 #define BW_CCM_ANALOG_PLL_ARM_HOLD_RING_OFF(v)   BF_CS1(CCM_ANALOG_PLL_ARM, HOLD_RING_OFF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ARM, field POWERDOWN[12] (RW)
@@ -253,7 +241,6 @@ typedef union _hw_ccm_analog_pll_arm
  * Powers down the PLL.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_POWERDOWN      (12)      //!< Bit position for CCM_ANALOG_PLL_ARM_POWERDOWN.
 #define BM_CCM_ANALOG_PLL_ARM_POWERDOWN      (0x00001000)  //!< Bit mask for CCM_ANALOG_PLL_ARM_POWERDOWN.
 
@@ -267,7 +254,6 @@ typedef union _hw_ccm_analog_pll_arm
 //! @brief Set the POWERDOWN field to a new value.
 #define BW_CCM_ANALOG_PLL_ARM_POWERDOWN(v)   BF_CS1(CCM_ANALOG_PLL_ARM, POWERDOWN, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ARM, field ENABLE[13] (RW)
@@ -275,7 +261,6 @@ typedef union _hw_ccm_analog_pll_arm
  * Enable the clock output.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_ENABLE      (13)      //!< Bit position for CCM_ANALOG_PLL_ARM_ENABLE.
 #define BM_CCM_ANALOG_PLL_ARM_ENABLE      (0x00002000)  //!< Bit mask for CCM_ANALOG_PLL_ARM_ENABLE.
 
@@ -289,7 +274,6 @@ typedef union _hw_ccm_analog_pll_arm
 //! @brief Set the ENABLE field to a new value.
 #define BW_CCM_ANALOG_PLL_ARM_ENABLE(v)   BF_CS1(CCM_ANALOG_PLL_ARM, ENABLE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ARM, field BYPASS_CLK_SRC[15:14] (RW)
@@ -303,7 +287,6 @@ typedef union _hw_ccm_analog_pll_arm
  * - RESERVED1 = 0x3 - 
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_BYPASS_CLK_SRC      (14)      //!< Bit position for CCM_ANALOG_PLL_ARM_BYPASS_CLK_SRC.
 #define BM_CCM_ANALOG_PLL_ARM_BYPASS_CLK_SRC      (0x0000c000)  //!< Bit mask for CCM_ANALOG_PLL_ARM_BYPASS_CLK_SRC.
 
@@ -325,7 +308,6 @@ typedef union _hw_ccm_analog_pll_arm
 #define BV_CCM_ANALOG_PLL_ARM_BYPASS_CLK_SRC__ANACLK_1 (0x1) //!< Select the Anaclk1/1b as source.
 #define BV_CCM_ANALOG_PLL_ARM_BYPASS_CLK_SRC__RESERVED (0x2) //!< 
 #define BV_CCM_ANALOG_PLL_ARM_BYPASS_CLK_SRC__RESERVED1 (0x3) //!< 
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ARM, field BYPASS[16] (RW)
@@ -333,7 +315,6 @@ typedef union _hw_ccm_analog_pll_arm
  * Bypass the pll.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_BYPASS      (16)      //!< Bit position for CCM_ANALOG_PLL_ARM_BYPASS.
 #define BM_CCM_ANALOG_PLL_ARM_BYPASS      (0x00010000)  //!< Bit mask for CCM_ANALOG_PLL_ARM_BYPASS.
 
@@ -347,7 +328,6 @@ typedef union _hw_ccm_analog_pll_arm
 //! @brief Set the BYPASS field to a new value.
 #define BW_CCM_ANALOG_PLL_ARM_BYPASS(v)   BF_CS1(CCM_ANALOG_PLL_ARM, BYPASS, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ARM, field LVDS_SEL[17] (RW)
@@ -355,7 +335,6 @@ typedef union _hw_ccm_analog_pll_arm
  * Analog Debug Bit
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_LVDS_SEL      (17)      //!< Bit position for CCM_ANALOG_PLL_ARM_LVDS_SEL.
 #define BM_CCM_ANALOG_PLL_ARM_LVDS_SEL      (0x00020000)  //!< Bit mask for CCM_ANALOG_PLL_ARM_LVDS_SEL.
 
@@ -369,7 +348,6 @@ typedef union _hw_ccm_analog_pll_arm
 //! @brief Set the LVDS_SEL field to a new value.
 #define BW_CCM_ANALOG_PLL_ARM_LVDS_SEL(v)   BF_CS1(CCM_ANALOG_PLL_ARM, LVDS_SEL, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ARM, field LVDS_24MHZ_SEL[18] (RW)
@@ -377,7 +355,6 @@ typedef union _hw_ccm_analog_pll_arm
  * Analog Debug Bit
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_LVDS_24MHZ_SEL      (18)      //!< Bit position for CCM_ANALOG_PLL_ARM_LVDS_24MHZ_SEL.
 #define BM_CCM_ANALOG_PLL_ARM_LVDS_24MHZ_SEL      (0x00040000)  //!< Bit mask for CCM_ANALOG_PLL_ARM_LVDS_24MHZ_SEL.
 
@@ -391,7 +368,6 @@ typedef union _hw_ccm_analog_pll_arm
 //! @brief Set the LVDS_24MHZ_SEL field to a new value.
 #define BW_CCM_ANALOG_PLL_ARM_LVDS_24MHZ_SEL(v)   BF_CS1(CCM_ANALOG_PLL_ARM, LVDS_24MHZ_SEL, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ARM, field PLL_SEL[19] (RW)
@@ -399,7 +375,6 @@ typedef union _hw_ccm_analog_pll_arm
  * Reserved
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_PLL_SEL      (19)      //!< Bit position for CCM_ANALOG_PLL_ARM_PLL_SEL.
 #define BM_CCM_ANALOG_PLL_ARM_PLL_SEL      (0x00080000)  //!< Bit mask for CCM_ANALOG_PLL_ARM_PLL_SEL.
 
@@ -413,7 +388,6 @@ typedef union _hw_ccm_analog_pll_arm
 //! @brief Set the PLL_SEL field to a new value.
 #define BW_CCM_ANALOG_PLL_ARM_PLL_SEL(v)   BF_CS1(CCM_ANALOG_PLL_ARM, PLL_SEL, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ARM, field LOCK[31] (RO)
@@ -421,13 +395,11 @@ typedef union _hw_ccm_analog_pll_arm
  * 1 - PLL is currently locked. 0 - PLL is not currently locked.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ARM_LOCK      (31)      //!< Bit position for CCM_ANALOG_PLL_ARM_LOCK.
 #define BM_CCM_ANALOG_PLL_ARM_LOCK      (0x80000000)  //!< Bit mask for CCM_ANALOG_PLL_ARM_LOCK.
 
 //! @brief Get value of CCM_ANALOG_PLL_ARM_LOCK from a register value.
 #define BG_CCM_ANALOG_PLL_ARM_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PLL_ARM_LOCK) >> BP_CCM_ANALOG_PLL_ARM_LOCK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -489,7 +461,6 @@ typedef union _hw_ccm_analog_pll_usb1
  * This field controls the pll loop divider. 0 - Fout=Fref*20; 1 - Fout=Fref*22.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB1_DIV_SELECT      (0)      //!< Bit position for CCM_ANALOG_PLL_USB1_DIV_SELECT.
 #define BM_CCM_ANALOG_PLL_USB1_DIV_SELECT      (0x00000003)  //!< Bit mask for CCM_ANALOG_PLL_USB1_DIV_SELECT.
 
@@ -503,7 +474,6 @@ typedef union _hw_ccm_analog_pll_usb1
 //! @brief Set the DIV_SELECT field to a new value.
 #define BW_CCM_ANALOG_PLL_USB1_DIV_SELECT(v)   BF_CS1(CCM_ANALOG_PLL_USB1, DIV_SELECT, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_USB1, field EN_USB_CLKS[6] (RW)
@@ -517,7 +487,6 @@ typedef union _hw_ccm_analog_pll_usb1
  * - 1 - PLL outputs for USBPHYn on.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB1_EN_USB_CLKS      (6)      //!< Bit position for CCM_ANALOG_PLL_USB1_EN_USB_CLKS.
 #define BM_CCM_ANALOG_PLL_USB1_EN_USB_CLKS      (0x00000040)  //!< Bit mask for CCM_ANALOG_PLL_USB1_EN_USB_CLKS.
 
@@ -531,7 +500,6 @@ typedef union _hw_ccm_analog_pll_usb1
 //! @brief Set the EN_USB_CLKS field to a new value.
 #define BW_CCM_ANALOG_PLL_USB1_EN_USB_CLKS(v)   BF_CS1(CCM_ANALOG_PLL_USB1, EN_USB_CLKS, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_USB1, field POWER[12] (RW)
@@ -539,7 +507,6 @@ typedef union _hw_ccm_analog_pll_usb1
  * Powers up the PLL. This bit will be set automatically when USBPHY0 remote wakeup event happens.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB1_POWER      (12)      //!< Bit position for CCM_ANALOG_PLL_USB1_POWER.
 #define BM_CCM_ANALOG_PLL_USB1_POWER      (0x00001000)  //!< Bit mask for CCM_ANALOG_PLL_USB1_POWER.
 
@@ -553,7 +520,6 @@ typedef union _hw_ccm_analog_pll_usb1
 //! @brief Set the POWER field to a new value.
 #define BW_CCM_ANALOG_PLL_USB1_POWER(v)   BF_CS1(CCM_ANALOG_PLL_USB1, POWER, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_USB1, field ENABLE[13] (RW)
@@ -561,7 +527,6 @@ typedef union _hw_ccm_analog_pll_usb1
  * Enable the PLL clock output.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB1_ENABLE      (13)      //!< Bit position for CCM_ANALOG_PLL_USB1_ENABLE.
 #define BM_CCM_ANALOG_PLL_USB1_ENABLE      (0x00002000)  //!< Bit mask for CCM_ANALOG_PLL_USB1_ENABLE.
 
@@ -575,7 +540,6 @@ typedef union _hw_ccm_analog_pll_usb1
 //! @brief Set the ENABLE field to a new value.
 #define BW_CCM_ANALOG_PLL_USB1_ENABLE(v)   BF_CS1(CCM_ANALOG_PLL_USB1, ENABLE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_USB1, field BYPASS_CLK_SRC[15:14] (RW)
@@ -589,7 +553,6 @@ typedef union _hw_ccm_analog_pll_usb1
  * - CHRG_DET_B = 0x3 - 
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC      (14)      //!< Bit position for CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC.
 #define BM_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC      (0x0000c000)  //!< Bit mask for CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC.
 
@@ -611,7 +574,6 @@ typedef union _hw_ccm_analog_pll_usb1
 #define BV_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC__ANACLK_1 (0x1) //!< Select the Anaclk1/1b as source.
 #define BV_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC__GPANAIO (0x2) //!< 
 #define BV_CCM_ANALOG_PLL_USB1_BYPASS_CLK_SRC__CHRG_DET_B (0x3) //!< 
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_USB1, field BYPASS[16] (RW)
@@ -619,7 +581,6 @@ typedef union _hw_ccm_analog_pll_usb1
  * Bypass the pll.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB1_BYPASS      (16)      //!< Bit position for CCM_ANALOG_PLL_USB1_BYPASS.
 #define BM_CCM_ANALOG_PLL_USB1_BYPASS      (0x00010000)  //!< Bit mask for CCM_ANALOG_PLL_USB1_BYPASS.
 
@@ -633,7 +594,6 @@ typedef union _hw_ccm_analog_pll_usb1
 //! @brief Set the BYPASS field to a new value.
 #define BW_CCM_ANALOG_PLL_USB1_BYPASS(v)   BF_CS1(CCM_ANALOG_PLL_USB1, BYPASS, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_USB1, field LOCK[31] (RO)
@@ -641,13 +601,11 @@ typedef union _hw_ccm_analog_pll_usb1
  * 1 - PLL is currently locked. 0 - PLL is not currently locked.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB1_LOCK      (31)      //!< Bit position for CCM_ANALOG_PLL_USB1_LOCK.
 #define BM_CCM_ANALOG_PLL_USB1_LOCK      (0x80000000)  //!< Bit mask for CCM_ANALOG_PLL_USB1_LOCK.
 
 //! @brief Get value of CCM_ANALOG_PLL_USB1_LOCK from a register value.
 #define BG_CCM_ANALOG_PLL_USB1_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PLL_USB1_LOCK) >> BP_CCM_ANALOG_PLL_USB1_LOCK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -709,7 +667,6 @@ typedef union _hw_ccm_analog_pll_usb2
  * This field controls the pll loop divider. 0 - Fout=Fref*20; 1 - Fout=Fref*22.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB2_DIV_SELECT      (0)      //!< Bit position for CCM_ANALOG_PLL_USB2_DIV_SELECT.
 #define BM_CCM_ANALOG_PLL_USB2_DIV_SELECT      (0x00000003)  //!< Bit mask for CCM_ANALOG_PLL_USB2_DIV_SELECT.
 
@@ -723,7 +680,6 @@ typedef union _hw_ccm_analog_pll_usb2
 //! @brief Set the DIV_SELECT field to a new value.
 #define BW_CCM_ANALOG_PLL_USB2_DIV_SELECT(v)   BF_CS1(CCM_ANALOG_PLL_USB2, DIV_SELECT, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_USB2, field EN_USB_CLKS[6] (RW)
@@ -734,7 +690,6 @@ typedef union _hw_ccm_analog_pll_usb2
  * USBPHY1 remote wakeup event happens.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB2_EN_USB_CLKS      (6)      //!< Bit position for CCM_ANALOG_PLL_USB2_EN_USB_CLKS.
 #define BM_CCM_ANALOG_PLL_USB2_EN_USB_CLKS      (0x00000040)  //!< Bit mask for CCM_ANALOG_PLL_USB2_EN_USB_CLKS.
 
@@ -748,7 +703,6 @@ typedef union _hw_ccm_analog_pll_usb2
 //! @brief Set the EN_USB_CLKS field to a new value.
 #define BW_CCM_ANALOG_PLL_USB2_EN_USB_CLKS(v)   BF_CS1(CCM_ANALOG_PLL_USB2, EN_USB_CLKS, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_USB2, field POWER[12] (RW)
@@ -756,7 +710,6 @@ typedef union _hw_ccm_analog_pll_usb2
  * Powers up the PLL. This bit will be set automatically when USBPHY1 remote wakeup event happens.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB2_POWER      (12)      //!< Bit position for CCM_ANALOG_PLL_USB2_POWER.
 #define BM_CCM_ANALOG_PLL_USB2_POWER      (0x00001000)  //!< Bit mask for CCM_ANALOG_PLL_USB2_POWER.
 
@@ -770,7 +723,6 @@ typedef union _hw_ccm_analog_pll_usb2
 //! @brief Set the POWER field to a new value.
 #define BW_CCM_ANALOG_PLL_USB2_POWER(v)   BF_CS1(CCM_ANALOG_PLL_USB2, POWER, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_USB2, field ENABLE[13] (RW)
@@ -778,7 +730,6 @@ typedef union _hw_ccm_analog_pll_usb2
  * Enable the PLL clock output.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB2_ENABLE      (13)      //!< Bit position for CCM_ANALOG_PLL_USB2_ENABLE.
 #define BM_CCM_ANALOG_PLL_USB2_ENABLE      (0x00002000)  //!< Bit mask for CCM_ANALOG_PLL_USB2_ENABLE.
 
@@ -792,7 +743,6 @@ typedef union _hw_ccm_analog_pll_usb2
 //! @brief Set the ENABLE field to a new value.
 #define BW_CCM_ANALOG_PLL_USB2_ENABLE(v)   BF_CS1(CCM_ANALOG_PLL_USB2, ENABLE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_USB2, field BYPASS_CLK_SRC[15:14] (RW)
@@ -806,7 +756,6 @@ typedef union _hw_ccm_analog_pll_usb2
  * - RESERVED1 = 0x3 - 
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC      (14)      //!< Bit position for CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC.
 #define BM_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC      (0x0000c000)  //!< Bit mask for CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC.
 
@@ -828,7 +777,6 @@ typedef union _hw_ccm_analog_pll_usb2
 #define BV_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC__ANACLK_1 (0x1) //!< Select the Anaclk1/1b as source.
 #define BV_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC__RESERVED (0x2) //!< 
 #define BV_CCM_ANALOG_PLL_USB2_BYPASS_CLK_SRC__RESERVED1 (0x3) //!< 
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_USB2, field BYPASS[16] (RW)
@@ -836,7 +784,6 @@ typedef union _hw_ccm_analog_pll_usb2
  * Bypass the pll.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB2_BYPASS      (16)      //!< Bit position for CCM_ANALOG_PLL_USB2_BYPASS.
 #define BM_CCM_ANALOG_PLL_USB2_BYPASS      (0x00010000)  //!< Bit mask for CCM_ANALOG_PLL_USB2_BYPASS.
 
@@ -850,7 +797,6 @@ typedef union _hw_ccm_analog_pll_usb2
 //! @brief Set the BYPASS field to a new value.
 #define BW_CCM_ANALOG_PLL_USB2_BYPASS(v)   BF_CS1(CCM_ANALOG_PLL_USB2, BYPASS, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_USB2, field LOCK[31] (RO)
@@ -858,13 +804,11 @@ typedef union _hw_ccm_analog_pll_usb2
  * 1 - PLL is currently locked. 0 - PLL is not currently locked.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_USB2_LOCK      (31)      //!< Bit position for CCM_ANALOG_PLL_USB2_LOCK.
 #define BM_CCM_ANALOG_PLL_USB2_LOCK      (0x80000000)  //!< Bit mask for CCM_ANALOG_PLL_USB2_LOCK.
 
 //! @brief Get value of CCM_ANALOG_PLL_USB2_LOCK from a register value.
 #define BG_CCM_ANALOG_PLL_USB2_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PLL_USB2_LOCK) >> BP_CCM_ANALOG_PLL_USB2_LOCK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -931,7 +875,6 @@ typedef union _hw_ccm_analog_pll_sys
  * This field controls the pll loop divider. 0 - Fout=Fref*20; 1 - Fout=Fref*22.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_SYS_DIV_SELECT      (0)      //!< Bit position for CCM_ANALOG_PLL_SYS_DIV_SELECT.
 #define BM_CCM_ANALOG_PLL_SYS_DIV_SELECT      (0x00000001)  //!< Bit mask for CCM_ANALOG_PLL_SYS_DIV_SELECT.
 
@@ -945,7 +888,6 @@ typedef union _hw_ccm_analog_pll_sys
 //! @brief Set the DIV_SELECT field to a new value.
 #define BW_CCM_ANALOG_PLL_SYS_DIV_SELECT(v)   BF_CS1(CCM_ANALOG_PLL_SYS, DIV_SELECT, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_SYS, field HALF_LF[7] (RW)
@@ -953,7 +895,6 @@ typedef union _hw_ccm_analog_pll_sys
  * Reserved by Freescale
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_SYS_HALF_LF      (7)      //!< Bit position for CCM_ANALOG_PLL_SYS_HALF_LF.
 #define BM_CCM_ANALOG_PLL_SYS_HALF_LF      (0x00000080)  //!< Bit mask for CCM_ANALOG_PLL_SYS_HALF_LF.
 
@@ -967,7 +908,6 @@ typedef union _hw_ccm_analog_pll_sys
 //! @brief Set the HALF_LF field to a new value.
 #define BW_CCM_ANALOG_PLL_SYS_HALF_LF(v)   BF_CS1(CCM_ANALOG_PLL_SYS, HALF_LF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_SYS, field DOUBLE_LF[8] (RW)
@@ -975,7 +915,6 @@ typedef union _hw_ccm_analog_pll_sys
  * Reserved by Freescale
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_SYS_DOUBLE_LF      (8)      //!< Bit position for CCM_ANALOG_PLL_SYS_DOUBLE_LF.
 #define BM_CCM_ANALOG_PLL_SYS_DOUBLE_LF      (0x00000100)  //!< Bit mask for CCM_ANALOG_PLL_SYS_DOUBLE_LF.
 
@@ -989,7 +928,6 @@ typedef union _hw_ccm_analog_pll_sys
 //! @brief Set the DOUBLE_LF field to a new value.
 #define BW_CCM_ANALOG_PLL_SYS_DOUBLE_LF(v)   BF_CS1(CCM_ANALOG_PLL_SYS, DOUBLE_LF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_SYS, field HALF_CP[9] (RW)
@@ -997,7 +935,6 @@ typedef union _hw_ccm_analog_pll_sys
  * Reserved by Freescale
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_SYS_HALF_CP      (9)      //!< Bit position for CCM_ANALOG_PLL_SYS_HALF_CP.
 #define BM_CCM_ANALOG_PLL_SYS_HALF_CP      (0x00000200)  //!< Bit mask for CCM_ANALOG_PLL_SYS_HALF_CP.
 
@@ -1011,7 +948,6 @@ typedef union _hw_ccm_analog_pll_sys
 //! @brief Set the HALF_CP field to a new value.
 #define BW_CCM_ANALOG_PLL_SYS_HALF_CP(v)   BF_CS1(CCM_ANALOG_PLL_SYS, HALF_CP, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_SYS, field DOUBLE_CP[10] (RW)
@@ -1019,7 +955,6 @@ typedef union _hw_ccm_analog_pll_sys
  * Reserved by Freescale
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_SYS_DOUBLE_CP      (10)      //!< Bit position for CCM_ANALOG_PLL_SYS_DOUBLE_CP.
 #define BM_CCM_ANALOG_PLL_SYS_DOUBLE_CP      (0x00000400)  //!< Bit mask for CCM_ANALOG_PLL_SYS_DOUBLE_CP.
 
@@ -1033,7 +968,6 @@ typedef union _hw_ccm_analog_pll_sys
 //! @brief Set the DOUBLE_CP field to a new value.
 #define BW_CCM_ANALOG_PLL_SYS_DOUBLE_CP(v)   BF_CS1(CCM_ANALOG_PLL_SYS, DOUBLE_CP, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_SYS, field HOLD_RING_OFF[11] (RW)
@@ -1041,7 +975,6 @@ typedef union _hw_ccm_analog_pll_sys
  * Analog Debug bit.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_SYS_HOLD_RING_OFF      (11)      //!< Bit position for CCM_ANALOG_PLL_SYS_HOLD_RING_OFF.
 #define BM_CCM_ANALOG_PLL_SYS_HOLD_RING_OFF      (0x00000800)  //!< Bit mask for CCM_ANALOG_PLL_SYS_HOLD_RING_OFF.
 
@@ -1055,7 +988,6 @@ typedef union _hw_ccm_analog_pll_sys
 //! @brief Set the HOLD_RING_OFF field to a new value.
 #define BW_CCM_ANALOG_PLL_SYS_HOLD_RING_OFF(v)   BF_CS1(CCM_ANALOG_PLL_SYS, HOLD_RING_OFF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_SYS, field POWERDOWN[12] (RW)
@@ -1063,7 +995,6 @@ typedef union _hw_ccm_analog_pll_sys
  * Powers down the PLL.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_SYS_POWERDOWN      (12)      //!< Bit position for CCM_ANALOG_PLL_SYS_POWERDOWN.
 #define BM_CCM_ANALOG_PLL_SYS_POWERDOWN      (0x00001000)  //!< Bit mask for CCM_ANALOG_PLL_SYS_POWERDOWN.
 
@@ -1077,7 +1008,6 @@ typedef union _hw_ccm_analog_pll_sys
 //! @brief Set the POWERDOWN field to a new value.
 #define BW_CCM_ANALOG_PLL_SYS_POWERDOWN(v)   BF_CS1(CCM_ANALOG_PLL_SYS, POWERDOWN, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_SYS, field ENABLE[13] (RW)
@@ -1085,7 +1015,6 @@ typedef union _hw_ccm_analog_pll_sys
  * Enable PLL output
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_SYS_ENABLE      (13)      //!< Bit position for CCM_ANALOG_PLL_SYS_ENABLE.
 #define BM_CCM_ANALOG_PLL_SYS_ENABLE      (0x00002000)  //!< Bit mask for CCM_ANALOG_PLL_SYS_ENABLE.
 
@@ -1099,7 +1028,6 @@ typedef union _hw_ccm_analog_pll_sys
 //! @brief Set the ENABLE field to a new value.
 #define BW_CCM_ANALOG_PLL_SYS_ENABLE(v)   BF_CS1(CCM_ANALOG_PLL_SYS, ENABLE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_SYS, field BYPASS_CLK_SRC[15:14] (RW)
@@ -1113,7 +1041,6 @@ typedef union _hw_ccm_analog_pll_sys
  * - CHRG_DET_B = 0x3 - 
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_SYS_BYPASS_CLK_SRC      (14)      //!< Bit position for CCM_ANALOG_PLL_SYS_BYPASS_CLK_SRC.
 #define BM_CCM_ANALOG_PLL_SYS_BYPASS_CLK_SRC      (0x0000c000)  //!< Bit mask for CCM_ANALOG_PLL_SYS_BYPASS_CLK_SRC.
 
@@ -1135,7 +1062,6 @@ typedef union _hw_ccm_analog_pll_sys
 #define BV_CCM_ANALOG_PLL_SYS_BYPASS_CLK_SRC__ANACLK_1 (0x1) //!< Select the Anaclk1/1b as source.
 #define BV_CCM_ANALOG_PLL_SYS_BYPASS_CLK_SRC__GPANAIO (0x2) //!< 
 #define BV_CCM_ANALOG_PLL_SYS_BYPASS_CLK_SRC__CHRG_DET_B (0x3) //!< 
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_SYS, field BYPASS[16] (RW)
@@ -1143,7 +1069,6 @@ typedef union _hw_ccm_analog_pll_sys
  * Bypass the pll.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_SYS_BYPASS      (16)      //!< Bit position for CCM_ANALOG_PLL_SYS_BYPASS.
 #define BM_CCM_ANALOG_PLL_SYS_BYPASS      (0x00010000)  //!< Bit mask for CCM_ANALOG_PLL_SYS_BYPASS.
 
@@ -1157,7 +1082,6 @@ typedef union _hw_ccm_analog_pll_sys
 //! @brief Set the BYPASS field to a new value.
 #define BW_CCM_ANALOG_PLL_SYS_BYPASS(v)   BF_CS1(CCM_ANALOG_PLL_SYS, BYPASS, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_SYS, field PFD_OFFSET_EN[18] (RW)
@@ -1165,7 +1089,6 @@ typedef union _hw_ccm_analog_pll_sys
  * Enables an offset in the phase frequency detector.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_SYS_PFD_OFFSET_EN      (18)      //!< Bit position for CCM_ANALOG_PLL_SYS_PFD_OFFSET_EN.
 #define BM_CCM_ANALOG_PLL_SYS_PFD_OFFSET_EN      (0x00040000)  //!< Bit mask for CCM_ANALOG_PLL_SYS_PFD_OFFSET_EN.
 
@@ -1179,7 +1102,6 @@ typedef union _hw_ccm_analog_pll_sys
 //! @brief Set the PFD_OFFSET_EN field to a new value.
 #define BW_CCM_ANALOG_PLL_SYS_PFD_OFFSET_EN(v)   BF_CS1(CCM_ANALOG_PLL_SYS, PFD_OFFSET_EN, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_SYS, field LOCK[31] (RO)
@@ -1187,13 +1109,11 @@ typedef union _hw_ccm_analog_pll_sys
  * 1 - PLL is currently locked; 0 - PLL is not currently locked.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_SYS_LOCK      (31)      //!< Bit position for CCM_ANALOG_PLL_SYS_LOCK.
 #define BM_CCM_ANALOG_PLL_SYS_LOCK      (0x80000000)  //!< Bit mask for CCM_ANALOG_PLL_SYS_LOCK.
 
 //! @brief Get value of CCM_ANALOG_PLL_SYS_LOCK from a register value.
 #define BG_CCM_ANALOG_PLL_SYS_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PLL_SYS_LOCK) >> BP_CCM_ANALOG_PLL_SYS_LOCK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1261,7 +1181,6 @@ typedef union _hw_ccm_analog_pll_audio
  * This field controls the pll loop divider. Valid range for DIV_SELECT divider value: 27~54.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_DIV_SELECT      (0)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_DIV_SELECT.
 #define BM_CCM_ANALOG_PLL_AUDIO_DIV_SELECT      (0x0000007f)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_DIV_SELECT.
 
@@ -1275,7 +1194,6 @@ typedef union _hw_ccm_analog_pll_audio
 //! @brief Set the DIV_SELECT field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_DIV_SELECT(v)   BF_CS1(CCM_ANALOG_PLL_AUDIO, DIV_SELECT, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_AUDIO, field HALF_LF[7] (RW)
@@ -1283,7 +1201,6 @@ typedef union _hw_ccm_analog_pll_audio
  * Reserved by Freescale.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_HALF_LF      (7)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_HALF_LF.
 #define BM_CCM_ANALOG_PLL_AUDIO_HALF_LF      (0x00000080)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_HALF_LF.
 
@@ -1297,7 +1214,6 @@ typedef union _hw_ccm_analog_pll_audio
 //! @brief Set the HALF_LF field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_HALF_LF(v)   BF_CS1(CCM_ANALOG_PLL_AUDIO, HALF_LF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_AUDIO, field DOUBLE_LF[8] (RW)
@@ -1305,7 +1221,6 @@ typedef union _hw_ccm_analog_pll_audio
  * Reserved by Freescale.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_DOUBLE_LF      (8)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_DOUBLE_LF.
 #define BM_CCM_ANALOG_PLL_AUDIO_DOUBLE_LF      (0x00000100)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_DOUBLE_LF.
 
@@ -1319,7 +1234,6 @@ typedef union _hw_ccm_analog_pll_audio
 //! @brief Set the DOUBLE_LF field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_DOUBLE_LF(v)   BF_CS1(CCM_ANALOG_PLL_AUDIO, DOUBLE_LF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_AUDIO, field HALF_CP[9] (RW)
@@ -1327,7 +1241,6 @@ typedef union _hw_ccm_analog_pll_audio
  * Reserved by Freescale.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_HALF_CP      (9)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_HALF_CP.
 #define BM_CCM_ANALOG_PLL_AUDIO_HALF_CP      (0x00000200)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_HALF_CP.
 
@@ -1341,7 +1254,6 @@ typedef union _hw_ccm_analog_pll_audio
 //! @brief Set the HALF_CP field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_HALF_CP(v)   BF_CS1(CCM_ANALOG_PLL_AUDIO, HALF_CP, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_AUDIO, field DOUBLE_CP[10] (RW)
@@ -1349,7 +1261,6 @@ typedef union _hw_ccm_analog_pll_audio
  * Reserved by Freescale.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_DOUBLE_CP      (10)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_DOUBLE_CP.
 #define BM_CCM_ANALOG_PLL_AUDIO_DOUBLE_CP      (0x00000400)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_DOUBLE_CP.
 
@@ -1363,7 +1274,6 @@ typedef union _hw_ccm_analog_pll_audio
 //! @brief Set the DOUBLE_CP field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_DOUBLE_CP(v)   BF_CS1(CCM_ANALOG_PLL_AUDIO, DOUBLE_CP, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_AUDIO, field HOLD_RING_OFF[11] (RW)
@@ -1371,7 +1281,6 @@ typedef union _hw_ccm_analog_pll_audio
  * Analog debug Bit
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_HOLD_RING_OFF      (11)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_HOLD_RING_OFF.
 #define BM_CCM_ANALOG_PLL_AUDIO_HOLD_RING_OFF      (0x00000800)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_HOLD_RING_OFF.
 
@@ -1385,7 +1294,6 @@ typedef union _hw_ccm_analog_pll_audio
 //! @brief Set the HOLD_RING_OFF field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_HOLD_RING_OFF(v)   BF_CS1(CCM_ANALOG_PLL_AUDIO, HOLD_RING_OFF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_AUDIO, field POWERDOWN[12] (RW)
@@ -1393,7 +1301,6 @@ typedef union _hw_ccm_analog_pll_audio
  * Powers down the PLL.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_POWERDOWN      (12)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_POWERDOWN.
 #define BM_CCM_ANALOG_PLL_AUDIO_POWERDOWN      (0x00001000)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_POWERDOWN.
 
@@ -1407,7 +1314,6 @@ typedef union _hw_ccm_analog_pll_audio
 //! @brief Set the POWERDOWN field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_POWERDOWN(v)   BF_CS1(CCM_ANALOG_PLL_AUDIO, POWERDOWN, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_AUDIO, field ENABLE[13] (RW)
@@ -1415,7 +1321,6 @@ typedef union _hw_ccm_analog_pll_audio
  * Enable PLL output
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_ENABLE      (13)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_ENABLE.
 #define BM_CCM_ANALOG_PLL_AUDIO_ENABLE      (0x00002000)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_ENABLE.
 
@@ -1429,7 +1334,6 @@ typedef union _hw_ccm_analog_pll_audio
 //! @brief Set the ENABLE field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_ENABLE(v)   BF_CS1(CCM_ANALOG_PLL_AUDIO, ENABLE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_AUDIO, field BYPASS_CLK_SRC[15:14] (RW)
@@ -1443,7 +1347,6 @@ typedef union _hw_ccm_analog_pll_audio
  * - RESERVED1 = 0x3 - 
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_BYPASS_CLK_SRC      (14)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_BYPASS_CLK_SRC.
 #define BM_CCM_ANALOG_PLL_AUDIO_BYPASS_CLK_SRC      (0x0000c000)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_BYPASS_CLK_SRC.
 
@@ -1465,7 +1368,6 @@ typedef union _hw_ccm_analog_pll_audio
 #define BV_CCM_ANALOG_PLL_AUDIO_BYPASS_CLK_SRC__ANACLK_1 (0x1) //!< Select the Anaclk1/1b as source.
 #define BV_CCM_ANALOG_PLL_AUDIO_BYPASS_CLK_SRC__RESERVED (0x2) //!< 
 #define BV_CCM_ANALOG_PLL_AUDIO_BYPASS_CLK_SRC__RESERVED1 (0x3) //!< 
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_AUDIO, field BYPASS[16] (RW)
@@ -1473,7 +1375,6 @@ typedef union _hw_ccm_analog_pll_audio
  * Bypass the pll.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_BYPASS      (16)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_BYPASS.
 #define BM_CCM_ANALOG_PLL_AUDIO_BYPASS      (0x00010000)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_BYPASS.
 
@@ -1487,7 +1388,6 @@ typedef union _hw_ccm_analog_pll_audio
 //! @brief Set the BYPASS field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_BYPASS(v)   BF_CS1(CCM_ANALOG_PLL_AUDIO, BYPASS, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_AUDIO, field PFD_OFFSET_EN[18] (RW)
@@ -1495,7 +1395,6 @@ typedef union _hw_ccm_analog_pll_audio
  * Enables an offset in the phase frequency detector.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_PFD_OFFSET_EN      (18)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_PFD_OFFSET_EN.
 #define BM_CCM_ANALOG_PLL_AUDIO_PFD_OFFSET_EN      (0x00040000)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_PFD_OFFSET_EN.
 
@@ -1509,7 +1408,6 @@ typedef union _hw_ccm_analog_pll_audio
 //! @brief Set the PFD_OFFSET_EN field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_PFD_OFFSET_EN(v)   BF_CS1(CCM_ANALOG_PLL_AUDIO, PFD_OFFSET_EN, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_AUDIO, field POST_DIV_SELECT[20:19] (RW)
@@ -1523,7 +1421,6 @@ typedef union _hw_ccm_analog_pll_audio
  * - 11 - Divide by 1.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_POST_DIV_SELECT      (19)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_POST_DIV_SELECT.
 #define BM_CCM_ANALOG_PLL_AUDIO_POST_DIV_SELECT      (0x00180000)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_POST_DIV_SELECT.
 
@@ -1537,7 +1434,6 @@ typedef union _hw_ccm_analog_pll_audio
 //! @brief Set the POST_DIV_SELECT field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_POST_DIV_SELECT(v)   BF_CS1(CCM_ANALOG_PLL_AUDIO, POST_DIV_SELECT, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_AUDIO, field SSC_EN[21] (RW)
@@ -1545,7 +1441,6 @@ typedef union _hw_ccm_analog_pll_audio
  * Reserved Bit
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_SSC_EN      (21)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_SSC_EN.
 #define BM_CCM_ANALOG_PLL_AUDIO_SSC_EN      (0x00200000)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_SSC_EN.
 
@@ -1559,7 +1454,6 @@ typedef union _hw_ccm_analog_pll_audio
 //! @brief Set the SSC_EN field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_SSC_EN(v)   BF_CS1(CCM_ANALOG_PLL_AUDIO, SSC_EN, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_AUDIO, field LOCK[31] (RO)
@@ -1567,13 +1461,11 @@ typedef union _hw_ccm_analog_pll_audio
  * 1 - PLL is currently locked. 0 - PLL is not currently locked.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_LOCK      (31)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_LOCK.
 #define BM_CCM_ANALOG_PLL_AUDIO_LOCK      (0x80000000)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_LOCK.
 
 //! @brief Get value of CCM_ANALOG_PLL_AUDIO_LOCK from a register value.
 #define BG_CCM_ANALOG_PLL_AUDIO_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PLL_AUDIO_LOCK) >> BP_CCM_ANALOG_PLL_AUDIO_LOCK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1625,7 +1517,6 @@ typedef union _hw_ccm_analog_pll_audio_num
  * 30 bit numerator of fractional loop divider.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_NUM_A      (0)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_NUM_A.
 #define BM_CCM_ANALOG_PLL_AUDIO_NUM_A      (0x3fffffff)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_NUM_A.
 
@@ -1639,7 +1530,6 @@ typedef union _hw_ccm_analog_pll_audio_num
 //! @brief Set the A field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_NUM_A(v)   (HW_CCM_ANALOG_PLL_AUDIO_NUM_WR((HW_CCM_ANALOG_PLL_AUDIO_NUM_RD() & ~BM_CCM_ANALOG_PLL_AUDIO_NUM_A) | BF_CCM_ANALOG_PLL_AUDIO_NUM_A(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1690,7 +1580,6 @@ typedef union _hw_ccm_analog_pll_audio_denom
  * 30 bit Denominator of fractional loop divider.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_AUDIO_DENOM_B      (0)      //!< Bit position for CCM_ANALOG_PLL_AUDIO_DENOM_B.
 #define BM_CCM_ANALOG_PLL_AUDIO_DENOM_B      (0x3fffffff)  //!< Bit mask for CCM_ANALOG_PLL_AUDIO_DENOM_B.
 
@@ -1704,7 +1593,6 @@ typedef union _hw_ccm_analog_pll_audio_denom
 //! @brief Set the B field to a new value.
 #define BW_CCM_ANALOG_PLL_AUDIO_DENOM_B(v)   (HW_CCM_ANALOG_PLL_AUDIO_DENOM_WR((HW_CCM_ANALOG_PLL_AUDIO_DENOM_RD() & ~BM_CCM_ANALOG_PLL_AUDIO_DENOM_B) | BF_CCM_ANALOG_PLL_AUDIO_DENOM_B(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1772,7 +1660,6 @@ typedef union _hw_ccm_analog_pll_video
  * This field controls the pll loop divider. Valid range for DIV_SELECT divider value: 27~54.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_DIV_SELECT      (0)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_DIV_SELECT.
 #define BM_CCM_ANALOG_PLL_VIDEO_DIV_SELECT      (0x0000007f)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_DIV_SELECT.
 
@@ -1786,7 +1673,6 @@ typedef union _hw_ccm_analog_pll_video
 //! @brief Set the DIV_SELECT field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_DIV_SELECT(v)   BF_CS1(CCM_ANALOG_PLL_VIDEO, DIV_SELECT, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_VIDEO, field HALF_LF[7] (RW)
@@ -1794,7 +1680,6 @@ typedef union _hw_ccm_analog_pll_video
  * Reserved by Freescale.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_HALF_LF      (7)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_HALF_LF.
 #define BM_CCM_ANALOG_PLL_VIDEO_HALF_LF      (0x00000080)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_HALF_LF.
 
@@ -1808,7 +1693,6 @@ typedef union _hw_ccm_analog_pll_video
 //! @brief Set the HALF_LF field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_HALF_LF(v)   BF_CS1(CCM_ANALOG_PLL_VIDEO, HALF_LF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_VIDEO, field DOUBLE_LF[8] (RW)
@@ -1816,7 +1700,6 @@ typedef union _hw_ccm_analog_pll_video
  * Reserved by Freescale.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_DOUBLE_LF      (8)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_DOUBLE_LF.
 #define BM_CCM_ANALOG_PLL_VIDEO_DOUBLE_LF      (0x00000100)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_DOUBLE_LF.
 
@@ -1830,7 +1713,6 @@ typedef union _hw_ccm_analog_pll_video
 //! @brief Set the DOUBLE_LF field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_DOUBLE_LF(v)   BF_CS1(CCM_ANALOG_PLL_VIDEO, DOUBLE_LF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_VIDEO, field HALF_CP[9] (RW)
@@ -1838,7 +1720,6 @@ typedef union _hw_ccm_analog_pll_video
  * Reserved by Freescale.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_HALF_CP      (9)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_HALF_CP.
 #define BM_CCM_ANALOG_PLL_VIDEO_HALF_CP      (0x00000200)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_HALF_CP.
 
@@ -1852,7 +1733,6 @@ typedef union _hw_ccm_analog_pll_video
 //! @brief Set the HALF_CP field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_HALF_CP(v)   BF_CS1(CCM_ANALOG_PLL_VIDEO, HALF_CP, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_VIDEO, field DOUBLE_CP[10] (RW)
@@ -1860,7 +1740,6 @@ typedef union _hw_ccm_analog_pll_video
  * Reserved by Freescale.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_DOUBLE_CP      (10)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_DOUBLE_CP.
 #define BM_CCM_ANALOG_PLL_VIDEO_DOUBLE_CP      (0x00000400)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_DOUBLE_CP.
 
@@ -1874,7 +1753,6 @@ typedef union _hw_ccm_analog_pll_video
 //! @brief Set the DOUBLE_CP field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_DOUBLE_CP(v)   BF_CS1(CCM_ANALOG_PLL_VIDEO, DOUBLE_CP, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_VIDEO, field HOLD_RING_OFF[11] (RW)
@@ -1882,7 +1760,6 @@ typedef union _hw_ccm_analog_pll_video
  * Analog Debug bit.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_HOLD_RING_OFF      (11)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_HOLD_RING_OFF.
 #define BM_CCM_ANALOG_PLL_VIDEO_HOLD_RING_OFF      (0x00000800)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_HOLD_RING_OFF.
 
@@ -1896,7 +1773,6 @@ typedef union _hw_ccm_analog_pll_video
 //! @brief Set the HOLD_RING_OFF field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_HOLD_RING_OFF(v)   BF_CS1(CCM_ANALOG_PLL_VIDEO, HOLD_RING_OFF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_VIDEO, field POWERDOWN[12] (RW)
@@ -1904,7 +1780,6 @@ typedef union _hw_ccm_analog_pll_video
  * Powers down the PLL.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_POWERDOWN      (12)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_POWERDOWN.
 #define BM_CCM_ANALOG_PLL_VIDEO_POWERDOWN      (0x00001000)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_POWERDOWN.
 
@@ -1918,7 +1793,6 @@ typedef union _hw_ccm_analog_pll_video
 //! @brief Set the POWERDOWN field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_POWERDOWN(v)   BF_CS1(CCM_ANALOG_PLL_VIDEO, POWERDOWN, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_VIDEO, field ENABLE[13] (RW)
@@ -1926,7 +1800,6 @@ typedef union _hw_ccm_analog_pll_video
  * Enalbe PLL output
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_ENABLE      (13)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_ENABLE.
 #define BM_CCM_ANALOG_PLL_VIDEO_ENABLE      (0x00002000)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_ENABLE.
 
@@ -1940,7 +1813,6 @@ typedef union _hw_ccm_analog_pll_video
 //! @brief Set the ENABLE field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_ENABLE(v)   BF_CS1(CCM_ANALOG_PLL_VIDEO, ENABLE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_VIDEO, field BYPASS_CLK_SRC[15:14] (RW)
@@ -1954,7 +1826,6 @@ typedef union _hw_ccm_analog_pll_video
  * - RESERVED1 = 0x3 - 
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_BYPASS_CLK_SRC      (14)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_BYPASS_CLK_SRC.
 #define BM_CCM_ANALOG_PLL_VIDEO_BYPASS_CLK_SRC      (0x0000c000)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_BYPASS_CLK_SRC.
 
@@ -1976,7 +1847,6 @@ typedef union _hw_ccm_analog_pll_video
 #define BV_CCM_ANALOG_PLL_VIDEO_BYPASS_CLK_SRC__ANACLK_1 (0x1) //!< Select the Anaclk1/1b as source.
 #define BV_CCM_ANALOG_PLL_VIDEO_BYPASS_CLK_SRC__RESERVED (0x2) //!< 
 #define BV_CCM_ANALOG_PLL_VIDEO_BYPASS_CLK_SRC__RESERVED1 (0x3) //!< 
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_VIDEO, field BYPASS[16] (RW)
@@ -1984,7 +1854,6 @@ typedef union _hw_ccm_analog_pll_video
  * Bypass the pll.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_BYPASS      (16)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_BYPASS.
 #define BM_CCM_ANALOG_PLL_VIDEO_BYPASS      (0x00010000)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_BYPASS.
 
@@ -1998,7 +1867,6 @@ typedef union _hw_ccm_analog_pll_video
 //! @brief Set the BYPASS field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_BYPASS(v)   BF_CS1(CCM_ANALOG_PLL_VIDEO, BYPASS, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_VIDEO, field PFD_OFFSET_EN[18] (RW)
@@ -2006,7 +1874,6 @@ typedef union _hw_ccm_analog_pll_video
  * Enables an offset in the phase frequency detector.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_PFD_OFFSET_EN      (18)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_PFD_OFFSET_EN.
 #define BM_CCM_ANALOG_PLL_VIDEO_PFD_OFFSET_EN      (0x00040000)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_PFD_OFFSET_EN.
 
@@ -2020,7 +1887,6 @@ typedef union _hw_ccm_analog_pll_video
 //! @brief Set the PFD_OFFSET_EN field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_PFD_OFFSET_EN(v)   BF_CS1(CCM_ANALOG_PLL_VIDEO, PFD_OFFSET_EN, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_VIDEO, field POST_DIV_SELECT[20:19] (RW)
@@ -2034,7 +1900,6 @@ typedef union _hw_ccm_analog_pll_video
  * - 11 - Divide by 1.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_POST_DIV_SELECT      (19)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_POST_DIV_SELECT.
 #define BM_CCM_ANALOG_PLL_VIDEO_POST_DIV_SELECT      (0x00180000)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_POST_DIV_SELECT.
 
@@ -2048,7 +1913,6 @@ typedef union _hw_ccm_analog_pll_video
 //! @brief Set the POST_DIV_SELECT field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_POST_DIV_SELECT(v)   BF_CS1(CCM_ANALOG_PLL_VIDEO, POST_DIV_SELECT, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_VIDEO, field SSC_EN[21] (RW)
@@ -2056,7 +1920,6 @@ typedef union _hw_ccm_analog_pll_video
  * Revserved BIt
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_SSC_EN      (21)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_SSC_EN.
 #define BM_CCM_ANALOG_PLL_VIDEO_SSC_EN      (0x00200000)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_SSC_EN.
 
@@ -2070,7 +1933,6 @@ typedef union _hw_ccm_analog_pll_video
 //! @brief Set the SSC_EN field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_SSC_EN(v)   BF_CS1(CCM_ANALOG_PLL_VIDEO, SSC_EN, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_VIDEO, field LOCK[31] (RO)
@@ -2078,13 +1940,11 @@ typedef union _hw_ccm_analog_pll_video
  * 1 - PLL is currently locked; 0 - PLL is not currently locked.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_LOCK      (31)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_LOCK.
 #define BM_CCM_ANALOG_PLL_VIDEO_LOCK      (0x80000000)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_LOCK.
 
 //! @brief Get value of CCM_ANALOG_PLL_VIDEO_LOCK from a register value.
 #define BG_CCM_ANALOG_PLL_VIDEO_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PLL_VIDEO_LOCK) >> BP_CCM_ANALOG_PLL_VIDEO_LOCK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2137,7 +1997,6 @@ typedef union _hw_ccm_analog_pll_video_num
  * denominator
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_NUM_A      (0)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_NUM_A.
 #define BM_CCM_ANALOG_PLL_VIDEO_NUM_A      (0x3fffffff)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_NUM_A.
 
@@ -2151,7 +2010,6 @@ typedef union _hw_ccm_analog_pll_video_num
 //! @brief Set the A field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_NUM_A(v)   (HW_CCM_ANALOG_PLL_VIDEO_NUM_WR((HW_CCM_ANALOG_PLL_VIDEO_NUM_RD() & ~BM_CCM_ANALOG_PLL_VIDEO_NUM_A) | BF_CCM_ANALOG_PLL_VIDEO_NUM_A(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2202,7 +2060,6 @@ typedef union _hw_ccm_analog_pll_video_denom
  * 30 bit Denominator of fractional loop divider.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_VIDEO_DENOM_B      (0)      //!< Bit position for CCM_ANALOG_PLL_VIDEO_DENOM_B.
 #define BM_CCM_ANALOG_PLL_VIDEO_DENOM_B      (0x3fffffff)  //!< Bit mask for CCM_ANALOG_PLL_VIDEO_DENOM_B.
 
@@ -2216,7 +2073,6 @@ typedef union _hw_ccm_analog_pll_video_denom
 //! @brief Set the B field to a new value.
 #define BW_CCM_ANALOG_PLL_VIDEO_DENOM_B(v)   (HW_CCM_ANALOG_PLL_VIDEO_DENOM_WR((HW_CCM_ANALOG_PLL_VIDEO_DENOM_RD() & ~BM_CCM_ANALOG_PLL_VIDEO_DENOM_B) | BF_CCM_ANALOG_PLL_VIDEO_DENOM_B(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2286,7 +2142,6 @@ typedef union _hw_ccm_analog_pll_enet
  * 50% duty cycle); 11 - 125MHz;
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_DIV_SELECT      (0)      //!< Bit position for CCM_ANALOG_PLL_ENET_DIV_SELECT.
 #define BM_CCM_ANALOG_PLL_ENET_DIV_SELECT      (0x00000003)  //!< Bit mask for CCM_ANALOG_PLL_ENET_DIV_SELECT.
 
@@ -2300,7 +2155,6 @@ typedef union _hw_ccm_analog_pll_enet
 //! @brief Set the DIV_SELECT field to a new value.
 #define BW_CCM_ANALOG_PLL_ENET_DIV_SELECT(v)   BF_CS1(CCM_ANALOG_PLL_ENET, DIV_SELECT, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ENET, field HALF_LF[7] (RW)
@@ -2308,7 +2162,6 @@ typedef union _hw_ccm_analog_pll_enet
  * Reserved by Freescale
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_HALF_LF      (7)      //!< Bit position for CCM_ANALOG_PLL_ENET_HALF_LF.
 #define BM_CCM_ANALOG_PLL_ENET_HALF_LF      (0x00000080)  //!< Bit mask for CCM_ANALOG_PLL_ENET_HALF_LF.
 
@@ -2322,7 +2175,6 @@ typedef union _hw_ccm_analog_pll_enet
 //! @brief Set the HALF_LF field to a new value.
 #define BW_CCM_ANALOG_PLL_ENET_HALF_LF(v)   BF_CS1(CCM_ANALOG_PLL_ENET, HALF_LF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ENET, field DOUBLE_LF[8] (RW)
@@ -2330,7 +2182,6 @@ typedef union _hw_ccm_analog_pll_enet
  * Reserved by Freescale
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_DOUBLE_LF      (8)      //!< Bit position for CCM_ANALOG_PLL_ENET_DOUBLE_LF.
 #define BM_CCM_ANALOG_PLL_ENET_DOUBLE_LF      (0x00000100)  //!< Bit mask for CCM_ANALOG_PLL_ENET_DOUBLE_LF.
 
@@ -2344,7 +2195,6 @@ typedef union _hw_ccm_analog_pll_enet
 //! @brief Set the DOUBLE_LF field to a new value.
 #define BW_CCM_ANALOG_PLL_ENET_DOUBLE_LF(v)   BF_CS1(CCM_ANALOG_PLL_ENET, DOUBLE_LF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ENET, field HALF_CP[9] (RW)
@@ -2352,7 +2202,6 @@ typedef union _hw_ccm_analog_pll_enet
  * Reserved by Freescale
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_HALF_CP      (9)      //!< Bit position for CCM_ANALOG_PLL_ENET_HALF_CP.
 #define BM_CCM_ANALOG_PLL_ENET_HALF_CP      (0x00000200)  //!< Bit mask for CCM_ANALOG_PLL_ENET_HALF_CP.
 
@@ -2366,7 +2215,6 @@ typedef union _hw_ccm_analog_pll_enet
 //! @brief Set the HALF_CP field to a new value.
 #define BW_CCM_ANALOG_PLL_ENET_HALF_CP(v)   BF_CS1(CCM_ANALOG_PLL_ENET, HALF_CP, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ENET, field DOUBLE_CP[10] (RW)
@@ -2374,7 +2222,6 @@ typedef union _hw_ccm_analog_pll_enet
  * Reserved by Freescale
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_DOUBLE_CP      (10)      //!< Bit position for CCM_ANALOG_PLL_ENET_DOUBLE_CP.
 #define BM_CCM_ANALOG_PLL_ENET_DOUBLE_CP      (0x00000400)  //!< Bit mask for CCM_ANALOG_PLL_ENET_DOUBLE_CP.
 
@@ -2388,7 +2235,6 @@ typedef union _hw_ccm_analog_pll_enet
 //! @brief Set the DOUBLE_CP field to a new value.
 #define BW_CCM_ANALOG_PLL_ENET_DOUBLE_CP(v)   BF_CS1(CCM_ANALOG_PLL_ENET, DOUBLE_CP, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ENET, field HOLD_RING_OFF[11] (RW)
@@ -2396,7 +2242,6 @@ typedef union _hw_ccm_analog_pll_enet
  * Analog debug bit
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_HOLD_RING_OFF      (11)      //!< Bit position for CCM_ANALOG_PLL_ENET_HOLD_RING_OFF.
 #define BM_CCM_ANALOG_PLL_ENET_HOLD_RING_OFF      (0x00000800)  //!< Bit mask for CCM_ANALOG_PLL_ENET_HOLD_RING_OFF.
 
@@ -2410,7 +2255,6 @@ typedef union _hw_ccm_analog_pll_enet
 //! @brief Set the HOLD_RING_OFF field to a new value.
 #define BW_CCM_ANALOG_PLL_ENET_HOLD_RING_OFF(v)   BF_CS1(CCM_ANALOG_PLL_ENET, HOLD_RING_OFF, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ENET, field POWERDOWN[12] (RW)
@@ -2418,7 +2262,6 @@ typedef union _hw_ccm_analog_pll_enet
  * Powers down the PLL.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_POWERDOWN      (12)      //!< Bit position for CCM_ANALOG_PLL_ENET_POWERDOWN.
 #define BM_CCM_ANALOG_PLL_ENET_POWERDOWN      (0x00001000)  //!< Bit mask for CCM_ANALOG_PLL_ENET_POWERDOWN.
 
@@ -2432,7 +2275,6 @@ typedef union _hw_ccm_analog_pll_enet
 //! @brief Set the POWERDOWN field to a new value.
 #define BW_CCM_ANALOG_PLL_ENET_POWERDOWN(v)   BF_CS1(CCM_ANALOG_PLL_ENET, POWERDOWN, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ENET, field ENABLE[13] (RW)
@@ -2440,7 +2282,6 @@ typedef union _hw_ccm_analog_pll_enet
  * Enable the ethernet clock output.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_ENABLE      (13)      //!< Bit position for CCM_ANALOG_PLL_ENET_ENABLE.
 #define BM_CCM_ANALOG_PLL_ENET_ENABLE      (0x00002000)  //!< Bit mask for CCM_ANALOG_PLL_ENET_ENABLE.
 
@@ -2454,7 +2295,6 @@ typedef union _hw_ccm_analog_pll_enet
 //! @brief Set the ENABLE field to a new value.
 #define BW_CCM_ANALOG_PLL_ENET_ENABLE(v)   BF_CS1(CCM_ANALOG_PLL_ENET, ENABLE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ENET, field BYPASS_CLK_SRC[15:14] (RW)
@@ -2468,7 +2308,6 @@ typedef union _hw_ccm_analog_pll_enet
  * - RESERVED1 = 0x3 - 
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_BYPASS_CLK_SRC      (14)      //!< Bit position for CCM_ANALOG_PLL_ENET_BYPASS_CLK_SRC.
 #define BM_CCM_ANALOG_PLL_ENET_BYPASS_CLK_SRC      (0x0000c000)  //!< Bit mask for CCM_ANALOG_PLL_ENET_BYPASS_CLK_SRC.
 
@@ -2490,7 +2329,6 @@ typedef union _hw_ccm_analog_pll_enet
 #define BV_CCM_ANALOG_PLL_ENET_BYPASS_CLK_SRC__ANACLK_1 (0x1) //!< Select the Anaclk1/1b as source.
 #define BV_CCM_ANALOG_PLL_ENET_BYPASS_CLK_SRC__RESERVED (0x2) //!< 
 #define BV_CCM_ANALOG_PLL_ENET_BYPASS_CLK_SRC__RESERVED1 (0x3) //!< 
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ENET, field BYPASS[16] (RW)
@@ -2498,7 +2336,6 @@ typedef union _hw_ccm_analog_pll_enet
  * Bypass the pll.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_BYPASS      (16)      //!< Bit position for CCM_ANALOG_PLL_ENET_BYPASS.
 #define BM_CCM_ANALOG_PLL_ENET_BYPASS      (0x00010000)  //!< Bit mask for CCM_ANALOG_PLL_ENET_BYPASS.
 
@@ -2512,7 +2349,6 @@ typedef union _hw_ccm_analog_pll_enet
 //! @brief Set the BYPASS field to a new value.
 #define BW_CCM_ANALOG_PLL_ENET_BYPASS(v)   BF_CS1(CCM_ANALOG_PLL_ENET, BYPASS, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ENET, field PFD_OFFSET_EN[18] (RW)
@@ -2520,7 +2356,6 @@ typedef union _hw_ccm_analog_pll_enet
  * Enables an offset in the phase frequency detector.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_PFD_OFFSET_EN      (18)      //!< Bit position for CCM_ANALOG_PLL_ENET_PFD_OFFSET_EN.
 #define BM_CCM_ANALOG_PLL_ENET_PFD_OFFSET_EN      (0x00040000)  //!< Bit mask for CCM_ANALOG_PLL_ENET_PFD_OFFSET_EN.
 
@@ -2534,7 +2369,6 @@ typedef union _hw_ccm_analog_pll_enet
 //! @brief Set the PFD_OFFSET_EN field to a new value.
 #define BW_CCM_ANALOG_PLL_ENET_PFD_OFFSET_EN(v)   BF_CS1(CCM_ANALOG_PLL_ENET, PFD_OFFSET_EN, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ENET, field ENABLE_125M[19] (RW)
@@ -2542,7 +2376,6 @@ typedef union _hw_ccm_analog_pll_enet
  * Enables an offset in the phase frequency detector.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_ENABLE_125M      (19)      //!< Bit position for CCM_ANALOG_PLL_ENET_ENABLE_125M.
 #define BM_CCM_ANALOG_PLL_ENET_ENABLE_125M      (0x00080000)  //!< Bit mask for CCM_ANALOG_PLL_ENET_ENABLE_125M.
 
@@ -2556,7 +2389,6 @@ typedef union _hw_ccm_analog_pll_enet
 //! @brief Set the ENABLE_125M field to a new value.
 #define BW_CCM_ANALOG_PLL_ENET_ENABLE_125M(v)   BF_CS1(CCM_ANALOG_PLL_ENET, ENABLE_125M, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ENET, field ENABLE_100M[20] (RW)
@@ -2564,7 +2396,6 @@ typedef union _hw_ccm_analog_pll_enet
  * Enables an offset in the phase frequency detector.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_ENABLE_100M      (20)      //!< Bit position for CCM_ANALOG_PLL_ENET_ENABLE_100M.
 #define BM_CCM_ANALOG_PLL_ENET_ENABLE_100M      (0x00100000)  //!< Bit mask for CCM_ANALOG_PLL_ENET_ENABLE_100M.
 
@@ -2578,7 +2409,6 @@ typedef union _hw_ccm_analog_pll_enet
 //! @brief Set the ENABLE_100M field to a new value.
 #define BW_CCM_ANALOG_PLL_ENET_ENABLE_100M(v)   BF_CS1(CCM_ANALOG_PLL_ENET, ENABLE_100M, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PLL_ENET, field LOCK[31] (RO)
@@ -2586,13 +2416,11 @@ typedef union _hw_ccm_analog_pll_enet
  * 1 - PLL is currently locked; 0 - PLL is not currently locked.
  */
 //@{
-
 #define BP_CCM_ANALOG_PLL_ENET_LOCK      (31)      //!< Bit position for CCM_ANALOG_PLL_ENET_LOCK.
 #define BM_CCM_ANALOG_PLL_ENET_LOCK      (0x80000000)  //!< Bit mask for CCM_ANALOG_PLL_ENET_LOCK.
 
 //! @brief Get value of CCM_ANALOG_PLL_ENET_LOCK from a register value.
 #define BG_CCM_ANALOG_PLL_ENET_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PLL_ENET_LOCK) >> BP_CCM_ANALOG_PLL_ENET_LOCK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2659,7 +2487,6 @@ typedef union _hw_ccm_analog_pfd_480
  * 480*18/PFD0_FRAC where PFD0_FRAC is in the range 12-35.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_480_PFD0_FRAC      (0)      //!< Bit position for CCM_ANALOG_PFD_480_PFD0_FRAC.
 #define BM_CCM_ANALOG_PFD_480_PFD0_FRAC      (0x0000003f)  //!< Bit mask for CCM_ANALOG_PFD_480_PFD0_FRAC.
 
@@ -2673,7 +2500,6 @@ typedef union _hw_ccm_analog_pfd_480
 //! @brief Set the PFD0_FRAC field to a new value.
 #define BW_CCM_ANALOG_PFD_480_PFD0_FRAC(v)   BF_CS1(CCM_ANALOG_PFD_480, PFD0_FRAC, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_480, field PFD0_STABLE[6] (RO)
@@ -2686,13 +2512,11 @@ typedef union _hw_ccm_analog_pfd_480
  * or placed into clock-gated state.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_480_PFD0_STABLE      (6)      //!< Bit position for CCM_ANALOG_PFD_480_PFD0_STABLE.
 #define BM_CCM_ANALOG_PFD_480_PFD0_STABLE      (0x00000040)  //!< Bit mask for CCM_ANALOG_PFD_480_PFD0_STABLE.
 
 //! @brief Get value of CCM_ANALOG_PFD_480_PFD0_STABLE from a register value.
 #define BG_CCM_ANALOG_PFD_480_PFD0_STABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PFD_480_PFD0_STABLE) >> BP_CCM_ANALOG_PFD_480_PFD0_STABLE)
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_480, field PFD0_CLKGATE[7] (RW)
@@ -2701,7 +2525,6 @@ typedef union _hw_ccm_analog_pfd_480
  * ref_pfd0 fractional divider clock is enabled. Need to assert this bit before PLL is powered down
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_480_PFD0_CLKGATE      (7)      //!< Bit position for CCM_ANALOG_PFD_480_PFD0_CLKGATE.
 #define BM_CCM_ANALOG_PFD_480_PFD0_CLKGATE      (0x00000080)  //!< Bit mask for CCM_ANALOG_PFD_480_PFD0_CLKGATE.
 
@@ -2715,7 +2538,6 @@ typedef union _hw_ccm_analog_pfd_480
 //! @brief Set the PFD0_CLKGATE field to a new value.
 #define BW_CCM_ANALOG_PFD_480_PFD0_CLKGATE(v)   BF_CS1(CCM_ANALOG_PFD_480, PFD0_CLKGATE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_480, field PFD1_FRAC[13:8] (RW)
@@ -2724,7 +2546,6 @@ typedef union _hw_ccm_analog_pfd_480
  * 480*18/PFD1_FRAC where PFD1_FRAC is in the range 12-35.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_480_PFD1_FRAC      (8)      //!< Bit position for CCM_ANALOG_PFD_480_PFD1_FRAC.
 #define BM_CCM_ANALOG_PFD_480_PFD1_FRAC      (0x00003f00)  //!< Bit mask for CCM_ANALOG_PFD_480_PFD1_FRAC.
 
@@ -2738,7 +2559,6 @@ typedef union _hw_ccm_analog_pfd_480
 //! @brief Set the PFD1_FRAC field to a new value.
 #define BW_CCM_ANALOG_PFD_480_PFD1_FRAC(v)   BF_CS1(CCM_ANALOG_PFD_480, PFD1_FRAC, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_480, field PFD1_STABLE[14] (RO)
@@ -2751,13 +2571,11 @@ typedef union _hw_ccm_analog_pfd_480
  * or placed into clock-gated state.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_480_PFD1_STABLE      (14)      //!< Bit position for CCM_ANALOG_PFD_480_PFD1_STABLE.
 #define BM_CCM_ANALOG_PFD_480_PFD1_STABLE      (0x00004000)  //!< Bit mask for CCM_ANALOG_PFD_480_PFD1_STABLE.
 
 //! @brief Get value of CCM_ANALOG_PFD_480_PFD1_STABLE from a register value.
 #define BG_CCM_ANALOG_PFD_480_PFD1_STABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PFD_480_PFD1_STABLE) >> BP_CCM_ANALOG_PFD_480_PFD1_STABLE)
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_480, field PFD1_CLKGATE[15] (RW)
@@ -2767,7 +2585,6 @@ typedef union _hw_ccm_analog_pfd_480
  * powered down
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_480_PFD1_CLKGATE      (15)      //!< Bit position for CCM_ANALOG_PFD_480_PFD1_CLKGATE.
 #define BM_CCM_ANALOG_PFD_480_PFD1_CLKGATE      (0x00008000)  //!< Bit mask for CCM_ANALOG_PFD_480_PFD1_CLKGATE.
 
@@ -2781,7 +2598,6 @@ typedef union _hw_ccm_analog_pfd_480
 //! @brief Set the PFD1_CLKGATE field to a new value.
 #define BW_CCM_ANALOG_PFD_480_PFD1_CLKGATE(v)   BF_CS1(CCM_ANALOG_PFD_480, PFD1_CLKGATE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_480, field PFD2_FRAC[21:16] (RW)
@@ -2790,7 +2606,6 @@ typedef union _hw_ccm_analog_pfd_480
  * 480*18/PFD2_FRAC where PFD2_FRAC is in the range 12-35.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_480_PFD2_FRAC      (16)      //!< Bit position for CCM_ANALOG_PFD_480_PFD2_FRAC.
 #define BM_CCM_ANALOG_PFD_480_PFD2_FRAC      (0x003f0000)  //!< Bit mask for CCM_ANALOG_PFD_480_PFD2_FRAC.
 
@@ -2804,7 +2619,6 @@ typedef union _hw_ccm_analog_pfd_480
 //! @brief Set the PFD2_FRAC field to a new value.
 #define BW_CCM_ANALOG_PFD_480_PFD2_FRAC(v)   BF_CS1(CCM_ANALOG_PFD_480, PFD2_FRAC, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_480, field PFD2_STABLE[22] (RO)
@@ -2817,13 +2631,11 @@ typedef union _hw_ccm_analog_pfd_480
  * or placed into clock-gated state.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_480_PFD2_STABLE      (22)      //!< Bit position for CCM_ANALOG_PFD_480_PFD2_STABLE.
 #define BM_CCM_ANALOG_PFD_480_PFD2_STABLE      (0x00400000)  //!< Bit mask for CCM_ANALOG_PFD_480_PFD2_STABLE.
 
 //! @brief Get value of CCM_ANALOG_PFD_480_PFD2_STABLE from a register value.
 #define BG_CCM_ANALOG_PFD_480_PFD2_STABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PFD_480_PFD2_STABLE) >> BP_CCM_ANALOG_PFD_480_PFD2_STABLE)
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_480, field PFD2_CLKGATE[23] (RW)
@@ -2833,7 +2645,6 @@ typedef union _hw_ccm_analog_pfd_480
  * powered down
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_480_PFD2_CLKGATE      (23)      //!< Bit position for CCM_ANALOG_PFD_480_PFD2_CLKGATE.
 #define BM_CCM_ANALOG_PFD_480_PFD2_CLKGATE      (0x00800000)  //!< Bit mask for CCM_ANALOG_PFD_480_PFD2_CLKGATE.
 
@@ -2847,7 +2658,6 @@ typedef union _hw_ccm_analog_pfd_480
 //! @brief Set the PFD2_CLKGATE field to a new value.
 #define BW_CCM_ANALOG_PFD_480_PFD2_CLKGATE(v)   BF_CS1(CCM_ANALOG_PFD_480, PFD2_CLKGATE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_480, field PFD3_FRAC[29:24] (RW)
@@ -2856,7 +2666,6 @@ typedef union _hw_ccm_analog_pfd_480
  * 480*18/PFD3_FRAC where PFD3_FRAC is in the range 12-35.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_480_PFD3_FRAC      (24)      //!< Bit position for CCM_ANALOG_PFD_480_PFD3_FRAC.
 #define BM_CCM_ANALOG_PFD_480_PFD3_FRAC      (0x3f000000)  //!< Bit mask for CCM_ANALOG_PFD_480_PFD3_FRAC.
 
@@ -2870,7 +2679,6 @@ typedef union _hw_ccm_analog_pfd_480
 //! @brief Set the PFD3_FRAC field to a new value.
 #define BW_CCM_ANALOG_PFD_480_PFD3_FRAC(v)   BF_CS1(CCM_ANALOG_PFD_480, PFD3_FRAC, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_480, field PFD3_STABLE[30] (RO)
@@ -2883,13 +2691,11 @@ typedef union _hw_ccm_analog_pfd_480
  * or placed into clock-gated state.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_480_PFD3_STABLE      (30)      //!< Bit position for CCM_ANALOG_PFD_480_PFD3_STABLE.
 #define BM_CCM_ANALOG_PFD_480_PFD3_STABLE      (0x40000000)  //!< Bit mask for CCM_ANALOG_PFD_480_PFD3_STABLE.
 
 //! @brief Get value of CCM_ANALOG_PFD_480_PFD3_STABLE from a register value.
 #define BG_CCM_ANALOG_PFD_480_PFD3_STABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PFD_480_PFD3_STABLE) >> BP_CCM_ANALOG_PFD_480_PFD3_STABLE)
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_480, field PFD3_CLKGATE[31] (RW)
@@ -2899,7 +2705,6 @@ typedef union _hw_ccm_analog_pfd_480
  * powered down
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_480_PFD3_CLKGATE      (31)      //!< Bit position for CCM_ANALOG_PFD_480_PFD3_CLKGATE.
 #define BM_CCM_ANALOG_PFD_480_PFD3_CLKGATE      (0x80000000)  //!< Bit mask for CCM_ANALOG_PFD_480_PFD3_CLKGATE.
 
@@ -2913,7 +2718,6 @@ typedef union _hw_ccm_analog_pfd_480
 //! @brief Set the PFD3_CLKGATE field to a new value.
 #define BW_CCM_ANALOG_PFD_480_PFD3_CLKGATE(v)   BF_CS1(CCM_ANALOG_PFD_480, PFD3_CLKGATE, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2980,7 +2784,6 @@ typedef union _hw_ccm_analog_pfd_528
  * 480*18/PFD0_FRAC where PFD0_FRAC is in the range 12-35.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_528_PFD0_FRAC      (0)      //!< Bit position for CCM_ANALOG_PFD_528_PFD0_FRAC.
 #define BM_CCM_ANALOG_PFD_528_PFD0_FRAC      (0x0000003f)  //!< Bit mask for CCM_ANALOG_PFD_528_PFD0_FRAC.
 
@@ -2994,7 +2797,6 @@ typedef union _hw_ccm_analog_pfd_528
 //! @brief Set the PFD0_FRAC field to a new value.
 #define BW_CCM_ANALOG_PFD_528_PFD0_FRAC(v)   BF_CS1(CCM_ANALOG_PFD_528, PFD0_FRAC, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_528, field PFD0_STABLE[6] (RO)
@@ -3007,13 +2809,11 @@ typedef union _hw_ccm_analog_pfd_528
  * or placed into clock-gated state.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_528_PFD0_STABLE      (6)      //!< Bit position for CCM_ANALOG_PFD_528_PFD0_STABLE.
 #define BM_CCM_ANALOG_PFD_528_PFD0_STABLE      (0x00000040)  //!< Bit mask for CCM_ANALOG_PFD_528_PFD0_STABLE.
 
 //! @brief Get value of CCM_ANALOG_PFD_528_PFD0_STABLE from a register value.
 #define BG_CCM_ANALOG_PFD_528_PFD0_STABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PFD_528_PFD0_STABLE) >> BP_CCM_ANALOG_PFD_528_PFD0_STABLE)
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_528, field PFD0_CLKGATE[7] (RW)
@@ -3022,7 +2822,6 @@ typedef union _hw_ccm_analog_pfd_528
  * ref_pfd0 fractional divider clock is enabled. Need to assert this bit before PLL powered down
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_528_PFD0_CLKGATE      (7)      //!< Bit position for CCM_ANALOG_PFD_528_PFD0_CLKGATE.
 #define BM_CCM_ANALOG_PFD_528_PFD0_CLKGATE      (0x00000080)  //!< Bit mask for CCM_ANALOG_PFD_528_PFD0_CLKGATE.
 
@@ -3036,7 +2835,6 @@ typedef union _hw_ccm_analog_pfd_528
 //! @brief Set the PFD0_CLKGATE field to a new value.
 #define BW_CCM_ANALOG_PFD_528_PFD0_CLKGATE(v)   BF_CS1(CCM_ANALOG_PFD_528, PFD0_CLKGATE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_528, field PFD1_FRAC[13:8] (RW)
@@ -3045,7 +2843,6 @@ typedef union _hw_ccm_analog_pfd_528
  * 480*18/PFD1_FRAC where PFD1_FRAC is in the range 12-35.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_528_PFD1_FRAC      (8)      //!< Bit position for CCM_ANALOG_PFD_528_PFD1_FRAC.
 #define BM_CCM_ANALOG_PFD_528_PFD1_FRAC      (0x00003f00)  //!< Bit mask for CCM_ANALOG_PFD_528_PFD1_FRAC.
 
@@ -3059,7 +2856,6 @@ typedef union _hw_ccm_analog_pfd_528
 //! @brief Set the PFD1_FRAC field to a new value.
 #define BW_CCM_ANALOG_PFD_528_PFD1_FRAC(v)   BF_CS1(CCM_ANALOG_PFD_528, PFD1_FRAC, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_528, field PFD1_STABLE[14] (RO)
@@ -3072,13 +2868,11 @@ typedef union _hw_ccm_analog_pfd_528
  * or placed into clock-gated state.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_528_PFD1_STABLE      (14)      //!< Bit position for CCM_ANALOG_PFD_528_PFD1_STABLE.
 #define BM_CCM_ANALOG_PFD_528_PFD1_STABLE      (0x00004000)  //!< Bit mask for CCM_ANALOG_PFD_528_PFD1_STABLE.
 
 //! @brief Get value of CCM_ANALOG_PFD_528_PFD1_STABLE from a register value.
 #define BG_CCM_ANALOG_PFD_528_PFD1_STABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PFD_528_PFD1_STABLE) >> BP_CCM_ANALOG_PFD_528_PFD1_STABLE)
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_528, field PFD1_CLKGATE[15] (RW)
@@ -3088,7 +2882,6 @@ typedef union _hw_ccm_analog_pfd_528
  * powered down
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_528_PFD1_CLKGATE      (15)      //!< Bit position for CCM_ANALOG_PFD_528_PFD1_CLKGATE.
 #define BM_CCM_ANALOG_PFD_528_PFD1_CLKGATE      (0x00008000)  //!< Bit mask for CCM_ANALOG_PFD_528_PFD1_CLKGATE.
 
@@ -3102,7 +2895,6 @@ typedef union _hw_ccm_analog_pfd_528
 //! @brief Set the PFD1_CLKGATE field to a new value.
 #define BW_CCM_ANALOG_PFD_528_PFD1_CLKGATE(v)   BF_CS1(CCM_ANALOG_PFD_528, PFD1_CLKGATE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_528, field PFD2_FRAC[21:16] (RW)
@@ -3111,7 +2903,6 @@ typedef union _hw_ccm_analog_pfd_528
  * 480*18/PFD2_FRAC where PFD2_FRAC is in the range 12-35.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_528_PFD2_FRAC      (16)      //!< Bit position for CCM_ANALOG_PFD_528_PFD2_FRAC.
 #define BM_CCM_ANALOG_PFD_528_PFD2_FRAC      (0x003f0000)  //!< Bit mask for CCM_ANALOG_PFD_528_PFD2_FRAC.
 
@@ -3125,7 +2916,6 @@ typedef union _hw_ccm_analog_pfd_528
 //! @brief Set the PFD2_FRAC field to a new value.
 #define BW_CCM_ANALOG_PFD_528_PFD2_FRAC(v)   BF_CS1(CCM_ANALOG_PFD_528, PFD2_FRAC, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_528, field PFD2_STABLE[22] (RO)
@@ -3138,13 +2928,11 @@ typedef union _hw_ccm_analog_pfd_528
  * or placed into clock-gated state.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_528_PFD2_STABLE      (22)      //!< Bit position for CCM_ANALOG_PFD_528_PFD2_STABLE.
 #define BM_CCM_ANALOG_PFD_528_PFD2_STABLE      (0x00400000)  //!< Bit mask for CCM_ANALOG_PFD_528_PFD2_STABLE.
 
 //! @brief Get value of CCM_ANALOG_PFD_528_PFD2_STABLE from a register value.
 #define BG_CCM_ANALOG_PFD_528_PFD2_STABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PFD_528_PFD2_STABLE) >> BP_CCM_ANALOG_PFD_528_PFD2_STABLE)
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_528, field PFD2_CLKGATE[23] (RW)
@@ -3154,7 +2942,6 @@ typedef union _hw_ccm_analog_pfd_528
  * powered down
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_528_PFD2_CLKGATE      (23)      //!< Bit position for CCM_ANALOG_PFD_528_PFD2_CLKGATE.
 #define BM_CCM_ANALOG_PFD_528_PFD2_CLKGATE      (0x00800000)  //!< Bit mask for CCM_ANALOG_PFD_528_PFD2_CLKGATE.
 
@@ -3168,7 +2955,6 @@ typedef union _hw_ccm_analog_pfd_528
 //! @brief Set the PFD2_CLKGATE field to a new value.
 #define BW_CCM_ANALOG_PFD_528_PFD2_CLKGATE(v)   BF_CS1(CCM_ANALOG_PFD_528, PFD2_CLKGATE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_528, field PFD3_FRAC[29:24] (RW)
@@ -3177,7 +2963,6 @@ typedef union _hw_ccm_analog_pfd_528
  * 480*18/PFD3_FRAC where PFD3_FRAC is in the range 12-35.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_528_PFD3_FRAC      (24)      //!< Bit position for CCM_ANALOG_PFD_528_PFD3_FRAC.
 #define BM_CCM_ANALOG_PFD_528_PFD3_FRAC      (0x3f000000)  //!< Bit mask for CCM_ANALOG_PFD_528_PFD3_FRAC.
 
@@ -3191,7 +2976,6 @@ typedef union _hw_ccm_analog_pfd_528
 //! @brief Set the PFD3_FRAC field to a new value.
 #define BW_CCM_ANALOG_PFD_528_PFD3_FRAC(v)   BF_CS1(CCM_ANALOG_PFD_528, PFD3_FRAC, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_528, field PFD3_STABLE[30] (RO)
@@ -3204,13 +2988,11 @@ typedef union _hw_ccm_analog_pfd_528
  * or placed into clock-gated state.
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_528_PFD3_STABLE      (30)      //!< Bit position for CCM_ANALOG_PFD_528_PFD3_STABLE.
 #define BM_CCM_ANALOG_PFD_528_PFD3_STABLE      (0x40000000)  //!< Bit mask for CCM_ANALOG_PFD_528_PFD3_STABLE.
 
 //! @brief Get value of CCM_ANALOG_PFD_528_PFD3_STABLE from a register value.
 #define BG_CCM_ANALOG_PFD_528_PFD3_STABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_ANALOG_PFD_528_PFD3_STABLE) >> BP_CCM_ANALOG_PFD_528_PFD3_STABLE)
-
 //@}
 
 /*! @name Register CCM_ANALOG_PFD_528, field PFD3_CLKGATE[31] (RW)
@@ -3220,7 +3002,6 @@ typedef union _hw_ccm_analog_pfd_528
  * powered down
  */
 //@{
-
 #define BP_CCM_ANALOG_PFD_528_PFD3_CLKGATE      (31)      //!< Bit position for CCM_ANALOG_PFD_528_PFD3_CLKGATE.
 #define BM_CCM_ANALOG_PFD_528_PFD3_CLKGATE      (0x80000000)  //!< Bit mask for CCM_ANALOG_PFD_528_PFD3_CLKGATE.
 
@@ -3234,7 +3015,6 @@ typedef union _hw_ccm_analog_pfd_528
 //! @brief Set the PFD3_CLKGATE field to a new value.
 #define BW_CCM_ANALOG_PFD_528_PFD3_CLKGATE(v)   BF_CS1(CCM_ANALOG_PFD_528, PFD3_CLKGATE, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3290,7 +3070,6 @@ typedef union _hw_ccm_analog_misc0
  * assertion. XtalOsc=on, RCOsc=off
  */
 //@{
-
 #define BP_CCM_ANALOG_MISC0_STOP_MODE_CONFIG      (11)      //!< Bit position for CCM_ANALOG_MISC0_STOP_MODE_CONFIG.
 #define BM_CCM_ANALOG_MISC0_STOP_MODE_CONFIG      (0x00001800)  //!< Bit mask for CCM_ANALOG_MISC0_STOP_MODE_CONFIG.
 
@@ -3304,7 +3083,6 @@ typedef union _hw_ccm_analog_misc0
 //! @brief Set the STOP_MODE_CONFIG field to a new value.
 #define BW_CCM_ANALOG_MISC0_STOP_MODE_CONFIG(v)   BF_CS1(CCM_ANALOG_MISC0, STOP_MODE_CONFIG, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3364,7 +3142,6 @@ typedef union _hw_ccm_analog_misc2
  * Default value of "0". Should be set to "1" to turn off the USB-PLL(PLL3) in run mode
  */
 //@{
-
 #define BP_CCM_ANALOG_MISC2_PLL3_DISABLE      (7)      //!< Bit position for CCM_ANALOG_MISC2_PLL3_DISABLE.
 #define BM_CCM_ANALOG_MISC2_PLL3_DISABLE      (0x00000080)  //!< Bit mask for CCM_ANALOG_MISC2_PLL3_DISABLE.
 
@@ -3378,7 +3155,6 @@ typedef union _hw_ccm_analog_misc2
 //! @brief Set the PLL3_DISABLE field to a new value.
 #define BW_CCM_ANALOG_MISC2_PLL3_DISABLE(v)   BF_CS1(CCM_ANALOG_MISC2, PLL3_DISABLE, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_MISC2, field AUDIO_DIV_LSB[15] (RW)
@@ -3388,7 +3164,6 @@ typedef union _hw_ccm_analog_misc2
  * glitches.
  */
 //@{
-
 #define BP_CCM_ANALOG_MISC2_AUDIO_DIV_LSB      (15)      //!< Bit position for CCM_ANALOG_MISC2_AUDIO_DIV_LSB.
 #define BM_CCM_ANALOG_MISC2_AUDIO_DIV_LSB      (0x00008000)  //!< Bit mask for CCM_ANALOG_MISC2_AUDIO_DIV_LSB.
 
@@ -3402,7 +3177,6 @@ typedef union _hw_ccm_analog_misc2
 //! @brief Set the AUDIO_DIV_LSB field to a new value.
 #define BW_CCM_ANALOG_MISC2_AUDIO_DIV_LSB(v)   BF_CS1(CCM_ANALOG_MISC2, AUDIO_DIV_LSB, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_MISC2, field AUDIO_DIV_MSB[23] (RW)
@@ -3412,7 +3186,6 @@ typedef union _hw_ccm_analog_misc2
  * glitches.
  */
 //@{
-
 #define BP_CCM_ANALOG_MISC2_AUDIO_DIV_MSB      (23)      //!< Bit position for CCM_ANALOG_MISC2_AUDIO_DIV_MSB.
 #define BM_CCM_ANALOG_MISC2_AUDIO_DIV_MSB      (0x00800000)  //!< Bit mask for CCM_ANALOG_MISC2_AUDIO_DIV_MSB.
 
@@ -3426,7 +3199,6 @@ typedef union _hw_ccm_analog_misc2
 //! @brief Set the AUDIO_DIV_MSB field to a new value.
 #define BW_CCM_ANALOG_MISC2_AUDIO_DIV_MSB(v)   BF_CS1(CCM_ANALOG_MISC2, AUDIO_DIV_MSB, v)
 #endif
-
 //@}
 
 /*! @name Register CCM_ANALOG_MISC2, field VIDEO_DIV[31:30] (RW)
@@ -3435,7 +3207,6 @@ typedef union _hw_ccm_analog_misc2
  * output clock of the video PLL should be gated prior to changing this divider to prevent glitches.
  */
 //@{
-
 #define BP_CCM_ANALOG_MISC2_VIDEO_DIV      (30)      //!< Bit position for CCM_ANALOG_MISC2_VIDEO_DIV.
 #define BM_CCM_ANALOG_MISC2_VIDEO_DIV      (0xc0000000)  //!< Bit mask for CCM_ANALOG_MISC2_VIDEO_DIV.
 
@@ -3449,7 +3220,6 @@ typedef union _hw_ccm_analog_misc2
 //! @brief Set the VIDEO_DIV field to a new value.
 #define BW_CCM_ANALOG_MISC2_VIDEO_DIV(v)   BF_CS1(CCM_ANALOG_MISC2, VIDEO_DIV, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3527,3 +3297,5 @@ typedef struct _hw_ccm_analog
 #endif
 
 #endif // __HW_CCM_ANALOG_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

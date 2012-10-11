@@ -106,7 +106,6 @@ typedef union _hw_xtalosc24m_misc0
  * other analog functions on the die.
  */
 //@{
-
 #define BP_XTALOSC24M_MISC0_REFTOP_PWD      (0)      //!< Bit position for XTALOSC24M_MISC0_REFTOP_PWD.
 #define BM_XTALOSC24M_MISC0_REFTOP_PWD      (0x00000001)  //!< Bit mask for XTALOSC24M_MISC0_REFTOP_PWD.
 
@@ -120,7 +119,6 @@ typedef union _hw_xtalosc24m_misc0
 //! @brief Set the REFTOP_PWD field to a new value.
 #define BW_XTALOSC24M_MISC0_REFTOP_PWD(v)   (HW_XTALOSC24M_MISC0_WR((HW_XTALOSC24M_MISC0_RD() & ~BM_XTALOSC24M_MISC0_REFTOP_PWD) | BF_XTALOSC24M_MISC0_REFTOP_PWD(v)))
 #endif
-
 //@}
 
 /*! @name Register XTALOSC24M_MISC0, field REFTOP_SELFBIASOFF[3] (RW)
@@ -136,7 +134,6 @@ typedef union _hw_xtalosc24m_misc0
  * - 1 - Uses bandgap based bias currents for best performance.
  */
 //@{
-
 #define BP_XTALOSC24M_MISC0_REFTOP_SELFBIASOFF      (3)      //!< Bit position for XTALOSC24M_MISC0_REFTOP_SELFBIASOFF.
 #define BM_XTALOSC24M_MISC0_REFTOP_SELFBIASOFF      (0x00000008)  //!< Bit mask for XTALOSC24M_MISC0_REFTOP_SELFBIASOFF.
 
@@ -150,7 +147,6 @@ typedef union _hw_xtalosc24m_misc0
 //! @brief Set the REFTOP_SELFBIASOFF field to a new value.
 #define BW_XTALOSC24M_MISC0_REFTOP_SELFBIASOFF(v)   (HW_XTALOSC24M_MISC0_WR((HW_XTALOSC24M_MISC0_RD() & ~BM_XTALOSC24M_MISC0_REFTOP_SELFBIASOFF) | BF_XTALOSC24M_MISC0_REFTOP_SELFBIASOFF(v)))
 #endif
-
 //@}
 
 /*! @name Register XTALOSC24M_MISC0, field REFTOP_VBGADJ[6:4] (RW)
@@ -168,7 +164,6 @@ typedef union _hw_xtalosc24m_misc0
  * - 111 - VBG-3.12%
  */
 //@{
-
 #define BP_XTALOSC24M_MISC0_REFTOP_VBGADJ      (4)      //!< Bit position for XTALOSC24M_MISC0_REFTOP_VBGADJ.
 #define BM_XTALOSC24M_MISC0_REFTOP_VBGADJ      (0x00000070)  //!< Bit mask for XTALOSC24M_MISC0_REFTOP_VBGADJ.
 
@@ -182,7 +177,6 @@ typedef union _hw_xtalosc24m_misc0
 //! @brief Set the REFTOP_VBGADJ field to a new value.
 #define BW_XTALOSC24M_MISC0_REFTOP_VBGADJ(v)   (HW_XTALOSC24M_MISC0_WR((HW_XTALOSC24M_MISC0_RD() & ~BM_XTALOSC24M_MISC0_REFTOP_VBGADJ) | BF_XTALOSC24M_MISC0_REFTOP_VBGADJ(v)))
 #endif
-
 //@}
 
 /*! @name Register XTALOSC24M_MISC0, field REFTOP_VBGUP[7] (RW)
@@ -191,7 +185,6 @@ typedef union _hw_xtalosc24m_misc0
  * not stable 1- Bandgap voltage stable Not related to oscillator.
  */
 //@{
-
 #define BP_XTALOSC24M_MISC0_REFTOP_VBGUP      (7)      //!< Bit position for XTALOSC24M_MISC0_REFTOP_VBGUP.
 #define BM_XTALOSC24M_MISC0_REFTOP_VBGUP      (0x00000080)  //!< Bit mask for XTALOSC24M_MISC0_REFTOP_VBGUP.
 
@@ -205,7 +198,6 @@ typedef union _hw_xtalosc24m_misc0
 //! @brief Set the REFTOP_VBGUP field to a new value.
 #define BW_XTALOSC24M_MISC0_REFTOP_VBGUP(v)   (HW_XTALOSC24M_MISC0_WR((HW_XTALOSC24M_MISC0_RD() & ~BM_XTALOSC24M_MISC0_REFTOP_VBGUP) | BF_XTALOSC24M_MISC0_REFTOP_VBGUP(v)))
 #endif
-
 //@}
 
 /*! @name Register XTALOSC24M_MISC0, field STOP_MODE_CONFIG[12] (RW)
@@ -215,7 +207,6 @@ typedef union _hw_xtalosc24m_misc0
  * to oscillator.
  */
 //@{
-
 #define BP_XTALOSC24M_MISC0_STOP_MODE_CONFIG      (12)      //!< Bit position for XTALOSC24M_MISC0_STOP_MODE_CONFIG.
 #define BM_XTALOSC24M_MISC0_STOP_MODE_CONFIG      (0x00001000)  //!< Bit mask for XTALOSC24M_MISC0_STOP_MODE_CONFIG.
 
@@ -229,7 +220,6 @@ typedef union _hw_xtalosc24m_misc0
 //! @brief Set the STOP_MODE_CONFIG field to a new value.
 #define BW_XTALOSC24M_MISC0_STOP_MODE_CONFIG(v)   (HW_XTALOSC24M_MISC0_WR((HW_XTALOSC24M_MISC0_RD() & ~BM_XTALOSC24M_MISC0_STOP_MODE_CONFIG) | BF_XTALOSC24M_MISC0_STOP_MODE_CONFIG(v)))
 #endif
-
 //@}
 
 /*! @name Register XTALOSC24M_MISC0, field OSC_I[15:14] (RW)
@@ -244,7 +234,6 @@ typedef union _hw_xtalosc24m_misc0
  * - 11 - Decrease current by 37.5%
  */
 //@{
-
 #define BP_XTALOSC24M_MISC0_OSC_I      (14)      //!< Bit position for XTALOSC24M_MISC0_OSC_I.
 #define BM_XTALOSC24M_MISC0_OSC_I      (0x0000c000)  //!< Bit mask for XTALOSC24M_MISC0_OSC_I.
 
@@ -258,7 +247,6 @@ typedef union _hw_xtalosc24m_misc0
 //! @brief Set the OSC_I field to a new value.
 #define BW_XTALOSC24M_MISC0_OSC_I(v)   (HW_XTALOSC24M_MISC0_WR((HW_XTALOSC24M_MISC0_RD() & ~BM_XTALOSC24M_MISC0_OSC_I) | BF_XTALOSC24M_MISC0_OSC_I(v)))
 #endif
-
 //@}
 
 /*! @name Register XTALOSC24M_MISC0, field OSC_XTALOK[16] (RO)
@@ -267,13 +255,11 @@ typedef union _hw_xtalosc24m_misc0
  * from a timer and active detection of the actual frequency.
  */
 //@{
-
 #define BP_XTALOSC24M_MISC0_OSC_XTALOK      (16)      //!< Bit position for XTALOSC24M_MISC0_OSC_XTALOK.
 #define BM_XTALOSC24M_MISC0_OSC_XTALOK      (0x00010000)  //!< Bit mask for XTALOSC24M_MISC0_OSC_XTALOK.
 
 //! @brief Get value of XTALOSC24M_MISC0_OSC_XTALOK from a register value.
 #define BG_XTALOSC24M_MISC0_OSC_XTALOK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_XTALOSC24M_MISC0_OSC_XTALOK) >> BP_XTALOSC24M_MISC0_OSC_XTALOK)
-
 //@}
 
 /*! @name Register XTALOSC24M_MISC0, field OSC_XTALOK_EN[17] (RW)
@@ -281,7 +267,6 @@ typedef union _hw_xtalosc24m_misc0
  * Enable bit for the xtal_ok module(24 MHz)
  */
 //@{
-
 #define BP_XTALOSC24M_MISC0_OSC_XTALOK_EN      (17)      //!< Bit position for XTALOSC24M_MISC0_OSC_XTALOK_EN.
 #define BM_XTALOSC24M_MISC0_OSC_XTALOK_EN      (0x00020000)  //!< Bit mask for XTALOSC24M_MISC0_OSC_XTALOK_EN.
 
@@ -295,7 +280,6 @@ typedef union _hw_xtalosc24m_misc0
 //! @brief Set the OSC_XTALOK_EN field to a new value.
 #define BW_XTALOSC24M_MISC0_OSC_XTALOK_EN(v)   (HW_XTALOSC24M_MISC0_WR((HW_XTALOSC24M_MISC0_RD() & ~BM_XTALOSC24M_MISC0_OSC_XTALOK_EN) | BF_XTALOSC24M_MISC0_OSC_XTALOK_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register XTALOSC24M_MISC0, field WBCP_VPW_THRESH[19:18] (RW)
@@ -310,7 +294,6 @@ typedef union _hw_xtalosc24m_misc0
  * - 11 - Decrease pwell output pwell voltage by 50mV.
  */
 //@{
-
 #define BP_XTALOSC24M_MISC0_WBCP_VPW_THRESH      (18)      //!< Bit position for XTALOSC24M_MISC0_WBCP_VPW_THRESH.
 #define BM_XTALOSC24M_MISC0_WBCP_VPW_THRESH      (0x000c0000)  //!< Bit mask for XTALOSC24M_MISC0_WBCP_VPW_THRESH.
 
@@ -324,7 +307,6 @@ typedef union _hw_xtalosc24m_misc0
 //! @brief Set the WBCP_VPW_THRESH field to a new value.
 #define BW_XTALOSC24M_MISC0_WBCP_VPW_THRESH(v)   (HW_XTALOSC24M_MISC0_WR((HW_XTALOSC24M_MISC0_RD() & ~BM_XTALOSC24M_MISC0_WBCP_VPW_THRESH) | BF_XTALOSC24M_MISC0_WBCP_VPW_THRESH(v)))
 #endif
-
 //@}
 
 /*! @name Register XTALOSC24M_MISC0, field CLKGATE_CTRL[25] (RW)
@@ -338,7 +320,6 @@ typedef union _hw_xtalosc24m_misc0
  * - 1 - Prevent the logic from ever gating off the clock.
  */
 //@{
-
 #define BP_XTALOSC24M_MISC0_CLKGATE_CTRL      (25)      //!< Bit position for XTALOSC24M_MISC0_CLKGATE_CTRL.
 #define BM_XTALOSC24M_MISC0_CLKGATE_CTRL      (0x02000000)  //!< Bit mask for XTALOSC24M_MISC0_CLKGATE_CTRL.
 
@@ -352,7 +333,6 @@ typedef union _hw_xtalosc24m_misc0
 //! @brief Set the CLKGATE_CTRL field to a new value.
 #define BW_XTALOSC24M_MISC0_CLKGATE_CTRL(v)   (HW_XTALOSC24M_MISC0_WR((HW_XTALOSC24M_MISC0_RD() & ~BM_XTALOSC24M_MISC0_CLKGATE_CTRL) | BF_XTALOSC24M_MISC0_CLKGATE_CTRL(v)))
 #endif
-
 //@}
 
 /*! @name Register XTALOSC24M_MISC0, field CLKGATE_DELAY[28:26] (RW)
@@ -372,7 +352,6 @@ typedef union _hw_xtalosc24m_misc0
  * - 111 - 7.0ms
  */
 //@{
-
 #define BP_XTALOSC24M_MISC0_CLKGATE_DELAY      (26)      //!< Bit position for XTALOSC24M_MISC0_CLKGATE_DELAY.
 #define BM_XTALOSC24M_MISC0_CLKGATE_DELAY      (0x1c000000)  //!< Bit mask for XTALOSC24M_MISC0_CLKGATE_DELAY.
 
@@ -386,7 +365,6 @@ typedef union _hw_xtalosc24m_misc0
 //! @brief Set the CLKGATE_DELAY field to a new value.
 #define BW_XTALOSC24M_MISC0_CLKGATE_DELAY(v)   (HW_XTALOSC24M_MISC0_WR((HW_XTALOSC24M_MISC0_RD() & ~BM_XTALOSC24M_MISC0_CLKGATE_DELAY) | BF_XTALOSC24M_MISC0_CLKGATE_DELAY(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -411,3 +389,5 @@ typedef struct _hw_xtalosc24m
 #endif
 
 #endif // __HW_XTALOSC24M_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

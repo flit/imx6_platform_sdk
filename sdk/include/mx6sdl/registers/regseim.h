@@ -155,7 +155,6 @@ typedef union _hw_eim_cs0gcr1
  * - 1 - Chip select is enabled, and is asserted when presented with a valid access.
  */
 //@{
-
 #define BP_EIM_CS0GCR1_CSEN      (0)      //!< Bit position for EIM_CS0GCR1_CSEN.
 #define BM_EIM_CS0GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS0GCR1_CSEN.
 
@@ -169,7 +168,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the CSEN field to a new value.
 #define BW_EIM_CS0GCR1_CSEN(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_CSEN) | BF_EIM_CS0GCR1_CSEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field SWR[1] (RW)
@@ -183,7 +181,6 @@ typedef union _hw_eim_cs0gcr1
  * - 1 - write accesses are in Synchronous mode
  */
 //@{
-
 #define BP_EIM_CS0GCR1_SWR      (1)      //!< Bit position for EIM_CS0GCR1_SWR.
 #define BM_EIM_CS0GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS0GCR1_SWR.
 
@@ -197,7 +194,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the SWR field to a new value.
 #define BW_EIM_CS0GCR1_SWR(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_SWR) | BF_EIM_CS0GCR1_SWR(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field SRD[2] (RW)
@@ -211,7 +207,6 @@ typedef union _hw_eim_cs0gcr1
  * - 1 - read accesses are in Synchronous mode
  */
 //@{
-
 #define BP_EIM_CS0GCR1_SRD      (2)      //!< Bit position for EIM_CS0GCR1_SRD.
 #define BM_EIM_CS0GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS0GCR1_SRD.
 
@@ -225,7 +220,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the SRD field to a new value.
 #define BW_EIM_CS0GCR1_SRD(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_SRD) | BF_EIM_CS0GCR1_SRD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field MUM[3] (RW)
@@ -239,7 +233,6 @@ typedef union _hw_eim_cs0gcr1
  * - 1 - Multiplexed Mode enable
  */
 //@{
-
 #define BP_EIM_CS0GCR1_MUM      (3)      //!< Bit position for EIM_CS0GCR1_MUM.
 #define BM_EIM_CS0GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS0GCR1_MUM.
 
@@ -253,7 +246,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the MUM field to a new value.
 #define BW_EIM_CS0GCR1_MUM(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_MUM) | BF_EIM_CS0GCR1_MUM(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field WFL[4] (RW)
@@ -270,7 +262,6 @@ typedef union _hw_eim_cs0gcr1
  * - 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 //@{
-
 #define BP_EIM_CS0GCR1_WFL      (4)      //!< Bit position for EIM_CS0GCR1_WFL.
 #define BM_EIM_CS0GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS0GCR1_WFL.
 
@@ -284,7 +275,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the WFL field to a new value.
 #define BW_EIM_CS0GCR1_WFL(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_WFL) | BF_EIM_CS0GCR1_WFL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field RFL[5] (RW)
@@ -301,7 +291,6 @@ typedef union _hw_eim_cs0gcr1
  * - 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 //@{
-
 #define BP_EIM_CS0GCR1_RFL      (5)      //!< Bit position for EIM_CS0GCR1_RFL.
 #define BM_EIM_CS0GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS0GCR1_RFL.
 
@@ -315,7 +304,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the RFL field to a new value.
 #define BW_EIM_CS0GCR1_RFL(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_RFL) | BF_EIM_CS0GCR1_RFL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field CRE[6] (RW)
@@ -328,7 +316,6 @@ typedef union _hw_eim_cs0gcr1
  * - 1 - CRE signal use is enable
  */
 //@{
-
 #define BP_EIM_CS0GCR1_CRE      (6)      //!< Bit position for EIM_CS0GCR1_CRE.
 #define BM_EIM_CS0GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS0GCR1_CRE.
 
@@ -342,7 +329,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the CRE field to a new value.
 #define BW_EIM_CS0GCR1_CRE(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_CRE) | BF_EIM_CS0GCR1_CRE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field CREP[7] (RW)
@@ -358,7 +344,6 @@ typedef union _hw_eim_cs0gcr1
  * - 1 - CRE signal is active high
  */
 //@{
-
 #define BP_EIM_CS0GCR1_CREP      (7)      //!< Bit position for EIM_CS0GCR1_CREP.
 #define BM_EIM_CS0GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS0GCR1_CREP.
 
@@ -372,7 +357,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the CREP field to a new value.
 #define BW_EIM_CS0GCR1_CREP(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_CREP) | BF_EIM_CS0GCR1_CREP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field BL[10:8] (RW)
@@ -397,7 +381,6 @@ typedef union _hw_eim_cs0gcr1
  * - 111 - Reserved
  */
 //@{
-
 #define BP_EIM_CS0GCR1_BL      (8)      //!< Bit position for EIM_CS0GCR1_BL.
 #define BM_EIM_CS0GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS0GCR1_BL.
 
@@ -411,7 +394,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the BL field to a new value.
 #define BW_EIM_CS0GCR1_BL(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_BL) | BF_EIM_CS0GCR1_BL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field WC[11] (RW)
@@ -424,7 +406,6 @@ typedef union _hw_eim_cs0gcr1
  * - 1 - Write access burst length is continuous.
  */
 //@{
-
 #define BP_EIM_CS0GCR1_WC      (11)      //!< Bit position for EIM_CS0GCR1_WC.
 #define BM_EIM_CS0GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS0GCR1_WC.
 
@@ -438,7 +419,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the WC field to a new value.
 #define BW_EIM_CS0GCR1_WC(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_WC) | BF_EIM_CS0GCR1_WC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field BCD[13:12] (RW)
@@ -455,7 +435,6 @@ typedef union _hw_eim_cs0gcr1
  * - 11 - Divide EIM clock by 4
  */
 //@{
-
 #define BP_EIM_CS0GCR1_BCD      (12)      //!< Bit position for EIM_CS0GCR1_BCD.
 #define BM_EIM_CS0GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS0GCR1_BCD.
 
@@ -469,7 +448,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the BCD field to a new value.
 #define BW_EIM_CS0GCR1_BCD(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_BCD) | BF_EIM_CS0GCR1_BCD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field BCS[15:14] (RW)
@@ -487,7 +465,6 @@ typedef union _hw_eim_cs0gcr1
  * - 11 - 3 EIM clock cycle additional delay
  */
 //@{
-
 #define BP_EIM_CS0GCR1_BCS      (14)      //!< Bit position for EIM_CS0GCR1_BCS.
 #define BM_EIM_CS0GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS0GCR1_BCS.
 
@@ -501,7 +478,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the BCS field to a new value.
 #define BW_EIM_CS0GCR1_BCS(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_BCS) | BF_EIM_CS0GCR1_BCS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field DSZ[18:16] (RW)
@@ -521,7 +497,6 @@ typedef union _hw_eim_cs0gcr1
  * - 111 - 8 bit port resides on DATA[31:24]
  */
 //@{
-
 #define BP_EIM_CS0GCR1_DSZ      (16)      //!< Bit position for EIM_CS0GCR1_DSZ.
 #define BM_EIM_CS0GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS0GCR1_DSZ.
 
@@ -535,7 +510,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the DSZ field to a new value.
 #define BW_EIM_CS0GCR1_DSZ(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_DSZ) | BF_EIM_CS0GCR1_DSZ(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field SP[19] (RW)
@@ -549,7 +523,6 @@ typedef union _hw_eim_cs0gcr1
  *     User mode results in an error response and no assertion of the chip select output.
  */
 //@{
-
 #define BP_EIM_CS0GCR1_SP      (19)      //!< Bit position for EIM_CS0GCR1_SP.
 #define BM_EIM_CS0GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS0GCR1_SP.
 
@@ -563,7 +536,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the SP field to a new value.
 #define BW_EIM_CS0GCR1_SP(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_SP) | BF_EIM_CS0GCR1_SP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field CSREC[22:20] (RW)
@@ -580,7 +552,6 @@ typedef union _hw_eim_cs0gcr1
  * - 111 - 7 EIM clock cycles minimum width of CS, OE and WE signals
  */
 //@{
-
 #define BP_EIM_CS0GCR1_CSREC      (20)      //!< Bit position for EIM_CS0GCR1_CSREC.
 #define BM_EIM_CS0GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS0GCR1_CSREC.
 
@@ -594,7 +565,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the CSREC field to a new value.
 #define BW_EIM_CS0GCR1_CSREC(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_CSREC) | BF_EIM_CS0GCR1_CSREC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field AUS[23] (RW)
@@ -607,7 +577,6 @@ typedef union _hw_eim_cs0gcr1
  * - 1 - Address unshifted
  */
 //@{
-
 #define BP_EIM_CS0GCR1_AUS      (23)      //!< Bit position for EIM_CS0GCR1_AUS.
 #define BM_EIM_CS0GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS0GCR1_AUS.
 
@@ -621,7 +590,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the AUS field to a new value.
 #define BW_EIM_CS0GCR1_AUS(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_AUS) | BF_EIM_CS0GCR1_AUS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field GBC[26:24] (RW)
@@ -637,7 +605,6 @@ typedef union _hw_eim_cs0gcr1
  * - 111 - minimum of 7 EIM clock cycles before next access from different chip select
  */
 //@{
-
 #define BP_EIM_CS0GCR1_GBC      (24)      //!< Bit position for EIM_CS0GCR1_GBC.
 #define BM_EIM_CS0GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS0GCR1_GBC.
 
@@ -651,7 +618,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the GBC field to a new value.
 #define BW_EIM_CS0GCR1_GBC(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_GBC) | BF_EIM_CS0GCR1_GBC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field WP[27] (RW)
@@ -665,7 +631,6 @@ typedef union _hw_eim_cs0gcr1
  *     error response and no assertion of the chip select output.
  */
 //@{
-
 #define BP_EIM_CS0GCR1_WP      (27)      //!< Bit position for EIM_CS0GCR1_WP.
 #define BM_EIM_CS0GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS0GCR1_WP.
 
@@ -679,7 +644,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the WP field to a new value.
 #define BW_EIM_CS0GCR1_WP(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_WP) | BF_EIM_CS0GCR1_WP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR1, field PSZ[31:28] (RW)
@@ -705,7 +669,6 @@ typedef union _hw_eim_cs0gcr1
  * - 1001 - - 1111 Reserved
  */
 //@{
-
 #define BP_EIM_CS0GCR1_PSZ      (28)      //!< Bit position for EIM_CS0GCR1_PSZ.
 #define BM_EIM_CS0GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS0GCR1_PSZ.
 
@@ -719,7 +682,6 @@ typedef union _hw_eim_cs0gcr1
 //! @brief Set the PSZ field to a new value.
 #define BW_EIM_CS0GCR1_PSZ(v)   (HW_EIM_CS0GCR1_WR((HW_EIM_CS0GCR1_RD() & ~BM_EIM_CS0GCR1_PSZ) | BF_EIM_CS0GCR1_PSZ(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -785,7 +747,6 @@ typedef union _hw_eim_cs0gcr2
  * - 11 - Reserved
  */
 //@{
-
 #define BP_EIM_CS0GCR2_ADH      (0)      //!< Bit position for EIM_CS0GCR2_ADH.
 #define BM_EIM_CS0GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS0GCR2_ADH.
 
@@ -799,7 +760,6 @@ typedef union _hw_eim_cs0gcr2
 //! @brief Set the ADH field to a new value.
 #define BW_EIM_CS0GCR2_ADH(v)   (HW_EIM_CS0GCR2_WR((HW_EIM_CS0GCR2_RD() & ~BM_EIM_CS0GCR2_ADH) | BF_EIM_CS0GCR2_ADH(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR2, field DAPS[7:4] (RW)
@@ -818,7 +778,6 @@ typedef union _hw_eim_cs0gcr2
  * - 1111 - 18 EIM clk cycles between start of access and first DTACK check
  */
 //@{
-
 #define BP_EIM_CS0GCR2_DAPS      (4)      //!< Bit position for EIM_CS0GCR2_DAPS.
 #define BM_EIM_CS0GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS0GCR2_DAPS.
 
@@ -832,7 +791,6 @@ typedef union _hw_eim_cs0gcr2
 //! @brief Set the DAPS field to a new value.
 #define BW_EIM_CS0GCR2_DAPS(v)   (HW_EIM_CS0GCR2_WR((HW_EIM_CS0GCR2_RD() & ~BM_EIM_CS0GCR2_DAPS) | BF_EIM_CS0GCR2_DAPS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR2, field DAE[8] (RW)
@@ -847,7 +805,6 @@ typedef union _hw_eim_cs0gcr2
  * - 1 - DTACK signal use is enable
  */
 //@{
-
 #define BP_EIM_CS0GCR2_DAE      (8)      //!< Bit position for EIM_CS0GCR2_DAE.
 #define BM_EIM_CS0GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS0GCR2_DAE.
 
@@ -861,7 +818,6 @@ typedef union _hw_eim_cs0gcr2
 //! @brief Set the DAE field to a new value.
 #define BW_EIM_CS0GCR2_DAE(v)   (HW_EIM_CS0GCR2_WR((HW_EIM_CS0GCR2_RD() & ~BM_EIM_CS0GCR2_DAE) | BF_EIM_CS0GCR2_DAE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR2, field DAP[9] (RW)
@@ -875,7 +831,6 @@ typedef union _hw_eim_cs0gcr2
  * - 1 - DTACK signal is active low
  */
 //@{
-
 #define BP_EIM_CS0GCR2_DAP      (9)      //!< Bit position for EIM_CS0GCR2_DAP.
 #define BM_EIM_CS0GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS0GCR2_DAP.
 
@@ -889,7 +844,6 @@ typedef union _hw_eim_cs0gcr2
 //! @brief Set the DAP field to a new value.
 #define BW_EIM_CS0GCR2_DAP(v)   (HW_EIM_CS0GCR2_WR((HW_EIM_CS0GCR2_RD() & ~BM_EIM_CS0GCR2_DAP) | BF_EIM_CS0GCR2_DAP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0GCR2, field MUX16_BYP_GRANT[12] (RW)
@@ -902,7 +856,6 @@ typedef union _hw_eim_cs0gcr2
  * - 1 - EIM ignores the grant signal and immediately drives a 16 bit muxed mode access to the memory.
  */
 //@{
-
 #define BP_EIM_CS0GCR2_MUX16_BYP_GRANT      (12)      //!< Bit position for EIM_CS0GCR2_MUX16_BYP_GRANT.
 #define BM_EIM_CS0GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS0GCR2_MUX16_BYP_GRANT.
 
@@ -916,7 +869,6 @@ typedef union _hw_eim_cs0gcr2
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
 #define BW_EIM_CS0GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS0GCR2_WR((HW_EIM_CS0GCR2_RD() & ~BM_EIM_CS0GCR2_MUX16_BYP_GRANT) | BF_EIM_CS0GCR2_MUX16_BYP_GRANT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -987,7 +939,6 @@ typedef union _hw_eim_cs0rcr1
  * - 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 //@{
-
 #define BP_EIM_CS0RCR1_RCSN      (0)      //!< Bit position for EIM_CS0RCR1_RCSN.
 #define BM_EIM_CS0RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS0RCR1_RCSN.
 
@@ -1001,7 +952,6 @@ typedef union _hw_eim_cs0rcr1
 //! @brief Set the RCSN field to a new value.
 #define BW_EIM_CS0RCR1_RCSN(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_RCSN) | BF_EIM_CS0RCR1_RCSN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0RCR1, field RCSA[6:4] (RW)
@@ -1017,7 +967,6 @@ typedef union _hw_eim_cs0rcr1
  * - 111 - 7 EIM clock cycles between beginning of read access and CS assertion
  */
 //@{
-
 #define BP_EIM_CS0RCR1_RCSA      (4)      //!< Bit position for EIM_CS0RCR1_RCSA.
 #define BM_EIM_CS0RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS0RCR1_RCSA.
 
@@ -1031,7 +980,6 @@ typedef union _hw_eim_cs0rcr1
 //! @brief Set the RCSA field to a new value.
 #define BW_EIM_CS0RCR1_RCSA(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_RCSA) | BF_EIM_CS0RCR1_RCSA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0RCR1, field OEN[10:8] (RW)
@@ -1047,7 +995,6 @@ typedef union _hw_eim_cs0rcr1
  * - 111 - 7 EIM clock cycles between end of access and OE negation
  */
 //@{
-
 #define BP_EIM_CS0RCR1_OEN      (8)      //!< Bit position for EIM_CS0RCR1_OEN.
 #define BM_EIM_CS0RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS0RCR1_OEN.
 
@@ -1061,7 +1008,6 @@ typedef union _hw_eim_cs0rcr1
 //! @brief Set the OEN field to a new value.
 #define BW_EIM_CS0RCR1_OEN(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_OEN) | BF_EIM_CS0RCR1_OEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0RCR1, field OEA[14:12] (RW)
@@ -1080,7 +1026,6 @@ typedef union _hw_eim_cs0rcr1
  * - 111 - 7 EIM clock cycles between beginning of access and OE assertion
  */
 //@{
-
 #define BP_EIM_CS0RCR1_OEA      (12)      //!< Bit position for EIM_CS0RCR1_OEA.
 #define BM_EIM_CS0RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS0RCR1_OEA.
 
@@ -1094,7 +1039,6 @@ typedef union _hw_eim_cs0rcr1
 //! @brief Set the OEA field to a new value.
 #define BW_EIM_CS0RCR1_OEA(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_OEA) | BF_EIM_CS0RCR1_OEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0RCR1, field RADVN[18:16] (RW)
@@ -1109,7 +1053,6 @@ typedef union _hw_eim_cs0rcr1
  * ADV negation at the same time with the end of access user should RAL bit.
  */
 //@{
-
 #define BP_EIM_CS0RCR1_RADVN      (16)      //!< Bit position for EIM_CS0RCR1_RADVN.
 #define BM_EIM_CS0RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS0RCR1_RADVN.
 
@@ -1123,7 +1066,6 @@ typedef union _hw_eim_cs0rcr1
 //! @brief Set the RADVN field to a new value.
 #define BW_EIM_CS0RCR1_RADVN(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_RADVN) | BF_EIM_CS0RCR1_RADVN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0RCR1, field RAL[19] (RW)
@@ -1133,7 +1075,6 @@ typedef union _hw_eim_cs0rcr1
  * is according to RADVN bit field configuration.
  */
 //@{
-
 #define BP_EIM_CS0RCR1_RAL      (19)      //!< Bit position for EIM_CS0RCR1_RAL.
 #define BM_EIM_CS0RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS0RCR1_RAL.
 
@@ -1147,7 +1088,6 @@ typedef union _hw_eim_cs0rcr1
 //! @brief Set the RAL field to a new value.
 #define BW_EIM_CS0RCR1_RAL(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_RAL) | BF_EIM_CS0RCR1_RAL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0RCR1, field RADVA[22:20] (RW)
@@ -1163,7 +1103,6 @@ typedef union _hw_eim_cs0rcr1
  * - 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 //@{
-
 #define BP_EIM_CS0RCR1_RADVA      (20)      //!< Bit position for EIM_CS0RCR1_RADVA.
 #define BM_EIM_CS0RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS0RCR1_RADVA.
 
@@ -1177,7 +1116,6 @@ typedef union _hw_eim_cs0rcr1
 //! @brief Set the RADVA field to a new value.
 #define BW_EIM_CS0RCR1_RADVA(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_RADVA) | BF_EIM_CS0RCR1_RADVA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0RCR1, field RWSC[29:24] (RW)
@@ -1204,7 +1142,6 @@ typedef union _hw_eim_cs0rcr1
  * - 111111 - RWSC value is 63
  */
 //@{
-
 #define BP_EIM_CS0RCR1_RWSC      (24)      //!< Bit position for EIM_CS0RCR1_RWSC.
 #define BM_EIM_CS0RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS0RCR1_RWSC.
 
@@ -1218,7 +1155,6 @@ typedef union _hw_eim_cs0rcr1
 //! @brief Set the RWSC field to a new value.
 #define BW_EIM_CS0RCR1_RWSC(v)   (HW_EIM_CS0RCR1_WR((HW_EIM_CS0RCR1_RD() & ~BM_EIM_CS0RCR1_RWSC) | BF_EIM_CS0RCR1_RWSC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1284,7 +1220,6 @@ typedef union _hw_eim_cs0rcr2
  * - 111 - 7 EIM clock cycles between end of read access and BE negation
  */
 //@{
-
 #define BP_EIM_CS0RCR2_RBEN      (0)      //!< Bit position for EIM_CS0RCR2_RBEN.
 #define BM_EIM_CS0RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS0RCR2_RBEN.
 
@@ -1298,7 +1233,6 @@ typedef union _hw_eim_cs0rcr2
 //! @brief Set the RBEN field to a new value.
 #define BW_EIM_CS0RCR2_RBEN(v)   (HW_EIM_CS0RCR2_WR((HW_EIM_CS0RCR2_RD() & ~BM_EIM_CS0RCR2_RBEN) | BF_EIM_CS0RCR2_RBEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0RCR2, field RBE[3] (RW)
@@ -1310,7 +1244,6 @@ typedef union _hw_eim_cs0rcr2
  * - 1- - BE are enable during read access according to value of RBEA & RBEN bit fields.
  */
 //@{
-
 #define BP_EIM_CS0RCR2_RBE      (3)      //!< Bit position for EIM_CS0RCR2_RBE.
 #define BM_EIM_CS0RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS0RCR2_RBE.
 
@@ -1324,7 +1257,6 @@ typedef union _hw_eim_cs0rcr2
 //! @brief Set the RBE field to a new value.
 #define BW_EIM_CS0RCR2_RBE(v)   (HW_EIM_CS0RCR2_WR((HW_EIM_CS0RCR2_RD() & ~BM_EIM_CS0RCR2_RBE) | BF_EIM_CS0RCR2_RBE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0RCR2, field RBEA[6:4] (RW)
@@ -1340,7 +1272,6 @@ typedef union _hw_eim_cs0rcr2
  * - 111 - 7 EIM clock cycles between beginning of read access and BE assertion
  */
 //@{
-
 #define BP_EIM_CS0RCR2_RBEA      (4)      //!< Bit position for EIM_CS0RCR2_RBEA.
 #define BM_EIM_CS0RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS0RCR2_RBEA.
 
@@ -1354,7 +1285,6 @@ typedef union _hw_eim_cs0rcr2
 //! @brief Set the RBEA field to a new value.
 #define BW_EIM_CS0RCR2_RBEA(v)   (HW_EIM_CS0RCR2_WR((HW_EIM_CS0RCR2_RD() & ~BM_EIM_CS0RCR2_RBEA) | BF_EIM_CS0RCR2_RBEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0RCR2, field RL[9:8] (RW)
@@ -1370,7 +1300,6 @@ typedef union _hw_eim_cs0rcr2
  * - 11 - Feedback clock loop delay is up to 4 cycles for BCD = 0 or 4.5 cycles for BCD != 0
  */
 //@{
-
 #define BP_EIM_CS0RCR2_RL      (8)      //!< Bit position for EIM_CS0RCR2_RL.
 #define BM_EIM_CS0RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS0RCR2_RL.
 
@@ -1384,7 +1313,6 @@ typedef union _hw_eim_cs0rcr2
 //! @brief Set the RL field to a new value.
 #define BW_EIM_CS0RCR2_RL(v)   (HW_EIM_CS0RCR2_WR((HW_EIM_CS0RCR2_RD() & ~BM_EIM_CS0RCR2_RL) | BF_EIM_CS0RCR2_RL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0RCR2, field PAT[14:12] (RW)
@@ -1405,7 +1333,6 @@ typedef union _hw_eim_cs0rcr2
  * - 111 - Address width is 9 EIM clock cycles
  */
 //@{
-
 #define BP_EIM_CS0RCR2_PAT      (12)      //!< Bit position for EIM_CS0RCR2_PAT.
 #define BM_EIM_CS0RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS0RCR2_PAT.
 
@@ -1419,7 +1346,6 @@ typedef union _hw_eim_cs0rcr2
 //! @brief Set the PAT field to a new value.
 #define BW_EIM_CS0RCR2_PAT(v)   (HW_EIM_CS0RCR2_WR((HW_EIM_CS0RCR2_RD() & ~BM_EIM_CS0RCR2_PAT) | BF_EIM_CS0RCR2_PAT(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0RCR2, field APR[15] (RW)
@@ -1431,7 +1357,6 @@ typedef union _hw_eim_cs0rcr2
  * for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
  */
 //@{
-
 #define BP_EIM_CS0RCR2_APR      (15)      //!< Bit position for EIM_CS0RCR2_APR.
 #define BM_EIM_CS0RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS0RCR2_APR.
 
@@ -1445,7 +1370,6 @@ typedef union _hw_eim_cs0rcr2
 //! @brief Set the APR field to a new value.
 #define BW_EIM_CS0RCR2_APR(v)   (HW_EIM_CS0RCR2_WR((HW_EIM_CS0RCR2_RD() & ~BM_EIM_CS0RCR2_APR) | BF_EIM_CS0RCR2_APR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1513,7 +1437,6 @@ typedef union _hw_eim_cs0wcr1
  * - 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 //@{
-
 #define BP_EIM_CS0WCR1_WCSN      (0)      //!< Bit position for EIM_CS0WCR1_WCSN.
 #define BM_EIM_CS0WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS0WCR1_WCSN.
 
@@ -1527,7 +1450,6 @@ typedef union _hw_eim_cs0wcr1
 //! @brief Set the WCSN field to a new value.
 #define BW_EIM_CS0WCR1_WCSN(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WCSN) | BF_EIM_CS0WCR1_WCSN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0WCR1, field WCSA[5:3] (RW)
@@ -1544,7 +1466,6 @@ typedef union _hw_eim_cs0wcr1
  * - 111 - 7 EIMclock cycles between beginning of write access and CS assertion
  */
 //@{
-
 #define BP_EIM_CS0WCR1_WCSA      (3)      //!< Bit position for EIM_CS0WCR1_WCSA.
 #define BM_EIM_CS0WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS0WCR1_WCSA.
 
@@ -1558,7 +1479,6 @@ typedef union _hw_eim_cs0wcr1
 //! @brief Set the WCSA field to a new value.
 #define BW_EIM_CS0WCR1_WCSA(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WCSA) | BF_EIM_CS0WCR1_WCSA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0WCR1, field WEN[8:6] (RW)
@@ -1575,7 +1495,6 @@ typedef union _hw_eim_cs0wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and WE assertion
  */
 //@{
-
 #define BP_EIM_CS0WCR1_WEN      (6)      //!< Bit position for EIM_CS0WCR1_WEN.
 #define BM_EIM_CS0WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS0WCR1_WEN.
 
@@ -1589,7 +1508,6 @@ typedef union _hw_eim_cs0wcr1
 //! @brief Set the WEN field to a new value.
 #define BW_EIM_CS0WCR1_WEN(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WEN) | BF_EIM_CS0WCR1_WEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0WCR1, field WEA[11:9] (RW)
@@ -1607,7 +1525,6 @@ typedef union _hw_eim_cs0wcr1
  * - 111 - 7 EIMclock cycles between beginning of access and WE assertion
  */
 //@{
-
 #define BP_EIM_CS0WCR1_WEA      (9)      //!< Bit position for EIM_CS0WCR1_WEA.
 #define BM_EIM_CS0WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS0WCR1_WEA.
 
@@ -1621,7 +1538,6 @@ typedef union _hw_eim_cs0wcr1
 //! @brief Set the WEA field to a new value.
 #define BW_EIM_CS0WCR1_WEA(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WEA) | BF_EIM_CS0WCR1_WEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0WCR1, field WBEN[14:12] (RW)
@@ -1635,7 +1551,6 @@ typedef union _hw_eim_cs0wcr1
  * access and WE negation
  */
 //@{
-
 #define BP_EIM_CS0WCR1_WBEN      (12)      //!< Bit position for EIM_CS0WCR1_WBEN.
 #define BM_EIM_CS0WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS0WCR1_WBEN.
 
@@ -1649,7 +1564,6 @@ typedef union _hw_eim_cs0wcr1
 //! @brief Set the WBEN field to a new value.
 #define BW_EIM_CS0WCR1_WBEN(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WBEN) | BF_EIM_CS0WCR1_WBEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0WCR1, field WBEA[17:15] (RW)
@@ -1666,7 +1580,6 @@ typedef union _hw_eim_cs0wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and BE assertion
  */
 //@{
-
 #define BP_EIM_CS0WCR1_WBEA      (15)      //!< Bit position for EIM_CS0WCR1_WBEA.
 #define BM_EIM_CS0WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS0WCR1_WBEA.
 
@@ -1680,7 +1593,6 @@ typedef union _hw_eim_cs0wcr1
 //! @brief Set the WBEA field to a new value.
 #define BW_EIM_CS0WCR1_WBEA(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WBEA) | BF_EIM_CS0WCR1_WBEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0WCR1, field WADVN[20:18] (RW)
@@ -1694,7 +1606,6 @@ typedef union _hw_eim_cs0wcr1
  * negation at the same time as the end of access, S/W should set the WAL bit.
  */
 //@{
-
 #define BP_EIM_CS0WCR1_WADVN      (18)      //!< Bit position for EIM_CS0WCR1_WADVN.
 #define BM_EIM_CS0WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS0WCR1_WADVN.
 
@@ -1708,7 +1619,6 @@ typedef union _hw_eim_cs0wcr1
 //! @brief Set the WADVN field to a new value.
 #define BW_EIM_CS0WCR1_WADVN(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WADVN) | BF_EIM_CS0WCR1_WADVN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0WCR1, field WADVA[23:21] (RW)
@@ -1724,7 +1634,6 @@ typedef union _hw_eim_cs0wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 //@{
-
 #define BP_EIM_CS0WCR1_WADVA      (21)      //!< Bit position for EIM_CS0WCR1_WADVA.
 #define BM_EIM_CS0WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS0WCR1_WADVA.
 
@@ -1738,7 +1647,6 @@ typedef union _hw_eim_cs0wcr1
 //! @brief Set the WADVA field to a new value.
 #define BW_EIM_CS0WCR1_WADVA(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WADVA) | BF_EIM_CS0WCR1_WADVA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0WCR1, field WWSC[29:24] (RW)
@@ -1765,7 +1673,6 @@ typedef union _hw_eim_cs0wcr1
  * - 111111 - WWSC value is 63
  */
 //@{
-
 #define BP_EIM_CS0WCR1_WWSC      (24)      //!< Bit position for EIM_CS0WCR1_WWSC.
 #define BM_EIM_CS0WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS0WCR1_WWSC.
 
@@ -1779,7 +1686,6 @@ typedef union _hw_eim_cs0wcr1
 //! @brief Set the WWSC field to a new value.
 #define BW_EIM_CS0WCR1_WWSC(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WWSC) | BF_EIM_CS0WCR1_WWSC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0WCR1, field WBED[30] (RW)
@@ -1788,7 +1694,6 @@ typedef union _hw_eim_cs0wcr1
  * during write accesses.This bit is cleared by hardware reset.
  */
 //@{
-
 #define BP_EIM_CS0WCR1_WBED      (30)      //!< Bit position for EIM_CS0WCR1_WBED.
 #define BM_EIM_CS0WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS0WCR1_WBED.
 
@@ -1802,7 +1707,6 @@ typedef union _hw_eim_cs0wcr1
 //! @brief Set the WBED field to a new value.
 #define BW_EIM_CS0WCR1_WBED(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WBED) | BF_EIM_CS0WCR1_WBED(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS0WCR1, field WAL[31] (RW)
@@ -1812,7 +1716,6 @@ typedef union _hw_eim_cs0wcr1
  * negation of ADV signal is according to WADVN bit field configuration.
  */
 //@{
-
 #define BP_EIM_CS0WCR1_WAL      (31)      //!< Bit position for EIM_CS0WCR1_WAL.
 #define BM_EIM_CS0WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS0WCR1_WAL.
 
@@ -1826,7 +1729,6 @@ typedef union _hw_eim_cs0wcr1
 //! @brief Set the WAL field to a new value.
 #define BW_EIM_CS0WCR1_WAL(v)   (HW_EIM_CS0WCR1_WR((HW_EIM_CS0WCR1_RD() & ~BM_EIM_CS0WCR1_WAL) | BF_EIM_CS0WCR1_WAL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1879,7 +1781,6 @@ typedef union _hw_eim_cs0wcr2
  * bit has no affect. This bit is cleared by hardware reset.
  */
 //@{
-
 #define BP_EIM_CS0WCR2_WBCDD      (0)      //!< Bit position for EIM_CS0WCR2_WBCDD.
 #define BM_EIM_CS0WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS0WCR2_WBCDD.
 
@@ -1893,7 +1794,6 @@ typedef union _hw_eim_cs0wcr2
 //! @brief Set the WBCDD field to a new value.
 #define BW_EIM_CS0WCR2_WBCDD(v)   (HW_EIM_CS0WCR2_WR((HW_EIM_CS0WCR2_RD() & ~BM_EIM_CS0WCR2_WBCDD) | BF_EIM_CS0WCR2_WBCDD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1969,7 +1869,6 @@ typedef union _hw_eim_cs1gcr1
  * - 1 - Chip select is enabled, and is asserted when presented with a valid access.
  */
 //@{
-
 #define BP_EIM_CS1GCR1_CSEN      (0)      //!< Bit position for EIM_CS1GCR1_CSEN.
 #define BM_EIM_CS1GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS1GCR1_CSEN.
 
@@ -1983,7 +1882,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the CSEN field to a new value.
 #define BW_EIM_CS1GCR1_CSEN(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_CSEN) | BF_EIM_CS1GCR1_CSEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field SWR[1] (RW)
@@ -1997,7 +1895,6 @@ typedef union _hw_eim_cs1gcr1
  * - 1 - write accesses are in Synchronous mode
  */
 //@{
-
 #define BP_EIM_CS1GCR1_SWR      (1)      //!< Bit position for EIM_CS1GCR1_SWR.
 #define BM_EIM_CS1GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS1GCR1_SWR.
 
@@ -2011,7 +1908,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the SWR field to a new value.
 #define BW_EIM_CS1GCR1_SWR(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_SWR) | BF_EIM_CS1GCR1_SWR(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field SRD[2] (RW)
@@ -2025,7 +1921,6 @@ typedef union _hw_eim_cs1gcr1
  * - 1 - read accesses are in Synchronous mode
  */
 //@{
-
 #define BP_EIM_CS1GCR1_SRD      (2)      //!< Bit position for EIM_CS1GCR1_SRD.
 #define BM_EIM_CS1GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS1GCR1_SRD.
 
@@ -2039,7 +1934,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the SRD field to a new value.
 #define BW_EIM_CS1GCR1_SRD(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_SRD) | BF_EIM_CS1GCR1_SRD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field MUM[3] (RW)
@@ -2053,7 +1947,6 @@ typedef union _hw_eim_cs1gcr1
  * - 1 - Multiplexed Mode enable
  */
 //@{
-
 #define BP_EIM_CS1GCR1_MUM      (3)      //!< Bit position for EIM_CS1GCR1_MUM.
 #define BM_EIM_CS1GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS1GCR1_MUM.
 
@@ -2067,7 +1960,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the MUM field to a new value.
 #define BW_EIM_CS1GCR1_MUM(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_MUM) | BF_EIM_CS1GCR1_MUM(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field WFL[4] (RW)
@@ -2084,7 +1976,6 @@ typedef union _hw_eim_cs1gcr1
  * - 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 //@{
-
 #define BP_EIM_CS1GCR1_WFL      (4)      //!< Bit position for EIM_CS1GCR1_WFL.
 #define BM_EIM_CS1GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS1GCR1_WFL.
 
@@ -2098,7 +1989,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the WFL field to a new value.
 #define BW_EIM_CS1GCR1_WFL(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_WFL) | BF_EIM_CS1GCR1_WFL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field RFL[5] (RW)
@@ -2115,7 +2005,6 @@ typedef union _hw_eim_cs1gcr1
  * - 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 //@{
-
 #define BP_EIM_CS1GCR1_RFL      (5)      //!< Bit position for EIM_CS1GCR1_RFL.
 #define BM_EIM_CS1GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS1GCR1_RFL.
 
@@ -2129,7 +2018,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the RFL field to a new value.
 #define BW_EIM_CS1GCR1_RFL(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_RFL) | BF_EIM_CS1GCR1_RFL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field CRE[6] (RW)
@@ -2142,7 +2030,6 @@ typedef union _hw_eim_cs1gcr1
  * - 1 - CRE signal use is enable
  */
 //@{
-
 #define BP_EIM_CS1GCR1_CRE      (6)      //!< Bit position for EIM_CS1GCR1_CRE.
 #define BM_EIM_CS1GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS1GCR1_CRE.
 
@@ -2156,7 +2043,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the CRE field to a new value.
 #define BW_EIM_CS1GCR1_CRE(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_CRE) | BF_EIM_CS1GCR1_CRE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field CREP[7] (RW)
@@ -2172,7 +2058,6 @@ typedef union _hw_eim_cs1gcr1
  * - 1 - CRE signal is active high
  */
 //@{
-
 #define BP_EIM_CS1GCR1_CREP      (7)      //!< Bit position for EIM_CS1GCR1_CREP.
 #define BM_EIM_CS1GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS1GCR1_CREP.
 
@@ -2186,7 +2071,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the CREP field to a new value.
 #define BW_EIM_CS1GCR1_CREP(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_CREP) | BF_EIM_CS1GCR1_CREP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field BL[10:8] (RW)
@@ -2211,7 +2095,6 @@ typedef union _hw_eim_cs1gcr1
  * - 111 - Reserved
  */
 //@{
-
 #define BP_EIM_CS1GCR1_BL      (8)      //!< Bit position for EIM_CS1GCR1_BL.
 #define BM_EIM_CS1GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS1GCR1_BL.
 
@@ -2225,7 +2108,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the BL field to a new value.
 #define BW_EIM_CS1GCR1_BL(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_BL) | BF_EIM_CS1GCR1_BL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field WC[11] (RW)
@@ -2238,7 +2120,6 @@ typedef union _hw_eim_cs1gcr1
  * - 1 - Write access burst length is continuous.
  */
 //@{
-
 #define BP_EIM_CS1GCR1_WC      (11)      //!< Bit position for EIM_CS1GCR1_WC.
 #define BM_EIM_CS1GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS1GCR1_WC.
 
@@ -2252,7 +2133,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the WC field to a new value.
 #define BW_EIM_CS1GCR1_WC(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_WC) | BF_EIM_CS1GCR1_WC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field BCD[13:12] (RW)
@@ -2269,7 +2149,6 @@ typedef union _hw_eim_cs1gcr1
  * - 11 - Divide EIM clock by 4
  */
 //@{
-
 #define BP_EIM_CS1GCR1_BCD      (12)      //!< Bit position for EIM_CS1GCR1_BCD.
 #define BM_EIM_CS1GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS1GCR1_BCD.
 
@@ -2283,7 +2162,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the BCD field to a new value.
 #define BW_EIM_CS1GCR1_BCD(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_BCD) | BF_EIM_CS1GCR1_BCD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field BCS[15:14] (RW)
@@ -2301,7 +2179,6 @@ typedef union _hw_eim_cs1gcr1
  * - 11 - 3 EIM clock cycle additional delay
  */
 //@{
-
 #define BP_EIM_CS1GCR1_BCS      (14)      //!< Bit position for EIM_CS1GCR1_BCS.
 #define BM_EIM_CS1GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS1GCR1_BCS.
 
@@ -2315,7 +2192,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the BCS field to a new value.
 #define BW_EIM_CS1GCR1_BCS(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_BCS) | BF_EIM_CS1GCR1_BCS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field DSZ[18:16] (RW)
@@ -2335,7 +2211,6 @@ typedef union _hw_eim_cs1gcr1
  * - 111 - 8 bit port resides on DATA[31:24]
  */
 //@{
-
 #define BP_EIM_CS1GCR1_DSZ      (16)      //!< Bit position for EIM_CS1GCR1_DSZ.
 #define BM_EIM_CS1GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS1GCR1_DSZ.
 
@@ -2349,7 +2224,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the DSZ field to a new value.
 #define BW_EIM_CS1GCR1_DSZ(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_DSZ) | BF_EIM_CS1GCR1_DSZ(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field SP[19] (RW)
@@ -2363,7 +2237,6 @@ typedef union _hw_eim_cs1gcr1
  *     User mode results in an error response and no assertion of the chip select output.
  */
 //@{
-
 #define BP_EIM_CS1GCR1_SP      (19)      //!< Bit position for EIM_CS1GCR1_SP.
 #define BM_EIM_CS1GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS1GCR1_SP.
 
@@ -2377,7 +2250,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the SP field to a new value.
 #define BW_EIM_CS1GCR1_SP(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_SP) | BF_EIM_CS1GCR1_SP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field CSREC[22:20] (RW)
@@ -2394,7 +2266,6 @@ typedef union _hw_eim_cs1gcr1
  * - 111 - 7 EIM clock cycles minimum width of CS, OE and WE signals
  */
 //@{
-
 #define BP_EIM_CS1GCR1_CSREC      (20)      //!< Bit position for EIM_CS1GCR1_CSREC.
 #define BM_EIM_CS1GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS1GCR1_CSREC.
 
@@ -2408,7 +2279,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the CSREC field to a new value.
 #define BW_EIM_CS1GCR1_CSREC(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_CSREC) | BF_EIM_CS1GCR1_CSREC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field AUS[23] (RW)
@@ -2421,7 +2291,6 @@ typedef union _hw_eim_cs1gcr1
  * - 1 - Address unshifted
  */
 //@{
-
 #define BP_EIM_CS1GCR1_AUS      (23)      //!< Bit position for EIM_CS1GCR1_AUS.
 #define BM_EIM_CS1GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS1GCR1_AUS.
 
@@ -2435,7 +2304,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the AUS field to a new value.
 #define BW_EIM_CS1GCR1_AUS(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_AUS) | BF_EIM_CS1GCR1_AUS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field GBC[26:24] (RW)
@@ -2451,7 +2319,6 @@ typedef union _hw_eim_cs1gcr1
  * - 111 - minimum of 7 EIM clock cycles before next access from different chip select
  */
 //@{
-
 #define BP_EIM_CS1GCR1_GBC      (24)      //!< Bit position for EIM_CS1GCR1_GBC.
 #define BM_EIM_CS1GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS1GCR1_GBC.
 
@@ -2465,7 +2332,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the GBC field to a new value.
 #define BW_EIM_CS1GCR1_GBC(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_GBC) | BF_EIM_CS1GCR1_GBC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field WP[27] (RW)
@@ -2479,7 +2345,6 @@ typedef union _hw_eim_cs1gcr1
  *     error response and no assertion of the chip select output.
  */
 //@{
-
 #define BP_EIM_CS1GCR1_WP      (27)      //!< Bit position for EIM_CS1GCR1_WP.
 #define BM_EIM_CS1GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS1GCR1_WP.
 
@@ -2493,7 +2358,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the WP field to a new value.
 #define BW_EIM_CS1GCR1_WP(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_WP) | BF_EIM_CS1GCR1_WP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR1, field PSZ[31:28] (RW)
@@ -2519,7 +2383,6 @@ typedef union _hw_eim_cs1gcr1
  * - 1001 - - 1111 Reserved
  */
 //@{
-
 #define BP_EIM_CS1GCR1_PSZ      (28)      //!< Bit position for EIM_CS1GCR1_PSZ.
 #define BM_EIM_CS1GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS1GCR1_PSZ.
 
@@ -2533,7 +2396,6 @@ typedef union _hw_eim_cs1gcr1
 //! @brief Set the PSZ field to a new value.
 #define BW_EIM_CS1GCR1_PSZ(v)   (HW_EIM_CS1GCR1_WR((HW_EIM_CS1GCR1_RD() & ~BM_EIM_CS1GCR1_PSZ) | BF_EIM_CS1GCR1_PSZ(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2599,7 +2461,6 @@ typedef union _hw_eim_cs1gcr2
  * - 11 - Reserved
  */
 //@{
-
 #define BP_EIM_CS1GCR2_ADH      (0)      //!< Bit position for EIM_CS1GCR2_ADH.
 #define BM_EIM_CS1GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS1GCR2_ADH.
 
@@ -2613,7 +2474,6 @@ typedef union _hw_eim_cs1gcr2
 //! @brief Set the ADH field to a new value.
 #define BW_EIM_CS1GCR2_ADH(v)   (HW_EIM_CS1GCR2_WR((HW_EIM_CS1GCR2_RD() & ~BM_EIM_CS1GCR2_ADH) | BF_EIM_CS1GCR2_ADH(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR2, field DAPS[7:4] (RW)
@@ -2632,7 +2492,6 @@ typedef union _hw_eim_cs1gcr2
  * - 1111 - 18 EIM clk cycles between start of access and first DTACK check
  */
 //@{
-
 #define BP_EIM_CS1GCR2_DAPS      (4)      //!< Bit position for EIM_CS1GCR2_DAPS.
 #define BM_EIM_CS1GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS1GCR2_DAPS.
 
@@ -2646,7 +2505,6 @@ typedef union _hw_eim_cs1gcr2
 //! @brief Set the DAPS field to a new value.
 #define BW_EIM_CS1GCR2_DAPS(v)   (HW_EIM_CS1GCR2_WR((HW_EIM_CS1GCR2_RD() & ~BM_EIM_CS1GCR2_DAPS) | BF_EIM_CS1GCR2_DAPS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR2, field DAE[8] (RW)
@@ -2661,7 +2519,6 @@ typedef union _hw_eim_cs1gcr2
  * - 1 - DTACK signal use is enable
  */
 //@{
-
 #define BP_EIM_CS1GCR2_DAE      (8)      //!< Bit position for EIM_CS1GCR2_DAE.
 #define BM_EIM_CS1GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS1GCR2_DAE.
 
@@ -2675,7 +2532,6 @@ typedef union _hw_eim_cs1gcr2
 //! @brief Set the DAE field to a new value.
 #define BW_EIM_CS1GCR2_DAE(v)   (HW_EIM_CS1GCR2_WR((HW_EIM_CS1GCR2_RD() & ~BM_EIM_CS1GCR2_DAE) | BF_EIM_CS1GCR2_DAE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR2, field DAP[9] (RW)
@@ -2689,7 +2545,6 @@ typedef union _hw_eim_cs1gcr2
  * - 1 - DTACK signal is active low
  */
 //@{
-
 #define BP_EIM_CS1GCR2_DAP      (9)      //!< Bit position for EIM_CS1GCR2_DAP.
 #define BM_EIM_CS1GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS1GCR2_DAP.
 
@@ -2703,7 +2558,6 @@ typedef union _hw_eim_cs1gcr2
 //! @brief Set the DAP field to a new value.
 #define BW_EIM_CS1GCR2_DAP(v)   (HW_EIM_CS1GCR2_WR((HW_EIM_CS1GCR2_RD() & ~BM_EIM_CS1GCR2_DAP) | BF_EIM_CS1GCR2_DAP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1GCR2, field MUX16_BYP_GRANT[12] (RW)
@@ -2716,7 +2570,6 @@ typedef union _hw_eim_cs1gcr2
  * - 1 - EIM ignores the grant signal and immediately drives a 16 bit muxed mode access to the memory.
  */
 //@{
-
 #define BP_EIM_CS1GCR2_MUX16_BYP_GRANT      (12)      //!< Bit position for EIM_CS1GCR2_MUX16_BYP_GRANT.
 #define BM_EIM_CS1GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS1GCR2_MUX16_BYP_GRANT.
 
@@ -2730,7 +2583,6 @@ typedef union _hw_eim_cs1gcr2
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
 #define BW_EIM_CS1GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS1GCR2_WR((HW_EIM_CS1GCR2_RD() & ~BM_EIM_CS1GCR2_MUX16_BYP_GRANT) | BF_EIM_CS1GCR2_MUX16_BYP_GRANT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2801,7 +2653,6 @@ typedef union _hw_eim_cs1rcr1
  * - 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 //@{
-
 #define BP_EIM_CS1RCR1_RCSN      (0)      //!< Bit position for EIM_CS1RCR1_RCSN.
 #define BM_EIM_CS1RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS1RCR1_RCSN.
 
@@ -2815,7 +2666,6 @@ typedef union _hw_eim_cs1rcr1
 //! @brief Set the RCSN field to a new value.
 #define BW_EIM_CS1RCR1_RCSN(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_RCSN) | BF_EIM_CS1RCR1_RCSN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1RCR1, field RCSA[6:4] (RW)
@@ -2831,7 +2681,6 @@ typedef union _hw_eim_cs1rcr1
  * - 111 - 7 EIM clock cycles between beginning of read access and CS assertion
  */
 //@{
-
 #define BP_EIM_CS1RCR1_RCSA      (4)      //!< Bit position for EIM_CS1RCR1_RCSA.
 #define BM_EIM_CS1RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS1RCR1_RCSA.
 
@@ -2845,7 +2694,6 @@ typedef union _hw_eim_cs1rcr1
 //! @brief Set the RCSA field to a new value.
 #define BW_EIM_CS1RCR1_RCSA(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_RCSA) | BF_EIM_CS1RCR1_RCSA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1RCR1, field OEN[10:8] (RW)
@@ -2861,7 +2709,6 @@ typedef union _hw_eim_cs1rcr1
  * - 111 - 7 EIM clock cycles between end of access and OE negation
  */
 //@{
-
 #define BP_EIM_CS1RCR1_OEN      (8)      //!< Bit position for EIM_CS1RCR1_OEN.
 #define BM_EIM_CS1RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS1RCR1_OEN.
 
@@ -2875,7 +2722,6 @@ typedef union _hw_eim_cs1rcr1
 //! @brief Set the OEN field to a new value.
 #define BW_EIM_CS1RCR1_OEN(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_OEN) | BF_EIM_CS1RCR1_OEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1RCR1, field OEA[14:12] (RW)
@@ -2894,7 +2740,6 @@ typedef union _hw_eim_cs1rcr1
  * - 111 - 7 EIM clock cycles between beginning of access and OE assertion
  */
 //@{
-
 #define BP_EIM_CS1RCR1_OEA      (12)      //!< Bit position for EIM_CS1RCR1_OEA.
 #define BM_EIM_CS1RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS1RCR1_OEA.
 
@@ -2908,7 +2753,6 @@ typedef union _hw_eim_cs1rcr1
 //! @brief Set the OEA field to a new value.
 #define BW_EIM_CS1RCR1_OEA(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_OEA) | BF_EIM_CS1RCR1_OEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1RCR1, field RADVN[18:16] (RW)
@@ -2923,7 +2767,6 @@ typedef union _hw_eim_cs1rcr1
  * ADV negation at the same time with the end of access user should RAL bit.
  */
 //@{
-
 #define BP_EIM_CS1RCR1_RADVN      (16)      //!< Bit position for EIM_CS1RCR1_RADVN.
 #define BM_EIM_CS1RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS1RCR1_RADVN.
 
@@ -2937,7 +2780,6 @@ typedef union _hw_eim_cs1rcr1
 //! @brief Set the RADVN field to a new value.
 #define BW_EIM_CS1RCR1_RADVN(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_RADVN) | BF_EIM_CS1RCR1_RADVN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1RCR1, field RAL[19] (RW)
@@ -2947,7 +2789,6 @@ typedef union _hw_eim_cs1rcr1
  * is according to RADVN bit field configuration.
  */
 //@{
-
 #define BP_EIM_CS1RCR1_RAL      (19)      //!< Bit position for EIM_CS1RCR1_RAL.
 #define BM_EIM_CS1RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS1RCR1_RAL.
 
@@ -2961,7 +2802,6 @@ typedef union _hw_eim_cs1rcr1
 //! @brief Set the RAL field to a new value.
 #define BW_EIM_CS1RCR1_RAL(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_RAL) | BF_EIM_CS1RCR1_RAL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1RCR1, field RADVA[22:20] (RW)
@@ -2977,7 +2817,6 @@ typedef union _hw_eim_cs1rcr1
  * - 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 //@{
-
 #define BP_EIM_CS1RCR1_RADVA      (20)      //!< Bit position for EIM_CS1RCR1_RADVA.
 #define BM_EIM_CS1RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS1RCR1_RADVA.
 
@@ -2991,7 +2830,6 @@ typedef union _hw_eim_cs1rcr1
 //! @brief Set the RADVA field to a new value.
 #define BW_EIM_CS1RCR1_RADVA(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_RADVA) | BF_EIM_CS1RCR1_RADVA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1RCR1, field RWSC[29:24] (RW)
@@ -3018,7 +2856,6 @@ typedef union _hw_eim_cs1rcr1
  * - 111111 - RWSC value is 63
  */
 //@{
-
 #define BP_EIM_CS1RCR1_RWSC      (24)      //!< Bit position for EIM_CS1RCR1_RWSC.
 #define BM_EIM_CS1RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS1RCR1_RWSC.
 
@@ -3032,7 +2869,6 @@ typedef union _hw_eim_cs1rcr1
 //! @brief Set the RWSC field to a new value.
 #define BW_EIM_CS1RCR1_RWSC(v)   (HW_EIM_CS1RCR1_WR((HW_EIM_CS1RCR1_RD() & ~BM_EIM_CS1RCR1_RWSC) | BF_EIM_CS1RCR1_RWSC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3098,7 +2934,6 @@ typedef union _hw_eim_cs1rcr2
  * - 111 - 7 EIM clock cycles between end of read access and BE negation
  */
 //@{
-
 #define BP_EIM_CS1RCR2_RBEN      (0)      //!< Bit position for EIM_CS1RCR2_RBEN.
 #define BM_EIM_CS1RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS1RCR2_RBEN.
 
@@ -3112,7 +2947,6 @@ typedef union _hw_eim_cs1rcr2
 //! @brief Set the RBEN field to a new value.
 #define BW_EIM_CS1RCR2_RBEN(v)   (HW_EIM_CS1RCR2_WR((HW_EIM_CS1RCR2_RD() & ~BM_EIM_CS1RCR2_RBEN) | BF_EIM_CS1RCR2_RBEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1RCR2, field RBE[3] (RW)
@@ -3124,7 +2958,6 @@ typedef union _hw_eim_cs1rcr2
  * - 1- - BE are enable during read access according to value of RBEA & RBEN bit fields.
  */
 //@{
-
 #define BP_EIM_CS1RCR2_RBE      (3)      //!< Bit position for EIM_CS1RCR2_RBE.
 #define BM_EIM_CS1RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS1RCR2_RBE.
 
@@ -3138,7 +2971,6 @@ typedef union _hw_eim_cs1rcr2
 //! @brief Set the RBE field to a new value.
 #define BW_EIM_CS1RCR2_RBE(v)   (HW_EIM_CS1RCR2_WR((HW_EIM_CS1RCR2_RD() & ~BM_EIM_CS1RCR2_RBE) | BF_EIM_CS1RCR2_RBE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1RCR2, field RBEA[6:4] (RW)
@@ -3154,7 +2986,6 @@ typedef union _hw_eim_cs1rcr2
  * - 111 - 7 EIM clock cycles between beginning of read access and BE assertion
  */
 //@{
-
 #define BP_EIM_CS1RCR2_RBEA      (4)      //!< Bit position for EIM_CS1RCR2_RBEA.
 #define BM_EIM_CS1RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS1RCR2_RBEA.
 
@@ -3168,7 +2999,6 @@ typedef union _hw_eim_cs1rcr2
 //! @brief Set the RBEA field to a new value.
 #define BW_EIM_CS1RCR2_RBEA(v)   (HW_EIM_CS1RCR2_WR((HW_EIM_CS1RCR2_RD() & ~BM_EIM_CS1RCR2_RBEA) | BF_EIM_CS1RCR2_RBEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1RCR2, field RL[9:8] (RW)
@@ -3184,7 +3014,6 @@ typedef union _hw_eim_cs1rcr2
  * - 11 - Feedback clock loop delay is up to 4 cycles for BCD = 0 or 4.5 cycles for BCD != 0
  */
 //@{
-
 #define BP_EIM_CS1RCR2_RL      (8)      //!< Bit position for EIM_CS1RCR2_RL.
 #define BM_EIM_CS1RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS1RCR2_RL.
 
@@ -3198,7 +3027,6 @@ typedef union _hw_eim_cs1rcr2
 //! @brief Set the RL field to a new value.
 #define BW_EIM_CS1RCR2_RL(v)   (HW_EIM_CS1RCR2_WR((HW_EIM_CS1RCR2_RD() & ~BM_EIM_CS1RCR2_RL) | BF_EIM_CS1RCR2_RL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1RCR2, field PAT[14:12] (RW)
@@ -3219,7 +3047,6 @@ typedef union _hw_eim_cs1rcr2
  * - 111 - Address width is 9 EIM clock cycles
  */
 //@{
-
 #define BP_EIM_CS1RCR2_PAT      (12)      //!< Bit position for EIM_CS1RCR2_PAT.
 #define BM_EIM_CS1RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS1RCR2_PAT.
 
@@ -3233,7 +3060,6 @@ typedef union _hw_eim_cs1rcr2
 //! @brief Set the PAT field to a new value.
 #define BW_EIM_CS1RCR2_PAT(v)   (HW_EIM_CS1RCR2_WR((HW_EIM_CS1RCR2_RD() & ~BM_EIM_CS1RCR2_PAT) | BF_EIM_CS1RCR2_PAT(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1RCR2, field APR[15] (RW)
@@ -3245,7 +3071,6 @@ typedef union _hw_eim_cs1rcr2
  * for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
  */
 //@{
-
 #define BP_EIM_CS1RCR2_APR      (15)      //!< Bit position for EIM_CS1RCR2_APR.
 #define BM_EIM_CS1RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS1RCR2_APR.
 
@@ -3259,7 +3084,6 @@ typedef union _hw_eim_cs1rcr2
 //! @brief Set the APR field to a new value.
 #define BW_EIM_CS1RCR2_APR(v)   (HW_EIM_CS1RCR2_WR((HW_EIM_CS1RCR2_RD() & ~BM_EIM_CS1RCR2_APR) | BF_EIM_CS1RCR2_APR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3327,7 +3151,6 @@ typedef union _hw_eim_cs1wcr1
  * - 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 //@{
-
 #define BP_EIM_CS1WCR1_WCSN      (0)      //!< Bit position for EIM_CS1WCR1_WCSN.
 #define BM_EIM_CS1WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS1WCR1_WCSN.
 
@@ -3341,7 +3164,6 @@ typedef union _hw_eim_cs1wcr1
 //! @brief Set the WCSN field to a new value.
 #define BW_EIM_CS1WCR1_WCSN(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WCSN) | BF_EIM_CS1WCR1_WCSN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1WCR1, field WCSA[5:3] (RW)
@@ -3358,7 +3180,6 @@ typedef union _hw_eim_cs1wcr1
  * - 111 - 7 EIMclock cycles between beginning of write access and CS assertion
  */
 //@{
-
 #define BP_EIM_CS1WCR1_WCSA      (3)      //!< Bit position for EIM_CS1WCR1_WCSA.
 #define BM_EIM_CS1WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS1WCR1_WCSA.
 
@@ -3372,7 +3193,6 @@ typedef union _hw_eim_cs1wcr1
 //! @brief Set the WCSA field to a new value.
 #define BW_EIM_CS1WCR1_WCSA(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WCSA) | BF_EIM_CS1WCR1_WCSA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1WCR1, field WEN[8:6] (RW)
@@ -3389,7 +3209,6 @@ typedef union _hw_eim_cs1wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and WE assertion
  */
 //@{
-
 #define BP_EIM_CS1WCR1_WEN      (6)      //!< Bit position for EIM_CS1WCR1_WEN.
 #define BM_EIM_CS1WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS1WCR1_WEN.
 
@@ -3403,7 +3222,6 @@ typedef union _hw_eim_cs1wcr1
 //! @brief Set the WEN field to a new value.
 #define BW_EIM_CS1WCR1_WEN(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WEN) | BF_EIM_CS1WCR1_WEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1WCR1, field WEA[11:9] (RW)
@@ -3421,7 +3239,6 @@ typedef union _hw_eim_cs1wcr1
  * - 111 - 7 EIMclock cycles between beginning of access and WE assertion
  */
 //@{
-
 #define BP_EIM_CS1WCR1_WEA      (9)      //!< Bit position for EIM_CS1WCR1_WEA.
 #define BM_EIM_CS1WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS1WCR1_WEA.
 
@@ -3435,7 +3252,6 @@ typedef union _hw_eim_cs1wcr1
 //! @brief Set the WEA field to a new value.
 #define BW_EIM_CS1WCR1_WEA(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WEA) | BF_EIM_CS1WCR1_WEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1WCR1, field WBEN[14:12] (RW)
@@ -3449,7 +3265,6 @@ typedef union _hw_eim_cs1wcr1
  * access and WE negation
  */
 //@{
-
 #define BP_EIM_CS1WCR1_WBEN      (12)      //!< Bit position for EIM_CS1WCR1_WBEN.
 #define BM_EIM_CS1WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS1WCR1_WBEN.
 
@@ -3463,7 +3278,6 @@ typedef union _hw_eim_cs1wcr1
 //! @brief Set the WBEN field to a new value.
 #define BW_EIM_CS1WCR1_WBEN(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WBEN) | BF_EIM_CS1WCR1_WBEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1WCR1, field WBEA[17:15] (RW)
@@ -3480,7 +3294,6 @@ typedef union _hw_eim_cs1wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and BE assertion
  */
 //@{
-
 #define BP_EIM_CS1WCR1_WBEA      (15)      //!< Bit position for EIM_CS1WCR1_WBEA.
 #define BM_EIM_CS1WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS1WCR1_WBEA.
 
@@ -3494,7 +3307,6 @@ typedef union _hw_eim_cs1wcr1
 //! @brief Set the WBEA field to a new value.
 #define BW_EIM_CS1WCR1_WBEA(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WBEA) | BF_EIM_CS1WCR1_WBEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1WCR1, field WADVN[20:18] (RW)
@@ -3508,7 +3320,6 @@ typedef union _hw_eim_cs1wcr1
  * negation at the same time as the end of access, S/W should set the WAL bit.
  */
 //@{
-
 #define BP_EIM_CS1WCR1_WADVN      (18)      //!< Bit position for EIM_CS1WCR1_WADVN.
 #define BM_EIM_CS1WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS1WCR1_WADVN.
 
@@ -3522,7 +3333,6 @@ typedef union _hw_eim_cs1wcr1
 //! @brief Set the WADVN field to a new value.
 #define BW_EIM_CS1WCR1_WADVN(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WADVN) | BF_EIM_CS1WCR1_WADVN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1WCR1, field WADVA[23:21] (RW)
@@ -3538,7 +3348,6 @@ typedef union _hw_eim_cs1wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 //@{
-
 #define BP_EIM_CS1WCR1_WADVA      (21)      //!< Bit position for EIM_CS1WCR1_WADVA.
 #define BM_EIM_CS1WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS1WCR1_WADVA.
 
@@ -3552,7 +3361,6 @@ typedef union _hw_eim_cs1wcr1
 //! @brief Set the WADVA field to a new value.
 #define BW_EIM_CS1WCR1_WADVA(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WADVA) | BF_EIM_CS1WCR1_WADVA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1WCR1, field WWSC[29:24] (RW)
@@ -3579,7 +3387,6 @@ typedef union _hw_eim_cs1wcr1
  * - 111111 - WWSC value is 63
  */
 //@{
-
 #define BP_EIM_CS1WCR1_WWSC      (24)      //!< Bit position for EIM_CS1WCR1_WWSC.
 #define BM_EIM_CS1WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS1WCR1_WWSC.
 
@@ -3593,7 +3400,6 @@ typedef union _hw_eim_cs1wcr1
 //! @brief Set the WWSC field to a new value.
 #define BW_EIM_CS1WCR1_WWSC(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WWSC) | BF_EIM_CS1WCR1_WWSC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1WCR1, field WBED[30] (RW)
@@ -3602,7 +3408,6 @@ typedef union _hw_eim_cs1wcr1
  * during write accesses.This bit is cleared by hardware reset.
  */
 //@{
-
 #define BP_EIM_CS1WCR1_WBED      (30)      //!< Bit position for EIM_CS1WCR1_WBED.
 #define BM_EIM_CS1WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS1WCR1_WBED.
 
@@ -3616,7 +3421,6 @@ typedef union _hw_eim_cs1wcr1
 //! @brief Set the WBED field to a new value.
 #define BW_EIM_CS1WCR1_WBED(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WBED) | BF_EIM_CS1WCR1_WBED(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS1WCR1, field WAL[31] (RW)
@@ -3626,7 +3430,6 @@ typedef union _hw_eim_cs1wcr1
  * negation of ADV signal is according to WADVN bit field configuration.
  */
 //@{
-
 #define BP_EIM_CS1WCR1_WAL      (31)      //!< Bit position for EIM_CS1WCR1_WAL.
 #define BM_EIM_CS1WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS1WCR1_WAL.
 
@@ -3640,7 +3443,6 @@ typedef union _hw_eim_cs1wcr1
 //! @brief Set the WAL field to a new value.
 #define BW_EIM_CS1WCR1_WAL(v)   (HW_EIM_CS1WCR1_WR((HW_EIM_CS1WCR1_RD() & ~BM_EIM_CS1WCR1_WAL) | BF_EIM_CS1WCR1_WAL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3693,7 +3495,6 @@ typedef union _hw_eim_cs1wcr2
  * bit has no affect. This bit is cleared by hardware reset.
  */
 //@{
-
 #define BP_EIM_CS1WCR2_WBCDD      (0)      //!< Bit position for EIM_CS1WCR2_WBCDD.
 #define BM_EIM_CS1WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS1WCR2_WBCDD.
 
@@ -3707,7 +3508,6 @@ typedef union _hw_eim_cs1wcr2
 //! @brief Set the WBCDD field to a new value.
 #define BW_EIM_CS1WCR2_WBCDD(v)   (HW_EIM_CS1WCR2_WR((HW_EIM_CS1WCR2_RD() & ~BM_EIM_CS1WCR2_WBCDD) | BF_EIM_CS1WCR2_WBCDD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3783,7 +3583,6 @@ typedef union _hw_eim_cs2gcr1
  * - 1 - Chip select is enabled, and is asserted when presented with a valid access.
  */
 //@{
-
 #define BP_EIM_CS2GCR1_CSEN      (0)      //!< Bit position for EIM_CS2GCR1_CSEN.
 #define BM_EIM_CS2GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS2GCR1_CSEN.
 
@@ -3797,7 +3596,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the CSEN field to a new value.
 #define BW_EIM_CS2GCR1_CSEN(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_CSEN) | BF_EIM_CS2GCR1_CSEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field SWR[1] (RW)
@@ -3811,7 +3609,6 @@ typedef union _hw_eim_cs2gcr1
  * - 1 - write accesses are in Synchronous mode
  */
 //@{
-
 #define BP_EIM_CS2GCR1_SWR      (1)      //!< Bit position for EIM_CS2GCR1_SWR.
 #define BM_EIM_CS2GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS2GCR1_SWR.
 
@@ -3825,7 +3622,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the SWR field to a new value.
 #define BW_EIM_CS2GCR1_SWR(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_SWR) | BF_EIM_CS2GCR1_SWR(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field SRD[2] (RW)
@@ -3839,7 +3635,6 @@ typedef union _hw_eim_cs2gcr1
  * - 1 - read accesses are in Synchronous mode
  */
 //@{
-
 #define BP_EIM_CS2GCR1_SRD      (2)      //!< Bit position for EIM_CS2GCR1_SRD.
 #define BM_EIM_CS2GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS2GCR1_SRD.
 
@@ -3853,7 +3648,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the SRD field to a new value.
 #define BW_EIM_CS2GCR1_SRD(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_SRD) | BF_EIM_CS2GCR1_SRD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field MUM[3] (RW)
@@ -3867,7 +3661,6 @@ typedef union _hw_eim_cs2gcr1
  * - 1 - Multiplexed Mode enable
  */
 //@{
-
 #define BP_EIM_CS2GCR1_MUM      (3)      //!< Bit position for EIM_CS2GCR1_MUM.
 #define BM_EIM_CS2GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS2GCR1_MUM.
 
@@ -3881,7 +3674,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the MUM field to a new value.
 #define BW_EIM_CS2GCR1_MUM(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_MUM) | BF_EIM_CS2GCR1_MUM(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field WFL[4] (RW)
@@ -3898,7 +3690,6 @@ typedef union _hw_eim_cs2gcr1
  * - 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 //@{
-
 #define BP_EIM_CS2GCR1_WFL      (4)      //!< Bit position for EIM_CS2GCR1_WFL.
 #define BM_EIM_CS2GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS2GCR1_WFL.
 
@@ -3912,7 +3703,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the WFL field to a new value.
 #define BW_EIM_CS2GCR1_WFL(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_WFL) | BF_EIM_CS2GCR1_WFL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field RFL[5] (RW)
@@ -3929,7 +3719,6 @@ typedef union _hw_eim_cs2gcr1
  * - 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 //@{
-
 #define BP_EIM_CS2GCR1_RFL      (5)      //!< Bit position for EIM_CS2GCR1_RFL.
 #define BM_EIM_CS2GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS2GCR1_RFL.
 
@@ -3943,7 +3732,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the RFL field to a new value.
 #define BW_EIM_CS2GCR1_RFL(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_RFL) | BF_EIM_CS2GCR1_RFL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field CRE[6] (RW)
@@ -3956,7 +3744,6 @@ typedef union _hw_eim_cs2gcr1
  * - 1 - CRE signal use is enable
  */
 //@{
-
 #define BP_EIM_CS2GCR1_CRE      (6)      //!< Bit position for EIM_CS2GCR1_CRE.
 #define BM_EIM_CS2GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS2GCR1_CRE.
 
@@ -3970,7 +3757,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the CRE field to a new value.
 #define BW_EIM_CS2GCR1_CRE(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_CRE) | BF_EIM_CS2GCR1_CRE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field CREP[7] (RW)
@@ -3986,7 +3772,6 @@ typedef union _hw_eim_cs2gcr1
  * - 1 - CRE signal is active high
  */
 //@{
-
 #define BP_EIM_CS2GCR1_CREP      (7)      //!< Bit position for EIM_CS2GCR1_CREP.
 #define BM_EIM_CS2GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS2GCR1_CREP.
 
@@ -4000,7 +3785,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the CREP field to a new value.
 #define BW_EIM_CS2GCR1_CREP(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_CREP) | BF_EIM_CS2GCR1_CREP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field BL[10:8] (RW)
@@ -4025,7 +3809,6 @@ typedef union _hw_eim_cs2gcr1
  * - 111 - Reserved
  */
 //@{
-
 #define BP_EIM_CS2GCR1_BL      (8)      //!< Bit position for EIM_CS2GCR1_BL.
 #define BM_EIM_CS2GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS2GCR1_BL.
 
@@ -4039,7 +3822,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the BL field to a new value.
 #define BW_EIM_CS2GCR1_BL(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_BL) | BF_EIM_CS2GCR1_BL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field WC[11] (RW)
@@ -4052,7 +3834,6 @@ typedef union _hw_eim_cs2gcr1
  * - 1 - Write access burst length is continuous.
  */
 //@{
-
 #define BP_EIM_CS2GCR1_WC      (11)      //!< Bit position for EIM_CS2GCR1_WC.
 #define BM_EIM_CS2GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS2GCR1_WC.
 
@@ -4066,7 +3847,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the WC field to a new value.
 #define BW_EIM_CS2GCR1_WC(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_WC) | BF_EIM_CS2GCR1_WC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field BCD[13:12] (RW)
@@ -4083,7 +3863,6 @@ typedef union _hw_eim_cs2gcr1
  * - 11 - Divide EIM clock by 4
  */
 //@{
-
 #define BP_EIM_CS2GCR1_BCD      (12)      //!< Bit position for EIM_CS2GCR1_BCD.
 #define BM_EIM_CS2GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS2GCR1_BCD.
 
@@ -4097,7 +3876,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the BCD field to a new value.
 #define BW_EIM_CS2GCR1_BCD(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_BCD) | BF_EIM_CS2GCR1_BCD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field BCS[15:14] (RW)
@@ -4115,7 +3893,6 @@ typedef union _hw_eim_cs2gcr1
  * - 11 - 3 EIM clock cycle additional delay
  */
 //@{
-
 #define BP_EIM_CS2GCR1_BCS      (14)      //!< Bit position for EIM_CS2GCR1_BCS.
 #define BM_EIM_CS2GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS2GCR1_BCS.
 
@@ -4129,7 +3906,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the BCS field to a new value.
 #define BW_EIM_CS2GCR1_BCS(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_BCS) | BF_EIM_CS2GCR1_BCS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field DSZ[18:16] (RW)
@@ -4149,7 +3925,6 @@ typedef union _hw_eim_cs2gcr1
  * - 111 - 8 bit port resides on DATA[31:24]
  */
 //@{
-
 #define BP_EIM_CS2GCR1_DSZ      (16)      //!< Bit position for EIM_CS2GCR1_DSZ.
 #define BM_EIM_CS2GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS2GCR1_DSZ.
 
@@ -4163,7 +3938,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the DSZ field to a new value.
 #define BW_EIM_CS2GCR1_DSZ(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_DSZ) | BF_EIM_CS2GCR1_DSZ(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field SP[19] (RW)
@@ -4177,7 +3951,6 @@ typedef union _hw_eim_cs2gcr1
  *     User mode results in an error response and no assertion of the chip select output.
  */
 //@{
-
 #define BP_EIM_CS2GCR1_SP      (19)      //!< Bit position for EIM_CS2GCR1_SP.
 #define BM_EIM_CS2GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS2GCR1_SP.
 
@@ -4191,7 +3964,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the SP field to a new value.
 #define BW_EIM_CS2GCR1_SP(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_SP) | BF_EIM_CS2GCR1_SP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field CSREC[22:20] (RW)
@@ -4208,7 +3980,6 @@ typedef union _hw_eim_cs2gcr1
  * - 111 - 7 EIM clock cycles minimum width of CS, OE and WE signals
  */
 //@{
-
 #define BP_EIM_CS2GCR1_CSREC      (20)      //!< Bit position for EIM_CS2GCR1_CSREC.
 #define BM_EIM_CS2GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS2GCR1_CSREC.
 
@@ -4222,7 +3993,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the CSREC field to a new value.
 #define BW_EIM_CS2GCR1_CSREC(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_CSREC) | BF_EIM_CS2GCR1_CSREC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field AUS[23] (RW)
@@ -4235,7 +4005,6 @@ typedef union _hw_eim_cs2gcr1
  * - 1 - Address unshifted
  */
 //@{
-
 #define BP_EIM_CS2GCR1_AUS      (23)      //!< Bit position for EIM_CS2GCR1_AUS.
 #define BM_EIM_CS2GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS2GCR1_AUS.
 
@@ -4249,7 +4018,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the AUS field to a new value.
 #define BW_EIM_CS2GCR1_AUS(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_AUS) | BF_EIM_CS2GCR1_AUS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field GBC[26:24] (RW)
@@ -4265,7 +4033,6 @@ typedef union _hw_eim_cs2gcr1
  * - 111 - minimum of 7 EIM clock cycles before next access from different chip select
  */
 //@{
-
 #define BP_EIM_CS2GCR1_GBC      (24)      //!< Bit position for EIM_CS2GCR1_GBC.
 #define BM_EIM_CS2GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS2GCR1_GBC.
 
@@ -4279,7 +4046,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the GBC field to a new value.
 #define BW_EIM_CS2GCR1_GBC(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_GBC) | BF_EIM_CS2GCR1_GBC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field WP[27] (RW)
@@ -4293,7 +4059,6 @@ typedef union _hw_eim_cs2gcr1
  *     error response and no assertion of the chip select output.
  */
 //@{
-
 #define BP_EIM_CS2GCR1_WP      (27)      //!< Bit position for EIM_CS2GCR1_WP.
 #define BM_EIM_CS2GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS2GCR1_WP.
 
@@ -4307,7 +4072,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the WP field to a new value.
 #define BW_EIM_CS2GCR1_WP(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_WP) | BF_EIM_CS2GCR1_WP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR1, field PSZ[31:28] (RW)
@@ -4333,7 +4097,6 @@ typedef union _hw_eim_cs2gcr1
  * - 1001 - - 1111 Reserved
  */
 //@{
-
 #define BP_EIM_CS2GCR1_PSZ      (28)      //!< Bit position for EIM_CS2GCR1_PSZ.
 #define BM_EIM_CS2GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS2GCR1_PSZ.
 
@@ -4347,7 +4110,6 @@ typedef union _hw_eim_cs2gcr1
 //! @brief Set the PSZ field to a new value.
 #define BW_EIM_CS2GCR1_PSZ(v)   (HW_EIM_CS2GCR1_WR((HW_EIM_CS2GCR1_RD() & ~BM_EIM_CS2GCR1_PSZ) | BF_EIM_CS2GCR1_PSZ(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4413,7 +4175,6 @@ typedef union _hw_eim_cs2gcr2
  * - 11 - Reserved
  */
 //@{
-
 #define BP_EIM_CS2GCR2_ADH      (0)      //!< Bit position for EIM_CS2GCR2_ADH.
 #define BM_EIM_CS2GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS2GCR2_ADH.
 
@@ -4427,7 +4188,6 @@ typedef union _hw_eim_cs2gcr2
 //! @brief Set the ADH field to a new value.
 #define BW_EIM_CS2GCR2_ADH(v)   (HW_EIM_CS2GCR2_WR((HW_EIM_CS2GCR2_RD() & ~BM_EIM_CS2GCR2_ADH) | BF_EIM_CS2GCR2_ADH(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR2, field DAPS[7:4] (RW)
@@ -4446,7 +4206,6 @@ typedef union _hw_eim_cs2gcr2
  * - 1111 - 18 EIM clk cycles between start of access and first DTACK check
  */
 //@{
-
 #define BP_EIM_CS2GCR2_DAPS      (4)      //!< Bit position for EIM_CS2GCR2_DAPS.
 #define BM_EIM_CS2GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS2GCR2_DAPS.
 
@@ -4460,7 +4219,6 @@ typedef union _hw_eim_cs2gcr2
 //! @brief Set the DAPS field to a new value.
 #define BW_EIM_CS2GCR2_DAPS(v)   (HW_EIM_CS2GCR2_WR((HW_EIM_CS2GCR2_RD() & ~BM_EIM_CS2GCR2_DAPS) | BF_EIM_CS2GCR2_DAPS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR2, field DAE[8] (RW)
@@ -4475,7 +4233,6 @@ typedef union _hw_eim_cs2gcr2
  * - 1 - DTACK signal use is enable
  */
 //@{
-
 #define BP_EIM_CS2GCR2_DAE      (8)      //!< Bit position for EIM_CS2GCR2_DAE.
 #define BM_EIM_CS2GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS2GCR2_DAE.
 
@@ -4489,7 +4246,6 @@ typedef union _hw_eim_cs2gcr2
 //! @brief Set the DAE field to a new value.
 #define BW_EIM_CS2GCR2_DAE(v)   (HW_EIM_CS2GCR2_WR((HW_EIM_CS2GCR2_RD() & ~BM_EIM_CS2GCR2_DAE) | BF_EIM_CS2GCR2_DAE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR2, field DAP[9] (RW)
@@ -4503,7 +4259,6 @@ typedef union _hw_eim_cs2gcr2
  * - 1 - DTACK signal is active low
  */
 //@{
-
 #define BP_EIM_CS2GCR2_DAP      (9)      //!< Bit position for EIM_CS2GCR2_DAP.
 #define BM_EIM_CS2GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS2GCR2_DAP.
 
@@ -4517,7 +4272,6 @@ typedef union _hw_eim_cs2gcr2
 //! @brief Set the DAP field to a new value.
 #define BW_EIM_CS2GCR2_DAP(v)   (HW_EIM_CS2GCR2_WR((HW_EIM_CS2GCR2_RD() & ~BM_EIM_CS2GCR2_DAP) | BF_EIM_CS2GCR2_DAP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2GCR2, field MUX16_BYP_GRANT[12] (RW)
@@ -4530,7 +4284,6 @@ typedef union _hw_eim_cs2gcr2
  * - 1 - EIM ignores the grant signal and immediately drives a 16 bit muxed mode access to the memory.
  */
 //@{
-
 #define BP_EIM_CS2GCR2_MUX16_BYP_GRANT      (12)      //!< Bit position for EIM_CS2GCR2_MUX16_BYP_GRANT.
 #define BM_EIM_CS2GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS2GCR2_MUX16_BYP_GRANT.
 
@@ -4544,7 +4297,6 @@ typedef union _hw_eim_cs2gcr2
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
 #define BW_EIM_CS2GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS2GCR2_WR((HW_EIM_CS2GCR2_RD() & ~BM_EIM_CS2GCR2_MUX16_BYP_GRANT) | BF_EIM_CS2GCR2_MUX16_BYP_GRANT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4615,7 +4367,6 @@ typedef union _hw_eim_cs2rcr1
  * - 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 //@{
-
 #define BP_EIM_CS2RCR1_RCSN      (0)      //!< Bit position for EIM_CS2RCR1_RCSN.
 #define BM_EIM_CS2RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS2RCR1_RCSN.
 
@@ -4629,7 +4380,6 @@ typedef union _hw_eim_cs2rcr1
 //! @brief Set the RCSN field to a new value.
 #define BW_EIM_CS2RCR1_RCSN(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_RCSN) | BF_EIM_CS2RCR1_RCSN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2RCR1, field RCSA[6:4] (RW)
@@ -4645,7 +4395,6 @@ typedef union _hw_eim_cs2rcr1
  * - 111 - 7 EIM clock cycles between beginning of read access and CS assertion
  */
 //@{
-
 #define BP_EIM_CS2RCR1_RCSA      (4)      //!< Bit position for EIM_CS2RCR1_RCSA.
 #define BM_EIM_CS2RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS2RCR1_RCSA.
 
@@ -4659,7 +4408,6 @@ typedef union _hw_eim_cs2rcr1
 //! @brief Set the RCSA field to a new value.
 #define BW_EIM_CS2RCR1_RCSA(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_RCSA) | BF_EIM_CS2RCR1_RCSA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2RCR1, field OEN[10:8] (RW)
@@ -4675,7 +4423,6 @@ typedef union _hw_eim_cs2rcr1
  * - 111 - 7 EIM clock cycles between end of access and OE negation
  */
 //@{
-
 #define BP_EIM_CS2RCR1_OEN      (8)      //!< Bit position for EIM_CS2RCR1_OEN.
 #define BM_EIM_CS2RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS2RCR1_OEN.
 
@@ -4689,7 +4436,6 @@ typedef union _hw_eim_cs2rcr1
 //! @brief Set the OEN field to a new value.
 #define BW_EIM_CS2RCR1_OEN(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_OEN) | BF_EIM_CS2RCR1_OEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2RCR1, field OEA[14:12] (RW)
@@ -4708,7 +4454,6 @@ typedef union _hw_eim_cs2rcr1
  * - 111 - 7 EIM clock cycles between beginning of access and OE assertion
  */
 //@{
-
 #define BP_EIM_CS2RCR1_OEA      (12)      //!< Bit position for EIM_CS2RCR1_OEA.
 #define BM_EIM_CS2RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS2RCR1_OEA.
 
@@ -4722,7 +4467,6 @@ typedef union _hw_eim_cs2rcr1
 //! @brief Set the OEA field to a new value.
 #define BW_EIM_CS2RCR1_OEA(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_OEA) | BF_EIM_CS2RCR1_OEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2RCR1, field RADVN[18:16] (RW)
@@ -4737,7 +4481,6 @@ typedef union _hw_eim_cs2rcr1
  * ADV negation at the same time with the end of access user should RAL bit.
  */
 //@{
-
 #define BP_EIM_CS2RCR1_RADVN      (16)      //!< Bit position for EIM_CS2RCR1_RADVN.
 #define BM_EIM_CS2RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS2RCR1_RADVN.
 
@@ -4751,7 +4494,6 @@ typedef union _hw_eim_cs2rcr1
 //! @brief Set the RADVN field to a new value.
 #define BW_EIM_CS2RCR1_RADVN(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_RADVN) | BF_EIM_CS2RCR1_RADVN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2RCR1, field RAL[19] (RW)
@@ -4761,7 +4503,6 @@ typedef union _hw_eim_cs2rcr1
  * is according to RADVN bit field configuration.
  */
 //@{
-
 #define BP_EIM_CS2RCR1_RAL      (19)      //!< Bit position for EIM_CS2RCR1_RAL.
 #define BM_EIM_CS2RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS2RCR1_RAL.
 
@@ -4775,7 +4516,6 @@ typedef union _hw_eim_cs2rcr1
 //! @brief Set the RAL field to a new value.
 #define BW_EIM_CS2RCR1_RAL(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_RAL) | BF_EIM_CS2RCR1_RAL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2RCR1, field RADVA[22:20] (RW)
@@ -4791,7 +4531,6 @@ typedef union _hw_eim_cs2rcr1
  * - 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 //@{
-
 #define BP_EIM_CS2RCR1_RADVA      (20)      //!< Bit position for EIM_CS2RCR1_RADVA.
 #define BM_EIM_CS2RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS2RCR1_RADVA.
 
@@ -4805,7 +4544,6 @@ typedef union _hw_eim_cs2rcr1
 //! @brief Set the RADVA field to a new value.
 #define BW_EIM_CS2RCR1_RADVA(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_RADVA) | BF_EIM_CS2RCR1_RADVA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2RCR1, field RWSC[29:24] (RW)
@@ -4832,7 +4570,6 @@ typedef union _hw_eim_cs2rcr1
  * - 111111 - RWSC value is 63
  */
 //@{
-
 #define BP_EIM_CS2RCR1_RWSC      (24)      //!< Bit position for EIM_CS2RCR1_RWSC.
 #define BM_EIM_CS2RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS2RCR1_RWSC.
 
@@ -4846,7 +4583,6 @@ typedef union _hw_eim_cs2rcr1
 //! @brief Set the RWSC field to a new value.
 #define BW_EIM_CS2RCR1_RWSC(v)   (HW_EIM_CS2RCR1_WR((HW_EIM_CS2RCR1_RD() & ~BM_EIM_CS2RCR1_RWSC) | BF_EIM_CS2RCR1_RWSC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4912,7 +4648,6 @@ typedef union _hw_eim_cs2rcr2
  * - 111 - 7 EIM clock cycles between end of read access and BE negation
  */
 //@{
-
 #define BP_EIM_CS2RCR2_RBEN      (0)      //!< Bit position for EIM_CS2RCR2_RBEN.
 #define BM_EIM_CS2RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS2RCR2_RBEN.
 
@@ -4926,7 +4661,6 @@ typedef union _hw_eim_cs2rcr2
 //! @brief Set the RBEN field to a new value.
 #define BW_EIM_CS2RCR2_RBEN(v)   (HW_EIM_CS2RCR2_WR((HW_EIM_CS2RCR2_RD() & ~BM_EIM_CS2RCR2_RBEN) | BF_EIM_CS2RCR2_RBEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2RCR2, field RBE[3] (RW)
@@ -4938,7 +4672,6 @@ typedef union _hw_eim_cs2rcr2
  * - 1- - BE are enable during read access according to value of RBEA & RBEN bit fields.
  */
 //@{
-
 #define BP_EIM_CS2RCR2_RBE      (3)      //!< Bit position for EIM_CS2RCR2_RBE.
 #define BM_EIM_CS2RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS2RCR2_RBE.
 
@@ -4952,7 +4685,6 @@ typedef union _hw_eim_cs2rcr2
 //! @brief Set the RBE field to a new value.
 #define BW_EIM_CS2RCR2_RBE(v)   (HW_EIM_CS2RCR2_WR((HW_EIM_CS2RCR2_RD() & ~BM_EIM_CS2RCR2_RBE) | BF_EIM_CS2RCR2_RBE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2RCR2, field RBEA[6:4] (RW)
@@ -4968,7 +4700,6 @@ typedef union _hw_eim_cs2rcr2
  * - 111 - 7 EIM clock cycles between beginning of read access and BE assertion
  */
 //@{
-
 #define BP_EIM_CS2RCR2_RBEA      (4)      //!< Bit position for EIM_CS2RCR2_RBEA.
 #define BM_EIM_CS2RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS2RCR2_RBEA.
 
@@ -4982,7 +4713,6 @@ typedef union _hw_eim_cs2rcr2
 //! @brief Set the RBEA field to a new value.
 #define BW_EIM_CS2RCR2_RBEA(v)   (HW_EIM_CS2RCR2_WR((HW_EIM_CS2RCR2_RD() & ~BM_EIM_CS2RCR2_RBEA) | BF_EIM_CS2RCR2_RBEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2RCR2, field RL[9:8] (RW)
@@ -4998,7 +4728,6 @@ typedef union _hw_eim_cs2rcr2
  * - 11 - Feedback clock loop delay is up to 4 cycles for BCD = 0 or 4.5 cycles for BCD != 0
  */
 //@{
-
 #define BP_EIM_CS2RCR2_RL      (8)      //!< Bit position for EIM_CS2RCR2_RL.
 #define BM_EIM_CS2RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS2RCR2_RL.
 
@@ -5012,7 +4741,6 @@ typedef union _hw_eim_cs2rcr2
 //! @brief Set the RL field to a new value.
 #define BW_EIM_CS2RCR2_RL(v)   (HW_EIM_CS2RCR2_WR((HW_EIM_CS2RCR2_RD() & ~BM_EIM_CS2RCR2_RL) | BF_EIM_CS2RCR2_RL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2RCR2, field PAT[14:12] (RW)
@@ -5033,7 +4761,6 @@ typedef union _hw_eim_cs2rcr2
  * - 111 - Address width is 9 EIM clock cycles
  */
 //@{
-
 #define BP_EIM_CS2RCR2_PAT      (12)      //!< Bit position for EIM_CS2RCR2_PAT.
 #define BM_EIM_CS2RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS2RCR2_PAT.
 
@@ -5047,7 +4774,6 @@ typedef union _hw_eim_cs2rcr2
 //! @brief Set the PAT field to a new value.
 #define BW_EIM_CS2RCR2_PAT(v)   (HW_EIM_CS2RCR2_WR((HW_EIM_CS2RCR2_RD() & ~BM_EIM_CS2RCR2_PAT) | BF_EIM_CS2RCR2_PAT(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2RCR2, field APR[15] (RW)
@@ -5059,7 +4785,6 @@ typedef union _hw_eim_cs2rcr2
  * for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
  */
 //@{
-
 #define BP_EIM_CS2RCR2_APR      (15)      //!< Bit position for EIM_CS2RCR2_APR.
 #define BM_EIM_CS2RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS2RCR2_APR.
 
@@ -5073,7 +4798,6 @@ typedef union _hw_eim_cs2rcr2
 //! @brief Set the APR field to a new value.
 #define BW_EIM_CS2RCR2_APR(v)   (HW_EIM_CS2RCR2_WR((HW_EIM_CS2RCR2_RD() & ~BM_EIM_CS2RCR2_APR) | BF_EIM_CS2RCR2_APR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5141,7 +4865,6 @@ typedef union _hw_eim_cs2wcr1
  * - 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 //@{
-
 #define BP_EIM_CS2WCR1_WCSN      (0)      //!< Bit position for EIM_CS2WCR1_WCSN.
 #define BM_EIM_CS2WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS2WCR1_WCSN.
 
@@ -5155,7 +4878,6 @@ typedef union _hw_eim_cs2wcr1
 //! @brief Set the WCSN field to a new value.
 #define BW_EIM_CS2WCR1_WCSN(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WCSN) | BF_EIM_CS2WCR1_WCSN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2WCR1, field WCSA[5:3] (RW)
@@ -5172,7 +4894,6 @@ typedef union _hw_eim_cs2wcr1
  * - 111 - 7 EIMclock cycles between beginning of write access and CS assertion
  */
 //@{
-
 #define BP_EIM_CS2WCR1_WCSA      (3)      //!< Bit position for EIM_CS2WCR1_WCSA.
 #define BM_EIM_CS2WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS2WCR1_WCSA.
 
@@ -5186,7 +4907,6 @@ typedef union _hw_eim_cs2wcr1
 //! @brief Set the WCSA field to a new value.
 #define BW_EIM_CS2WCR1_WCSA(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WCSA) | BF_EIM_CS2WCR1_WCSA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2WCR1, field WEN[8:6] (RW)
@@ -5203,7 +4923,6 @@ typedef union _hw_eim_cs2wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and WE assertion
  */
 //@{
-
 #define BP_EIM_CS2WCR1_WEN      (6)      //!< Bit position for EIM_CS2WCR1_WEN.
 #define BM_EIM_CS2WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS2WCR1_WEN.
 
@@ -5217,7 +4936,6 @@ typedef union _hw_eim_cs2wcr1
 //! @brief Set the WEN field to a new value.
 #define BW_EIM_CS2WCR1_WEN(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WEN) | BF_EIM_CS2WCR1_WEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2WCR1, field WEA[11:9] (RW)
@@ -5235,7 +4953,6 @@ typedef union _hw_eim_cs2wcr1
  * - 111 - 7 EIMclock cycles between beginning of access and WE assertion
  */
 //@{
-
 #define BP_EIM_CS2WCR1_WEA      (9)      //!< Bit position for EIM_CS2WCR1_WEA.
 #define BM_EIM_CS2WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS2WCR1_WEA.
 
@@ -5249,7 +4966,6 @@ typedef union _hw_eim_cs2wcr1
 //! @brief Set the WEA field to a new value.
 #define BW_EIM_CS2WCR1_WEA(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WEA) | BF_EIM_CS2WCR1_WEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2WCR1, field WBEN[14:12] (RW)
@@ -5263,7 +4979,6 @@ typedef union _hw_eim_cs2wcr1
  * access and WE negation
  */
 //@{
-
 #define BP_EIM_CS2WCR1_WBEN      (12)      //!< Bit position for EIM_CS2WCR1_WBEN.
 #define BM_EIM_CS2WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS2WCR1_WBEN.
 
@@ -5277,7 +4992,6 @@ typedef union _hw_eim_cs2wcr1
 //! @brief Set the WBEN field to a new value.
 #define BW_EIM_CS2WCR1_WBEN(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WBEN) | BF_EIM_CS2WCR1_WBEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2WCR1, field WBEA[17:15] (RW)
@@ -5294,7 +5008,6 @@ typedef union _hw_eim_cs2wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and BE assertion
  */
 //@{
-
 #define BP_EIM_CS2WCR1_WBEA      (15)      //!< Bit position for EIM_CS2WCR1_WBEA.
 #define BM_EIM_CS2WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS2WCR1_WBEA.
 
@@ -5308,7 +5021,6 @@ typedef union _hw_eim_cs2wcr1
 //! @brief Set the WBEA field to a new value.
 #define BW_EIM_CS2WCR1_WBEA(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WBEA) | BF_EIM_CS2WCR1_WBEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2WCR1, field WADVN[20:18] (RW)
@@ -5322,7 +5034,6 @@ typedef union _hw_eim_cs2wcr1
  * negation at the same time as the end of access, S/W should set the WAL bit.
  */
 //@{
-
 #define BP_EIM_CS2WCR1_WADVN      (18)      //!< Bit position for EIM_CS2WCR1_WADVN.
 #define BM_EIM_CS2WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS2WCR1_WADVN.
 
@@ -5336,7 +5047,6 @@ typedef union _hw_eim_cs2wcr1
 //! @brief Set the WADVN field to a new value.
 #define BW_EIM_CS2WCR1_WADVN(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WADVN) | BF_EIM_CS2WCR1_WADVN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2WCR1, field WADVA[23:21] (RW)
@@ -5352,7 +5062,6 @@ typedef union _hw_eim_cs2wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 //@{
-
 #define BP_EIM_CS2WCR1_WADVA      (21)      //!< Bit position for EIM_CS2WCR1_WADVA.
 #define BM_EIM_CS2WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS2WCR1_WADVA.
 
@@ -5366,7 +5075,6 @@ typedef union _hw_eim_cs2wcr1
 //! @brief Set the WADVA field to a new value.
 #define BW_EIM_CS2WCR1_WADVA(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WADVA) | BF_EIM_CS2WCR1_WADVA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2WCR1, field WWSC[29:24] (RW)
@@ -5393,7 +5101,6 @@ typedef union _hw_eim_cs2wcr1
  * - 111111 - WWSC value is 63
  */
 //@{
-
 #define BP_EIM_CS2WCR1_WWSC      (24)      //!< Bit position for EIM_CS2WCR1_WWSC.
 #define BM_EIM_CS2WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS2WCR1_WWSC.
 
@@ -5407,7 +5114,6 @@ typedef union _hw_eim_cs2wcr1
 //! @brief Set the WWSC field to a new value.
 #define BW_EIM_CS2WCR1_WWSC(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WWSC) | BF_EIM_CS2WCR1_WWSC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2WCR1, field WBED[30] (RW)
@@ -5416,7 +5122,6 @@ typedef union _hw_eim_cs2wcr1
  * during write accesses.This bit is cleared by hardware reset.
  */
 //@{
-
 #define BP_EIM_CS2WCR1_WBED      (30)      //!< Bit position for EIM_CS2WCR1_WBED.
 #define BM_EIM_CS2WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS2WCR1_WBED.
 
@@ -5430,7 +5135,6 @@ typedef union _hw_eim_cs2wcr1
 //! @brief Set the WBED field to a new value.
 #define BW_EIM_CS2WCR1_WBED(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WBED) | BF_EIM_CS2WCR1_WBED(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS2WCR1, field WAL[31] (RW)
@@ -5440,7 +5144,6 @@ typedef union _hw_eim_cs2wcr1
  * negation of ADV signal is according to WADVN bit field configuration.
  */
 //@{
-
 #define BP_EIM_CS2WCR1_WAL      (31)      //!< Bit position for EIM_CS2WCR1_WAL.
 #define BM_EIM_CS2WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS2WCR1_WAL.
 
@@ -5454,7 +5157,6 @@ typedef union _hw_eim_cs2wcr1
 //! @brief Set the WAL field to a new value.
 #define BW_EIM_CS2WCR1_WAL(v)   (HW_EIM_CS2WCR1_WR((HW_EIM_CS2WCR1_RD() & ~BM_EIM_CS2WCR1_WAL) | BF_EIM_CS2WCR1_WAL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5507,7 +5209,6 @@ typedef union _hw_eim_cs2wcr2
  * bit has no affect. This bit is cleared by hardware reset.
  */
 //@{
-
 #define BP_EIM_CS2WCR2_WBCDD      (0)      //!< Bit position for EIM_CS2WCR2_WBCDD.
 #define BM_EIM_CS2WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS2WCR2_WBCDD.
 
@@ -5521,7 +5222,6 @@ typedef union _hw_eim_cs2wcr2
 //! @brief Set the WBCDD field to a new value.
 #define BW_EIM_CS2WCR2_WBCDD(v)   (HW_EIM_CS2WCR2_WR((HW_EIM_CS2WCR2_RD() & ~BM_EIM_CS2WCR2_WBCDD) | BF_EIM_CS2WCR2_WBCDD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5597,7 +5297,6 @@ typedef union _hw_eim_cs3gcr1
  * - 1 - Chip select is enabled, and is asserted when presented with a valid access.
  */
 //@{
-
 #define BP_EIM_CS3GCR1_CSEN      (0)      //!< Bit position for EIM_CS3GCR1_CSEN.
 #define BM_EIM_CS3GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS3GCR1_CSEN.
 
@@ -5611,7 +5310,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the CSEN field to a new value.
 #define BW_EIM_CS3GCR1_CSEN(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_CSEN) | BF_EIM_CS3GCR1_CSEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field SWR[1] (RW)
@@ -5625,7 +5323,6 @@ typedef union _hw_eim_cs3gcr1
  * - 1 - write accesses are in Synchronous mode
  */
 //@{
-
 #define BP_EIM_CS3GCR1_SWR      (1)      //!< Bit position for EIM_CS3GCR1_SWR.
 #define BM_EIM_CS3GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS3GCR1_SWR.
 
@@ -5639,7 +5336,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the SWR field to a new value.
 #define BW_EIM_CS3GCR1_SWR(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_SWR) | BF_EIM_CS3GCR1_SWR(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field SRD[2] (RW)
@@ -5653,7 +5349,6 @@ typedef union _hw_eim_cs3gcr1
  * - 1 - read accesses are in Synchronous mode
  */
 //@{
-
 #define BP_EIM_CS3GCR1_SRD      (2)      //!< Bit position for EIM_CS3GCR1_SRD.
 #define BM_EIM_CS3GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS3GCR1_SRD.
 
@@ -5667,7 +5362,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the SRD field to a new value.
 #define BW_EIM_CS3GCR1_SRD(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_SRD) | BF_EIM_CS3GCR1_SRD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field MUM[3] (RW)
@@ -5681,7 +5375,6 @@ typedef union _hw_eim_cs3gcr1
  * - 1 - Multiplexed Mode enable
  */
 //@{
-
 #define BP_EIM_CS3GCR1_MUM      (3)      //!< Bit position for EIM_CS3GCR1_MUM.
 #define BM_EIM_CS3GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS3GCR1_MUM.
 
@@ -5695,7 +5388,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the MUM field to a new value.
 #define BW_EIM_CS3GCR1_MUM(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_MUM) | BF_EIM_CS3GCR1_MUM(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field WFL[4] (RW)
@@ -5712,7 +5404,6 @@ typedef union _hw_eim_cs3gcr1
  * - 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 //@{
-
 #define BP_EIM_CS3GCR1_WFL      (4)      //!< Bit position for EIM_CS3GCR1_WFL.
 #define BM_EIM_CS3GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS3GCR1_WFL.
 
@@ -5726,7 +5417,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the WFL field to a new value.
 #define BW_EIM_CS3GCR1_WFL(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_WFL) | BF_EIM_CS3GCR1_WFL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field RFL[5] (RW)
@@ -5743,7 +5433,6 @@ typedef union _hw_eim_cs3gcr1
  * - 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 //@{
-
 #define BP_EIM_CS3GCR1_RFL      (5)      //!< Bit position for EIM_CS3GCR1_RFL.
 #define BM_EIM_CS3GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS3GCR1_RFL.
 
@@ -5757,7 +5446,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the RFL field to a new value.
 #define BW_EIM_CS3GCR1_RFL(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_RFL) | BF_EIM_CS3GCR1_RFL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field CRE[6] (RW)
@@ -5770,7 +5458,6 @@ typedef union _hw_eim_cs3gcr1
  * - 1 - CRE signal use is enable
  */
 //@{
-
 #define BP_EIM_CS3GCR1_CRE      (6)      //!< Bit position for EIM_CS3GCR1_CRE.
 #define BM_EIM_CS3GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS3GCR1_CRE.
 
@@ -5784,7 +5471,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the CRE field to a new value.
 #define BW_EIM_CS3GCR1_CRE(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_CRE) | BF_EIM_CS3GCR1_CRE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field CREP[7] (RW)
@@ -5800,7 +5486,6 @@ typedef union _hw_eim_cs3gcr1
  * - 1 - CRE signal is active high
  */
 //@{
-
 #define BP_EIM_CS3GCR1_CREP      (7)      //!< Bit position for EIM_CS3GCR1_CREP.
 #define BM_EIM_CS3GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS3GCR1_CREP.
 
@@ -5814,7 +5499,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the CREP field to a new value.
 #define BW_EIM_CS3GCR1_CREP(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_CREP) | BF_EIM_CS3GCR1_CREP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field BL[10:8] (RW)
@@ -5839,7 +5523,6 @@ typedef union _hw_eim_cs3gcr1
  * - 111 - Reserved
  */
 //@{
-
 #define BP_EIM_CS3GCR1_BL      (8)      //!< Bit position for EIM_CS3GCR1_BL.
 #define BM_EIM_CS3GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS3GCR1_BL.
 
@@ -5853,7 +5536,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the BL field to a new value.
 #define BW_EIM_CS3GCR1_BL(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_BL) | BF_EIM_CS3GCR1_BL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field WC[11] (RW)
@@ -5866,7 +5548,6 @@ typedef union _hw_eim_cs3gcr1
  * - 1 - Write access burst length is continuous.
  */
 //@{
-
 #define BP_EIM_CS3GCR1_WC      (11)      //!< Bit position for EIM_CS3GCR1_WC.
 #define BM_EIM_CS3GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS3GCR1_WC.
 
@@ -5880,7 +5561,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the WC field to a new value.
 #define BW_EIM_CS3GCR1_WC(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_WC) | BF_EIM_CS3GCR1_WC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field BCD[13:12] (RW)
@@ -5897,7 +5577,6 @@ typedef union _hw_eim_cs3gcr1
  * - 11 - Divide EIM clock by 4
  */
 //@{
-
 #define BP_EIM_CS3GCR1_BCD      (12)      //!< Bit position for EIM_CS3GCR1_BCD.
 #define BM_EIM_CS3GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS3GCR1_BCD.
 
@@ -5911,7 +5590,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the BCD field to a new value.
 #define BW_EIM_CS3GCR1_BCD(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_BCD) | BF_EIM_CS3GCR1_BCD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field BCS[15:14] (RW)
@@ -5929,7 +5607,6 @@ typedef union _hw_eim_cs3gcr1
  * - 11 - 3 EIM clock cycle additional delay
  */
 //@{
-
 #define BP_EIM_CS3GCR1_BCS      (14)      //!< Bit position for EIM_CS3GCR1_BCS.
 #define BM_EIM_CS3GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS3GCR1_BCS.
 
@@ -5943,7 +5620,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the BCS field to a new value.
 #define BW_EIM_CS3GCR1_BCS(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_BCS) | BF_EIM_CS3GCR1_BCS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field DSZ[18:16] (RW)
@@ -5963,7 +5639,6 @@ typedef union _hw_eim_cs3gcr1
  * - 111 - 8 bit port resides on DATA[31:24]
  */
 //@{
-
 #define BP_EIM_CS3GCR1_DSZ      (16)      //!< Bit position for EIM_CS3GCR1_DSZ.
 #define BM_EIM_CS3GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS3GCR1_DSZ.
 
@@ -5977,7 +5652,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the DSZ field to a new value.
 #define BW_EIM_CS3GCR1_DSZ(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_DSZ) | BF_EIM_CS3GCR1_DSZ(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field SP[19] (RW)
@@ -5991,7 +5665,6 @@ typedef union _hw_eim_cs3gcr1
  *     User mode results in an error response and no assertion of the chip select output.
  */
 //@{
-
 #define BP_EIM_CS3GCR1_SP      (19)      //!< Bit position for EIM_CS3GCR1_SP.
 #define BM_EIM_CS3GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS3GCR1_SP.
 
@@ -6005,7 +5678,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the SP field to a new value.
 #define BW_EIM_CS3GCR1_SP(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_SP) | BF_EIM_CS3GCR1_SP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field CSREC[22:20] (RW)
@@ -6022,7 +5694,6 @@ typedef union _hw_eim_cs3gcr1
  * - 111 - 7 EIM clock cycles minimum width of CS, OE and WE signals
  */
 //@{
-
 #define BP_EIM_CS3GCR1_CSREC      (20)      //!< Bit position for EIM_CS3GCR1_CSREC.
 #define BM_EIM_CS3GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS3GCR1_CSREC.
 
@@ -6036,7 +5707,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the CSREC field to a new value.
 #define BW_EIM_CS3GCR1_CSREC(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_CSREC) | BF_EIM_CS3GCR1_CSREC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field AUS[23] (RW)
@@ -6049,7 +5719,6 @@ typedef union _hw_eim_cs3gcr1
  * - 1 - Address unshifted
  */
 //@{
-
 #define BP_EIM_CS3GCR1_AUS      (23)      //!< Bit position for EIM_CS3GCR1_AUS.
 #define BM_EIM_CS3GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS3GCR1_AUS.
 
@@ -6063,7 +5732,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the AUS field to a new value.
 #define BW_EIM_CS3GCR1_AUS(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_AUS) | BF_EIM_CS3GCR1_AUS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field GBC[26:24] (RW)
@@ -6079,7 +5747,6 @@ typedef union _hw_eim_cs3gcr1
  * - 111 - minimum of 7 EIM clock cycles before next access from different chip select
  */
 //@{
-
 #define BP_EIM_CS3GCR1_GBC      (24)      //!< Bit position for EIM_CS3GCR1_GBC.
 #define BM_EIM_CS3GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS3GCR1_GBC.
 
@@ -6093,7 +5760,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the GBC field to a new value.
 #define BW_EIM_CS3GCR1_GBC(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_GBC) | BF_EIM_CS3GCR1_GBC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field WP[27] (RW)
@@ -6107,7 +5773,6 @@ typedef union _hw_eim_cs3gcr1
  *     error response and no assertion of the chip select output.
  */
 //@{
-
 #define BP_EIM_CS3GCR1_WP      (27)      //!< Bit position for EIM_CS3GCR1_WP.
 #define BM_EIM_CS3GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS3GCR1_WP.
 
@@ -6121,7 +5786,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the WP field to a new value.
 #define BW_EIM_CS3GCR1_WP(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_WP) | BF_EIM_CS3GCR1_WP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR1, field PSZ[31:28] (RW)
@@ -6147,7 +5811,6 @@ typedef union _hw_eim_cs3gcr1
  * - 1001 - - 1111 Reserved
  */
 //@{
-
 #define BP_EIM_CS3GCR1_PSZ      (28)      //!< Bit position for EIM_CS3GCR1_PSZ.
 #define BM_EIM_CS3GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS3GCR1_PSZ.
 
@@ -6161,7 +5824,6 @@ typedef union _hw_eim_cs3gcr1
 //! @brief Set the PSZ field to a new value.
 #define BW_EIM_CS3GCR1_PSZ(v)   (HW_EIM_CS3GCR1_WR((HW_EIM_CS3GCR1_RD() & ~BM_EIM_CS3GCR1_PSZ) | BF_EIM_CS3GCR1_PSZ(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6227,7 +5889,6 @@ typedef union _hw_eim_cs3gcr2
  * - 11 - Reserved
  */
 //@{
-
 #define BP_EIM_CS3GCR2_ADH      (0)      //!< Bit position for EIM_CS3GCR2_ADH.
 #define BM_EIM_CS3GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS3GCR2_ADH.
 
@@ -6241,7 +5902,6 @@ typedef union _hw_eim_cs3gcr2
 //! @brief Set the ADH field to a new value.
 #define BW_EIM_CS3GCR2_ADH(v)   (HW_EIM_CS3GCR2_WR((HW_EIM_CS3GCR2_RD() & ~BM_EIM_CS3GCR2_ADH) | BF_EIM_CS3GCR2_ADH(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR2, field DAPS[7:4] (RW)
@@ -6260,7 +5920,6 @@ typedef union _hw_eim_cs3gcr2
  * - 1111 - 18 EIM clk cycles between start of access and first DTACK check
  */
 //@{
-
 #define BP_EIM_CS3GCR2_DAPS      (4)      //!< Bit position for EIM_CS3GCR2_DAPS.
 #define BM_EIM_CS3GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS3GCR2_DAPS.
 
@@ -6274,7 +5933,6 @@ typedef union _hw_eim_cs3gcr2
 //! @brief Set the DAPS field to a new value.
 #define BW_EIM_CS3GCR2_DAPS(v)   (HW_EIM_CS3GCR2_WR((HW_EIM_CS3GCR2_RD() & ~BM_EIM_CS3GCR2_DAPS) | BF_EIM_CS3GCR2_DAPS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR2, field DAE[8] (RW)
@@ -6289,7 +5947,6 @@ typedef union _hw_eim_cs3gcr2
  * - 1 - DTACK signal use is enable
  */
 //@{
-
 #define BP_EIM_CS3GCR2_DAE      (8)      //!< Bit position for EIM_CS3GCR2_DAE.
 #define BM_EIM_CS3GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS3GCR2_DAE.
 
@@ -6303,7 +5960,6 @@ typedef union _hw_eim_cs3gcr2
 //! @brief Set the DAE field to a new value.
 #define BW_EIM_CS3GCR2_DAE(v)   (HW_EIM_CS3GCR2_WR((HW_EIM_CS3GCR2_RD() & ~BM_EIM_CS3GCR2_DAE) | BF_EIM_CS3GCR2_DAE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR2, field DAP[9] (RW)
@@ -6317,7 +5973,6 @@ typedef union _hw_eim_cs3gcr2
  * - 1 - DTACK signal is active low
  */
 //@{
-
 #define BP_EIM_CS3GCR2_DAP      (9)      //!< Bit position for EIM_CS3GCR2_DAP.
 #define BM_EIM_CS3GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS3GCR2_DAP.
 
@@ -6331,7 +5986,6 @@ typedef union _hw_eim_cs3gcr2
 //! @brief Set the DAP field to a new value.
 #define BW_EIM_CS3GCR2_DAP(v)   (HW_EIM_CS3GCR2_WR((HW_EIM_CS3GCR2_RD() & ~BM_EIM_CS3GCR2_DAP) | BF_EIM_CS3GCR2_DAP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3GCR2, field MUX16_BYP_GRANT[12] (RW)
@@ -6344,7 +5998,6 @@ typedef union _hw_eim_cs3gcr2
  * - 1 - EIM ignores the grant signal and immediately drives a 16 bit muxed mode access to the memory.
  */
 //@{
-
 #define BP_EIM_CS3GCR2_MUX16_BYP_GRANT      (12)      //!< Bit position for EIM_CS3GCR2_MUX16_BYP_GRANT.
 #define BM_EIM_CS3GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS3GCR2_MUX16_BYP_GRANT.
 
@@ -6358,7 +6011,6 @@ typedef union _hw_eim_cs3gcr2
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
 #define BW_EIM_CS3GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS3GCR2_WR((HW_EIM_CS3GCR2_RD() & ~BM_EIM_CS3GCR2_MUX16_BYP_GRANT) | BF_EIM_CS3GCR2_MUX16_BYP_GRANT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6429,7 +6081,6 @@ typedef union _hw_eim_cs3rcr1
  * - 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 //@{
-
 #define BP_EIM_CS3RCR1_RCSN      (0)      //!< Bit position for EIM_CS3RCR1_RCSN.
 #define BM_EIM_CS3RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS3RCR1_RCSN.
 
@@ -6443,7 +6094,6 @@ typedef union _hw_eim_cs3rcr1
 //! @brief Set the RCSN field to a new value.
 #define BW_EIM_CS3RCR1_RCSN(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_RCSN) | BF_EIM_CS3RCR1_RCSN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3RCR1, field RCSA[6:4] (RW)
@@ -6459,7 +6109,6 @@ typedef union _hw_eim_cs3rcr1
  * - 111 - 7 EIM clock cycles between beginning of read access and CS assertion
  */
 //@{
-
 #define BP_EIM_CS3RCR1_RCSA      (4)      //!< Bit position for EIM_CS3RCR1_RCSA.
 #define BM_EIM_CS3RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS3RCR1_RCSA.
 
@@ -6473,7 +6122,6 @@ typedef union _hw_eim_cs3rcr1
 //! @brief Set the RCSA field to a new value.
 #define BW_EIM_CS3RCR1_RCSA(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_RCSA) | BF_EIM_CS3RCR1_RCSA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3RCR1, field OEN[10:8] (RW)
@@ -6489,7 +6137,6 @@ typedef union _hw_eim_cs3rcr1
  * - 111 - 7 EIM clock cycles between end of access and OE negation
  */
 //@{
-
 #define BP_EIM_CS3RCR1_OEN      (8)      //!< Bit position for EIM_CS3RCR1_OEN.
 #define BM_EIM_CS3RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS3RCR1_OEN.
 
@@ -6503,7 +6150,6 @@ typedef union _hw_eim_cs3rcr1
 //! @brief Set the OEN field to a new value.
 #define BW_EIM_CS3RCR1_OEN(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_OEN) | BF_EIM_CS3RCR1_OEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3RCR1, field OEA[14:12] (RW)
@@ -6522,7 +6168,6 @@ typedef union _hw_eim_cs3rcr1
  * - 111 - 7 EIM clock cycles between beginning of access and OE assertion
  */
 //@{
-
 #define BP_EIM_CS3RCR1_OEA      (12)      //!< Bit position for EIM_CS3RCR1_OEA.
 #define BM_EIM_CS3RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS3RCR1_OEA.
 
@@ -6536,7 +6181,6 @@ typedef union _hw_eim_cs3rcr1
 //! @brief Set the OEA field to a new value.
 #define BW_EIM_CS3RCR1_OEA(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_OEA) | BF_EIM_CS3RCR1_OEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3RCR1, field RADVN[18:16] (RW)
@@ -6551,7 +6195,6 @@ typedef union _hw_eim_cs3rcr1
  * ADV negation at the same time with the end of access user should RAL bit.
  */
 //@{
-
 #define BP_EIM_CS3RCR1_RADVN      (16)      //!< Bit position for EIM_CS3RCR1_RADVN.
 #define BM_EIM_CS3RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS3RCR1_RADVN.
 
@@ -6565,7 +6208,6 @@ typedef union _hw_eim_cs3rcr1
 //! @brief Set the RADVN field to a new value.
 #define BW_EIM_CS3RCR1_RADVN(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_RADVN) | BF_EIM_CS3RCR1_RADVN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3RCR1, field RAL[19] (RW)
@@ -6575,7 +6217,6 @@ typedef union _hw_eim_cs3rcr1
  * is according to RADVN bit field configuration.
  */
 //@{
-
 #define BP_EIM_CS3RCR1_RAL      (19)      //!< Bit position for EIM_CS3RCR1_RAL.
 #define BM_EIM_CS3RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS3RCR1_RAL.
 
@@ -6589,7 +6230,6 @@ typedef union _hw_eim_cs3rcr1
 //! @brief Set the RAL field to a new value.
 #define BW_EIM_CS3RCR1_RAL(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_RAL) | BF_EIM_CS3RCR1_RAL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3RCR1, field RADVA[22:20] (RW)
@@ -6605,7 +6245,6 @@ typedef union _hw_eim_cs3rcr1
  * - 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 //@{
-
 #define BP_EIM_CS3RCR1_RADVA      (20)      //!< Bit position for EIM_CS3RCR1_RADVA.
 #define BM_EIM_CS3RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS3RCR1_RADVA.
 
@@ -6619,7 +6258,6 @@ typedef union _hw_eim_cs3rcr1
 //! @brief Set the RADVA field to a new value.
 #define BW_EIM_CS3RCR1_RADVA(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_RADVA) | BF_EIM_CS3RCR1_RADVA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3RCR1, field RWSC[29:24] (RW)
@@ -6646,7 +6284,6 @@ typedef union _hw_eim_cs3rcr1
  * - 111111 - RWSC value is 63
  */
 //@{
-
 #define BP_EIM_CS3RCR1_RWSC      (24)      //!< Bit position for EIM_CS3RCR1_RWSC.
 #define BM_EIM_CS3RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS3RCR1_RWSC.
 
@@ -6660,7 +6297,6 @@ typedef union _hw_eim_cs3rcr1
 //! @brief Set the RWSC field to a new value.
 #define BW_EIM_CS3RCR1_RWSC(v)   (HW_EIM_CS3RCR1_WR((HW_EIM_CS3RCR1_RD() & ~BM_EIM_CS3RCR1_RWSC) | BF_EIM_CS3RCR1_RWSC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6726,7 +6362,6 @@ typedef union _hw_eim_cs3rcr2
  * - 111 - 7 EIM clock cycles between end of read access and BE negation
  */
 //@{
-
 #define BP_EIM_CS3RCR2_RBEN      (0)      //!< Bit position for EIM_CS3RCR2_RBEN.
 #define BM_EIM_CS3RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS3RCR2_RBEN.
 
@@ -6740,7 +6375,6 @@ typedef union _hw_eim_cs3rcr2
 //! @brief Set the RBEN field to a new value.
 #define BW_EIM_CS3RCR2_RBEN(v)   (HW_EIM_CS3RCR2_WR((HW_EIM_CS3RCR2_RD() & ~BM_EIM_CS3RCR2_RBEN) | BF_EIM_CS3RCR2_RBEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3RCR2, field RBE[3] (RW)
@@ -6752,7 +6386,6 @@ typedef union _hw_eim_cs3rcr2
  * - 1- - BE are enable during read access according to value of RBEA & RBEN bit fields.
  */
 //@{
-
 #define BP_EIM_CS3RCR2_RBE      (3)      //!< Bit position for EIM_CS3RCR2_RBE.
 #define BM_EIM_CS3RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS3RCR2_RBE.
 
@@ -6766,7 +6399,6 @@ typedef union _hw_eim_cs3rcr2
 //! @brief Set the RBE field to a new value.
 #define BW_EIM_CS3RCR2_RBE(v)   (HW_EIM_CS3RCR2_WR((HW_EIM_CS3RCR2_RD() & ~BM_EIM_CS3RCR2_RBE) | BF_EIM_CS3RCR2_RBE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3RCR2, field RBEA[6:4] (RW)
@@ -6782,7 +6414,6 @@ typedef union _hw_eim_cs3rcr2
  * - 111 - 7 EIM clock cycles between beginning of read access and BE assertion
  */
 //@{
-
 #define BP_EIM_CS3RCR2_RBEA      (4)      //!< Bit position for EIM_CS3RCR2_RBEA.
 #define BM_EIM_CS3RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS3RCR2_RBEA.
 
@@ -6796,7 +6427,6 @@ typedef union _hw_eim_cs3rcr2
 //! @brief Set the RBEA field to a new value.
 #define BW_EIM_CS3RCR2_RBEA(v)   (HW_EIM_CS3RCR2_WR((HW_EIM_CS3RCR2_RD() & ~BM_EIM_CS3RCR2_RBEA) | BF_EIM_CS3RCR2_RBEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3RCR2, field RL[9:8] (RW)
@@ -6812,7 +6442,6 @@ typedef union _hw_eim_cs3rcr2
  * - 11 - Feedback clock loop delay is up to 4 cycles for BCD = 0 or 4.5 cycles for BCD != 0
  */
 //@{
-
 #define BP_EIM_CS3RCR2_RL      (8)      //!< Bit position for EIM_CS3RCR2_RL.
 #define BM_EIM_CS3RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS3RCR2_RL.
 
@@ -6826,7 +6455,6 @@ typedef union _hw_eim_cs3rcr2
 //! @brief Set the RL field to a new value.
 #define BW_EIM_CS3RCR2_RL(v)   (HW_EIM_CS3RCR2_WR((HW_EIM_CS3RCR2_RD() & ~BM_EIM_CS3RCR2_RL) | BF_EIM_CS3RCR2_RL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3RCR2, field PAT[14:12] (RW)
@@ -6847,7 +6475,6 @@ typedef union _hw_eim_cs3rcr2
  * - 111 - Address width is 9 EIM clock cycles
  */
 //@{
-
 #define BP_EIM_CS3RCR2_PAT      (12)      //!< Bit position for EIM_CS3RCR2_PAT.
 #define BM_EIM_CS3RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS3RCR2_PAT.
 
@@ -6861,7 +6488,6 @@ typedef union _hw_eim_cs3rcr2
 //! @brief Set the PAT field to a new value.
 #define BW_EIM_CS3RCR2_PAT(v)   (HW_EIM_CS3RCR2_WR((HW_EIM_CS3RCR2_RD() & ~BM_EIM_CS3RCR2_PAT) | BF_EIM_CS3RCR2_PAT(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3RCR2, field APR[15] (RW)
@@ -6873,7 +6499,6 @@ typedef union _hw_eim_cs3rcr2
  * for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
  */
 //@{
-
 #define BP_EIM_CS3RCR2_APR      (15)      //!< Bit position for EIM_CS3RCR2_APR.
 #define BM_EIM_CS3RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS3RCR2_APR.
 
@@ -6887,7 +6512,6 @@ typedef union _hw_eim_cs3rcr2
 //! @brief Set the APR field to a new value.
 #define BW_EIM_CS3RCR2_APR(v)   (HW_EIM_CS3RCR2_WR((HW_EIM_CS3RCR2_RD() & ~BM_EIM_CS3RCR2_APR) | BF_EIM_CS3RCR2_APR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6955,7 +6579,6 @@ typedef union _hw_eim_cs3wcr1
  * - 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 //@{
-
 #define BP_EIM_CS3WCR1_WCSN      (0)      //!< Bit position for EIM_CS3WCR1_WCSN.
 #define BM_EIM_CS3WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS3WCR1_WCSN.
 
@@ -6969,7 +6592,6 @@ typedef union _hw_eim_cs3wcr1
 //! @brief Set the WCSN field to a new value.
 #define BW_EIM_CS3WCR1_WCSN(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WCSN) | BF_EIM_CS3WCR1_WCSN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3WCR1, field WCSA[5:3] (RW)
@@ -6986,7 +6608,6 @@ typedef union _hw_eim_cs3wcr1
  * - 111 - 7 EIMclock cycles between beginning of write access and CS assertion
  */
 //@{
-
 #define BP_EIM_CS3WCR1_WCSA      (3)      //!< Bit position for EIM_CS3WCR1_WCSA.
 #define BM_EIM_CS3WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS3WCR1_WCSA.
 
@@ -7000,7 +6621,6 @@ typedef union _hw_eim_cs3wcr1
 //! @brief Set the WCSA field to a new value.
 #define BW_EIM_CS3WCR1_WCSA(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WCSA) | BF_EIM_CS3WCR1_WCSA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3WCR1, field WEN[8:6] (RW)
@@ -7017,7 +6637,6 @@ typedef union _hw_eim_cs3wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and WE assertion
  */
 //@{
-
 #define BP_EIM_CS3WCR1_WEN      (6)      //!< Bit position for EIM_CS3WCR1_WEN.
 #define BM_EIM_CS3WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS3WCR1_WEN.
 
@@ -7031,7 +6650,6 @@ typedef union _hw_eim_cs3wcr1
 //! @brief Set the WEN field to a new value.
 #define BW_EIM_CS3WCR1_WEN(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WEN) | BF_EIM_CS3WCR1_WEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3WCR1, field WEA[11:9] (RW)
@@ -7049,7 +6667,6 @@ typedef union _hw_eim_cs3wcr1
  * - 111 - 7 EIMclock cycles between beginning of access and WE assertion
  */
 //@{
-
 #define BP_EIM_CS3WCR1_WEA      (9)      //!< Bit position for EIM_CS3WCR1_WEA.
 #define BM_EIM_CS3WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS3WCR1_WEA.
 
@@ -7063,7 +6680,6 @@ typedef union _hw_eim_cs3wcr1
 //! @brief Set the WEA field to a new value.
 #define BW_EIM_CS3WCR1_WEA(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WEA) | BF_EIM_CS3WCR1_WEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3WCR1, field WBEN[14:12] (RW)
@@ -7077,7 +6693,6 @@ typedef union _hw_eim_cs3wcr1
  * access and WE negation
  */
 //@{
-
 #define BP_EIM_CS3WCR1_WBEN      (12)      //!< Bit position for EIM_CS3WCR1_WBEN.
 #define BM_EIM_CS3WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS3WCR1_WBEN.
 
@@ -7091,7 +6706,6 @@ typedef union _hw_eim_cs3wcr1
 //! @brief Set the WBEN field to a new value.
 #define BW_EIM_CS3WCR1_WBEN(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WBEN) | BF_EIM_CS3WCR1_WBEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3WCR1, field WBEA[17:15] (RW)
@@ -7108,7 +6722,6 @@ typedef union _hw_eim_cs3wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and BE assertion
  */
 //@{
-
 #define BP_EIM_CS3WCR1_WBEA      (15)      //!< Bit position for EIM_CS3WCR1_WBEA.
 #define BM_EIM_CS3WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS3WCR1_WBEA.
 
@@ -7122,7 +6735,6 @@ typedef union _hw_eim_cs3wcr1
 //! @brief Set the WBEA field to a new value.
 #define BW_EIM_CS3WCR1_WBEA(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WBEA) | BF_EIM_CS3WCR1_WBEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3WCR1, field WADVN[20:18] (RW)
@@ -7136,7 +6748,6 @@ typedef union _hw_eim_cs3wcr1
  * negation at the same time as the end of access, S/W should set the WAL bit.
  */
 //@{
-
 #define BP_EIM_CS3WCR1_WADVN      (18)      //!< Bit position for EIM_CS3WCR1_WADVN.
 #define BM_EIM_CS3WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS3WCR1_WADVN.
 
@@ -7150,7 +6761,6 @@ typedef union _hw_eim_cs3wcr1
 //! @brief Set the WADVN field to a new value.
 #define BW_EIM_CS3WCR1_WADVN(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WADVN) | BF_EIM_CS3WCR1_WADVN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3WCR1, field WADVA[23:21] (RW)
@@ -7166,7 +6776,6 @@ typedef union _hw_eim_cs3wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 //@{
-
 #define BP_EIM_CS3WCR1_WADVA      (21)      //!< Bit position for EIM_CS3WCR1_WADVA.
 #define BM_EIM_CS3WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS3WCR1_WADVA.
 
@@ -7180,7 +6789,6 @@ typedef union _hw_eim_cs3wcr1
 //! @brief Set the WADVA field to a new value.
 #define BW_EIM_CS3WCR1_WADVA(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WADVA) | BF_EIM_CS3WCR1_WADVA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3WCR1, field WWSC[29:24] (RW)
@@ -7207,7 +6815,6 @@ typedef union _hw_eim_cs3wcr1
  * - 111111 - WWSC value is 63
  */
 //@{
-
 #define BP_EIM_CS3WCR1_WWSC      (24)      //!< Bit position for EIM_CS3WCR1_WWSC.
 #define BM_EIM_CS3WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS3WCR1_WWSC.
 
@@ -7221,7 +6828,6 @@ typedef union _hw_eim_cs3wcr1
 //! @brief Set the WWSC field to a new value.
 #define BW_EIM_CS3WCR1_WWSC(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WWSC) | BF_EIM_CS3WCR1_WWSC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3WCR1, field WBED[30] (RW)
@@ -7230,7 +6836,6 @@ typedef union _hw_eim_cs3wcr1
  * during write accesses.This bit is cleared by hardware reset.
  */
 //@{
-
 #define BP_EIM_CS3WCR1_WBED      (30)      //!< Bit position for EIM_CS3WCR1_WBED.
 #define BM_EIM_CS3WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS3WCR1_WBED.
 
@@ -7244,7 +6849,6 @@ typedef union _hw_eim_cs3wcr1
 //! @brief Set the WBED field to a new value.
 #define BW_EIM_CS3WCR1_WBED(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WBED) | BF_EIM_CS3WCR1_WBED(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS3WCR1, field WAL[31] (RW)
@@ -7254,7 +6858,6 @@ typedef union _hw_eim_cs3wcr1
  * negation of ADV signal is according to WADVN bit field configuration.
  */
 //@{
-
 #define BP_EIM_CS3WCR1_WAL      (31)      //!< Bit position for EIM_CS3WCR1_WAL.
 #define BM_EIM_CS3WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS3WCR1_WAL.
 
@@ -7268,7 +6871,6 @@ typedef union _hw_eim_cs3wcr1
 //! @brief Set the WAL field to a new value.
 #define BW_EIM_CS3WCR1_WAL(v)   (HW_EIM_CS3WCR1_WR((HW_EIM_CS3WCR1_RD() & ~BM_EIM_CS3WCR1_WAL) | BF_EIM_CS3WCR1_WAL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7321,7 +6923,6 @@ typedef union _hw_eim_cs3wcr2
  * bit has no affect. This bit is cleared by hardware reset.
  */
 //@{
-
 #define BP_EIM_CS3WCR2_WBCDD      (0)      //!< Bit position for EIM_CS3WCR2_WBCDD.
 #define BM_EIM_CS3WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS3WCR2_WBCDD.
 
@@ -7335,7 +6936,6 @@ typedef union _hw_eim_cs3wcr2
 //! @brief Set the WBCDD field to a new value.
 #define BW_EIM_CS3WCR2_WBCDD(v)   (HW_EIM_CS3WCR2_WR((HW_EIM_CS3WCR2_RD() & ~BM_EIM_CS3WCR2_WBCDD) | BF_EIM_CS3WCR2_WBCDD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7411,7 +7011,6 @@ typedef union _hw_eim_cs4gcr1
  * - 1 - Chip select is enabled, and is asserted when presented with a valid access.
  */
 //@{
-
 #define BP_EIM_CS4GCR1_CSEN      (0)      //!< Bit position for EIM_CS4GCR1_CSEN.
 #define BM_EIM_CS4GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS4GCR1_CSEN.
 
@@ -7425,7 +7024,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the CSEN field to a new value.
 #define BW_EIM_CS4GCR1_CSEN(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_CSEN) | BF_EIM_CS4GCR1_CSEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field SWR[1] (RW)
@@ -7439,7 +7037,6 @@ typedef union _hw_eim_cs4gcr1
  * - 1 - write accesses are in Synchronous mode
  */
 //@{
-
 #define BP_EIM_CS4GCR1_SWR      (1)      //!< Bit position for EIM_CS4GCR1_SWR.
 #define BM_EIM_CS4GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS4GCR1_SWR.
 
@@ -7453,7 +7050,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the SWR field to a new value.
 #define BW_EIM_CS4GCR1_SWR(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_SWR) | BF_EIM_CS4GCR1_SWR(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field SRD[2] (RW)
@@ -7467,7 +7063,6 @@ typedef union _hw_eim_cs4gcr1
  * - 1 - read accesses are in Synchronous mode
  */
 //@{
-
 #define BP_EIM_CS4GCR1_SRD      (2)      //!< Bit position for EIM_CS4GCR1_SRD.
 #define BM_EIM_CS4GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS4GCR1_SRD.
 
@@ -7481,7 +7076,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the SRD field to a new value.
 #define BW_EIM_CS4GCR1_SRD(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_SRD) | BF_EIM_CS4GCR1_SRD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field MUM[3] (RW)
@@ -7495,7 +7089,6 @@ typedef union _hw_eim_cs4gcr1
  * - 1 - Multiplexed Mode enable
  */
 //@{
-
 #define BP_EIM_CS4GCR1_MUM      (3)      //!< Bit position for EIM_CS4GCR1_MUM.
 #define BM_EIM_CS4GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS4GCR1_MUM.
 
@@ -7509,7 +7102,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the MUM field to a new value.
 #define BW_EIM_CS4GCR1_MUM(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_MUM) | BF_EIM_CS4GCR1_MUM(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field WFL[4] (RW)
@@ -7526,7 +7118,6 @@ typedef union _hw_eim_cs4gcr1
  * - 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 //@{
-
 #define BP_EIM_CS4GCR1_WFL      (4)      //!< Bit position for EIM_CS4GCR1_WFL.
 #define BM_EIM_CS4GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS4GCR1_WFL.
 
@@ -7540,7 +7131,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the WFL field to a new value.
 #define BW_EIM_CS4GCR1_WFL(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_WFL) | BF_EIM_CS4GCR1_WFL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field RFL[5] (RW)
@@ -7557,7 +7147,6 @@ typedef union _hw_eim_cs4gcr1
  * - 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 //@{
-
 #define BP_EIM_CS4GCR1_RFL      (5)      //!< Bit position for EIM_CS4GCR1_RFL.
 #define BM_EIM_CS4GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS4GCR1_RFL.
 
@@ -7571,7 +7160,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the RFL field to a new value.
 #define BW_EIM_CS4GCR1_RFL(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_RFL) | BF_EIM_CS4GCR1_RFL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field CRE[6] (RW)
@@ -7584,7 +7172,6 @@ typedef union _hw_eim_cs4gcr1
  * - 1 - CRE signal use is enable
  */
 //@{
-
 #define BP_EIM_CS4GCR1_CRE      (6)      //!< Bit position for EIM_CS4GCR1_CRE.
 #define BM_EIM_CS4GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS4GCR1_CRE.
 
@@ -7598,7 +7185,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the CRE field to a new value.
 #define BW_EIM_CS4GCR1_CRE(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_CRE) | BF_EIM_CS4GCR1_CRE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field CREP[7] (RW)
@@ -7614,7 +7200,6 @@ typedef union _hw_eim_cs4gcr1
  * - 1 - CRE signal is active high
  */
 //@{
-
 #define BP_EIM_CS4GCR1_CREP      (7)      //!< Bit position for EIM_CS4GCR1_CREP.
 #define BM_EIM_CS4GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS4GCR1_CREP.
 
@@ -7628,7 +7213,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the CREP field to a new value.
 #define BW_EIM_CS4GCR1_CREP(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_CREP) | BF_EIM_CS4GCR1_CREP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field BL[10:8] (RW)
@@ -7653,7 +7237,6 @@ typedef union _hw_eim_cs4gcr1
  * - 111 - Reserved
  */
 //@{
-
 #define BP_EIM_CS4GCR1_BL      (8)      //!< Bit position for EIM_CS4GCR1_BL.
 #define BM_EIM_CS4GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS4GCR1_BL.
 
@@ -7667,7 +7250,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the BL field to a new value.
 #define BW_EIM_CS4GCR1_BL(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_BL) | BF_EIM_CS4GCR1_BL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field WC[11] (RW)
@@ -7680,7 +7262,6 @@ typedef union _hw_eim_cs4gcr1
  * - 1 - Write access burst length is continuous.
  */
 //@{
-
 #define BP_EIM_CS4GCR1_WC      (11)      //!< Bit position for EIM_CS4GCR1_WC.
 #define BM_EIM_CS4GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS4GCR1_WC.
 
@@ -7694,7 +7275,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the WC field to a new value.
 #define BW_EIM_CS4GCR1_WC(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_WC) | BF_EIM_CS4GCR1_WC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field BCD[13:12] (RW)
@@ -7711,7 +7291,6 @@ typedef union _hw_eim_cs4gcr1
  * - 11 - Divide EIM clock by 4
  */
 //@{
-
 #define BP_EIM_CS4GCR1_BCD      (12)      //!< Bit position for EIM_CS4GCR1_BCD.
 #define BM_EIM_CS4GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS4GCR1_BCD.
 
@@ -7725,7 +7304,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the BCD field to a new value.
 #define BW_EIM_CS4GCR1_BCD(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_BCD) | BF_EIM_CS4GCR1_BCD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field BCS[15:14] (RW)
@@ -7743,7 +7321,6 @@ typedef union _hw_eim_cs4gcr1
  * - 11 - 3 EIM clock cycle additional delay
  */
 //@{
-
 #define BP_EIM_CS4GCR1_BCS      (14)      //!< Bit position for EIM_CS4GCR1_BCS.
 #define BM_EIM_CS4GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS4GCR1_BCS.
 
@@ -7757,7 +7334,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the BCS field to a new value.
 #define BW_EIM_CS4GCR1_BCS(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_BCS) | BF_EIM_CS4GCR1_BCS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field DSZ[18:16] (RW)
@@ -7777,7 +7353,6 @@ typedef union _hw_eim_cs4gcr1
  * - 111 - 8 bit port resides on DATA[31:24]
  */
 //@{
-
 #define BP_EIM_CS4GCR1_DSZ      (16)      //!< Bit position for EIM_CS4GCR1_DSZ.
 #define BM_EIM_CS4GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS4GCR1_DSZ.
 
@@ -7791,7 +7366,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the DSZ field to a new value.
 #define BW_EIM_CS4GCR1_DSZ(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_DSZ) | BF_EIM_CS4GCR1_DSZ(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field SP[19] (RW)
@@ -7805,7 +7379,6 @@ typedef union _hw_eim_cs4gcr1
  *     User mode results in an error response and no assertion of the chip select output.
  */
 //@{
-
 #define BP_EIM_CS4GCR1_SP      (19)      //!< Bit position for EIM_CS4GCR1_SP.
 #define BM_EIM_CS4GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS4GCR1_SP.
 
@@ -7819,7 +7392,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the SP field to a new value.
 #define BW_EIM_CS4GCR1_SP(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_SP) | BF_EIM_CS4GCR1_SP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field CSREC[22:20] (RW)
@@ -7836,7 +7408,6 @@ typedef union _hw_eim_cs4gcr1
  * - 111 - 7 EIM clock cycles minimum width of CS, OE and WE signals
  */
 //@{
-
 #define BP_EIM_CS4GCR1_CSREC      (20)      //!< Bit position for EIM_CS4GCR1_CSREC.
 #define BM_EIM_CS4GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS4GCR1_CSREC.
 
@@ -7850,7 +7421,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the CSREC field to a new value.
 #define BW_EIM_CS4GCR1_CSREC(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_CSREC) | BF_EIM_CS4GCR1_CSREC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field AUS[23] (RW)
@@ -7863,7 +7433,6 @@ typedef union _hw_eim_cs4gcr1
  * - 1 - Address unshifted
  */
 //@{
-
 #define BP_EIM_CS4GCR1_AUS      (23)      //!< Bit position for EIM_CS4GCR1_AUS.
 #define BM_EIM_CS4GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS4GCR1_AUS.
 
@@ -7877,7 +7446,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the AUS field to a new value.
 #define BW_EIM_CS4GCR1_AUS(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_AUS) | BF_EIM_CS4GCR1_AUS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field GBC[26:24] (RW)
@@ -7893,7 +7461,6 @@ typedef union _hw_eim_cs4gcr1
  * - 111 - minimum of 7 EIM clock cycles before next access from different chip select
  */
 //@{
-
 #define BP_EIM_CS4GCR1_GBC      (24)      //!< Bit position for EIM_CS4GCR1_GBC.
 #define BM_EIM_CS4GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS4GCR1_GBC.
 
@@ -7907,7 +7474,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the GBC field to a new value.
 #define BW_EIM_CS4GCR1_GBC(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_GBC) | BF_EIM_CS4GCR1_GBC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field WP[27] (RW)
@@ -7921,7 +7487,6 @@ typedef union _hw_eim_cs4gcr1
  *     error response and no assertion of the chip select output.
  */
 //@{
-
 #define BP_EIM_CS4GCR1_WP      (27)      //!< Bit position for EIM_CS4GCR1_WP.
 #define BM_EIM_CS4GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS4GCR1_WP.
 
@@ -7935,7 +7500,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the WP field to a new value.
 #define BW_EIM_CS4GCR1_WP(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_WP) | BF_EIM_CS4GCR1_WP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR1, field PSZ[31:28] (RW)
@@ -7961,7 +7525,6 @@ typedef union _hw_eim_cs4gcr1
  * - 1001 - - 1111 Reserved
  */
 //@{
-
 #define BP_EIM_CS4GCR1_PSZ      (28)      //!< Bit position for EIM_CS4GCR1_PSZ.
 #define BM_EIM_CS4GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS4GCR1_PSZ.
 
@@ -7975,7 +7538,6 @@ typedef union _hw_eim_cs4gcr1
 //! @brief Set the PSZ field to a new value.
 #define BW_EIM_CS4GCR1_PSZ(v)   (HW_EIM_CS4GCR1_WR((HW_EIM_CS4GCR1_RD() & ~BM_EIM_CS4GCR1_PSZ) | BF_EIM_CS4GCR1_PSZ(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8041,7 +7603,6 @@ typedef union _hw_eim_cs4gcr2
  * - 11 - Reserved
  */
 //@{
-
 #define BP_EIM_CS4GCR2_ADH      (0)      //!< Bit position for EIM_CS4GCR2_ADH.
 #define BM_EIM_CS4GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS4GCR2_ADH.
 
@@ -8055,7 +7616,6 @@ typedef union _hw_eim_cs4gcr2
 //! @brief Set the ADH field to a new value.
 #define BW_EIM_CS4GCR2_ADH(v)   (HW_EIM_CS4GCR2_WR((HW_EIM_CS4GCR2_RD() & ~BM_EIM_CS4GCR2_ADH) | BF_EIM_CS4GCR2_ADH(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR2, field DAPS[7:4] (RW)
@@ -8074,7 +7634,6 @@ typedef union _hw_eim_cs4gcr2
  * - 1111 - 18 EIM clk cycles between start of access and first DTACK check
  */
 //@{
-
 #define BP_EIM_CS4GCR2_DAPS      (4)      //!< Bit position for EIM_CS4GCR2_DAPS.
 #define BM_EIM_CS4GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS4GCR2_DAPS.
 
@@ -8088,7 +7647,6 @@ typedef union _hw_eim_cs4gcr2
 //! @brief Set the DAPS field to a new value.
 #define BW_EIM_CS4GCR2_DAPS(v)   (HW_EIM_CS4GCR2_WR((HW_EIM_CS4GCR2_RD() & ~BM_EIM_CS4GCR2_DAPS) | BF_EIM_CS4GCR2_DAPS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR2, field DAE[8] (RW)
@@ -8103,7 +7661,6 @@ typedef union _hw_eim_cs4gcr2
  * - 1 - DTACK signal use is enable
  */
 //@{
-
 #define BP_EIM_CS4GCR2_DAE      (8)      //!< Bit position for EIM_CS4GCR2_DAE.
 #define BM_EIM_CS4GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS4GCR2_DAE.
 
@@ -8117,7 +7674,6 @@ typedef union _hw_eim_cs4gcr2
 //! @brief Set the DAE field to a new value.
 #define BW_EIM_CS4GCR2_DAE(v)   (HW_EIM_CS4GCR2_WR((HW_EIM_CS4GCR2_RD() & ~BM_EIM_CS4GCR2_DAE) | BF_EIM_CS4GCR2_DAE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR2, field DAP[9] (RW)
@@ -8131,7 +7687,6 @@ typedef union _hw_eim_cs4gcr2
  * - 1 - DTACK signal is active low
  */
 //@{
-
 #define BP_EIM_CS4GCR2_DAP      (9)      //!< Bit position for EIM_CS4GCR2_DAP.
 #define BM_EIM_CS4GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS4GCR2_DAP.
 
@@ -8145,7 +7700,6 @@ typedef union _hw_eim_cs4gcr2
 //! @brief Set the DAP field to a new value.
 #define BW_EIM_CS4GCR2_DAP(v)   (HW_EIM_CS4GCR2_WR((HW_EIM_CS4GCR2_RD() & ~BM_EIM_CS4GCR2_DAP) | BF_EIM_CS4GCR2_DAP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4GCR2, field MUX16_BYP_GRANT[12] (RW)
@@ -8158,7 +7712,6 @@ typedef union _hw_eim_cs4gcr2
  * - 1 - EIM ignores the grant signal and immediately drives a 16 bit muxed mode access to the memory.
  */
 //@{
-
 #define BP_EIM_CS4GCR2_MUX16_BYP_GRANT      (12)      //!< Bit position for EIM_CS4GCR2_MUX16_BYP_GRANT.
 #define BM_EIM_CS4GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS4GCR2_MUX16_BYP_GRANT.
 
@@ -8172,7 +7725,6 @@ typedef union _hw_eim_cs4gcr2
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
 #define BW_EIM_CS4GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS4GCR2_WR((HW_EIM_CS4GCR2_RD() & ~BM_EIM_CS4GCR2_MUX16_BYP_GRANT) | BF_EIM_CS4GCR2_MUX16_BYP_GRANT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8243,7 +7795,6 @@ typedef union _hw_eim_cs4rcr1
  * - 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 //@{
-
 #define BP_EIM_CS4RCR1_RCSN      (0)      //!< Bit position for EIM_CS4RCR1_RCSN.
 #define BM_EIM_CS4RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS4RCR1_RCSN.
 
@@ -8257,7 +7808,6 @@ typedef union _hw_eim_cs4rcr1
 //! @brief Set the RCSN field to a new value.
 #define BW_EIM_CS4RCR1_RCSN(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_RCSN) | BF_EIM_CS4RCR1_RCSN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4RCR1, field RCSA[6:4] (RW)
@@ -8273,7 +7823,6 @@ typedef union _hw_eim_cs4rcr1
  * - 111 - 7 EIM clock cycles between beginning of read access and CS assertion
  */
 //@{
-
 #define BP_EIM_CS4RCR1_RCSA      (4)      //!< Bit position for EIM_CS4RCR1_RCSA.
 #define BM_EIM_CS4RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS4RCR1_RCSA.
 
@@ -8287,7 +7836,6 @@ typedef union _hw_eim_cs4rcr1
 //! @brief Set the RCSA field to a new value.
 #define BW_EIM_CS4RCR1_RCSA(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_RCSA) | BF_EIM_CS4RCR1_RCSA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4RCR1, field OEN[10:8] (RW)
@@ -8303,7 +7851,6 @@ typedef union _hw_eim_cs4rcr1
  * - 111 - 7 EIM clock cycles between end of access and OE negation
  */
 //@{
-
 #define BP_EIM_CS4RCR1_OEN      (8)      //!< Bit position for EIM_CS4RCR1_OEN.
 #define BM_EIM_CS4RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS4RCR1_OEN.
 
@@ -8317,7 +7864,6 @@ typedef union _hw_eim_cs4rcr1
 //! @brief Set the OEN field to a new value.
 #define BW_EIM_CS4RCR1_OEN(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_OEN) | BF_EIM_CS4RCR1_OEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4RCR1, field OEA[14:12] (RW)
@@ -8336,7 +7882,6 @@ typedef union _hw_eim_cs4rcr1
  * - 111 - 7 EIM clock cycles between beginning of access and OE assertion
  */
 //@{
-
 #define BP_EIM_CS4RCR1_OEA      (12)      //!< Bit position for EIM_CS4RCR1_OEA.
 #define BM_EIM_CS4RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS4RCR1_OEA.
 
@@ -8350,7 +7895,6 @@ typedef union _hw_eim_cs4rcr1
 //! @brief Set the OEA field to a new value.
 #define BW_EIM_CS4RCR1_OEA(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_OEA) | BF_EIM_CS4RCR1_OEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4RCR1, field RADVN[18:16] (RW)
@@ -8365,7 +7909,6 @@ typedef union _hw_eim_cs4rcr1
  * ADV negation at the same time with the end of access user should RAL bit.
  */
 //@{
-
 #define BP_EIM_CS4RCR1_RADVN      (16)      //!< Bit position for EIM_CS4RCR1_RADVN.
 #define BM_EIM_CS4RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS4RCR1_RADVN.
 
@@ -8379,7 +7922,6 @@ typedef union _hw_eim_cs4rcr1
 //! @brief Set the RADVN field to a new value.
 #define BW_EIM_CS4RCR1_RADVN(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_RADVN) | BF_EIM_CS4RCR1_RADVN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4RCR1, field RAL[19] (RW)
@@ -8389,7 +7931,6 @@ typedef union _hw_eim_cs4rcr1
  * is according to RADVN bit field configuration.
  */
 //@{
-
 #define BP_EIM_CS4RCR1_RAL      (19)      //!< Bit position for EIM_CS4RCR1_RAL.
 #define BM_EIM_CS4RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS4RCR1_RAL.
 
@@ -8403,7 +7944,6 @@ typedef union _hw_eim_cs4rcr1
 //! @brief Set the RAL field to a new value.
 #define BW_EIM_CS4RCR1_RAL(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_RAL) | BF_EIM_CS4RCR1_RAL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4RCR1, field RADVA[22:20] (RW)
@@ -8419,7 +7959,6 @@ typedef union _hw_eim_cs4rcr1
  * - 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 //@{
-
 #define BP_EIM_CS4RCR1_RADVA      (20)      //!< Bit position for EIM_CS4RCR1_RADVA.
 #define BM_EIM_CS4RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS4RCR1_RADVA.
 
@@ -8433,7 +7972,6 @@ typedef union _hw_eim_cs4rcr1
 //! @brief Set the RADVA field to a new value.
 #define BW_EIM_CS4RCR1_RADVA(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_RADVA) | BF_EIM_CS4RCR1_RADVA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4RCR1, field RWSC[29:24] (RW)
@@ -8460,7 +7998,6 @@ typedef union _hw_eim_cs4rcr1
  * - 111111 - RWSC value is 63
  */
 //@{
-
 #define BP_EIM_CS4RCR1_RWSC      (24)      //!< Bit position for EIM_CS4RCR1_RWSC.
 #define BM_EIM_CS4RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS4RCR1_RWSC.
 
@@ -8474,7 +8011,6 @@ typedef union _hw_eim_cs4rcr1
 //! @brief Set the RWSC field to a new value.
 #define BW_EIM_CS4RCR1_RWSC(v)   (HW_EIM_CS4RCR1_WR((HW_EIM_CS4RCR1_RD() & ~BM_EIM_CS4RCR1_RWSC) | BF_EIM_CS4RCR1_RWSC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8540,7 +8076,6 @@ typedef union _hw_eim_cs4rcr2
  * - 111 - 7 EIM clock cycles between end of read access and BE negation
  */
 //@{
-
 #define BP_EIM_CS4RCR2_RBEN      (0)      //!< Bit position for EIM_CS4RCR2_RBEN.
 #define BM_EIM_CS4RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS4RCR2_RBEN.
 
@@ -8554,7 +8089,6 @@ typedef union _hw_eim_cs4rcr2
 //! @brief Set the RBEN field to a new value.
 #define BW_EIM_CS4RCR2_RBEN(v)   (HW_EIM_CS4RCR2_WR((HW_EIM_CS4RCR2_RD() & ~BM_EIM_CS4RCR2_RBEN) | BF_EIM_CS4RCR2_RBEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4RCR2, field RBE[3] (RW)
@@ -8566,7 +8100,6 @@ typedef union _hw_eim_cs4rcr2
  * - 1- - BE are enable during read access according to value of RBEA & RBEN bit fields.
  */
 //@{
-
 #define BP_EIM_CS4RCR2_RBE      (3)      //!< Bit position for EIM_CS4RCR2_RBE.
 #define BM_EIM_CS4RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS4RCR2_RBE.
 
@@ -8580,7 +8113,6 @@ typedef union _hw_eim_cs4rcr2
 //! @brief Set the RBE field to a new value.
 #define BW_EIM_CS4RCR2_RBE(v)   (HW_EIM_CS4RCR2_WR((HW_EIM_CS4RCR2_RD() & ~BM_EIM_CS4RCR2_RBE) | BF_EIM_CS4RCR2_RBE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4RCR2, field RBEA[6:4] (RW)
@@ -8596,7 +8128,6 @@ typedef union _hw_eim_cs4rcr2
  * - 111 - 7 EIM clock cycles between beginning of read access and BE assertion
  */
 //@{
-
 #define BP_EIM_CS4RCR2_RBEA      (4)      //!< Bit position for EIM_CS4RCR2_RBEA.
 #define BM_EIM_CS4RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS4RCR2_RBEA.
 
@@ -8610,7 +8141,6 @@ typedef union _hw_eim_cs4rcr2
 //! @brief Set the RBEA field to a new value.
 #define BW_EIM_CS4RCR2_RBEA(v)   (HW_EIM_CS4RCR2_WR((HW_EIM_CS4RCR2_RD() & ~BM_EIM_CS4RCR2_RBEA) | BF_EIM_CS4RCR2_RBEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4RCR2, field RL[9:8] (RW)
@@ -8626,7 +8156,6 @@ typedef union _hw_eim_cs4rcr2
  * - 11 - Feedback clock loop delay is up to 4 cycles for BCD = 0 or 4.5 cycles for BCD != 0
  */
 //@{
-
 #define BP_EIM_CS4RCR2_RL      (8)      //!< Bit position for EIM_CS4RCR2_RL.
 #define BM_EIM_CS4RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS4RCR2_RL.
 
@@ -8640,7 +8169,6 @@ typedef union _hw_eim_cs4rcr2
 //! @brief Set the RL field to a new value.
 #define BW_EIM_CS4RCR2_RL(v)   (HW_EIM_CS4RCR2_WR((HW_EIM_CS4RCR2_RD() & ~BM_EIM_CS4RCR2_RL) | BF_EIM_CS4RCR2_RL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4RCR2, field PAT[14:12] (RW)
@@ -8661,7 +8189,6 @@ typedef union _hw_eim_cs4rcr2
  * - 111 - Address width is 9 EIM clock cycles
  */
 //@{
-
 #define BP_EIM_CS4RCR2_PAT      (12)      //!< Bit position for EIM_CS4RCR2_PAT.
 #define BM_EIM_CS4RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS4RCR2_PAT.
 
@@ -8675,7 +8202,6 @@ typedef union _hw_eim_cs4rcr2
 //! @brief Set the PAT field to a new value.
 #define BW_EIM_CS4RCR2_PAT(v)   (HW_EIM_CS4RCR2_WR((HW_EIM_CS4RCR2_RD() & ~BM_EIM_CS4RCR2_PAT) | BF_EIM_CS4RCR2_PAT(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4RCR2, field APR[15] (RW)
@@ -8687,7 +8213,6 @@ typedef union _hw_eim_cs4rcr2
  * for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
  */
 //@{
-
 #define BP_EIM_CS4RCR2_APR      (15)      //!< Bit position for EIM_CS4RCR2_APR.
 #define BM_EIM_CS4RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS4RCR2_APR.
 
@@ -8701,7 +8226,6 @@ typedef union _hw_eim_cs4rcr2
 //! @brief Set the APR field to a new value.
 #define BW_EIM_CS4RCR2_APR(v)   (HW_EIM_CS4RCR2_WR((HW_EIM_CS4RCR2_RD() & ~BM_EIM_CS4RCR2_APR) | BF_EIM_CS4RCR2_APR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8769,7 +8293,6 @@ typedef union _hw_eim_cs4wcr1
  * - 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 //@{
-
 #define BP_EIM_CS4WCR1_WCSN      (0)      //!< Bit position for EIM_CS4WCR1_WCSN.
 #define BM_EIM_CS4WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS4WCR1_WCSN.
 
@@ -8783,7 +8306,6 @@ typedef union _hw_eim_cs4wcr1
 //! @brief Set the WCSN field to a new value.
 #define BW_EIM_CS4WCR1_WCSN(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WCSN) | BF_EIM_CS4WCR1_WCSN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4WCR1, field WCSA[5:3] (RW)
@@ -8800,7 +8322,6 @@ typedef union _hw_eim_cs4wcr1
  * - 111 - 7 EIMclock cycles between beginning of write access and CS assertion
  */
 //@{
-
 #define BP_EIM_CS4WCR1_WCSA      (3)      //!< Bit position for EIM_CS4WCR1_WCSA.
 #define BM_EIM_CS4WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS4WCR1_WCSA.
 
@@ -8814,7 +8335,6 @@ typedef union _hw_eim_cs4wcr1
 //! @brief Set the WCSA field to a new value.
 #define BW_EIM_CS4WCR1_WCSA(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WCSA) | BF_EIM_CS4WCR1_WCSA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4WCR1, field WEN[8:6] (RW)
@@ -8831,7 +8351,6 @@ typedef union _hw_eim_cs4wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and WE assertion
  */
 //@{
-
 #define BP_EIM_CS4WCR1_WEN      (6)      //!< Bit position for EIM_CS4WCR1_WEN.
 #define BM_EIM_CS4WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS4WCR1_WEN.
 
@@ -8845,7 +8364,6 @@ typedef union _hw_eim_cs4wcr1
 //! @brief Set the WEN field to a new value.
 #define BW_EIM_CS4WCR1_WEN(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WEN) | BF_EIM_CS4WCR1_WEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4WCR1, field WEA[11:9] (RW)
@@ -8863,7 +8381,6 @@ typedef union _hw_eim_cs4wcr1
  * - 111 - 7 EIMclock cycles between beginning of access and WE assertion
  */
 //@{
-
 #define BP_EIM_CS4WCR1_WEA      (9)      //!< Bit position for EIM_CS4WCR1_WEA.
 #define BM_EIM_CS4WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS4WCR1_WEA.
 
@@ -8877,7 +8394,6 @@ typedef union _hw_eim_cs4wcr1
 //! @brief Set the WEA field to a new value.
 #define BW_EIM_CS4WCR1_WEA(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WEA) | BF_EIM_CS4WCR1_WEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4WCR1, field WBEN[14:12] (RW)
@@ -8891,7 +8407,6 @@ typedef union _hw_eim_cs4wcr1
  * access and WE negation
  */
 //@{
-
 #define BP_EIM_CS4WCR1_WBEN      (12)      //!< Bit position for EIM_CS4WCR1_WBEN.
 #define BM_EIM_CS4WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS4WCR1_WBEN.
 
@@ -8905,7 +8420,6 @@ typedef union _hw_eim_cs4wcr1
 //! @brief Set the WBEN field to a new value.
 #define BW_EIM_CS4WCR1_WBEN(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WBEN) | BF_EIM_CS4WCR1_WBEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4WCR1, field WBEA[17:15] (RW)
@@ -8922,7 +8436,6 @@ typedef union _hw_eim_cs4wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and BE assertion
  */
 //@{
-
 #define BP_EIM_CS4WCR1_WBEA      (15)      //!< Bit position for EIM_CS4WCR1_WBEA.
 #define BM_EIM_CS4WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS4WCR1_WBEA.
 
@@ -8936,7 +8449,6 @@ typedef union _hw_eim_cs4wcr1
 //! @brief Set the WBEA field to a new value.
 #define BW_EIM_CS4WCR1_WBEA(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WBEA) | BF_EIM_CS4WCR1_WBEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4WCR1, field WADVN[20:18] (RW)
@@ -8950,7 +8462,6 @@ typedef union _hw_eim_cs4wcr1
  * negation at the same time as the end of access, S/W should set the WAL bit.
  */
 //@{
-
 #define BP_EIM_CS4WCR1_WADVN      (18)      //!< Bit position for EIM_CS4WCR1_WADVN.
 #define BM_EIM_CS4WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS4WCR1_WADVN.
 
@@ -8964,7 +8475,6 @@ typedef union _hw_eim_cs4wcr1
 //! @brief Set the WADVN field to a new value.
 #define BW_EIM_CS4WCR1_WADVN(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WADVN) | BF_EIM_CS4WCR1_WADVN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4WCR1, field WADVA[23:21] (RW)
@@ -8980,7 +8490,6 @@ typedef union _hw_eim_cs4wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 //@{
-
 #define BP_EIM_CS4WCR1_WADVA      (21)      //!< Bit position for EIM_CS4WCR1_WADVA.
 #define BM_EIM_CS4WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS4WCR1_WADVA.
 
@@ -8994,7 +8503,6 @@ typedef union _hw_eim_cs4wcr1
 //! @brief Set the WADVA field to a new value.
 #define BW_EIM_CS4WCR1_WADVA(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WADVA) | BF_EIM_CS4WCR1_WADVA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4WCR1, field WWSC[29:24] (RW)
@@ -9021,7 +8529,6 @@ typedef union _hw_eim_cs4wcr1
  * - 111111 - WWSC value is 63
  */
 //@{
-
 #define BP_EIM_CS4WCR1_WWSC      (24)      //!< Bit position for EIM_CS4WCR1_WWSC.
 #define BM_EIM_CS4WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS4WCR1_WWSC.
 
@@ -9035,7 +8542,6 @@ typedef union _hw_eim_cs4wcr1
 //! @brief Set the WWSC field to a new value.
 #define BW_EIM_CS4WCR1_WWSC(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WWSC) | BF_EIM_CS4WCR1_WWSC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4WCR1, field WBED[30] (RW)
@@ -9044,7 +8550,6 @@ typedef union _hw_eim_cs4wcr1
  * during write accesses.This bit is cleared by hardware reset.
  */
 //@{
-
 #define BP_EIM_CS4WCR1_WBED      (30)      //!< Bit position for EIM_CS4WCR1_WBED.
 #define BM_EIM_CS4WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS4WCR1_WBED.
 
@@ -9058,7 +8563,6 @@ typedef union _hw_eim_cs4wcr1
 //! @brief Set the WBED field to a new value.
 #define BW_EIM_CS4WCR1_WBED(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WBED) | BF_EIM_CS4WCR1_WBED(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS4WCR1, field WAL[31] (RW)
@@ -9068,7 +8572,6 @@ typedef union _hw_eim_cs4wcr1
  * negation of ADV signal is according to WADVN bit field configuration.
  */
 //@{
-
 #define BP_EIM_CS4WCR1_WAL      (31)      //!< Bit position for EIM_CS4WCR1_WAL.
 #define BM_EIM_CS4WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS4WCR1_WAL.
 
@@ -9082,7 +8585,6 @@ typedef union _hw_eim_cs4wcr1
 //! @brief Set the WAL field to a new value.
 #define BW_EIM_CS4WCR1_WAL(v)   (HW_EIM_CS4WCR1_WR((HW_EIM_CS4WCR1_RD() & ~BM_EIM_CS4WCR1_WAL) | BF_EIM_CS4WCR1_WAL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9135,7 +8637,6 @@ typedef union _hw_eim_cs4wcr2
  * bit has no affect. This bit is cleared by hardware reset.
  */
 //@{
-
 #define BP_EIM_CS4WCR2_WBCDD      (0)      //!< Bit position for EIM_CS4WCR2_WBCDD.
 #define BM_EIM_CS4WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS4WCR2_WBCDD.
 
@@ -9149,7 +8650,6 @@ typedef union _hw_eim_cs4wcr2
 //! @brief Set the WBCDD field to a new value.
 #define BW_EIM_CS4WCR2_WBCDD(v)   (HW_EIM_CS4WCR2_WR((HW_EIM_CS4WCR2_RD() & ~BM_EIM_CS4WCR2_WBCDD) | BF_EIM_CS4WCR2_WBCDD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9225,7 +8725,6 @@ typedef union _hw_eim_cs5gcr1
  * - 1 - Chip select is enabled, and is asserted when presented with a valid access.
  */
 //@{
-
 #define BP_EIM_CS5GCR1_CSEN      (0)      //!< Bit position for EIM_CS5GCR1_CSEN.
 #define BM_EIM_CS5GCR1_CSEN      (0x00000001)  //!< Bit mask for EIM_CS5GCR1_CSEN.
 
@@ -9239,7 +8738,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the CSEN field to a new value.
 #define BW_EIM_CS5GCR1_CSEN(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_CSEN) | BF_EIM_CS5GCR1_CSEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field SWR[1] (RW)
@@ -9253,7 +8751,6 @@ typedef union _hw_eim_cs5gcr1
  * - 1 - write accesses are in Synchronous mode
  */
 //@{
-
 #define BP_EIM_CS5GCR1_SWR      (1)      //!< Bit position for EIM_CS5GCR1_SWR.
 #define BM_EIM_CS5GCR1_SWR      (0x00000002)  //!< Bit mask for EIM_CS5GCR1_SWR.
 
@@ -9267,7 +8764,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the SWR field to a new value.
 #define BW_EIM_CS5GCR1_SWR(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_SWR) | BF_EIM_CS5GCR1_SWR(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field SRD[2] (RW)
@@ -9281,7 +8777,6 @@ typedef union _hw_eim_cs5gcr1
  * - 1 - read accesses are in Synchronous mode
  */
 //@{
-
 #define BP_EIM_CS5GCR1_SRD      (2)      //!< Bit position for EIM_CS5GCR1_SRD.
 #define BM_EIM_CS5GCR1_SRD      (0x00000004)  //!< Bit mask for EIM_CS5GCR1_SRD.
 
@@ -9295,7 +8790,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the SRD field to a new value.
 #define BW_EIM_CS5GCR1_SRD(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_SRD) | BF_EIM_CS5GCR1_SRD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field MUM[3] (RW)
@@ -9309,7 +8803,6 @@ typedef union _hw_eim_cs5gcr1
  * - 1 - Multiplexed Mode enable
  */
 //@{
-
 #define BP_EIM_CS5GCR1_MUM      (3)      //!< Bit position for EIM_CS5GCR1_MUM.
 #define BM_EIM_CS5GCR1_MUM      (0x00000008)  //!< Bit mask for EIM_CS5GCR1_MUM.
 
@@ -9323,7 +8816,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the MUM field to a new value.
 #define BW_EIM_CS5GCR1_MUM(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_MUM) | BF_EIM_CS5GCR1_MUM(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field WFL[4] (RW)
@@ -9340,7 +8832,6 @@ typedef union _hw_eim_cs5gcr1
  * - 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 //@{
-
 #define BP_EIM_CS5GCR1_WFL      (4)      //!< Bit position for EIM_CS5GCR1_WFL.
 #define BM_EIM_CS5GCR1_WFL      (0x00000010)  //!< Bit mask for EIM_CS5GCR1_WFL.
 
@@ -9354,7 +8845,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the WFL field to a new value.
 #define BW_EIM_CS5GCR1_WFL(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_WFL) | BF_EIM_CS5GCR1_WFL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field RFL[5] (RW)
@@ -9371,7 +8861,6 @@ typedef union _hw_eim_cs5gcr1
  * - 1 - the state of the External devices is determined internally (Fix latency mode only)
  */
 //@{
-
 #define BP_EIM_CS5GCR1_RFL      (5)      //!< Bit position for EIM_CS5GCR1_RFL.
 #define BM_EIM_CS5GCR1_RFL      (0x00000020)  //!< Bit mask for EIM_CS5GCR1_RFL.
 
@@ -9385,7 +8874,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the RFL field to a new value.
 #define BW_EIM_CS5GCR1_RFL(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_RFL) | BF_EIM_CS5GCR1_RFL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field CRE[6] (RW)
@@ -9398,7 +8886,6 @@ typedef union _hw_eim_cs5gcr1
  * - 1 - CRE signal use is enable
  */
 //@{
-
 #define BP_EIM_CS5GCR1_CRE      (6)      //!< Bit position for EIM_CS5GCR1_CRE.
 #define BM_EIM_CS5GCR1_CRE      (0x00000040)  //!< Bit mask for EIM_CS5GCR1_CRE.
 
@@ -9412,7 +8899,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the CRE field to a new value.
 #define BW_EIM_CS5GCR1_CRE(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_CRE) | BF_EIM_CS5GCR1_CRE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field CREP[7] (RW)
@@ -9428,7 +8914,6 @@ typedef union _hw_eim_cs5gcr1
  * - 1 - CRE signal is active high
  */
 //@{
-
 #define BP_EIM_CS5GCR1_CREP      (7)      //!< Bit position for EIM_CS5GCR1_CREP.
 #define BM_EIM_CS5GCR1_CREP      (0x00000080)  //!< Bit mask for EIM_CS5GCR1_CREP.
 
@@ -9442,7 +8927,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the CREP field to a new value.
 #define BW_EIM_CS5GCR1_CREP(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_CREP) | BF_EIM_CS5GCR1_CREP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field BL[10:8] (RW)
@@ -9467,7 +8951,6 @@ typedef union _hw_eim_cs5gcr1
  * - 111 - Reserved
  */
 //@{
-
 #define BP_EIM_CS5GCR1_BL      (8)      //!< Bit position for EIM_CS5GCR1_BL.
 #define BM_EIM_CS5GCR1_BL      (0x00000700)  //!< Bit mask for EIM_CS5GCR1_BL.
 
@@ -9481,7 +8964,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the BL field to a new value.
 #define BW_EIM_CS5GCR1_BL(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_BL) | BF_EIM_CS5GCR1_BL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field WC[11] (RW)
@@ -9494,7 +8976,6 @@ typedef union _hw_eim_cs5gcr1
  * - 1 - Write access burst length is continuous.
  */
 //@{
-
 #define BP_EIM_CS5GCR1_WC      (11)      //!< Bit position for EIM_CS5GCR1_WC.
 #define BM_EIM_CS5GCR1_WC      (0x00000800)  //!< Bit mask for EIM_CS5GCR1_WC.
 
@@ -9508,7 +8989,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the WC field to a new value.
 #define BW_EIM_CS5GCR1_WC(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_WC) | BF_EIM_CS5GCR1_WC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field BCD[13:12] (RW)
@@ -9525,7 +9005,6 @@ typedef union _hw_eim_cs5gcr1
  * - 11 - Divide EIM clock by 4
  */
 //@{
-
 #define BP_EIM_CS5GCR1_BCD      (12)      //!< Bit position for EIM_CS5GCR1_BCD.
 #define BM_EIM_CS5GCR1_BCD      (0x00003000)  //!< Bit mask for EIM_CS5GCR1_BCD.
 
@@ -9539,7 +9018,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the BCD field to a new value.
 #define BW_EIM_CS5GCR1_BCD(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_BCD) | BF_EIM_CS5GCR1_BCD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field BCS[15:14] (RW)
@@ -9557,7 +9035,6 @@ typedef union _hw_eim_cs5gcr1
  * - 11 - 3 EIM clock cycle additional delay
  */
 //@{
-
 #define BP_EIM_CS5GCR1_BCS      (14)      //!< Bit position for EIM_CS5GCR1_BCS.
 #define BM_EIM_CS5GCR1_BCS      (0x0000c000)  //!< Bit mask for EIM_CS5GCR1_BCS.
 
@@ -9571,7 +9048,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the BCS field to a new value.
 #define BW_EIM_CS5GCR1_BCS(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_BCS) | BF_EIM_CS5GCR1_BCS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field DSZ[18:16] (RW)
@@ -9591,7 +9067,6 @@ typedef union _hw_eim_cs5gcr1
  * - 111 - 8 bit port resides on DATA[31:24]
  */
 //@{
-
 #define BP_EIM_CS5GCR1_DSZ      (16)      //!< Bit position for EIM_CS5GCR1_DSZ.
 #define BM_EIM_CS5GCR1_DSZ      (0x00070000)  //!< Bit mask for EIM_CS5GCR1_DSZ.
 
@@ -9605,7 +9080,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the DSZ field to a new value.
 #define BW_EIM_CS5GCR1_DSZ(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_DSZ) | BF_EIM_CS5GCR1_DSZ(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field SP[19] (RW)
@@ -9619,7 +9093,6 @@ typedef union _hw_eim_cs5gcr1
  *     User mode results in an error response and no assertion of the chip select output.
  */
 //@{
-
 #define BP_EIM_CS5GCR1_SP      (19)      //!< Bit position for EIM_CS5GCR1_SP.
 #define BM_EIM_CS5GCR1_SP      (0x00080000)  //!< Bit mask for EIM_CS5GCR1_SP.
 
@@ -9633,7 +9106,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the SP field to a new value.
 #define BW_EIM_CS5GCR1_SP(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_SP) | BF_EIM_CS5GCR1_SP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field CSREC[22:20] (RW)
@@ -9650,7 +9122,6 @@ typedef union _hw_eim_cs5gcr1
  * - 111 - 7 EIM clock cycles minimum width of CS, OE and WE signals
  */
 //@{
-
 #define BP_EIM_CS5GCR1_CSREC      (20)      //!< Bit position for EIM_CS5GCR1_CSREC.
 #define BM_EIM_CS5GCR1_CSREC      (0x00700000)  //!< Bit mask for EIM_CS5GCR1_CSREC.
 
@@ -9664,7 +9135,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the CSREC field to a new value.
 #define BW_EIM_CS5GCR1_CSREC(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_CSREC) | BF_EIM_CS5GCR1_CSREC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field AUS[23] (RW)
@@ -9677,7 +9147,6 @@ typedef union _hw_eim_cs5gcr1
  * - 1 - Address unshifted
  */
 //@{
-
 #define BP_EIM_CS5GCR1_AUS      (23)      //!< Bit position for EIM_CS5GCR1_AUS.
 #define BM_EIM_CS5GCR1_AUS      (0x00800000)  //!< Bit mask for EIM_CS5GCR1_AUS.
 
@@ -9691,7 +9160,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the AUS field to a new value.
 #define BW_EIM_CS5GCR1_AUS(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_AUS) | BF_EIM_CS5GCR1_AUS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field GBC[26:24] (RW)
@@ -9707,7 +9175,6 @@ typedef union _hw_eim_cs5gcr1
  * - 111 - minimum of 7 EIM clock cycles before next access from different chip select
  */
 //@{
-
 #define BP_EIM_CS5GCR1_GBC      (24)      //!< Bit position for EIM_CS5GCR1_GBC.
 #define BM_EIM_CS5GCR1_GBC      (0x07000000)  //!< Bit mask for EIM_CS5GCR1_GBC.
 
@@ -9721,7 +9188,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the GBC field to a new value.
 #define BW_EIM_CS5GCR1_GBC(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_GBC) | BF_EIM_CS5GCR1_GBC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field WP[27] (RW)
@@ -9735,7 +9201,6 @@ typedef union _hw_eim_cs5gcr1
  *     error response and no assertion of the chip select output.
  */
 //@{
-
 #define BP_EIM_CS5GCR1_WP      (27)      //!< Bit position for EIM_CS5GCR1_WP.
 #define BM_EIM_CS5GCR1_WP      (0x08000000)  //!< Bit mask for EIM_CS5GCR1_WP.
 
@@ -9749,7 +9214,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the WP field to a new value.
 #define BW_EIM_CS5GCR1_WP(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_WP) | BF_EIM_CS5GCR1_WP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR1, field PSZ[31:28] (RW)
@@ -9775,7 +9239,6 @@ typedef union _hw_eim_cs5gcr1
  * - 1001 - - 1111 Reserved
  */
 //@{
-
 #define BP_EIM_CS5GCR1_PSZ      (28)      //!< Bit position for EIM_CS5GCR1_PSZ.
 #define BM_EIM_CS5GCR1_PSZ      (0xf0000000)  //!< Bit mask for EIM_CS5GCR1_PSZ.
 
@@ -9789,7 +9252,6 @@ typedef union _hw_eim_cs5gcr1
 //! @brief Set the PSZ field to a new value.
 #define BW_EIM_CS5GCR1_PSZ(v)   (HW_EIM_CS5GCR1_WR((HW_EIM_CS5GCR1_RD() & ~BM_EIM_CS5GCR1_PSZ) | BF_EIM_CS5GCR1_PSZ(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9855,7 +9317,6 @@ typedef union _hw_eim_cs5gcr2
  * - 11 - Reserved
  */
 //@{
-
 #define BP_EIM_CS5GCR2_ADH      (0)      //!< Bit position for EIM_CS5GCR2_ADH.
 #define BM_EIM_CS5GCR2_ADH      (0x00000003)  //!< Bit mask for EIM_CS5GCR2_ADH.
 
@@ -9869,7 +9330,6 @@ typedef union _hw_eim_cs5gcr2
 //! @brief Set the ADH field to a new value.
 #define BW_EIM_CS5GCR2_ADH(v)   (HW_EIM_CS5GCR2_WR((HW_EIM_CS5GCR2_RD() & ~BM_EIM_CS5GCR2_ADH) | BF_EIM_CS5GCR2_ADH(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR2, field DAPS[7:4] (RW)
@@ -9888,7 +9348,6 @@ typedef union _hw_eim_cs5gcr2
  * - 1111 - 18 EIM clk cycles between start of access and first DTACK check
  */
 //@{
-
 #define BP_EIM_CS5GCR2_DAPS      (4)      //!< Bit position for EIM_CS5GCR2_DAPS.
 #define BM_EIM_CS5GCR2_DAPS      (0x000000f0)  //!< Bit mask for EIM_CS5GCR2_DAPS.
 
@@ -9902,7 +9361,6 @@ typedef union _hw_eim_cs5gcr2
 //! @brief Set the DAPS field to a new value.
 #define BW_EIM_CS5GCR2_DAPS(v)   (HW_EIM_CS5GCR2_WR((HW_EIM_CS5GCR2_RD() & ~BM_EIM_CS5GCR2_DAPS) | BF_EIM_CS5GCR2_DAPS(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR2, field DAE[8] (RW)
@@ -9917,7 +9375,6 @@ typedef union _hw_eim_cs5gcr2
  * - 1 - DTACK signal use is enable
  */
 //@{
-
 #define BP_EIM_CS5GCR2_DAE      (8)      //!< Bit position for EIM_CS5GCR2_DAE.
 #define BM_EIM_CS5GCR2_DAE      (0x00000100)  //!< Bit mask for EIM_CS5GCR2_DAE.
 
@@ -9931,7 +9388,6 @@ typedef union _hw_eim_cs5gcr2
 //! @brief Set the DAE field to a new value.
 #define BW_EIM_CS5GCR2_DAE(v)   (HW_EIM_CS5GCR2_WR((HW_EIM_CS5GCR2_RD() & ~BM_EIM_CS5GCR2_DAE) | BF_EIM_CS5GCR2_DAE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR2, field DAP[9] (RW)
@@ -9945,7 +9401,6 @@ typedef union _hw_eim_cs5gcr2
  * - 1 - DTACK signal is active low
  */
 //@{
-
 #define BP_EIM_CS5GCR2_DAP      (9)      //!< Bit position for EIM_CS5GCR2_DAP.
 #define BM_EIM_CS5GCR2_DAP      (0x00000200)  //!< Bit mask for EIM_CS5GCR2_DAP.
 
@@ -9959,7 +9414,6 @@ typedef union _hw_eim_cs5gcr2
 //! @brief Set the DAP field to a new value.
 #define BW_EIM_CS5GCR2_DAP(v)   (HW_EIM_CS5GCR2_WR((HW_EIM_CS5GCR2_RD() & ~BM_EIM_CS5GCR2_DAP) | BF_EIM_CS5GCR2_DAP(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5GCR2, field MUX16_BYP_GRANT[12] (RW)
@@ -9972,7 +9426,6 @@ typedef union _hw_eim_cs5gcr2
  * - 1 - EIM ignores the grant signal and immediately drives a 16 bit muxed mode access to the memory.
  */
 //@{
-
 #define BP_EIM_CS5GCR2_MUX16_BYP_GRANT      (12)      //!< Bit position for EIM_CS5GCR2_MUX16_BYP_GRANT.
 #define BM_EIM_CS5GCR2_MUX16_BYP_GRANT      (0x00001000)  //!< Bit mask for EIM_CS5GCR2_MUX16_BYP_GRANT.
 
@@ -9986,7 +9439,6 @@ typedef union _hw_eim_cs5gcr2
 //! @brief Set the MUX16_BYP_GRANT field to a new value.
 #define BW_EIM_CS5GCR2_MUX16_BYP_GRANT(v)   (HW_EIM_CS5GCR2_WR((HW_EIM_CS5GCR2_RD() & ~BM_EIM_CS5GCR2_MUX16_BYP_GRANT) | BF_EIM_CS5GCR2_MUX16_BYP_GRANT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10057,7 +9509,6 @@ typedef union _hw_eim_cs5rcr1
  * - 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 //@{
-
 #define BP_EIM_CS5RCR1_RCSN      (0)      //!< Bit position for EIM_CS5RCR1_RCSN.
 #define BM_EIM_CS5RCR1_RCSN      (0x00000007)  //!< Bit mask for EIM_CS5RCR1_RCSN.
 
@@ -10071,7 +9522,6 @@ typedef union _hw_eim_cs5rcr1
 //! @brief Set the RCSN field to a new value.
 #define BW_EIM_CS5RCR1_RCSN(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_RCSN) | BF_EIM_CS5RCR1_RCSN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5RCR1, field RCSA[6:4] (RW)
@@ -10087,7 +9537,6 @@ typedef union _hw_eim_cs5rcr1
  * - 111 - 7 EIM clock cycles between beginning of read access and CS assertion
  */
 //@{
-
 #define BP_EIM_CS5RCR1_RCSA      (4)      //!< Bit position for EIM_CS5RCR1_RCSA.
 #define BM_EIM_CS5RCR1_RCSA      (0x00000070)  //!< Bit mask for EIM_CS5RCR1_RCSA.
 
@@ -10101,7 +9550,6 @@ typedef union _hw_eim_cs5rcr1
 //! @brief Set the RCSA field to a new value.
 #define BW_EIM_CS5RCR1_RCSA(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_RCSA) | BF_EIM_CS5RCR1_RCSA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5RCR1, field OEN[10:8] (RW)
@@ -10117,7 +9565,6 @@ typedef union _hw_eim_cs5rcr1
  * - 111 - 7 EIM clock cycles between end of access and OE negation
  */
 //@{
-
 #define BP_EIM_CS5RCR1_OEN      (8)      //!< Bit position for EIM_CS5RCR1_OEN.
 #define BM_EIM_CS5RCR1_OEN      (0x00000700)  //!< Bit mask for EIM_CS5RCR1_OEN.
 
@@ -10131,7 +9578,6 @@ typedef union _hw_eim_cs5rcr1
 //! @brief Set the OEN field to a new value.
 #define BW_EIM_CS5RCR1_OEN(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_OEN) | BF_EIM_CS5RCR1_OEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5RCR1, field OEA[14:12] (RW)
@@ -10150,7 +9596,6 @@ typedef union _hw_eim_cs5rcr1
  * - 111 - 7 EIM clock cycles between beginning of access and OE assertion
  */
 //@{
-
 #define BP_EIM_CS5RCR1_OEA      (12)      //!< Bit position for EIM_CS5RCR1_OEA.
 #define BM_EIM_CS5RCR1_OEA      (0x00007000)  //!< Bit mask for EIM_CS5RCR1_OEA.
 
@@ -10164,7 +9609,6 @@ typedef union _hw_eim_cs5rcr1
 //! @brief Set the OEA field to a new value.
 #define BW_EIM_CS5RCR1_OEA(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_OEA) | BF_EIM_CS5RCR1_OEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5RCR1, field RADVN[18:16] (RW)
@@ -10179,7 +9623,6 @@ typedef union _hw_eim_cs5rcr1
  * ADV negation at the same time with the end of access user should RAL bit.
  */
 //@{
-
 #define BP_EIM_CS5RCR1_RADVN      (16)      //!< Bit position for EIM_CS5RCR1_RADVN.
 #define BM_EIM_CS5RCR1_RADVN      (0x00070000)  //!< Bit mask for EIM_CS5RCR1_RADVN.
 
@@ -10193,7 +9636,6 @@ typedef union _hw_eim_cs5rcr1
 //! @brief Set the RADVN field to a new value.
 #define BW_EIM_CS5RCR1_RADVN(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_RADVN) | BF_EIM_CS5RCR1_RADVN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5RCR1, field RAL[19] (RW)
@@ -10203,7 +9645,6 @@ typedef union _hw_eim_cs5rcr1
  * is according to RADVN bit field configuration.
  */
 //@{
-
 #define BP_EIM_CS5RCR1_RAL      (19)      //!< Bit position for EIM_CS5RCR1_RAL.
 #define BM_EIM_CS5RCR1_RAL      (0x00080000)  //!< Bit mask for EIM_CS5RCR1_RAL.
 
@@ -10217,7 +9658,6 @@ typedef union _hw_eim_cs5rcr1
 //! @brief Set the RAL field to a new value.
 #define BW_EIM_CS5RCR1_RAL(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_RAL) | BF_EIM_CS5RCR1_RAL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5RCR1, field RADVA[22:20] (RW)
@@ -10233,7 +9673,6 @@ typedef union _hw_eim_cs5rcr1
  * - 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 //@{
-
 #define BP_EIM_CS5RCR1_RADVA      (20)      //!< Bit position for EIM_CS5RCR1_RADVA.
 #define BM_EIM_CS5RCR1_RADVA      (0x00700000)  //!< Bit mask for EIM_CS5RCR1_RADVA.
 
@@ -10247,7 +9686,6 @@ typedef union _hw_eim_cs5rcr1
 //! @brief Set the RADVA field to a new value.
 #define BW_EIM_CS5RCR1_RADVA(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_RADVA) | BF_EIM_CS5RCR1_RADVA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5RCR1, field RWSC[29:24] (RW)
@@ -10274,7 +9712,6 @@ typedef union _hw_eim_cs5rcr1
  * - 111111 - RWSC value is 63
  */
 //@{
-
 #define BP_EIM_CS5RCR1_RWSC      (24)      //!< Bit position for EIM_CS5RCR1_RWSC.
 #define BM_EIM_CS5RCR1_RWSC      (0x3f000000)  //!< Bit mask for EIM_CS5RCR1_RWSC.
 
@@ -10288,7 +9725,6 @@ typedef union _hw_eim_cs5rcr1
 //! @brief Set the RWSC field to a new value.
 #define BW_EIM_CS5RCR1_RWSC(v)   (HW_EIM_CS5RCR1_WR((HW_EIM_CS5RCR1_RD() & ~BM_EIM_CS5RCR1_RWSC) | BF_EIM_CS5RCR1_RWSC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10354,7 +9790,6 @@ typedef union _hw_eim_cs5rcr2
  * - 111 - 7 EIM clock cycles between end of read access and BE negation
  */
 //@{
-
 #define BP_EIM_CS5RCR2_RBEN      (0)      //!< Bit position for EIM_CS5RCR2_RBEN.
 #define BM_EIM_CS5RCR2_RBEN      (0x00000007)  //!< Bit mask for EIM_CS5RCR2_RBEN.
 
@@ -10368,7 +9803,6 @@ typedef union _hw_eim_cs5rcr2
 //! @brief Set the RBEN field to a new value.
 #define BW_EIM_CS5RCR2_RBEN(v)   (HW_EIM_CS5RCR2_WR((HW_EIM_CS5RCR2_RD() & ~BM_EIM_CS5RCR2_RBEN) | BF_EIM_CS5RCR2_RBEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5RCR2, field RBE[3] (RW)
@@ -10380,7 +9814,6 @@ typedef union _hw_eim_cs5rcr2
  * - 1- - BE are enable during read access according to value of RBEA & RBEN bit fields.
  */
 //@{
-
 #define BP_EIM_CS5RCR2_RBE      (3)      //!< Bit position for EIM_CS5RCR2_RBE.
 #define BM_EIM_CS5RCR2_RBE      (0x00000008)  //!< Bit mask for EIM_CS5RCR2_RBE.
 
@@ -10394,7 +9827,6 @@ typedef union _hw_eim_cs5rcr2
 //! @brief Set the RBE field to a new value.
 #define BW_EIM_CS5RCR2_RBE(v)   (HW_EIM_CS5RCR2_WR((HW_EIM_CS5RCR2_RD() & ~BM_EIM_CS5RCR2_RBE) | BF_EIM_CS5RCR2_RBE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5RCR2, field RBEA[6:4] (RW)
@@ -10410,7 +9842,6 @@ typedef union _hw_eim_cs5rcr2
  * - 111 - 7 EIM clock cycles between beginning of read access and BE assertion
  */
 //@{
-
 #define BP_EIM_CS5RCR2_RBEA      (4)      //!< Bit position for EIM_CS5RCR2_RBEA.
 #define BM_EIM_CS5RCR2_RBEA      (0x00000070)  //!< Bit mask for EIM_CS5RCR2_RBEA.
 
@@ -10424,7 +9855,6 @@ typedef union _hw_eim_cs5rcr2
 //! @brief Set the RBEA field to a new value.
 #define BW_EIM_CS5RCR2_RBEA(v)   (HW_EIM_CS5RCR2_WR((HW_EIM_CS5RCR2_RD() & ~BM_EIM_CS5RCR2_RBEA) | BF_EIM_CS5RCR2_RBEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5RCR2, field RL[9:8] (RW)
@@ -10440,7 +9870,6 @@ typedef union _hw_eim_cs5rcr2
  * - 11 - Feedback clock loop delay is up to 4 cycles for BCD = 0 or 4.5 cycles for BCD != 0
  */
 //@{
-
 #define BP_EIM_CS5RCR2_RL      (8)      //!< Bit position for EIM_CS5RCR2_RL.
 #define BM_EIM_CS5RCR2_RL      (0x00000300)  //!< Bit mask for EIM_CS5RCR2_RL.
 
@@ -10454,7 +9883,6 @@ typedef union _hw_eim_cs5rcr2
 //! @brief Set the RL field to a new value.
 #define BW_EIM_CS5RCR2_RL(v)   (HW_EIM_CS5RCR2_WR((HW_EIM_CS5RCR2_RD() & ~BM_EIM_CS5RCR2_RL) | BF_EIM_CS5RCR2_RL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5RCR2, field PAT[14:12] (RW)
@@ -10475,7 +9903,6 @@ typedef union _hw_eim_cs5rcr2
  * - 111 - Address width is 9 EIM clock cycles
  */
 //@{
-
 #define BP_EIM_CS5RCR2_PAT      (12)      //!< Bit position for EIM_CS5RCR2_PAT.
 #define BM_EIM_CS5RCR2_PAT      (0x00007000)  //!< Bit mask for EIM_CS5RCR2_PAT.
 
@@ -10489,7 +9916,6 @@ typedef union _hw_eim_cs5rcr2
 //! @brief Set the PAT field to a new value.
 #define BW_EIM_CS5RCR2_PAT(v)   (HW_EIM_CS5RCR2_WR((HW_EIM_CS5RCR2_RD() & ~BM_EIM_CS5RCR2_PAT) | BF_EIM_CS5RCR2_PAT(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5RCR2, field APR[15] (RW)
@@ -10501,7 +9927,6 @@ typedef union _hw_eim_cs5rcr2
  * for EIM_CS1GCR1 - EIM_CS5GCR1. SRD=0 and MUM=0 must apply when APR=1
  */
 //@{
-
 #define BP_EIM_CS5RCR2_APR      (15)      //!< Bit position for EIM_CS5RCR2_APR.
 #define BM_EIM_CS5RCR2_APR      (0x00008000)  //!< Bit mask for EIM_CS5RCR2_APR.
 
@@ -10515,7 +9940,6 @@ typedef union _hw_eim_cs5rcr2
 //! @brief Set the APR field to a new value.
 #define BW_EIM_CS5RCR2_APR(v)   (HW_EIM_CS5RCR2_WR((HW_EIM_CS5RCR2_RD() & ~BM_EIM_CS5RCR2_APR) | BF_EIM_CS5RCR2_APR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10583,7 +10007,6 @@ typedef union _hw_eim_cs5wcr1
  * - 111 - 7 EIM clock cycles between end of read access and CS negation
  */
 //@{
-
 #define BP_EIM_CS5WCR1_WCSN      (0)      //!< Bit position for EIM_CS5WCR1_WCSN.
 #define BM_EIM_CS5WCR1_WCSN      (0x00000007)  //!< Bit mask for EIM_CS5WCR1_WCSN.
 
@@ -10597,7 +10020,6 @@ typedef union _hw_eim_cs5wcr1
 //! @brief Set the WCSN field to a new value.
 #define BW_EIM_CS5WCR1_WCSN(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WCSN) | BF_EIM_CS5WCR1_WCSN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5WCR1, field WCSA[5:3] (RW)
@@ -10614,7 +10036,6 @@ typedef union _hw_eim_cs5wcr1
  * - 111 - 7 EIMclock cycles between beginning of write access and CS assertion
  */
 //@{
-
 #define BP_EIM_CS5WCR1_WCSA      (3)      //!< Bit position for EIM_CS5WCR1_WCSA.
 #define BM_EIM_CS5WCR1_WCSA      (0x00000038)  //!< Bit mask for EIM_CS5WCR1_WCSA.
 
@@ -10628,7 +10049,6 @@ typedef union _hw_eim_cs5wcr1
 //! @brief Set the WCSA field to a new value.
 #define BW_EIM_CS5WCR1_WCSA(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WCSA) | BF_EIM_CS5WCR1_WCSA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5WCR1, field WEN[8:6] (RW)
@@ -10645,7 +10065,6 @@ typedef union _hw_eim_cs5wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and WE assertion
  */
 //@{
-
 #define BP_EIM_CS5WCR1_WEN      (6)      //!< Bit position for EIM_CS5WCR1_WEN.
 #define BM_EIM_CS5WCR1_WEN      (0x000001c0)  //!< Bit mask for EIM_CS5WCR1_WEN.
 
@@ -10659,7 +10078,6 @@ typedef union _hw_eim_cs5wcr1
 //! @brief Set the WEN field to a new value.
 #define BW_EIM_CS5WCR1_WEN(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WEN) | BF_EIM_CS5WCR1_WEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5WCR1, field WEA[11:9] (RW)
@@ -10677,7 +10095,6 @@ typedef union _hw_eim_cs5wcr1
  * - 111 - 7 EIMclock cycles between beginning of access and WE assertion
  */
 //@{
-
 #define BP_EIM_CS5WCR1_WEA      (9)      //!< Bit position for EIM_CS5WCR1_WEA.
 #define BM_EIM_CS5WCR1_WEA      (0x00000e00)  //!< Bit mask for EIM_CS5WCR1_WEA.
 
@@ -10691,7 +10108,6 @@ typedef union _hw_eim_cs5wcr1
 //! @brief Set the WEA field to a new value.
 #define BW_EIM_CS5WCR1_WEA(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WEA) | BF_EIM_CS5WCR1_WEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5WCR1, field WBEN[14:12] (RW)
@@ -10705,7 +10121,6 @@ typedef union _hw_eim_cs5wcr1
  * access and WE negation
  */
 //@{
-
 #define BP_EIM_CS5WCR1_WBEN      (12)      //!< Bit position for EIM_CS5WCR1_WBEN.
 #define BM_EIM_CS5WCR1_WBEN      (0x00007000)  //!< Bit mask for EIM_CS5WCR1_WBEN.
 
@@ -10719,7 +10134,6 @@ typedef union _hw_eim_cs5wcr1
 //! @brief Set the WBEN field to a new value.
 #define BW_EIM_CS5WCR1_WBEN(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WBEN) | BF_EIM_CS5WCR1_WBEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5WCR1, field WBEA[17:15] (RW)
@@ -10736,7 +10150,6 @@ typedef union _hw_eim_cs5wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and BE assertion
  */
 //@{
-
 #define BP_EIM_CS5WCR1_WBEA      (15)      //!< Bit position for EIM_CS5WCR1_WBEA.
 #define BM_EIM_CS5WCR1_WBEA      (0x00038000)  //!< Bit mask for EIM_CS5WCR1_WBEA.
 
@@ -10750,7 +10163,6 @@ typedef union _hw_eim_cs5wcr1
 //! @brief Set the WBEA field to a new value.
 #define BW_EIM_CS5WCR1_WBEA(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WBEA) | BF_EIM_CS5WCR1_WBEA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5WCR1, field WADVN[20:18] (RW)
@@ -10764,7 +10176,6 @@ typedef union _hw_eim_cs5wcr1
  * negation at the same time as the end of access, S/W should set the WAL bit.
  */
 //@{
-
 #define BP_EIM_CS5WCR1_WADVN      (18)      //!< Bit position for EIM_CS5WCR1_WADVN.
 #define BM_EIM_CS5WCR1_WADVN      (0x001c0000)  //!< Bit mask for EIM_CS5WCR1_WADVN.
 
@@ -10778,7 +10189,6 @@ typedef union _hw_eim_cs5wcr1
 //! @brief Set the WADVN field to a new value.
 #define BW_EIM_CS5WCR1_WADVN(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WADVN) | BF_EIM_CS5WCR1_WADVN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5WCR1, field WADVA[23:21] (RW)
@@ -10794,7 +10204,6 @@ typedef union _hw_eim_cs5wcr1
  * - 111 - 7 EIM clock cycles between beginning of access and ADV assertion
  */
 //@{
-
 #define BP_EIM_CS5WCR1_WADVA      (21)      //!< Bit position for EIM_CS5WCR1_WADVA.
 #define BM_EIM_CS5WCR1_WADVA      (0x00e00000)  //!< Bit mask for EIM_CS5WCR1_WADVA.
 
@@ -10808,7 +10217,6 @@ typedef union _hw_eim_cs5wcr1
 //! @brief Set the WADVA field to a new value.
 #define BW_EIM_CS5WCR1_WADVA(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WADVA) | BF_EIM_CS5WCR1_WADVA(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5WCR1, field WWSC[29:24] (RW)
@@ -10835,7 +10243,6 @@ typedef union _hw_eim_cs5wcr1
  * - 111111 - WWSC value is 63
  */
 //@{
-
 #define BP_EIM_CS5WCR1_WWSC      (24)      //!< Bit position for EIM_CS5WCR1_WWSC.
 #define BM_EIM_CS5WCR1_WWSC      (0x3f000000)  //!< Bit mask for EIM_CS5WCR1_WWSC.
 
@@ -10849,7 +10256,6 @@ typedef union _hw_eim_cs5wcr1
 //! @brief Set the WWSC field to a new value.
 #define BW_EIM_CS5WCR1_WWSC(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WWSC) | BF_EIM_CS5WCR1_WWSC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5WCR1, field WBED[30] (RW)
@@ -10858,7 +10264,6 @@ typedef union _hw_eim_cs5wcr1
  * during write accesses.This bit is cleared by hardware reset.
  */
 //@{
-
 #define BP_EIM_CS5WCR1_WBED      (30)      //!< Bit position for EIM_CS5WCR1_WBED.
 #define BM_EIM_CS5WCR1_WBED      (0x40000000)  //!< Bit mask for EIM_CS5WCR1_WBED.
 
@@ -10872,7 +10277,6 @@ typedef union _hw_eim_cs5wcr1
 //! @brief Set the WBED field to a new value.
 #define BW_EIM_CS5WCR1_WBED(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WBED) | BF_EIM_CS5WCR1_WBED(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_CS5WCR1, field WAL[31] (RW)
@@ -10882,7 +10286,6 @@ typedef union _hw_eim_cs5wcr1
  * negation of ADV signal is according to WADVN bit field configuration.
  */
 //@{
-
 #define BP_EIM_CS5WCR1_WAL      (31)      //!< Bit position for EIM_CS5WCR1_WAL.
 #define BM_EIM_CS5WCR1_WAL      (0x80000000)  //!< Bit mask for EIM_CS5WCR1_WAL.
 
@@ -10896,7 +10299,6 @@ typedef union _hw_eim_cs5wcr1
 //! @brief Set the WAL field to a new value.
 #define BW_EIM_CS5WCR1_WAL(v)   (HW_EIM_CS5WCR1_WR((HW_EIM_CS5WCR1_RD() & ~BM_EIM_CS5WCR1_WAL) | BF_EIM_CS5WCR1_WAL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10949,7 +10351,6 @@ typedef union _hw_eim_cs5wcr2
  * bit has no affect. This bit is cleared by hardware reset.
  */
 //@{
-
 #define BP_EIM_CS5WCR2_WBCDD      (0)      //!< Bit position for EIM_CS5WCR2_WBCDD.
 #define BM_EIM_CS5WCR2_WBCDD      (0x00000001)  //!< Bit mask for EIM_CS5WCR2_WBCDD.
 
@@ -10963,7 +10364,6 @@ typedef union _hw_eim_cs5wcr2
 //! @brief Set the WBCDD field to a new value.
 #define BW_EIM_CS5WCR2_WBCDD(v)   (HW_EIM_CS5WCR2_WR((HW_EIM_CS5WCR2_RD() & ~BM_EIM_CS5WCR2_WBCDD) | BF_EIM_CS5WCR2_WBCDD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11032,7 +10432,6 @@ typedef union _hw_eim_wcr
  * - 1 - The burst clock runs whenever ACLK is active (independent of chip select configuration)
  */
 //@{
-
 #define BP_EIM_WCR_BCM      (0)      //!< Bit position for EIM_WCR_BCM.
 #define BM_EIM_WCR_BCM      (0x00000001)  //!< Bit mask for EIM_WCR_BCM.
 
@@ -11046,7 +10445,6 @@ typedef union _hw_eim_wcr
 //! @brief Set the BCM field to a new value.
 #define BW_EIM_WCR_BCM(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_BCM) | BF_EIM_WCR_BCM(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_WCR, field GBCD[2:1] (RW)
@@ -11063,7 +10461,6 @@ typedef union _hw_eim_wcr
  * - 11 - Divide EIM clock by 4
  */
 //@{
-
 #define BP_EIM_WCR_GBCD      (1)      //!< Bit position for EIM_WCR_GBCD.
 #define BM_EIM_WCR_GBCD      (0x00000006)  //!< Bit mask for EIM_WCR_GBCD.
 
@@ -11077,7 +10474,6 @@ typedef union _hw_eim_wcr
 //! @brief Set the GBCD field to a new value.
 #define BW_EIM_WCR_GBCD(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_GBCD) | BF_EIM_WCR_GBCD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_WCR, field CONT_BCLK_SEL[3] (RW)
@@ -11090,7 +10486,6 @@ typedef union _hw_eim_wcr
  * - 1 - BCLK Continuous
  */
 //@{
-
 #define BP_EIM_WCR_CONT_BCLK_SEL      (3)      //!< Bit position for EIM_WCR_CONT_BCLK_SEL.
 #define BM_EIM_WCR_CONT_BCLK_SEL      (0x00000008)  //!< Bit mask for EIM_WCR_CONT_BCLK_SEL.
 
@@ -11104,7 +10499,6 @@ typedef union _hw_eim_wcr
 //! @brief Set the CONT_BCLK_SEL field to a new value.
 #define BW_EIM_WCR_CONT_BCLK_SEL(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_CONT_BCLK_SEL) | BF_EIM_WCR_CONT_BCLK_SEL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_WCR, field INTEN[4] (RW)
@@ -11118,7 +10512,6 @@ typedef union _hw_eim_wcr
  * - 1 - External interrupt Enable
  */
 //@{
-
 #define BP_EIM_WCR_INTEN      (4)      //!< Bit position for EIM_WCR_INTEN.
 #define BM_EIM_WCR_INTEN      (0x00000010)  //!< Bit mask for EIM_WCR_INTEN.
 
@@ -11132,7 +10525,6 @@ typedef union _hw_eim_wcr
 //! @brief Set the INTEN field to a new value.
 #define BW_EIM_WCR_INTEN(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_INTEN) | BF_EIM_WCR_INTEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_WCR, field INTPOL[5] (RW)
@@ -11144,7 +10536,6 @@ typedef union _hw_eim_wcr
  * - 1 - External interrupt polarity is active high
  */
 //@{
-
 #define BP_EIM_WCR_INTPOL      (5)      //!< Bit position for EIM_WCR_INTPOL.
 #define BM_EIM_WCR_INTPOL      (0x00000020)  //!< Bit mask for EIM_WCR_INTPOL.
 
@@ -11158,7 +10549,6 @@ typedef union _hw_eim_wcr
 //! @brief Set the INTPOL field to a new value.
 #define BW_EIM_WCR_INTPOL(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_INTPOL) | BF_EIM_WCR_INTPOL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_WCR, field WDOG_EN[8] (RW)
@@ -11171,7 +10561,6 @@ typedef union _hw_eim_wcr
  * - 1 - Memory WDog is Enabled
  */
 //@{
-
 #define BP_EIM_WCR_WDOG_EN      (8)      //!< Bit position for EIM_WCR_WDOG_EN.
 #define BM_EIM_WCR_WDOG_EN      (0x00000100)  //!< Bit mask for EIM_WCR_WDOG_EN.
 
@@ -11185,7 +10574,6 @@ typedef union _hw_eim_wcr
 //! @brief Set the WDOG_EN field to a new value.
 #define BW_EIM_WCR_WDOG_EN(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_WDOG_EN) | BF_EIM_WCR_WDOG_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_WCR, field WDOG_LIMIT[10:9] (RW)
@@ -11201,7 +10589,6 @@ typedef union _hw_eim_wcr
  * - 11 - 1024 BCLK cycles
  */
 //@{
-
 #define BP_EIM_WCR_WDOG_LIMIT      (9)      //!< Bit position for EIM_WCR_WDOG_LIMIT.
 #define BM_EIM_WCR_WDOG_LIMIT      (0x00000600)  //!< Bit mask for EIM_WCR_WDOG_LIMIT.
 
@@ -11215,7 +10602,6 @@ typedef union _hw_eim_wcr
 //! @brief Set the WDOG_LIMIT field to a new value.
 #define BW_EIM_WCR_WDOG_LIMIT(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_WDOG_LIMIT) | BF_EIM_WCR_WDOG_LIMIT(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_WCR, field FRUN_ACLK_EN[11] (RW)
@@ -11223,7 +10609,6 @@ typedef union _hw_eim_wcr
 
  */
 //@{
-
 #define BP_EIM_WCR_FRUN_ACLK_EN      (11)      //!< Bit position for EIM_WCR_FRUN_ACLK_EN.
 #define BM_EIM_WCR_FRUN_ACLK_EN      (0x00000800)  //!< Bit mask for EIM_WCR_FRUN_ACLK_EN.
 
@@ -11237,7 +10622,6 @@ typedef union _hw_eim_wcr
 //! @brief Set the FRUN_ACLK_EN field to a new value.
 #define BW_EIM_WCR_FRUN_ACLK_EN(v)   (HW_EIM_WCR_WR((HW_EIM_WCR_RD() & ~BM_EIM_WCR_FRUN_ACLK_EN) | BF_EIM_WCR_FRUN_ACLK_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11257,15 +10641,15 @@ typedef union _hw_eim_dcr
     reg32_t U;
     struct _hw_eim_dcr_bitfields
     {
-        unsigned DLL_CTRL_ENABLE : 1; //!< [0] 
-        unsigned DLL_CTRL_RESET : 1; //!< [1] 
-        unsigned DLL_CTRL_SLV_FORCE_UPD : 1; //!< [2] 
-        unsigned DLL_CTRL_SLV_OFFSET_DEC : 1; //!< [3] Reserved
-        unsigned DLL_CTRL_SLV_OFFSET : 3; //!< [6:4] 
-        unsigned DLL_CTRL_GATE_UPDATE : 1; //!< [7] 
-        unsigned DLL_CTRL_SLV_OVERRIDE : 1; //!< [8] Enable slave DLL override
-        unsigned DLL_CTRL_SLV_OVERRIDE_VAL : 7; //!< [15:9] 
-        unsigned DLL_CTRL_REF_INITIAL_VAL : 7; //!< [22:16] 
+        unsigned DLL_CTRL_ENABLE : 1; //!< [0] Set this bit to 1 to enable the DLL and delay chain; otherwise; set to 0 to bypasses DLL.
+        unsigned DLL_CTRL_RESET : 1; //!< [1] DLL Reset Bit
+        unsigned DLL_CTRL_SLV_FORCE_UPD : 1; //!< [2] Setting this bit to 1, forces the slave delay line to update to the DLL calibrated value immediately.
+        unsigned DLL_CTRL_SLV_OFFSET_DEC : 1; //!< [3] Slave Chain Offset Decrease
+        unsigned DLL_CTRL_SLV_OFFSET : 3; //!< [6:4] OFFSET value for DLL_CTRL_SLV_SEL
+        unsigned DLL_CTRL_GATE_UPDATE : 1; //!< [7] Set this bit to 1 to force DLL not update from now on.
+        unsigned DLL_CTRL_SLV_OVERRIDE : 1; //!< [8] Set this bit to 1 to Enable manual override for slave delay chain using SLV_OVERRIDE_VAL; to set 0 to disable manual override.
+        unsigned DLL_CTRL_SLV_OVERRIDE_VAL : 7; //!< [15:9] When SLV_OVERRIDE=1 This field is used to select 1 of 128 physical taps manually.
+        unsigned DLL_CTRL_REF_INITIAL_VAL : 7; //!< [22:16] This field is used to select the initial value of reference chain before DLL enabled.
         unsigned DLL_CTRL_SLV_UPDATE_INT : 5; //!< [27:23] Slave DLL Update Interval
         unsigned DLL_CTRL_REF_UPDATE_INT : 4; //!< [31:28] Reference DLL Update Interval
     } B;
@@ -11294,10 +10678,11 @@ typedef union _hw_eim_dcr
 
 /*! @name Register EIM_DCR, field DLL_CTRL_ENABLE[0] (RW)
  *
-
+ * Set this bit to 1 to enable the DLL and delay chain; otherwise; set to 0 to bypasses DLL. Note
+ * that using the slave delay line override feature with SLV_OVERRIDE and SLV_OVERRIDE VAL, the DLL
+ * does not need to be enabled
  */
 //@{
-
 #define BP_EIM_DCR_DLL_CTRL_ENABLE      (0)      //!< Bit position for EIM_DCR_DLL_CTRL_ENABLE.
 #define BM_EIM_DCR_DLL_CTRL_ENABLE      (0x00000001)  //!< Bit mask for EIM_DCR_DLL_CTRL_ENABLE.
 
@@ -11311,15 +10696,15 @@ typedef union _hw_eim_dcr
 //! @brief Set the DLL_CTRL_ENABLE field to a new value.
 #define BW_EIM_DCR_DLL_CTRL_ENABLE(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_ENABLE) | BF_EIM_DCR_DLL_CTRL_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_DCR, field DLL_CTRL_RESET[1] (RW)
  *
-
+ * Setting this bit to 1 force a reset on DLL. This will cause the DLL to lose lock and re-lock.
+ * This signal is used by the DLL as edge-sensitive, so in order to create a subsequent reset, RESET
+ * must be taken low and then asserted again
  */
 //@{
-
 #define BP_EIM_DCR_DLL_CTRL_RESET      (1)      //!< Bit position for EIM_DCR_DLL_CTRL_RESET.
 #define BM_EIM_DCR_DLL_CTRL_RESET      (0x00000002)  //!< Bit mask for EIM_DCR_DLL_CTRL_RESET.
 
@@ -11333,15 +10718,17 @@ typedef union _hw_eim_dcr
 //! @brief Set the DLL_CTRL_RESET field to a new value.
 #define BW_EIM_DCR_DLL_CTRL_RESET(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_RESET) | BF_EIM_DCR_DLL_CTRL_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_DCR, field DLL_CTRL_SLV_FORCE_UPD[2] (RW)
  *
-
+ * Setting this bit to 1, forces the slave delay line to update to the DLL calibrated value
+ * immediately. The slave delay line shall update automatically based on the SLV_UPDATE_INT interval
+ * or when a DLL lock condition is sensed. Subsequent forcing of the slave-line update can only
+ * occur if SLV_FORCE_UP is set back to 0 and then asserted again (edge triggered). Be sure to use
+ * it when EIM is idle.
  */
 //@{
-
 #define BP_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD      (2)      //!< Bit position for EIM_DCR_DLL_CTRL_SLV_FORCE_UPD.
 #define BM_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD      (0x00000004)  //!< Bit mask for EIM_DCR_DLL_CTRL_SLV_FORCE_UPD.
 
@@ -11355,15 +10742,17 @@ typedef union _hw_eim_dcr
 //! @brief Set the DLL_CTRL_SLV_FORCE_UPD field to a new value.
 #define BW_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD) | BF_EIM_DCR_DLL_CTRL_SLV_FORCE_UPD(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_DCR, field DLL_CTRL_SLV_OFFSET_DEC[3] (RW)
  *
-
+ * Decrease(or increase) the value defined by DLL_CTRL_SLV_OFFSET when calculating DLL_STS_SLV_SEL
+ *
+ * Values:
+ * - 0 - DLL_STS_SLV_SEL = DLL_STS_REF_SEL + DLL_CTRL_SLV_OFFSET
+ * - 1 - DLL_STS_SLV_SEL = DLL_STS_REF_SEL - DLL_CTRL_SLV_OFFSET
  */
 //@{
-
 #define BP_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC      (3)      //!< Bit position for EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC.
 #define BM_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC      (0x00000008)  //!< Bit mask for EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC.
 
@@ -11377,29 +10766,27 @@ typedef union _hw_eim_dcr
 //! @brief Set the DLL_CTRL_SLV_OFFSET_DEC field to a new value.
 #define BW_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC) | BF_EIM_DCR_DLL_CTRL_SLV_OFFSET_DEC(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_DCR, field DLL_CTRL_SLV_OFFSET[6:4] (RO)
  *
-
+ * OFFSET value for DLL_CTRL_SLV_SEL
  */
 //@{
-
 #define BP_EIM_DCR_DLL_CTRL_SLV_OFFSET      (4)      //!< Bit position for EIM_DCR_DLL_CTRL_SLV_OFFSET.
 #define BM_EIM_DCR_DLL_CTRL_SLV_OFFSET      (0x00000070)  //!< Bit mask for EIM_DCR_DLL_CTRL_SLV_OFFSET.
 
 //! @brief Get value of EIM_DCR_DLL_CTRL_SLV_OFFSET from a register value.
 #define BG_EIM_DCR_DLL_CTRL_SLV_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_DCR_DLL_CTRL_SLV_OFFSET) >> BP_EIM_DCR_DLL_CTRL_SLV_OFFSET)
-
 //@}
 
 /*! @name Register EIM_DCR, field DLL_CTRL_GATE_UPDATE[7] (RW)
  *
-
+ * Set this bit to 1 to force DLL not update from now on. Since when clock exists, glitches might
+ * appear during update. This bit is used by software if we met such kind of condition. Set it to 0
+ * to let DLL update automatically
  */
 //@{
-
 #define BP_EIM_DCR_DLL_CTRL_GATE_UPDATE      (7)      //!< Bit position for EIM_DCR_DLL_CTRL_GATE_UPDATE.
 #define BM_EIM_DCR_DLL_CTRL_GATE_UPDATE      (0x00000080)  //!< Bit mask for EIM_DCR_DLL_CTRL_GATE_UPDATE.
 
@@ -11413,19 +10800,16 @@ typedef union _hw_eim_dcr
 //! @brief Set the DLL_CTRL_GATE_UPDATE field to a new value.
 #define BW_EIM_DCR_DLL_CTRL_GATE_UPDATE(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_GATE_UPDATE) | BF_EIM_DCR_DLL_CTRL_GATE_UPDATE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_DCR, field DLL_CTRL_SLV_OVERRIDE[8] (RW)
  *
- * Use override value in DLL_CTRL_SLV_OVERRIDE_VAL bit field instead of DLL locked value as delay.
- *
- * Values:
- * - 0 - Slave delay use DLL lock value
- * - 1 - Slave delay use DLL_CTRL_SLV_OVERRIDE_VAL
+ * Set this bit to 1 to Enable manual override for slave delay chain using SLV_OVERRIDE_VAL; to set
+ * 0 to disable manual override. This feature does not require the DLL to be enabled using the
+ * ENABLE bit. In fact to reduce power, if SLV_OVERRIDE is used, it is recommended to disable the
+ * DLL with ENABLE=0
  */
 //@{
-
 #define BP_EIM_DCR_DLL_CTRL_SLV_OVERRIDE      (8)      //!< Bit position for EIM_DCR_DLL_CTRL_SLV_OVERRIDE.
 #define BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE      (0x00000100)  //!< Bit mask for EIM_DCR_DLL_CTRL_SLV_OVERRIDE.
 
@@ -11439,15 +10823,14 @@ typedef union _hw_eim_dcr
 //! @brief Set the DLL_CTRL_SLV_OVERRIDE field to a new value.
 #define BW_EIM_DCR_DLL_CTRL_SLV_OVERRIDE(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE) | BF_EIM_DCR_DLL_CTRL_SLV_OVERRIDE(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_DCR, field DLL_CTRL_SLV_OVERRIDE_VAL[15:9] (RW)
  *
-
+ * When SLV_OVERRIDE=1 This field is used to select 1 of 128 physical taps manually. A value of 0
+ * selects tap 1, and a value of 0x7f selects tap 128.
  */
 //@{
-
 #define BP_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL      (9)      //!< Bit position for EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL.
 #define BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL      (0x0000fe00)  //!< Bit mask for EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL.
 
@@ -11461,15 +10844,14 @@ typedef union _hw_eim_dcr
 //! @brief Set the DLL_CTRL_SLV_OVERRIDE_VAL field to a new value.
 #define BW_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL) | BF_EIM_DCR_DLL_CTRL_SLV_OVERRIDE_VAL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_DCR, field DLL_CTRL_REF_INITIAL_VAL[22:16] (RW)
  *
-
+ * This field is used to select the initial value of reference chain before DLL enabled. It's
+ * recommended to set the initial value close to the locked value to accelerate the locking.
  */
 //@{
-
 #define BP_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL      (16)      //!< Bit position for EIM_DCR_DLL_CTRL_REF_INITIAL_VAL.
 #define BM_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL      (0x007f0000)  //!< Bit mask for EIM_DCR_DLL_CTRL_REF_INITIAL_VAL.
 
@@ -11483,15 +10865,16 @@ typedef union _hw_eim_dcr
 //! @brief Set the DLL_CTRL_REF_INITIAL_VAL field to a new value.
 #define BW_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL) | BF_EIM_DCR_DLL_CTRL_REF_INITIAL_VAL(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_DCR, field DLL_CTRL_SLV_UPDATE_INT[27:23] (RW)
  *
- * Update interval of slave DLL.
+ * If default 0 is used, it means 256 cycles of ref_clock. A value of 0x0f results in 15 cycles and
+ * so on. Note that software can always cause an update of the slave-delay line using the
+ * SLV_FORCE_UPDATE register. Note that the slave delay line will also update automatically when the
+ * reference DLL transitions to a locked state (from an un-locked state).
  */
 //@{
-
 #define BP_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT      (23)      //!< Bit position for EIM_DCR_DLL_CTRL_SLV_UPDATE_INT.
 #define BM_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT      (0x0f800000)  //!< Bit mask for EIM_DCR_DLL_CTRL_SLV_UPDATE_INT.
 
@@ -11505,15 +10888,16 @@ typedef union _hw_eim_dcr
 //! @brief Set the DLL_CTRL_SLV_UPDATE_INT field to a new value.
 #define BW_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT) | BF_EIM_DCR_DLL_CTRL_SLV_UPDATE_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_DCR, field DLL_CTRL_REF_UPDATE_INT[31:28] (RW)
  *
- * Update interval of reference DLL.
+ * DLL control loop update interval. The interval cycle is (2 + REF_UPDATE_INT) * ref_clock. By
+ * default, the DLL control loop shall update every two ref_clock cycles. It should be noted that
+ * increasing the reference delay-line update interval reduces the ability of the DLL to adjust to
+ * fast changes in conditions that may effect the delay (such as voltage and temperature)
  */
 //@{
-
 #define BP_EIM_DCR_DLL_CTRL_REF_UPDATE_INT      (28)      //!< Bit position for EIM_DCR_DLL_CTRL_REF_UPDATE_INT.
 #define BM_EIM_DCR_DLL_CTRL_REF_UPDATE_INT      (0xf0000000)  //!< Bit mask for EIM_DCR_DLL_CTRL_REF_UPDATE_INT.
 
@@ -11527,7 +10911,6 @@ typedef union _hw_eim_dcr
 //! @brief Set the DLL_CTRL_REF_UPDATE_INT field to a new value.
 #define BW_EIM_DCR_DLL_CTRL_REF_UPDATE_INT(v)   (HW_EIM_DCR_WR((HW_EIM_DCR_RD() & ~BM_EIM_DCR_DLL_CTRL_REF_UPDATE_INT) | BF_EIM_DCR_DLL_CTRL_REF_UPDATE_INT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11547,10 +10930,10 @@ typedef union _hw_eim_dsr
     reg32_t U;
     struct _hw_eim_dsr_bitfields
     {
-        unsigned DLL_STS_SLV_LOCK : 1; //!< [0] 
-        unsigned DLL_STS_REF_LOCK : 1; //!< [1] 
-        unsigned DLL_STS_SLV_SEL : 7; //!< [8:2] 
-        unsigned DLL_STS_REF_SEL : 7; //!< [15:9] 
+        unsigned DLL_STS_SLV_LOCK : 1; //!< [0] Slave delay-line lock status.
+        unsigned DLL_STS_REF_LOCK : 1; //!< [1] Reference DLL lock status.
+        unsigned DLL_STS_SLV_SEL : 7; //!< [8:2] Slave delay line select status.
+        unsigned DLL_STS_REF_SEL : 7; //!< [15:9] Reference delay line select taps.
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_eim_dsr_t;
@@ -11574,58 +10957,54 @@ typedef union _hw_eim_dsr
 
 /*! @name Register EIM_DSR, field DLL_STS_SLV_LOCK[0] (RW)
  *
-
+ * Slave delay-line lock status. This signifies that a valid delay has been set to the slave-delay
+ * line and that the slave-delay line is implementing the programmed delay value
  */
 //@{
-
 #define BP_EIM_DSR_DLL_STS_SLV_LOCK      (0)      //!< Bit position for EIM_DSR_DLL_STS_SLV_LOCK.
 #define BM_EIM_DSR_DLL_STS_SLV_LOCK      (0x00000001)  //!< Bit mask for EIM_DSR_DLL_STS_SLV_LOCK.
 
 //! @brief Get value of EIM_DSR_DLL_STS_SLV_LOCK from a register value.
 #define BG_EIM_DSR_DLL_STS_SLV_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_DSR_DLL_STS_SLV_LOCK) >> BP_EIM_DSR_DLL_STS_SLV_LOCK)
-
 //@}
 
 /*! @name Register EIM_DSR, field DLL_STS_REF_LOCK[1] (RW)
  *
-
+ * Reference DLL lock status. This signifies that the DLL has detected and locked to feedback BCLK,
+ * allowing the slave delay-line to perform programmed clock delays
  */
 //@{
-
 #define BP_EIM_DSR_DLL_STS_REF_LOCK      (1)      //!< Bit position for EIM_DSR_DLL_STS_REF_LOCK.
 #define BM_EIM_DSR_DLL_STS_REF_LOCK      (0x00000002)  //!< Bit mask for EIM_DSR_DLL_STS_REF_LOCK.
 
 //! @brief Get value of EIM_DSR_DLL_STS_REF_LOCK from a register value.
 #define BG_EIM_DSR_DLL_STS_REF_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_DSR_DLL_STS_REF_LOCK) >> BP_EIM_DSR_DLL_STS_REF_LOCK)
-
 //@}
 
 /*! @name Register EIM_DSR, field DLL_STS_SLV_SEL[8:2] (RW)
  *
-
+ * Slave delay line select status. This is the instant value generated from reference chain. Since
+ * only when ref_lock is detected can the reference chain get updated, this value should be the
+ * right value next be update to the slave line when reference is locked.
  */
 //@{
-
 #define BP_EIM_DSR_DLL_STS_SLV_SEL      (2)      //!< Bit position for EIM_DSR_DLL_STS_SLV_SEL.
 #define BM_EIM_DSR_DLL_STS_SLV_SEL      (0x000001fc)  //!< Bit mask for EIM_DSR_DLL_STS_SLV_SEL.
 
 //! @brief Get value of EIM_DSR_DLL_STS_SLV_SEL from a register value.
 #define BG_EIM_DSR_DLL_STS_SLV_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_DSR_DLL_STS_SLV_SEL) >> BP_EIM_DSR_DLL_STS_SLV_SEL)
-
 //@}
 
 /*! @name Register EIM_DSR, field DLL_STS_REF_SEL[15:9] (RW)
  *
-
+ * Reference delay line select taps. Be noted this is encoded by 7 bits for 127taps.
  */
 //@{
-
 #define BP_EIM_DSR_DLL_STS_REF_SEL      (9)      //!< Bit position for EIM_DSR_DLL_STS_REF_SEL.
 #define BM_EIM_DSR_DLL_STS_REF_SEL      (0x0000fe00)  //!< Bit mask for EIM_DSR_DLL_STS_REF_SEL.
 
 //! @brief Get value of EIM_DSR_DLL_STS_REF_SEL from a register value.
 #define BG_EIM_DSR_DLL_STS_REF_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EIM_DSR_DLL_STS_REF_SEL) >> BP_EIM_DSR_DLL_STS_REF_SEL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11686,7 +11065,6 @@ typedef union _hw_eim_wiar
  * - 1 - Master requests ips access
  */
 //@{
-
 #define BP_EIM_WIAR_IPS_REQ      (0)      //!< Bit position for EIM_WIAR_IPS_REQ.
 #define BM_EIM_WIAR_IPS_REQ      (0x00000001)  //!< Bit mask for EIM_WIAR_IPS_REQ.
 
@@ -11700,7 +11078,6 @@ typedef union _hw_eim_wiar
 //! @brief Set the IPS_REQ field to a new value.
 #define BW_EIM_WIAR_IPS_REQ(v)   (HW_EIM_WIAR_WR((HW_EIM_WIAR_RD() & ~BM_EIM_WIAR_IPS_REQ) | BF_EIM_WIAR_IPS_REQ(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_WIAR, field IPS_ACK[1] (RW)
@@ -11714,7 +11091,6 @@ typedef union _hw_eim_wiar
  * - 1 - Master can access ips.
  */
 //@{
-
 #define BP_EIM_WIAR_IPS_ACK      (1)      //!< Bit position for EIM_WIAR_IPS_ACK.
 #define BM_EIM_WIAR_IPS_ACK      (0x00000002)  //!< Bit mask for EIM_WIAR_IPS_ACK.
 
@@ -11728,7 +11104,6 @@ typedef union _hw_eim_wiar
 //! @brief Set the IPS_ACK field to a new value.
 #define BW_EIM_WIAR_IPS_ACK(v)   (HW_EIM_WIAR_WR((HW_EIM_WIAR_RD() & ~BM_EIM_WIAR_IPS_ACK) | BF_EIM_WIAR_IPS_ACK(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_WIAR, field INT[2] (RW)
@@ -11738,7 +11113,6 @@ typedef union _hw_eim_wiar
  * assertion of the external device interrupt. This bit is cleared by a hardware reset.
  */
 //@{
-
 #define BP_EIM_WIAR_INT      (2)      //!< Bit position for EIM_WIAR_INT.
 #define BM_EIM_WIAR_INT      (0x00000004)  //!< Bit mask for EIM_WIAR_INT.
 
@@ -11752,7 +11126,6 @@ typedef union _hw_eim_wiar
 //! @brief Set the INT field to a new value.
 #define BW_EIM_WIAR_INT(v)   (HW_EIM_WIAR_WR((HW_EIM_WIAR_RD() & ~BM_EIM_WIAR_INT) | BF_EIM_WIAR_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_WIAR, field ERRST[3] (RW)
@@ -11768,7 +11141,6 @@ typedef union _hw_eim_wiar
  * - 1 - RDY_INT After Reset Enable
  */
 //@{
-
 #define BP_EIM_WIAR_ERRST      (3)      //!< Bit position for EIM_WIAR_ERRST.
 #define BM_EIM_WIAR_ERRST      (0x00000008)  //!< Bit mask for EIM_WIAR_ERRST.
 
@@ -11782,7 +11154,6 @@ typedef union _hw_eim_wiar
 //! @brief Set the ERRST field to a new value.
 #define BW_EIM_WIAR_ERRST(v)   (HW_EIM_WIAR_WR((HW_EIM_WIAR_RD() & ~BM_EIM_WIAR_ERRST) | BF_EIM_WIAR_ERRST(v)))
 #endif
-
 //@}
 
 /*! @name Register EIM_WIAR, field ACLK_EN[4] (RW)
@@ -11795,7 +11166,6 @@ typedef union _hw_eim_wiar
  * - 1 - ACLK is enabled
  */
 //@{
-
 #define BP_EIM_WIAR_ACLK_EN      (4)      //!< Bit position for EIM_WIAR_ACLK_EN.
 #define BM_EIM_WIAR_ACLK_EN      (0x00000010)  //!< Bit mask for EIM_WIAR_ACLK_EN.
 
@@ -11809,7 +11179,6 @@ typedef union _hw_eim_wiar
 //! @brief Set the ACLK_EN field to a new value.
 #define BW_EIM_WIAR_ACLK_EN(v)   (HW_EIM_WIAR_WR((HW_EIM_WIAR_RD() & ~BM_EIM_WIAR_ACLK_EN) | BF_EIM_WIAR_ACLK_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11860,7 +11229,6 @@ typedef union _hw_eim_ear
  * register is read only register.
  */
 //@{
-
 #define BP_EIM_EAR_ERROR_ADDR      (0)      //!< Bit position for EIM_EAR_ERROR_ADDR.
 #define BM_EIM_EAR_ERROR_ADDR      (0xffffffff)  //!< Bit mask for EIM_EAR_ERROR_ADDR.
 
@@ -11874,7 +11242,6 @@ typedef union _hw_eim_ear
 //! @brief Set the ERROR_ADDR field to a new value.
 #define BW_EIM_EAR_ERROR_ADDR(v)   (HW_EIM_EAR_WR((HW_EIM_EAR_RD() & ~BM_EIM_EAR_ERROR_ADDR) | BF_EIM_EAR_ERROR_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11938,3 +11305,5 @@ typedef struct _hw_eim
 #endif
 
 #endif // __HW_EIM_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

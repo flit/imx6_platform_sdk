@@ -124,7 +124,6 @@ typedef union _hw_gpt_cr
  * - 1 - GPT is enabled.
  */
 //@{
-
 #define BP_GPT_CR_EN      (0)      //!< Bit position for GPT_CR_EN.
 #define BM_GPT_CR_EN      (0x00000001)  //!< Bit mask for GPT_CR_EN.
 
@@ -138,7 +137,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the EN field to a new value.
 #define BW_GPT_CR_EN(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_EN) | BF_GPT_CR_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field ENMOD[1] (RW)
@@ -160,7 +158,6 @@ typedef union _hw_gpt_cr
  * - 1 - GPT counter value is reset to 0 when it is disabled.
  */
 //@{
-
 #define BP_GPT_CR_ENMOD      (1)      //!< Bit position for GPT_CR_ENMOD.
 #define BM_GPT_CR_ENMOD      (0x00000002)  //!< Bit mask for GPT_CR_ENMOD.
 
@@ -174,7 +171,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the ENMOD field to a new value.
 #define BW_GPT_CR_ENMOD(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_ENMOD) | BF_GPT_CR_ENMOD(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field DBGEN[2] (RW)
@@ -187,7 +183,6 @@ typedef union _hw_gpt_cr
  * - 1 - GPT is enabled in debug mode.
  */
 //@{
-
 #define BP_GPT_CR_DBGEN      (2)      //!< Bit position for GPT_CR_DBGEN.
 #define BM_GPT_CR_DBGEN      (0x00000004)  //!< Bit mask for GPT_CR_DBGEN.
 
@@ -201,7 +196,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the DBGEN field to a new value.
 #define BW_GPT_CR_DBGEN(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_DBGEN) | BF_GPT_CR_DBGEN(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field WAITEN[3] (RW)
@@ -214,7 +208,6 @@ typedef union _hw_gpt_cr
  * - 1 - GPT is enabled in wait mode.
  */
 //@{
-
 #define BP_GPT_CR_WAITEN      (3)      //!< Bit position for GPT_CR_WAITEN.
 #define BM_GPT_CR_WAITEN      (0x00000008)  //!< Bit mask for GPT_CR_WAITEN.
 
@@ -228,7 +221,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the WAITEN field to a new value.
 #define BW_GPT_CR_WAITEN(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_WAITEN) | BF_GPT_CR_WAITEN(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field DOZEEN[4] (RW)
@@ -241,7 +233,6 @@ typedef union _hw_gpt_cr
  * - 1 - GPT is enabled in doze mode.
  */
 //@{
-
 #define BP_GPT_CR_DOZEEN      (4)      //!< Bit position for GPT_CR_DOZEEN.
 #define BM_GPT_CR_DOZEEN      (0x00000010)  //!< Bit mask for GPT_CR_DOZEEN.
 
@@ -255,7 +246,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the DOZEEN field to a new value.
 #define BW_GPT_CR_DOZEEN(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_DOZEEN) | BF_GPT_CR_DOZEEN(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field STOPEN[5] (RW)
@@ -268,7 +258,6 @@ typedef union _hw_gpt_cr
  * - 1 - GPT is enabled in Stop mode.
  */
 //@{
-
 #define BP_GPT_CR_STOPEN      (5)      //!< Bit position for GPT_CR_STOPEN.
 #define BM_GPT_CR_STOPEN      (0x00000020)  //!< Bit mask for GPT_CR_STOPEN.
 
@@ -282,7 +271,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the STOPEN field to a new value.
 #define BW_GPT_CR_STOPEN(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_STOPEN) | BF_GPT_CR_STOPEN(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field CLKSRC[8:6] (RW)
@@ -302,7 +290,6 @@ typedef union _hw_gpt_cr
  * - others - Reserved
  */
 //@{
-
 #define BP_GPT_CR_CLKSRC      (6)      //!< Bit position for GPT_CR_CLKSRC.
 #define BM_GPT_CR_CLKSRC      (0x000001c0)  //!< Bit mask for GPT_CR_CLKSRC.
 
@@ -316,7 +303,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the CLKSRC field to a new value.
 #define BW_GPT_CR_CLKSRC(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_CLKSRC) | BF_GPT_CR_CLKSRC(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field FRR[9] (RW)
@@ -331,7 +317,6 @@ typedef union _hw_gpt_cr
  * - 1 - Free-Run mode
  */
 //@{
-
 #define BP_GPT_CR_FRR      (9)      //!< Bit position for GPT_CR_FRR.
 #define BM_GPT_CR_FRR      (0x00000200)  //!< Bit mask for GPT_CR_FRR.
 
@@ -345,7 +330,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the FRR field to a new value.
 #define BW_GPT_CR_FRR(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_FRR) | BF_GPT_CR_FRR(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field _24MEN[10] (RW)
@@ -358,7 +342,6 @@ typedef union _hw_gpt_cr
  * - 1 - 24M clock enabled
  */
 //@{
-
 #define BP_GPT_CR__24MEN      (10)      //!< Bit position for GPT_CR__24MEN.
 #define BM_GPT_CR__24MEN      (0x00000400)  //!< Bit mask for GPT_CR__24MEN.
 
@@ -372,7 +355,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the _24MEN field to a new value.
 #define BW_GPT_CR__24MEN(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR__24MEN) | BF_GPT_CR__24MEN(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field SWR[15] (RW)
@@ -388,7 +370,6 @@ typedef union _hw_gpt_cr
  * - 1 - GPT is in reset state
  */
 //@{
-
 #define BP_GPT_CR_SWR      (15)      //!< Bit position for GPT_CR_SWR.
 #define BM_GPT_CR_SWR      (0x00008000)  //!< Bit mask for GPT_CR_SWR.
 
@@ -402,7 +383,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the SWR field to a new value.
 #define BW_GPT_CR_SWR(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_SWR) | BF_GPT_CR_SWR(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field IM1[17:16] (RW)
@@ -410,7 +390,6 @@ typedef union _hw_gpt_cr
  * See IM2
  */
 //@{
-
 #define BP_GPT_CR_IM1      (16)      //!< Bit position for GPT_CR_IM1.
 #define BM_GPT_CR_IM1      (0x00030000)  //!< Bit mask for GPT_CR_IM1.
 
@@ -424,7 +403,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the IM1 field to a new value.
 #define BW_GPT_CR_IM1(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_IM1) | BF_GPT_CR_IM1(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field IM2[19:18] (RW)
@@ -440,7 +418,6 @@ typedef union _hw_gpt_cr
  * - 11 - capture on both edges
  */
 //@{
-
 #define BP_GPT_CR_IM2      (18)      //!< Bit position for GPT_CR_IM2.
 #define BM_GPT_CR_IM2      (0x000c0000)  //!< Bit mask for GPT_CR_IM2.
 
@@ -454,7 +431,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the IM2 field to a new value.
 #define BW_GPT_CR_IM2(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_IM2) | BF_GPT_CR_IM2(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field OM1[22:20] (RW)
@@ -462,7 +438,6 @@ typedef union _hw_gpt_cr
  * See OM3
  */
 //@{
-
 #define BP_GPT_CR_OM1      (20)      //!< Bit position for GPT_CR_OM1.
 #define BM_GPT_CR_OM1      (0x00700000)  //!< Bit mask for GPT_CR_OM1.
 
@@ -476,7 +451,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the OM1 field to a new value.
 #define BW_GPT_CR_OM1(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_OM1) | BF_GPT_CR_OM1(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field OM2[25:23] (RW)
@@ -484,7 +458,6 @@ typedef union _hw_gpt_cr
  * See OM3
  */
 //@{
-
 #define BP_GPT_CR_OM2      (23)      //!< Bit position for GPT_CR_OM2.
 #define BM_GPT_CR_OM2      (0x03800000)  //!< Bit mask for GPT_CR_OM2.
 
@@ -498,7 +471,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the OM2 field to a new value.
 #define BW_GPT_CR_OM2(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_OM2) | BF_GPT_CR_OM2(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field OM3[28:26] (RW)
@@ -520,7 +492,6 @@ typedef union _hw_gpt_cr
  * - 1xx - Generate an active low pulse (that is one input clock wide) on the output pin.
  */
 //@{
-
 #define BP_GPT_CR_OM3      (26)      //!< Bit position for GPT_CR_OM3.
 #define BM_GPT_CR_OM3      (0x1c000000)  //!< Bit mask for GPT_CR_OM3.
 
@@ -534,7 +505,6 @@ typedef union _hw_gpt_cr
 //! @brief Set the OM3 field to a new value.
 #define BW_GPT_CR_OM3(v)   (HW_GPT_CR_WR((HW_GPT_CR_RD() & ~BM_GPT_CR_OM3) | BF_GPT_CR_OM3(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_CR, field FO1[29] (WORZ)
@@ -542,7 +512,6 @@ typedef union _hw_gpt_cr
  * See F03
  */
 //@{
-
 #define BP_GPT_CR_FO1      (29)      //!< Bit position for GPT_CR_FO1.
 #define BM_GPT_CR_FO1      (0x20000000)  //!< Bit mask for GPT_CR_FO1.
 
@@ -551,7 +520,6 @@ typedef union _hw_gpt_cr
 
 //! @brief Format value for bitfield GPT_CR_FO1.
 #define BF_GPT_CR_FO1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_FO1) & BM_GPT_CR_FO1)
-
 //@}
 
 /*! @name Register GPT_CR, field FO2[30] (WORZ)
@@ -559,7 +527,6 @@ typedef union _hw_gpt_cr
  * See F03
  */
 //@{
-
 #define BP_GPT_CR_FO2      (30)      //!< Bit position for GPT_CR_FO2.
 #define BM_GPT_CR_FO2      (0x40000000)  //!< Bit mask for GPT_CR_FO2.
 
@@ -568,7 +535,6 @@ typedef union _hw_gpt_cr
 
 //! @brief Format value for bitfield GPT_CR_FO2.
 #define BF_GPT_CR_FO2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_FO2) & BM_GPT_CR_FO2)
-
 //@}
 
 /*! @name Register GPT_CR, field FO3[31] (WORZ)
@@ -583,7 +549,6 @@ typedef union _hw_gpt_cr
  * - 1 - Causes the programmed pin action on the timer Output Compare n pin; the OF n flag is not set.
  */
 //@{
-
 #define BP_GPT_CR_FO3      (31)      //!< Bit position for GPT_CR_FO3.
 #define BM_GPT_CR_FO3      (0x80000000)  //!< Bit mask for GPT_CR_FO3.
 
@@ -592,7 +557,6 @@ typedef union _hw_gpt_cr
 
 //! @brief Format value for bitfield GPT_CR_FO3.
 #define BF_GPT_CR_FO3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPT_CR_FO3) & BM_GPT_CR_FO3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -653,7 +617,6 @@ typedef union _hw_gpt_pr
  * - 0xFFF - Divide by 4096
  */
 //@{
-
 #define BP_GPT_PR_PRESCALER      (0)      //!< Bit position for GPT_PR_PRESCALER.
 #define BM_GPT_PR_PRESCALER      (0x00000fff)  //!< Bit mask for GPT_PR_PRESCALER.
 
@@ -667,7 +630,6 @@ typedef union _hw_gpt_pr
 //! @brief Set the PRESCALER field to a new value.
 #define BW_GPT_PR_PRESCALER(v)   (HW_GPT_PR_WR((HW_GPT_PR_RD() & ~BM_GPT_PR_PRESCALER) | BF_GPT_PR_PRESCALER(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_PR, field PRESCALER24M[15:12] (RW)
@@ -682,7 +644,6 @@ typedef union _hw_gpt_pr
  * - 0xF - Divide by 16
  */
 //@{
-
 #define BP_GPT_PR_PRESCALER24M      (12)      //!< Bit position for GPT_PR_PRESCALER24M.
 #define BM_GPT_PR_PRESCALER24M      (0x0000f000)  //!< Bit mask for GPT_PR_PRESCALER24M.
 
@@ -696,7 +657,6 @@ typedef union _hw_gpt_pr
 //! @brief Set the PRESCALER24M field to a new value.
 #define BW_GPT_PR_PRESCALER24M(v)   (HW_GPT_PR_WR((HW_GPT_PR_RD() & ~BM_GPT_PR_PRESCALER24M) | BF_GPT_PR_PRESCALER24M(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -754,7 +714,6 @@ typedef union _hw_gpt_sr
  * See OF3
  */
 //@{
-
 #define BP_GPT_SR_OF1      (0)      //!< Bit position for GPT_SR_OF1.
 #define BM_GPT_SR_OF1      (0x00000001)  //!< Bit mask for GPT_SR_OF1.
 
@@ -768,7 +727,6 @@ typedef union _hw_gpt_sr
 //! @brief Set the OF1 field to a new value.
 #define BW_GPT_SR_OF1(v)   (HW_GPT_SR_WR((HW_GPT_SR_RD() & ~BM_GPT_SR_OF1) | BF_GPT_SR_OF1(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_SR, field OF2[1] (W1C)
@@ -776,7 +734,6 @@ typedef union _hw_gpt_sr
  * See OF3
  */
 //@{
-
 #define BP_GPT_SR_OF2      (1)      //!< Bit position for GPT_SR_OF2.
 #define BM_GPT_SR_OF2      (0x00000002)  //!< Bit mask for GPT_SR_OF2.
 
@@ -790,7 +747,6 @@ typedef union _hw_gpt_sr
 //! @brief Set the OF2 field to a new value.
 #define BW_GPT_SR_OF2(v)   (HW_GPT_SR_WR((HW_GPT_SR_RD() & ~BM_GPT_SR_OF2) | BF_GPT_SR_OF2(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_SR, field OF3[2] (W1C)
@@ -803,7 +759,6 @@ typedef union _hw_gpt_sr
  * - 1 - Compare event has occurred.
  */
 //@{
-
 #define BP_GPT_SR_OF3      (2)      //!< Bit position for GPT_SR_OF3.
 #define BM_GPT_SR_OF3      (0x00000004)  //!< Bit mask for GPT_SR_OF3.
 
@@ -817,7 +772,6 @@ typedef union _hw_gpt_sr
 //! @brief Set the OF3 field to a new value.
 #define BW_GPT_SR_OF3(v)   (HW_GPT_SR_WR((HW_GPT_SR_RD() & ~BM_GPT_SR_OF3) | BF_GPT_SR_OF3(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_SR, field IF1[3] (W1C)
@@ -825,7 +779,6 @@ typedef union _hw_gpt_sr
  * See IF2
  */
 //@{
-
 #define BP_GPT_SR_IF1      (3)      //!< Bit position for GPT_SR_IF1.
 #define BM_GPT_SR_IF1      (0x00000008)  //!< Bit mask for GPT_SR_IF1.
 
@@ -839,7 +792,6 @@ typedef union _hw_gpt_sr
 //! @brief Set the IF1 field to a new value.
 #define BW_GPT_SR_IF1(v)   (HW_GPT_SR_WR((HW_GPT_SR_RD() & ~BM_GPT_SR_IF1) | BF_GPT_SR_IF1(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_SR, field IF2[4] (W1C)
@@ -852,7 +804,6 @@ typedef union _hw_gpt_sr
  * - 1 - Capture event has occurred.
  */
 //@{
-
 #define BP_GPT_SR_IF2      (4)      //!< Bit position for GPT_SR_IF2.
 #define BM_GPT_SR_IF2      (0x00000010)  //!< Bit mask for GPT_SR_IF2.
 
@@ -866,7 +817,6 @@ typedef union _hw_gpt_sr
 //! @brief Set the IF2 field to a new value.
 #define BW_GPT_SR_IF2(v)   (HW_GPT_SR_WR((HW_GPT_SR_RD() & ~BM_GPT_SR_IF2) | BF_GPT_SR_IF2(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_SR, field ROV[5] (W1C)
@@ -880,7 +830,6 @@ typedef union _hw_gpt_sr
  * - 1 - Rollover has occurred.
  */
 //@{
-
 #define BP_GPT_SR_ROV      (5)      //!< Bit position for GPT_SR_ROV.
 #define BM_GPT_SR_ROV      (0x00000020)  //!< Bit mask for GPT_SR_ROV.
 
@@ -894,7 +843,6 @@ typedef union _hw_gpt_sr
 //! @brief Set the ROV field to a new value.
 #define BW_GPT_SR_ROV(v)   (HW_GPT_SR_WR((HW_GPT_SR_RD() & ~BM_GPT_SR_ROV) | BF_GPT_SR_ROV(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -951,7 +899,6 @@ typedef union _hw_gpt_ir
  * See OF3IE
  */
 //@{
-
 #define BP_GPT_IR_OF1IE      (0)      //!< Bit position for GPT_IR_OF1IE.
 #define BM_GPT_IR_OF1IE      (0x00000001)  //!< Bit mask for GPT_IR_OF1IE.
 
@@ -965,7 +912,6 @@ typedef union _hw_gpt_ir
 //! @brief Set the OF1IE field to a new value.
 #define BW_GPT_IR_OF1IE(v)   (HW_GPT_IR_WR((HW_GPT_IR_RD() & ~BM_GPT_IR_OF1IE) | BF_GPT_IR_OF1IE(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_IR, field OF2IE[1] (RW)
@@ -973,7 +919,6 @@ typedef union _hw_gpt_ir
  * See OF3IE
  */
 //@{
-
 #define BP_GPT_IR_OF2IE      (1)      //!< Bit position for GPT_IR_OF2IE.
 #define BM_GPT_IR_OF2IE      (0x00000002)  //!< Bit mask for GPT_IR_OF2IE.
 
@@ -987,7 +932,6 @@ typedef union _hw_gpt_ir
 //! @brief Set the OF2IE field to a new value.
 #define BW_GPT_IR_OF2IE(v)   (HW_GPT_IR_WR((HW_GPT_IR_RD() & ~BM_GPT_IR_OF2IE) | BF_GPT_IR_OF2IE(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_IR, field OF3IE[2] (RW)
@@ -1000,7 +944,6 @@ typedef union _hw_gpt_ir
  * - 1 - Output Compare Channel n interrupt is enabled.
  */
 //@{
-
 #define BP_GPT_IR_OF3IE      (2)      //!< Bit position for GPT_IR_OF3IE.
 #define BM_GPT_IR_OF3IE      (0x00000004)  //!< Bit mask for GPT_IR_OF3IE.
 
@@ -1014,7 +957,6 @@ typedef union _hw_gpt_ir
 //! @brief Set the OF3IE field to a new value.
 #define BW_GPT_IR_OF3IE(v)   (HW_GPT_IR_WR((HW_GPT_IR_RD() & ~BM_GPT_IR_OF3IE) | BF_GPT_IR_OF3IE(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_IR, field IF1IE[3] (RW)
@@ -1022,7 +964,6 @@ typedef union _hw_gpt_ir
  * See IF2IE
  */
 //@{
-
 #define BP_GPT_IR_IF1IE      (3)      //!< Bit position for GPT_IR_IF1IE.
 #define BM_GPT_IR_IF1IE      (0x00000008)  //!< Bit mask for GPT_IR_IF1IE.
 
@@ -1036,7 +977,6 @@ typedef union _hw_gpt_ir
 //! @brief Set the IF1IE field to a new value.
 #define BW_GPT_IR_IF1IE(v)   (HW_GPT_IR_WR((HW_GPT_IR_RD() & ~BM_GPT_IR_IF1IE) | BF_GPT_IR_IF1IE(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_IR, field IF2IE[4] (RW)
@@ -1049,7 +989,6 @@ typedef union _hw_gpt_ir
  * - 1 - IF2IE Input Capture n Interrupt Enable is enabled.
  */
 //@{
-
 #define BP_GPT_IR_IF2IE      (4)      //!< Bit position for GPT_IR_IF2IE.
 #define BM_GPT_IR_IF2IE      (0x00000010)  //!< Bit mask for GPT_IR_IF2IE.
 
@@ -1063,7 +1002,6 @@ typedef union _hw_gpt_ir
 //! @brief Set the IF2IE field to a new value.
 #define BW_GPT_IR_IF2IE(v)   (HW_GPT_IR_WR((HW_GPT_IR_RD() & ~BM_GPT_IR_IF2IE) | BF_GPT_IR_IF2IE(v)))
 #endif
-
 //@}
 
 /*! @name Register GPT_IR, field ROVIE[5] (RW)
@@ -1075,7 +1013,6 @@ typedef union _hw_gpt_ir
  * - 1 - Rollover interrupt enabled.
  */
 //@{
-
 #define BP_GPT_IR_ROVIE      (5)      //!< Bit position for GPT_IR_ROVIE.
 #define BM_GPT_IR_ROVIE      (0x00000020)  //!< Bit mask for GPT_IR_ROVIE.
 
@@ -1089,7 +1026,6 @@ typedef union _hw_gpt_ir
 //! @brief Set the ROVIE field to a new value.
 #define BW_GPT_IR_ROVIE(v)   (HW_GPT_IR_WR((HW_GPT_IR_RD() & ~BM_GPT_IR_ROVIE) | BF_GPT_IR_ROVIE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1144,7 +1080,6 @@ typedef union _hw_gpt_ocr1
  * generated on Output Compare Channel 1.
  */
 //@{
-
 #define BP_GPT_OCR1_COMP      (0)      //!< Bit position for GPT_OCR1_COMP.
 #define BM_GPT_OCR1_COMP      (0xffffffff)  //!< Bit mask for GPT_OCR1_COMP.
 
@@ -1158,7 +1093,6 @@ typedef union _hw_gpt_ocr1
 //! @brief Set the COMP field to a new value.
 #define BW_GPT_OCR1_COMP(v)   (HW_GPT_OCR1_WR((HW_GPT_OCR1_RD() & ~BM_GPT_OCR1_COMP) | BF_GPT_OCR1_COMP(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1210,7 +1144,6 @@ typedef union _hw_gpt_ocr2
  * generated on Output Compare Channel 2.
  */
 //@{
-
 #define BP_GPT_OCR2_COMP      (0)      //!< Bit position for GPT_OCR2_COMP.
 #define BM_GPT_OCR2_COMP      (0xffffffff)  //!< Bit mask for GPT_OCR2_COMP.
 
@@ -1224,7 +1157,6 @@ typedef union _hw_gpt_ocr2
 //! @brief Set the COMP field to a new value.
 #define BW_GPT_OCR2_COMP(v)   (HW_GPT_OCR2_WR((HW_GPT_OCR2_RD() & ~BM_GPT_OCR2_COMP) | BF_GPT_OCR2_COMP(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1276,7 +1208,6 @@ typedef union _hw_gpt_ocr3
  * generated on Output Compare Channel 3.
  */
 //@{
-
 #define BP_GPT_OCR3_COMP      (0)      //!< Bit position for GPT_OCR3_COMP.
 #define BM_GPT_OCR3_COMP      (0xffffffff)  //!< Bit mask for GPT_OCR3_COMP.
 
@@ -1290,7 +1221,6 @@ typedef union _hw_gpt_ocr3
 //! @brief Set the COMP field to a new value.
 #define BW_GPT_OCR3_COMP(v)   (HW_GPT_OCR3_WR((HW_GPT_OCR3_RD() & ~BM_GPT_OCR3_COMP) | BF_GPT_OCR3_COMP(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1338,13 +1268,11 @@ typedef union _hw_gpt_icr1
  * counter is loaded into GPT Input Capture Register 1.
  */
 //@{
-
 #define BP_GPT_ICR1_CAPT      (0)      //!< Bit position for GPT_ICR1_CAPT.
 #define BM_GPT_ICR1_CAPT      (0xffffffff)  //!< Bit mask for GPT_ICR1_CAPT.
 
 //! @brief Get value of GPT_ICR1_CAPT from a register value.
 #define BG_GPT_ICR1_CAPT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_ICR1_CAPT) >> BP_GPT_ICR1_CAPT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1392,13 +1320,11 @@ typedef union _hw_gpt_icr2
  * counter is loaded into GPT Input Capture Register 2.
  */
 //@{
-
 #define BP_GPT_ICR2_CAPT      (0)      //!< Bit position for GPT_ICR2_CAPT.
 #define BM_GPT_ICR2_CAPT      (0xffffffff)  //!< Bit mask for GPT_ICR2_CAPT.
 
 //! @brief Get value of GPT_ICR2_CAPT from a register value.
 #define BG_GPT_ICR2_CAPT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_ICR2_CAPT) >> BP_GPT_ICR2_CAPT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1445,13 +1371,11 @@ typedef union _hw_gpt_cnt
  * Counter Value. The COUNT bits show the current count value of the GPT counter.
  */
 //@{
-
 #define BP_GPT_CNT_COUNT      (0)      //!< Bit position for GPT_CNT_COUNT.
 #define BM_GPT_CNT_COUNT      (0xffffffff)  //!< Bit mask for GPT_CNT_COUNT.
 
 //! @brief Get value of GPT_CNT_COUNT from a register value.
 #define BG_GPT_CNT_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPT_CNT_COUNT) >> BP_GPT_CNT_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1484,3 +1408,5 @@ typedef struct _hw_gpt
 #endif
 
 #endif // __HW_GPT_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

@@ -107,7 +107,6 @@ typedef union _hw_pmu_reg_1p1
  * Control bit to enable the regulator output.
  */
 //@{
-
 #define BP_PMU_REG_1P1_ENABLE_LINREG      (0)      //!< Bit position for PMU_REG_1P1_ENABLE_LINREG.
 #define BM_PMU_REG_1P1_ENABLE_LINREG      (0x00000001)  //!< Bit mask for PMU_REG_1P1_ENABLE_LINREG.
 
@@ -121,7 +120,6 @@ typedef union _hw_pmu_reg_1p1
 //! @brief Set the ENABLE_LINREG field to a new value.
 #define BW_PMU_REG_1P1_ENABLE_LINREG(v)   (HW_PMU_REG_1P1_WR((HW_PMU_REG_1P1_RD() & ~BM_PMU_REG_1P1_ENABLE_LINREG) | BF_PMU_REG_1P1_ENABLE_LINREG(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_1P1, field ENABLE_BO[1] (RW)
@@ -129,7 +127,6 @@ typedef union _hw_pmu_reg_1p1
  * Control bit to enable the brown-out circuitry in the regulator.
  */
 //@{
-
 #define BP_PMU_REG_1P1_ENABLE_BO      (1)      //!< Bit position for PMU_REG_1P1_ENABLE_BO.
 #define BM_PMU_REG_1P1_ENABLE_BO      (0x00000002)  //!< Bit mask for PMU_REG_1P1_ENABLE_BO.
 
@@ -143,7 +140,6 @@ typedef union _hw_pmu_reg_1p1
 //! @brief Set the ENABLE_BO field to a new value.
 #define BW_PMU_REG_1P1_ENABLE_BO(v)   (HW_PMU_REG_1P1_WR((HW_PMU_REG_1P1_RD() & ~BM_PMU_REG_1P1_ENABLE_BO) | BF_PMU_REG_1P1_ENABLE_BO(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_1P1, field ENABLE_ILIMIT[2] (RW)
@@ -151,7 +147,6 @@ typedef union _hw_pmu_reg_1p1
  * Control bit to enable the current-limit circuitry in the regulator.
  */
 //@{
-
 #define BP_PMU_REG_1P1_ENABLE_ILIMIT      (2)      //!< Bit position for PMU_REG_1P1_ENABLE_ILIMIT.
 #define BM_PMU_REG_1P1_ENABLE_ILIMIT      (0x00000004)  //!< Bit mask for PMU_REG_1P1_ENABLE_ILIMIT.
 
@@ -165,7 +160,6 @@ typedef union _hw_pmu_reg_1p1
 //! @brief Set the ENABLE_ILIMIT field to a new value.
 #define BW_PMU_REG_1P1_ENABLE_ILIMIT(v)   (HW_PMU_REG_1P1_WR((HW_PMU_REG_1P1_RD() & ~BM_PMU_REG_1P1_ENABLE_ILIMIT) | BF_PMU_REG_1P1_ENABLE_ILIMIT(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_1P1, field ENABLE_PULLDOWN[3] (RW)
@@ -173,7 +167,6 @@ typedef union _hw_pmu_reg_1p1
  * Control bit to enable the pull-down circuitry in the regulator
  */
 //@{
-
 #define BP_PMU_REG_1P1_ENABLE_PULLDOWN      (3)      //!< Bit position for PMU_REG_1P1_ENABLE_PULLDOWN.
 #define BM_PMU_REG_1P1_ENABLE_PULLDOWN      (0x00000008)  //!< Bit mask for PMU_REG_1P1_ENABLE_PULLDOWN.
 
@@ -187,7 +180,6 @@ typedef union _hw_pmu_reg_1p1
 //! @brief Set the ENABLE_PULLDOWN field to a new value.
 #define BW_PMU_REG_1P1_ENABLE_PULLDOWN(v)   (HW_PMU_REG_1P1_WR((HW_PMU_REG_1P1_RD() & ~BM_PMU_REG_1P1_ENABLE_PULLDOWN) | BF_PMU_REG_1P1_ENABLE_PULLDOWN(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_1P1, field BO_OFFSET[6:4] (RW)
@@ -197,7 +189,6 @@ typedef union _hw_pmu_reg_1p1
  * all steps will make sense to use either because of input supply limitations or load operation.
  */
 //@{
-
 #define BP_PMU_REG_1P1_BO_OFFSET      (4)      //!< Bit position for PMU_REG_1P1_BO_OFFSET.
 #define BM_PMU_REG_1P1_BO_OFFSET      (0x00000070)  //!< Bit mask for PMU_REG_1P1_BO_OFFSET.
 
@@ -211,7 +202,6 @@ typedef union _hw_pmu_reg_1p1
 //! @brief Set the BO_OFFSET field to a new value.
 #define BW_PMU_REG_1P1_BO_OFFSET(v)   (HW_PMU_REG_1P1_WR((HW_PMU_REG_1P1_RD() & ~BM_PMU_REG_1P1_BO_OFFSET) | BF_PMU_REG_1P1_BO_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_1P1, field OUTPUT_TRG[12:8] (RW)
@@ -227,7 +217,6 @@ typedef union _hw_pmu_reg_1p1
  * - 0x1b - 1.375V
  */
 //@{
-
 #define BP_PMU_REG_1P1_OUTPUT_TRG      (8)      //!< Bit position for PMU_REG_1P1_OUTPUT_TRG.
 #define BM_PMU_REG_1P1_OUTPUT_TRG      (0x00001f00)  //!< Bit mask for PMU_REG_1P1_OUTPUT_TRG.
 
@@ -241,7 +230,6 @@ typedef union _hw_pmu_reg_1p1
 //! @brief Set the OUTPUT_TRG field to a new value.
 #define BW_PMU_REG_1P1_OUTPUT_TRG(v)   (HW_PMU_REG_1P1_WR((HW_PMU_REG_1P1_RD() & ~BM_PMU_REG_1P1_OUTPUT_TRG) | BF_PMU_REG_1P1_OUTPUT_TRG(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_1P1, field BO_VDD1P1[16] (RO)
@@ -249,13 +237,11 @@ typedef union _hw_pmu_reg_1p1
  * Status bit that signals when a brown-out is detected on the regulator output.
  */
 //@{
-
 #define BP_PMU_REG_1P1_BO_VDD1P1      (16)      //!< Bit position for PMU_REG_1P1_BO_VDD1P1.
 #define BM_PMU_REG_1P1_BO_VDD1P1      (0x00010000)  //!< Bit mask for PMU_REG_1P1_BO_VDD1P1.
 
 //! @brief Get value of PMU_REG_1P1_BO_VDD1P1 from a register value.
 #define BG_PMU_REG_1P1_BO_VDD1P1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_REG_1P1_BO_VDD1P1) >> BP_PMU_REG_1P1_BO_VDD1P1)
-
 //@}
 
 /*! @name Register PMU_REG_1P1, field OK_VDD1P1[17] (RO)
@@ -263,13 +249,11 @@ typedef union _hw_pmu_reg_1p1
  * Status bit that signals when the regulator output is ok. 1 = regulator output > brownout target
  */
 //@{
-
 #define BP_PMU_REG_1P1_OK_VDD1P1      (17)      //!< Bit position for PMU_REG_1P1_OK_VDD1P1.
 #define BM_PMU_REG_1P1_OK_VDD1P1      (0x00020000)  //!< Bit mask for PMU_REG_1P1_OK_VDD1P1.
 
 //! @brief Get value of PMU_REG_1P1_OK_VDD1P1 from a register value.
 #define BG_PMU_REG_1P1_OK_VDD1P1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_REG_1P1_OK_VDD1P1) >> BP_PMU_REG_1P1_OK_VDD1P1)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -330,7 +314,6 @@ typedef union _hw_pmu_reg_3p0
  * Control bit to enable the regulator output.
  */
 //@{
-
 #define BP_PMU_REG_3P0_ENABLE_LINREG      (0)      //!< Bit position for PMU_REG_3P0_ENABLE_LINREG.
 #define BM_PMU_REG_3P0_ENABLE_LINREG      (0x00000001)  //!< Bit mask for PMU_REG_3P0_ENABLE_LINREG.
 
@@ -344,7 +327,6 @@ typedef union _hw_pmu_reg_3p0
 //! @brief Set the ENABLE_LINREG field to a new value.
 #define BW_PMU_REG_3P0_ENABLE_LINREG(v)   (HW_PMU_REG_3P0_WR((HW_PMU_REG_3P0_RD() & ~BM_PMU_REG_3P0_ENABLE_LINREG) | BF_PMU_REG_3P0_ENABLE_LINREG(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_3P0, field ENABLE_BO[1] (RW)
@@ -352,7 +334,6 @@ typedef union _hw_pmu_reg_3p0
  * Control bit to enable the brown-out circuitry in the regulator.
  */
 //@{
-
 #define BP_PMU_REG_3P0_ENABLE_BO      (1)      //!< Bit position for PMU_REG_3P0_ENABLE_BO.
 #define BM_PMU_REG_3P0_ENABLE_BO      (0x00000002)  //!< Bit mask for PMU_REG_3P0_ENABLE_BO.
 
@@ -366,7 +347,6 @@ typedef union _hw_pmu_reg_3p0
 //! @brief Set the ENABLE_BO field to a new value.
 #define BW_PMU_REG_3P0_ENABLE_BO(v)   (HW_PMU_REG_3P0_WR((HW_PMU_REG_3P0_RD() & ~BM_PMU_REG_3P0_ENABLE_BO) | BF_PMU_REG_3P0_ENABLE_BO(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_3P0, field ENABLE_ILIMIT[2] (RW)
@@ -374,7 +354,6 @@ typedef union _hw_pmu_reg_3p0
  * Control bit to enable the current-limit circuitry in the regulator.
  */
 //@{
-
 #define BP_PMU_REG_3P0_ENABLE_ILIMIT      (2)      //!< Bit position for PMU_REG_3P0_ENABLE_ILIMIT.
 #define BM_PMU_REG_3P0_ENABLE_ILIMIT      (0x00000004)  //!< Bit mask for PMU_REG_3P0_ENABLE_ILIMIT.
 
@@ -388,7 +367,6 @@ typedef union _hw_pmu_reg_3p0
 //! @brief Set the ENABLE_ILIMIT field to a new value.
 #define BW_PMU_REG_3P0_ENABLE_ILIMIT(v)   (HW_PMU_REG_3P0_WR((HW_PMU_REG_3P0_RD() & ~BM_PMU_REG_3P0_ENABLE_ILIMIT) | BF_PMU_REG_3P0_ENABLE_ILIMIT(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_3P0, field BO_OFFSET[6:4] (RW)
@@ -398,7 +376,6 @@ typedef union _hw_pmu_reg_3p0
  * all steps will make sense to use either because of input supply limitations or load operation.
  */
 //@{
-
 #define BP_PMU_REG_3P0_BO_OFFSET      (4)      //!< Bit position for PMU_REG_3P0_BO_OFFSET.
 #define BM_PMU_REG_3P0_BO_OFFSET      (0x00000070)  //!< Bit mask for PMU_REG_3P0_BO_OFFSET.
 
@@ -412,7 +389,6 @@ typedef union _hw_pmu_reg_3p0
 //! @brief Set the BO_OFFSET field to a new value.
 #define BW_PMU_REG_3P0_BO_OFFSET(v)   (HW_PMU_REG_3P0_WR((HW_PMU_REG_3P0_RD() & ~BM_PMU_REG_3P0_BO_OFFSET) | BF_PMU_REG_3P0_BO_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_3P0, field VBUS_SEL[7] (RW)
@@ -425,7 +401,6 @@ typedef union _hw_pmu_reg_3p0
  * - OTG2 = 1 - Utilize VBUS OTG2 power
  */
 //@{
-
 #define BP_PMU_REG_3P0_VBUS_SEL      (7)      //!< Bit position for PMU_REG_3P0_VBUS_SEL.
 #define BM_PMU_REG_3P0_VBUS_SEL      (0x00000080)  //!< Bit mask for PMU_REG_3P0_VBUS_SEL.
 
@@ -445,7 +420,6 @@ typedef union _hw_pmu_reg_3p0
 
 #define BV_PMU_REG_3P0_VBUS_SEL__OTG1 (0x0) //!< Utilize VBUS OTG1 for power
 #define BV_PMU_REG_3P0_VBUS_SEL__OTG2 (0x1) //!< Utilize VBUS OTG2 power
-
 //@}
 
 /*! @name Register PMU_REG_3P0, field OUTPUT_TRG[12:8] (RW)
@@ -460,7 +434,6 @@ typedef union _hw_pmu_reg_3p0
  * - 0x1f - 3.400V
  */
 //@{
-
 #define BP_PMU_REG_3P0_OUTPUT_TRG      (8)      //!< Bit position for PMU_REG_3P0_OUTPUT_TRG.
 #define BM_PMU_REG_3P0_OUTPUT_TRG      (0x00001f00)  //!< Bit mask for PMU_REG_3P0_OUTPUT_TRG.
 
@@ -474,7 +447,6 @@ typedef union _hw_pmu_reg_3p0
 //! @brief Set the OUTPUT_TRG field to a new value.
 #define BW_PMU_REG_3P0_OUTPUT_TRG(v)   (HW_PMU_REG_3P0_WR((HW_PMU_REG_3P0_RD() & ~BM_PMU_REG_3P0_OUTPUT_TRG) | BF_PMU_REG_3P0_OUTPUT_TRG(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_3P0, field BO_VDD3P0[16] (RO)
@@ -482,13 +454,11 @@ typedef union _hw_pmu_reg_3p0
  * Status bit that signals when a brown-out is detected on the regulator output.
  */
 //@{
-
 #define BP_PMU_REG_3P0_BO_VDD3P0      (16)      //!< Bit position for PMU_REG_3P0_BO_VDD3P0.
 #define BM_PMU_REG_3P0_BO_VDD3P0      (0x00010000)  //!< Bit mask for PMU_REG_3P0_BO_VDD3P0.
 
 //! @brief Get value of PMU_REG_3P0_BO_VDD3P0 from a register value.
 #define BG_PMU_REG_3P0_BO_VDD3P0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_REG_3P0_BO_VDD3P0) >> BP_PMU_REG_3P0_BO_VDD3P0)
-
 //@}
 
 /*! @name Register PMU_REG_3P0, field OK_VDD3P0[17] (RO)
@@ -496,13 +466,11 @@ typedef union _hw_pmu_reg_3p0
  * Status bit that signals when the regulator output is ok. 1 = regulator output > brownout target
  */
 //@{
-
 #define BP_PMU_REG_3P0_OK_VDD3P0      (17)      //!< Bit position for PMU_REG_3P0_OK_VDD3P0.
 #define BM_PMU_REG_3P0_OK_VDD3P0      (0x00020000)  //!< Bit mask for PMU_REG_3P0_OK_VDD3P0.
 
 //! @brief Get value of PMU_REG_3P0_OK_VDD3P0 from a register value.
 #define BG_PMU_REG_3P0_OK_VDD3P0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_REG_3P0_OK_VDD3P0) >> BP_PMU_REG_3P0_OK_VDD3P0)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -563,7 +531,6 @@ typedef union _hw_pmu_reg_2p5
  * Control bit to enable the regulator output.
  */
 //@{
-
 #define BP_PMU_REG_2P5_ENABLE_LINREG      (0)      //!< Bit position for PMU_REG_2P5_ENABLE_LINREG.
 #define BM_PMU_REG_2P5_ENABLE_LINREG      (0x00000001)  //!< Bit mask for PMU_REG_2P5_ENABLE_LINREG.
 
@@ -577,7 +544,6 @@ typedef union _hw_pmu_reg_2p5
 //! @brief Set the ENABLE_LINREG field to a new value.
 #define BW_PMU_REG_2P5_ENABLE_LINREG(v)   (HW_PMU_REG_2P5_WR((HW_PMU_REG_2P5_RD() & ~BM_PMU_REG_2P5_ENABLE_LINREG) | BF_PMU_REG_2P5_ENABLE_LINREG(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_2P5, field ENABLE_BO[1] (RW)
@@ -585,7 +551,6 @@ typedef union _hw_pmu_reg_2p5
  * Control bit to enable the brown-out circuitry in the regulator.
  */
 //@{
-
 #define BP_PMU_REG_2P5_ENABLE_BO      (1)      //!< Bit position for PMU_REG_2P5_ENABLE_BO.
 #define BM_PMU_REG_2P5_ENABLE_BO      (0x00000002)  //!< Bit mask for PMU_REG_2P5_ENABLE_BO.
 
@@ -599,7 +564,6 @@ typedef union _hw_pmu_reg_2p5
 //! @brief Set the ENABLE_BO field to a new value.
 #define BW_PMU_REG_2P5_ENABLE_BO(v)   (HW_PMU_REG_2P5_WR((HW_PMU_REG_2P5_RD() & ~BM_PMU_REG_2P5_ENABLE_BO) | BF_PMU_REG_2P5_ENABLE_BO(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_2P5, field ENABLE_ILIMIT[2] (RW)
@@ -607,7 +571,6 @@ typedef union _hw_pmu_reg_2p5
  * Control bit to enable the current-limit circuitry in the regulator.
  */
 //@{
-
 #define BP_PMU_REG_2P5_ENABLE_ILIMIT      (2)      //!< Bit position for PMU_REG_2P5_ENABLE_ILIMIT.
 #define BM_PMU_REG_2P5_ENABLE_ILIMIT      (0x00000004)  //!< Bit mask for PMU_REG_2P5_ENABLE_ILIMIT.
 
@@ -621,7 +584,6 @@ typedef union _hw_pmu_reg_2p5
 //! @brief Set the ENABLE_ILIMIT field to a new value.
 #define BW_PMU_REG_2P5_ENABLE_ILIMIT(v)   (HW_PMU_REG_2P5_WR((HW_PMU_REG_2P5_RD() & ~BM_PMU_REG_2P5_ENABLE_ILIMIT) | BF_PMU_REG_2P5_ENABLE_ILIMIT(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_2P5, field ENABLE_PULLDOWN[3] (RW)
@@ -629,7 +591,6 @@ typedef union _hw_pmu_reg_2p5
  * Control bit to enable the pull-down circuitry in the regulator
  */
 //@{
-
 #define BP_PMU_REG_2P5_ENABLE_PULLDOWN      (3)      //!< Bit position for PMU_REG_2P5_ENABLE_PULLDOWN.
 #define BM_PMU_REG_2P5_ENABLE_PULLDOWN      (0x00000008)  //!< Bit mask for PMU_REG_2P5_ENABLE_PULLDOWN.
 
@@ -643,7 +604,6 @@ typedef union _hw_pmu_reg_2p5
 //! @brief Set the ENABLE_PULLDOWN field to a new value.
 #define BW_PMU_REG_2P5_ENABLE_PULLDOWN(v)   (HW_PMU_REG_2P5_WR((HW_PMU_REG_2P5_RD() & ~BM_PMU_REG_2P5_ENABLE_PULLDOWN) | BF_PMU_REG_2P5_ENABLE_PULLDOWN(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_2P5, field BO_OFFSET[6:4] (RW)
@@ -653,7 +613,6 @@ typedef union _hw_pmu_reg_2p5
  * all steps will make sense to use either because of input supply limitations or load operation.
  */
 //@{
-
 #define BP_PMU_REG_2P5_BO_OFFSET      (4)      //!< Bit position for PMU_REG_2P5_BO_OFFSET.
 #define BM_PMU_REG_2P5_BO_OFFSET      (0x00000070)  //!< Bit mask for PMU_REG_2P5_BO_OFFSET.
 
@@ -667,7 +626,6 @@ typedef union _hw_pmu_reg_2p5
 //! @brief Set the BO_OFFSET field to a new value.
 #define BW_PMU_REG_2P5_BO_OFFSET(v)   (HW_PMU_REG_2P5_WR((HW_PMU_REG_2P5_RD() & ~BM_PMU_REG_2P5_BO_OFFSET) | BF_PMU_REG_2P5_BO_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_2P5, field OUTPUT_TRG[12:8] (RW)
@@ -682,7 +640,6 @@ typedef union _hw_pmu_reg_2p5
  * - 0x1f - 2.75V
  */
 //@{
-
 #define BP_PMU_REG_2P5_OUTPUT_TRG      (8)      //!< Bit position for PMU_REG_2P5_OUTPUT_TRG.
 #define BM_PMU_REG_2P5_OUTPUT_TRG      (0x00001f00)  //!< Bit mask for PMU_REG_2P5_OUTPUT_TRG.
 
@@ -696,7 +653,6 @@ typedef union _hw_pmu_reg_2p5
 //! @brief Set the OUTPUT_TRG field to a new value.
 #define BW_PMU_REG_2P5_OUTPUT_TRG(v)   (HW_PMU_REG_2P5_WR((HW_PMU_REG_2P5_RD() & ~BM_PMU_REG_2P5_OUTPUT_TRG) | BF_PMU_REG_2P5_OUTPUT_TRG(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_2P5, field BO_VDD2P5[16] (RO)
@@ -704,13 +660,11 @@ typedef union _hw_pmu_reg_2p5
  * Status bit that signals when a brown-out is detected on the regulator output.
  */
 //@{
-
 #define BP_PMU_REG_2P5_BO_VDD2P5      (16)      //!< Bit position for PMU_REG_2P5_BO_VDD2P5.
 #define BM_PMU_REG_2P5_BO_VDD2P5      (0x00010000)  //!< Bit mask for PMU_REG_2P5_BO_VDD2P5.
 
 //! @brief Get value of PMU_REG_2P5_BO_VDD2P5 from a register value.
 #define BG_PMU_REG_2P5_BO_VDD2P5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_REG_2P5_BO_VDD2P5) >> BP_PMU_REG_2P5_BO_VDD2P5)
-
 //@}
 
 /*! @name Register PMU_REG_2P5, field OK_VDD2P5[17] (RO)
@@ -718,13 +672,11 @@ typedef union _hw_pmu_reg_2p5
  * Status bit that signals when the regulator output is ok. 1 = regulator output > brownout target
  */
 //@{
-
 #define BP_PMU_REG_2P5_OK_VDD2P5      (17)      //!< Bit position for PMU_REG_2P5_OK_VDD2P5.
 #define BM_PMU_REG_2P5_OK_VDD2P5      (0x00020000)  //!< Bit mask for PMU_REG_2P5_OK_VDD2P5.
 
 //! @brief Get value of PMU_REG_2P5_OK_VDD2P5 from a register value.
 #define BG_PMU_REG_2P5_OK_VDD2P5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_REG_2P5_OK_VDD2P5) >> BP_PMU_REG_2P5_OK_VDD2P5)
-
 //@}
 
 /*! @name Register PMU_REG_2P5, field ENABLE_WEAK_LINREG[18] (RW)
@@ -733,7 +685,6 @@ typedef union _hw_pmu_reg_2p5
  * disabled to keep the 2.5V output roughly at 2.5V. Scales directly with the value of VDDHIGH_IN.
  */
 //@{
-
 #define BP_PMU_REG_2P5_ENABLE_WEAK_LINREG      (18)      //!< Bit position for PMU_REG_2P5_ENABLE_WEAK_LINREG.
 #define BM_PMU_REG_2P5_ENABLE_WEAK_LINREG      (0x00040000)  //!< Bit mask for PMU_REG_2P5_ENABLE_WEAK_LINREG.
 
@@ -747,7 +698,6 @@ typedef union _hw_pmu_reg_2p5
 //! @brief Set the ENABLE_WEAK_LINREG field to a new value.
 #define BW_PMU_REG_2P5_ENABLE_WEAK_LINREG(v)   (HW_PMU_REG_2P5_WR((HW_PMU_REG_2P5_RD() & ~BM_PMU_REG_2P5_ENABLE_WEAK_LINREG) | BF_PMU_REG_2P5_ENABLE_WEAK_LINREG(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -814,7 +764,6 @@ typedef union _hw_pmu_reg_core
  * - 11111 - Power FET switched full on. No regulation.
  */
 //@{
-
 #define BP_PMU_REG_CORE_REG0_TARG      (0)      //!< Bit position for PMU_REG_CORE_REG0_TARG.
 #define BM_PMU_REG_CORE_REG0_TARG      (0x0000001f)  //!< Bit mask for PMU_REG_CORE_REG0_TARG.
 
@@ -828,7 +777,6 @@ typedef union _hw_pmu_reg_core
 //! @brief Set the REG0_TARG field to a new value.
 #define BW_PMU_REG_CORE_REG0_TARG(v)   (HW_PMU_REG_CORE_WR((HW_PMU_REG_CORE_RD() & ~BM_PMU_REG_CORE_REG0_TARG) | BF_PMU_REG_CORE_REG0_TARG(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_CORE, field REG0_ADJ[8:5] (RW)
@@ -856,7 +804,6 @@ typedef union _hw_pmu_reg_core
  * - 1111 - - 2.00%
  */
 //@{
-
 #define BP_PMU_REG_CORE_REG0_ADJ      (5)      //!< Bit position for PMU_REG_CORE_REG0_ADJ.
 #define BM_PMU_REG_CORE_REG0_ADJ      (0x000001e0)  //!< Bit mask for PMU_REG_CORE_REG0_ADJ.
 
@@ -870,7 +817,6 @@ typedef union _hw_pmu_reg_core
 //! @brief Set the REG0_ADJ field to a new value.
 #define BW_PMU_REG_CORE_REG0_ADJ(v)   (HW_PMU_REG_CORE_WR((HW_PMU_REG_CORE_RD() & ~BM_PMU_REG_CORE_REG0_ADJ) | BF_PMU_REG_CORE_REG0_ADJ(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_CORE, field REG1_TARG[13:9] (RW)
@@ -887,7 +833,6 @@ typedef union _hw_pmu_reg_core
  * - 11111 - Power FET switched full on. No regulation.
  */
 //@{
-
 #define BP_PMU_REG_CORE_REG1_TARG      (9)      //!< Bit position for PMU_REG_CORE_REG1_TARG.
 #define BM_PMU_REG_CORE_REG1_TARG      (0x00003e00)  //!< Bit mask for PMU_REG_CORE_REG1_TARG.
 
@@ -901,7 +846,6 @@ typedef union _hw_pmu_reg_core
 //! @brief Set the REG1_TARG field to a new value.
 #define BW_PMU_REG_CORE_REG1_TARG(v)   (HW_PMU_REG_CORE_WR((HW_PMU_REG_CORE_RD() & ~BM_PMU_REG_CORE_REG1_TARG) | BF_PMU_REG_CORE_REG1_TARG(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_CORE, field REG1_ADJ[17:14] (RW)
@@ -929,7 +873,6 @@ typedef union _hw_pmu_reg_core
  * - 1111 - - 2.00%
  */
 //@{
-
 #define BP_PMU_REG_CORE_REG1_ADJ      (14)      //!< Bit position for PMU_REG_CORE_REG1_ADJ.
 #define BM_PMU_REG_CORE_REG1_ADJ      (0x0003c000)  //!< Bit mask for PMU_REG_CORE_REG1_ADJ.
 
@@ -943,7 +886,6 @@ typedef union _hw_pmu_reg_core
 //! @brief Set the REG1_ADJ field to a new value.
 #define BW_PMU_REG_CORE_REG1_ADJ(v)   (HW_PMU_REG_CORE_WR((HW_PMU_REG_CORE_RD() & ~BM_PMU_REG_CORE_REG1_ADJ) | BF_PMU_REG_CORE_REG1_ADJ(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_CORE, field REG2_TARG[22:18] (RW)
@@ -960,7 +902,6 @@ typedef union _hw_pmu_reg_core
  * - 11111 - Power FET switched full on. No regulation.
  */
 //@{
-
 #define BP_PMU_REG_CORE_REG2_TARG      (18)      //!< Bit position for PMU_REG_CORE_REG2_TARG.
 #define BM_PMU_REG_CORE_REG2_TARG      (0x007c0000)  //!< Bit mask for PMU_REG_CORE_REG2_TARG.
 
@@ -974,7 +915,6 @@ typedef union _hw_pmu_reg_core
 //! @brief Set the REG2_TARG field to a new value.
 #define BW_PMU_REG_CORE_REG2_TARG(v)   (HW_PMU_REG_CORE_WR((HW_PMU_REG_CORE_RD() & ~BM_PMU_REG_CORE_REG2_TARG) | BF_PMU_REG_CORE_REG2_TARG(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_CORE, field REG2_ADJ[26:23] (RW)
@@ -1002,7 +942,6 @@ typedef union _hw_pmu_reg_core
  * - 1111 - - 2.00%
  */
 //@{
-
 #define BP_PMU_REG_CORE_REG2_ADJ      (23)      //!< Bit position for PMU_REG_CORE_REG2_ADJ.
 #define BM_PMU_REG_CORE_REG2_ADJ      (0x07800000)  //!< Bit mask for PMU_REG_CORE_REG2_ADJ.
 
@@ -1016,7 +955,6 @@ typedef union _hw_pmu_reg_core
 //! @brief Set the REG2_ADJ field to a new value.
 #define BW_PMU_REG_CORE_REG2_ADJ(v)   (HW_PMU_REG_CORE_WR((HW_PMU_REG_CORE_RD() & ~BM_PMU_REG_CORE_REG2_ADJ) | BF_PMU_REG_CORE_REG2_ADJ(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_REG_CORE, field FET_ODRIVE[29] (RW)
@@ -1027,7 +965,6 @@ typedef union _hw_pmu_reg_core
  * nominally 0.9V.
  */
 //@{
-
 #define BP_PMU_REG_CORE_FET_ODRIVE      (29)      //!< Bit position for PMU_REG_CORE_FET_ODRIVE.
 #define BM_PMU_REG_CORE_FET_ODRIVE      (0x20000000)  //!< Bit mask for PMU_REG_CORE_FET_ODRIVE.
 
@@ -1041,7 +978,6 @@ typedef union _hw_pmu_reg_core
 //! @brief Set the FET_ODRIVE field to a new value.
 #define BW_PMU_REG_CORE_FET_ODRIVE(v)   (HW_PMU_REG_CORE_WR((HW_PMU_REG_CORE_RD() & ~BM_PMU_REG_CORE_FET_ODRIVE) | BF_PMU_REG_CORE_FET_ODRIVE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1108,7 +1044,6 @@ typedef union _hw_pmu_misc0
  * die.
  */
 //@{
-
 #define BP_PMU_MISC0_REFTOP_PWD      (0)      //!< Bit position for PMU_MISC0_REFTOP_PWD.
 #define BM_PMU_MISC0_REFTOP_PWD      (0x00000001)  //!< Bit mask for PMU_MISC0_REFTOP_PWD.
 
@@ -1122,7 +1057,6 @@ typedef union _hw_pmu_misc0
 //! @brief Set the REFTOP_PWD field to a new value.
 #define BW_PMU_MISC0_REFTOP_PWD(v)   (HW_PMU_MISC0_WR((HW_PMU_MISC0_RD() & ~BM_PMU_MISC0_REFTOP_PWD) | BF_PMU_MISC0_REFTOP_PWD(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC0, field REFTOP_SELFBIASOFF[3] (RW)
@@ -1138,7 +1072,6 @@ typedef union _hw_pmu_misc0
  * - 1 - Uses bandgap based bias currents for best performance.
  */
 //@{
-
 #define BP_PMU_MISC0_REFTOP_SELFBIASOFF      (3)      //!< Bit position for PMU_MISC0_REFTOP_SELFBIASOFF.
 #define BM_PMU_MISC0_REFTOP_SELFBIASOFF      (0x00000008)  //!< Bit mask for PMU_MISC0_REFTOP_SELFBIASOFF.
 
@@ -1152,7 +1085,6 @@ typedef union _hw_pmu_misc0
 //! @brief Set the REFTOP_SELFBIASOFF field to a new value.
 #define BW_PMU_MISC0_REFTOP_SELFBIASOFF(v)   (HW_PMU_MISC0_WR((HW_PMU_MISC0_RD() & ~BM_PMU_MISC0_REFTOP_SELFBIASOFF) | BF_PMU_MISC0_REFTOP_SELFBIASOFF(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC0, field REFTOP_VBGADJ[6:4] (RW)
@@ -1170,7 +1102,6 @@ typedef union _hw_pmu_misc0
  * - 111 - VBG-3.12%
  */
 //@{
-
 #define BP_PMU_MISC0_REFTOP_VBGADJ      (4)      //!< Bit position for PMU_MISC0_REFTOP_VBGADJ.
 #define BM_PMU_MISC0_REFTOP_VBGADJ      (0x00000070)  //!< Bit mask for PMU_MISC0_REFTOP_VBGADJ.
 
@@ -1184,7 +1115,6 @@ typedef union _hw_pmu_misc0
 //! @brief Set the REFTOP_VBGADJ field to a new value.
 #define BW_PMU_MISC0_REFTOP_VBGADJ(v)   (HW_PMU_MISC0_WR((HW_PMU_MISC0_RD() & ~BM_PMU_MISC0_REFTOP_VBGADJ) | BF_PMU_MISC0_REFTOP_VBGADJ(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC0, field REFTOP_VBGUP[7] (RW)
@@ -1192,7 +1122,6 @@ typedef union _hw_pmu_misc0
  * Status bit which signals that the analog bandgap voltage is up and stable. 1 - Stable.
  */
 //@{
-
 #define BP_PMU_MISC0_REFTOP_VBGUP      (7)      //!< Bit position for PMU_MISC0_REFTOP_VBGUP.
 #define BM_PMU_MISC0_REFTOP_VBGUP      (0x00000080)  //!< Bit mask for PMU_MISC0_REFTOP_VBGUP.
 
@@ -1206,7 +1135,6 @@ typedef union _hw_pmu_misc0
 //! @brief Set the REFTOP_VBGUP field to a new value.
 #define BW_PMU_MISC0_REFTOP_VBGUP(v)   (HW_PMU_MISC0_WR((HW_PMU_MISC0_RD() & ~BM_PMU_MISC0_REFTOP_VBGUP) | BF_PMU_MISC0_REFTOP_VBGUP(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC0, field STOP_MODE_CONFIG[12:11] (RW)
@@ -1221,7 +1149,6 @@ typedef union _hw_pmu_misc0
  *     power.
  */
 //@{
-
 #define BP_PMU_MISC0_STOP_MODE_CONFIG      (11)      //!< Bit position for PMU_MISC0_STOP_MODE_CONFIG.
 #define BM_PMU_MISC0_STOP_MODE_CONFIG      (0x00001800)  //!< Bit mask for PMU_MISC0_STOP_MODE_CONFIG.
 
@@ -1243,7 +1170,6 @@ typedef union _hw_pmu_misc0
 #define BV_PMU_MISC0_STOP_MODE_CONFIG__LIGHT (0x1) //!< Light Stop Mode - Certain analog functions such as certain regulators left up
 #define BV_PMU_MISC0_STOP_MODE_CONFIG__LOW_POWER_LIGHT (0x2) //!< Low Power Light Stop Mode - Crystal Osc.:on, 24MHz RC Osc:on, and Band Gap reference : normal power.
 #define BV_PMU_MISC0_STOP_MODE_CONFIG__VERY_LOW_POWER_LIGHT (0x3) //!< Very Low Power Light Stop Mode - Crystal Osc.:off, 24MHz RC Osc:on, and Band Gap reference: low power.
-
 //@}
 
 /*! @name Register PMU_MISC0, field DISCON_HIGH_SNVS[13] (RW)
@@ -1252,7 +1178,6 @@ typedef union _hw_pmu_misc0
  * in power cases where SNVS_IN > VDDHIGH_IN.
  */
 //@{
-
 #define BP_PMU_MISC0_DISCON_HIGH_SNVS      (13)      //!< Bit position for PMU_MISC0_DISCON_HIGH_SNVS.
 #define BM_PMU_MISC0_DISCON_HIGH_SNVS      (0x00002000)  //!< Bit mask for PMU_MISC0_DISCON_HIGH_SNVS.
 
@@ -1266,7 +1191,6 @@ typedef union _hw_pmu_misc0
 //! @brief Set the DISCON_HIGH_SNVS field to a new value.
 #define BW_PMU_MISC0_DISCON_HIGH_SNVS(v)   (HW_PMU_MISC0_WR((HW_PMU_MISC0_RD() & ~BM_PMU_MISC0_DISCON_HIGH_SNVS) | BF_PMU_MISC0_DISCON_HIGH_SNVS(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC0, field OSC_I[15:14] (RW)
@@ -1282,7 +1206,6 @@ typedef union _hw_pmu_misc0
  * - MINUS_37_5_PERCENT = 11 - Decrease current by 37.5%
  */
 //@{
-
 #define BP_PMU_MISC0_OSC_I      (14)      //!< Bit position for PMU_MISC0_OSC_I.
 #define BM_PMU_MISC0_OSC_I      (0x0000c000)  //!< Bit mask for PMU_MISC0_OSC_I.
 
@@ -1304,7 +1227,6 @@ typedef union _hw_pmu_misc0
 #define BV_PMU_MISC0_OSC_I__MINUS_12_5_PERCENT (0x1) //!< Decrease current by 12.5%
 #define BV_PMU_MISC0_OSC_I__MINUS_25_PERCENT (0x2) //!< Decrease current by 25.0%
 #define BV_PMU_MISC0_OSC_I__MINUS_37_5_PERCENT (0x3) //!< Decrease current by 37.5%
-
 //@}
 
 /*! @name Register PMU_MISC0, field OSC_XTALOK[16] (RO)
@@ -1313,13 +1235,11 @@ typedef union _hw_pmu_misc0
  * from a timer and active detection of the actual frequency. Not related to PMU, Clocking content.
  */
 //@{
-
 #define BP_PMU_MISC0_OSC_XTALOK      (16)      //!< Bit position for PMU_MISC0_OSC_XTALOK.
 #define BM_PMU_MISC0_OSC_XTALOK      (0x00010000)  //!< Bit mask for PMU_MISC0_OSC_XTALOK.
 
 //! @brief Get value of PMU_MISC0_OSC_XTALOK from a register value.
 #define BG_PMU_MISC0_OSC_XTALOK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC0_OSC_XTALOK) >> BP_PMU_MISC0_OSC_XTALOK)
-
 //@}
 
 /*! @name Register PMU_MISC0, field OSC_XTALOK_EN[17] (RW)
@@ -1328,7 +1248,6 @@ typedef union _hw_pmu_misc0
  * to PMU, Clocking content
  */
 //@{
-
 #define BP_PMU_MISC0_OSC_XTALOK_EN      (17)      //!< Bit position for PMU_MISC0_OSC_XTALOK_EN.
 #define BM_PMU_MISC0_OSC_XTALOK_EN      (0x00020000)  //!< Bit mask for PMU_MISC0_OSC_XTALOK_EN.
 
@@ -1342,7 +1261,6 @@ typedef union _hw_pmu_misc0
 //! @brief Set the OSC_XTALOK_EN field to a new value.
 #define BW_PMU_MISC0_OSC_XTALOK_EN(v)   (HW_PMU_MISC0_WR((HW_PMU_MISC0_RD() & ~BM_PMU_MISC0_OSC_XTALOK_EN) | BF_PMU_MISC0_OSC_XTALOK_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC0, field WBCP_VPW_THRESH[19:18] (RW)
@@ -1356,7 +1274,6 @@ typedef union _hw_pmu_misc0
  * - MINUS_50MV = 11 - Decrease pwell output pwell voltage by 50mV.
  */
 //@{
-
 #define BP_PMU_MISC0_WBCP_VPW_THRESH      (18)      //!< Bit position for PMU_MISC0_WBCP_VPW_THRESH.
 #define BM_PMU_MISC0_WBCP_VPW_THRESH      (0x000c0000)  //!< Bit mask for PMU_MISC0_WBCP_VPW_THRESH.
 
@@ -1378,7 +1295,6 @@ typedef union _hw_pmu_misc0
 #define BV_PMU_MISC0_WBCP_VPW_THRESH__PLUS_25MV (0x1) //!< Increase pwell output voltage by 25mV.
 #define BV_PMU_MISC0_WBCP_VPW_THRESH__MINUS_25MV (0x2) //!< Decrease pwell output pwell voltage by 25mV.
 #define BV_PMU_MISC0_WBCP_VPW_THRESH__MINUS_50MV (0x3) //!< Decrease pwell output pwell voltage by 50mV.
-
 //@}
 
 /*! @name Register PMU_MISC0, field CLKGATE_CTRL[25] (RW)
@@ -1392,7 +1308,6 @@ typedef union _hw_pmu_misc0
  * - NO_AUTO_GATE = 1 - Prevent the logic from ever gating off the clock.
  */
 //@{
-
 #define BP_PMU_MISC0_CLKGATE_CTRL      (25)      //!< Bit position for PMU_MISC0_CLKGATE_CTRL.
 #define BM_PMU_MISC0_CLKGATE_CTRL      (0x02000000)  //!< Bit mask for PMU_MISC0_CLKGATE_CTRL.
 
@@ -1412,7 +1327,6 @@ typedef union _hw_pmu_misc0
 
 #define BV_PMU_MISC0_CLKGATE_CTRL__ALLOW_AUTO_GATE (0x0) //!< Allow the logic to automatically gate the clock when the XTAL is powered down.
 #define BV_PMU_MISC0_CLKGATE_CTRL__NO_AUTO_GATE (0x1) //!< Prevent the logic from ever gating off the clock.
-
 //@}
 
 /*! @name Register PMU_MISC0, field CLKGATE_DELAY[28:26] (RW)
@@ -1432,7 +1346,6 @@ typedef union _hw_pmu_misc0
  * - 111 - 7.0ms
  */
 //@{
-
 #define BP_PMU_MISC0_CLKGATE_DELAY      (26)      //!< Bit position for PMU_MISC0_CLKGATE_DELAY.
 #define BM_PMU_MISC0_CLKGATE_DELAY      (0x1c000000)  //!< Bit mask for PMU_MISC0_CLKGATE_DELAY.
 
@@ -1446,7 +1359,6 @@ typedef union _hw_pmu_misc0
 //! @brief Set the CLKGATE_DELAY field to a new value.
 #define BW_PMU_MISC0_CLKGATE_DELAY(v)   (HW_PMU_MISC0_WR((HW_PMU_MISC0_RD() & ~BM_PMU_MISC0_CLKGATE_DELAY) | BF_PMU_MISC0_CLKGATE_DELAY(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1532,7 +1444,6 @@ typedef union _hw_pmu_misc1
  * - 10101 to 11111 - pfd7
  */
 //@{
-
 #define BP_PMU_MISC1_LVDS1_CLK_SEL      (0)      //!< Bit position for PMU_MISC1_LVDS1_CLK_SEL.
 #define BM_PMU_MISC1_LVDS1_CLK_SEL      (0x0000001f)  //!< Bit mask for PMU_MISC1_LVDS1_CLK_SEL.
 
@@ -1566,7 +1477,6 @@ typedef union _hw_pmu_misc1
 #define BV_PMU_MISC1_LVDS1_CLK_SEL__PFD2 (0x10) //!< pfd2
 #define BV_PMU_MISC1_LVDS1_CLK_SEL__PFD3 (0x11) //!< pfd3
 #define BV_PMU_MISC1_LVDS1_CLK_SEL__XTAL (0x12) //!< xtal
-
 //@}
 
 /*! @name Register PMU_MISC1, field LVDSCLK1_OBEN[10] (RW)
@@ -1575,7 +1485,6 @@ typedef union _hw_pmu_misc1
  * simutaneously. Not related to PMU, clocking content.
  */
 //@{
-
 #define BP_PMU_MISC1_LVDSCLK1_OBEN      (10)      //!< Bit position for PMU_MISC1_LVDSCLK1_OBEN.
 #define BM_PMU_MISC1_LVDSCLK1_OBEN      (0x00000400)  //!< Bit mask for PMU_MISC1_LVDSCLK1_OBEN.
 
@@ -1589,7 +1498,6 @@ typedef union _hw_pmu_misc1
 //! @brief Set the LVDSCLK1_OBEN field to a new value.
 #define BW_PMU_MISC1_LVDSCLK1_OBEN(v)   BF_CS1(PMU_MISC1, LVDSCLK1_OBEN, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC1, field LVDSCLK1_IBEN[12] (RW)
@@ -1598,7 +1506,6 @@ typedef union _hw_pmu_misc1
  * simutaneously. Not related to PMU, Clocking content.
  */
 //@{
-
 #define BP_PMU_MISC1_LVDSCLK1_IBEN      (12)      //!< Bit position for PMU_MISC1_LVDSCLK1_IBEN.
 #define BM_PMU_MISC1_LVDSCLK1_IBEN      (0x00001000)  //!< Bit mask for PMU_MISC1_LVDSCLK1_IBEN.
 
@@ -1612,7 +1519,6 @@ typedef union _hw_pmu_misc1
 //! @brief Set the LVDSCLK1_IBEN field to a new value.
 #define BW_PMU_MISC1_LVDSCLK1_IBEN(v)   BF_CS1(PMU_MISC1, LVDSCLK1_IBEN, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC1, field IRQ_TEMPSENSE[29] (W1C)
@@ -1621,7 +1527,6 @@ typedef union _hw_pmu_misc1
  * PMU, Temperature Monitor content.
  */
 //@{
-
 #define BP_PMU_MISC1_IRQ_TEMPSENSE      (29)      //!< Bit position for PMU_MISC1_IRQ_TEMPSENSE.
 #define BM_PMU_MISC1_IRQ_TEMPSENSE      (0x20000000)  //!< Bit mask for PMU_MISC1_IRQ_TEMPSENSE.
 
@@ -1635,7 +1540,6 @@ typedef union _hw_pmu_misc1
 //! @brief Set the IRQ_TEMPSENSE field to a new value.
 #define BW_PMU_MISC1_IRQ_TEMPSENSE(v)   BF_CS1(PMU_MISC1, IRQ_TEMPSENSE, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC1, field IRQ_ANA_BO[30] (W1C)
@@ -1644,7 +1548,6 @@ typedef union _hw_pmu_misc1
  * Check the regulator status bits to discover which regulator interrupt asserted.
  */
 //@{
-
 #define BP_PMU_MISC1_IRQ_ANA_BO      (30)      //!< Bit position for PMU_MISC1_IRQ_ANA_BO.
 #define BM_PMU_MISC1_IRQ_ANA_BO      (0x40000000)  //!< Bit mask for PMU_MISC1_IRQ_ANA_BO.
 
@@ -1658,7 +1561,6 @@ typedef union _hw_pmu_misc1
 //! @brief Set the IRQ_ANA_BO field to a new value.
 #define BW_PMU_MISC1_IRQ_ANA_BO(v)   BF_CS1(PMU_MISC1, IRQ_ANA_BO, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC1, field IRQ_DIG_BO[31] (W1C)
@@ -1667,7 +1569,6 @@ typedef union _hw_pmu_misc1
  * Check the regulator status bits to discover which regulator interrupt asserted.
  */
 //@{
-
 #define BP_PMU_MISC1_IRQ_DIG_BO      (31)      //!< Bit position for PMU_MISC1_IRQ_DIG_BO.
 #define BM_PMU_MISC1_IRQ_DIG_BO      (0x80000000)  //!< Bit mask for PMU_MISC1_IRQ_DIG_BO.
 
@@ -1681,7 +1582,6 @@ typedef union _hw_pmu_misc1
 //! @brief Set the IRQ_DIG_BO field to a new value.
 #define BW_PMU_MISC1_IRQ_DIG_BO(v)   BF_CS1(PMU_MISC1, IRQ_DIG_BO, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1759,13 +1659,11 @@ typedef union _hw_pmu_misc2
  * - 111 - Brownout offset = 0.175V
  */
 //@{
-
 #define BP_PMU_MISC2_REG0_BO_OFFSET      (0)      //!< Bit position for PMU_MISC2_REG0_BO_OFFSET.
 #define BM_PMU_MISC2_REG0_BO_OFFSET      (0x00000007)  //!< Bit mask for PMU_MISC2_REG0_BO_OFFSET.
 
 //! @brief Get value of PMU_MISC2_REG0_BO_OFFSET from a register value.
 #define BG_PMU_MISC2_REG0_BO_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_REG0_BO_OFFSET) >> BP_PMU_MISC2_REG0_BO_OFFSET)
-
 //@}
 
 /*! @name Register PMU_MISC2, field REG0_BO_STATUS[3] (RO)
@@ -1776,13 +1674,11 @@ typedef union _hw_pmu_misc2
  * - 1 - Brownout, supply is below target minus brownout offset.
  */
 //@{
-
 #define BP_PMU_MISC2_REG0_BO_STATUS      (3)      //!< Bit position for PMU_MISC2_REG0_BO_STATUS.
 #define BM_PMU_MISC2_REG0_BO_STATUS      (0x00000008)  //!< Bit mask for PMU_MISC2_REG0_BO_STATUS.
 
 //! @brief Get value of PMU_MISC2_REG0_BO_STATUS from a register value.
 #define BG_PMU_MISC2_REG0_BO_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_REG0_BO_STATUS) >> BP_PMU_MISC2_REG0_BO_STATUS)
-
 //@}
 
 /*! @name Register PMU_MISC2, field REG0_ENABLE_BO[5] (RW)
@@ -1790,7 +1686,6 @@ typedef union _hw_pmu_misc2
  * Enables the brownout detection.
  */
 //@{
-
 #define BP_PMU_MISC2_REG0_ENABLE_BO      (5)      //!< Bit position for PMU_MISC2_REG0_ENABLE_BO.
 #define BM_PMU_MISC2_REG0_ENABLE_BO      (0x00000020)  //!< Bit mask for PMU_MISC2_REG0_ENABLE_BO.
 
@@ -1804,7 +1699,6 @@ typedef union _hw_pmu_misc2
 //! @brief Set the REG0_ENABLE_BO field to a new value.
 #define BW_PMU_MISC2_REG0_ENABLE_BO(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_REG0_ENABLE_BO) | BF_PMU_MISC2_REG0_ENABLE_BO(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC2, field PLL3_DISABLE[7] (RW)
@@ -1812,7 +1706,6 @@ typedef union _hw_pmu_misc2
  * Default value of "0". Should be set to "1" to turn off the USB-PLL(PLL3) in run mode.
  */
 //@{
-
 #define BP_PMU_MISC2_PLL3_DISABLE      (7)      //!< Bit position for PMU_MISC2_PLL3_DISABLE.
 #define BM_PMU_MISC2_PLL3_DISABLE      (0x00000080)  //!< Bit mask for PMU_MISC2_PLL3_DISABLE.
 
@@ -1826,7 +1719,6 @@ typedef union _hw_pmu_misc2
 //! @brief Set the PLL3_DISABLE field to a new value.
 #define BW_PMU_MISC2_PLL3_DISABLE(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_PLL3_DISABLE) | BF_PMU_MISC2_PLL3_DISABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC2, field REG1_BO_OFFSET[10:8] (RO)
@@ -1841,13 +1733,11 @@ typedef union _hw_pmu_misc2
  * - 111 - Brownout offset = 0.175V
  */
 //@{
-
 #define BP_PMU_MISC2_REG1_BO_OFFSET      (8)      //!< Bit position for PMU_MISC2_REG1_BO_OFFSET.
 #define BM_PMU_MISC2_REG1_BO_OFFSET      (0x00000700)  //!< Bit mask for PMU_MISC2_REG1_BO_OFFSET.
 
 //! @brief Get value of PMU_MISC2_REG1_BO_OFFSET from a register value.
 #define BG_PMU_MISC2_REG1_BO_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_REG1_BO_OFFSET) >> BP_PMU_MISC2_REG1_BO_OFFSET)
-
 //@}
 
 /*! @name Register PMU_MISC2, field REG1_BO_STATUS[11] (RO)
@@ -1858,13 +1748,11 @@ typedef union _hw_pmu_misc2
  * - 1 - Brownout, supply is below target minus brownout offset.
  */
 //@{
-
 #define BP_PMU_MISC2_REG1_BO_STATUS      (11)      //!< Bit position for PMU_MISC2_REG1_BO_STATUS.
 #define BM_PMU_MISC2_REG1_BO_STATUS      (0x00000800)  //!< Bit mask for PMU_MISC2_REG1_BO_STATUS.
 
 //! @brief Get value of PMU_MISC2_REG1_BO_STATUS from a register value.
 #define BG_PMU_MISC2_REG1_BO_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_REG1_BO_STATUS) >> BP_PMU_MISC2_REG1_BO_STATUS)
-
 //@}
 
 /*! @name Register PMU_MISC2, field REG1_ENABLE_BO[13] (RW)
@@ -1872,7 +1760,6 @@ typedef union _hw_pmu_misc2
  * Enables the brownout detection.
  */
 //@{
-
 #define BP_PMU_MISC2_REG1_ENABLE_BO      (13)      //!< Bit position for PMU_MISC2_REG1_ENABLE_BO.
 #define BM_PMU_MISC2_REG1_ENABLE_BO      (0x00002000)  //!< Bit mask for PMU_MISC2_REG1_ENABLE_BO.
 
@@ -1886,7 +1773,6 @@ typedef union _hw_pmu_misc2
 //! @brief Set the REG1_ENABLE_BO field to a new value.
 #define BW_PMU_MISC2_REG1_ENABLE_BO(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_REG1_ENABLE_BO) | BF_PMU_MISC2_REG1_ENABLE_BO(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC2, field AUDIO_DIV_LSB[15] (RW)
@@ -1896,7 +1782,6 @@ typedef union _hw_pmu_misc2
  * divider to prevent glitches.
  */
 //@{
-
 #define BP_PMU_MISC2_AUDIO_DIV_LSB      (15)      //!< Bit position for PMU_MISC2_AUDIO_DIV_LSB.
 #define BM_PMU_MISC2_AUDIO_DIV_LSB      (0x00008000)  //!< Bit mask for PMU_MISC2_AUDIO_DIV_LSB.
 
@@ -1910,7 +1795,6 @@ typedef union _hw_pmu_misc2
 //! @brief Set the AUDIO_DIV_LSB field to a new value.
 #define BW_PMU_MISC2_AUDIO_DIV_LSB(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_AUDIO_DIV_LSB) | BF_PMU_MISC2_AUDIO_DIV_LSB(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC2, field REG2_BO_OFFSET[18:16] (RO)
@@ -1925,13 +1809,11 @@ typedef union _hw_pmu_misc2
  * - 111 - Brownout offset = 0.175V
  */
 //@{
-
 #define BP_PMU_MISC2_REG2_BO_OFFSET      (16)      //!< Bit position for PMU_MISC2_REG2_BO_OFFSET.
 #define BM_PMU_MISC2_REG2_BO_OFFSET      (0x00070000)  //!< Bit mask for PMU_MISC2_REG2_BO_OFFSET.
 
 //! @brief Get value of PMU_MISC2_REG2_BO_OFFSET from a register value.
 #define BG_PMU_MISC2_REG2_BO_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_REG2_BO_OFFSET) >> BP_PMU_MISC2_REG2_BO_OFFSET)
-
 //@}
 
 /*! @name Register PMU_MISC2, field REG2_BO_STATUS[19] (RO)
@@ -1939,13 +1821,11 @@ typedef union _hw_pmu_misc2
  * Reg2 brownout status bit.
  */
 //@{
-
 #define BP_PMU_MISC2_REG2_BO_STATUS      (19)      //!< Bit position for PMU_MISC2_REG2_BO_STATUS.
 #define BM_PMU_MISC2_REG2_BO_STATUS      (0x00080000)  //!< Bit mask for PMU_MISC2_REG2_BO_STATUS.
 
 //! @brief Get value of PMU_MISC2_REG2_BO_STATUS from a register value.
 #define BG_PMU_MISC2_REG2_BO_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_REG2_BO_STATUS) >> BP_PMU_MISC2_REG2_BO_STATUS)
-
 //@}
 
 /*! @name Register PMU_MISC2, field REG2_ENABLE_BO[21] (RW)
@@ -1953,7 +1833,6 @@ typedef union _hw_pmu_misc2
  * Enables the brownout detection.
  */
 //@{
-
 #define BP_PMU_MISC2_REG2_ENABLE_BO      (21)      //!< Bit position for PMU_MISC2_REG2_ENABLE_BO.
 #define BM_PMU_MISC2_REG2_ENABLE_BO      (0x00200000)  //!< Bit mask for PMU_MISC2_REG2_ENABLE_BO.
 
@@ -1967,7 +1846,6 @@ typedef union _hw_pmu_misc2
 //! @brief Set the REG2_ENABLE_BO field to a new value.
 #define BW_PMU_MISC2_REG2_ENABLE_BO(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_REG2_ENABLE_BO) | BF_PMU_MISC2_REG2_ENABLE_BO(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC2, field REG2_OK[22] (RO)
@@ -1976,13 +1854,11 @@ typedef union _hw_pmu_misc2
  * brownout_target
  */
 //@{
-
 #define BP_PMU_MISC2_REG2_OK      (22)      //!< Bit position for PMU_MISC2_REG2_OK.
 #define BM_PMU_MISC2_REG2_OK      (0x00400000)  //!< Bit mask for PMU_MISC2_REG2_OK.
 
 //! @brief Get value of PMU_MISC2_REG2_OK from a register value.
 #define BG_PMU_MISC2_REG2_OK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_MISC2_REG2_OK) >> BP_PMU_MISC2_REG2_OK)
-
 //@}
 
 /*! @name Register PMU_MISC2, field AUDIO_DIV_MSB[23] (RW)
@@ -1992,7 +1868,6 @@ typedef union _hw_pmu_misc2
  * divider to prevent glitches.
  */
 //@{
-
 #define BP_PMU_MISC2_AUDIO_DIV_MSB      (23)      //!< Bit position for PMU_MISC2_AUDIO_DIV_MSB.
 #define BM_PMU_MISC2_AUDIO_DIV_MSB      (0x00800000)  //!< Bit mask for PMU_MISC2_AUDIO_DIV_MSB.
 
@@ -2006,7 +1881,6 @@ typedef union _hw_pmu_misc2
 //! @brief Set the AUDIO_DIV_MSB field to a new value.
 #define BW_PMU_MISC2_AUDIO_DIV_MSB(v)   (HW_PMU_MISC2_WR((HW_PMU_MISC2_RD() & ~BM_PMU_MISC2_AUDIO_DIV_MSB) | BF_PMU_MISC2_AUDIO_DIV_MSB(v)))
 #endif
-
 //@}
 
 /*! @name Register PMU_MISC2, field REG0_STEP_TIME[25:24] (RW)
@@ -2020,7 +1894,6 @@ typedef union _hw_pmu_misc2
  * - 512_CLOCKS = 11 - 512
  */
 //@{
-
 #define BP_PMU_MISC2_REG0_STEP_TIME      (24)      //!< Bit position for PMU_MISC2_REG0_STEP_TIME.
 #define BM_PMU_MISC2_REG0_STEP_TIME      (0x03000000)  //!< Bit mask for PMU_MISC2_REG0_STEP_TIME.
 
@@ -2042,7 +1915,6 @@ typedef union _hw_pmu_misc2
 #define BV_PMU_MISC2_REG0_STEP_TIME__128_CLOCKS (0x1) //!< 128
 #define BV_PMU_MISC2_REG0_STEP_TIME__256_CLOCKS (0x2) //!< 256
 #define BV_PMU_MISC2_REG0_STEP_TIME__512_CLOCKS (0x3) //!< 512
-
 //@}
 
 /*! @name Register PMU_MISC2, field REG1_STEP_TIME[27:26] (RW)
@@ -2056,7 +1928,6 @@ typedef union _hw_pmu_misc2
  * - 512_CLOCKS = 11 - 512
  */
 //@{
-
 #define BP_PMU_MISC2_REG1_STEP_TIME      (26)      //!< Bit position for PMU_MISC2_REG1_STEP_TIME.
 #define BM_PMU_MISC2_REG1_STEP_TIME      (0x0c000000)  //!< Bit mask for PMU_MISC2_REG1_STEP_TIME.
 
@@ -2078,7 +1949,6 @@ typedef union _hw_pmu_misc2
 #define BV_PMU_MISC2_REG1_STEP_TIME__128_CLOCKS (0x1) //!< 128
 #define BV_PMU_MISC2_REG1_STEP_TIME__256_CLOCKS (0x2) //!< 256
 #define BV_PMU_MISC2_REG1_STEP_TIME__512_CLOCKS (0x3) //!< 512
-
 //@}
 
 /*! @name Register PMU_MISC2, field REG2_STEP_TIME[29:28] (RW)
@@ -2092,7 +1962,6 @@ typedef union _hw_pmu_misc2
  * - 512_CLOCKS = 11 - 512
  */
 //@{
-
 #define BP_PMU_MISC2_REG2_STEP_TIME      (28)      //!< Bit position for PMU_MISC2_REG2_STEP_TIME.
 #define BM_PMU_MISC2_REG2_STEP_TIME      (0x30000000)  //!< Bit mask for PMU_MISC2_REG2_STEP_TIME.
 
@@ -2114,7 +1983,6 @@ typedef union _hw_pmu_misc2
 #define BV_PMU_MISC2_REG2_STEP_TIME__128_CLOCKS (0x1) //!< 128
 #define BV_PMU_MISC2_REG2_STEP_TIME__256_CLOCKS (0x2) //!< 256
 #define BV_PMU_MISC2_REG2_STEP_TIME__512_CLOCKS (0x3) //!< 512
-
 //@}
 
 /*! @name Register PMU_MISC2, field VIDEO_DIV[31:30] (RW)
@@ -2129,7 +1997,6 @@ typedef union _hw_pmu_misc2
  * - DIV_BY_4 = 11 - div-by-4
  */
 //@{
-
 #define BP_PMU_MISC2_VIDEO_DIV      (30)      //!< Bit position for PMU_MISC2_VIDEO_DIV.
 #define BM_PMU_MISC2_VIDEO_DIV      (0xc0000000)  //!< Bit mask for PMU_MISC2_VIDEO_DIV.
 
@@ -2150,7 +2017,6 @@ typedef union _hw_pmu_misc2
 #define BV_PMU_MISC2_VIDEO_DIV__DIV_BY_1 (0x0) //!< div-by-1 (default)
 #define BV_PMU_MISC2_VIDEO_DIV__DIV_BY_2 (0x1) //!< div-by-2
 #define BV_PMU_MISC2_VIDEO_DIV__DIV_BY_4 (0x3) //!< div-by-4
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2221,7 +2087,6 @@ typedef union _hw_pmu_lowpwr_ctrl
  * - 1 - Use RC OSC
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_RC_OSC_EN      (0)      //!< Bit position for PMU_LOWPWR_CTRL_RC_OSC_EN.
 #define BM_PMU_LOWPWR_CTRL_RC_OSC_EN      (0x00000001)  //!< Bit mask for PMU_LOWPWR_CTRL_RC_OSC_EN.
 
@@ -2235,7 +2100,6 @@ typedef union _hw_pmu_lowpwr_ctrl
 //! @brief Set the RC_OSC_EN field to a new value.
 #define BW_PMU_LOWPWR_CTRL_RC_OSC_EN(v)   BF_CS1(PMU_LOWPWR_CTRL, RC_OSC_EN, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_LOWPWR_CTRL, field RC_OSC_PROG[3:1] (RW)
@@ -2243,7 +2107,6 @@ typedef union _hw_pmu_lowpwr_ctrl
  * RC osc. tuning values. Not related to PMU.
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_RC_OSC_PROG      (1)      //!< Bit position for PMU_LOWPWR_CTRL_RC_OSC_PROG.
 #define BM_PMU_LOWPWR_CTRL_RC_OSC_PROG      (0x0000000e)  //!< Bit mask for PMU_LOWPWR_CTRL_RC_OSC_PROG.
 
@@ -2257,7 +2120,6 @@ typedef union _hw_pmu_lowpwr_ctrl
 //! @brief Set the RC_OSC_PROG field to a new value.
 #define BW_PMU_LOWPWR_CTRL_RC_OSC_PROG(v)   BF_CS1(PMU_LOWPWR_CTRL, RC_OSC_PROG, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_LOWPWR_CTRL, field OSC_SEL[4] (RW)
@@ -2269,7 +2131,6 @@ typedef union _hw_pmu_lowpwr_ctrl
  * - 1 - RC OSC
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_OSC_SEL      (4)      //!< Bit position for PMU_LOWPWR_CTRL_OSC_SEL.
 #define BM_PMU_LOWPWR_CTRL_OSC_SEL      (0x00000010)  //!< Bit mask for PMU_LOWPWR_CTRL_OSC_SEL.
 
@@ -2283,7 +2144,6 @@ typedef union _hw_pmu_lowpwr_ctrl
 //! @brief Set the OSC_SEL field to a new value.
 #define BW_PMU_LOWPWR_CTRL_OSC_SEL(v)   BF_CS1(PMU_LOWPWR_CTRL, OSC_SEL, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_LOWPWR_CTRL, field LPBG_SEL[5] (RW)
@@ -2295,7 +2155,6 @@ typedef union _hw_pmu_lowpwr_ctrl
  * - 1 - Low power bandgap
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_LPBG_SEL      (5)      //!< Bit position for PMU_LOWPWR_CTRL_LPBG_SEL.
 #define BM_PMU_LOWPWR_CTRL_LPBG_SEL      (0x00000020)  //!< Bit mask for PMU_LOWPWR_CTRL_LPBG_SEL.
 
@@ -2309,7 +2168,6 @@ typedef union _hw_pmu_lowpwr_ctrl
 //! @brief Set the LPBG_SEL field to a new value.
 #define BW_PMU_LOWPWR_CTRL_LPBG_SEL(v)   BF_CS1(PMU_LOWPWR_CTRL, LPBG_SEL, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_LOWPWR_CTRL, field LPBG_TEST[6] (RW)
@@ -2317,7 +2175,6 @@ typedef union _hw_pmu_lowpwr_ctrl
  * Low power bandgap test bit.
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_LPBG_TEST      (6)      //!< Bit position for PMU_LOWPWR_CTRL_LPBG_TEST.
 #define BM_PMU_LOWPWR_CTRL_LPBG_TEST      (0x00000040)  //!< Bit mask for PMU_LOWPWR_CTRL_LPBG_TEST.
 
@@ -2331,7 +2188,6 @@ typedef union _hw_pmu_lowpwr_ctrl
 //! @brief Set the LPBG_TEST field to a new value.
 #define BW_PMU_LOWPWR_CTRL_LPBG_TEST(v)   BF_CS1(PMU_LOWPWR_CTRL, LPBG_TEST, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_LOWPWR_CTRL, field REFTOP_IBIAS_OFF[7] (RW)
@@ -2339,7 +2195,6 @@ typedef union _hw_pmu_lowpwr_ctrl
  * Low power reftop ibias disable.
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_REFTOP_IBIAS_OFF      (7)      //!< Bit position for PMU_LOWPWR_CTRL_REFTOP_IBIAS_OFF.
 #define BM_PMU_LOWPWR_CTRL_REFTOP_IBIAS_OFF      (0x00000080)  //!< Bit mask for PMU_LOWPWR_CTRL_REFTOP_IBIAS_OFF.
 
@@ -2353,7 +2208,6 @@ typedef union _hw_pmu_lowpwr_ctrl
 //! @brief Set the REFTOP_IBIAS_OFF field to a new value.
 #define BW_PMU_LOWPWR_CTRL_REFTOP_IBIAS_OFF(v)   BF_CS1(PMU_LOWPWR_CTRL, REFTOP_IBIAS_OFF, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_LOWPWR_CTRL, field L1_PWRGATE[8] (RW)
@@ -2361,7 +2215,6 @@ typedef union _hw_pmu_lowpwr_ctrl
  * L1 power gate control. Used as software override.
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_L1_PWRGATE      (8)      //!< Bit position for PMU_LOWPWR_CTRL_L1_PWRGATE.
 #define BM_PMU_LOWPWR_CTRL_L1_PWRGATE      (0x00000100)  //!< Bit mask for PMU_LOWPWR_CTRL_L1_PWRGATE.
 
@@ -2375,7 +2228,6 @@ typedef union _hw_pmu_lowpwr_ctrl
 //! @brief Set the L1_PWRGATE field to a new value.
 #define BW_PMU_LOWPWR_CTRL_L1_PWRGATE(v)   BF_CS1(PMU_LOWPWR_CTRL, L1_PWRGATE, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_LOWPWR_CTRL, field L2_PWRGATE[9] (RW)
@@ -2383,7 +2235,6 @@ typedef union _hw_pmu_lowpwr_ctrl
  * L2 power gate control. Used as software override.
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_L2_PWRGATE      (9)      //!< Bit position for PMU_LOWPWR_CTRL_L2_PWRGATE.
 #define BM_PMU_LOWPWR_CTRL_L2_PWRGATE      (0x00000200)  //!< Bit mask for PMU_LOWPWR_CTRL_L2_PWRGATE.
 
@@ -2397,7 +2248,6 @@ typedef union _hw_pmu_lowpwr_ctrl
 //! @brief Set the L2_PWRGATE field to a new value.
 #define BW_PMU_LOWPWR_CTRL_L2_PWRGATE(v)   BF_CS1(PMU_LOWPWR_CTRL, L2_PWRGATE, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_LOWPWR_CTRL, field CPU_PWRGATE[10] (RW)
@@ -2405,7 +2255,6 @@ typedef union _hw_pmu_lowpwr_ctrl
  * CPU power gate control. Used as software override.
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_CPU_PWRGATE      (10)      //!< Bit position for PMU_LOWPWR_CTRL_CPU_PWRGATE.
 #define BM_PMU_LOWPWR_CTRL_CPU_PWRGATE      (0x00000400)  //!< Bit mask for PMU_LOWPWR_CTRL_CPU_PWRGATE.
 
@@ -2419,7 +2268,6 @@ typedef union _hw_pmu_lowpwr_ctrl
 //! @brief Set the CPU_PWRGATE field to a new value.
 #define BW_PMU_LOWPWR_CTRL_CPU_PWRGATE(v)   BF_CS1(PMU_LOWPWR_CTRL, CPU_PWRGATE, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_LOWPWR_CTRL, field DISPLAY_PWRGATE[11] (RW)
@@ -2427,7 +2275,6 @@ typedef union _hw_pmu_lowpwr_ctrl
  * Display logic power gate control. Used as software override.
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_DISPLAY_PWRGATE      (11)      //!< Bit position for PMU_LOWPWR_CTRL_DISPLAY_PWRGATE.
 #define BM_PMU_LOWPWR_CTRL_DISPLAY_PWRGATE      (0x00000800)  //!< Bit mask for PMU_LOWPWR_CTRL_DISPLAY_PWRGATE.
 
@@ -2441,7 +2288,6 @@ typedef union _hw_pmu_lowpwr_ctrl
 //! @brief Set the DISPLAY_PWRGATE field to a new value.
 #define BW_PMU_LOWPWR_CTRL_DISPLAY_PWRGATE(v)   BF_CS1(PMU_LOWPWR_CTRL, DISPLAY_PWRGATE, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_LOWPWR_CTRL, field RWB_EN[12] (RW)
@@ -2453,7 +2299,6 @@ typedef union _hw_pmu_lowpwr_ctrl
  * - 1 - Enabled
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_RWB_EN      (12)      //!< Bit position for PMU_LOWPWR_CTRL_RWB_EN.
 #define BM_PMU_LOWPWR_CTRL_RWB_EN      (0x00001000)  //!< Bit mask for PMU_LOWPWR_CTRL_RWB_EN.
 
@@ -2467,7 +2312,6 @@ typedef union _hw_pmu_lowpwr_ctrl
 //! @brief Set the RWB_EN field to a new value.
 #define BW_PMU_LOWPWR_CTRL_RWB_EN(v)   BF_CS1(PMU_LOWPWR_CTRL, RWB_EN, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_LOWPWR_CTRL, field RCOSC_CG_OVERRIDE[13] (RW)
@@ -2476,7 +2320,6 @@ typedef union _hw_pmu_lowpwr_ctrl
  * 24MHz clk. Not related to PMU.
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_RCOSC_CG_OVERRIDE      (13)      //!< Bit position for PMU_LOWPWR_CTRL_RCOSC_CG_OVERRIDE.
 #define BM_PMU_LOWPWR_CTRL_RCOSC_CG_OVERRIDE      (0x00002000)  //!< Bit mask for PMU_LOWPWR_CTRL_RCOSC_CG_OVERRIDE.
 
@@ -2490,7 +2333,6 @@ typedef union _hw_pmu_lowpwr_ctrl
 //! @brief Set the RCOSC_CG_OVERRIDE field to a new value.
 #define BW_PMU_LOWPWR_CTRL_RCOSC_CG_OVERRIDE(v)   BF_CS1(PMU_LOWPWR_CTRL, RCOSC_CG_OVERRIDE, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_LOWPWR_CTRL, field XTALOSC_PWRUP_DELAY[15:14] (RW)
@@ -2505,7 +2347,6 @@ typedef union _hw_pmu_lowpwr_ctrl
  * - 11 - 2ms
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_XTALOSC_PWRUP_DELAY      (14)      //!< Bit position for PMU_LOWPWR_CTRL_XTALOSC_PWRUP_DELAY.
 #define BM_PMU_LOWPWR_CTRL_XTALOSC_PWRUP_DELAY      (0x0000c000)  //!< Bit mask for PMU_LOWPWR_CTRL_XTALOSC_PWRUP_DELAY.
 
@@ -2519,7 +2360,6 @@ typedef union _hw_pmu_lowpwr_ctrl
 //! @brief Set the XTALOSC_PWRUP_DELAY field to a new value.
 #define BW_PMU_LOWPWR_CTRL_XTALOSC_PWRUP_DELAY(v)   BF_CS1(PMU_LOWPWR_CTRL, XTALOSC_PWRUP_DELAY, v)
 #endif
-
 //@}
 
 /*! @name Register PMU_LOWPWR_CTRL, field XTALOSC_PWRUP_STAT[16] (RO)
@@ -2531,13 +2371,11 @@ typedef union _hw_pmu_lowpwr_ctrl
  * - 1 - Stable and ready to use
  */
 //@{
-
 #define BP_PMU_LOWPWR_CTRL_XTALOSC_PWRUP_STAT      (16)      //!< Bit position for PMU_LOWPWR_CTRL_XTALOSC_PWRUP_STAT.
 #define BM_PMU_LOWPWR_CTRL_XTALOSC_PWRUP_STAT      (0x00010000)  //!< Bit mask for PMU_LOWPWR_CTRL_XTALOSC_PWRUP_STAT.
 
 //! @brief Get value of PMU_LOWPWR_CTRL_XTALOSC_PWRUP_STAT from a register value.
 #define BG_PMU_LOWPWR_CTRL_XTALOSC_PWRUP_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PMU_LOWPWR_CTRL_XTALOSC_PWRUP_STAT) >> BP_PMU_LOWPWR_CTRL_XTALOSC_PWRUP_STAT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2581,3 +2419,5 @@ typedef struct _hw_pmu
 #endif
 
 #endif // __HW_PMU_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

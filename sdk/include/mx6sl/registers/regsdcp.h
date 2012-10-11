@@ -146,7 +146,6 @@ typedef union _hw_dcp_ctrl
  * - CH3 = 0x08 - 
  */
 //@{
-
 #define BP_DCP_CTRL_CHANNEL_INTERRUPT_ENABLE      (0)      //!< Bit position for DCP_CTRL_CHANNEL_INTERRUPT_ENABLE.
 #define BM_DCP_CTRL_CHANNEL_INTERRUPT_ENABLE      (0x000000ff)  //!< Bit mask for DCP_CTRL_CHANNEL_INTERRUPT_ENABLE.
 
@@ -168,7 +167,6 @@ typedef union _hw_dcp_ctrl
 #define BV_DCP_CTRL_CHANNEL_INTERRUPT_ENABLE__CH1 (0x2) //!< 
 #define BV_DCP_CTRL_CHANNEL_INTERRUPT_ENABLE__CH2 (0x4) //!< 
 #define BV_DCP_CTRL_CHANNEL_INTERRUPT_ENABLE__CH3 (0x8) //!< 
-
 //@}
 
 /*! @name Register DCP_CTRL, field ENABLE_CONTEXT_SWITCHING[21] (RW)
@@ -179,7 +177,6 @@ typedef union _hw_dcp_ctrl
  * for the context buffer.
  */
 //@{
-
 #define BP_DCP_CTRL_ENABLE_CONTEXT_SWITCHING      (21)      //!< Bit position for DCP_CTRL_ENABLE_CONTEXT_SWITCHING.
 #define BM_DCP_CTRL_ENABLE_CONTEXT_SWITCHING      (0x00200000)  //!< Bit mask for DCP_CTRL_ENABLE_CONTEXT_SWITCHING.
 
@@ -193,7 +190,6 @@ typedef union _hw_dcp_ctrl
 //! @brief Set the ENABLE_CONTEXT_SWITCHING field to a new value.
 #define BW_DCP_CTRL_ENABLE_CONTEXT_SWITCHING(v)   (HW_DCP_CTRL_WR((HW_DCP_CTRL_RD() & ~BM_DCP_CTRL_ENABLE_CONTEXT_SWITCHING) | BF_DCP_CTRL_ENABLE_CONTEXT_SWITCHING(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CTRL, field ENABLE_CONTEXT_CACHING[22] (RW)
@@ -203,7 +199,6 @@ typedef union _hw_dcp_ctrl
  * the channel was the last to be used.
  */
 //@{
-
 #define BP_DCP_CTRL_ENABLE_CONTEXT_CACHING      (22)      //!< Bit position for DCP_CTRL_ENABLE_CONTEXT_CACHING.
 #define BM_DCP_CTRL_ENABLE_CONTEXT_CACHING      (0x00400000)  //!< Bit mask for DCP_CTRL_ENABLE_CONTEXT_CACHING.
 
@@ -217,7 +212,6 @@ typedef union _hw_dcp_ctrl
 //! @brief Set the ENABLE_CONTEXT_CACHING field to a new value.
 #define BW_DCP_CTRL_ENABLE_CONTEXT_CACHING(v)   (HW_DCP_CTRL_WR((HW_DCP_CTRL_RD() & ~BM_DCP_CTRL_ENABLE_CONTEXT_CACHING) | BF_DCP_CTRL_ENABLE_CONTEXT_CACHING(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CTRL, field GATHER_RESIDUAL_WRITES[23] (RW)
@@ -228,7 +222,6 @@ typedef union _hw_dcp_ctrl
  * subsequent write to the buffer to form a word write.
  */
 //@{
-
 #define BP_DCP_CTRL_GATHER_RESIDUAL_WRITES      (23)      //!< Bit position for DCP_CTRL_GATHER_RESIDUAL_WRITES.
 #define BM_DCP_CTRL_GATHER_RESIDUAL_WRITES      (0x00800000)  //!< Bit mask for DCP_CTRL_GATHER_RESIDUAL_WRITES.
 
@@ -242,7 +235,6 @@ typedef union _hw_dcp_ctrl
 //! @brief Set the GATHER_RESIDUAL_WRITES field to a new value.
 #define BW_DCP_CTRL_GATHER_RESIDUAL_WRITES(v)   (HW_DCP_CTRL_WR((HW_DCP_CTRL_RD() & ~BM_DCP_CTRL_GATHER_RESIDUAL_WRITES) | BF_DCP_CTRL_GATHER_RESIDUAL_WRITES(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CTRL, field PRESENT_SHA[28] (RO)
@@ -254,7 +246,6 @@ typedef union _hw_dcp_ctrl
  * - PRESENT = 0x1 - 
  */
 //@{
-
 #define BP_DCP_CTRL_PRESENT_SHA      (28)      //!< Bit position for DCP_CTRL_PRESENT_SHA.
 #define BM_DCP_CTRL_PRESENT_SHA      (0x10000000)  //!< Bit mask for DCP_CTRL_PRESENT_SHA.
 
@@ -266,7 +257,6 @@ typedef union _hw_dcp_ctrl
 
 #define BV_DCP_CTRL_PRESENT_SHA__ABSENT (0x0) //!< 
 #define BV_DCP_CTRL_PRESENT_SHA__PRESENT (0x1) //!< 
-
 //@}
 
 /*! @name Register DCP_CTRL, field PRESENT_CRYPTO[29] (RO)
@@ -278,7 +268,6 @@ typedef union _hw_dcp_ctrl
  * - PRESENT = 0x1 - 
  */
 //@{
-
 #define BP_DCP_CTRL_PRESENT_CRYPTO      (29)      //!< Bit position for DCP_CTRL_PRESENT_CRYPTO.
 #define BM_DCP_CTRL_PRESENT_CRYPTO      (0x20000000)  //!< Bit mask for DCP_CTRL_PRESENT_CRYPTO.
 
@@ -290,7 +279,6 @@ typedef union _hw_dcp_ctrl
 
 #define BV_DCP_CTRL_PRESENT_CRYPTO__ABSENT (0x0) //!< 
 #define BV_DCP_CTRL_PRESENT_CRYPTO__PRESENT (0x1) //!< 
-
 //@}
 
 /*! @name Register DCP_CTRL, field CLKGATE[30] (RW)
@@ -299,7 +287,6 @@ typedef union _hw_dcp_ctrl
  * block.
  */
 //@{
-
 #define BP_DCP_CTRL_CLKGATE      (30)      //!< Bit position for DCP_CTRL_CLKGATE.
 #define BM_DCP_CTRL_CLKGATE      (0x40000000)  //!< Bit mask for DCP_CTRL_CLKGATE.
 
@@ -313,7 +300,6 @@ typedef union _hw_dcp_ctrl
 //! @brief Set the CLKGATE field to a new value.
 #define BW_DCP_CTRL_CLKGATE(v)   (HW_DCP_CTRL_WR((HW_DCP_CTRL_RD() & ~BM_DCP_CTRL_CLKGATE) | BF_DCP_CTRL_CLKGATE(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CTRL, field SFTRST[31] (RW)
@@ -323,7 +309,6 @@ typedef union _hw_dcp_ctrl
  * and then off to reset the DCP block to its default state.
  */
 //@{
-
 #define BP_DCP_CTRL_SFTRST      (31)      //!< Bit position for DCP_CTRL_SFTRST.
 #define BM_DCP_CTRL_SFTRST      (0x80000000)  //!< Bit mask for DCP_CTRL_SFTRST.
 
@@ -337,7 +322,6 @@ typedef union _hw_dcp_ctrl
 //! @brief Set the SFTRST field to a new value.
 #define BW_DCP_CTRL_SFTRST(v)   (HW_DCP_CTRL_WR((HW_DCP_CTRL_RD() & ~BM_DCP_CTRL_SFTRST) | BF_DCP_CTRL_SFTRST(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -395,7 +379,6 @@ typedef union _hw_dcp_stat
  * the dcp_vmi_irq and the other interrupt bits are routed through the dcp_irq.
  */
 //@{
-
 #define BP_DCP_STAT_IRQ      (0)      //!< Bit position for DCP_STAT_IRQ.
 #define BM_DCP_STAT_IRQ      (0x0000000f)  //!< Bit mask for DCP_STAT_IRQ.
 
@@ -409,7 +392,6 @@ typedef union _hw_dcp_stat
 //! @brief Set the IRQ field to a new value.
 #define BW_DCP_STAT_IRQ(v)   (HW_DCP_STAT_WR((HW_DCP_STAT_RD() & ~BM_DCP_STAT_IRQ) | BF_DCP_STAT_IRQ(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_STAT, field READY_CHANNELS[23:16] (RO)
@@ -424,7 +406,6 @@ typedef union _hw_dcp_stat
  * - CH3 = 0x08 - 
  */
 //@{
-
 #define BP_DCP_STAT_READY_CHANNELS      (16)      //!< Bit position for DCP_STAT_READY_CHANNELS.
 #define BM_DCP_STAT_READY_CHANNELS      (0x00ff0000)  //!< Bit mask for DCP_STAT_READY_CHANNELS.
 
@@ -438,7 +419,6 @@ typedef union _hw_dcp_stat
 #define BV_DCP_STAT_READY_CHANNELS__CH1 (0x2) //!< 
 #define BV_DCP_STAT_READY_CHANNELS__CH2 (0x4) //!< 
 #define BV_DCP_STAT_READY_CHANNELS__CH3 (0x8) //!< 
-
 //@}
 
 /*! @name Register DCP_STAT, field CUR_CHANNEL[27:24] (RO)
@@ -453,7 +433,6 @@ typedef union _hw_dcp_stat
  * - CH3 = 0x4 - 
  */
 //@{
-
 #define BP_DCP_STAT_CUR_CHANNEL      (24)      //!< Bit position for DCP_STAT_CUR_CHANNEL.
 #define BM_DCP_STAT_CUR_CHANNEL      (0x0f000000)  //!< Bit mask for DCP_STAT_CUR_CHANNEL.
 
@@ -468,7 +447,6 @@ typedef union _hw_dcp_stat
 #define BV_DCP_STAT_CUR_CHANNEL__CH1 (0x2) //!< 
 #define BV_DCP_STAT_CUR_CHANNEL__CH2 (0x3) //!< 
 #define BV_DCP_STAT_CUR_CHANNEL__CH3 (0x4) //!< 
-
 //@}
 
 /*! @name Register DCP_STAT, field OTP_KEY_READY[28] (RO)
@@ -476,13 +454,11 @@ typedef union _hw_dcp_stat
  * When set, indicates that the OTP key has been shifted from the fuse block and is ready for use.
  */
 //@{
-
 #define BP_DCP_STAT_OTP_KEY_READY      (28)      //!< Bit position for DCP_STAT_OTP_KEY_READY.
 #define BM_DCP_STAT_OTP_KEY_READY      (0x10000000)  //!< Bit mask for DCP_STAT_OTP_KEY_READY.
 
 //! @brief Get value of DCP_STAT_OTP_KEY_READY from a register value.
 #define BG_DCP_STAT_OTP_KEY_READY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_STAT_OTP_KEY_READY) >> BP_DCP_STAT_OTP_KEY_READY)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -547,7 +523,6 @@ typedef union _hw_dcp_channelctrl
  * - CH3 = 0x08 - 
  */
 //@{
-
 #define BP_DCP_CHANNELCTRL_ENABLE_CHANNEL      (0)      //!< Bit position for DCP_CHANNELCTRL_ENABLE_CHANNEL.
 #define BM_DCP_CHANNELCTRL_ENABLE_CHANNEL      (0x000000ff)  //!< Bit mask for DCP_CHANNELCTRL_ENABLE_CHANNEL.
 
@@ -569,7 +544,6 @@ typedef union _hw_dcp_channelctrl
 #define BV_DCP_CHANNELCTRL_ENABLE_CHANNEL__CH1 (0x2) //!< 
 #define BV_DCP_CHANNELCTRL_ENABLE_CHANNEL__CH2 (0x4) //!< 
 #define BV_DCP_CHANNELCTRL_ENABLE_CHANNEL__CH3 (0x8) //!< 
-
 //@}
 
 /*! @name Register DCP_CHANNELCTRL, field HIGH_PRIORITY_CHANNEL[15:8] (RW)
@@ -585,7 +559,6 @@ typedef union _hw_dcp_channelctrl
  * - CH3 = 0x08 - 
  */
 //@{
-
 #define BP_DCP_CHANNELCTRL_HIGH_PRIORITY_CHANNEL      (8)      //!< Bit position for DCP_CHANNELCTRL_HIGH_PRIORITY_CHANNEL.
 #define BM_DCP_CHANNELCTRL_HIGH_PRIORITY_CHANNEL      (0x0000ff00)  //!< Bit mask for DCP_CHANNELCTRL_HIGH_PRIORITY_CHANNEL.
 
@@ -607,7 +580,6 @@ typedef union _hw_dcp_channelctrl
 #define BV_DCP_CHANNELCTRL_HIGH_PRIORITY_CHANNEL__CH1 (0x2) //!< 
 #define BV_DCP_CHANNELCTRL_HIGH_PRIORITY_CHANNEL__CH2 (0x4) //!< 
 #define BV_DCP_CHANNELCTRL_HIGH_PRIORITY_CHANNEL__CH3 (0x8) //!< 
-
 //@}
 
 /*! @name Register DCP_CHANNELCTRL, field CH0_IRQ_MERGED[16] (RW)
@@ -617,7 +589,6 @@ typedef union _hw_dcp_channelctrl
  * dcp_vmi_irq. When set to 1, the interrupt will be routed to the shared DCP interrupt.
  */
 //@{
-
 #define BP_DCP_CHANNELCTRL_CH0_IRQ_MERGED      (16)      //!< Bit position for DCP_CHANNELCTRL_CH0_IRQ_MERGED.
 #define BM_DCP_CHANNELCTRL_CH0_IRQ_MERGED      (0x00010000)  //!< Bit mask for DCP_CHANNELCTRL_CH0_IRQ_MERGED.
 
@@ -631,7 +602,6 @@ typedef union _hw_dcp_channelctrl
 //! @brief Set the CH0_IRQ_MERGED field to a new value.
 #define BW_DCP_CHANNELCTRL_CH0_IRQ_MERGED(v)   (HW_DCP_CHANNELCTRL_WR((HW_DCP_CHANNELCTRL_RD() & ~BM_DCP_CHANNELCTRL_CH0_IRQ_MERGED) | BF_DCP_CHANNELCTRL_CH0_IRQ_MERGED(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -688,13 +658,11 @@ typedef union _hw_dcp_capability0
  * Encoded value indicating the number of key storage locations implemented in the design.
  */
 //@{
-
 #define BP_DCP_CAPABILITY0_NUM_KEYS      (0)      //!< Bit position for DCP_CAPABILITY0_NUM_KEYS.
 #define BM_DCP_CAPABILITY0_NUM_KEYS      (0x000000ff)  //!< Bit mask for DCP_CAPABILITY0_NUM_KEYS.
 
 //! @brief Get value of DCP_CAPABILITY0_NUM_KEYS from a register value.
 #define BG_DCP_CAPABILITY0_NUM_KEYS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_CAPABILITY0_NUM_KEYS) >> BP_DCP_CAPABILITY0_NUM_KEYS)
-
 //@}
 
 /*! @name Register DCP_CAPABILITY0, field NUM_CHANNELS[11:8] (RO)
@@ -702,13 +670,11 @@ typedef union _hw_dcp_capability0
  * Encoded value indicating the number of channels implemented in the design.
  */
 //@{
-
 #define BP_DCP_CAPABILITY0_NUM_CHANNELS      (8)      //!< Bit position for DCP_CAPABILITY0_NUM_CHANNELS.
 #define BM_DCP_CAPABILITY0_NUM_CHANNELS      (0x00000f00)  //!< Bit mask for DCP_CAPABILITY0_NUM_CHANNELS.
 
 //! @brief Get value of DCP_CAPABILITY0_NUM_CHANNELS from a register value.
 #define BG_DCP_CAPABILITY0_NUM_CHANNELS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_CAPABILITY0_NUM_CHANNELS) >> BP_DCP_CAPABILITY0_NUM_CHANNELS)
-
 //@}
 
 /*! @name Register DCP_CAPABILITY0, field DISABLE_UNIQUE_KEY[29] (RW)
@@ -717,7 +683,6 @@ typedef union _hw_dcp_capability0
  * by using a value of 0xFE in the key select field.
  */
 //@{
-
 #define BP_DCP_CAPABILITY0_DISABLE_UNIQUE_KEY      (29)      //!< Bit position for DCP_CAPABILITY0_DISABLE_UNIQUE_KEY.
 #define BM_DCP_CAPABILITY0_DISABLE_UNIQUE_KEY      (0x20000000)  //!< Bit mask for DCP_CAPABILITY0_DISABLE_UNIQUE_KEY.
 
@@ -731,7 +696,6 @@ typedef union _hw_dcp_capability0
 //! @brief Set the DISABLE_UNIQUE_KEY field to a new value.
 #define BW_DCP_CAPABILITY0_DISABLE_UNIQUE_KEY(v)   (HW_DCP_CAPABILITY0_WR((HW_DCP_CAPABILITY0_RD() & ~BM_DCP_CAPABILITY0_DISABLE_UNIQUE_KEY) | BF_DCP_CAPABILITY0_DISABLE_UNIQUE_KEY(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CAPABILITY0, field DISABLE_DECRYPT[31] (RW)
@@ -740,7 +704,6 @@ typedef union _hw_dcp_capability0
  * can only be cleared by a reset.
  */
 //@{
-
 #define BP_DCP_CAPABILITY0_DISABLE_DECRYPT      (31)      //!< Bit position for DCP_CAPABILITY0_DISABLE_DECRYPT.
 #define BM_DCP_CAPABILITY0_DISABLE_DECRYPT      (0x80000000)  //!< Bit mask for DCP_CAPABILITY0_DISABLE_DECRYPT.
 
@@ -754,7 +717,6 @@ typedef union _hw_dcp_capability0
 //! @brief Set the DISABLE_DECRYPT field to a new value.
 #define BW_DCP_CAPABILITY0_DISABLE_DECRYPT(v)   (HW_DCP_CAPABILITY0_WR((HW_DCP_CAPABILITY0_RD() & ~BM_DCP_CAPABILITY0_DISABLE_DECRYPT) | BF_DCP_CAPABILITY0_DISABLE_DECRYPT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -807,7 +769,6 @@ typedef union _hw_dcp_capability1
  * - AES128 = 0x0001 - 
  */
 //@{
-
 #define BP_DCP_CAPABILITY1_CIPHER_ALGORITHMS      (0)      //!< Bit position for DCP_CAPABILITY1_CIPHER_ALGORITHMS.
 #define BM_DCP_CAPABILITY1_CIPHER_ALGORITHMS      (0x0000ffff)  //!< Bit mask for DCP_CAPABILITY1_CIPHER_ALGORITHMS.
 
@@ -818,7 +779,6 @@ typedef union _hw_dcp_capability1
 #define BF_DCP_CAPABILITY1_CIPHER_ALGORITHMS_V(v) BF_DCP_CAPABILITY1_CIPHER_ALGORITHMS(BV_DCP_CAPABILITY1_CIPHER_ALGORITHMS__##v)
 
 #define BV_DCP_CAPABILITY1_CIPHER_ALGORITHMS__AES128 (0x1) //!< 
-
 //@}
 
 /*! @name Register DCP_CAPABILITY1, field HASH_ALGORITHMS[31:16] (RO)
@@ -831,7 +791,6 @@ typedef union _hw_dcp_capability1
  * - SHA256 = 0x0004 - 
  */
 //@{
-
 #define BP_DCP_CAPABILITY1_HASH_ALGORITHMS      (16)      //!< Bit position for DCP_CAPABILITY1_HASH_ALGORITHMS.
 #define BM_DCP_CAPABILITY1_HASH_ALGORITHMS      (0xffff0000)  //!< Bit mask for DCP_CAPABILITY1_HASH_ALGORITHMS.
 
@@ -844,7 +803,6 @@ typedef union _hw_dcp_capability1
 #define BV_DCP_CAPABILITY1_HASH_ALGORITHMS__SHA1 (0x1) //!< 
 #define BV_DCP_CAPABILITY1_HASH_ALGORITHMS__CRC32 (0x2) //!< 
 #define BV_DCP_CAPABILITY1_HASH_ALGORITHMS__SHA256 (0x4) //!< 
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -898,7 +856,6 @@ typedef union _hw_dcp_context
  * optimal performance.
  */
 //@{
-
 #define BP_DCP_CONTEXT_ADDR      (0)      //!< Bit position for DCP_CONTEXT_ADDR.
 #define BM_DCP_CONTEXT_ADDR      (0xffffffff)  //!< Bit mask for DCP_CONTEXT_ADDR.
 
@@ -912,7 +869,6 @@ typedef union _hw_dcp_context
 //! @brief Set the ADDR field to a new value.
 #define BW_DCP_CONTEXT_ADDR(v)   (HW_DCP_CONTEXT_WR((HW_DCP_CONTEXT_RD() & ~BM_DCP_CONTEXT_ADDR) | BF_DCP_CONTEXT_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -975,7 +931,6 @@ typedef union _hw_dcp_key
  * will increment.
  */
 //@{
-
 #define BP_DCP_KEY_SUBWORD      (0)      //!< Bit position for DCP_KEY_SUBWORD.
 #define BM_DCP_KEY_SUBWORD      (0x00000003)  //!< Bit mask for DCP_KEY_SUBWORD.
 
@@ -989,7 +944,6 @@ typedef union _hw_dcp_key
 //! @brief Set the SUBWORD field to a new value.
 #define BW_DCP_KEY_SUBWORD(v)   (HW_DCP_KEY_WR((HW_DCP_KEY_RD() & ~BM_DCP_KEY_SUBWORD) | BF_DCP_KEY_SUBWORD(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_KEY, field INDEX[5:4] (RW)
@@ -997,7 +951,6 @@ typedef union _hw_dcp_key
  * Key index pointer. Valid indices are 0-[number_keys].
  */
 //@{
-
 #define BP_DCP_KEY_INDEX      (4)      //!< Bit position for DCP_KEY_INDEX.
 #define BM_DCP_KEY_INDEX      (0x00000030)  //!< Bit mask for DCP_KEY_INDEX.
 
@@ -1011,7 +964,6 @@ typedef union _hw_dcp_key
 //! @brief Set the INDEX field to a new value.
 #define BW_DCP_KEY_INDEX(v)   (HW_DCP_KEY_WR((HW_DCP_KEY_RD() & ~BM_DCP_KEY_INDEX) | BF_DCP_KEY_INDEX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1068,7 +1020,6 @@ typedef union _hw_dcp_keydata
  * Word 0 data for key. This is the least-significant word.
  */
 //@{
-
 #define BP_DCP_KEYDATA_DATA      (0)      //!< Bit position for DCP_KEYDATA_DATA.
 #define BM_DCP_KEYDATA_DATA      (0xffffffff)  //!< Bit mask for DCP_KEYDATA_DATA.
 
@@ -1082,7 +1033,6 @@ typedef union _hw_dcp_keydata
 //! @brief Set the DATA field to a new value.
 #define BW_DCP_KEYDATA_DATA(v)   (HW_DCP_KEYDATA_WR((HW_DCP_KEYDATA_RD() & ~BM_DCP_KEYDATA_DATA) | BF_DCP_KEYDATA_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1131,13 +1081,11 @@ typedef union _hw_dcp_packet0
  * Next Pointer Register,
  */
 //@{
-
 #define BP_DCP_PACKET0_ADDR      (0)      //!< Bit position for DCP_PACKET0_ADDR.
 #define BM_DCP_PACKET0_ADDR      (0xffffffff)  //!< Bit mask for DCP_PACKET0_ADDR.
 
 //! @brief Get value of DCP_PACKET0_ADDR from a register value.
 #define BG_DCP_PACKET0_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET0_ADDR) >> BP_DCP_PACKET0_ADDR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1208,13 +1156,11 @@ typedef union _hw_dcp_packet1
  * Reflects whether the channel should issue an interrupt upon completion of the packet.
  */
 //@{
-
 #define BP_DCP_PACKET1_INTERRUPT      (0)      //!< Bit position for DCP_PACKET1_INTERRUPT.
 #define BM_DCP_PACKET1_INTERRUPT      (0x00000001)  //!< Bit mask for DCP_PACKET1_INTERRUPT.
 
 //! @brief Get value of DCP_PACKET1_INTERRUPT from a register value.
 #define BG_DCP_PACKET1_INTERRUPT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_INTERRUPT) >> BP_DCP_PACKET1_INTERRUPT)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field DECR_SEMAPHORE[1] (RO)
@@ -1224,13 +1170,11 @@ typedef union _hw_dcp_packet1
  * channel.
  */
 //@{
-
 #define BP_DCP_PACKET1_DECR_SEMAPHORE      (1)      //!< Bit position for DCP_PACKET1_DECR_SEMAPHORE.
 #define BM_DCP_PACKET1_DECR_SEMAPHORE      (0x00000002)  //!< Bit mask for DCP_PACKET1_DECR_SEMAPHORE.
 
 //! @brief Get value of DCP_PACKET1_DECR_SEMAPHORE from a register value.
 #define BG_DCP_PACKET1_DECR_SEMAPHORE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_DECR_SEMAPHORE) >> BP_DCP_PACKET1_DECR_SEMAPHORE)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field CHAIN[2] (RO)
@@ -1239,13 +1183,11 @@ typedef union _hw_dcp_packet1
  * descriptor pointer.
  */
 //@{
-
 #define BP_DCP_PACKET1_CHAIN      (2)      //!< Bit position for DCP_PACKET1_CHAIN.
 #define BM_DCP_PACKET1_CHAIN      (0x00000004)  //!< Bit mask for DCP_PACKET1_CHAIN.
 
 //! @brief Get value of DCP_PACKET1_CHAIN from a register value.
 #define BG_DCP_PACKET1_CHAIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_CHAIN) >> BP_DCP_PACKET1_CHAIN)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field CHAIN_CONTIGUOUS[3] (RO)
@@ -1253,13 +1195,11 @@ typedef union _hw_dcp_packet1
  * Reflects whether the next packet's address is located following this packet's payload.
  */
 //@{
-
 #define BP_DCP_PACKET1_CHAIN_CONTIGUOUS      (3)      //!< Bit position for DCP_PACKET1_CHAIN_CONTIGUOUS.
 #define BM_DCP_PACKET1_CHAIN_CONTIGUOUS      (0x00000008)  //!< Bit mask for DCP_PACKET1_CHAIN_CONTIGUOUS.
 
 //! @brief Get value of DCP_PACKET1_CHAIN_CONTIGUOUS from a register value.
 #define BG_DCP_PACKET1_CHAIN_CONTIGUOUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_CHAIN_CONTIGUOUS) >> BP_DCP_PACKET1_CHAIN_CONTIGUOUS)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field ENABLE_MEMCOPY[4] (RO)
@@ -1267,13 +1207,11 @@ typedef union _hw_dcp_packet1
  * Reflects whether the selected hashing function should be enabled for this operation.
  */
 //@{
-
 #define BP_DCP_PACKET1_ENABLE_MEMCOPY      (4)      //!< Bit position for DCP_PACKET1_ENABLE_MEMCOPY.
 #define BM_DCP_PACKET1_ENABLE_MEMCOPY      (0x00000010)  //!< Bit mask for DCP_PACKET1_ENABLE_MEMCOPY.
 
 //! @brief Get value of DCP_PACKET1_ENABLE_MEMCOPY from a register value.
 #define BG_DCP_PACKET1_ENABLE_MEMCOPY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_ENABLE_MEMCOPY) >> BP_DCP_PACKET1_ENABLE_MEMCOPY)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field ENABLE_CIPHER[5] (RO)
@@ -1281,13 +1219,11 @@ typedef union _hw_dcp_packet1
  * Reflects whether the selected cipher function should be enabled for this operation.
  */
 //@{
-
 #define BP_DCP_PACKET1_ENABLE_CIPHER      (5)      //!< Bit position for DCP_PACKET1_ENABLE_CIPHER.
 #define BM_DCP_PACKET1_ENABLE_CIPHER      (0x00000020)  //!< Bit mask for DCP_PACKET1_ENABLE_CIPHER.
 
 //! @brief Get value of DCP_PACKET1_ENABLE_CIPHER from a register value.
 #define BG_DCP_PACKET1_ENABLE_CIPHER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_ENABLE_CIPHER) >> BP_DCP_PACKET1_ENABLE_CIPHER)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field ENABLE_HASH[6] (RO)
@@ -1295,13 +1231,11 @@ typedef union _hw_dcp_packet1
  * Reflects whether the selected hashing function should be enabled for this operation.
  */
 //@{
-
 #define BP_DCP_PACKET1_ENABLE_HASH      (6)      //!< Bit position for DCP_PACKET1_ENABLE_HASH.
 #define BM_DCP_PACKET1_ENABLE_HASH      (0x00000040)  //!< Bit mask for DCP_PACKET1_ENABLE_HASH.
 
 //! @brief Get value of DCP_PACKET1_ENABLE_HASH from a register value.
 #define BG_DCP_PACKET1_ENABLE_HASH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_ENABLE_HASH) >> BP_DCP_PACKET1_ENABLE_HASH)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field ENABLE_BLIT[7] (RO)
@@ -1311,13 +1245,11 @@ typedef union _hw_dcp_packet1
  * treated as two 16-bit values for the X-Y extents of the blit operation.
  */
 //@{
-
 #define BP_DCP_PACKET1_ENABLE_BLIT      (7)      //!< Bit position for DCP_PACKET1_ENABLE_BLIT.
 #define BM_DCP_PACKET1_ENABLE_BLIT      (0x00000080)  //!< Bit mask for DCP_PACKET1_ENABLE_BLIT.
 
 //! @brief Get value of DCP_PACKET1_ENABLE_BLIT from a register value.
 #define BG_DCP_PACKET1_ENABLE_BLIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_ENABLE_BLIT) >> BP_DCP_PACKET1_ENABLE_BLIT)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field CIPHER_ENCRYPT[8] (RO)
@@ -1330,7 +1262,6 @@ typedef union _hw_dcp_packet1
  * - ENCRYPT = 1 - 
  */
 //@{
-
 #define BP_DCP_PACKET1_CIPHER_ENCRYPT      (8)      //!< Bit position for DCP_PACKET1_CIPHER_ENCRYPT.
 #define BM_DCP_PACKET1_CIPHER_ENCRYPT      (0x00000100)  //!< Bit mask for DCP_PACKET1_CIPHER_ENCRYPT.
 
@@ -1342,7 +1273,6 @@ typedef union _hw_dcp_packet1
 
 #define BV_DCP_PACKET1_CIPHER_ENCRYPT__DECRYPT (0x0) //!< 
 #define BV_DCP_PACKET1_CIPHER_ENCRYPT__ENCRYPT (0x1) //!< 
-
 //@}
 
 /*! @name Register DCP_PACKET1, field CIPHER_INIT[9] (RO)
@@ -1351,13 +1281,11 @@ typedef union _hw_dcp_packet1
  * operation.
  */
 //@{
-
 #define BP_DCP_PACKET1_CIPHER_INIT      (9)      //!< Bit position for DCP_PACKET1_CIPHER_INIT.
 #define BM_DCP_PACKET1_CIPHER_INIT      (0x00000200)  //!< Bit mask for DCP_PACKET1_CIPHER_INIT.
 
 //! @brief Get value of DCP_PACKET1_CIPHER_INIT from a register value.
 #define BG_DCP_PACKET1_CIPHER_INIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_CIPHER_INIT) >> BP_DCP_PACKET1_CIPHER_INIT)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field OTP_KEY[10] (RO)
@@ -1367,13 +1295,11 @@ typedef union _hw_dcp_packet1
  * the OTP_KEY bit.
  */
 //@{
-
 #define BP_DCP_PACKET1_OTP_KEY      (10)      //!< Bit position for DCP_PACKET1_OTP_KEY.
 #define BM_DCP_PACKET1_OTP_KEY      (0x00000400)  //!< Bit mask for DCP_PACKET1_OTP_KEY.
 
 //! @brief Get value of DCP_PACKET1_OTP_KEY from a register value.
 #define BG_DCP_PACKET1_OTP_KEY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_OTP_KEY) >> BP_DCP_PACKET1_OTP_KEY)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field PAYLOAD_KEY[11] (RO)
@@ -1382,13 +1308,11 @@ typedef union _hw_dcp_packet1
  * control
  */
 //@{
-
 #define BP_DCP_PACKET1_PAYLOAD_KEY      (11)      //!< Bit position for DCP_PACKET1_PAYLOAD_KEY.
 #define BM_DCP_PACKET1_PAYLOAD_KEY      (0x00000800)  //!< Bit mask for DCP_PACKET1_PAYLOAD_KEY.
 
 //! @brief Get value of DCP_PACKET1_PAYLOAD_KEY from a register value.
 #define BG_DCP_PACKET1_PAYLOAD_KEY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_PAYLOAD_KEY) >> BP_DCP_PACKET1_PAYLOAD_KEY)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field HASH_INIT[12] (RO)
@@ -1397,13 +1321,11 @@ typedef union _hw_dcp_packet1
  * hash registers should be initialized before the operation.
  */
 //@{
-
 #define BP_DCP_PACKET1_HASH_INIT      (12)      //!< Bit position for DCP_PACKET1_HASH_INIT.
 #define BM_DCP_PACKET1_HASH_INIT      (0x00001000)  //!< Bit mask for DCP_PACKET1_HASH_INIT.
 
 //! @brief Get value of DCP_PACKET1_HASH_INIT from a register value.
 #define BG_DCP_PACKET1_HASH_INIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_HASH_INIT) >> BP_DCP_PACKET1_HASH_INIT)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field HASH_TERM[13] (RO)
@@ -1412,13 +1334,11 @@ typedef union _hw_dcp_packet1
  * hash padding should be applied by hardware.
  */
 //@{
-
 #define BP_DCP_PACKET1_HASH_TERM      (13)      //!< Bit position for DCP_PACKET1_HASH_TERM.
 #define BM_DCP_PACKET1_HASH_TERM      (0x00002000)  //!< Bit mask for DCP_PACKET1_HASH_TERM.
 
 //! @brief Get value of DCP_PACKET1_HASH_TERM from a register value.
 #define BG_DCP_PACKET1_HASH_TERM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_HASH_TERM) >> BP_DCP_PACKET1_HASH_TERM)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field CHECK_HASH[14] (RO)
@@ -1427,13 +1347,11 @@ typedef union _hw_dcp_packet1
  * payload.
  */
 //@{
-
 #define BP_DCP_PACKET1_CHECK_HASH      (14)      //!< Bit position for DCP_PACKET1_CHECK_HASH.
 #define BM_DCP_PACKET1_CHECK_HASH      (0x00004000)  //!< Bit mask for DCP_PACKET1_CHECK_HASH.
 
 //! @brief Get value of DCP_PACKET1_CHECK_HASH from a register value.
 #define BG_DCP_PACKET1_CHECK_HASH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_CHECK_HASH) >> BP_DCP_PACKET1_CHECK_HASH)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field HASH_OUTPUT[15] (RO)
@@ -1445,7 +1363,6 @@ typedef union _hw_dcp_packet1
  * - OUTPUT = 1 - 
  */
 //@{
-
 #define BP_DCP_PACKET1_HASH_OUTPUT      (15)      //!< Bit position for DCP_PACKET1_HASH_OUTPUT.
 #define BM_DCP_PACKET1_HASH_OUTPUT      (0x00008000)  //!< Bit mask for DCP_PACKET1_HASH_OUTPUT.
 
@@ -1457,7 +1374,6 @@ typedef union _hw_dcp_packet1
 
 #define BV_DCP_PACKET1_HASH_OUTPUT__INPUT (0x0) //!< 
 #define BV_DCP_PACKET1_HASH_OUTPUT__OUTPUT (0x1) //!< 
-
 //@}
 
 /*! @name Register DCP_PACKET1, field CONSTANT_FILL[16] (RO)
@@ -1466,13 +1382,11 @@ typedef union _hw_dcp_packet1
  * buffer with the value found in the Source Address field.
  */
 //@{
-
 #define BP_DCP_PACKET1_CONSTANT_FILL      (16)      //!< Bit position for DCP_PACKET1_CONSTANT_FILL.
 #define BM_DCP_PACKET1_CONSTANT_FILL      (0x00010000)  //!< Bit mask for DCP_PACKET1_CONSTANT_FILL.
 
 //! @brief Get value of DCP_PACKET1_CONSTANT_FILL from a register value.
 #define BG_DCP_PACKET1_CONSTANT_FILL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_CONSTANT_FILL) >> BP_DCP_PACKET1_CONSTANT_FILL)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field TEST_SEMA_IRQ[17] (RO)
@@ -1480,13 +1394,11 @@ typedef union _hw_dcp_packet1
  * This bit is used to test the channel semaphore transition to 0. FOR TEST USE ONLY!
  */
 //@{
-
 #define BP_DCP_PACKET1_TEST_SEMA_IRQ      (17)      //!< Bit position for DCP_PACKET1_TEST_SEMA_IRQ.
 #define BM_DCP_PACKET1_TEST_SEMA_IRQ      (0x00020000)  //!< Bit mask for DCP_PACKET1_TEST_SEMA_IRQ.
 
 //! @brief Get value of DCP_PACKET1_TEST_SEMA_IRQ from a register value.
 #define BG_DCP_PACKET1_TEST_SEMA_IRQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_TEST_SEMA_IRQ) >> BP_DCP_PACKET1_TEST_SEMA_IRQ)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field KEY_BYTESWAP[18] (RO)
@@ -1494,13 +1406,11 @@ typedef union _hw_dcp_packet1
  * Reflects whether the DCP engine will swap key bytes (big-endian key).
  */
 //@{
-
 #define BP_DCP_PACKET1_KEY_BYTESWAP      (18)      //!< Bit position for DCP_PACKET1_KEY_BYTESWAP.
 #define BM_DCP_PACKET1_KEY_BYTESWAP      (0x00040000)  //!< Bit mask for DCP_PACKET1_KEY_BYTESWAP.
 
 //! @brief Get value of DCP_PACKET1_KEY_BYTESWAP from a register value.
 #define BG_DCP_PACKET1_KEY_BYTESWAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_KEY_BYTESWAP) >> BP_DCP_PACKET1_KEY_BYTESWAP)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field KEY_WORDSWAP[19] (RO)
@@ -1508,13 +1418,11 @@ typedef union _hw_dcp_packet1
  * Reflects whether the DCP engine will swap key words (big-endian key).
  */
 //@{
-
 #define BP_DCP_PACKET1_KEY_WORDSWAP      (19)      //!< Bit position for DCP_PACKET1_KEY_WORDSWAP.
 #define BM_DCP_PACKET1_KEY_WORDSWAP      (0x00080000)  //!< Bit mask for DCP_PACKET1_KEY_WORDSWAP.
 
 //! @brief Get value of DCP_PACKET1_KEY_WORDSWAP from a register value.
 #define BG_DCP_PACKET1_KEY_WORDSWAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_KEY_WORDSWAP) >> BP_DCP_PACKET1_KEY_WORDSWAP)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field INPUT_BYTESWAP[20] (RO)
@@ -1522,13 +1430,11 @@ typedef union _hw_dcp_packet1
  * Reflects whether the DCP engine will byteswap input data (big-endian data).
  */
 //@{
-
 #define BP_DCP_PACKET1_INPUT_BYTESWAP      (20)      //!< Bit position for DCP_PACKET1_INPUT_BYTESWAP.
 #define BM_DCP_PACKET1_INPUT_BYTESWAP      (0x00100000)  //!< Bit mask for DCP_PACKET1_INPUT_BYTESWAP.
 
 //! @brief Get value of DCP_PACKET1_INPUT_BYTESWAP from a register value.
 #define BG_DCP_PACKET1_INPUT_BYTESWAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_INPUT_BYTESWAP) >> BP_DCP_PACKET1_INPUT_BYTESWAP)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field INPUT_WORDSWAP[21] (RO)
@@ -1536,13 +1442,11 @@ typedef union _hw_dcp_packet1
  * Reflects whether the DCP engine will wordswap input data (big-endian data).
  */
 //@{
-
 #define BP_DCP_PACKET1_INPUT_WORDSWAP      (21)      //!< Bit position for DCP_PACKET1_INPUT_WORDSWAP.
 #define BM_DCP_PACKET1_INPUT_WORDSWAP      (0x00200000)  //!< Bit mask for DCP_PACKET1_INPUT_WORDSWAP.
 
 //! @brief Get value of DCP_PACKET1_INPUT_WORDSWAP from a register value.
 #define BG_DCP_PACKET1_INPUT_WORDSWAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_INPUT_WORDSWAP) >> BP_DCP_PACKET1_INPUT_WORDSWAP)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field OUTPUT_BYTESWAP[22] (RO)
@@ -1550,13 +1454,11 @@ typedef union _hw_dcp_packet1
  * Reflects whether the DCP engine will byteswap output data (big-endian data).
  */
 //@{
-
 #define BP_DCP_PACKET1_OUTPUT_BYTESWAP      (22)      //!< Bit position for DCP_PACKET1_OUTPUT_BYTESWAP.
 #define BM_DCP_PACKET1_OUTPUT_BYTESWAP      (0x00400000)  //!< Bit mask for DCP_PACKET1_OUTPUT_BYTESWAP.
 
 //! @brief Get value of DCP_PACKET1_OUTPUT_BYTESWAP from a register value.
 #define BG_DCP_PACKET1_OUTPUT_BYTESWAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_OUTPUT_BYTESWAP) >> BP_DCP_PACKET1_OUTPUT_BYTESWAP)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field OUTPUT_WORDSWAP[23] (RO)
@@ -1564,13 +1466,11 @@ typedef union _hw_dcp_packet1
  * Reflects whether the DCP engine will wordswap output data (big-endian data).
  */
 //@{
-
 #define BP_DCP_PACKET1_OUTPUT_WORDSWAP      (23)      //!< Bit position for DCP_PACKET1_OUTPUT_WORDSWAP.
 #define BM_DCP_PACKET1_OUTPUT_WORDSWAP      (0x00800000)  //!< Bit mask for DCP_PACKET1_OUTPUT_WORDSWAP.
 
 //! @brief Get value of DCP_PACKET1_OUTPUT_WORDSWAP from a register value.
 #define BG_DCP_PACKET1_OUTPUT_WORDSWAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_OUTPUT_WORDSWAP) >> BP_DCP_PACKET1_OUTPUT_WORDSWAP)
-
 //@}
 
 /*! @name Register DCP_PACKET1, field TAG[31:24] (RO)
@@ -1578,13 +1478,11 @@ typedef union _hw_dcp_packet1
  * Packet Tag
  */
 //@{
-
 #define BP_DCP_PACKET1_TAG      (24)      //!< Bit position for DCP_PACKET1_TAG.
 #define BM_DCP_PACKET1_TAG      (0xff000000)  //!< Bit mask for DCP_PACKET1_TAG.
 
 //! @brief Get value of DCP_PACKET1_TAG from a register value.
 #define BG_DCP_PACKET1_TAG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET1_TAG) >> BP_DCP_PACKET1_TAG)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1639,7 +1537,6 @@ typedef union _hw_dcp_packet2
  * - AES128 = 0x00 - 
  */
 //@{
-
 #define BP_DCP_PACKET2_CIPHER_SELECT      (0)      //!< Bit position for DCP_PACKET2_CIPHER_SELECT.
 #define BM_DCP_PACKET2_CIPHER_SELECT      (0x0000000f)  //!< Bit mask for DCP_PACKET2_CIPHER_SELECT.
 
@@ -1650,7 +1547,6 @@ typedef union _hw_dcp_packet2
 #define BF_DCP_PACKET2_CIPHER_SELECT_V(v) BF_DCP_PACKET2_CIPHER_SELECT(BV_DCP_PACKET2_CIPHER_SELECT__##v)
 
 #define BV_DCP_PACKET2_CIPHER_SELECT__AES128 (0x0) //!< 
-
 //@}
 
 /*! @name Register DCP_PACKET2, field CIPHER_MODE[7:4] (RO)
@@ -1662,7 +1558,6 @@ typedef union _hw_dcp_packet2
  * - CBC = 0x01 - 
  */
 //@{
-
 #define BP_DCP_PACKET2_CIPHER_MODE      (4)      //!< Bit position for DCP_PACKET2_CIPHER_MODE.
 #define BM_DCP_PACKET2_CIPHER_MODE      (0x000000f0)  //!< Bit mask for DCP_PACKET2_CIPHER_MODE.
 
@@ -1674,7 +1569,6 @@ typedef union _hw_dcp_packet2
 
 #define BV_DCP_PACKET2_CIPHER_MODE__ECB (0x0) //!< 
 #define BV_DCP_PACKET2_CIPHER_MODE__CBC (0x1) //!< 
-
 //@}
 
 /*! @name Register DCP_PACKET2, field KEY_SELECT[15:8] (RO)
@@ -1692,7 +1586,6 @@ typedef union _hw_dcp_packet2
  * - OTP_KEY = 0xFF - 
  */
 //@{
-
 #define BP_DCP_PACKET2_KEY_SELECT      (8)      //!< Bit position for DCP_PACKET2_KEY_SELECT.
 #define BM_DCP_PACKET2_KEY_SELECT      (0x0000ff00)  //!< Bit mask for DCP_PACKET2_KEY_SELECT.
 
@@ -1708,7 +1601,6 @@ typedef union _hw_dcp_packet2
 #define BV_DCP_PACKET2_KEY_SELECT__KEY3 (0x3) //!< 
 #define BV_DCP_PACKET2_KEY_SELECT__UNIQUE_KEY (0xfe) //!< 
 #define BV_DCP_PACKET2_KEY_SELECT__OTP_KEY (0xff) //!< 
-
 //@}
 
 /*! @name Register DCP_PACKET2, field HASH_SELECT[19:16] (RO)
@@ -1721,7 +1613,6 @@ typedef union _hw_dcp_packet2
  * - SHA256 = 0x02 - 
  */
 //@{
-
 #define BP_DCP_PACKET2_HASH_SELECT      (16)      //!< Bit position for DCP_PACKET2_HASH_SELECT.
 #define BM_DCP_PACKET2_HASH_SELECT      (0x000f0000)  //!< Bit mask for DCP_PACKET2_HASH_SELECT.
 
@@ -1734,7 +1625,6 @@ typedef union _hw_dcp_packet2
 #define BV_DCP_PACKET2_HASH_SELECT__SHA1 (0x0) //!< 
 #define BV_DCP_PACKET2_HASH_SELECT__CRC32 (0x1) //!< 
 #define BV_DCP_PACKET2_HASH_SELECT__SHA256 (0x2) //!< 
-
 //@}
 
 /*! @name Register DCP_PACKET2, field CIPHER_CFG[31:24] (RO)
@@ -1742,13 +1632,11 @@ typedef union _hw_dcp_packet2
  * Cipher configuration bits. Optional configuration bits required for ciphers
  */
 //@{
-
 #define BP_DCP_PACKET2_CIPHER_CFG      (24)      //!< Bit position for DCP_PACKET2_CIPHER_CFG.
 #define BM_DCP_PACKET2_CIPHER_CFG      (0xff000000)  //!< Bit mask for DCP_PACKET2_CIPHER_CFG.
 
 //! @brief Get value of DCP_PACKET2_CIPHER_CFG from a register value.
 #define BG_DCP_PACKET2_CIPHER_CFG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET2_CIPHER_CFG) >> BP_DCP_PACKET2_CIPHER_CFG)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1798,13 +1686,11 @@ typedef union _hw_dcp_packet3
  * proceeds.
  */
 //@{
-
 #define BP_DCP_PACKET3_ADDR      (0)      //!< Bit position for DCP_PACKET3_ADDR.
 #define BM_DCP_PACKET3_ADDR      (0xffffffff)  //!< Bit mask for DCP_PACKET3_ADDR.
 
 //! @brief Get value of DCP_PACKET3_ADDR from a register value.
 #define BG_DCP_PACKET3_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET3_ADDR) >> BP_DCP_PACKET3_ADDR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1853,13 +1739,11 @@ typedef union _hw_dcp_packet4
  * operation proceeds.
  */
 //@{
-
 #define BP_DCP_PACKET4_ADDR      (0)      //!< Bit position for DCP_PACKET4_ADDR.
 #define BM_DCP_PACKET4_ADDR      (0xffffffff)  //!< Bit mask for DCP_PACKET4_ADDR.
 
 //! @brief Get value of DCP_PACKET4_ADDR from a register value.
 #define BG_DCP_PACKET4_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET4_ADDR) >> BP_DCP_PACKET4_ADDR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1911,13 +1795,11 @@ typedef union _hw_dcp_packet5
  * Byte Count register. This value is the working value and will update as the operation proceeds.
  */
 //@{
-
 #define BP_DCP_PACKET5_COUNT      (0)      //!< Bit position for DCP_PACKET5_COUNT.
 #define BM_DCP_PACKET5_COUNT      (0xffffffff)  //!< Bit mask for DCP_PACKET5_COUNT.
 
 //! @brief Get value of DCP_PACKET5_COUNT from a register value.
 #define BG_DCP_PACKET5_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET5_COUNT) >> BP_DCP_PACKET5_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1965,13 +1847,11 @@ typedef union _hw_dcp_packet6
  * This regiser reflects the payload pointer for the current control packet.
  */
 //@{
-
 #define BP_DCP_PACKET6_ADDR      (0)      //!< Bit position for DCP_PACKET6_ADDR.
 #define BM_DCP_PACKET6_ADDR      (0xffffffff)  //!< Bit mask for DCP_PACKET6_ADDR.
 
 //! @brief Get value of DCP_PACKET6_ADDR from a register value.
 #define BG_DCP_PACKET6_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_PACKET6_ADDR) >> BP_DCP_PACKET6_ADDR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2030,7 +1910,6 @@ typedef union _hw_dcp_ch0cmdptr
  * Pointer to descriptor structure to be processed for channel 0.
  */
 //@{
-
 #define BP_DCP_CH0CMDPTR_ADDR      (0)      //!< Bit position for DCP_CH0CMDPTR_ADDR.
 #define BM_DCP_CH0CMDPTR_ADDR      (0xffffffff)  //!< Bit mask for DCP_CH0CMDPTR_ADDR.
 
@@ -2044,7 +1923,6 @@ typedef union _hw_dcp_ch0cmdptr
 //! @brief Set the ADDR field to a new value.
 #define BW_DCP_CH0CMDPTR_ADDR(v)   (HW_DCP_CH0CMDPTR_WR((HW_DCP_CH0CMDPTR_RD() & ~BM_DCP_CH0CMDPTR_ADDR) | BF_DCP_CH0CMDPTR_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2119,7 +1997,6 @@ typedef union _hw_dcp_ch0sema
  * register.
  */
 //@{
-
 #define BP_DCP_CH0SEMA_INCREMENT      (0)      //!< Bit position for DCP_CH0SEMA_INCREMENT.
 #define BM_DCP_CH0SEMA_INCREMENT      (0x000000ff)  //!< Bit mask for DCP_CH0SEMA_INCREMENT.
 
@@ -2133,7 +2010,6 @@ typedef union _hw_dcp_ch0sema
 //! @brief Set the INCREMENT field to a new value.
 #define BW_DCP_CH0SEMA_INCREMENT(v)   (HW_DCP_CH0SEMA_WR((HW_DCP_CH0SEMA_RD() & ~BM_DCP_CH0SEMA_INCREMENT) | BF_DCP_CH0SEMA_INCREMENT(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH0SEMA, field VALUE[23:16] (RO)
@@ -2141,13 +2017,11 @@ typedef union _hw_dcp_ch0sema
  * This read-only field shows the current (instantaneous) value of the semaphore counter.
  */
 //@{
-
 #define BP_DCP_CH0SEMA_VALUE      (16)      //!< Bit position for DCP_CH0SEMA_VALUE.
 #define BM_DCP_CH0SEMA_VALUE      (0x00ff0000)  //!< Bit mask for DCP_CH0SEMA_VALUE.
 
 //! @brief Get value of DCP_CH0SEMA_VALUE from a register value.
 #define BG_DCP_CH0SEMA_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_CH0SEMA_VALUE) >> BP_DCP_CH0SEMA_VALUE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2215,7 +2089,6 @@ typedef union _hw_dcp_ch0stat
  * handled by software.
  */
 //@{
-
 #define BP_DCP_CH0STAT_HASH_MISMATCH      (1)      //!< Bit position for DCP_CH0STAT_HASH_MISMATCH.
 #define BM_DCP_CH0STAT_HASH_MISMATCH      (0x00000002)  //!< Bit mask for DCP_CH0STAT_HASH_MISMATCH.
 
@@ -2229,7 +2102,6 @@ typedef union _hw_dcp_ch0stat
 //! @brief Set the HASH_MISMATCH field to a new value.
 #define BW_DCP_CH0STAT_HASH_MISMATCH(v)   (HW_DCP_CH0STAT_WR((HW_DCP_CH0STAT_RD() & ~BM_DCP_CH0STAT_HASH_MISMATCH) | BF_DCP_CH0STAT_HASH_MISMATCH(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH0STAT, field ERROR_SETUP[2] (RW)
@@ -2239,7 +2111,6 @@ typedef union _hw_dcp_ch0stat
  * detected, the channel's processing will stop until the error is handled by software.
  */
 //@{
-
 #define BP_DCP_CH0STAT_ERROR_SETUP      (2)      //!< Bit position for DCP_CH0STAT_ERROR_SETUP.
 #define BM_DCP_CH0STAT_ERROR_SETUP      (0x00000004)  //!< Bit mask for DCP_CH0STAT_ERROR_SETUP.
 
@@ -2253,7 +2124,6 @@ typedef union _hw_dcp_ch0stat
 //! @brief Set the ERROR_SETUP field to a new value.
 #define BW_DCP_CH0STAT_ERROR_SETUP(v)   (HW_DCP_CH0STAT_WR((HW_DCP_CH0STAT_RD() & ~BM_DCP_CH0STAT_ERROR_SETUP) | BF_DCP_CH0STAT_ERROR_SETUP(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH0STAT, field ERROR_PACKET[3] (RW)
@@ -2263,7 +2133,6 @@ typedef union _hw_dcp_ch0stat
  * until the error is handled by software.
  */
 //@{
-
 #define BP_DCP_CH0STAT_ERROR_PACKET      (3)      //!< Bit position for DCP_CH0STAT_ERROR_PACKET.
 #define BM_DCP_CH0STAT_ERROR_PACKET      (0x00000008)  //!< Bit mask for DCP_CH0STAT_ERROR_PACKET.
 
@@ -2277,7 +2146,6 @@ typedef union _hw_dcp_ch0stat
 //! @brief Set the ERROR_PACKET field to a new value.
 #define BW_DCP_CH0STAT_ERROR_PACKET(v)   (HW_DCP_CH0STAT_WR((HW_DCP_CH0STAT_RD() & ~BM_DCP_CH0STAT_ERROR_PACKET) | BF_DCP_CH0STAT_ERROR_PACKET(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH0STAT, field ERROR_SRC[4] (RW)
@@ -2286,7 +2154,6 @@ typedef union _hw_dcp_ch0stat
  * detected, the channel's processing will stop until the error handled by software.
  */
 //@{
-
 #define BP_DCP_CH0STAT_ERROR_SRC      (4)      //!< Bit position for DCP_CH0STAT_ERROR_SRC.
 #define BM_DCP_CH0STAT_ERROR_SRC      (0x00000010)  //!< Bit mask for DCP_CH0STAT_ERROR_SRC.
 
@@ -2300,7 +2167,6 @@ typedef union _hw_dcp_ch0stat
 //! @brief Set the ERROR_SRC field to a new value.
 #define BW_DCP_CH0STAT_ERROR_SRC(v)   (HW_DCP_CH0STAT_WR((HW_DCP_CH0STAT_RD() & ~BM_DCP_CH0STAT_ERROR_SRC) | BF_DCP_CH0STAT_ERROR_SRC(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH0STAT, field ERROR_DST[5] (RW)
@@ -2309,7 +2175,6 @@ typedef union _hw_dcp_ch0stat
  * detected, the channel's processing will stop until the error handled by software.
  */
 //@{
-
 #define BP_DCP_CH0STAT_ERROR_DST      (5)      //!< Bit position for DCP_CH0STAT_ERROR_DST.
 #define BM_DCP_CH0STAT_ERROR_DST      (0x00000020)  //!< Bit mask for DCP_CH0STAT_ERROR_DST.
 
@@ -2323,7 +2188,6 @@ typedef union _hw_dcp_ch0stat
 //! @brief Set the ERROR_DST field to a new value.
 #define BW_DCP_CH0STAT_ERROR_DST(v)   (HW_DCP_CH0STAT_WR((HW_DCP_CH0STAT_RD() & ~BM_DCP_CH0STAT_ERROR_DST) | BF_DCP_CH0STAT_ERROR_DST(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH0STAT, field ERROR_PAGEFAULT[6] (RW)
@@ -2333,7 +2197,6 @@ typedef union _hw_dcp_ch0stat
  * by software.
  */
 //@{
-
 #define BP_DCP_CH0STAT_ERROR_PAGEFAULT      (6)      //!< Bit position for DCP_CH0STAT_ERROR_PAGEFAULT.
 #define BM_DCP_CH0STAT_ERROR_PAGEFAULT      (0x00000040)  //!< Bit mask for DCP_CH0STAT_ERROR_PAGEFAULT.
 
@@ -2347,7 +2210,6 @@ typedef union _hw_dcp_ch0stat
 //! @brief Set the ERROR_PAGEFAULT field to a new value.
 #define BW_DCP_CH0STAT_ERROR_PAGEFAULT(v)   (HW_DCP_CH0STAT_WR((HW_DCP_CH0STAT_RD() & ~BM_DCP_CH0STAT_ERROR_PAGEFAULT) | BF_DCP_CH0STAT_ERROR_PAGEFAULT(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH0STAT, field ERROR_CODE[23:16] (RW)
@@ -2363,7 +2225,6 @@ typedef union _hw_dcp_ch0stat
  *     hash)
  */
 //@{
-
 #define BP_DCP_CH0STAT_ERROR_CODE      (16)      //!< Bit position for DCP_CH0STAT_ERROR_CODE.
 #define BM_DCP_CH0STAT_ERROR_CODE      (0x00ff0000)  //!< Bit mask for DCP_CH0STAT_ERROR_CODE.
 
@@ -2386,7 +2247,6 @@ typedef union _hw_dcp_ch0stat
 #define BV_DCP_CH0STAT_ERROR_CODE__CONTEXT_ERROR (0x3) //!< Error signalled because an error was reported reading/writing the context buffer
 #define BV_DCP_CH0STAT_ERROR_CODE__PAYLOAD_ERROR (0x4) //!< Error signalled because an error was reported reading/writing the payload
 #define BV_DCP_CH0STAT_ERROR_CODE__INVALID_MODE (0x5) //!< Error signalled because the control packet specifies an invalid mode select (for instance, blit + hash)
-
 //@}
 
 /*! @name Register DCP_CH0STAT, field TAG[31:24] (RO)
@@ -2394,13 +2254,11 @@ typedef union _hw_dcp_ch0stat
  * Indicates the tag from the last completed packet in the command structure
  */
 //@{
-
 #define BP_DCP_CH0STAT_TAG      (24)      //!< Bit position for DCP_CH0STAT_TAG.
 #define BM_DCP_CH0STAT_TAG      (0xff000000)  //!< Bit mask for DCP_CH0STAT_TAG.
 
 //! @brief Get value of DCP_CH0STAT_TAG from a register value.
 #define BG_DCP_CH0STAT_TAG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_CH0STAT_TAG) >> BP_DCP_CH0STAT_TAG)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2458,7 +2316,6 @@ typedef union _hw_dcp_ch0opts
  * providing a range of 0ns to 8.3ms at 133 MHz operation.
  */
 //@{
-
 #define BP_DCP_CH0OPTS_RECOVERY_TIMER      (0)      //!< Bit position for DCP_CH0OPTS_RECOVERY_TIMER.
 #define BM_DCP_CH0OPTS_RECOVERY_TIMER      (0x0000ffff)  //!< Bit mask for DCP_CH0OPTS_RECOVERY_TIMER.
 
@@ -2472,7 +2329,6 @@ typedef union _hw_dcp_ch0opts
 //! @brief Set the RECOVERY_TIMER field to a new value.
 #define BW_DCP_CH0OPTS_RECOVERY_TIMER(v)   (HW_DCP_CH0OPTS_WR((HW_DCP_CH0OPTS_RD() & ~BM_DCP_CH0OPTS_RECOVERY_TIMER) | BF_DCP_CH0OPTS_RECOVERY_TIMER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2531,7 +2387,6 @@ typedef union _hw_dcp_ch1cmdptr
  * Pointer to descriptor structure to be processed for channel 1.
  */
 //@{
-
 #define BP_DCP_CH1CMDPTR_ADDR      (0)      //!< Bit position for DCP_CH1CMDPTR_ADDR.
 #define BM_DCP_CH1CMDPTR_ADDR      (0xffffffff)  //!< Bit mask for DCP_CH1CMDPTR_ADDR.
 
@@ -2545,7 +2400,6 @@ typedef union _hw_dcp_ch1cmdptr
 //! @brief Set the ADDR field to a new value.
 #define BW_DCP_CH1CMDPTR_ADDR(v)   (HW_DCP_CH1CMDPTR_WR((HW_DCP_CH1CMDPTR_RD() & ~BM_DCP_CH1CMDPTR_ADDR) | BF_DCP_CH1CMDPTR_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2619,7 +2473,6 @@ typedef union _hw_dcp_ch1sema
  * register.
  */
 //@{
-
 #define BP_DCP_CH1SEMA_INCREMENT      (0)      //!< Bit position for DCP_CH1SEMA_INCREMENT.
 #define BM_DCP_CH1SEMA_INCREMENT      (0x000000ff)  //!< Bit mask for DCP_CH1SEMA_INCREMENT.
 
@@ -2633,7 +2486,6 @@ typedef union _hw_dcp_ch1sema
 //! @brief Set the INCREMENT field to a new value.
 #define BW_DCP_CH1SEMA_INCREMENT(v)   (HW_DCP_CH1SEMA_WR((HW_DCP_CH1SEMA_RD() & ~BM_DCP_CH1SEMA_INCREMENT) | BF_DCP_CH1SEMA_INCREMENT(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH1SEMA, field VALUE[23:16] (RO)
@@ -2641,13 +2493,11 @@ typedef union _hw_dcp_ch1sema
  * This read-only field shows the current (instantaneous) value of the semaphore counter.
  */
 //@{
-
 #define BP_DCP_CH1SEMA_VALUE      (16)      //!< Bit position for DCP_CH1SEMA_VALUE.
 #define BM_DCP_CH1SEMA_VALUE      (0x00ff0000)  //!< Bit mask for DCP_CH1SEMA_VALUE.
 
 //! @brief Get value of DCP_CH1SEMA_VALUE from a register value.
 #define BG_DCP_CH1SEMA_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_CH1SEMA_VALUE) >> BP_DCP_CH1SEMA_VALUE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2715,7 +2565,6 @@ typedef union _hw_dcp_ch1stat
  * handled by software.
  */
 //@{
-
 #define BP_DCP_CH1STAT_HASH_MISMATCH      (1)      //!< Bit position for DCP_CH1STAT_HASH_MISMATCH.
 #define BM_DCP_CH1STAT_HASH_MISMATCH      (0x00000002)  //!< Bit mask for DCP_CH1STAT_HASH_MISMATCH.
 
@@ -2729,7 +2578,6 @@ typedef union _hw_dcp_ch1stat
 //! @brief Set the HASH_MISMATCH field to a new value.
 #define BW_DCP_CH1STAT_HASH_MISMATCH(v)   (HW_DCP_CH1STAT_WR((HW_DCP_CH1STAT_RD() & ~BM_DCP_CH1STAT_HASH_MISMATCH) | BF_DCP_CH1STAT_HASH_MISMATCH(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH1STAT, field ERROR_SETUP[2] (RW)
@@ -2739,7 +2587,6 @@ typedef union _hw_dcp_ch1stat
  * detected, the channel's processing will stop until the error is handled by software.
  */
 //@{
-
 #define BP_DCP_CH1STAT_ERROR_SETUP      (2)      //!< Bit position for DCP_CH1STAT_ERROR_SETUP.
 #define BM_DCP_CH1STAT_ERROR_SETUP      (0x00000004)  //!< Bit mask for DCP_CH1STAT_ERROR_SETUP.
 
@@ -2753,7 +2600,6 @@ typedef union _hw_dcp_ch1stat
 //! @brief Set the ERROR_SETUP field to a new value.
 #define BW_DCP_CH1STAT_ERROR_SETUP(v)   (HW_DCP_CH1STAT_WR((HW_DCP_CH1STAT_RD() & ~BM_DCP_CH1STAT_ERROR_SETUP) | BF_DCP_CH1STAT_ERROR_SETUP(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH1STAT, field ERROR_PACKET[3] (RW)
@@ -2763,7 +2609,6 @@ typedef union _hw_dcp_ch1stat
  * until the error is handled by software.
  */
 //@{
-
 #define BP_DCP_CH1STAT_ERROR_PACKET      (3)      //!< Bit position for DCP_CH1STAT_ERROR_PACKET.
 #define BM_DCP_CH1STAT_ERROR_PACKET      (0x00000008)  //!< Bit mask for DCP_CH1STAT_ERROR_PACKET.
 
@@ -2777,7 +2622,6 @@ typedef union _hw_dcp_ch1stat
 //! @brief Set the ERROR_PACKET field to a new value.
 #define BW_DCP_CH1STAT_ERROR_PACKET(v)   (HW_DCP_CH1STAT_WR((HW_DCP_CH1STAT_RD() & ~BM_DCP_CH1STAT_ERROR_PACKET) | BF_DCP_CH1STAT_ERROR_PACKET(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH1STAT, field ERROR_SRC[4] (RW)
@@ -2786,7 +2630,6 @@ typedef union _hw_dcp_ch1stat
  * detected, the channel's processing will stop until the error handled by software.
  */
 //@{
-
 #define BP_DCP_CH1STAT_ERROR_SRC      (4)      //!< Bit position for DCP_CH1STAT_ERROR_SRC.
 #define BM_DCP_CH1STAT_ERROR_SRC      (0x00000010)  //!< Bit mask for DCP_CH1STAT_ERROR_SRC.
 
@@ -2800,7 +2643,6 @@ typedef union _hw_dcp_ch1stat
 //! @brief Set the ERROR_SRC field to a new value.
 #define BW_DCP_CH1STAT_ERROR_SRC(v)   (HW_DCP_CH1STAT_WR((HW_DCP_CH1STAT_RD() & ~BM_DCP_CH1STAT_ERROR_SRC) | BF_DCP_CH1STAT_ERROR_SRC(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH1STAT, field ERROR_DST[5] (RW)
@@ -2809,7 +2651,6 @@ typedef union _hw_dcp_ch1stat
  * detected, the channel's processing will stop until the error handled by software.
  */
 //@{
-
 #define BP_DCP_CH1STAT_ERROR_DST      (5)      //!< Bit position for DCP_CH1STAT_ERROR_DST.
 #define BM_DCP_CH1STAT_ERROR_DST      (0x00000020)  //!< Bit mask for DCP_CH1STAT_ERROR_DST.
 
@@ -2823,7 +2664,6 @@ typedef union _hw_dcp_ch1stat
 //! @brief Set the ERROR_DST field to a new value.
 #define BW_DCP_CH1STAT_ERROR_DST(v)   (HW_DCP_CH1STAT_WR((HW_DCP_CH1STAT_RD() & ~BM_DCP_CH1STAT_ERROR_DST) | BF_DCP_CH1STAT_ERROR_DST(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH1STAT, field ERROR_PAGEFAULT[6] (RW)
@@ -2833,7 +2673,6 @@ typedef union _hw_dcp_ch1stat
  * by software.
  */
 //@{
-
 #define BP_DCP_CH1STAT_ERROR_PAGEFAULT      (6)      //!< Bit position for DCP_CH1STAT_ERROR_PAGEFAULT.
 #define BM_DCP_CH1STAT_ERROR_PAGEFAULT      (0x00000040)  //!< Bit mask for DCP_CH1STAT_ERROR_PAGEFAULT.
 
@@ -2847,7 +2686,6 @@ typedef union _hw_dcp_ch1stat
 //! @brief Set the ERROR_PAGEFAULT field to a new value.
 #define BW_DCP_CH1STAT_ERROR_PAGEFAULT(v)   (HW_DCP_CH1STAT_WR((HW_DCP_CH1STAT_RD() & ~BM_DCP_CH1STAT_ERROR_PAGEFAULT) | BF_DCP_CH1STAT_ERROR_PAGEFAULT(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH1STAT, field ERROR_CODE[23:16] (RW)
@@ -2863,7 +2701,6 @@ typedef union _hw_dcp_ch1stat
  *     hash)
  */
 //@{
-
 #define BP_DCP_CH1STAT_ERROR_CODE      (16)      //!< Bit position for DCP_CH1STAT_ERROR_CODE.
 #define BM_DCP_CH1STAT_ERROR_CODE      (0x00ff0000)  //!< Bit mask for DCP_CH1STAT_ERROR_CODE.
 
@@ -2886,7 +2723,6 @@ typedef union _hw_dcp_ch1stat
 #define BV_DCP_CH1STAT_ERROR_CODE__CONTEXT_ERROR (0x3) //!< Error signalled because an error was reported reading/writing the context buffer
 #define BV_DCP_CH1STAT_ERROR_CODE__PAYLOAD_ERROR (0x4) //!< Error signalled because an error was reported reading/writing the payload
 #define BV_DCP_CH1STAT_ERROR_CODE__INVALID_MODE (0x5) //!< Error signalled because the control packet specifies an invalid mode select (for instance, blit + hash)
-
 //@}
 
 /*! @name Register DCP_CH1STAT, field TAG[31:24] (RO)
@@ -2894,13 +2730,11 @@ typedef union _hw_dcp_ch1stat
  * Indicates the tag from the last completed packet in the command structure
  */
 //@{
-
 #define BP_DCP_CH1STAT_TAG      (24)      //!< Bit position for DCP_CH1STAT_TAG.
 #define BM_DCP_CH1STAT_TAG      (0xff000000)  //!< Bit mask for DCP_CH1STAT_TAG.
 
 //! @brief Get value of DCP_CH1STAT_TAG from a register value.
 #define BG_DCP_CH1STAT_TAG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_CH1STAT_TAG) >> BP_DCP_CH1STAT_TAG)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2958,7 +2792,6 @@ typedef union _hw_dcp_ch1opts
  * range of 0ns to 8.3ms at 133 MHz operation.
  */
 //@{
-
 #define BP_DCP_CH1OPTS_RECOVERY_TIMER      (0)      //!< Bit position for DCP_CH1OPTS_RECOVERY_TIMER.
 #define BM_DCP_CH1OPTS_RECOVERY_TIMER      (0x0000ffff)  //!< Bit mask for DCP_CH1OPTS_RECOVERY_TIMER.
 
@@ -2972,7 +2805,6 @@ typedef union _hw_dcp_ch1opts
 //! @brief Set the RECOVERY_TIMER field to a new value.
 #define BW_DCP_CH1OPTS_RECOVERY_TIMER(v)   (HW_DCP_CH1OPTS_WR((HW_DCP_CH1OPTS_RD() & ~BM_DCP_CH1OPTS_RECOVERY_TIMER) | BF_DCP_CH1OPTS_RECOVERY_TIMER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3031,7 +2863,6 @@ typedef union _hw_dcp_ch2cmdptr
  * Pointer to descriptor structure to be processed for channel 2.
  */
 //@{
-
 #define BP_DCP_CH2CMDPTR_ADDR      (0)      //!< Bit position for DCP_CH2CMDPTR_ADDR.
 #define BM_DCP_CH2CMDPTR_ADDR      (0xffffffff)  //!< Bit mask for DCP_CH2CMDPTR_ADDR.
 
@@ -3045,7 +2876,6 @@ typedef union _hw_dcp_ch2cmdptr
 //! @brief Set the ADDR field to a new value.
 #define BW_DCP_CH2CMDPTR_ADDR(v)   (HW_DCP_CH2CMDPTR_WR((HW_DCP_CH2CMDPTR_RD() & ~BM_DCP_CH2CMDPTR_ADDR) | BF_DCP_CH2CMDPTR_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3119,7 +2949,6 @@ typedef union _hw_dcp_ch2sema
  * register.
  */
 //@{
-
 #define BP_DCP_CH2SEMA_INCREMENT      (0)      //!< Bit position for DCP_CH2SEMA_INCREMENT.
 #define BM_DCP_CH2SEMA_INCREMENT      (0x000000ff)  //!< Bit mask for DCP_CH2SEMA_INCREMENT.
 
@@ -3133,7 +2962,6 @@ typedef union _hw_dcp_ch2sema
 //! @brief Set the INCREMENT field to a new value.
 #define BW_DCP_CH2SEMA_INCREMENT(v)   (HW_DCP_CH2SEMA_WR((HW_DCP_CH2SEMA_RD() & ~BM_DCP_CH2SEMA_INCREMENT) | BF_DCP_CH2SEMA_INCREMENT(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH2SEMA, field VALUE[23:16] (RO)
@@ -3141,13 +2969,11 @@ typedef union _hw_dcp_ch2sema
  * This read-only field shows the current (instantaneous) value of the semaphore counter.
  */
 //@{
-
 #define BP_DCP_CH2SEMA_VALUE      (16)      //!< Bit position for DCP_CH2SEMA_VALUE.
 #define BM_DCP_CH2SEMA_VALUE      (0x00ff0000)  //!< Bit mask for DCP_CH2SEMA_VALUE.
 
 //! @brief Get value of DCP_CH2SEMA_VALUE from a register value.
 #define BG_DCP_CH2SEMA_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_CH2SEMA_VALUE) >> BP_DCP_CH2SEMA_VALUE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3215,7 +3041,6 @@ typedef union _hw_dcp_ch2stat
  * handled by software.
  */
 //@{
-
 #define BP_DCP_CH2STAT_HASH_MISMATCH      (1)      //!< Bit position for DCP_CH2STAT_HASH_MISMATCH.
 #define BM_DCP_CH2STAT_HASH_MISMATCH      (0x00000002)  //!< Bit mask for DCP_CH2STAT_HASH_MISMATCH.
 
@@ -3229,7 +3054,6 @@ typedef union _hw_dcp_ch2stat
 //! @brief Set the HASH_MISMATCH field to a new value.
 #define BW_DCP_CH2STAT_HASH_MISMATCH(v)   (HW_DCP_CH2STAT_WR((HW_DCP_CH2STAT_RD() & ~BM_DCP_CH2STAT_HASH_MISMATCH) | BF_DCP_CH2STAT_HASH_MISMATCH(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH2STAT, field ERROR_SETUP[2] (RW)
@@ -3239,7 +3063,6 @@ typedef union _hw_dcp_ch2stat
  * detected, the channel's processing will stop until the error is handled by software.
  */
 //@{
-
 #define BP_DCP_CH2STAT_ERROR_SETUP      (2)      //!< Bit position for DCP_CH2STAT_ERROR_SETUP.
 #define BM_DCP_CH2STAT_ERROR_SETUP      (0x00000004)  //!< Bit mask for DCP_CH2STAT_ERROR_SETUP.
 
@@ -3253,7 +3076,6 @@ typedef union _hw_dcp_ch2stat
 //! @brief Set the ERROR_SETUP field to a new value.
 #define BW_DCP_CH2STAT_ERROR_SETUP(v)   (HW_DCP_CH2STAT_WR((HW_DCP_CH2STAT_RD() & ~BM_DCP_CH2STAT_ERROR_SETUP) | BF_DCP_CH2STAT_ERROR_SETUP(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH2STAT, field ERROR_PACKET[3] (RW)
@@ -3263,7 +3085,6 @@ typedef union _hw_dcp_ch2stat
  * until the error is handled by software.
  */
 //@{
-
 #define BP_DCP_CH2STAT_ERROR_PACKET      (3)      //!< Bit position for DCP_CH2STAT_ERROR_PACKET.
 #define BM_DCP_CH2STAT_ERROR_PACKET      (0x00000008)  //!< Bit mask for DCP_CH2STAT_ERROR_PACKET.
 
@@ -3277,7 +3098,6 @@ typedef union _hw_dcp_ch2stat
 //! @brief Set the ERROR_PACKET field to a new value.
 #define BW_DCP_CH2STAT_ERROR_PACKET(v)   (HW_DCP_CH2STAT_WR((HW_DCP_CH2STAT_RD() & ~BM_DCP_CH2STAT_ERROR_PACKET) | BF_DCP_CH2STAT_ERROR_PACKET(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH2STAT, field ERROR_SRC[4] (RW)
@@ -3286,7 +3106,6 @@ typedef union _hw_dcp_ch2stat
  * detected, the channel's processing will stop until the error handled by software.
  */
 //@{
-
 #define BP_DCP_CH2STAT_ERROR_SRC      (4)      //!< Bit position for DCP_CH2STAT_ERROR_SRC.
 #define BM_DCP_CH2STAT_ERROR_SRC      (0x00000010)  //!< Bit mask for DCP_CH2STAT_ERROR_SRC.
 
@@ -3300,7 +3119,6 @@ typedef union _hw_dcp_ch2stat
 //! @brief Set the ERROR_SRC field to a new value.
 #define BW_DCP_CH2STAT_ERROR_SRC(v)   (HW_DCP_CH2STAT_WR((HW_DCP_CH2STAT_RD() & ~BM_DCP_CH2STAT_ERROR_SRC) | BF_DCP_CH2STAT_ERROR_SRC(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH2STAT, field ERROR_DST[5] (RW)
@@ -3309,7 +3127,6 @@ typedef union _hw_dcp_ch2stat
  * detected, the channel's processing will stop until the error handled by software.
  */
 //@{
-
 #define BP_DCP_CH2STAT_ERROR_DST      (5)      //!< Bit position for DCP_CH2STAT_ERROR_DST.
 #define BM_DCP_CH2STAT_ERROR_DST      (0x00000020)  //!< Bit mask for DCP_CH2STAT_ERROR_DST.
 
@@ -3323,7 +3140,6 @@ typedef union _hw_dcp_ch2stat
 //! @brief Set the ERROR_DST field to a new value.
 #define BW_DCP_CH2STAT_ERROR_DST(v)   (HW_DCP_CH2STAT_WR((HW_DCP_CH2STAT_RD() & ~BM_DCP_CH2STAT_ERROR_DST) | BF_DCP_CH2STAT_ERROR_DST(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH2STAT, field ERROR_PAGEFAULT[6] (RW)
@@ -3333,7 +3149,6 @@ typedef union _hw_dcp_ch2stat
  * by software.
  */
 //@{
-
 #define BP_DCP_CH2STAT_ERROR_PAGEFAULT      (6)      //!< Bit position for DCP_CH2STAT_ERROR_PAGEFAULT.
 #define BM_DCP_CH2STAT_ERROR_PAGEFAULT      (0x00000040)  //!< Bit mask for DCP_CH2STAT_ERROR_PAGEFAULT.
 
@@ -3347,7 +3162,6 @@ typedef union _hw_dcp_ch2stat
 //! @brief Set the ERROR_PAGEFAULT field to a new value.
 #define BW_DCP_CH2STAT_ERROR_PAGEFAULT(v)   (HW_DCP_CH2STAT_WR((HW_DCP_CH2STAT_RD() & ~BM_DCP_CH2STAT_ERROR_PAGEFAULT) | BF_DCP_CH2STAT_ERROR_PAGEFAULT(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH2STAT, field ERROR_CODE[23:16] (RW)
@@ -3363,7 +3177,6 @@ typedef union _hw_dcp_ch2stat
  *     hash)
  */
 //@{
-
 #define BP_DCP_CH2STAT_ERROR_CODE      (16)      //!< Bit position for DCP_CH2STAT_ERROR_CODE.
 #define BM_DCP_CH2STAT_ERROR_CODE      (0x00ff0000)  //!< Bit mask for DCP_CH2STAT_ERROR_CODE.
 
@@ -3386,7 +3199,6 @@ typedef union _hw_dcp_ch2stat
 #define BV_DCP_CH2STAT_ERROR_CODE__CONTEXT_ERROR (0x3) //!< Error signalled because an error was reported reading/writing the context buffer
 #define BV_DCP_CH2STAT_ERROR_CODE__PAYLOAD_ERROR (0x4) //!< Error signalled because an error was reported reading/writing the payload
 #define BV_DCP_CH2STAT_ERROR_CODE__INVALID_MODE (0x5) //!< Error signalled because the control packet specifies an invalid mode select (for instance, blit + hash)
-
 //@}
 
 /*! @name Register DCP_CH2STAT, field TAG[31:24] (RO)
@@ -3394,13 +3206,11 @@ typedef union _hw_dcp_ch2stat
  * Indicates the tag from the last completed packet in the command structure
  */
 //@{
-
 #define BP_DCP_CH2STAT_TAG      (24)      //!< Bit position for DCP_CH2STAT_TAG.
 #define BM_DCP_CH2STAT_TAG      (0xff000000)  //!< Bit mask for DCP_CH2STAT_TAG.
 
 //! @brief Get value of DCP_CH2STAT_TAG from a register value.
 #define BG_DCP_CH2STAT_TAG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_CH2STAT_TAG) >> BP_DCP_CH2STAT_TAG)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3457,7 +3267,6 @@ typedef union _hw_dcp_ch2opts
  * range of 0ns to 8.3ms at 133 MHz operation.
  */
 //@{
-
 #define BP_DCP_CH2OPTS_RECOVERY_TIMER      (0)      //!< Bit position for DCP_CH2OPTS_RECOVERY_TIMER.
 #define BM_DCP_CH2OPTS_RECOVERY_TIMER      (0x0000ffff)  //!< Bit mask for DCP_CH2OPTS_RECOVERY_TIMER.
 
@@ -3471,7 +3280,6 @@ typedef union _hw_dcp_ch2opts
 //! @brief Set the RECOVERY_TIMER field to a new value.
 #define BW_DCP_CH2OPTS_RECOVERY_TIMER(v)   (HW_DCP_CH2OPTS_WR((HW_DCP_CH2OPTS_RD() & ~BM_DCP_CH2OPTS_RECOVERY_TIMER) | BF_DCP_CH2OPTS_RECOVERY_TIMER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3530,7 +3338,6 @@ typedef union _hw_dcp_ch3cmdptr
  * Pointer to descriptor structure to be processed for channel 3.
  */
 //@{
-
 #define BP_DCP_CH3CMDPTR_ADDR      (0)      //!< Bit position for DCP_CH3CMDPTR_ADDR.
 #define BM_DCP_CH3CMDPTR_ADDR      (0xffffffff)  //!< Bit mask for DCP_CH3CMDPTR_ADDR.
 
@@ -3544,7 +3351,6 @@ typedef union _hw_dcp_ch3cmdptr
 //! @brief Set the ADDR field to a new value.
 #define BW_DCP_CH3CMDPTR_ADDR(v)   (HW_DCP_CH3CMDPTR_WR((HW_DCP_CH3CMDPTR_RD() & ~BM_DCP_CH3CMDPTR_ADDR) | BF_DCP_CH3CMDPTR_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3618,7 +3424,6 @@ typedef union _hw_dcp_ch3sema
  * register.
  */
 //@{
-
 #define BP_DCP_CH3SEMA_INCREMENT      (0)      //!< Bit position for DCP_CH3SEMA_INCREMENT.
 #define BM_DCP_CH3SEMA_INCREMENT      (0x000000ff)  //!< Bit mask for DCP_CH3SEMA_INCREMENT.
 
@@ -3632,7 +3437,6 @@ typedef union _hw_dcp_ch3sema
 //! @brief Set the INCREMENT field to a new value.
 #define BW_DCP_CH3SEMA_INCREMENT(v)   (HW_DCP_CH3SEMA_WR((HW_DCP_CH3SEMA_RD() & ~BM_DCP_CH3SEMA_INCREMENT) | BF_DCP_CH3SEMA_INCREMENT(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH3SEMA, field VALUE[23:16] (RO)
@@ -3640,13 +3444,11 @@ typedef union _hw_dcp_ch3sema
  * This read-only field shows the current (instantaneous) value of the semaphore counter.
  */
 //@{
-
 #define BP_DCP_CH3SEMA_VALUE      (16)      //!< Bit position for DCP_CH3SEMA_VALUE.
 #define BM_DCP_CH3SEMA_VALUE      (0x00ff0000)  //!< Bit mask for DCP_CH3SEMA_VALUE.
 
 //! @brief Get value of DCP_CH3SEMA_VALUE from a register value.
 #define BG_DCP_CH3SEMA_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_CH3SEMA_VALUE) >> BP_DCP_CH3SEMA_VALUE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3714,7 +3516,6 @@ typedef union _hw_dcp_ch3stat
  * handled by software.
  */
 //@{
-
 #define BP_DCP_CH3STAT_HASH_MISMATCH      (1)      //!< Bit position for DCP_CH3STAT_HASH_MISMATCH.
 #define BM_DCP_CH3STAT_HASH_MISMATCH      (0x00000002)  //!< Bit mask for DCP_CH3STAT_HASH_MISMATCH.
 
@@ -3728,7 +3529,6 @@ typedef union _hw_dcp_ch3stat
 //! @brief Set the HASH_MISMATCH field to a new value.
 #define BW_DCP_CH3STAT_HASH_MISMATCH(v)   (HW_DCP_CH3STAT_WR((HW_DCP_CH3STAT_RD() & ~BM_DCP_CH3STAT_HASH_MISMATCH) | BF_DCP_CH3STAT_HASH_MISMATCH(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH3STAT, field ERROR_SETUP[2] (RW)
@@ -3738,7 +3538,6 @@ typedef union _hw_dcp_ch3stat
  * detected, the channel's processing will stop until the error is handled by software.
  */
 //@{
-
 #define BP_DCP_CH3STAT_ERROR_SETUP      (2)      //!< Bit position for DCP_CH3STAT_ERROR_SETUP.
 #define BM_DCP_CH3STAT_ERROR_SETUP      (0x00000004)  //!< Bit mask for DCP_CH3STAT_ERROR_SETUP.
 
@@ -3752,7 +3551,6 @@ typedef union _hw_dcp_ch3stat
 //! @brief Set the ERROR_SETUP field to a new value.
 #define BW_DCP_CH3STAT_ERROR_SETUP(v)   (HW_DCP_CH3STAT_WR((HW_DCP_CH3STAT_RD() & ~BM_DCP_CH3STAT_ERROR_SETUP) | BF_DCP_CH3STAT_ERROR_SETUP(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH3STAT, field ERROR_PACKET[3] (RW)
@@ -3762,7 +3560,6 @@ typedef union _hw_dcp_ch3stat
  * until the error is handled by software.
  */
 //@{
-
 #define BP_DCP_CH3STAT_ERROR_PACKET      (3)      //!< Bit position for DCP_CH3STAT_ERROR_PACKET.
 #define BM_DCP_CH3STAT_ERROR_PACKET      (0x00000008)  //!< Bit mask for DCP_CH3STAT_ERROR_PACKET.
 
@@ -3776,7 +3573,6 @@ typedef union _hw_dcp_ch3stat
 //! @brief Set the ERROR_PACKET field to a new value.
 #define BW_DCP_CH3STAT_ERROR_PACKET(v)   (HW_DCP_CH3STAT_WR((HW_DCP_CH3STAT_RD() & ~BM_DCP_CH3STAT_ERROR_PACKET) | BF_DCP_CH3STAT_ERROR_PACKET(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH3STAT, field ERROR_SRC[4] (RW)
@@ -3785,7 +3581,6 @@ typedef union _hw_dcp_ch3stat
  * detected, the channel's processing will stop until the error handled by software.
  */
 //@{
-
 #define BP_DCP_CH3STAT_ERROR_SRC      (4)      //!< Bit position for DCP_CH3STAT_ERROR_SRC.
 #define BM_DCP_CH3STAT_ERROR_SRC      (0x00000010)  //!< Bit mask for DCP_CH3STAT_ERROR_SRC.
 
@@ -3799,7 +3594,6 @@ typedef union _hw_dcp_ch3stat
 //! @brief Set the ERROR_SRC field to a new value.
 #define BW_DCP_CH3STAT_ERROR_SRC(v)   (HW_DCP_CH3STAT_WR((HW_DCP_CH3STAT_RD() & ~BM_DCP_CH3STAT_ERROR_SRC) | BF_DCP_CH3STAT_ERROR_SRC(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH3STAT, field ERROR_DST[5] (RW)
@@ -3808,7 +3602,6 @@ typedef union _hw_dcp_ch3stat
  * detected, the channel's processing will stop until the error handled by software.
  */
 //@{
-
 #define BP_DCP_CH3STAT_ERROR_DST      (5)      //!< Bit position for DCP_CH3STAT_ERROR_DST.
 #define BM_DCP_CH3STAT_ERROR_DST      (0x00000020)  //!< Bit mask for DCP_CH3STAT_ERROR_DST.
 
@@ -3822,7 +3615,6 @@ typedef union _hw_dcp_ch3stat
 //! @brief Set the ERROR_DST field to a new value.
 #define BW_DCP_CH3STAT_ERROR_DST(v)   (HW_DCP_CH3STAT_WR((HW_DCP_CH3STAT_RD() & ~BM_DCP_CH3STAT_ERROR_DST) | BF_DCP_CH3STAT_ERROR_DST(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH3STAT, field ERROR_PAGEFAULT[6] (RW)
@@ -3832,7 +3624,6 @@ typedef union _hw_dcp_ch3stat
  * by software.
  */
 //@{
-
 #define BP_DCP_CH3STAT_ERROR_PAGEFAULT      (6)      //!< Bit position for DCP_CH3STAT_ERROR_PAGEFAULT.
 #define BM_DCP_CH3STAT_ERROR_PAGEFAULT      (0x00000040)  //!< Bit mask for DCP_CH3STAT_ERROR_PAGEFAULT.
 
@@ -3846,7 +3637,6 @@ typedef union _hw_dcp_ch3stat
 //! @brief Set the ERROR_PAGEFAULT field to a new value.
 #define BW_DCP_CH3STAT_ERROR_PAGEFAULT(v)   (HW_DCP_CH3STAT_WR((HW_DCP_CH3STAT_RD() & ~BM_DCP_CH3STAT_ERROR_PAGEFAULT) | BF_DCP_CH3STAT_ERROR_PAGEFAULT(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_CH3STAT, field ERROR_CODE[23:16] (RW)
@@ -3862,7 +3652,6 @@ typedef union _hw_dcp_ch3stat
  *     hash)
  */
 //@{
-
 #define BP_DCP_CH3STAT_ERROR_CODE      (16)      //!< Bit position for DCP_CH3STAT_ERROR_CODE.
 #define BM_DCP_CH3STAT_ERROR_CODE      (0x00ff0000)  //!< Bit mask for DCP_CH3STAT_ERROR_CODE.
 
@@ -3885,7 +3674,6 @@ typedef union _hw_dcp_ch3stat
 #define BV_DCP_CH3STAT_ERROR_CODE__CONTEXT_ERROR (0x3) //!< Error signalled because an error was reported reading/writing the context buffer
 #define BV_DCP_CH3STAT_ERROR_CODE__PAYLOAD_ERROR (0x4) //!< Error signalled because an error was reported reading/writing the payload
 #define BV_DCP_CH3STAT_ERROR_CODE__INVALID_MODE (0x5) //!< Error signalled because the control packet specifies an invalid mode select (for instance, blit + hash)
-
 //@}
 
 /*! @name Register DCP_CH3STAT, field TAG[31:24] (RO)
@@ -3893,13 +3681,11 @@ typedef union _hw_dcp_ch3stat
  * Indicates the tag from the last completed packet in the command structure
  */
 //@{
-
 #define BP_DCP_CH3STAT_TAG      (24)      //!< Bit position for DCP_CH3STAT_TAG.
 #define BM_DCP_CH3STAT_TAG      (0xff000000)  //!< Bit mask for DCP_CH3STAT_TAG.
 
 //! @brief Get value of DCP_CH3STAT_TAG from a register value.
 #define BG_DCP_CH3STAT_TAG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_CH3STAT_TAG) >> BP_DCP_CH3STAT_TAG)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3957,7 +3743,6 @@ typedef union _hw_dcp_ch3opts
  * range of 0ns to 8.3ms at 133 MHz operation.
  */
 //@{
-
 #define BP_DCP_CH3OPTS_RECOVERY_TIMER      (0)      //!< Bit position for DCP_CH3OPTS_RECOVERY_TIMER.
 #define BM_DCP_CH3OPTS_RECOVERY_TIMER      (0x0000ffff)  //!< Bit mask for DCP_CH3OPTS_RECOVERY_TIMER.
 
@@ -3971,7 +3756,6 @@ typedef union _hw_dcp_ch3opts
 //! @brief Set the RECOVERY_TIMER field to a new value.
 #define BW_DCP_CH3OPTS_RECOVERY_TIMER(v)   (HW_DCP_CH3OPTS_WR((HW_DCP_CH3OPTS_RD() & ~BM_DCP_CH3OPTS_RECOVERY_TIMER) | BF_DCP_CH3OPTS_RECOVERY_TIMER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4030,7 +3814,6 @@ typedef union _hw_dcp_dbgselect
  * - OTPKEY3 = 0x13 - 
  */
 //@{
-
 #define BP_DCP_DBGSELECT_INDEX      (0)      //!< Bit position for DCP_DBGSELECT_INDEX.
 #define BM_DCP_DBGSELECT_INDEX      (0x000000ff)  //!< Bit mask for DCP_DBGSELECT_INDEX.
 
@@ -4053,7 +3836,6 @@ typedef union _hw_dcp_dbgselect
 #define BV_DCP_DBGSELECT_INDEX__OTPKEY1 (0x11) //!< 
 #define BV_DCP_DBGSELECT_INDEX__OTPKEY2 (0x12) //!< 
 #define BV_DCP_DBGSELECT_INDEX__OTPKEY3 (0x13) //!< 
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4100,13 +3882,11 @@ typedef union _hw_dcp_dbgdata
  * Debug Data
  */
 //@{
-
 #define BP_DCP_DBGDATA_DATA      (0)      //!< Bit position for DCP_DBGDATA_DATA.
 #define BM_DCP_DBGDATA_DATA      (0xffffffff)  //!< Bit mask for DCP_DBGDATA_DATA.
 
 //! @brief Get value of DCP_DBGDATA_DATA from a register value.
 #define BG_DCP_DBGDATA_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_DBGDATA_DATA) >> BP_DCP_DBGDATA_DATA)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4163,7 +3943,6 @@ typedef union _hw_dcp_pagetable
  * high and enable LOW when updating page tables.
  */
 //@{
-
 #define BP_DCP_PAGETABLE_ENABLE      (0)      //!< Bit position for DCP_PAGETABLE_ENABLE.
 #define BM_DCP_PAGETABLE_ENABLE      (0x00000001)  //!< Bit mask for DCP_PAGETABLE_ENABLE.
 
@@ -4177,7 +3956,6 @@ typedef union _hw_dcp_pagetable
 //! @brief Set the ENABLE field to a new value.
 #define BW_DCP_PAGETABLE_ENABLE(v)   (HW_DCP_PAGETABLE_WR((HW_DCP_PAGETABLE_RD() & ~BM_DCP_PAGETABLE_ENABLE) | BF_DCP_PAGETABLE_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_PAGETABLE, field FLUSH[1] (RW)
@@ -4185,7 +3963,6 @@ typedef union _hw_dcp_pagetable
  * Page Table Flush control. To flush the TLB, write this bit to a 1 then back to a 0.
  */
 //@{
-
 #define BP_DCP_PAGETABLE_FLUSH      (1)      //!< Bit position for DCP_PAGETABLE_FLUSH.
 #define BM_DCP_PAGETABLE_FLUSH      (0x00000002)  //!< Bit mask for DCP_PAGETABLE_FLUSH.
 
@@ -4199,7 +3976,6 @@ typedef union _hw_dcp_pagetable
 //! @brief Set the FLUSH field to a new value.
 #define BW_DCP_PAGETABLE_FLUSH(v)   (HW_DCP_PAGETABLE_WR((HW_DCP_PAGETABLE_RD() & ~BM_DCP_PAGETABLE_FLUSH) | BF_DCP_PAGETABLE_FLUSH(v)))
 #endif
-
 //@}
 
 /*! @name Register DCP_PAGETABLE, field BASE[31:2] (RW)
@@ -4208,7 +3984,6 @@ typedef union _hw_dcp_pagetable
  * page table in the standard ARM format.
  */
 //@{
-
 #define BP_DCP_PAGETABLE_BASE      (2)      //!< Bit position for DCP_PAGETABLE_BASE.
 #define BM_DCP_PAGETABLE_BASE      (0xfffffffc)  //!< Bit mask for DCP_PAGETABLE_BASE.
 
@@ -4222,7 +3997,6 @@ typedef union _hw_dcp_pagetable
 //! @brief Set the BASE field to a new value.
 #define BW_DCP_PAGETABLE_BASE(v)   (HW_DCP_PAGETABLE_WR((HW_DCP_PAGETABLE_RD() & ~BM_DCP_PAGETABLE_BASE) | BF_DCP_PAGETABLE_BASE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4271,13 +4045,11 @@ typedef union _hw_dcp_version
  * Fixed read-onlyl value reflecting the stepping of version of the design implementation.
  */
 //@{
-
 #define BP_DCP_VERSION_STEP      (0)      //!< Bit position for DCP_VERSION_STEP.
 #define BM_DCP_VERSION_STEP      (0x0000ffff)  //!< Bit mask for DCP_VERSION_STEP.
 
 //! @brief Get value of DCP_VERSION_STEP from a register value.
 #define BG_DCP_VERSION_STEP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_VERSION_STEP) >> BP_DCP_VERSION_STEP)
-
 //@}
 
 /*! @name Register DCP_VERSION, field MINOR[23:16] (RO)
@@ -4285,13 +4057,11 @@ typedef union _hw_dcp_version
  * Fixed read-onlyl value reflecting the MINOR version of the design implementation.
  */
 //@{
-
 #define BP_DCP_VERSION_MINOR      (16)      //!< Bit position for DCP_VERSION_MINOR.
 #define BM_DCP_VERSION_MINOR      (0x00ff0000)  //!< Bit mask for DCP_VERSION_MINOR.
 
 //! @brief Get value of DCP_VERSION_MINOR from a register value.
 #define BG_DCP_VERSION_MINOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_VERSION_MINOR) >> BP_DCP_VERSION_MINOR)
-
 //@}
 
 /*! @name Register DCP_VERSION, field MAJOR[31:24] (RO)
@@ -4299,13 +4069,11 @@ typedef union _hw_dcp_version
  * Fixed read-onlyl value reflecting the MAJOR version of the design implementation.
  */
 //@{
-
 #define BP_DCP_VERSION_MAJOR      (24)      //!< Bit position for DCP_VERSION_MAJOR.
 #define BM_DCP_VERSION_MAJOR      (0xff000000)  //!< Bit mask for DCP_VERSION_MAJOR.
 
 //! @brief Get value of DCP_VERSION_MAJOR from a register value.
 #define BG_DCP_VERSION_MAJOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCP_VERSION_MAJOR) >> BP_DCP_VERSION_MAJOR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4397,3 +4165,5 @@ typedef struct _hw_dcp
 #endif
 
 #endif // __HW_DCP_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

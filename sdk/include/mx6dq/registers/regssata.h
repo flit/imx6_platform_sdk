@@ -139,13 +139,11 @@ typedef union _hw_sata_cap
  * options for this field are: • 0x00: 1 Port • 0x01: 2 Ports • 0x02: 3 Ports Reset Value: 0x00
  */
 //@{
-
 #define BP_SATA_CAP_NP      (0)      //!< Bit position for SATA_CAP_NP.
 #define BM_SATA_CAP_NP      (0x0000001f)  //!< Bit mask for SATA_CAP_NP.
 
 //! @brief Get value of SATA_CAP_NP from a register value.
 #define BG_SATA_CAP_NP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_NP) >> BP_SATA_CAP_NP)
-
 //@}
 
 /*! @name Register SATA_CAP, field SXS[5] (RO)
@@ -162,13 +160,11 @@ typedef union _hw_sata_cap
  * - 1 - when any of the SATA_P 0 CMD[ESP]=1
  */
 //@{
-
 #define BP_SATA_CAP_SXS      (5)      //!< Bit position for SATA_CAP_SXS.
 #define BM_SATA_CAP_SXS      (0x00000020)  //!< Bit mask for SATA_CAP_SXS.
 
 //! @brief Get value of SATA_CAP_SXS from a register value.
 #define BG_SATA_CAP_SXS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SXS) >> BP_SATA_CAP_SXS)
-
 //@}
 
 /*! @name Register SATA_CAP, field EMS[6] (RO)
@@ -176,13 +172,11 @@ typedef union _hw_sata_cap
  * Enclosure Management Support. SATA block does not support enclosure management.
  */
 //@{
-
 #define BP_SATA_CAP_EMS      (6)      //!< Bit position for SATA_CAP_EMS.
 #define BM_SATA_CAP_EMS      (0x00000040)  //!< Bit mask for SATA_CAP_EMS.
 
 //! @brief Get value of SATA_CAP_EMS from a register value.
 #define BG_SATA_CAP_EMS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_EMS) >> BP_SATA_CAP_EMS)
-
 //@}
 
 /*! @name Register SATA_CAP, field CCCS[7] (RO)
@@ -190,13 +184,11 @@ typedef union _hw_sata_cap
  * Command Completion Coalescing Support. SATA block supports command completion coalescing.
  */
 //@{
-
 #define BP_SATA_CAP_CCCS      (7)      //!< Bit position for SATA_CAP_CCCS.
 #define BM_SATA_CAP_CCCS      (0x00000080)  //!< Bit mask for SATA_CAP_CCCS.
 
 //! @brief Get value of SATA_CAP_CCCS from a register value.
 #define BG_SATA_CAP_CCCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_CCCS) >> BP_SATA_CAP_CCCS)
-
 //@}
 
 /*! @name Register SATA_CAP, field NCS[12:8] (RO)
@@ -204,13 +196,11 @@ typedef union _hw_sata_cap
  * Number of Command Slots. SATA block supports 32 command slots per Port.
  */
 //@{
-
 #define BP_SATA_CAP_NCS      (8)      //!< Bit position for SATA_CAP_NCS.
 #define BM_SATA_CAP_NCS      (0x00001f00)  //!< Bit mask for SATA_CAP_NCS.
 
 //! @brief Get value of SATA_CAP_NCS from a register value.
 #define BG_SATA_CAP_NCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_NCS) >> BP_SATA_CAP_NCS)
-
 //@}
 
 /*! @name Register SATA_CAP, field PSC[13] (RO)
@@ -219,13 +209,11 @@ typedef union _hw_sata_cap
  * state.
  */
 //@{
-
 #define BP_SATA_CAP_PSC      (13)      //!< Bit position for SATA_CAP_PSC.
 #define BM_SATA_CAP_PSC      (0x00002000)  //!< Bit mask for SATA_CAP_PSC.
 
 //! @brief Get value of SATA_CAP_PSC from a register value.
 #define BG_SATA_CAP_PSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_PSC) >> BP_SATA_CAP_PSC)
-
 //@}
 
 /*! @name Register SATA_CAP, field SSC[14] (RO)
@@ -234,13 +222,11 @@ typedef union _hw_sata_cap
  * state.
  */
 //@{
-
 #define BP_SATA_CAP_SSC      (14)      //!< Bit position for SATA_CAP_SSC.
 #define BM_SATA_CAP_SSC      (0x00004000)  //!< Bit mask for SATA_CAP_SSC.
 
 //! @brief Get value of SATA_CAP_SSC from a register value.
 #define BG_SATA_CAP_SSC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SSC) >> BP_SATA_CAP_SSC)
-
 //@}
 
 /*! @name Register SATA_CAP, field PMD[15] (RO)
@@ -249,13 +235,11 @@ typedef union _hw_sata_cap
  * protocol.
  */
 //@{
-
 #define BP_SATA_CAP_PMD      (15)      //!< Bit position for SATA_CAP_PMD.
 #define BM_SATA_CAP_PMD      (0x00008000)  //!< Bit mask for SATA_CAP_PMD.
 
 //! @brief Get value of SATA_CAP_PMD from a register value.
 #define BG_SATA_CAP_PMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_PMD) >> BP_SATA_CAP_PMD)
-
 //@}
 
 /*! @name Register SATA_CAP, field SMP[17] (RO)
@@ -264,13 +248,11 @@ typedef union _hw_sata_cap
  * its Ports.
  */
 //@{
-
 #define BP_SATA_CAP_SMP      (17)      //!< Bit position for SATA_CAP_SMP.
 #define BM_SATA_CAP_SMP      (0x00020000)  //!< Bit mask for SATA_CAP_SMP.
 
 //! @brief Get value of SATA_CAP_SMP from a register value.
 #define BG_SATA_CAP_SMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SMP) >> BP_SATA_CAP_SMP)
-
 //@}
 
 /*! @name Register SATA_CAP, field SAM[18] (RO)
@@ -279,13 +261,11 @@ typedef union _hw_sata_cap
  * file based register interface.
  */
 //@{
-
 #define BP_SATA_CAP_SAM      (18)      //!< Bit position for SATA_CAP_SAM.
 #define BM_SATA_CAP_SAM      (0x00040000)  //!< Bit mask for SATA_CAP_SAM.
 
 //! @brief Get value of SATA_CAP_SAM from a register value.
 #define BG_SATA_CAP_SAM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SAM) >> BP_SATA_CAP_SAM)
-
 //@}
 
 /*! @name Register SATA_CAP, field ISS[23:20] (RU)
@@ -293,13 +273,11 @@ typedef union _hw_sata_cap
  * Interface Speed Support. Reserved. Returns 0x2 on read.
  */
 //@{
-
 #define BP_SATA_CAP_ISS      (20)      //!< Bit position for SATA_CAP_ISS.
 #define BM_SATA_CAP_ISS      (0x00f00000)  //!< Bit mask for SATA_CAP_ISS.
 
 //! @brief Get value of SATA_CAP_ISS from a register value.
 #define BG_SATA_CAP_ISS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_ISS) >> BP_SATA_CAP_ISS)
-
 //@}
 
 /*! @name Register SATA_CAP, field SCLO[24] (RO)
@@ -308,13 +286,11 @@ typedef union _hw_sata_cap
  * Port Multiplier devices' enumeration.
  */
 //@{
-
 #define BP_SATA_CAP_SCLO      (24)      //!< Bit position for SATA_CAP_SCLO.
 #define BM_SATA_CAP_SCLO      (0x01000000)  //!< Bit mask for SATA_CAP_SCLO.
 
 //! @brief Get value of SATA_CAP_SCLO from a register value.
 #define BG_SATA_CAP_SCLO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SCLO) >> BP_SATA_CAP_SCLO)
-
 //@}
 
 /*! @name Register SATA_CAP, field SAL[25] (RO)
@@ -322,13 +298,11 @@ typedef union _hw_sata_cap
  * Supports Activity LED. SATA block supports activity indication using signal p 0 _act_led.
  */
 //@{
-
 #define BP_SATA_CAP_SAL      (25)      //!< Bit position for SATA_CAP_SAL.
 #define BM_SATA_CAP_SAL      (0x02000000)  //!< Bit mask for SATA_CAP_SAL.
 
 //! @brief Get value of SATA_CAP_SAL from a register value.
 #define BG_SATA_CAP_SAL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SAL) >> BP_SATA_CAP_SAL)
-
 //@}
 
 /*! @name Register SATA_CAP, field SALP[26] (RO)
@@ -338,13 +312,11 @@ typedef union _hw_sata_cap
  * to process.
  */
 //@{
-
 #define BP_SATA_CAP_SALP      (26)      //!< Bit position for SATA_CAP_SALP.
 #define BM_SATA_CAP_SALP      (0x04000000)  //!< Bit mask for SATA_CAP_SALP.
 
 //! @brief Get value of SATA_CAP_SALP from a register value.
 #define BG_SATA_CAP_SALP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SALP) >> BP_SATA_CAP_SALP)
-
 //@}
 
 /*! @name Register SATA_CAP, field SSS[27] (RO)
@@ -354,13 +326,11 @@ typedef union _hw_sata_cap
  * CMD[SUD] bit functionality.
  */
 //@{
-
 #define BP_SATA_CAP_SSS      (27)      //!< Bit position for SATA_CAP_SSS.
 #define BM_SATA_CAP_SSS      (0x08000000)  //!< Bit mask for SATA_CAP_SSS.
 
 //! @brief Get value of SATA_CAP_SSS from a register value.
 #define BG_SATA_CAP_SSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SSS) >> BP_SATA_CAP_SSS)
-
 //@}
 
 /*! @name Register SATA_CAP, field SMPS[28] (RO)
@@ -371,13 +341,11 @@ typedef union _hw_sata_cap
  * field is not implemented, this field is reserved, and reads 1'b0.
  */
 //@{
-
 #define BP_SATA_CAP_SMPS      (28)      //!< Bit position for SATA_CAP_SMPS.
 #define BM_SATA_CAP_SMPS      (0x10000000)  //!< Bit mask for SATA_CAP_SMPS.
 
 //! @brief Get value of SATA_CAP_SMPS from a register value.
 #define BG_SATA_CAP_SMPS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SMPS) >> BP_SATA_CAP_SMPS)
-
 //@}
 
 /*! @name Register SATA_CAP, field SSNTF[29] (RO)
@@ -386,13 +354,11 @@ typedef union _hw_sata_cap
  * its associated functionality.
  */
 //@{
-
 #define BP_SATA_CAP_SSNTF      (29)      //!< Bit position for SATA_CAP_SSNTF.
 #define BM_SATA_CAP_SSNTF      (0x20000000)  //!< Bit mask for SATA_CAP_SSNTF.
 
 //! @brief Get value of SATA_CAP_SSNTF from a register value.
 #define BG_SATA_CAP_SSNTF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SSNTF) >> BP_SATA_CAP_SSNTF)
-
 //@}
 
 /*! @name Register SATA_CAP, field SNCQ[30] (RO)
@@ -401,13 +367,11 @@ typedef union _hw_sata_cap
  * Setup FIS natively.
  */
 //@{
-
 #define BP_SATA_CAP_SNCQ      (30)      //!< Bit position for SATA_CAP_SNCQ.
 #define BM_SATA_CAP_SNCQ      (0x40000000)  //!< Bit mask for SATA_CAP_SNCQ.
 
 //! @brief Get value of SATA_CAP_SNCQ from a register value.
 #define BG_SATA_CAP_SNCQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_SNCQ) >> BP_SATA_CAP_SNCQ)
-
 //@}
 
 /*! @name Register SATA_CAP, field S64A[31] (RO)
@@ -420,13 +384,11 @@ typedef union _hw_sata_cap
  * - 1 - when M_HADDR_WIDTH=64
  */
 //@{
-
 #define BP_SATA_CAP_S64A      (31)      //!< Bit position for SATA_CAP_S64A.
 #define BM_SATA_CAP_S64A      (0x80000000)  //!< Bit mask for SATA_CAP_S64A.
 
 //! @brief Get value of SATA_CAP_S64A from a register value.
 #define BG_SATA_CAP_S64A(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP_S64A) >> BP_SATA_CAP_S64A)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -484,7 +446,6 @@ typedef union _hw_sata_ghc
  * software write of 0 has no effect.
  */
 //@{
-
 #define BP_SATA_GHC_HR      (0)      //!< Bit position for SATA_GHC_HR.
 #define BM_SATA_GHC_HR      (0x00000001)  //!< Bit mask for SATA_GHC_HR.
 
@@ -493,7 +454,6 @@ typedef union _hw_sata_ghc
 
 //! @brief Format value for bitfield SATA_GHC_HR.
 #define BF_SATA_GHC_HR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_GHC_HR) & BM_SATA_GHC_HR)
-
 //@}
 
 /*! @name Register SATA_GHC, field IE[1] (RW)
@@ -504,7 +464,6 @@ typedef union _hw_sata_ghc
  * (SATA_GHC[HR]=1).
  */
 //@{
-
 #define BP_SATA_GHC_IE      (1)      //!< Bit position for SATA_GHC_IE.
 #define BM_SATA_GHC_IE      (0x00000002)  //!< Bit mask for SATA_GHC_IE.
 
@@ -518,7 +477,6 @@ typedef union _hw_sata_ghc
 //! @brief Set the IE field to a new value.
 #define BW_SATA_GHC_IE(v)   (HW_SATA_GHC_WR((HW_SATA_GHC_RD() & ~BM_SATA_GHC_IE) | BF_SATA_GHC_IE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_GHC, field AE[31] (RW)
@@ -527,7 +485,6 @@ typedef union _hw_sata_ghc
  * SATA_CAP[SAM]=1.
  */
 //@{
-
 #define BP_SATA_GHC_AE      (31)      //!< Bit position for SATA_GHC_AE.
 #define BM_SATA_GHC_AE      (0x80000000)  //!< Bit mask for SATA_GHC_AE.
 
@@ -541,7 +498,6 @@ typedef union _hw_sata_ghc
 //! @brief Set the AE field to a new value.
 #define BW_SATA_GHC_AE(v)   (HW_SATA_GHC_WR((HW_SATA_GHC_RD() & ~BM_SATA_GHC_AE) | BF_SATA_GHC_AE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -596,7 +552,6 @@ typedef union _hw_sata_is
  * (see the definition of the SATA_P 0 IE register). Bit 0 of the IPS field is not used.
  */
 //@{
-
 #define BP_SATA_IS_IPS      (0)      //!< Bit position for SATA_IS_IPS.
 #define BM_SATA_IS_IPS      (0x00000003)  //!< Bit mask for SATA_IS_IPS.
 
@@ -610,7 +565,6 @@ typedef union _hw_sata_is
 //! @brief Set the IPS field to a new value.
 #define BW_SATA_IS_IPS(v)   (HW_SATA_IS_WR((HW_SATA_IS_RD() & ~BM_SATA_IS_IPS) | BF_SATA_IS_IPS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -661,13 +615,11 @@ typedef union _hw_sata_pi
  * Ports Implemented. BIOS must set this bit to 1
  */
 //@{
-
 #define BP_SATA_PI_PI      (0)      //!< Bit position for SATA_PI_PI.
 #define BM_SATA_PI_PI      (0x00000001)  //!< Bit mask for SATA_PI_PI.
 
 //! @brief Get value of SATA_PI_PI from a register value.
 #define BG_SATA_PI_PI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_PI_PI) >> BP_SATA_PI_PI)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -717,13 +669,11 @@ typedef union _hw_sata_vs
  * Minor Version Number. Indicates that the minor AHCI version is 30.
  */
 //@{
-
 #define BP_SATA_VS_MNR      (0)      //!< Bit position for SATA_VS_MNR.
 #define BM_SATA_VS_MNR      (0x0000ffff)  //!< Bit mask for SATA_VS_MNR.
 
 //! @brief Get value of SATA_VS_MNR from a register value.
 #define BG_SATA_VS_MNR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_VS_MNR) >> BP_SATA_VS_MNR)
-
 //@}
 
 /*! @name Register SATA_VS, field MJR[31:16] (RO)
@@ -731,13 +681,11 @@ typedef union _hw_sata_vs
  * Major Version Number. Indicates that the major AHCI version is 1.
  */
 //@{
-
 #define BP_SATA_VS_MJR      (16)      //!< Bit position for SATA_VS_MJR.
 #define BM_SATA_VS_MJR      (0xffff0000)  //!< Bit mask for SATA_VS_MJR.
 
 //! @brief Get value of SATA_VS_MJR from a register value.
 #define BG_SATA_VS_MJR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_VS_MJR) >> BP_SATA_VS_MJR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -798,7 +746,6 @@ typedef union _hw_sata_ccc_ctl
  *     completion conditions.
  */
 //@{
-
 #define BP_SATA_CCC_CTL_EN      (0)      //!< Bit position for SATA_CCC_CTL_EN.
 #define BM_SATA_CCC_CTL_EN      (0x00000001)  //!< Bit mask for SATA_CCC_CTL_EN.
 
@@ -812,7 +759,6 @@ typedef union _hw_sata_ccc_ctl
 //! @brief Set the EN field to a new value.
 #define BW_SATA_CCC_CTL_EN(v)   (HW_SATA_CCC_CTL_WR((HW_SATA_CCC_CTL_RD() & ~BM_SATA_CCC_CTL_EN) | BF_SATA_CCC_CTL_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_CCC_CTL, field INT[7:3] (RW)
@@ -820,7 +766,6 @@ typedef union _hw_sata_ccc_ctl
  * Interrupt. Set this field to 0x01.
  */
 //@{
-
 #define BP_SATA_CCC_CTL_INT      (3)      //!< Bit position for SATA_CCC_CTL_INT.
 #define BM_SATA_CCC_CTL_INT      (0x000000f8)  //!< Bit mask for SATA_CCC_CTL_INT.
 
@@ -834,7 +779,6 @@ typedef union _hw_sata_ccc_ctl
 //! @brief Set the INT field to a new value.
 #define BW_SATA_CCC_CTL_INT(v)   (HW_SATA_CCC_CTL_WR((HW_SATA_CCC_CTL_RD() & ~BM_SATA_CCC_CTL_INT) | BF_SATA_CCC_CTL_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_CCC_CTL, field CC[15:8] (RW)
@@ -846,7 +790,6 @@ typedef union _hw_sata_ccc_ctl
  * SATA_CCC_CTL[EN]==0 • RO when SATA_CCC_CTL[EN]==1
  */
 //@{
-
 #define BP_SATA_CCC_CTL_CC      (8)      //!< Bit position for SATA_CCC_CTL_CC.
 #define BM_SATA_CCC_CTL_CC      (0x0000ff00)  //!< Bit mask for SATA_CCC_CTL_CC.
 
@@ -860,7 +803,6 @@ typedef union _hw_sata_ccc_ctl
 //! @brief Set the CC field to a new value.
 #define BW_SATA_CCC_CTL_CC(v)   (HW_SATA_CCC_CTL_WR((HW_SATA_CCC_CTL_RD() & ~BM_SATA_CCC_CTL_CC) | BF_SATA_CCC_CTL_CC(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_CCC_CTL, field TV[31:16] (RW)
@@ -870,7 +812,6 @@ typedef union _hw_sata_ccc_ctl
  * • RO when SATA_CCC_CTL[EN]==1. A time-out value of 0x0000 is reserved and should not be used.
  */
 //@{
-
 #define BP_SATA_CCC_CTL_TV      (16)      //!< Bit position for SATA_CCC_CTL_TV.
 #define BM_SATA_CCC_CTL_TV      (0xffff0000)  //!< Bit mask for SATA_CCC_CTL_TV.
 
@@ -884,7 +825,6 @@ typedef union _hw_sata_ccc_ctl
 //! @brief Set the TV field to a new value.
 #define BW_SATA_CCC_CTL_TV(v)   (HW_SATA_CCC_CTL_WR((HW_SATA_CCC_CTL_RD() & ~BM_SATA_CCC_CTL_TV) | BF_SATA_CCC_CTL_TV(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -941,7 +881,6 @@ typedef union _hw_sata_ccc_ports
  * - 1 - the corresponding Port is part of the CCC feature.
  */
 //@{
-
 #define BP_SATA_CCC_PORTS_PRT      (0)      //!< Bit position for SATA_CCC_PORTS_PRT.
 #define BM_SATA_CCC_PORTS_PRT      (0xffffffff)  //!< Bit mask for SATA_CCC_PORTS_PRT.
 
@@ -955,7 +894,6 @@ typedef union _hw_sata_ccc_ports
 //! @brief Set the PRT field to a new value.
 #define BW_SATA_CCC_PORTS_PRT(v)   (HW_SATA_CCC_PORTS_WR((HW_SATA_CCC_PORTS_RD() & ~BM_SATA_CCC_PORTS_PRT) | BF_SATA_CCC_PORTS_PRT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1004,13 +942,11 @@ typedef union _hw_sata_cap2
  * transitions.
  */
 //@{
-
 #define BP_SATA_CAP2_APST      (2)      //!< Bit position for SATA_CAP2_APST.
 #define BM_SATA_CAP2_APST      (0x00000004)  //!< Bit mask for SATA_CAP2_APST.
 
 //! @brief Get value of SATA_CAP2_APST from a register value.
 #define BG_SATA_CAP2_APST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_CAP2_APST) >> BP_SATA_CAP2_APST)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1071,13 +1007,11 @@ typedef union _hw_sata_bistafr
  * - All other values - should not be used by the device, otherwise, the FIS is negatively acknowledged with R_ERRp.
  */
 //@{
-
 #define BP_SATA_BISTAFR_PD      (0)      //!< Bit position for SATA_BISTAFR_PD.
 #define BM_SATA_BISTAFR_PD      (0x000000ff)  //!< Bit mask for SATA_BISTAFR_PD.
 
 //! @brief Get value of SATA_BISTAFR_PD from a register value.
 #define BG_SATA_BISTAFR_PD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTAFR_PD) >> BP_SATA_BISTAFR_PD)
-
 //@}
 
 /*! @name Register SATA_BISTAFR, field NCP[15:8] (RO)
@@ -1097,13 +1031,11 @@ typedef union _hw_sata_bistafr
  * - 0xF1 - Low transition density pattern (LTDP)
  */
 //@{
-
 #define BP_SATA_BISTAFR_NCP      (8)      //!< Bit position for SATA_BISTAFR_NCP.
 #define BM_SATA_BISTAFR_NCP      (0x0000ff00)  //!< Bit mask for SATA_BISTAFR_NCP.
 
 //! @brief Get value of SATA_BISTAFR_NCP from a register value.
 #define BG_SATA_BISTAFR_NCP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTAFR_NCP) >> BP_SATA_BISTAFR_NCP)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1185,7 +1117,6 @@ typedef union _hw_sata_bistcr
  * - 1000b - Low frequency test pattern (LFTP)
  */
 //@{
-
 #define BP_SATA_BISTCR_PATTERN      (0)      //!< Bit position for SATA_BISTCR_PATTERN.
 #define BM_SATA_BISTCR_PATTERN      (0x0000000f)  //!< Bit mask for SATA_BISTCR_PATTERN.
 
@@ -1199,7 +1130,6 @@ typedef union _hw_sata_bistcr
 //! @brief Set the PATTERN field to a new value.
 #define BW_SATA_BISTCR_PATTERN(v)   (HW_SATA_BISTCR_WR((HW_SATA_BISTCR_RD() & ~BM_SATA_BISTCR_PATTERN) | BF_SATA_BISTCR_PATTERN(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_BISTCR, field PV[4] (RW)
@@ -1212,7 +1142,6 @@ typedef union _hw_sata_bistcr
  * - 1 - Long pattern version
  */
 //@{
-
 #define BP_SATA_BISTCR_PV      (4)      //!< Bit position for SATA_BISTCR_PV.
 #define BM_SATA_BISTCR_PV      (0x00000010)  //!< Bit mask for SATA_BISTCR_PV.
 
@@ -1226,7 +1155,6 @@ typedef union _hw_sata_bistcr
 //! @brief Set the PV field to a new value.
 #define BW_SATA_BISTCR_PV(v)   (HW_SATA_BISTCR_WR((HW_SATA_BISTCR_RD() & ~BM_SATA_BISTCR_PV) | BF_SATA_BISTCR_PV(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_BISTCR, field FLIP[5] (RW)
@@ -1235,7 +1163,6 @@ typedef union _hw_sata_bistcr
  * every time its state is changed by the software.
  */
 //@{
-
 #define BP_SATA_BISTCR_FLIP      (5)      //!< Bit position for SATA_BISTCR_FLIP.
 #define BM_SATA_BISTCR_FLIP      (0x00000020)  //!< Bit mask for SATA_BISTCR_FLIP.
 
@@ -1249,7 +1176,6 @@ typedef union _hw_sata_bistcr
 //! @brief Set the FLIP field to a new value.
 #define BW_SATA_BISTCR_FLIP(v)   (HW_SATA_BISTCR_WR((HW_SATA_BISTCR_RD() & ~BM_SATA_BISTCR_FLIP) | BF_SATA_BISTCR_FLIP(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_BISTCR, field ERREN[6] (RW)
@@ -1262,7 +1188,6 @@ typedef union _hw_sata_bistcr
  * - 1 - Allow errors outside or inside the FIS.
  */
 //@{
-
 #define BP_SATA_BISTCR_ERREN      (6)      //!< Bit position for SATA_BISTCR_ERREN.
 #define BM_SATA_BISTCR_ERREN      (0x00000040)  //!< Bit mask for SATA_BISTCR_ERREN.
 
@@ -1276,7 +1201,6 @@ typedef union _hw_sata_bistcr
 //! @brief Set the ERREN field to a new value.
 #define BW_SATA_BISTCR_ERREN(v)   (HW_SATA_BISTCR_WR((HW_SATA_BISTCR_RD() & ~BM_SATA_BISTCR_ERREN) | BF_SATA_BISTCR_ERREN(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_BISTCR, field LLC[10:8] (RW)
@@ -1294,7 +1218,6 @@ typedef union _hw_sata_bistcr
  * changed only during Port reset (SATA_P 0 SCTL[DET]=0x1)
  */
 //@{
-
 #define BP_SATA_BISTCR_LLC      (8)      //!< Bit position for SATA_BISTCR_LLC.
 #define BM_SATA_BISTCR_LLC      (0x00000700)  //!< Bit mask for SATA_BISTCR_LLC.
 
@@ -1308,7 +1231,6 @@ typedef union _hw_sata_bistcr
 //! @brief Set the LLC field to a new value.
 #define BW_SATA_BISTCR_LLC(v)   (HW_SATA_BISTCR_WR((HW_SATA_BISTCR_RD() & ~BM_SATA_BISTCR_LLC) | BF_SATA_BISTCR_LLC(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_BISTCR, field SDFE[12] (RW)
@@ -1323,7 +1245,6 @@ typedef union _hw_sata_bistcr
  * tied high and must go low when no data is detected on the wires.
  */
 //@{
-
 #define BP_SATA_BISTCR_SDFE      (12)      //!< Bit position for SATA_BISTCR_SDFE.
 #define BM_SATA_BISTCR_SDFE      (0x00001000)  //!< Bit mask for SATA_BISTCR_SDFE.
 
@@ -1337,7 +1258,6 @@ typedef union _hw_sata_bistcr
 //! @brief Set the SDFE field to a new value.
 #define BW_SATA_BISTCR_SDFE(v)   (HW_SATA_BISTCR_WR((HW_SATA_BISTCR_RD() & ~BM_SATA_BISTCR_SDFE) | BF_SATA_BISTCR_SDFE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_BISTCR, field QPHYINIT[14] (RW)
@@ -1347,7 +1267,6 @@ typedef union _hw_sata_bistcr
  * (0) and ALIGN_MODE = Aligned (1), otherwise it is reserved.
  */
 //@{
-
 #define BP_SATA_BISTCR_QPHYINIT      (14)      //!< Bit position for SATA_BISTCR_QPHYINIT.
 #define BM_SATA_BISTCR_QPHYINIT      (0x00004000)  //!< Bit mask for SATA_BISTCR_QPHYINIT.
 
@@ -1361,7 +1280,6 @@ typedef union _hw_sata_bistcr
 //! @brief Set the QPHYINIT field to a new value.
 #define BW_SATA_BISTCR_QPHYINIT(v)   (HW_SATA_BISTCR_WR((HW_SATA_BISTCR_RD() & ~BM_SATA_BISTCR_QPHYINIT) | BF_SATA_BISTCR_QPHYINIT(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_BISTCR, field NEALB[16] (WO)
@@ -1375,7 +1293,6 @@ typedef union _hw_sata_bistcr
  * - 1 - Near-end analog loopback request. SATA_BISTCR[PATTERN] field contains the appropriate pattern.
  */
 //@{
-
 #define BP_SATA_BISTCR_NEALB      (16)      //!< Bit position for SATA_BISTCR_NEALB.
 #define BM_SATA_BISTCR_NEALB      (0x00010000)  //!< Bit mask for SATA_BISTCR_NEALB.
 
@@ -1384,7 +1301,6 @@ typedef union _hw_sata_bistcr
 
 //! @brief Format value for bitfield SATA_BISTCR_NEALB.
 #define BF_SATA_BISTCR_NEALB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_NEALB) & BM_SATA_BISTCR_NEALB)
-
 //@}
 
 /*! @name Register SATA_BISTCR, field CNTCLR[17] (WO)
@@ -1396,7 +1312,6 @@ typedef union _hw_sata_bistcr
  * - 1 - Clear SATA_BISTFCTR, and SATA_BISTSR registers.
  */
 //@{
-
 #define BP_SATA_BISTCR_CNTCLR      (17)      //!< Bit position for SATA_BISTCR_CNTCLR.
 #define BM_SATA_BISTCR_CNTCLR      (0x00020000)  //!< Bit mask for SATA_BISTCR_CNTCLR.
 
@@ -1405,7 +1320,6 @@ typedef union _hw_sata_bistcr
 
 //! @brief Format value for bitfield SATA_BISTCR_CNTCLR.
 #define BF_SATA_BISTCR_CNTCLR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_CNTCLR) & BM_SATA_BISTCR_CNTCLR)
-
 //@}
 
 /*! @name Register SATA_BISTCR, field TXO[18] (RW)
@@ -1414,7 +1328,6 @@ typedef union _hw_sata_bistcr
  * defined by the SATA_BISTCR[PATTERN] value when the device is disconnected.
  */
 //@{
-
 #define BP_SATA_BISTCR_TXO      (18)      //!< Bit position for SATA_BISTCR_TXO.
 #define BM_SATA_BISTCR_TXO      (0x00040000)  //!< Bit mask for SATA_BISTCR_TXO.
 
@@ -1428,7 +1341,6 @@ typedef union _hw_sata_bistcr
 //! @brief Set the TXO field to a new value.
 #define BW_SATA_BISTCR_TXO(v)   (HW_SATA_BISTCR_WR((HW_SATA_BISTCR_RD() & ~BM_SATA_BISTCR_TXO) | BF_SATA_BISTCR_TXO(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_BISTCR, field FERLB[20] (WO)
@@ -1438,7 +1350,6 @@ typedef union _hw_sata_bistcr
  * disconnected (Link in NOCOMM state). This field is one-shot type and reads returns 0.
  */
 //@{
-
 #define BP_SATA_BISTCR_FERLB      (20)      //!< Bit position for SATA_BISTCR_FERLB.
 #define BM_SATA_BISTCR_FERLB      (0x00100000)  //!< Bit mask for SATA_BISTCR_FERLB.
 
@@ -1447,7 +1358,6 @@ typedef union _hw_sata_bistcr
 
 //! @brief Format value for bitfield SATA_BISTCR_FERLB.
 #define BF_SATA_BISTCR_FERLB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SATA_BISTCR_FERLB) & BM_SATA_BISTCR_FERLB)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1542,13 +1452,11 @@ typedef union _hw_sata_bistsr
  * not roll over and freezes at FFFFh.
  */
 //@{
-
 #define BP_SATA_BISTSR_FRAMERR      (0)      //!< Bit position for SATA_BISTSR_FRAMERR.
 #define BM_SATA_BISTSR_FRAMERR      (0x0000ffff)  //!< Bit mask for SATA_BISTSR_FRAMERR.
 
 //! @brief Get value of SATA_BISTSR_FRAMERR from a register value.
 #define BG_SATA_BISTSR_FRAMERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTSR_FRAMERR) >> BP_SATA_BISTSR_FRAMERR)
-
 //@}
 
 /*! @name Register SATA_BISTSR, field BRSTERR[23:16] (RO)
@@ -1559,13 +1467,11 @@ typedef union _hw_sata_bistsr
  * and freezes at FFh. This field is updated when parameter BIST_MODE=DWORD.
  */
 //@{
-
 #define BP_SATA_BISTSR_BRSTERR      (16)      //!< Bit position for SATA_BISTSR_BRSTERR.
 #define BM_SATA_BISTSR_BRSTERR      (0x00ff0000)  //!< Bit mask for SATA_BISTSR_BRSTERR.
 
 //! @brief Get value of SATA_BISTSR_BRSTERR from a register value.
 #define BG_SATA_BISTSR_BRSTERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_BISTSR_BRSTERR) >> BP_SATA_BISTSR_BRSTERR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1621,7 +1527,6 @@ typedef union _hw_sata_oobr
  * COMINIT Maximum Value This field is RW when WE=1 and RO when WE=0.
  */
 //@{
-
 #define BP_SATA_OOBR_CIMAX      (0)      //!< Bit position for SATA_OOBR_CIMAX.
 #define BM_SATA_OOBR_CIMAX      (0x000000ff)  //!< Bit mask for SATA_OOBR_CIMAX.
 
@@ -1635,7 +1540,6 @@ typedef union _hw_sata_oobr
 //! @brief Set the CIMAX field to a new value.
 #define BW_SATA_OOBR_CIMAX(v)   (HW_SATA_OOBR_WR((HW_SATA_OOBR_RD() & ~BM_SATA_OOBR_CIMAX) | BF_SATA_OOBR_CIMAX(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_OOBR, field CIMIN[15:8] (RW)
@@ -1643,7 +1547,6 @@ typedef union _hw_sata_oobr
  * COMINIT Minimum Value This field is RW when WE=1 and RO when WE=0.
  */
 //@{
-
 #define BP_SATA_OOBR_CIMIN      (8)      //!< Bit position for SATA_OOBR_CIMIN.
 #define BM_SATA_OOBR_CIMIN      (0x0000ff00)  //!< Bit mask for SATA_OOBR_CIMIN.
 
@@ -1657,7 +1560,6 @@ typedef union _hw_sata_oobr
 //! @brief Set the CIMIN field to a new value.
 #define BW_SATA_OOBR_CIMIN(v)   (HW_SATA_OOBR_WR((HW_SATA_OOBR_RD() & ~BM_SATA_OOBR_CIMIN) | BF_SATA_OOBR_CIMIN(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_OOBR, field CWMAX[23:16] (RW)
@@ -1665,7 +1567,6 @@ typedef union _hw_sata_oobr
  * COMWAKE Maximum Value This field is RW when WE=1 and RO when WE=0.
  */
 //@{
-
 #define BP_SATA_OOBR_CWMAX      (16)      //!< Bit position for SATA_OOBR_CWMAX.
 #define BM_SATA_OOBR_CWMAX      (0x00ff0000)  //!< Bit mask for SATA_OOBR_CWMAX.
 
@@ -1679,7 +1580,6 @@ typedef union _hw_sata_oobr
 //! @brief Set the CWMAX field to a new value.
 #define BW_SATA_OOBR_CWMAX(v)   (HW_SATA_OOBR_WR((HW_SATA_OOBR_RD() & ~BM_SATA_OOBR_CWMAX) | BF_SATA_OOBR_CWMAX(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_OOBR, field CWMIN[30:24] (RW)
@@ -1687,7 +1587,6 @@ typedef union _hw_sata_oobr
  * COMWAKE Minimum Value This field is RW when WE=1 and RO when WE=0.
  */
 //@{
-
 #define BP_SATA_OOBR_CWMIN      (24)      //!< Bit position for SATA_OOBR_CWMIN.
 #define BM_SATA_OOBR_CWMIN      (0x7f000000)  //!< Bit mask for SATA_OOBR_CWMIN.
 
@@ -1701,7 +1600,6 @@ typedef union _hw_sata_oobr
 //! @brief Set the CWMIN field to a new value.
 #define BW_SATA_OOBR_CWMIN(v)   (HW_SATA_OOBR_WR((HW_SATA_OOBR_RD() & ~BM_SATA_OOBR_CWMIN) | BF_SATA_OOBR_CWMIN(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_OOBR, field WE[31] (RW)
@@ -1713,7 +1611,6 @@ typedef union _hw_sata_oobr
  * - 1 - SATA_OOBR bits [30:0] can be written
  */
 //@{
-
 #define BP_SATA_OOBR_WE      (31)      //!< Bit position for SATA_OOBR_WE.
 #define BM_SATA_OOBR_WE      (0x80000000)  //!< Bit mask for SATA_OOBR_WE.
 
@@ -1727,7 +1624,6 @@ typedef union _hw_sata_oobr
 //! @brief Set the WE field to a new value.
 #define BW_SATA_OOBR_WE(v)   (HW_SATA_OOBR_WR((HW_SATA_OOBR_RD() & ~BM_SATA_OOBR_WE) | BF_SATA_OOBR_WE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1781,7 +1677,6 @@ typedef union _hw_sata_gpcr
  * parameter GP_CTRL_DEF
  */
 //@{
-
 #define BP_SATA_GPCR_GP_CONTROL      (0)      //!< Bit position for SATA_GPCR_GP_CONTROL.
 #define BM_SATA_GPCR_GP_CONTROL      (0xffffffff)  //!< Bit mask for SATA_GPCR_GP_CONTROL.
 
@@ -1795,7 +1690,6 @@ typedef union _hw_sata_gpcr
 //! @brief Set the GP_CONTROL field to a new value.
 #define BW_SATA_GPCR_GP_CONTROL(v)   (HW_SATA_GPCR_WR((HW_SATA_GPCR_RD() & ~BM_SATA_GPCR_GP_CONTROL) | BF_SATA_GPCR_GP_CONTROL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1850,7 +1744,6 @@ typedef union _hw_sata_gpsr
  * General Purpose Status. Present only when GP_STAT=Include(1)
  */
 //@{
-
 #define BP_SATA_GPSR_GP_STATUS      (0)      //!< Bit position for SATA_GPSR_GP_STATUS.
 #define BM_SATA_GPSR_GP_STATUS      (0xffffffff)  //!< Bit mask for SATA_GPSR_GP_STATUS.
 
@@ -1864,7 +1757,6 @@ typedef union _hw_sata_gpsr
 //! @brief Set the GP_STATUS field to a new value.
 #define BW_SATA_GPSR_GP_STATUS(v)   (HW_SATA_GPSR_WR((HW_SATA_GPSR_RD() & ~BM_SATA_GPSR_GP_STATUS) | BF_SATA_GPSR_GP_STATUS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1920,7 +1812,6 @@ typedef union _hw_sata_timer1ms
  * when SATA_CCC_CTL[EN]==0 • RO when SATA_CCC_CTL[EN]==1.
  */
 //@{
-
 #define BP_SATA_TIMER1MS_TIMV      (0)      //!< Bit position for SATA_TIMER1MS_TIMV.
 #define BM_SATA_TIMER1MS_TIMV      (0x000fffff)  //!< Bit mask for SATA_TIMER1MS_TIMV.
 
@@ -1934,7 +1825,6 @@ typedef union _hw_sata_timer1ms
 //! @brief Set the TIMV field to a new value.
 #define BW_SATA_TIMER1MS_TIMV(v)   (HW_SATA_TIMER1MS_WR((HW_SATA_TIMER1MS_RD() & ~BM_SATA_TIMER1MS_TIMV) | BF_SATA_TIMER1MS_TIMV(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2007,7 +1897,6 @@ typedef union _hw_sata_testr
  * - 1 - Test mode: the read back value of the registers matches the value written.
  */
 //@{
-
 #define BP_SATA_TESTR_TEST_IF      (0)      //!< Bit position for SATA_TESTR_TEST_IF.
 #define BM_SATA_TESTR_TEST_IF      (0x00000001)  //!< Bit mask for SATA_TESTR_TEST_IF.
 
@@ -2021,7 +1910,6 @@ typedef union _hw_sata_testr
 //! @brief Set the TEST_IF field to a new value.
 #define BW_SATA_TESTR_TEST_IF(v)   (HW_SATA_TESTR_WR((HW_SATA_TESTR_RD() & ~BM_SATA_TESTR_TEST_IF) | BF_SATA_TESTR_TEST_IF(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_TESTR, field PSEL[18:16] (RW)
@@ -2040,7 +1928,6 @@ typedef union _hw_sata_testr
  * - 0x0 - Port7 is selected
  */
 //@{
-
 #define BP_SATA_TESTR_PSEL      (16)      //!< Bit position for SATA_TESTR_PSEL.
 #define BM_SATA_TESTR_PSEL      (0x00070000)  //!< Bit mask for SATA_TESTR_PSEL.
 
@@ -2054,7 +1941,6 @@ typedef union _hw_sata_testr
 //! @brief Set the PSEL field to a new value.
 #define BW_SATA_TESTR_PSEL(v)   (HW_SATA_TESTR_WR((HW_SATA_TESTR_RD() & ~BM_SATA_TESTR_PSEL) | BF_SATA_TESTR_PSEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2147,7 +2033,6 @@ typedef union _hw_sata_p0clb
  * being read only.
  */
 //@{
-
 #define BP_SATA_P0CLB_CLB      (10)      //!< Bit position for SATA_P0CLB_CLB.
 #define BM_SATA_P0CLB_CLB      (0xfffffc00)  //!< Bit mask for SATA_P0CLB_CLB.
 
@@ -2161,7 +2046,6 @@ typedef union _hw_sata_p0clb
 //! @brief Set the CLB field to a new value.
 #define BW_SATA_P0CLB_CLB(v)   (HW_SATA_P0CLB_WR((HW_SATA_P0CLB_RD() & ~BM_SATA_P0CLB_CLB) | BF_SATA_P0CLB_CLB(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2214,7 +2098,6 @@ typedef union _hw_sata_p0fb
  * indicated by bits [7:0] being read only. Reset: 0x000000
  */
 //@{
-
 #define BP_SATA_P0FB_FB      (8)      //!< Bit position for SATA_P0FB_FB.
 #define BM_SATA_P0FB_FB      (0xffffff00)  //!< Bit mask for SATA_P0FB_FB.
 
@@ -2228,7 +2111,6 @@ typedef union _hw_sata_p0fb
 //! @brief Set the FB field to a new value.
 #define BW_SATA_P0FB_FB(v)   (HW_SATA_P0FB_WR((HW_SATA_P0FB_RD() & ~BM_SATA_P0FB_FB) | BF_SATA_P0FB_FB(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2298,13 +2180,11 @@ typedef union _hw_sata_p0is
  * and has been copied into system memory.
  */
 //@{
-
 #define BP_SATA_P0IS_DHRS      (0)      //!< Bit position for SATA_P0IS_DHRS.
 #define BM_SATA_P0IS_DHRS      (0x00000001)  //!< Bit mask for SATA_P0IS_DHRS.
 
 //! @brief Get value of SATA_P0IS_DHRS from a register value.
 #define BG_SATA_P0IS_DHRS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_DHRS) >> BP_SATA_P0IS_DHRS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field PSS[1] (RO)
@@ -2314,13 +2194,11 @@ typedef union _hw_sata_p0is
  * even when the data transfer resulted in an error.
  */
 //@{
-
 #define BP_SATA_P0IS_PSS      (1)      //!< Bit position for SATA_P0IS_PSS.
 #define BM_SATA_P0IS_PSS      (0x00000002)  //!< Bit mask for SATA_P0IS_PSS.
 
 //! @brief Get value of SATA_P0IS_PSS from a register value.
 #define BG_SATA_P0IS_PSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_PSS) >> BP_SATA_P0IS_PSS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field DSS[2] (RO)
@@ -2329,13 +2207,11 @@ typedef union _hw_sata_p0is
  * copied into system memory.
  */
 //@{
-
 #define BP_SATA_P0IS_DSS      (2)      //!< Bit position for SATA_P0IS_DSS.
 #define BM_SATA_P0IS_DSS      (0x00000004)  //!< Bit mask for SATA_P0IS_DSS.
 
 //! @brief Get value of SATA_P0IS_DSS from a register value.
 #define BG_SATA_P0IS_DSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_DSS) >> BP_SATA_P0IS_DSS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field SDBS[3] (RO)
@@ -2344,13 +2220,11 @@ typedef union _hw_sata_p0is
  * been copied into system memory.
  */
 //@{
-
 #define BP_SATA_P0IS_SDBS      (3)      //!< Bit position for SATA_P0IS_SDBS.
 #define BM_SATA_P0IS_SDBS      (0x00000008)  //!< Bit mask for SATA_P0IS_SDBS.
 
 //! @brief Get value of SATA_P0IS_SDBS from a register value.
 #define BG_SATA_P0IS_SDBS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_SDBS) >> BP_SATA_P0IS_SDBS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field UFS[4] (RO)
@@ -2363,13 +2237,11 @@ typedef union _hw_sata_p0is
  * the UFS bit is set to 1 or the two bits may become out of sync.
  */
 //@{
-
 #define BP_SATA_P0IS_UFS      (4)      //!< Bit position for SATA_P0IS_UFS.
 #define BM_SATA_P0IS_UFS      (0x00000010)  //!< Bit mask for SATA_P0IS_UFS.
 
 //! @brief Get value of SATA_P0IS_UFS from a register value.
 #define BG_SATA_P0IS_UFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_UFS) >> BP_SATA_P0IS_UFS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field DPS[5] (RO)
@@ -2380,13 +2252,11 @@ typedef union _hw_sata_p0is
  * the first PRD interrupt is being cleared.
  */
 //@{
-
 #define BP_SATA_P0IS_DPS      (5)      //!< Bit position for SATA_P0IS_DPS.
 #define BM_SATA_P0IS_DPS      (0x00000020)  //!< Bit mask for SATA_P0IS_DPS.
 
 //! @brief Get value of SATA_P0IS_DPS from a register value.
 #define BG_SATA_P0IS_DPS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_DPS) >> BP_SATA_P0IS_DPS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field PCS[6] (RO)
@@ -2399,13 +2269,11 @@ typedef union _hw_sata_p0is
  * - 1 - Change in Current Connect Status;
  */
 //@{
-
 #define BP_SATA_P0IS_PCS      (6)      //!< Bit position for SATA_P0IS_PCS.
 #define BM_SATA_P0IS_PCS      (0x00000040)  //!< Bit mask for SATA_P0IS_PCS.
 
 //! @brief Get value of SATA_P0IS_PCS from a register value.
 #define BG_SATA_P0IS_PCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_PCS) >> BP_SATA_P0IS_PCS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field PRCS[22] (RO)
@@ -2415,13 +2283,11 @@ typedef union _hw_sata_p0is
  * must clear the SATA_P 0 SERR[DIAG_N] bit to 0.
  */
 //@{
-
 #define BP_SATA_P0IS_PRCS      (22)      //!< Bit position for SATA_P0IS_PRCS.
 #define BM_SATA_P0IS_PRCS      (0x00400000)  //!< Bit mask for SATA_P0IS_PRCS.
 
 //! @brief Get value of SATA_P0IS_PRCS from a register value.
 #define BG_SATA_P0IS_PRCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_PRCS) >> BP_SATA_P0IS_PRCS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field IPMS[23] (RO)
@@ -2432,13 +2298,11 @@ typedef union _hw_sata_p0is
  * must use the IPMS bit only after enumeration is complete on the Port Multiplier.
  */
 //@{
-
 #define BP_SATA_P0IS_IPMS      (23)      //!< Bit position for SATA_P0IS_IPMS.
 #define BM_SATA_P0IS_IPMS      (0x00800000)  //!< Bit mask for SATA_P0IS_IPMS.
 
 //! @brief Get value of SATA_P0IS_IPMS from a register value.
 #define BG_SATA_P0IS_IPMS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_IPMS) >> BP_SATA_P0IS_IPMS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field OFS[24] (RO)
@@ -2449,13 +2313,11 @@ typedef union _hw_sata_p0is
  * CMD[ST] bit or resets the interface by way of Port or Global reset.
  */
 //@{
-
 #define BP_SATA_P0IS_OFS      (24)      //!< Bit position for SATA_P0IS_OFS.
 #define BM_SATA_P0IS_OFS      (0x01000000)  //!< Bit mask for SATA_P0IS_OFS.
 
 //! @brief Get value of SATA_P0IS_OFS from a register value.
 #define BG_SATA_P0IS_OFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_OFS) >> BP_SATA_P0IS_OFS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field INFS[26] (RO)
@@ -2468,13 +2330,11 @@ typedef union _hw_sata_p0is
  * table that has more total bytes than the transaction given to the device.
  */
 //@{
-
 #define BP_SATA_P0IS_INFS      (26)      //!< Bit position for SATA_P0IS_INFS.
 #define BM_SATA_P0IS_INFS      (0x04000000)  //!< Bit mask for SATA_P0IS_INFS.
 
 //! @brief Get value of SATA_P0IS_INFS from a register value.
 #define BG_SATA_P0IS_INFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_INFS) >> BP_SATA_P0IS_INFS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field IFS[27] (RO)
@@ -2489,13 +2349,11 @@ typedef union _hw_sata_p0is
  * interface by way of Port or Global reset.
  */
 //@{
-
 #define BP_SATA_P0IS_IFS      (27)      //!< Bit position for SATA_P0IS_IFS.
 #define BM_SATA_P0IS_IFS      (0x08000000)  //!< Bit mask for SATA_P0IS_IFS.
 
 //! @brief Get value of SATA_P0IS_IFS from a register value.
 #define BG_SATA_P0IS_IFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_IFS) >> BP_SATA_P0IS_IFS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field HBDS[28] (RO)
@@ -2503,13 +2361,11 @@ typedef union _hw_sata_p0is
  * Host Bus Data Error Status. This bit is always cleared to 0.
  */
 //@{
-
 #define BP_SATA_P0IS_HBDS      (28)      //!< Bit position for SATA_P0IS_HBDS.
 #define BM_SATA_P0IS_HBDS      (0x10000000)  //!< Bit mask for SATA_P0IS_HBDS.
 
 //! @brief Get value of SATA_P0IS_HBDS from a register value.
 #define BG_SATA_P0IS_HBDS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_HBDS) >> BP_SATA_P0IS_HBDS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field HBFS[29] (RO)
@@ -2518,13 +2374,11 @@ typedef union _hw_sata_p0is
  * from the slave.
  */
 //@{
-
 #define BP_SATA_P0IS_HBFS      (29)      //!< Bit position for SATA_P0IS_HBFS.
 #define BM_SATA_P0IS_HBFS      (0x20000000)  //!< Bit mask for SATA_P0IS_HBFS.
 
 //! @brief Get value of SATA_P0IS_HBFS from a register value.
 #define BG_SATA_P0IS_HBFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_HBFS) >> BP_SATA_P0IS_HBFS)
-
 //@}
 
 /*! @name Register SATA_P0IS, field TFES[30] (RO)
@@ -2533,13 +2387,11 @@ typedef union _hw_sata_p0is
  * device and the error bit (bit 0) is set.
  */
 //@{
-
 #define BP_SATA_P0IS_TFES      (30)      //!< Bit position for SATA_P0IS_TFES.
 #define BM_SATA_P0IS_TFES      (0x40000000)  //!< Bit mask for SATA_P0IS_TFES.
 
 //! @brief Get value of SATA_P0IS_TFES from a register value.
 #define BG_SATA_P0IS_TFES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0IS_TFES) >> BP_SATA_P0IS_TFES)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2611,7 +2463,6 @@ typedef union _hw_sata_p0ie
  * intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[DHRS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_DHRE      (0)      //!< Bit position for SATA_P0IE_DHRE.
 #define BM_SATA_P0IE_DHRE      (0x00000001)  //!< Bit mask for SATA_P0IE_DHRE.
 
@@ -2625,7 +2476,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the DHRE field to a new value.
 #define BW_SATA_P0IE_DHRE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_DHRE) | BF_SATA_P0IE_DHRE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field PSE[1] (RW)
@@ -2634,7 +2484,6 @@ typedef union _hw_sata_p0ie
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[PSS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_PSE      (1)      //!< Bit position for SATA_P0IE_PSE.
 #define BM_SATA_P0IE_PSE      (0x00000002)  //!< Bit mask for SATA_P0IE_PSE.
 
@@ -2648,7 +2497,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the PSE field to a new value.
 #define BW_SATA_P0IE_PSE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_PSE) | BF_SATA_P0IE_PSE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field DSE[2] (RW)
@@ -2657,7 +2505,6 @@ typedef union _hw_sata_p0ie
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[DSS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_DSE      (2)      //!< Bit position for SATA_P0IE_DSE.
 #define BM_SATA_P0IE_DSE      (0x00000004)  //!< Bit mask for SATA_P0IE_DSE.
 
@@ -2671,7 +2518,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the DSE field to a new value.
 #define BW_SATA_P0IE_DSE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_DSE) | BF_SATA_P0IE_DSE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field SDBE[3] (RW)
@@ -2680,7 +2526,6 @@ typedef union _hw_sata_p0ie
  * intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[SDBS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_SDBE      (3)      //!< Bit position for SATA_P0IE_SDBE.
 #define BM_SATA_P0IE_SDBE      (0x00000008)  //!< Bit mask for SATA_P0IE_SDBE.
 
@@ -2694,7 +2539,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the SDBE field to a new value.
 #define BW_SATA_P0IE_SDBE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_SDBE) | BF_SATA_P0IE_SDBE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field UFE[4] (RW)
@@ -2703,7 +2547,6 @@ typedef union _hw_sata_p0ie
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[UFS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_UFE      (4)      //!< Bit position for SATA_P0IE_UFE.
 #define BM_SATA_P0IE_UFE      (0x00000010)  //!< Bit mask for SATA_P0IE_UFE.
 
@@ -2717,7 +2560,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the UFE field to a new value.
 #define BW_SATA_P0IE_UFE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_UFE) | BF_SATA_P0IE_UFE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field DPE[5] (RW)
@@ -2726,7 +2568,6 @@ typedef union _hw_sata_p0ie
  * intrq output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[DPS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_DPE      (5)      //!< Bit position for SATA_P0IE_DPE.
 #define BM_SATA_P0IE_DPE      (0x00000020)  //!< Bit mask for SATA_P0IE_DPE.
 
@@ -2740,7 +2581,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the DPE field to a new value.
 #define BW_SATA_P0IE_DPE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_DPE) | BF_SATA_P0IE_DPE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field PCE[6] (RW)
@@ -2749,7 +2589,6 @@ typedef union _hw_sata_p0ie
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[PCS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_PCE      (6)      //!< Bit position for SATA_P0IE_PCE.
 #define BM_SATA_P0IE_PCE      (0x00000040)  //!< Bit mask for SATA_P0IE_PCE.
 
@@ -2763,7 +2602,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the PCE field to a new value.
 #define BW_SATA_P0IE_PCE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_PCE) | BF_SATA_P0IE_PCE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field PRCE[22] (RW)
@@ -2772,7 +2610,6 @@ typedef union _hw_sata_p0ie
  * signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[PRCS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_PRCE      (22)      //!< Bit position for SATA_P0IE_PRCE.
 #define BM_SATA_P0IE_PRCE      (0x00400000)  //!< Bit mask for SATA_P0IE_PRCE.
 
@@ -2786,7 +2623,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the PRCE field to a new value.
 #define BW_SATA_P0IE_PRCE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_PRCE) | BF_SATA_P0IE_PRCE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field IPME[23] (RW)
@@ -2795,7 +2631,6 @@ typedef union _hw_sata_p0ie
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[IPMS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_IPME      (23)      //!< Bit position for SATA_P0IE_IPME.
 #define BM_SATA_P0IE_IPME      (0x00800000)  //!< Bit mask for SATA_P0IE_IPME.
 
@@ -2809,7 +2644,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the IPME field to a new value.
 #define BW_SATA_P0IE_IPME(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_IPME) | BF_SATA_P0IE_IPME(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field OFE[24] (RW)
@@ -2818,7 +2652,6 @@ typedef union _hw_sata_p0ie
  * asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[OFS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_OFE      (24)      //!< Bit position for SATA_P0IE_OFE.
 #define BM_SATA_P0IE_OFE      (0x01000000)  //!< Bit mask for SATA_P0IE_OFE.
 
@@ -2832,7 +2665,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the OFE field to a new value.
 #define BW_SATA_P0IE_OFE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_OFE) | BF_SATA_P0IE_OFE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field INFE[26] (RW)
@@ -2841,7 +2673,6 @@ typedef union _hw_sata_p0ie
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[INFS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_INFE      (26)      //!< Bit position for SATA_P0IE_INFE.
 #define BM_SATA_P0IE_INFE      (0x04000000)  //!< Bit mask for SATA_P0IE_INFE.
 
@@ -2855,7 +2686,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the INFE field to a new value.
 #define BW_SATA_P0IE_INFE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_INFE) | BF_SATA_P0IE_INFE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field IFE[27] (RW)
@@ -2864,7 +2694,6 @@ typedef union _hw_sata_p0ie
  * bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[IFS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_IFE      (27)      //!< Bit position for SATA_P0IE_IFE.
 #define BM_SATA_P0IE_IFE      (0x08000000)  //!< Bit mask for SATA_P0IE_IFE.
 
@@ -2878,7 +2707,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the IFE field to a new value.
 #define BW_SATA_P0IE_IFE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_IFE) | BF_SATA_P0IE_IFE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field HBDE[28] (RW)
@@ -2887,7 +2715,6 @@ typedef union _hw_sata_p0ie
  * signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[HBDS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_HBDE      (28)      //!< Bit position for SATA_P0IE_HBDE.
 #define BM_SATA_P0IE_HBDE      (0x10000000)  //!< Bit mask for SATA_P0IE_HBDE.
 
@@ -2901,7 +2728,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the HBDE field to a new value.
 #define BW_SATA_P0IE_HBDE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_HBDE) | BF_SATA_P0IE_HBDE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field HBFE[29] (RW)
@@ -2910,7 +2736,6 @@ typedef union _hw_sata_p0ie
  * output signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[HBFS]=1
  */
 //@{
-
 #define BP_SATA_P0IE_HBFE      (29)      //!< Bit position for SATA_P0IE_HBFE.
 #define BM_SATA_P0IE_HBFE      (0x20000000)  //!< Bit mask for SATA_P0IE_HBFE.
 
@@ -2924,7 +2749,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the HBFE field to a new value.
 #define BW_SATA_P0IE_HBFE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_HBFE) | BF_SATA_P0IE_HBFE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field TFEE[30] (RW)
@@ -2933,7 +2757,6 @@ typedef union _hw_sata_p0ie
  * signal is asserted: • This bit=1 • SATA_GHC[IE]=1 • SATA_P 0 IS[TFES]=1
  */
 //@{
-
 #define BP_SATA_P0IE_TFEE      (30)      //!< Bit position for SATA_P0IE_TFEE.
 #define BM_SATA_P0IE_TFEE      (0x40000000)  //!< Bit mask for SATA_P0IE_TFEE.
 
@@ -2947,7 +2770,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the TFEE field to a new value.
 #define BW_SATA_P0IE_TFEE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_TFEE) | BF_SATA_P0IE_TFEE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0IE, field CPDE[31] (RW)
@@ -2955,7 +2777,6 @@ typedef union _hw_sata_p0ie
  * Cold Port Detect Enable Read-only. Returns 0.
  */
 //@{
-
 #define BP_SATA_P0IE_CPDE      (31)      //!< Bit position for SATA_P0IE_CPDE.
 #define BM_SATA_P0IE_CPDE      (0x80000000)  //!< Bit mask for SATA_P0IE_CPDE.
 
@@ -2969,7 +2790,6 @@ typedef union _hw_sata_p0ie
 //! @brief Set the CPDE field to a new value.
 #define BW_SATA_P0IE_CPDE(v)   (HW_SATA_P0IE_WR((HW_SATA_P0IE_RD() & ~BM_SATA_P0IE_CPDE) | BF_SATA_P0IE_CPDE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3046,7 +2866,6 @@ typedef union _hw_sata_p0cmd
  * must be cleared prior to setting ST bit to 1.
  */
 //@{
-
 #define BP_SATA_P0CMD_ST      (0)      //!< Bit position for SATA_P0CMD_ST.
 #define BM_SATA_P0CMD_ST      (0x00000001)  //!< Bit mask for SATA_P0CMD_ST.
 
@@ -3060,7 +2879,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the ST field to a new value.
 #define BW_SATA_P0CMD_ST(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_ST) | BF_SATA_P0CMD_ST(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field SUD[1] (RW)
@@ -3072,7 +2890,6 @@ typedef union _hw_sata_p0cmd
  * read-only 0 on power-up until SATA_CAP[SSS] bit is written with the required value.
  */
 //@{
-
 #define BP_SATA_P0CMD_SUD      (1)      //!< Bit position for SATA_P0CMD_SUD.
 #define BM_SATA_P0CMD_SUD      (0x00000002)  //!< Bit mask for SATA_P0CMD_SUD.
 
@@ -3086,7 +2903,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the SUD field to a new value.
 #define BW_SATA_P0CMD_SUD(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_SUD) | BF_SATA_P0CMD_SUD(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field POD[2] (RW)
@@ -3097,7 +2913,6 @@ typedef union _hw_sata_p0cmd
  * it may be used to provide power to a cold-presence detectable Port.
  */
 //@{
-
 #define BP_SATA_P0CMD_POD      (2)      //!< Bit position for SATA_P0CMD_POD.
 #define BM_SATA_P0CMD_POD      (0x00000004)  //!< Bit mask for SATA_P0CMD_POD.
 
@@ -3111,7 +2926,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the POD field to a new value.
 #define BW_SATA_P0CMD_POD(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_POD) | BF_SATA_P0CMD_POD(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field CLO[3] (RW)
@@ -3125,7 +2939,6 @@ typedef union _hw_sata_p0cmd
  * Setting this bit to 1 at any other time is not supported and results in indeterminate behavior.
  */
 //@{
-
 #define BP_SATA_P0CMD_CLO      (3)      //!< Bit position for SATA_P0CMD_CLO.
 #define BM_SATA_P0CMD_CLO      (0x00000008)  //!< Bit mask for SATA_P0CMD_CLO.
 
@@ -3139,7 +2952,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the CLO field to a new value.
 #define BW_SATA_P0CMD_CLO(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_CLO) | BF_SATA_P0CMD_CLO(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field FRE[4] (RW)
@@ -3152,7 +2964,6 @@ typedef union _hw_sata_p0cmd
  * first be cleared, and the software must wait for the SATA_P 0 CMD[FR] bit to be cleared.
  */
 //@{
-
 #define BP_SATA_P0CMD_FRE      (4)      //!< Bit position for SATA_P0CMD_FRE.
 #define BM_SATA_P0CMD_FRE      (0x00000010)  //!< Bit mask for SATA_P0CMD_FRE.
 
@@ -3166,7 +2977,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the FRE field to a new value.
 #define BW_SATA_P0CMD_FRE(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_FRE) | BF_SATA_P0CMD_FRE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field CCS[12:8] (RW)
@@ -3180,7 +2990,6 @@ typedef union _hw_sata_p0cmd
  * from command slot 1. This field is valid only when SATA_P 0 CMD[ST] is set to 1.
  */
 //@{
-
 #define BP_SATA_P0CMD_CCS      (8)      //!< Bit position for SATA_P0CMD_CCS.
 #define BM_SATA_P0CMD_CCS      (0x00001f00)  //!< Bit mask for SATA_P0CMD_CCS.
 
@@ -3194,7 +3003,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the CCS field to a new value.
 #define BW_SATA_P0CMD_CCS(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_CCS) | BF_SATA_P0CMD_CCS(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field MPSS[13] (RW)
@@ -3210,7 +3018,6 @@ typedef union _hw_sata_p0cmd
  * - 1 - Switch is open
  */
 //@{
-
 #define BP_SATA_P0CMD_MPSS      (13)      //!< Bit position for SATA_P0CMD_MPSS.
 #define BM_SATA_P0CMD_MPSS      (0x00002000)  //!< Bit mask for SATA_P0CMD_MPSS.
 
@@ -3224,7 +3031,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the MPSS field to a new value.
 #define BW_SATA_P0CMD_MPSS(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_MPSS) | BF_SATA_P0CMD_MPSS(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field FR[14] (RW)
@@ -3233,7 +3039,6 @@ typedef union _hw_sata_p0cmd
  * specification section 10.3.2 for details on when this bit is set and cleared by the Port.
  */
 //@{
-
 #define BP_SATA_P0CMD_FR      (14)      //!< Bit position for SATA_P0CMD_FR.
 #define BM_SATA_P0CMD_FR      (0x00004000)  //!< Bit mask for SATA_P0CMD_FR.
 
@@ -3247,7 +3052,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the FR field to a new value.
 #define BW_SATA_P0CMD_FR(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_FR) | BF_SATA_P0CMD_FR(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field CR[15] (RW)
@@ -3257,7 +3061,6 @@ typedef union _hw_sata_p0cmd
  * is set and cleared by the Port.
  */
 //@{
-
 #define BP_SATA_P0CMD_CR      (15)      //!< Bit position for SATA_P0CMD_CR.
 #define BM_SATA_P0CMD_CR      (0x00008000)  //!< Bit mask for SATA_P0CMD_CR.
 
@@ -3271,7 +3074,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the CR field to a new value.
 #define BW_SATA_P0CMD_CR(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_CR) | BF_SATA_P0CMD_CR(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field CPS[16] (RW)
@@ -3285,7 +3087,6 @@ typedef union _hw_sata_p0cmd
  * - 1 - device is attached to this Port
  */
 //@{
-
 #define BP_SATA_P0CMD_CPS      (16)      //!< Bit position for SATA_P0CMD_CPS.
 #define BM_SATA_P0CMD_CPS      (0x00010000)  //!< Bit mask for SATA_P0CMD_CPS.
 
@@ -3299,7 +3100,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the CPS field to a new value.
 #define BW_SATA_P0CMD_CPS(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_CPS) | BF_SATA_P0CMD_CPS(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field PMA[17] (RW)
@@ -3313,7 +3113,6 @@ typedef union _hw_sata_p0cmd
  * - 1 - A Port Multiplier is attached to this Port.
  */
 //@{
-
 #define BP_SATA_P0CMD_PMA      (17)      //!< Bit position for SATA_P0CMD_PMA.
 #define BM_SATA_P0CMD_PMA      (0x00020000)  //!< Bit mask for SATA_P0CMD_PMA.
 
@@ -3327,7 +3126,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the PMA field to a new value.
 #define BW_SATA_P0CMD_PMA(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_PMA) | BF_SATA_P0CMD_PMA(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field HPCP[18] (RW)
@@ -3341,7 +3139,6 @@ typedef union _hw_sata_p0cmd
  *     power connector for blindmate device hot plug.
  */
 //@{
-
 #define BP_SATA_P0CMD_HPCP      (18)      //!< Bit position for SATA_P0CMD_HPCP.
 #define BM_SATA_P0CMD_HPCP      (0x00040000)  //!< Bit mask for SATA_P0CMD_HPCP.
 
@@ -3355,7 +3152,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the HPCP field to a new value.
 #define BW_SATA_P0CMD_HPCP(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_HPCP) | BF_SATA_P0CMD_HPCP(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field ESP[21] (RW)
@@ -3366,7 +3162,6 @@ typedef union _hw_sata_p0cmd
  * exclusive with SATA_P 0 CMD[HPCP]
  */
 //@{
-
 #define BP_SATA_P0CMD_ESP      (21)      //!< Bit position for SATA_P0CMD_ESP.
 #define BM_SATA_P0CMD_ESP      (0x00200000)  //!< Bit mask for SATA_P0CMD_ESP.
 
@@ -3380,7 +3175,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the ESP field to a new value.
 #define BW_SATA_P0CMD_ESP(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_ESP) | BF_SATA_P0CMD_ESP(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field APSTE[23] (RW)
@@ -3393,7 +3187,6 @@ typedef union _hw_sata_p0cmd
  * - 1 - ATAPI device
  */
 //@{
-
 #define BP_SATA_P0CMD_APSTE      (23)      //!< Bit position for SATA_P0CMD_APSTE.
 #define BM_SATA_P0CMD_APSTE      (0x00800000)  //!< Bit mask for SATA_P0CMD_APSTE.
 
@@ -3407,7 +3200,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the APSTE field to a new value.
 #define BW_SATA_P0CMD_APSTE(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_APSTE) | BF_SATA_P0CMD_APSTE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field ATAPI[24] (RW)
@@ -3420,7 +3212,6 @@ typedef union _hw_sata_p0cmd
  * - 1 - ATAPI device
  */
 //@{
-
 #define BP_SATA_P0CMD_ATAPI      (24)      //!< Bit position for SATA_P0CMD_ATAPI.
 #define BM_SATA_P0CMD_ATAPI      (0x01000000)  //!< Bit mask for SATA_P0CMD_ATAPI.
 
@@ -3434,7 +3225,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the ATAPI field to a new value.
 #define BW_SATA_P0CMD_ATAPI(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_ATAPI) | BF_SATA_P0CMD_ATAPI(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field DLAE[25] (RW)
@@ -3443,7 +3233,6 @@ typedef union _hw_sata_p0cmd
  * asserts p 0 _act_led output.
  */
 //@{
-
 #define BP_SATA_P0CMD_DLAE      (25)      //!< Bit position for SATA_P0CMD_DLAE.
 #define BM_SATA_P0CMD_DLAE      (0x02000000)  //!< Bit mask for SATA_P0CMD_DLAE.
 
@@ -3457,7 +3246,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the DLAE field to a new value.
 #define BW_SATA_P0CMD_DLAE(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_DLAE) | BF_SATA_P0CMD_DLAE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field ALPE[26] (RW)
@@ -3467,7 +3255,6 @@ typedef union _hw_sata_p0cmd
  * to 0, aggressive power management state transition is disabled.
  */
 //@{
-
 #define BP_SATA_P0CMD_ALPE      (26)      //!< Bit position for SATA_P0CMD_ALPE.
 #define BM_SATA_P0CMD_ALPE      (0x04000000)  //!< Bit mask for SATA_P0CMD_ALPE.
 
@@ -3481,7 +3268,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the ALPE field to a new value.
 #define BW_SATA_P0CMD_ALPE(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_ALPE) | BF_SATA_P0CMD_ALPE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field ASP[27] (RW)
@@ -3495,7 +3281,6 @@ typedef union _hw_sata_p0cmd
  * The Port clears the SATA_P 0 SACT register and SATA_P 0 CI is cleared.
  */
 //@{
-
 #define BP_SATA_P0CMD_ASP      (27)      //!< Bit position for SATA_P0CMD_ASP.
 #define BM_SATA_P0CMD_ASP      (0x08000000)  //!< Bit mask for SATA_P0CMD_ASP.
 
@@ -3509,7 +3294,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the ASP field to a new value.
 #define BW_SATA_P0CMD_ASP(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_ASP) | BF_SATA_P0CMD_ASP(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0CMD, field ICC[31:28] (RW)
@@ -3534,7 +3318,6 @@ typedef union _hw_sata_p0cmd
  * bring the link to active and then initiate the transition to the desired low power state.
  */
 //@{
-
 #define BP_SATA_P0CMD_ICC      (28)      //!< Bit position for SATA_P0CMD_ICC.
 #define BM_SATA_P0CMD_ICC      (0xf0000000)  //!< Bit mask for SATA_P0CMD_ICC.
 
@@ -3548,7 +3331,6 @@ typedef union _hw_sata_p0cmd
 //! @brief Set the ICC field to a new value.
 #define BW_SATA_P0CMD_ICC(v)   (HW_SATA_P0CMD_WR((HW_SATA_P0CMD_RD() & ~BM_SATA_P0CMD_ICC) | BF_SATA_P0CMD_ICC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3602,13 +3384,11 @@ typedef union _hw_sata_p0tfd
  * field, not just the bits noted above.
  */
 //@{
-
 #define BP_SATA_P0TFD_STS      (0)      //!< Bit position for SATA_P0TFD_STS.
 #define BM_SATA_P0TFD_STS      (0x000000ff)  //!< Bit mask for SATA_P0TFD_STS.
 
 //! @brief Get value of SATA_P0TFD_STS from a register value.
 #define BG_SATA_P0TFD_STS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0TFD_STS) >> BP_SATA_P0TFD_STS)
-
 //@}
 
 /*! @name Register SATA_P0TFD, field ERR[15:8] (RO)
@@ -3616,13 +3396,11 @@ typedef union _hw_sata_p0tfd
  * Error This field contains the latest copy of the task file error register.
  */
 //@{
-
 #define BP_SATA_P0TFD_ERR      (8)      //!< Bit position for SATA_P0TFD_ERR.
 #define BM_SATA_P0TFD_ERR      (0x0000ff00)  //!< Bit mask for SATA_P0TFD_ERR.
 
 //! @brief Get value of SATA_P0TFD_ERR from a register value.
 #define BG_SATA_P0TFD_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0TFD_ERR) >> BP_SATA_P0TFD_ERR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3672,13 +3450,11 @@ typedef union _hw_sata_p0sig
  * reset.
  */
 //@{
-
 #define BP_SATA_P0SIG_SIG      (0)      //!< Bit position for SATA_P0SIG_SIG.
 #define BM_SATA_P0SIG_SIG      (0xffffffff)  //!< Bit mask for SATA_P0SIG_SIG.
 
 //! @brief Get value of SATA_P0SIG_SIG from a register value.
 #define BG_SATA_P0SIG_SIG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SIG_SIG) >> BP_SATA_P0SIG_SIG)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3733,13 +3509,11 @@ typedef union _hw_sata_p0ssts
  * interface being disabled or running in a BIST loopback mode. All other values reserved.
  */
 //@{
-
 #define BP_SATA_P0SSTS_DET      (0)      //!< Bit position for SATA_P0SSTS_DET.
 #define BM_SATA_P0SSTS_DET      (0x0000000f)  //!< Bit mask for SATA_P0SSTS_DET.
 
 //! @brief Get value of SATA_P0SSTS_DET from a register value.
 #define BG_SATA_P0SSTS_DET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SSTS_DET) >> BP_SATA_P0SSTS_DET)
-
 //@}
 
 /*! @name Register SATA_P0SSTS, field SPD[7:4] (RO)
@@ -3754,13 +3528,11 @@ typedef union _hw_sata_p0ssts
  * - All other values - Reserved and should not be used
  */
 //@{
-
 #define BP_SATA_P0SSTS_SPD      (4)      //!< Bit position for SATA_P0SSTS_SPD.
 #define BM_SATA_P0SSTS_SPD      (0x000000f0)  //!< Bit mask for SATA_P0SSTS_SPD.
 
 //! @brief Get value of SATA_P0SSTS_SPD from a register value.
 #define BG_SATA_P0SSTS_SPD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SSTS_SPD) >> BP_SATA_P0SSTS_SPD)
-
 //@}
 
 /*! @name Register SATA_P0SSTS, field IPM[11:8] (RO)
@@ -3775,13 +3547,11 @@ typedef union _hw_sata_p0ssts
  * - All other values - Reserved
  */
 //@{
-
 #define BP_SATA_P0SSTS_IPM      (8)      //!< Bit position for SATA_P0SSTS_IPM.
 #define BM_SATA_P0SSTS_IPM      (0x00000f00)  //!< Bit mask for SATA_P0SSTS_IPM.
 
 //! @brief Get value of SATA_P0SSTS_IPM from a register value.
 #define BG_SATA_P0SSTS_IPM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SSTS_IPM) >> BP_SATA_P0SSTS_IPM)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3848,7 +3618,6 @@ typedef union _hw_sata_p0sctl
  * - 0x4 - Disable the Serial ATA interface and put the Port PHY in offline mode. All other values reserved.
  */
 //@{
-
 #define BP_SATA_P0SCTL_DET      (0)      //!< Bit position for SATA_P0SCTL_DET.
 #define BM_SATA_P0SCTL_DET      (0x0000000f)  //!< Bit mask for SATA_P0SCTL_DET.
 
@@ -3862,7 +3631,6 @@ typedef union _hw_sata_p0sctl
 //! @brief Set the DET field to a new value.
 #define BW_SATA_P0SCTL_DET(v)   (HW_SATA_P0SCTL_WR((HW_SATA_P0SCTL_RD() & ~BM_SATA_P0SCTL_DET) | BF_SATA_P0SCTL_DET(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0SCTL, field SPD[7:4] (RW)
@@ -3879,7 +3647,6 @@ typedef union _hw_sata_p0sctl
  * - All other values - Reserved and should not be used.
  */
 //@{
-
 #define BP_SATA_P0SCTL_SPD      (4)      //!< Bit position for SATA_P0SCTL_SPD.
 #define BM_SATA_P0SCTL_SPD      (0x000000f0)  //!< Bit mask for SATA_P0SCTL_SPD.
 
@@ -3893,7 +3660,6 @@ typedef union _hw_sata_p0sctl
 //! @brief Set the SPD field to a new value.
 #define BW_SATA_P0SCTL_SPD(v)   (HW_SATA_P0SCTL_WR((HW_SATA_P0SCTL_RD() & ~BM_SATA_P0SCTL_SPD) | BF_SATA_P0SCTL_SPD(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0SCTL, field IPM[11:8] (RW)
@@ -3911,7 +3677,6 @@ typedef union _hw_sata_p0sctl
  * - All other values. - Reserved and should not be used
  */
 //@{
-
 #define BP_SATA_P0SCTL_IPM      (8)      //!< Bit position for SATA_P0SCTL_IPM.
 #define BM_SATA_P0SCTL_IPM      (0x00000f00)  //!< Bit mask for SATA_P0SCTL_IPM.
 
@@ -3925,7 +3690,6 @@ typedef union _hw_sata_p0sctl
 //! @brief Set the IPM field to a new value.
 #define BW_SATA_P0SCTL_IPM(v)   (HW_SATA_P0SCTL_WR((HW_SATA_P0SCTL_RD() & ~BM_SATA_P0SCTL_IPM) | BF_SATA_P0SCTL_IPM(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4001,13 +3765,11 @@ typedef union _hw_sata_p0serr
  * transfer: • DIAG_C (CRC) • DIAG_H (Handshake) • ERR_C ("PHY Ready" negation)
  */
 //@{
-
 #define BP_SATA_P0SERR_ERR_I      (0)      //!< Bit position for SATA_P0SERR_ERR_I.
 #define BM_SATA_P0SERR_ERR_I      (0x00000001)  //!< Bit mask for SATA_P0SERR_ERR_I.
 
 //! @brief Get value of SATA_P0SERR_ERR_I from a register value.
 #define BG_SATA_P0SERR_ERR_I(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_ERR_I) >> BP_SATA_P0SERR_ERR_I)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field ERR_M[1] (RO)
@@ -4017,13 +3779,11 @@ typedef union _hw_sata_p0serr
  * to active state.
  */
 //@{
-
 #define BP_SATA_P0SERR_ERR_M      (1)      //!< Bit position for SATA_P0SERR_ERR_M.
 #define BM_SATA_P0SERR_ERR_M      (0x00000002)  //!< Bit mask for SATA_P0SERR_ERR_M.
 
 //! @brief Get value of SATA_P0SERR_ERR_M from a register value.
 #define BG_SATA_P0SERR_ERR_M(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_ERR_M) >> BP_SATA_P0SERR_ERR_M)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field ERR_T[8] (RO)
@@ -4033,13 +3793,11 @@ typedef union _hw_sata_p0serr
  * (Handshake) • ERR_C ("PHY Ready" negation)
  */
 //@{
-
 #define BP_SATA_P0SERR_ERR_T      (8)      //!< Bit position for SATA_P0SERR_ERR_T.
 #define BM_SATA_P0SERR_ERR_T      (0x00000100)  //!< Bit mask for SATA_P0SERR_ERR_T.
 
 //! @brief Get value of SATA_P0SERR_ERR_T from a register value.
 #define BG_SATA_P0SERR_ERR_T(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_ERR_T) >> BP_SATA_P0SERR_ERR_T)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field ERR_C[9] (RO)
@@ -4049,13 +3807,11 @@ typedef union _hw_sata_p0serr
  * after transition from active to Partial or Slumber power management state.
  */
 //@{
-
 #define BP_SATA_P0SERR_ERR_C      (9)      //!< Bit position for SATA_P0SERR_ERR_C.
 #define BM_SATA_P0SERR_ERR_C      (0x00000200)  //!< Bit mask for SATA_P0SERR_ERR_C.
 
 //! @brief Get value of SATA_P0SERR_ERR_C from a register value.
 #define BG_SATA_P0SERR_ERR_C(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_ERR_C) >> BP_SATA_P0SERR_ERR_C)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field ERR_P[10] (RO)
@@ -4065,13 +3821,11 @@ typedef union _hw_sata_p0serr
  * bad end error (WTRM instead of EOF is received).
  */
 //@{
-
 #define BP_SATA_P0SERR_ERR_P      (10)      //!< Bit position for SATA_P0SERR_ERR_P.
 #define BM_SATA_P0SERR_ERR_P      (0x00000400)  //!< Bit mask for SATA_P0SERR_ERR_P.
 
 //! @brief Get value of SATA_P0SERR_ERR_P from a register value.
 #define BG_SATA_P0SERR_ERR_P(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_ERR_P) >> BP_SATA_P0SERR_ERR_P)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field ERR_E[11] (RO)
@@ -4080,13 +3834,11 @@ typedef union _hw_sata_p0serr
  * master interface.
  */
 //@{
-
 #define BP_SATA_P0SERR_ERR_E      (11)      //!< Bit position for SATA_P0SERR_ERR_E.
 #define BM_SATA_P0SERR_ERR_E      (0x00000800)  //!< Bit mask for SATA_P0SERR_ERR_E.
 
 //! @brief Get value of SATA_P0SERR_ERR_E from a register value.
 #define BG_SATA_P0SERR_ERR_E(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_ERR_E) >> BP_SATA_P0SERR_ERR_E)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field DIAG_N[16] (RO)
@@ -4095,13 +3847,11 @@ typedef union _hw_sata_p0serr
  * reflected in the SATA_P 0 IS[PRCS] bit.
  */
 //@{
-
 #define BP_SATA_P0SERR_DIAG_N      (16)      //!< Bit position for SATA_P0SERR_DIAG_N.
 #define BM_SATA_P0SERR_DIAG_N      (0x00010000)  //!< Bit mask for SATA_P0SERR_DIAG_N.
 
 //! @brief Get value of SATA_P0SERR_DIAG_N from a register value.
 #define BG_SATA_P0SERR_DIAG_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_N) >> BP_SATA_P0SERR_DIAG_N)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field DIAG_I[17] (RO)
@@ -4113,13 +3863,11 @@ typedef union _hw_sata_p0serr
  * bit to be set.
  */
 //@{
-
 #define BP_SATA_P0SERR_DIAG_I      (17)      //!< Bit position for SATA_P0SERR_DIAG_I.
 #define BM_SATA_P0SERR_DIAG_I      (0x00020000)  //!< Bit mask for SATA_P0SERR_DIAG_I.
 
 //! @brief Get value of SATA_P0SERR_DIAG_I from a register value.
 #define BG_SATA_P0SERR_DIAG_I(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_I) >> BP_SATA_P0SERR_DIAG_I)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field DIAG_W[18] (RO)
@@ -4127,13 +3875,11 @@ typedef union _hw_sata_p0serr
  * Comm Wake This bit is set when PHY COMWAKE signal is detected.
  */
 //@{
-
 #define BP_SATA_P0SERR_DIAG_W      (18)      //!< Bit position for SATA_P0SERR_DIAG_W.
 #define BM_SATA_P0SERR_DIAG_W      (0x00040000)  //!< Bit mask for SATA_P0SERR_DIAG_W.
 
 //! @brief Get value of SATA_P0SERR_DIAG_W from a register value.
 #define BG_SATA_P0SERR_DIAG_W(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_W) >> BP_SATA_P0SERR_DIAG_W)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field DIAG_B[19] (RO)
@@ -4144,13 +3890,11 @@ typedef union _hw_sata_p0serr
  * when an error is detected on the primitive, regardless whether it is inside or outside the FIS.
  */
 //@{
-
 #define BP_SATA_P0SERR_DIAG_B      (19)      //!< Bit position for SATA_P0SERR_DIAG_B.
 #define BM_SATA_P0SERR_DIAG_B      (0x00080000)  //!< Bit mask for SATA_P0SERR_DIAG_B.
 
 //! @brief Get value of SATA_P0SERR_DIAG_B from a register value.
 #define BG_SATA_P0SERR_DIAG_B(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_B) >> BP_SATA_P0SERR_DIAG_B)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field DIAG_D[20] (RO)
@@ -4158,13 +3902,11 @@ typedef union _hw_sata_p0serr
  * Disparity Error This bit is always cleared to 0 since it is not used by the AHCI specification.
  */
 //@{
-
 #define BP_SATA_P0SERR_DIAG_D      (20)      //!< Bit position for SATA_P0SERR_DIAG_D.
 #define BM_SATA_P0SERR_DIAG_D      (0x00100000)  //!< Bit mask for SATA_P0SERR_DIAG_D.
 
 //! @brief Get value of SATA_P0SERR_DIAG_D from a register value.
 #define BG_SATA_P0SERR_DIAG_D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_D) >> BP_SATA_P0SERR_DIAG_D)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field DIAG_C[21] (RO)
@@ -4172,13 +3914,11 @@ typedef union _hw_sata_p0serr
  * CRC Error
  */
 //@{
-
 #define BP_SATA_P0SERR_DIAG_C      (21)      //!< Bit position for SATA_P0SERR_DIAG_C.
 #define BM_SATA_P0SERR_DIAG_C      (0x00200000)  //!< Bit mask for SATA_P0SERR_DIAG_C.
 
 //! @brief Get value of SATA_P0SERR_DIAG_C from a register value.
 #define BG_SATA_P0SERR_DIAG_C(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_C) >> BP_SATA_P0SERR_DIAG_C)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field DIAG_H[22] (RO)
@@ -4189,13 +3929,11 @@ typedef union _hw_sata_p0serr
  * frame.
  */
 //@{
-
 #define BP_SATA_P0SERR_DIAG_H      (22)      //!< Bit position for SATA_P0SERR_DIAG_H.
 #define BM_SATA_P0SERR_DIAG_H      (0x00400000)  //!< Bit mask for SATA_P0SERR_DIAG_H.
 
 //! @brief Get value of SATA_P0SERR_DIAG_H from a register value.
 #define BG_SATA_P0SERR_DIAG_H(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_H) >> BP_SATA_P0SERR_DIAG_H)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field DIAG_S[23] (RO)
@@ -4205,13 +3943,11 @@ typedef union _hw_sata_p0serr
  * during FIS transmission.
  */
 //@{
-
 #define BP_SATA_P0SERR_DIAG_S      (23)      //!< Bit position for SATA_P0SERR_DIAG_S.
 #define BM_SATA_P0SERR_DIAG_S      (0x00800000)  //!< Bit mask for SATA_P0SERR_DIAG_S.
 
 //! @brief Get value of SATA_P0SERR_DIAG_S from a register value.
 #define BG_SATA_P0SERR_DIAG_S(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_S) >> BP_SATA_P0SERR_DIAG_S)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field DIAG_T[24] (RO)
@@ -4220,13 +3956,11 @@ typedef union _hw_sata_p0serr
  * detected since the last time this bit was cleared. See for details.
  */
 //@{
-
 #define BP_SATA_P0SERR_DIAG_T      (24)      //!< Bit position for SATA_P0SERR_DIAG_T.
 #define BM_SATA_P0SERR_DIAG_T      (0x01000000)  //!< Bit mask for SATA_P0SERR_DIAG_T.
 
 //! @brief Get value of SATA_P0SERR_DIAG_T from a register value.
 #define BG_SATA_P0SERR_DIAG_T(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_T) >> BP_SATA_P0SERR_DIAG_T)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field DIAG_F[25] (RO)
@@ -4237,13 +3971,11 @@ typedef union _hw_sata_p0serr
  * DIAG_T bit is set instead.
  */
 //@{
-
 #define BP_SATA_P0SERR_DIAG_F      (25)      //!< Bit position for SATA_P0SERR_DIAG_F.
 #define BM_SATA_P0SERR_DIAG_F      (0x02000000)  //!< Bit mask for SATA_P0SERR_DIAG_F.
 
 //! @brief Get value of SATA_P0SERR_DIAG_F from a register value.
 #define BG_SATA_P0SERR_DIAG_F(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_F) >> BP_SATA_P0SERR_DIAG_F)
-
 //@}
 
 /*! @name Register SATA_P0SERR, field DIAG_X[26] (RO)
@@ -4252,13 +3984,11 @@ typedef union _hw_sata_p0serr
  * SATA_P 0 IS[PCS] bit.
  */
 //@{
-
 #define BP_SATA_P0SERR_DIAG_X      (26)      //!< Bit position for SATA_P0SERR_DIAG_X.
 #define BM_SATA_P0SERR_DIAG_X      (0x04000000)  //!< Bit mask for SATA_P0SERR_DIAG_X.
 
 //! @brief Get value of SATA_P0SERR_DIAG_X from a register value.
 #define BG_SATA_P0SERR_DIAG_X(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0SERR_DIAG_X) >> BP_SATA_P0SERR_DIAG_X)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4317,7 +4047,6 @@ typedef union _hw_sata_p0sact
  * when SATA_P 0 CMD[ST] bit is set to 1.
  */
 //@{
-
 #define BP_SATA_P0SACT_DS      (0)      //!< Bit position for SATA_P0SACT_DS.
 #define BM_SATA_P0SACT_DS      (0xffffffff)  //!< Bit mask for SATA_P0SACT_DS.
 
@@ -4331,7 +4060,6 @@ typedef union _hw_sata_p0sact
 //! @brief Set the DS field to a new value.
 #define BW_SATA_P0SACT_DS(v)   (HW_SATA_P0SACT_WR((HW_SATA_P0SACT_RD() & ~BM_SATA_P0SACT_DS) | BF_SATA_P0SACT_DS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4387,7 +4115,6 @@ typedef union _hw_sata_p0ci
  * written from a 1 to a 0 by the software.
  */
 //@{
-
 #define BP_SATA_P0CI_CI      (0)      //!< Bit position for SATA_P0CI_CI.
 #define BM_SATA_P0CI_CI      (0xffffffff)  //!< Bit mask for SATA_P0CI_CI.
 
@@ -4401,7 +4128,6 @@ typedef union _hw_sata_p0ci
 //! @brief Set the CI field to a new value.
 #define BW_SATA_P0CI_CI(v)   (HW_SATA_P0CI_WR((HW_SATA_P0CI_RD() & ~BM_SATA_P0CI_CI) | BF_SATA_P0CI_CI(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4457,7 +4183,6 @@ typedef union _hw_sata_p0sntf
  * but it is not reset by Port reset (COMRESET) or software reset.
  */
 //@{
-
 #define BP_SATA_P0SNTF_PMN      (0)      //!< Bit position for SATA_P0SNTF_PMN.
 #define BM_SATA_P0SNTF_PMN      (0x0000ffff)  //!< Bit mask for SATA_P0SNTF_PMN.
 
@@ -4471,7 +4196,6 @@ typedef union _hw_sata_p0sntf
 //! @brief Set the PMN field to a new value.
 #define BW_SATA_P0SNTF_PMN(v)   (HW_SATA_P0SNTF_WR((HW_SATA_P0SNTF_RD() & ~BM_SATA_P0SNTF_PMN) | BF_SATA_P0SNTF_PMN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4543,7 +4267,6 @@ typedef union _hw_sata_p0dmacr
  *     used.
  */
 //@{
-
 #define BP_SATA_P0DMACR_TXTS      (0)      //!< Bit position for SATA_P0DMACR_TXTS.
 #define BM_SATA_P0DMACR_TXTS      (0x0000000f)  //!< Bit mask for SATA_P0DMACR_TXTS.
 
@@ -4557,7 +4280,6 @@ typedef union _hw_sata_p0dmacr
 //! @brief Set the TXTS field to a new value.
 #define BW_SATA_P0DMACR_TXTS(v)   (HW_SATA_P0DMACR_WR((HW_SATA_P0DMACR_RD() & ~BM_SATA_P0DMACR_TXTS) | BF_SATA_P0DMACR_TXTS(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0DMACR, field RXTS[7:4] (RW)
@@ -4583,7 +4305,6 @@ typedef union _hw_sata_p0dmacr
  *     used.
  */
 //@{
-
 #define BP_SATA_P0DMACR_RXTS      (4)      //!< Bit position for SATA_P0DMACR_RXTS.
 #define BM_SATA_P0DMACR_RXTS      (0x000000f0)  //!< Bit mask for SATA_P0DMACR_RXTS.
 
@@ -4597,7 +4318,6 @@ typedef union _hw_sata_p0dmacr
 //! @brief Set the RXTS field to a new value.
 #define BW_SATA_P0DMACR_RXTS(v)   (HW_SATA_P0DMACR_WR((HW_SATA_P0DMACR_RD() & ~BM_SATA_P0DMACR_RXTS) | BF_SATA_P0DMACR_RXTS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4655,7 +4375,6 @@ typedef union _hw_sata_p0phycr
  * CR Address and Write Data Input Bus. Supplies and captures address and write data.
  */
 //@{
-
 #define BP_SATA_P0PHYCR_CR_DATA_IN      (0)      //!< Bit position for SATA_P0PHYCR_CR_DATA_IN.
 #define BM_SATA_P0PHYCR_CR_DATA_IN      (0x0000ffff)  //!< Bit mask for SATA_P0PHYCR_CR_DATA_IN.
 
@@ -4669,7 +4388,6 @@ typedef union _hw_sata_p0phycr
 //! @brief Set the CR_DATA_IN field to a new value.
 #define BW_SATA_P0PHYCR_CR_DATA_IN(v)   (HW_SATA_P0PHYCR_WR((HW_SATA_P0PHYCR_RD() & ~BM_SATA_P0PHYCR_CR_DATA_IN) | BF_SATA_P0PHYCR_CR_DATA_IN(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0PHYCR, field CR_CAP_ADDR[16] (RW)
@@ -4677,7 +4395,6 @@ typedef union _hw_sata_p0phycr
  * CR Capture Address. Captures phy_cr_data_in[15:0] into the Address register.
  */
 //@{
-
 #define BP_SATA_P0PHYCR_CR_CAP_ADDR      (16)      //!< Bit position for SATA_P0PHYCR_CR_CAP_ADDR.
 #define BM_SATA_P0PHYCR_CR_CAP_ADDR      (0x00010000)  //!< Bit mask for SATA_P0PHYCR_CR_CAP_ADDR.
 
@@ -4691,7 +4408,6 @@ typedef union _hw_sata_p0phycr
 //! @brief Set the CR_CAP_ADDR field to a new value.
 #define BW_SATA_P0PHYCR_CR_CAP_ADDR(v)   (HW_SATA_P0PHYCR_WR((HW_SATA_P0PHYCR_RD() & ~BM_SATA_P0PHYCR_CR_CAP_ADDR) | BF_SATA_P0PHYCR_CR_CAP_ADDR(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0PHYCR, field CR_CAP_DATA[17] (RW)
@@ -4699,7 +4415,6 @@ typedef union _hw_sata_p0phycr
  * CR Capture Data. Captures phy_cr_data_in[15:0] into the Write Data register.
  */
 //@{
-
 #define BP_SATA_P0PHYCR_CR_CAP_DATA      (17)      //!< Bit position for SATA_P0PHYCR_CR_CAP_DATA.
 #define BM_SATA_P0PHYCR_CR_CAP_DATA      (0x00020000)  //!< Bit mask for SATA_P0PHYCR_CR_CAP_DATA.
 
@@ -4713,7 +4428,6 @@ typedef union _hw_sata_p0phycr
 //! @brief Set the CR_CAP_DATA field to a new value.
 #define BW_SATA_P0PHYCR_CR_CAP_DATA(v)   (HW_SATA_P0PHYCR_WR((HW_SATA_P0PHYCR_RD() & ~BM_SATA_P0PHYCR_CR_CAP_DATA) | BF_SATA_P0PHYCR_CR_CAP_DATA(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0PHYCR, field CR_WRITE[18] (RW)
@@ -4721,7 +4435,6 @@ typedef union _hw_sata_p0phycr
  * CR Write. Writes the Write Data register to the referenced Address register.
  */
 //@{
-
 #define BP_SATA_P0PHYCR_CR_WRITE      (18)      //!< Bit position for SATA_P0PHYCR_CR_WRITE.
 #define BM_SATA_P0PHYCR_CR_WRITE      (0x00040000)  //!< Bit mask for SATA_P0PHYCR_CR_WRITE.
 
@@ -4735,7 +4448,6 @@ typedef union _hw_sata_p0phycr
 //! @brief Set the CR_WRITE field to a new value.
 #define BW_SATA_P0PHYCR_CR_WRITE(v)   (HW_SATA_P0PHYCR_WR((HW_SATA_P0PHYCR_RD() & ~BM_SATA_P0PHYCR_CR_WRITE) | BF_SATA_P0PHYCR_CR_WRITE(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0PHYCR, field CR_READ[19] (RW)
@@ -4743,7 +4455,6 @@ typedef union _hw_sata_p0phycr
  * CR Read. Reads from the referenced Address register.
  */
 //@{
-
 #define BP_SATA_P0PHYCR_CR_READ      (19)      //!< Bit position for SATA_P0PHYCR_CR_READ.
 #define BM_SATA_P0PHYCR_CR_READ      (0x00080000)  //!< Bit mask for SATA_P0PHYCR_CR_READ.
 
@@ -4757,7 +4468,6 @@ typedef union _hw_sata_p0phycr
 //! @brief Set the CR_READ field to a new value.
 #define BW_SATA_P0PHYCR_CR_READ(v)   (HW_SATA_P0PHYCR_WR((HW_SATA_P0PHYCR_RD() & ~BM_SATA_P0PHYCR_CR_READ) | BF_SATA_P0PHYCR_CR_READ(v)))
 #endif
-
 //@}
 
 /*! @name Register SATA_P0PHYCR, field TEST_PDDQ[20] (RW)
@@ -4765,7 +4475,6 @@ typedef union _hw_sata_p0phycr
  * Test IDDQ
  */
 //@{
-
 #define BP_SATA_P0PHYCR_TEST_PDDQ      (20)      //!< Bit position for SATA_P0PHYCR_TEST_PDDQ.
 #define BM_SATA_P0PHYCR_TEST_PDDQ      (0x00100000)  //!< Bit mask for SATA_P0PHYCR_TEST_PDDQ.
 
@@ -4779,7 +4488,6 @@ typedef union _hw_sata_p0phycr
 //! @brief Set the TEST_PDDQ field to a new value.
 #define BW_SATA_P0PHYCR_TEST_PDDQ(v)   (HW_SATA_P0PHYCR_WR((HW_SATA_P0PHYCR_RD() & ~BM_SATA_P0PHYCR_TEST_PDDQ) | BF_SATA_P0PHYCR_TEST_PDDQ(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4832,13 +4540,11 @@ typedef union _hw_sata_p0physr
  * CR Data Output Bus. Always presents last read data.
  */
 //@{
-
 #define BP_SATA_P0PHYSR_CR_DATA_OUT      (0)      //!< Bit position for SATA_P0PHYSR_CR_DATA_OUT.
 #define BM_SATA_P0PHYSR_CR_DATA_OUT      (0x0000ffff)  //!< Bit mask for SATA_P0PHYSR_CR_DATA_OUT.
 
 //! @brief Get value of SATA_P0PHYSR_CR_DATA_OUT from a register value.
 #define BG_SATA_P0PHYSR_CR_DATA_OUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0PHYSR_CR_DATA_OUT) >> BP_SATA_P0PHYSR_CR_DATA_OUT)
-
 //@}
 
 /*! @name Register SATA_P0PHYSR, field CR_ACK[18] (RO)
@@ -4847,13 +4553,11 @@ typedef union _hw_sata_p0physr
  * phy_cr_read control signals.
  */
 //@{
-
 #define BP_SATA_P0PHYSR_CR_ACK      (18)      //!< Bit position for SATA_P0PHYSR_CR_ACK.
 #define BM_SATA_P0PHYSR_CR_ACK      (0x00040000)  //!< Bit mask for SATA_P0PHYSR_CR_ACK.
 
 //! @brief Get value of SATA_P0PHYSR_CR_ACK from a register value.
 #define BG_SATA_P0PHYSR_CR_ACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SATA_P0PHYSR_CR_ACK) >> BP_SATA_P0PHYSR_CR_ACK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4922,3 +4626,5 @@ typedef struct _hw_sata
 #endif
 
 #endif // __HW_SATA_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

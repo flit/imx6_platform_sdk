@@ -183,7 +183,6 @@ typedef union _hw_ocotp_ctrl
  * this value. This internal copy will not update until the access is complete.
  */
 //@{
-
 #define BP_OCOTP_CTRL_ADDR      (0)      //!< Bit position for OCOTP_CTRL_ADDR.
 #define BM_OCOTP_CTRL_ADDR      (0x0000003f)  //!< Bit mask for OCOTP_CTRL_ADDR.
 
@@ -197,7 +196,6 @@ typedef union _hw_ocotp_ctrl
 //! @brief Set the ADDR field to a new value.
 #define BW_OCOTP_CTRL_ADDR(v)   BF_CS1(OCOTP_CTRL, ADDR, v)
 #endif
-
 //@}
 
 /*! @name Register OCOTP_CTRL, field BUSY[8] (RO)
@@ -209,13 +207,11 @@ typedef union _hw_ocotp_ctrl
  * controller.
  */
 //@{
-
 #define BP_OCOTP_CTRL_BUSY      (8)      //!< Bit position for OCOTP_CTRL_BUSY.
 #define BM_OCOTP_CTRL_BUSY      (0x00000100)  //!< Bit mask for OCOTP_CTRL_BUSY.
 
 //! @brief Get value of OCOTP_CTRL_BUSY from a register value.
 #define BG_OCOTP_CTRL_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_CTRL_BUSY) >> BP_OCOTP_CTRL_BUSY)
-
 //@}
 
 /*! @name Register OCOTP_CTRL, field ERROR[9] (RW)
@@ -228,7 +224,6 @@ typedef union _hw_ocotp_ctrl
  * write.
  */
 //@{
-
 #define BP_OCOTP_CTRL_ERROR      (9)      //!< Bit position for OCOTP_CTRL_ERROR.
 #define BM_OCOTP_CTRL_ERROR      (0x00000200)  //!< Bit mask for OCOTP_CTRL_ERROR.
 
@@ -242,7 +237,6 @@ typedef union _hw_ocotp_ctrl
 //! @brief Set the ERROR field to a new value.
 #define BW_OCOTP_CTRL_ERROR(v)   BF_CS1(OCOTP_CTRL, ERROR, v)
 #endif
-
 //@}
 
 /*! @name Register OCOTP_CTRL, field RELOAD_SHADOWS[10] (RW)
@@ -252,7 +246,6 @@ typedef union _hw_ocotp_ctrl
  * are automatically cleared by the controller.
  */
 //@{
-
 #define BP_OCOTP_CTRL_RELOAD_SHADOWS      (10)      //!< Bit position for OCOTP_CTRL_RELOAD_SHADOWS.
 #define BM_OCOTP_CTRL_RELOAD_SHADOWS      (0x00000400)  //!< Bit mask for OCOTP_CTRL_RELOAD_SHADOWS.
 
@@ -266,7 +259,6 @@ typedef union _hw_ocotp_ctrl
 //! @brief Set the RELOAD_SHADOWS field to a new value.
 #define BW_OCOTP_CTRL_RELOAD_SHADOWS(v)   BF_CS1(OCOTP_CTRL, RELOAD_SHADOWS, v)
 #endif
-
 //@}
 
 /*! @name Register OCOTP_CTRL, field CRC_TEST[11] (RW)
@@ -275,7 +267,6 @@ typedef union _hw_ocotp_ctrl
  * with CRC fuse word according CRC address in CRC_ADDR register to generate CRC_FAIL flag
  */
 //@{
-
 #define BP_OCOTP_CTRL_CRC_TEST      (11)      //!< Bit position for OCOTP_CTRL_CRC_TEST.
 #define BM_OCOTP_CTRL_CRC_TEST      (0x00000800)  //!< Bit mask for OCOTP_CTRL_CRC_TEST.
 
@@ -289,7 +280,6 @@ typedef union _hw_ocotp_ctrl
 //! @brief Set the CRC_TEST field to a new value.
 #define BW_OCOTP_CTRL_CRC_TEST(v)   BF_CS1(OCOTP_CTRL, CRC_TEST, v)
 #endif
-
 //@}
 
 /*! @name Register OCOTP_CTRL, field CRC_FAIL[12] (RW)
@@ -297,7 +287,6 @@ typedef union _hw_ocotp_ctrl
  * Set by controller when calculated CRC value is not equal to appointed CRC fuse word
  */
 //@{
-
 #define BP_OCOTP_CTRL_CRC_FAIL      (12)      //!< Bit position for OCOTP_CTRL_CRC_FAIL.
 #define BM_OCOTP_CTRL_CRC_FAIL      (0x00001000)  //!< Bit mask for OCOTP_CTRL_CRC_FAIL.
 
@@ -311,7 +300,6 @@ typedef union _hw_ocotp_ctrl
 //! @brief Set the CRC_FAIL field to a new value.
 #define BW_OCOTP_CTRL_CRC_FAIL(v)   BF_CS1(OCOTP_CTRL, CRC_FAIL, v)
 #endif
-
 //@}
 
 /*! @name Register OCOTP_CTRL, field WR_UNLOCK[31:16] (RW)
@@ -326,7 +314,6 @@ typedef union _hw_ocotp_ctrl
  * - KEY = 0x3E77 - Key needed to unlock HW_OCOTP_DATA register.
  */
 //@{
-
 #define BP_OCOTP_CTRL_WR_UNLOCK      (16)      //!< Bit position for OCOTP_CTRL_WR_UNLOCK.
 #define BM_OCOTP_CTRL_WR_UNLOCK      (0xffff0000)  //!< Bit mask for OCOTP_CTRL_WR_UNLOCK.
 
@@ -345,7 +332,6 @@ typedef union _hw_ocotp_ctrl
 #define BF_OCOTP_CTRL_WR_UNLOCK_V(v) BF_OCOTP_CTRL_WR_UNLOCK(BV_OCOTP_CTRL_WR_UNLOCK__##v)
 
 #define BV_OCOTP_CTRL_WR_UNLOCK__KEY (0x3e77) //!< Key needed to unlock HW_OCOTP_DATA register.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -401,7 +387,6 @@ typedef union _hw_ocotp_timing
  * 2*(RELAX+1)) /ipg_clk_freq. It is given in number of ipg_clk periods.
  */
 //@{
-
 #define BP_OCOTP_TIMING_STROBE_PROG      (0)      //!< Bit position for OCOTP_TIMING_STROBE_PROG.
 #define BM_OCOTP_TIMING_STROBE_PROG      (0x00000fff)  //!< Bit mask for OCOTP_TIMING_STROBE_PROG.
 
@@ -415,7 +400,6 @@ typedef union _hw_ocotp_timing
 //! @brief Set the STROBE_PROG field to a new value.
 #define BW_OCOTP_TIMING_STROBE_PROG(v)   (HW_OCOTP_TIMING_WR((HW_OCOTP_TIMING_RD() & ~BM_OCOTP_TIMING_STROBE_PROG) | BF_OCOTP_TIMING_STROBE_PROG(v)))
 #endif
-
 //@}
 
 /*! @name Register OCOTP_TIMING, field RELAX[15:12] (RW)
@@ -424,7 +408,6 @@ typedef union _hw_ocotp_timing
  * and Trd. It is given in number of ipg_clk periods.
  */
 //@{
-
 #define BP_OCOTP_TIMING_RELAX      (12)      //!< Bit position for OCOTP_TIMING_RELAX.
 #define BM_OCOTP_TIMING_RELAX      (0x0000f000)  //!< Bit mask for OCOTP_TIMING_RELAX.
 
@@ -438,7 +421,6 @@ typedef union _hw_ocotp_timing
 //! @brief Set the RELAX field to a new value.
 #define BW_OCOTP_TIMING_RELAX(v)   (HW_OCOTP_TIMING_WR((HW_OCOTP_TIMING_RD() & ~BM_OCOTP_TIMING_RELAX) | BF_OCOTP_TIMING_RELAX(v)))
 #endif
-
 //@}
 
 /*! @name Register OCOTP_TIMING, field STROBE_READ[21:16] (RW)
@@ -447,7 +429,6 @@ typedef union _hw_ocotp_timing
  * 2*(RELAX+1)) /ipg_clk_freq. It is given in number of ipg_clk periods.
  */
 //@{
-
 #define BP_OCOTP_TIMING_STROBE_READ      (16)      //!< Bit position for OCOTP_TIMING_STROBE_READ.
 #define BM_OCOTP_TIMING_STROBE_READ      (0x003f0000)  //!< Bit mask for OCOTP_TIMING_STROBE_READ.
 
@@ -461,7 +442,6 @@ typedef union _hw_ocotp_timing
 //! @brief Set the STROBE_READ field to a new value.
 #define BW_OCOTP_TIMING_STROBE_READ(v)   (HW_OCOTP_TIMING_WR((HW_OCOTP_TIMING_RD() & ~BM_OCOTP_TIMING_STROBE_READ) | BF_OCOTP_TIMING_STROBE_READ(v)))
 #endif
-
 //@}
 
 /*! @name Register OCOTP_TIMING, field WAIT[27:22] (RW)
@@ -470,7 +450,6 @@ typedef union _hw_ocotp_timing
  * It is given in number of ipg_clk periods.
  */
 //@{
-
 #define BP_OCOTP_TIMING_WAIT      (22)      //!< Bit position for OCOTP_TIMING_WAIT.
 #define BM_OCOTP_TIMING_WAIT      (0x0fc00000)  //!< Bit mask for OCOTP_TIMING_WAIT.
 
@@ -484,7 +463,6 @@ typedef union _hw_ocotp_timing
 //! @brief Set the WAIT field to a new value.
 #define BW_OCOTP_TIMING_WAIT(v)   (HW_OCOTP_TIMING_WR((HW_OCOTP_TIMING_RD() & ~BM_OCOTP_TIMING_WAIT) | BF_OCOTP_TIMING_WAIT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -537,7 +515,6 @@ typedef union _hw_ocotp_data
  * details.
  */
 //@{
-
 #define BP_OCOTP_DATA_DATA      (0)      //!< Bit position for OCOTP_DATA_DATA.
 #define BM_OCOTP_DATA_DATA      (0xffffffff)  //!< Bit mask for OCOTP_DATA_DATA.
 
@@ -551,7 +528,6 @@ typedef union _hw_ocotp_data
 //! @brief Set the DATA field to a new value.
 #define BW_OCOTP_DATA_DATA(v)   (HW_OCOTP_DATA_WR((HW_OCOTP_DATA_RD() & ~BM_OCOTP_DATA_DATA) | BF_OCOTP_DATA_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -605,7 +581,6 @@ typedef union _hw_ocotp_read_ctrl
  * details.
  */
 //@{
-
 #define BP_OCOTP_READ_CTRL_READ_FUSE      (0)      //!< Bit position for OCOTP_READ_CTRL_READ_FUSE.
 #define BM_OCOTP_READ_CTRL_READ_FUSE      (0x00000001)  //!< Bit mask for OCOTP_READ_CTRL_READ_FUSE.
 
@@ -619,7 +594,6 @@ typedef union _hw_ocotp_read_ctrl
 //! @brief Set the READ_FUSE field to a new value.
 #define BW_OCOTP_READ_CTRL_READ_FUSE(v)   (HW_OCOTP_READ_CTRL_WR((HW_OCOTP_READ_CTRL_RD() & ~BM_OCOTP_READ_CTRL_READ_FUSE) | BF_OCOTP_READ_CTRL_READ_FUSE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -669,7 +643,6 @@ typedef union _hw_ocotp_read_fuse_data
  * The data read from OTP
  */
 //@{
-
 #define BP_OCOTP_READ_FUSE_DATA_DATA      (0)      //!< Bit position for OCOTP_READ_FUSE_DATA_DATA.
 #define BM_OCOTP_READ_FUSE_DATA_DATA      (0xffffffff)  //!< Bit mask for OCOTP_READ_FUSE_DATA_DATA.
 
@@ -683,7 +656,6 @@ typedef union _hw_ocotp_read_fuse_data
 //! @brief Set the DATA field to a new value.
 #define BW_OCOTP_READ_FUSE_DATA_DATA(v)   (HW_OCOTP_READ_FUSE_DATA_WR((HW_OCOTP_READ_FUSE_DATA_RD() & ~BM_OCOTP_READ_FUSE_DATA_DATA) | BF_OCOTP_READ_FUSE_DATA_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -739,7 +711,6 @@ typedef union _hw_ocotp_sw_sticky
  * unless a POR is issued.
  */
 //@{
-
 #define BP_OCOTP_SW_STICKY_SRK_REVOKE_LOCK      (1)      //!< Bit position for OCOTP_SW_STICKY_SRK_REVOKE_LOCK.
 #define BM_OCOTP_SW_STICKY_SRK_REVOKE_LOCK      (0x00000002)  //!< Bit mask for OCOTP_SW_STICKY_SRK_REVOKE_LOCK.
 
@@ -753,7 +724,6 @@ typedef union _hw_ocotp_sw_sticky
 //! @brief Set the SRK_REVOKE_LOCK field to a new value.
 #define BW_OCOTP_SW_STICKY_SRK_REVOKE_LOCK(v)   (HW_OCOTP_SW_STICKY_WR((HW_OCOTP_SW_STICKY_RD() & ~BM_OCOTP_SW_STICKY_SRK_REVOKE_LOCK) | BF_OCOTP_SW_STICKY_SRK_REVOKE_LOCK(v)))
 #endif
-
 //@}
 
 /*! @name Register OCOTP_SW_STICKY, field FIELD_RETURN_LOCK[2] (RW)
@@ -763,7 +733,6 @@ typedef union _hw_ocotp_sw_sticky
  * unless a POR is issued.
  */
 //@{
-
 #define BP_OCOTP_SW_STICKY_FIELD_RETURN_LOCK      (2)      //!< Bit position for OCOTP_SW_STICKY_FIELD_RETURN_LOCK.
 #define BM_OCOTP_SW_STICKY_FIELD_RETURN_LOCK      (0x00000004)  //!< Bit mask for OCOTP_SW_STICKY_FIELD_RETURN_LOCK.
 
@@ -777,7 +746,6 @@ typedef union _hw_ocotp_sw_sticky
 //! @brief Set the FIELD_RETURN_LOCK field to a new value.
 #define BW_OCOTP_SW_STICKY_FIELD_RETURN_LOCK(v)   (HW_OCOTP_SW_STICKY_WR((HW_OCOTP_SW_STICKY_RD() & ~BM_OCOTP_SW_STICKY_FIELD_RETURN_LOCK) | BF_OCOTP_SW_STICKY_FIELD_RETURN_LOCK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -839,7 +807,6 @@ typedef union _hw_ocotp_scs
  * debugging is enabled by the HAB (though this signal may be gated off).
  */
 //@{
-
 #define BP_OCOTP_SCS_HAB_JDE      (0)      //!< Bit position for OCOTP_SCS_HAB_JDE.
 #define BM_OCOTP_SCS_HAB_JDE      (0x00000001)  //!< Bit mask for OCOTP_SCS_HAB_JDE.
 
@@ -853,7 +820,6 @@ typedef union _hw_ocotp_scs
 //! @brief Set the HAB_JDE field to a new value.
 #define BW_OCOTP_SCS_HAB_JDE(v)   BF_CS1(OCOTP_SCS, HAB_JDE, v)
 #endif
-
 //@}
 
 /*! @name Register OCOTP_SCS, field SPARE[30:1] (RW)
@@ -861,7 +827,6 @@ typedef union _hw_ocotp_scs
  * Unallocated read/write bits for implementation specific software use.
  */
 //@{
-
 #define BP_OCOTP_SCS_SPARE      (1)      //!< Bit position for OCOTP_SCS_SPARE.
 #define BM_OCOTP_SCS_SPARE      (0x7ffffffe)  //!< Bit mask for OCOTP_SCS_SPARE.
 
@@ -875,7 +840,6 @@ typedef union _hw_ocotp_scs
 //! @brief Set the SPARE field to a new value.
 #define BW_OCOTP_SCS_SPARE(v)   BF_CS1(OCOTP_SCS, SPARE, v)
 #endif
-
 //@}
 
 /*! @name Register OCOTP_SCS, field LOCK[31] (RW)
@@ -884,7 +848,6 @@ typedef union _hw_ocotp_scs
  * programming. This bit is only reset after a POR is issued.
  */
 //@{
-
 #define BP_OCOTP_SCS_LOCK      (31)      //!< Bit position for OCOTP_SCS_LOCK.
 #define BM_OCOTP_SCS_LOCK      (0x80000000)  //!< Bit mask for OCOTP_SCS_LOCK.
 
@@ -898,7 +861,6 @@ typedef union _hw_ocotp_scs
 //! @brief Set the LOCK field to a new value.
 #define BW_OCOTP_SCS_LOCK(v)   BF_CS1(OCOTP_SCS, LOCK, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -952,7 +914,6 @@ typedef union _hw_ocotp_crc_addr
  * End address of fuse location for CRC calculation
  */
 //@{
-
 #define BP_OCOTP_CRC_ADDR_DATA_START_ADDR      (0)      //!< Bit position for OCOTP_CRC_ADDR_DATA_START_ADDR.
 #define BM_OCOTP_CRC_ADDR_DATA_START_ADDR      (0x000000ff)  //!< Bit mask for OCOTP_CRC_ADDR_DATA_START_ADDR.
 
@@ -966,7 +927,6 @@ typedef union _hw_ocotp_crc_addr
 //! @brief Set the DATA_START_ADDR field to a new value.
 #define BW_OCOTP_CRC_ADDR_DATA_START_ADDR(v)   (HW_OCOTP_CRC_ADDR_WR((HW_OCOTP_CRC_ADDR_RD() & ~BM_OCOTP_CRC_ADDR_DATA_START_ADDR) | BF_OCOTP_CRC_ADDR_DATA_START_ADDR(v)))
 #endif
-
 //@}
 
 /*! @name Register OCOTP_CRC_ADDR, field DATA_END_ADDR[15:8] (RW)
@@ -974,7 +934,6 @@ typedef union _hw_ocotp_crc_addr
  * Start address of fuse location for CRC calculation
  */
 //@{
-
 #define BP_OCOTP_CRC_ADDR_DATA_END_ADDR      (8)      //!< Bit position for OCOTP_CRC_ADDR_DATA_END_ADDR.
 #define BM_OCOTP_CRC_ADDR_DATA_END_ADDR      (0x0000ff00)  //!< Bit mask for OCOTP_CRC_ADDR_DATA_END_ADDR.
 
@@ -988,7 +947,6 @@ typedef union _hw_ocotp_crc_addr
 //! @brief Set the DATA_END_ADDR field to a new value.
 #define BW_OCOTP_CRC_ADDR_DATA_END_ADDR(v)   (HW_OCOTP_CRC_ADDR_WR((HW_OCOTP_CRC_ADDR_RD() & ~BM_OCOTP_CRC_ADDR_DATA_END_ADDR) | BF_OCOTP_CRC_ADDR_DATA_END_ADDR(v)))
 #endif
-
 //@}
 
 /*! @name Register OCOTP_CRC_ADDR, field CRC_ADDR[18:16] (RW)
@@ -996,7 +954,6 @@ typedef union _hw_ocotp_crc_addr
  * Address of 32-bit CRC result for comparing
  */
 //@{
-
 #define BP_OCOTP_CRC_ADDR_CRC_ADDR      (16)      //!< Bit position for OCOTP_CRC_ADDR_CRC_ADDR.
 #define BM_OCOTP_CRC_ADDR_CRC_ADDR      (0x00070000)  //!< Bit mask for OCOTP_CRC_ADDR_CRC_ADDR.
 
@@ -1010,7 +967,6 @@ typedef union _hw_ocotp_crc_addr
 //! @brief Set the CRC_ADDR field to a new value.
 #define BW_OCOTP_CRC_ADDR_CRC_ADDR(v)   (HW_OCOTP_CRC_ADDR_WR((HW_OCOTP_CRC_ADDR_RD() & ~BM_OCOTP_CRC_ADDR_CRC_ADDR) | BF_OCOTP_CRC_ADDR_CRC_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1061,7 +1017,6 @@ typedef union _hw_ocotp_crc_value
  * The crc32 value based on CRC_ADDR
  */
 //@{
-
 #define BP_OCOTP_CRC_VALUE_DATA      (0)      //!< Bit position for OCOTP_CRC_VALUE_DATA.
 #define BM_OCOTP_CRC_VALUE_DATA      (0xffffffff)  //!< Bit mask for OCOTP_CRC_VALUE_DATA.
 
@@ -1075,7 +1030,6 @@ typedef union _hw_ocotp_crc_value
 //! @brief Set the DATA field to a new value.
 #define BW_OCOTP_CRC_VALUE_DATA(v)   (HW_OCOTP_CRC_VALUE_WR((HW_OCOTP_CRC_VALUE_RD() & ~BM_OCOTP_CRC_VALUE_DATA) | BF_OCOTP_CRC_VALUE_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1128,7 +1082,6 @@ typedef union _hw_ocotp_umc_timing
  * /ipg_clk_freq. It is given in number of ipg_clk periods.
  */
 //@{
-
 #define BP_OCOTP_UMC_TIMING_STROBE_PROG_INT      (0)      //!< Bit position for OCOTP_UMC_TIMING_STROBE_PROG_INT.
 #define BM_OCOTP_UMC_TIMING_STROBE_PROG_INT      (0x00000fff)  //!< Bit mask for OCOTP_UMC_TIMING_STROBE_PROG_INT.
 
@@ -1142,7 +1095,6 @@ typedef union _hw_ocotp_umc_timing
 //! @brief Set the STROBE_PROG_INT field to a new value.
 #define BW_OCOTP_UMC_TIMING_STROBE_PROG_INT(v)   (HW_OCOTP_UMC_TIMING_WR((HW_OCOTP_UMC_TIMING_RD() & ~BM_OCOTP_UMC_TIMING_STROBE_PROG_INT) | BF_OCOTP_UMC_TIMING_STROBE_PROG_INT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1195,13 +1147,11 @@ typedef union _hw_ocotp_version
  * Fixed read-only value reflecting the stepping of the RTL version.
  */
 //@{
-
 #define BP_OCOTP_VERSION_STEP      (0)      //!< Bit position for OCOTP_VERSION_STEP.
 #define BM_OCOTP_VERSION_STEP      (0x0000ffff)  //!< Bit mask for OCOTP_VERSION_STEP.
 
 //! @brief Get value of OCOTP_VERSION_STEP from a register value.
 #define BG_OCOTP_VERSION_STEP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_VERSION_STEP) >> BP_OCOTP_VERSION_STEP)
-
 //@}
 
 /*! @name Register OCOTP_VERSION, field MINOR[23:16] (RO)
@@ -1209,13 +1159,11 @@ typedef union _hw_ocotp_version
  * Fixed read-only value reflecting the MINOR field of the RTL version.
  */
 //@{
-
 #define BP_OCOTP_VERSION_MINOR      (16)      //!< Bit position for OCOTP_VERSION_MINOR.
 #define BM_OCOTP_VERSION_MINOR      (0x00ff0000)  //!< Bit mask for OCOTP_VERSION_MINOR.
 
 //! @brief Get value of OCOTP_VERSION_MINOR from a register value.
 #define BG_OCOTP_VERSION_MINOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_VERSION_MINOR) >> BP_OCOTP_VERSION_MINOR)
-
 //@}
 
 /*! @name Register OCOTP_VERSION, field MAJOR[31:24] (RO)
@@ -1223,13 +1171,11 @@ typedef union _hw_ocotp_version
  * Fixed read-only value reflecting the MAJOR field of the RTL version.
  */
 //@{
-
 #define BP_OCOTP_VERSION_MAJOR      (24)      //!< Bit position for OCOTP_VERSION_MAJOR.
 #define BM_OCOTP_VERSION_MAJOR      (0xff000000)  //!< Bit mask for OCOTP_VERSION_MAJOR.
 
 //! @brief Get value of OCOTP_VERSION_MAJOR from a register value.
 #define BG_OCOTP_VERSION_MAJOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_VERSION_MAJOR) >> BP_OCOTP_VERSION_MAJOR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1302,13 +1248,11 @@ typedef union _hw_ocotp_lock
  * fuse word is blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_TESTER      (0)      //!< Bit position for OCOTP_LOCK_TESTER.
 #define BM_OCOTP_LOCK_TESTER      (0x00000003)  //!< Bit mask for OCOTP_LOCK_TESTER.
 
 //! @brief Get value of OCOTP_LOCK_TESTER from a register value.
 #define BG_OCOTP_LOCK_TESTER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_TESTER) >> BP_OCOTP_LOCK_TESTER)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field BOOT_CFG[3:2] (RO)
@@ -1318,13 +1262,11 @@ typedef union _hw_ocotp_lock
  * fuse word is blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_BOOT_CFG      (2)      //!< Bit position for OCOTP_LOCK_BOOT_CFG.
 #define BM_OCOTP_LOCK_BOOT_CFG      (0x0000000c)  //!< Bit mask for OCOTP_LOCK_BOOT_CFG.
 
 //! @brief Get value of OCOTP_LOCK_BOOT_CFG from a register value.
 #define BG_OCOTP_LOCK_BOOT_CFG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_BOOT_CFG) >> BP_OCOTP_LOCK_BOOT_CFG)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field MEM_TRIM[5:4] (RO)
@@ -1334,13 +1276,11 @@ typedef union _hw_ocotp_lock
  * fuse word is blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_MEM_TRIM      (4)      //!< Bit position for OCOTP_LOCK_MEM_TRIM.
 #define BM_OCOTP_LOCK_MEM_TRIM      (0x00000030)  //!< Bit mask for OCOTP_LOCK_MEM_TRIM.
 
 //! @brief Get value of OCOTP_LOCK_MEM_TRIM from a register value.
 #define BG_OCOTP_LOCK_MEM_TRIM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_MEM_TRIM) >> BP_OCOTP_LOCK_MEM_TRIM)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field SJC_RESP[6] (RO)
@@ -1350,13 +1290,11 @@ typedef union _hw_ocotp_lock
  * region's shadow register and OTP fuse word are also blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_SJC_RESP      (6)      //!< Bit position for OCOTP_LOCK_SJC_RESP.
 #define BM_OCOTP_LOCK_SJC_RESP      (0x00000040)  //!< Bit mask for OCOTP_LOCK_SJC_RESP.
 
 //! @brief Get value of OCOTP_LOCK_SJC_RESP from a register value.
 #define BG_OCOTP_LOCK_SJC_RESP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_SJC_RESP) >> BP_OCOTP_LOCK_SJC_RESP)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field MAC_ADDR[9:8] (RO)
@@ -1366,13 +1304,11 @@ typedef union _hw_ocotp_lock
  * fuse word is blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_MAC_ADDR      (8)      //!< Bit position for OCOTP_LOCK_MAC_ADDR.
 #define BM_OCOTP_LOCK_MAC_ADDR      (0x00000300)  //!< Bit mask for OCOTP_LOCK_MAC_ADDR.
 
 //! @brief Get value of OCOTP_LOCK_MAC_ADDR from a register value.
 #define BG_OCOTP_LOCK_MAC_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_MAC_ADDR) >> BP_OCOTP_LOCK_MAC_ADDR)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field GP1[11:10] (RO)
@@ -1382,13 +1318,11 @@ typedef union _hw_ocotp_lock
  * fuse word is blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_GP1      (10)      //!< Bit position for OCOTP_LOCK_GP1.
 #define BM_OCOTP_LOCK_GP1      (0x00000c00)  //!< Bit mask for OCOTP_LOCK_GP1.
 
 //! @brief Get value of OCOTP_LOCK_GP1 from a register value.
 #define BG_OCOTP_LOCK_GP1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_GP1) >> BP_OCOTP_LOCK_GP1)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field GP2[13:12] (RO)
@@ -1398,13 +1332,11 @@ typedef union _hw_ocotp_lock
  * fuse word is blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_GP2      (12)      //!< Bit position for OCOTP_LOCK_GP2.
 #define BM_OCOTP_LOCK_GP2      (0x00003000)  //!< Bit mask for OCOTP_LOCK_GP2.
 
 //! @brief Get value of OCOTP_LOCK_GP2 from a register value.
 #define BG_OCOTP_LOCK_GP2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_GP2) >> BP_OCOTP_LOCK_GP2)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field SRK[14] (RO)
@@ -1413,13 +1345,11 @@ typedef union _hw_ocotp_lock
  * region's shadow register and OTP fuse word are blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_SRK      (14)      //!< Bit position for OCOTP_LOCK_SRK.
 #define BM_OCOTP_LOCK_SRK      (0x00004000)  //!< Bit mask for OCOTP_LOCK_SRK.
 
 //! @brief Get value of OCOTP_LOCK_SRK from a register value.
 #define BG_OCOTP_LOCK_SRK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_SRK) >> BP_OCOTP_LOCK_SRK)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field SW_GP[16] (RO)
@@ -1429,13 +1359,11 @@ typedef union _hw_ocotp_lock
  * readable.
  */
 //@{
-
 #define BP_OCOTP_LOCK_SW_GP      (16)      //!< Bit position for OCOTP_LOCK_SW_GP.
 #define BM_OCOTP_LOCK_SW_GP      (0x00010000)  //!< Bit mask for OCOTP_LOCK_SW_GP.
 
 //! @brief Get value of OCOTP_LOCK_SW_GP from a register value.
 #define BG_OCOTP_LOCK_SW_GP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_SW_GP) >> BP_OCOTP_LOCK_SW_GP)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field DCP[17] (RO)
@@ -1445,13 +1373,11 @@ typedef union _hw_ocotp_lock
  * shadow register and OTP fuse word are also blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_DCP      (17)      //!< Bit position for OCOTP_LOCK_DCP.
 #define BM_OCOTP_LOCK_DCP      (0x00020000)  //!< Bit mask for OCOTP_LOCK_DCP.
 
 //! @brief Get value of OCOTP_LOCK_DCP from a register value.
 #define BG_OCOTP_LOCK_DCP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_DCP) >> BP_OCOTP_LOCK_DCP)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field ANALOG[19:18] (RO)
@@ -1461,13 +1387,11 @@ typedef union _hw_ocotp_lock
  * fuse word is blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_ANALOG      (18)      //!< Bit position for OCOTP_LOCK_ANALOG.
 #define BM_OCOTP_LOCK_ANALOG      (0x000c0000)  //!< Bit mask for OCOTP_LOCK_ANALOG.
 
 //! @brief Get value of OCOTP_LOCK_ANALOG from a register value.
 #define BG_OCOTP_LOCK_ANALOG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_ANALOG) >> BP_OCOTP_LOCK_ANALOG)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field CRC_GP_LOCK[21:20] (RO)
@@ -1477,13 +1401,11 @@ typedef union _hw_ocotp_lock
  * blocked.When bit 0 is set, the writing of this region's shadow register and OTP fuse are blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_CRC_GP_LOCK      (20)      //!< Bit position for OCOTP_LOCK_CRC_GP_LOCK.
 #define BM_OCOTP_LOCK_CRC_GP_LOCK      (0x00300000)  //!< Bit mask for OCOTP_LOCK_CRC_GP_LOCK.
 
 //! @brief Get value of OCOTP_LOCK_CRC_GP_LOCK from a register value.
 #define BG_OCOTP_LOCK_CRC_GP_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_CRC_GP_LOCK) >> BP_OCOTP_LOCK_CRC_GP_LOCK)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field MISC_CONF[22] (RO)
@@ -1492,13 +1414,11 @@ typedef union _hw_ocotp_lock
  * region's shadow register and OTP fuse word are blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_MISC_CONF      (22)      //!< Bit position for OCOTP_LOCK_MISC_CONF.
 #define BM_OCOTP_LOCK_MISC_CONF      (0x00400000)  //!< Bit mask for OCOTP_LOCK_MISC_CONF.
 
 //! @brief Get value of OCOTP_LOCK_MISC_CONF from a register value.
 #define BG_OCOTP_LOCK_MISC_CONF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_MISC_CONF) >> BP_OCOTP_LOCK_MISC_CONF)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field PIN[25] (RO)
@@ -1506,13 +1426,11 @@ typedef union _hw_ocotp_lock
  * Status of Pin access lock bit. When set, pin access is disabled.
  */
 //@{
-
 #define BP_OCOTP_LOCK_PIN      (25)      //!< Bit position for OCOTP_LOCK_PIN.
 #define BM_OCOTP_LOCK_PIN      (0x02000000)  //!< Bit mask for OCOTP_LOCK_PIN.
 
 //! @brief Get value of OCOTP_LOCK_PIN from a register value.
 #define BG_OCOTP_LOCK_PIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_PIN) >> BP_OCOTP_LOCK_PIN)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field GP_LO_LOCK[27:26] (RO)
@@ -1522,13 +1440,11 @@ typedef union _hw_ocotp_lock
  * fuse word is blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_GP_LO_LOCK      (26)      //!< Bit position for OCOTP_LOCK_GP_LO_LOCK.
 #define BM_OCOTP_LOCK_GP_LO_LOCK      (0x0c000000)  //!< Bit mask for OCOTP_LOCK_GP_LO_LOCK.
 
 //! @brief Get value of OCOTP_LOCK_GP_LO_LOCK from a register value.
 #define BG_OCOTP_LOCK_GP_LO_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_GP_LO_LOCK) >> BP_OCOTP_LOCK_GP_LO_LOCK)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field GP_HI_LOCK[29:28] (RO)
@@ -1538,13 +1454,11 @@ typedef union _hw_ocotp_lock
  * fuse word is blocked.
  */
 //@{
-
 #define BP_OCOTP_LOCK_GP_HI_LOCK      (28)      //!< Bit position for OCOTP_LOCK_GP_HI_LOCK.
 #define BM_OCOTP_LOCK_GP_HI_LOCK      (0x30000000)  //!< Bit mask for OCOTP_LOCK_GP_HI_LOCK.
 
 //! @brief Get value of OCOTP_LOCK_GP_HI_LOCK from a register value.
 #define BG_OCOTP_LOCK_GP_HI_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_GP_HI_LOCK) >> BP_OCOTP_LOCK_GP_HI_LOCK)
-
 //@}
 
 /*! @name Register OCOTP_LOCK, field UNALLOCATED[31:30] (RO)
@@ -1552,13 +1466,11 @@ typedef union _hw_ocotp_lock
  * Value of un-used portion of LOCK word
  */
 //@{
-
 #define BP_OCOTP_LOCK_UNALLOCATED      (30)      //!< Bit position for OCOTP_LOCK_UNALLOCATED.
 #define BM_OCOTP_LOCK_UNALLOCATED      (0xc0000000)  //!< Bit mask for OCOTP_LOCK_UNALLOCATED.
 
 //! @brief Get value of OCOTP_LOCK_UNALLOCATED from a register value.
 #define BG_OCOTP_LOCK_UNALLOCATED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_OCOTP_LOCK_UNALLOCATED) >> BP_OCOTP_LOCK_UNALLOCATED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1612,7 +1524,6 @@ typedef union _hw_ocotp_cfg0
  * is set.
  */
 //@{
-
 #define BP_OCOTP_CFG0_BITS      (0)      //!< Bit position for OCOTP_CFG0_BITS.
 #define BM_OCOTP_CFG0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG0_BITS.
 
@@ -1626,7 +1537,6 @@ typedef union _hw_ocotp_cfg0
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG0_BITS(v)   (HW_OCOTP_CFG0_WR((HW_OCOTP_CFG0_RD() & ~BM_OCOTP_CFG0_BITS) | BF_OCOTP_CFG0_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1680,7 +1590,6 @@ typedef union _hw_ocotp_cfg1
  * is set.
  */
 //@{
-
 #define BP_OCOTP_CFG1_BITS      (0)      //!< Bit position for OCOTP_CFG1_BITS.
 #define BM_OCOTP_CFG1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG1_BITS.
 
@@ -1694,7 +1603,6 @@ typedef union _hw_ocotp_cfg1
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG1_BITS(v)   (HW_OCOTP_CFG1_WR((HW_OCOTP_CFG1_RD() & ~BM_OCOTP_CFG1_BITS) | BF_OCOTP_CFG1_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1747,7 +1655,6 @@ typedef union _hw_ocotp_cfg2
  * HW_OCOTP_LOCK_TESTER[1] bit is set.
  */
 //@{
-
 #define BP_OCOTP_CFG2_BITS      (0)      //!< Bit position for OCOTP_CFG2_BITS.
 #define BM_OCOTP_CFG2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG2_BITS.
 
@@ -1761,7 +1668,6 @@ typedef union _hw_ocotp_cfg2
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG2_BITS(v)   (HW_OCOTP_CFG2_WR((HW_OCOTP_CFG2_RD() & ~BM_OCOTP_CFG2_BITS) | BF_OCOTP_CFG2_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1814,7 +1720,6 @@ typedef union _hw_ocotp_cfg3
  * HW_OCOTP_LOCK_TESTER[1] bit is set.
  */
 //@{
-
 #define BP_OCOTP_CFG3_BITS      (0)      //!< Bit position for OCOTP_CFG3_BITS.
 #define BM_OCOTP_CFG3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG3_BITS.
 
@@ -1828,7 +1733,6 @@ typedef union _hw_ocotp_cfg3
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG3_BITS(v)   (HW_OCOTP_CFG3_WR((HW_OCOTP_CFG3_RD() & ~BM_OCOTP_CFG3_BITS) | BF_OCOTP_CFG3_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1881,7 +1785,6 @@ typedef union _hw_ocotp_cfg4
  * HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
  */
 //@{
-
 #define BP_OCOTP_CFG4_BITS      (0)      //!< Bit position for OCOTP_CFG4_BITS.
 #define BM_OCOTP_CFG4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG4_BITS.
 
@@ -1895,7 +1798,6 @@ typedef union _hw_ocotp_cfg4
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG4_BITS(v)   (HW_OCOTP_CFG4_WR((HW_OCOTP_CFG4_RD() & ~BM_OCOTP_CFG4_BITS) | BF_OCOTP_CFG4_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1948,7 +1850,6 @@ typedef union _hw_ocotp_cfg5
  * HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
  */
 //@{
-
 #define BP_OCOTP_CFG5_BITS      (0)      //!< Bit position for OCOTP_CFG5_BITS.
 #define BM_OCOTP_CFG5_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG5_BITS.
 
@@ -1962,7 +1863,6 @@ typedef union _hw_ocotp_cfg5
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG5_BITS(v)   (HW_OCOTP_CFG5_WR((HW_OCOTP_CFG5_RD() & ~BM_OCOTP_CFG5_BITS) | BF_OCOTP_CFG5_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2015,7 +1915,6 @@ typedef union _hw_ocotp_cfg6
  * HW_OCOTP_LOCK_BOOT_CFG[1] bit is set.
  */
 //@{
-
 #define BP_OCOTP_CFG6_BITS      (0)      //!< Bit position for OCOTP_CFG6_BITS.
 #define BM_OCOTP_CFG6_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CFG6_BITS.
 
@@ -2029,7 +1928,6 @@ typedef union _hw_ocotp_cfg6
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CFG6_BITS(v)   (HW_OCOTP_CFG6_WR((HW_OCOTP_CFG6_RD() & ~BM_OCOTP_CFG6_BITS) | BF_OCOTP_CFG6_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2082,7 +1980,6 @@ typedef union _hw_ocotp_mem0
  * HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
  */
 //@{
-
 #define BP_OCOTP_MEM0_BITS      (0)      //!< Bit position for OCOTP_MEM0_BITS.
 #define BM_OCOTP_MEM0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MEM0_BITS.
 
@@ -2096,7 +1993,6 @@ typedef union _hw_ocotp_mem0
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM0_BITS(v)   (HW_OCOTP_MEM0_WR((HW_OCOTP_MEM0_RD() & ~BM_OCOTP_MEM0_BITS) | BF_OCOTP_MEM0_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2149,7 +2045,6 @@ typedef union _hw_ocotp_mem1
  * HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
  */
 //@{
-
 #define BP_OCOTP_MEM1_BITS      (0)      //!< Bit position for OCOTP_MEM1_BITS.
 #define BM_OCOTP_MEM1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MEM1_BITS.
 
@@ -2163,7 +2058,6 @@ typedef union _hw_ocotp_mem1
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM1_BITS(v)   (HW_OCOTP_MEM1_WR((HW_OCOTP_MEM1_RD() & ~BM_OCOTP_MEM1_BITS) | BF_OCOTP_MEM1_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2216,7 +2110,6 @@ typedef union _hw_ocotp_mem2
  * HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
  */
 //@{
-
 #define BP_OCOTP_MEM2_BITS      (0)      //!< Bit position for OCOTP_MEM2_BITS.
 #define BM_OCOTP_MEM2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MEM2_BITS.
 
@@ -2230,7 +2123,6 @@ typedef union _hw_ocotp_mem2
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM2_BITS(v)   (HW_OCOTP_MEM2_WR((HW_OCOTP_MEM2_RD() & ~BM_OCOTP_MEM2_BITS) | BF_OCOTP_MEM2_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2283,7 +2175,6 @@ typedef union _hw_ocotp_mem3
  * HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
  */
 //@{
-
 #define BP_OCOTP_MEM3_BITS      (0)      //!< Bit position for OCOTP_MEM3_BITS.
 #define BM_OCOTP_MEM3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MEM3_BITS.
 
@@ -2297,7 +2188,6 @@ typedef union _hw_ocotp_mem3
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM3_BITS(v)   (HW_OCOTP_MEM3_WR((HW_OCOTP_MEM3_RD() & ~BM_OCOTP_MEM3_BITS) | BF_OCOTP_MEM3_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2350,7 +2240,6 @@ typedef union _hw_ocotp_mem4
  * HW_OCOTP_LOCK_MEM_TRIM[1] bit is set.
  */
 //@{
-
 #define BP_OCOTP_MEM4_BITS      (0)      //!< Bit position for OCOTP_MEM4_BITS.
 #define BM_OCOTP_MEM4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MEM4_BITS.
 
@@ -2364,7 +2253,6 @@ typedef union _hw_ocotp_mem4
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MEM4_BITS(v)   (HW_OCOTP_MEM4_WR((HW_OCOTP_MEM4_RD() & ~BM_OCOTP_MEM4_BITS) | BF_OCOTP_MEM4_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2417,7 +2305,6 @@ typedef union _hw_ocotp_ana0
  * HW_OCOTP_LOCK_ANALOG[1] bit is set.
  */
 //@{
-
 #define BP_OCOTP_ANA0_BITS      (0)      //!< Bit position for OCOTP_ANA0_BITS.
 #define BM_OCOTP_ANA0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_ANA0_BITS.
 
@@ -2431,7 +2318,6 @@ typedef union _hw_ocotp_ana0
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_ANA0_BITS(v)   (HW_OCOTP_ANA0_WR((HW_OCOTP_ANA0_RD() & ~BM_OCOTP_ANA0_BITS) | BF_OCOTP_ANA0_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2484,7 +2370,6 @@ typedef union _hw_ocotp_ana1
  * HW_OCOTP_LOCK_ANALOG[1] bit is set.
  */
 //@{
-
 #define BP_OCOTP_ANA1_BITS      (0)      //!< Bit position for OCOTP_ANA1_BITS.
 #define BM_OCOTP_ANA1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_ANA1_BITS.
 
@@ -2498,7 +2383,6 @@ typedef union _hw_ocotp_ana1
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_ANA1_BITS(v)   (HW_OCOTP_ANA1_WR((HW_OCOTP_ANA1_RD() & ~BM_OCOTP_ANA1_BITS) | BF_OCOTP_ANA1_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2551,7 +2435,6 @@ typedef union _hw_ocotp_ana2
  * HW_OCOTP_LOCK_ANALOG[1] bit is set.
  */
 //@{
-
 #define BP_OCOTP_ANA2_BITS      (0)      //!< Bit position for OCOTP_ANA2_BITS.
 #define BM_OCOTP_ANA2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_ANA2_BITS.
 
@@ -2565,7 +2448,6 @@ typedef union _hw_ocotp_ana2
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_ANA2_BITS(v)   (HW_OCOTP_ANA2_WR((HW_OCOTP_ANA2_RD() & ~BM_OCOTP_ANA2_BITS) | BF_OCOTP_ANA2_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2619,7 +2501,6 @@ typedef union _hw_ocotp_dcp0
  * sets HW_OCOTP_CTRL[ERROR].
  */
 //@{
-
 #define BP_OCOTP_DCP0_BITS      (0)      //!< Bit position for OCOTP_DCP0_BITS.
 #define BM_OCOTP_DCP0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_DCP0_BITS.
 
@@ -2633,7 +2514,6 @@ typedef union _hw_ocotp_dcp0
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DCP0_BITS(v)   (HW_OCOTP_DCP0_WR((HW_OCOTP_DCP0_RD() & ~BM_OCOTP_DCP0_BITS) | BF_OCOTP_DCP0_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2687,7 +2567,6 @@ typedef union _hw_ocotp_dcp1
  * sets HW_OCOTP_CTRL[ERROR].
  */
 //@{
-
 #define BP_OCOTP_DCP1_BITS      (0)      //!< Bit position for OCOTP_DCP1_BITS.
 #define BM_OCOTP_DCP1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_DCP1_BITS.
 
@@ -2701,7 +2580,6 @@ typedef union _hw_ocotp_dcp1
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DCP1_BITS(v)   (HW_OCOTP_DCP1_WR((HW_OCOTP_DCP1_RD() & ~BM_OCOTP_DCP1_BITS) | BF_OCOTP_DCP1_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2755,7 +2633,6 @@ typedef union _hw_ocotp_dcp2
  * sets HW_OCOTP_CTRL[ERROR].
  */
 //@{
-
 #define BP_OCOTP_DCP2_BITS      (0)      //!< Bit position for OCOTP_DCP2_BITS.
 #define BM_OCOTP_DCP2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_DCP2_BITS.
 
@@ -2769,7 +2646,6 @@ typedef union _hw_ocotp_dcp2
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DCP2_BITS(v)   (HW_OCOTP_DCP2_WR((HW_OCOTP_DCP2_RD() & ~BM_OCOTP_DCP2_BITS) | BF_OCOTP_DCP2_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2823,7 +2699,6 @@ typedef union _hw_ocotp_dcp3
  * sets HW_OCOTP_CTRL[ERROR].
  */
 //@{
-
 #define BP_OCOTP_DCP3_BITS      (0)      //!< Bit position for OCOTP_DCP3_BITS.
 #define BM_OCOTP_DCP3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_DCP3_BITS.
 
@@ -2837,7 +2712,6 @@ typedef union _hw_ocotp_dcp3
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DCP3_BITS(v)   (HW_OCOTP_DCP3_WR((HW_OCOTP_DCP3_RD() & ~BM_OCOTP_DCP3_BITS) | BF_OCOTP_DCP3_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2891,7 +2765,6 @@ typedef union _hw_ocotp_dcp4
  * sets HW_OCOTP_CTRL[ERROR].
  */
 //@{
-
 #define BP_OCOTP_DCP4_BITS      (0)      //!< Bit position for OCOTP_DCP4_BITS.
 #define BM_OCOTP_DCP4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_DCP4_BITS.
 
@@ -2905,7 +2778,6 @@ typedef union _hw_ocotp_dcp4
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DCP4_BITS(v)   (HW_OCOTP_DCP4_WR((HW_OCOTP_DCP4_RD() & ~BM_OCOTP_DCP4_BITS) | BF_OCOTP_DCP4_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2959,7 +2831,6 @@ typedef union _hw_ocotp_dcp5
  * sets HW_OCOTP_CTRL[ERROR].
  */
 //@{
-
 #define BP_OCOTP_DCP5_BITS      (0)      //!< Bit position for OCOTP_DCP5_BITS.
 #define BM_OCOTP_DCP5_BITS      (0xffffffff)  //!< Bit mask for OCOTP_DCP5_BITS.
 
@@ -2973,7 +2844,6 @@ typedef union _hw_ocotp_dcp5
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DCP5_BITS(v)   (HW_OCOTP_DCP5_WR((HW_OCOTP_DCP5_RD() & ~BM_OCOTP_DCP5_BITS) | BF_OCOTP_DCP5_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3027,7 +2897,6 @@ typedef union _hw_ocotp_dcp6
  * sets HW_OCOTP_CTRL[ERROR].
  */
 //@{
-
 #define BP_OCOTP_DCP6_BITS      (0)      //!< Bit position for OCOTP_DCP6_BITS.
 #define BM_OCOTP_DCP6_BITS      (0xffffffff)  //!< Bit mask for OCOTP_DCP6_BITS.
 
@@ -3041,7 +2910,6 @@ typedef union _hw_ocotp_dcp6
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DCP6_BITS(v)   (HW_OCOTP_DCP6_WR((HW_OCOTP_DCP6_RD() & ~BM_OCOTP_DCP6_BITS) | BF_OCOTP_DCP6_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3095,7 +2963,6 @@ typedef union _hw_ocotp_dcp7
  * sets HW_OCOTP_CTRL[ERROR].
  */
 //@{
-
 #define BP_OCOTP_DCP7_BITS      (0)      //!< Bit position for OCOTP_DCP7_BITS.
 #define BM_OCOTP_DCP7_BITS      (0xffffffff)  //!< Bit mask for OCOTP_DCP7_BITS.
 
@@ -3109,7 +2976,6 @@ typedef union _hw_ocotp_dcp7
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_DCP7_BITS(v)   (HW_OCOTP_DCP7_WR((HW_OCOTP_DCP7_RD() & ~BM_OCOTP_DCP7_BITS) | BF_OCOTP_DCP7_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3162,7 +3028,6 @@ typedef union _hw_ocotp_srk0
  * 0x1C)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 //@{
-
 #define BP_OCOTP_SRK0_BITS      (0)      //!< Bit position for OCOTP_SRK0_BITS.
 #define BM_OCOTP_SRK0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK0_BITS.
 
@@ -3176,7 +3041,6 @@ typedef union _hw_ocotp_srk0
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK0_BITS(v)   (HW_OCOTP_SRK0_WR((HW_OCOTP_SRK0_RD() & ~BM_OCOTP_SRK0_BITS) | BF_OCOTP_SRK0_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3229,7 +3093,6 @@ typedef union _hw_ocotp_srk1
  * 0x1D)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 //@{
-
 #define BP_OCOTP_SRK1_BITS      (0)      //!< Bit position for OCOTP_SRK1_BITS.
 #define BM_OCOTP_SRK1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK1_BITS.
 
@@ -3243,7 +3106,6 @@ typedef union _hw_ocotp_srk1
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK1_BITS(v)   (HW_OCOTP_SRK1_WR((HW_OCOTP_SRK1_RD() & ~BM_OCOTP_SRK1_BITS) | BF_OCOTP_SRK1_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3296,7 +3158,6 @@ typedef union _hw_ocotp_srk2
  * 0x1E)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 //@{
-
 #define BP_OCOTP_SRK2_BITS      (0)      //!< Bit position for OCOTP_SRK2_BITS.
 #define BM_OCOTP_SRK2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK2_BITS.
 
@@ -3310,7 +3171,6 @@ typedef union _hw_ocotp_srk2
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK2_BITS(v)   (HW_OCOTP_SRK2_WR((HW_OCOTP_SRK2_RD() & ~BM_OCOTP_SRK2_BITS) | BF_OCOTP_SRK2_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3363,7 +3223,6 @@ typedef union _hw_ocotp_srk3
  * 0x1F)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 //@{
-
 #define BP_OCOTP_SRK3_BITS      (0)      //!< Bit position for OCOTP_SRK3_BITS.
 #define BM_OCOTP_SRK3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK3_BITS.
 
@@ -3377,7 +3236,6 @@ typedef union _hw_ocotp_srk3
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK3_BITS(v)   (HW_OCOTP_SRK3_WR((HW_OCOTP_SRK3_RD() & ~BM_OCOTP_SRK3_BITS) | BF_OCOTP_SRK3_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3430,7 +3288,6 @@ typedef union _hw_ocotp_srk4
  * 0x20)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 //@{
-
 #define BP_OCOTP_SRK4_BITS      (0)      //!< Bit position for OCOTP_SRK4_BITS.
 #define BM_OCOTP_SRK4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK4_BITS.
 
@@ -3444,7 +3301,6 @@ typedef union _hw_ocotp_srk4
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK4_BITS(v)   (HW_OCOTP_SRK4_WR((HW_OCOTP_SRK4_RD() & ~BM_OCOTP_SRK4_BITS) | BF_OCOTP_SRK4_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3497,7 +3353,6 @@ typedef union _hw_ocotp_srk5
  * 0x21)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 //@{
-
 #define BP_OCOTP_SRK5_BITS      (0)      //!< Bit position for OCOTP_SRK5_BITS.
 #define BM_OCOTP_SRK5_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK5_BITS.
 
@@ -3511,7 +3366,6 @@ typedef union _hw_ocotp_srk5
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK5_BITS(v)   (HW_OCOTP_SRK5_WR((HW_OCOTP_SRK5_RD() & ~BM_OCOTP_SRK5_BITS) | BF_OCOTP_SRK5_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3564,7 +3418,6 @@ typedef union _hw_ocotp_srk6
  * 0x22)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 //@{
-
 #define BP_OCOTP_SRK6_BITS      (0)      //!< Bit position for OCOTP_SRK6_BITS.
 #define BM_OCOTP_SRK6_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK6_BITS.
 
@@ -3578,7 +3431,6 @@ typedef union _hw_ocotp_srk6
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK6_BITS(v)   (HW_OCOTP_SRK6_WR((HW_OCOTP_SRK6_RD() & ~BM_OCOTP_SRK6_BITS) | BF_OCOTP_SRK6_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3631,7 +3483,6 @@ typedef union _hw_ocotp_srk7
  * 0x23)). These bits become read-only after the HW_OCOTP_LOCK_SRK bit is set.
  */
 //@{
-
 #define BP_OCOTP_SRK7_BITS      (0)      //!< Bit position for OCOTP_SRK7_BITS.
 #define BM_OCOTP_SRK7_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK7_BITS.
 
@@ -3645,7 +3496,6 @@ typedef union _hw_ocotp_srk7
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK7_BITS(v)   (HW_OCOTP_SRK7_WR((HW_OCOTP_SRK7_RD() & ~BM_OCOTP_SRK7_BITS) | BF_OCOTP_SRK7_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3699,7 +3549,6 @@ typedef union _hw_ocotp_sjc_resp0
  * 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
  */
 //@{
-
 #define BP_OCOTP_SJC_RESP0_BITS      (0)      //!< Bit position for OCOTP_SJC_RESP0_BITS.
 #define BM_OCOTP_SJC_RESP0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SJC_RESP0_BITS.
 
@@ -3713,7 +3562,6 @@ typedef union _hw_ocotp_sjc_resp0
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SJC_RESP0_BITS(v)   (HW_OCOTP_SJC_RESP0_WR((HW_OCOTP_SJC_RESP0_RD() & ~BM_OCOTP_SJC_RESP0_BITS) | BF_OCOTP_SJC_RESP0_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3767,7 +3615,6 @@ typedef union _hw_ocotp_sjc_resp1
  * 0xBADA_BADA and sets HW_OCOTP_CTRL[ERROR].
  */
 //@{
-
 #define BP_OCOTP_SJC_RESP1_BITS      (0)      //!< Bit position for OCOTP_SJC_RESP1_BITS.
 #define BM_OCOTP_SJC_RESP1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SJC_RESP1_BITS.
 
@@ -3781,7 +3628,6 @@ typedef union _hw_ocotp_sjc_resp1
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SJC_RESP1_BITS(v)   (HW_OCOTP_SJC_RESP1_WR((HW_OCOTP_SJC_RESP1_RD() & ~BM_OCOTP_SJC_RESP1_BITS) | BF_OCOTP_SJC_RESP1_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3833,7 +3679,6 @@ typedef union _hw_ocotp_mac0
  * Reflects value of OTP Bank 4, word 2 (ADDR = 0x22).
  */
 //@{
-
 #define BP_OCOTP_MAC0_BITS      (0)      //!< Bit position for OCOTP_MAC0_BITS.
 #define BM_OCOTP_MAC0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MAC0_BITS.
 
@@ -3847,7 +3692,6 @@ typedef union _hw_ocotp_mac0
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MAC0_BITS(v)   (HW_OCOTP_MAC0_WR((HW_OCOTP_MAC0_RD() & ~BM_OCOTP_MAC0_BITS) | BF_OCOTP_MAC0_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3899,7 +3743,6 @@ typedef union _hw_ocotp_mac1
  * Reflects value of OTP Bank 4, word 3 (ADDR = 0x23).
  */
 //@{
-
 #define BP_OCOTP_MAC1_BITS      (0)      //!< Bit position for OCOTP_MAC1_BITS.
 #define BM_OCOTP_MAC1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MAC1_BITS.
 
@@ -3913,7 +3756,6 @@ typedef union _hw_ocotp_mac1
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MAC1_BITS(v)   (HW_OCOTP_MAC1_WR((HW_OCOTP_MAC1_RD() & ~BM_OCOTP_MAC1_BITS) | BF_OCOTP_MAC1_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3965,7 +3807,6 @@ typedef union _hw_ocotp_crc0
  * Reflects value of OTP Bank 4, word 4 (ADDR = 0x24).
  */
 //@{
-
 #define BP_OCOTP_CRC0_BITS      (0)      //!< Bit position for OCOTP_CRC0_BITS.
 #define BM_OCOTP_CRC0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CRC0_BITS.
 
@@ -3979,7 +3820,6 @@ typedef union _hw_ocotp_crc0
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC0_BITS(v)   (HW_OCOTP_CRC0_WR((HW_OCOTP_CRC0_RD() & ~BM_OCOTP_CRC0_BITS) | BF_OCOTP_CRC0_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4031,7 +3871,6 @@ typedef union _hw_ocotp_crc1
  * Reflects value of OTP Bank 4, word 5 (ADDR = 0x25).
  */
 //@{
-
 #define BP_OCOTP_CRC1_BITS      (0)      //!< Bit position for OCOTP_CRC1_BITS.
 #define BM_OCOTP_CRC1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_CRC1_BITS.
 
@@ -4045,7 +3884,6 @@ typedef union _hw_ocotp_crc1
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_CRC1_BITS(v)   (HW_OCOTP_CRC1_WR((HW_OCOTP_CRC1_RD() & ~BM_OCOTP_CRC1_BITS) | BF_OCOTP_CRC1_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4097,7 +3935,6 @@ typedef union _hw_ocotp_gp1
  * Reflects value of OTP Bank 4, word 6 (ADDR = 0x26).
  */
 //@{
-
 #define BP_OCOTP_GP1_BITS      (0)      //!< Bit position for OCOTP_GP1_BITS.
 #define BM_OCOTP_GP1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP1_BITS.
 
@@ -4111,7 +3948,6 @@ typedef union _hw_ocotp_gp1
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP1_BITS(v)   (HW_OCOTP_GP1_WR((HW_OCOTP_GP1_RD() & ~BM_OCOTP_GP1_BITS) | BF_OCOTP_GP1_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4163,7 +3999,6 @@ typedef union _hw_ocotp_gp2
  * Reflects value of OTP Bank 4, word 7 (ADDR = 0x27).
  */
 //@{
-
 #define BP_OCOTP_GP2_BITS      (0)      //!< Bit position for OCOTP_GP2_BITS.
 #define BM_OCOTP_GP2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP2_BITS.
 
@@ -4177,7 +4012,6 @@ typedef union _hw_ocotp_gp2
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP2_BITS(v)   (HW_OCOTP_GP2_WR((HW_OCOTP_GP2_RD() & ~BM_OCOTP_GP2_BITS) | BF_OCOTP_GP2_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4229,7 +4063,6 @@ typedef union _hw_ocotp_sw_gp0
  * Reflects value of OTP Bank 5, word 0 (ADDR = 0x28).
  */
 //@{
-
 #define BP_OCOTP_SW_GP0_BITS      (0)      //!< Bit position for OCOTP_SW_GP0_BITS.
 #define BM_OCOTP_SW_GP0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SW_GP0_BITS.
 
@@ -4243,7 +4076,6 @@ typedef union _hw_ocotp_sw_gp0
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SW_GP0_BITS(v)   (HW_OCOTP_SW_GP0_WR((HW_OCOTP_SW_GP0_RD() & ~BM_OCOTP_SW_GP0_BITS) | BF_OCOTP_SW_GP0_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4295,7 +4127,6 @@ typedef union _hw_ocotp_sw_gp1
  * Reflects value of OTP Bank 5, word 1 (ADDR = 0x29).
  */
 //@{
-
 #define BP_OCOTP_SW_GP1_BITS      (0)      //!< Bit position for OCOTP_SW_GP1_BITS.
 #define BM_OCOTP_SW_GP1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SW_GP1_BITS.
 
@@ -4309,7 +4140,6 @@ typedef union _hw_ocotp_sw_gp1
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SW_GP1_BITS(v)   (HW_OCOTP_SW_GP1_WR((HW_OCOTP_SW_GP1_RD() & ~BM_OCOTP_SW_GP1_BITS) | BF_OCOTP_SW_GP1_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4361,7 +4191,6 @@ typedef union _hw_ocotp_sw_gp2
  * Reflects value of OTP Bank 5, word 2 (ADDR = 0x2a).
  */
 //@{
-
 #define BP_OCOTP_SW_GP2_BITS      (0)      //!< Bit position for OCOTP_SW_GP2_BITS.
 #define BM_OCOTP_SW_GP2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SW_GP2_BITS.
 
@@ -4375,7 +4204,6 @@ typedef union _hw_ocotp_sw_gp2
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SW_GP2_BITS(v)   (HW_OCOTP_SW_GP2_WR((HW_OCOTP_SW_GP2_RD() & ~BM_OCOTP_SW_GP2_BITS) | BF_OCOTP_SW_GP2_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4427,7 +4255,6 @@ typedef union _hw_ocotp_sw_gp3
  * Reflects value of OTP Bank 5, word 3 (ADDR = 0x2b).
  */
 //@{
-
 #define BP_OCOTP_SW_GP3_BITS      (0)      //!< Bit position for OCOTP_SW_GP3_BITS.
 #define BM_OCOTP_SW_GP3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SW_GP3_BITS.
 
@@ -4441,7 +4268,6 @@ typedef union _hw_ocotp_sw_gp3
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SW_GP3_BITS(v)   (HW_OCOTP_SW_GP3_WR((HW_OCOTP_SW_GP3_RD() & ~BM_OCOTP_SW_GP3_BITS) | BF_OCOTP_SW_GP3_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4493,7 +4319,6 @@ typedef union _hw_ocotp_sw_gp4
  * Reflects value of OTP Bank 5, word 4 (ADDR = 0x2c).
  */
 //@{
-
 #define BP_OCOTP_SW_GP4_BITS      (0)      //!< Bit position for OCOTP_SW_GP4_BITS.
 #define BM_OCOTP_SW_GP4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SW_GP4_BITS.
 
@@ -4507,7 +4332,6 @@ typedef union _hw_ocotp_sw_gp4
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SW_GP4_BITS(v)   (HW_OCOTP_SW_GP4_WR((HW_OCOTP_SW_GP4_RD() & ~BM_OCOTP_SW_GP4_BITS) | BF_OCOTP_SW_GP4_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4559,7 +4383,6 @@ typedef union _hw_ocotp_misc_conf
  * Reflects value of OTP Bank 5, word 5 (ADDR = 0x2d).
  */
 //@{
-
 #define BP_OCOTP_MISC_CONF_BITS      (0)      //!< Bit position for OCOTP_MISC_CONF_BITS.
 #define BM_OCOTP_MISC_CONF_BITS      (0xffffffff)  //!< Bit mask for OCOTP_MISC_CONF_BITS.
 
@@ -4573,7 +4396,6 @@ typedef union _hw_ocotp_misc_conf
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_MISC_CONF_BITS(v)   (HW_OCOTP_MISC_CONF_WR((HW_OCOTP_MISC_CONF_RD() & ~BM_OCOTP_MISC_CONF_BITS) | BF_OCOTP_MISC_CONF_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4625,7 +4447,6 @@ typedef union _hw_ocotp_field_return
  * Reflects value of OTP Bank 5, word 6 (ADDR = 0x2e).
  */
 //@{
-
 #define BP_OCOTP_FIELD_RETURN_BITS      (0)      //!< Bit position for OCOTP_FIELD_RETURN_BITS.
 #define BM_OCOTP_FIELD_RETURN_BITS      (0xffffffff)  //!< Bit mask for OCOTP_FIELD_RETURN_BITS.
 
@@ -4639,7 +4460,6 @@ typedef union _hw_ocotp_field_return
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_FIELD_RETURN_BITS(v)   (HW_OCOTP_FIELD_RETURN_WR((HW_OCOTP_FIELD_RETURN_RD() & ~BM_OCOTP_FIELD_RETURN_BITS) | BF_OCOTP_FIELD_RETURN_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4691,7 +4511,6 @@ typedef union _hw_ocotp_srk_revoke
  * Reflects value of OTP Bank 5, word 7 (ADDR = 0x2f).
  */
 //@{
-
 #define BP_OCOTP_SRK_REVOKE_BITS      (0)      //!< Bit position for OCOTP_SRK_REVOKE_BITS.
 #define BM_OCOTP_SRK_REVOKE_BITS      (0xffffffff)  //!< Bit mask for OCOTP_SRK_REVOKE_BITS.
 
@@ -4705,7 +4524,6 @@ typedef union _hw_ocotp_srk_revoke
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_SRK_REVOKE_BITS(v)   (HW_OCOTP_SRK_REVOKE_WR((HW_OCOTP_SRK_REVOKE_RD() & ~BM_OCOTP_SRK_REVOKE_BITS) | BF_OCOTP_SRK_REVOKE_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4757,7 +4575,6 @@ typedef union _hw_ocotp_gp_lo0
  * Reflects value of OTP Bank 6, word 0 (ADDR = 0x30).
  */
 //@{
-
 #define BP_OCOTP_GP_LO0_BITS      (0)      //!< Bit position for OCOTP_GP_LO0_BITS.
 #define BM_OCOTP_GP_LO0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_LO0_BITS.
 
@@ -4771,7 +4588,6 @@ typedef union _hw_ocotp_gp_lo0
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_LO0_BITS(v)   (HW_OCOTP_GP_LO0_WR((HW_OCOTP_GP_LO0_RD() & ~BM_OCOTP_GP_LO0_BITS) | BF_OCOTP_GP_LO0_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4823,7 +4639,6 @@ typedef union _hw_ocotp_gp_lo1
  * Reflects value of OTP Bank 6, word 1 (ADDR = 0x31).
  */
 //@{
-
 #define BP_OCOTP_GP_LO1_BITS      (0)      //!< Bit position for OCOTP_GP_LO1_BITS.
 #define BM_OCOTP_GP_LO1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_LO1_BITS.
 
@@ -4837,7 +4652,6 @@ typedef union _hw_ocotp_gp_lo1
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_LO1_BITS(v)   (HW_OCOTP_GP_LO1_WR((HW_OCOTP_GP_LO1_RD() & ~BM_OCOTP_GP_LO1_BITS) | BF_OCOTP_GP_LO1_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4889,7 +4703,6 @@ typedef union _hw_ocotp_gp_lo2
  * Reflects value of OTP Bank 6, word 2 (ADDR = 0x32).
  */
 //@{
-
 #define BP_OCOTP_GP_LO2_BITS      (0)      //!< Bit position for OCOTP_GP_LO2_BITS.
 #define BM_OCOTP_GP_LO2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_LO2_BITS.
 
@@ -4903,7 +4716,6 @@ typedef union _hw_ocotp_gp_lo2
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_LO2_BITS(v)   (HW_OCOTP_GP_LO2_WR((HW_OCOTP_GP_LO2_RD() & ~BM_OCOTP_GP_LO2_BITS) | BF_OCOTP_GP_LO2_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4955,7 +4767,6 @@ typedef union _hw_ocotp_gp_lo3
  * Reflects value of OTP Bank 6, word 3 (ADDR = 0x33).
  */
 //@{
-
 #define BP_OCOTP_GP_LO3_BITS      (0)      //!< Bit position for OCOTP_GP_LO3_BITS.
 #define BM_OCOTP_GP_LO3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_LO3_BITS.
 
@@ -4969,7 +4780,6 @@ typedef union _hw_ocotp_gp_lo3
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_LO3_BITS(v)   (HW_OCOTP_GP_LO3_WR((HW_OCOTP_GP_LO3_RD() & ~BM_OCOTP_GP_LO3_BITS) | BF_OCOTP_GP_LO3_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5021,7 +4831,6 @@ typedef union _hw_ocotp_gp_lo4
  * Reflects value of OTP Bank 6, word 4 (ADDR = 0x34).
  */
 //@{
-
 #define BP_OCOTP_GP_LO4_BITS      (0)      //!< Bit position for OCOTP_GP_LO4_BITS.
 #define BM_OCOTP_GP_LO4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_LO4_BITS.
 
@@ -5035,7 +4844,6 @@ typedef union _hw_ocotp_gp_lo4
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_LO4_BITS(v)   (HW_OCOTP_GP_LO4_WR((HW_OCOTP_GP_LO4_RD() & ~BM_OCOTP_GP_LO4_BITS) | BF_OCOTP_GP_LO4_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5087,7 +4895,6 @@ typedef union _hw_ocotp_gp_lo5
  * Reflects value of OTP Bank 6, word 5 (ADDR = 0x35).
  */
 //@{
-
 #define BP_OCOTP_GP_LO5_BITS      (0)      //!< Bit position for OCOTP_GP_LO5_BITS.
 #define BM_OCOTP_GP_LO5_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_LO5_BITS.
 
@@ -5101,7 +4908,6 @@ typedef union _hw_ocotp_gp_lo5
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_LO5_BITS(v)   (HW_OCOTP_GP_LO5_WR((HW_OCOTP_GP_LO5_RD() & ~BM_OCOTP_GP_LO5_BITS) | BF_OCOTP_GP_LO5_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5153,7 +4959,6 @@ typedef union _hw_ocotp_gp_lo6
  * Reflects value of OTP Bank 6, word 6 (ADDR = 0x36).
  */
 //@{
-
 #define BP_OCOTP_GP_LO6_BITS      (0)      //!< Bit position for OCOTP_GP_LO6_BITS.
 #define BM_OCOTP_GP_LO6_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_LO6_BITS.
 
@@ -5167,7 +4972,6 @@ typedef union _hw_ocotp_gp_lo6
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_LO6_BITS(v)   (HW_OCOTP_GP_LO6_WR((HW_OCOTP_GP_LO6_RD() & ~BM_OCOTP_GP_LO6_BITS) | BF_OCOTP_GP_LO6_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5219,7 +5023,6 @@ typedef union _hw_ocotp_gp_lo7
  * Reflects value of OTP Bank 6, word 7 (ADDR = 0x37).
  */
 //@{
-
 #define BP_OCOTP_GP_LO7_BITS      (0)      //!< Bit position for OCOTP_GP_LO7_BITS.
 #define BM_OCOTP_GP_LO7_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_LO7_BITS.
 
@@ -5233,7 +5036,6 @@ typedef union _hw_ocotp_gp_lo7
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_LO7_BITS(v)   (HW_OCOTP_GP_LO7_WR((HW_OCOTP_GP_LO7_RD() & ~BM_OCOTP_GP_LO7_BITS) | BF_OCOTP_GP_LO7_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5285,7 +5087,6 @@ typedef union _hw_ocotp_gp_hi0
  * Reflects value of OTP Bank 7, word 0 (ADDR = 0x38).
  */
 //@{
-
 #define BP_OCOTP_GP_HI0_BITS      (0)      //!< Bit position for OCOTP_GP_HI0_BITS.
 #define BM_OCOTP_GP_HI0_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_HI0_BITS.
 
@@ -5299,7 +5100,6 @@ typedef union _hw_ocotp_gp_hi0
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_HI0_BITS(v)   (HW_OCOTP_GP_HI0_WR((HW_OCOTP_GP_HI0_RD() & ~BM_OCOTP_GP_HI0_BITS) | BF_OCOTP_GP_HI0_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5351,7 +5151,6 @@ typedef union _hw_ocotp_gp_hi1
  * Reflects value of OTP Bank 7, word 1 (ADDR = 0x39).
  */
 //@{
-
 #define BP_OCOTP_GP_HI1_BITS      (0)      //!< Bit position for OCOTP_GP_HI1_BITS.
 #define BM_OCOTP_GP_HI1_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_HI1_BITS.
 
@@ -5365,7 +5164,6 @@ typedef union _hw_ocotp_gp_hi1
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_HI1_BITS(v)   (HW_OCOTP_GP_HI1_WR((HW_OCOTP_GP_HI1_RD() & ~BM_OCOTP_GP_HI1_BITS) | BF_OCOTP_GP_HI1_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5417,7 +5215,6 @@ typedef union _hw_ocotp_gp_hi2
  * Reflects value of OTP Bank 7, word 2 (ADDR = 0x3a).
  */
 //@{
-
 #define BP_OCOTP_GP_HI2_BITS      (0)      //!< Bit position for OCOTP_GP_HI2_BITS.
 #define BM_OCOTP_GP_HI2_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_HI2_BITS.
 
@@ -5431,7 +5228,6 @@ typedef union _hw_ocotp_gp_hi2
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_HI2_BITS(v)   (HW_OCOTP_GP_HI2_WR((HW_OCOTP_GP_HI2_RD() & ~BM_OCOTP_GP_HI2_BITS) | BF_OCOTP_GP_HI2_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5483,7 +5279,6 @@ typedef union _hw_ocotp_gp_hi3
  * Reflects value of OTP Bank 7, word 3 (ADDR = 0x3b).
  */
 //@{
-
 #define BP_OCOTP_GP_HI3_BITS      (0)      //!< Bit position for OCOTP_GP_HI3_BITS.
 #define BM_OCOTP_GP_HI3_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_HI3_BITS.
 
@@ -5497,7 +5292,6 @@ typedef union _hw_ocotp_gp_hi3
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_HI3_BITS(v)   (HW_OCOTP_GP_HI3_WR((HW_OCOTP_GP_HI3_RD() & ~BM_OCOTP_GP_HI3_BITS) | BF_OCOTP_GP_HI3_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5549,7 +5343,6 @@ typedef union _hw_ocotp_gp_hi4
  * Reflects value of OTP Bank 7, word 4 (ADDR = 0x3c).
  */
 //@{
-
 #define BP_OCOTP_GP_HI4_BITS      (0)      //!< Bit position for OCOTP_GP_HI4_BITS.
 #define BM_OCOTP_GP_HI4_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_HI4_BITS.
 
@@ -5563,7 +5356,6 @@ typedef union _hw_ocotp_gp_hi4
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_HI4_BITS(v)   (HW_OCOTP_GP_HI4_WR((HW_OCOTP_GP_HI4_RD() & ~BM_OCOTP_GP_HI4_BITS) | BF_OCOTP_GP_HI4_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5615,7 +5407,6 @@ typedef union _hw_ocotp_gp_hi5
  * Reflects value of OTP Bank 7, word 5 (ADDR = 0x3d).
  */
 //@{
-
 #define BP_OCOTP_GP_HI5_BITS      (0)      //!< Bit position for OCOTP_GP_HI5_BITS.
 #define BM_OCOTP_GP_HI5_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_HI5_BITS.
 
@@ -5629,7 +5420,6 @@ typedef union _hw_ocotp_gp_hi5
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_HI5_BITS(v)   (HW_OCOTP_GP_HI5_WR((HW_OCOTP_GP_HI5_RD() & ~BM_OCOTP_GP_HI5_BITS) | BF_OCOTP_GP_HI5_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5681,7 +5471,6 @@ typedef union _hw_ocotp_gp_hi6
  * Reflects value of OTP Bank 7, word 6 (ADDR = 0x3e).
  */
 //@{
-
 #define BP_OCOTP_GP_HI6_BITS      (0)      //!< Bit position for OCOTP_GP_HI6_BITS.
 #define BM_OCOTP_GP_HI6_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_HI6_BITS.
 
@@ -5695,7 +5484,6 @@ typedef union _hw_ocotp_gp_hi6
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_HI6_BITS(v)   (HW_OCOTP_GP_HI6_WR((HW_OCOTP_GP_HI6_RD() & ~BM_OCOTP_GP_HI6_BITS) | BF_OCOTP_GP_HI6_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5747,7 +5535,6 @@ typedef union _hw_ocotp_gp_hi7
  * Reflects value of OTP Bank 7, word 7 (ADDR = 0x3f).
  */
 //@{
-
 #define BP_OCOTP_GP_HI7_BITS      (0)      //!< Bit position for OCOTP_GP_HI7_BITS.
 #define BM_OCOTP_GP_HI7_BITS      (0xffffffff)  //!< Bit mask for OCOTP_GP_HI7_BITS.
 
@@ -5761,7 +5548,6 @@ typedef union _hw_ocotp_gp_hi7
 //! @brief Set the BITS field to a new value.
 #define BW_OCOTP_GP_HI7_BITS(v)   (HW_OCOTP_GP_HI7_WR((HW_OCOTP_GP_HI7_RD() & ~BM_OCOTP_GP_HI7_BITS) | BF_OCOTP_GP_HI7_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5937,3 +5723,5 @@ typedef struct _hw_ocotp
 #endif
 
 #endif // __HW_OCOTP_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

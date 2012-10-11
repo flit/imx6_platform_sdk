@@ -122,7 +122,6 @@ typedef union _hw_esai_etdr
  * transmit shifter registers as defined by the Transmit Word Alignment configuration bits.
  */
 //@{
-
 #define BP_ESAI_ETDR_ETDR      (0)      //!< Bit position for ESAI_ETDR_ETDR.
 #define BM_ESAI_ETDR_ETDR      (0xffffffff)  //!< Bit mask for ESAI_ETDR_ETDR.
 
@@ -131,7 +130,6 @@ typedef union _hw_esai_etdr
 
 //! @brief Format value for bitfield ESAI_ETDR_ETDR.
 #define BF_ESAI_ETDR_ETDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_ETDR_ETDR) & BM_ESAI_ETDR_ETDR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -184,13 +182,11 @@ typedef union _hw_esai_erdr
  * based on the Receive Extension control bit.
  */
 //@{
-
 #define BP_ESAI_ERDR_ERDR      (0)      //!< Bit position for ESAI_ERDR_ERDR.
 #define BM_ESAI_ERDR_ERDR      (0xffffffff)  //!< Bit mask for ESAI_ERDR_ERDR.
 
 //! @brief Get value of ESAI_ERDR_ERDR from a register value.
 #define BG_ESAI_ERDR_ERDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ERDR_ERDR) >> BP_ESAI_ERDR_ERDR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -252,7 +248,6 @@ typedef union _hw_esai_ecr
  * - 1 - ESAI enabled.
  */
 //@{
-
 #define BP_ESAI_ECR_ESAIEN      (0)      //!< Bit position for ESAI_ECR_ESAIEN.
 #define BM_ESAI_ECR_ESAIEN      (0x00000001)  //!< Bit mask for ESAI_ECR_ESAIEN.
 
@@ -266,7 +261,6 @@ typedef union _hw_esai_ecr
 //! @brief Set the ESAIEN field to a new value.
 #define BW_ESAI_ECR_ESAIEN(v)   (HW_ESAI_ECR_WR((HW_ESAI_ECR_RD() & ~BM_ESAI_ECR_ESAIEN) | BF_ESAI_ECR_ESAIEN(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_ECR, field ERST[1] (RW)
@@ -278,7 +272,6 @@ typedef union _hw_esai_ecr
  * - 1 - ESAI reset.
  */
 //@{
-
 #define BP_ESAI_ECR_ERST      (1)      //!< Bit position for ESAI_ECR_ERST.
 #define BM_ESAI_ECR_ERST      (0x00000002)  //!< Bit mask for ESAI_ECR_ERST.
 
@@ -292,7 +285,6 @@ typedef union _hw_esai_ecr
 //! @brief Set the ERST field to a new value.
 #define BW_ESAI_ECR_ERST(v)   (HW_ESAI_ECR_WR((HW_ESAI_ECR_RD() & ~BM_ESAI_ECR_ERST) | BF_ESAI_ECR_ERST(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_ECR, field ERO[16] (RW)
@@ -304,7 +296,6 @@ typedef union _hw_esai_ecr
  * - 1 - EXTAL driven onto HCKR pin.
  */
 //@{
-
 #define BP_ESAI_ECR_ERO      (16)      //!< Bit position for ESAI_ECR_ERO.
 #define BM_ESAI_ECR_ERO      (0x00010000)  //!< Bit mask for ESAI_ECR_ERO.
 
@@ -318,7 +309,6 @@ typedef union _hw_esai_ecr
 //! @brief Set the ERO field to a new value.
 #define BW_ESAI_ECR_ERO(v)   (HW_ESAI_ECR_WR((HW_ESAI_ECR_RD() & ~BM_ESAI_ECR_ERO) | BF_ESAI_ECR_ERO(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_ECR, field ERI[17] (RW)
@@ -331,7 +321,6 @@ typedef union _hw_esai_ecr
  * - 1 - EXTAL muxed into HCKR input.
  */
 //@{
-
 #define BP_ESAI_ECR_ERI      (17)      //!< Bit position for ESAI_ECR_ERI.
 #define BM_ESAI_ECR_ERI      (0x00020000)  //!< Bit mask for ESAI_ECR_ERI.
 
@@ -345,7 +334,6 @@ typedef union _hw_esai_ecr
 //! @brief Set the ERI field to a new value.
 #define BW_ESAI_ECR_ERI(v)   (HW_ESAI_ECR_WR((HW_ESAI_ECR_RD() & ~BM_ESAI_ECR_ERI) | BF_ESAI_ECR_ERI(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_ECR, field ETO[18] (RW)
@@ -357,7 +345,6 @@ typedef union _hw_esai_ecr
  * - 1 - EXTAL driven onto HCKT pin.
  */
 //@{
-
 #define BP_ESAI_ECR_ETO      (18)      //!< Bit position for ESAI_ECR_ETO.
 #define BM_ESAI_ECR_ETO      (0x00040000)  //!< Bit mask for ESAI_ECR_ETO.
 
@@ -371,7 +358,6 @@ typedef union _hw_esai_ecr
 //! @brief Set the ETO field to a new value.
 #define BW_ESAI_ECR_ETO(v)   (HW_ESAI_ECR_WR((HW_ESAI_ECR_RD() & ~BM_ESAI_ECR_ETO) | BF_ESAI_ECR_ETO(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_ECR, field ETI[19] (RW)
@@ -384,7 +370,6 @@ typedef union _hw_esai_ecr
  * - 1 - EXTAL muxed into HCKT input.
  */
 //@{
-
 #define BP_ESAI_ECR_ETI      (19)      //!< Bit position for ESAI_ECR_ETI.
 #define BM_ESAI_ECR_ETI      (0x00080000)  //!< Bit mask for ESAI_ECR_ETI.
 
@@ -398,7 +383,6 @@ typedef union _hw_esai_ecr
 //! @brief Set the ETI field to a new value.
 #define BW_ESAI_ECR_ETI(v)   (HW_ESAI_ECR_WR((HW_ESAI_ECR_RD() & ~BM_ESAI_ECR_ETI) | BF_ESAI_ECR_ETI(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -459,13 +443,11 @@ typedef union _hw_esai_esr
  * - 1 - RD is the highest priority active interrupt.
  */
 //@{
-
 #define BP_ESAI_ESR_RD      (0)      //!< Bit position for ESAI_ESR_RD.
 #define BM_ESAI_ESR_RD      (0x00000001)  //!< Bit mask for ESAI_ESR_RD.
 
 //! @brief Get value of ESAI_ESR_RD from a register value.
 #define BG_ESAI_ESR_RD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_RD) >> BP_ESAI_ESR_RD)
-
 //@}
 
 /*! @name Register ESAI_ESR, field RED[1] (RO)
@@ -477,13 +459,11 @@ typedef union _hw_esai_esr
  * - 1 - RED is the highest priority active interrupt.
  */
 //@{
-
 #define BP_ESAI_ESR_RED      (1)      //!< Bit position for ESAI_ESR_RED.
 #define BM_ESAI_ESR_RED      (0x00000002)  //!< Bit mask for ESAI_ESR_RED.
 
 //! @brief Get value of ESAI_ESR_RED from a register value.
 #define BG_ESAI_ESR_RED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_RED) >> BP_ESAI_ESR_RED)
-
 //@}
 
 /*! @name Register ESAI_ESR, field RDE[2] (RO)
@@ -495,13 +475,11 @@ typedef union _hw_esai_esr
  * - 1 - RDE is the highest priority active interrupt.
  */
 //@{
-
 #define BP_ESAI_ESR_RDE      (2)      //!< Bit position for ESAI_ESR_RDE.
 #define BM_ESAI_ESR_RDE      (0x00000004)  //!< Bit mask for ESAI_ESR_RDE.
 
 //! @brief Get value of ESAI_ESR_RDE from a register value.
 #define BG_ESAI_ESR_RDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_RDE) >> BP_ESAI_ESR_RDE)
-
 //@}
 
 /*! @name Register ESAI_ESR, field RLS[3] (RO)
@@ -514,13 +492,11 @@ typedef union _hw_esai_esr
  * - 1 - RLS is the highest priority active interrupt.
  */
 //@{
-
 #define BP_ESAI_ESR_RLS      (3)      //!< Bit position for ESAI_ESR_RLS.
 #define BM_ESAI_ESR_RLS      (0x00000008)  //!< Bit mask for ESAI_ESR_RLS.
 
 //! @brief Get value of ESAI_ESR_RLS from a register value.
 #define BG_ESAI_ESR_RLS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_RLS) >> BP_ESAI_ESR_RLS)
-
 //@}
 
 /*! @name Register ESAI_ESR, field TD[4] (RO)
@@ -532,13 +508,11 @@ typedef union _hw_esai_esr
  * - 1 - TD is the highest priority active interrupt.
  */
 //@{
-
 #define BP_ESAI_ESR_TD      (4)      //!< Bit position for ESAI_ESR_TD.
 #define BM_ESAI_ESR_TD      (0x00000010)  //!< Bit mask for ESAI_ESR_TD.
 
 //! @brief Get value of ESAI_ESR_TD from a register value.
 #define BG_ESAI_ESR_TD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_TD) >> BP_ESAI_ESR_TD)
-
 //@}
 
 /*! @name Register ESAI_ESR, field TED[5] (RO)
@@ -550,13 +524,11 @@ typedef union _hw_esai_esr
  * - 1 - TED is the highest priority active interrupt.
  */
 //@{
-
 #define BP_ESAI_ESR_TED      (5)      //!< Bit position for ESAI_ESR_TED.
 #define BM_ESAI_ESR_TED      (0x00000020)  //!< Bit mask for ESAI_ESR_TED.
 
 //! @brief Get value of ESAI_ESR_TED from a register value.
 #define BG_ESAI_ESR_TED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_TED) >> BP_ESAI_ESR_TED)
-
 //@}
 
 /*! @name Register ESAI_ESR, field TDE[6] (RO)
@@ -568,13 +540,11 @@ typedef union _hw_esai_esr
  * - 1 - TDE is the highest priority active interrupt.
  */
 //@{
-
 #define BP_ESAI_ESR_TDE      (6)      //!< Bit position for ESAI_ESR_TDE.
 #define BM_ESAI_ESR_TDE      (0x00000040)  //!< Bit mask for ESAI_ESR_TDE.
 
 //! @brief Get value of ESAI_ESR_TDE from a register value.
 #define BG_ESAI_ESR_TDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_TDE) >> BP_ESAI_ESR_TDE)
-
 //@}
 
 /*! @name Register ESAI_ESR, field TLS[7] (RO)
@@ -587,13 +557,11 @@ typedef union _hw_esai_esr
  * - 1 - TLS is the highest priority active interrupt.
  */
 //@{
-
 #define BP_ESAI_ESR_TLS      (7)      //!< Bit position for ESAI_ESR_TLS.
 #define BM_ESAI_ESR_TLS      (0x00000080)  //!< Bit mask for ESAI_ESR_TLS.
 
 //! @brief Get value of ESAI_ESR_TLS from a register value.
 #define BG_ESAI_ESR_TLS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_TLS) >> BP_ESAI_ESR_TLS)
-
 //@}
 
 /*! @name Register ESAI_ESR, field TFE[8] (RO)
@@ -607,13 +575,11 @@ typedef union _hw_esai_esr
  * - 1 - Number of empty slots in Transmit FIFO is equal to or greater than Transmit FIFO watermark.
  */
 //@{
-
 #define BP_ESAI_ESR_TFE      (8)      //!< Bit position for ESAI_ESR_TFE.
 #define BM_ESAI_ESR_TFE      (0x00000100)  //!< Bit mask for ESAI_ESR_TFE.
 
 //! @brief Get value of ESAI_ESR_TFE from a register value.
 #define BG_ESAI_ESR_TFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_TFE) >> BP_ESAI_ESR_TFE)
-
 //@}
 
 /*! @name Register ESAI_ESR, field RFF[9] (RO)
@@ -627,13 +593,11 @@ typedef union _hw_esai_esr
  * - 1 - Number of words in Receive FIFO is equal to or greater than Receive FIFO watermark.
  */
 //@{
-
 #define BP_ESAI_ESR_RFF      (9)      //!< Bit position for ESAI_ESR_RFF.
 #define BM_ESAI_ESR_RFF      (0x00000200)  //!< Bit mask for ESAI_ESR_RFF.
 
 //! @brief Get value of ESAI_ESR_RFF from a register value.
 #define BG_ESAI_ESR_RFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_RFF) >> BP_ESAI_ESR_RFF)
-
 //@}
 
 /*! @name Register ESAI_ESR, field TINIT[10] (RO)
@@ -650,13 +614,11 @@ typedef union _hw_esai_esr
  * - 1 - Transmitter has not finished initializing the Transmit Data Registers.
  */
 //@{
-
 #define BP_ESAI_ESR_TINIT      (10)      //!< Bit position for ESAI_ESR_TINIT.
 #define BM_ESAI_ESR_TINIT      (0x00000400)  //!< Bit mask for ESAI_ESR_TINIT.
 
 //! @brief Get value of ESAI_ESR_TINIT from a register value.
 #define BG_ESAI_ESR_TINIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_ESR_TINIT) >> BP_ESAI_ESR_TINIT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -721,7 +683,6 @@ typedef union _hw_esai_tfcr
  * - 1 - Transmit FIFO enabled.
  */
 //@{
-
 #define BP_ESAI_TFCR_TFE      (0)      //!< Bit position for ESAI_TFCR_TFE.
 #define BM_ESAI_TFCR_TFE      (0x00000001)  //!< Bit mask for ESAI_TFCR_TFE.
 
@@ -735,7 +696,6 @@ typedef union _hw_esai_tfcr
 //! @brief Set the TFE field to a new value.
 #define BW_ESAI_TFCR_TFE(v)   (HW_ESAI_TFCR_WR((HW_ESAI_TFCR_RD() & ~BM_ESAI_TFCR_TFE) | BF_ESAI_TFCR_TFE(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TFCR, field TFR[1] (RW)
@@ -747,7 +707,6 @@ typedef union _hw_esai_tfcr
  * - 1 - Transmit FIFO reset.
  */
 //@{
-
 #define BP_ESAI_TFCR_TFR      (1)      //!< Bit position for ESAI_TFCR_TFR.
 #define BM_ESAI_TFCR_TFR      (0x00000002)  //!< Bit mask for ESAI_TFCR_TFR.
 
@@ -761,7 +720,6 @@ typedef union _hw_esai_tfcr
 //! @brief Set the TFR field to a new value.
 #define BW_ESAI_TFCR_TFR(v)   (HW_ESAI_TFCR_WR((HW_ESAI_TFCR_RD() & ~BM_ESAI_TFCR_TFR) | BF_ESAI_TFCR_TFR(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TFCR, field TE0[2] (RW)
@@ -774,7 +732,6 @@ typedef union _hw_esai_tfcr
  * - 1 - Transmitter #0 is using the Transmit FIFO.
  */
 //@{
-
 #define BP_ESAI_TFCR_TE0      (2)      //!< Bit position for ESAI_TFCR_TE0.
 #define BM_ESAI_TFCR_TE0      (0x00000004)  //!< Bit mask for ESAI_TFCR_TE0.
 
@@ -788,7 +745,6 @@ typedef union _hw_esai_tfcr
 //! @brief Set the TE0 field to a new value.
 #define BW_ESAI_TFCR_TE0(v)   (HW_ESAI_TFCR_WR((HW_ESAI_TFCR_RD() & ~BM_ESAI_TFCR_TE0) | BF_ESAI_TFCR_TE0(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TFCR, field TE1[3] (RW)
@@ -801,7 +757,6 @@ typedef union _hw_esai_tfcr
  * - 1 - Transmitter #1 is using the Transmit FIFO.
  */
 //@{
-
 #define BP_ESAI_TFCR_TE1      (3)      //!< Bit position for ESAI_TFCR_TE1.
 #define BM_ESAI_TFCR_TE1      (0x00000008)  //!< Bit mask for ESAI_TFCR_TE1.
 
@@ -815,7 +770,6 @@ typedef union _hw_esai_tfcr
 //! @brief Set the TE1 field to a new value.
 #define BW_ESAI_TFCR_TE1(v)   (HW_ESAI_TFCR_WR((HW_ESAI_TFCR_RD() & ~BM_ESAI_TFCR_TE1) | BF_ESAI_TFCR_TE1(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TFCR, field TE2[4] (RW)
@@ -828,7 +782,6 @@ typedef union _hw_esai_tfcr
  * - 1 - Transmitter #2 is using the Transmit FIFO.
  */
 //@{
-
 #define BP_ESAI_TFCR_TE2      (4)      //!< Bit position for ESAI_TFCR_TE2.
 #define BM_ESAI_TFCR_TE2      (0x00000010)  //!< Bit mask for ESAI_TFCR_TE2.
 
@@ -842,7 +795,6 @@ typedef union _hw_esai_tfcr
 //! @brief Set the TE2 field to a new value.
 #define BW_ESAI_TFCR_TE2(v)   (HW_ESAI_TFCR_WR((HW_ESAI_TFCR_RD() & ~BM_ESAI_TFCR_TE2) | BF_ESAI_TFCR_TE2(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TFCR, field TE3[5] (RW)
@@ -855,7 +807,6 @@ typedef union _hw_esai_tfcr
  * - 1 - Transmitter #3 is using the Transmit FIFO.
  */
 //@{
-
 #define BP_ESAI_TFCR_TE3      (5)      //!< Bit position for ESAI_TFCR_TE3.
 #define BM_ESAI_TFCR_TE3      (0x00000020)  //!< Bit mask for ESAI_TFCR_TE3.
 
@@ -869,7 +820,6 @@ typedef union _hw_esai_tfcr
 //! @brief Set the TE3 field to a new value.
 #define BW_ESAI_TFCR_TE3(v)   (HW_ESAI_TFCR_WR((HW_ESAI_TFCR_RD() & ~BM_ESAI_TFCR_TE3) | BF_ESAI_TFCR_TE3(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TFCR, field TE4[6] (RW)
@@ -882,7 +832,6 @@ typedef union _hw_esai_tfcr
  * - 1 - Transmitter #4 is using the Transmit FIFO.
  */
 //@{
-
 #define BP_ESAI_TFCR_TE4      (6)      //!< Bit position for ESAI_TFCR_TE4.
 #define BM_ESAI_TFCR_TE4      (0x00000040)  //!< Bit mask for ESAI_TFCR_TE4.
 
@@ -896,7 +845,6 @@ typedef union _hw_esai_tfcr
 //! @brief Set the TE4 field to a new value.
 #define BW_ESAI_TFCR_TE4(v)   (HW_ESAI_TFCR_WR((HW_ESAI_TFCR_RD() & ~BM_ESAI_TFCR_TE4) | BF_ESAI_TFCR_TE4(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TFCR, field TE5[7] (RW)
@@ -909,7 +857,6 @@ typedef union _hw_esai_tfcr
  * - 1 - Transmitter #5 is using the Transmit FIFO.
  */
 //@{
-
 #define BP_ESAI_TFCR_TE5      (7)      //!< Bit position for ESAI_TFCR_TE5.
 #define BM_ESAI_TFCR_TE5      (0x00000080)  //!< Bit mask for ESAI_TFCR_TE5.
 
@@ -923,7 +870,6 @@ typedef union _hw_esai_tfcr
 //! @brief Set the TE5 field to a new value.
 #define BW_ESAI_TFCR_TE5(v)   (HW_ESAI_TFCR_WR((HW_ESAI_TFCR_RD() & ~BM_ESAI_TFCR_TE5) | BF_ESAI_TFCR_TE5(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TFCR, field TFWM[15:8] (RW)
@@ -933,7 +879,6 @@ typedef union _hw_esai_tfcr
  * selected threshold.
  */
 //@{
-
 #define BP_ESAI_TFCR_TFWM      (8)      //!< Bit position for ESAI_TFCR_TFWM.
 #define BM_ESAI_TFCR_TFWM      (0x0000ff00)  //!< Bit mask for ESAI_TFCR_TFWM.
 
@@ -947,7 +892,6 @@ typedef union _hw_esai_tfcr
 //! @brief Set the TFWM field to a new value.
 #define BW_ESAI_TFCR_TFWM(v)   (HW_ESAI_TFCR_WR((HW_ESAI_TFCR_RD() & ~BM_ESAI_TFCR_TFWM) | BF_ESAI_TFCR_TFWM(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TFCR, field TWA[18:16] (RW)
@@ -966,7 +910,6 @@ typedef union _hw_esai_tfcr
  * - 111 - MSB of data is bit 3. Bottom 20 bits of transmit shift register are zeroed.
  */
 //@{
-
 #define BP_ESAI_TFCR_TWA      (16)      //!< Bit position for ESAI_TFCR_TWA.
 #define BM_ESAI_TFCR_TWA      (0x00070000)  //!< Bit mask for ESAI_TFCR_TWA.
 
@@ -980,7 +923,6 @@ typedef union _hw_esai_tfcr
 //! @brief Set the TWA field to a new value.
 #define BW_ESAI_TFCR_TWA(v)   (HW_ESAI_TFCR_WR((HW_ESAI_TFCR_RD() & ~BM_ESAI_TFCR_TWA) | BF_ESAI_TFCR_TWA(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TFCR, field TIEN[19] (RW)
@@ -994,7 +936,6 @@ typedef union _hw_esai_tfcr
  * - 1 - Transmit Data Registers are initialized from the FIFO once the Transmit FIFO is enabled.
  */
 //@{
-
 #define BP_ESAI_TFCR_TIEN      (19)      //!< Bit position for ESAI_TFCR_TIEN.
 #define BM_ESAI_TFCR_TIEN      (0x00080000)  //!< Bit mask for ESAI_TFCR_TIEN.
 
@@ -1008,7 +949,6 @@ typedef union _hw_esai_tfcr
 //! @brief Set the TIEN field to a new value.
 #define BW_ESAI_TFCR_TIEN(v)   (HW_ESAI_TFCR_WR((HW_ESAI_TFCR_RD() & ~BM_ESAI_TFCR_TIEN) | BF_ESAI_TFCR_TIEN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1058,13 +998,11 @@ typedef union _hw_esai_tfsr
  * Transmit FIFO Counter. These bits indicate the number of data words stored in the Transmit FIFO.
  */
 //@{
-
 #define BP_ESAI_TFSR_TFCNT      (0)      //!< Bit position for ESAI_TFSR_TFCNT.
 #define BM_ESAI_TFSR_TFCNT      (0x000000ff)  //!< Bit mask for ESAI_TFSR_TFCNT.
 
 //! @brief Get value of ESAI_TFSR_TFCNT from a register value.
 #define BG_ESAI_TFSR_TFCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFSR_TFCNT) >> BP_ESAI_TFSR_TFCNT)
-
 //@}
 
 /*! @name Register ESAI_TFSR, field NTFI[10:8] (RO)
@@ -1082,13 +1020,11 @@ typedef union _hw_esai_tfsr
  * - 111 - Reserved.
  */
 //@{
-
 #define BP_ESAI_TFSR_NTFI      (8)      //!< Bit position for ESAI_TFSR_NTFI.
 #define BM_ESAI_TFSR_NTFI      (0x00000700)  //!< Bit mask for ESAI_TFSR_NTFI.
 
 //! @brief Get value of ESAI_TFSR_NTFI from a register value.
 #define BG_ESAI_TFSR_NTFI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFSR_NTFI) >> BP_ESAI_TFSR_NTFI)
-
 //@}
 
 /*! @name Register ESAI_TFSR, field NTFO[14:12] (RO)
@@ -1108,13 +1044,11 @@ typedef union _hw_esai_tfsr
  * - 111 - Reserved.
  */
 //@{
-
 #define BP_ESAI_TFSR_NTFO      (12)      //!< Bit position for ESAI_TFSR_NTFO.
 #define BM_ESAI_TFSR_NTFO      (0x00007000)  //!< Bit mask for ESAI_TFSR_NTFO.
 
 //! @brief Get value of ESAI_TFSR_NTFO from a register value.
 #define BG_ESAI_TFSR_NTFO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TFSR_NTFO) >> BP_ESAI_TFSR_NTFO)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1178,7 +1112,6 @@ typedef union _hw_esai_rfcr
  * - 1 - Receive FIFO enabled.
  */
 //@{
-
 #define BP_ESAI_RFCR_RFE      (0)      //!< Bit position for ESAI_RFCR_RFE.
 #define BM_ESAI_RFCR_RFE      (0x00000001)  //!< Bit mask for ESAI_RFCR_RFE.
 
@@ -1192,7 +1125,6 @@ typedef union _hw_esai_rfcr
 //! @brief Set the RFE field to a new value.
 #define BW_ESAI_RFCR_RFE(v)   (HW_ESAI_RFCR_WR((HW_ESAI_RFCR_RD() & ~BM_ESAI_RFCR_RFE) | BF_ESAI_RFCR_RFE(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RFCR, field RFR[1] (RW)
@@ -1204,7 +1136,6 @@ typedef union _hw_esai_rfcr
  * - 1 - Receive FIFO reset.
  */
 //@{
-
 #define BP_ESAI_RFCR_RFR      (1)      //!< Bit position for ESAI_RFCR_RFR.
 #define BM_ESAI_RFCR_RFR      (0x00000002)  //!< Bit mask for ESAI_RFCR_RFR.
 
@@ -1218,7 +1149,6 @@ typedef union _hw_esai_rfcr
 //! @brief Set the RFR field to a new value.
 #define BW_ESAI_RFCR_RFR(v)   (HW_ESAI_RFCR_WR((HW_ESAI_RFCR_RD() & ~BM_ESAI_RFCR_RFR) | BF_ESAI_RFCR_RFR(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RFCR, field RE0[2] (RW)
@@ -1231,7 +1161,6 @@ typedef union _hw_esai_rfcr
  * - 1 - Receiver #0 is using the Receive FIFO.
  */
 //@{
-
 #define BP_ESAI_RFCR_RE0      (2)      //!< Bit position for ESAI_RFCR_RE0.
 #define BM_ESAI_RFCR_RE0      (0x00000004)  //!< Bit mask for ESAI_RFCR_RE0.
 
@@ -1245,7 +1174,6 @@ typedef union _hw_esai_rfcr
 //! @brief Set the RE0 field to a new value.
 #define BW_ESAI_RFCR_RE0(v)   (HW_ESAI_RFCR_WR((HW_ESAI_RFCR_RD() & ~BM_ESAI_RFCR_RE0) | BF_ESAI_RFCR_RE0(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RFCR, field RE1[3] (RW)
@@ -1258,7 +1186,6 @@ typedef union _hw_esai_rfcr
  * - 1 - Receiver #1 is using the Receive FIFO.
  */
 //@{
-
 #define BP_ESAI_RFCR_RE1      (3)      //!< Bit position for ESAI_RFCR_RE1.
 #define BM_ESAI_RFCR_RE1      (0x00000008)  //!< Bit mask for ESAI_RFCR_RE1.
 
@@ -1272,7 +1199,6 @@ typedef union _hw_esai_rfcr
 //! @brief Set the RE1 field to a new value.
 #define BW_ESAI_RFCR_RE1(v)   (HW_ESAI_RFCR_WR((HW_ESAI_RFCR_RD() & ~BM_ESAI_RFCR_RE1) | BF_ESAI_RFCR_RE1(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RFCR, field RE2[4] (RW)
@@ -1285,7 +1211,6 @@ typedef union _hw_esai_rfcr
  * - 1 - Receiver #2 is using the Receive FIFO.
  */
 //@{
-
 #define BP_ESAI_RFCR_RE2      (4)      //!< Bit position for ESAI_RFCR_RE2.
 #define BM_ESAI_RFCR_RE2      (0x00000010)  //!< Bit mask for ESAI_RFCR_RE2.
 
@@ -1299,7 +1224,6 @@ typedef union _hw_esai_rfcr
 //! @brief Set the RE2 field to a new value.
 #define BW_ESAI_RFCR_RE2(v)   (HW_ESAI_RFCR_WR((HW_ESAI_RFCR_RD() & ~BM_ESAI_RFCR_RE2) | BF_ESAI_RFCR_RE2(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RFCR, field RE3[5] (RW)
@@ -1312,7 +1236,6 @@ typedef union _hw_esai_rfcr
  * - 1 - Receiver #3 is using the Receive FIFO.
  */
 //@{
-
 #define BP_ESAI_RFCR_RE3      (5)      //!< Bit position for ESAI_RFCR_RE3.
 #define BM_ESAI_RFCR_RE3      (0x00000020)  //!< Bit mask for ESAI_RFCR_RE3.
 
@@ -1326,7 +1249,6 @@ typedef union _hw_esai_rfcr
 //! @brief Set the RE3 field to a new value.
 #define BW_ESAI_RFCR_RE3(v)   (HW_ESAI_RFCR_WR((HW_ESAI_RFCR_RD() & ~BM_ESAI_RFCR_RE3) | BF_ESAI_RFCR_RE3(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RFCR, field RFWM[15:8] (RW)
@@ -1336,7 +1258,6 @@ typedef union _hw_esai_rfcr
  * selected threshold. It can be set to a non-zero value.
  */
 //@{
-
 #define BP_ESAI_RFCR_RFWM      (8)      //!< Bit position for ESAI_RFCR_RFWM.
 #define BM_ESAI_RFCR_RFWM      (0x0000ff00)  //!< Bit mask for ESAI_RFCR_RFWM.
 
@@ -1350,7 +1271,6 @@ typedef union _hw_esai_rfcr
 //! @brief Set the RFWM field to a new value.
 #define BW_ESAI_RFCR_RFWM(v)   (HW_ESAI_RFCR_WR((HW_ESAI_RFCR_RD() & ~BM_ESAI_RFCR_RFWM) | BF_ESAI_RFCR_RFWM(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RFCR, field RWA[18:16] (RW)
@@ -1369,7 +1289,6 @@ typedef union _hw_esai_rfcr
  * - 111 - MSB of data is at bit 3. Data bits 19-0 from receive shift register are ignored.
  */
 //@{
-
 #define BP_ESAI_RFCR_RWA      (16)      //!< Bit position for ESAI_RFCR_RWA.
 #define BM_ESAI_RFCR_RWA      (0x00070000)  //!< Bit mask for ESAI_RFCR_RWA.
 
@@ -1383,7 +1302,6 @@ typedef union _hw_esai_rfcr
 //! @brief Set the RWA field to a new value.
 #define BW_ESAI_RFCR_RWA(v)   (HW_ESAI_RFCR_WR((HW_ESAI_RFCR_RD() & ~BM_ESAI_RFCR_RWA) | BF_ESAI_RFCR_RWA(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RFCR, field REXT[19] (RW)
@@ -1396,7 +1314,6 @@ typedef union _hw_esai_rfcr
  * - 1 - Receive data is sign extended.
  */
 //@{
-
 #define BP_ESAI_RFCR_REXT      (19)      //!< Bit position for ESAI_RFCR_REXT.
 #define BM_ESAI_RFCR_REXT      (0x00080000)  //!< Bit mask for ESAI_RFCR_REXT.
 
@@ -1410,7 +1327,6 @@ typedef union _hw_esai_rfcr
 //! @brief Set the REXT field to a new value.
 #define BW_ESAI_RFCR_REXT(v)   (HW_ESAI_RFCR_WR((HW_ESAI_RFCR_RD() & ~BM_ESAI_RFCR_REXT) | BF_ESAI_RFCR_REXT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1460,13 +1376,11 @@ typedef union _hw_esai_rfsr
  * Receive FIFO Counter. These bits indicate the number of data words stored in the Receive FIFO.
  */
 //@{
-
 #define BP_ESAI_RFSR_RFCNT      (0)      //!< Bit position for ESAI_RFSR_RFCNT.
 #define BM_ESAI_RFSR_RFCNT      (0x000000ff)  //!< Bit mask for ESAI_RFSR_RFCNT.
 
 //! @brief Get value of ESAI_RFSR_RFCNT from a register value.
 #define BG_ESAI_RFSR_RFCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFSR_RFCNT) >> BP_ESAI_RFSR_RFCNT)
-
 //@}
 
 /*! @name Register ESAI_RFSR, field NRFO[9:8] (RO)
@@ -1480,13 +1394,11 @@ typedef union _hw_esai_rfsr
  * - 11 - Receiver #3 returns next word from the Receive FIFO.
  */
 //@{
-
 #define BP_ESAI_RFSR_NRFO      (8)      //!< Bit position for ESAI_RFSR_NRFO.
 #define BM_ESAI_RFSR_NRFO      (0x00000300)  //!< Bit mask for ESAI_RFSR_NRFO.
 
 //! @brief Get value of ESAI_RFSR_NRFO from a register value.
 #define BG_ESAI_RFSR_NRFO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFSR_NRFO) >> BP_ESAI_RFSR_NRFO)
-
 //@}
 
 /*! @name Register ESAI_RFSR, field NRFI[13:12] (RO)
@@ -1501,13 +1413,11 @@ typedef union _hw_esai_rfsr
  * - 11 - Receiver #3 returns next word to the Receive FIFO.
  */
 //@{
-
 #define BP_ESAI_RFSR_NRFI      (12)      //!< Bit position for ESAI_RFSR_NRFI.
 #define BM_ESAI_RFSR_NRFI      (0x00003000)  //!< Bit mask for ESAI_RFSR_NRFI.
 
 //! @brief Get value of ESAI_RFSR_NRFI from a register value.
 #define BG_ESAI_RFSR_NRFI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RFSR_NRFI) >> BP_ESAI_RFSR_NRFI)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1561,7 +1471,6 @@ typedef union _hw_esai_tx0
  * registers. See .
  */
 //@{
-
 #define BP_ESAI_TX0_TXN      (0)      //!< Bit position for ESAI_TX0_TXN.
 #define BM_ESAI_TX0_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX0_TXN.
 
@@ -1570,7 +1479,6 @@ typedef union _hw_esai_tx0
 
 //! @brief Format value for bitfield ESAI_TX0_TXN.
 #define BF_ESAI_TX0_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX0_TXN) & BM_ESAI_TX0_TXN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1624,7 +1532,6 @@ typedef union _hw_esai_tx1
  * registers. See .
  */
 //@{
-
 #define BP_ESAI_TX1_TXN      (0)      //!< Bit position for ESAI_TX1_TXN.
 #define BM_ESAI_TX1_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX1_TXN.
 
@@ -1633,7 +1540,6 @@ typedef union _hw_esai_tx1
 
 //! @brief Format value for bitfield ESAI_TX1_TXN.
 #define BF_ESAI_TX1_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX1_TXN) & BM_ESAI_TX1_TXN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1687,7 +1593,6 @@ typedef union _hw_esai_tx2
  * registers. See .
  */
 //@{
-
 #define BP_ESAI_TX2_TXN      (0)      //!< Bit position for ESAI_TX2_TXN.
 #define BM_ESAI_TX2_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX2_TXN.
 
@@ -1696,7 +1601,6 @@ typedef union _hw_esai_tx2
 
 //! @brief Format value for bitfield ESAI_TX2_TXN.
 #define BF_ESAI_TX2_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX2_TXN) & BM_ESAI_TX2_TXN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1750,7 +1654,6 @@ typedef union _hw_esai_tx3
  * registers. See .
  */
 //@{
-
 #define BP_ESAI_TX3_TXN      (0)      //!< Bit position for ESAI_TX3_TXN.
 #define BM_ESAI_TX3_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX3_TXN.
 
@@ -1759,7 +1662,6 @@ typedef union _hw_esai_tx3
 
 //! @brief Format value for bitfield ESAI_TX3_TXN.
 #define BF_ESAI_TX3_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX3_TXN) & BM_ESAI_TX3_TXN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1813,7 +1715,6 @@ typedef union _hw_esai_tx4
  * registers. See .
  */
 //@{
-
 #define BP_ESAI_TX4_TXN      (0)      //!< Bit position for ESAI_TX4_TXN.
 #define BM_ESAI_TX4_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX4_TXN.
 
@@ -1822,7 +1723,6 @@ typedef union _hw_esai_tx4
 
 //! @brief Format value for bitfield ESAI_TX4_TXN.
 #define BF_ESAI_TX4_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX4_TXN) & BM_ESAI_TX4_TXN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1876,7 +1776,6 @@ typedef union _hw_esai_tx5
  * registers. See .
  */
 //@{
-
 #define BP_ESAI_TX5_TXN      (0)      //!< Bit position for ESAI_TX5_TXN.
 #define BM_ESAI_TX5_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX5_TXN.
 
@@ -1885,7 +1784,6 @@ typedef union _hw_esai_tx5
 
 //! @brief Format value for bitfield ESAI_TX5_TXN.
 #define BF_ESAI_TX5_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX5_TXN) & BM_ESAI_TX5_TXN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1937,7 +1835,6 @@ typedef union _hw_esai_tsr
  * written.
  */
 //@{
-
 #define BP_ESAI_TSR_TSR      (0)      //!< Bit position for ESAI_TSR_TSR.
 #define BM_ESAI_TSR_TSR      (0x00ffffff)  //!< Bit mask for ESAI_TSR_TSR.
 
@@ -1946,7 +1843,6 @@ typedef union _hw_esai_tsr
 
 //! @brief Format value for bitfield ESAI_TSR_TSR.
 #define BF_ESAI_TSR_TSR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TSR_TSR) & BM_ESAI_TSR_TSR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1997,13 +1893,11 @@ typedef union _hw_esai_rx0
  * Accept data from the receive shift registers when they become full See
  */
 //@{
-
 #define BP_ESAI_RX0_RXN      (0)      //!< Bit position for ESAI_RX0_RXN.
 #define BM_ESAI_RX0_RXN      (0x00ffffff)  //!< Bit mask for ESAI_RX0_RXN.
 
 //! @brief Get value of ESAI_RX0_RXN from a register value.
 #define BG_ESAI_RX0_RXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RX0_RXN) >> BP_ESAI_RX0_RXN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2054,13 +1948,11 @@ typedef union _hw_esai_rx1
  * Accept data from the receive shift registers when they become full See
  */
 //@{
-
 #define BP_ESAI_RX1_RXN      (0)      //!< Bit position for ESAI_RX1_RXN.
 #define BM_ESAI_RX1_RXN      (0x00ffffff)  //!< Bit mask for ESAI_RX1_RXN.
 
 //! @brief Get value of ESAI_RX1_RXN from a register value.
 #define BG_ESAI_RX1_RXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RX1_RXN) >> BP_ESAI_RX1_RXN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2111,13 +2003,11 @@ typedef union _hw_esai_rx2
  * Accept data from the receive shift registers when they become full See
  */
 //@{
-
 #define BP_ESAI_RX2_RXN      (0)      //!< Bit position for ESAI_RX2_RXN.
 #define BM_ESAI_RX2_RXN      (0x00ffffff)  //!< Bit mask for ESAI_RX2_RXN.
 
 //! @brief Get value of ESAI_RX2_RXN from a register value.
 #define BG_ESAI_RX2_RXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RX2_RXN) >> BP_ESAI_RX2_RXN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2168,13 +2058,11 @@ typedef union _hw_esai_rx3
  * Accept data from the receive shift registers when they become full See
  */
 //@{
-
 #define BP_ESAI_RX3_RXN      (0)      //!< Bit position for ESAI_RX3_RXN.
 #define BM_ESAI_RX3_RXN      (0x00ffffff)  //!< Bit mask for ESAI_RX3_RXN.
 
 //! @brief Get value of ESAI_RX3_RXN from a register value.
 #define BG_ESAI_RX3_RXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RX3_RXN) >> BP_ESAI_RX3_RXN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2241,13 +2129,11 @@ typedef union _hw_esai_saisr
  * zero when it is not enabled. Hardware, software, ESAI individual reset clear IF0.
  */
 //@{
-
 #define BP_ESAI_SAISR_IF0      (0)      //!< Bit position for ESAI_SAISR_IF0.
 #define BM_ESAI_SAISR_IF0      (0x00000001)  //!< Bit mask for ESAI_SAISR_IF0.
 
 //! @brief Get value of ESAI_SAISR_IF0 from a register value.
 #define BG_ESAI_SAISR_IF0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_IF0) >> BP_ESAI_SAISR_IF0)
-
 //@}
 
 /*! @name Register ESAI_SAISR, field IF1[1] (RO)
@@ -2260,13 +2146,11 @@ typedef union _hw_esai_saisr
  * zero when it is not enabled. Hardware, software, ESAI individual reset clear IF1.
  */
 //@{
-
 #define BP_ESAI_SAISR_IF1      (1)      //!< Bit position for ESAI_SAISR_IF1.
 #define BM_ESAI_SAISR_IF1      (0x00000002)  //!< Bit mask for ESAI_SAISR_IF1.
 
 //! @brief Get value of ESAI_SAISR_IF1 from a register value.
 #define BG_ESAI_SAISR_IF1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_IF1) >> BP_ESAI_SAISR_IF1)
-
 //@}
 
 /*! @name Register ESAI_SAISR, field IF2[2] (RO)
@@ -2279,13 +2163,11 @@ typedef union _hw_esai_saisr
  * when it is not enabled. Hardware, software, ESAI individual reset clear IF2.
  */
 //@{
-
 #define BP_ESAI_SAISR_IF2      (2)      //!< Bit position for ESAI_SAISR_IF2.
 #define BM_ESAI_SAISR_IF2      (0x00000004)  //!< Bit mask for ESAI_SAISR_IF2.
 
 //! @brief Get value of ESAI_SAISR_IF2 from a register value.
 #define BG_ESAI_SAISR_IF2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_IF2) >> BP_ESAI_SAISR_IF2)
-
 //@}
 
 /*! @name Register ESAI_SAISR, field RFS[6] (RO)
@@ -2299,13 +2181,11 @@ typedef union _hw_esai_saisr
  * because there is only one time slot per frame - the "frame sync" time slot)
  */
 //@{
-
 #define BP_ESAI_SAISR_RFS      (6)      //!< Bit position for ESAI_SAISR_RFS.
 #define BM_ESAI_SAISR_RFS      (0x00000040)  //!< Bit mask for ESAI_SAISR_RFS.
 
 //! @brief Get value of ESAI_SAISR_RFS from a register value.
 #define BG_ESAI_SAISR_RFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_RFS) >> BP_ESAI_SAISR_RFS)
-
 //@}
 
 /*! @name Register ESAI_SAISR, field ROE[7] (RO)
@@ -2318,13 +2198,11 @@ typedef union _hw_esai_saisr
  * enabled receive data registers.
  */
 //@{
-
 #define BP_ESAI_SAISR_ROE      (7)      //!< Bit position for ESAI_SAISR_ROE.
 #define BM_ESAI_SAISR_ROE      (0x00000080)  //!< Bit mask for ESAI_SAISR_ROE.
 
 //! @brief Get value of ESAI_SAISR_ROE from a register value.
 #define BG_ESAI_SAISR_ROE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_ROE) >> BP_ESAI_SAISR_ROE)
-
 //@}
 
 /*! @name Register ESAI_SAISR, field RDF[8] (RO)
@@ -2336,13 +2214,11 @@ typedef union _hw_esai_saisr
  * when RDF is set.
  */
 //@{
-
 #define BP_ESAI_SAISR_RDF      (8)      //!< Bit position for ESAI_SAISR_RDF.
 #define BM_ESAI_SAISR_RDF      (0x00000100)  //!< Bit mask for ESAI_SAISR_RDF.
 
 //! @brief Get value of ESAI_SAISR_RDF from a register value.
 #define BG_ESAI_SAISR_RDF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_RDF) >> BP_ESAI_SAISR_RDF)
-
 //@}
 
 /*! @name Register ESAI_SAISR, field REDF[9] (RO)
@@ -2357,13 +2233,11 @@ typedef union _hw_esai_saisr
  * REDIE is set, an ESAI receive even slot data interrupt request is issued when REDF is set.
  */
 //@{
-
 #define BP_ESAI_SAISR_REDF      (9)      //!< Bit position for ESAI_SAISR_REDF.
 #define BM_ESAI_SAISR_REDF      (0x00000200)  //!< Bit mask for ESAI_SAISR_REDF.
 
 //! @brief Get value of ESAI_SAISR_REDF from a register value.
 #define BG_ESAI_SAISR_REDF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_REDF) >> BP_ESAI_SAISR_REDF)
-
 //@}
 
 /*! @name Register ESAI_SAISR, field RODF[10] (RO)
@@ -2377,13 +2251,11 @@ typedef union _hw_esai_saisr
  * by hardware, software, ESAI individual resets.
  */
 //@{
-
 #define BP_ESAI_SAISR_RODF      (10)      //!< Bit position for ESAI_SAISR_RODF.
 #define BM_ESAI_SAISR_RODF      (0x00000400)  //!< Bit mask for ESAI_SAISR_RODF.
 
 //! @brief Get value of ESAI_SAISR_RODF from a register value.
 #define BG_ESAI_SAISR_RODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_RODF) >> BP_ESAI_SAISR_RODF)
-
 //@}
 
 /*! @name Register ESAI_SAISR, field TFS[13] (RO)
@@ -2399,13 +2271,11 @@ typedef union _hw_esai_saisr
  * per frame - the "frame sync" time slot)
  */
 //@{
-
 #define BP_ESAI_SAISR_TFS      (13)      //!< Bit position for ESAI_SAISR_TFS.
 #define BM_ESAI_SAISR_TFS      (0x00002000)  //!< Bit mask for ESAI_SAISR_TFS.
 
 //! @brief Get value of ESAI_SAISR_TFS from a register value.
 #define BG_ESAI_SAISR_TFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_TFS) >> BP_ESAI_SAISR_TFS)
-
 //@}
 
 /*! @name Register ESAI_SAISR, field TUE[14] (RO)
@@ -2419,13 +2289,11 @@ typedef union _hw_esai_saisr
  * by writing to all the enabled transmit data registers or to ESAI_TSR.
  */
 //@{
-
 #define BP_ESAI_SAISR_TUE      (14)      //!< Bit position for ESAI_SAISR_TUE.
 #define BM_ESAI_SAISR_TUE      (0x00004000)  //!< Bit mask for ESAI_SAISR_TUE.
 
 //! @brief Get value of ESAI_SAISR_TUE from a register value.
 #define BG_ESAI_SAISR_TUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_TUE) >> BP_ESAI_SAISR_TUE)
-
 //@}
 
 /*! @name Register ESAI_SAISR, field TDE[15] (RO)
@@ -2441,13 +2309,11 @@ typedef union _hw_esai_saisr
  * reset clear TDE.
  */
 //@{
-
 #define BP_ESAI_SAISR_TDE      (15)      //!< Bit position for ESAI_SAISR_TDE.
 #define BM_ESAI_SAISR_TDE      (0x00008000)  //!< Bit mask for ESAI_SAISR_TDE.
 
 //! @brief Get value of ESAI_SAISR_TDE from a register value.
 #define BG_ESAI_SAISR_TDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_TDE) >> BP_ESAI_SAISR_TDE)
-
 //@}
 
 /*! @name Register ESAI_SAISR, field TEDE[16] (RO)
@@ -2466,13 +2332,11 @@ typedef union _hw_esai_saisr
  * set. Hardware, software, ESAI individual reset clear TEDE.
  */
 //@{
-
 #define BP_ESAI_SAISR_TEDE      (16)      //!< Bit position for ESAI_SAISR_TEDE.
 #define BM_ESAI_SAISR_TEDE      (0x00010000)  //!< Bit mask for ESAI_SAISR_TEDE.
 
 //! @brief Get value of ESAI_SAISR_TEDE from a register value.
 #define BG_ESAI_SAISR_TEDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_TEDE) >> BP_ESAI_SAISR_TEDE)
-
 //@}
 
 /*! @name Register ESAI_SAISR, field TODFE[17] (RO)
@@ -2491,13 +2355,11 @@ typedef union _hw_esai_saisr
  * individual reset clear TODFE.
  */
 //@{
-
 #define BP_ESAI_SAISR_TODFE      (17)      //!< Bit position for ESAI_SAISR_TODFE.
 #define BM_ESAI_SAISR_TODFE      (0x00020000)  //!< Bit mask for ESAI_SAISR_TODFE.
 
 //! @brief Get value of ESAI_SAISR_TODFE from a register value.
 #define BG_ESAI_SAISR_TODFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_SAISR_TODFE) >> BP_ESAI_SAISR_TODFE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2559,7 +2421,6 @@ typedef union _hw_esai_saicr
  * beginning of the frame in normal mode or at the beginning of the next time slot in network mode.
  */
 //@{
-
 #define BP_ESAI_SAICR_OF0      (0)      //!< Bit position for ESAI_SAICR_OF0.
 #define BM_ESAI_SAICR_OF0      (0x00000001)  //!< Bit mask for ESAI_SAICR_OF0.
 
@@ -2573,7 +2434,6 @@ typedef union _hw_esai_saicr
 //! @brief Set the OF0 field to a new value.
 #define BW_ESAI_SAICR_OF0(v)   (HW_ESAI_SAICR_WR((HW_ESAI_SAICR_RD() & ~BM_ESAI_SAICR_OF0) | BF_ESAI_SAICR_OF0(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_SAICR, field OF1[1] (RW)
@@ -2586,7 +2446,6 @@ typedef union _hw_esai_saicr
  * next time slot in network mode.
  */
 //@{
-
 #define BP_ESAI_SAICR_OF1      (1)      //!< Bit position for ESAI_SAICR_OF1.
 #define BM_ESAI_SAICR_OF1      (0x00000002)  //!< Bit mask for ESAI_SAICR_OF1.
 
@@ -2600,7 +2459,6 @@ typedef union _hw_esai_saicr
 //! @brief Set the OF1 field to a new value.
 #define BW_ESAI_SAICR_OF1(v)   (HW_ESAI_SAICR_WR((HW_ESAI_SAICR_RD() & ~BM_ESAI_SAICR_OF1) | BF_ESAI_SAICR_OF1(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_SAICR, field OF2[2] (RW)
@@ -2613,7 +2471,6 @@ typedef union _hw_esai_saicr
  * network mode.
  */
 //@{
-
 #define BP_ESAI_SAICR_OF2      (2)      //!< Bit position for ESAI_SAICR_OF2.
 #define BM_ESAI_SAICR_OF2      (0x00000004)  //!< Bit mask for ESAI_SAICR_OF2.
 
@@ -2627,7 +2484,6 @@ typedef union _hw_esai_saicr
 //! @brief Set the OF2 field to a new value.
 #define BW_ESAI_SAICR_OF2(v)   (HW_ESAI_SAICR_WR((HW_ESAI_SAICR_RD() & ~BM_ESAI_SAICR_OF2) | BF_ESAI_SAICR_OF2(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_SAICR, field SYN[6] (RW)
@@ -2643,7 +2499,6 @@ typedef union _hw_esai_saicr
  * flags. Refer to , , and for the effects of SYN on the receiver clock pins.
  */
 //@{
-
 #define BP_ESAI_SAICR_SYN      (6)      //!< Bit position for ESAI_SAICR_SYN.
 #define BM_ESAI_SAICR_SYN      (0x00000040)  //!< Bit mask for ESAI_SAICR_SYN.
 
@@ -2657,7 +2512,6 @@ typedef union _hw_esai_saicr
 //! @brief Set the SYN field to a new value.
 #define BW_ESAI_SAICR_SYN(v)   (HW_ESAI_SAICR_WR((HW_ESAI_SAICR_RD() & ~BM_ESAI_SAICR_SYN) | BF_ESAI_SAICR_SYN(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_SAICR, field TEBE[7] (RW)
@@ -2671,7 +2525,6 @@ typedef union _hw_esai_saicr
  * TEBE on the FSR pin.
  */
 //@{
-
 #define BP_ESAI_SAICR_TEBE      (7)      //!< Bit position for ESAI_SAICR_TEBE.
 #define BM_ESAI_SAICR_TEBE      (0x00000080)  //!< Bit mask for ESAI_SAICR_TEBE.
 
@@ -2685,7 +2538,6 @@ typedef union _hw_esai_saicr
 //! @brief Set the TEBE field to a new value.
 #define BW_ESAI_SAICR_TEBE(v)   (HW_ESAI_SAICR_WR((HW_ESAI_SAICR_RD() & ~BM_ESAI_SAICR_TEBE) | BF_ESAI_SAICR_TEBE(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_SAICR, field ALC[8] (RW)
@@ -2700,7 +2552,6 @@ typedef union _hw_esai_saicr
  * 16-bit words; otherwise, results are unpredictable.
  */
 //@{
-
 #define BP_ESAI_SAICR_ALC      (8)      //!< Bit position for ESAI_SAICR_ALC.
 #define BM_ESAI_SAICR_ALC      (0x00000100)  //!< Bit mask for ESAI_SAICR_ALC.
 
@@ -2714,7 +2565,6 @@ typedef union _hw_esai_saicr
 //! @brief Set the ALC field to a new value.
 #define BW_ESAI_SAICR_ALC(v)   (HW_ESAI_SAICR_WR((HW_ESAI_SAICR_RD() & ~BM_ESAI_SAICR_ALC) | BF_ESAI_SAICR_ALC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2805,7 +2655,6 @@ typedef union _hw_esai_tcr
  * enabled.
  */
 //@{
-
 #define BP_ESAI_TCR_TE0      (0)      //!< Bit position for ESAI_TCR_TE0.
 #define BM_ESAI_TCR_TE0      (0x00000001)  //!< Bit mask for ESAI_TCR_TE0.
 
@@ -2819,7 +2668,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TE0 field to a new value.
 #define BW_ESAI_TCR_TE0(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TE0) | BF_ESAI_TCR_TE0(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TE1[1] (RW)
@@ -2838,7 +2686,6 @@ typedef union _hw_esai_tcr
  * transmit enable sequence can be the same as the normal mode, or TE1 can be left enabled.
  */
 //@{
-
 #define BP_ESAI_TCR_TE1      (1)      //!< Bit position for ESAI_TCR_TE1.
 #define BM_ESAI_TCR_TE1      (0x00000002)  //!< Bit mask for ESAI_TCR_TE1.
 
@@ -2852,7 +2699,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TE1 field to a new value.
 #define BW_ESAI_TCR_TE1(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TE1) | BF_ESAI_TCR_TE1(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TE2[2] (RW)
@@ -2874,7 +2720,6 @@ typedef union _hw_esai_tcr
  * enabled.
  */
 //@{
-
 #define BP_ESAI_TCR_TE2      (2)      //!< Bit position for ESAI_TCR_TE2.
 #define BM_ESAI_TCR_TE2      (0x00000004)  //!< Bit mask for ESAI_TCR_TE2.
 
@@ -2888,7 +2733,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TE2 field to a new value.
 #define BW_ESAI_TCR_TE2(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TE2) | BF_ESAI_TCR_TE2(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TE3[3] (RW)
@@ -2910,7 +2754,6 @@ typedef union _hw_esai_tcr
  * enabled.
  */
 //@{
-
 #define BP_ESAI_TCR_TE3      (3)      //!< Bit position for ESAI_TCR_TE3.
 #define BM_ESAI_TCR_TE3      (0x00000008)  //!< Bit mask for ESAI_TCR_TE3.
 
@@ -2924,7 +2767,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TE3 field to a new value.
 #define BW_ESAI_TCR_TE3(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TE3) | BF_ESAI_TCR_TE3(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TE4[4] (RW)
@@ -2946,7 +2788,6 @@ typedef union _hw_esai_tcr
  * enabled.
  */
 //@{
-
 #define BP_ESAI_TCR_TE4      (4)      //!< Bit position for ESAI_TCR_TE4.
 #define BM_ESAI_TCR_TE4      (0x00000010)  //!< Bit mask for ESAI_TCR_TE4.
 
@@ -2960,7 +2801,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TE4 field to a new value.
 #define BW_ESAI_TCR_TE4(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TE4) | BF_ESAI_TCR_TE4(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TE5[5] (RW)
@@ -2982,7 +2822,6 @@ typedef union _hw_esai_tcr
  * enabled.
  */
 //@{
-
 #define BP_ESAI_TCR_TE5      (5)      //!< Bit position for ESAI_TCR_TE5.
 #define BM_ESAI_TCR_TE5      (0x00000020)  //!< Bit mask for ESAI_TCR_TE5.
 
@@ -2996,7 +2835,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TE5 field to a new value.
 #define BW_ESAI_TCR_TE5(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TE5) | BF_ESAI_TCR_TE5(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TSHFD[6] (RW)
@@ -3005,7 +2843,6 @@ typedef union _hw_esai_tcr
  * data out MSB first when TSHFD equals zero or LSB first when TSHFD equals one (see and .
  */
 //@{
-
 #define BP_ESAI_TCR_TSHFD      (6)      //!< Bit position for ESAI_TCR_TSHFD.
 #define BM_ESAI_TCR_TSHFD      (0x00000040)  //!< Bit mask for ESAI_TCR_TSHFD.
 
@@ -3019,7 +2856,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TSHFD field to a new value.
 #define BW_ESAI_TCR_TSHFD(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TSHFD) | BF_ESAI_TCR_TSHFD(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TWA[7] (RW)
@@ -3038,7 +2874,6 @@ typedef union _hw_esai_tcr
  * the transmission of the data word.
  */
 //@{
-
 #define BP_ESAI_TCR_TWA      (7)      //!< Bit position for ESAI_TCR_TWA.
 #define BM_ESAI_TCR_TWA      (0x00000080)  //!< Bit mask for ESAI_TCR_TWA.
 
@@ -3052,7 +2887,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TWA field to a new value.
 #define BW_ESAI_TCR_TWA(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TWA) | BF_ESAI_TCR_TWA(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TMOD[9:8] (RW)
@@ -3069,7 +2903,6 @@ typedef union _hw_esai_tcr
  * protocol.
  */
 //@{
-
 #define BP_ESAI_TCR_TMOD      (8)      //!< Bit position for ESAI_TCR_TMOD.
 #define BM_ESAI_TCR_TMOD      (0x00000300)  //!< Bit mask for ESAI_TCR_TMOD.
 
@@ -3083,7 +2916,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TMOD field to a new value.
 #define BW_ESAI_TCR_TMOD(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TMOD) | BF_ESAI_TCR_TMOD(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TSWS[14:10] (RW)
@@ -3094,7 +2926,6 @@ typedef union _hw_esai_tcr
  * in . See also the ESAI data path programming model in and .
  */
 //@{
-
 #define BP_ESAI_TCR_TSWS      (10)      //!< Bit position for ESAI_TCR_TSWS.
 #define BM_ESAI_TCR_TSWS      (0x00007c00)  //!< Bit mask for ESAI_TCR_TSWS.
 
@@ -3108,7 +2939,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TSWS field to a new value.
 #define BW_ESAI_TCR_TSWS(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TSWS) | BF_ESAI_TCR_TSWS(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TFSL[15] (RW)
@@ -3119,7 +2949,6 @@ typedef union _hw_esai_tcr
  * selection.
  */
 //@{
-
 #define BP_ESAI_TCR_TFSL      (15)      //!< Bit position for ESAI_TCR_TFSL.
 #define BM_ESAI_TCR_TFSL      (0x00008000)  //!< Bit mask for ESAI_TCR_TFSL.
 
@@ -3133,7 +2962,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TFSL field to a new value.
 #define BW_ESAI_TCR_TFSL(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TFSL) | BF_ESAI_TCR_TFSL(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TFSR[16] (RW)
@@ -3145,7 +2973,6 @@ typedef union _hw_esai_tcr
  * clock cycle earlier, that is, together with the last bit of the previous data word.
  */
 //@{
-
 #define BP_ESAI_TCR_TFSR      (16)      //!< Bit position for ESAI_TCR_TFSR.
 #define BM_ESAI_TCR_TFSR      (0x00010000)  //!< Bit mask for ESAI_TCR_TFSR.
 
@@ -3159,7 +2986,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TFSR field to a new value.
 #define BW_ESAI_TCR_TFSR(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TFSR) | BF_ESAI_TCR_TFSR(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field PADC[17] (RW)
@@ -3177,7 +3003,6 @@ typedef union _hw_esai_tcr
  * are transmitted before the transmission of the data word.
  */
 //@{
-
 #define BP_ESAI_TCR_PADC      (17)      //!< Bit position for ESAI_TCR_PADC.
 #define BM_ESAI_TCR_PADC      (0x00020000)  //!< Bit mask for ESAI_TCR_PADC.
 
@@ -3191,7 +3016,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the PADC field to a new value.
 #define BW_ESAI_TCR_PADC(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_PADC) | BF_ESAI_TCR_PADC(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TPR[19] (RW)
@@ -3208,7 +3032,6 @@ typedef union _hw_esai_tcr
  * clearing TPR, the procedure described in should be followed.
  */
 //@{
-
 #define BP_ESAI_TCR_TPR      (19)      //!< Bit position for ESAI_TCR_TPR.
 #define BM_ESAI_TCR_TPR      (0x00080000)  //!< Bit mask for ESAI_TCR_TPR.
 
@@ -3222,7 +3045,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TPR field to a new value.
 #define BW_ESAI_TCR_TPR(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TPR) | BF_ESAI_TCR_TPR(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TEIE[20] (RW)
@@ -3233,7 +3055,6 @@ typedef union _hw_esai_tcr
  * the enabled transmitters clears TUE, thus clearing the pending interrupt.
  */
 //@{
-
 #define BP_ESAI_TCR_TEIE      (20)      //!< Bit position for ESAI_TCR_TEIE.
 #define BM_ESAI_TCR_TEIE      (0x00100000)  //!< Bit mask for ESAI_TCR_TEIE.
 
@@ -3247,7 +3068,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TEIE field to a new value.
 #define BW_ESAI_TCR_TEIE(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TEIE) | BF_ESAI_TCR_TEIE(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TEDIE[21] (RW)
@@ -3265,7 +3085,6 @@ typedef union _hw_esai_tcr
  * exception interrupt from the interrupt controller.
  */
 //@{
-
 #define BP_ESAI_TCR_TEDIE      (21)      //!< Bit position for ESAI_TCR_TEDIE.
 #define BM_ESAI_TCR_TEDIE      (0x00200000)  //!< Bit mask for ESAI_TCR_TEDIE.
 
@@ -3279,7 +3098,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TEDIE field to a new value.
 #define BW_ESAI_TCR_TEDIE(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TEDIE) | BF_ESAI_TCR_TEDIE(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TIE[22] (RW)
@@ -3292,7 +3110,6 @@ typedef union _hw_esai_tcr
  * transmit data with exception interrupt from the interrupt controller.
  */
 //@{
-
 #define BP_ESAI_TCR_TIE      (22)      //!< Bit position for ESAI_TCR_TIE.
 #define BM_ESAI_TCR_TIE      (0x00400000)  //!< Bit mask for ESAI_TCR_TIE.
 
@@ -3306,7 +3123,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TIE field to a new value.
 #define BW_ESAI_TCR_TIE(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TIE) | BF_ESAI_TCR_TIE(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCR, field TLIE[23] (RW)
@@ -3318,7 +3134,6 @@ typedef union _hw_esai_tcr
  * (on-demand mode). The use of the transmit last slot interrupt is described in .
  */
 //@{
-
 #define BP_ESAI_TCR_TLIE      (23)      //!< Bit position for ESAI_TCR_TLIE.
 #define BM_ESAI_TCR_TLIE      (0x00800000)  //!< Bit mask for ESAI_TCR_TLIE.
 
@@ -3332,7 +3147,6 @@ typedef union _hw_esai_tcr
 //! @brief Set the TLIE field to a new value.
 #define BW_ESAI_TCR_TLIE(v)   (HW_ESAI_TCR_WR((HW_ESAI_TCR_RD() & ~BM_ESAI_TCR_TLIE) | BF_ESAI_TCR_TLIE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3409,7 +3223,6 @@ typedef union _hw_esai_tccr
  * diagram is shown in .
  */
 //@{
-
 #define BP_ESAI_TCCR_TPM      (0)      //!< Bit position for ESAI_TCCR_TPM.
 #define BM_ESAI_TCCR_TPM      (0x000000ff)  //!< Bit mask for ESAI_TCCR_TPM.
 
@@ -3423,7 +3236,6 @@ typedef union _hw_esai_tccr
 //! @brief Set the TPM field to a new value.
 #define BW_ESAI_TCCR_TPM(v)   (HW_ESAI_TCCR_WR((HW_ESAI_TCCR_RD() & ~BM_ESAI_TCCR_TPM) | BF_ESAI_TCCR_TPM(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCCR, field TPSR[8] (RW)
@@ -3438,7 +3250,6 @@ typedef union _hw_esai_tccr
  * ARM Core clock as source (TCKD=1 or THCKD=1))
  */
 //@{
-
 #define BP_ESAI_TCCR_TPSR      (8)      //!< Bit position for ESAI_TCCR_TPSR.
 #define BM_ESAI_TCCR_TPSR      (0x00000100)  //!< Bit mask for ESAI_TCCR_TPSR.
 
@@ -3452,7 +3263,6 @@ typedef union _hw_esai_tccr
 //! @brief Set the TPSR field to a new value.
 #define BW_ESAI_TCCR_TPSR(v)   (HW_ESAI_TCCR_WR((HW_ESAI_TCCR_RD() & ~BM_ESAI_TCCR_TPSR) | BF_ESAI_TCCR_TPSR(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCCR, field TDC[13:9] (RW)
@@ -3468,7 +3278,6 @@ typedef union _hw_esai_tccr
  * case. The ESAI frame sync generator functional diagram is shown in
  */
 //@{
-
 #define BP_ESAI_TCCR_TDC      (9)      //!< Bit position for ESAI_TCCR_TDC.
 #define BM_ESAI_TCCR_TDC      (0x00003e00)  //!< Bit mask for ESAI_TCCR_TDC.
 
@@ -3482,7 +3291,6 @@ typedef union _hw_esai_tccr
 //! @brief Set the TDC field to a new value.
 #define BW_ESAI_TCCR_TDC(v)   (HW_ESAI_TCCR_WR((HW_ESAI_TCCR_RD() & ~BM_ESAI_TCCR_TDC) | BF_ESAI_TCCR_TDC(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCCR, field TFP[17:14] (RW)
@@ -3495,7 +3303,6 @@ typedef union _hw_esai_tccr
  * high frequency clock generator functional diagram.
  */
 //@{
-
 #define BP_ESAI_TCCR_TFP      (14)      //!< Bit position for ESAI_TCCR_TFP.
 #define BM_ESAI_TCCR_TFP      (0x0003c000)  //!< Bit mask for ESAI_TCCR_TFP.
 
@@ -3509,7 +3316,6 @@ typedef union _hw_esai_tccr
 //! @brief Set the TFP field to a new value.
 #define BW_ESAI_TCCR_TFP(v)   (HW_ESAI_TCCR_WR((HW_ESAI_TCCR_RD() & ~BM_ESAI_TCCR_TFP) | BF_ESAI_TCCR_TFP(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCCR, field TCKP[18] (RW)
@@ -3522,7 +3328,6 @@ typedef union _hw_esai_tccr
  * latch the data and frame sync in.
  */
 //@{
-
 #define BP_ESAI_TCCR_TCKP      (18)      //!< Bit position for ESAI_TCCR_TCKP.
 #define BM_ESAI_TCCR_TCKP      (0x00040000)  //!< Bit mask for ESAI_TCCR_TCKP.
 
@@ -3536,7 +3341,6 @@ typedef union _hw_esai_tccr
 //! @brief Set the TCKP field to a new value.
 #define BW_ESAI_TCCR_TCKP(v)   (HW_ESAI_TCCR_WR((HW_ESAI_TCCR_RD() & ~BM_ESAI_TCCR_TCKP) | BF_ESAI_TCCR_TCKP(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCCR, field TFSP[19] (RW)
@@ -3548,7 +3352,6 @@ typedef union _hw_esai_tccr
  * indicated by a low level on the frame sync pin.
  */
 //@{
-
 #define BP_ESAI_TCCR_TFSP      (19)      //!< Bit position for ESAI_TCCR_TFSP.
 #define BM_ESAI_TCCR_TFSP      (0x00080000)  //!< Bit mask for ESAI_TCCR_TFSP.
 
@@ -3562,7 +3365,6 @@ typedef union _hw_esai_tccr
 //! @brief Set the TFSP field to a new value.
 #define BW_ESAI_TCCR_TFSP(v)   (HW_ESAI_TCCR_WR((HW_ESAI_TCCR_RD() & ~BM_ESAI_TCCR_TFSP) | BF_ESAI_TCCR_TFSP(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCCR, field THCKP[20] (RW)
@@ -3575,7 +3377,6 @@ typedef union _hw_esai_tccr
  * sync and the rising edge of the transmit clock is used to latch the data and frame sync in.
  */
 //@{
-
 #define BP_ESAI_TCCR_THCKP      (20)      //!< Bit position for ESAI_TCCR_THCKP.
 #define BM_ESAI_TCCR_THCKP      (0x00100000)  //!< Bit mask for ESAI_TCCR_THCKP.
 
@@ -3589,7 +3390,6 @@ typedef union _hw_esai_tccr
 //! @brief Set the THCKP field to a new value.
 #define BW_ESAI_TCCR_THCKP(v)   (HW_ESAI_TCCR_WR((HW_ESAI_TCCR_RD() & ~BM_ESAI_TCCR_THCKP) | BF_ESAI_TCCR_THCKP(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCCR, field TCKD[21] (RW)
@@ -3603,7 +3403,6 @@ typedef union _hw_esai_tccr
  * SCKT pin, and an external clock source may drive this pin (see ).
  */
 //@{
-
 #define BP_ESAI_TCCR_TCKD      (21)      //!< Bit position for ESAI_TCCR_TCKD.
 #define BM_ESAI_TCCR_TCKD      (0x00200000)  //!< Bit mask for ESAI_TCCR_TCKD.
 
@@ -3617,7 +3416,6 @@ typedef union _hw_esai_tccr
 //! @brief Set the TCKD field to a new value.
 #define BW_ESAI_TCCR_TCKD(v)   (HW_ESAI_TCCR_WR((HW_ESAI_TCCR_RD() & ~BM_ESAI_TCCR_TCKD) | BF_ESAI_TCCR_TCKD(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCCR, field TFSD[22] (RW)
@@ -3626,7 +3424,6 @@ typedef union _hw_esai_tccr
  * TFSD is cleared, FST is an input; when TFSD is set, FST is an output (see ).
  */
 //@{
-
 #define BP_ESAI_TCCR_TFSD      (22)      //!< Bit position for ESAI_TCCR_TFSD.
 #define BM_ESAI_TCCR_TFSD      (0x00400000)  //!< Bit mask for ESAI_TCCR_TFSD.
 
@@ -3640,7 +3437,6 @@ typedef union _hw_esai_tccr
 //! @brief Set the TFSD field to a new value.
 #define BW_ESAI_TCCR_TFSD(v)   (HW_ESAI_TCCR_WR((HW_ESAI_TCCR_RD() & ~BM_ESAI_TCCR_TFSD) | BF_ESAI_TCCR_TFSD(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_TCCR, field THCKD[23] (RW)
@@ -3649,7 +3445,6 @@ typedef union _hw_esai_tccr
  * When THCKD is cleared, HCKT is an input; when THCKD is set, HCKT is an output (see ).
  */
 //@{
-
 #define BP_ESAI_TCCR_THCKD      (23)      //!< Bit position for ESAI_TCCR_THCKD.
 #define BM_ESAI_TCCR_THCKD      (0x00800000)  //!< Bit mask for ESAI_TCCR_THCKD.
 
@@ -3663,7 +3458,6 @@ typedef union _hw_esai_tccr
 //! @brief Set the THCKD field to a new value.
 #define BW_ESAI_TCCR_THCKD(v)   (HW_ESAI_TCCR_WR((HW_ESAI_TCCR_RD() & ~BM_ESAI_TCCR_THCKD) | BF_ESAI_TCCR_THCKD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3746,7 +3540,6 @@ typedef union _hw_esai_rcr
  * invalid and must be discarded.
  */
 //@{
-
 #define BP_ESAI_RCR_RE0      (0)      //!< Bit position for ESAI_RCR_RE0.
 #define BM_ESAI_RCR_RE0      (0x00000001)  //!< Bit mask for ESAI_RCR_RE0.
 
@@ -3760,7 +3553,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the RE0 field to a new value.
 #define BW_ESAI_RCR_RE0(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RE0) | BF_ESAI_RCR_RE0(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field RE1[1] (RW)
@@ -3774,7 +3566,6 @@ typedef union _hw_esai_rcr
  * invalid and must be discarded.
  */
 //@{
-
 #define BP_ESAI_RCR_RE1      (1)      //!< Bit position for ESAI_RCR_RE1.
 #define BM_ESAI_RCR_RE1      (0x00000002)  //!< Bit mask for ESAI_RCR_RE1.
 
@@ -3788,7 +3579,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the RE1 field to a new value.
 #define BW_ESAI_RCR_RE1(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RE1) | BF_ESAI_RCR_RE1(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field RE2[2] (RW)
@@ -3802,7 +3592,6 @@ typedef union _hw_esai_rcr
  * invalid and must be discarded.
  */
 //@{
-
 #define BP_ESAI_RCR_RE2      (2)      //!< Bit position for ESAI_RCR_RE2.
 #define BM_ESAI_RCR_RE2      (0x00000004)  //!< Bit mask for ESAI_RCR_RE2.
 
@@ -3816,7 +3605,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the RE2 field to a new value.
 #define BW_ESAI_RCR_RE2(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RE2) | BF_ESAI_RCR_RE2(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field RE3[3] (RW)
@@ -3830,7 +3618,6 @@ typedef union _hw_esai_rcr
  * invalid and must be discarded.
  */
 //@{
-
 #define BP_ESAI_RCR_RE3      (3)      //!< Bit position for ESAI_RCR_RE3.
 #define BM_ESAI_RCR_RE3      (0x00000008)  //!< Bit mask for ESAI_RCR_RE3.
 
@@ -3844,7 +3631,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the RE3 field to a new value.
 #define BW_ESAI_RCR_RE3(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RE3) | BF_ESAI_RCR_RE3(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field RSHFD[6] (RW)
@@ -3853,7 +3639,6 @@ typedef union _hw_esai_rcr
  * data in MSB first when RSHFD is cleared or LSB first when RSHFD is set (see and ).
  */
 //@{
-
 #define BP_ESAI_RCR_RSHFD      (6)      //!< Bit position for ESAI_RCR_RSHFD.
 #define BM_ESAI_RCR_RSHFD      (0x00000040)  //!< Bit mask for ESAI_RCR_RSHFD.
 
@@ -3867,7 +3652,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the RSHFD field to a new value.
 #define BW_ESAI_RCR_RSHFD(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RSHFD) | BF_ESAI_RCR_RSHFD(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field RWA[7] (RW)
@@ -3881,7 +3665,6 @@ typedef union _hw_esai_rcr
  * right-extended with zeroes before being stored in the receive data registers.
  */
 //@{
-
 #define BP_ESAI_RCR_RWA      (7)      //!< Bit position for ESAI_RCR_RWA.
 #define BM_ESAI_RCR_RWA      (0x00000080)  //!< Bit mask for ESAI_RCR_RWA.
 
@@ -3895,7 +3678,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the RWA field to a new value.
 #define BW_ESAI_RCR_RWA(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RWA) | BF_ESAI_RCR_RWA(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field RMOD[9:8] (RW)
@@ -3909,7 +3691,6 @@ typedef union _hw_esai_rcr
  * set to 0x0C (13 words in frame).
  */
 //@{
-
 #define BP_ESAI_RCR_RMOD      (8)      //!< Bit position for ESAI_RCR_RMOD.
 #define BM_ESAI_RCR_RMOD      (0x00000300)  //!< Bit mask for ESAI_RCR_RMOD.
 
@@ -3923,7 +3704,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the RMOD field to a new value.
 #define BW_ESAI_RCR_RMOD(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RMOD) | BF_ESAI_RCR_RMOD(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field RSWS[14:10] (RW)
@@ -3934,7 +3714,6 @@ typedef union _hw_esai_rcr
  * ESAI data path programming model in and .
  */
 //@{
-
 #define BP_ESAI_RCR_RSWS      (10)      //!< Bit position for ESAI_RCR_RSWS.
 #define BM_ESAI_RCR_RSWS      (0x00007c00)  //!< Bit mask for ESAI_RCR_RSWS.
 
@@ -3948,7 +3727,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the RSWS field to a new value.
 #define BW_ESAI_RCR_RSWS(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RSWS) | BF_ESAI_RCR_RSWS(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field RFSL[15] (RW)
@@ -3959,7 +3737,6 @@ typedef union _hw_esai_rcr
  * selection.
  */
 //@{
-
 #define BP_ESAI_RCR_RFSL      (15)      //!< Bit position for ESAI_RCR_RFSL.
 #define BM_ESAI_RCR_RFSL      (0x00008000)  //!< Bit mask for ESAI_RCR_RFSL.
 
@@ -3973,7 +3750,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the RFSL field to a new value.
 #define BW_ESAI_RCR_RFSL(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RFSL) | BF_ESAI_RCR_RFSL(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field RFSR[16] (RW)
@@ -3985,7 +3761,6 @@ typedef union _hw_esai_rcr
  * earlier, that is, together with the last bit of the previous data word.
  */
 //@{
-
 #define BP_ESAI_RCR_RFSR      (16)      //!< Bit position for ESAI_RCR_RFSR.
 #define BM_ESAI_RCR_RFSR      (0x00010000)  //!< Bit mask for ESAI_RCR_RFSR.
 
@@ -3999,7 +3774,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the RFSR field to a new value.
 #define BW_ESAI_RCR_RFSR(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RFSR) | BF_ESAI_RCR_RFSR(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field RPR[19] (RW)
@@ -4013,7 +3787,6 @@ typedef union _hw_esai_rcr
  * personal reset state by clearing RPR, the procedure described in should be followed.
  */
 //@{
-
 #define BP_ESAI_RCR_RPR      (19)      //!< Bit position for ESAI_RCR_RPR.
 #define BM_ESAI_RCR_RPR      (0x00080000)  //!< Bit mask for ESAI_RCR_RPR.
 
@@ -4027,7 +3800,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the RPR field to a new value.
 #define BW_ESAI_RCR_RPR(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RPR) | BF_ESAI_RCR_RPR(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field REIE[20] (RW)
@@ -4038,7 +3810,6 @@ typedef union _hw_esai_rcr
  * registers clears ROE, thus clearing the pending interrupt.
  */
 //@{
-
 #define BP_ESAI_RCR_REIE      (20)      //!< Bit position for ESAI_RCR_REIE.
 #define BM_ESAI_RCR_REIE      (0x00100000)  //!< Bit mask for ESAI_RCR_REIE.
 
@@ -4052,7 +3823,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the REIE field to a new value.
 #define BW_ESAI_RCR_REIE(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_REIE) | BF_ESAI_RCR_REIE(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field REDIE[21] (RW)
@@ -4069,7 +3839,6 @@ typedef union _hw_esai_rcr
  * the ESAI requests an ESAI receive data with exception interrupt from the interrupt controller.
  */
 //@{
-
 #define BP_ESAI_RCR_REDIE      (21)      //!< Bit position for ESAI_RCR_REDIE.
 #define BM_ESAI_RCR_REDIE      (0x00200000)  //!< Bit mask for ESAI_RCR_REDIE.
 
@@ -4083,7 +3852,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the REDIE field to a new value.
 #define BW_ESAI_RCR_REDIE(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_REDIE) | BF_ESAI_RCR_REDIE(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field RIE[22] (RW)
@@ -4096,7 +3864,6 @@ typedef union _hw_esai_rcr
  * exception interrupt from the interrupt controller.
  */
 //@{
-
 #define BP_ESAI_RCR_RIE      (22)      //!< Bit position for ESAI_RCR_RIE.
 #define BM_ESAI_RCR_RIE      (0x00400000)  //!< Bit mask for ESAI_RCR_RIE.
 
@@ -4110,7 +3877,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the RIE field to a new value.
 #define BW_ESAI_RCR_RIE(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RIE) | BF_ESAI_RCR_RIE(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCR, field RLIE[23] (RW)
@@ -4122,7 +3888,6 @@ typedef union _hw_esai_rcr
  * RDC[4:0]=00000 (on-demand mode). The use of the receive last slot interrupt is described in .
  */
 //@{
-
 #define BP_ESAI_RCR_RLIE      (23)      //!< Bit position for ESAI_RCR_RLIE.
 #define BM_ESAI_RCR_RLIE      (0x00800000)  //!< Bit mask for ESAI_RCR_RLIE.
 
@@ -4136,7 +3901,6 @@ typedef union _hw_esai_rcr
 //! @brief Set the RLIE field to a new value.
 #define BW_ESAI_RCR_RLIE(v)   (HW_ESAI_RCR_WR((HW_ESAI_RCR_RD() & ~BM_ESAI_RCR_RLIE) | BF_ESAI_RCR_RLIE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4209,7 +3973,6 @@ typedef union _hw_esai_rccr
  * shown in .
  */
 //@{
-
 #define BP_ESAI_RCCR_RPM      (0)      //!< Bit position for ESAI_RCCR_RPM.
 #define BM_ESAI_RCCR_RPM      (0x000000ff)  //!< Bit mask for ESAI_RCCR_RPM.
 
@@ -4223,7 +3986,6 @@ typedef union _hw_esai_rccr
 //! @brief Set the RPM field to a new value.
 #define BW_ESAI_RCCR_RPM(v)   (HW_ESAI_RCCR_WR((HW_ESAI_RCCR_RD() & ~BM_ESAI_RCCR_RPM) | BF_ESAI_RCCR_RPM(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCCR, field RPSP[8] (RW)
@@ -4238,7 +4000,6 @@ typedef union _hw_esai_rccr
  * (RHCKD=1 or RCKD=1))
  */
 //@{
-
 #define BP_ESAI_RCCR_RPSP      (8)      //!< Bit position for ESAI_RCCR_RPSP.
 #define BM_ESAI_RCCR_RPSP      (0x00000100)  //!< Bit mask for ESAI_RCCR_RPSP.
 
@@ -4252,7 +4013,6 @@ typedef union _hw_esai_rccr
 //! @brief Set the RPSP field to a new value.
 #define BW_ESAI_RCCR_RPSP(v)   (HW_ESAI_RCCR_WR((HW_ESAI_RCCR_RD() & ~BM_ESAI_RCCR_RPSP) | BF_ESAI_RCCR_RPSP(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCCR, field RDC[13:9] (RW)
@@ -4268,7 +4028,6 @@ typedef union _hw_esai_rccr
  * case. The ESAI frame sync generator functional diagram is shown in .
  */
 //@{
-
 #define BP_ESAI_RCCR_RDC      (9)      //!< Bit position for ESAI_RCCR_RDC.
 #define BM_ESAI_RCCR_RDC      (0x00003e00)  //!< Bit mask for ESAI_RCCR_RDC.
 
@@ -4282,7 +4041,6 @@ typedef union _hw_esai_rccr
 //! @brief Set the RDC field to a new value.
 #define BW_ESAI_RCCR_RDC(v)   (HW_ESAI_RCCR_WR((HW_ESAI_RCCR_RD() & ~BM_ESAI_RCCR_RDC) | BF_ESAI_RCCR_RDC(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCCR, field RFP[17:14] (RW)
@@ -4295,7 +4053,6 @@ typedef union _hw_esai_rccr
  * the ESAI high frequency generator functional diagram.
  */
 //@{
-
 #define BP_ESAI_RCCR_RFP      (14)      //!< Bit position for ESAI_RCCR_RFP.
 #define BM_ESAI_RCCR_RFP      (0x0003c000)  //!< Bit mask for ESAI_RCCR_RFP.
 
@@ -4309,7 +4066,6 @@ typedef union _hw_esai_rccr
 //! @brief Set the RFP field to a new value.
 #define BW_ESAI_RCCR_RFP(v)   (HW_ESAI_RCCR_WR((HW_ESAI_RCCR_RD() & ~BM_ESAI_RCCR_RFP) | BF_ESAI_RCCR_RFP(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCCR, field RCKP[18] (RW)
@@ -4321,7 +4077,6 @@ typedef union _hw_esai_rccr
  * and frame sync out and the rising edge of the receive clock is used to latch the frame sync in.
  */
 //@{
-
 #define BP_ESAI_RCCR_RCKP      (18)      //!< Bit position for ESAI_RCCR_RCKP.
 #define BM_ESAI_RCCR_RCKP      (0x00040000)  //!< Bit mask for ESAI_RCCR_RCKP.
 
@@ -4335,7 +4090,6 @@ typedef union _hw_esai_rccr
 //! @brief Set the RCKP field to a new value.
 #define BW_ESAI_RCCR_RCKP(v)   (HW_ESAI_RCCR_WR((HW_ESAI_RCCR_RD() & ~BM_ESAI_RCCR_RCKP) | BF_ESAI_RCCR_RCKP(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCCR, field RFSP[19] (RW)
@@ -4347,7 +4101,6 @@ typedef union _hw_esai_rccr
  * level on the frame sync pin.
  */
 //@{
-
 #define BP_ESAI_RCCR_RFSP      (19)      //!< Bit position for ESAI_RCCR_RFSP.
 #define BM_ESAI_RCCR_RFSP      (0x00080000)  //!< Bit mask for ESAI_RCCR_RFSP.
 
@@ -4361,7 +4114,6 @@ typedef union _hw_esai_rccr
 //! @brief Set the RFSP field to a new value.
 #define BW_ESAI_RCCR_RFSP(v)   (HW_ESAI_RCCR_WR((HW_ESAI_RCCR_RD() & ~BM_ESAI_RCCR_RFSP) | BF_ESAI_RCCR_RFSP(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCCR, field RHCKP[20] (RW)
@@ -4374,7 +4126,6 @@ typedef union _hw_esai_rccr
  * sync out and the rising edge of the receive clock is used to latch the frame sync in.
  */
 //@{
-
 #define BP_ESAI_RCCR_RHCKP      (20)      //!< Bit position for ESAI_RCCR_RHCKP.
 #define BM_ESAI_RCCR_RHCKP      (0x00100000)  //!< Bit mask for ESAI_RCCR_RHCKP.
 
@@ -4388,7 +4139,6 @@ typedef union _hw_esai_rccr
 //! @brief Set the RHCKP field to a new value.
 #define BW_ESAI_RCCR_RHCKP(v)   (HW_ESAI_RCCR_WR((HW_ESAI_RCCR_RD() & ~BM_ESAI_RCCR_RHCKP) | BF_ESAI_RCCR_RHCKP(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCCR, field RCKD[21] (RW)
@@ -4404,7 +4154,6 @@ typedef union _hw_esai_rccr
  * flag. Refer to and .
  */
 //@{
-
 #define BP_ESAI_RCCR_RCKD      (21)      //!< Bit position for ESAI_RCCR_RCKD.
 #define BM_ESAI_RCCR_RCKD      (0x00200000)  //!< Bit mask for ESAI_RCCR_RCKD.
 
@@ -4418,7 +4167,6 @@ typedef union _hw_esai_rccr
 //! @brief Set the RCKD field to a new value.
 #define BW_ESAI_RCCR_RCKD(v)   (HW_ESAI_RCCR_WR((HW_ESAI_RCCR_RD() & ~BM_ESAI_RCCR_RCKD) | BF_ESAI_RCCR_RCKD(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCCR, field RFSD[22] (RW)
@@ -4435,7 +4183,6 @@ typedef union _hw_esai_rccr
  * .
  */
 //@{
-
 #define BP_ESAI_RCCR_RFSD      (22)      //!< Bit position for ESAI_RCCR_RFSD.
 #define BM_ESAI_RCCR_RFSD      (0x00400000)  //!< Bit mask for ESAI_RCCR_RFSD.
 
@@ -4449,7 +4196,6 @@ typedef union _hw_esai_rccr
 //! @brief Set the RFSD field to a new value.
 #define BW_ESAI_RCCR_RFSD(v)   (HW_ESAI_RCCR_WR((HW_ESAI_RCCR_RD() & ~BM_ESAI_RCCR_RFSD) | BF_ESAI_RCCR_RFSD(v)))
 #endif
-
 //@}
 
 /*! @name Register ESAI_RCCR, field RHCKD[23] (RW)
@@ -4466,7 +4212,6 @@ typedef union _hw_esai_rccr
  * flag. Refer to and .
  */
 //@{
-
 #define BP_ESAI_RCCR_RHCKD      (23)      //!< Bit position for ESAI_RCCR_RHCKD.
 #define BM_ESAI_RCCR_RHCKD      (0x00800000)  //!< Bit mask for ESAI_RCCR_RHCKD.
 
@@ -4480,7 +4225,6 @@ typedef union _hw_esai_rccr
 //! @brief Set the RHCKD field to a new value.
 #define BW_ESAI_RCCR_RHCKD(v)   (HW_ESAI_RCCR_WR((HW_ESAI_RCCR_RD() & ~BM_ESAI_RCCR_RHCKD) | BF_ESAI_RCCR_RHCKD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4552,7 +4296,6 @@ typedef union _hw_esai_tsma
  * must be set, otherwise no output is generated.
  */
 //@{
-
 #define BP_ESAI_TSMA_TS      (0)      //!< Bit position for ESAI_TSMA_TS.
 #define BM_ESAI_TSMA_TS      (0x0000ffff)  //!< Bit mask for ESAI_TSMA_TS.
 
@@ -4566,7 +4309,6 @@ typedef union _hw_esai_tsma
 //! @brief Set the TS field to a new value.
 #define BW_ESAI_TSMA_TS(v)   (HW_ESAI_TSMA_WR((HW_ESAI_TSMA_RD() & ~BM_ESAI_TSMA_TS) | BF_ESAI_TSMA_TS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4637,7 +4379,6 @@ typedef union _hw_esai_tsmb
  * enabled for data transmission.
  */
 //@{
-
 #define BP_ESAI_TSMB_TS      (0)      //!< Bit position for ESAI_TSMB_TS.
 #define BM_ESAI_TSMB_TS      (0x0000ffff)  //!< Bit mask for ESAI_TSMB_TS.
 
@@ -4651,7 +4392,6 @@ typedef union _hw_esai_tsmb
 //! @brief Set the TS field to a new value.
 #define BW_ESAI_TSMB_TS(v)   (HW_ESAI_TSMB_WR((HW_ESAI_TSMB_RD() & ~BM_ESAI_TSMB_TS) | BF_ESAI_TSMB_TS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4718,7 +4458,6 @@ typedef union _hw_esai_rsma
  * mode, bit 0 of the ESAI_RSMA register must be set to one, otherwise no input is received.
  */
 //@{
-
 #define BP_ESAI_RSMA_RS      (0)      //!< Bit position for ESAI_RSMA_RS.
 #define BM_ESAI_RSMA_RS      (0x0000ffff)  //!< Bit mask for ESAI_RSMA_RS.
 
@@ -4732,7 +4471,6 @@ typedef union _hw_esai_rsma
 //! @brief Set the RS field to a new value.
 #define BW_ESAI_RSMA_RS(v)   (HW_ESAI_RSMA_WR((HW_ESAI_RSMA_RD() & ~BM_ESAI_RSMA_RS) | BF_ESAI_RSMA_RS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4798,7 +4536,6 @@ typedef union _hw_esai_rsmb
  * which means that all 16 possible slots are enabled for data reception.
  */
 //@{
-
 #define BP_ESAI_RSMB_RS      (0)      //!< Bit position for ESAI_RSMB_RS.
 #define BM_ESAI_RSMB_RS      (0x0000ffff)  //!< Bit mask for ESAI_RSMB_RS.
 
@@ -4812,7 +4549,6 @@ typedef union _hw_esai_rsmb
 //! @brief Set the RS field to a new value.
 #define BW_ESAI_RSMB_RS(v)   (HW_ESAI_RSMB_WR((HW_ESAI_RSMB_RD() & ~BM_ESAI_RSMB_RS) | BF_ESAI_RSMB_RS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4867,7 +4603,6 @@ typedef union _hw_esai_prrc
  * See .
  */
 //@{
-
 #define BP_ESAI_PRRC_PDC      (0)      //!< Bit position for ESAI_PRRC_PDC.
 #define BM_ESAI_PRRC_PDC      (0x00000fff)  //!< Bit mask for ESAI_PRRC_PDC.
 
@@ -4881,7 +4616,6 @@ typedef union _hw_esai_prrc
 //! @brief Set the PDC field to a new value.
 #define BW_ESAI_PRRC_PDC(v)   (HW_ESAI_PRRC_WR((HW_ESAI_PRRC_RD() & ~BM_ESAI_PRRC_PDC) | BF_ESAI_PRRC_PDC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4936,7 +4670,6 @@ typedef union _hw_esai_pcrc
  * See .
  */
 //@{
-
 #define BP_ESAI_PCRC_PC      (0)      //!< Bit position for ESAI_PCRC_PC.
 #define BM_ESAI_PCRC_PC      (0x00000fff)  //!< Bit mask for ESAI_PCRC_PC.
 
@@ -4950,7 +4683,6 @@ typedef union _hw_esai_pcrc
 //! @brief Set the PC field to a new value.
 #define BW_ESAI_PCRC_PC(v)   (HW_ESAI_PCRC_WR((HW_ESAI_PCRC_RD() & ~BM_ESAI_PCRC_PC) | BF_ESAI_PCRC_PC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5008,3 +4740,5 @@ typedef struct _hw_esai
 #endif
 
 #endif // __HW_ESAI_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

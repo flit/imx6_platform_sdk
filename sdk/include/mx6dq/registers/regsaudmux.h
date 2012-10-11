@@ -119,7 +119,6 @@ typedef union _hw_audmux_ptcr1
  * - 1 - Synchronous mode (default)
  */
 //@{
-
 #define BP_AUDMUX_PTCR1_SYN      (11)      //!< Bit position for AUDMUX_PTCR1_SYN.
 #define BM_AUDMUX_PTCR1_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR1_SYN.
 
@@ -133,7 +132,6 @@ typedef union _hw_audmux_ptcr1
 //! @brief Set the SYN field to a new value.
 #define BW_AUDMUX_PTCR1_SYN(v)   (HW_AUDMUX_PTCR1_WR((HW_AUDMUX_PTCR1_RD() & ~BM_AUDMUX_PTCR1_SYN) | BF_AUDMUX_PTCR1_SYN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR1, field RCSEL[15:12] (RW)
@@ -149,7 +147,6 @@ typedef union _hw_audmux_ptcr1
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR1_RCSEL      (12)      //!< Bit position for AUDMUX_PTCR1_RCSEL.
 #define BM_AUDMUX_PTCR1_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR1_RCSEL.
 
@@ -163,7 +160,6 @@ typedef union _hw_audmux_ptcr1
 //! @brief Set the RCSEL field to a new value.
 #define BW_AUDMUX_PTCR1_RCSEL(v)   (HW_AUDMUX_PTCR1_WR((HW_AUDMUX_PTCR1_RD() & ~BM_AUDMUX_PTCR1_RCSEL) | BF_AUDMUX_PTCR1_RCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR1, field RCLKDIR[16] (RW)
@@ -178,7 +174,6 @@ typedef union _hw_audmux_ptcr1
  * - 1 - RxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR1_RCLKDIR      (16)      //!< Bit position for AUDMUX_PTCR1_RCLKDIR.
 #define BM_AUDMUX_PTCR1_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR1_RCLKDIR.
 
@@ -192,7 +187,6 @@ typedef union _hw_audmux_ptcr1
 //! @brief Set the RCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR1_RCLKDIR(v)   (HW_AUDMUX_PTCR1_WR((HW_AUDMUX_PTCR1_RD() & ~BM_AUDMUX_PTCR1_RCLKDIR) | BF_AUDMUX_PTCR1_RCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR1, field RFSEL[20:17] (RW)
@@ -208,7 +202,6 @@ typedef union _hw_audmux_ptcr1
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR1_RFSEL      (17)      //!< Bit position for AUDMUX_PTCR1_RFSEL.
 #define BM_AUDMUX_PTCR1_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR1_RFSEL.
 
@@ -222,7 +215,6 @@ typedef union _hw_audmux_ptcr1
 //! @brief Set the RFSEL field to a new value.
 #define BW_AUDMUX_PTCR1_RFSEL(v)   (HW_AUDMUX_PTCR1_WR((HW_AUDMUX_PTCR1_RD() & ~BM_AUDMUX_PTCR1_RFSEL) | BF_AUDMUX_PTCR1_RFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR1, field RFS_DIR[21] (RW)
@@ -236,7 +228,6 @@ typedef union _hw_audmux_ptcr1
  * - 1 - RxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR1_RFS_DIR      (21)      //!< Bit position for AUDMUX_PTCR1_RFS_DIR.
 #define BM_AUDMUX_PTCR1_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR1_RFS_DIR.
 
@@ -250,7 +241,6 @@ typedef union _hw_audmux_ptcr1
 //! @brief Set the RFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR1_RFS_DIR(v)   (HW_AUDMUX_PTCR1_WR((HW_AUDMUX_PTCR1_RD() & ~BM_AUDMUX_PTCR1_RFS_DIR) | BF_AUDMUX_PTCR1_RFS_DIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR1, field TCSEL[25:22] (RW)
@@ -265,7 +255,6 @@ typedef union _hw_audmux_ptcr1
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR1_TCSEL      (22)      //!< Bit position for AUDMUX_PTCR1_TCSEL.
 #define BM_AUDMUX_PTCR1_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR1_TCSEL.
 
@@ -279,7 +268,6 @@ typedef union _hw_audmux_ptcr1
 //! @brief Set the TCSEL field to a new value.
 #define BW_AUDMUX_PTCR1_TCSEL(v)   (HW_AUDMUX_PTCR1_WR((HW_AUDMUX_PTCR1_RD() & ~BM_AUDMUX_PTCR1_TCSEL) | BF_AUDMUX_PTCR1_TCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR1, field TCLKDIR[26] (RW)
@@ -293,7 +281,6 @@ typedef union _hw_audmux_ptcr1
  * - 1 - TxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR1_TCLKDIR      (26)      //!< Bit position for AUDMUX_PTCR1_TCLKDIR.
 #define BM_AUDMUX_PTCR1_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR1_TCLKDIR.
 
@@ -307,7 +294,6 @@ typedef union _hw_audmux_ptcr1
 //! @brief Set the TCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR1_TCLKDIR(v)   (HW_AUDMUX_PTCR1_WR((HW_AUDMUX_PTCR1_RD() & ~BM_AUDMUX_PTCR1_TCLKDIR) | BF_AUDMUX_PTCR1_TCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR1, field TFSEL[30:27] (RW)
@@ -322,7 +308,6 @@ typedef union _hw_audmux_ptcr1
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR1_TFSEL      (27)      //!< Bit position for AUDMUX_PTCR1_TFSEL.
 #define BM_AUDMUX_PTCR1_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR1_TFSEL.
 
@@ -336,7 +321,6 @@ typedef union _hw_audmux_ptcr1
 //! @brief Set the TFSEL field to a new value.
 #define BW_AUDMUX_PTCR1_TFSEL(v)   (HW_AUDMUX_PTCR1_WR((HW_AUDMUX_PTCR1_RD() & ~BM_AUDMUX_PTCR1_TFSEL) | BF_AUDMUX_PTCR1_TFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR1, field TFS_DIR[31] (RW)
@@ -350,7 +334,6 @@ typedef union _hw_audmux_ptcr1
  * - 1 - TxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR1_TFS_DIR      (31)      //!< Bit position for AUDMUX_PTCR1_TFS_DIR.
 #define BM_AUDMUX_PTCR1_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR1_TFS_DIR.
 
@@ -364,7 +347,6 @@ typedef union _hw_audmux_ptcr1
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR1_TFS_DIR(v)   (HW_AUDMUX_PTCR1_WR((HW_AUDMUX_PTCR1_RD() & ~BM_AUDMUX_PTCR1_TFS_DIR) | BF_AUDMUX_PTCR1_TFS_DIR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -425,7 +407,6 @@ typedef union _hw_audmux_pdcr1
  * - 1 - Excludes RxDn from ANDing
  */
 //@{
-
 #define BP_AUDMUX_PDCR1_INMMASK      (0)      //!< Bit position for AUDMUX_PDCR1_INMMASK.
 #define BM_AUDMUX_PDCR1_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR1_INMMASK.
 
@@ -439,7 +420,6 @@ typedef union _hw_audmux_pdcr1
 //! @brief Set the INMMASK field to a new value.
 #define BW_AUDMUX_PDCR1_INMMASK(v)   (HW_AUDMUX_PDCR1_WR((HW_AUDMUX_PDCR1_RD() & ~BM_AUDMUX_PDCR1_INMMASK) | BF_AUDMUX_PDCR1_INMMASK(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR1, field MODE[8] (RW)
@@ -454,7 +434,6 @@ typedef union _hw_audmux_pdcr1
  * - 1 - Internal Network mode
  */
 //@{
-
 #define BP_AUDMUX_PDCR1_MODE      (8)      //!< Bit position for AUDMUX_PDCR1_MODE.
 #define BM_AUDMUX_PDCR1_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR1_MODE.
 
@@ -468,7 +447,6 @@ typedef union _hw_audmux_pdcr1
 //! @brief Set the MODE field to a new value.
 #define BW_AUDMUX_PDCR1_MODE(v)   (HW_AUDMUX_PDCR1_WR((HW_AUDMUX_PDCR1_RD() & ~BM_AUDMUX_PDCR1_MODE) | BF_AUDMUX_PDCR1_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR1, field TXRXEN[12] (RW)
@@ -480,7 +458,6 @@ typedef union _hw_audmux_pdcr1
  * - 1 - Switch (Transmit Pin = Receive, Receive Pin = Transmit)
  */
 //@{
-
 #define BP_AUDMUX_PDCR1_TXRXEN      (12)      //!< Bit position for AUDMUX_PDCR1_TXRXEN.
 #define BM_AUDMUX_PDCR1_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR1_TXRXEN.
 
@@ -494,7 +471,6 @@ typedef union _hw_audmux_pdcr1
 //! @brief Set the TXRXEN field to a new value.
 #define BW_AUDMUX_PDCR1_TXRXEN(v)   (HW_AUDMUX_PDCR1_WR((HW_AUDMUX_PDCR1_RD() & ~BM_AUDMUX_PDCR1_TXRXEN) | BF_AUDMUX_PDCR1_TXRXEN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR1, field RXDSEL[15:13] (RW)
@@ -509,7 +485,6 @@ typedef union _hw_audmux_pdcr1
  * - 111 - Reserved
  */
 //@{
-
 #define BP_AUDMUX_PDCR1_RXDSEL      (13)      //!< Bit position for AUDMUX_PDCR1_RXDSEL.
 #define BM_AUDMUX_PDCR1_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR1_RXDSEL.
 
@@ -523,7 +498,6 @@ typedef union _hw_audmux_pdcr1
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR1_RXDSEL(v)   (HW_AUDMUX_PDCR1_WR((HW_AUDMUX_PDCR1_RD() & ~BM_AUDMUX_PDCR1_RXDSEL) | BF_AUDMUX_PDCR1_RXDSEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -590,7 +564,6 @@ typedef union _hw_audmux_ptcr2
  * - 1 - Synchronous mode (default)
  */
 //@{
-
 #define BP_AUDMUX_PTCR2_SYN      (11)      //!< Bit position for AUDMUX_PTCR2_SYN.
 #define BM_AUDMUX_PTCR2_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR2_SYN.
 
@@ -604,7 +577,6 @@ typedef union _hw_audmux_ptcr2
 //! @brief Set the SYN field to a new value.
 #define BW_AUDMUX_PTCR2_SYN(v)   (HW_AUDMUX_PTCR2_WR((HW_AUDMUX_PTCR2_RD() & ~BM_AUDMUX_PTCR2_SYN) | BF_AUDMUX_PTCR2_SYN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR2, field RCSEL[15:12] (RW)
@@ -620,7 +592,6 @@ typedef union _hw_audmux_ptcr2
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR2_RCSEL      (12)      //!< Bit position for AUDMUX_PTCR2_RCSEL.
 #define BM_AUDMUX_PTCR2_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR2_RCSEL.
 
@@ -634,7 +605,6 @@ typedef union _hw_audmux_ptcr2
 //! @brief Set the RCSEL field to a new value.
 #define BW_AUDMUX_PTCR2_RCSEL(v)   (HW_AUDMUX_PTCR2_WR((HW_AUDMUX_PTCR2_RD() & ~BM_AUDMUX_PTCR2_RCSEL) | BF_AUDMUX_PTCR2_RCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR2, field RCLKDIR[16] (RW)
@@ -649,7 +619,6 @@ typedef union _hw_audmux_ptcr2
  * - 1 - RxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR2_RCLKDIR      (16)      //!< Bit position for AUDMUX_PTCR2_RCLKDIR.
 #define BM_AUDMUX_PTCR2_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR2_RCLKDIR.
 
@@ -663,7 +632,6 @@ typedef union _hw_audmux_ptcr2
 //! @brief Set the RCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR2_RCLKDIR(v)   (HW_AUDMUX_PTCR2_WR((HW_AUDMUX_PTCR2_RD() & ~BM_AUDMUX_PTCR2_RCLKDIR) | BF_AUDMUX_PTCR2_RCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR2, field RFSEL[20:17] (RW)
@@ -679,7 +647,6 @@ typedef union _hw_audmux_ptcr2
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR2_RFSEL      (17)      //!< Bit position for AUDMUX_PTCR2_RFSEL.
 #define BM_AUDMUX_PTCR2_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR2_RFSEL.
 
@@ -693,7 +660,6 @@ typedef union _hw_audmux_ptcr2
 //! @brief Set the RFSEL field to a new value.
 #define BW_AUDMUX_PTCR2_RFSEL(v)   (HW_AUDMUX_PTCR2_WR((HW_AUDMUX_PTCR2_RD() & ~BM_AUDMUX_PTCR2_RFSEL) | BF_AUDMUX_PTCR2_RFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR2, field RFS_DIR[21] (RW)
@@ -707,7 +673,6 @@ typedef union _hw_audmux_ptcr2
  * - 1 - RxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR2_RFS_DIR      (21)      //!< Bit position for AUDMUX_PTCR2_RFS_DIR.
 #define BM_AUDMUX_PTCR2_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR2_RFS_DIR.
 
@@ -721,7 +686,6 @@ typedef union _hw_audmux_ptcr2
 //! @brief Set the RFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR2_RFS_DIR(v)   (HW_AUDMUX_PTCR2_WR((HW_AUDMUX_PTCR2_RD() & ~BM_AUDMUX_PTCR2_RFS_DIR) | BF_AUDMUX_PTCR2_RFS_DIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR2, field TCSEL[25:22] (RW)
@@ -736,7 +700,6 @@ typedef union _hw_audmux_ptcr2
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR2_TCSEL      (22)      //!< Bit position for AUDMUX_PTCR2_TCSEL.
 #define BM_AUDMUX_PTCR2_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR2_TCSEL.
 
@@ -750,7 +713,6 @@ typedef union _hw_audmux_ptcr2
 //! @brief Set the TCSEL field to a new value.
 #define BW_AUDMUX_PTCR2_TCSEL(v)   (HW_AUDMUX_PTCR2_WR((HW_AUDMUX_PTCR2_RD() & ~BM_AUDMUX_PTCR2_TCSEL) | BF_AUDMUX_PTCR2_TCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR2, field TCLKDIR[26] (RW)
@@ -764,7 +726,6 @@ typedef union _hw_audmux_ptcr2
  * - 1 - TxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR2_TCLKDIR      (26)      //!< Bit position for AUDMUX_PTCR2_TCLKDIR.
 #define BM_AUDMUX_PTCR2_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR2_TCLKDIR.
 
@@ -778,7 +739,6 @@ typedef union _hw_audmux_ptcr2
 //! @brief Set the TCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR2_TCLKDIR(v)   (HW_AUDMUX_PTCR2_WR((HW_AUDMUX_PTCR2_RD() & ~BM_AUDMUX_PTCR2_TCLKDIR) | BF_AUDMUX_PTCR2_TCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR2, field TFSEL[30:27] (RW)
@@ -793,7 +753,6 @@ typedef union _hw_audmux_ptcr2
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR2_TFSEL      (27)      //!< Bit position for AUDMUX_PTCR2_TFSEL.
 #define BM_AUDMUX_PTCR2_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR2_TFSEL.
 
@@ -807,7 +766,6 @@ typedef union _hw_audmux_ptcr2
 //! @brief Set the TFSEL field to a new value.
 #define BW_AUDMUX_PTCR2_TFSEL(v)   (HW_AUDMUX_PTCR2_WR((HW_AUDMUX_PTCR2_RD() & ~BM_AUDMUX_PTCR2_TFSEL) | BF_AUDMUX_PTCR2_TFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR2, field TFS_DIR[31] (RW)
@@ -821,7 +779,6 @@ typedef union _hw_audmux_ptcr2
  * - 1 - TxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR2_TFS_DIR      (31)      //!< Bit position for AUDMUX_PTCR2_TFS_DIR.
 #define BM_AUDMUX_PTCR2_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR2_TFS_DIR.
 
@@ -835,7 +792,6 @@ typedef union _hw_audmux_ptcr2
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR2_TFS_DIR(v)   (HW_AUDMUX_PTCR2_WR((HW_AUDMUX_PTCR2_RD() & ~BM_AUDMUX_PTCR2_TFS_DIR) | BF_AUDMUX_PTCR2_TFS_DIR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -896,7 +852,6 @@ typedef union _hw_audmux_pdcr2
  * - 1 - Excludes RxDn from ANDing
  */
 //@{
-
 #define BP_AUDMUX_PDCR2_INMMASK      (0)      //!< Bit position for AUDMUX_PDCR2_INMMASK.
 #define BM_AUDMUX_PDCR2_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR2_INMMASK.
 
@@ -910,7 +865,6 @@ typedef union _hw_audmux_pdcr2
 //! @brief Set the INMMASK field to a new value.
 #define BW_AUDMUX_PDCR2_INMMASK(v)   (HW_AUDMUX_PDCR2_WR((HW_AUDMUX_PDCR2_RD() & ~BM_AUDMUX_PDCR2_INMMASK) | BF_AUDMUX_PDCR2_INMMASK(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR2, field MODE[8] (RW)
@@ -925,7 +879,6 @@ typedef union _hw_audmux_pdcr2
  * - 1 - Internal Network mode
  */
 //@{
-
 #define BP_AUDMUX_PDCR2_MODE      (8)      //!< Bit position for AUDMUX_PDCR2_MODE.
 #define BM_AUDMUX_PDCR2_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR2_MODE.
 
@@ -939,7 +892,6 @@ typedef union _hw_audmux_pdcr2
 //! @brief Set the MODE field to a new value.
 #define BW_AUDMUX_PDCR2_MODE(v)   (HW_AUDMUX_PDCR2_WR((HW_AUDMUX_PDCR2_RD() & ~BM_AUDMUX_PDCR2_MODE) | BF_AUDMUX_PDCR2_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR2, field TXRXEN[12] (RW)
@@ -951,7 +903,6 @@ typedef union _hw_audmux_pdcr2
  * - 1 - Switch (Transmit Pin = Receive, Receive Pin = Transmit)
  */
 //@{
-
 #define BP_AUDMUX_PDCR2_TXRXEN      (12)      //!< Bit position for AUDMUX_PDCR2_TXRXEN.
 #define BM_AUDMUX_PDCR2_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR2_TXRXEN.
 
@@ -965,7 +916,6 @@ typedef union _hw_audmux_pdcr2
 //! @brief Set the TXRXEN field to a new value.
 #define BW_AUDMUX_PDCR2_TXRXEN(v)   (HW_AUDMUX_PDCR2_WR((HW_AUDMUX_PDCR2_RD() & ~BM_AUDMUX_PDCR2_TXRXEN) | BF_AUDMUX_PDCR2_TXRXEN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR2, field RXDSEL[15:13] (RW)
@@ -980,7 +930,6 @@ typedef union _hw_audmux_pdcr2
  * - 111 - Reserved
  */
 //@{
-
 #define BP_AUDMUX_PDCR2_RXDSEL      (13)      //!< Bit position for AUDMUX_PDCR2_RXDSEL.
 #define BM_AUDMUX_PDCR2_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR2_RXDSEL.
 
@@ -994,7 +943,6 @@ typedef union _hw_audmux_pdcr2
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR2_RXDSEL(v)   (HW_AUDMUX_PDCR2_WR((HW_AUDMUX_PDCR2_RD() & ~BM_AUDMUX_PDCR2_RXDSEL) | BF_AUDMUX_PDCR2_RXDSEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1061,7 +1009,6 @@ typedef union _hw_audmux_ptcr3
  * - 1 - Synchronous mode (default)
  */
 //@{
-
 #define BP_AUDMUX_PTCR3_SYN      (11)      //!< Bit position for AUDMUX_PTCR3_SYN.
 #define BM_AUDMUX_PTCR3_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR3_SYN.
 
@@ -1075,7 +1022,6 @@ typedef union _hw_audmux_ptcr3
 //! @brief Set the SYN field to a new value.
 #define BW_AUDMUX_PTCR3_SYN(v)   (HW_AUDMUX_PTCR3_WR((HW_AUDMUX_PTCR3_RD() & ~BM_AUDMUX_PTCR3_SYN) | BF_AUDMUX_PTCR3_SYN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR3, field RCSEL[15:12] (RW)
@@ -1091,7 +1037,6 @@ typedef union _hw_audmux_ptcr3
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR3_RCSEL      (12)      //!< Bit position for AUDMUX_PTCR3_RCSEL.
 #define BM_AUDMUX_PTCR3_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR3_RCSEL.
 
@@ -1105,7 +1050,6 @@ typedef union _hw_audmux_ptcr3
 //! @brief Set the RCSEL field to a new value.
 #define BW_AUDMUX_PTCR3_RCSEL(v)   (HW_AUDMUX_PTCR3_WR((HW_AUDMUX_PTCR3_RD() & ~BM_AUDMUX_PTCR3_RCSEL) | BF_AUDMUX_PTCR3_RCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR3, field RCLKDIR[16] (RW)
@@ -1120,7 +1064,6 @@ typedef union _hw_audmux_ptcr3
  * - 1 - RxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR3_RCLKDIR      (16)      //!< Bit position for AUDMUX_PTCR3_RCLKDIR.
 #define BM_AUDMUX_PTCR3_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR3_RCLKDIR.
 
@@ -1134,7 +1077,6 @@ typedef union _hw_audmux_ptcr3
 //! @brief Set the RCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR3_RCLKDIR(v)   (HW_AUDMUX_PTCR3_WR((HW_AUDMUX_PTCR3_RD() & ~BM_AUDMUX_PTCR3_RCLKDIR) | BF_AUDMUX_PTCR3_RCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR3, field RFSEL[20:17] (RW)
@@ -1150,7 +1092,6 @@ typedef union _hw_audmux_ptcr3
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR3_RFSEL      (17)      //!< Bit position for AUDMUX_PTCR3_RFSEL.
 #define BM_AUDMUX_PTCR3_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR3_RFSEL.
 
@@ -1164,7 +1105,6 @@ typedef union _hw_audmux_ptcr3
 //! @brief Set the RFSEL field to a new value.
 #define BW_AUDMUX_PTCR3_RFSEL(v)   (HW_AUDMUX_PTCR3_WR((HW_AUDMUX_PTCR3_RD() & ~BM_AUDMUX_PTCR3_RFSEL) | BF_AUDMUX_PTCR3_RFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR3, field RFS_DIR[21] (RW)
@@ -1178,7 +1118,6 @@ typedef union _hw_audmux_ptcr3
  * - 1 - RxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR3_RFS_DIR      (21)      //!< Bit position for AUDMUX_PTCR3_RFS_DIR.
 #define BM_AUDMUX_PTCR3_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR3_RFS_DIR.
 
@@ -1192,7 +1131,6 @@ typedef union _hw_audmux_ptcr3
 //! @brief Set the RFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR3_RFS_DIR(v)   (HW_AUDMUX_PTCR3_WR((HW_AUDMUX_PTCR3_RD() & ~BM_AUDMUX_PTCR3_RFS_DIR) | BF_AUDMUX_PTCR3_RFS_DIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR3, field TCSEL[25:22] (RW)
@@ -1207,7 +1145,6 @@ typedef union _hw_audmux_ptcr3
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR3_TCSEL      (22)      //!< Bit position for AUDMUX_PTCR3_TCSEL.
 #define BM_AUDMUX_PTCR3_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR3_TCSEL.
 
@@ -1221,7 +1158,6 @@ typedef union _hw_audmux_ptcr3
 //! @brief Set the TCSEL field to a new value.
 #define BW_AUDMUX_PTCR3_TCSEL(v)   (HW_AUDMUX_PTCR3_WR((HW_AUDMUX_PTCR3_RD() & ~BM_AUDMUX_PTCR3_TCSEL) | BF_AUDMUX_PTCR3_TCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR3, field TCLKDIR[26] (RW)
@@ -1235,7 +1171,6 @@ typedef union _hw_audmux_ptcr3
  * - 1 - TxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR3_TCLKDIR      (26)      //!< Bit position for AUDMUX_PTCR3_TCLKDIR.
 #define BM_AUDMUX_PTCR3_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR3_TCLKDIR.
 
@@ -1249,7 +1184,6 @@ typedef union _hw_audmux_ptcr3
 //! @brief Set the TCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR3_TCLKDIR(v)   (HW_AUDMUX_PTCR3_WR((HW_AUDMUX_PTCR3_RD() & ~BM_AUDMUX_PTCR3_TCLKDIR) | BF_AUDMUX_PTCR3_TCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR3, field TFSEL[30:27] (RW)
@@ -1264,7 +1198,6 @@ typedef union _hw_audmux_ptcr3
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR3_TFSEL      (27)      //!< Bit position for AUDMUX_PTCR3_TFSEL.
 #define BM_AUDMUX_PTCR3_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR3_TFSEL.
 
@@ -1278,7 +1211,6 @@ typedef union _hw_audmux_ptcr3
 //! @brief Set the TFSEL field to a new value.
 #define BW_AUDMUX_PTCR3_TFSEL(v)   (HW_AUDMUX_PTCR3_WR((HW_AUDMUX_PTCR3_RD() & ~BM_AUDMUX_PTCR3_TFSEL) | BF_AUDMUX_PTCR3_TFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR3, field TFS_DIR[31] (RW)
@@ -1292,7 +1224,6 @@ typedef union _hw_audmux_ptcr3
  * - 1 - TxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR3_TFS_DIR      (31)      //!< Bit position for AUDMUX_PTCR3_TFS_DIR.
 #define BM_AUDMUX_PTCR3_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR3_TFS_DIR.
 
@@ -1306,7 +1237,6 @@ typedef union _hw_audmux_ptcr3
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR3_TFS_DIR(v)   (HW_AUDMUX_PTCR3_WR((HW_AUDMUX_PTCR3_RD() & ~BM_AUDMUX_PTCR3_TFS_DIR) | BF_AUDMUX_PTCR3_TFS_DIR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1367,7 +1297,6 @@ typedef union _hw_audmux_pdcr3
  * - 1 - Excludes RxDn from ANDing
  */
 //@{
-
 #define BP_AUDMUX_PDCR3_INMMASK      (0)      //!< Bit position for AUDMUX_PDCR3_INMMASK.
 #define BM_AUDMUX_PDCR3_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR3_INMMASK.
 
@@ -1381,7 +1310,6 @@ typedef union _hw_audmux_pdcr3
 //! @brief Set the INMMASK field to a new value.
 #define BW_AUDMUX_PDCR3_INMMASK(v)   (HW_AUDMUX_PDCR3_WR((HW_AUDMUX_PDCR3_RD() & ~BM_AUDMUX_PDCR3_INMMASK) | BF_AUDMUX_PDCR3_INMMASK(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR3, field MODE[8] (RW)
@@ -1396,7 +1324,6 @@ typedef union _hw_audmux_pdcr3
  * - 1 - Internal Network mode
  */
 //@{
-
 #define BP_AUDMUX_PDCR3_MODE      (8)      //!< Bit position for AUDMUX_PDCR3_MODE.
 #define BM_AUDMUX_PDCR3_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR3_MODE.
 
@@ -1410,7 +1337,6 @@ typedef union _hw_audmux_pdcr3
 //! @brief Set the MODE field to a new value.
 #define BW_AUDMUX_PDCR3_MODE(v)   (HW_AUDMUX_PDCR3_WR((HW_AUDMUX_PDCR3_RD() & ~BM_AUDMUX_PDCR3_MODE) | BF_AUDMUX_PDCR3_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR3, field TXRXEN[12] (RW)
@@ -1422,7 +1348,6 @@ typedef union _hw_audmux_pdcr3
  * - 1 - Switch (Transmit Pin = Receive, Receive Pin = Transmit)
  */
 //@{
-
 #define BP_AUDMUX_PDCR3_TXRXEN      (12)      //!< Bit position for AUDMUX_PDCR3_TXRXEN.
 #define BM_AUDMUX_PDCR3_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR3_TXRXEN.
 
@@ -1436,7 +1361,6 @@ typedef union _hw_audmux_pdcr3
 //! @brief Set the TXRXEN field to a new value.
 #define BW_AUDMUX_PDCR3_TXRXEN(v)   (HW_AUDMUX_PDCR3_WR((HW_AUDMUX_PDCR3_RD() & ~BM_AUDMUX_PDCR3_TXRXEN) | BF_AUDMUX_PDCR3_TXRXEN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR3, field RXDSEL[15:13] (RW)
@@ -1451,7 +1375,6 @@ typedef union _hw_audmux_pdcr3
  * - 111 - Reserved
  */
 //@{
-
 #define BP_AUDMUX_PDCR3_RXDSEL      (13)      //!< Bit position for AUDMUX_PDCR3_RXDSEL.
 #define BM_AUDMUX_PDCR3_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR3_RXDSEL.
 
@@ -1465,7 +1388,6 @@ typedef union _hw_audmux_pdcr3
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR3_RXDSEL(v)   (HW_AUDMUX_PDCR3_WR((HW_AUDMUX_PDCR3_RD() & ~BM_AUDMUX_PDCR3_RXDSEL) | BF_AUDMUX_PDCR3_RXDSEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1532,7 +1454,6 @@ typedef union _hw_audmux_ptcr4
  * - 1 - Synchronous mode (default)
  */
 //@{
-
 #define BP_AUDMUX_PTCR4_SYN      (11)      //!< Bit position for AUDMUX_PTCR4_SYN.
 #define BM_AUDMUX_PTCR4_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR4_SYN.
 
@@ -1546,7 +1467,6 @@ typedef union _hw_audmux_ptcr4
 //! @brief Set the SYN field to a new value.
 #define BW_AUDMUX_PTCR4_SYN(v)   (HW_AUDMUX_PTCR4_WR((HW_AUDMUX_PTCR4_RD() & ~BM_AUDMUX_PTCR4_SYN) | BF_AUDMUX_PTCR4_SYN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR4, field RCSEL[15:12] (RW)
@@ -1562,7 +1482,6 @@ typedef union _hw_audmux_ptcr4
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR4_RCSEL      (12)      //!< Bit position for AUDMUX_PTCR4_RCSEL.
 #define BM_AUDMUX_PTCR4_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR4_RCSEL.
 
@@ -1576,7 +1495,6 @@ typedef union _hw_audmux_ptcr4
 //! @brief Set the RCSEL field to a new value.
 #define BW_AUDMUX_PTCR4_RCSEL(v)   (HW_AUDMUX_PTCR4_WR((HW_AUDMUX_PTCR4_RD() & ~BM_AUDMUX_PTCR4_RCSEL) | BF_AUDMUX_PTCR4_RCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR4, field RCLKDIR[16] (RW)
@@ -1591,7 +1509,6 @@ typedef union _hw_audmux_ptcr4
  * - 1 - RxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR4_RCLKDIR      (16)      //!< Bit position for AUDMUX_PTCR4_RCLKDIR.
 #define BM_AUDMUX_PTCR4_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR4_RCLKDIR.
 
@@ -1605,7 +1522,6 @@ typedef union _hw_audmux_ptcr4
 //! @brief Set the RCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR4_RCLKDIR(v)   (HW_AUDMUX_PTCR4_WR((HW_AUDMUX_PTCR4_RD() & ~BM_AUDMUX_PTCR4_RCLKDIR) | BF_AUDMUX_PTCR4_RCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR4, field RFSEL[20:17] (RW)
@@ -1621,7 +1537,6 @@ typedef union _hw_audmux_ptcr4
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR4_RFSEL      (17)      //!< Bit position for AUDMUX_PTCR4_RFSEL.
 #define BM_AUDMUX_PTCR4_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR4_RFSEL.
 
@@ -1635,7 +1550,6 @@ typedef union _hw_audmux_ptcr4
 //! @brief Set the RFSEL field to a new value.
 #define BW_AUDMUX_PTCR4_RFSEL(v)   (HW_AUDMUX_PTCR4_WR((HW_AUDMUX_PTCR4_RD() & ~BM_AUDMUX_PTCR4_RFSEL) | BF_AUDMUX_PTCR4_RFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR4, field RFS_DIR[21] (RW)
@@ -1649,7 +1563,6 @@ typedef union _hw_audmux_ptcr4
  * - 1 - RxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR4_RFS_DIR      (21)      //!< Bit position for AUDMUX_PTCR4_RFS_DIR.
 #define BM_AUDMUX_PTCR4_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR4_RFS_DIR.
 
@@ -1663,7 +1576,6 @@ typedef union _hw_audmux_ptcr4
 //! @brief Set the RFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR4_RFS_DIR(v)   (HW_AUDMUX_PTCR4_WR((HW_AUDMUX_PTCR4_RD() & ~BM_AUDMUX_PTCR4_RFS_DIR) | BF_AUDMUX_PTCR4_RFS_DIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR4, field TCSEL[25:22] (RW)
@@ -1678,7 +1590,6 @@ typedef union _hw_audmux_ptcr4
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR4_TCSEL      (22)      //!< Bit position for AUDMUX_PTCR4_TCSEL.
 #define BM_AUDMUX_PTCR4_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR4_TCSEL.
 
@@ -1692,7 +1603,6 @@ typedef union _hw_audmux_ptcr4
 //! @brief Set the TCSEL field to a new value.
 #define BW_AUDMUX_PTCR4_TCSEL(v)   (HW_AUDMUX_PTCR4_WR((HW_AUDMUX_PTCR4_RD() & ~BM_AUDMUX_PTCR4_TCSEL) | BF_AUDMUX_PTCR4_TCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR4, field TCLKDIR[26] (RW)
@@ -1706,7 +1616,6 @@ typedef union _hw_audmux_ptcr4
  * - 1 - TxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR4_TCLKDIR      (26)      //!< Bit position for AUDMUX_PTCR4_TCLKDIR.
 #define BM_AUDMUX_PTCR4_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR4_TCLKDIR.
 
@@ -1720,7 +1629,6 @@ typedef union _hw_audmux_ptcr4
 //! @brief Set the TCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR4_TCLKDIR(v)   (HW_AUDMUX_PTCR4_WR((HW_AUDMUX_PTCR4_RD() & ~BM_AUDMUX_PTCR4_TCLKDIR) | BF_AUDMUX_PTCR4_TCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR4, field TFSEL[30:27] (RW)
@@ -1735,7 +1643,6 @@ typedef union _hw_audmux_ptcr4
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR4_TFSEL      (27)      //!< Bit position for AUDMUX_PTCR4_TFSEL.
 #define BM_AUDMUX_PTCR4_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR4_TFSEL.
 
@@ -1749,7 +1656,6 @@ typedef union _hw_audmux_ptcr4
 //! @brief Set the TFSEL field to a new value.
 #define BW_AUDMUX_PTCR4_TFSEL(v)   (HW_AUDMUX_PTCR4_WR((HW_AUDMUX_PTCR4_RD() & ~BM_AUDMUX_PTCR4_TFSEL) | BF_AUDMUX_PTCR4_TFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR4, field TFS_DIR[31] (RW)
@@ -1763,7 +1669,6 @@ typedef union _hw_audmux_ptcr4
  * - 1 - TxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR4_TFS_DIR      (31)      //!< Bit position for AUDMUX_PTCR4_TFS_DIR.
 #define BM_AUDMUX_PTCR4_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR4_TFS_DIR.
 
@@ -1777,7 +1682,6 @@ typedef union _hw_audmux_ptcr4
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR4_TFS_DIR(v)   (HW_AUDMUX_PTCR4_WR((HW_AUDMUX_PTCR4_RD() & ~BM_AUDMUX_PTCR4_TFS_DIR) | BF_AUDMUX_PTCR4_TFS_DIR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1838,7 +1742,6 @@ typedef union _hw_audmux_pdcr4
  * - 1 - Excludes RxDn from ANDing
  */
 //@{
-
 #define BP_AUDMUX_PDCR4_INMMASK      (0)      //!< Bit position for AUDMUX_PDCR4_INMMASK.
 #define BM_AUDMUX_PDCR4_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR4_INMMASK.
 
@@ -1852,7 +1755,6 @@ typedef union _hw_audmux_pdcr4
 //! @brief Set the INMMASK field to a new value.
 #define BW_AUDMUX_PDCR4_INMMASK(v)   (HW_AUDMUX_PDCR4_WR((HW_AUDMUX_PDCR4_RD() & ~BM_AUDMUX_PDCR4_INMMASK) | BF_AUDMUX_PDCR4_INMMASK(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR4, field MODE[8] (RW)
@@ -1867,7 +1769,6 @@ typedef union _hw_audmux_pdcr4
  * - 1 - Internal Network mode
  */
 //@{
-
 #define BP_AUDMUX_PDCR4_MODE      (8)      //!< Bit position for AUDMUX_PDCR4_MODE.
 #define BM_AUDMUX_PDCR4_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR4_MODE.
 
@@ -1881,7 +1782,6 @@ typedef union _hw_audmux_pdcr4
 //! @brief Set the MODE field to a new value.
 #define BW_AUDMUX_PDCR4_MODE(v)   (HW_AUDMUX_PDCR4_WR((HW_AUDMUX_PDCR4_RD() & ~BM_AUDMUX_PDCR4_MODE) | BF_AUDMUX_PDCR4_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR4, field TXRXEN[12] (RW)
@@ -1893,7 +1793,6 @@ typedef union _hw_audmux_pdcr4
  * - 1 - Switch (Transmit Pin = Receive, Receive Pin = Transmit)
  */
 //@{
-
 #define BP_AUDMUX_PDCR4_TXRXEN      (12)      //!< Bit position for AUDMUX_PDCR4_TXRXEN.
 #define BM_AUDMUX_PDCR4_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR4_TXRXEN.
 
@@ -1907,7 +1806,6 @@ typedef union _hw_audmux_pdcr4
 //! @brief Set the TXRXEN field to a new value.
 #define BW_AUDMUX_PDCR4_TXRXEN(v)   (HW_AUDMUX_PDCR4_WR((HW_AUDMUX_PDCR4_RD() & ~BM_AUDMUX_PDCR4_TXRXEN) | BF_AUDMUX_PDCR4_TXRXEN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR4, field RXDSEL[15:13] (RW)
@@ -1922,7 +1820,6 @@ typedef union _hw_audmux_pdcr4
  * - 111 - Reserved
  */
 //@{
-
 #define BP_AUDMUX_PDCR4_RXDSEL      (13)      //!< Bit position for AUDMUX_PDCR4_RXDSEL.
 #define BM_AUDMUX_PDCR4_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR4_RXDSEL.
 
@@ -1936,7 +1833,6 @@ typedef union _hw_audmux_pdcr4
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR4_RXDSEL(v)   (HW_AUDMUX_PDCR4_WR((HW_AUDMUX_PDCR4_RD() & ~BM_AUDMUX_PDCR4_RXDSEL) | BF_AUDMUX_PDCR4_RXDSEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2003,7 +1899,6 @@ typedef union _hw_audmux_ptcr5
  * - 1 - Synchronous mode (default)
  */
 //@{
-
 #define BP_AUDMUX_PTCR5_SYN      (11)      //!< Bit position for AUDMUX_PTCR5_SYN.
 #define BM_AUDMUX_PTCR5_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR5_SYN.
 
@@ -2017,7 +1912,6 @@ typedef union _hw_audmux_ptcr5
 //! @brief Set the SYN field to a new value.
 #define BW_AUDMUX_PTCR5_SYN(v)   (HW_AUDMUX_PTCR5_WR((HW_AUDMUX_PTCR5_RD() & ~BM_AUDMUX_PTCR5_SYN) | BF_AUDMUX_PTCR5_SYN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR5, field RCSEL[15:12] (RW)
@@ -2033,7 +1927,6 @@ typedef union _hw_audmux_ptcr5
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR5_RCSEL      (12)      //!< Bit position for AUDMUX_PTCR5_RCSEL.
 #define BM_AUDMUX_PTCR5_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR5_RCSEL.
 
@@ -2047,7 +1940,6 @@ typedef union _hw_audmux_ptcr5
 //! @brief Set the RCSEL field to a new value.
 #define BW_AUDMUX_PTCR5_RCSEL(v)   (HW_AUDMUX_PTCR5_WR((HW_AUDMUX_PTCR5_RD() & ~BM_AUDMUX_PTCR5_RCSEL) | BF_AUDMUX_PTCR5_RCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR5, field RCLKDIR[16] (RW)
@@ -2062,7 +1954,6 @@ typedef union _hw_audmux_ptcr5
  * - 1 - RxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR5_RCLKDIR      (16)      //!< Bit position for AUDMUX_PTCR5_RCLKDIR.
 #define BM_AUDMUX_PTCR5_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR5_RCLKDIR.
 
@@ -2076,7 +1967,6 @@ typedef union _hw_audmux_ptcr5
 //! @brief Set the RCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR5_RCLKDIR(v)   (HW_AUDMUX_PTCR5_WR((HW_AUDMUX_PTCR5_RD() & ~BM_AUDMUX_PTCR5_RCLKDIR) | BF_AUDMUX_PTCR5_RCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR5, field RFSEL[20:17] (RW)
@@ -2092,7 +1982,6 @@ typedef union _hw_audmux_ptcr5
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR5_RFSEL      (17)      //!< Bit position for AUDMUX_PTCR5_RFSEL.
 #define BM_AUDMUX_PTCR5_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR5_RFSEL.
 
@@ -2106,7 +1995,6 @@ typedef union _hw_audmux_ptcr5
 //! @brief Set the RFSEL field to a new value.
 #define BW_AUDMUX_PTCR5_RFSEL(v)   (HW_AUDMUX_PTCR5_WR((HW_AUDMUX_PTCR5_RD() & ~BM_AUDMUX_PTCR5_RFSEL) | BF_AUDMUX_PTCR5_RFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR5, field RFS_DIR[21] (RW)
@@ -2120,7 +2008,6 @@ typedef union _hw_audmux_ptcr5
  * - 1 - RxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR5_RFS_DIR      (21)      //!< Bit position for AUDMUX_PTCR5_RFS_DIR.
 #define BM_AUDMUX_PTCR5_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR5_RFS_DIR.
 
@@ -2134,7 +2021,6 @@ typedef union _hw_audmux_ptcr5
 //! @brief Set the RFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR5_RFS_DIR(v)   (HW_AUDMUX_PTCR5_WR((HW_AUDMUX_PTCR5_RD() & ~BM_AUDMUX_PTCR5_RFS_DIR) | BF_AUDMUX_PTCR5_RFS_DIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR5, field TCSEL[25:22] (RW)
@@ -2149,7 +2035,6 @@ typedef union _hw_audmux_ptcr5
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR5_TCSEL      (22)      //!< Bit position for AUDMUX_PTCR5_TCSEL.
 #define BM_AUDMUX_PTCR5_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR5_TCSEL.
 
@@ -2163,7 +2048,6 @@ typedef union _hw_audmux_ptcr5
 //! @brief Set the TCSEL field to a new value.
 #define BW_AUDMUX_PTCR5_TCSEL(v)   (HW_AUDMUX_PTCR5_WR((HW_AUDMUX_PTCR5_RD() & ~BM_AUDMUX_PTCR5_TCSEL) | BF_AUDMUX_PTCR5_TCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR5, field TCLKDIR[26] (RW)
@@ -2177,7 +2061,6 @@ typedef union _hw_audmux_ptcr5
  * - 1 - TxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR5_TCLKDIR      (26)      //!< Bit position for AUDMUX_PTCR5_TCLKDIR.
 #define BM_AUDMUX_PTCR5_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR5_TCLKDIR.
 
@@ -2191,7 +2074,6 @@ typedef union _hw_audmux_ptcr5
 //! @brief Set the TCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR5_TCLKDIR(v)   (HW_AUDMUX_PTCR5_WR((HW_AUDMUX_PTCR5_RD() & ~BM_AUDMUX_PTCR5_TCLKDIR) | BF_AUDMUX_PTCR5_TCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR5, field TFSEL[30:27] (RW)
@@ -2206,7 +2088,6 @@ typedef union _hw_audmux_ptcr5
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR5_TFSEL      (27)      //!< Bit position for AUDMUX_PTCR5_TFSEL.
 #define BM_AUDMUX_PTCR5_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR5_TFSEL.
 
@@ -2220,7 +2101,6 @@ typedef union _hw_audmux_ptcr5
 //! @brief Set the TFSEL field to a new value.
 #define BW_AUDMUX_PTCR5_TFSEL(v)   (HW_AUDMUX_PTCR5_WR((HW_AUDMUX_PTCR5_RD() & ~BM_AUDMUX_PTCR5_TFSEL) | BF_AUDMUX_PTCR5_TFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR5, field TFS_DIR[31] (RW)
@@ -2234,7 +2114,6 @@ typedef union _hw_audmux_ptcr5
  * - 1 - TxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR5_TFS_DIR      (31)      //!< Bit position for AUDMUX_PTCR5_TFS_DIR.
 #define BM_AUDMUX_PTCR5_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR5_TFS_DIR.
 
@@ -2248,7 +2127,6 @@ typedef union _hw_audmux_ptcr5
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR5_TFS_DIR(v)   (HW_AUDMUX_PTCR5_WR((HW_AUDMUX_PTCR5_RD() & ~BM_AUDMUX_PTCR5_TFS_DIR) | BF_AUDMUX_PTCR5_TFS_DIR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2309,7 +2187,6 @@ typedef union _hw_audmux_pdcr5
  * - 1 - Excludes RxDn from ANDing
  */
 //@{
-
 #define BP_AUDMUX_PDCR5_INMMASK      (0)      //!< Bit position for AUDMUX_PDCR5_INMMASK.
 #define BM_AUDMUX_PDCR5_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR5_INMMASK.
 
@@ -2323,7 +2200,6 @@ typedef union _hw_audmux_pdcr5
 //! @brief Set the INMMASK field to a new value.
 #define BW_AUDMUX_PDCR5_INMMASK(v)   (HW_AUDMUX_PDCR5_WR((HW_AUDMUX_PDCR5_RD() & ~BM_AUDMUX_PDCR5_INMMASK) | BF_AUDMUX_PDCR5_INMMASK(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR5, field MODE[8] (RW)
@@ -2338,7 +2214,6 @@ typedef union _hw_audmux_pdcr5
  * - 1 - Internal Network mode
  */
 //@{
-
 #define BP_AUDMUX_PDCR5_MODE      (8)      //!< Bit position for AUDMUX_PDCR5_MODE.
 #define BM_AUDMUX_PDCR5_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR5_MODE.
 
@@ -2352,7 +2227,6 @@ typedef union _hw_audmux_pdcr5
 //! @brief Set the MODE field to a new value.
 #define BW_AUDMUX_PDCR5_MODE(v)   (HW_AUDMUX_PDCR5_WR((HW_AUDMUX_PDCR5_RD() & ~BM_AUDMUX_PDCR5_MODE) | BF_AUDMUX_PDCR5_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR5, field TXRXEN[12] (RW)
@@ -2364,7 +2238,6 @@ typedef union _hw_audmux_pdcr5
  * - 1 - Switch (Transmit Pin = Receive, Receive Pin = Transmit)
  */
 //@{
-
 #define BP_AUDMUX_PDCR5_TXRXEN      (12)      //!< Bit position for AUDMUX_PDCR5_TXRXEN.
 #define BM_AUDMUX_PDCR5_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR5_TXRXEN.
 
@@ -2378,7 +2251,6 @@ typedef union _hw_audmux_pdcr5
 //! @brief Set the TXRXEN field to a new value.
 #define BW_AUDMUX_PDCR5_TXRXEN(v)   (HW_AUDMUX_PDCR5_WR((HW_AUDMUX_PDCR5_RD() & ~BM_AUDMUX_PDCR5_TXRXEN) | BF_AUDMUX_PDCR5_TXRXEN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR5, field RXDSEL[15:13] (RW)
@@ -2393,7 +2265,6 @@ typedef union _hw_audmux_pdcr5
  * - 111 - Reserved
  */
 //@{
-
 #define BP_AUDMUX_PDCR5_RXDSEL      (13)      //!< Bit position for AUDMUX_PDCR5_RXDSEL.
 #define BM_AUDMUX_PDCR5_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR5_RXDSEL.
 
@@ -2407,7 +2278,6 @@ typedef union _hw_audmux_pdcr5
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR5_RXDSEL(v)   (HW_AUDMUX_PDCR5_WR((HW_AUDMUX_PDCR5_RD() & ~BM_AUDMUX_PDCR5_RXDSEL) | BF_AUDMUX_PDCR5_RXDSEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2474,7 +2344,6 @@ typedef union _hw_audmux_ptcr6
  * - 1 - Synchronous mode (default)
  */
 //@{
-
 #define BP_AUDMUX_PTCR6_SYN      (11)      //!< Bit position for AUDMUX_PTCR6_SYN.
 #define BM_AUDMUX_PTCR6_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR6_SYN.
 
@@ -2488,7 +2357,6 @@ typedef union _hw_audmux_ptcr6
 //! @brief Set the SYN field to a new value.
 #define BW_AUDMUX_PTCR6_SYN(v)   (HW_AUDMUX_PTCR6_WR((HW_AUDMUX_PTCR6_RD() & ~BM_AUDMUX_PTCR6_SYN) | BF_AUDMUX_PTCR6_SYN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR6, field RCSEL[15:12] (RW)
@@ -2504,7 +2372,6 @@ typedef union _hw_audmux_ptcr6
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR6_RCSEL      (12)      //!< Bit position for AUDMUX_PTCR6_RCSEL.
 #define BM_AUDMUX_PTCR6_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR6_RCSEL.
 
@@ -2518,7 +2385,6 @@ typedef union _hw_audmux_ptcr6
 //! @brief Set the RCSEL field to a new value.
 #define BW_AUDMUX_PTCR6_RCSEL(v)   (HW_AUDMUX_PTCR6_WR((HW_AUDMUX_PTCR6_RD() & ~BM_AUDMUX_PTCR6_RCSEL) | BF_AUDMUX_PTCR6_RCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR6, field RCLKDIR[16] (RW)
@@ -2533,7 +2399,6 @@ typedef union _hw_audmux_ptcr6
  * - 1 - RxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR6_RCLKDIR      (16)      //!< Bit position for AUDMUX_PTCR6_RCLKDIR.
 #define BM_AUDMUX_PTCR6_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR6_RCLKDIR.
 
@@ -2547,7 +2412,6 @@ typedef union _hw_audmux_ptcr6
 //! @brief Set the RCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR6_RCLKDIR(v)   (HW_AUDMUX_PTCR6_WR((HW_AUDMUX_PTCR6_RD() & ~BM_AUDMUX_PTCR6_RCLKDIR) | BF_AUDMUX_PTCR6_RCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR6, field RFSEL[20:17] (RW)
@@ -2563,7 +2427,6 @@ typedef union _hw_audmux_ptcr6
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR6_RFSEL      (17)      //!< Bit position for AUDMUX_PTCR6_RFSEL.
 #define BM_AUDMUX_PTCR6_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR6_RFSEL.
 
@@ -2577,7 +2440,6 @@ typedef union _hw_audmux_ptcr6
 //! @brief Set the RFSEL field to a new value.
 #define BW_AUDMUX_PTCR6_RFSEL(v)   (HW_AUDMUX_PTCR6_WR((HW_AUDMUX_PTCR6_RD() & ~BM_AUDMUX_PTCR6_RFSEL) | BF_AUDMUX_PTCR6_RFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR6, field RFS_DIR[21] (RW)
@@ -2591,7 +2453,6 @@ typedef union _hw_audmux_ptcr6
  * - 1 - RxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR6_RFS_DIR      (21)      //!< Bit position for AUDMUX_PTCR6_RFS_DIR.
 #define BM_AUDMUX_PTCR6_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR6_RFS_DIR.
 
@@ -2605,7 +2466,6 @@ typedef union _hw_audmux_ptcr6
 //! @brief Set the RFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR6_RFS_DIR(v)   (HW_AUDMUX_PTCR6_WR((HW_AUDMUX_PTCR6_RD() & ~BM_AUDMUX_PTCR6_RFS_DIR) | BF_AUDMUX_PTCR6_RFS_DIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR6, field TCSEL[25:22] (RW)
@@ -2620,7 +2480,6 @@ typedef union _hw_audmux_ptcr6
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR6_TCSEL      (22)      //!< Bit position for AUDMUX_PTCR6_TCSEL.
 #define BM_AUDMUX_PTCR6_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR6_TCSEL.
 
@@ -2634,7 +2493,6 @@ typedef union _hw_audmux_ptcr6
 //! @brief Set the TCSEL field to a new value.
 #define BW_AUDMUX_PTCR6_TCSEL(v)   (HW_AUDMUX_PTCR6_WR((HW_AUDMUX_PTCR6_RD() & ~BM_AUDMUX_PTCR6_TCSEL) | BF_AUDMUX_PTCR6_TCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR6, field TCLKDIR[26] (RW)
@@ -2648,7 +2506,6 @@ typedef union _hw_audmux_ptcr6
  * - 1 - TxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR6_TCLKDIR      (26)      //!< Bit position for AUDMUX_PTCR6_TCLKDIR.
 #define BM_AUDMUX_PTCR6_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR6_TCLKDIR.
 
@@ -2662,7 +2519,6 @@ typedef union _hw_audmux_ptcr6
 //! @brief Set the TCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR6_TCLKDIR(v)   (HW_AUDMUX_PTCR6_WR((HW_AUDMUX_PTCR6_RD() & ~BM_AUDMUX_PTCR6_TCLKDIR) | BF_AUDMUX_PTCR6_TCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR6, field TFSEL[30:27] (RW)
@@ -2677,7 +2533,6 @@ typedef union _hw_audmux_ptcr6
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR6_TFSEL      (27)      //!< Bit position for AUDMUX_PTCR6_TFSEL.
 #define BM_AUDMUX_PTCR6_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR6_TFSEL.
 
@@ -2691,7 +2546,6 @@ typedef union _hw_audmux_ptcr6
 //! @brief Set the TFSEL field to a new value.
 #define BW_AUDMUX_PTCR6_TFSEL(v)   (HW_AUDMUX_PTCR6_WR((HW_AUDMUX_PTCR6_RD() & ~BM_AUDMUX_PTCR6_TFSEL) | BF_AUDMUX_PTCR6_TFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR6, field TFS_DIR[31] (RW)
@@ -2705,7 +2559,6 @@ typedef union _hw_audmux_ptcr6
  * - 1 - TxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR6_TFS_DIR      (31)      //!< Bit position for AUDMUX_PTCR6_TFS_DIR.
 #define BM_AUDMUX_PTCR6_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR6_TFS_DIR.
 
@@ -2719,7 +2572,6 @@ typedef union _hw_audmux_ptcr6
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR6_TFS_DIR(v)   (HW_AUDMUX_PTCR6_WR((HW_AUDMUX_PTCR6_RD() & ~BM_AUDMUX_PTCR6_TFS_DIR) | BF_AUDMUX_PTCR6_TFS_DIR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2780,7 +2632,6 @@ typedef union _hw_audmux_pdcr6
  * - 1 - Excludes RxDn from ANDing
  */
 //@{
-
 #define BP_AUDMUX_PDCR6_INMMASK      (0)      //!< Bit position for AUDMUX_PDCR6_INMMASK.
 #define BM_AUDMUX_PDCR6_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR6_INMMASK.
 
@@ -2794,7 +2645,6 @@ typedef union _hw_audmux_pdcr6
 //! @brief Set the INMMASK field to a new value.
 #define BW_AUDMUX_PDCR6_INMMASK(v)   (HW_AUDMUX_PDCR6_WR((HW_AUDMUX_PDCR6_RD() & ~BM_AUDMUX_PDCR6_INMMASK) | BF_AUDMUX_PDCR6_INMMASK(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR6, field MODE[8] (RW)
@@ -2809,7 +2659,6 @@ typedef union _hw_audmux_pdcr6
  * - 1 - Internal Network mode
  */
 //@{
-
 #define BP_AUDMUX_PDCR6_MODE      (8)      //!< Bit position for AUDMUX_PDCR6_MODE.
 #define BM_AUDMUX_PDCR6_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR6_MODE.
 
@@ -2823,7 +2672,6 @@ typedef union _hw_audmux_pdcr6
 //! @brief Set the MODE field to a new value.
 #define BW_AUDMUX_PDCR6_MODE(v)   (HW_AUDMUX_PDCR6_WR((HW_AUDMUX_PDCR6_RD() & ~BM_AUDMUX_PDCR6_MODE) | BF_AUDMUX_PDCR6_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR6, field TXRXEN[12] (RW)
@@ -2835,7 +2683,6 @@ typedef union _hw_audmux_pdcr6
  * - 1 - Switch (Transmit Pin = Receive, Receive Pin = Transmit)
  */
 //@{
-
 #define BP_AUDMUX_PDCR6_TXRXEN      (12)      //!< Bit position for AUDMUX_PDCR6_TXRXEN.
 #define BM_AUDMUX_PDCR6_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR6_TXRXEN.
 
@@ -2849,7 +2696,6 @@ typedef union _hw_audmux_pdcr6
 //! @brief Set the TXRXEN field to a new value.
 #define BW_AUDMUX_PDCR6_TXRXEN(v)   (HW_AUDMUX_PDCR6_WR((HW_AUDMUX_PDCR6_RD() & ~BM_AUDMUX_PDCR6_TXRXEN) | BF_AUDMUX_PDCR6_TXRXEN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR6, field RXDSEL[15:13] (RW)
@@ -2864,7 +2710,6 @@ typedef union _hw_audmux_pdcr6
  * - 111 - Reserved
  */
 //@{
-
 #define BP_AUDMUX_PDCR6_RXDSEL      (13)      //!< Bit position for AUDMUX_PDCR6_RXDSEL.
 #define BM_AUDMUX_PDCR6_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR6_RXDSEL.
 
@@ -2878,7 +2723,6 @@ typedef union _hw_audmux_pdcr6
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR6_RXDSEL(v)   (HW_AUDMUX_PDCR6_WR((HW_AUDMUX_PDCR6_RD() & ~BM_AUDMUX_PDCR6_RXDSEL) | BF_AUDMUX_PDCR6_RXDSEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2945,7 +2789,6 @@ typedef union _hw_audmux_ptcr7
  * - 1 - Synchronous mode (default)
  */
 //@{
-
 #define BP_AUDMUX_PTCR7_SYN      (11)      //!< Bit position for AUDMUX_PTCR7_SYN.
 #define BM_AUDMUX_PTCR7_SYN      (0x00000800)  //!< Bit mask for AUDMUX_PTCR7_SYN.
 
@@ -2959,7 +2802,6 @@ typedef union _hw_audmux_ptcr7
 //! @brief Set the SYN field to a new value.
 #define BW_AUDMUX_PTCR7_SYN(v)   (HW_AUDMUX_PTCR7_WR((HW_AUDMUX_PTCR7_RD() & ~BM_AUDMUX_PTCR7_SYN) | BF_AUDMUX_PTCR7_SYN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR7, field RCSEL[15:12] (RW)
@@ -2975,7 +2817,6 @@ typedef union _hw_audmux_ptcr7
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR7_RCSEL      (12)      //!< Bit position for AUDMUX_PTCR7_RCSEL.
 #define BM_AUDMUX_PTCR7_RCSEL      (0x0000f000)  //!< Bit mask for AUDMUX_PTCR7_RCSEL.
 
@@ -2989,7 +2830,6 @@ typedef union _hw_audmux_ptcr7
 //! @brief Set the RCSEL field to a new value.
 #define BW_AUDMUX_PTCR7_RCSEL(v)   (HW_AUDMUX_PTCR7_WR((HW_AUDMUX_PTCR7_RD() & ~BM_AUDMUX_PTCR7_RCSEL) | BF_AUDMUX_PTCR7_RCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR7, field RCLKDIR[16] (RW)
@@ -3004,7 +2844,6 @@ typedef union _hw_audmux_ptcr7
  * - 1 - RxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR7_RCLKDIR      (16)      //!< Bit position for AUDMUX_PTCR7_RCLKDIR.
 #define BM_AUDMUX_PTCR7_RCLKDIR      (0x00010000)  //!< Bit mask for AUDMUX_PTCR7_RCLKDIR.
 
@@ -3018,7 +2857,6 @@ typedef union _hw_audmux_ptcr7
 //! @brief Set the RCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR7_RCLKDIR(v)   (HW_AUDMUX_PTCR7_WR((HW_AUDMUX_PTCR7_RD() & ~BM_AUDMUX_PTCR7_RCLKDIR) | BF_AUDMUX_PTCR7_RCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR7, field RFSEL[20:17] (RW)
@@ -3034,7 +2872,6 @@ typedef union _hw_audmux_ptcr7
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR7_RFSEL      (17)      //!< Bit position for AUDMUX_PTCR7_RFSEL.
 #define BM_AUDMUX_PTCR7_RFSEL      (0x001e0000)  //!< Bit mask for AUDMUX_PTCR7_RFSEL.
 
@@ -3048,7 +2885,6 @@ typedef union _hw_audmux_ptcr7
 //! @brief Set the RFSEL field to a new value.
 #define BW_AUDMUX_PTCR7_RFSEL(v)   (HW_AUDMUX_PTCR7_WR((HW_AUDMUX_PTCR7_RD() & ~BM_AUDMUX_PTCR7_RFSEL) | BF_AUDMUX_PTCR7_RFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR7, field RFS_DIR[21] (RW)
@@ -3062,7 +2898,6 @@ typedef union _hw_audmux_ptcr7
  * - 1 - RxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR7_RFS_DIR      (21)      //!< Bit position for AUDMUX_PTCR7_RFS_DIR.
 #define BM_AUDMUX_PTCR7_RFS_DIR      (0x00200000)  //!< Bit mask for AUDMUX_PTCR7_RFS_DIR.
 
@@ -3076,7 +2911,6 @@ typedef union _hw_audmux_ptcr7
 //! @brief Set the RFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR7_RFS_DIR(v)   (HW_AUDMUX_PTCR7_WR((HW_AUDMUX_PTCR7_RD() & ~BM_AUDMUX_PTCR7_RFS_DIR) | BF_AUDMUX_PTCR7_RFS_DIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR7, field TCSEL[25:22] (RW)
@@ -3091,7 +2925,6 @@ typedef union _hw_audmux_ptcr7
  * - 1xxx - Selects RxClk from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR7_TCSEL      (22)      //!< Bit position for AUDMUX_PTCR7_TCSEL.
 #define BM_AUDMUX_PTCR7_TCSEL      (0x03c00000)  //!< Bit mask for AUDMUX_PTCR7_TCSEL.
 
@@ -3105,7 +2938,6 @@ typedef union _hw_audmux_ptcr7
 //! @brief Set the TCSEL field to a new value.
 #define BW_AUDMUX_PTCR7_TCSEL(v)   (HW_AUDMUX_PTCR7_WR((HW_AUDMUX_PTCR7_RD() & ~BM_AUDMUX_PTCR7_TCSEL) | BF_AUDMUX_PTCR7_TCSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR7, field TCLKDIR[26] (RW)
@@ -3119,7 +2951,6 @@ typedef union _hw_audmux_ptcr7
  * - 1 - TxClk is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR7_TCLKDIR      (26)      //!< Bit position for AUDMUX_PTCR7_TCLKDIR.
 #define BM_AUDMUX_PTCR7_TCLKDIR      (0x04000000)  //!< Bit mask for AUDMUX_PTCR7_TCLKDIR.
 
@@ -3133,7 +2964,6 @@ typedef union _hw_audmux_ptcr7
 //! @brief Set the TCLKDIR field to a new value.
 #define BW_AUDMUX_PTCR7_TCLKDIR(v)   (HW_AUDMUX_PTCR7_WR((HW_AUDMUX_PTCR7_RD() & ~BM_AUDMUX_PTCR7_TCLKDIR) | BF_AUDMUX_PTCR7_TCLKDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR7, field TFSEL[30:27] (RW)
@@ -3148,7 +2978,6 @@ typedef union _hw_audmux_ptcr7
  * - 1xxx - Selects RxFS from port.
  */
 //@{
-
 #define BP_AUDMUX_PTCR7_TFSEL      (27)      //!< Bit position for AUDMUX_PTCR7_TFSEL.
 #define BM_AUDMUX_PTCR7_TFSEL      (0x78000000)  //!< Bit mask for AUDMUX_PTCR7_TFSEL.
 
@@ -3162,7 +2991,6 @@ typedef union _hw_audmux_ptcr7
 //! @brief Set the TFSEL field to a new value.
 #define BW_AUDMUX_PTCR7_TFSEL(v)   (HW_AUDMUX_PTCR7_WR((HW_AUDMUX_PTCR7_RD() & ~BM_AUDMUX_PTCR7_TFSEL) | BF_AUDMUX_PTCR7_TFSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PTCR7, field TFS_DIR[31] (RW)
@@ -3176,7 +3004,6 @@ typedef union _hw_audmux_ptcr7
  * - 1 - TxFS is an output.
  */
 //@{
-
 #define BP_AUDMUX_PTCR7_TFS_DIR      (31)      //!< Bit position for AUDMUX_PTCR7_TFS_DIR.
 #define BM_AUDMUX_PTCR7_TFS_DIR      (0x80000000)  //!< Bit mask for AUDMUX_PTCR7_TFS_DIR.
 
@@ -3190,7 +3017,6 @@ typedef union _hw_audmux_ptcr7
 //! @brief Set the TFS_DIR field to a new value.
 #define BW_AUDMUX_PTCR7_TFS_DIR(v)   (HW_AUDMUX_PTCR7_WR((HW_AUDMUX_PTCR7_RD() & ~BM_AUDMUX_PTCR7_TFS_DIR) | BF_AUDMUX_PTCR7_TFS_DIR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3251,7 +3077,6 @@ typedef union _hw_audmux_pdcr7
  * - 1 - Excludes RxDn from ANDing
  */
 //@{
-
 #define BP_AUDMUX_PDCR7_INMMASK      (0)      //!< Bit position for AUDMUX_PDCR7_INMMASK.
 #define BM_AUDMUX_PDCR7_INMMASK      (0x000000ff)  //!< Bit mask for AUDMUX_PDCR7_INMMASK.
 
@@ -3265,7 +3090,6 @@ typedef union _hw_audmux_pdcr7
 //! @brief Set the INMMASK field to a new value.
 #define BW_AUDMUX_PDCR7_INMMASK(v)   (HW_AUDMUX_PDCR7_WR((HW_AUDMUX_PDCR7_RD() & ~BM_AUDMUX_PDCR7_INMMASK) | BF_AUDMUX_PDCR7_INMMASK(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR7, field MODE[8] (RW)
@@ -3280,7 +3104,6 @@ typedef union _hw_audmux_pdcr7
  * - 1 - Internal Network mode
  */
 //@{
-
 #define BP_AUDMUX_PDCR7_MODE      (8)      //!< Bit position for AUDMUX_PDCR7_MODE.
 #define BM_AUDMUX_PDCR7_MODE      (0x00000100)  //!< Bit mask for AUDMUX_PDCR7_MODE.
 
@@ -3294,7 +3117,6 @@ typedef union _hw_audmux_pdcr7
 //! @brief Set the MODE field to a new value.
 #define BW_AUDMUX_PDCR7_MODE(v)   (HW_AUDMUX_PDCR7_WR((HW_AUDMUX_PDCR7_RD() & ~BM_AUDMUX_PDCR7_MODE) | BF_AUDMUX_PDCR7_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR7, field TXRXEN[12] (RW)
@@ -3306,7 +3128,6 @@ typedef union _hw_audmux_pdcr7
  * - 1 - Switch (Transmit Pin = Receive, Receive Pin = Transmit)
  */
 //@{
-
 #define BP_AUDMUX_PDCR7_TXRXEN      (12)      //!< Bit position for AUDMUX_PDCR7_TXRXEN.
 #define BM_AUDMUX_PDCR7_TXRXEN      (0x00001000)  //!< Bit mask for AUDMUX_PDCR7_TXRXEN.
 
@@ -3320,7 +3141,6 @@ typedef union _hw_audmux_pdcr7
 //! @brief Set the TXRXEN field to a new value.
 #define BW_AUDMUX_PDCR7_TXRXEN(v)   (HW_AUDMUX_PDCR7_WR((HW_AUDMUX_PDCR7_RD() & ~BM_AUDMUX_PDCR7_TXRXEN) | BF_AUDMUX_PDCR7_TXRXEN(v)))
 #endif
-
 //@}
 
 /*! @name Register AUDMUX_PDCR7, field RXDSEL[15:13] (RW)
@@ -3335,7 +3155,6 @@ typedef union _hw_audmux_pdcr7
  * - 111 - Reserved
  */
 //@{
-
 #define BP_AUDMUX_PDCR7_RXDSEL      (13)      //!< Bit position for AUDMUX_PDCR7_RXDSEL.
 #define BM_AUDMUX_PDCR7_RXDSEL      (0x0000e000)  //!< Bit mask for AUDMUX_PDCR7_RXDSEL.
 
@@ -3349,7 +3168,6 @@ typedef union _hw_audmux_pdcr7
 //! @brief Set the RXDSEL field to a new value.
 #define BW_AUDMUX_PDCR7_RXDSEL(v)   (HW_AUDMUX_PDCR7_WR((HW_AUDMUX_PDCR7_RD() & ~BM_AUDMUX_PDCR7_RXDSEL) | BF_AUDMUX_PDCR7_RXDSEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3386,3 +3204,5 @@ typedef struct _hw_audmux
 #endif
 
 #endif // __HW_AUDMUX_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

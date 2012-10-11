@@ -193,7 +193,6 @@ typedef union _hw_mmdc_mdctl
  * - 3 - Reserved
  */
 //@{
-
 #define BP_MMDC_MDCTL_DSIZ      (16)      //!< Bit position for MMDC_MDCTL_DSIZ.
 #define BM_MMDC_MDCTL_DSIZ      (0x00030000)  //!< Bit mask for MMDC_MDCTL_DSIZ.
 
@@ -207,7 +206,6 @@ typedef union _hw_mmdc_mdctl
 //! @brief Set the DSIZ field to a new value.
 #define BW_MMDC_MDCTL_DSIZ(x, v)   (HW_MMDC_MDCTL_WR(x, (HW_MMDC_MDCTL_RD(x) & ~BM_MMDC_MDCTL_DSIZ) | BF_MMDC_MDCTL_DSIZ(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCTL, field BL[19] (RW)
@@ -220,7 +218,6 @@ typedef union _hw_mmdc_mdctl
  * - 1 - Burst Length 8 is used
  */
 //@{
-
 #define BP_MMDC_MDCTL_BL      (19)      //!< Bit position for MMDC_MDCTL_BL.
 #define BM_MMDC_MDCTL_BL      (0x00080000)  //!< Bit mask for MMDC_MDCTL_BL.
 
@@ -234,7 +231,6 @@ typedef union _hw_mmdc_mdctl
 //! @brief Set the BL field to a new value.
 #define BW_MMDC_MDCTL_BL(x, v)   (HW_MMDC_MDCTL_WR(x, (HW_MMDC_MDCTL_RD(x) & ~BM_MMDC_MDCTL_BL) | BF_MMDC_MDCTL_BL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCTL, field COL[22:20] (RW)
@@ -251,7 +247,6 @@ typedef union _hw_mmdc_mdctl
  * - 0x5-0xF - Reserved
  */
 //@{
-
 #define BP_MMDC_MDCTL_COL      (20)      //!< Bit position for MMDC_MDCTL_COL.
 #define BM_MMDC_MDCTL_COL      (0x00700000)  //!< Bit mask for MMDC_MDCTL_COL.
 
@@ -265,7 +260,6 @@ typedef union _hw_mmdc_mdctl
 //! @brief Set the COL field to a new value.
 #define BW_MMDC_MDCTL_COL(x, v)   (HW_MMDC_MDCTL_WR(x, (HW_MMDC_MDCTL_RD(x) & ~BM_MMDC_MDCTL_COL) | BF_MMDC_MDCTL_COL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCTL, field ROW[26:24] (RW)
@@ -282,7 +276,6 @@ typedef union _hw_mmdc_mdctl
  * - 101 - 16 bits Row
  */
 //@{
-
 #define BP_MMDC_MDCTL_ROW      (24)      //!< Bit position for MMDC_MDCTL_ROW.
 #define BM_MMDC_MDCTL_ROW      (0x07000000)  //!< Bit mask for MMDC_MDCTL_ROW.
 
@@ -296,7 +289,6 @@ typedef union _hw_mmdc_mdctl
 //! @brief Set the ROW field to a new value.
 #define BW_MMDC_MDCTL_ROW(x, v)   (HW_MMDC_MDCTL_WR(x, (HW_MMDC_MDCTL_RD(x) & ~BM_MMDC_MDCTL_ROW) | BF_MMDC_MDCTL_ROW(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCTL, field SDE_1[30] (RW)
@@ -311,7 +303,6 @@ typedef union _hw_mmdc_mdctl
  * - 1 - Enabled
  */
 //@{
-
 #define BP_MMDC_MDCTL_SDE_1      (30)      //!< Bit position for MMDC_MDCTL_SDE_1.
 #define BM_MMDC_MDCTL_SDE_1      (0x40000000)  //!< Bit mask for MMDC_MDCTL_SDE_1.
 
@@ -325,7 +316,6 @@ typedef union _hw_mmdc_mdctl
 //! @brief Set the SDE_1 field to a new value.
 #define BW_MMDC_MDCTL_SDE_1(x, v)   (HW_MMDC_MDCTL_WR(x, (HW_MMDC_MDCTL_RD(x) & ~BM_MMDC_MDCTL_SDE_1) | BF_MMDC_MDCTL_SDE_1(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCTL, field SDE_0[31] (RW)
@@ -340,7 +330,6 @@ typedef union _hw_mmdc_mdctl
  * - 1 - Enabled
  */
 //@{
-
 #define BP_MMDC_MDCTL_SDE_0      (31)      //!< Bit position for MMDC_MDCTL_SDE_0.
 #define BM_MMDC_MDCTL_SDE_0      (0x80000000)  //!< Bit mask for MMDC_MDCTL_SDE_0.
 
@@ -354,7 +343,6 @@ typedef union _hw_mmdc_mdctl
 //! @brief Set the SDE_0 field to a new value.
 #define BW_MMDC_MDCTL_SDE_0(x, v)   (HW_MMDC_MDCTL_WR(x, (HW_MMDC_MDCTL_RD(x) & ~BM_MMDC_MDCTL_SDE_0) | BF_MMDC_MDCTL_SDE_0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -427,7 +415,6 @@ typedef union _hw_mmdc_mdpdc
  * - 0x7 - 7cycles
  */
 //@{
-
 #define BP_MMDC_MDPDC_TCKSRE      (0)      //!< Bit position for MMDC_MDPDC_TCKSRE.
 #define BM_MMDC_MDPDC_TCKSRE      (0x00000007)  //!< Bit mask for MMDC_MDPDC_TCKSRE.
 
@@ -441,7 +428,6 @@ typedef union _hw_mmdc_mdpdc
 //! @brief Set the TCKSRE field to a new value.
 #define BW_MMDC_MDPDC_TCKSRE(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_TCKSRE) | BF_MMDC_MDPDC_TCKSRE(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDPDC, field TCKSRX[5:3] (RW)
@@ -456,7 +442,6 @@ typedef union _hw_mmdc_mdpdc
  * - 0x7 - 7 cycles
  */
 //@{
-
 #define BP_MMDC_MDPDC_TCKSRX      (3)      //!< Bit position for MMDC_MDPDC_TCKSRX.
 #define BM_MMDC_MDPDC_TCKSRX      (0x00000038)  //!< Bit mask for MMDC_MDPDC_TCKSRX.
 
@@ -470,7 +455,6 @@ typedef union _hw_mmdc_mdpdc
 //! @brief Set the TCKSRX field to a new value.
 #define BW_MMDC_MDPDC_TCKSRX(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_TCKSRX) | BF_MMDC_MDPDC_TCKSRX(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDPDC, field BOTH_CS_PD[6] (RW)
@@ -485,7 +469,6 @@ typedef union _hw_mmdc_mdpdc
  *     obtained.
  */
 //@{
-
 #define BP_MMDC_MDPDC_BOTH_CS_PD      (6)      //!< Bit position for MMDC_MDPDC_BOTH_CS_PD.
 #define BM_MMDC_MDPDC_BOTH_CS_PD      (0x00000040)  //!< Bit mask for MMDC_MDPDC_BOTH_CS_PD.
 
@@ -499,7 +482,6 @@ typedef union _hw_mmdc_mdpdc
 //! @brief Set the BOTH_CS_PD field to a new value.
 #define BW_MMDC_MDPDC_BOTH_CS_PD(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_BOTH_CS_PD) | BF_MMDC_MDPDC_BOTH_CS_PD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDPDC, field SLOW_PD[7] (RW)
@@ -512,7 +494,6 @@ typedef union _hw_mmdc_mdpdc
  * - 1 - Slow mode.
  */
 //@{
-
 #define BP_MMDC_MDPDC_SLOW_PD      (7)      //!< Bit position for MMDC_MDPDC_SLOW_PD.
 #define BM_MMDC_MDPDC_SLOW_PD      (0x00000080)  //!< Bit mask for MMDC_MDPDC_SLOW_PD.
 
@@ -526,7 +507,6 @@ typedef union _hw_mmdc_mdpdc
 //! @brief Set the SLOW_PD field to a new value.
 #define BW_MMDC_MDPDC_SLOW_PD(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_SLOW_PD) | BF_MMDC_MDPDC_SLOW_PD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDPDC, field PWDT_0[11:8] (RW)
@@ -536,7 +516,6 @@ typedef union _hw_mmdc_mdpdc
  * determined according to the PWDT Field Encoding table above.
  */
 //@{
-
 #define BP_MMDC_MDPDC_PWDT_0      (8)      //!< Bit position for MMDC_MDPDC_PWDT_0.
 #define BM_MMDC_MDPDC_PWDT_0      (0x00000f00)  //!< Bit mask for MMDC_MDPDC_PWDT_0.
 
@@ -550,7 +529,6 @@ typedef union _hw_mmdc_mdpdc
 //! @brief Set the PWDT_0 field to a new value.
 #define BW_MMDC_MDPDC_PWDT_0(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_PWDT_0) | BF_MMDC_MDPDC_PWDT_0(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDPDC, field PWDT_1[15:12] (RW)
@@ -560,7 +538,6 @@ typedef union _hw_mmdc_mdpdc
  * determined according to the PWDT Field Encoding table above.
  */
 //@{
-
 #define BP_MMDC_MDPDC_PWDT_1      (12)      //!< Bit position for MMDC_MDPDC_PWDT_1.
 #define BM_MMDC_MDPDC_PWDT_1      (0x0000f000)  //!< Bit mask for MMDC_MDPDC_PWDT_1.
 
@@ -574,7 +551,6 @@ typedef union _hw_mmdc_mdpdc
 //! @brief Set the PWDT_1 field to a new value.
 #define BW_MMDC_MDPDC_PWDT_1(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_PWDT_1) | BF_MMDC_MDPDC_PWDT_1(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDPDC, field TCKE[18:16] (RW)
@@ -588,7 +564,6 @@ typedef union _hw_mmdc_mdpdc
  * - 0x7 - 8 cycles
  */
 //@{
-
 #define BP_MMDC_MDPDC_TCKE      (16)      //!< Bit position for MMDC_MDPDC_TCKE.
 #define BM_MMDC_MDPDC_TCKE      (0x00070000)  //!< Bit mask for MMDC_MDPDC_TCKE.
 
@@ -602,7 +577,6 @@ typedef union _hw_mmdc_mdpdc
 //! @brief Set the TCKE field to a new value.
 #define BW_MMDC_MDPDC_TCKE(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_TCKE) | BF_MMDC_MDPDC_TCKE(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDPDC, field PRCT_0[26:24] (RW)
@@ -612,7 +586,6 @@ typedef union _hw_mmdc_mdpdc
  * table below.
  */
 //@{
-
 #define BP_MMDC_MDPDC_PRCT_0      (24)      //!< Bit position for MMDC_MDPDC_PRCT_0.
 #define BM_MMDC_MDPDC_PRCT_0      (0x07000000)  //!< Bit mask for MMDC_MDPDC_PRCT_0.
 
@@ -626,7 +599,6 @@ typedef union _hw_mmdc_mdpdc
 //! @brief Set the PRCT_0 field to a new value.
 #define BW_MMDC_MDPDC_PRCT_0(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_PRCT_0) | BF_MMDC_MDPDC_PRCT_0(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDPDC, field PRCT_1[30:28] (RW)
@@ -636,7 +608,6 @@ typedef union _hw_mmdc_mdpdc
  * PRCT Field Encoding table above.
  */
 //@{
-
 #define BP_MMDC_MDPDC_PRCT_1      (28)      //!< Bit position for MMDC_MDPDC_PRCT_1.
 #define BM_MMDC_MDPDC_PRCT_1      (0x70000000)  //!< Bit mask for MMDC_MDPDC_PRCT_1.
 
@@ -650,7 +621,6 @@ typedef union _hw_mmdc_mdpdc
 //! @brief Set the PRCT_1 field to a new value.
 #define BW_MMDC_MDPDC_PRCT_1(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_PRCT_1) | BF_MMDC_MDPDC_PRCT_1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -718,7 +688,6 @@ typedef union _hw_mmdc_mdotc
  * - 0x1F - 31 cycles
  */
 //@{
-
 #define BP_MMDC_MDOTC_TODT_IDLE_OFF      (4)      //!< Bit position for MMDC_MDOTC_TODT_IDLE_OFF.
 #define BM_MMDC_MDOTC_TODT_IDLE_OFF      (0x000001f0)  //!< Bit mask for MMDC_MDOTC_TODT_IDLE_OFF.
 
@@ -732,7 +701,6 @@ typedef union _hw_mmdc_mdotc
 //! @brief Set the TODT_IDLE_OFF field to a new value.
 #define BW_MMDC_MDOTC_TODT_IDLE_OFF(x, v)   (HW_MMDC_MDOTC_WR(x, (HW_MMDC_MDOTC_RD(x) & ~BM_MMDC_MDOTC_TODT_IDLE_OFF) | BF_MMDC_MDOTC_TODT_IDLE_OFF(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDOTC, field TODTLON[14:12] (RW)
@@ -752,7 +720,6 @@ typedef union _hw_mmdc_mdotc
  * - 0x7 - Reserved
  */
 //@{
-
 #define BP_MMDC_MDOTC_TODTLON      (12)      //!< Bit position for MMDC_MDOTC_TODTLON.
 #define BM_MMDC_MDOTC_TODTLON      (0x00007000)  //!< Bit mask for MMDC_MDOTC_TODTLON.
 
@@ -766,7 +733,6 @@ typedef union _hw_mmdc_mdotc
 //! @brief Set the TODTLON field to a new value.
 #define BW_MMDC_MDOTC_TODTLON(x, v)   (HW_MMDC_MDOTC_WR(x, (HW_MMDC_MDOTC_RD(x) & ~BM_MMDC_MDOTC_TODTLON) | BF_MMDC_MDOTC_TODTLON(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDOTC, field TAXPD[19:16] (RW)
@@ -782,7 +748,6 @@ typedef union _hw_mmdc_mdotc
  * - 0xF - 16 clocks
  */
 //@{
-
 #define BP_MMDC_MDOTC_TAXPD      (16)      //!< Bit position for MMDC_MDOTC_TAXPD.
 #define BM_MMDC_MDOTC_TAXPD      (0x000f0000)  //!< Bit mask for MMDC_MDOTC_TAXPD.
 
@@ -796,7 +761,6 @@ typedef union _hw_mmdc_mdotc
 //! @brief Set the TAXPD field to a new value.
 #define BW_MMDC_MDOTC_TAXPD(x, v)   (HW_MMDC_MDOTC_WR(x, (HW_MMDC_MDOTC_RD(x) & ~BM_MMDC_MDOTC_TAXPD) | BF_MMDC_MDOTC_TAXPD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDOTC, field TANPD[23:20] (RW)
@@ -812,7 +776,6 @@ typedef union _hw_mmdc_mdotc
  * - 0xF - 16 clocks
  */
 //@{
-
 #define BP_MMDC_MDOTC_TANPD      (20)      //!< Bit position for MMDC_MDOTC_TANPD.
 #define BM_MMDC_MDOTC_TANPD      (0x00f00000)  //!< Bit mask for MMDC_MDOTC_TANPD.
 
@@ -826,7 +789,6 @@ typedef union _hw_mmdc_mdotc
 //! @brief Set the TANPD field to a new value.
 #define BW_MMDC_MDOTC_TANPD(x, v)   (HW_MMDC_MDOTC_WR(x, (HW_MMDC_MDOTC_RD(x) & ~BM_MMDC_MDOTC_TANPD) | BF_MMDC_MDOTC_TANPD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDOTC, field TAONPD[26:24] (RW)
@@ -842,7 +804,6 @@ typedef union _hw_mmdc_mdotc
  * - 0x7 - 8 cycles
  */
 //@{
-
 #define BP_MMDC_MDOTC_TAONPD      (24)      //!< Bit position for MMDC_MDOTC_TAONPD.
 #define BM_MMDC_MDOTC_TAONPD      (0x07000000)  //!< Bit mask for MMDC_MDOTC_TAONPD.
 
@@ -856,7 +817,6 @@ typedef union _hw_mmdc_mdotc
 //! @brief Set the TAONPD field to a new value.
 #define BW_MMDC_MDOTC_TAONPD(x, v)   (HW_MMDC_MDOTC_WR(x, (HW_MMDC_MDOTC_RD(x) & ~BM_MMDC_MDOTC_TAONPD) | BF_MMDC_MDOTC_TAONPD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDOTC, field TAOFPD[29:27] (RW)
@@ -872,7 +832,6 @@ typedef union _hw_mmdc_mdotc
  * - 0x7 - 8 cycles
  */
 //@{
-
 #define BP_MMDC_MDOTC_TAOFPD      (27)      //!< Bit position for MMDC_MDOTC_TAOFPD.
 #define BM_MMDC_MDOTC_TAOFPD      (0x38000000)  //!< Bit mask for MMDC_MDOTC_TAOFPD.
 
@@ -886,7 +845,6 @@ typedef union _hw_mmdc_mdotc
 //! @brief Set the TAOFPD field to a new value.
 #define BW_MMDC_MDOTC_TAOFPD(x, v)   (HW_MMDC_MDOTC_WR(x, (HW_MMDC_MDOTC_RD(x) & ~BM_MMDC_MDOTC_TAOFPD) | BF_MMDC_MDOTC_TAOFPD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -957,7 +915,6 @@ typedef union _hw_mmdc_mdcfg0
  * - 0x9 - - 0xF Reserved
  */
 //@{
-
 #define BP_MMDC_MDCFG0_TCL      (0)      //!< Bit position for MMDC_MDCFG0_TCL.
 #define BM_MMDC_MDCFG0_TCL      (0x0000000f)  //!< Bit mask for MMDC_MDCFG0_TCL.
 
@@ -971,7 +928,6 @@ typedef union _hw_mmdc_mdcfg0
 //! @brief Set the TCL field to a new value.
 #define BW_MMDC_MDCFG0_TCL(x, v)   (HW_MMDC_MDCFG0_WR(x, (HW_MMDC_MDCFG0_RD(x) & ~BM_MMDC_MDCFG0_TCL) | BF_MMDC_MDCFG0_TCL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG0, field TFAW[8:4] (RW)
@@ -989,7 +945,6 @@ typedef union _hw_mmdc_mdcfg0
  * - 0x1F - 32 clocks
  */
 //@{
-
 #define BP_MMDC_MDCFG0_TFAW      (4)      //!< Bit position for MMDC_MDCFG0_TFAW.
 #define BM_MMDC_MDCFG0_TFAW      (0x000001f0)  //!< Bit mask for MMDC_MDCFG0_TFAW.
 
@@ -1003,7 +958,6 @@ typedef union _hw_mmdc_mdcfg0
 //! @brief Set the TFAW field to a new value.
 #define BW_MMDC_MDCFG0_TFAW(x, v)   (HW_MMDC_MDCFG0_WR(x, (HW_MMDC_MDCFG0_RD(x) & ~BM_MMDC_MDCFG0_TFAW) | BF_MMDC_MDCFG0_TFAW(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG0, field TXPDLL[12:9] (RW)
@@ -1021,7 +975,6 @@ typedef union _hw_mmdc_mdcfg0
  * - 0xF - 16 clocks
  */
 //@{
-
 #define BP_MMDC_MDCFG0_TXPDLL      (9)      //!< Bit position for MMDC_MDCFG0_TXPDLL.
 #define BM_MMDC_MDCFG0_TXPDLL      (0x00001e00)  //!< Bit mask for MMDC_MDCFG0_TXPDLL.
 
@@ -1035,7 +988,6 @@ typedef union _hw_mmdc_mdcfg0
 //! @brief Set the TXPDLL field to a new value.
 #define BW_MMDC_MDCFG0_TXPDLL(x, v)   (HW_MMDC_MDCFG0_WR(x, (HW_MMDC_MDCFG0_RD(x) & ~BM_MMDC_MDCFG0_TXPDLL) | BF_MMDC_MDCFG0_TXPDLL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG0, field TXP[15:13] (RW)
@@ -1053,7 +1005,6 @@ typedef union _hw_mmdc_mdcfg0
  * - 0x7 - 8 cycles
  */
 //@{
-
 #define BP_MMDC_MDCFG0_TXP      (13)      //!< Bit position for MMDC_MDCFG0_TXP.
 #define BM_MMDC_MDCFG0_TXP      (0x0000e000)  //!< Bit mask for MMDC_MDCFG0_TXP.
 
@@ -1067,7 +1018,6 @@ typedef union _hw_mmdc_mdcfg0
 //! @brief Set the TXP field to a new value.
 #define BW_MMDC_MDCFG0_TXP(x, v)   (HW_MMDC_MDCFG0_WR(x, (HW_MMDC_MDCFG0_RD(x) & ~BM_MMDC_MDCFG0_TXP) | BF_MMDC_MDCFG0_TXP(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG0, field TXS[23:16] (RW)
@@ -1086,7 +1036,6 @@ typedef union _hw_mmdc_mdcfg0
  * - 0xFF - 256 clocks
  */
 //@{
-
 #define BP_MMDC_MDCFG0_TXS      (16)      //!< Bit position for MMDC_MDCFG0_TXS.
 #define BM_MMDC_MDCFG0_TXS      (0x00ff0000)  //!< Bit mask for MMDC_MDCFG0_TXS.
 
@@ -1100,7 +1049,6 @@ typedef union _hw_mmdc_mdcfg0
 //! @brief Set the TXS field to a new value.
 #define BW_MMDC_MDCFG0_TXS(x, v)   (HW_MMDC_MDCFG0_WR(x, (HW_MMDC_MDCFG0_RD(x) & ~BM_MMDC_MDCFG0_TXS) | BF_MMDC_MDCFG0_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG0, field TRFC[31:24] (RW)
@@ -1118,7 +1066,6 @@ typedef union _hw_mmdc_mdcfg0
  * - 0xFF - 256 clocks
  */
 //@{
-
 #define BP_MMDC_MDCFG0_TRFC      (24)      //!< Bit position for MMDC_MDCFG0_TRFC.
 #define BM_MMDC_MDCFG0_TRFC      (0xff000000)  //!< Bit mask for MMDC_MDCFG0_TRFC.
 
@@ -1132,7 +1079,6 @@ typedef union _hw_mmdc_mdcfg0
 //! @brief Set the TRFC field to a new value.
 #define BW_MMDC_MDCFG0_TRFC(x, v)   (HW_MMDC_MDCFG0_WR(x, (HW_MMDC_MDCFG0_RD(x) & ~BM_MMDC_MDCFG0_TRFC) | BF_MMDC_MDCFG0_TRFC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1202,7 +1148,6 @@ typedef union _hw_mmdc_mdcfg1
  * - 0x7 - Reserved
  */
 //@{
-
 #define BP_MMDC_MDCFG1_TCWL      (0)      //!< Bit position for MMDC_MDCFG1_TCWL.
 #define BM_MMDC_MDCFG1_TCWL      (0x00000007)  //!< Bit mask for MMDC_MDCFG1_TCWL.
 
@@ -1216,7 +1161,6 @@ typedef union _hw_mmdc_mdcfg1
 //! @brief Set the TCWL field to a new value.
 #define BW_MMDC_MDCFG1_TCWL(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TCWL) | BF_MMDC_MDCFG1_TCWL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG1, field TMRD[8:5] (RW)
@@ -1235,7 +1179,6 @@ typedef union _hw_mmdc_mdcfg1
  * - 0xF - 16 clocks
  */
 //@{
-
 #define BP_MMDC_MDCFG1_TMRD      (5)      //!< Bit position for MMDC_MDCFG1_TMRD.
 #define BM_MMDC_MDCFG1_TMRD      (0x000001e0)  //!< Bit mask for MMDC_MDCFG1_TMRD.
 
@@ -1249,7 +1192,6 @@ typedef union _hw_mmdc_mdcfg1
 //! @brief Set the TMRD field to a new value.
 #define BW_MMDC_MDCFG1_TMRD(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TMRD) | BF_MMDC_MDCFG1_TMRD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG1, field TWR[11:9] (RW)
@@ -1270,7 +1212,6 @@ typedef union _hw_mmdc_mdcfg1
  * - 0x7 - 8 cycles
  */
 //@{
-
 #define BP_MMDC_MDCFG1_TWR      (9)      //!< Bit position for MMDC_MDCFG1_TWR.
 #define BM_MMDC_MDCFG1_TWR      (0x00000e00)  //!< Bit mask for MMDC_MDCFG1_TWR.
 
@@ -1284,7 +1225,6 @@ typedef union _hw_mmdc_mdcfg1
 //! @brief Set the TWR field to a new value.
 #define BW_MMDC_MDCFG1_TWR(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TWR) | BF_MMDC_MDCFG1_TWR(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG1, field TRPA[15] (RW)
@@ -1300,7 +1240,6 @@ typedef union _hw_mmdc_mdcfg1
  * - 1 - Will be equal to: tRP+1.
  */
 //@{
-
 #define BP_MMDC_MDCFG1_TRPA      (15)      //!< Bit position for MMDC_MDCFG1_TRPA.
 #define BM_MMDC_MDCFG1_TRPA      (0x00008000)  //!< Bit mask for MMDC_MDCFG1_TRPA.
 
@@ -1314,7 +1253,6 @@ typedef union _hw_mmdc_mdcfg1
 //! @brief Set the TRPA field to a new value.
 #define BW_MMDC_MDCFG1_TRPA(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TRPA) | BF_MMDC_MDCFG1_TRPA(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG1, field TRAS[20:16] (RW)
@@ -1332,7 +1270,6 @@ typedef union _hw_mmdc_mdcfg1
  * - 0x1F - Reserved
  */
 //@{
-
 #define BP_MMDC_MDCFG1_TRAS      (16)      //!< Bit position for MMDC_MDCFG1_TRAS.
 #define BM_MMDC_MDCFG1_TRAS      (0x001f0000)  //!< Bit mask for MMDC_MDCFG1_TRAS.
 
@@ -1346,7 +1283,6 @@ typedef union _hw_mmdc_mdcfg1
 //! @brief Set the TRAS field to a new value.
 #define BW_MMDC_MDCFG1_TRAS(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TRAS) | BF_MMDC_MDCFG1_TRAS(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG1, field TRC[25:21] (RW)
@@ -1365,7 +1301,6 @@ typedef union _hw_mmdc_mdcfg1
  * - 0x1F - 32 clocks
  */
 //@{
-
 #define BP_MMDC_MDCFG1_TRC      (21)      //!< Bit position for MMDC_MDCFG1_TRC.
 #define BM_MMDC_MDCFG1_TRC      (0x03e00000)  //!< Bit mask for MMDC_MDCFG1_TRC.
 
@@ -1379,7 +1314,6 @@ typedef union _hw_mmdc_mdcfg1
 //! @brief Set the TRC field to a new value.
 #define BW_MMDC_MDCFG1_TRC(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TRC) | BF_MMDC_MDCFG1_TRC(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG1, field TRP[28:26] (RW)
@@ -1401,7 +1335,6 @@ typedef union _hw_mmdc_mdcfg1
  * - 0x7 - 8 clocks
  */
 //@{
-
 #define BP_MMDC_MDCFG1_TRP      (26)      //!< Bit position for MMDC_MDCFG1_TRP.
 #define BM_MMDC_MDCFG1_TRP      (0x1c000000)  //!< Bit mask for MMDC_MDCFG1_TRP.
 
@@ -1415,7 +1348,6 @@ typedef union _hw_mmdc_mdcfg1
 //! @brief Set the TRP field to a new value.
 #define BW_MMDC_MDCFG1_TRP(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TRP) | BF_MMDC_MDCFG1_TRP(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG1, field TRCD[31:29] (RW)
@@ -1437,7 +1369,6 @@ typedef union _hw_mmdc_mdcfg1
  * - 0x7 - 8 clocks
  */
 //@{
-
 #define BP_MMDC_MDCFG1_TRCD      (29)      //!< Bit position for MMDC_MDCFG1_TRCD.
 #define BM_MMDC_MDCFG1_TRCD      (0xe0000000)  //!< Bit mask for MMDC_MDCFG1_TRCD.
 
@@ -1451,7 +1382,6 @@ typedef union _hw_mmdc_mdcfg1
 //! @brief Set the TRCD field to a new value.
 #define BW_MMDC_MDCFG1_TRCD(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TRCD) | BF_MMDC_MDCFG1_TRCD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1519,7 +1449,6 @@ typedef union _hw_mmdc_mdcfg2
  * - 0x7 - Reserved
  */
 //@{
-
 #define BP_MMDC_MDCFG2_TRRD      (0)      //!< Bit position for MMDC_MDCFG2_TRRD.
 #define BM_MMDC_MDCFG2_TRRD      (0x00000007)  //!< Bit mask for MMDC_MDCFG2_TRRD.
 
@@ -1533,7 +1462,6 @@ typedef union _hw_mmdc_mdcfg2
 //! @brief Set the TRRD field to a new value.
 #define BW_MMDC_MDCFG2_TRRD(x, v)   (HW_MMDC_MDCFG2_WR(x, (HW_MMDC_MDCFG2_RD(x) & ~BM_MMDC_MDCFG2_TRRD) | BF_MMDC_MDCFG2_TRRD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG2, field TWTR[5:3] (RW)
@@ -1554,7 +1482,6 @@ typedef union _hw_mmdc_mdcfg2
  * - 0x7 - 8 cycles
  */
 //@{
-
 #define BP_MMDC_MDCFG2_TWTR      (3)      //!< Bit position for MMDC_MDCFG2_TWTR.
 #define BM_MMDC_MDCFG2_TWTR      (0x00000038)  //!< Bit mask for MMDC_MDCFG2_TWTR.
 
@@ -1568,7 +1495,6 @@ typedef union _hw_mmdc_mdcfg2
 //! @brief Set the TWTR field to a new value.
 #define BW_MMDC_MDCFG2_TWTR(x, v)   (HW_MMDC_MDCFG2_WR(x, (HW_MMDC_MDCFG2_RD(x) & ~BM_MMDC_MDCFG2_TWTR) | BF_MMDC_MDCFG2_TWTR(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG2, field TRTP[8:6] (RW)
@@ -1589,7 +1515,6 @@ typedef union _hw_mmdc_mdcfg2
  * - 0x7 - 8 cycles
  */
 //@{
-
 #define BP_MMDC_MDCFG2_TRTP      (6)      //!< Bit position for MMDC_MDCFG2_TRTP.
 #define BM_MMDC_MDCFG2_TRTP      (0x000001c0)  //!< Bit mask for MMDC_MDCFG2_TRTP.
 
@@ -1603,7 +1528,6 @@ typedef union _hw_mmdc_mdcfg2
 //! @brief Set the TRTP field to a new value.
 #define BW_MMDC_MDCFG2_TRTP(x, v)   (HW_MMDC_MDCFG2_WR(x, (HW_MMDC_MDCFG2_RD(x) & ~BM_MMDC_MDCFG2_TRTP) | BF_MMDC_MDCFG2_TRTP(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG2, field TDLLK[24:16] (RW)
@@ -1622,7 +1546,6 @@ typedef union _hw_mmdc_mdcfg2
  * - 0x1FF - 512 cycles (JEDEC value for DDR3).
  */
 //@{
-
 #define BP_MMDC_MDCFG2_TDLLK      (16)      //!< Bit position for MMDC_MDCFG2_TDLLK.
 #define BM_MMDC_MDCFG2_TDLLK      (0x01ff0000)  //!< Bit mask for MMDC_MDCFG2_TDLLK.
 
@@ -1636,7 +1559,6 @@ typedef union _hw_mmdc_mdcfg2
 //! @brief Set the TDLLK field to a new value.
 #define BW_MMDC_MDCFG2_TDLLK(x, v)   (HW_MMDC_MDCFG2_WR(x, (HW_MMDC_MDCFG2_RD(x) & ~BM_MMDC_MDCFG2_TDLLK) | BF_MMDC_MDCFG2_TDLLK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1707,7 +1629,6 @@ typedef union _hw_mmdc_mdmisc
  * - 1 - Assert reset to the MMDC.
  */
 //@{
-
 #define BP_MMDC_MDMISC_RST      (1)      //!< Bit position for MMDC_MDMISC_RST.
 #define BM_MMDC_MDMISC_RST      (0x00000002)  //!< Bit mask for MMDC_MDMISC_RST.
 
@@ -1721,7 +1642,6 @@ typedef union _hw_mmdc_mdmisc
 //! @brief Set the RST field to a new value.
 #define BW_MMDC_MDMISC_RST(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_RST) | BF_MMDC_MDMISC_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMISC, field LPDDR2_2CH[2] (RW)
@@ -1734,7 +1654,6 @@ typedef union _hw_mmdc_mdmisc
  * - 1 - 2-channels mode (LPDDR2)
  */
 //@{
-
 #define BP_MMDC_MDMISC_LPDDR2_2CH      (2)      //!< Bit position for MMDC_MDMISC_LPDDR2_2CH.
 #define BM_MMDC_MDMISC_LPDDR2_2CH      (0x00000004)  //!< Bit mask for MMDC_MDMISC_LPDDR2_2CH.
 
@@ -1748,7 +1667,6 @@ typedef union _hw_mmdc_mdmisc
 //! @brief Set the LPDDR2_2CH field to a new value.
 #define BW_MMDC_MDMISC_LPDDR2_2CH(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_LPDDR2_2CH) | BF_MMDC_MDMISC_LPDDR2_2CH(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMISC, field DDR_TYPE[4:3] (RW)
@@ -1762,7 +1680,6 @@ typedef union _hw_mmdc_mdmisc
  * - 0x3 - Reserved.
  */
 //@{
-
 #define BP_MMDC_MDMISC_DDR_TYPE      (3)      //!< Bit position for MMDC_MDMISC_DDR_TYPE.
 #define BM_MMDC_MDMISC_DDR_TYPE      (0x00000018)  //!< Bit mask for MMDC_MDMISC_DDR_TYPE.
 
@@ -1776,7 +1693,6 @@ typedef union _hw_mmdc_mdmisc
 //! @brief Set the DDR_TYPE field to a new value.
 #define BW_MMDC_MDMISC_DDR_TYPE(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_DDR_TYPE) | BF_MMDC_MDMISC_DDR_TYPE(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMISC, field DDR_4_BANK[5] (RW)
@@ -1789,7 +1705,6 @@ typedef union _hw_mmdc_mdmisc
  * - 1 - 4 banks device is being used
  */
 //@{
-
 #define BP_MMDC_MDMISC_DDR_4_BANK      (5)      //!< Bit position for MMDC_MDMISC_DDR_4_BANK.
 #define BM_MMDC_MDMISC_DDR_4_BANK      (0x00000020)  //!< Bit mask for MMDC_MDMISC_DDR_4_BANK.
 
@@ -1803,7 +1718,6 @@ typedef union _hw_mmdc_mdmisc
 //! @brief Set the DDR_4_BANK field to a new value.
 #define BW_MMDC_MDMISC_DDR_4_BANK(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_DDR_4_BANK) | BF_MMDC_MDMISC_DDR_4_BANK(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMISC, field RALAT[8:6] (RW)
@@ -1824,7 +1738,6 @@ typedef union _hw_mmdc_mdmisc
  * - 0x7 - 7 cycles additional latency.
  */
 //@{
-
 #define BP_MMDC_MDMISC_RALAT      (6)      //!< Bit position for MMDC_MDMISC_RALAT.
 #define BM_MMDC_MDMISC_RALAT      (0x000001c0)  //!< Bit mask for MMDC_MDMISC_RALAT.
 
@@ -1838,7 +1751,6 @@ typedef union _hw_mmdc_mdmisc
 //! @brief Set the RALAT field to a new value.
 #define BW_MMDC_MDMISC_RALAT(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_RALAT) | BF_MMDC_MDMISC_RALAT(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMISC, field MIF3_MODE[10:9] (RW)
@@ -1854,7 +1766,6 @@ typedef union _hw_mmdc_mdmisc
  *     miss access from access queue.
  */
 //@{
-
 #define BP_MMDC_MDMISC_MIF3_MODE      (9)      //!< Bit position for MMDC_MDMISC_MIF3_MODE.
 #define BM_MMDC_MDMISC_MIF3_MODE      (0x00000600)  //!< Bit mask for MMDC_MDMISC_MIF3_MODE.
 
@@ -1868,7 +1779,6 @@ typedef union _hw_mmdc_mdmisc
 //! @brief Set the MIF3_MODE field to a new value.
 #define BW_MMDC_MDMISC_MIF3_MODE(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_MIF3_MODE) | BF_MMDC_MDMISC_MIF3_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMISC, field LPDDR2_S2[11] (RW)
@@ -1881,7 +1791,6 @@ typedef union _hw_mmdc_mdmisc
  * - 0x1 - LPDDR2-S2 device is used.
  */
 //@{
-
 #define BP_MMDC_MDMISC_LPDDR2_S2      (11)      //!< Bit position for MMDC_MDMISC_LPDDR2_S2.
 #define BM_MMDC_MDMISC_LPDDR2_S2      (0x00000800)  //!< Bit mask for MMDC_MDMISC_LPDDR2_S2.
 
@@ -1895,7 +1804,6 @@ typedef union _hw_mmdc_mdmisc
 //! @brief Set the LPDDR2_S2 field to a new value.
 #define BW_MMDC_MDMISC_LPDDR2_S2(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_LPDDR2_S2) | BF_MMDC_MDMISC_LPDDR2_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMISC, field BI_ON[12] (RW)
@@ -1908,7 +1816,6 @@ typedef union _hw_mmdc_mdmisc
  * - 1 - Banks are interleaved, and address will be decoded as row-bank-column
  */
 //@{
-
 #define BP_MMDC_MDMISC_BI_ON      (12)      //!< Bit position for MMDC_MDMISC_BI_ON.
 #define BM_MMDC_MDMISC_BI_ON      (0x00001000)  //!< Bit mask for MMDC_MDMISC_BI_ON.
 
@@ -1922,7 +1829,6 @@ typedef union _hw_mmdc_mdmisc
 //! @brief Set the BI_ON field to a new value.
 #define BW_MMDC_MDMISC_BI_ON(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_BI_ON) | BF_MMDC_MDMISC_BI_ON(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMISC, field WALAT[17:16] (RW)
@@ -1939,7 +1845,6 @@ typedef union _hw_mmdc_mdmisc
  * - 0x3 - 3 cycles additional delay
  */
 //@{
-
 #define BP_MMDC_MDMISC_WALAT      (16)      //!< Bit position for MMDC_MDMISC_WALAT.
 #define BM_MMDC_MDMISC_WALAT      (0x00030000)  //!< Bit mask for MMDC_MDMISC_WALAT.
 
@@ -1953,7 +1858,6 @@ typedef union _hw_mmdc_mdmisc
 //! @brief Set the WALAT field to a new value.
 #define BW_MMDC_MDMISC_WALAT(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_WALAT) | BF_MMDC_MDMISC_WALAT(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMISC, field LHD[18] (RW)
@@ -1967,7 +1871,6 @@ typedef union _hw_mmdc_mdmisc
  * - 1 - Latency hiding disable.
  */
 //@{
-
 #define BP_MMDC_MDMISC_LHD      (18)      //!< Bit position for MMDC_MDMISC_LHD.
 #define BM_MMDC_MDMISC_LHD      (0x00040000)  //!< Bit mask for MMDC_MDMISC_LHD.
 
@@ -1981,7 +1884,6 @@ typedef union _hw_mmdc_mdmisc
 //! @brief Set the LHD field to a new value.
 #define BW_MMDC_MDMISC_LHD(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_LHD) | BF_MMDC_MDMISC_LHD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMISC, field ADDR_MIRROR[19] (RW)
@@ -1994,7 +1896,6 @@ typedef union _hw_mmdc_mdmisc
  * - 1 - Address mirroring enabled.
  */
 //@{
-
 #define BP_MMDC_MDMISC_ADDR_MIRROR      (19)      //!< Bit position for MMDC_MDMISC_ADDR_MIRROR.
 #define BM_MMDC_MDMISC_ADDR_MIRROR      (0x00080000)  //!< Bit mask for MMDC_MDMISC_ADDR_MIRROR.
 
@@ -2008,7 +1909,6 @@ typedef union _hw_mmdc_mdmisc
 //! @brief Set the ADDR_MIRROR field to a new value.
 #define BW_MMDC_MDMISC_ADDR_MIRROR(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_ADDR_MIRROR) | BF_MMDC_MDMISC_ADDR_MIRROR(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMISC, field CALIB_PER_CS[20] (RW)
@@ -2022,7 +1922,6 @@ typedef union _hw_mmdc_mdmisc
  * - 1 - Calibration is targetted to CS1
  */
 //@{
-
 #define BP_MMDC_MDMISC_CALIB_PER_CS      (20)      //!< Bit position for MMDC_MDMISC_CALIB_PER_CS.
 #define BM_MMDC_MDMISC_CALIB_PER_CS      (0x00100000)  //!< Bit mask for MMDC_MDMISC_CALIB_PER_CS.
 
@@ -2036,7 +1935,6 @@ typedef union _hw_mmdc_mdmisc
 //! @brief Set the CALIB_PER_CS field to a new value.
 #define BW_MMDC_MDMISC_CALIB_PER_CS(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_CALIB_PER_CS) | BF_MMDC_MDMISC_CALIB_PER_CS(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMISC, field CS1_RDY[30] (RO)
@@ -2049,13 +1947,11 @@ typedef union _hw_mmdc_mdmisc
  * - 1 - Device is ready for initialization.
  */
 //@{
-
 #define BP_MMDC_MDMISC_CS1_RDY      (30)      //!< Bit position for MMDC_MDMISC_CS1_RDY.
 #define BM_MMDC_MDMISC_CS1_RDY      (0x40000000)  //!< Bit mask for MMDC_MDMISC_CS1_RDY.
 
 //! @brief Get value of MMDC_MDMISC_CS1_RDY from a register value.
 #define BG_MMDC_MDMISC_CS1_RDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_CS1_RDY) >> BP_MMDC_MDMISC_CS1_RDY)
-
 //@}
 
 /*! @name Register MMDC_MDMISC, field CS0_RDY[31] (RO)
@@ -2068,13 +1964,11 @@ typedef union _hw_mmdc_mdmisc
  * - 1 - Device is ready for initialization.
  */
 //@{
-
 #define BP_MMDC_MDMISC_CS0_RDY      (31)      //!< Bit position for MMDC_MDMISC_CS0_RDY.
 #define BM_MMDC_MDMISC_CS0_RDY      (0x80000000)  //!< Bit mask for MMDC_MDMISC_CS0_RDY.
 
 //! @brief Get value of MMDC_MDMISC_CS0_RDY from a register value.
 #define BG_MMDC_MDMISC_CS0_RDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMISC_CS0_RDY) >> BP_MMDC_MDMISC_CS0_RDY)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2108,7 +2002,7 @@ typedef union _hw_mmdc_mdscr
         unsigned RESERVED1 : 3; //!< [13:11] Reserved
         unsigned CON_ACK : 1; //!< [14] Configuration acknowledge.
         unsigned CON_REQ : 1; //!< [15] Configuration request.
-        unsigned CMD_ADDR_LSB : 8; //!< [23:16] Command/Address LSB.
+        unsigned CMD_ADDR_LSB_MR_ADDR : 8; //!< [23:16] Command/Address LSB.
         unsigned CMD_ADDR_MSB : 8; //!< [31:24] Command/Address MSB.
     } B;
 } hw_mmdc_mdscr_t;
@@ -2146,7 +2040,6 @@ typedef union _hw_mmdc_mdscr
  * - 0x7 - bank address 7
  */
 //@{
-
 #define BP_MMDC_MDSCR_CMD_BA      (0)      //!< Bit position for MMDC_MDSCR_CMD_BA.
 #define BM_MMDC_MDSCR_CMD_BA      (0x00000007)  //!< Bit mask for MMDC_MDSCR_CMD_BA.
 
@@ -2160,7 +2053,6 @@ typedef union _hw_mmdc_mdscr
 //! @brief Set the CMD_BA field to a new value.
 #define BW_MMDC_MDSCR_CMD_BA(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD_BA) | BF_MMDC_MDSCR_CMD_BA(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDSCR, field CMD_CS[3] (RW)
@@ -2172,7 +2064,6 @@ typedef union _hw_mmdc_mdscr
  * - 1 - to Chip-select 1
  */
 //@{
-
 #define BP_MMDC_MDSCR_CMD_CS      (3)      //!< Bit position for MMDC_MDSCR_CMD_CS.
 #define BM_MMDC_MDSCR_CMD_CS      (0x00000008)  //!< Bit mask for MMDC_MDSCR_CMD_CS.
 
@@ -2186,7 +2077,6 @@ typedef union _hw_mmdc_mdscr
 //! @brief Set the CMD_CS field to a new value.
 #define BW_MMDC_MDSCR_CMD_CS(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD_CS) | BF_MMDC_MDSCR_CMD_CS(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDSCR, field CMD[6:4] (RW)
@@ -2207,7 +2097,6 @@ typedef union _hw_mmdc_mdscr
  * - 0x7 - Reserved
  */
 //@{
-
 #define BP_MMDC_MDSCR_CMD      (4)      //!< Bit position for MMDC_MDSCR_CMD.
 #define BM_MMDC_MDSCR_CMD      (0x00000070)  //!< Bit mask for MMDC_MDSCR_CMD.
 
@@ -2221,7 +2110,6 @@ typedef union _hw_mmdc_mdscr
 //! @brief Set the CMD field to a new value.
 #define BW_MMDC_MDSCR_CMD(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD) | BF_MMDC_MDSCR_CMD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDSCR, field WL_EN[9] (RW)
@@ -2235,7 +2123,6 @@ typedef union _hw_mmdc_mdscr
  * - 1 - Write leveling entry command was sent.
  */
 //@{
-
 #define BP_MMDC_MDSCR_WL_EN      (9)      //!< Bit position for MMDC_MDSCR_WL_EN.
 #define BM_MMDC_MDSCR_WL_EN      (0x00000200)  //!< Bit mask for MMDC_MDSCR_WL_EN.
 
@@ -2249,7 +2136,6 @@ typedef union _hw_mmdc_mdscr
 //! @brief Set the WL_EN field to a new value.
 #define BW_MMDC_MDSCR_WL_EN(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_WL_EN) | BF_MMDC_MDSCR_WL_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDSCR, field MRR_READ_DATA_VALID[10] (RO)
@@ -2262,13 +2148,11 @@ typedef union _hw_mmdc_mdscr
  * - 1 - Set after MRR data is valid and stored at MDMRR register.
  */
 //@{
-
 #define BP_MMDC_MDSCR_MRR_READ_DATA_VALID      (10)      //!< Bit position for MMDC_MDSCR_MRR_READ_DATA_VALID.
 #define BM_MMDC_MDSCR_MRR_READ_DATA_VALID      (0x00000400)  //!< Bit mask for MMDC_MDSCR_MRR_READ_DATA_VALID.
 
 //! @brief Get value of MMDC_MDSCR_MRR_READ_DATA_VALID from a register value.
 #define BG_MMDC_MDSCR_MRR_READ_DATA_VALID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_MRR_READ_DATA_VALID) >> BP_MMDC_MDSCR_MRR_READ_DATA_VALID)
-
 //@}
 
 /*! @name Register MMDC_MDSCR, field CON_ACK[14] (RO)
@@ -2281,13 +2165,11 @@ typedef union _hw_mmdc_mdscr
  * - 1 - Configuration of MMDC registers is permitted.
  */
 //@{
-
 #define BP_MMDC_MDSCR_CON_ACK      (14)      //!< Bit position for MMDC_MDSCR_CON_ACK.
 #define BM_MMDC_MDSCR_CON_ACK      (0x00004000)  //!< Bit mask for MMDC_MDSCR_CON_ACK.
 
 //! @brief Get value of MMDC_MDSCR_CON_ACK from a register value.
 #define BG_MMDC_MDSCR_CON_ACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_CON_ACK) >> BP_MMDC_MDSCR_CON_ACK)
-
 //@}
 
 /*! @name Register MMDC_MDSCR, field CON_REQ[15] (RW)
@@ -2308,7 +2190,6 @@ typedef union _hw_mmdc_mdscr
  * - 1 - A request to configure MMDC is valid
  */
 //@{
-
 #define BP_MMDC_MDSCR_CON_REQ      (15)      //!< Bit position for MMDC_MDSCR_CON_REQ.
 #define BM_MMDC_MDSCR_CON_REQ      (0x00008000)  //!< Bit mask for MMDC_MDSCR_CON_REQ.
 
@@ -2322,30 +2203,27 @@ typedef union _hw_mmdc_mdscr
 //! @brief Set the CON_REQ field to a new value.
 #define BW_MMDC_MDSCR_CON_REQ(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CON_REQ) | BF_MMDC_MDSCR_CON_REQ(v)))
 #endif
-
 //@}
 
-/*! @name Register MMDC_MDSCR, field CMD_ADDR_LSB[23:16] (RW)
+/*! @name Register MMDC_MDSCR, field CMD_ADDR_LSB_MR_ADDR[23:16] (RW)
  *
  * Command/Address LSB. This field indicates the LSB of the command/Address In LPDDR2 this field
  * indicates the MRR/MRW address
  */
 //@{
+#define BP_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR      (16)      //!< Bit position for MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR.
+#define BM_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR      (0x00ff0000)  //!< Bit mask for MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR.
 
-#define BP_MMDC_MDSCR_CMD_ADDR_LSB      (16)      //!< Bit position for MMDC_MDSCR_CMD_ADDR_LSB.
-#define BM_MMDC_MDSCR_CMD_ADDR_LSB      (0x00ff0000)  //!< Bit mask for MMDC_MDSCR_CMD_ADDR_LSB.
+//! @brief Get value of MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR from a register value.
+#define BG_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR) >> BP_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR)
 
-//! @brief Get value of MMDC_MDSCR_CMD_ADDR_LSB from a register value.
-#define BG_MMDC_MDSCR_CMD_ADDR_LSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_CMD_ADDR_LSB) >> BP_MMDC_MDSCR_CMD_ADDR_LSB)
-
-//! @brief Format value for bitfield MMDC_MDSCR_CMD_ADDR_LSB.
-#define BF_MMDC_MDSCR_CMD_ADDR_LSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDSCR_CMD_ADDR_LSB) & BM_MMDC_MDSCR_CMD_ADDR_LSB)
+//! @brief Format value for bitfield MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR.
+#define BF_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR) & BM_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CMD_ADDR_LSB field to a new value.
-#define BW_MMDC_MDSCR_CMD_ADDR_LSB(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD_ADDR_LSB) | BF_MMDC_MDSCR_CMD_ADDR_LSB(v)))
+//! @brief Set the CMD_ADDR_LSB_MR_ADDR field to a new value.
+#define BW_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR) | BF_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDSCR, field CMD_ADDR_MSB[31:24] (RW)
@@ -2354,7 +2232,6 @@ typedef union _hw_mmdc_mdscr
  * indicates the MRW operand
  */
 //@{
-
 #define BP_MMDC_MDSCR_CMD_ADDR_MSB      (24)      //!< Bit position for MMDC_MDSCR_CMD_ADDR_MSB.
 #define BM_MMDC_MDSCR_CMD_ADDR_MSB      (0xff000000)  //!< Bit mask for MMDC_MDSCR_CMD_ADDR_MSB.
 
@@ -2368,7 +2245,6 @@ typedef union _hw_mmdc_mdscr
 //! @brief Set the CMD_ADDR_MSB field to a new value.
 #define BW_MMDC_MDSCR_CMD_ADDR_MSB(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD_ADDR_MSB) | BF_MMDC_MDSCR_CMD_ADDR_MSB(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2445,7 +2321,6 @@ typedef union _hw_mmdc_mdref
  * - 1 - Start a refresh cycle.
  */
 //@{
-
 #define BP_MMDC_MDREF_START_REF      (0)      //!< Bit position for MMDC_MDREF_START_REF.
 #define BM_MMDC_MDREF_START_REF      (0x00000001)  //!< Bit mask for MMDC_MDREF_START_REF.
 
@@ -2459,7 +2334,6 @@ typedef union _hw_mmdc_mdref
 //! @brief Set the START_REF field to a new value.
 #define BW_MMDC_MDREF_START_REF(x, v)   (HW_MMDC_MDREF_WR(x, (HW_MMDC_MDREF_RD(x) & ~BM_MMDC_MDREF_START_REF) | BF_MMDC_MDREF_START_REF(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDREF, field REFR[13:11] (RW)
@@ -2479,7 +2353,6 @@ typedef union _hw_mmdc_mdref
  * - 0x7 - 8 refreshes
  */
 //@{
-
 #define BP_MMDC_MDREF_REFR      (11)      //!< Bit position for MMDC_MDREF_REFR.
 #define BM_MMDC_MDREF_REFR      (0x00003800)  //!< Bit mask for MMDC_MDREF_REFR.
 
@@ -2493,7 +2366,6 @@ typedef union _hw_mmdc_mdref
 //! @brief Set the REFR field to a new value.
 #define BW_MMDC_MDREF_REFR(x, v)   (HW_MMDC_MDREF_WR(x, (HW_MMDC_MDREF_RD(x) & ~BM_MMDC_MDREF_REFR) | BF_MMDC_MDREF_REFR(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDREF, field REF_SEL[15:14] (RW)
@@ -2508,7 +2380,6 @@ typedef union _hw_mmdc_mdref
  * - 3 - No refresh cycles will be triggered.
  */
 //@{
-
 #define BP_MMDC_MDREF_REF_SEL      (14)      //!< Bit position for MMDC_MDREF_REF_SEL.
 #define BM_MMDC_MDREF_REF_SEL      (0x0000c000)  //!< Bit mask for MMDC_MDREF_REF_SEL.
 
@@ -2522,7 +2393,6 @@ typedef union _hw_mmdc_mdref
 //! @brief Set the REF_SEL field to a new value.
 #define BW_MMDC_MDREF_REF_SEL(x, v)   (HW_MMDC_MDREF_WR(x, (HW_MMDC_MDREF_RD(x) & ~BM_MMDC_MDREF_REF_SEL) | BF_MMDC_MDREF_REF_SEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDREF, field REF_CNT[31:16] (RW)
@@ -2537,7 +2407,6 @@ typedef union _hw_mmdc_mdref
  * - 0xFFFF - 65535 cycles.
  */
 //@{
-
 #define BP_MMDC_MDREF_REF_CNT      (16)      //!< Bit position for MMDC_MDREF_REF_CNT.
 #define BM_MMDC_MDREF_REF_CNT      (0xffff0000)  //!< Bit mask for MMDC_MDREF_REF_CNT.
 
@@ -2551,7 +2420,6 @@ typedef union _hw_mmdc_mdref
 //! @brief Set the REF_CNT field to a new value.
 #define BW_MMDC_MDREF_REF_CNT(x, v)   (HW_MMDC_MDREF_WR(x, (HW_MMDC_MDREF_RD(x) & ~BM_MMDC_MDREF_REF_CNT) | BF_MMDC_MDREF_REF_CNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2623,7 +2491,6 @@ typedef union _hw_mmdc_mdrwd
  * - 0x7 - 7 cycles
  */
 //@{
-
 #define BP_MMDC_MDRWD_RTR_DIFF      (0)      //!< Bit position for MMDC_MDRWD_RTR_DIFF.
 #define BM_MMDC_MDRWD_RTR_DIFF      (0x00000007)  //!< Bit mask for MMDC_MDRWD_RTR_DIFF.
 
@@ -2637,7 +2504,6 @@ typedef union _hw_mmdc_mdrwd
 //! @brief Set the RTR_DIFF field to a new value.
 #define BW_MMDC_MDRWD_RTR_DIFF(x, v)   (HW_MMDC_MDRWD_WR(x, (HW_MMDC_MDRWD_RD(x) & ~BM_MMDC_MDRWD_RTR_DIFF) | BF_MMDC_MDRWD_RTR_DIFF(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDRWD, field RTW_DIFF[5:3] (RW)
@@ -2657,7 +2523,6 @@ typedef union _hw_mmdc_mdrwd
  * - 0x7 - 7 cycles
  */
 //@{
-
 #define BP_MMDC_MDRWD_RTW_DIFF      (3)      //!< Bit position for MMDC_MDRWD_RTW_DIFF.
 #define BM_MMDC_MDRWD_RTW_DIFF      (0x00000038)  //!< Bit mask for MMDC_MDRWD_RTW_DIFF.
 
@@ -2671,7 +2536,6 @@ typedef union _hw_mmdc_mdrwd
 //! @brief Set the RTW_DIFF field to a new value.
 #define BW_MMDC_MDRWD_RTW_DIFF(x, v)   (HW_MMDC_MDRWD_WR(x, (HW_MMDC_MDRWD_RD(x) & ~BM_MMDC_MDRWD_RTW_DIFF) | BF_MMDC_MDRWD_RTW_DIFF(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDRWD, field WTW_DIFF[8:6] (RW)
@@ -2691,7 +2555,6 @@ typedef union _hw_mmdc_mdrwd
  * - 0x7 - 7 cycles
  */
 //@{
-
 #define BP_MMDC_MDRWD_WTW_DIFF      (6)      //!< Bit position for MMDC_MDRWD_WTW_DIFF.
 #define BM_MMDC_MDRWD_WTW_DIFF      (0x000001c0)  //!< Bit mask for MMDC_MDRWD_WTW_DIFF.
 
@@ -2705,7 +2568,6 @@ typedef union _hw_mmdc_mdrwd
 //! @brief Set the WTW_DIFF field to a new value.
 #define BW_MMDC_MDRWD_WTW_DIFF(x, v)   (HW_MMDC_MDRWD_WR(x, (HW_MMDC_MDRWD_RD(x) & ~BM_MMDC_MDRWD_WTW_DIFF) | BF_MMDC_MDRWD_WTW_DIFF(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDRWD, field WTR_DIFF[11:9] (RW)
@@ -2725,7 +2587,6 @@ typedef union _hw_mmdc_mdrwd
  * - 0x7 - 7 cycles
  */
 //@{
-
 #define BP_MMDC_MDRWD_WTR_DIFF      (9)      //!< Bit position for MMDC_MDRWD_WTR_DIFF.
 #define BM_MMDC_MDRWD_WTR_DIFF      (0x00000e00)  //!< Bit mask for MMDC_MDRWD_WTR_DIFF.
 
@@ -2739,7 +2600,6 @@ typedef union _hw_mmdc_mdrwd
 //! @brief Set the WTR_DIFF field to a new value.
 #define BW_MMDC_MDRWD_WTR_DIFF(x, v)   (HW_MMDC_MDRWD_WR(x, (HW_MMDC_MDRWD_RD(x) & ~BM_MMDC_MDRWD_WTR_DIFF) | BF_MMDC_MDRWD_WTR_DIFF(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDRWD, field RTW_SAME[14:12] (RW)
@@ -2759,7 +2619,6 @@ typedef union _hw_mmdc_mdrwd
  * - 0x7 - 7 cycles
  */
 //@{
-
 #define BP_MMDC_MDRWD_RTW_SAME      (12)      //!< Bit position for MMDC_MDRWD_RTW_SAME.
 #define BM_MMDC_MDRWD_RTW_SAME      (0x00007000)  //!< Bit mask for MMDC_MDRWD_RTW_SAME.
 
@@ -2773,7 +2632,6 @@ typedef union _hw_mmdc_mdrwd
 //! @brief Set the RTW_SAME field to a new value.
 #define BW_MMDC_MDRWD_RTW_SAME(x, v)   (HW_MMDC_MDRWD_WR(x, (HW_MMDC_MDRWD_RD(x) & ~BM_MMDC_MDRWD_RTW_SAME) | BF_MMDC_MDRWD_RTW_SAME(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDRWD, field TDAI[28:16] (RW)
@@ -2786,7 +2644,6 @@ typedef union _hw_mmdc_mdrwd
  * - 0x1FFF - 8192 cycles
  */
 //@{
-
 #define BP_MMDC_MDRWD_TDAI      (16)      //!< Bit position for MMDC_MDRWD_TDAI.
 #define BM_MMDC_MDRWD_TDAI      (0x1fff0000)  //!< Bit mask for MMDC_MDRWD_TDAI.
 
@@ -2800,7 +2657,6 @@ typedef union _hw_mmdc_mdrwd
 //! @brief Set the TDAI field to a new value.
 #define BW_MMDC_MDRWD_TDAI(x, v)   (HW_MMDC_MDRWD_WR(x, (HW_MMDC_MDRWD_RD(x) & ~BM_MMDC_MDRWD_TDAI) | BF_MMDC_MDRWD_TDAI(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2868,7 +2724,6 @@ typedef union _hw_mmdc_mdor
  * - 0x3F - 61 cycles
  */
 //@{
-
 #define BP_MMDC_MDOR_RST_TO_CKE      (0)      //!< Bit position for MMDC_MDOR_RST_TO_CKE.
 #define BM_MMDC_MDOR_RST_TO_CKE      (0x0000003f)  //!< Bit mask for MMDC_MDOR_RST_TO_CKE.
 
@@ -2882,7 +2737,6 @@ typedef union _hw_mmdc_mdor
 //! @brief Set the RST_TO_CKE field to a new value.
 #define BW_MMDC_MDOR_RST_TO_CKE(x, v)   (HW_MMDC_MDOR_WR(x, (HW_MMDC_MDOR_RD(x) & ~BM_MMDC_MDOR_RST_TO_CKE) | BF_MMDC_MDOR_RST_TO_CKE(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDOR, field SDE_TO_RST[13:8] (RW)
@@ -2901,7 +2755,6 @@ typedef union _hw_mmdc_mdor
  * - 0x3F - 61 cycles
  */
 //@{
-
 #define BP_MMDC_MDOR_SDE_TO_RST      (8)      //!< Bit position for MMDC_MDOR_SDE_TO_RST.
 #define BM_MMDC_MDOR_SDE_TO_RST      (0x00003f00)  //!< Bit mask for MMDC_MDOR_SDE_TO_RST.
 
@@ -2915,7 +2768,6 @@ typedef union _hw_mmdc_mdor
 //! @brief Set the SDE_TO_RST field to a new value.
 #define BW_MMDC_MDOR_SDE_TO_RST(x, v)   (HW_MMDC_MDOR_WR(x, (HW_MMDC_MDOR_RD(x) & ~BM_MMDC_MDOR_SDE_TO_RST) | BF_MMDC_MDOR_SDE_TO_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDOR, field TXPR[23:16] (RW)
@@ -2931,7 +2783,6 @@ typedef union _hw_mmdc_mdor
  * - 0xFF - 256 cycles
  */
 //@{
-
 #define BP_MMDC_MDOR_TXPR      (16)      //!< Bit position for MMDC_MDOR_TXPR.
 #define BM_MMDC_MDOR_TXPR      (0x00ff0000)  //!< Bit mask for MMDC_MDOR_TXPR.
 
@@ -2945,7 +2796,6 @@ typedef union _hw_mmdc_mdor
 //! @brief Set the TXPR field to a new value.
 #define BW_MMDC_MDOR_TXPR(x, v)   (HW_MMDC_MDOR_WR(x, (HW_MMDC_MDOR_RD(x) & ~BM_MMDC_MDOR_TXPR) | BF_MMDC_MDOR_TXPR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2997,13 +2847,11 @@ typedef union _hw_mmdc_mdmrr
  * MRR DATA that arrived on DQ[7:0]
  */
 //@{
-
 #define BP_MMDC_MDMRR_MRR_READ_DATA0      (0)      //!< Bit position for MMDC_MDMRR_MRR_READ_DATA0.
 #define BM_MMDC_MDMRR_MRR_READ_DATA0      (0x000000ff)  //!< Bit mask for MMDC_MDMRR_MRR_READ_DATA0.
 
 //! @brief Get value of MMDC_MDMRR_MRR_READ_DATA0 from a register value.
 #define BG_MMDC_MDMRR_MRR_READ_DATA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMRR_MRR_READ_DATA0) >> BP_MMDC_MDMRR_MRR_READ_DATA0)
-
 //@}
 
 /*! @name Register MMDC_MDMRR, field MRR_READ_DATA1[15:8] (RO)
@@ -3011,13 +2859,11 @@ typedef union _hw_mmdc_mdmrr
  * MRR DATA that arrived on DQ[15:8]
  */
 //@{
-
 #define BP_MMDC_MDMRR_MRR_READ_DATA1      (8)      //!< Bit position for MMDC_MDMRR_MRR_READ_DATA1.
 #define BM_MMDC_MDMRR_MRR_READ_DATA1      (0x0000ff00)  //!< Bit mask for MMDC_MDMRR_MRR_READ_DATA1.
 
 //! @brief Get value of MMDC_MDMRR_MRR_READ_DATA1 from a register value.
 #define BG_MMDC_MDMRR_MRR_READ_DATA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMRR_MRR_READ_DATA1) >> BP_MMDC_MDMRR_MRR_READ_DATA1)
-
 //@}
 
 /*! @name Register MMDC_MDMRR, field MRR_READ_DATA2[23:16] (RO)
@@ -3025,13 +2871,11 @@ typedef union _hw_mmdc_mdmrr
  * MRR DATA that arrived on DQ[23:16]
  */
 //@{
-
 #define BP_MMDC_MDMRR_MRR_READ_DATA2      (16)      //!< Bit position for MMDC_MDMRR_MRR_READ_DATA2.
 #define BM_MMDC_MDMRR_MRR_READ_DATA2      (0x00ff0000)  //!< Bit mask for MMDC_MDMRR_MRR_READ_DATA2.
 
 //! @brief Get value of MMDC_MDMRR_MRR_READ_DATA2 from a register value.
 #define BG_MMDC_MDMRR_MRR_READ_DATA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMRR_MRR_READ_DATA2) >> BP_MMDC_MDMRR_MRR_READ_DATA2)
-
 //@}
 
 /*! @name Register MMDC_MDMRR, field MRR_READ_DATA3[31:24] (RO)
@@ -3039,13 +2883,11 @@ typedef union _hw_mmdc_mdmrr
  * MRR DATA that arrived on DQ[31:24]
  */
 //@{
-
 #define BP_MMDC_MDMRR_MRR_READ_DATA3      (24)      //!< Bit position for MMDC_MDMRR_MRR_READ_DATA3.
 #define BM_MMDC_MDMRR_MRR_READ_DATA3      (0xff000000)  //!< Bit mask for MMDC_MDMRR_MRR_READ_DATA3.
 
 //! @brief Get value of MMDC_MDMRR_MRR_READ_DATA3 from a register value.
 #define BG_MMDC_MDMRR_MRR_READ_DATA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMRR_MRR_READ_DATA3) >> BP_MMDC_MDMRR_MRR_READ_DATA3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3108,7 +2950,6 @@ typedef union _hw_mmdc_mdcfg3lp
  * - 0xF - Reserved
  */
 //@{
-
 #define BP_MMDC_MDCFG3LP_TRPAB_LP      (0)      //!< Bit position for MMDC_MDCFG3LP_TRPAB_LP.
 #define BM_MMDC_MDCFG3LP_TRPAB_LP      (0x0000000f)  //!< Bit mask for MMDC_MDCFG3LP_TRPAB_LP.
 
@@ -3122,7 +2963,6 @@ typedef union _hw_mmdc_mdcfg3lp
 //! @brief Set the TRPAB_LP field to a new value.
 #define BW_MMDC_MDCFG3LP_TRPAB_LP(x, v)   (HW_MMDC_MDCFG3LP_WR(x, (HW_MMDC_MDCFG3LP_RD(x) & ~BM_MMDC_MDCFG3LP_TRPAB_LP) | BF_MMDC_MDCFG3LP_TRPAB_LP(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG3LP, field TRPPB_LP[7:4] (RW)
@@ -3137,7 +2977,6 @@ typedef union _hw_mmdc_mdcfg3lp
  * - 0xF - Reserved
  */
 //@{
-
 #define BP_MMDC_MDCFG3LP_TRPPB_LP      (4)      //!< Bit position for MMDC_MDCFG3LP_TRPPB_LP.
 #define BM_MMDC_MDCFG3LP_TRPPB_LP      (0x000000f0)  //!< Bit mask for MMDC_MDCFG3LP_TRPPB_LP.
 
@@ -3151,7 +2990,6 @@ typedef union _hw_mmdc_mdcfg3lp
 //! @brief Set the TRPPB_LP field to a new value.
 #define BW_MMDC_MDCFG3LP_TRPPB_LP(x, v)   (HW_MMDC_MDCFG3LP_WR(x, (HW_MMDC_MDCFG3LP_RD(x) & ~BM_MMDC_MDCFG3LP_TRPPB_LP) | BF_MMDC_MDCFG3LP_TRPPB_LP(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG3LP, field TRCD_LP[11:8] (RW)
@@ -3167,7 +3005,6 @@ typedef union _hw_mmdc_mdcfg3lp
  * - 0xF - Reserved
  */
 //@{
-
 #define BP_MMDC_MDCFG3LP_TRCD_LP      (8)      //!< Bit position for MMDC_MDCFG3LP_TRCD_LP.
 #define BM_MMDC_MDCFG3LP_TRCD_LP      (0x00000f00)  //!< Bit mask for MMDC_MDCFG3LP_TRCD_LP.
 
@@ -3181,7 +3018,6 @@ typedef union _hw_mmdc_mdcfg3lp
 //! @brief Set the TRCD_LP field to a new value.
 #define BW_MMDC_MDCFG3LP_TRCD_LP(x, v)   (HW_MMDC_MDCFG3LP_WR(x, (HW_MMDC_MDCFG3LP_RD(x) & ~BM_MMDC_MDCFG3LP_TRCD_LP) | BF_MMDC_MDCFG3LP_TRCD_LP(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDCFG3LP, field RC_LP[21:16] (RW)
@@ -3197,7 +3033,6 @@ typedef union _hw_mmdc_mdcfg3lp
  * - 0x3F - Reserved
  */
 //@{
-
 #define BP_MMDC_MDCFG3LP_RC_LP      (16)      //!< Bit position for MMDC_MDCFG3LP_RC_LP.
 #define BM_MMDC_MDCFG3LP_RC_LP      (0x003f0000)  //!< Bit mask for MMDC_MDCFG3LP_RC_LP.
 
@@ -3211,7 +3046,6 @@ typedef union _hw_mmdc_mdcfg3lp
 //! @brief Set the RC_LP field to a new value.
 #define BW_MMDC_MDCFG3LP_RC_LP(x, v)   (HW_MMDC_MDCFG3LP_WR(x, (HW_MMDC_MDCFG3LP_RD(x) & ~BM_MMDC_MDCFG3LP_RC_LP) | BF_MMDC_MDCFG3LP_RC_LP(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3277,7 +3111,6 @@ typedef union _hw_mmdc_mdmr4
  *     register): REF_CNT, REF_SEL, REFR
  */
 //@{
-
 #define BP_MMDC_MDMR4_UPDATE_DE_REQ      (0)      //!< Bit position for MMDC_MDMR4_UPDATE_DE_REQ.
 #define BM_MMDC_MDMR4_UPDATE_DE_REQ      (0x00000001)  //!< Bit mask for MMDC_MDMR4_UPDATE_DE_REQ.
 
@@ -3291,7 +3124,6 @@ typedef union _hw_mmdc_mdmr4
 //! @brief Set the UPDATE_DE_REQ field to a new value.
 #define BW_MMDC_MDMR4_UPDATE_DE_REQ(x, v)   (HW_MMDC_MDMR4_WR(x, (HW_MMDC_MDMR4_RD(x) & ~BM_MMDC_MDMR4_UPDATE_DE_REQ) | BF_MMDC_MDMR4_UPDATE_DE_REQ(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMR4, field UPDATE_DE_ACK[1] (RO)
@@ -3300,13 +3132,11 @@ typedef union _hw_mmdc_mdmr4
  * assertion and will be set after the new values are taken.
  */
 //@{
-
 #define BP_MMDC_MDMR4_UPDATE_DE_ACK      (1)      //!< Bit position for MMDC_MDMR4_UPDATE_DE_ACK.
 #define BM_MMDC_MDMR4_UPDATE_DE_ACK      (0x00000002)  //!< Bit mask for MMDC_MDMR4_UPDATE_DE_ACK.
 
 //! @brief Get value of MMDC_MDMR4_UPDATE_DE_ACK from a register value.
 #define BG_MMDC_MDMR4_UPDATE_DE_ACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDMR4_UPDATE_DE_ACK) >> BP_MMDC_MDMR4_UPDATE_DE_ACK)
-
 //@}
 
 /*! @name Register MMDC_MDMR4, field TRCD_DE[4] (RW)
@@ -3318,7 +3148,6 @@ typedef union _hw_mmdc_mdmr4
  * - 1 - tRCD is derated in 1 cycle.
  */
 //@{
-
 #define BP_MMDC_MDMR4_TRCD_DE      (4)      //!< Bit position for MMDC_MDMR4_TRCD_DE.
 #define BM_MMDC_MDMR4_TRCD_DE      (0x00000010)  //!< Bit mask for MMDC_MDMR4_TRCD_DE.
 
@@ -3332,7 +3161,6 @@ typedef union _hw_mmdc_mdmr4
 //! @brief Set the TRCD_DE field to a new value.
 #define BW_MMDC_MDMR4_TRCD_DE(x, v)   (HW_MMDC_MDMR4_WR(x, (HW_MMDC_MDMR4_RD(x) & ~BM_MMDC_MDMR4_TRCD_DE) | BF_MMDC_MDMR4_TRCD_DE(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMR4, field TRC_DE[5] (RW)
@@ -3344,7 +3172,6 @@ typedef union _hw_mmdc_mdmr4
  * - 1 - tRC is derated in 1 cycle.
  */
 //@{
-
 #define BP_MMDC_MDMR4_TRC_DE      (5)      //!< Bit position for MMDC_MDMR4_TRC_DE.
 #define BM_MMDC_MDMR4_TRC_DE      (0x00000020)  //!< Bit mask for MMDC_MDMR4_TRC_DE.
 
@@ -3358,7 +3185,6 @@ typedef union _hw_mmdc_mdmr4
 //! @brief Set the TRC_DE field to a new value.
 #define BW_MMDC_MDMR4_TRC_DE(x, v)   (HW_MMDC_MDMR4_WR(x, (HW_MMDC_MDMR4_RD(x) & ~BM_MMDC_MDMR4_TRC_DE) | BF_MMDC_MDMR4_TRC_DE(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMR4, field TRAS_DE[6] (RW)
@@ -3370,7 +3196,6 @@ typedef union _hw_mmdc_mdmr4
  * - 1 - tRAS is derated in 1 cycle.
  */
 //@{
-
 #define BP_MMDC_MDMR4_TRAS_DE      (6)      //!< Bit position for MMDC_MDMR4_TRAS_DE.
 #define BM_MMDC_MDMR4_TRAS_DE      (0x00000040)  //!< Bit mask for MMDC_MDMR4_TRAS_DE.
 
@@ -3384,7 +3209,6 @@ typedef union _hw_mmdc_mdmr4
 //! @brief Set the TRAS_DE field to a new value.
 #define BW_MMDC_MDMR4_TRAS_DE(x, v)   (HW_MMDC_MDMR4_WR(x, (HW_MMDC_MDMR4_RD(x) & ~BM_MMDC_MDMR4_TRAS_DE) | BF_MMDC_MDMR4_TRAS_DE(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMR4, field TRP_DE[7] (RW)
@@ -3396,7 +3220,6 @@ typedef union _hw_mmdc_mdmr4
  * - 1 - tRP is derated in 1 cycle.
  */
 //@{
-
 #define BP_MMDC_MDMR4_TRP_DE      (7)      //!< Bit position for MMDC_MDMR4_TRP_DE.
 #define BM_MMDC_MDMR4_TRP_DE      (0x00000080)  //!< Bit mask for MMDC_MDMR4_TRP_DE.
 
@@ -3410,7 +3233,6 @@ typedef union _hw_mmdc_mdmr4
 //! @brief Set the TRP_DE field to a new value.
 #define BW_MMDC_MDMR4_TRP_DE(x, v)   (HW_MMDC_MDMR4_WR(x, (HW_MMDC_MDMR4_RD(x) & ~BM_MMDC_MDMR4_TRP_DE) | BF_MMDC_MDMR4_TRP_DE(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MDMR4, field TRRD_DE[8] (RW)
@@ -3422,7 +3244,6 @@ typedef union _hw_mmdc_mdmr4
  * - 1 - tRRD is derated in 1 cycle.
  */
 //@{
-
 #define BP_MMDC_MDMR4_TRRD_DE      (8)      //!< Bit position for MMDC_MDMR4_TRRD_DE.
 #define BM_MMDC_MDMR4_TRRD_DE      (0x00000100)  //!< Bit mask for MMDC_MDMR4_TRRD_DE.
 
@@ -3436,7 +3257,6 @@ typedef union _hw_mmdc_mdmr4
 //! @brief Set the TRRD_DE field to a new value.
 #define BW_MMDC_MDMR4_TRRD_DE(x, v)   (HW_MMDC_MDMR4_WR(x, (HW_MMDC_MDMR4_RD(x) & ~BM_MMDC_MDMR4_TRRD_DE) | BF_MMDC_MDMR4_TRRD_DE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3497,7 +3317,6 @@ typedef union _hw_mmdc_mdasp
  * - 011_1111 - 16Gb (2GB) - default
  */
 //@{
-
 #define BP_MMDC_MDASP_CS0_END      (0)      //!< Bit position for MMDC_MDASP_CS0_END.
 #define BM_MMDC_MDASP_CS0_END      (0x0000007f)  //!< Bit mask for MMDC_MDASP_CS0_END.
 
@@ -3511,7 +3330,6 @@ typedef union _hw_mmdc_mdasp
 //! @brief Set the CS0_END field to a new value.
 #define BW_MMDC_MDASP_CS0_END(x, v)   (HW_MMDC_MDASP_WR(x, (HW_MMDC_MDASP_RD(x) & ~BM_MMDC_MDASP_CS0_END) | BF_MMDC_MDASP_CS0_END(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3583,7 +3401,6 @@ typedef union _hw_mmdc_maarcr
  * - 1111 - 30
  */
 //@{
-
 #define BP_MMDC_MAARCR_ARCR_GUARD      (0)      //!< Bit position for MMDC_MAARCR_ARCR_GUARD.
 #define BM_MMDC_MAARCR_ARCR_GUARD      (0x0000000f)  //!< Bit mask for MMDC_MAARCR_ARCR_GUARD.
 
@@ -3597,7 +3414,6 @@ typedef union _hw_mmdc_maarcr
 //! @brief Set the ARCR_GUARD field to a new value.
 #define BW_MMDC_MAARCR_ARCR_GUARD(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_GUARD) | BF_MMDC_MAARCR_ARCR_GUARD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAARCR, field ARCR_DYN_MAX[7:4] (RW)
@@ -3611,7 +3427,6 @@ typedef union _hw_mmdc_maarcr
  * - 1111 - 15 (default)
  */
 //@{
-
 #define BP_MMDC_MAARCR_ARCR_DYN_MAX      (4)      //!< Bit position for MMDC_MAARCR_ARCR_DYN_MAX.
 #define BM_MMDC_MAARCR_ARCR_DYN_MAX      (0x000000f0)  //!< Bit mask for MMDC_MAARCR_ARCR_DYN_MAX.
 
@@ -3625,7 +3440,6 @@ typedef union _hw_mmdc_maarcr
 //! @brief Set the ARCR_DYN_MAX field to a new value.
 #define BW_MMDC_MAARCR_ARCR_DYN_MAX(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_DYN_MAX) | BF_MMDC_MAARCR_ARCR_DYN_MAX(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAARCR, field ARCR_DYN_JMP[11:8] (RW)
@@ -3636,7 +3450,6 @@ typedef union _hw_mmdc_maarcr
  * ARCR_DYN_JMP value is 0x0001 - encoding 1
  */
 //@{
-
 #define BP_MMDC_MAARCR_ARCR_DYN_JMP      (8)      //!< Bit position for MMDC_MAARCR_ARCR_DYN_JMP.
 #define BM_MMDC_MAARCR_ARCR_DYN_JMP      (0x00000f00)  //!< Bit mask for MMDC_MAARCR_ARCR_DYN_JMP.
 
@@ -3650,7 +3463,6 @@ typedef union _hw_mmdc_maarcr
 //! @brief Set the ARCR_DYN_JMP field to a new value.
 #define BW_MMDC_MAARCR_ARCR_DYN_JMP(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_DYN_JMP) | BF_MMDC_MAARCR_ARCR_DYN_JMP(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAARCR, field ARCR_ACC_HIT[18:16] (RW)
@@ -3660,7 +3472,6 @@ typedef union _hw_mmdc_maarcr
  * of is ARCR_ACC_HIT 0x0010 - encoding 2.
  */
 //@{
-
 #define BP_MMDC_MAARCR_ARCR_ACC_HIT      (16)      //!< Bit position for MMDC_MAARCR_ARCR_ACC_HIT.
 #define BM_MMDC_MAARCR_ARCR_ACC_HIT      (0x00070000)  //!< Bit mask for MMDC_MAARCR_ARCR_ACC_HIT.
 
@@ -3674,7 +3485,6 @@ typedef union _hw_mmdc_maarcr
 //! @brief Set the ARCR_ACC_HIT field to a new value.
 #define BW_MMDC_MAARCR_ARCR_ACC_HIT(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_ACC_HIT) | BF_MMDC_MAARCR_ARCR_ACC_HIT(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAARCR, field ARCR_PAG_HIT[22:20] (RW)
@@ -3684,7 +3494,6 @@ typedef union _hw_mmdc_maarcr
  * encoding 4.
  */
 //@{
-
 #define BP_MMDC_MAARCR_ARCR_PAG_HIT      (20)      //!< Bit position for MMDC_MAARCR_ARCR_PAG_HIT.
 #define BM_MMDC_MAARCR_ARCR_PAG_HIT      (0x00700000)  //!< Bit mask for MMDC_MAARCR_ARCR_PAG_HIT.
 
@@ -3698,7 +3507,6 @@ typedef union _hw_mmdc_maarcr
 //! @brief Set the ARCR_PAG_HIT field to a new value.
 #define BW_MMDC_MAARCR_ARCR_PAG_HIT(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_PAG_HIT) | BF_MMDC_MAARCR_ARCR_PAG_HIT(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAARCR, field ARCR_RCH_EN[24] (RW)
@@ -3712,7 +3520,6 @@ typedef union _hw_mmdc_maarcr
  * - 1 - accesses with QoS=='F' bypass the arbitration
  */
 //@{
-
 #define BP_MMDC_MAARCR_ARCR_RCH_EN      (24)      //!< Bit position for MMDC_MAARCR_ARCR_RCH_EN.
 #define BM_MMDC_MAARCR_ARCR_RCH_EN      (0x01000000)  //!< Bit mask for MMDC_MAARCR_ARCR_RCH_EN.
 
@@ -3726,7 +3533,6 @@ typedef union _hw_mmdc_maarcr
 //! @brief Set the ARCR_RCH_EN field to a new value.
 #define BW_MMDC_MAARCR_ARCR_RCH_EN(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_RCH_EN) | BF_MMDC_MAARCR_ARCR_RCH_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAARCR, field ARCR_EXC_ERR_EN[28] (RW)
@@ -3739,7 +3545,6 @@ typedef union _hw_mmdc_maarcr
  * - 1 - violation of AXI exclusive rules (6.2.4) result in SLAVE Error response (rresp/bresp=2'b10)
  */
 //@{
-
 #define BP_MMDC_MAARCR_ARCR_EXC_ERR_EN      (28)      //!< Bit position for MMDC_MAARCR_ARCR_EXC_ERR_EN.
 #define BM_MMDC_MAARCR_ARCR_EXC_ERR_EN      (0x10000000)  //!< Bit mask for MMDC_MAARCR_ARCR_EXC_ERR_EN.
 
@@ -3753,7 +3558,6 @@ typedef union _hw_mmdc_maarcr
 //! @brief Set the ARCR_EXC_ERR_EN field to a new value.
 #define BW_MMDC_MAARCR_ARCR_EXC_ERR_EN(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_EXC_ERR_EN) | BF_MMDC_MAARCR_ARCR_EXC_ERR_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAARCR, field ARCR_SEC_ERR_EN[30] (RW)
@@ -3766,7 +3570,6 @@ typedef union _hw_mmdc_maarcr
  * - 1 - security violation results in SLAVE Error response (rresp/bresp=2'b10)
  */
 //@{
-
 #define BP_MMDC_MAARCR_ARCR_SEC_ERR_EN      (30)      //!< Bit position for MMDC_MAARCR_ARCR_SEC_ERR_EN.
 #define BM_MMDC_MAARCR_ARCR_SEC_ERR_EN      (0x40000000)  //!< Bit mask for MMDC_MAARCR_ARCR_SEC_ERR_EN.
 
@@ -3780,7 +3583,6 @@ typedef union _hw_mmdc_maarcr
 //! @brief Set the ARCR_SEC_ERR_EN field to a new value.
 #define BW_MMDC_MAARCR_ARCR_SEC_ERR_EN(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_SEC_ERR_EN) | BF_MMDC_MAARCR_ARCR_SEC_ERR_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAARCR, field ARCR_SEC_ERR_LOCK[31] (RW)
@@ -3793,7 +3595,6 @@ typedef union _hw_mmdc_maarcr
  * - 1 - ARCR_SEC_ERR_EN is locked, so it can't be updated
  */
 //@{
-
 #define BP_MMDC_MAARCR_ARCR_SEC_ERR_LOCK      (31)      //!< Bit position for MMDC_MAARCR_ARCR_SEC_ERR_LOCK.
 #define BM_MMDC_MAARCR_ARCR_SEC_ERR_LOCK      (0x80000000)  //!< Bit mask for MMDC_MAARCR_ARCR_SEC_ERR_LOCK.
 
@@ -3807,7 +3608,6 @@ typedef union _hw_mmdc_maarcr
 //! @brief Set the ARCR_SEC_ERR_LOCK field to a new value.
 #define BW_MMDC_MAARCR_ARCR_SEC_ERR_LOCK(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_SEC_ERR_LOCK) | BF_MMDC_MAARCR_ARCR_SEC_ERR_LOCK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3878,7 +3678,6 @@ typedef union _hw_mmdc_mapsr
  * - 1 - power saving disabled (default)
  */
 //@{
-
 #define BP_MMDC_MAPSR_PSD      (0)      //!< Bit position for MMDC_MAPSR_PSD.
 #define BM_MMDC_MAPSR_PSD      (0x00000001)  //!< Bit mask for MMDC_MAPSR_PSD.
 
@@ -3892,7 +3691,6 @@ typedef union _hw_mmdc_mapsr
 //! @brief Set the PSD field to a new value.
 #define BW_MMDC_MAPSR_PSD(x, v)   (HW_MMDC_MAPSR_WR(x, (HW_MMDC_MAPSR_RD(x) & ~BM_MMDC_MAPSR_PSD) | BF_MMDC_MAPSR_PSD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAPSR, field PSS[4] (RO)
@@ -3905,13 +3703,11 @@ typedef union _hw_mmdc_mapsr
  * - 1 - power saving
  */
 //@{
-
 #define BP_MMDC_MAPSR_PSS      (4)      //!< Bit position for MMDC_MAPSR_PSS.
 #define BM_MMDC_MAPSR_PSS      (0x00000010)  //!< Bit mask for MMDC_MAPSR_PSS.
 
 //! @brief Get value of MMDC_MAPSR_PSS from a register value.
 #define BG_MMDC_MAPSR_PSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_PSS) >> BP_MMDC_MAPSR_PSS)
-
 //@}
 
 /*! @name Register MMDC_MAPSR, field RIS[5] (RO)
@@ -3923,13 +3719,11 @@ typedef union _hw_mmdc_mapsr
  * - 1 - not idle
  */
 //@{
-
 #define BP_MMDC_MAPSR_RIS      (5)      //!< Bit position for MMDC_MAPSR_RIS.
 #define BM_MMDC_MAPSR_RIS      (0x00000020)  //!< Bit mask for MMDC_MAPSR_RIS.
 
 //! @brief Get value of MMDC_MAPSR_RIS from a register value.
 #define BG_MMDC_MAPSR_RIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_RIS) >> BP_MMDC_MAPSR_RIS)
-
 //@}
 
 /*! @name Register MMDC_MAPSR, field WIS[6] (RO)
@@ -3942,13 +3736,11 @@ typedef union _hw_mmdc_mapsr
  * - 1 - not idle
  */
 //@{
-
 #define BP_MMDC_MAPSR_WIS      (6)      //!< Bit position for MMDC_MAPSR_WIS.
 #define BM_MMDC_MAPSR_WIS      (0x00000040)  //!< Bit mask for MMDC_MAPSR_WIS.
 
 //! @brief Get value of MMDC_MAPSR_WIS from a register value.
 #define BG_MMDC_MAPSR_WIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_WIS) >> BP_MMDC_MAPSR_WIS)
-
 //@}
 
 /*! @name Register MMDC_MAPSR, field PST[15:8] (RW)
@@ -3965,7 +3757,6 @@ typedef union _hw_mmdc_mapsr
  * - 11111111 - timer clock is configured to 16320 clock cycles.
  */
 //@{
-
 #define BP_MMDC_MAPSR_PST      (8)      //!< Bit position for MMDC_MAPSR_PST.
 #define BM_MMDC_MAPSR_PST      (0x0000ff00)  //!< Bit mask for MMDC_MAPSR_PST.
 
@@ -3979,7 +3770,6 @@ typedef union _hw_mmdc_mapsr
 //! @brief Set the PST field to a new value.
 #define BW_MMDC_MAPSR_PST(x, v)   (HW_MMDC_MAPSR_WR(x, (HW_MMDC_MAPSR_RD(x) & ~BM_MMDC_MAPSR_PST) | BF_MMDC_MAPSR_PST(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAPSR, field LPMD[20] (RW)
@@ -3992,7 +3782,6 @@ typedef union _hw_mmdc_mapsr
  * - 1 - lpmd request
  */
 //@{
-
 #define BP_MMDC_MAPSR_LPMD      (20)      //!< Bit position for MMDC_MAPSR_LPMD.
 #define BM_MMDC_MAPSR_LPMD      (0x00100000)  //!< Bit mask for MMDC_MAPSR_LPMD.
 
@@ -4006,7 +3795,6 @@ typedef union _hw_mmdc_mapsr
 //! @brief Set the LPMD field to a new value.
 #define BW_MMDC_MAPSR_LPMD(x, v)   (HW_MMDC_MAPSR_WR(x, (HW_MMDC_MAPSR_RD(x) & ~BM_MMDC_MAPSR_LPMD) | BF_MMDC_MAPSR_LPMD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAPSR, field DVFS[21] (RW)
@@ -4019,7 +3807,6 @@ typedef union _hw_mmdc_mapsr
  * - 1 - dvfs request
  */
 //@{
-
 #define BP_MMDC_MAPSR_DVFS      (21)      //!< Bit position for MMDC_MAPSR_DVFS.
 #define BM_MMDC_MAPSR_DVFS      (0x00200000)  //!< Bit mask for MMDC_MAPSR_DVFS.
 
@@ -4033,7 +3820,6 @@ typedef union _hw_mmdc_mapsr
 //! @brief Set the DVFS field to a new value.
 #define BW_MMDC_MAPSR_DVFS(x, v)   (HW_MMDC_MAPSR_WR(x, (HW_MMDC_MAPSR_RD(x) & ~BM_MMDC_MAPSR_DVFS) | BF_MMDC_MAPSR_DVFS(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAPSR, field LPACK[24] (RO)
@@ -4042,13 +3828,11 @@ typedef union _hw_mmdc_mapsr
  * asserted and that MMDC is in self-refresh mode
  */
 //@{
-
 #define BP_MMDC_MAPSR_LPACK      (24)      //!< Bit position for MMDC_MAPSR_LPACK.
 #define BM_MMDC_MAPSR_LPACK      (0x01000000)  //!< Bit mask for MMDC_MAPSR_LPACK.
 
 //! @brief Get value of MMDC_MAPSR_LPACK from a register value.
 #define BG_MMDC_MAPSR_LPACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_LPACK) >> BP_MMDC_MAPSR_LPACK)
-
 //@}
 
 /*! @name Register MMDC_MAPSR, field DVACK[25] (RO)
@@ -4057,13 +3841,11 @@ typedef union _hw_mmdc_mapsr
  * and that MMDC is in self-refresh mode
  */
 //@{
-
 #define BP_MMDC_MAPSR_DVACK      (25)      //!< Bit position for MMDC_MAPSR_DVACK.
 #define BM_MMDC_MAPSR_DVACK      (0x02000000)  //!< Bit mask for MMDC_MAPSR_DVACK.
 
 //! @brief Get value of MMDC_MAPSR_DVACK from a register value.
 #define BG_MMDC_MAPSR_DVACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MAPSR_DVACK) >> BP_MMDC_MAPSR_DVACK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4116,7 +3898,6 @@ typedef union _hw_mmdc_maexidr0
  * This feild defines ID for Exclusive monitor#0. Default value is 0x0000
  */
 //@{
-
 #define BP_MMDC_MAEXIDR0_EXC_ID_MONITOR0      (0)      //!< Bit position for MMDC_MAEXIDR0_EXC_ID_MONITOR0.
 #define BM_MMDC_MAEXIDR0_EXC_ID_MONITOR0      (0x0000ffff)  //!< Bit mask for MMDC_MAEXIDR0_EXC_ID_MONITOR0.
 
@@ -4130,7 +3911,6 @@ typedef union _hw_mmdc_maexidr0
 //! @brief Set the EXC_ID_MONITOR0 field to a new value.
 #define BW_MMDC_MAEXIDR0_EXC_ID_MONITOR0(x, v)   (HW_MMDC_MAEXIDR0_WR(x, (HW_MMDC_MAEXIDR0_RD(x) & ~BM_MMDC_MAEXIDR0_EXC_ID_MONITOR0) | BF_MMDC_MAEXIDR0_EXC_ID_MONITOR0(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAEXIDR0, field EXC_ID_MONITOR1[31:16] (RW)
@@ -4138,7 +3918,6 @@ typedef union _hw_mmdc_maexidr0
  * This feild defines ID for Exclusive monitor#1. Default value is 0x0020
  */
 //@{
-
 #define BP_MMDC_MAEXIDR0_EXC_ID_MONITOR1      (16)      //!< Bit position for MMDC_MAEXIDR0_EXC_ID_MONITOR1.
 #define BM_MMDC_MAEXIDR0_EXC_ID_MONITOR1      (0xffff0000)  //!< Bit mask for MMDC_MAEXIDR0_EXC_ID_MONITOR1.
 
@@ -4152,7 +3931,6 @@ typedef union _hw_mmdc_maexidr0
 //! @brief Set the EXC_ID_MONITOR1 field to a new value.
 #define BW_MMDC_MAEXIDR0_EXC_ID_MONITOR1(x, v)   (HW_MMDC_MAEXIDR0_WR(x, (HW_MMDC_MAEXIDR0_RD(x) & ~BM_MMDC_MAEXIDR0_EXC_ID_MONITOR1) | BF_MMDC_MAEXIDR0_EXC_ID_MONITOR1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4205,7 +3983,6 @@ typedef union _hw_mmdc_maexidr1
  * This feild defines ID for Exclusive monitor#2. Default value is 0x0040
  */
 //@{
-
 #define BP_MMDC_MAEXIDR1_EXC_ID_MONITOR2      (0)      //!< Bit position for MMDC_MAEXIDR1_EXC_ID_MONITOR2.
 #define BM_MMDC_MAEXIDR1_EXC_ID_MONITOR2      (0x0000ffff)  //!< Bit mask for MMDC_MAEXIDR1_EXC_ID_MONITOR2.
 
@@ -4219,7 +3996,6 @@ typedef union _hw_mmdc_maexidr1
 //! @brief Set the EXC_ID_MONITOR2 field to a new value.
 #define BW_MMDC_MAEXIDR1_EXC_ID_MONITOR2(x, v)   (HW_MMDC_MAEXIDR1_WR(x, (HW_MMDC_MAEXIDR1_RD(x) & ~BM_MMDC_MAEXIDR1_EXC_ID_MONITOR2) | BF_MMDC_MAEXIDR1_EXC_ID_MONITOR2(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MAEXIDR1, field EXC_ID_MONITOR3[31:16] (RW)
@@ -4227,7 +4003,6 @@ typedef union _hw_mmdc_maexidr1
  * This feild defines ID for Exclusive monitor#3. Default value is 0x0060
  */
 //@{
-
 #define BP_MMDC_MAEXIDR1_EXC_ID_MONITOR3      (16)      //!< Bit position for MMDC_MAEXIDR1_EXC_ID_MONITOR3.
 #define BM_MMDC_MAEXIDR1_EXC_ID_MONITOR3      (0xffff0000)  //!< Bit mask for MMDC_MAEXIDR1_EXC_ID_MONITOR3.
 
@@ -4241,7 +4016,6 @@ typedef union _hw_mmdc_maexidr1
 //! @brief Set the EXC_ID_MONITOR3 field to a new value.
 #define BW_MMDC_MAEXIDR1_EXC_ID_MONITOR3(x, v)   (HW_MMDC_MAEXIDR1_WR(x, (HW_MMDC_MAEXIDR1_RD(x) & ~BM_MMDC_MAEXIDR1_EXC_ID_MONITOR3) | BF_MMDC_MAEXIDR1_EXC_ID_MONITOR3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4305,7 +4079,6 @@ typedef union _hw_mmdc_madpcr0
  * - 1 - enable
  */
 //@{
-
 #define BP_MMDC_MADPCR0_DBG_EN      (0)      //!< Bit position for MMDC_MADPCR0_DBG_EN.
 #define BM_MMDC_MADPCR0_DBG_EN      (0x00000001)  //!< Bit mask for MMDC_MADPCR0_DBG_EN.
 
@@ -4319,7 +4092,6 @@ typedef union _hw_mmdc_madpcr0
 //! @brief Set the DBG_EN field to a new value.
 #define BW_MMDC_MADPCR0_DBG_EN(x, v)   (HW_MMDC_MADPCR0_WR(x, (HW_MMDC_MADPCR0_RD(x) & ~BM_MMDC_MADPCR0_DBG_EN) | BF_MMDC_MADPCR0_DBG_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MADPCR0, field DBG_RST[1] (RW)
@@ -4331,7 +4103,6 @@ typedef union _hw_mmdc_madpcr0
  * - 1 - reset
  */
 //@{
-
 #define BP_MMDC_MADPCR0_DBG_RST      (1)      //!< Bit position for MMDC_MADPCR0_DBG_RST.
 #define BM_MMDC_MADPCR0_DBG_RST      (0x00000002)  //!< Bit mask for MMDC_MADPCR0_DBG_RST.
 
@@ -4345,7 +4116,6 @@ typedef union _hw_mmdc_madpcr0
 //! @brief Set the DBG_RST field to a new value.
 #define BW_MMDC_MADPCR0_DBG_RST(x, v)   (HW_MMDC_MADPCR0_WR(x, (HW_MMDC_MADPCR0_RD(x) & ~BM_MMDC_MADPCR0_DBG_RST) | BF_MMDC_MADPCR0_DBG_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MADPCR0, field PRF_FRZ[2] (RW)
@@ -4358,7 +4128,6 @@ typedef union _hw_mmdc_madpcr0
  * - 1 - profiling counters are frozen
  */
 //@{
-
 #define BP_MMDC_MADPCR0_PRF_FRZ      (2)      //!< Bit position for MMDC_MADPCR0_PRF_FRZ.
 #define BM_MMDC_MADPCR0_PRF_FRZ      (0x00000004)  //!< Bit mask for MMDC_MADPCR0_PRF_FRZ.
 
@@ -4372,7 +4141,6 @@ typedef union _hw_mmdc_madpcr0
 //! @brief Set the PRF_FRZ field to a new value.
 #define BW_MMDC_MADPCR0_PRF_FRZ(x, v)   (HW_MMDC_MADPCR0_WR(x, (HW_MMDC_MADPCR0_RD(x) & ~BM_MMDC_MADPCR0_PRF_FRZ) | BF_MMDC_MADPCR0_PRF_FRZ(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MADPCR0, field CYC_OVF[3] (W1C)
@@ -4385,7 +4153,6 @@ typedef union _hw_mmdc_madpcr0
  * - 1 - overflow
  */
 //@{
-
 #define BP_MMDC_MADPCR0_CYC_OVF      (3)      //!< Bit position for MMDC_MADPCR0_CYC_OVF.
 #define BM_MMDC_MADPCR0_CYC_OVF      (0x00000008)  //!< Bit mask for MMDC_MADPCR0_CYC_OVF.
 
@@ -4399,7 +4166,6 @@ typedef union _hw_mmdc_madpcr0
 //! @brief Set the CYC_OVF field to a new value.
 #define BW_MMDC_MADPCR0_CYC_OVF(x, v)   (HW_MMDC_MADPCR0_WR(x, (HW_MMDC_MADPCR0_RD(x) & ~BM_MMDC_MADPCR0_CYC_OVF) | BF_MMDC_MADPCR0_CYC_OVF(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MADPCR0, field SBS_EN[8] (RW)
@@ -4413,7 +4179,6 @@ typedef union _hw_mmdc_madpcr0
  * - 1 - enable
  */
 //@{
-
 #define BP_MMDC_MADPCR0_SBS_EN      (8)      //!< Bit position for MMDC_MADPCR0_SBS_EN.
 #define BM_MMDC_MADPCR0_SBS_EN      (0x00000100)  //!< Bit mask for MMDC_MADPCR0_SBS_EN.
 
@@ -4427,7 +4192,6 @@ typedef union _hw_mmdc_madpcr0
 //! @brief Set the SBS_EN field to a new value.
 #define BW_MMDC_MADPCR0_SBS_EN(x, v)   (HW_MMDC_MADPCR0_WR(x, (HW_MMDC_MADPCR0_RD(x) & ~BM_MMDC_MADPCR0_SBS_EN) | BF_MMDC_MADPCR0_SBS_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MADPCR0, field SBS[9] (RW)
@@ -4441,7 +4205,6 @@ typedef union _hw_mmdc_madpcr0
  * - 1 - Lanuch AXI pending access toward the DDR
  */
 //@{
-
 #define BP_MMDC_MADPCR0_SBS      (9)      //!< Bit position for MMDC_MADPCR0_SBS.
 #define BM_MMDC_MADPCR0_SBS      (0x00000200)  //!< Bit mask for MMDC_MADPCR0_SBS.
 
@@ -4455,7 +4218,6 @@ typedef union _hw_mmdc_madpcr0
 //! @brief Set the SBS field to a new value.
 #define BW_MMDC_MADPCR0_SBS(x, v)   (HW_MMDC_MADPCR0_WR(x, (HW_MMDC_MADPCR0_RD(x) & ~BM_MMDC_MADPCR0_SBS) | BF_MMDC_MADPCR0_SBS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4507,7 +4269,6 @@ typedef union _hw_mmdc_madpcr1
  * PRF_AXI_ID_MASK are chosen for profiling. Default value is 0x0, to choose any ID-s for profiling
  */
 //@{
-
 #define BP_MMDC_MADPCR1_PRF_AXI_ID      (0)      //!< Bit position for MMDC_MADPCR1_PRF_AXI_ID.
 #define BM_MMDC_MADPCR1_PRF_AXI_ID      (0x0000ffff)  //!< Bit mask for MMDC_MADPCR1_PRF_AXI_ID.
 
@@ -4521,7 +4282,6 @@ typedef union _hw_mmdc_madpcr1
 //! @brief Set the PRF_AXI_ID field to a new value.
 #define BW_MMDC_MADPCR1_PRF_AXI_ID(x, v)   (HW_MMDC_MADPCR1_WR(x, (HW_MMDC_MADPCR1_RD(x) & ~BM_MMDC_MADPCR1_PRF_AXI_ID) | BF_MMDC_MADPCR1_PRF_AXI_ID(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MADPCR1, field PRF_AXI_ID_MASK[31:16] (RW)
@@ -4533,7 +4293,6 @@ typedef union _hw_mmdc_madpcr1
  * - 1 - AXI ID specific bit is chosen for profiling
  */
 //@{
-
 #define BP_MMDC_MADPCR1_PRF_AXI_ID_MASK      (16)      //!< Bit position for MMDC_MADPCR1_PRF_AXI_ID_MASK.
 #define BM_MMDC_MADPCR1_PRF_AXI_ID_MASK      (0xffff0000)  //!< Bit mask for MMDC_MADPCR1_PRF_AXI_ID_MASK.
 
@@ -4547,7 +4306,6 @@ typedef union _hw_mmdc_madpcr1
 //! @brief Set the PRF_AXI_ID_MASK field to a new value.
 #define BW_MMDC_MADPCR1_PRF_AXI_ID_MASK(x, v)   (HW_MMDC_MADPCR1_WR(x, (HW_MMDC_MADPCR1_RD(x) & ~BM_MMDC_MADPCR1_PRF_AXI_ID_MASK) | BF_MMDC_MADPCR1_PRF_AXI_ID_MASK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4594,13 +4352,11 @@ typedef union _hw_mmdc_madpsr0
  * mechanism is enabled from assertion of DBG_EN and until PRF_FRZ is asserted
  */
 //@{
-
 #define BP_MMDC_MADPSR0_CYC_COUNT      (0)      //!< Bit position for MMDC_MADPSR0_CYC_COUNT.
 #define BM_MMDC_MADPSR0_CYC_COUNT      (0xffffffff)  //!< Bit mask for MMDC_MADPSR0_CYC_COUNT.
 
 //! @brief Get value of MMDC_MADPSR0_CYC_COUNT from a register value.
 #define BG_MMDC_MADPSR0_CYC_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPSR0_CYC_COUNT) >> BP_MMDC_MADPSR0_CYC_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4650,13 +4406,11 @@ typedef union _hw_mmdc_madpsr1
  * calculations
  */
 //@{
-
 #define BP_MMDC_MADPSR1_BUSY_COUNT      (0)      //!< Bit position for MMDC_MADPSR1_BUSY_COUNT.
 #define BM_MMDC_MADPSR1_BUSY_COUNT      (0xffffffff)  //!< Bit mask for MMDC_MADPSR1_BUSY_COUNT.
 
 //! @brief Get value of MMDC_MADPSR1_BUSY_COUNT from a register value.
 #define BG_MMDC_MADPSR1_BUSY_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPSR1_BUSY_COUNT) >> BP_MMDC_MADPSR1_BUSY_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4704,13 +4458,11 @@ typedef union _hw_mmdc_madpsr2
  * ID) toward MMDC.
  */
 //@{
-
 #define BP_MMDC_MADPSR2_RD_ACC_COUNT      (0)      //!< Bit position for MMDC_MADPSR2_RD_ACC_COUNT.
 #define BM_MMDC_MADPSR2_RD_ACC_COUNT      (0xffffffff)  //!< Bit mask for MMDC_MADPSR2_RD_ACC_COUNT.
 
 //! @brief Get value of MMDC_MADPSR2_RD_ACC_COUNT from a register value.
 #define BG_MMDC_MADPSR2_RD_ACC_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPSR2_RD_ACC_COUNT) >> BP_MMDC_MADPSR2_RD_ACC_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4758,13 +4510,11 @@ typedef union _hw_mmdc_madpsr3
  * ID) toward MMDC.
  */
 //@{
-
 #define BP_MMDC_MADPSR3_WR_ACC_COUNT      (0)      //!< Bit position for MMDC_MADPSR3_WR_ACC_COUNT.
 #define BM_MMDC_MADPSR3_WR_ACC_COUNT      (0xffffffff)  //!< Bit mask for MMDC_MADPSR3_WR_ACC_COUNT.
 
 //! @brief Get value of MMDC_MADPSR3_WR_ACC_COUNT from a register value.
 #define BG_MMDC_MADPSR3_WR_ACC_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPSR3_WR_ACC_COUNT) >> BP_MMDC_MADPSR3_WR_ACC_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4813,13 +4563,11 @@ typedef union _hw_mmdc_madpsr4
  * transferred during read access (per AXI ID) toward MMDC.
  */
 //@{
-
 #define BP_MMDC_MADPSR4_RD_BYTES_COUNT      (0)      //!< Bit position for MMDC_MADPSR4_RD_BYTES_COUNT.
 #define BM_MMDC_MADPSR4_RD_BYTES_COUNT      (0xffffffff)  //!< Bit mask for MMDC_MADPSR4_RD_BYTES_COUNT.
 
 //! @brief Get value of MMDC_MADPSR4_RD_BYTES_COUNT from a register value.
 #define BG_MMDC_MADPSR4_RD_BYTES_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPSR4_RD_BYTES_COUNT) >> BP_MMDC_MADPSR4_RD_BYTES_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4868,13 +4616,11 @@ typedef union _hw_mmdc_madpsr5
  * transferred during write access (per AXI ID) toward MMDC.
  */
 //@{
-
 #define BP_MMDC_MADPSR5_WR_BYTES_COUNT      (0)      //!< Bit position for MMDC_MADPSR5_WR_BYTES_COUNT.
 #define BM_MMDC_MADPSR5_WR_BYTES_COUNT      (0xffffffff)  //!< Bit mask for MMDC_MADPSR5_WR_BYTES_COUNT.
 
 //! @brief Get value of MMDC_MADPSR5_WR_BYTES_COUNT from a register value.
 #define BG_MMDC_MADPSR5_WR_BYTES_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MADPSR5_WR_BYTES_COUNT) >> BP_MMDC_MADPSR5_WR_BYTES_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4921,13 +4667,11 @@ typedef union _hw_mmdc_masbs0
  * step mode.
  */
 //@{
-
 #define BP_MMDC_MASBS0_SBS_ADDR      (0)      //!< Bit position for MMDC_MASBS0_SBS_ADDR.
 #define BM_MMDC_MASBS0_SBS_ADDR      (0xffffffff)  //!< Bit mask for MMDC_MASBS0_SBS_ADDR.
 
 //! @brief Get value of MMDC_MASBS0_SBS_ADDR from a register value.
 #define BG_MMDC_MASBS0_SBS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS0_SBS_ADDR) >> BP_MMDC_MASBS0_SBS_ADDR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4986,13 +4730,11 @@ typedef union _hw_mmdc_masbs1
  * - 1 - valid
  */
 //@{
-
 #define BP_MMDC_MASBS1_SBS_VLD      (0)      //!< Bit position for MMDC_MASBS1_SBS_VLD.
 #define BM_MMDC_MASBS1_SBS_VLD      (0x00000001)  //!< Bit mask for MMDC_MASBS1_SBS_VLD.
 
 //! @brief Get value of MMDC_MASBS1_SBS_VLD from a register value.
 #define BG_MMDC_MASBS1_SBS_VLD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_VLD) >> BP_MMDC_MASBS1_SBS_VLD)
-
 //@}
 
 /*! @name Register MMDC_MASBS1, field SBS_TYPE[1] (RO)
@@ -5005,13 +4747,11 @@ typedef union _hw_mmdc_masbs1
  * - 1 - read
  */
 //@{
-
 #define BP_MMDC_MASBS1_SBS_TYPE      (1)      //!< Bit position for MMDC_MASBS1_SBS_TYPE.
 #define BM_MMDC_MASBS1_SBS_TYPE      (0x00000002)  //!< Bit mask for MMDC_MASBS1_SBS_TYPE.
 
 //! @brief Get value of MMDC_MASBS1_SBS_TYPE from a register value.
 #define BG_MMDC_MASBS1_SBS_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_TYPE) >> BP_MMDC_MASBS1_SBS_TYPE)
-
 //@}
 
 /*! @name Register MMDC_MASBS1, field SBS_LOCK[3:2] (RO)
@@ -5020,13 +4760,11 @@ typedef union _hw_mmdc_masbs1
  * mode.
  */
 //@{
-
 #define BP_MMDC_MASBS1_SBS_LOCK      (2)      //!< Bit position for MMDC_MASBS1_SBS_LOCK.
 #define BM_MMDC_MASBS1_SBS_LOCK      (0x0000000c)  //!< Bit mask for MMDC_MASBS1_SBS_LOCK.
 
 //! @brief Get value of MMDC_MASBS1_SBS_LOCK from a register value.
 #define BG_MMDC_MASBS1_SBS_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_LOCK) >> BP_MMDC_MASBS1_SBS_LOCK)
-
 //@}
 
 /*! @name Register MMDC_MASBS1, field SBS_PROT[6:4] (RO)
@@ -5035,13 +4773,11 @@ typedef union _hw_mmdc_masbs1
  * by step mode.
  */
 //@{
-
 #define BP_MMDC_MASBS1_SBS_PROT      (4)      //!< Bit position for MMDC_MASBS1_SBS_PROT.
 #define BM_MMDC_MASBS1_SBS_PROT      (0x00000070)  //!< Bit mask for MMDC_MASBS1_SBS_PROT.
 
 //! @brief Get value of MMDC_MASBS1_SBS_PROT from a register value.
 #define BG_MMDC_MASBS1_SBS_PROT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_PROT) >> BP_MMDC_MASBS1_SBS_PROT)
-
 //@}
 
 /*! @name Register MMDC_MASBS1, field SBS_SIZE[9:7] (RO)
@@ -5058,13 +4794,11 @@ typedef union _hw_mmdc_masbs1
  * - 101-111 - Reserved
  */
 //@{
-
 #define BP_MMDC_MASBS1_SBS_SIZE      (7)      //!< Bit position for MMDC_MASBS1_SBS_SIZE.
 #define BM_MMDC_MASBS1_SBS_SIZE      (0x00000380)  //!< Bit mask for MMDC_MASBS1_SBS_SIZE.
 
 //! @brief Get value of MMDC_MASBS1_SBS_SIZE from a register value.
 #define BG_MMDC_MASBS1_SBS_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_SIZE) >> BP_MMDC_MASBS1_SBS_SIZE)
-
 //@}
 
 /*! @name Register MMDC_MASBS1, field SBS_BURST[11:10] (RO)
@@ -5079,13 +4813,11 @@ typedef union _hw_mmdc_masbs1
  * - 11 - reserved
  */
 //@{
-
 #define BP_MMDC_MASBS1_SBS_BURST      (10)      //!< Bit position for MMDC_MASBS1_SBS_BURST.
 #define BM_MMDC_MASBS1_SBS_BURST      (0x00000c00)  //!< Bit mask for MMDC_MASBS1_SBS_BURST.
 
 //! @brief Get value of MMDC_MASBS1_SBS_BURST from a register value.
 #define BG_MMDC_MASBS1_SBS_BURST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_BURST) >> BP_MMDC_MASBS1_SBS_BURST)
-
 //@}
 
 /*! @name Register MMDC_MASBS1, field SBS_BUFF[12] (RO)
@@ -5094,13 +4826,11 @@ typedef union _hw_mmdc_masbs1
  * by step mode. Relevant only for write requests
  */
 //@{
-
 #define BP_MMDC_MASBS1_SBS_BUFF      (12)      //!< Bit position for MMDC_MASBS1_SBS_BUFF.
 #define BM_MMDC_MASBS1_SBS_BUFF      (0x00001000)  //!< Bit mask for MMDC_MASBS1_SBS_BUFF.
 
 //! @brief Get value of MMDC_MASBS1_SBS_BUFF from a register value.
 #define BG_MMDC_MASBS1_SBS_BUFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_BUFF) >> BP_MMDC_MASBS1_SBS_BUFF)
-
 //@}
 
 /*! @name Register MMDC_MASBS1, field SBS_LEN[15:13] (RO)
@@ -5114,13 +4844,11 @@ typedef union _hw_mmdc_masbs1
  * - 111 - burst of length 8
  */
 //@{
-
 #define BP_MMDC_MASBS1_SBS_LEN      (13)      //!< Bit position for MMDC_MASBS1_SBS_LEN.
 #define BM_MMDC_MASBS1_SBS_LEN      (0x0000e000)  //!< Bit mask for MMDC_MASBS1_SBS_LEN.
 
 //! @brief Get value of MMDC_MASBS1_SBS_LEN from a register value.
 #define BG_MMDC_MASBS1_SBS_LEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_LEN) >> BP_MMDC_MASBS1_SBS_LEN)
-
 //@}
 
 /*! @name Register MMDC_MASBS1, field SBS_AXI_ID[31:16] (RO)
@@ -5129,13 +4857,11 @@ typedef union _hw_mmdc_masbs1
  * mode.
  */
 //@{
-
 #define BP_MMDC_MASBS1_SBS_AXI_ID      (16)      //!< Bit position for MMDC_MASBS1_SBS_AXI_ID.
 #define BM_MMDC_MASBS1_SBS_AXI_ID      (0xffff0000)  //!< Bit mask for MMDC_MASBS1_SBS_AXI_ID.
 
 //! @brief Get value of MMDC_MASBS1_SBS_AXI_ID from a register value.
 #define BG_MMDC_MASBS1_SBS_AXI_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MASBS1_SBS_AXI_ID) >> BP_MMDC_MASBS1_SBS_AXI_ID)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5186,7 +4912,6 @@ typedef union _hw_mmdc_magenp
  * General purpose read/write bits.
  */
 //@{
-
 #define BP_MMDC_MAGENP_GP31_GP0      (0)      //!< Bit position for MMDC_MAGENP_GP31_GP0.
 #define BM_MMDC_MAGENP_GP31_GP0      (0xffffffff)  //!< Bit mask for MMDC_MAGENP_GP31_GP0.
 
@@ -5200,7 +4925,6 @@ typedef union _hw_mmdc_magenp
 //! @brief Set the GP31_GP0 field to a new value.
 #define BW_MMDC_MAGENP_GP31_GP0(x, v)   (HW_MMDC_MAGENP_WR(x, (HW_MMDC_MAGENP_RD(x) & ~BM_MMDC_MAGENP_GP31_GP0) | BF_MMDC_MAGENP_GP31_GP0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5269,7 +4993,6 @@ typedef union _hw_mmdc_mpzqhwctrl
  *     to the external DDR device periodically and when exiting self refresh
  */
 //@{
-
 #define BP_MMDC_MPZQHWCTRL_ZQ_MODE      (0)      //!< Bit position for MMDC_MPZQHWCTRL_ZQ_MODE.
 #define BM_MMDC_MPZQHWCTRL_ZQ_MODE      (0x00000003)  //!< Bit mask for MMDC_MPZQHWCTRL_ZQ_MODE.
 
@@ -5283,7 +5006,6 @@ typedef union _hw_mmdc_mpzqhwctrl
 //! @brief Set the ZQ_MODE field to a new value.
 #define BW_MMDC_MPZQHWCTRL_ZQ_MODE(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_ZQ_MODE) | BF_MMDC_MPZQHWCTRL_ZQ_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPZQHWCTRL, field ZQ_HW_PER[5:2] (RW)
@@ -5304,7 +5026,6 @@ typedef union _hw_mmdc_mpzqhwctrl
  * - 1111 - ZQ calibration is performed every 32 ms.
  */
 //@{
-
 #define BP_MMDC_MPZQHWCTRL_ZQ_HW_PER      (2)      //!< Bit position for MMDC_MPZQHWCTRL_ZQ_HW_PER.
 #define BM_MMDC_MPZQHWCTRL_ZQ_HW_PER      (0x0000003c)  //!< Bit mask for MMDC_MPZQHWCTRL_ZQ_HW_PER.
 
@@ -5318,7 +5039,6 @@ typedef union _hw_mmdc_mpzqhwctrl
 //! @brief Set the ZQ_HW_PER field to a new value.
 #define BW_MMDC_MPZQHWCTRL_ZQ_HW_PER(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_ZQ_HW_PER) | BF_MMDC_MPZQHWCTRL_ZQ_HW_PER(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPZQHWCTRL, field ZQ_HW_PU_RES[10:6] (RO)
@@ -5331,13 +5051,11 @@ typedef union _hw_mmdc_mpzqhwctrl
  * - 11111 - Max. resistance.
  */
 //@{
-
 #define BP_MMDC_MPZQHWCTRL_ZQ_HW_PU_RES      (6)      //!< Bit position for MMDC_MPZQHWCTRL_ZQ_HW_PU_RES.
 #define BM_MMDC_MPZQHWCTRL_ZQ_HW_PU_RES      (0x000007c0)  //!< Bit mask for MMDC_MPZQHWCTRL_ZQ_HW_PU_RES.
 
 //! @brief Get value of MMDC_MPZQHWCTRL_ZQ_HW_PU_RES from a register value.
 #define BG_MMDC_MPZQHWCTRL_ZQ_HW_PU_RES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQHWCTRL_ZQ_HW_PU_RES) >> BP_MMDC_MPZQHWCTRL_ZQ_HW_PU_RES)
-
 //@}
 
 /*! @name Register MMDC_MPZQHWCTRL, field ZQ_HW_PD_RES[15:11] (RO)
@@ -5350,13 +5068,11 @@ typedef union _hw_mmdc_mpzqhwctrl
  * - 11111 - Min. resistance.
  */
 //@{
-
 #define BP_MMDC_MPZQHWCTRL_ZQ_HW_PD_RES      (11)      //!< Bit position for MMDC_MPZQHWCTRL_ZQ_HW_PD_RES.
 #define BM_MMDC_MPZQHWCTRL_ZQ_HW_PD_RES      (0x0000f800)  //!< Bit mask for MMDC_MPZQHWCTRL_ZQ_HW_PD_RES.
 
 //! @brief Get value of MMDC_MPZQHWCTRL_ZQ_HW_PD_RES from a register value.
 #define BG_MMDC_MPZQHWCTRL_ZQ_HW_PD_RES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQHWCTRL_ZQ_HW_PD_RES) >> BP_MMDC_MPZQHWCTRL_ZQ_HW_PD_RES)
-
 //@}
 
 /*! @name Register MMDC_MPZQHWCTRL, field ZQ_HW_FOR[16] (RW)
@@ -5370,7 +5086,6 @@ typedef union _hw_mmdc_mpzqhwctrl
  * this bit ZQ_MODE must be set to either "1" or "3"
  */
 //@{
-
 #define BP_MMDC_MPZQHWCTRL_ZQ_HW_FOR      (16)      //!< Bit position for MMDC_MPZQHWCTRL_ZQ_HW_FOR.
 #define BM_MMDC_MPZQHWCTRL_ZQ_HW_FOR      (0x00010000)  //!< Bit mask for MMDC_MPZQHWCTRL_ZQ_HW_FOR.
 
@@ -5384,7 +5099,6 @@ typedef union _hw_mmdc_mpzqhwctrl
 //! @brief Set the ZQ_HW_FOR field to a new value.
 #define BW_MMDC_MPZQHWCTRL_ZQ_HW_FOR(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_ZQ_HW_FOR) | BF_MMDC_MPZQHWCTRL_ZQ_HW_FOR(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPZQHWCTRL, field TZQ_INIT[19:17] (RW)
@@ -5405,7 +5119,6 @@ typedef union _hw_mmdc_mpzqhwctrl
  * - 110- - 111 Resreved
  */
 //@{
-
 #define BP_MMDC_MPZQHWCTRL_TZQ_INIT      (17)      //!< Bit position for MMDC_MPZQHWCTRL_TZQ_INIT.
 #define BM_MMDC_MPZQHWCTRL_TZQ_INIT      (0x000e0000)  //!< Bit mask for MMDC_MPZQHWCTRL_TZQ_INIT.
 
@@ -5419,7 +5132,6 @@ typedef union _hw_mmdc_mpzqhwctrl
 //! @brief Set the TZQ_INIT field to a new value.
 #define BW_MMDC_MPZQHWCTRL_TZQ_INIT(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_TZQ_INIT) | BF_MMDC_MPZQHWCTRL_TZQ_INIT(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPZQHWCTRL, field TZQ_OPER[22:20] (RW)
@@ -5440,7 +5152,6 @@ typedef union _hw_mmdc_mpzqhwctrl
  * - 110- - 111 Resreved
  */
 //@{
-
 #define BP_MMDC_MPZQHWCTRL_TZQ_OPER      (20)      //!< Bit position for MMDC_MPZQHWCTRL_TZQ_OPER.
 #define BM_MMDC_MPZQHWCTRL_TZQ_OPER      (0x00700000)  //!< Bit mask for MMDC_MPZQHWCTRL_TZQ_OPER.
 
@@ -5454,7 +5165,6 @@ typedef union _hw_mmdc_mpzqhwctrl
 //! @brief Set the TZQ_OPER field to a new value.
 #define BW_MMDC_MPZQHWCTRL_TZQ_OPER(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_TZQ_OPER) | BF_MMDC_MPZQHWCTRL_TZQ_OPER(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPZQHWCTRL, field TZQ_CS[25:23] (RW)
@@ -5475,7 +5185,6 @@ typedef union _hw_mmdc_mpzqhwctrl
  * - 110- - 111 Resreved
  */
 //@{
-
 #define BP_MMDC_MPZQHWCTRL_TZQ_CS      (23)      //!< Bit position for MMDC_MPZQHWCTRL_TZQ_CS.
 #define BM_MMDC_MPZQHWCTRL_TZQ_CS      (0x03800000)  //!< Bit mask for MMDC_MPZQHWCTRL_TZQ_CS.
 
@@ -5489,7 +5198,6 @@ typedef union _hw_mmdc_mpzqhwctrl
 //! @brief Set the TZQ_CS field to a new value.
 #define BW_MMDC_MPZQHWCTRL_TZQ_CS(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_TZQ_CS) | BF_MMDC_MPZQHWCTRL_TZQ_CS(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPZQHWCTRL, field ZQ_EARLY_COMPARATOR_EN_TIMER[31:27] (RW)
@@ -5506,7 +5214,6 @@ typedef union _hw_mmdc_mpzqhwctrl
  * - 0x1F - 32 cycles
  */
 //@{
-
 #define BP_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER      (27)      //!< Bit position for MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER.
 #define BM_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER      (0xf8000000)  //!< Bit mask for MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER.
 
@@ -5520,7 +5227,6 @@ typedef union _hw_mmdc_mpzqhwctrl
 //! @brief Set the ZQ_EARLY_COMPARATOR_EN_TIMER field to a new value.
 #define BW_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER) | BF_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5580,7 +5286,6 @@ typedef union _hw_mmdc_mpzqswctrl
  * (i.e ZQ_SW_RES) is valid
  */
 //@{
-
 #define BP_MMDC_MPZQSWCTRL_ZQ_SW_FOR      (0)      //!< Bit position for MMDC_MPZQSWCTRL_ZQ_SW_FOR.
 #define BM_MMDC_MPZQSWCTRL_ZQ_SW_FOR      (0x00000001)  //!< Bit mask for MMDC_MPZQSWCTRL_ZQ_SW_FOR.
 
@@ -5594,7 +5299,6 @@ typedef union _hw_mmdc_mpzqswctrl
 //! @brief Set the ZQ_SW_FOR field to a new value.
 #define BW_MMDC_MPZQSWCTRL_ZQ_SW_FOR(x, v)   (HW_MMDC_MPZQSWCTRL_WR(x, (HW_MMDC_MPZQSWCTRL_RD(x) & ~BM_MMDC_MPZQSWCTRL_ZQ_SW_FOR) | BF_MMDC_MPZQSWCTRL_ZQ_SW_FOR(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPZQSWCTRL, field ZQ_SW_RES[1] (RO)
@@ -5606,13 +5310,11 @@ typedef union _hw_mmdc_mpzqswctrl
  * - 1 - Current ZQ calibration voltage is more than VDD/2
  */
 //@{
-
 #define BP_MMDC_MPZQSWCTRL_ZQ_SW_RES      (1)      //!< Bit position for MMDC_MPZQSWCTRL_ZQ_SW_RES.
 #define BM_MMDC_MPZQSWCTRL_ZQ_SW_RES      (0x00000002)  //!< Bit mask for MMDC_MPZQSWCTRL_ZQ_SW_RES.
 
 //! @brief Get value of MMDC_MPZQSWCTRL_ZQ_SW_RES from a register value.
 #define BG_MMDC_MPZQSWCTRL_ZQ_SW_RES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPZQSWCTRL_ZQ_SW_RES) >> BP_MMDC_MPZQSWCTRL_ZQ_SW_RES)
-
 //@}
 
 /*! @name Register MMDC_MPZQSWCTRL, field ZQ_SW_PU_VAL[6:2] (RW)
@@ -5625,7 +5327,6 @@ typedef union _hw_mmdc_mpzqswctrl
  * - 11111 - Max. resistance.
  */
 //@{
-
 #define BP_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL      (2)      //!< Bit position for MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL.
 #define BM_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL      (0x0000007c)  //!< Bit mask for MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL.
 
@@ -5639,7 +5340,6 @@ typedef union _hw_mmdc_mpzqswctrl
 //! @brief Set the ZQ_SW_PU_VAL field to a new value.
 #define BW_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL(x, v)   (HW_MMDC_MPZQSWCTRL_WR(x, (HW_MMDC_MPZQSWCTRL_RD(x) & ~BM_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL) | BF_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPZQSWCTRL, field ZQ_SW_PD_VAL[11:7] (RW)
@@ -5652,7 +5352,6 @@ typedef union _hw_mmdc_mpzqswctrl
  * - 11111 - Min. resistance.
  */
 //@{
-
 #define BP_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL      (7)      //!< Bit position for MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL.
 #define BM_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL      (0x00000f80)  //!< Bit mask for MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL.
 
@@ -5666,7 +5365,6 @@ typedef union _hw_mmdc_mpzqswctrl
 //! @brief Set the ZQ_SW_PD_VAL field to a new value.
 #define BW_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL(x, v)   (HW_MMDC_MPZQSWCTRL_WR(x, (HW_MMDC_MPZQSWCTRL_RD(x) & ~BM_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL) | BF_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPZQSWCTRL, field ZQ_SW_PD[12] (RW)
@@ -5678,7 +5376,6 @@ typedef union _hw_mmdc_mpzqswctrl
  * - 1 - PD resistor calibration
  */
 //@{
-
 #define BP_MMDC_MPZQSWCTRL_ZQ_SW_PD      (12)      //!< Bit position for MMDC_MPZQSWCTRL_ZQ_SW_PD.
 #define BM_MMDC_MPZQSWCTRL_ZQ_SW_PD      (0x00001000)  //!< Bit mask for MMDC_MPZQSWCTRL_ZQ_SW_PD.
 
@@ -5692,7 +5389,6 @@ typedef union _hw_mmdc_mpzqswctrl
 //! @brief Set the ZQ_SW_PD field to a new value.
 #define BW_MMDC_MPZQSWCTRL_ZQ_SW_PD(x, v)   (HW_MMDC_MPZQSWCTRL_WR(x, (HW_MMDC_MPZQSWCTRL_RD(x) & ~BM_MMDC_MPZQSWCTRL_ZQ_SW_PD) | BF_MMDC_MPZQSWCTRL_ZQ_SW_PD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPZQSWCTRL, field USE_ZQ_SW_VAL[13] (RW)
@@ -5707,7 +5403,6 @@ typedef union _hw_mmdc_mpzqswctrl
  * - 1 - Fields ZQ_SW_PD_VAL & ZQ_SW_PU_VAL will be driven to I/O pads resistor controls.
  */
 //@{
-
 #define BP_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL      (13)      //!< Bit position for MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL.
 #define BM_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL      (0x00002000)  //!< Bit mask for MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL.
 
@@ -5721,7 +5416,6 @@ typedef union _hw_mmdc_mpzqswctrl
 //! @brief Set the USE_ZQ_SW_VAL field to a new value.
 #define BW_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL(x, v)   (HW_MMDC_MPZQSWCTRL_WR(x, (HW_MMDC_MPZQSWCTRL_RD(x) & ~BM_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL) | BF_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPZQSWCTRL, field ZQ_CMP_OUT_SMP[17:16] (RW)
@@ -5736,7 +5430,6 @@ typedef union _hw_mmdc_mpzqswctrl
  * - 11 - 31 cycles
  */
 //@{
-
 #define BP_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP      (16)      //!< Bit position for MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP.
 #define BM_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP      (0x00030000)  //!< Bit mask for MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP.
 
@@ -5750,7 +5443,6 @@ typedef union _hw_mmdc_mpzqswctrl
 //! @brief Set the ZQ_CMP_OUT_SMP field to a new value.
 #define BW_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP(x, v)   (HW_MMDC_MPZQSWCTRL_WR(x, (HW_MMDC_MPZQSWCTRL_RD(x) & ~BM_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP) | BF_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5818,7 +5510,6 @@ typedef union _hw_mmdc_mpwlgcr
  * required by the standard.
  */
 //@{
-
 #define BP_MMDC_MPWLGCR_HW_WL_EN      (0)      //!< Bit position for MMDC_MPWLGCR_HW_WL_EN.
 #define BM_MMDC_MPWLGCR_HW_WL_EN      (0x00000001)  //!< Bit mask for MMDC_MPWLGCR_HW_WL_EN.
 
@@ -5832,7 +5523,6 @@ typedef union _hw_mmdc_mpwlgcr
 //! @brief Set the HW_WL_EN field to a new value.
 #define BW_MMDC_MPWLGCR_HW_WL_EN(x, v)   (HW_MMDC_MPWLGCR_WR(x, (HW_MMDC_MPWLGCR_RD(x) & ~BM_MMDC_MPWLGCR_HW_WL_EN) | BF_MMDC_MPWLGCR_HW_WL_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWLGCR, field SW_WL_EN[1] (RW)
@@ -5845,7 +5535,6 @@ typedef union _hw_mmdc_mpwlgcr
  * leveling DQS.
  */
 //@{
-
 #define BP_MMDC_MPWLGCR_SW_WL_EN      (1)      //!< Bit position for MMDC_MPWLGCR_SW_WL_EN.
 #define BM_MMDC_MPWLGCR_SW_WL_EN      (0x00000002)  //!< Bit mask for MMDC_MPWLGCR_SW_WL_EN.
 
@@ -5859,7 +5548,6 @@ typedef union _hw_mmdc_mpwlgcr
 //! @brief Set the SW_WL_EN field to a new value.
 #define BW_MMDC_MPWLGCR_SW_WL_EN(x, v)   (HW_MMDC_MPWLGCR_WR(x, (HW_MMDC_MPWLGCR_RD(x) & ~BM_MMDC_MPWLGCR_SW_WL_EN) | BF_MMDC_MPWLGCR_SW_WL_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWLGCR, field SW_WL_CNT_EN[2] (RW)
@@ -5874,7 +5562,6 @@ typedef union _hw_mmdc_mpwlgcr
  * - 1 - MMDC counts 25+15 cycles before issuing write-leveling DQS.
  */
 //@{
-
 #define BP_MMDC_MPWLGCR_SW_WL_CNT_EN      (2)      //!< Bit position for MMDC_MPWLGCR_SW_WL_CNT_EN.
 #define BM_MMDC_MPWLGCR_SW_WL_CNT_EN      (0x00000004)  //!< Bit mask for MMDC_MPWLGCR_SW_WL_CNT_EN.
 
@@ -5888,7 +5575,6 @@ typedef union _hw_mmdc_mpwlgcr
 //! @brief Set the SW_WL_CNT_EN field to a new value.
 #define BW_MMDC_MPWLGCR_SW_WL_CNT_EN(x, v)   (HW_MMDC_MPWLGCR_WR(x, (HW_MMDC_MPWLGCR_RD(x) & ~BM_MMDC_MPWLGCR_SW_WL_CNT_EN) | BF_MMDC_MPWLGCR_SW_WL_CNT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWLGCR, field WL_SW_RES0[4] (RO)
@@ -5901,13 +5587,11 @@ typedef union _hw_mmdc_mpwlgcr
  * - 1 - DQS0 sampled high CK during SW write-leveling.
  */
 //@{
-
 #define BP_MMDC_MPWLGCR_WL_SW_RES0      (4)      //!< Bit position for MMDC_MPWLGCR_WL_SW_RES0.
 #define BM_MMDC_MPWLGCR_WL_SW_RES0      (0x00000010)  //!< Bit mask for MMDC_MPWLGCR_WL_SW_RES0.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_SW_RES0 from a register value.
 #define BG_MMDC_MPWLGCR_WL_SW_RES0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_SW_RES0) >> BP_MMDC_MPWLGCR_WL_SW_RES0)
-
 //@}
 
 /*! @name Register MMDC_MPWLGCR, field WL_SW_RES1[5] (RO)
@@ -5920,13 +5604,11 @@ typedef union _hw_mmdc_mpwlgcr
  * - 1 - DQS1 sampled high CK during SW write-leveling.
  */
 //@{
-
 #define BP_MMDC_MPWLGCR_WL_SW_RES1      (5)      //!< Bit position for MMDC_MPWLGCR_WL_SW_RES1.
 #define BM_MMDC_MPWLGCR_WL_SW_RES1      (0x00000020)  //!< Bit mask for MMDC_MPWLGCR_WL_SW_RES1.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_SW_RES1 from a register value.
 #define BG_MMDC_MPWLGCR_WL_SW_RES1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_SW_RES1) >> BP_MMDC_MPWLGCR_WL_SW_RES1)
-
 //@}
 
 /*! @name Register MMDC_MPWLGCR, field WL_SW_RES2[6] (RO)
@@ -5939,13 +5621,11 @@ typedef union _hw_mmdc_mpwlgcr
  * - 1 - DQS2 sampled high CK during SW write-leveling.
  */
 //@{
-
 #define BP_MMDC_MPWLGCR_WL_SW_RES2      (6)      //!< Bit position for MMDC_MPWLGCR_WL_SW_RES2.
 #define BM_MMDC_MPWLGCR_WL_SW_RES2      (0x00000040)  //!< Bit mask for MMDC_MPWLGCR_WL_SW_RES2.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_SW_RES2 from a register value.
 #define BG_MMDC_MPWLGCR_WL_SW_RES2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_SW_RES2) >> BP_MMDC_MPWLGCR_WL_SW_RES2)
-
 //@}
 
 /*! @name Register MMDC_MPWLGCR, field WL_SW_RES3[7] (RO)
@@ -5958,13 +5638,11 @@ typedef union _hw_mmdc_mpwlgcr
  * - 1 - DQS3 sampled high CK during SW write-leveling.
  */
 //@{
-
 #define BP_MMDC_MPWLGCR_WL_SW_RES3      (7)      //!< Bit position for MMDC_MPWLGCR_WL_SW_RES3.
 #define BM_MMDC_MPWLGCR_WL_SW_RES3      (0x00000080)  //!< Bit mask for MMDC_MPWLGCR_WL_SW_RES3.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_SW_RES3 from a register value.
 #define BG_MMDC_MPWLGCR_WL_SW_RES3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_SW_RES3) >> BP_MMDC_MPWLGCR_WL_SW_RES3)
-
 //@}
 
 /*! @name Register MMDC_MPWLGCR, field WL_HW_ERR0[8] (RO)
@@ -5978,13 +5656,11 @@ typedef union _hw_mmdc_mpwlgcr
  * - 1 - An error was found on byte0 during write-leveling HW calibration.
  */
 //@{
-
 #define BP_MMDC_MPWLGCR_WL_HW_ERR0      (8)      //!< Bit position for MMDC_MPWLGCR_WL_HW_ERR0.
 #define BM_MMDC_MPWLGCR_WL_HW_ERR0      (0x00000100)  //!< Bit mask for MMDC_MPWLGCR_WL_HW_ERR0.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_HW_ERR0 from a register value.
 #define BG_MMDC_MPWLGCR_WL_HW_ERR0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_HW_ERR0) >> BP_MMDC_MPWLGCR_WL_HW_ERR0)
-
 //@}
 
 /*! @name Register MMDC_MPWLGCR, field WL_HW_ERR1[9] (RO)
@@ -5998,13 +5674,11 @@ typedef union _hw_mmdc_mpwlgcr
  * - 1 - An error was found on byte1 during write-leveling HW calibration.
  */
 //@{
-
 #define BP_MMDC_MPWLGCR_WL_HW_ERR1      (9)      //!< Bit position for MMDC_MPWLGCR_WL_HW_ERR1.
 #define BM_MMDC_MPWLGCR_WL_HW_ERR1      (0x00000200)  //!< Bit mask for MMDC_MPWLGCR_WL_HW_ERR1.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_HW_ERR1 from a register value.
 #define BG_MMDC_MPWLGCR_WL_HW_ERR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_HW_ERR1) >> BP_MMDC_MPWLGCR_WL_HW_ERR1)
-
 //@}
 
 /*! @name Register MMDC_MPWLGCR, field WL_HW_ERR2[10] (RO)
@@ -6018,13 +5692,11 @@ typedef union _hw_mmdc_mpwlgcr
  * - 1 - An error was found on byte2 during write-leveling HW calibration.
  */
 //@{
-
 #define BP_MMDC_MPWLGCR_WL_HW_ERR2      (10)      //!< Bit position for MMDC_MPWLGCR_WL_HW_ERR2.
 #define BM_MMDC_MPWLGCR_WL_HW_ERR2      (0x00000400)  //!< Bit mask for MMDC_MPWLGCR_WL_HW_ERR2.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_HW_ERR2 from a register value.
 #define BG_MMDC_MPWLGCR_WL_HW_ERR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_HW_ERR2) >> BP_MMDC_MPWLGCR_WL_HW_ERR2)
-
 //@}
 
 /*! @name Register MMDC_MPWLGCR, field WL_HW_ERR3[11] (RO)
@@ -6038,13 +5710,11 @@ typedef union _hw_mmdc_mpwlgcr
  * - 1 - An error was found on byte3 during write-leveling HW calibration.
  */
 //@{
-
 #define BP_MMDC_MPWLGCR_WL_HW_ERR3      (11)      //!< Bit position for MMDC_MPWLGCR_WL_HW_ERR3.
 #define BM_MMDC_MPWLGCR_WL_HW_ERR3      (0x00000800)  //!< Bit mask for MMDC_MPWLGCR_WL_HW_ERR3.
 
 //! @brief Get value of MMDC_MPWLGCR_WL_HW_ERR3 from a register value.
 #define BG_MMDC_MPWLGCR_WL_HW_ERR3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLGCR_WL_HW_ERR3) >> BP_MMDC_MPWLGCR_WL_HW_ERR3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6112,7 +5782,6 @@ typedef union _hw_mmdc_mpwldectrl0
  * delay by 1 step may be smaller than the delay-line resolution.
  */
 //@{
-
 #define BP_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0      (0)      //!< Bit position for MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0.
 #define BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0      (0x0000007f)  //!< Bit mask for MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0.
 
@@ -6126,7 +5795,6 @@ typedef union _hw_mmdc_mpwldectrl0
 //! @brief Set the WL_DL_ABS_OFFSET0 field to a new value.
 #define BW_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0(x, v)   (HW_MMDC_MPWLDECTRL0_WR(x, (HW_MMDC_MPWLDECTRL0_RD(x) & ~BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0) | BF_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWLDECTRL0, field WL_HC_DEL0[8] (RW)
@@ -6145,7 +5813,6 @@ typedef union _hw_mmdc_mpwldectrl0
  * - 1 - Half cycle delay is added.
  */
 //@{
-
 #define BP_MMDC_MPWLDECTRL0_WL_HC_DEL0      (8)      //!< Bit position for MMDC_MPWLDECTRL0_WL_HC_DEL0.
 #define BM_MMDC_MPWLDECTRL0_WL_HC_DEL0      (0x00000100)  //!< Bit mask for MMDC_MPWLDECTRL0_WL_HC_DEL0.
 
@@ -6159,7 +5826,6 @@ typedef union _hw_mmdc_mpwldectrl0
 //! @brief Set the WL_HC_DEL0 field to a new value.
 #define BW_MMDC_MPWLDECTRL0_WL_HC_DEL0(x, v)   (HW_MMDC_MPWLDECTRL0_WR(x, (HW_MMDC_MPWLDECTRL0_RD(x) & ~BM_MMDC_MPWLDECTRL0_WL_HC_DEL0) | BF_MMDC_MPWLDECTRL0_WL_HC_DEL0(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWLDECTRL0, field WL_CYC_DEL0[10:9] (RW)
@@ -6180,7 +5846,6 @@ typedef union _hw_mmdc_mpwldectrl0
  * - 3 - Reserved.
  */
 //@{
-
 #define BP_MMDC_MPWLDECTRL0_WL_CYC_DEL0      (9)      //!< Bit position for MMDC_MPWLDECTRL0_WL_CYC_DEL0.
 #define BM_MMDC_MPWLDECTRL0_WL_CYC_DEL0      (0x00000600)  //!< Bit mask for MMDC_MPWLDECTRL0_WL_CYC_DEL0.
 
@@ -6194,7 +5859,6 @@ typedef union _hw_mmdc_mpwldectrl0
 //! @brief Set the WL_CYC_DEL0 field to a new value.
 #define BW_MMDC_MPWLDECTRL0_WL_CYC_DEL0(x, v)   (HW_MMDC_MPWLDECTRL0_WR(x, (HW_MMDC_MPWLDECTRL0_RD(x) & ~BM_MMDC_MPWLDECTRL0_WL_CYC_DEL0) | BF_MMDC_MPWLDECTRL0_WL_CYC_DEL0(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWLDECTRL0, field WL_DL_ABS_OFFSET1[22:16] (RW)
@@ -6210,7 +5874,6 @@ typedef union _hw_mmdc_mpwldectrl0
  * delay by 1 step may be smaller than the delay-line resolution.
  */
 //@{
-
 #define BP_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1      (16)      //!< Bit position for MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1.
 #define BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1      (0x007f0000)  //!< Bit mask for MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1.
 
@@ -6224,7 +5887,6 @@ typedef union _hw_mmdc_mpwldectrl0
 //! @brief Set the WL_DL_ABS_OFFSET1 field to a new value.
 #define BW_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1(x, v)   (HW_MMDC_MPWLDECTRL0_WR(x, (HW_MMDC_MPWLDECTRL0_RD(x) & ~BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1) | BF_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWLDECTRL0, field WL_HC_DEL1[24] (RW)
@@ -6243,7 +5905,6 @@ typedef union _hw_mmdc_mpwldectrl0
  * - 1 - Half cycle delay is added.
  */
 //@{
-
 #define BP_MMDC_MPWLDECTRL0_WL_HC_DEL1      (24)      //!< Bit position for MMDC_MPWLDECTRL0_WL_HC_DEL1.
 #define BM_MMDC_MPWLDECTRL0_WL_HC_DEL1      (0x01000000)  //!< Bit mask for MMDC_MPWLDECTRL0_WL_HC_DEL1.
 
@@ -6257,7 +5918,6 @@ typedef union _hw_mmdc_mpwldectrl0
 //! @brief Set the WL_HC_DEL1 field to a new value.
 #define BW_MMDC_MPWLDECTRL0_WL_HC_DEL1(x, v)   (HW_MMDC_MPWLDECTRL0_WR(x, (HW_MMDC_MPWLDECTRL0_RD(x) & ~BM_MMDC_MPWLDECTRL0_WL_HC_DEL1) | BF_MMDC_MPWLDECTRL0_WL_HC_DEL1(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWLDECTRL0, field WL_CYC_DEL1[26:25] (RW)
@@ -6278,7 +5938,6 @@ typedef union _hw_mmdc_mpwldectrl0
  * - 3 - Reserved.
  */
 //@{
-
 #define BP_MMDC_MPWLDECTRL0_WL_CYC_DEL1      (25)      //!< Bit position for MMDC_MPWLDECTRL0_WL_CYC_DEL1.
 #define BM_MMDC_MPWLDECTRL0_WL_CYC_DEL1      (0x06000000)  //!< Bit mask for MMDC_MPWLDECTRL0_WL_CYC_DEL1.
 
@@ -6292,7 +5951,6 @@ typedef union _hw_mmdc_mpwldectrl0
 //! @brief Set the WL_CYC_DEL1 field to a new value.
 #define BW_MMDC_MPWLDECTRL0_WL_CYC_DEL1(x, v)   (HW_MMDC_MPWLDECTRL0_WR(x, (HW_MMDC_MPWLDECTRL0_RD(x) & ~BM_MMDC_MPWLDECTRL0_WL_CYC_DEL1) | BF_MMDC_MPWLDECTRL0_WL_CYC_DEL1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6359,7 +6017,6 @@ typedef union _hw_mmdc_mpwldectrl1
  * delay by 1 step may be smaller than the delay-line resolution.
  */
 //@{
-
 #define BP_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2      (0)      //!< Bit position for MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2.
 #define BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2      (0x0000007f)  //!< Bit mask for MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2.
 
@@ -6373,7 +6030,6 @@ typedef union _hw_mmdc_mpwldectrl1
 //! @brief Set the WL_DL_ABS_OFFSET2 field to a new value.
 #define BW_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2(x, v)   (HW_MMDC_MPWLDECTRL1_WR(x, (HW_MMDC_MPWLDECTRL1_RD(x) & ~BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2) | BF_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWLDECTRL1, field WL_HC_DEL2[8] (RW)
@@ -6392,7 +6048,6 @@ typedef union _hw_mmdc_mpwldectrl1
  * - 1 - Half cycle delay is added.
  */
 //@{
-
 #define BP_MMDC_MPWLDECTRL1_WL_HC_DEL2      (8)      //!< Bit position for MMDC_MPWLDECTRL1_WL_HC_DEL2.
 #define BM_MMDC_MPWLDECTRL1_WL_HC_DEL2      (0x00000100)  //!< Bit mask for MMDC_MPWLDECTRL1_WL_HC_DEL2.
 
@@ -6406,7 +6061,6 @@ typedef union _hw_mmdc_mpwldectrl1
 //! @brief Set the WL_HC_DEL2 field to a new value.
 #define BW_MMDC_MPWLDECTRL1_WL_HC_DEL2(x, v)   (HW_MMDC_MPWLDECTRL1_WR(x, (HW_MMDC_MPWLDECTRL1_RD(x) & ~BM_MMDC_MPWLDECTRL1_WL_HC_DEL2) | BF_MMDC_MPWLDECTRL1_WL_HC_DEL2(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWLDECTRL1, field WL_CYC_DEL2[10:9] (RW)
@@ -6427,7 +6081,6 @@ typedef union _hw_mmdc_mpwldectrl1
  * - 3 - Reserved.
  */
 //@{
-
 #define BP_MMDC_MPWLDECTRL1_WL_CYC_DEL2      (9)      //!< Bit position for MMDC_MPWLDECTRL1_WL_CYC_DEL2.
 #define BM_MMDC_MPWLDECTRL1_WL_CYC_DEL2      (0x00000600)  //!< Bit mask for MMDC_MPWLDECTRL1_WL_CYC_DEL2.
 
@@ -6441,7 +6094,6 @@ typedef union _hw_mmdc_mpwldectrl1
 //! @brief Set the WL_CYC_DEL2 field to a new value.
 #define BW_MMDC_MPWLDECTRL1_WL_CYC_DEL2(x, v)   (HW_MMDC_MPWLDECTRL1_WR(x, (HW_MMDC_MPWLDECTRL1_RD(x) & ~BM_MMDC_MPWLDECTRL1_WL_CYC_DEL2) | BF_MMDC_MPWLDECTRL1_WL_CYC_DEL2(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWLDECTRL1, field WL_DL_ABS_OFFSET3[22:16] (RW)
@@ -6457,7 +6109,6 @@ typedef union _hw_mmdc_mpwldectrl1
  * delay by 1 step may be smaller than the delay-line resolution.
  */
 //@{
-
 #define BP_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3      (16)      //!< Bit position for MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3.
 #define BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3      (0x007f0000)  //!< Bit mask for MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3.
 
@@ -6471,7 +6122,6 @@ typedef union _hw_mmdc_mpwldectrl1
 //! @brief Set the WL_DL_ABS_OFFSET3 field to a new value.
 #define BW_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3(x, v)   (HW_MMDC_MPWLDECTRL1_WR(x, (HW_MMDC_MPWLDECTRL1_RD(x) & ~BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3) | BF_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWLDECTRL1, field WL_HC_DEL3[24] (RW)
@@ -6490,7 +6140,6 @@ typedef union _hw_mmdc_mpwldectrl1
  * - 1 - Half cycle delay is added.
  */
 //@{
-
 #define BP_MMDC_MPWLDECTRL1_WL_HC_DEL3      (24)      //!< Bit position for MMDC_MPWLDECTRL1_WL_HC_DEL3.
 #define BM_MMDC_MPWLDECTRL1_WL_HC_DEL3      (0x01000000)  //!< Bit mask for MMDC_MPWLDECTRL1_WL_HC_DEL3.
 
@@ -6504,7 +6153,6 @@ typedef union _hw_mmdc_mpwldectrl1
 //! @brief Set the WL_HC_DEL3 field to a new value.
 #define BW_MMDC_MPWLDECTRL1_WL_HC_DEL3(x, v)   (HW_MMDC_MPWLDECTRL1_WR(x, (HW_MMDC_MPWLDECTRL1_RD(x) & ~BM_MMDC_MPWLDECTRL1_WL_HC_DEL3) | BF_MMDC_MPWLDECTRL1_WL_HC_DEL3(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWLDECTRL1, field WL_CYC_DEL3[26:25] (RW)
@@ -6525,7 +6173,6 @@ typedef union _hw_mmdc_mpwldectrl1
  * - 3 - Reserved.
  */
 //@{
-
 #define BP_MMDC_MPWLDECTRL1_WL_CYC_DEL3      (25)      //!< Bit position for MMDC_MPWLDECTRL1_WL_CYC_DEL3.
 #define BM_MMDC_MPWLDECTRL1_WL_CYC_DEL3      (0x06000000)  //!< Bit mask for MMDC_MPWLDECTRL1_WL_CYC_DEL3.
 
@@ -6539,7 +6186,6 @@ typedef union _hw_mmdc_mpwldectrl1
 //! @brief Set the WL_CYC_DEL3 field to a new value.
 #define BW_MMDC_MPWLDECTRL1_WL_CYC_DEL3(x, v)   (HW_MMDC_MPWLDECTRL1_WR(x, (HW_MMDC_MPWLDECTRL1_RD(x) & ~BM_MMDC_MPWLDECTRL1_WL_CYC_DEL3) | BF_MMDC_MPWLDECTRL1_WL_CYC_DEL3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6594,13 +6240,11 @@ typedef union _hw_mmdc_mpwldlst
  * 0.
  */
 //@{
-
 #define BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM0      (0)      //!< Bit position for MMDC_MPWLDLST_WL_DL_UNIT_NUM0.
 #define BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM0      (0x0000007f)  //!< Bit mask for MMDC_MPWLDLST_WL_DL_UNIT_NUM0.
 
 //! @brief Get value of MMDC_MPWLDLST_WL_DL_UNIT_NUM0 from a register value.
 #define BG_MMDC_MPWLDLST_WL_DL_UNIT_NUM0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM0) >> BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM0)
-
 //@}
 
 /*! @name Register MMDC_MPWLDLST, field WL_DL_UNIT_NUM1[14:8] (RO)
@@ -6609,13 +6253,11 @@ typedef union _hw_mmdc_mpwldlst
  * 1.
  */
 //@{
-
 #define BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM1      (8)      //!< Bit position for MMDC_MPWLDLST_WL_DL_UNIT_NUM1.
 #define BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM1      (0x00007f00)  //!< Bit mask for MMDC_MPWLDLST_WL_DL_UNIT_NUM1.
 
 //! @brief Get value of MMDC_MPWLDLST_WL_DL_UNIT_NUM1 from a register value.
 #define BG_MMDC_MPWLDLST_WL_DL_UNIT_NUM1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM1) >> BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM1)
-
 //@}
 
 /*! @name Register MMDC_MPWLDLST, field WL_DL_UNIT_NUM2[22:16] (RO)
@@ -6624,13 +6266,11 @@ typedef union _hw_mmdc_mpwldlst
  * 2.
  */
 //@{
-
 #define BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM2      (16)      //!< Bit position for MMDC_MPWLDLST_WL_DL_UNIT_NUM2.
 #define BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM2      (0x007f0000)  //!< Bit mask for MMDC_MPWLDLST_WL_DL_UNIT_NUM2.
 
 //! @brief Get value of MMDC_MPWLDLST_WL_DL_UNIT_NUM2 from a register value.
 #define BG_MMDC_MPWLDLST_WL_DL_UNIT_NUM2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM2) >> BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM2)
-
 //@}
 
 /*! @name Register MMDC_MPWLDLST, field WL_DL_UNIT_NUM3[30:24] (RO)
@@ -6639,13 +6279,11 @@ typedef union _hw_mmdc_mpwldlst
  * 3.
  */
 //@{
-
 #define BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM3      (24)      //!< Bit position for MMDC_MPWLDLST_WL_DL_UNIT_NUM3.
 #define BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM3      (0x7f000000)  //!< Bit mask for MMDC_MPWLDLST_WL_DL_UNIT_NUM3.
 
 //! @brief Get value of MMDC_MPWLDLST_WL_DL_UNIT_NUM3 from a register value.
 #define BG_MMDC_MPWLDLST_WL_DL_UNIT_NUM3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLDLST_WL_DL_UNIT_NUM3) >> BP_MMDC_MPWLDLST_WL_DL_UNIT_NUM3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6712,7 +6350,6 @@ typedef union _hw_mmdc_mpodtctrl
  * - 1 - Inactive CS ODT pin is enabled during write accesses to other CS.
  */
 //@{
-
 #define BP_MMDC_MPODTCTRL_ODT_WR_PAS_EN      (0)      //!< Bit position for MMDC_MPODTCTRL_ODT_WR_PAS_EN.
 #define BM_MMDC_MPODTCTRL_ODT_WR_PAS_EN      (0x00000001)  //!< Bit mask for MMDC_MPODTCTRL_ODT_WR_PAS_EN.
 
@@ -6726,7 +6363,6 @@ typedef union _hw_mmdc_mpodtctrl
 //! @brief Set the ODT_WR_PAS_EN field to a new value.
 #define BW_MMDC_MPODTCTRL_ODT_WR_PAS_EN(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT_WR_PAS_EN) | BF_MMDC_MPODTCTRL_ODT_WR_PAS_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPODTCTRL, field ODT_WR_ACT_EN[1] (RW)
@@ -6739,7 +6375,6 @@ typedef union _hw_mmdc_mpodtctrl
  * - 1 - Active CS ODT pin is enabled during write access.
  */
 //@{
-
 #define BP_MMDC_MPODTCTRL_ODT_WR_ACT_EN      (1)      //!< Bit position for MMDC_MPODTCTRL_ODT_WR_ACT_EN.
 #define BM_MMDC_MPODTCTRL_ODT_WR_ACT_EN      (0x00000002)  //!< Bit mask for MMDC_MPODTCTRL_ODT_WR_ACT_EN.
 
@@ -6753,7 +6388,6 @@ typedef union _hw_mmdc_mpodtctrl
 //! @brief Set the ODT_WR_ACT_EN field to a new value.
 #define BW_MMDC_MPODTCTRL_ODT_WR_ACT_EN(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT_WR_ACT_EN) | BF_MMDC_MPODTCTRL_ODT_WR_ACT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPODTCTRL, field ODT_RD_PAS_EN[2] (RW)
@@ -6766,7 +6400,6 @@ typedef union _hw_mmdc_mpodtctrl
  * - 1 - Inactive CS ODT pin is enabled during read accesses to other CS.
  */
 //@{
-
 #define BP_MMDC_MPODTCTRL_ODT_RD_PAS_EN      (2)      //!< Bit position for MMDC_MPODTCTRL_ODT_RD_PAS_EN.
 #define BM_MMDC_MPODTCTRL_ODT_RD_PAS_EN      (0x00000004)  //!< Bit mask for MMDC_MPODTCTRL_ODT_RD_PAS_EN.
 
@@ -6780,7 +6413,6 @@ typedef union _hw_mmdc_mpodtctrl
 //! @brief Set the ODT_RD_PAS_EN field to a new value.
 #define BW_MMDC_MPODTCTRL_ODT_RD_PAS_EN(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT_RD_PAS_EN) | BF_MMDC_MPODTCTRL_ODT_RD_PAS_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPODTCTRL, field ODT_RD_ACT_EN[3] (RW)
@@ -6793,7 +6425,6 @@ typedef union _hw_mmdc_mpodtctrl
  * - 1 - Active CS ODT pin is enabled during read access.
  */
 //@{
-
 #define BP_MMDC_MPODTCTRL_ODT_RD_ACT_EN      (3)      //!< Bit position for MMDC_MPODTCTRL_ODT_RD_ACT_EN.
 #define BM_MMDC_MPODTCTRL_ODT_RD_ACT_EN      (0x00000008)  //!< Bit mask for MMDC_MPODTCTRL_ODT_RD_ACT_EN.
 
@@ -6807,7 +6438,6 @@ typedef union _hw_mmdc_mpodtctrl
 //! @brief Set the ODT_RD_ACT_EN field to a new value.
 #define BW_MMDC_MPODTCTRL_ODT_RD_ACT_EN(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT_RD_ACT_EN) | BF_MMDC_MPODTCTRL_ODT_RD_ACT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPODTCTRL, field ODT0_INT_RES[6:4] (RW)
@@ -6826,7 +6456,6 @@ typedef union _hw_mmdc_mpodtctrl
  * - 111 - Rtt_Nom 17 Ohm
  */
 //@{
-
 #define BP_MMDC_MPODTCTRL_ODT0_INT_RES      (4)      //!< Bit position for MMDC_MPODTCTRL_ODT0_INT_RES.
 #define BM_MMDC_MPODTCTRL_ODT0_INT_RES      (0x00000070)  //!< Bit mask for MMDC_MPODTCTRL_ODT0_INT_RES.
 
@@ -6840,7 +6469,6 @@ typedef union _hw_mmdc_mpodtctrl
 //! @brief Set the ODT0_INT_RES field to a new value.
 #define BW_MMDC_MPODTCTRL_ODT0_INT_RES(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT0_INT_RES) | BF_MMDC_MPODTCTRL_ODT0_INT_RES(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPODTCTRL, field ODT1_INT_RES[10:8] (RW)
@@ -6859,7 +6487,6 @@ typedef union _hw_mmdc_mpodtctrl
  * - 111 - Rtt_Nom 17 Ohm
  */
 //@{
-
 #define BP_MMDC_MPODTCTRL_ODT1_INT_RES      (8)      //!< Bit position for MMDC_MPODTCTRL_ODT1_INT_RES.
 #define BM_MMDC_MPODTCTRL_ODT1_INT_RES      (0x00000700)  //!< Bit mask for MMDC_MPODTCTRL_ODT1_INT_RES.
 
@@ -6873,7 +6500,6 @@ typedef union _hw_mmdc_mpodtctrl
 //! @brief Set the ODT1_INT_RES field to a new value.
 #define BW_MMDC_MPODTCTRL_ODT1_INT_RES(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT1_INT_RES) | BF_MMDC_MPODTCTRL_ODT1_INT_RES(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPODTCTRL, field ODT2_INT_RES[14:12] (RW)
@@ -6892,7 +6518,6 @@ typedef union _hw_mmdc_mpodtctrl
  * - 111 - Rtt_Nom 17 Ohm
  */
 //@{
-
 #define BP_MMDC_MPODTCTRL_ODT2_INT_RES      (12)      //!< Bit position for MMDC_MPODTCTRL_ODT2_INT_RES.
 #define BM_MMDC_MPODTCTRL_ODT2_INT_RES      (0x00007000)  //!< Bit mask for MMDC_MPODTCTRL_ODT2_INT_RES.
 
@@ -6906,7 +6531,6 @@ typedef union _hw_mmdc_mpodtctrl
 //! @brief Set the ODT2_INT_RES field to a new value.
 #define BW_MMDC_MPODTCTRL_ODT2_INT_RES(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT2_INT_RES) | BF_MMDC_MPODTCTRL_ODT2_INT_RES(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPODTCTRL, field ODT3_INT_RES[18:16] (RW)
@@ -6925,7 +6549,6 @@ typedef union _hw_mmdc_mpodtctrl
  * - 111 - Rtt_Nom 17 Ohm
  */
 //@{
-
 #define BP_MMDC_MPODTCTRL_ODT3_INT_RES      (16)      //!< Bit position for MMDC_MPODTCTRL_ODT3_INT_RES.
 #define BM_MMDC_MPODTCTRL_ODT3_INT_RES      (0x00070000)  //!< Bit mask for MMDC_MPODTCTRL_ODT3_INT_RES.
 
@@ -6939,7 +6562,6 @@ typedef union _hw_mmdc_mpodtctrl
 //! @brief Set the ODT3_INT_RES field to a new value.
 #define BW_MMDC_MPODTCTRL_ODT3_INT_RES(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT3_INT_RES) | BF_MMDC_MPODTCTRL_ODT3_INT_RES(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7018,7 +6640,6 @@ typedef union _hw_mmdc_mprddqby0dl
  * - 111 - Add dq0 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY0DL_RD_DQ0_DEL      (0)      //!< Bit position for MMDC_MPRDDQBY0DL_RD_DQ0_DEL.
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ0_DEL      (0x00000007)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ0_DEL.
 
@@ -7032,7 +6653,6 @@ typedef union _hw_mmdc_mprddqby0dl
 //! @brief Set the RD_DQ0_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY0DL_RD_DQ0_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ0_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ0_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY0DL, field RD_DQ1_DEL[6:4] (RW)
@@ -7051,7 +6671,6 @@ typedef union _hw_mmdc_mprddqby0dl
  * - 111 - Add dq1 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY0DL_RD_DQ1_DEL      (4)      //!< Bit position for MMDC_MPRDDQBY0DL_RD_DQ1_DEL.
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ1_DEL      (0x00000070)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ1_DEL.
 
@@ -7065,7 +6684,6 @@ typedef union _hw_mmdc_mprddqby0dl
 //! @brief Set the RD_DQ1_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY0DL_RD_DQ1_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ1_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ1_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY0DL, field RD_DQ2_DEL[10:8] (RW)
@@ -7084,7 +6702,6 @@ typedef union _hw_mmdc_mprddqby0dl
  * - 111 - Add dq2 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY0DL_RD_DQ2_DEL      (8)      //!< Bit position for MMDC_MPRDDQBY0DL_RD_DQ2_DEL.
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ2_DEL      (0x00000700)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ2_DEL.
 
@@ -7098,7 +6715,6 @@ typedef union _hw_mmdc_mprddqby0dl
 //! @brief Set the RD_DQ2_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY0DL_RD_DQ2_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ2_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ2_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY0DL, field RD_DQ3_DEL[14:12] (RW)
@@ -7117,7 +6733,6 @@ typedef union _hw_mmdc_mprddqby0dl
  * - 111 - Add dq3 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY0DL_RD_DQ3_DEL      (12)      //!< Bit position for MMDC_MPRDDQBY0DL_RD_DQ3_DEL.
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ3_DEL      (0x00007000)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ3_DEL.
 
@@ -7131,7 +6746,6 @@ typedef union _hw_mmdc_mprddqby0dl
 //! @brief Set the RD_DQ3_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY0DL_RD_DQ3_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ3_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ3_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY0DL, field RD_DQ4_DEL[18:16] (RW)
@@ -7150,7 +6764,6 @@ typedef union _hw_mmdc_mprddqby0dl
  * - 111 - Add dq4 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY0DL_RD_DQ4_DEL      (16)      //!< Bit position for MMDC_MPRDDQBY0DL_RD_DQ4_DEL.
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ4_DEL      (0x00070000)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ4_DEL.
 
@@ -7164,7 +6777,6 @@ typedef union _hw_mmdc_mprddqby0dl
 //! @brief Set the RD_DQ4_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY0DL_RD_DQ4_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ4_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ4_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY0DL, field RD_DQ5_DEL[22:20] (RW)
@@ -7183,7 +6795,6 @@ typedef union _hw_mmdc_mprddqby0dl
  * - 111 - Add dq5 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY0DL_RD_DQ5_DEL      (20)      //!< Bit position for MMDC_MPRDDQBY0DL_RD_DQ5_DEL.
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ5_DEL      (0x00700000)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ5_DEL.
 
@@ -7197,7 +6808,6 @@ typedef union _hw_mmdc_mprddqby0dl
 //! @brief Set the RD_DQ5_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY0DL_RD_DQ5_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ5_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ5_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY0DL, field RD_DQ6_DEL[26:24] (RW)
@@ -7216,7 +6826,6 @@ typedef union _hw_mmdc_mprddqby0dl
  * - 111 - Add dq6 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY0DL_RD_DQ6_DEL      (24)      //!< Bit position for MMDC_MPRDDQBY0DL_RD_DQ6_DEL.
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ6_DEL      (0x07000000)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ6_DEL.
 
@@ -7230,7 +6839,6 @@ typedef union _hw_mmdc_mprddqby0dl
 //! @brief Set the RD_DQ6_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY0DL_RD_DQ6_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ6_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ6_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY0DL, field RD_DQ7_DEL[30:28] (RW)
@@ -7249,7 +6857,6 @@ typedef union _hw_mmdc_mprddqby0dl
  * - 111 - Add dq7 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY0DL_RD_DQ7_DEL      (28)      //!< Bit position for MMDC_MPRDDQBY0DL_RD_DQ7_DEL.
 #define BM_MMDC_MPRDDQBY0DL_RD_DQ7_DEL      (0x70000000)  //!< Bit mask for MMDC_MPRDDQBY0DL_RD_DQ7_DEL.
 
@@ -7263,7 +6870,6 @@ typedef union _hw_mmdc_mprddqby0dl
 //! @brief Set the RD_DQ7_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY0DL_RD_DQ7_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ7_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ7_DEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7341,7 +6947,6 @@ typedef union _hw_mmdc_mprddqby1dl
  * - 111 - Add dq8 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY1DL_RD_DQ8_DEL      (0)      //!< Bit position for MMDC_MPRDDQBY1DL_RD_DQ8_DEL.
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ8_DEL      (0x00000007)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ8_DEL.
 
@@ -7355,7 +6960,6 @@ typedef union _hw_mmdc_mprddqby1dl
 //! @brief Set the RD_DQ8_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY1DL_RD_DQ8_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ8_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ8_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY1DL, field RD_DQ9_DEL[6:4] (RW)
@@ -7374,7 +6978,6 @@ typedef union _hw_mmdc_mprddqby1dl
  * - 111 - Add dq9 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY1DL_RD_DQ9_DEL      (4)      //!< Bit position for MMDC_MPRDDQBY1DL_RD_DQ9_DEL.
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ9_DEL      (0x00000070)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ9_DEL.
 
@@ -7388,7 +6991,6 @@ typedef union _hw_mmdc_mprddqby1dl
 //! @brief Set the RD_DQ9_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY1DL_RD_DQ9_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ9_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ9_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY1DL, field RD_DQ10_DEL[10:8] (RW)
@@ -7407,7 +7009,6 @@ typedef union _hw_mmdc_mprddqby1dl
  * - 111 - Add dq10 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY1DL_RD_DQ10_DEL      (8)      //!< Bit position for MMDC_MPRDDQBY1DL_RD_DQ10_DEL.
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ10_DEL      (0x00000700)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ10_DEL.
 
@@ -7421,7 +7022,6 @@ typedef union _hw_mmdc_mprddqby1dl
 //! @brief Set the RD_DQ10_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY1DL_RD_DQ10_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ10_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ10_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY1DL, field RD_DQ11_DEL[14:12] (RW)
@@ -7440,7 +7040,6 @@ typedef union _hw_mmdc_mprddqby1dl
  * - 111 - Add dq11 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY1DL_RD_DQ11_DEL      (12)      //!< Bit position for MMDC_MPRDDQBY1DL_RD_DQ11_DEL.
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ11_DEL      (0x00007000)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ11_DEL.
 
@@ -7454,7 +7053,6 @@ typedef union _hw_mmdc_mprddqby1dl
 //! @brief Set the RD_DQ11_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY1DL_RD_DQ11_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ11_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ11_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY1DL, field RD_DQ12_DEL[18:16] (RW)
@@ -7473,7 +7071,6 @@ typedef union _hw_mmdc_mprddqby1dl
  * - 111 - Add dq12 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY1DL_RD_DQ12_DEL      (16)      //!< Bit position for MMDC_MPRDDQBY1DL_RD_DQ12_DEL.
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ12_DEL      (0x00070000)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ12_DEL.
 
@@ -7487,7 +7084,6 @@ typedef union _hw_mmdc_mprddqby1dl
 //! @brief Set the RD_DQ12_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY1DL_RD_DQ12_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ12_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ12_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY1DL, field RD_DQ13_DEL[22:20] (RW)
@@ -7506,7 +7102,6 @@ typedef union _hw_mmdc_mprddqby1dl
  * - 111 - Add dq13 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY1DL_RD_DQ13_DEL      (20)      //!< Bit position for MMDC_MPRDDQBY1DL_RD_DQ13_DEL.
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ13_DEL      (0x00700000)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ13_DEL.
 
@@ -7520,7 +7115,6 @@ typedef union _hw_mmdc_mprddqby1dl
 //! @brief Set the RD_DQ13_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY1DL_RD_DQ13_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ13_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ13_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY1DL, field RD_DQ14_DEL[26:24] (RW)
@@ -7539,7 +7133,6 @@ typedef union _hw_mmdc_mprddqby1dl
  * - 111 - Add dq14 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY1DL_RD_DQ14_DEL      (24)      //!< Bit position for MMDC_MPRDDQBY1DL_RD_DQ14_DEL.
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ14_DEL      (0x07000000)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ14_DEL.
 
@@ -7553,7 +7146,6 @@ typedef union _hw_mmdc_mprddqby1dl
 //! @brief Set the RD_DQ14_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY1DL_RD_DQ14_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ14_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ14_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY1DL, field RD_DQ15_DEL[30:28] (RW)
@@ -7572,7 +7164,6 @@ typedef union _hw_mmdc_mprddqby1dl
  * - 111 - Add dq15 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY1DL_RD_DQ15_DEL      (28)      //!< Bit position for MMDC_MPRDDQBY1DL_RD_DQ15_DEL.
 #define BM_MMDC_MPRDDQBY1DL_RD_DQ15_DEL      (0x70000000)  //!< Bit mask for MMDC_MPRDDQBY1DL_RD_DQ15_DEL.
 
@@ -7586,7 +7177,6 @@ typedef union _hw_mmdc_mprddqby1dl
 //! @brief Set the RD_DQ15_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY1DL_RD_DQ15_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ15_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ15_DEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7664,7 +7254,6 @@ typedef union _hw_mmdc_mprddqby2dl
  * - 111 - Add dq16 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY2DL_RD_DQ16_DEL      (0)      //!< Bit position for MMDC_MPRDDQBY2DL_RD_DQ16_DEL.
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ16_DEL      (0x00000007)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ16_DEL.
 
@@ -7678,7 +7267,6 @@ typedef union _hw_mmdc_mprddqby2dl
 //! @brief Set the RD_DQ16_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY2DL_RD_DQ16_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ16_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ16_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY2DL, field RD_DQ17_DEL[6:4] (RW)
@@ -7697,7 +7285,6 @@ typedef union _hw_mmdc_mprddqby2dl
  * - 111 - Add dq17 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY2DL_RD_DQ17_DEL      (4)      //!< Bit position for MMDC_MPRDDQBY2DL_RD_DQ17_DEL.
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ17_DEL      (0x00000070)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ17_DEL.
 
@@ -7711,7 +7298,6 @@ typedef union _hw_mmdc_mprddqby2dl
 //! @brief Set the RD_DQ17_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY2DL_RD_DQ17_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ17_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ17_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY2DL, field RD_DQ18_DEL[10:8] (RW)
@@ -7730,7 +7316,6 @@ typedef union _hw_mmdc_mprddqby2dl
  * - 111 - Add dq18 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY2DL_RD_DQ18_DEL      (8)      //!< Bit position for MMDC_MPRDDQBY2DL_RD_DQ18_DEL.
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ18_DEL      (0x00000700)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ18_DEL.
 
@@ -7744,7 +7329,6 @@ typedef union _hw_mmdc_mprddqby2dl
 //! @brief Set the RD_DQ18_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY2DL_RD_DQ18_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ18_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ18_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY2DL, field RD_DQ19_DEL[14:12] (RW)
@@ -7763,7 +7347,6 @@ typedef union _hw_mmdc_mprddqby2dl
  * - 111 - Add dq19 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY2DL_RD_DQ19_DEL      (12)      //!< Bit position for MMDC_MPRDDQBY2DL_RD_DQ19_DEL.
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ19_DEL      (0x00007000)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ19_DEL.
 
@@ -7777,7 +7360,6 @@ typedef union _hw_mmdc_mprddqby2dl
 //! @brief Set the RD_DQ19_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY2DL_RD_DQ19_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ19_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ19_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY2DL, field RD_DQ20_DEL[18:16] (RW)
@@ -7796,7 +7378,6 @@ typedef union _hw_mmdc_mprddqby2dl
  * - 111 - Add dq20 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY2DL_RD_DQ20_DEL      (16)      //!< Bit position for MMDC_MPRDDQBY2DL_RD_DQ20_DEL.
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ20_DEL      (0x00070000)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ20_DEL.
 
@@ -7810,7 +7391,6 @@ typedef union _hw_mmdc_mprddqby2dl
 //! @brief Set the RD_DQ20_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY2DL_RD_DQ20_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ20_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ20_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY2DL, field RD_DQ21_DEL[22:20] (RW)
@@ -7829,7 +7409,6 @@ typedef union _hw_mmdc_mprddqby2dl
  * - 111 - Add dq21 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY2DL_RD_DQ21_DEL      (20)      //!< Bit position for MMDC_MPRDDQBY2DL_RD_DQ21_DEL.
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ21_DEL      (0x00700000)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ21_DEL.
 
@@ -7843,7 +7422,6 @@ typedef union _hw_mmdc_mprddqby2dl
 //! @brief Set the RD_DQ21_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY2DL_RD_DQ21_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ21_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ21_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY2DL, field RD_DQ22_DEL[26:24] (RW)
@@ -7862,7 +7440,6 @@ typedef union _hw_mmdc_mprddqby2dl
  * - 111 - Add dq22 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY2DL_RD_DQ22_DEL      (24)      //!< Bit position for MMDC_MPRDDQBY2DL_RD_DQ22_DEL.
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ22_DEL      (0x07000000)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ22_DEL.
 
@@ -7876,7 +7453,6 @@ typedef union _hw_mmdc_mprddqby2dl
 //! @brief Set the RD_DQ22_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY2DL_RD_DQ22_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ22_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ22_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY2DL, field RD_DQ23_DEL[30:28] (RW)
@@ -7895,7 +7471,6 @@ typedef union _hw_mmdc_mprddqby2dl
  * - 111 - Add dq23 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY2DL_RD_DQ23_DEL      (28)      //!< Bit position for MMDC_MPRDDQBY2DL_RD_DQ23_DEL.
 #define BM_MMDC_MPRDDQBY2DL_RD_DQ23_DEL      (0x70000000)  //!< Bit mask for MMDC_MPRDDQBY2DL_RD_DQ23_DEL.
 
@@ -7909,7 +7484,6 @@ typedef union _hw_mmdc_mprddqby2dl
 //! @brief Set the RD_DQ23_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY2DL_RD_DQ23_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ23_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ23_DEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7987,7 +7561,6 @@ typedef union _hw_mmdc_mprddqby3dl
  * - 111 - Add dq24 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY3DL_RD_DQ24_DEL      (0)      //!< Bit position for MMDC_MPRDDQBY3DL_RD_DQ24_DEL.
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ24_DEL      (0x00000007)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ24_DEL.
 
@@ -8001,7 +7574,6 @@ typedef union _hw_mmdc_mprddqby3dl
 //! @brief Set the RD_DQ24_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY3DL_RD_DQ24_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ24_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ24_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY3DL, field RD_DQ25_DEL[6:4] (RW)
@@ -8020,7 +7592,6 @@ typedef union _hw_mmdc_mprddqby3dl
  * - 111 - Add dq25 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY3DL_RD_DQ25_DEL      (4)      //!< Bit position for MMDC_MPRDDQBY3DL_RD_DQ25_DEL.
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ25_DEL      (0x00000070)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ25_DEL.
 
@@ -8034,7 +7605,6 @@ typedef union _hw_mmdc_mprddqby3dl
 //! @brief Set the RD_DQ25_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY3DL_RD_DQ25_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ25_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ25_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY3DL, field RD_DQ26_DEL[10:8] (RW)
@@ -8053,7 +7623,6 @@ typedef union _hw_mmdc_mprddqby3dl
  * - 111 - Add dq26 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY3DL_RD_DQ26_DEL      (8)      //!< Bit position for MMDC_MPRDDQBY3DL_RD_DQ26_DEL.
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ26_DEL      (0x00000700)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ26_DEL.
 
@@ -8067,7 +7636,6 @@ typedef union _hw_mmdc_mprddqby3dl
 //! @brief Set the RD_DQ26_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY3DL_RD_DQ26_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ26_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ26_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY3DL, field RD_DQ27_DEL[14:12] (RW)
@@ -8086,7 +7654,6 @@ typedef union _hw_mmdc_mprddqby3dl
  * - 111 - Add dq27 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY3DL_RD_DQ27_DEL      (12)      //!< Bit position for MMDC_MPRDDQBY3DL_RD_DQ27_DEL.
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ27_DEL      (0x00007000)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ27_DEL.
 
@@ -8100,7 +7667,6 @@ typedef union _hw_mmdc_mprddqby3dl
 //! @brief Set the RD_DQ27_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY3DL_RD_DQ27_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ27_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ27_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY3DL, field RD_DQ28_DEL[18:16] (RW)
@@ -8119,7 +7685,6 @@ typedef union _hw_mmdc_mprddqby3dl
  * - 111 - Add dq28 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY3DL_RD_DQ28_DEL      (16)      //!< Bit position for MMDC_MPRDDQBY3DL_RD_DQ28_DEL.
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ28_DEL      (0x00070000)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ28_DEL.
 
@@ -8133,7 +7698,6 @@ typedef union _hw_mmdc_mprddqby3dl
 //! @brief Set the RD_DQ28_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY3DL_RD_DQ28_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ28_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ28_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY3DL, field RD_DQ29_DEL[22:20] (RW)
@@ -8152,7 +7716,6 @@ typedef union _hw_mmdc_mprddqby3dl
  * - 111 - Add dq29 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY3DL_RD_DQ29_DEL      (20)      //!< Bit position for MMDC_MPRDDQBY3DL_RD_DQ29_DEL.
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ29_DEL      (0x00700000)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ29_DEL.
 
@@ -8166,7 +7729,6 @@ typedef union _hw_mmdc_mprddqby3dl
 //! @brief Set the RD_DQ29_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY3DL_RD_DQ29_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ29_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ29_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY3DL, field RD_DQ30_DEL[26:24] (RW)
@@ -8185,7 +7747,6 @@ typedef union _hw_mmdc_mprddqby3dl
  * - 111 - Add dq30 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY3DL_RD_DQ30_DEL      (24)      //!< Bit position for MMDC_MPRDDQBY3DL_RD_DQ30_DEL.
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ30_DEL      (0x07000000)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ30_DEL.
 
@@ -8199,7 +7760,6 @@ typedef union _hw_mmdc_mprddqby3dl
 //! @brief Set the RD_DQ30_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY3DL_RD_DQ30_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ30_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ30_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDQBY3DL, field RD_DQ31_DEL[30:28] (RW)
@@ -8218,7 +7778,6 @@ typedef union _hw_mmdc_mprddqby3dl
  * - 111 - Add dq31 delay of 7 delay units.
  */
 //@{
-
 #define BP_MMDC_MPRDDQBY3DL_RD_DQ31_DEL      (28)      //!< Bit position for MMDC_MPRDDQBY3DL_RD_DQ31_DEL.
 #define BM_MMDC_MPRDDQBY3DL_RD_DQ31_DEL      (0x70000000)  //!< Bit mask for MMDC_MPRDDQBY3DL_RD_DQ31_DEL.
 
@@ -8232,7 +7791,6 @@ typedef union _hw_mmdc_mprddqby3dl
 //! @brief Set the RD_DQ31_DEL field to a new value.
 #define BW_MMDC_MPRDDQBY3DL_RD_DQ31_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ31_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ31_DEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8306,7 +7864,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
  * - 11 - Add dq0 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY0DL_WR_DQ0_DEL      (0)      //!< Bit position for MMDC_MPWRDQBY0DL_WR_DQ0_DEL.
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ0_DEL      (0x00000003)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ0_DEL.
 
@@ -8320,7 +7877,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
 //! @brief Set the WR_DQ0_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY0DL_WR_DQ0_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ0_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ0_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY0DL, field WR_DQ1_DEL[5:4] (RW)
@@ -8335,7 +7891,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
  * - 11 - Add dq1 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY0DL_WR_DQ1_DEL      (4)      //!< Bit position for MMDC_MPWRDQBY0DL_WR_DQ1_DEL.
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ1_DEL      (0x00000030)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ1_DEL.
 
@@ -8349,7 +7904,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
 //! @brief Set the WR_DQ1_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY0DL_WR_DQ1_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ1_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ1_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY0DL, field WR_DQ2_DEL[9:8] (RW)
@@ -8364,7 +7918,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
  * - 11 - Add dq2 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY0DL_WR_DQ2_DEL      (8)      //!< Bit position for MMDC_MPWRDQBY0DL_WR_DQ2_DEL.
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ2_DEL      (0x00000300)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ2_DEL.
 
@@ -8378,7 +7931,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
 //! @brief Set the WR_DQ2_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY0DL_WR_DQ2_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ2_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ2_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY0DL, field WR_DQ3_DEL[13:12] (RW)
@@ -8393,7 +7945,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
  * - 11 - Add dq3 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY0DL_WR_DQ3_DEL      (12)      //!< Bit position for MMDC_MPWRDQBY0DL_WR_DQ3_DEL.
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ3_DEL      (0x00003000)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ3_DEL.
 
@@ -8407,7 +7958,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
 //! @brief Set the WR_DQ3_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY0DL_WR_DQ3_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ3_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ3_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY0DL, field WR_DQ4_DEL[17:16] (RW)
@@ -8422,7 +7972,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
  * - 11 - Add dq4 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY0DL_WR_DQ4_DEL      (16)      //!< Bit position for MMDC_MPWRDQBY0DL_WR_DQ4_DEL.
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ4_DEL      (0x00030000)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ4_DEL.
 
@@ -8436,7 +7985,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
 //! @brief Set the WR_DQ4_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY0DL_WR_DQ4_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ4_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ4_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY0DL, field WR_DQ5_DEL[21:20] (RW)
@@ -8451,7 +7999,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
  * - 11 - Add dq5 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY0DL_WR_DQ5_DEL      (20)      //!< Bit position for MMDC_MPWRDQBY0DL_WR_DQ5_DEL.
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ5_DEL      (0x00300000)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ5_DEL.
 
@@ -8465,7 +8012,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
 //! @brief Set the WR_DQ5_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY0DL_WR_DQ5_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ5_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ5_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY0DL, field WR_DQ6_DEL[25:24] (RW)
@@ -8480,7 +8026,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
  * - 11 - Add dq6 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY0DL_WR_DQ6_DEL      (24)      //!< Bit position for MMDC_MPWRDQBY0DL_WR_DQ6_DEL.
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ6_DEL      (0x03000000)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ6_DEL.
 
@@ -8494,7 +8039,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
 //! @brief Set the WR_DQ6_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY0DL_WR_DQ6_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ6_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ6_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY0DL, field WR_DQ7_DEL[29:28] (RW)
@@ -8509,7 +8053,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
  * - 11 - Add dq7 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY0DL_WR_DQ7_DEL      (28)      //!< Bit position for MMDC_MPWRDQBY0DL_WR_DQ7_DEL.
 #define BM_MMDC_MPWRDQBY0DL_WR_DQ7_DEL      (0x30000000)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DQ7_DEL.
 
@@ -8523,7 +8066,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
 //! @brief Set the WR_DQ7_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY0DL_WR_DQ7_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ7_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ7_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY0DL, field WR_DM0_DEL[31:30] (RW)
@@ -8538,7 +8080,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
  * - 11 - Add dm0 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY0DL_WR_DM0_DEL      (30)      //!< Bit position for MMDC_MPWRDQBY0DL_WR_DM0_DEL.
 #define BM_MMDC_MPWRDQBY0DL_WR_DM0_DEL      (0xc0000000)  //!< Bit mask for MMDC_MPWRDQBY0DL_WR_DM0_DEL.
 
@@ -8552,7 +8093,6 @@ typedef union _hw_mmdc_mpwrdqby0dl
 //! @brief Set the WR_DM0_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY0DL_WR_DM0_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DM0_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DM0_DEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8626,7 +8166,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
  * - 11 - Add dq8 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY1DL_WR_DQ8_DEL      (0)      //!< Bit position for MMDC_MPWRDQBY1DL_WR_DQ8_DEL.
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ8_DEL      (0x00000003)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ8_DEL.
 
@@ -8640,7 +8179,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
 //! @brief Set the WR_DQ8_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY1DL_WR_DQ8_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ8_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ8_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY1DL, field WR_DQ9_DEL[5:4] (RW)
@@ -8655,7 +8193,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
  * - 11 - Add dq9 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY1DL_WR_DQ9_DEL      (4)      //!< Bit position for MMDC_MPWRDQBY1DL_WR_DQ9_DEL.
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ9_DEL      (0x00000030)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ9_DEL.
 
@@ -8669,7 +8206,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
 //! @brief Set the WR_DQ9_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY1DL_WR_DQ9_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ9_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ9_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY1DL, field WR_DQ10_DEL[9:8] (RW)
@@ -8684,7 +8220,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
  * - 11 - Add dq10 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY1DL_WR_DQ10_DEL      (8)      //!< Bit position for MMDC_MPWRDQBY1DL_WR_DQ10_DEL.
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ10_DEL      (0x00000300)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ10_DEL.
 
@@ -8698,7 +8233,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
 //! @brief Set the WR_DQ10_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY1DL_WR_DQ10_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ10_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ10_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY1DL, field WR_DQ11_DEL[13:12] (RW)
@@ -8713,7 +8247,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
  * - 11 - Add dq11 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY1DL_WR_DQ11_DEL      (12)      //!< Bit position for MMDC_MPWRDQBY1DL_WR_DQ11_DEL.
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ11_DEL      (0x00003000)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ11_DEL.
 
@@ -8727,7 +8260,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
 //! @brief Set the WR_DQ11_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY1DL_WR_DQ11_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ11_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ11_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY1DL, field WR_DQ12_DEL[17:16] (RW)
@@ -8742,7 +8274,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
  * - 11 - Add dq12 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY1DL_WR_DQ12_DEL      (16)      //!< Bit position for MMDC_MPWRDQBY1DL_WR_DQ12_DEL.
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ12_DEL      (0x00030000)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ12_DEL.
 
@@ -8756,7 +8287,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
 //! @brief Set the WR_DQ12_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY1DL_WR_DQ12_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ12_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ12_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY1DL, field WR_DQ13_DEL[21:20] (RW)
@@ -8771,7 +8301,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
  * - 11 - Add dq13 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY1DL_WR_DQ13_DEL      (20)      //!< Bit position for MMDC_MPWRDQBY1DL_WR_DQ13_DEL.
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ13_DEL      (0x00300000)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ13_DEL.
 
@@ -8785,7 +8314,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
 //! @brief Set the WR_DQ13_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY1DL_WR_DQ13_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ13_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ13_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY1DL, field WR_DQ14_DEL[25:24] (RW)
@@ -8800,7 +8328,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
  * - 11 - Add dq14 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY1DL_WR_DQ14_DEL      (24)      //!< Bit position for MMDC_MPWRDQBY1DL_WR_DQ14_DEL.
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ14_DEL      (0x03000000)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ14_DEL.
 
@@ -8814,7 +8341,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
 //! @brief Set the WR_DQ14_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY1DL_WR_DQ14_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ14_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ14_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY1DL, field WR_DQ15_DEL[29:28] (RW)
@@ -8829,7 +8355,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
  * - 11 - Add dq15 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY1DL_WR_DQ15_DEL      (28)      //!< Bit position for MMDC_MPWRDQBY1DL_WR_DQ15_DEL.
 #define BM_MMDC_MPWRDQBY1DL_WR_DQ15_DEL      (0x30000000)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DQ15_DEL.
 
@@ -8843,7 +8368,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
 //! @brief Set the WR_DQ15_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY1DL_WR_DQ15_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ15_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ15_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY1DL, field WR_DM1_DEL[31:30] (RW)
@@ -8858,7 +8382,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
  * - 11 - Add dm1 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY1DL_WR_DM1_DEL      (30)      //!< Bit position for MMDC_MPWRDQBY1DL_WR_DM1_DEL.
 #define BM_MMDC_MPWRDQBY1DL_WR_DM1_DEL      (0xc0000000)  //!< Bit mask for MMDC_MPWRDQBY1DL_WR_DM1_DEL.
 
@@ -8872,7 +8395,6 @@ typedef union _hw_mmdc_mpwrdqby1dl
 //! @brief Set the WR_DM1_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY1DL_WR_DM1_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DM1_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DM1_DEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8946,7 +8468,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
  * - 11 - Add dq16 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY2DL_WR_DQ16_DEL      (0)      //!< Bit position for MMDC_MPWRDQBY2DL_WR_DQ16_DEL.
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ16_DEL      (0x00000003)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ16_DEL.
 
@@ -8960,7 +8481,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
 //! @brief Set the WR_DQ16_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY2DL_WR_DQ16_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ16_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ16_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY2DL, field WR_DQ17_DEL[5:4] (RW)
@@ -8975,7 +8495,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
  * - 11 - Add dq17 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY2DL_WR_DQ17_DEL      (4)      //!< Bit position for MMDC_MPWRDQBY2DL_WR_DQ17_DEL.
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ17_DEL      (0x00000030)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ17_DEL.
 
@@ -8989,7 +8508,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
 //! @brief Set the WR_DQ17_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY2DL_WR_DQ17_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ17_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ17_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY2DL, field WR_DQ18_DEL[9:8] (RW)
@@ -9004,7 +8522,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
  * - 11 - Add dq18 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY2DL_WR_DQ18_DEL      (8)      //!< Bit position for MMDC_MPWRDQBY2DL_WR_DQ18_DEL.
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ18_DEL      (0x00000300)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ18_DEL.
 
@@ -9018,7 +8535,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
 //! @brief Set the WR_DQ18_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY2DL_WR_DQ18_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ18_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ18_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY2DL, field WR_DQ19_DEL[13:12] (RW)
@@ -9033,7 +8549,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
  * - 11 - Add dq19 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY2DL_WR_DQ19_DEL      (12)      //!< Bit position for MMDC_MPWRDQBY2DL_WR_DQ19_DEL.
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ19_DEL      (0x00003000)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ19_DEL.
 
@@ -9047,7 +8562,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
 //! @brief Set the WR_DQ19_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY2DL_WR_DQ19_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ19_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ19_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY2DL, field WR_DQ20_DEL[17:16] (RW)
@@ -9062,7 +8576,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
  * - 11 - Add dq20 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY2DL_WR_DQ20_DEL      (16)      //!< Bit position for MMDC_MPWRDQBY2DL_WR_DQ20_DEL.
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ20_DEL      (0x00030000)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ20_DEL.
 
@@ -9076,7 +8589,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
 //! @brief Set the WR_DQ20_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY2DL_WR_DQ20_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ20_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ20_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY2DL, field WR_DQ21_DEL[21:20] (RW)
@@ -9091,7 +8603,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
  * - 11 - Add dq21 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY2DL_WR_DQ21_DEL      (20)      //!< Bit position for MMDC_MPWRDQBY2DL_WR_DQ21_DEL.
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ21_DEL      (0x00300000)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ21_DEL.
 
@@ -9105,7 +8616,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
 //! @brief Set the WR_DQ21_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY2DL_WR_DQ21_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ21_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ21_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY2DL, field WR_DQ22_DEL[25:24] (RW)
@@ -9120,7 +8630,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
  * - 11 - Add dq22 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY2DL_WR_DQ22_DEL      (24)      //!< Bit position for MMDC_MPWRDQBY2DL_WR_DQ22_DEL.
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ22_DEL      (0x03000000)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ22_DEL.
 
@@ -9134,7 +8643,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
 //! @brief Set the WR_DQ22_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY2DL_WR_DQ22_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ22_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ22_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY2DL, field WR_DQ23_DEL[29:28] (RW)
@@ -9149,7 +8657,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
  * - 11 - Add dq23 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY2DL_WR_DQ23_DEL      (28)      //!< Bit position for MMDC_MPWRDQBY2DL_WR_DQ23_DEL.
 #define BM_MMDC_MPWRDQBY2DL_WR_DQ23_DEL      (0x30000000)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DQ23_DEL.
 
@@ -9163,7 +8670,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
 //! @brief Set the WR_DQ23_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY2DL_WR_DQ23_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ23_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ23_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY2DL, field WR_DM2_DEL[31:30] (RW)
@@ -9178,7 +8684,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
  * - 11 - Add dm2 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY2DL_WR_DM2_DEL      (30)      //!< Bit position for MMDC_MPWRDQBY2DL_WR_DM2_DEL.
 #define BM_MMDC_MPWRDQBY2DL_WR_DM2_DEL      (0xc0000000)  //!< Bit mask for MMDC_MPWRDQBY2DL_WR_DM2_DEL.
 
@@ -9192,7 +8697,6 @@ typedef union _hw_mmdc_mpwrdqby2dl
 //! @brief Set the WR_DM2_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY2DL_WR_DM2_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DM2_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DM2_DEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9266,7 +8770,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
  * - 11 - Add dq24 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY3DL_WR_DQ24_DEL      (0)      //!< Bit position for MMDC_MPWRDQBY3DL_WR_DQ24_DEL.
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ24_DEL      (0x00000003)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ24_DEL.
 
@@ -9280,7 +8783,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
 //! @brief Set the WR_DQ24_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY3DL_WR_DQ24_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ24_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ24_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY3DL, field WR_DQ25_DEL[5:4] (RW)
@@ -9295,7 +8797,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
  * - 11 - Add dq25 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY3DL_WR_DQ25_DEL      (4)      //!< Bit position for MMDC_MPWRDQBY3DL_WR_DQ25_DEL.
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ25_DEL      (0x00000030)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ25_DEL.
 
@@ -9309,7 +8810,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
 //! @brief Set the WR_DQ25_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY3DL_WR_DQ25_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ25_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ25_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY3DL, field WR_DQ26_DEL[9:8] (RW)
@@ -9324,7 +8824,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
  * - 11 - Add dq26 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY3DL_WR_DQ26_DEL      (8)      //!< Bit position for MMDC_MPWRDQBY3DL_WR_DQ26_DEL.
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ26_DEL      (0x00000300)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ26_DEL.
 
@@ -9338,7 +8837,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
 //! @brief Set the WR_DQ26_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY3DL_WR_DQ26_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ26_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ26_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY3DL, field WR_DQ27_DEL[13:12] (RW)
@@ -9353,7 +8851,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
  * - 11 - Add dq27 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY3DL_WR_DQ27_DEL      (12)      //!< Bit position for MMDC_MPWRDQBY3DL_WR_DQ27_DEL.
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ27_DEL      (0x00003000)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ27_DEL.
 
@@ -9367,7 +8864,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
 //! @brief Set the WR_DQ27_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY3DL_WR_DQ27_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ27_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ27_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY3DL, field WR_DQ28_DEL[17:16] (RW)
@@ -9382,7 +8878,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
  * - 11 - Add dq28 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY3DL_WR_DQ28_DEL      (16)      //!< Bit position for MMDC_MPWRDQBY3DL_WR_DQ28_DEL.
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ28_DEL      (0x00030000)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ28_DEL.
 
@@ -9396,7 +8891,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
 //! @brief Set the WR_DQ28_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY3DL_WR_DQ28_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ28_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ28_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY3DL, field WR_DQ29_DEL[21:20] (RW)
@@ -9411,7 +8905,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
  * - 11 - Add dq29 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY3DL_WR_DQ29_DEL      (20)      //!< Bit position for MMDC_MPWRDQBY3DL_WR_DQ29_DEL.
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ29_DEL      (0x00300000)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ29_DEL.
 
@@ -9425,7 +8918,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
 //! @brief Set the WR_DQ29_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY3DL_WR_DQ29_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ29_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ29_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY3DL, field WR_DQ30_DEL[25:24] (RW)
@@ -9440,7 +8932,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
  * - 11 - Add dq30 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY3DL_WR_DQ30_DEL      (24)      //!< Bit position for MMDC_MPWRDQBY3DL_WR_DQ30_DEL.
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ30_DEL      (0x03000000)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ30_DEL.
 
@@ -9454,7 +8945,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
 //! @brief Set the WR_DQ30_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY3DL_WR_DQ30_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ30_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ30_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY3DL, field WR_DQ31_DEL[29:28] (RW)
@@ -9469,7 +8959,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
  * - 11 - Add dq31 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY3DL_WR_DQ31_DEL      (28)      //!< Bit position for MMDC_MPWRDQBY3DL_WR_DQ31_DEL.
 #define BM_MMDC_MPWRDQBY3DL_WR_DQ31_DEL      (0x30000000)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DQ31_DEL.
 
@@ -9483,7 +8972,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
 //! @brief Set the WR_DQ31_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY3DL_WR_DQ31_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ31_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ31_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDQBY3DL, field WR_DM3_DEL[31:30] (RW)
@@ -9498,7 +8986,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
  * - 11 - Add dm3 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRDQBY3DL_WR_DM3_DEL      (30)      //!< Bit position for MMDC_MPWRDQBY3DL_WR_DM3_DEL.
 #define BM_MMDC_MPWRDQBY3DL_WR_DM3_DEL      (0xc0000000)  //!< Bit mask for MMDC_MPWRDQBY3DL_WR_DM3_DEL.
 
@@ -9512,7 +8999,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
 //! @brief Set the WR_DM3_DEL field to a new value.
 #define BW_MMDC_MPWRDQBY3DL_WR_DM3_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DM3_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DM3_DEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9579,7 +9065,6 @@ typedef union _hw_mmdc_mpdgctrl0
  * the requested change is smaller than the delay-line resolution, then no change will occur.
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0      (0)      //!< Bit position for MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0.
 #define BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0      (0x0000007f)  //!< Bit mask for MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0.
 
@@ -9593,7 +9078,6 @@ typedef union _hw_mmdc_mpdgctrl0
 //! @brief Set the DG_DL_ABS_OFFSET0 field to a new value.
 #define BW_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0) | BF_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPDGCTRL0, field DG_HC_DEL0[11:8] (RW)
@@ -9614,7 +9098,6 @@ typedef union _hw_mmdc_mpdgctrl0
  * - 1111 - Reserved
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL0_DG_HC_DEL0      (8)      //!< Bit position for MMDC_MPDGCTRL0_DG_HC_DEL0.
 #define BM_MMDC_MPDGCTRL0_DG_HC_DEL0      (0x00000f00)  //!< Bit mask for MMDC_MPDGCTRL0_DG_HC_DEL0.
 
@@ -9628,7 +9111,6 @@ typedef union _hw_mmdc_mpdgctrl0
 //! @brief Set the DG_HC_DEL0 field to a new value.
 #define BW_MMDC_MPDGCTRL0_DG_HC_DEL0(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_DG_HC_DEL0) | BF_MMDC_MPDGCTRL0_DG_HC_DEL0(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPDGCTRL0, field HW_DG_ERR[12] (RO)
@@ -9642,13 +9124,11 @@ typedef union _hw_mmdc_mpdgctrl0
  * - 1 - An error was found during the DQS gating HW calibration process.
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL0_HW_DG_ERR      (12)      //!< Bit position for MMDC_MPDGCTRL0_HW_DG_ERR.
 #define BM_MMDC_MPDGCTRL0_HW_DG_ERR      (0x00001000)  //!< Bit mask for MMDC_MPDGCTRL0_HW_DG_ERR.
 
 //! @brief Get value of MMDC_MPDGCTRL0_HW_DG_ERR from a register value.
 #define BG_MMDC_MPDGCTRL0_HW_DG_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL0_HW_DG_ERR) >> BP_MMDC_MPDGCTRL0_HW_DG_ERR)
-
 //@}
 
 /*! @name Register MMDC_MPDGCTRL0, field DG_DL_ABS_OFFSET1[22:16] (RW)
@@ -9662,7 +9142,6 @@ typedef union _hw_mmdc_mpdgctrl0
  * the requested change is smaller than the delay-line resolution, then no change will occur.
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1      (16)      //!< Bit position for MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1.
 #define BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1      (0x007f0000)  //!< Bit mask for MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1.
 
@@ -9676,7 +9155,6 @@ typedef union _hw_mmdc_mpdgctrl0
 //! @brief Set the DG_DL_ABS_OFFSET1 field to a new value.
 #define BW_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1) | BF_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPDGCTRL0, field DG_EXT_UP[23] (RW)
@@ -9686,7 +9164,6 @@ typedef union _hw_mmdc_mpdgctrl0
  * asserted then the upper boundary is set accroding to the last passing comparison.
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL0_DG_EXT_UP      (23)      //!< Bit position for MMDC_MPDGCTRL0_DG_EXT_UP.
 #define BM_MMDC_MPDGCTRL0_DG_EXT_UP      (0x00800000)  //!< Bit mask for MMDC_MPDGCTRL0_DG_EXT_UP.
 
@@ -9700,7 +9177,6 @@ typedef union _hw_mmdc_mpdgctrl0
 //! @brief Set the DG_EXT_UP field to a new value.
 #define BW_MMDC_MPDGCTRL0_DG_EXT_UP(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_DG_EXT_UP) | BF_MMDC_MPDGCTRL0_DG_EXT_UP(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPDGCTRL0, field DG_HC_DEL1[27:24] (RW)
@@ -9721,7 +9197,6 @@ typedef union _hw_mmdc_mpdgctrl0
  * - 1111 - Reserved
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL0_DG_HC_DEL1      (24)      //!< Bit position for MMDC_MPDGCTRL0_DG_HC_DEL1.
 #define BM_MMDC_MPDGCTRL0_DG_HC_DEL1      (0x0f000000)  //!< Bit mask for MMDC_MPDGCTRL0_DG_HC_DEL1.
 
@@ -9735,7 +9210,6 @@ typedef union _hw_mmdc_mpdgctrl0
 //! @brief Set the DG_HC_DEL1 field to a new value.
 #define BW_MMDC_MPDGCTRL0_DG_HC_DEL1(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_DG_HC_DEL1) | BF_MMDC_MPDGCTRL0_DG_HC_DEL1(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPDGCTRL0, field HW_DG_EN[28] (RW)
@@ -9751,7 +9225,6 @@ typedef union _hw_mmdc_mpdgctrl0
  * - 1 - Start automatic read DQS gating calibration
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL0_HW_DG_EN      (28)      //!< Bit position for MMDC_MPDGCTRL0_HW_DG_EN.
 #define BM_MMDC_MPDGCTRL0_HW_DG_EN      (0x10000000)  //!< Bit mask for MMDC_MPDGCTRL0_HW_DG_EN.
 
@@ -9765,7 +9238,6 @@ typedef union _hw_mmdc_mpdgctrl0
 //! @brief Set the HW_DG_EN field to a new value.
 #define BW_MMDC_MPDGCTRL0_HW_DG_EN(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_HW_DG_EN) | BF_MMDC_MPDGCTRL0_HW_DG_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPDGCTRL0, field DG_DIS[29] (RO)
@@ -9779,13 +9251,11 @@ typedef union _hw_mmdc_mpdgctrl0
  * - 1 - Read DQS gating mechanism is disabled
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL0_DG_DIS      (29)      //!< Bit position for MMDC_MPDGCTRL0_DG_DIS.
 #define BM_MMDC_MPDGCTRL0_DG_DIS      (0x20000000)  //!< Bit mask for MMDC_MPDGCTRL0_DG_DIS.
 
 //! @brief Get value of MMDC_MPDGCTRL0_DG_DIS from a register value.
 #define BG_MMDC_MPDGCTRL0_DG_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL0_DG_DIS) >> BP_MMDC_MPDGCTRL0_DG_DIS)
-
 //@}
 
 /*! @name Register MMDC_MPDGCTRL0, field DG_CMP_CYC[30] (RO)
@@ -9798,13 +9268,11 @@ typedef union _hw_mmdc_mpdgctrl0
  * - 1 - MMDC waits 32 DDR cycles
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL0_DG_CMP_CYC      (30)      //!< Bit position for MMDC_MPDGCTRL0_DG_CMP_CYC.
 #define BM_MMDC_MPDGCTRL0_DG_CMP_CYC      (0x40000000)  //!< Bit mask for MMDC_MPDGCTRL0_DG_CMP_CYC.
 
 //! @brief Get value of MMDC_MPDGCTRL0_DG_CMP_CYC from a register value.
 #define BG_MMDC_MPDGCTRL0_DG_CMP_CYC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGCTRL0_DG_CMP_CYC) >> BP_MMDC_MPDGCTRL0_DG_CMP_CYC)
-
 //@}
 
 /*! @name Register MMDC_MPDGCTRL0, field RST_RD_FIFO[31] (RW)
@@ -9814,7 +9282,6 @@ typedef union _hw_mmdc_mpdgctrl0
  * done.
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL0_RST_RD_FIFO      (31)      //!< Bit position for MMDC_MPDGCTRL0_RST_RD_FIFO.
 #define BM_MMDC_MPDGCTRL0_RST_RD_FIFO      (0x80000000)  //!< Bit mask for MMDC_MPDGCTRL0_RST_RD_FIFO.
 
@@ -9828,7 +9295,6 @@ typedef union _hw_mmdc_mpdgctrl0
 //! @brief Set the RST_RD_FIFO field to a new value.
 #define BW_MMDC_MPDGCTRL0_RST_RD_FIFO(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_RST_RD_FIFO) | BF_MMDC_MPDGCTRL0_RST_RD_FIFO(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9891,7 +9357,6 @@ typedef union _hw_mmdc_mpdgctrl1
  * the requested change is smaller than the delay-line resolution, then no change will occur.
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2      (0)      //!< Bit position for MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2.
 #define BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2      (0x0000007f)  //!< Bit mask for MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2.
 
@@ -9905,7 +9370,6 @@ typedef union _hw_mmdc_mpdgctrl1
 //! @brief Set the DG_DL_ABS_OFFSET2 field to a new value.
 #define BW_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2(x, v)   (HW_MMDC_MPDGCTRL1_WR(x, (HW_MMDC_MPDGCTRL1_RD(x) & ~BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2) | BF_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPDGCTRL1, field DG_HC_DEL2[11:8] (RW)
@@ -9926,7 +9390,6 @@ typedef union _hw_mmdc_mpdgctrl1
  * - 1111 - Reserved
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL1_DG_HC_DEL2      (8)      //!< Bit position for MMDC_MPDGCTRL1_DG_HC_DEL2.
 #define BM_MMDC_MPDGCTRL1_DG_HC_DEL2      (0x00000f00)  //!< Bit mask for MMDC_MPDGCTRL1_DG_HC_DEL2.
 
@@ -9940,7 +9403,6 @@ typedef union _hw_mmdc_mpdgctrl1
 //! @brief Set the DG_HC_DEL2 field to a new value.
 #define BW_MMDC_MPDGCTRL1_DG_HC_DEL2(x, v)   (HW_MMDC_MPDGCTRL1_WR(x, (HW_MMDC_MPDGCTRL1_RD(x) & ~BM_MMDC_MPDGCTRL1_DG_HC_DEL2) | BF_MMDC_MPDGCTRL1_DG_HC_DEL2(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPDGCTRL1, field DG_DL_ABS_OFFSET3[22:16] (RW)
@@ -9954,7 +9416,6 @@ typedef union _hw_mmdc_mpdgctrl1
  * the requested change is smaller than the delay-line resolution, then no change will occur.
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3      (16)      //!< Bit position for MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3.
 #define BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3      (0x007f0000)  //!< Bit mask for MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3.
 
@@ -9968,7 +9429,6 @@ typedef union _hw_mmdc_mpdgctrl1
 //! @brief Set the DG_DL_ABS_OFFSET3 field to a new value.
 #define BW_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3(x, v)   (HW_MMDC_MPDGCTRL1_WR(x, (HW_MMDC_MPDGCTRL1_RD(x) & ~BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3) | BF_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPDGCTRL1, field DG_HC_DEL3[27:24] (RW)
@@ -9989,7 +9449,6 @@ typedef union _hw_mmdc_mpdgctrl1
  * - 1111 - Reserved
  */
 //@{
-
 #define BP_MMDC_MPDGCTRL1_DG_HC_DEL3      (24)      //!< Bit position for MMDC_MPDGCTRL1_DG_HC_DEL3.
 #define BM_MMDC_MPDGCTRL1_DG_HC_DEL3      (0x0f000000)  //!< Bit mask for MMDC_MPDGCTRL1_DG_HC_DEL3.
 
@@ -10003,7 +9462,6 @@ typedef union _hw_mmdc_mpdgctrl1
 //! @brief Set the DG_HC_DEL3 field to a new value.
 #define BW_MMDC_MPDGCTRL1_DG_HC_DEL3(x, v)   (HW_MMDC_MPDGCTRL1_WR(x, (HW_MMDC_MPDGCTRL1_RD(x) & ~BM_MMDC_MPDGCTRL1_DG_HC_DEL3) | BF_MMDC_MPDGCTRL1_DG_HC_DEL3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10058,13 +9516,11 @@ typedef union _hw_mmdc_mpdgdlst0
  * line 0.
  */
 //@{
-
 #define BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM0      (0)      //!< Bit position for MMDC_MPDGDLST0_DG_DL_UNIT_NUM0.
 #define BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM0      (0x0000007f)  //!< Bit mask for MMDC_MPDGDLST0_DG_DL_UNIT_NUM0.
 
 //! @brief Get value of MMDC_MPDGDLST0_DG_DL_UNIT_NUM0 from a register value.
 #define BG_MMDC_MPDGDLST0_DG_DL_UNIT_NUM0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM0) >> BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM0)
-
 //@}
 
 /*! @name Register MMDC_MPDGDLST0, field DG_DL_UNIT_NUM1[14:8] (RO)
@@ -10073,13 +9529,11 @@ typedef union _hw_mmdc_mpdgdlst0
  * line 1.
  */
 //@{
-
 #define BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM1      (8)      //!< Bit position for MMDC_MPDGDLST0_DG_DL_UNIT_NUM1.
 #define BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM1      (0x00007f00)  //!< Bit mask for MMDC_MPDGDLST0_DG_DL_UNIT_NUM1.
 
 //! @brief Get value of MMDC_MPDGDLST0_DG_DL_UNIT_NUM1 from a register value.
 #define BG_MMDC_MPDGDLST0_DG_DL_UNIT_NUM1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM1) >> BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM1)
-
 //@}
 
 /*! @name Register MMDC_MPDGDLST0, field DG_DL_UNIT_NUM2[22:16] (RO)
@@ -10088,13 +9542,11 @@ typedef union _hw_mmdc_mpdgdlst0
  * line 2.
  */
 //@{
-
 #define BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM2      (16)      //!< Bit position for MMDC_MPDGDLST0_DG_DL_UNIT_NUM2.
 #define BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM2      (0x007f0000)  //!< Bit mask for MMDC_MPDGDLST0_DG_DL_UNIT_NUM2.
 
 //! @brief Get value of MMDC_MPDGDLST0_DG_DL_UNIT_NUM2 from a register value.
 #define BG_MMDC_MPDGDLST0_DG_DL_UNIT_NUM2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM2) >> BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM2)
-
 //@}
 
 /*! @name Register MMDC_MPDGDLST0, field DG_DL_UNIT_NUM3[30:24] (RO)
@@ -10103,13 +9555,11 @@ typedef union _hw_mmdc_mpdgdlst0
  * line 3.
  */
 //@{
-
 #define BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM3      (24)      //!< Bit position for MMDC_MPDGDLST0_DG_DL_UNIT_NUM3.
 #define BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM3      (0x7f000000)  //!< Bit mask for MMDC_MPDGDLST0_DG_DL_UNIT_NUM3.
 
 //! @brief Get value of MMDC_MPDGDLST0_DG_DL_UNIT_NUM3 from a register value.
 #define BG_MMDC_MPDGDLST0_DG_DL_UNIT_NUM3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGDLST0_DG_DL_UNIT_NUM3) >> BP_MMDC_MPDGDLST0_DG_DL_UNIT_NUM3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10176,7 +9626,6 @@ typedef union _hw_mmdc_mprddlctl
  * line resolution, then no change will occur.
  */
 //@{
-
 #define BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0      (0)      //!< Bit position for MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0.
 #define BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0      (0x0000007f)  //!< Bit mask for MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0.
 
@@ -10190,7 +9639,6 @@ typedef union _hw_mmdc_mprddlctl
 //! @brief Set the RD_DL_ABS_OFFSET0 field to a new value.
 #define BW_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0(x, v)   (HW_MMDC_MPRDDLCTL_WR(x, (HW_MMDC_MPRDDLCTL_RD(x) & ~BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0) | BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDLCTL, field RD_DL_ABS_OFFSET1[14:8] (RW)
@@ -10205,7 +9653,6 @@ typedef union _hw_mmdc_mprddlctl
  * line resolution, then no change will occur.
  */
 //@{
-
 #define BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1      (8)      //!< Bit position for MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1.
 #define BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1      (0x00007f00)  //!< Bit mask for MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1.
 
@@ -10219,7 +9666,6 @@ typedef union _hw_mmdc_mprddlctl
 //! @brief Set the RD_DL_ABS_OFFSET1 field to a new value.
 #define BW_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1(x, v)   (HW_MMDC_MPRDDLCTL_WR(x, (HW_MMDC_MPRDDLCTL_RD(x) & ~BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1) | BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDLCTL, field RD_DL_ABS_OFFSET2[22:16] (RW)
@@ -10234,7 +9680,6 @@ typedef union _hw_mmdc_mprddlctl
  * line resolution, then no change will occur.
  */
 //@{
-
 #define BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2      (16)      //!< Bit position for MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2.
 #define BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2      (0x007f0000)  //!< Bit mask for MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2.
 
@@ -10248,7 +9693,6 @@ typedef union _hw_mmdc_mprddlctl
 //! @brief Set the RD_DL_ABS_OFFSET2 field to a new value.
 #define BW_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2(x, v)   (HW_MMDC_MPRDDLCTL_WR(x, (HW_MMDC_MPRDDLCTL_RD(x) & ~BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2) | BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDLCTL, field RD_DL_ABS_OFFSET3[30:24] (RW)
@@ -10263,7 +9707,6 @@ typedef union _hw_mmdc_mprddlctl
  * line resolution, then no change will occur.
  */
 //@{
-
 #define BP_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3      (24)      //!< Bit position for MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3.
 #define BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3      (0x7f000000)  //!< Bit mask for MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3.
 
@@ -10277,7 +9720,6 @@ typedef union _hw_mmdc_mprddlctl
 //! @brief Set the RD_DL_ABS_OFFSET3 field to a new value.
 #define BW_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3(x, v)   (HW_MMDC_MPRDDLCTL_WR(x, (HW_MMDC_MPRDDLCTL_RD(x) & ~BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3) | BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10331,13 +9773,11 @@ typedef union _hw_mmdc_mprddlst
  * This field reflects the number of delay units that are actually used by read delay-line 0.
  */
 //@{
-
 #define BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM0      (0)      //!< Bit position for MMDC_MPRDDLST_RD_DL_UNIT_NUM0.
 #define BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM0      (0x0000007f)  //!< Bit mask for MMDC_MPRDDLST_RD_DL_UNIT_NUM0.
 
 //! @brief Get value of MMDC_MPRDDLST_RD_DL_UNIT_NUM0 from a register value.
 #define BG_MMDC_MPRDDLST_RD_DL_UNIT_NUM0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM0) >> BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM0)
-
 //@}
 
 /*! @name Register MMDC_MPRDDLST, field RD_DL_UNIT_NUM1[14:8] (RO)
@@ -10345,13 +9785,11 @@ typedef union _hw_mmdc_mprddlst
  * This field reflects the number of delay units that are actually used by read delay-line 1.
  */
 //@{
-
 #define BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM1      (8)      //!< Bit position for MMDC_MPRDDLST_RD_DL_UNIT_NUM1.
 #define BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM1      (0x00007f00)  //!< Bit mask for MMDC_MPRDDLST_RD_DL_UNIT_NUM1.
 
 //! @brief Get value of MMDC_MPRDDLST_RD_DL_UNIT_NUM1 from a register value.
 #define BG_MMDC_MPRDDLST_RD_DL_UNIT_NUM1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM1) >> BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM1)
-
 //@}
 
 /*! @name Register MMDC_MPRDDLST, field RD_DL_UNIT_NUM2[22:16] (RO)
@@ -10359,13 +9797,11 @@ typedef union _hw_mmdc_mprddlst
  * This field reflects the number of delay units that are actually used by read delay-line 2.
  */
 //@{
-
 #define BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM2      (16)      //!< Bit position for MMDC_MPRDDLST_RD_DL_UNIT_NUM2.
 #define BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM2      (0x007f0000)  //!< Bit mask for MMDC_MPRDDLST_RD_DL_UNIT_NUM2.
 
 //! @brief Get value of MMDC_MPRDDLST_RD_DL_UNIT_NUM2 from a register value.
 #define BG_MMDC_MPRDDLST_RD_DL_UNIT_NUM2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM2) >> BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM2)
-
 //@}
 
 /*! @name Register MMDC_MPRDDLST, field RD_DL_UNIT_NUM3[30:24] (RO)
@@ -10373,13 +9809,11 @@ typedef union _hw_mmdc_mprddlst
  * This field reflects the number of delay units that are actually used by read delay-line 3.
  */
 //@{
-
 #define BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM3      (24)      //!< Bit position for MMDC_MPRDDLST_RD_DL_UNIT_NUM3.
 #define BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM3      (0x7f000000)  //!< Bit mask for MMDC_MPRDDLST_RD_DL_UNIT_NUM3.
 
 //! @brief Get value of MMDC_MPRDDLST_RD_DL_UNIT_NUM3 from a register value.
 #define BG_MMDC_MPRDDLST_RD_DL_UNIT_NUM3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLST_RD_DL_UNIT_NUM3) >> BP_MMDC_MPRDDLST_RD_DL_UNIT_NUM3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10446,7 +9880,6 @@ typedef union _hw_mmdc_mpwrdlctl
  * delay-line resolution, then no change will occur.
  */
 //@{
-
 #define BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0      (0)      //!< Bit position for MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0.
 #define BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0      (0x0000007f)  //!< Bit mask for MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0.
 
@@ -10460,7 +9893,6 @@ typedef union _hw_mmdc_mpwrdlctl
 //! @brief Set the WR_DL_ABS_OFFSET0 field to a new value.
 #define BW_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0(x, v)   (HW_MMDC_MPWRDLCTL_WR(x, (HW_MMDC_MPWRDLCTL_RD(x) & ~BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0) | BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDLCTL, field WR_DL_ABS_OFFSET1[14:8] (RW)
@@ -10475,7 +9907,6 @@ typedef union _hw_mmdc_mpwrdlctl
  * delay-line resolution, then no change will occur.
  */
 //@{
-
 #define BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1      (8)      //!< Bit position for MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1.
 #define BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1      (0x00007f00)  //!< Bit mask for MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1.
 
@@ -10489,7 +9920,6 @@ typedef union _hw_mmdc_mpwrdlctl
 //! @brief Set the WR_DL_ABS_OFFSET1 field to a new value.
 #define BW_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1(x, v)   (HW_MMDC_MPWRDLCTL_WR(x, (HW_MMDC_MPWRDLCTL_RD(x) & ~BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1) | BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDLCTL, field WR_DL_ABS_OFFSET2[22:16] (RW)
@@ -10504,7 +9934,6 @@ typedef union _hw_mmdc_mpwrdlctl
  * resolution, then no change will occur.
  */
 //@{
-
 #define BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2      (16)      //!< Bit position for MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2.
 #define BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2      (0x007f0000)  //!< Bit mask for MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2.
 
@@ -10518,7 +9947,6 @@ typedef union _hw_mmdc_mpwrdlctl
 //! @brief Set the WR_DL_ABS_OFFSET2 field to a new value.
 #define BW_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2(x, v)   (HW_MMDC_MPWRDLCTL_WR(x, (HW_MMDC_MPWRDLCTL_RD(x) & ~BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2) | BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDLCTL, field WR_DL_ABS_OFFSET3[30:24] (RW)
@@ -10533,7 +9961,6 @@ typedef union _hw_mmdc_mpwrdlctl
  * line resolution, then no change will occur.
  */
 //@{
-
 #define BP_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3      (24)      //!< Bit position for MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3.
 #define BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3      (0x7f000000)  //!< Bit mask for MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3.
 
@@ -10547,7 +9974,6 @@ typedef union _hw_mmdc_mpwrdlctl
 //! @brief Set the WR_DL_ABS_OFFSET3 field to a new value.
 #define BW_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3(x, v)   (HW_MMDC_MPWRDLCTL_WR(x, (HW_MMDC_MPWRDLCTL_RD(x) & ~BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3) | BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10601,13 +10027,11 @@ typedef union _hw_mmdc_mpwrdlst
  * This field reflects the number of delay units that are actually used by write delay-line 0.
  */
 //@{
-
 #define BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM0      (0)      //!< Bit position for MMDC_MPWRDLST_WR_DL_UNIT_NUM0.
 #define BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM0      (0x0000007f)  //!< Bit mask for MMDC_MPWRDLST_WR_DL_UNIT_NUM0.
 
 //! @brief Get value of MMDC_MPWRDLST_WR_DL_UNIT_NUM0 from a register value.
 #define BG_MMDC_MPWRDLST_WR_DL_UNIT_NUM0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM0) >> BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM0)
-
 //@}
 
 /*! @name Register MMDC_MPWRDLST, field WR_DL_UNIT_NUM1[14:8] (RO)
@@ -10615,13 +10039,11 @@ typedef union _hw_mmdc_mpwrdlst
  * This field reflects the number of delay units that are actually used by write delay-line 1.
  */
 //@{
-
 #define BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM1      (8)      //!< Bit position for MMDC_MPWRDLST_WR_DL_UNIT_NUM1.
 #define BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM1      (0x00007f00)  //!< Bit mask for MMDC_MPWRDLST_WR_DL_UNIT_NUM1.
 
 //! @brief Get value of MMDC_MPWRDLST_WR_DL_UNIT_NUM1 from a register value.
 #define BG_MMDC_MPWRDLST_WR_DL_UNIT_NUM1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM1) >> BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM1)
-
 //@}
 
 /*! @name Register MMDC_MPWRDLST, field WR_DL_UNIT_NUM2[22:16] (RO)
@@ -10629,13 +10051,11 @@ typedef union _hw_mmdc_mpwrdlst
  * This field reflects the number of delay units that are actually used by write delay-line 2.
  */
 //@{
-
 #define BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM2      (16)      //!< Bit position for MMDC_MPWRDLST_WR_DL_UNIT_NUM2.
 #define BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM2      (0x007f0000)  //!< Bit mask for MMDC_MPWRDLST_WR_DL_UNIT_NUM2.
 
 //! @brief Get value of MMDC_MPWRDLST_WR_DL_UNIT_NUM2 from a register value.
 #define BG_MMDC_MPWRDLST_WR_DL_UNIT_NUM2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM2) >> BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM2)
-
 //@}
 
 /*! @name Register MMDC_MPWRDLST, field WR_DL_UNIT_NUM3[30:24] (RO)
@@ -10643,13 +10063,11 @@ typedef union _hw_mmdc_mpwrdlst
  * This field reflects the number of delay units that are actually used by write delay-line 3.
  */
 //@{
-
 #define BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM3      (24)      //!< Bit position for MMDC_MPWRDLST_WR_DL_UNIT_NUM3.
 #define BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM3      (0x7f000000)  //!< Bit mask for MMDC_MPWRDLST_WR_DL_UNIT_NUM3.
 
 //! @brief Get value of MMDC_MPWRDLST_WR_DL_UNIT_NUM3 from a register value.
 #define BG_MMDC_MPWRDLST_WR_DL_UNIT_NUM3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLST_WR_DL_UNIT_NUM3) >> BP_MMDC_MPWRDLST_WR_DL_UNIT_NUM3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10711,7 +10129,6 @@ typedef union _hw_mmdc_mpsdctrl
  * - 11 - Add DDR clock0 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPSDCTRL_SDCLK0_DEL      (8)      //!< Bit position for MMDC_MPSDCTRL_SDCLK0_DEL.
 #define BM_MMDC_MPSDCTRL_SDCLK0_DEL      (0x00000300)  //!< Bit mask for MMDC_MPSDCTRL_SDCLK0_DEL.
 
@@ -10725,7 +10142,6 @@ typedef union _hw_mmdc_mpsdctrl
 //! @brief Set the SDCLK0_DEL field to a new value.
 #define BW_MMDC_MPSDCTRL_SDCLK0_DEL(x, v)   (HW_MMDC_MPSDCTRL_WR(x, (HW_MMDC_MPSDCTRL_RD(x) & ~BM_MMDC_MPSDCTRL_SDCLK0_DEL) | BF_MMDC_MPSDCTRL_SDCLK0_DEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10791,7 +10207,6 @@ typedef union _hw_mmdc_mpzqlp2ctl
  * - 0x1FF - 1024 cycles
  */
 //@{
-
 #define BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT      (0)      //!< Bit position for MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT.
 #define BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT      (0x000001ff)  //!< Bit mask for MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT.
 
@@ -10805,7 +10220,6 @@ typedef union _hw_mmdc_mpzqlp2ctl
 //! @brief Set the ZQ_LP2_HW_ZQINIT field to a new value.
 #define BW_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT(x, v)   (HW_MMDC_MPZQLP2CTL_WR(x, (HW_MMDC_MPZQLP2CTL_RD(x) & ~BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT) | BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPZQLP2CTL, field ZQ_LP2_HW_ZQCL[23:16] (RW)
@@ -10823,7 +10237,6 @@ typedef union _hw_mmdc_mpzqlp2ctl
  * - 0xFF - 512 cycles
  */
 //@{
-
 #define BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL      (16)      //!< Bit position for MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL.
 #define BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL      (0x00ff0000)  //!< Bit mask for MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL.
 
@@ -10837,7 +10250,6 @@ typedef union _hw_mmdc_mpzqlp2ctl
 //! @brief Set the ZQ_LP2_HW_ZQCL field to a new value.
 #define BW_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL(x, v)   (HW_MMDC_MPZQLP2CTL_WR(x, (HW_MMDC_MPZQLP2CTL_RD(x) & ~BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL) | BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPZQLP2CTL, field ZQ_LP2_HW_ZQCS[30:24] (RW)
@@ -10854,7 +10266,6 @@ typedef union _hw_mmdc_mpzqlp2ctl
  * - 0x7F - 512 cycles
  */
 //@{
-
 #define BP_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS      (24)      //!< Bit position for MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS.
 #define BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS      (0x7f000000)  //!< Bit mask for MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS.
 
@@ -10868,7 +10279,6 @@ typedef union _hw_mmdc_mpzqlp2ctl
 //! @brief Set the ZQ_LP2_HW_ZQCS field to a new value.
 #define BW_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS(x, v)   (HW_MMDC_MPZQLP2CTL_WR(x, (HW_MMDC_MPZQLP2CTL_RD(x) & ~BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS) | BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10934,13 +10344,11 @@ typedef union _hw_mmdc_mprddlhwctl
  *     delay-line 0.
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0      (0)      //!< Bit position for MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0.
 #define BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0      (0x00000001)  //!< Bit mask for MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0.
 
 //! @brief Get value of MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0 from a register value.
 #define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR0)
-
 //@}
 
 /*! @name Register MMDC_MPRDDLHWCTL, field HW_RD_DL_ERR1[1] (RO)
@@ -10957,13 +10365,11 @@ typedef union _hw_mmdc_mprddlhwctl
  *     delay-line 1.
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1      (1)      //!< Bit position for MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1.
 #define BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1      (0x00000002)  //!< Bit mask for MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1.
 
 //! @brief Get value of MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1 from a register value.
 #define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR1)
-
 //@}
 
 /*! @name Register MMDC_MPRDDLHWCTL, field HW_RD_DL_ERR2[2] (RO)
@@ -10980,13 +10386,11 @@ typedef union _hw_mmdc_mprddlhwctl
  *     delay-line 2.
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2      (2)      //!< Bit position for MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2.
 #define BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2      (0x00000004)  //!< Bit mask for MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2.
 
 //! @brief Get value of MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2 from a register value.
 #define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2)
-
 //@}
 
 /*! @name Register MMDC_MPRDDLHWCTL, field HW_RD_DL_ERR3[3] (RO)
@@ -11003,13 +10407,11 @@ typedef union _hw_mmdc_mprddlhwctl
  *     delay-line 3.
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3      (3)      //!< Bit position for MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3.
 #define BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3      (0x00000008)  //!< Bit mask for MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3.
 
 //! @brief Get value of MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3 from a register value.
 #define BG_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3) >> BP_MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3)
-
 //@}
 
 /*! @name Register MMDC_MPRDDLHWCTL, field HW_RD_DL_EN[4] (RW)
@@ -11020,7 +10422,6 @@ typedef union _hw_mmdc_mprddlhwctl
  * the first read command MMDC counts 12 cycles.
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWCTL_HW_RD_DL_EN      (4)      //!< Bit position for MMDC_MPRDDLHWCTL_HW_RD_DL_EN.
 #define BM_MMDC_MPRDDLHWCTL_HW_RD_DL_EN      (0x00000010)  //!< Bit mask for MMDC_MPRDDLHWCTL_HW_RD_DL_EN.
 
@@ -11034,7 +10435,6 @@ typedef union _hw_mmdc_mprddlhwctl
 //! @brief Set the HW_RD_DL_EN field to a new value.
 #define BW_MMDC_MPRDDLHWCTL_HW_RD_DL_EN(x, v)   (HW_MMDC_MPRDDLHWCTL_WR(x, (HW_MMDC_MPRDDLHWCTL_RD(x) & ~BM_MMDC_MPRDDLHWCTL_HW_RD_DL_EN) | BF_MMDC_MPRDDLHWCTL_HW_RD_DL_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPRDDLHWCTL, field HW_RD_DL_CMP_CYC[5] (RW)
@@ -11044,7 +10444,6 @@ typedef union _hw_mmdc_mprddlhwctl
  * 16 cycles.
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC      (5)      //!< Bit position for MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC.
 #define BM_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC      (0x00000020)  //!< Bit mask for MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC.
 
@@ -11058,7 +10457,6 @@ typedef union _hw_mmdc_mprddlhwctl
 //! @brief Set the HW_RD_DL_CMP_CYC field to a new value.
 #define BW_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC(x, v)   (HW_MMDC_MPRDDLHWCTL_WR(x, (HW_MMDC_MPRDDLHWCTL_RD(x) & ~BM_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC) | BF_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11122,13 +10520,11 @@ typedef union _hw_mmdc_mpwrdlhwctl
  * - 1 - An error was found during the automatic (HW) write calibration process of write delay-line 0.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0      (0)      //!< Bit position for MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0.
 #define BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0      (0x00000001)  //!< Bit mask for MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0.
 
 //! @brief Get value of MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0 from a register value.
 #define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR0)
-
 //@}
 
 /*! @name Register MMDC_MPWRDLHWCTL, field HW_WR_DL_ERR1[1] (RO)
@@ -11143,13 +10539,11 @@ typedef union _hw_mmdc_mpwrdlhwctl
  * - 1 - An error was found during the automatic (HW) write calibration process of write delay-line 1.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1      (1)      //!< Bit position for MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1.
 #define BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1      (0x00000002)  //!< Bit mask for MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1.
 
 //! @brief Get value of MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1 from a register value.
 #define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR1)
-
 //@}
 
 /*! @name Register MMDC_MPWRDLHWCTL, field HW_WR_DL_ERR2[2] (RO)
@@ -11164,13 +10558,11 @@ typedef union _hw_mmdc_mpwrdlhwctl
  * - 1 - An error was found during the automatic (HW) write calibration process of write delay-line 2.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2      (2)      //!< Bit position for MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2.
 #define BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2      (0x00000004)  //!< Bit mask for MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2.
 
 //! @brief Get value of MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2 from a register value.
 #define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2)
-
 //@}
 
 /*! @name Register MMDC_MPWRDLHWCTL, field HW_WR_DL_ERR3[3] (RO)
@@ -11185,13 +10577,11 @@ typedef union _hw_mmdc_mpwrdlhwctl
  * - 1 - An error was found during the automatic (HW) write calibration process of write delay-line 3.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3      (3)      //!< Bit position for MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3.
 #define BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3      (0x00000008)  //!< Bit mask for MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3.
 
 //! @brief Get value of MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3 from a register value.
 #define BG_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3) >> BP_MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3)
-
 //@}
 
 /*! @name Register MMDC_MPWRDLHWCTL, field HW_WR_DL_EN[4] (RW)
@@ -11202,7 +10592,6 @@ typedef union _hw_mmdc_mpwrdlhwctl
  * issuing the first read command MMDC counts 12 cycles.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWCTL_HW_WR_DL_EN      (4)      //!< Bit position for MMDC_MPWRDLHWCTL_HW_WR_DL_EN.
 #define BM_MMDC_MPWRDLHWCTL_HW_WR_DL_EN      (0x00000010)  //!< Bit mask for MMDC_MPWRDLHWCTL_HW_WR_DL_EN.
 
@@ -11216,7 +10605,6 @@ typedef union _hw_mmdc_mpwrdlhwctl
 //! @brief Set the HW_WR_DL_EN field to a new value.
 #define BW_MMDC_MPWRDLHWCTL_HW_WR_DL_EN(x, v)   (HW_MMDC_MPWRDLHWCTL_WR(x, (HW_MMDC_MPWRDLHWCTL_RD(x) & ~BM_MMDC_MPWRDLHWCTL_HW_WR_DL_EN) | BF_MMDC_MPWRDLHWCTL_HW_WR_DL_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRDLHWCTL, field HW_WR_DL_CMP_CYC[5] (RW)
@@ -11225,7 +10613,6 @@ typedef union _hw_mmdc_mpwrdlhwctl
  * the MMDC sent the read command enable pulse else it compares the data after 16 cycles.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC      (5)      //!< Bit position for MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC.
 #define BM_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC      (0x00000020)  //!< Bit mask for MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC.
 
@@ -11239,7 +10626,6 @@ typedef union _hw_mmdc_mpwrdlhwctl
 //! @brief Set the HW_WR_DL_CMP_CYC field to a new value.
 #define BW_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC(x, v)   (HW_MMDC_MPWRDLHWCTL_WR(x, (HW_MMDC_MPWRDLHWCTL_RD(x) & ~BM_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC) | BF_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11294,13 +10680,11 @@ typedef union _hw_mmdc_mprddlhwst0
  * automatic (HW) read calibration result of the lower boundary of Byte0.
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWST0_HW_RD_DL_LOW0      (0)      //!< Bit position for MMDC_MPRDDLHWST0_HW_RD_DL_LOW0.
 #define BM_MMDC_MPRDDLHWST0_HW_RD_DL_LOW0      (0x0000007f)  //!< Bit mask for MMDC_MPRDDLHWST0_HW_RD_DL_LOW0.
 
 //! @brief Get value of MMDC_MPRDDLHWST0_HW_RD_DL_LOW0 from a register value.
 #define BG_MMDC_MPRDDLHWST0_HW_RD_DL_LOW0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST0_HW_RD_DL_LOW0) >> BP_MMDC_MPRDDLHWST0_HW_RD_DL_LOW0)
-
 //@}
 
 /*! @name Register MMDC_MPRDDLHWST0, field HW_RD_DL_UP0[14:8] (RO)
@@ -11309,13 +10693,11 @@ typedef union _hw_mmdc_mprddlhwst0
  * automatic (HW) read calibration result of the upper boundary of Byte0.
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWST0_HW_RD_DL_UP0      (8)      //!< Bit position for MMDC_MPRDDLHWST0_HW_RD_DL_UP0.
 #define BM_MMDC_MPRDDLHWST0_HW_RD_DL_UP0      (0x00007f00)  //!< Bit mask for MMDC_MPRDDLHWST0_HW_RD_DL_UP0.
 
 //! @brief Get value of MMDC_MPRDDLHWST0_HW_RD_DL_UP0 from a register value.
 #define BG_MMDC_MPRDDLHWST0_HW_RD_DL_UP0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST0_HW_RD_DL_UP0) >> BP_MMDC_MPRDDLHWST0_HW_RD_DL_UP0)
-
 //@}
 
 /*! @name Register MMDC_MPRDDLHWST0, field HW_RD_DL_LOW1[22:16] (RO)
@@ -11324,13 +10706,11 @@ typedef union _hw_mmdc_mprddlhwst0
  * automatic (HW) read calibration result of the lower boundary of Byte1
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWST0_HW_RD_DL_LOW1      (16)      //!< Bit position for MMDC_MPRDDLHWST0_HW_RD_DL_LOW1.
 #define BM_MMDC_MPRDDLHWST0_HW_RD_DL_LOW1      (0x007f0000)  //!< Bit mask for MMDC_MPRDDLHWST0_HW_RD_DL_LOW1.
 
 //! @brief Get value of MMDC_MPRDDLHWST0_HW_RD_DL_LOW1 from a register value.
 #define BG_MMDC_MPRDDLHWST0_HW_RD_DL_LOW1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST0_HW_RD_DL_LOW1) >> BP_MMDC_MPRDDLHWST0_HW_RD_DL_LOW1)
-
 //@}
 
 /*! @name Register MMDC_MPRDDLHWST0, field HW_RD_DL_UP1[30:24] (RO)
@@ -11339,13 +10719,11 @@ typedef union _hw_mmdc_mprddlhwst0
  * automatic (HW) read calibration result of the upper boundary of Byte1
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWST0_HW_RD_DL_UP1      (24)      //!< Bit position for MMDC_MPRDDLHWST0_HW_RD_DL_UP1.
 #define BM_MMDC_MPRDDLHWST0_HW_RD_DL_UP1      (0x7f000000)  //!< Bit mask for MMDC_MPRDDLHWST0_HW_RD_DL_UP1.
 
 //! @brief Get value of MMDC_MPRDDLHWST0_HW_RD_DL_UP1 from a register value.
 #define BG_MMDC_MPRDDLHWST0_HW_RD_DL_UP1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST0_HW_RD_DL_UP1) >> BP_MMDC_MPRDDLHWST0_HW_RD_DL_UP1)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11400,13 +10778,11 @@ typedef union _hw_mmdc_mprddlhwst1
  * automatic (HW) read calibration result of the lower boundary of Byte2.
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWST1_HW_RD_DL_LOW2      (0)      //!< Bit position for MMDC_MPRDDLHWST1_HW_RD_DL_LOW2.
 #define BM_MMDC_MPRDDLHWST1_HW_RD_DL_LOW2      (0x0000007f)  //!< Bit mask for MMDC_MPRDDLHWST1_HW_RD_DL_LOW2.
 
 //! @brief Get value of MMDC_MPRDDLHWST1_HW_RD_DL_LOW2 from a register value.
 #define BG_MMDC_MPRDDLHWST1_HW_RD_DL_LOW2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST1_HW_RD_DL_LOW2) >> BP_MMDC_MPRDDLHWST1_HW_RD_DL_LOW2)
-
 //@}
 
 /*! @name Register MMDC_MPRDDLHWST1, field HW_RD_DL_UP2[14:8] (RO)
@@ -11415,13 +10791,11 @@ typedef union _hw_mmdc_mprddlhwst1
  * automatic (HW) read calibration result of the upper boundary of Byte2.
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWST1_HW_RD_DL_UP2      (8)      //!< Bit position for MMDC_MPRDDLHWST1_HW_RD_DL_UP2.
 #define BM_MMDC_MPRDDLHWST1_HW_RD_DL_UP2      (0x00007f00)  //!< Bit mask for MMDC_MPRDDLHWST1_HW_RD_DL_UP2.
 
 //! @brief Get value of MMDC_MPRDDLHWST1_HW_RD_DL_UP2 from a register value.
 #define BG_MMDC_MPRDDLHWST1_HW_RD_DL_UP2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST1_HW_RD_DL_UP2) >> BP_MMDC_MPRDDLHWST1_HW_RD_DL_UP2)
-
 //@}
 
 /*! @name Register MMDC_MPRDDLHWST1, field HW_RD_DL_LOW3[22:16] (RO)
@@ -11430,13 +10804,11 @@ typedef union _hw_mmdc_mprddlhwst1
  * automatic (HW) read calibration result of the lower boundary of Byte3
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWST1_HW_RD_DL_LOW3      (16)      //!< Bit position for MMDC_MPRDDLHWST1_HW_RD_DL_LOW3.
 #define BM_MMDC_MPRDDLHWST1_HW_RD_DL_LOW3      (0x007f0000)  //!< Bit mask for MMDC_MPRDDLHWST1_HW_RD_DL_LOW3.
 
 //! @brief Get value of MMDC_MPRDDLHWST1_HW_RD_DL_LOW3 from a register value.
 #define BG_MMDC_MPRDDLHWST1_HW_RD_DL_LOW3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST1_HW_RD_DL_LOW3) >> BP_MMDC_MPRDDLHWST1_HW_RD_DL_LOW3)
-
 //@}
 
 /*! @name Register MMDC_MPRDDLHWST1, field HW_RD_DL_UP3[30:24] (RO)
@@ -11445,13 +10817,11 @@ typedef union _hw_mmdc_mprddlhwst1
  * automatic (HW) read calibration result of the upper boundary of Byte3
  */
 //@{
-
 #define BP_MMDC_MPRDDLHWST1_HW_RD_DL_UP3      (24)      //!< Bit position for MMDC_MPRDDLHWST1_HW_RD_DL_UP3.
 #define BM_MMDC_MPRDDLHWST1_HW_RD_DL_UP3      (0x7f000000)  //!< Bit mask for MMDC_MPRDDLHWST1_HW_RD_DL_UP3.
 
 //! @brief Get value of MMDC_MPRDDLHWST1_HW_RD_DL_UP3 from a register value.
 #define BG_MMDC_MPRDDLHWST1_HW_RD_DL_UP3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPRDDLHWST1_HW_RD_DL_UP3) >> BP_MMDC_MPRDDLHWST1_HW_RD_DL_UP3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11506,13 +10876,11 @@ typedef union _hw_mmdc_mpwrdlhwst0
  * automatic (HW) write calibration result of the lower boundary of Byte0.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWST0_HW_WR_DL_LOW0      (0)      //!< Bit position for MMDC_MPWRDLHWST0_HW_WR_DL_LOW0.
 #define BM_MMDC_MPWRDLHWST0_HW_WR_DL_LOW0      (0x0000007f)  //!< Bit mask for MMDC_MPWRDLHWST0_HW_WR_DL_LOW0.
 
 //! @brief Get value of MMDC_MPWRDLHWST0_HW_WR_DL_LOW0 from a register value.
 #define BG_MMDC_MPWRDLHWST0_HW_WR_DL_LOW0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST0_HW_WR_DL_LOW0) >> BP_MMDC_MPWRDLHWST0_HW_WR_DL_LOW0)
-
 //@}
 
 /*! @name Register MMDC_MPWRDLHWST0, field HW_WR_DL_UP0[14:8] (RO)
@@ -11521,13 +10889,11 @@ typedef union _hw_mmdc_mpwrdlhwst0
  * automatic (HW) write calibration result of the upper boundary of Byte0.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWST0_HW_WR_DL_UP0      (8)      //!< Bit position for MMDC_MPWRDLHWST0_HW_WR_DL_UP0.
 #define BM_MMDC_MPWRDLHWST0_HW_WR_DL_UP0      (0x00007f00)  //!< Bit mask for MMDC_MPWRDLHWST0_HW_WR_DL_UP0.
 
 //! @brief Get value of MMDC_MPWRDLHWST0_HW_WR_DL_UP0 from a register value.
 #define BG_MMDC_MPWRDLHWST0_HW_WR_DL_UP0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST0_HW_WR_DL_UP0) >> BP_MMDC_MPWRDLHWST0_HW_WR_DL_UP0)
-
 //@}
 
 /*! @name Register MMDC_MPWRDLHWST0, field HW_WR_DL_LOW1[22:16] (RO)
@@ -11536,13 +10902,11 @@ typedef union _hw_mmdc_mpwrdlhwst0
  * automatic (HW) write calibration result of the lower boundary of Byte1.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWST0_HW_WR_DL_LOW1      (16)      //!< Bit position for MMDC_MPWRDLHWST0_HW_WR_DL_LOW1.
 #define BM_MMDC_MPWRDLHWST0_HW_WR_DL_LOW1      (0x007f0000)  //!< Bit mask for MMDC_MPWRDLHWST0_HW_WR_DL_LOW1.
 
 //! @brief Get value of MMDC_MPWRDLHWST0_HW_WR_DL_LOW1 from a register value.
 #define BG_MMDC_MPWRDLHWST0_HW_WR_DL_LOW1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST0_HW_WR_DL_LOW1) >> BP_MMDC_MPWRDLHWST0_HW_WR_DL_LOW1)
-
 //@}
 
 /*! @name Register MMDC_MPWRDLHWST0, field HW_WR_DL_UP1[30:24] (RO)
@@ -11551,13 +10915,11 @@ typedef union _hw_mmdc_mpwrdlhwst0
  * field holds the automatic (HW) write calibration result of the upper boundary of Byte1.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWST0_HW_WR_DL_UP1      (24)      //!< Bit position for MMDC_MPWRDLHWST0_HW_WR_DL_UP1.
 #define BM_MMDC_MPWRDLHWST0_HW_WR_DL_UP1      (0x7f000000)  //!< Bit mask for MMDC_MPWRDLHWST0_HW_WR_DL_UP1.
 
 //! @brief Get value of MMDC_MPWRDLHWST0_HW_WR_DL_UP1 from a register value.
 #define BG_MMDC_MPWRDLHWST0_HW_WR_DL_UP1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST0_HW_WR_DL_UP1) >> BP_MMDC_MPWRDLHWST0_HW_WR_DL_UP1)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11611,13 +10973,11 @@ typedef union _hw_mmdc_mpwrdlhwst1
  * automatic (HW) write calibration result of the lower boundary of Byte2.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWST1_HW_WR_DL_LOW2      (0)      //!< Bit position for MMDC_MPWRDLHWST1_HW_WR_DL_LOW2.
 #define BM_MMDC_MPWRDLHWST1_HW_WR_DL_LOW2      (0x0000007f)  //!< Bit mask for MMDC_MPWRDLHWST1_HW_WR_DL_LOW2.
 
 //! @brief Get value of MMDC_MPWRDLHWST1_HW_WR_DL_LOW2 from a register value.
 #define BG_MMDC_MPWRDLHWST1_HW_WR_DL_LOW2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST1_HW_WR_DL_LOW2) >> BP_MMDC_MPWRDLHWST1_HW_WR_DL_LOW2)
-
 //@}
 
 /*! @name Register MMDC_MPWRDLHWST1, field HW_WR_DL_UP2[14:8] (RO)
@@ -11626,13 +10986,11 @@ typedef union _hw_mmdc_mpwrdlhwst1
  * automatic (HW) write calibration result of the upper boundary of Byte2.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWST1_HW_WR_DL_UP2      (8)      //!< Bit position for MMDC_MPWRDLHWST1_HW_WR_DL_UP2.
 #define BM_MMDC_MPWRDLHWST1_HW_WR_DL_UP2      (0x00007f00)  //!< Bit mask for MMDC_MPWRDLHWST1_HW_WR_DL_UP2.
 
 //! @brief Get value of MMDC_MPWRDLHWST1_HW_WR_DL_UP2 from a register value.
 #define BG_MMDC_MPWRDLHWST1_HW_WR_DL_UP2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST1_HW_WR_DL_UP2) >> BP_MMDC_MPWRDLHWST1_HW_WR_DL_UP2)
-
 //@}
 
 /*! @name Register MMDC_MPWRDLHWST1, field HW_WR_DL_LOW3[22:16] (RO)
@@ -11641,13 +10999,11 @@ typedef union _hw_mmdc_mpwrdlhwst1
  * automatic (HW) write calibration result of the lower boundary of Byte3.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWST1_HW_WR_DL_LOW3      (16)      //!< Bit position for MMDC_MPWRDLHWST1_HW_WR_DL_LOW3.
 #define BM_MMDC_MPWRDLHWST1_HW_WR_DL_LOW3      (0x007f0000)  //!< Bit mask for MMDC_MPWRDLHWST1_HW_WR_DL_LOW3.
 
 //! @brief Get value of MMDC_MPWRDLHWST1_HW_WR_DL_LOW3 from a register value.
 #define BG_MMDC_MPWRDLHWST1_HW_WR_DL_LOW3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST1_HW_WR_DL_LOW3) >> BP_MMDC_MPWRDLHWST1_HW_WR_DL_LOW3)
-
 //@}
 
 /*! @name Register MMDC_MPWRDLHWST1, field HW_WR_DL_UP3[30:24] (RO)
@@ -11656,13 +11012,11 @@ typedef union _hw_mmdc_mpwrdlhwst1
  * automatic (HW) write calibration result of the upper boundary of Byte3.
  */
 //@{
-
 #define BP_MMDC_MPWRDLHWST1_HW_WR_DL_UP3      (24)      //!< Bit position for MMDC_MPWRDLHWST1_HW_WR_DL_UP3.
 #define BM_MMDC_MPWRDLHWST1_HW_WR_DL_UP3      (0x7f000000)  //!< Bit mask for MMDC_MPWRDLHWST1_HW_WR_DL_UP3.
 
 //! @brief Get value of MMDC_MPWRDLHWST1_HW_WR_DL_UP3 from a register value.
 #define BG_MMDC_MPWRDLHWST1_HW_WR_DL_UP3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWRDLHWST1_HW_WR_DL_UP3) >> BP_MMDC_MPWRDLHWST1_HW_WR_DL_UP3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11719,13 +11073,11 @@ typedef union _hw_mmdc_mpwlhwerr
  * result of the write-leveling calibration of 7/8 delay
  */
 //@{
-
 #define BP_MMDC_MPWLHWERR_HW_WL0_DQ      (0)      //!< Bit position for MMDC_MPWLHWERR_HW_WL0_DQ.
 #define BM_MMDC_MPWLHWERR_HW_WL0_DQ      (0x000000ff)  //!< Bit mask for MMDC_MPWLHWERR_HW_WL0_DQ.
 
 //! @brief Get value of MMDC_MPWLHWERR_HW_WL0_DQ from a register value.
 #define BG_MMDC_MPWLHWERR_HW_WL0_DQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLHWERR_HW_WL0_DQ) >> BP_MMDC_MPWLHWERR_HW_WL0_DQ)
-
 //@}
 
 /*! @name Register MMDC_MPWLHWERR, field HW_WL1_DQ[15:8] (RO)
@@ -11736,13 +11088,11 @@ typedef union _hw_mmdc_mpwlhwerr
  * result of the write-leveling calibration of 7/8 delay
  */
 //@{
-
 #define BP_MMDC_MPWLHWERR_HW_WL1_DQ      (8)      //!< Bit position for MMDC_MPWLHWERR_HW_WL1_DQ.
 #define BM_MMDC_MPWLHWERR_HW_WL1_DQ      (0x0000ff00)  //!< Bit mask for MMDC_MPWLHWERR_HW_WL1_DQ.
 
 //! @brief Get value of MMDC_MPWLHWERR_HW_WL1_DQ from a register value.
 #define BG_MMDC_MPWLHWERR_HW_WL1_DQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLHWERR_HW_WL1_DQ) >> BP_MMDC_MPWLHWERR_HW_WL1_DQ)
-
 //@}
 
 /*! @name Register MMDC_MPWLHWERR, field HW_WL2_DQ[23:16] (RO)
@@ -11753,13 +11103,11 @@ typedef union _hw_mmdc_mpwlhwerr
  * result of the write-leveling calibration of 7/8 delay
  */
 //@{
-
 #define BP_MMDC_MPWLHWERR_HW_WL2_DQ      (16)      //!< Bit position for MMDC_MPWLHWERR_HW_WL2_DQ.
 #define BM_MMDC_MPWLHWERR_HW_WL2_DQ      (0x00ff0000)  //!< Bit mask for MMDC_MPWLHWERR_HW_WL2_DQ.
 
 //! @brief Get value of MMDC_MPWLHWERR_HW_WL2_DQ from a register value.
 #define BG_MMDC_MPWLHWERR_HW_WL2_DQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLHWERR_HW_WL2_DQ) >> BP_MMDC_MPWLHWERR_HW_WL2_DQ)
-
 //@}
 
 /*! @name Register MMDC_MPWLHWERR, field HW_WL3_DQ[31:24] (RO)
@@ -11770,13 +11118,11 @@ typedef union _hw_mmdc_mpwlhwerr
  * result of the write-leveling calibration of 7/8 delay
  */
 //@{
-
 #define BP_MMDC_MPWLHWERR_HW_WL3_DQ      (24)      //!< Bit position for MMDC_MPWLHWERR_HW_WL3_DQ.
 #define BM_MMDC_MPWLHWERR_HW_WL3_DQ      (0xff000000)  //!< Bit mask for MMDC_MPWLHWERR_HW_WL3_DQ.
 
 //! @brief Get value of MMDC_MPWLHWERR_HW_WL3_DQ from a register value.
 #define BG_MMDC_MPWLHWERR_HW_WL3_DQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPWLHWERR_HW_WL3_DQ) >> BP_MMDC_MPWLHWERR_HW_WL3_DQ)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11826,13 +11172,11 @@ typedef union _hw_mmdc_mpdghwst0
  * gating calibration result of the lower boundary of Byte0.
  */
 //@{
-
 #define BP_MMDC_MPDGHWST0_HW_DG_LOW0      (0)      //!< Bit position for MMDC_MPDGHWST0_HW_DG_LOW0.
 #define BM_MMDC_MPDGHWST0_HW_DG_LOW0      (0x000007ff)  //!< Bit mask for MMDC_MPDGHWST0_HW_DG_LOW0.
 
 //! @brief Get value of MMDC_MPDGHWST0_HW_DG_LOW0 from a register value.
 #define BG_MMDC_MPDGHWST0_HW_DG_LOW0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST0_HW_DG_LOW0) >> BP_MMDC_MPDGHWST0_HW_DG_LOW0)
-
 //@}
 
 /*! @name Register MMDC_MPDGHWST0, field HW_DG_UP0[26:16] (RO)
@@ -11841,13 +11185,11 @@ typedef union _hw_mmdc_mpdghwst0
  * gating calibration result of the upper boundary of Byte0.
  */
 //@{
-
 #define BP_MMDC_MPDGHWST0_HW_DG_UP0      (16)      //!< Bit position for MMDC_MPDGHWST0_HW_DG_UP0.
 #define BM_MMDC_MPDGHWST0_HW_DG_UP0      (0x07ff0000)  //!< Bit mask for MMDC_MPDGHWST0_HW_DG_UP0.
 
 //! @brief Get value of MMDC_MPDGHWST0_HW_DG_UP0 from a register value.
 #define BG_MMDC_MPDGHWST0_HW_DG_UP0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST0_HW_DG_UP0) >> BP_MMDC_MPDGHWST0_HW_DG_UP0)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11897,13 +11239,11 @@ typedef union _hw_mmdc_mpdghwst1
  * gating calibration result of the lower boundary of Byte1.
  */
 //@{
-
 #define BP_MMDC_MPDGHWST1_HW_DG_LOW1      (0)      //!< Bit position for MMDC_MPDGHWST1_HW_DG_LOW1.
 #define BM_MMDC_MPDGHWST1_HW_DG_LOW1      (0x000007ff)  //!< Bit mask for MMDC_MPDGHWST1_HW_DG_LOW1.
 
 //! @brief Get value of MMDC_MPDGHWST1_HW_DG_LOW1 from a register value.
 #define BG_MMDC_MPDGHWST1_HW_DG_LOW1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST1_HW_DG_LOW1) >> BP_MMDC_MPDGHWST1_HW_DG_LOW1)
-
 //@}
 
 /*! @name Register MMDC_MPDGHWST1, field HW_DG_UP1[26:16] (RO)
@@ -11912,13 +11252,11 @@ typedef union _hw_mmdc_mpdghwst1
  * gating calibration result of the upper boundary of Byte1.
  */
 //@{
-
 #define BP_MMDC_MPDGHWST1_HW_DG_UP1      (16)      //!< Bit position for MMDC_MPDGHWST1_HW_DG_UP1.
 #define BM_MMDC_MPDGHWST1_HW_DG_UP1      (0x07ff0000)  //!< Bit mask for MMDC_MPDGHWST1_HW_DG_UP1.
 
 //! @brief Get value of MMDC_MPDGHWST1_HW_DG_UP1 from a register value.
 #define BG_MMDC_MPDGHWST1_HW_DG_UP1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST1_HW_DG_UP1) >> BP_MMDC_MPDGHWST1_HW_DG_UP1)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11968,13 +11306,11 @@ typedef union _hw_mmdc_mpdghwst2
  * gating calibration result of the lower boundary of Byte2.
  */
 //@{
-
 #define BP_MMDC_MPDGHWST2_HW_DG_LOW2      (0)      //!< Bit position for MMDC_MPDGHWST2_HW_DG_LOW2.
 #define BM_MMDC_MPDGHWST2_HW_DG_LOW2      (0x000007ff)  //!< Bit mask for MMDC_MPDGHWST2_HW_DG_LOW2.
 
 //! @brief Get value of MMDC_MPDGHWST2_HW_DG_LOW2 from a register value.
 #define BG_MMDC_MPDGHWST2_HW_DG_LOW2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST2_HW_DG_LOW2) >> BP_MMDC_MPDGHWST2_HW_DG_LOW2)
-
 //@}
 
 /*! @name Register MMDC_MPDGHWST2, field HW_DG_UP2[26:16] (RO)
@@ -11983,13 +11319,11 @@ typedef union _hw_mmdc_mpdghwst2
  * gating calibration result of the upper boundary of Byte2.
  */
 //@{
-
 #define BP_MMDC_MPDGHWST2_HW_DG_UP2      (16)      //!< Bit position for MMDC_MPDGHWST2_HW_DG_UP2.
 #define BM_MMDC_MPDGHWST2_HW_DG_UP2      (0x07ff0000)  //!< Bit mask for MMDC_MPDGHWST2_HW_DG_UP2.
 
 //! @brief Get value of MMDC_MPDGHWST2_HW_DG_UP2 from a register value.
 #define BG_MMDC_MPDGHWST2_HW_DG_UP2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST2_HW_DG_UP2) >> BP_MMDC_MPDGHWST2_HW_DG_UP2)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12039,13 +11373,11 @@ typedef union _hw_mmdc_mpdghwst3
  * gating calibration result of the lower boundary of Byte3.
  */
 //@{
-
 #define BP_MMDC_MPDGHWST3_HW_DG_LOW3      (0)      //!< Bit position for MMDC_MPDGHWST3_HW_DG_LOW3.
 #define BM_MMDC_MPDGHWST3_HW_DG_LOW3      (0x000007ff)  //!< Bit mask for MMDC_MPDGHWST3_HW_DG_LOW3.
 
 //! @brief Get value of MMDC_MPDGHWST3_HW_DG_LOW3 from a register value.
 #define BG_MMDC_MPDGHWST3_HW_DG_LOW3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST3_HW_DG_LOW3) >> BP_MMDC_MPDGHWST3_HW_DG_LOW3)
-
 //@}
 
 /*! @name Register MMDC_MPDGHWST3, field HW_DG_UP3[26:16] (RO)
@@ -12054,13 +11386,11 @@ typedef union _hw_mmdc_mpdghwst3
  * gating calibration result of the upper boundary of Byte3.
  */
 //@{
-
 #define BP_MMDC_MPDGHWST3_HW_DG_UP3      (16)      //!< Bit position for MMDC_MPDGHWST3_HW_DG_UP3.
 #define BM_MMDC_MPDGHWST3_HW_DG_UP3      (0x07ff0000)  //!< Bit mask for MMDC_MPDGHWST3_HW_DG_UP3.
 
 //! @brief Get value of MMDC_MPDGHWST3_HW_DG_UP3 from a register value.
 #define BG_MMDC_MPDGHWST3_HW_DG_UP3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDGHWST3_HW_DG_UP3) >> BP_MMDC_MPDGHWST3_HW_DG_UP3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12120,7 +11450,6 @@ typedef union _hw_mmdc_mppdcmpr1
  * associated entry in the read comparison FIFO.
  */
 //@{
-
 #define BP_MMDC_MPPDCMPR1_PDV1      (0)      //!< Bit position for MMDC_MPPDCMPR1_PDV1.
 #define BM_MMDC_MPPDCMPR1_PDV1      (0x0000ffff)  //!< Bit mask for MMDC_MPPDCMPR1_PDV1.
 
@@ -12134,7 +11463,6 @@ typedef union _hw_mmdc_mppdcmpr1
 //! @brief Set the PDV1 field to a new value.
 #define BW_MMDC_MPPDCMPR1_PDV1(x, v)   (HW_MMDC_MPPDCMPR1_WR(x, (HW_MMDC_MPPDCMPR1_RD(x) & ~BM_MMDC_MPPDCMPR1_PDV1) | BF_MMDC_MPPDCMPR1_PDV1(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPPDCMPR1, field PDV2[31:16] (RW)
@@ -12149,7 +11477,6 @@ typedef union _hw_mmdc_mppdcmpr1
  * and Section 19.14.5.1, "HW (automatic) Write Calibraion
  */
 //@{
-
 #define BP_MMDC_MPPDCMPR1_PDV2      (16)      //!< Bit position for MMDC_MPPDCMPR1_PDV2.
 #define BM_MMDC_MPPDCMPR1_PDV2      (0xffff0000)  //!< Bit mask for MMDC_MPPDCMPR1_PDV2.
 
@@ -12163,7 +11490,6 @@ typedef union _hw_mmdc_mppdcmpr1
 //! @brief Set the PDV2 field to a new value.
 #define BW_MMDC_MPPDCMPR1_PDV2(x, v)   (HW_MMDC_MPPDCMPR1_WR(x, (HW_MMDC_MPPDCMPR1_RD(x) & ~BM_MMDC_MPPDCMPR1_PDV2) | BF_MMDC_MPPDCMPR1_PDV2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12224,7 +11550,6 @@ typedef union _hw_mmdc_mppdcmpr2
  * the data of the pre defined compare value field For further information see and .
  */
 //@{
-
 #define BP_MMDC_MPPDCMPR2_MPR_CMP      (0)      //!< Bit position for MMDC_MPPDCMPR2_MPR_CMP.
 #define BM_MMDC_MPPDCMPR2_MPR_CMP      (0x00000001)  //!< Bit mask for MMDC_MPPDCMPR2_MPR_CMP.
 
@@ -12238,7 +11563,6 @@ typedef union _hw_mmdc_mppdcmpr2
 //! @brief Set the MPR_CMP field to a new value.
 #define BW_MMDC_MPPDCMPR2_MPR_CMP(x, v)   (HW_MMDC_MPPDCMPR2_WR(x, (HW_MMDC_MPPDCMPR2_RD(x) & ~BM_MMDC_MPPDCMPR2_MPR_CMP) | BF_MMDC_MPPDCMPR2_MPR_CMP(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPPDCMPR2, field MPR_FULL_CMP[1] (RW)
@@ -12249,7 +11573,6 @@ typedef union _hw_mmdc_mppdcmpr2
  * MPR pre-defined pattern. When this bit is de-asserted only LSB of each byte is compared.
  */
 //@{
-
 #define BP_MMDC_MPPDCMPR2_MPR_FULL_CMP      (1)      //!< Bit position for MMDC_MPPDCMPR2_MPR_FULL_CMP.
 #define BM_MMDC_MPPDCMPR2_MPR_FULL_CMP      (0x00000002)  //!< Bit mask for MMDC_MPPDCMPR2_MPR_FULL_CMP.
 
@@ -12263,7 +11586,6 @@ typedef union _hw_mmdc_mppdcmpr2
 //! @brief Set the MPR_FULL_CMP field to a new value.
 #define BW_MMDC_MPPDCMPR2_MPR_FULL_CMP(x, v)   (HW_MMDC_MPPDCMPR2_WR(x, (HW_MMDC_MPPDCMPR2_RD(x) & ~BM_MMDC_MPPDCMPR2_MPR_FULL_CMP) | BF_MMDC_MPPDCMPR2_MPR_FULL_CMP(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPPDCMPR2, field READ_LEVEL_PATTERN[2] (RW)
@@ -12277,7 +11599,6 @@ typedef union _hw_mmdc_mppdcmpr2
  * - 1 - Compare with read pattern 0011 (Used only in LPDDR2 mode)
  */
 //@{
-
 #define BP_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN      (2)      //!< Bit position for MMDC_MPPDCMPR2_READ_LEVEL_PATTERN.
 #define BM_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN      (0x00000004)  //!< Bit mask for MMDC_MPPDCMPR2_READ_LEVEL_PATTERN.
 
@@ -12291,7 +11612,6 @@ typedef union _hw_mmdc_mppdcmpr2
 //! @brief Set the READ_LEVEL_PATTERN field to a new value.
 #define BW_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN(x, v)   (HW_MMDC_MPPDCMPR2_WR(x, (HW_MMDC_MPPDCMPR2_RD(x) & ~BM_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN) | BF_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPPDCMPR2, field CA_DL_ABS_OFFSET[22:16] (RW)
@@ -12302,7 +11622,6 @@ typedef union _hw_mmdc_mppdcmpr2
  * (CA_DL_ABS_OFFSET / 256) * fast_clk. So for the default value of 64 we get a quarter cycle delay.
  */
 //@{
-
 #define BP_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET      (16)      //!< Bit position for MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET.
 #define BM_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET      (0x007f0000)  //!< Bit mask for MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET.
 
@@ -12316,7 +11635,6 @@ typedef union _hw_mmdc_mppdcmpr2
 //! @brief Set the CA_DL_ABS_OFFSET field to a new value.
 #define BW_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET(x, v)   (HW_MMDC_MPPDCMPR2_WR(x, (HW_MMDC_MPPDCMPR2_RD(x) & ~BM_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET) | BF_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPPDCMPR2, field PHY_CA_DL_UNIT[30:24] (RO)
@@ -12325,13 +11643,11 @@ typedef union _hw_mmdc_mppdcmpr2
  * LPDDR2) delay-line
  */
 //@{
-
 #define BP_MMDC_MPPDCMPR2_PHY_CA_DL_UNIT      (24)      //!< Bit position for MMDC_MPPDCMPR2_PHY_CA_DL_UNIT.
 #define BM_MMDC_MPPDCMPR2_PHY_CA_DL_UNIT      (0x7f000000)  //!< Bit mask for MMDC_MPPDCMPR2_PHY_CA_DL_UNIT.
 
 //! @brief Get value of MMDC_MPPDCMPR2_PHY_CA_DL_UNIT from a register value.
 #define BG_MMDC_MPPDCMPR2_PHY_CA_DL_UNIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPPDCMPR2_PHY_CA_DL_UNIT) >> BP_MMDC_MPPDCMPR2_PHY_CA_DL_UNIT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12391,7 +11707,6 @@ typedef union _hw_mmdc_mpswdar0
  * access.
  */
 //@{
-
 #define BP_MMDC_MPSWDAR0_SW_DUMMY_WR      (0)      //!< Bit position for MMDC_MPSWDAR0_SW_DUMMY_WR.
 #define BM_MMDC_MPSWDAR0_SW_DUMMY_WR      (0x00000001)  //!< Bit mask for MMDC_MPSWDAR0_SW_DUMMY_WR.
 
@@ -12405,7 +11720,6 @@ typedef union _hw_mmdc_mpswdar0
 //! @brief Set the SW_DUMMY_WR field to a new value.
 #define BW_MMDC_MPSWDAR0_SW_DUMMY_WR(x, v)   (HW_MMDC_MPSWDAR0_WR(x, (HW_MMDC_MPSWDAR0_RD(x) & ~BM_MMDC_MPSWDAR0_SW_DUMMY_WR) | BF_MMDC_MPSWDAR0_SW_DUMMY_WR(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPSWDAR0, field SW_DUMMY_RD[1] (RW)
@@ -12418,7 +11732,6 @@ typedef union _hw_mmdc_mpswdar0
  * MPSWDRDR0-MPSWDRDR7 respectively.
  */
 //@{
-
 #define BP_MMDC_MPSWDAR0_SW_DUMMY_RD      (1)      //!< Bit position for MMDC_MPSWDAR0_SW_DUMMY_RD.
 #define BM_MMDC_MPSWDAR0_SW_DUMMY_RD      (0x00000002)  //!< Bit mask for MMDC_MPSWDAR0_SW_DUMMY_RD.
 
@@ -12432,7 +11745,6 @@ typedef union _hw_mmdc_mpswdar0
 //! @brief Set the SW_DUMMY_RD field to a new value.
 #define BW_MMDC_MPSWDAR0_SW_DUMMY_RD(x, v)   (HW_MMDC_MPSWDAR0_WR(x, (HW_MMDC_MPSWDAR0_RD(x) & ~BM_MMDC_MPSWDAR0_SW_DUMMY_RD) | BF_MMDC_MPSWDAR0_SW_DUMMY_RD(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPSWDAR0, field SW_DUM_CMP0[2] (RO)
@@ -12445,13 +11757,11 @@ typedef union _hw_mmdc_mpswdar0
  * - 1 - Dummy read pass
  */
 //@{
-
 #define BP_MMDC_MPSWDAR0_SW_DUM_CMP0      (2)      //!< Bit position for MMDC_MPSWDAR0_SW_DUM_CMP0.
 #define BM_MMDC_MPSWDAR0_SW_DUM_CMP0      (0x00000004)  //!< Bit mask for MMDC_MPSWDAR0_SW_DUM_CMP0.
 
 //! @brief Get value of MMDC_MPSWDAR0_SW_DUM_CMP0 from a register value.
 #define BG_MMDC_MPSWDAR0_SW_DUM_CMP0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDAR0_SW_DUM_CMP0) >> BP_MMDC_MPSWDAR0_SW_DUM_CMP0)
-
 //@}
 
 /*! @name Register MMDC_MPSWDAR0, field SW_DUM_CMP1[3] (RO)
@@ -12464,13 +11774,11 @@ typedef union _hw_mmdc_mpswdar0
  * - 1 - Dummy read pass
  */
 //@{
-
 #define BP_MMDC_MPSWDAR0_SW_DUM_CMP1      (3)      //!< Bit position for MMDC_MPSWDAR0_SW_DUM_CMP1.
 #define BM_MMDC_MPSWDAR0_SW_DUM_CMP1      (0x00000008)  //!< Bit mask for MMDC_MPSWDAR0_SW_DUM_CMP1.
 
 //! @brief Get value of MMDC_MPSWDAR0_SW_DUM_CMP1 from a register value.
 #define BG_MMDC_MPSWDAR0_SW_DUM_CMP1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDAR0_SW_DUM_CMP1) >> BP_MMDC_MPSWDAR0_SW_DUM_CMP1)
-
 //@}
 
 /*! @name Register MMDC_MPSWDAR0, field SW_DUM_CMP2[4] (RO)
@@ -12483,13 +11791,11 @@ typedef union _hw_mmdc_mpswdar0
  * - 1 - Dummy read pass
  */
 //@{
-
 #define BP_MMDC_MPSWDAR0_SW_DUM_CMP2      (4)      //!< Bit position for MMDC_MPSWDAR0_SW_DUM_CMP2.
 #define BM_MMDC_MPSWDAR0_SW_DUM_CMP2      (0x00000010)  //!< Bit mask for MMDC_MPSWDAR0_SW_DUM_CMP2.
 
 //! @brief Get value of MMDC_MPSWDAR0_SW_DUM_CMP2 from a register value.
 #define BG_MMDC_MPSWDAR0_SW_DUM_CMP2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDAR0_SW_DUM_CMP2) >> BP_MMDC_MPSWDAR0_SW_DUM_CMP2)
-
 //@}
 
 /*! @name Register MMDC_MPSWDAR0, field SW_DUM_CMP3[5] (RO)
@@ -12502,13 +11808,11 @@ typedef union _hw_mmdc_mpswdar0
  * - 1 - Dummy read pass
  */
 //@{
-
 #define BP_MMDC_MPSWDAR0_SW_DUM_CMP3      (5)      //!< Bit position for MMDC_MPSWDAR0_SW_DUM_CMP3.
 #define BM_MMDC_MPSWDAR0_SW_DUM_CMP3      (0x00000020)  //!< Bit mask for MMDC_MPSWDAR0_SW_DUM_CMP3.
 
 //! @brief Get value of MMDC_MPSWDAR0_SW_DUM_CMP3 from a register value.
 #define BG_MMDC_MPSWDAR0_SW_DUM_CMP3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDAR0_SW_DUM_CMP3) >> BP_MMDC_MPSWDAR0_SW_DUM_CMP3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12556,13 +11860,11 @@ typedef union _hw_mmdc_mpswdrdr0
  * access (i.e when SW_DUMMY_RD = 1). This field is valid only when SW_DUMMY_RD is de-assrted
  */
 //@{
-
 #define BP_MMDC_MPSWDRDR0_DUM_RD0      (0)      //!< Bit position for MMDC_MPSWDRDR0_DUM_RD0.
 #define BM_MMDC_MPSWDRDR0_DUM_RD0      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR0_DUM_RD0.
 
 //! @brief Get value of MMDC_MPSWDRDR0_DUM_RD0 from a register value.
 #define BG_MMDC_MPSWDRDR0_DUM_RD0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR0_DUM_RD0) >> BP_MMDC_MPSWDRDR0_DUM_RD0)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12610,13 +11912,11 @@ typedef union _hw_mmdc_mpswdrdr1
  * access (i.e when SW_DUMMY_RD = 1). This field is valid only when SW_DUMMY_RD is de-assrted
  */
 //@{
-
 #define BP_MMDC_MPSWDRDR1_DUM_RD1      (0)      //!< Bit position for MMDC_MPSWDRDR1_DUM_RD1.
 #define BM_MMDC_MPSWDRDR1_DUM_RD1      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR1_DUM_RD1.
 
 //! @brief Get value of MMDC_MPSWDRDR1_DUM_RD1 from a register value.
 #define BG_MMDC_MPSWDRDR1_DUM_RD1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR1_DUM_RD1) >> BP_MMDC_MPSWDRDR1_DUM_RD1)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12664,13 +11964,11 @@ typedef union _hw_mmdc_mpswdrdr2
  * access (i.e when SW_DUMMY_RD = 1). This field is valid only when SW_DUMMY_RD is de-assrted.
  */
 //@{
-
 #define BP_MMDC_MPSWDRDR2_DUM_RD2      (0)      //!< Bit position for MMDC_MPSWDRDR2_DUM_RD2.
 #define BM_MMDC_MPSWDRDR2_DUM_RD2      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR2_DUM_RD2.
 
 //! @brief Get value of MMDC_MPSWDRDR2_DUM_RD2 from a register value.
 #define BG_MMDC_MPSWDRDR2_DUM_RD2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR2_DUM_RD2) >> BP_MMDC_MPSWDRDR2_DUM_RD2)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12718,13 +12016,11 @@ typedef union _hw_mmdc_mpswdrdr3
  * access (i.e when SW_DUMMY_RD = 1). This field is valid only when SW_DUMMY_RD is de-assrted.
  */
 //@{
-
 #define BP_MMDC_MPSWDRDR3_DUM_RD3      (0)      //!< Bit position for MMDC_MPSWDRDR3_DUM_RD3.
 #define BM_MMDC_MPSWDRDR3_DUM_RD3      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR3_DUM_RD3.
 
 //! @brief Get value of MMDC_MPSWDRDR3_DUM_RD3 from a register value.
 #define BG_MMDC_MPSWDRDR3_DUM_RD3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR3_DUM_RD3) >> BP_MMDC_MPSWDRDR3_DUM_RD3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12773,13 +12069,11 @@ typedef union _hw_mmdc_mpswdrdr4
  * only when SW_DUMMY_RD is de-assrted.
  */
 //@{
-
 #define BP_MMDC_MPSWDRDR4_DUM_RD4      (0)      //!< Bit position for MMDC_MPSWDRDR4_DUM_RD4.
 #define BM_MMDC_MPSWDRDR4_DUM_RD4      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR4_DUM_RD4.
 
 //! @brief Get value of MMDC_MPSWDRDR4_DUM_RD4 from a register value.
 #define BG_MMDC_MPSWDRDR4_DUM_RD4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR4_DUM_RD4) >> BP_MMDC_MPSWDRDR4_DUM_RD4)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12828,13 +12122,11 @@ typedef union _hw_mmdc_mpswdrdr5
  * only when SW_DUMMY_RD is de-assrted.
  */
 //@{
-
 #define BP_MMDC_MPSWDRDR5_DUM_RD5      (0)      //!< Bit position for MMDC_MPSWDRDR5_DUM_RD5.
 #define BM_MMDC_MPSWDRDR5_DUM_RD5      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR5_DUM_RD5.
 
 //! @brief Get value of MMDC_MPSWDRDR5_DUM_RD5 from a register value.
 #define BG_MMDC_MPSWDRDR5_DUM_RD5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR5_DUM_RD5) >> BP_MMDC_MPSWDRDR5_DUM_RD5)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12883,13 +12175,11 @@ typedef union _hw_mmdc_mpswdrdr6
  * valid only when SW_DUMMY_RD is de-assrted.
  */
 //@{
-
 #define BP_MMDC_MPSWDRDR6_DUM_RD6      (0)      //!< Bit position for MMDC_MPSWDRDR6_DUM_RD6.
 #define BM_MMDC_MPSWDRDR6_DUM_RD6      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR6_DUM_RD6.
 
 //! @brief Get value of MMDC_MPSWDRDR6_DUM_RD6 from a register value.
 #define BG_MMDC_MPSWDRDR6_DUM_RD6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR6_DUM_RD6) >> BP_MMDC_MPSWDRDR6_DUM_RD6)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12938,13 +12228,11 @@ typedef union _hw_mmdc_mpswdrdr7
  * only when SW_DUMMY_RD is de-assrted.
  */
 //@{
-
 #define BP_MMDC_MPSWDRDR7_DUM_RD7      (0)      //!< Bit position for MMDC_MPSWDRDR7_DUM_RD7.
 #define BM_MMDC_MPSWDRDR7_DUM_RD7      (0xffffffff)  //!< Bit mask for MMDC_MPSWDRDR7_DUM_RD7.
 
 //! @brief Get value of MMDC_MPSWDRDR7_DUM_RD7 from a register value.
 #define BG_MMDC_MPSWDRDR7_DUM_RD7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPSWDRDR7_DUM_RD7) >> BP_MMDC_MPSWDRDR7_DUM_RD7)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13000,7 +12288,6 @@ typedef union _hw_mmdc_mpmur0
  * number of delay units that will be used by the delay-lines when MU_BYP_EN is asserted.
  */
 //@{
-
 #define BP_MMDC_MPMUR0_MU_BYP_VAL      (0)      //!< Bit position for MMDC_MPMUR0_MU_BYP_VAL.
 #define BM_MMDC_MPMUR0_MU_BYP_VAL      (0x000003ff)  //!< Bit mask for MMDC_MPMUR0_MU_BYP_VAL.
 
@@ -13014,7 +12301,6 @@ typedef union _hw_mmdc_mpmur0
 //! @brief Set the MU_BYP_VAL field to a new value.
 #define BW_MMDC_MPMUR0_MU_BYP_VAL(x, v)   (HW_MMDC_MPMUR0_WR(x, (HW_MMDC_MPMUR0_RD(x) & ~BM_MMDC_MPMUR0_MU_BYP_VAL) | BF_MMDC_MPMUR0_MU_BYP_VAL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPMUR0, field MU_BYP_EN[10] (RW)
@@ -13029,7 +12315,6 @@ typedef union _hw_mmdc_mpmur0
  * - 1 - The delay-lines use delay units as indicated at MU_BYPASS_VAL.
  */
 //@{
-
 #define BP_MMDC_MPMUR0_MU_BYP_EN      (10)      //!< Bit position for MMDC_MPMUR0_MU_BYP_EN.
 #define BM_MMDC_MPMUR0_MU_BYP_EN      (0x00000400)  //!< Bit mask for MMDC_MPMUR0_MU_BYP_EN.
 
@@ -13043,7 +12328,6 @@ typedef union _hw_mmdc_mpmur0
 //! @brief Set the MU_BYP_EN field to a new value.
 #define BW_MMDC_MPMUR0_MU_BYP_EN(x, v)   (HW_MMDC_MPMUR0_WR(x, (HW_MMDC_MPMUR0_RD(x) & ~BM_MMDC_MPMUR0_MU_BYP_EN) | BF_MMDC_MPMUR0_MU_BYP_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPMUR0, field FRC_MSR[11] (RW)
@@ -13062,7 +12346,6 @@ typedef union _hw_mmdc_mpmur0
  * - 1 - Perform measurement process
  */
 //@{
-
 #define BP_MMDC_MPMUR0_FRC_MSR      (11)      //!< Bit position for MMDC_MPMUR0_FRC_MSR.
 #define BM_MMDC_MPMUR0_FRC_MSR      (0x00000800)  //!< Bit mask for MMDC_MPMUR0_FRC_MSR.
 
@@ -13076,7 +12359,6 @@ typedef union _hw_mmdc_mpmur0
 //! @brief Set the FRC_MSR field to a new value.
 #define BW_MMDC_MPMUR0_FRC_MSR(x, v)   (HW_MMDC_MPMUR0_WR(x, (HW_MMDC_MPMUR0_RD(x) & ~BM_MMDC_MPMUR0_FRC_MSR) | BF_MMDC_MPMUR0_FRC_MSR(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPMUR0, field MU_UNIT_DEL_NUM[25:16] (RO)
@@ -13086,13 +12368,11 @@ typedef union _hw_mmdc_mpmur0
  * are used in every calibration process use that number for generating the desired delay.
  */
 //@{
-
 #define BP_MMDC_MPMUR0_MU_UNIT_DEL_NUM      (16)      //!< Bit position for MMDC_MPMUR0_MU_UNIT_DEL_NUM.
 #define BM_MMDC_MPMUR0_MU_UNIT_DEL_NUM      (0x03ff0000)  //!< Bit mask for MMDC_MPMUR0_MU_UNIT_DEL_NUM.
 
 //! @brief Get value of MMDC_MPMUR0_MU_UNIT_DEL_NUM from a register value.
 #define BG_MMDC_MPMUR0_MU_UNIT_DEL_NUM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPMUR0_MU_UNIT_DEL_NUM) >> BP_MMDC_MPMUR0_MU_UNIT_DEL_NUM)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13161,7 +12441,6 @@ typedef union _hw_mmdc_mpwrcadl
  * - 11 - Add CA0 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRCADL_WR_CA0_DEL      (0)      //!< Bit position for MMDC_MPWRCADL_WR_CA0_DEL.
 #define BM_MMDC_MPWRCADL_WR_CA0_DEL      (0x00000003)  //!< Bit mask for MMDC_MPWRCADL_WR_CA0_DEL.
 
@@ -13175,7 +12454,6 @@ typedef union _hw_mmdc_mpwrcadl
 //! @brief Set the WR_CA0_DEL field to a new value.
 #define BW_MMDC_MPWRCADL_WR_CA0_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA0_DEL) | BF_MMDC_MPWRCADL_WR_CA0_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRCADL, field WR_CA1_DEL[3:2] (RW)
@@ -13190,7 +12468,6 @@ typedef union _hw_mmdc_mpwrcadl
  * - 11 - Add CA1 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRCADL_WR_CA1_DEL      (2)      //!< Bit position for MMDC_MPWRCADL_WR_CA1_DEL.
 #define BM_MMDC_MPWRCADL_WR_CA1_DEL      (0x0000000c)  //!< Bit mask for MMDC_MPWRCADL_WR_CA1_DEL.
 
@@ -13204,7 +12481,6 @@ typedef union _hw_mmdc_mpwrcadl
 //! @brief Set the WR_CA1_DEL field to a new value.
 #define BW_MMDC_MPWRCADL_WR_CA1_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA1_DEL) | BF_MMDC_MPWRCADL_WR_CA1_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRCADL, field WR_CA2_DEL[5:4] (RW)
@@ -13219,7 +12495,6 @@ typedef union _hw_mmdc_mpwrcadl
  * - 11 - Add CA2 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRCADL_WR_CA2_DEL      (4)      //!< Bit position for MMDC_MPWRCADL_WR_CA2_DEL.
 #define BM_MMDC_MPWRCADL_WR_CA2_DEL      (0x00000030)  //!< Bit mask for MMDC_MPWRCADL_WR_CA2_DEL.
 
@@ -13233,7 +12508,6 @@ typedef union _hw_mmdc_mpwrcadl
 //! @brief Set the WR_CA2_DEL field to a new value.
 #define BW_MMDC_MPWRCADL_WR_CA2_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA2_DEL) | BF_MMDC_MPWRCADL_WR_CA2_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRCADL, field WR_CA3_DEL[7:6] (RW)
@@ -13248,7 +12522,6 @@ typedef union _hw_mmdc_mpwrcadl
  * - 11 - Add CA3 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRCADL_WR_CA3_DEL      (6)      //!< Bit position for MMDC_MPWRCADL_WR_CA3_DEL.
 #define BM_MMDC_MPWRCADL_WR_CA3_DEL      (0x000000c0)  //!< Bit mask for MMDC_MPWRCADL_WR_CA3_DEL.
 
@@ -13262,7 +12535,6 @@ typedef union _hw_mmdc_mpwrcadl
 //! @brief Set the WR_CA3_DEL field to a new value.
 #define BW_MMDC_MPWRCADL_WR_CA3_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA3_DEL) | BF_MMDC_MPWRCADL_WR_CA3_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRCADL, field WR_CA4_DEL[9:8] (RW)
@@ -13277,7 +12549,6 @@ typedef union _hw_mmdc_mpwrcadl
  * - 11 - Add CA4 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRCADL_WR_CA4_DEL      (8)      //!< Bit position for MMDC_MPWRCADL_WR_CA4_DEL.
 #define BM_MMDC_MPWRCADL_WR_CA4_DEL      (0x00000300)  //!< Bit mask for MMDC_MPWRCADL_WR_CA4_DEL.
 
@@ -13291,7 +12562,6 @@ typedef union _hw_mmdc_mpwrcadl
 //! @brief Set the WR_CA4_DEL field to a new value.
 #define BW_MMDC_MPWRCADL_WR_CA4_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA4_DEL) | BF_MMDC_MPWRCADL_WR_CA4_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRCADL, field WR_CA5_DEL[11:10] (RW)
@@ -13306,7 +12576,6 @@ typedef union _hw_mmdc_mpwrcadl
  * - 11 - Add CA5 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRCADL_WR_CA5_DEL      (10)      //!< Bit position for MMDC_MPWRCADL_WR_CA5_DEL.
 #define BM_MMDC_MPWRCADL_WR_CA5_DEL      (0x00000c00)  //!< Bit mask for MMDC_MPWRCADL_WR_CA5_DEL.
 
@@ -13320,7 +12589,6 @@ typedef union _hw_mmdc_mpwrcadl
 //! @brief Set the WR_CA5_DEL field to a new value.
 #define BW_MMDC_MPWRCADL_WR_CA5_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA5_DEL) | BF_MMDC_MPWRCADL_WR_CA5_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRCADL, field WR_CA6_DEL[13:12] (RW)
@@ -13335,7 +12603,6 @@ typedef union _hw_mmdc_mpwrcadl
  * - 11 - Add CA6 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRCADL_WR_CA6_DEL      (12)      //!< Bit position for MMDC_MPWRCADL_WR_CA6_DEL.
 #define BM_MMDC_MPWRCADL_WR_CA6_DEL      (0x00003000)  //!< Bit mask for MMDC_MPWRCADL_WR_CA6_DEL.
 
@@ -13349,7 +12616,6 @@ typedef union _hw_mmdc_mpwrcadl
 //! @brief Set the WR_CA6_DEL field to a new value.
 #define BW_MMDC_MPWRCADL_WR_CA6_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA6_DEL) | BF_MMDC_MPWRCADL_WR_CA6_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRCADL, field WR_CA7_DEL[15:14] (RW)
@@ -13364,7 +12630,6 @@ typedef union _hw_mmdc_mpwrcadl
  * - 11 - Add CA7 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRCADL_WR_CA7_DEL      (14)      //!< Bit position for MMDC_MPWRCADL_WR_CA7_DEL.
 #define BM_MMDC_MPWRCADL_WR_CA7_DEL      (0x0000c000)  //!< Bit mask for MMDC_MPWRCADL_WR_CA7_DEL.
 
@@ -13378,7 +12643,6 @@ typedef union _hw_mmdc_mpwrcadl
 //! @brief Set the WR_CA7_DEL field to a new value.
 #define BW_MMDC_MPWRCADL_WR_CA7_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA7_DEL) | BF_MMDC_MPWRCADL_WR_CA7_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRCADL, field WR_CA8_DEL[17:16] (RW)
@@ -13393,7 +12657,6 @@ typedef union _hw_mmdc_mpwrcadl
  * - 11 - Add CA8 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRCADL_WR_CA8_DEL      (16)      //!< Bit position for MMDC_MPWRCADL_WR_CA8_DEL.
 #define BM_MMDC_MPWRCADL_WR_CA8_DEL      (0x00030000)  //!< Bit mask for MMDC_MPWRCADL_WR_CA8_DEL.
 
@@ -13407,7 +12670,6 @@ typedef union _hw_mmdc_mpwrcadl
 //! @brief Set the WR_CA8_DEL field to a new value.
 #define BW_MMDC_MPWRCADL_WR_CA8_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA8_DEL) | BF_MMDC_MPWRCADL_WR_CA8_DEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MMDC_MPWRCADL, field WR_CA9_DEL[19:18] (RW)
@@ -13422,7 +12684,6 @@ typedef union _hw_mmdc_mpwrcadl
  * - 11 - Add CA9 delay of 3 delay units.
  */
 //@{
-
 #define BP_MMDC_MPWRCADL_WR_CA9_DEL      (18)      //!< Bit position for MMDC_MPWRCADL_WR_CA9_DEL.
 #define BM_MMDC_MPWRCADL_WR_CA9_DEL      (0x000c0000)  //!< Bit mask for MMDC_MPWRCADL_WR_CA9_DEL.
 
@@ -13436,7 +12697,6 @@ typedef union _hw_mmdc_mpwrcadl
 //! @brief Set the WR_CA9_DEL field to a new value.
 #define BW_MMDC_MPWRCADL_WR_CA9_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA9_DEL) | BF_MMDC_MPWRCADL_WR_CA9_DEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13502,13 +12762,11 @@ typedef union _hw_mmdc_mpdccr
  * - 100 - 51.5% low 48.5% high
  */
 //@{
-
 #define BP_MMDC_MPDCCR_WR_DQS0_FT_DCC      (0)      //!< Bit position for MMDC_MPDCCR_WR_DQS0_FT_DCC.
 #define BM_MMDC_MPDCCR_WR_DQS0_FT_DCC      (0x00000007)  //!< Bit mask for MMDC_MPDCCR_WR_DQS0_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_WR_DQS0_FT_DCC from a register value.
 #define BG_MMDC_MPDCCR_WR_DQS0_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_WR_DQS0_FT_DCC) >> BP_MMDC_MPDCCR_WR_DQS0_FT_DCC)
-
 //@}
 
 /*! @name Register MMDC_MPDCCR, field WR_DQS1_FT_DCC[5:3] (RO)
@@ -13522,13 +12780,11 @@ typedef union _hw_mmdc_mpdccr
  * - 100 - 51.5% low 48.5% high
  */
 //@{
-
 #define BP_MMDC_MPDCCR_WR_DQS1_FT_DCC      (3)      //!< Bit position for MMDC_MPDCCR_WR_DQS1_FT_DCC.
 #define BM_MMDC_MPDCCR_WR_DQS1_FT_DCC      (0x00000038)  //!< Bit mask for MMDC_MPDCCR_WR_DQS1_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_WR_DQS1_FT_DCC from a register value.
 #define BG_MMDC_MPDCCR_WR_DQS1_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_WR_DQS1_FT_DCC) >> BP_MMDC_MPDCCR_WR_DQS1_FT_DCC)
-
 //@}
 
 /*! @name Register MMDC_MPDCCR, field WR_DQS2_FT_DCC[8:6] (RO)
@@ -13542,13 +12798,11 @@ typedef union _hw_mmdc_mpdccr
  * - 100 - 51.5% low 48.5% high
  */
 //@{
-
 #define BP_MMDC_MPDCCR_WR_DQS2_FT_DCC      (6)      //!< Bit position for MMDC_MPDCCR_WR_DQS2_FT_DCC.
 #define BM_MMDC_MPDCCR_WR_DQS2_FT_DCC      (0x000001c0)  //!< Bit mask for MMDC_MPDCCR_WR_DQS2_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_WR_DQS2_FT_DCC from a register value.
 #define BG_MMDC_MPDCCR_WR_DQS2_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_WR_DQS2_FT_DCC) >> BP_MMDC_MPDCCR_WR_DQS2_FT_DCC)
-
 //@}
 
 /*! @name Register MMDC_MPDCCR, field WR_DQS3_FT_DCC[11:9] (RO)
@@ -13562,13 +12816,11 @@ typedef union _hw_mmdc_mpdccr
  * - 100 - 51.5% low 48.5% high
  */
 //@{
-
 #define BP_MMDC_MPDCCR_WR_DQS3_FT_DCC      (9)      //!< Bit position for MMDC_MPDCCR_WR_DQS3_FT_DCC.
 #define BM_MMDC_MPDCCR_WR_DQS3_FT_DCC      (0x00000e00)  //!< Bit mask for MMDC_MPDCCR_WR_DQS3_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_WR_DQS3_FT_DCC from a register value.
 #define BG_MMDC_MPDCCR_WR_DQS3_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_WR_DQS3_FT_DCC) >> BP_MMDC_MPDCCR_WR_DQS3_FT_DCC)
-
 //@}
 
 /*! @name Register MMDC_MPDCCR, field CK_FT0_DCC[14:12] (RO)
@@ -13582,13 +12834,11 @@ typedef union _hw_mmdc_mpdccr
  * - 100 - 51.5% low 48.5% high
  */
 //@{
-
 #define BP_MMDC_MPDCCR_CK_FT0_DCC      (12)      //!< Bit position for MMDC_MPDCCR_CK_FT0_DCC.
 #define BM_MMDC_MPDCCR_CK_FT0_DCC      (0x00007000)  //!< Bit mask for MMDC_MPDCCR_CK_FT0_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_CK_FT0_DCC from a register value.
 #define BG_MMDC_MPDCCR_CK_FT0_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_CK_FT0_DCC) >> BP_MMDC_MPDCCR_CK_FT0_DCC)
-
 //@}
 
 /*! @name Register MMDC_MPDCCR, field CK_FT1_DCC[18:16] (RO)
@@ -13602,13 +12852,11 @@ typedef union _hw_mmdc_mpdccr
  * - 100 - 51.5% low 48.5% high
  */
 //@{
-
 #define BP_MMDC_MPDCCR_CK_FT1_DCC      (16)      //!< Bit position for MMDC_MPDCCR_CK_FT1_DCC.
 #define BM_MMDC_MPDCCR_CK_FT1_DCC      (0x00070000)  //!< Bit mask for MMDC_MPDCCR_CK_FT1_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_CK_FT1_DCC from a register value.
 #define BG_MMDC_MPDCCR_CK_FT1_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_CK_FT1_DCC) >> BP_MMDC_MPDCCR_CK_FT1_DCC)
-
 //@}
 
 /*! @name Register MMDC_MPDCCR, field RD_DQS0_FT_DCC[21:19] (RO)
@@ -13622,13 +12870,11 @@ typedef union _hw_mmdc_mpdccr
  * - 100 - 51.5% low 48.5% high
  */
 //@{
-
 #define BP_MMDC_MPDCCR_RD_DQS0_FT_DCC      (19)      //!< Bit position for MMDC_MPDCCR_RD_DQS0_FT_DCC.
 #define BM_MMDC_MPDCCR_RD_DQS0_FT_DCC      (0x00380000)  //!< Bit mask for MMDC_MPDCCR_RD_DQS0_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_RD_DQS0_FT_DCC from a register value.
 #define BG_MMDC_MPDCCR_RD_DQS0_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_RD_DQS0_FT_DCC) >> BP_MMDC_MPDCCR_RD_DQS0_FT_DCC)
-
 //@}
 
 /*! @name Register MMDC_MPDCCR, field RD_DQS1_FT_DCC[24:22] (RO)
@@ -13642,13 +12888,11 @@ typedef union _hw_mmdc_mpdccr
  * - 100 - 51.5% low 48.5% high
  */
 //@{
-
 #define BP_MMDC_MPDCCR_RD_DQS1_FT_DCC      (22)      //!< Bit position for MMDC_MPDCCR_RD_DQS1_FT_DCC.
 #define BM_MMDC_MPDCCR_RD_DQS1_FT_DCC      (0x01c00000)  //!< Bit mask for MMDC_MPDCCR_RD_DQS1_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_RD_DQS1_FT_DCC from a register value.
 #define BG_MMDC_MPDCCR_RD_DQS1_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_RD_DQS1_FT_DCC) >> BP_MMDC_MPDCCR_RD_DQS1_FT_DCC)
-
 //@}
 
 /*! @name Register MMDC_MPDCCR, field RD_DQS2_FT_DCC[27:25] (RO)
@@ -13662,13 +12906,11 @@ typedef union _hw_mmdc_mpdccr
  * - 100 - 51.5% low 48.5% high
  */
 //@{
-
 #define BP_MMDC_MPDCCR_RD_DQS2_FT_DCC      (25)      //!< Bit position for MMDC_MPDCCR_RD_DQS2_FT_DCC.
 #define BM_MMDC_MPDCCR_RD_DQS2_FT_DCC      (0x0e000000)  //!< Bit mask for MMDC_MPDCCR_RD_DQS2_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_RD_DQS2_FT_DCC from a register value.
 #define BG_MMDC_MPDCCR_RD_DQS2_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_RD_DQS2_FT_DCC) >> BP_MMDC_MPDCCR_RD_DQS2_FT_DCC)
-
 //@}
 
 /*! @name Register MMDC_MPDCCR, field RD_DQS3_FT_DCC[30:28] (RO)
@@ -13682,13 +12924,11 @@ typedef union _hw_mmdc_mpdccr
  * - 100 - 51.5% low 48.5% high
  */
 //@{
-
 #define BP_MMDC_MPDCCR_RD_DQS3_FT_DCC      (28)      //!< Bit position for MMDC_MPDCCR_RD_DQS3_FT_DCC.
 #define BM_MMDC_MPDCCR_RD_DQS3_FT_DCC      (0x70000000)  //!< Bit mask for MMDC_MPDCCR_RD_DQS3_FT_DCC.
 
 //! @brief Get value of MMDC_MPDCCR_RD_DQS3_FT_DCC from a register value.
 #define BG_MMDC_MPDCCR_RD_DQS3_FT_DCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MPDCCR_RD_DQS3_FT_DCC) >> BP_MMDC_MPDCCR_RD_DQS3_FT_DCC)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13795,3 +13035,5 @@ typedef struct _hw_mmdc
 #endif
 
 #endif // __HW_MMDC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

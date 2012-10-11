@@ -138,7 +138,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
  * Force all the transactions to go to one AXI.
  */
 //@{
-
 #define BP_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_USE_SINGLE_AXI      (4)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_USE_SINGLE_AXI.
 #define BM_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_USE_SINGLE_AXI      (0x000000f0)  //!< Bit mask for GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_USE_SINGLE_AXI.
 
@@ -152,7 +151,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //! @brief Set the MULTI_PIPE_USE_SINGLE_AXI field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_USE_SINGLE_AXI(v)   (HW_GPU2D_AQHICLOCKCONTROL_WR((HW_GPU2D_AQHICLOCKCONTROL_RD() & ~BM_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_USE_SINGLE_AXI) | BF_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_USE_SINGLE_AXI(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field MULTI_PIPE_REG_SELECT[11:8] (RW)
@@ -160,7 +158,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
  * Determines which HI/MC to use while reading registers.
  */
 //@{
-
 #define BP_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_REG_SELECT      (8)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_REG_SELECT.
 #define BM_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_REG_SELECT      (0x00000f00)  //!< Bit mask for GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_REG_SELECT.
 
@@ -174,7 +171,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //! @brief Set the MULTI_PIPE_REG_SELECT field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_REG_SELECT(v)   (HW_GPU2D_AQHICLOCKCONTROL_WR((HW_GPU2D_AQHICLOCKCONTROL_RD() & ~BM_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_REG_SELECT) | BF_GPU2D_AQHICLOCKCONTROL_MULTI_PIPE_REG_SELECT(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field ISOLATE_GPU[12] (RW)
@@ -182,7 +178,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
  * Isolate GPU bit
  */
 //@{
-
 #define BP_GPU2D_AQHICLOCKCONTROL_ISOLATE_GPU      (12)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_ISOLATE_GPU.
 #define BM_GPU2D_AQHICLOCKCONTROL_ISOLATE_GPU      (0x00001000)  //!< Bit mask for GPU2D_AQHICLOCKCONTROL_ISOLATE_GPU.
 
@@ -196,7 +191,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //! @brief Set the ISOLATE_GPU field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_ISOLATE_GPU(v)   (HW_GPU2D_AQHICLOCKCONTROL_WR((HW_GPU2D_AQHICLOCKCONTROL_RD() & ~BM_GPU2D_AQHICLOCKCONTROL_ISOLATE_GPU) | BF_GPU2D_AQHICLOCKCONTROL_ISOLATE_GPU(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field IDLE_VG[13] (RW)
@@ -204,7 +198,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
  * VG pipe is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHICLOCKCONTROL_IDLE_VG      (13)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_IDLE_VG.
 #define BM_GPU2D_AQHICLOCKCONTROL_IDLE_VG      (0x00002000)  //!< Bit mask for GPU2D_AQHICLOCKCONTROL_IDLE_VG.
 
@@ -218,7 +211,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //! @brief Set the IDLE_VG field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_IDLE_VG(v)   (HW_GPU2D_AQHICLOCKCONTROL_WR((HW_GPU2D_AQHICLOCKCONTROL_RD() & ~BM_GPU2D_AQHICLOCKCONTROL_IDLE_VG) | BF_GPU2D_AQHICLOCKCONTROL_IDLE_VG(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field IDLE2_D[14] (RW)
@@ -226,7 +218,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
  * 2D pipe is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHICLOCKCONTROL_IDLE2_D      (14)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_IDLE2_D.
 #define BM_GPU2D_AQHICLOCKCONTROL_IDLE2_D      (0x00004000)  //!< Bit mask for GPU2D_AQHICLOCKCONTROL_IDLE2_D.
 
@@ -240,7 +231,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //! @brief Set the IDLE2_D field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_IDLE2_D(v)   (HW_GPU2D_AQHICLOCKCONTROL_WR((HW_GPU2D_AQHICLOCKCONTROL_RD() & ~BM_GPU2D_AQHICLOCKCONTROL_IDLE2_D) | BF_GPU2D_AQHICLOCKCONTROL_IDLE2_D(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field IDLE3_D[15] (RW)
@@ -248,7 +238,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
  * 3D pipe is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHICLOCKCONTROL_IDLE3_D      (15)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_IDLE3_D.
 #define BM_GPU2D_AQHICLOCKCONTROL_IDLE3_D      (0x00008000)  //!< Bit mask for GPU2D_AQHICLOCKCONTROL_IDLE3_D.
 
@@ -262,7 +251,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //! @brief Set the IDLE3_D field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_IDLE3_D(v)   (HW_GPU2D_AQHICLOCKCONTROL_WR((HW_GPU2D_AQHICLOCKCONTROL_RD() & ~BM_GPU2D_AQHICLOCKCONTROL_IDLE3_D) | BF_GPU2D_AQHICLOCKCONTROL_IDLE3_D(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field SOFT_RESET[19] (RW)
@@ -270,7 +258,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
  * Soft resets the IP.
  */
 //@{
-
 #define BP_GPU2D_AQHICLOCKCONTROL_SOFT_RESET      (19)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_SOFT_RESET.
 #define BM_GPU2D_AQHICLOCKCONTROL_SOFT_RESET      (0x00080000)  //!< Bit mask for GPU2D_AQHICLOCKCONTROL_SOFT_RESET.
 
@@ -284,7 +271,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //! @brief Set the SOFT_RESET field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_SOFT_RESET(v)   (HW_GPU2D_AQHICLOCKCONTROL_WR((HW_GPU2D_AQHICLOCKCONTROL_RD() & ~BM_GPU2D_AQHICLOCKCONTROL_SOFT_RESET) | BF_GPU2D_AQHICLOCKCONTROL_SOFT_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field DISABLE_DEBUG_REGISTERS[20] (RW)
@@ -292,7 +278,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
  * Disable debug registers. If this bit is 1, debug registers are clock gated.
  */
 //@{
-
 #define BP_GPU2D_AQHICLOCKCONTROL_DISABLE_DEBUG_REGISTERS      (20)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_DISABLE_DEBUG_REGISTERS.
 #define BM_GPU2D_AQHICLOCKCONTROL_DISABLE_DEBUG_REGISTERS      (0x00100000)  //!< Bit mask for GPU2D_AQHICLOCKCONTROL_DISABLE_DEBUG_REGISTERS.
 
@@ -306,7 +291,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //! @brief Set the DISABLE_DEBUG_REGISTERS field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_DISABLE_DEBUG_REGISTERS(v)   (HW_GPU2D_AQHICLOCKCONTROL_WR((HW_GPU2D_AQHICLOCKCONTROL_RD() & ~BM_GPU2D_AQHICLOCKCONTROL_DISABLE_DEBUG_REGISTERS) | BF_GPU2D_AQHICLOCKCONTROL_DISABLE_DEBUG_REGISTERS(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field DISABLE_RAM_CLOCK_GATING[21] (RW)
@@ -314,7 +298,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
  * Disables clock gating for rams.
  */
 //@{
-
 #define BP_GPU2D_AQHICLOCKCONTROL_DISABLE_RAM_CLOCK_GATING      (21)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_DISABLE_RAM_CLOCK_GATING.
 #define BM_GPU2D_AQHICLOCKCONTROL_DISABLE_RAM_CLOCK_GATING      (0x00200000)  //!< Bit mask for GPU2D_AQHICLOCKCONTROL_DISABLE_RAM_CLOCK_GATING.
 
@@ -328,7 +311,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //! @brief Set the DISABLE_RAM_CLOCK_GATING field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_DISABLE_RAM_CLOCK_GATING(v)   (HW_GPU2D_AQHICLOCKCONTROL_WR((HW_GPU2D_AQHICLOCKCONTROL_RD() & ~BM_GPU2D_AQHICLOCKCONTROL_DISABLE_RAM_CLOCK_GATING) | BF_GPU2D_AQHICLOCKCONTROL_DISABLE_RAM_CLOCK_GATING(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field FSCALE_CMD_LOAD[22] (RW)
@@ -336,7 +318,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 
  */
 //@{
-
 #define BP_GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD      (22)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD.
 #define BM_GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD      (0x00400000)  //!< Bit mask for GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD.
 
@@ -350,7 +331,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //! @brief Set the FSCALE_CMD_LOAD field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD(v)   (HW_GPU2D_AQHICLOCKCONTROL_WR((HW_GPU2D_AQHICLOCKCONTROL_RD() & ~BM_GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD) | BF_GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field FSCALE_VAL[29:23] (RW)
@@ -358,7 +338,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 
  */
 //@{
-
 #define BP_GPU2D_AQHICLOCKCONTROL_FSCALE_VAL      (23)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_FSCALE_VAL.
 #define BM_GPU2D_AQHICLOCKCONTROL_FSCALE_VAL      (0x3f800000)  //!< Bit mask for GPU2D_AQHICLOCKCONTROL_FSCALE_VAL.
 
@@ -372,7 +351,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //! @brief Set the FSCALE_VAL field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_FSCALE_VAL(v)   (HW_GPU2D_AQHICLOCKCONTROL_WR((HW_GPU2D_AQHICLOCKCONTROL_RD() & ~BM_GPU2D_AQHICLOCKCONTROL_FSCALE_VAL) | BF_GPU2D_AQHICLOCKCONTROL_FSCALE_VAL(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field CLK2D_DIS[30] (RW)
@@ -380,7 +358,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
  * Disable 2D clock.
  */
 //@{
-
 #define BP_GPU2D_AQHICLOCKCONTROL_CLK2D_DIS      (30)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_CLK2D_DIS.
 #define BM_GPU2D_AQHICLOCKCONTROL_CLK2D_DIS      (0x40000000)  //!< Bit mask for GPU2D_AQHICLOCKCONTROL_CLK2D_DIS.
 
@@ -394,7 +371,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //! @brief Set the CLK2D_DIS field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_CLK2D_DIS(v)   (HW_GPU2D_AQHICLOCKCONTROL_WR((HW_GPU2D_AQHICLOCKCONTROL_RD() & ~BM_GPU2D_AQHICLOCKCONTROL_CLK2D_DIS) | BF_GPU2D_AQHICLOCKCONTROL_CLK2D_DIS(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field CLK3D_DIS[31] (RW)
@@ -402,7 +378,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
  * Disable 3D clock.
  */
 //@{
-
 #define BP_GPU2D_AQHICLOCKCONTROL_CLK3D_DIS      (31)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_CLK3D_DIS.
 #define BM_GPU2D_AQHICLOCKCONTROL_CLK3D_DIS      (0x80000000)  //!< Bit mask for GPU2D_AQHICLOCKCONTROL_CLK3D_DIS.
 
@@ -416,7 +391,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //! @brief Set the CLK3D_DIS field to a new value.
 #define BW_GPU2D_AQHICLOCKCONTROL_CLK3D_DIS(v)   (HW_GPU2D_AQHICLOCKCONTROL_WR((HW_GPU2D_AQHICLOCKCONTROL_RD() & ~BM_GPU2D_AQHICLOCKCONTROL_CLK3D_DIS) | BF_GPU2D_AQHICLOCKCONTROL_CLK3D_DIS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -475,13 +449,11 @@ typedef union _hw_gpu2d_aqhiidle
  * AXI is in low power mode.
  */
 //@{
-
 #define BP_GPU2D_AQHIIDLE_AXI_LP      (0)      //!< Bit position for GPU2D_AQHIIDLE_AXI_LP.
 #define BM_GPU2D_AQHIIDLE_AXI_LP      (0x00000001)  //!< Bit mask for GPU2D_AQHIIDLE_AXI_LP.
 
 //! @brief Get value of GPU2D_AQHIIDLE_AXI_LP from a register value.
 #define BG_GPU2D_AQHIIDLE_AXI_LP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQHIIDLE_AXI_LP) >> BP_GPU2D_AQHIIDLE_AXI_LP)
-
 //@}
 
 /*! @name Register GPU2D_AQHIIDLE, field IDLE_TS[20] (RO)
@@ -489,13 +461,11 @@ typedef union _hw_gpu2d_aqhiidle
  * TS is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHIIDLE_IDLE_TS      (20)      //!< Bit position for GPU2D_AQHIIDLE_IDLE_TS.
 #define BM_GPU2D_AQHIIDLE_IDLE_TS      (0x00100000)  //!< Bit mask for GPU2D_AQHIIDLE_IDLE_TS.
 
 //! @brief Get value of GPU2D_AQHIIDLE_IDLE_TS from a register value.
 #define BG_GPU2D_AQHIIDLE_IDLE_TS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQHIIDLE_IDLE_TS) >> BP_GPU2D_AQHIIDLE_IDLE_TS)
-
 //@}
 
 /*! @name Register GPU2D_AQHIIDLE, field IDLE_FP[21] (RO)
@@ -503,13 +473,11 @@ typedef union _hw_gpu2d_aqhiidle
  * FP is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHIIDLE_IDLE_FP      (21)      //!< Bit position for GPU2D_AQHIIDLE_IDLE_FP.
 #define BM_GPU2D_AQHIIDLE_IDLE_FP      (0x00200000)  //!< Bit mask for GPU2D_AQHIIDLE_IDLE_FP.
 
 //! @brief Get value of GPU2D_AQHIIDLE_IDLE_FP from a register value.
 #define BG_GPU2D_AQHIIDLE_IDLE_FP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQHIIDLE_IDLE_FP) >> BP_GPU2D_AQHIIDLE_IDLE_FP)
-
 //@}
 
 /*! @name Register GPU2D_AQHIIDLE, field IDLE_IM[22] (RO)
@@ -517,13 +485,11 @@ typedef union _hw_gpu2d_aqhiidle
  * IM is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHIIDLE_IDLE_IM      (22)      //!< Bit position for GPU2D_AQHIIDLE_IDLE_IM.
 #define BM_GPU2D_AQHIIDLE_IDLE_IM      (0x00400000)  //!< Bit mask for GPU2D_AQHIIDLE_IDLE_IM.
 
 //! @brief Get value of GPU2D_AQHIIDLE_IDLE_IM from a register value.
 #define BG_GPU2D_AQHIIDLE_IDLE_IM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQHIIDLE_IDLE_IM) >> BP_GPU2D_AQHIIDLE_IDLE_IM)
-
 //@}
 
 /*! @name Register GPU2D_AQHIIDLE, field IDLE_VG[23] (RO)
@@ -531,13 +497,11 @@ typedef union _hw_gpu2d_aqhiidle
  * VG is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHIIDLE_IDLE_VG      (23)      //!< Bit position for GPU2D_AQHIIDLE_IDLE_VG.
 #define BM_GPU2D_AQHIIDLE_IDLE_VG      (0x00800000)  //!< Bit mask for GPU2D_AQHIIDLE_IDLE_VG.
 
 //! @brief Get value of GPU2D_AQHIIDLE_IDLE_VG from a register value.
 #define BG_GPU2D_AQHIIDLE_IDLE_VG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQHIIDLE_IDLE_VG) >> BP_GPU2D_AQHIIDLE_IDLE_VG)
-
 //@}
 
 /*! @name Register GPU2D_AQHIIDLE, field IDLE_TX[24] (RO)
@@ -545,13 +509,11 @@ typedef union _hw_gpu2d_aqhiidle
  * TX is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHIIDLE_IDLE_TX      (24)      //!< Bit position for GPU2D_AQHIIDLE_IDLE_TX.
 #define BM_GPU2D_AQHIIDLE_IDLE_TX      (0x01000000)  //!< Bit mask for GPU2D_AQHIIDLE_IDLE_TX.
 
 //! @brief Get value of GPU2D_AQHIIDLE_IDLE_TX from a register value.
 #define BG_GPU2D_AQHIIDLE_IDLE_TX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQHIIDLE_IDLE_TX) >> BP_GPU2D_AQHIIDLE_IDLE_TX)
-
 //@}
 
 /*! @name Register GPU2D_AQHIIDLE, field IDLE_RA[25] (RO)
@@ -559,13 +521,11 @@ typedef union _hw_gpu2d_aqhiidle
  * RA is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHIIDLE_IDLE_RA      (25)      //!< Bit position for GPU2D_AQHIIDLE_IDLE_RA.
 #define BM_GPU2D_AQHIIDLE_IDLE_RA      (0x02000000)  //!< Bit mask for GPU2D_AQHIIDLE_IDLE_RA.
 
 //! @brief Get value of GPU2D_AQHIIDLE_IDLE_RA from a register value.
 #define BG_GPU2D_AQHIIDLE_IDLE_RA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQHIIDLE_IDLE_RA) >> BP_GPU2D_AQHIIDLE_IDLE_RA)
-
 //@}
 
 /*! @name Register GPU2D_AQHIIDLE, field IDLE_SE[26] (RO)
@@ -573,13 +533,11 @@ typedef union _hw_gpu2d_aqhiidle
  * SE is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHIIDLE_IDLE_SE      (26)      //!< Bit position for GPU2D_AQHIIDLE_IDLE_SE.
 #define BM_GPU2D_AQHIIDLE_IDLE_SE      (0x04000000)  //!< Bit mask for GPU2D_AQHIIDLE_IDLE_SE.
 
 //! @brief Get value of GPU2D_AQHIIDLE_IDLE_SE from a register value.
 #define BG_GPU2D_AQHIIDLE_IDLE_SE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQHIIDLE_IDLE_SE) >> BP_GPU2D_AQHIIDLE_IDLE_SE)
-
 //@}
 
 /*! @name Register GPU2D_AQHIIDLE, field IDLE_PA[27] (RO)
@@ -587,13 +545,11 @@ typedef union _hw_gpu2d_aqhiidle
  * PA is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHIIDLE_IDLE_PA      (27)      //!< Bit position for GPU2D_AQHIIDLE_IDLE_PA.
 #define BM_GPU2D_AQHIIDLE_IDLE_PA      (0x08000000)  //!< Bit mask for GPU2D_AQHIIDLE_IDLE_PA.
 
 //! @brief Get value of GPU2D_AQHIIDLE_IDLE_PA from a register value.
 #define BG_GPU2D_AQHIIDLE_IDLE_PA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQHIIDLE_IDLE_PA) >> BP_GPU2D_AQHIIDLE_IDLE_PA)
-
 //@}
 
 /*! @name Register GPU2D_AQHIIDLE, field IDLE_SH[28] (RO)
@@ -601,13 +557,11 @@ typedef union _hw_gpu2d_aqhiidle
  * SH is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHIIDLE_IDLE_SH      (28)      //!< Bit position for GPU2D_AQHIIDLE_IDLE_SH.
 #define BM_GPU2D_AQHIIDLE_IDLE_SH      (0x10000000)  //!< Bit mask for GPU2D_AQHIIDLE_IDLE_SH.
 
 //! @brief Get value of GPU2D_AQHIIDLE_IDLE_SH from a register value.
 #define BG_GPU2D_AQHIIDLE_IDLE_SH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQHIIDLE_IDLE_SH) >> BP_GPU2D_AQHIIDLE_IDLE_SH)
-
 //@}
 
 /*! @name Register GPU2D_AQHIIDLE, field IDLE_PE[29] (RO)
@@ -615,13 +569,11 @@ typedef union _hw_gpu2d_aqhiidle
  * PE is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHIIDLE_IDLE_PE      (29)      //!< Bit position for GPU2D_AQHIIDLE_IDLE_PE.
 #define BM_GPU2D_AQHIIDLE_IDLE_PE      (0x20000000)  //!< Bit mask for GPU2D_AQHIIDLE_IDLE_PE.
 
 //! @brief Get value of GPU2D_AQHIIDLE_IDLE_PE from a register value.
 #define BG_GPU2D_AQHIIDLE_IDLE_PE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQHIIDLE_IDLE_PE) >> BP_GPU2D_AQHIIDLE_IDLE_PE)
-
 //@}
 
 /*! @name Register GPU2D_AQHIIDLE, field IDLE_DE[30] (RO)
@@ -629,13 +581,11 @@ typedef union _hw_gpu2d_aqhiidle
  * DE is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHIIDLE_IDLE_DE      (30)      //!< Bit position for GPU2D_AQHIIDLE_IDLE_DE.
 #define BM_GPU2D_AQHIIDLE_IDLE_DE      (0x40000000)  //!< Bit mask for GPU2D_AQHIIDLE_IDLE_DE.
 
 //! @brief Get value of GPU2D_AQHIIDLE_IDLE_DE from a register value.
 #define BG_GPU2D_AQHIIDLE_IDLE_DE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQHIIDLE_IDLE_DE) >> BP_GPU2D_AQHIIDLE_IDLE_DE)
-
 //@}
 
 /*! @name Register GPU2D_AQHIIDLE, field IDLE_FE[31] (RO)
@@ -643,13 +593,11 @@ typedef union _hw_gpu2d_aqhiidle
  * FE is idle.
  */
 //@{
-
 #define BP_GPU2D_AQHIIDLE_IDLE_FE      (31)      //!< Bit position for GPU2D_AQHIIDLE_IDLE_FE.
 #define BM_GPU2D_AQHIIDLE_IDLE_FE      (0x80000000)  //!< Bit mask for GPU2D_AQHIIDLE_IDLE_FE.
 
 //! @brief Get value of GPU2D_AQHIIDLE_IDLE_FE from a register value.
 #define BG_GPU2D_AQHIIDLE_IDLE_FE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQHIIDLE_IDLE_FE) >> BP_GPU2D_AQHIIDLE_IDLE_FE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -703,7 +651,6 @@ typedef union _hw_gpu2d_aqaxiconfig
 
  */
 //@{
-
 #define BP_GPU2D_AQAXICONFIG_ARCACHE      (16)      //!< Bit position for GPU2D_AQAXICONFIG_ARCACHE.
 #define BM_GPU2D_AQAXICONFIG_ARCACHE      (0x000f0000)  //!< Bit mask for GPU2D_AQAXICONFIG_ARCACHE.
 
@@ -717,7 +664,6 @@ typedef union _hw_gpu2d_aqaxiconfig
 //! @brief Set the ARCACHE field to a new value.
 #define BW_GPU2D_AQAXICONFIG_ARCACHE(v)   (HW_GPU2D_AQAXICONFIG_WR((HW_GPU2D_AQAXICONFIG_RD() & ~BM_GPU2D_AQAXICONFIG_ARCACHE) | BF_GPU2D_AQAXICONFIG_ARCACHE(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQAXICONFIG, field AWCACHE[23:20] (RW)
@@ -725,7 +671,6 @@ typedef union _hw_gpu2d_aqaxiconfig
 
  */
 //@{
-
 #define BP_GPU2D_AQAXICONFIG_AWCACHE      (20)      //!< Bit position for GPU2D_AQAXICONFIG_AWCACHE.
 #define BM_GPU2D_AQAXICONFIG_AWCACHE      (0x00f00000)  //!< Bit mask for GPU2D_AQAXICONFIG_AWCACHE.
 
@@ -739,7 +684,6 @@ typedef union _hw_gpu2d_aqaxiconfig
 //! @brief Set the AWCACHE field to a new value.
 #define BW_GPU2D_AQAXICONFIG_AWCACHE(v)   (HW_GPU2D_AQAXICONFIG_WR((HW_GPU2D_AQAXICONFIG_RD() & ~BM_GPU2D_AQAXICONFIG_AWCACHE) | BF_GPU2D_AQAXICONFIG_AWCACHE(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQAXICONFIG, field ARID[27:24] (RW)
@@ -747,7 +691,6 @@ typedef union _hw_gpu2d_aqaxiconfig
 
  */
 //@{
-
 #define BP_GPU2D_AQAXICONFIG_ARID      (24)      //!< Bit position for GPU2D_AQAXICONFIG_ARID.
 #define BM_GPU2D_AQAXICONFIG_ARID      (0x0f000000)  //!< Bit mask for GPU2D_AQAXICONFIG_ARID.
 
@@ -761,7 +704,6 @@ typedef union _hw_gpu2d_aqaxiconfig
 //! @brief Set the ARID field to a new value.
 #define BW_GPU2D_AQAXICONFIG_ARID(v)   (HW_GPU2D_AQAXICONFIG_WR((HW_GPU2D_AQAXICONFIG_RD() & ~BM_GPU2D_AQAXICONFIG_ARID) | BF_GPU2D_AQAXICONFIG_ARID(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQAXICONFIG, field AWID[31:28] (RW)
@@ -769,7 +711,6 @@ typedef union _hw_gpu2d_aqaxiconfig
 
  */
 //@{
-
 #define BP_GPU2D_AQAXICONFIG_AWID      (28)      //!< Bit position for GPU2D_AQAXICONFIG_AWID.
 #define BM_GPU2D_AQAXICONFIG_AWID      (0xf0000000)  //!< Bit mask for GPU2D_AQAXICONFIG_AWID.
 
@@ -783,7 +724,6 @@ typedef union _hw_gpu2d_aqaxiconfig
 //! @brief Set the AWID field to a new value.
 #define BW_GPU2D_AQAXICONFIG_AWID(v)   (HW_GPU2D_AQAXICONFIG_WR((HW_GPU2D_AQAXICONFIG_RD() & ~BM_GPU2D_AQAXICONFIG_AWID) | BF_GPU2D_AQAXICONFIG_AWID(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -837,7 +777,6 @@ typedef union _hw_gpu2d_aqaxistatus
 
  */
 //@{
-
 #define BP_GPU2D_AQAXISTATUS_WR_ERR_ID      (0)      //!< Bit position for GPU2D_AQAXISTATUS_WR_ERR_ID.
 #define BM_GPU2D_AQAXISTATUS_WR_ERR_ID      (0x0000000f)  //!< Bit mask for GPU2D_AQAXISTATUS_WR_ERR_ID.
 
@@ -851,7 +790,6 @@ typedef union _hw_gpu2d_aqaxistatus
 //! @brief Set the WR_ERR_ID field to a new value.
 #define BW_GPU2D_AQAXISTATUS_WR_ERR_ID(v)   (HW_GPU2D_AQAXISTATUS_WR((HW_GPU2D_AQAXISTATUS_RD() & ~BM_GPU2D_AQAXISTATUS_WR_ERR_ID) | BF_GPU2D_AQAXISTATUS_WR_ERR_ID(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQAXISTATUS, field RD_ERR_ID[7:4] (RW)
@@ -859,7 +797,6 @@ typedef union _hw_gpu2d_aqaxistatus
 
  */
 //@{
-
 #define BP_GPU2D_AQAXISTATUS_RD_ERR_ID      (4)      //!< Bit position for GPU2D_AQAXISTATUS_RD_ERR_ID.
 #define BM_GPU2D_AQAXISTATUS_RD_ERR_ID      (0x000000f0)  //!< Bit mask for GPU2D_AQAXISTATUS_RD_ERR_ID.
 
@@ -873,7 +810,6 @@ typedef union _hw_gpu2d_aqaxistatus
 //! @brief Set the RD_ERR_ID field to a new value.
 #define BW_GPU2D_AQAXISTATUS_RD_ERR_ID(v)   (HW_GPU2D_AQAXISTATUS_WR((HW_GPU2D_AQAXISTATUS_RD() & ~BM_GPU2D_AQAXISTATUS_RD_ERR_ID) | BF_GPU2D_AQAXISTATUS_RD_ERR_ID(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQAXISTATUS, field DET_WR_ERR[8] (RW)
@@ -881,7 +817,6 @@ typedef union _hw_gpu2d_aqaxistatus
 
  */
 //@{
-
 #define BP_GPU2D_AQAXISTATUS_DET_WR_ERR      (8)      //!< Bit position for GPU2D_AQAXISTATUS_DET_WR_ERR.
 #define BM_GPU2D_AQAXISTATUS_DET_WR_ERR      (0x00000100)  //!< Bit mask for GPU2D_AQAXISTATUS_DET_WR_ERR.
 
@@ -895,7 +830,6 @@ typedef union _hw_gpu2d_aqaxistatus
 //! @brief Set the DET_WR_ERR field to a new value.
 #define BW_GPU2D_AQAXISTATUS_DET_WR_ERR(v)   (HW_GPU2D_AQAXISTATUS_WR((HW_GPU2D_AQAXISTATUS_RD() & ~BM_GPU2D_AQAXISTATUS_DET_WR_ERR) | BF_GPU2D_AQAXISTATUS_DET_WR_ERR(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_AQAXISTATUS, field DET_RD_ERR[9] (RW)
@@ -903,7 +837,6 @@ typedef union _hw_gpu2d_aqaxistatus
 
  */
 //@{
-
 #define BP_GPU2D_AQAXISTATUS_DET_RD_ERR      (9)      //!< Bit position for GPU2D_AQAXISTATUS_DET_RD_ERR.
 #define BM_GPU2D_AQAXISTATUS_DET_RD_ERR      (0x00000200)  //!< Bit mask for GPU2D_AQAXISTATUS_DET_RD_ERR.
 
@@ -917,7 +850,6 @@ typedef union _hw_gpu2d_aqaxistatus
 //! @brief Set the DET_RD_ERR field to a new value.
 #define BW_GPU2D_AQAXISTATUS_DET_RD_ERR(v)   (HW_GPU2D_AQAXISTATUS_WR((HW_GPU2D_AQAXISTATUS_RD() & ~BM_GPU2D_AQAXISTATUS_DET_RD_ERR) | BF_GPU2D_AQAXISTATUS_DET_RD_ERR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -964,13 +896,11 @@ typedef union _hw_gpu2d_aqintracknowledge
 
  */
 //@{
-
 #define BP_GPU2D_AQINTRACKNOWLEDGE_INTR_VEC      (0)      //!< Bit position for GPU2D_AQINTRACKNOWLEDGE_INTR_VEC.
 #define BM_GPU2D_AQINTRACKNOWLEDGE_INTR_VEC      (0xffffffff)  //!< Bit mask for GPU2D_AQINTRACKNOWLEDGE_INTR_VEC.
 
 //! @brief Get value of GPU2D_AQINTRACKNOWLEDGE_INTR_VEC from a register value.
 #define BG_GPU2D_AQINTRACKNOWLEDGE_INTR_VEC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQINTRACKNOWLEDGE_INTR_VEC) >> BP_GPU2D_AQINTRACKNOWLEDGE_INTR_VEC)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1020,7 +950,6 @@ typedef union _hw_gpu2d_aqintrenbl
 
  */
 //@{
-
 #define BP_GPU2D_AQINTRENBL_INTR_ENBL_VEC      (0)      //!< Bit position for GPU2D_AQINTRENBL_INTR_ENBL_VEC.
 #define BM_GPU2D_AQINTRENBL_INTR_ENBL_VEC      (0xffffffff)  //!< Bit mask for GPU2D_AQINTRENBL_INTR_ENBL_VEC.
 
@@ -1034,7 +963,6 @@ typedef union _hw_gpu2d_aqintrenbl
 //! @brief Set the INTR_ENBL_VEC field to a new value.
 #define BW_GPU2D_AQINTRENBL_INTR_ENBL_VEC(v)   (HW_GPU2D_AQINTRENBL_WR((HW_GPU2D_AQINTRENBL_RD() & ~BM_GPU2D_AQINTRENBL_INTR_ENBL_VEC) | BF_GPU2D_AQINTRENBL_INTR_ENBL_VEC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1084,13 +1012,11 @@ typedef union _hw_gpu2d_aqident
  * Customer value.
  */
 //@{
-
 #define BP_GPU2D_AQIDENT_CUSTOMER      (0)      //!< Bit position for GPU2D_AQIDENT_CUSTOMER.
 #define BM_GPU2D_AQIDENT_CUSTOMER      (0x000000ff)  //!< Bit mask for GPU2D_AQIDENT_CUSTOMER.
 
 //! @brief Get value of GPU2D_AQIDENT_CUSTOMER from a register value.
 #define BG_GPU2D_AQIDENT_CUSTOMER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQIDENT_CUSTOMER) >> BP_GPU2D_AQIDENT_CUSTOMER)
-
 //@}
 
 /*! @name Register GPU2D_AQIDENT, field TECHNOLOGY[11:8] (RO)
@@ -1098,13 +1024,11 @@ typedef union _hw_gpu2d_aqident
  * Technology value.
  */
 //@{
-
 #define BP_GPU2D_AQIDENT_TECHNOLOGY      (8)      //!< Bit position for GPU2D_AQIDENT_TECHNOLOGY.
 #define BM_GPU2D_AQIDENT_TECHNOLOGY      (0x00000f00)  //!< Bit mask for GPU2D_AQIDENT_TECHNOLOGY.
 
 //! @brief Get value of GPU2D_AQIDENT_TECHNOLOGY from a register value.
 #define BG_GPU2D_AQIDENT_TECHNOLOGY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQIDENT_TECHNOLOGY) >> BP_GPU2D_AQIDENT_TECHNOLOGY)
-
 //@}
 
 /*! @name Register GPU2D_AQIDENT, field REVISION[15:12] (RO)
@@ -1112,13 +1036,11 @@ typedef union _hw_gpu2d_aqident
  * Revision value.
  */
 //@{
-
 #define BP_GPU2D_AQIDENT_REVISION      (12)      //!< Bit position for GPU2D_AQIDENT_REVISION.
 #define BM_GPU2D_AQIDENT_REVISION      (0x0000f000)  //!< Bit mask for GPU2D_AQIDENT_REVISION.
 
 //! @brief Get value of GPU2D_AQIDENT_REVISION from a register value.
 #define BG_GPU2D_AQIDENT_REVISION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQIDENT_REVISION) >> BP_GPU2D_AQIDENT_REVISION)
-
 //@}
 
 /*! @name Register GPU2D_AQIDENT, field PRODUCT[23:16] (RO)
@@ -1126,13 +1048,11 @@ typedef union _hw_gpu2d_aqident
  * Product value.
  */
 //@{
-
 #define BP_GPU2D_AQIDENT_PRODUCT      (16)      //!< Bit position for GPU2D_AQIDENT_PRODUCT.
 #define BM_GPU2D_AQIDENT_PRODUCT      (0x00ff0000)  //!< Bit mask for GPU2D_AQIDENT_PRODUCT.
 
 //! @brief Get value of GPU2D_AQIDENT_PRODUCT from a register value.
 #define BG_GPU2D_AQIDENT_PRODUCT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQIDENT_PRODUCT) >> BP_GPU2D_AQIDENT_PRODUCT)
-
 //@}
 
 /*! @name Register GPU2D_AQIDENT, field FAMILY[31:24] (RO)
@@ -1154,13 +1074,11 @@ typedef union _hw_gpu2d_aqident
  * - 14 - GC2000
  */
 //@{
-
 #define BP_GPU2D_AQIDENT_FAMILY      (24)      //!< Bit position for GPU2D_AQIDENT_FAMILY.
 #define BM_GPU2D_AQIDENT_FAMILY      (0xff000000)  //!< Bit mask for GPU2D_AQIDENT_FAMILY.
 
 //! @brief Get value of GPU2D_AQIDENT_FAMILY from a register value.
 #define BG_GPU2D_AQIDENT_FAMILY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_AQIDENT_FAMILY) >> BP_GPU2D_AQIDENT_FAMILY)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1242,13 +1160,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_FE20_BIT_INDEX      (0)      //!< Bit position for GPU2D_FEATURES_FE20_BIT_INDEX.
 #define BM_GPU2D_FEATURES_FE20_BIT_INDEX      (0x00000001)  //!< Bit mask for GPU2D_FEATURES_FE20_BIT_INDEX.
 
 //! @brief Get value of GPU2D_FEATURES_FE20_BIT_INDEX from a register value.
 #define BG_GPU2D_FEATURES_FE20_BIT_INDEX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_FE20_BIT_INDEX) >> BP_GPU2D_FEATURES_FE20_BIT_INDEX)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field RS_YUV_TARGET[1] (RO)
@@ -1260,13 +1176,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_RS_YUV_TARGET      (1)      //!< Bit position for GPU2D_FEATURES_RS_YUV_TARGET.
 #define BM_GPU2D_FEATURES_RS_YUV_TARGET      (0x00000002)  //!< Bit mask for GPU2D_FEATURES_RS_YUV_TARGET.
 
 //! @brief Get value of GPU2D_FEATURES_RS_YUV_TARGET from a register value.
 #define BG_GPU2D_FEATURES_RS_YUV_TARGET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_RS_YUV_TARGET) >> BP_GPU2D_FEATURES_RS_YUV_TARGET)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field BYTE_WRITE_3D[2] (RO)
@@ -1278,13 +1192,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_BYTE_WRITE_3D      (2)      //!< Bit position for GPU2D_FEATURES_BYTE_WRITE_3D.
 #define BM_GPU2D_FEATURES_BYTE_WRITE_3D      (0x00000004)  //!< Bit mask for GPU2D_FEATURES_BYTE_WRITE_3D.
 
 //! @brief Get value of GPU2D_FEATURES_BYTE_WRITE_3D from a register value.
 #define BG_GPU2D_FEATURES_BYTE_WRITE_3D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_BYTE_WRITE_3D) >> BP_GPU2D_FEATURES_BYTE_WRITE_3D)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field FE20[3] (RO)
@@ -1296,13 +1208,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_FE20      (3)      //!< Bit position for GPU2D_FEATURES_FE20.
 #define BM_GPU2D_FEATURES_FE20      (0x00000008)  //!< Bit mask for GPU2D_FEATURES_FE20.
 
 //! @brief Get value of GPU2D_FEATURES_FE20 from a register value.
 #define BG_GPU2D_FEATURES_FE20(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_FE20) >> BP_GPU2D_FEATURES_FE20)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field VGTS[4] (RO)
@@ -1314,13 +1224,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_VGTS      (4)      //!< Bit position for GPU2D_FEATURES_VGTS.
 #define BM_GPU2D_FEATURES_VGTS      (0x00000010)  //!< Bit mask for GPU2D_FEATURES_VGTS.
 
 //! @brief Get value of GPU2D_FEATURES_VGTS from a register value.
 #define BG_GPU2D_FEATURES_VGTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_VGTS) >> BP_GPU2D_FEATURES_VGTS)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field PIPE_VG[5] (RO)
@@ -1332,13 +1240,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_PIPE_VG      (5)      //!< Bit position for GPU2D_FEATURES_PIPE_VG.
 #define BM_GPU2D_FEATURES_PIPE_VG      (0x00000020)  //!< Bit mask for GPU2D_FEATURES_PIPE_VG.
 
 //! @brief Get value of GPU2D_FEATURES_PIPE_VG from a register value.
 #define BG_GPU2D_FEATURES_PIPE_VG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_PIPE_VG) >> BP_GPU2D_FEATURES_PIPE_VG)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field MEM32_BIT_SUPPORT[6] (RO)
@@ -1350,13 +1256,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_MEM32_BIT_SUPPORT      (6)      //!< Bit position for GPU2D_FEATURES_MEM32_BIT_SUPPORT.
 #define BM_GPU2D_FEATURES_MEM32_BIT_SUPPORT      (0x00000040)  //!< Bit mask for GPU2D_FEATURES_MEM32_BIT_SUPPORT.
 
 //! @brief Get value of GPU2D_FEATURES_MEM32_BIT_SUPPORT from a register value.
 #define BG_GPU2D_FEATURES_MEM32_BIT_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_MEM32_BIT_SUPPORT) >> BP_GPU2D_FEATURES_MEM32_BIT_SUPPORT)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field YUY2_RENDER_TARGET[7] (RO)
@@ -1368,13 +1272,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_YUY2_RENDER_TARGET      (7)      //!< Bit position for GPU2D_FEATURES_YUY2_RENDER_TARGET.
 #define BM_GPU2D_FEATURES_YUY2_RENDER_TARGET      (0x00000080)  //!< Bit mask for GPU2D_FEATURES_YUY2_RENDER_TARGET.
 
 //! @brief Get value of GPU2D_FEATURES_YUY2_RENDER_TARGET from a register value.
 #define BG_GPU2D_FEATURES_YUY2_RENDER_TARGET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_YUY2_RENDER_TARGET) >> BP_GPU2D_FEATURES_YUY2_RENDER_TARGET)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field HALF_TX_CACHE[8] (RO)
@@ -1386,13 +1288,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_HALF_TX_CACHE      (8)      //!< Bit position for GPU2D_FEATURES_HALF_TX_CACHE.
 #define BM_GPU2D_FEATURES_HALF_TX_CACHE      (0x00000100)  //!< Bit mask for GPU2D_FEATURES_HALF_TX_CACHE.
 
 //! @brief Get value of GPU2D_FEATURES_HALF_TX_CACHE from a register value.
 #define BG_GPU2D_FEATURES_HALF_TX_CACHE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_HALF_TX_CACHE) >> BP_GPU2D_FEATURES_HALF_TX_CACHE)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field HALF_PE_CACHE[9] (RO)
@@ -1404,13 +1304,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_HALF_PE_CACHE      (9)      //!< Bit position for GPU2D_FEATURES_HALF_PE_CACHE.
 #define BM_GPU2D_FEATURES_HALF_PE_CACHE      (0x00000200)  //!< Bit mask for GPU2D_FEATURES_HALF_PE_CACHE.
 
 //! @brief Get value of GPU2D_FEATURES_HALF_PE_CACHE from a register value.
 #define BG_GPU2D_FEATURES_HALF_PE_CACHE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_HALF_PE_CACHE) >> BP_GPU2D_FEATURES_HALF_PE_CACHE)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field YUY2_AVERAGING[10] (RO)
@@ -1422,13 +1320,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_YUY2_AVERAGING      (10)      //!< Bit position for GPU2D_FEATURES_YUY2_AVERAGING.
 #define BM_GPU2D_FEATURES_YUY2_AVERAGING      (0x00000400)  //!< Bit mask for GPU2D_FEATURES_YUY2_AVERAGING.
 
 //! @brief Get value of GPU2D_FEATURES_YUY2_AVERAGING from a register value.
 #define BG_GPU2D_FEATURES_YUY2_AVERAGING(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_YUY2_AVERAGING) >> BP_GPU2D_FEATURES_YUY2_AVERAGING)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field NO_SCALER[11] (RO)
@@ -1440,13 +1336,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_NO_SCALER      (11)      //!< Bit position for GPU2D_FEATURES_NO_SCALER.
 #define BM_GPU2D_FEATURES_NO_SCALER      (0x00000800)  //!< Bit mask for GPU2D_FEATURES_NO_SCALER.
 
 //! @brief Get value of GPU2D_FEATURES_NO_SCALER from a register value.
 #define BG_GPU2D_FEATURES_NO_SCALER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_NO_SCALER) >> BP_GPU2D_FEATURES_NO_SCALER)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field BYTE_WRITE_2D[12] (RO)
@@ -1458,13 +1352,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_BYTE_WRITE_2D      (12)      //!< Bit position for GPU2D_FEATURES_BYTE_WRITE_2D.
 #define BM_GPU2D_FEATURES_BYTE_WRITE_2D      (0x00001000)  //!< Bit mask for GPU2D_FEATURES_BYTE_WRITE_2D.
 
 //! @brief Get value of GPU2D_FEATURES_BYTE_WRITE_2D from a register value.
 #define BG_GPU2D_FEATURES_BYTE_WRITE_2D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_BYTE_WRITE_2D) >> BP_GPU2D_FEATURES_BYTE_WRITE_2D)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field BUFFER_INTERLEAVING[13] (RO)
@@ -1476,13 +1368,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_BUFFER_INTERLEAVING      (13)      //!< Bit position for GPU2D_FEATURES_BUFFER_INTERLEAVING.
 #define BM_GPU2D_FEATURES_BUFFER_INTERLEAVING      (0x00002000)  //!< Bit mask for GPU2D_FEATURES_BUFFER_INTERLEAVING.
 
 //! @brief Get value of GPU2D_FEATURES_BUFFER_INTERLEAVING from a register value.
 #define BG_GPU2D_FEATURES_BUFFER_INTERLEAVING(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_BUFFER_INTERLEAVING) >> BP_GPU2D_FEATURES_BUFFER_INTERLEAVING)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field NO422_TEXTURE[14] (RO)
@@ -1494,13 +1384,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_NO422_TEXTURE      (14)      //!< Bit position for GPU2D_FEATURES_NO422_TEXTURE.
 #define BM_GPU2D_FEATURES_NO422_TEXTURE      (0x00004000)  //!< Bit mask for GPU2D_FEATURES_NO422_TEXTURE.
 
 //! @brief Get value of GPU2D_FEATURES_NO422_TEXTURE from a register value.
 #define BG_GPU2D_FEATURES_NO422_TEXTURE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_NO422_TEXTURE) >> BP_GPU2D_FEATURES_NO422_TEXTURE)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field NO_EZ[15] (RO)
@@ -1512,13 +1400,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_NO_EZ      (15)      //!< Bit position for GPU2D_FEATURES_NO_EZ.
 #define BM_GPU2D_FEATURES_NO_EZ      (0x00008000)  //!< Bit mask for GPU2D_FEATURES_NO_EZ.
 
 //! @brief Get value of GPU2D_FEATURES_NO_EZ from a register value.
 #define BG_GPU2D_FEATURES_NO_EZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_NO_EZ) >> BP_GPU2D_FEATURES_NO_EZ)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field MIN_AREA[16] (RO)
@@ -1530,13 +1416,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_MIN_AREA      (16)      //!< Bit position for GPU2D_FEATURES_MIN_AREA.
 #define BM_GPU2D_FEATURES_MIN_AREA      (0x00010000)  //!< Bit mask for GPU2D_FEATURES_MIN_AREA.
 
 //! @brief Get value of GPU2D_FEATURES_MIN_AREA from a register value.
 #define BG_GPU2D_FEATURES_MIN_AREA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_MIN_AREA) >> BP_GPU2D_FEATURES_MIN_AREA)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field MODULE_CG[17] (RO)
@@ -1548,13 +1432,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_MODULE_CG      (17)      //!< Bit position for GPU2D_FEATURES_MODULE_CG.
 #define BM_GPU2D_FEATURES_MODULE_CG      (0x00020000)  //!< Bit mask for GPU2D_FEATURES_MODULE_CG.
 
 //! @brief Get value of GPU2D_FEATURES_MODULE_CG from a register value.
 #define BG_GPU2D_FEATURES_MODULE_CG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_MODULE_CG) >> BP_GPU2D_FEATURES_MODULE_CG)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field YUV420_TILER[18] (RO)
@@ -1566,13 +1448,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_YUV420_TILER      (18)      //!< Bit position for GPU2D_FEATURES_YUV420_TILER.
 #define BM_GPU2D_FEATURES_YUV420_TILER      (0x00040000)  //!< Bit mask for GPU2D_FEATURES_YUV420_TILER.
 
 //! @brief Get value of GPU2D_FEATURES_YUV420_TILER from a register value.
 #define BG_GPU2D_FEATURES_YUV420_TILER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_YUV420_TILER) >> BP_GPU2D_FEATURES_YUV420_TILER)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field HIGH_DYNAMIC_RANGE[19] (RO)
@@ -1584,13 +1464,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_HIGH_DYNAMIC_RANGE      (19)      //!< Bit position for GPU2D_FEATURES_HIGH_DYNAMIC_RANGE.
 #define BM_GPU2D_FEATURES_HIGH_DYNAMIC_RANGE      (0x00080000)  //!< Bit mask for GPU2D_FEATURES_HIGH_DYNAMIC_RANGE.
 
 //! @brief Get value of GPU2D_FEATURES_HIGH_DYNAMIC_RANGE from a register value.
 #define BG_GPU2D_FEATURES_HIGH_DYNAMIC_RANGE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_HIGH_DYNAMIC_RANGE) >> BP_GPU2D_FEATURES_HIGH_DYNAMIC_RANGE)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field FAST_SCALER[20] (RO)
@@ -1602,13 +1480,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_FAST_SCALER      (20)      //!< Bit position for GPU2D_FEATURES_FAST_SCALER.
 #define BM_GPU2D_FEATURES_FAST_SCALER      (0x00100000)  //!< Bit mask for GPU2D_FEATURES_FAST_SCALER.
 
 //! @brief Get value of GPU2D_FEATURES_FAST_SCALER from a register value.
 #define BG_GPU2D_FEATURES_FAST_SCALER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_FAST_SCALER) >> BP_GPU2D_FEATURES_FAST_SCALER)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field ETC1_TEXTURE_COMPRESSION[21] (RO)
@@ -1620,13 +1496,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION      (21)      //!< Bit position for GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION.
 #define BM_GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION      (0x00200000)  //!< Bit mask for GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION.
 
 //! @brief Get value of GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION from a register value.
 #define BG_GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION) >> BP_GPU2D_FEATURES_ETC1_TEXTURE_COMPRESSION)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field PIPE_2D[22] (RO)
@@ -1638,13 +1512,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_PIPE_2D      (22)      //!< Bit position for GPU2D_FEATURES_PIPE_2D.
 #define BM_GPU2D_FEATURES_PIPE_2D      (0x00400000)  //!< Bit mask for GPU2D_FEATURES_PIPE_2D.
 
 //! @brief Get value of GPU2D_FEATURES_PIPE_2D from a register value.
 #define BG_GPU2D_FEATURES_PIPE_2D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_PIPE_2D) >> BP_GPU2D_FEATURES_PIPE_2D)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field DC[23] (RO)
@@ -1656,13 +1528,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_DC      (23)      //!< Bit position for GPU2D_FEATURES_DC.
 #define BM_GPU2D_FEATURES_DC      (0x00800000)  //!< Bit mask for GPU2D_FEATURES_DC.
 
 //! @brief Get value of GPU2D_FEATURES_DC from a register value.
 #define BG_GPU2D_FEATURES_DC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_DC) >> BP_GPU2D_FEATURES_DC)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field MSAA[24] (RO)
@@ -1674,13 +1544,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_MSAA      (24)      //!< Bit position for GPU2D_FEATURES_MSAA.
 #define BM_GPU2D_FEATURES_MSAA      (0x01000000)  //!< Bit mask for GPU2D_FEATURES_MSAA.
 
 //! @brief Get value of GPU2D_FEATURES_MSAA from a register value.
 #define BG_GPU2D_FEATURES_MSAA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_MSAA) >> BP_GPU2D_FEATURES_MSAA)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field YUV420_FILTER[25] (RO)
@@ -1692,13 +1560,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_YUV420_FILTER      (25)      //!< Bit position for GPU2D_FEATURES_YUV420_FILTER.
 #define BM_GPU2D_FEATURES_YUV420_FILTER      (0x02000000)  //!< Bit mask for GPU2D_FEATURES_YUV420_FILTER.
 
 //! @brief Get value of GPU2D_FEATURES_YUV420_FILTER from a register value.
 #define BG_GPU2D_FEATURES_YUV420_FILTER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_YUV420_FILTER) >> BP_GPU2D_FEATURES_YUV420_FILTER)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field ZCOMPRESSION[26] (RO)
@@ -1710,13 +1576,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_ZCOMPRESSION      (26)      //!< Bit position for GPU2D_FEATURES_ZCOMPRESSION.
 #define BM_GPU2D_FEATURES_ZCOMPRESSION      (0x04000000)  //!< Bit mask for GPU2D_FEATURES_ZCOMPRESSION.
 
 //! @brief Get value of GPU2D_FEATURES_ZCOMPRESSION from a register value.
 #define BG_GPU2D_FEATURES_ZCOMPRESSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_ZCOMPRESSION) >> BP_GPU2D_FEATURES_ZCOMPRESSION)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field DEBUG_MODE[27] (RO)
@@ -1728,13 +1592,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_DEBUG_MODE      (27)      //!< Bit position for GPU2D_FEATURES_DEBUG_MODE.
 #define BM_GPU2D_FEATURES_DEBUG_MODE      (0x08000000)  //!< Bit mask for GPU2D_FEATURES_DEBUG_MODE.
 
 //! @brief Get value of GPU2D_FEATURES_DEBUG_MODE from a register value.
 #define BG_GPU2D_FEATURES_DEBUG_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_DEBUG_MODE) >> BP_GPU2D_FEATURES_DEBUG_MODE)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field DXT_TEXTURE_COMPRESSION[28] (RO)
@@ -1746,13 +1608,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION      (28)      //!< Bit position for GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION.
 #define BM_GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION      (0x10000000)  //!< Bit mask for GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION.
 
 //! @brief Get value of GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION from a register value.
 #define BG_GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION) >> BP_GPU2D_FEATURES_DXT_TEXTURE_COMPRESSION)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field PIPE_3D[29] (RO)
@@ -1764,13 +1624,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_PIPE_3D      (29)      //!< Bit position for GPU2D_FEATURES_PIPE_3D.
 #define BM_GPU2D_FEATURES_PIPE_3D      (0x20000000)  //!< Bit mask for GPU2D_FEATURES_PIPE_3D.
 
 //! @brief Get value of GPU2D_FEATURES_PIPE_3D from a register value.
 #define BG_GPU2D_FEATURES_PIPE_3D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_PIPE_3D) >> BP_GPU2D_FEATURES_PIPE_3D)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field SPECIAL_ANTI_ALIASING[30] (RO)
@@ -1782,13 +1640,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_SPECIAL_ANTI_ALIASING      (30)      //!< Bit position for GPU2D_FEATURES_SPECIAL_ANTI_ALIASING.
 #define BM_GPU2D_FEATURES_SPECIAL_ANTI_ALIASING      (0x40000000)  //!< Bit mask for GPU2D_FEATURES_SPECIAL_ANTI_ALIASING.
 
 //! @brief Get value of GPU2D_FEATURES_SPECIAL_ANTI_ALIASING from a register value.
 #define BG_GPU2D_FEATURES_SPECIAL_ANTI_ALIASING(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_SPECIAL_ANTI_ALIASING) >> BP_GPU2D_FEATURES_SPECIAL_ANTI_ALIASING)
-
 //@}
 
 /*! @name Register GPU2D_FEATURES, field FAST_CLEAR[31] (RO)
@@ -1800,13 +1656,11 @@ typedef union _hw_gpu2d_features
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_FEATURES_FAST_CLEAR      (31)      //!< Bit position for GPU2D_FEATURES_FAST_CLEAR.
 #define BM_GPU2D_FEATURES_FAST_CLEAR      (0x80000000)  //!< Bit mask for GPU2D_FEATURES_FAST_CLEAR.
 
 //! @brief Get value of GPU2D_FEATURES_FAST_CLEAR from a register value.
 #define BG_GPU2D_FEATURES_FAST_CLEAR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_FEATURES_FAST_CLEAR) >> BP_GPU2D_FEATURES_FAST_CLEAR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1853,13 +1707,11 @@ typedef union _hw_gpu2d_chipid
  * Id.
  */
 //@{
-
 #define BP_GPU2D_CHIPID_ID      (0)      //!< Bit position for GPU2D_CHIPID_ID.
 #define BM_GPU2D_CHIPID_ID      (0xffffffff)  //!< Bit mask for GPU2D_CHIPID_ID.
 
 //! @brief Get value of GPU2D_CHIPID_ID from a register value.
 #define BG_GPU2D_CHIPID_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_CHIPID_ID) >> BP_GPU2D_CHIPID_ID)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1906,13 +1758,11 @@ typedef union _hw_gpu2d_chiprev
  * Revision.
  */
 //@{
-
 #define BP_GPU2D_CHIPREV_REV      (0)      //!< Bit position for GPU2D_CHIPREV_REV.
 #define BM_GPU2D_CHIPREV_REV      (0xffffffff)  //!< Bit mask for GPU2D_CHIPREV_REV.
 
 //! @brief Get value of GPU2D_CHIPREV_REV from a register value.
 #define BG_GPU2D_CHIPREV_REV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_CHIPREV_REV) >> BP_GPU2D_CHIPREV_REV)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1959,13 +1809,11 @@ typedef union _hw_gpu2d_chipdate
  * Date.
  */
 //@{
-
 #define BP_GPU2D_CHIPDATE_DATE      (0)      //!< Bit position for GPU2D_CHIPDATE_DATE.
 #define BM_GPU2D_CHIPDATE_DATE      (0xffffffff)  //!< Bit mask for GPU2D_CHIPDATE_DATE.
 
 //! @brief Get value of GPU2D_CHIPDATE_DATE from a register value.
 #define BG_GPU2D_CHIPDATE_DATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_CHIPDATE_DATE) >> BP_GPU2D_CHIPDATE_DATE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2012,13 +1860,11 @@ typedef union _hw_gpu2d_chiptime
  * Time.
  */
 //@{
-
 #define BP_GPU2D_CHIPTIME_TIME      (0)      //!< Bit position for GPU2D_CHIPTIME_TIME.
 #define BM_GPU2D_CHIPTIME_TIME      (0xffffffff)  //!< Bit mask for GPU2D_CHIPTIME_TIME.
 
 //! @brief Get value of GPU2D_CHIPTIME_TIME from a register value.
 #define BG_GPU2D_CHIPTIME_TIME(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_CHIPTIME_TIME) >> BP_GPU2D_CHIPTIME_TIME)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2066,13 +1912,11 @@ typedef union _hw_gpu2d_chipcustomer
  * Group.
  */
 //@{
-
 #define BP_GPU2D_CHIPCUSTOMER_GROUP      (0)      //!< Bit position for GPU2D_CHIPCUSTOMER_GROUP.
 #define BM_GPU2D_CHIPCUSTOMER_GROUP      (0x0000ffff)  //!< Bit mask for GPU2D_CHIPCUSTOMER_GROUP.
 
 //! @brief Get value of GPU2D_CHIPCUSTOMER_GROUP from a register value.
 #define BG_GPU2D_CHIPCUSTOMER_GROUP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_CHIPCUSTOMER_GROUP) >> BP_GPU2D_CHIPCUSTOMER_GROUP)
-
 //@}
 
 /*! @name Register GPU2D_CHIPCUSTOMER, field COMPANY[31:16] (RO)
@@ -2080,13 +1924,11 @@ typedef union _hw_gpu2d_chipcustomer
  * Company.
  */
 //@{
-
 #define BP_GPU2D_CHIPCUSTOMER_COMPANY      (16)      //!< Bit position for GPU2D_CHIPCUSTOMER_COMPANY.
 #define BM_GPU2D_CHIPCUSTOMER_COMPANY      (0xffff0000)  //!< Bit mask for GPU2D_CHIPCUSTOMER_COMPANY.
 
 //! @brief Get value of GPU2D_CHIPCUSTOMER_COMPANY from a register value.
 #define BG_GPU2D_CHIPCUSTOMER_COMPANY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_CHIPCUSTOMER_COMPANY) >> BP_GPU2D_CHIPCUSTOMER_COMPANY)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2168,13 +2010,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_FLIP_Y      (0)      //!< Bit position for GPU2D_MINORFEATURES0_FLIP_Y.
 #define BM_GPU2D_MINORFEATURES0_FLIP_Y      (0x00000001)  //!< Bit mask for GPU2D_MINORFEATURES0_FLIP_Y.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_FLIP_Y from a register value.
 #define BG_GPU2D_MINORFEATURES0_FLIP_Y(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_FLIP_Y) >> BP_GPU2D_MINORFEATURES0_FLIP_Y)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field DUAL_RETURN_BUS[1] (RO)
@@ -2186,13 +2026,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_DUAL_RETURN_BUS      (1)      //!< Bit position for GPU2D_MINORFEATURES0_DUAL_RETURN_BUS.
 #define BM_GPU2D_MINORFEATURES0_DUAL_RETURN_BUS      (0x00000002)  //!< Bit mask for GPU2D_MINORFEATURES0_DUAL_RETURN_BUS.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_DUAL_RETURN_BUS from a register value.
 #define BG_GPU2D_MINORFEATURES0_DUAL_RETURN_BUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_DUAL_RETURN_BUS) >> BP_GPU2D_MINORFEATURES0_DUAL_RETURN_BUS)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field ENDIANNESS_CONFIG[2] (RO)
@@ -2204,13 +2042,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG      (2)      //!< Bit position for GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG.
 #define BM_GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG      (0x00000004)  //!< Bit mask for GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG from a register value.
 #define BG_GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG) >> BP_GPU2D_MINORFEATURES0_ENDIANNESS_CONFIG)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field TEXTURE8_K[3] (RO)
@@ -2222,13 +2058,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_TEXTURE8_K      (3)      //!< Bit position for GPU2D_MINORFEATURES0_TEXTURE8_K.
 #define BM_GPU2D_MINORFEATURES0_TEXTURE8_K      (0x00000008)  //!< Bit mask for GPU2D_MINORFEATURES0_TEXTURE8_K.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_TEXTURE8_K from a register value.
 #define BG_GPU2D_MINORFEATURES0_TEXTURE8_K(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_TEXTURE8_K) >> BP_GPU2D_MINORFEATURES0_TEXTURE8_K)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field CORRECT_TEXTURE_CONVERTER[4] (RO)
@@ -2240,13 +2074,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER      (4)      //!< Bit position for GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER.
 #define BM_GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER      (0x00000010)  //!< Bit mask for GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER from a register value.
 #define BG_GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER) >> BP_GPU2D_MINORFEATURES0_CORRECT_TEXTURE_CONVERTER)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field SPECIAL_MSAA_LOD[5] (RO)
@@ -2258,13 +2090,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD      (5)      //!< Bit position for GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD.
 #define BM_GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD      (0x00000020)  //!< Bit mask for GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD from a register value.
 #define BG_GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD) >> BP_GPU2D_MINORFEATURES0_SPECIAL_MSAA_LOD)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field FAST_CLEAR_FLUSH[6] (RO)
@@ -2276,13 +2106,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH      (6)      //!< Bit position for GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH.
 #define BM_GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH      (0x00000040)  //!< Bit mask for GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH from a register value.
 #define BG_GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH) >> BP_GPU2D_MINORFEATURES0_FAST_CLEAR_FLUSH)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field _2DPE20[7] (RO)
@@ -2294,13 +2122,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0__2DPE20      (7)      //!< Bit position for GPU2D_MINORFEATURES0__2DPE20.
 #define BM_GPU2D_MINORFEATURES0__2DPE20      (0x00000080)  //!< Bit mask for GPU2D_MINORFEATURES0__2DPE20.
 
 //! @brief Get value of GPU2D_MINORFEATURES0__2DPE20 from a register value.
 #define BG_GPU2D_MINORFEATURES0__2DPE20(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0__2DPE20) >> BP_GPU2D_MINORFEATURES0__2DPE20)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field CORRECT_AUTO_DISABLE[8] (RO)
@@ -2312,13 +2138,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE      (8)      //!< Bit position for GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE.
 #define BM_GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE      (0x00000100)  //!< Bit mask for GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE from a register value.
 #define BG_GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE) >> BP_GPU2D_MINORFEATURES0_CORRECT_AUTO_DISABLE)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field RENDER_8K[9] (RO)
@@ -2330,13 +2154,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_RENDER_8K      (9)      //!< Bit position for GPU2D_MINORFEATURES0_RENDER_8K.
 #define BM_GPU2D_MINORFEATURES0_RENDER_8K      (0x00000200)  //!< Bit mask for GPU2D_MINORFEATURES0_RENDER_8K.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_RENDER_8K from a register value.
 #define BG_GPU2D_MINORFEATURES0_RENDER_8K(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_RENDER_8K) >> BP_GPU2D_MINORFEATURES0_RENDER_8K)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field TILE_STATUS_2BITS[10] (RO)
@@ -2348,13 +2170,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_TILE_STATUS_2BITS      (10)      //!< Bit position for GPU2D_MINORFEATURES0_TILE_STATUS_2BITS.
 #define BM_GPU2D_MINORFEATURES0_TILE_STATUS_2BITS      (0x00000400)  //!< Bit mask for GPU2D_MINORFEATURES0_TILE_STATUS_2BITS.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_TILE_STATUS_2BITS from a register value.
 #define BG_GPU2D_MINORFEATURES0_TILE_STATUS_2BITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_TILE_STATUS_2BITS) >> BP_GPU2D_MINORFEATURES0_TILE_STATUS_2BITS)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field SEPARATE_TILE_STATUS_WHEN_INTERLEAVED[11] (RO)
@@ -2366,13 +2186,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED      (11)      //!< Bit position for GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED.
 #define BM_GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED      (0x00000800)  //!< Bit mask for GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED from a register value.
 #define BG_GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED) >> BP_GPU2D_MINORFEATURES0_SEPARATE_TILE_STATUS_WHEN_INTERLEAVED)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field SUPER_TILED_32X32[12] (RO)
@@ -2384,13 +2202,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_SUPER_TILED_32X32      (12)      //!< Bit position for GPU2D_MINORFEATURES0_SUPER_TILED_32X32.
 #define BM_GPU2D_MINORFEATURES0_SUPER_TILED_32X32      (0x00001000)  //!< Bit mask for GPU2D_MINORFEATURES0_SUPER_TILED_32X32.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_SUPER_TILED_32X32 from a register value.
 #define BG_GPU2D_MINORFEATURES0_SUPER_TILED_32X32(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_SUPER_TILED_32X32) >> BP_GPU2D_MINORFEATURES0_SUPER_TILED_32X32)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field VG_20[13] (RO)
@@ -2402,13 +2218,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_VG_20      (13)      //!< Bit position for GPU2D_MINORFEATURES0_VG_20.
 #define BM_GPU2D_MINORFEATURES0_VG_20      (0x00002000)  //!< Bit mask for GPU2D_MINORFEATURES0_VG_20.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_VG_20 from a register value.
 #define BG_GPU2D_MINORFEATURES0_VG_20(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_VG_20) >> BP_GPU2D_MINORFEATURES0_VG_20)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field TS_EXTENDED_COMMANDS[14] (RO)
@@ -2420,13 +2234,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS      (14)      //!< Bit position for GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS.
 #define BM_GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS      (0x00004000)  //!< Bit mask for GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS from a register value.
 #define BG_GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS) >> BP_GPU2D_MINORFEATURES0_TS_EXTENDED_COMMANDS)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field COMPRESSION_FIFO_FIXED[15] (RO)
@@ -2438,13 +2250,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED      (15)      //!< Bit position for GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED.
 #define BM_GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED      (0x00008000)  //!< Bit mask for GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED from a register value.
 #define BG_GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED) >> BP_GPU2D_MINORFEATURES0_COMPRESSION_FIFO_FIXED)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field EXTRA_SHADER_INSTRUCTIONS0[16] (RO)
@@ -2456,13 +2266,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0      (16)      //!< Bit position for GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0.
 #define BM_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0      (0x00010000)  //!< Bit mask for GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0 from a register value.
 #define BG_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0) >> BP_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS0)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field VG_FILTER[17] (RO)
@@ -2474,13 +2282,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_VG_FILTER      (17)      //!< Bit position for GPU2D_MINORFEATURES0_VG_FILTER.
 #define BM_GPU2D_MINORFEATURES0_VG_FILTER      (0x00020000)  //!< Bit mask for GPU2D_MINORFEATURES0_VG_FILTER.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_VG_FILTER from a register value.
 #define BG_GPU2D_MINORFEATURES0_VG_FILTER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_VG_FILTER) >> BP_GPU2D_MINORFEATURES0_VG_FILTER)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field VG_21[18] (RO)
@@ -2492,13 +2298,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_VG_21      (18)      //!< Bit position for GPU2D_MINORFEATURES0_VG_21.
 #define BM_GPU2D_MINORFEATURES0_VG_21      (0x00040000)  //!< Bit mask for GPU2D_MINORFEATURES0_VG_21.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_VG_21 from a register value.
 #define BG_GPU2D_MINORFEATURES0_VG_21(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_VG_21) >> BP_GPU2D_MINORFEATURES0_VG_21)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field SHADER_GETS_W[19] (RO)
@@ -2510,13 +2314,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_SHADER_GETS_W      (19)      //!< Bit position for GPU2D_MINORFEATURES0_SHADER_GETS_W.
 #define BM_GPU2D_MINORFEATURES0_SHADER_GETS_W      (0x00080000)  //!< Bit mask for GPU2D_MINORFEATURES0_SHADER_GETS_W.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_SHADER_GETS_W from a register value.
 #define BG_GPU2D_MINORFEATURES0_SHADER_GETS_W(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_SHADER_GETS_W) >> BP_GPU2D_MINORFEATURES0_SHADER_GETS_W)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field EXTRA_SHADER_INSTRUCTIONS1[20] (RO)
@@ -2528,13 +2330,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1      (20)      //!< Bit position for GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1.
 #define BM_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1      (0x00100000)  //!< Bit mask for GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1 from a register value.
 #define BG_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1) >> BP_GPU2D_MINORFEATURES0_EXTRA_SHADER_INSTRUCTIONS1)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field DEFAULT_REG0[21] (RO)
@@ -2546,13 +2346,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_DEFAULT_REG0      (21)      //!< Bit position for GPU2D_MINORFEATURES0_DEFAULT_REG0.
 #define BM_GPU2D_MINORFEATURES0_DEFAULT_REG0      (0x00200000)  //!< Bit mask for GPU2D_MINORFEATURES0_DEFAULT_REG0.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_DEFAULT_REG0 from a register value.
 #define BG_GPU2D_MINORFEATURES0_DEFAULT_REG0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_DEFAULT_REG0) >> BP_GPU2D_MINORFEATURES0_DEFAULT_REG0)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field MC_20[22] (RO)
@@ -2564,13 +2362,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_MC_20      (22)      //!< Bit position for GPU2D_MINORFEATURES0_MC_20.
 #define BM_GPU2D_MINORFEATURES0_MC_20      (0x00400000)  //!< Bit mask for GPU2D_MINORFEATURES0_MC_20.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_MC_20 from a register value.
 #define BG_GPU2D_MINORFEATURES0_MC_20(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_MC_20) >> BP_GPU2D_MINORFEATURES0_MC_20)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field SHADER_MSAA_SIDEBAND[23] (RO)
@@ -2582,13 +2378,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND      (23)      //!< Bit position for GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND.
 #define BM_GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND      (0x00800000)  //!< Bit mask for GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND from a register value.
 #define BG_GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND) >> BP_GPU2D_MINORFEATURES0_SHADER_MSAA_SIDEBAND)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field BUG_FIXES0[24] (RO)
@@ -2600,13 +2394,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_BUG_FIXES0      (24)      //!< Bit position for GPU2D_MINORFEATURES0_BUG_FIXES0.
 #define BM_GPU2D_MINORFEATURES0_BUG_FIXES0      (0x01000000)  //!< Bit mask for GPU2D_MINORFEATURES0_BUG_FIXES0.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_BUG_FIXES0 from a register value.
 #define BG_GPU2D_MINORFEATURES0_BUG_FIXES0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_BUG_FIXES0) >> BP_GPU2D_MINORFEATURES0_BUG_FIXES0)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field VAA[25] (RO)
@@ -2618,13 +2410,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_VAA      (25)      //!< Bit position for GPU2D_MINORFEATURES0_VAA.
 #define BM_GPU2D_MINORFEATURES0_VAA      (0x02000000)  //!< Bit mask for GPU2D_MINORFEATURES0_VAA.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_VAA from a register value.
 #define BG_GPU2D_MINORFEATURES0_VAA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_VAA) >> BP_GPU2D_MINORFEATURES0_VAA)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field BYPASS_IN_MSAA[26] (RO)
@@ -2636,13 +2426,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_BYPASS_IN_MSAA      (26)      //!< Bit position for GPU2D_MINORFEATURES0_BYPASS_IN_MSAA.
 #define BM_GPU2D_MINORFEATURES0_BYPASS_IN_MSAA      (0x04000000)  //!< Bit mask for GPU2D_MINORFEATURES0_BYPASS_IN_MSAA.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_BYPASS_IN_MSAA from a register value.
 #define BG_GPU2D_MINORFEATURES0_BYPASS_IN_MSAA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_BYPASS_IN_MSAA) >> BP_GPU2D_MINORFEATURES0_BYPASS_IN_MSAA)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field HIERARCHICAL_Z[27] (RO)
@@ -2654,13 +2442,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_HIERARCHICAL_Z      (27)      //!< Bit position for GPU2D_MINORFEATURES0_HIERARCHICAL_Z.
 #define BM_GPU2D_MINORFEATURES0_HIERARCHICAL_Z      (0x08000000)  //!< Bit mask for GPU2D_MINORFEATURES0_HIERARCHICAL_Z.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_HIERARCHICAL_Z from a register value.
 #define BG_GPU2D_MINORFEATURES0_HIERARCHICAL_Z(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_HIERARCHICAL_Z) >> BP_GPU2D_MINORFEATURES0_HIERARCHICAL_Z)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field NEW_TEXTURE[28] (RO)
@@ -2672,13 +2458,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_NEW_TEXTURE      (28)      //!< Bit position for GPU2D_MINORFEATURES0_NEW_TEXTURE.
 #define BM_GPU2D_MINORFEATURES0_NEW_TEXTURE      (0x10000000)  //!< Bit mask for GPU2D_MINORFEATURES0_NEW_TEXTURE.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_NEW_TEXTURE from a register value.
 #define BG_GPU2D_MINORFEATURES0_NEW_TEXTURE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_NEW_TEXTURE) >> BP_GPU2D_MINORFEATURES0_NEW_TEXTURE)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field A8_TARGET_SUPPORT[29] (RO)
@@ -2690,13 +2474,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT      (29)      //!< Bit position for GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT.
 #define BM_GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT      (0x20000000)  //!< Bit mask for GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT from a register value.
 #define BG_GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT) >> BP_GPU2D_MINORFEATURES0_A8_TARGET_SUPPORT)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field CORRECT_STENCIL[30] (RO)
@@ -2708,13 +2490,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_CORRECT_STENCIL      (30)      //!< Bit position for GPU2D_MINORFEATURES0_CORRECT_STENCIL.
 #define BM_GPU2D_MINORFEATURES0_CORRECT_STENCIL      (0x40000000)  //!< Bit mask for GPU2D_MINORFEATURES0_CORRECT_STENCIL.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_CORRECT_STENCIL from a register value.
 #define BG_GPU2D_MINORFEATURES0_CORRECT_STENCIL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_CORRECT_STENCIL) >> BP_GPU2D_MINORFEATURES0_CORRECT_STENCIL)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES0, field ENHANCE_VR[31] (RO)
@@ -2727,13 +2507,11 @@ typedef union _hw_gpu2d_minorfeatures0
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES0_ENHANCE_VR      (31)      //!< Bit position for GPU2D_MINORFEATURES0_ENHANCE_VR.
 #define BM_GPU2D_MINORFEATURES0_ENHANCE_VR      (0x80000000)  //!< Bit mask for GPU2D_MINORFEATURES0_ENHANCE_VR.
 
 //! @brief Get value of GPU2D_MINORFEATURES0_ENHANCE_VR from a register value.
 #define BG_GPU2D_MINORFEATURES0_ENHANCE_VR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES0_ENHANCE_VR) >> BP_GPU2D_MINORFEATURES0_ENHANCE_VR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2783,7 +2561,6 @@ typedef union _hw_gpu2d_cachecontrol
  * Reserved
  */
 //@{
-
 #define BP_GPU2D_CACHECONTROL_NOT_USED      (0)      //!< Bit position for GPU2D_CACHECONTROL_NOT_USED.
 #define BM_GPU2D_CACHECONTROL_NOT_USED      (0xffffffff)  //!< Bit mask for GPU2D_CACHECONTROL_NOT_USED.
 
@@ -2797,7 +2574,6 @@ typedef union _hw_gpu2d_cachecontrol
 //! @brief Set the NOT_USED field to a new value.
 #define BW_GPU2D_CACHECONTROL_NOT_USED(v)   (HW_GPU2D_CACHECONTROL_WR((HW_GPU2D_CACHECONTROL_RD() & ~BM_GPU2D_CACHECONTROL_NOT_USED) | BF_GPU2D_CACHECONTROL_NOT_USED(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2844,7 +2620,6 @@ typedef union _hw_gpu2d_resetmemcounters
 
  */
 //@{
-
 #define BP_GPU2D_RESETMEMCOUNTERS_RESET      (0)      //!< Bit position for GPU2D_RESETMEMCOUNTERS_RESET.
 #define BM_GPU2D_RESETMEMCOUNTERS_RESET      (0xffffffff)  //!< Bit mask for GPU2D_RESETMEMCOUNTERS_RESET.
 
@@ -2853,7 +2628,6 @@ typedef union _hw_gpu2d_resetmemcounters
 
 //! @brief Format value for bitfield GPU2D_RESETMEMCOUNTERS_RESET.
 #define BF_GPU2D_RESETMEMCOUNTERS_RESET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_GPU2D_RESETMEMCOUNTERS_RESET) & BM_GPU2D_RESETMEMCOUNTERS_RESET)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2899,13 +2673,11 @@ typedef union _hw_gpu2d_totalreads
 
  */
 //@{
-
 #define BP_GPU2D_TOTALREADS_COUNT      (0)      //!< Bit position for GPU2D_TOTALREADS_COUNT.
 #define BM_GPU2D_TOTALREADS_COUNT      (0xffffffff)  //!< Bit mask for GPU2D_TOTALREADS_COUNT.
 
 //! @brief Get value of GPU2D_TOTALREADS_COUNT from a register value.
 #define BG_GPU2D_TOTALREADS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_TOTALREADS_COUNT) >> BP_GPU2D_TOTALREADS_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2951,13 +2723,11 @@ typedef union _hw_gpu2d_totalwrites
 
  */
 //@{
-
 #define BP_GPU2D_TOTALWRITES_COUNT      (0)      //!< Bit position for GPU2D_TOTALWRITES_COUNT.
 #define BM_GPU2D_TOTALWRITES_COUNT      (0xffffffff)  //!< Bit mask for GPU2D_TOTALWRITES_COUNT.
 
 //! @brief Get value of GPU2D_TOTALWRITES_COUNT from a register value.
 #define BG_GPU2D_TOTALWRITES_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_TOTALWRITES_COUNT) >> BP_GPU2D_TOTALWRITES_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3010,13 +2780,11 @@ typedef union _hw_gpu2d_chipspecs
  * Log2 of vertex output buffer size.
  */
 //@{
-
 #define BP_GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE      (0)      //!< Bit position for GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE.
 #define BM_GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE      (0x0000000f)  //!< Bit mask for GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE.
 
 //! @brief Get value of GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE from a register value.
 #define BG_GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE) >> BP_GPU2D_CHIPSPECS_VERTEX_OUTPUT_BUFFER_SIZE)
-
 //@}
 
 /*! @name Register GPU2D_CHIPSPECS, field NUM_PIXEL_PIPES[6:4] (RO)
@@ -3024,13 +2792,11 @@ typedef union _hw_gpu2d_chipspecs
  * Number of pixel pipes.
  */
 //@{
-
 #define BP_GPU2D_CHIPSPECS_NUM_PIXEL_PIPES      (4)      //!< Bit position for GPU2D_CHIPSPECS_NUM_PIXEL_PIPES.
 #define BM_GPU2D_CHIPSPECS_NUM_PIXEL_PIPES      (0x00000070)  //!< Bit mask for GPU2D_CHIPSPECS_NUM_PIXEL_PIPES.
 
 //! @brief Get value of GPU2D_CHIPSPECS_NUM_PIXEL_PIPES from a register value.
 #define BG_GPU2D_CHIPSPECS_NUM_PIXEL_PIPES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_CHIPSPECS_NUM_PIXEL_PIPES) >> BP_GPU2D_CHIPSPECS_NUM_PIXEL_PIPES)
-
 //@}
 
 /*! @name Register GPU2D_CHIPSPECS, field NUM_SHADER_CORES[11:7] (RO)
@@ -3038,13 +2804,11 @@ typedef union _hw_gpu2d_chipspecs
  * Number of shader cores.
  */
 //@{
-
 #define BP_GPU2D_CHIPSPECS_NUM_SHADER_CORES      (7)      //!< Bit position for GPU2D_CHIPSPECS_NUM_SHADER_CORES.
 #define BM_GPU2D_CHIPSPECS_NUM_SHADER_CORES      (0x00000f80)  //!< Bit mask for GPU2D_CHIPSPECS_NUM_SHADER_CORES.
 
 //! @brief Get value of GPU2D_CHIPSPECS_NUM_SHADER_CORES from a register value.
 #define BG_GPU2D_CHIPSPECS_NUM_SHADER_CORES(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_CHIPSPECS_NUM_SHADER_CORES) >> BP_GPU2D_CHIPSPECS_NUM_SHADER_CORES)
-
 //@}
 
 /*! @name Register GPU2D_CHIPSPECS, field VERTEX_CACHE_SIZE[19:15] (RO)
@@ -3052,13 +2816,11 @@ typedef union _hw_gpu2d_chipspecs
  * Number of entries in the vertex shader cache.
  */
 //@{
-
 #define BP_GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE      (15)      //!< Bit position for GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE.
 #define BM_GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE      (0x000f8000)  //!< Bit mask for GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE.
 
 //! @brief Get value of GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE from a register value.
 #define BG_GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE) >> BP_GPU2D_CHIPSPECS_VERTEX_CACHE_SIZE)
-
 //@}
 
 /*! @name Register GPU2D_CHIPSPECS, field THREAD_COUNT[23:20] (RO)
@@ -3066,13 +2828,11 @@ typedef union _hw_gpu2d_chipspecs
  * Log2 of thread count.
  */
 //@{
-
 #define BP_GPU2D_CHIPSPECS_THREAD_COUNT      (20)      //!< Bit position for GPU2D_CHIPSPECS_THREAD_COUNT.
 #define BM_GPU2D_CHIPSPECS_THREAD_COUNT      (0x00f00000)  //!< Bit mask for GPU2D_CHIPSPECS_THREAD_COUNT.
 
 //! @brief Get value of GPU2D_CHIPSPECS_THREAD_COUNT from a register value.
 #define BG_GPU2D_CHIPSPECS_THREAD_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_CHIPSPECS_THREAD_COUNT) >> BP_GPU2D_CHIPSPECS_THREAD_COUNT)
-
 //@}
 
 /*! @name Register GPU2D_CHIPSPECS, field TEMP_REGISTERS[27:24] (RO)
@@ -3080,13 +2840,11 @@ typedef union _hw_gpu2d_chipspecs
  * Log2 of temporary registers.
  */
 //@{
-
 #define BP_GPU2D_CHIPSPECS_TEMP_REGISTERS      (24)      //!< Bit position for GPU2D_CHIPSPECS_TEMP_REGISTERS.
 #define BM_GPU2D_CHIPSPECS_TEMP_REGISTERS      (0x0f000000)  //!< Bit mask for GPU2D_CHIPSPECS_TEMP_REGISTERS.
 
 //! @brief Get value of GPU2D_CHIPSPECS_TEMP_REGISTERS from a register value.
 #define BG_GPU2D_CHIPSPECS_TEMP_REGISTERS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_CHIPSPECS_TEMP_REGISTERS) >> BP_GPU2D_CHIPSPECS_TEMP_REGISTERS)
-
 //@}
 
 /*! @name Register GPU2D_CHIPSPECS, field STREAMS[31:28] (RO)
@@ -3094,13 +2852,11 @@ typedef union _hw_gpu2d_chipspecs
  * Number of vertex streams.
  */
 //@{
-
 #define BP_GPU2D_CHIPSPECS_STREAMS      (28)      //!< Bit position for GPU2D_CHIPSPECS_STREAMS.
 #define BM_GPU2D_CHIPSPECS_STREAMS      (0xf0000000)  //!< Bit mask for GPU2D_CHIPSPECS_STREAMS.
 
 //! @brief Get value of GPU2D_CHIPSPECS_STREAMS from a register value.
 #define BG_GPU2D_CHIPSPECS_STREAMS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_CHIPSPECS_STREAMS) >> BP_GPU2D_CHIPSPECS_STREAMS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3146,13 +2902,11 @@ typedef union _hw_gpu2d_totalwritebursts
 
  */
 //@{
-
 #define BP_GPU2D_TOTALWRITEBURSTS_COUNT      (0)      //!< Bit position for GPU2D_TOTALWRITEBURSTS_COUNT.
 #define BM_GPU2D_TOTALWRITEBURSTS_COUNT      (0xffffffff)  //!< Bit mask for GPU2D_TOTALWRITEBURSTS_COUNT.
 
 //! @brief Get value of GPU2D_TOTALWRITEBURSTS_COUNT from a register value.
 #define BG_GPU2D_TOTALWRITEBURSTS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_TOTALWRITEBURSTS_COUNT) >> BP_GPU2D_TOTALWRITEBURSTS_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3198,13 +2952,11 @@ typedef union _hw_gpu2d_totalwritereqs
 
  */
 //@{
-
 #define BP_GPU2D_TOTALWRITEREQS_COUNT      (0)      //!< Bit position for GPU2D_TOTALWRITEREQS_COUNT.
 #define BM_GPU2D_TOTALWRITEREQS_COUNT      (0xffffffff)  //!< Bit mask for GPU2D_TOTALWRITEREQS_COUNT.
 
 //! @brief Get value of GPU2D_TOTALWRITEREQS_COUNT from a register value.
 #define BG_GPU2D_TOTALWRITEREQS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_TOTALWRITEREQS_COUNT) >> BP_GPU2D_TOTALWRITEREQS_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3250,13 +3002,11 @@ typedef union _hw_gpu2d_totalwritelasts
 
  */
 //@{
-
 #define BP_GPU2D_TOTALWRITELASTS_COUNT      (0)      //!< Bit position for GPU2D_TOTALWRITELASTS_COUNT.
 #define BM_GPU2D_TOTALWRITELASTS_COUNT      (0xffffffff)  //!< Bit mask for GPU2D_TOTALWRITELASTS_COUNT.
 
 //! @brief Get value of GPU2D_TOTALWRITELASTS_COUNT from a register value.
 #define BG_GPU2D_TOTALWRITELASTS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_TOTALWRITELASTS_COUNT) >> BP_GPU2D_TOTALWRITELASTS_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3302,13 +3052,11 @@ typedef union _hw_gpu2d_totalreadbursts
 
  */
 //@{
-
 #define BP_GPU2D_TOTALREADBURSTS_COUNT      (0)      //!< Bit position for GPU2D_TOTALREADBURSTS_COUNT.
 #define BM_GPU2D_TOTALREADBURSTS_COUNT      (0xffffffff)  //!< Bit mask for GPU2D_TOTALREADBURSTS_COUNT.
 
 //! @brief Get value of GPU2D_TOTALREADBURSTS_COUNT from a register value.
 #define BG_GPU2D_TOTALREADBURSTS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_TOTALREADBURSTS_COUNT) >> BP_GPU2D_TOTALREADBURSTS_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3354,13 +3102,11 @@ typedef union _hw_gpu2d_totalreadreqs
 
  */
 //@{
-
 #define BP_GPU2D_TOTALREADREQS_COUNT      (0)      //!< Bit position for GPU2D_TOTALREADREQS_COUNT.
 #define BM_GPU2D_TOTALREADREQS_COUNT      (0xffffffff)  //!< Bit mask for GPU2D_TOTALREADREQS_COUNT.
 
 //! @brief Get value of GPU2D_TOTALREADREQS_COUNT from a register value.
 #define BG_GPU2D_TOTALREADREQS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_TOTALREADREQS_COUNT) >> BP_GPU2D_TOTALREADREQS_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3406,13 +3152,11 @@ typedef union _hw_gpu2d_totalreadlasts
 
  */
 //@{
-
 #define BP_GPU2D_TOTALREADLASTS_COUNT      (0)      //!< Bit position for GPU2D_TOTALREADLASTS_COUNT.
 #define BM_GPU2D_TOTALREADLASTS_COUNT      (0xffffffff)  //!< Bit mask for GPU2D_TOTALREADLASTS_COUNT.
 
 //! @brief Get value of GPU2D_TOTALREADLASTS_COUNT from a register value.
 #define BG_GPU2D_TOTALREADLASTS_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_TOTALREADLASTS_COUNT) >> BP_GPU2D_TOTALREADLASTS_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3462,7 +3206,6 @@ typedef union _hw_gpu2d_gpout0
 
  */
 //@{
-
 #define BP_GPU2D_GPOUT0_COUNT      (0)      //!< Bit position for GPU2D_GPOUT0_COUNT.
 #define BM_GPU2D_GPOUT0_COUNT      (0xffffffff)  //!< Bit mask for GPU2D_GPOUT0_COUNT.
 
@@ -3476,7 +3219,6 @@ typedef union _hw_gpu2d_gpout0
 //! @brief Set the COUNT field to a new value.
 #define BW_GPU2D_GPOUT0_COUNT(v)   (HW_GPU2D_GPOUT0_WR((HW_GPU2D_GPOUT0_RD() & ~BM_GPU2D_GPOUT0_COUNT) | BF_GPU2D_GPOUT0_COUNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3526,7 +3268,6 @@ typedef union _hw_gpu2d_gpout1
 
  */
 //@{
-
 #define BP_GPU2D_GPOUT1_COUNT      (0)      //!< Bit position for GPU2D_GPOUT1_COUNT.
 #define BM_GPU2D_GPOUT1_COUNT      (0xffffffff)  //!< Bit mask for GPU2D_GPOUT1_COUNT.
 
@@ -3540,7 +3281,6 @@ typedef union _hw_gpu2d_gpout1
 //! @brief Set the COUNT field to a new value.
 #define BW_GPU2D_GPOUT1_COUNT(v)   (HW_GPU2D_GPOUT1_WR((HW_GPU2D_GPOUT1_RD() & ~BM_GPU2D_GPOUT1_COUNT) | BF_GPU2D_GPOUT1_COUNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3590,7 +3330,6 @@ typedef union _hw_gpu2d_gpout2
 
  */
 //@{
-
 #define BP_GPU2D_GPOUT2_COUNT      (0)      //!< Bit position for GPU2D_GPOUT2_COUNT.
 #define BM_GPU2D_GPOUT2_COUNT      (0xffffffff)  //!< Bit mask for GPU2D_GPOUT2_COUNT.
 
@@ -3604,7 +3343,6 @@ typedef union _hw_gpu2d_gpout2
 //! @brief Set the COUNT field to a new value.
 #define BW_GPU2D_GPOUT2_COUNT(v)   (HW_GPU2D_GPOUT2_WR((HW_GPU2D_GPOUT2_RD() & ~BM_GPU2D_GPOUT2_COUNT) | BF_GPU2D_GPOUT2_COUNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3658,7 +3396,6 @@ typedef union _hw_gpu2d_axicontrol
  * - 1 - BURST_RESET_VALUE
  */
 //@{
-
 #define BP_GPU2D_AXICONTROL_WR_FULL_BURST_MODE      (0)      //!< Bit position for GPU2D_AXICONTROL_WR_FULL_BURST_MODE.
 #define BM_GPU2D_AXICONTROL_WR_FULL_BURST_MODE      (0xffffffff)  //!< Bit mask for GPU2D_AXICONTROL_WR_FULL_BURST_MODE.
 
@@ -3672,7 +3409,6 @@ typedef union _hw_gpu2d_axicontrol
 //! @brief Set the WR_FULL_BURST_MODE field to a new value.
 #define BW_GPU2D_AXICONTROL_WR_FULL_BURST_MODE(v)   (HW_GPU2D_AXICONTROL_WR((HW_GPU2D_AXICONTROL_RD() & ~BM_GPU2D_AXICONTROL_WR_FULL_BURST_MODE) | BF_GPU2D_AXICONTROL_WR_FULL_BURST_MODE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3729,13 +3465,11 @@ typedef union _hw_gpu2d_minorfeatures1
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES1_TEXTURE_STRIDE      (26)      //!< Bit position for GPU2D_MINORFEATURES1_TEXTURE_STRIDE.
 #define BM_GPU2D_MINORFEATURES1_TEXTURE_STRIDE      (0x04000000)  //!< Bit mask for GPU2D_MINORFEATURES1_TEXTURE_STRIDE.
 
 //! @brief Get value of GPU2D_MINORFEATURES1_TEXTURE_STRIDE from a register value.
 #define BG_GPU2D_MINORFEATURES1_TEXTURE_STRIDE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES1_TEXTURE_STRIDE) >> BP_GPU2D_MINORFEATURES1_TEXTURE_STRIDE)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES1, field BUG_FIXES2[27] (RO)
@@ -3747,13 +3481,11 @@ typedef union _hw_gpu2d_minorfeatures1
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES1_BUG_FIXES2      (27)      //!< Bit position for GPU2D_MINORFEATURES1_BUG_FIXES2.
 #define BM_GPU2D_MINORFEATURES1_BUG_FIXES2      (0x08000000)  //!< Bit mask for GPU2D_MINORFEATURES1_BUG_FIXES2.
 
 //! @brief Get value of GPU2D_MINORFEATURES1_BUG_FIXES2 from a register value.
 #define BG_GPU2D_MINORFEATURES1_BUG_FIXES2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES1_BUG_FIXES2) >> BP_GPU2D_MINORFEATURES1_BUG_FIXES2)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES1, field BUG_FIXES1[28] (RO)
@@ -3765,13 +3497,11 @@ typedef union _hw_gpu2d_minorfeatures1
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES1_BUG_FIXES1      (28)      //!< Bit position for GPU2D_MINORFEATURES1_BUG_FIXES1.
 #define BM_GPU2D_MINORFEATURES1_BUG_FIXES1      (0x10000000)  //!< Bit mask for GPU2D_MINORFEATURES1_BUG_FIXES1.
 
 //! @brief Get value of GPU2D_MINORFEATURES1_BUG_FIXES1 from a register value.
 #define BG_GPU2D_MINORFEATURES1_BUG_FIXES1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES1_BUG_FIXES1) >> BP_GPU2D_MINORFEATURES1_BUG_FIXES1)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES1, field VG_DOUBLE_BUFFER[29] (RO)
@@ -3783,13 +3513,11 @@ typedef union _hw_gpu2d_minorfeatures1
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER      (29)      //!< Bit position for GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER.
 #define BM_GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER      (0x20000000)  //!< Bit mask for GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER.
 
 //! @brief Get value of GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER from a register value.
 #define BG_GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER) >> BP_GPU2D_MINORFEATURES1_VG_DOUBLE_BUFFER)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES1, field V2_COMPRESSION[30] (RO)
@@ -3801,13 +3529,11 @@ typedef union _hw_gpu2d_minorfeatures1
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES1_V2_COMPRESSION      (30)      //!< Bit position for GPU2D_MINORFEATURES1_V2_COMPRESSION.
 #define BM_GPU2D_MINORFEATURES1_V2_COMPRESSION      (0x40000000)  //!< Bit mask for GPU2D_MINORFEATURES1_V2_COMPRESSION.
 
 //! @brief Get value of GPU2D_MINORFEATURES1_V2_COMPRESSION from a register value.
 #define BG_GPU2D_MINORFEATURES1_V2_COMPRESSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES1_V2_COMPRESSION) >> BP_GPU2D_MINORFEATURES1_V2_COMPRESSION)
-
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES1, field RSUV_SWIZZLE[31] (RO)
@@ -3819,13 +3545,11 @@ typedef union _hw_gpu2d_minorfeatures1
  * - 1 - AVAILABLE
  */
 //@{
-
 #define BP_GPU2D_MINORFEATURES1_RSUV_SWIZZLE      (31)      //!< Bit position for GPU2D_MINORFEATURES1_RSUV_SWIZZLE.
 #define BM_GPU2D_MINORFEATURES1_RSUV_SWIZZLE      (0x80000000)  //!< Bit mask for GPU2D_MINORFEATURES1_RSUV_SWIZZLE.
 
 //! @brief Get value of GPU2D_MINORFEATURES1_RSUV_SWIZZLE from a register value.
 #define BG_GPU2D_MINORFEATURES1_RSUV_SWIZZLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MINORFEATURES1_RSUV_SWIZZLE) >> BP_GPU2D_MINORFEATURES1_RSUV_SWIZZLE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3875,7 +3599,6 @@ typedef union _hw_gpu2d_totalcycles
 
  */
 //@{
-
 #define BP_GPU2D_TOTALCYCLES_CYCLES      (0)      //!< Bit position for GPU2D_TOTALCYCLES_CYCLES.
 #define BM_GPU2D_TOTALCYCLES_CYCLES      (0xffffffff)  //!< Bit mask for GPU2D_TOTALCYCLES_CYCLES.
 
@@ -3889,7 +3612,6 @@ typedef union _hw_gpu2d_totalcycles
 //! @brief Set the CYCLES field to a new value.
 #define BW_GPU2D_TOTALCYCLES_CYCLES(v)   (HW_GPU2D_TOTALCYCLES_WR((HW_GPU2D_TOTALCYCLES_RD() & ~BM_GPU2D_TOTALCYCLES_CYCLES) | BF_GPU2D_TOTALCYCLES_CYCLES(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3940,7 +3662,6 @@ typedef union _hw_gpu2d_totalidlecyles
 
  */
 //@{
-
 #define BP_GPU2D_TOTALIDLECYLES_CYCLES      (0)      //!< Bit position for GPU2D_TOTALIDLECYLES_CYCLES.
 #define BM_GPU2D_TOTALIDLECYLES_CYCLES      (0xffffffff)  //!< Bit mask for GPU2D_TOTALIDLECYLES_CYCLES.
 
@@ -3954,7 +3675,6 @@ typedef union _hw_gpu2d_totalidlecyles
 //! @brief Set the CYCLES field to a new value.
 #define BW_GPU2D_TOTALIDLECYLES_CYCLES(v)   (HW_GPU2D_TOTALIDLECYLES_WR((HW_GPU2D_TOTALIDLECYLES_RD() & ~BM_GPU2D_TOTALIDLECYLES_CYCLES) | BF_GPU2D_TOTALIDLECYLES_CYCLES(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4004,7 +3724,6 @@ typedef union _hw_gpu2d_chipspecs2
 
  */
 //@{
-
 #define BP_GPU2D_CHIPSPECS2_CYCLES      (0)      //!< Bit position for GPU2D_CHIPSPECS2_CYCLES.
 #define BM_GPU2D_CHIPSPECS2_CYCLES      (0xffffffff)  //!< Bit mask for GPU2D_CHIPSPECS2_CYCLES.
 
@@ -4018,7 +3737,6 @@ typedef union _hw_gpu2d_chipspecs2
 //! @brief Set the CYCLES field to a new value.
 #define BW_GPU2D_CHIPSPECS2_CYCLES(v)   (HW_GPU2D_CHIPSPECS2_WR((HW_GPU2D_CHIPSPECS2_RD() & ~BM_GPU2D_CHIPSPECS2_CYCLES) | BF_GPU2D_CHIPSPECS2_CYCLES(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4077,7 +3795,6 @@ typedef union _hw_gpu2d_modulepowercontrols
  * Counter value for clock gating the module if the module is idle for this amount of clock cycles.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERCONTROLS_TURN_OFF_COUNTER      (0)      //!< Bit position for GPU2D_MODULEPOWERCONTROLS_TURN_OFF_COUNTER.
 #define BM_GPU2D_MODULEPOWERCONTROLS_TURN_OFF_COUNTER      (0x0000ffff)  //!< Bit mask for GPU2D_MODULEPOWERCONTROLS_TURN_OFF_COUNTER.
 
@@ -4091,7 +3808,6 @@ typedef union _hw_gpu2d_modulepowercontrols
 //! @brief Set the TURN_OFF_COUNTER field to a new value.
 #define BW_GPU2D_MODULEPOWERCONTROLS_TURN_OFF_COUNTER(v)   (HW_GPU2D_MODULEPOWERCONTROLS_WR((HW_GPU2D_MODULEPOWERCONTROLS_RD() & ~BM_GPU2D_MODULEPOWERCONTROLS_TURN_OFF_COUNTER) | BF_GPU2D_MODULEPOWERCONTROLS_TURN_OFF_COUNTER(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERCONTROLS, field TURN_ON_COUNTER[27:24] (RW)
@@ -4099,7 +3815,6 @@ typedef union _hw_gpu2d_modulepowercontrols
  * Number of clock cycles to wait after turning on the clock.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERCONTROLS_TURN_ON_COUNTER      (24)      //!< Bit position for GPU2D_MODULEPOWERCONTROLS_TURN_ON_COUNTER.
 #define BM_GPU2D_MODULEPOWERCONTROLS_TURN_ON_COUNTER      (0x0f000000)  //!< Bit mask for GPU2D_MODULEPOWERCONTROLS_TURN_ON_COUNTER.
 
@@ -4113,7 +3828,6 @@ typedef union _hw_gpu2d_modulepowercontrols
 //! @brief Set the TURN_ON_COUNTER field to a new value.
 #define BW_GPU2D_MODULEPOWERCONTROLS_TURN_ON_COUNTER(v)   (HW_GPU2D_MODULEPOWERCONTROLS_WR((HW_GPU2D_MODULEPOWERCONTROLS_RD() & ~BM_GPU2D_MODULEPOWERCONTROLS_TURN_ON_COUNTER) | BF_GPU2D_MODULEPOWERCONTROLS_TURN_ON_COUNTER(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERCONTROLS, field DISABLE_STARVE_MODULE_CLOCK_GATING[29] (RW)
@@ -4121,7 +3835,6 @@ typedef union _hw_gpu2d_modulepowercontrols
  * Disables module level clock gating for starve/idle condition.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERCONTROLS_DISABLE_STARVE_MODULE_CLOCK_GATING      (29)      //!< Bit position for GPU2D_MODULEPOWERCONTROLS_DISABLE_STARVE_MODULE_CLOCK_GATING.
 #define BM_GPU2D_MODULEPOWERCONTROLS_DISABLE_STARVE_MODULE_CLOCK_GATING      (0x20000000)  //!< Bit mask for GPU2D_MODULEPOWERCONTROLS_DISABLE_STARVE_MODULE_CLOCK_GATING.
 
@@ -4135,7 +3848,6 @@ typedef union _hw_gpu2d_modulepowercontrols
 //! @brief Set the DISABLE_STARVE_MODULE_CLOCK_GATING field to a new value.
 #define BW_GPU2D_MODULEPOWERCONTROLS_DISABLE_STARVE_MODULE_CLOCK_GATING(v)   (HW_GPU2D_MODULEPOWERCONTROLS_WR((HW_GPU2D_MODULEPOWERCONTROLS_RD() & ~BM_GPU2D_MODULEPOWERCONTROLS_DISABLE_STARVE_MODULE_CLOCK_GATING) | BF_GPU2D_MODULEPOWERCONTROLS_DISABLE_STARVE_MODULE_CLOCK_GATING(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERCONTROLS, field DISABLE_STALL_MODULE_CLOCK_GATING[30] (RW)
@@ -4143,7 +3855,6 @@ typedef union _hw_gpu2d_modulepowercontrols
  * Disables module level clock gating for stall condition.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERCONTROLS_DISABLE_STALL_MODULE_CLOCK_GATING      (30)      //!< Bit position for GPU2D_MODULEPOWERCONTROLS_DISABLE_STALL_MODULE_CLOCK_GATING.
 #define BM_GPU2D_MODULEPOWERCONTROLS_DISABLE_STALL_MODULE_CLOCK_GATING      (0x40000000)  //!< Bit mask for GPU2D_MODULEPOWERCONTROLS_DISABLE_STALL_MODULE_CLOCK_GATING.
 
@@ -4157,7 +3868,6 @@ typedef union _hw_gpu2d_modulepowercontrols
 //! @brief Set the DISABLE_STALL_MODULE_CLOCK_GATING field to a new value.
 #define BW_GPU2D_MODULEPOWERCONTROLS_DISABLE_STALL_MODULE_CLOCK_GATING(v)   (HW_GPU2D_MODULEPOWERCONTROLS_WR((HW_GPU2D_MODULEPOWERCONTROLS_RD() & ~BM_GPU2D_MODULEPOWERCONTROLS_DISABLE_STALL_MODULE_CLOCK_GATING) | BF_GPU2D_MODULEPOWERCONTROLS_DISABLE_STALL_MODULE_CLOCK_GATING(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERCONTROLS, field ENABLE_MODULE_CLOCK_GATING[31] (RW)
@@ -4165,7 +3875,6 @@ typedef union _hw_gpu2d_modulepowercontrols
  * Enables module level clock gating.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERCONTROLS_ENABLE_MODULE_CLOCK_GATING      (31)      //!< Bit position for GPU2D_MODULEPOWERCONTROLS_ENABLE_MODULE_CLOCK_GATING.
 #define BM_GPU2D_MODULEPOWERCONTROLS_ENABLE_MODULE_CLOCK_GATING      (0x80000000)  //!< Bit mask for GPU2D_MODULEPOWERCONTROLS_ENABLE_MODULE_CLOCK_GATING.
 
@@ -4179,7 +3888,6 @@ typedef union _hw_gpu2d_modulepowercontrols
 //! @brief Set the ENABLE_MODULE_CLOCK_GATING field to a new value.
 #define BW_GPU2D_MODULEPOWERCONTROLS_ENABLE_MODULE_CLOCK_GATING(v)   (HW_GPU2D_MODULEPOWERCONTROLS_WR((HW_GPU2D_MODULEPOWERCONTROLS_RD() & ~BM_GPU2D_MODULEPOWERCONTROLS_ENABLE_MODULE_CLOCK_GATING) | BF_GPU2D_MODULEPOWERCONTROLS_ENABLE_MODULE_CLOCK_GATING(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4241,7 +3949,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
  * Disables module level clock gating for TS.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TS      (20)      //!< Bit position for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TS.
 #define BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TS      (0x00100000)  //!< Bit mask for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TS.
 
@@ -4255,7 +3962,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
 //! @brief Set the DISABLE_MODULE_CLOCK_GATING_TS field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TS(v)   (HW_GPU2D_MODULEPOWERMODULECONTROL_WR((HW_GPU2D_MODULEPOWERMODULECONTROL_RD() & ~BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TS) | BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TS(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_FP[21] (RW)
@@ -4263,7 +3969,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
  * Disables module level clock gating for FP.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FP      (21)      //!< Bit position for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FP.
 #define BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FP      (0x00200000)  //!< Bit mask for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FP.
 
@@ -4277,7 +3982,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
 //! @brief Set the DISABLE_MODULE_CLOCK_GATING_FP field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FP(v)   (HW_GPU2D_MODULEPOWERMODULECONTROL_WR((HW_GPU2D_MODULEPOWERMODULECONTROL_RD() & ~BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FP) | BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FP(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_IM[22] (RW)
@@ -4285,7 +3989,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
  * Disables module level clock gating for IM.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_IM      (22)      //!< Bit position for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_IM.
 #define BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_IM      (0x00400000)  //!< Bit mask for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_IM.
 
@@ -4299,7 +4002,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
 //! @brief Set the DISABLE_MODULE_CLOCK_GATING_IM field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_IM(v)   (HW_GPU2D_MODULEPOWERMODULECONTROL_WR((HW_GPU2D_MODULEPOWERMODULECONTROL_RD() & ~BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_IM) | BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_IM(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_VG[23] (RW)
@@ -4307,7 +4009,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
  * Disables module level clock gating for VG.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_VG      (23)      //!< Bit position for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_VG.
 #define BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_VG      (0x00800000)  //!< Bit mask for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_VG.
 
@@ -4321,7 +4022,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
 //! @brief Set the DISABLE_MODULE_CLOCK_GATING_VG field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_VG(v)   (HW_GPU2D_MODULEPOWERMODULECONTROL_WR((HW_GPU2D_MODULEPOWERMODULECONTROL_RD() & ~BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_VG) | BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_VG(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_TX[24] (RW)
@@ -4329,7 +4029,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
  * Disables module level clock gating for TX.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TX      (24)      //!< Bit position for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TX.
 #define BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TX      (0x01000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TX.
 
@@ -4343,7 +4042,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
 //! @brief Set the DISABLE_MODULE_CLOCK_GATING_TX field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TX(v)   (HW_GPU2D_MODULEPOWERMODULECONTROL_WR((HW_GPU2D_MODULEPOWERMODULECONTROL_RD() & ~BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TX) | BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_TX(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_RA[25] (RW)
@@ -4351,7 +4049,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
  * Disables module level clock gating for RA.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_RA      (25)      //!< Bit position for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_RA.
 #define BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_RA      (0x02000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_RA.
 
@@ -4365,7 +4062,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
 //! @brief Set the DISABLE_MODULE_CLOCK_GATING_RA field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_RA(v)   (HW_GPU2D_MODULEPOWERMODULECONTROL_WR((HW_GPU2D_MODULEPOWERMODULECONTROL_RD() & ~BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_RA) | BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_RA(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_SE[26] (RW)
@@ -4373,7 +4069,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
  * Disables module level clock gating for SE.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SE      (26)      //!< Bit position for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SE.
 #define BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SE      (0x04000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SE.
 
@@ -4387,7 +4082,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
 //! @brief Set the DISABLE_MODULE_CLOCK_GATING_SE field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SE(v)   (HW_GPU2D_MODULEPOWERMODULECONTROL_WR((HW_GPU2D_MODULEPOWERMODULECONTROL_RD() & ~BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SE) | BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SE(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_PA[27] (RW)
@@ -4395,7 +4089,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
  * Disables module level clock gating for PA.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PA      (27)      //!< Bit position for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PA.
 #define BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PA      (0x08000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PA.
 
@@ -4409,7 +4102,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
 //! @brief Set the DISABLE_MODULE_CLOCK_GATING_PA field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PA(v)   (HW_GPU2D_MODULEPOWERMODULECONTROL_WR((HW_GPU2D_MODULEPOWERMODULECONTROL_RD() & ~BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PA) | BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PA(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_SH[28] (RW)
@@ -4417,7 +4109,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
  * Disables module level clock gating for SH.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SH      (28)      //!< Bit position for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SH.
 #define BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SH      (0x10000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SH.
 
@@ -4431,7 +4122,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
 //! @brief Set the DISABLE_MODULE_CLOCK_GATING_SH field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SH(v)   (HW_GPU2D_MODULEPOWERMODULECONTROL_WR((HW_GPU2D_MODULEPOWERMODULECONTROL_RD() & ~BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SH) | BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_SH(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_PE[29] (RW)
@@ -4439,7 +4129,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
  * Disables module level clock gating for PE.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PE      (29)      //!< Bit position for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PE.
 #define BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PE      (0x20000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PE.
 
@@ -4453,7 +4142,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
 //! @brief Set the DISABLE_MODULE_CLOCK_GATING_PE field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PE(v)   (HW_GPU2D_MODULEPOWERMODULECONTROL_WR((HW_GPU2D_MODULEPOWERMODULECONTROL_RD() & ~BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PE) | BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_PE(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_DE[30] (RW)
@@ -4461,7 +4149,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
  * Disables module level clock gating for DE.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_DE      (30)      //!< Bit position for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_DE.
 #define BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_DE      (0x40000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_DE.
 
@@ -4475,7 +4162,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
 //! @brief Set the DISABLE_MODULE_CLOCK_GATING_DE field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_DE(v)   (HW_GPU2D_MODULEPOWERMODULECONTROL_WR((HW_GPU2D_MODULEPOWERMODULECONTROL_RD() & ~BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_DE) | BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_DE(v)))
 #endif
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULECONTROL, field DISABLE_MODULE_CLOCK_GATING_FE[31] (RW)
@@ -4483,7 +4169,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
  * Disables module level clock gating for FE.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FE      (31)      //!< Bit position for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FE.
 #define BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FE      (0x80000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FE.
 
@@ -4497,7 +4182,6 @@ typedef union _hw_gpu2d_modulepowermodulecontrol
 //! @brief Set the DISABLE_MODULE_CLOCK_GATING_FE field to a new value.
 #define BW_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FE(v)   (HW_GPU2D_MODULEPOWERMODULECONTROL_WR((HW_GPU2D_MODULEPOWERMODULECONTROL_RD() & ~BM_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FE) | BF_GPU2D_MODULEPOWERMODULECONTROL_DISABLE_MODULE_CLOCK_GATING_FE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4555,13 +4239,11 @@ typedef union _hw_gpu2d_modulepowermodulestatus
  * Module level clock gating is ON for TS.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS      (20)      //!< Bit position for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS.
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS      (0x00100000)  //!< Bit mask for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS.
 
 //! @brief Get value of GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS from a register value.
 #define BG_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS) >> BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TS)
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_FP[21] (RO)
@@ -4569,13 +4251,11 @@ typedef union _hw_gpu2d_modulepowermodulestatus
  * Module level clock gating is ON for FP.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP      (21)      //!< Bit position for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP.
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP      (0x00200000)  //!< Bit mask for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP.
 
 //! @brief Get value of GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP from a register value.
 #define BG_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP) >> BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FP)
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_IM[22] (RO)
@@ -4583,13 +4263,11 @@ typedef union _hw_gpu2d_modulepowermodulestatus
  * Module level clock gating is ON for IM.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM      (22)      //!< Bit position for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM.
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM      (0x00400000)  //!< Bit mask for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM.
 
 //! @brief Get value of GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM from a register value.
 #define BG_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM) >> BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_IM)
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_VG[23] (RO)
@@ -4597,13 +4275,11 @@ typedef union _hw_gpu2d_modulepowermodulestatus
  * Module level clock gating is ON for VG.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG      (23)      //!< Bit position for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG.
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG      (0x00800000)  //!< Bit mask for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG.
 
 //! @brief Get value of GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG from a register value.
 #define BG_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG) >> BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_VG)
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_TX[24] (RO)
@@ -4611,13 +4287,11 @@ typedef union _hw_gpu2d_modulepowermodulestatus
  * Module level clock gating is ON for TX.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX      (24)      //!< Bit position for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX.
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX      (0x01000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX.
 
 //! @brief Get value of GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX from a register value.
 #define BG_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX) >> BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_TX)
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_RA[25] (RO)
@@ -4625,13 +4299,11 @@ typedef union _hw_gpu2d_modulepowermodulestatus
  * Module level clock gating is ON for RA.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA      (25)      //!< Bit position for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA.
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA      (0x02000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA.
 
 //! @brief Get value of GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA from a register value.
 #define BG_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA) >> BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_RA)
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_SE[26] (RO)
@@ -4639,13 +4311,11 @@ typedef union _hw_gpu2d_modulepowermodulestatus
  * Module level clock gating is ON for SE.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE      (26)      //!< Bit position for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE.
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE      (0x04000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE.
 
 //! @brief Get value of GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE from a register value.
 #define BG_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE) >> BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SE)
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_PA[27] (RO)
@@ -4653,13 +4323,11 @@ typedef union _hw_gpu2d_modulepowermodulestatus
  * Module level clock gating is ON for PA.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA      (27)      //!< Bit position for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA.
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA      (0x08000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA.
 
 //! @brief Get value of GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA from a register value.
 #define BG_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA) >> BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PA)
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_SH[28] (RO)
@@ -4667,13 +4335,11 @@ typedef union _hw_gpu2d_modulepowermodulestatus
  * Module level clock gating is ON for SH.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH      (28)      //!< Bit position for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH.
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH      (0x10000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH.
 
 //! @brief Get value of GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH from a register value.
 #define BG_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH) >> BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_SH)
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_PE[29] (RO)
@@ -4681,13 +4347,11 @@ typedef union _hw_gpu2d_modulepowermodulestatus
  * Module level clock gating is ON for PE.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE      (29)      //!< Bit position for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE.
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE      (0x20000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE.
 
 //! @brief Get value of GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE from a register value.
 #define BG_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE) >> BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_PE)
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_DE[30] (RO)
@@ -4695,13 +4359,11 @@ typedef union _hw_gpu2d_modulepowermodulestatus
  * Module level clock gating is ON for DE.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE      (30)      //!< Bit position for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE.
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE      (0x40000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE.
 
 //! @brief Get value of GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE from a register value.
 #define BG_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE) >> BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_DE)
-
 //@}
 
 /*! @name Register GPU2D_MODULEPOWERMODULESTATUS, field MODULE_CLOCK_GATED_FE[31] (RO)
@@ -4709,13 +4371,11 @@ typedef union _hw_gpu2d_modulepowermodulestatus
  * Module level clock gating is ON for FE.
  */
 //@{
-
 #define BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE      (31)      //!< Bit position for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE.
 #define BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE      (0x80000000)  //!< Bit mask for GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE.
 
 //! @brief Get value of GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE from a register value.
 #define BG_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE) >> BP_GPU2D_MODULEPOWERMODULESTATUS_MODULE_CLOCK_GATED_FE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4774,3 +4434,5 @@ typedef struct _hw_gpu2d
 #endif
 
 #endif // __HW_GPU2D_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

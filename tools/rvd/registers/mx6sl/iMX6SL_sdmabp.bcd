@@ -35,8 +35,8 @@ Advanced_Information.Cortex-A9={\
     :Register.G_SDMABP_DSTART={\
       gui_name="DSTART":start=0x20ec00c:length=4:\
       read_only=true:write_only=false\
-      :bit_fields.B_SDMABP_DSTART_DSTART={\
-        gui_name="DSTART":position=0:size=32:read_only=true\
+      :bit_fields.B_SDMABP_DSTART_DSTART_DE={\
+        gui_name="DSTART_DE":position=0:size=32:read_only=true\
       }\
     }\
     :Register.G_SDMABP_EVTERR={\
@@ -76,7 +76,7 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_SDMABP_DSTART":\
-    line="B_SDMABP_DSTART_DSTART":\
+    line="B_SDMABP_DSTART_DSTART_DE":\
     line="$$":\
     line="$+":\
     line="=G_SDMABP_EVTERR":\

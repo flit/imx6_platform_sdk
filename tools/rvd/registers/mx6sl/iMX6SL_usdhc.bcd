@@ -212,7 +212,7 @@ Advanced_Information.Cortex-A9={\
       gui_name="SYS_CTRL":start=0x219002c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_1USDHC_SYS_CTRL_DVS={\
-        gui_name="DVS":position=4:size=4:read_only=true\
+        gui_name="DVS":position=4:size=4:read_only=false\
       }\
       :bit_fields.B_1USDHC_SYS_CTRL_SDCLKFS={\
         gui_name="SDCLKFS":position=8:size=8:read_only=false\
@@ -1048,7 +1048,7 @@ Advanced_Information.Cortex-A9={\
       gui_name="SYS_CTRL":start=0x219402c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2USDHC_SYS_CTRL_DVS={\
-        gui_name="DVS":position=4:size=4:read_only=true\
+        gui_name="DVS":position=4:size=4:read_only=false\
       }\
       :bit_fields.B_2USDHC_SYS_CTRL_SDCLKFS={\
         gui_name="SDCLKFS":position=8:size=8:read_only=false\
@@ -1884,7 +1884,7 @@ Advanced_Information.Cortex-A9={\
       gui_name="SYS_CTRL":start=0x219802c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3USDHC_SYS_CTRL_DVS={\
-        gui_name="DVS":position=4:size=4:read_only=true\
+        gui_name="DVS":position=4:size=4:read_only=false\
       }\
       :bit_fields.B_3USDHC_SYS_CTRL_SDCLKFS={\
         gui_name="SDCLKFS":position=8:size=8:read_only=false\
@@ -2720,7 +2720,7 @@ Advanced_Information.Cortex-A9={\
       gui_name="SYS_CTRL":start=0x219c02c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4USDHC_SYS_CTRL_DVS={\
-        gui_name="DVS":position=4:size=4:read_only=true\
+        gui_name="DVS":position=4:size=4:read_only=false\
       }\
       :bit_fields.B_4USDHC_SYS_CTRL_SDCLKFS={\
         gui_name="SDCLKFS":position=8:size=8:read_only=false\

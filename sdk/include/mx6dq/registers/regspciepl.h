@@ -141,7 +141,6 @@ typedef union _hw_pcie_pl_altrtr
  * This is for additional internal processing for received TLPs and transmitted DLLPs.
  */
 //@{
-
 #define BP_PCIE_PL_ALTRTR_ROUND_TRIP_LATENCY_TIME_LIMIT      (0)      //!< Bit position for PCIE_PL_ALTRTR_ROUND_TRIP_LATENCY_TIME_LIMIT.
 #define BM_PCIE_PL_ALTRTR_ROUND_TRIP_LATENCY_TIME_LIMIT      (0x0000ffff)  //!< Bit mask for PCIE_PL_ALTRTR_ROUND_TRIP_LATENCY_TIME_LIMIT.
 
@@ -155,7 +154,6 @@ typedef union _hw_pcie_pl_altrtr
 //! @brief Set the ROUND_TRIP_LATENCY_TIME_LIMIT field to a new value.
 #define BW_PCIE_PL_ALTRTR_ROUND_TRIP_LATENCY_TIME_LIMIT(v)   (HW_PCIE_PL_ALTRTR_WR((HW_PCIE_PL_ALTRTR_RD() & ~BM_PCIE_PL_ALTRTR_ROUND_TRIP_LATENCY_TIME_LIMIT) | BF_PCIE_PL_ALTRTR_ROUND_TRIP_LATENCY_TIME_LIMIT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_ALTRTR, field REPLAY_TIME_LIMIT[31:16] (RW)
@@ -167,7 +165,6 @@ typedef union _hw_pcie_pl_altrtr
  * processing for received TLPs and transmitted DLLPs.
  */
 //@{
-
 #define BP_PCIE_PL_ALTRTR_REPLAY_TIME_LIMIT      (16)      //!< Bit position for PCIE_PL_ALTRTR_REPLAY_TIME_LIMIT.
 #define BM_PCIE_PL_ALTRTR_REPLAY_TIME_LIMIT      (0xffff0000)  //!< Bit mask for PCIE_PL_ALTRTR_REPLAY_TIME_LIMIT.
 
@@ -181,7 +178,6 @@ typedef union _hw_pcie_pl_altrtr
 //! @brief Set the REPLAY_TIME_LIMIT field to a new value.
 #define BW_PCIE_PL_ALTRTR_REPLAY_TIME_LIMIT(v)   (HW_PCIE_PL_ALTRTR_WR((HW_PCIE_PL_ALTRTR_RD() & ~BM_PCIE_PL_ALTRTR_REPLAY_TIME_LIMIT) | BF_PCIE_PL_ALTRTR_REPLAY_TIME_LIMIT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -233,7 +229,6 @@ typedef union _hw_pcie_pl_vsdr
  * the DLLP.
  */
 //@{
-
 #define BP_PCIE_PL_VSDR_VENDOR_SPECIFIC_DLLP      (0)      //!< Bit position for PCIE_PL_VSDR_VENDOR_SPECIFIC_DLLP.
 #define BM_PCIE_PL_VSDR_VENDOR_SPECIFIC_DLLP      (0xffffffff)  //!< Bit mask for PCIE_PL_VSDR_VENDOR_SPECIFIC_DLLP.
 
@@ -247,7 +242,6 @@ typedef union _hw_pcie_pl_vsdr
 //! @brief Set the VENDOR_SPECIFIC_DLLP field to a new value.
 #define BW_PCIE_PL_VSDR_VENDOR_SPECIFIC_DLLP(v)   (HW_PCIE_PL_VSDR_WR((HW_PCIE_PL_VSDR_RD() & ~BM_PCIE_PL_VSDR_VENDOR_SPECIFIC_DLLP) | BF_PCIE_PL_VSDR_VENDOR_SPECIFIC_DLLP(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -302,7 +296,6 @@ typedef union _hw_pcie_pl_pflr
  * Link Number Not used for Endpoint
  */
 //@{
-
 #define BP_PCIE_PL_PFLR_LINK_NUMBER      (0)      //!< Bit position for PCIE_PL_PFLR_LINK_NUMBER.
 #define BM_PCIE_PL_PFLR_LINK_NUMBER      (0x000000ff)  //!< Bit mask for PCIE_PL_PFLR_LINK_NUMBER.
 
@@ -316,7 +309,6 @@ typedef union _hw_pcie_pl_pflr
 //! @brief Set the LINK_NUMBER field to a new value.
 #define BW_PCIE_PL_PFLR_LINK_NUMBER(v)   (HW_PCIE_PL_PFLR_WR((HW_PCIE_PL_PFLR_RD() & ~BM_PCIE_PL_PFLR_LINK_NUMBER) | BF_PCIE_PL_PFLR_LINK_NUMBER(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_PFLR, field FORCE_LINK[15] (RW)
@@ -326,7 +318,6 @@ typedef union _hw_pcie_pl_pflr
  * a 0.
  */
 //@{
-
 #define BP_PCIE_PL_PFLR_FORCE_LINK      (15)      //!< Bit position for PCIE_PL_PFLR_FORCE_LINK.
 #define BM_PCIE_PL_PFLR_FORCE_LINK      (0x00008000)  //!< Bit mask for PCIE_PL_PFLR_FORCE_LINK.
 
@@ -340,7 +331,6 @@ typedef union _hw_pcie_pl_pflr
 //! @brief Set the FORCE_LINK field to a new value.
 #define BW_PCIE_PL_PFLR_FORCE_LINK(v)   (HW_PCIE_PL_PFLR_WR((HW_PCIE_PL_PFLR_RD() & ~BM_PCIE_PL_PFLR_FORCE_LINK) | BF_PCIE_PL_PFLR_FORCE_LINK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_PFLR, field LINK_STATE[21:16] (RW)
@@ -349,7 +339,6 @@ typedef union _hw_pcie_pl_pflr
  * encoding is defined in xmlh_ltssm.v.
  */
 //@{
-
 #define BP_PCIE_PL_PFLR_LINK_STATE      (16)      //!< Bit position for PCIE_PL_PFLR_LINK_STATE.
 #define BM_PCIE_PL_PFLR_LINK_STATE      (0x003f0000)  //!< Bit mask for PCIE_PL_PFLR_LINK_STATE.
 
@@ -363,7 +352,6 @@ typedef union _hw_pcie_pl_pflr
 //! @brief Set the LINK_STATE field to a new value.
 #define BW_PCIE_PL_PFLR_LINK_STATE(v)   (HW_PCIE_PL_PFLR_WR((HW_PCIE_PL_PFLR_RD() & ~BM_PCIE_PL_PFLR_LINK_STATE) | BF_PCIE_PL_PFLR_LINK_STATE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_PFLR, field LOW_POWER_ENTRANCE_COUNT[31:24] (RW)
@@ -375,7 +363,6 @@ typedef union _hw_pcie_pl_pflr
  * a Switch.
  */
 //@{
-
 #define BP_PCIE_PL_PFLR_LOW_POWER_ENTRANCE_COUNT      (24)      //!< Bit position for PCIE_PL_PFLR_LOW_POWER_ENTRANCE_COUNT.
 #define BM_PCIE_PL_PFLR_LOW_POWER_ENTRANCE_COUNT      (0xff000000)  //!< Bit mask for PCIE_PL_PFLR_LOW_POWER_ENTRANCE_COUNT.
 
@@ -389,7 +376,6 @@ typedef union _hw_pcie_pl_pflr
 //! @brief Set the LOW_POWER_ENTRANCE_COUNT field to a new value.
 #define BW_PCIE_PL_PFLR_LOW_POWER_ENTRANCE_COUNT(v)   (HW_PCIE_PL_PFLR_WR((HW_PCIE_PL_PFLR_RD() & ~BM_PCIE_PL_PFLR_LOW_POWER_ENTRANCE_COUNT) | BF_PCIE_PL_PFLR_LOW_POWER_ENTRANCE_COUNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -446,7 +432,6 @@ typedef union _hw_pcie_pl_aflacr
  * sending an Ack DLLP see for more details.
  */
 //@{
-
 #define BP_PCIE_PL_AFLACR_ACK_FREQUENCY      (0)      //!< Bit position for PCIE_PL_AFLACR_ACK_FREQUENCY.
 #define BM_PCIE_PL_AFLACR_ACK_FREQUENCY      (0x000000ff)  //!< Bit mask for PCIE_PL_AFLACR_ACK_FREQUENCY.
 
@@ -460,7 +445,6 @@ typedef union _hw_pcie_pl_aflacr
 //! @brief Set the ACK_FREQUENCY field to a new value.
 #define BW_PCIE_PL_AFLACR_ACK_FREQUENCY(v)   (HW_PCIE_PL_AFLACR_WR((HW_PCIE_PL_AFLACR_RD() & ~BM_PCIE_PL_AFLACR_ACK_FREQUENCY) | BF_PCIE_PL_AFLACR_ACK_FREQUENCY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_AFLACR, field N_FTS[15:8] (RW)
@@ -471,7 +455,6 @@ typedef union _hw_pcie_pl_aflacr
  * recovery state when exiting from L0s.
  */
 //@{
-
 #define BP_PCIE_PL_AFLACR_N_FTS      (8)      //!< Bit position for PCIE_PL_AFLACR_N_FTS.
 #define BM_PCIE_PL_AFLACR_N_FTS      (0x0000ff00)  //!< Bit mask for PCIE_PL_AFLACR_N_FTS.
 
@@ -485,7 +468,6 @@ typedef union _hw_pcie_pl_aflacr
 //! @brief Set the N_FTS field to a new value.
 #define BW_PCIE_PL_AFLACR_N_FTS(v)   (HW_PCIE_PL_AFLACR_WR((HW_PCIE_PL_AFLACR_RD() & ~BM_PCIE_PL_AFLACR_N_FTS) | BF_PCIE_PL_AFLACR_N_FTS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_AFLACR, field COMMON_CLOCK_N_FTS[23:16] (RW)
@@ -500,7 +482,6 @@ typedef union _hw_pcie_pl_aflacr
  * cause the LTSSM to go into the recovery state when exiting from L0s.
  */
 //@{
-
 #define BP_PCIE_PL_AFLACR_COMMON_CLOCK_N_FTS      (16)      //!< Bit position for PCIE_PL_AFLACR_COMMON_CLOCK_N_FTS.
 #define BM_PCIE_PL_AFLACR_COMMON_CLOCK_N_FTS      (0x00ff0000)  //!< Bit mask for PCIE_PL_AFLACR_COMMON_CLOCK_N_FTS.
 
@@ -514,7 +495,6 @@ typedef union _hw_pcie_pl_aflacr
 //! @brief Set the COMMON_CLOCK_N_FTS field to a new value.
 #define BW_PCIE_PL_AFLACR_COMMON_CLOCK_N_FTS(v)   (HW_PCIE_PL_AFLACR_WR((HW_PCIE_PL_AFLACR_RD() & ~BM_PCIE_PL_AFLACR_COMMON_CLOCK_N_FTS) | BF_PCIE_PL_AFLACR_COMMON_CLOCK_N_FTS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_AFLACR, field L0S_ENTRANCE_LATENCY[26:24] (RW)
@@ -532,7 +512,6 @@ typedef union _hw_pcie_pl_aflacr
  * - 111 - 7 ìs
  */
 //@{
-
 #define BP_PCIE_PL_AFLACR_L0S_ENTRANCE_LATENCY      (24)      //!< Bit position for PCIE_PL_AFLACR_L0S_ENTRANCE_LATENCY.
 #define BM_PCIE_PL_AFLACR_L0S_ENTRANCE_LATENCY      (0x07000000)  //!< Bit mask for PCIE_PL_AFLACR_L0S_ENTRANCE_LATENCY.
 
@@ -546,7 +525,6 @@ typedef union _hw_pcie_pl_aflacr
 //! @brief Set the L0S_ENTRANCE_LATENCY field to a new value.
 #define BW_PCIE_PL_AFLACR_L0S_ENTRANCE_LATENCY(v)   (HW_PCIE_PL_AFLACR_WR((HW_PCIE_PL_AFLACR_RD() & ~BM_PCIE_PL_AFLACR_L0S_ENTRANCE_LATENCY) | BF_PCIE_PL_AFLACR_L0S_ENTRANCE_LATENCY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_AFLACR, field L1_ENTRANCE_LATENCY[29:27] (RW)
@@ -564,7 +542,6 @@ typedef union _hw_pcie_pl_aflacr
  * - 111 - 64 ìs
  */
 //@{
-
 #define BP_PCIE_PL_AFLACR_L1_ENTRANCE_LATENCY      (27)      //!< Bit position for PCIE_PL_AFLACR_L1_ENTRANCE_LATENCY.
 #define BM_PCIE_PL_AFLACR_L1_ENTRANCE_LATENCY      (0x38000000)  //!< Bit mask for PCIE_PL_AFLACR_L1_ENTRANCE_LATENCY.
 
@@ -578,7 +555,6 @@ typedef union _hw_pcie_pl_aflacr
 //! @brief Set the L1_ENTRANCE_LATENCY field to a new value.
 #define BW_PCIE_PL_AFLACR_L1_ENTRANCE_LATENCY(v)   (HW_PCIE_PL_AFLACR_WR((HW_PCIE_PL_AFLACR_RD() & ~BM_PCIE_PL_AFLACR_L1_ENTRANCE_LATENCY) | BF_PCIE_PL_AFLACR_L1_ENTRANCE_LATENCY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_AFLACR, field ENTER_ASPM_L1[30] (RW)
@@ -588,7 +564,6 @@ typedef union _hw_pcie_pl_aflacr
  * during which both receive and transmit are in L0s.
  */
 //@{
-
 #define BP_PCIE_PL_AFLACR_ENTER_ASPM_L1      (30)      //!< Bit position for PCIE_PL_AFLACR_ENTER_ASPM_L1.
 #define BM_PCIE_PL_AFLACR_ENTER_ASPM_L1      (0x40000000)  //!< Bit mask for PCIE_PL_AFLACR_ENTER_ASPM_L1.
 
@@ -602,7 +577,6 @@ typedef union _hw_pcie_pl_aflacr
 //! @brief Set the ENTER_ASPM_L1 field to a new value.
 #define BW_PCIE_PL_AFLACR_ENTER_ASPM_L1(v)   (HW_PCIE_PL_AFLACR_WR((HW_PCIE_PL_AFLACR_RD() & ~BM_PCIE_PL_AFLACR_ENTER_ASPM_L1) | BF_PCIE_PL_AFLACR_ENTER_ASPM_L1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -665,7 +639,6 @@ typedef union _hw_pcie_pl_plcr
  * contained in the . * Reading from this self-clearing register field always returns a 0.
  */
 //@{
-
 #define BP_PCIE_PL_PLCR_VENDOR_SPECIFIC_DLLP_REQUEST      (0)      //!< Bit position for PCIE_PL_PLCR_VENDOR_SPECIFIC_DLLP_REQUEST.
 #define BM_PCIE_PL_PLCR_VENDOR_SPECIFIC_DLLP_REQUEST      (0x00000001)  //!< Bit mask for PCIE_PL_PLCR_VENDOR_SPECIFIC_DLLP_REQUEST.
 
@@ -679,7 +652,6 @@ typedef union _hw_pcie_pl_plcr
 //! @brief Set the VENDOR_SPECIFIC_DLLP_REQUEST field to a new value.
 #define BW_PCIE_PL_PLCR_VENDOR_SPECIFIC_DLLP_REQUEST(v)   (HW_PCIE_PL_PLCR_WR((HW_PCIE_PL_PLCR_RD() & ~BM_PCIE_PL_PLCR_VENDOR_SPECIFIC_DLLP_REQUEST) | BF_PCIE_PL_PLCR_VENDOR_SPECIFIC_DLLP_REQUEST(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_PLCR, field SCRAMBLE_DISABLE[1] (RW)
@@ -687,7 +659,6 @@ typedef union _hw_pcie_pl_plcr
  * Scramble Disable Turns off data scrambling.
  */
 //@{
-
 #define BP_PCIE_PL_PLCR_SCRAMBLE_DISABLE      (1)      //!< Bit position for PCIE_PL_PLCR_SCRAMBLE_DISABLE.
 #define BM_PCIE_PL_PLCR_SCRAMBLE_DISABLE      (0x00000002)  //!< Bit mask for PCIE_PL_PLCR_SCRAMBLE_DISABLE.
 
@@ -701,7 +672,6 @@ typedef union _hw_pcie_pl_plcr
 //! @brief Set the SCRAMBLE_DISABLE field to a new value.
 #define BW_PCIE_PL_PLCR_SCRAMBLE_DISABLE(v)   (HW_PCIE_PL_PLCR_WR((HW_PCIE_PL_PLCR_RD() & ~BM_PCIE_PL_PLCR_SCRAMBLE_DISABLE) | BF_PCIE_PL_PLCR_SCRAMBLE_DISABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_PLCR, field LOOPBACK_ENABLE[2] (RW)
@@ -709,7 +679,6 @@ typedef union _hw_pcie_pl_plcr
  * Loopback Enable Turns on loopback.
  */
 //@{
-
 #define BP_PCIE_PL_PLCR_LOOPBACK_ENABLE      (2)      //!< Bit position for PCIE_PL_PLCR_LOOPBACK_ENABLE.
 #define BM_PCIE_PL_PLCR_LOOPBACK_ENABLE      (0x00000004)  //!< Bit mask for PCIE_PL_PLCR_LOOPBACK_ENABLE.
 
@@ -723,7 +692,6 @@ typedef union _hw_pcie_pl_plcr
 //! @brief Set the LOOPBACK_ENABLE field to a new value.
 #define BW_PCIE_PL_PLCR_LOOPBACK_ENABLE(v)   (HW_PCIE_PL_PLCR_WR((HW_PCIE_PL_PLCR_RD() & ~BM_PCIE_PL_PLCR_LOOPBACK_ENABLE) | BF_PCIE_PL_PLCR_LOOPBACK_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_PLCR, field RESET_ASSERT[3] (RW)
@@ -732,7 +700,6 @@ typedef union _hw_pcie_pl_plcr
  * only).
  */
 //@{
-
 #define BP_PCIE_PL_PLCR_RESET_ASSERT      (3)      //!< Bit position for PCIE_PL_PLCR_RESET_ASSERT.
 #define BM_PCIE_PL_PLCR_RESET_ASSERT      (0x00000008)  //!< Bit mask for PCIE_PL_PLCR_RESET_ASSERT.
 
@@ -746,7 +713,6 @@ typedef union _hw_pcie_pl_plcr
 //! @brief Set the RESET_ASSERT field to a new value.
 #define BW_PCIE_PL_PLCR_RESET_ASSERT(v)   (HW_PCIE_PL_PLCR_WR((HW_PCIE_PL_PLCR_RD() & ~BM_PCIE_PL_PLCR_RESET_ASSERT) | BF_PCIE_PL_PLCR_RESET_ASSERT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_PLCR, field DLL_LINK_ENABLE[5] (RW)
@@ -755,7 +721,6 @@ typedef union _hw_pcie_pl_plcr
  * InitFC DLLPs and does not establish a Link.
  */
 //@{
-
 #define BP_PCIE_PL_PLCR_DLL_LINK_ENABLE      (5)      //!< Bit position for PCIE_PL_PLCR_DLL_LINK_ENABLE.
 #define BM_PCIE_PL_PLCR_DLL_LINK_ENABLE      (0x00000020)  //!< Bit mask for PCIE_PL_PLCR_DLL_LINK_ENABLE.
 
@@ -769,7 +734,6 @@ typedef union _hw_pcie_pl_plcr
 //! @brief Set the DLL_LINK_ENABLE field to a new value.
 #define BW_PCIE_PL_PLCR_DLL_LINK_ENABLE(v)   (HW_PCIE_PL_PLCR_WR((HW_PCIE_PL_PLCR_RD() & ~BM_PCIE_PL_PLCR_DLL_LINK_ENABLE) | BF_PCIE_PL_PLCR_DLL_LINK_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_PLCR, field FAST_LINK_MODE[7] (RW)
@@ -780,7 +744,6 @@ typedef union _hw_pcie_pl_plcr
  * diag_ctrl_bus[2] pin to '1'.
  */
 //@{
-
 #define BP_PCIE_PL_PLCR_FAST_LINK_MODE      (7)      //!< Bit position for PCIE_PL_PLCR_FAST_LINK_MODE.
 #define BM_PCIE_PL_PLCR_FAST_LINK_MODE      (0x00000080)  //!< Bit mask for PCIE_PL_PLCR_FAST_LINK_MODE.
 
@@ -794,7 +757,6 @@ typedef union _hw_pcie_pl_plcr
 //! @brief Set the FAST_LINK_MODE field to a new value.
 #define BW_PCIE_PL_PLCR_FAST_LINK_MODE(v)   (HW_PCIE_PL_PLCR_WR((HW_PCIE_PL_PLCR_RD() & ~BM_PCIE_PL_PLCR_FAST_LINK_MODE) | BF_PCIE_PL_PLCR_FAST_LINK_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_PLCR, field LINK_MODE_ENABLE[21:16] (RW)
@@ -811,7 +773,6 @@ typedef union _hw_pcie_pl_plcr
  * - 111111 - x32 (not supported)
  */
 //@{
-
 #define BP_PCIE_PL_PLCR_LINK_MODE_ENABLE      (16)      //!< Bit position for PCIE_PL_PLCR_LINK_MODE_ENABLE.
 #define BM_PCIE_PL_PLCR_LINK_MODE_ENABLE      (0x003f0000)  //!< Bit mask for PCIE_PL_PLCR_LINK_MODE_ENABLE.
 
@@ -825,7 +786,6 @@ typedef union _hw_pcie_pl_plcr
 //! @brief Set the LINK_MODE_ENABLE field to a new value.
 #define BW_PCIE_PL_PLCR_LINK_MODE_ENABLE(v)   (HW_PCIE_PL_PLCR_WR((HW_PCIE_PL_PLCR_RD() & ~BM_PCIE_PL_PLCR_LINK_MODE_ENABLE) | BF_PCIE_PL_PLCR_LINK_MODE_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_PLCR, field CROSSLINK_ENABLE[22] (RW)
@@ -833,7 +793,6 @@ typedef union _hw_pcie_pl_plcr
  * Crosslink Enable
  */
 //@{
-
 #define BP_PCIE_PL_PLCR_CROSSLINK_ENABLE      (22)      //!< Bit position for PCIE_PL_PLCR_CROSSLINK_ENABLE.
 #define BM_PCIE_PL_PLCR_CROSSLINK_ENABLE      (0x00400000)  //!< Bit mask for PCIE_PL_PLCR_CROSSLINK_ENABLE.
 
@@ -847,7 +806,6 @@ typedef union _hw_pcie_pl_plcr
 //! @brief Set the CROSSLINK_ENABLE field to a new value.
 #define BW_PCIE_PL_PLCR_CROSSLINK_ENABLE(v)   (HW_PCIE_PL_PLCR_WR((HW_PCIE_PL_PLCR_RD() & ~BM_PCIE_PL_PLCR_CROSSLINK_ENABLE) | BF_PCIE_PL_PLCR_CROSSLINK_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_PLCR, field CROSSLINK_ACTIVE[23] (RW)
@@ -856,7 +814,6 @@ typedef union _hw_pcie_pl_plcr
  * as the xmlh_crosslink_active output.
  */
 //@{
-
 #define BP_PCIE_PL_PLCR_CROSSLINK_ACTIVE      (23)      //!< Bit position for PCIE_PL_PLCR_CROSSLINK_ACTIVE.
 #define BM_PCIE_PL_PLCR_CROSSLINK_ACTIVE      (0x00800000)  //!< Bit mask for PCIE_PL_PLCR_CROSSLINK_ACTIVE.
 
@@ -870,7 +827,6 @@ typedef union _hw_pcie_pl_plcr
 //! @brief Set the CROSSLINK_ACTIVE field to a new value.
 #define BW_PCIE_PL_PLCR_CROSSLINK_ACTIVE(v)   (HW_PCIE_PL_PLCR_WR((HW_PCIE_PL_PLCR_RD() & ~BM_PCIE_PL_PLCR_CROSSLINK_ACTIVE) | BF_PCIE_PL_PLCR_CROSSLINK_ACTIVE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -927,7 +883,6 @@ typedef union _hw_pcie_pl_lsr
  * that Lane. The maximum skew value for any Lane is 5 symbol times.
  */
 //@{
-
 #define BP_PCIE_PL_LSR_INSERT_LANE_SKEW_FOR_TRANSMIT      (0)      //!< Bit position for PCIE_PL_LSR_INSERT_LANE_SKEW_FOR_TRANSMIT.
 #define BM_PCIE_PL_LSR_INSERT_LANE_SKEW_FOR_TRANSMIT      (0x00ffffff)  //!< Bit mask for PCIE_PL_LSR_INSERT_LANE_SKEW_FOR_TRANSMIT.
 
@@ -941,7 +896,6 @@ typedef union _hw_pcie_pl_lsr
 //! @brief Set the INSERT_LANE_SKEW_FOR_TRANSMIT field to a new value.
 #define BW_PCIE_PL_LSR_INSERT_LANE_SKEW_FOR_TRANSMIT(v)   (HW_PCIE_PL_LSR_WR((HW_PCIE_PL_LSR_RD() & ~BM_PCIE_PL_LSR_INSERT_LANE_SKEW_FOR_TRANSMIT) | BF_PCIE_PL_LSR_INSERT_LANE_SKEW_FOR_TRANSMIT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_LSR, field FLOW_CONTROL_DISABLE[24] (RW)
@@ -949,7 +903,6 @@ typedef union _hw_pcie_pl_lsr
  * Flow Control Disable Prevents the core from sending FC DLLPs.
  */
 //@{
-
 #define BP_PCIE_PL_LSR_FLOW_CONTROL_DISABLE      (24)      //!< Bit position for PCIE_PL_LSR_FLOW_CONTROL_DISABLE.
 #define BM_PCIE_PL_LSR_FLOW_CONTROL_DISABLE      (0x01000000)  //!< Bit mask for PCIE_PL_LSR_FLOW_CONTROL_DISABLE.
 
@@ -963,7 +916,6 @@ typedef union _hw_pcie_pl_lsr
 //! @brief Set the FLOW_CONTROL_DISABLE field to a new value.
 #define BW_PCIE_PL_LSR_FLOW_CONTROL_DISABLE(v)   (HW_PCIE_PL_LSR_WR((HW_PCIE_PL_LSR_RD() & ~BM_PCIE_PL_LSR_FLOW_CONTROL_DISABLE) | BF_PCIE_PL_LSR_FLOW_CONTROL_DISABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_LSR, field ACK_NAK_DISABLE[25] (RW)
@@ -971,7 +923,6 @@ typedef union _hw_pcie_pl_lsr
  * Ack/Nak Disable Prevents the core from sending Ack and Nak DLLPs.
  */
 //@{
-
 #define BP_PCIE_PL_LSR_ACK_NAK_DISABLE      (25)      //!< Bit position for PCIE_PL_LSR_ACK_NAK_DISABLE.
 #define BM_PCIE_PL_LSR_ACK_NAK_DISABLE      (0x02000000)  //!< Bit mask for PCIE_PL_LSR_ACK_NAK_DISABLE.
 
@@ -985,7 +936,6 @@ typedef union _hw_pcie_pl_lsr
 //! @brief Set the ACK_NAK_DISABLE field to a new value.
 #define BW_PCIE_PL_LSR_ACK_NAK_DISABLE(v)   (HW_PCIE_PL_LSR_WR((HW_PCIE_PL_LSR_RD() & ~BM_PCIE_PL_LSR_ACK_NAK_DISABLE) | BF_PCIE_PL_LSR_ACK_NAK_DISABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_LSR, field DISABLE_LANE_TO_LANE_DESKEW[31] (RW)
@@ -993,7 +943,6 @@ typedef union _hw_pcie_pl_lsr
  * Disable Lane-to-Lane Deskew Causes the core to disable the internal Lane-to-Lane deskew logic.
  */
 //@{
-
 #define BP_PCIE_PL_LSR_DISABLE_LANE_TO_LANE_DESKEW      (31)      //!< Bit position for PCIE_PL_LSR_DISABLE_LANE_TO_LANE_DESKEW.
 #define BM_PCIE_PL_LSR_DISABLE_LANE_TO_LANE_DESKEW      (0x80000000)  //!< Bit mask for PCIE_PL_LSR_DISABLE_LANE_TO_LANE_DESKEW.
 
@@ -1007,7 +956,6 @@ typedef union _hw_pcie_pl_lsr
 //! @brief Set the DISABLE_LANE_TO_LANE_DESKEW field to a new value.
 #define BW_PCIE_PL_LSR_DISABLE_LANE_TO_LANE_DESKEW(v)   (HW_PCIE_PL_LSR_WR((HW_PCIE_PL_LSR_RD() & ~BM_PCIE_PL_LSR_DISABLE_LANE_TO_LANE_DESKEW) | BF_PCIE_PL_LSR_DISABLE_LANE_TO_LANE_DESKEW(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1065,7 +1013,6 @@ typedef union _hw_pcie_pl_snr
  * ordered sets.
  */
 //@{
-
 #define BP_PCIE_PL_SNR_NUMBER_OF_TS_SYMBOLS      (0)      //!< Bit position for PCIE_PL_SNR_NUMBER_OF_TS_SYMBOLS.
 #define BM_PCIE_PL_SNR_NUMBER_OF_TS_SYMBOLS      (0x0000000f)  //!< Bit mask for PCIE_PL_SNR_NUMBER_OF_TS_SYMBOLS.
 
@@ -1079,7 +1026,6 @@ typedef union _hw_pcie_pl_snr
 //! @brief Set the NUMBER_OF_TS_SYMBOLS field to a new value.
 #define BW_PCIE_PL_SNR_NUMBER_OF_TS_SYMBOLS(v)   (HW_PCIE_PL_SNR_WR((HW_PCIE_PL_SNR_RD() & ~BM_PCIE_PL_SNR_NUMBER_OF_TS_SYMBOLS) | BF_PCIE_PL_SNR_NUMBER_OF_TS_SYMBOLS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_SNR, field NUMBER_OF_SKP_SYMBOLS[10:8] (RW)
@@ -1087,7 +1033,6 @@ typedef union _hw_pcie_pl_snr
  * Number of SKP Symbols
  */
 //@{
-
 #define BP_PCIE_PL_SNR_NUMBER_OF_SKP_SYMBOLS      (8)      //!< Bit position for PCIE_PL_SNR_NUMBER_OF_SKP_SYMBOLS.
 #define BM_PCIE_PL_SNR_NUMBER_OF_SKP_SYMBOLS      (0x00000700)  //!< Bit mask for PCIE_PL_SNR_NUMBER_OF_SKP_SYMBOLS.
 
@@ -1101,7 +1046,6 @@ typedef union _hw_pcie_pl_snr
 //! @brief Set the NUMBER_OF_SKP_SYMBOLS field to a new value.
 #define BW_PCIE_PL_SNR_NUMBER_OF_SKP_SYMBOLS(v)   (HW_PCIE_PL_SNR_WR((HW_PCIE_PL_SNR_RD() & ~BM_PCIE_PL_SNR_NUMBER_OF_SKP_SYMBOLS) | BF_PCIE_PL_SNR_NUMBER_OF_SKP_SYMBOLS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_SNR, field TIMER_MODIFIER_FOR_REPLAY_TIMER[18:14] (RW)
@@ -1110,7 +1054,6 @@ typedef union _hw_pcie_pl_snr
  * 64 clock cycles.
  */
 //@{
-
 #define BP_PCIE_PL_SNR_TIMER_MODIFIER_FOR_REPLAY_TIMER      (14)      //!< Bit position for PCIE_PL_SNR_TIMER_MODIFIER_FOR_REPLAY_TIMER.
 #define BM_PCIE_PL_SNR_TIMER_MODIFIER_FOR_REPLAY_TIMER      (0x0007c000)  //!< Bit mask for PCIE_PL_SNR_TIMER_MODIFIER_FOR_REPLAY_TIMER.
 
@@ -1124,7 +1067,6 @@ typedef union _hw_pcie_pl_snr
 //! @brief Set the TIMER_MODIFIER_FOR_REPLAY_TIMER field to a new value.
 #define BW_PCIE_PL_SNR_TIMER_MODIFIER_FOR_REPLAY_TIMER(v)   (HW_PCIE_PL_SNR_WR((HW_PCIE_PL_SNR_RD() & ~BM_PCIE_PL_SNR_TIMER_MODIFIER_FOR_REPLAY_TIMER) | BF_PCIE_PL_SNR_TIMER_MODIFIER_FOR_REPLAY_TIMER(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_SNR, field TIMER_MODIFIER_FOR_ACK_NAK_LATENCY_TIMER[23:19] (RW)
@@ -1133,7 +1075,6 @@ typedef union _hw_pcie_pl_snr
  * in increments of 64 clock cycles.
  */
 //@{
-
 #define BP_PCIE_PL_SNR_TIMER_MODIFIER_FOR_ACK_NAK_LATENCY_TIMER      (19)      //!< Bit position for PCIE_PL_SNR_TIMER_MODIFIER_FOR_ACK_NAK_LATENCY_TIMER.
 #define BM_PCIE_PL_SNR_TIMER_MODIFIER_FOR_ACK_NAK_LATENCY_TIMER      (0x00f80000)  //!< Bit mask for PCIE_PL_SNR_TIMER_MODIFIER_FOR_ACK_NAK_LATENCY_TIMER.
 
@@ -1147,7 +1088,6 @@ typedef union _hw_pcie_pl_snr
 //! @brief Set the TIMER_MODIFIER_FOR_ACK_NAK_LATENCY_TIMER field to a new value.
 #define BW_PCIE_PL_SNR_TIMER_MODIFIER_FOR_ACK_NAK_LATENCY_TIMER(v)   (HW_PCIE_PL_SNR_WR((HW_PCIE_PL_SNR_RD() & ~BM_PCIE_PL_SNR_TIMER_MODIFIER_FOR_ACK_NAK_LATENCY_TIMER) | BF_PCIE_PL_SNR_TIMER_MODIFIER_FOR_ACK_NAK_LATENCY_TIMER(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_SNR, field TIMER_MODIFIER_FOR_FLOW_CONTROL_WATCHDOG_TIMER[28:24] (RW)
@@ -1156,7 +1096,6 @@ typedef union _hw_pcie_pl_snr
  * watchdog timer, in increments of 16 clock cycles.
  */
 //@{
-
 #define BP_PCIE_PL_SNR_TIMER_MODIFIER_FOR_FLOW_CONTROL_WATCHDOG_TIMER      (24)      //!< Bit position for PCIE_PL_SNR_TIMER_MODIFIER_FOR_FLOW_CONTROL_WATCHDOG_TIMER.
 #define BM_PCIE_PL_SNR_TIMER_MODIFIER_FOR_FLOW_CONTROL_WATCHDOG_TIMER      (0x1f000000)  //!< Bit mask for PCIE_PL_SNR_TIMER_MODIFIER_FOR_FLOW_CONTROL_WATCHDOG_TIMER.
 
@@ -1170,7 +1109,6 @@ typedef union _hw_pcie_pl_snr
 //! @brief Set the TIMER_MODIFIER_FOR_FLOW_CONTROL_WATCHDOG_TIMER field to a new value.
 #define BW_PCIE_PL_SNR_TIMER_MODIFIER_FOR_FLOW_CONTROL_WATCHDOG_TIMER(v)   (HW_PCIE_PL_SNR_WR((HW_PCIE_PL_SNR_RD() & ~BM_PCIE_PL_SNR_TIMER_MODIFIER_FOR_FLOW_CONTROL_WATCHDOG_TIMER) | BF_PCIE_PL_SNR_TIMER_MODIFIER_FOR_FLOW_CONTROL_WATCHDOG_TIMER(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_SNR, field CONFIGURATION_REQUESTS[31:29] (RW)
@@ -1179,7 +1117,6 @@ typedef union _hw_pcie_pl_snr
  * (unsupported request).
  */
 //@{
-
 #define BP_PCIE_PL_SNR_CONFIGURATION_REQUESTS      (29)      //!< Bit position for PCIE_PL_SNR_CONFIGURATION_REQUESTS.
 #define BM_PCIE_PL_SNR_CONFIGURATION_REQUESTS      (0xe0000000)  //!< Bit mask for PCIE_PL_SNR_CONFIGURATION_REQUESTS.
 
@@ -1193,7 +1130,6 @@ typedef union _hw_pcie_pl_snr
 //! @brief Set the CONFIGURATION_REQUESTS field to a new value.
 #define BW_PCIE_PL_SNR_CONFIGURATION_REQUESTS(v)   (HW_PCIE_PL_SNR_WR((HW_PCIE_PL_SNR_RD() & ~BM_PCIE_PL_SNR_CONFIGURATION_REQUESTS) | BF_PCIE_PL_SNR_CONFIGURATION_REQUESTS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1287,7 +1223,6 @@ typedef union _hw_pcie_pl_strfm1
  * symbol times in this case).
  */
 //@{
-
 #define BP_PCIE_PL_STRFM1_SKP_INTERVAL_VALUE      (0)      //!< Bit position for PCIE_PL_STRFM1_SKP_INTERVAL_VALUE.
 #define BM_PCIE_PL_STRFM1_SKP_INTERVAL_VALUE      (0x000007ff)  //!< Bit mask for PCIE_PL_STRFM1_SKP_INTERVAL_VALUE.
 
@@ -1301,7 +1236,6 @@ typedef union _hw_pcie_pl_strfm1
 //! @brief Set the SKP_INTERVAL_VALUE field to a new value.
 #define BW_PCIE_PL_STRFM1_SKP_INTERVAL_VALUE(v)   (HW_PCIE_PL_STRFM1_WR((HW_PCIE_PL_STRFM1_RD() & ~BM_PCIE_PL_STRFM1_SKP_INTERVAL_VALUE) | BF_PCIE_PL_STRFM1_SKP_INTERVAL_VALUE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_STRFM1, field DISABLE_FC_WATCHDOG_TIMER[15] (RW)
@@ -1309,7 +1243,6 @@ typedef union _hw_pcie_pl_strfm1
  * Disable FC Watchdog Timer
  */
 //@{
-
 #define BP_PCIE_PL_STRFM1_DISABLE_FC_WATCHDOG_TIMER      (15)      //!< Bit position for PCIE_PL_STRFM1_DISABLE_FC_WATCHDOG_TIMER.
 #define BM_PCIE_PL_STRFM1_DISABLE_FC_WATCHDOG_TIMER      (0x00008000)  //!< Bit mask for PCIE_PL_STRFM1_DISABLE_FC_WATCHDOG_TIMER.
 
@@ -1323,7 +1256,6 @@ typedef union _hw_pcie_pl_strfm1
 //! @brief Set the DISABLE_FC_WATCHDOG_TIMER field to a new value.
 #define BW_PCIE_PL_STRFM1_DISABLE_FC_WATCHDOG_TIMER(v)   (HW_PCIE_PL_STRFM1_WR((HW_PCIE_PL_STRFM1_RD() & ~BM_PCIE_PL_STRFM1_DISABLE_FC_WATCHDOG_TIMER) | BF_PCIE_PL_STRFM1_DISABLE_FC_WATCHDOG_TIMER(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_STRFM1, field MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES[31:16] (RW)
@@ -1346,7 +1278,6 @@ typedef union _hw_pcie_pl_strfm1
  * Mask poisoned TLP filtering [16]: Mask function mismatch filtering for incoming Requests
  */
 //@{
-
 #define BP_PCIE_PL_STRFM1_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES      (16)      //!< Bit position for PCIE_PL_STRFM1_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES.
 #define BM_PCIE_PL_STRFM1_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES      (0xffff0000)  //!< Bit mask for PCIE_PL_STRFM1_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES.
 
@@ -1360,7 +1291,6 @@ typedef union _hw_pcie_pl_strfm1
 //! @brief Set the MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES field to a new value.
 #define BW_PCIE_PL_STRFM1_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES(v)   (HW_PCIE_PL_STRFM1_WR((HW_PCIE_PL_STRFM1_RD() & ~BM_PCIE_PL_STRFM1_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES) | BF_PCIE_PL_STRFM1_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1417,7 +1347,6 @@ typedef union _hw_pcie_pl_strfm2
  * Type 0 not dropped
  */
 //@{
-
 #define BP_PCIE_PL_STRFM2_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES      (0)      //!< Bit position for PCIE_PL_STRFM2_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES.
 #define BM_PCIE_PL_STRFM2_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES      (0xffffffff)  //!< Bit mask for PCIE_PL_STRFM2_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES.
 
@@ -1431,7 +1360,6 @@ typedef union _hw_pcie_pl_strfm2
 //! @brief Set the MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES field to a new value.
 #define BW_PCIE_PL_STRFM2_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES(v)   (HW_PCIE_PL_STRFM2_WR((HW_PCIE_PL_STRFM2_RD() & ~BM_PCIE_PL_STRFM2_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES) | BF_PCIE_PL_STRFM2_MASK_RADM_FILTERING_AND_ERROR_HANDLING_RULES(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1487,7 +1415,6 @@ typedef union _hw_pcie_pl_amodnpsr
  * different tags
  */
 //@{
-
 #define BP_PCIE_PL_AMODNPSR_ENABLE_AMBA_MULTIPLE_OUTBOUND_DECOMPOSED_NP_SUBREQUESTS      (0)      //!< Bit position for PCIE_PL_AMODNPSR_ENABLE_AMBA_MULTIPLE_OUTBOUND_DECOMPOSED_NP_SUBREQUESTS.
 #define BM_PCIE_PL_AMODNPSR_ENABLE_AMBA_MULTIPLE_OUTBOUND_DECOMPOSED_NP_SUBREQUESTS      (0x00000001)  //!< Bit mask for PCIE_PL_AMODNPSR_ENABLE_AMBA_MULTIPLE_OUTBOUND_DECOMPOSED_NP_SUBREQUESTS.
 
@@ -1501,7 +1428,6 @@ typedef union _hw_pcie_pl_amodnpsr
 //! @brief Set the ENABLE_AMBA_MULTIPLE_OUTBOUND_DECOMPOSED_NP_SUBREQUESTS field to a new value.
 #define BW_PCIE_PL_AMODNPSR_ENABLE_AMBA_MULTIPLE_OUTBOUND_DECOMPOSED_NP_SUBREQUESTS(v)   (HW_PCIE_PL_AMODNPSR_WR((HW_PCIE_PL_AMODNPSR_RD() & ~BM_PCIE_PL_AMODNPSR_ENABLE_AMBA_MULTIPLE_OUTBOUND_DECOMPOSED_NP_SUBREQUESTS) | BF_PCIE_PL_AMODNPSR_ENABLE_AMBA_MULTIPLE_OUTBOUND_DECOMPOSED_NP_SUBREQUESTS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1552,13 +1478,11 @@ typedef union _hw_pcie_pl_debug0
  * The value on cxpl_debug_info[31:0].
  */
 //@{
-
 #define BP_PCIE_PL_DEBUG0_VALUE      (0)      //!< Bit position for PCIE_PL_DEBUG0_VALUE.
 #define BM_PCIE_PL_DEBUG0_VALUE      (0xffffffff)  //!< Bit mask for PCIE_PL_DEBUG0_VALUE.
 
 //! @brief Get value of PCIE_PL_DEBUG0_VALUE from a register value.
 #define BG_PCIE_PL_DEBUG0_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_DEBUG0_VALUE) >> BP_PCIE_PL_DEBUG0_VALUE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1615,13 +1539,11 @@ typedef union _hw_pcie_pl_debug1
  * The value on cxpl_debug_info[63:32].
  */
 //@{
-
 #define BP_PCIE_PL_DEBUG1_VALUE      (0)      //!< Bit position for PCIE_PL_DEBUG1_VALUE.
 #define BM_PCIE_PL_DEBUG1_VALUE      (0xffffffff)  //!< Bit mask for PCIE_PL_DEBUG1_VALUE.
 
 //! @brief Get value of PCIE_PL_DEBUG1_VALUE from a register value.
 #define BG_PCIE_PL_DEBUG1_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_DEBUG1_VALUE) >> BP_PCIE_PL_DEBUG1_VALUE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1672,13 +1594,11 @@ typedef union _hw_pcie_pl_tpfcsr
  * end of the Link, updated with each UpdateFC DLLP.
  */
 //@{
-
 #define BP_PCIE_PL_TPFCSR_TRANSMIT_POSTED_DATA_FC_CREDITS      (0)      //!< Bit position for PCIE_PL_TPFCSR_TRANSMIT_POSTED_DATA_FC_CREDITS.
 #define BM_PCIE_PL_TPFCSR_TRANSMIT_POSTED_DATA_FC_CREDITS      (0x00000fff)  //!< Bit mask for PCIE_PL_TPFCSR_TRANSMIT_POSTED_DATA_FC_CREDITS.
 
 //! @brief Get value of PCIE_PL_TPFCSR_TRANSMIT_POSTED_DATA_FC_CREDITS from a register value.
 #define BG_PCIE_PL_TPFCSR_TRANSMIT_POSTED_DATA_FC_CREDITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_TPFCSR_TRANSMIT_POSTED_DATA_FC_CREDITS) >> BP_PCIE_PL_TPFCSR_TRANSMIT_POSTED_DATA_FC_CREDITS)
-
 //@}
 
 /*! @name Register PCIE_PL_TPFCSR, field TRANSMIT_POSTED_HEADER_FC_CREDITS[19:12] (RO)
@@ -1687,13 +1607,11 @@ typedef union _hw_pcie_pl_tpfcsr
  * other end of the Link, updated with each UpdateFC DLLP.
  */
 //@{
-
 #define BP_PCIE_PL_TPFCSR_TRANSMIT_POSTED_HEADER_FC_CREDITS      (12)      //!< Bit position for PCIE_PL_TPFCSR_TRANSMIT_POSTED_HEADER_FC_CREDITS.
 #define BM_PCIE_PL_TPFCSR_TRANSMIT_POSTED_HEADER_FC_CREDITS      (0x000ff000)  //!< Bit mask for PCIE_PL_TPFCSR_TRANSMIT_POSTED_HEADER_FC_CREDITS.
 
 //! @brief Get value of PCIE_PL_TPFCSR_TRANSMIT_POSTED_HEADER_FC_CREDITS from a register value.
 #define BG_PCIE_PL_TPFCSR_TRANSMIT_POSTED_HEADER_FC_CREDITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_TPFCSR_TRANSMIT_POSTED_HEADER_FC_CREDITS) >> BP_PCIE_PL_TPFCSR_TRANSMIT_POSTED_HEADER_FC_CREDITS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1744,13 +1662,11 @@ typedef union _hw_pcie_pl_tnfcsr
  * other end of the Link, updated with each UpdateFC DLLP.
  */
 //@{
-
 #define BP_PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_DATA_FC_CREDITS      (0)      //!< Bit position for PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_DATA_FC_CREDITS.
 #define BM_PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_DATA_FC_CREDITS      (0x00000fff)  //!< Bit mask for PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_DATA_FC_CREDITS.
 
 //! @brief Get value of PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_DATA_FC_CREDITS from a register value.
 #define BG_PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_DATA_FC_CREDITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_DATA_FC_CREDITS) >> BP_PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_DATA_FC_CREDITS)
-
 //@}
 
 /*! @name Register PCIE_PL_TNFCSR, field TRANSMIT_NON_POSTED_HEADER_FC_CREDITS[19:12] (RO)
@@ -1759,13 +1675,11 @@ typedef union _hw_pcie_pl_tnfcsr
  * the other end of the Link, updated with each UpdateFC DLLP.
  */
 //@{
-
 #define BP_PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_HEADER_FC_CREDITS      (12)      //!< Bit position for PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_HEADER_FC_CREDITS.
 #define BM_PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_HEADER_FC_CREDITS      (0x000ff000)  //!< Bit mask for PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_HEADER_FC_CREDITS.
 
 //! @brief Get value of PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_HEADER_FC_CREDITS from a register value.
 #define BG_PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_HEADER_FC_CREDITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_HEADER_FC_CREDITS) >> BP_PCIE_PL_TNFCSR_TRANSMIT_NON_POSTED_HEADER_FC_CREDITS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1816,13 +1730,11 @@ typedef union _hw_pcie_pl_tcfcsr
  * other end of the Link, updated with each UpdateFC DLLP.
  */
 //@{
-
 #define BP_PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_DATA_FC_CREDITS      (0)      //!< Bit position for PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_DATA_FC_CREDITS.
 #define BM_PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_DATA_FC_CREDITS      (0x00000fff)  //!< Bit mask for PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_DATA_FC_CREDITS.
 
 //! @brief Get value of PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_DATA_FC_CREDITS from a register value.
 #define BG_PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_DATA_FC_CREDITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_DATA_FC_CREDITS) >> BP_PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_DATA_FC_CREDITS)
-
 //@}
 
 /*! @name Register PCIE_PL_TCFCSR, field TRANSMIT_COMPLETION_HEADER_FC_CREDITS[19:12] (RO)
@@ -1831,13 +1743,11 @@ typedef union _hw_pcie_pl_tcfcsr
  * the other end of the Link, updated with each UpdateFC DLLP.
  */
 //@{
-
 #define BP_PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_HEADER_FC_CREDITS      (12)      //!< Bit position for PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_HEADER_FC_CREDITS.
 #define BM_PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_HEADER_FC_CREDITS      (0x000ff000)  //!< Bit mask for PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_HEADER_FC_CREDITS.
 
 //! @brief Get value of PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_HEADER_FC_CREDITS from a register value.
 #define BG_PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_HEADER_FC_CREDITS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_HEADER_FC_CREDITS) >> BP_PCIE_PL_TCFCSR_TRANSMIT_COMPLETION_HEADER_FC_CREDITS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1889,13 +1799,11 @@ typedef union _hw_pcie_pl_qsr
  * synthesized as 0.
  */
 //@{
-
 #define BP_PCIE_PL_QSR_RECEIVED_TLP_FC_CREDITS_NOT_RETURNED      (0)      //!< Bit position for PCIE_PL_QSR_RECEIVED_TLP_FC_CREDITS_NOT_RETURNED.
 #define BM_PCIE_PL_QSR_RECEIVED_TLP_FC_CREDITS_NOT_RETURNED      (0x00000001)  //!< Bit mask for PCIE_PL_QSR_RECEIVED_TLP_FC_CREDITS_NOT_RETURNED.
 
 //! @brief Get value of PCIE_PL_QSR_RECEIVED_TLP_FC_CREDITS_NOT_RETURNED from a register value.
 #define BG_PCIE_PL_QSR_RECEIVED_TLP_FC_CREDITS_NOT_RETURNED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_QSR_RECEIVED_TLP_FC_CREDITS_NOT_RETURNED) >> BP_PCIE_PL_QSR_RECEIVED_TLP_FC_CREDITS_NOT_RETURNED)
-
 //@}
 
 /*! @name Register PCIE_PL_QSR, field TRANSMIT_RETRY_BUFFER_NOT_EMPTY[1] (RO)
@@ -1903,13 +1811,11 @@ typedef union _hw_pcie_pl_qsr
  * Transmit Retry Buffer Not Empty Indicates that there is data in the transmit retry buffer.
  */
 //@{
-
 #define BP_PCIE_PL_QSR_TRANSMIT_RETRY_BUFFER_NOT_EMPTY      (1)      //!< Bit position for PCIE_PL_QSR_TRANSMIT_RETRY_BUFFER_NOT_EMPTY.
 #define BM_PCIE_PL_QSR_TRANSMIT_RETRY_BUFFER_NOT_EMPTY      (0x00000002)  //!< Bit mask for PCIE_PL_QSR_TRANSMIT_RETRY_BUFFER_NOT_EMPTY.
 
 //! @brief Get value of PCIE_PL_QSR_TRANSMIT_RETRY_BUFFER_NOT_EMPTY from a register value.
 #define BG_PCIE_PL_QSR_TRANSMIT_RETRY_BUFFER_NOT_EMPTY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_QSR_TRANSMIT_RETRY_BUFFER_NOT_EMPTY) >> BP_PCIE_PL_QSR_TRANSMIT_RETRY_BUFFER_NOT_EMPTY)
-
 //@}
 
 /*! @name Register PCIE_PL_QSR, field RECEIVED_QUEUE_NOT_EMPTY[2] (RO)
@@ -1917,13 +1823,11 @@ typedef union _hw_pcie_pl_qsr
  * Received Queue Not Empty Indicates there is data in one or more of the receive buffers.
  */
 //@{
-
 #define BP_PCIE_PL_QSR_RECEIVED_QUEUE_NOT_EMPTY      (2)      //!< Bit position for PCIE_PL_QSR_RECEIVED_QUEUE_NOT_EMPTY.
 #define BM_PCIE_PL_QSR_RECEIVED_QUEUE_NOT_EMPTY      (0x00000004)  //!< Bit mask for PCIE_PL_QSR_RECEIVED_QUEUE_NOT_EMPTY.
 
 //! @brief Get value of PCIE_PL_QSR_RECEIVED_QUEUE_NOT_EMPTY from a register value.
 #define BG_PCIE_PL_QSR_RECEIVED_QUEUE_NOT_EMPTY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_QSR_RECEIVED_QUEUE_NOT_EMPTY) >> BP_PCIE_PL_QSR_RECEIVED_QUEUE_NOT_EMPTY)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1982,13 +1886,11 @@ typedef union _hw_pcie_pl_vctar1
  * WRR Weight for VC0
  */
 //@{
-
 #define BP_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC0      (0)      //!< Bit position for PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC0.
 #define BM_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC0      (0x000000ff)  //!< Bit mask for PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC0.
 
 //! @brief Get value of PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC0 from a register value.
 #define BG_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC0) >> BP_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC0)
-
 //@}
 
 /*! @name Register PCIE_PL_VCTAR1, field WRR_WEIGHT_FOR_VC1[15:8] (RO)
@@ -1996,13 +1898,11 @@ typedef union _hw_pcie_pl_vctar1
  * WRR Weight for VC1
  */
 //@{
-
 #define BP_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC1      (8)      //!< Bit position for PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC1.
 #define BM_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC1      (0x0000ff00)  //!< Bit mask for PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC1.
 
 //! @brief Get value of PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC1 from a register value.
 #define BG_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC1) >> BP_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC1)
-
 //@}
 
 /*! @name Register PCIE_PL_VCTAR1, field WRR_WEIGHT_FOR_VC2[23:16] (RO)
@@ -2010,13 +1910,11 @@ typedef union _hw_pcie_pl_vctar1
  * WRR Weight for VC2
  */
 //@{
-
 #define BP_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC2      (16)      //!< Bit position for PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC2.
 #define BM_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC2      (0x00ff0000)  //!< Bit mask for PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC2.
 
 //! @brief Get value of PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC2 from a register value.
 #define BG_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC2) >> BP_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC2)
-
 //@}
 
 /*! @name Register PCIE_PL_VCTAR1, field WRR_WEIGHT_FOR_VC3[31:24] (RO)
@@ -2024,13 +1922,11 @@ typedef union _hw_pcie_pl_vctar1
  * WRR Weight for VC3
  */
 //@{
-
 #define BP_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC3      (24)      //!< Bit position for PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC3.
 #define BM_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC3      (0xff000000)  //!< Bit mask for PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC3.
 
 //! @brief Get value of PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC3 from a register value.
 #define BG_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC3) >> BP_PCIE_PL_VCTAR1_WRR_WEIGHT_FOR_VC3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2089,13 +1985,11 @@ typedef union _hw_pcie_pl_vctar2
  * WRR Weight for VC4
  */
 //@{
-
 #define BP_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC4      (0)      //!< Bit position for PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC4.
 #define BM_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC4      (0x000000ff)  //!< Bit mask for PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC4.
 
 //! @brief Get value of PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC4 from a register value.
 #define BG_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC4) >> BP_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC4)
-
 //@}
 
 /*! @name Register PCIE_PL_VCTAR2, field WRR_WEIGHT_FOR_VC5[15:8] (RO)
@@ -2103,13 +1997,11 @@ typedef union _hw_pcie_pl_vctar2
  * WRR Weight for VC5
  */
 //@{
-
 #define BP_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC5      (8)      //!< Bit position for PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC5.
 #define BM_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC5      (0x0000ff00)  //!< Bit mask for PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC5.
 
 //! @brief Get value of PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC5 from a register value.
 #define BG_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC5) >> BP_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC5)
-
 //@}
 
 /*! @name Register PCIE_PL_VCTAR2, field WRR_WEIGHT_FOR_VC6[23:16] (RO)
@@ -2117,13 +2009,11 @@ typedef union _hw_pcie_pl_vctar2
  * WRR Weight for VC6
  */
 //@{
-
 #define BP_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC6      (16)      //!< Bit position for PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC6.
 #define BM_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC6      (0x00ff0000)  //!< Bit mask for PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC6.
 
 //! @brief Get value of PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC6 from a register value.
 #define BG_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC6) >> BP_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC6)
-
 //@}
 
 /*! @name Register PCIE_PL_VCTAR2, field WRR_WEIGHT_FOR_VC7[31:24] (RO)
@@ -2131,13 +2021,11 @@ typedef union _hw_pcie_pl_vctar2
  * WRR Weight for VC7
  */
 //@{
-
 #define BP_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC7      (24)      //!< Bit position for PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC7.
 #define BM_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC7      (0xff000000)  //!< Bit mask for PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC7.
 
 //! @brief Get value of PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC7 from a register value.
 #define BG_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC7) >> BP_PCIE_PL_VCTAR2_WRR_WEIGHT_FOR_VC7)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2196,7 +2084,6 @@ typedef union _hw_pcie_pl_vc0prqc
  * queue buffer configurations. This field is not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC0PRQC_VC0_POSTED_DATA_CREDITS      (0)      //!< Bit position for PCIE_PL_VC0PRQC_VC0_POSTED_DATA_CREDITS.
 #define BM_PCIE_PL_VC0PRQC_VC0_POSTED_DATA_CREDITS      (0x00000fff)  //!< Bit mask for PCIE_PL_VC0PRQC_VC0_POSTED_DATA_CREDITS.
 
@@ -2210,7 +2097,6 @@ typedef union _hw_pcie_pl_vc0prqc
 //! @brief Set the VC0_POSTED_DATA_CREDITS field to a new value.
 #define BW_PCIE_PL_VC0PRQC_VC0_POSTED_DATA_CREDITS(v)   (HW_PCIE_PL_VC0PRQC_WR((HW_PCIE_PL_VC0PRQC_RD() & ~BM_PCIE_PL_VC0PRQC_VC0_POSTED_DATA_CREDITS) | BF_PCIE_PL_VC0PRQC_VC0_POSTED_DATA_CREDITS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VC0PRQC, field VC0_POSTED_HEADER_CREDITS[19:12] (RW)
@@ -2219,7 +2105,6 @@ typedef union _hw_pcie_pl_vc0prqc
  * receive queue buffer configurations. This field is not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC0PRQC_VC0_POSTED_HEADER_CREDITS      (12)      //!< Bit position for PCIE_PL_VC0PRQC_VC0_POSTED_HEADER_CREDITS.
 #define BM_PCIE_PL_VC0PRQC_VC0_POSTED_HEADER_CREDITS      (0x000ff000)  //!< Bit mask for PCIE_PL_VC0PRQC_VC0_POSTED_HEADER_CREDITS.
 
@@ -2233,7 +2118,6 @@ typedef union _hw_pcie_pl_vc0prqc
 //! @brief Set the VC0_POSTED_HEADER_CREDITS field to a new value.
 #define BW_PCIE_PL_VC0PRQC_VC0_POSTED_HEADER_CREDITS(v)   (HW_PCIE_PL_VC0PRQC_WR((HW_PCIE_PL_VC0PRQC_RD() & ~BM_PCIE_PL_VC0PRQC_VC0_POSTED_HEADER_CREDITS) | BF_PCIE_PL_VC0PRQC_VC0_POSTED_HEADER_CREDITS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VC0PRQC, field VC0_POSTED_TLP_QUEUE_MODE[23:21] (RW)
@@ -2243,7 +2127,6 @@ typedef union _hw_pcie_pl_vc0prqc
  * Bit 23: Bypass Bit 22: Cut-through Bit 21: Store-and-forward
  */
 //@{
-
 #define BP_PCIE_PL_VC0PRQC_VC0_POSTED_TLP_QUEUE_MODE      (21)      //!< Bit position for PCIE_PL_VC0PRQC_VC0_POSTED_TLP_QUEUE_MODE.
 #define BM_PCIE_PL_VC0PRQC_VC0_POSTED_TLP_QUEUE_MODE      (0x00e00000)  //!< Bit mask for PCIE_PL_VC0PRQC_VC0_POSTED_TLP_QUEUE_MODE.
 
@@ -2257,7 +2140,6 @@ typedef union _hw_pcie_pl_vc0prqc
 //! @brief Set the VC0_POSTED_TLP_QUEUE_MODE field to a new value.
 #define BW_PCIE_PL_VC0PRQC_VC0_POSTED_TLP_QUEUE_MODE(v)   (HW_PCIE_PL_VC0PRQC_WR((HW_PCIE_PL_VC0PRQC_RD() & ~BM_PCIE_PL_VC0PRQC_VC0_POSTED_TLP_QUEUE_MODE) | BF_PCIE_PL_VC0PRQC_VC0_POSTED_TLP_QUEUE_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VC0PRQC, field TLP_TYPE_ORDERING_FOR_VC0[30] (RW)
@@ -2270,7 +2152,6 @@ typedef union _hw_pcie_pl_vc0prqc
  * - 1 - Ordering of received TLPs follows the rules in PCI Express 3.0 Specification.
  */
 //@{
-
 #define BP_PCIE_PL_VC0PRQC_TLP_TYPE_ORDERING_FOR_VC0      (30)      //!< Bit position for PCIE_PL_VC0PRQC_TLP_TYPE_ORDERING_FOR_VC0.
 #define BM_PCIE_PL_VC0PRQC_TLP_TYPE_ORDERING_FOR_VC0      (0x40000000)  //!< Bit mask for PCIE_PL_VC0PRQC_TLP_TYPE_ORDERING_FOR_VC0.
 
@@ -2284,7 +2165,6 @@ typedef union _hw_pcie_pl_vc0prqc
 //! @brief Set the TLP_TYPE_ORDERING_FOR_VC0 field to a new value.
 #define BW_PCIE_PL_VC0PRQC_TLP_TYPE_ORDERING_FOR_VC0(v)   (HW_PCIE_PL_VC0PRQC_WR((HW_PCIE_PL_VC0PRQC_RD() & ~BM_PCIE_PL_VC0PRQC_TLP_TYPE_ORDERING_FOR_VC0) | BF_PCIE_PL_VC0PRQC_TLP_TYPE_ORDERING_FOR_VC0(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VC0PRQC, field VC_ORDERING_FOR_RECEIVE_QUEUES[31] (RW)
@@ -2297,7 +2177,6 @@ typedef union _hw_pcie_pl_vc0prqc
  * - 1 - Strict ordering, higher numbered VCs have higher priority
  */
 //@{
-
 #define BP_PCIE_PL_VC0PRQC_VC_ORDERING_FOR_RECEIVE_QUEUES      (31)      //!< Bit position for PCIE_PL_VC0PRQC_VC_ORDERING_FOR_RECEIVE_QUEUES.
 #define BM_PCIE_PL_VC0PRQC_VC_ORDERING_FOR_RECEIVE_QUEUES      (0x80000000)  //!< Bit mask for PCIE_PL_VC0PRQC_VC_ORDERING_FOR_RECEIVE_QUEUES.
 
@@ -2311,7 +2190,6 @@ typedef union _hw_pcie_pl_vc0prqc
 //! @brief Set the VC_ORDERING_FOR_RECEIVE_QUEUES field to a new value.
 #define BW_PCIE_PL_VC0PRQC_VC_ORDERING_FOR_RECEIVE_QUEUES(v)   (HW_PCIE_PL_VC0PRQC_WR((HW_PCIE_PL_VC0PRQC_RD() & ~BM_PCIE_PL_VC0PRQC_VC_ORDERING_FOR_RECEIVE_QUEUES) | BF_PCIE_PL_VC0PRQC_VC_ORDERING_FOR_RECEIVE_QUEUES(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2366,7 +2244,6 @@ typedef union _hw_pcie_pl_vc0nrqc
  * receive queue buffer configurations. This field is not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC0NRQC_VC0_NON_POSTED_DATA_CREDITS      (0)      //!< Bit position for PCIE_PL_VC0NRQC_VC0_NON_POSTED_DATA_CREDITS.
 #define BM_PCIE_PL_VC0NRQC_VC0_NON_POSTED_DATA_CREDITS      (0x00000fff)  //!< Bit mask for PCIE_PL_VC0NRQC_VC0_NON_POSTED_DATA_CREDITS.
 
@@ -2380,7 +2257,6 @@ typedef union _hw_pcie_pl_vc0nrqc
 //! @brief Set the VC0_NON_POSTED_DATA_CREDITS field to a new value.
 #define BW_PCIE_PL_VC0NRQC_VC0_NON_POSTED_DATA_CREDITS(v)   (HW_PCIE_PL_VC0NRQC_WR((HW_PCIE_PL_VC0NRQC_RD() & ~BM_PCIE_PL_VC0NRQC_VC0_NON_POSTED_DATA_CREDITS) | BF_PCIE_PL_VC0NRQC_VC0_NON_POSTED_DATA_CREDITS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VC0NRQC, field VC0_NON_POSTED_HEADER_CREDITS[19:12] (RW)
@@ -2389,7 +2265,6 @@ typedef union _hw_pcie_pl_vc0nrqc
  * all receive queue buffer configurations. This field is not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC0NRQC_VC0_NON_POSTED_HEADER_CREDITS      (12)      //!< Bit position for PCIE_PL_VC0NRQC_VC0_NON_POSTED_HEADER_CREDITS.
 #define BM_PCIE_PL_VC0NRQC_VC0_NON_POSTED_HEADER_CREDITS      (0x000ff000)  //!< Bit mask for PCIE_PL_VC0NRQC_VC0_NON_POSTED_HEADER_CREDITS.
 
@@ -2403,7 +2278,6 @@ typedef union _hw_pcie_pl_vc0nrqc
 //! @brief Set the VC0_NON_POSTED_HEADER_CREDITS field to a new value.
 #define BW_PCIE_PL_VC0NRQC_VC0_NON_POSTED_HEADER_CREDITS(v)   (HW_PCIE_PL_VC0NRQC_WR((HW_PCIE_PL_VC0NRQC_RD() & ~BM_PCIE_PL_VC0NRQC_VC0_NON_POSTED_HEADER_CREDITS) | BF_PCIE_PL_VC0NRQC_VC0_NON_POSTED_HEADER_CREDITS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VC0NRQC, field VC0_NON_POSTED_TLP_QUEUE_MODE[23:21] (RW)
@@ -2413,7 +2287,6 @@ typedef union _hw_pcie_pl_vc0nrqc
  * a time: Bit 23: Bypass Bit 22: Cut-through Bit 21: Store-and-forward
  */
 //@{
-
 #define BP_PCIE_PL_VC0NRQC_VC0_NON_POSTED_TLP_QUEUE_MODE      (21)      //!< Bit position for PCIE_PL_VC0NRQC_VC0_NON_POSTED_TLP_QUEUE_MODE.
 #define BM_PCIE_PL_VC0NRQC_VC0_NON_POSTED_TLP_QUEUE_MODE      (0x00e00000)  //!< Bit mask for PCIE_PL_VC0NRQC_VC0_NON_POSTED_TLP_QUEUE_MODE.
 
@@ -2427,7 +2300,6 @@ typedef union _hw_pcie_pl_vc0nrqc
 //! @brief Set the VC0_NON_POSTED_TLP_QUEUE_MODE field to a new value.
 #define BW_PCIE_PL_VC0NRQC_VC0_NON_POSTED_TLP_QUEUE_MODE(v)   (HW_PCIE_PL_VC0NRQC_WR((HW_PCIE_PL_VC0NRQC_RD() & ~BM_PCIE_PL_VC0NRQC_VC0_NON_POSTED_TLP_QUEUE_MODE) | BF_PCIE_PL_VC0NRQC_VC0_NON_POSTED_TLP_QUEUE_MODE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2482,7 +2354,6 @@ typedef union _hw_pcie_pl_vc0crqc
  * receive queue buffer configurations. This field is not writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_PL_VC0CRQC_VC0_COMPLETION_DATA_CREDITS      (0)      //!< Bit position for PCIE_PL_VC0CRQC_VC0_COMPLETION_DATA_CREDITS.
 #define BM_PCIE_PL_VC0CRQC_VC0_COMPLETION_DATA_CREDITS      (0x00000fff)  //!< Bit mask for PCIE_PL_VC0CRQC_VC0_COMPLETION_DATA_CREDITS.
 
@@ -2496,7 +2367,6 @@ typedef union _hw_pcie_pl_vc0crqc
 //! @brief Set the VC0_COMPLETION_DATA_CREDITS field to a new value.
 #define BW_PCIE_PL_VC0CRQC_VC0_COMPLETION_DATA_CREDITS(v)   (HW_PCIE_PL_VC0CRQC_WR((HW_PCIE_PL_VC0CRQC_RD() & ~BM_PCIE_PL_VC0CRQC_VC0_COMPLETION_DATA_CREDITS) | BF_PCIE_PL_VC0CRQC_VC0_COMPLETION_DATA_CREDITS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VC0CRQC, field VC0_COMPLETION_HEADER_CREDITS[19:12] (RW)
@@ -2505,7 +2375,6 @@ typedef union _hw_pcie_pl_vc0crqc
  * all receive queue buffer configurations. This field is not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC0CRQC_VC0_COMPLETION_HEADER_CREDITS      (12)      //!< Bit position for PCIE_PL_VC0CRQC_VC0_COMPLETION_HEADER_CREDITS.
 #define BM_PCIE_PL_VC0CRQC_VC0_COMPLETION_HEADER_CREDITS      (0x000ff000)  //!< Bit mask for PCIE_PL_VC0CRQC_VC0_COMPLETION_HEADER_CREDITS.
 
@@ -2519,7 +2388,6 @@ typedef union _hw_pcie_pl_vc0crqc
 //! @brief Set the VC0_COMPLETION_HEADER_CREDITS field to a new value.
 #define BW_PCIE_PL_VC0CRQC_VC0_COMPLETION_HEADER_CREDITS(v)   (HW_PCIE_PL_VC0CRQC_WR((HW_PCIE_PL_VC0CRQC_RD() & ~BM_PCIE_PL_VC0CRQC_VC0_COMPLETION_HEADER_CREDITS) | BF_PCIE_PL_VC0CRQC_VC0_COMPLETION_HEADER_CREDITS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VC0CRQC, field VC0_COMPLETION_TLP_QUEUE_MODE[23:21] (RW)
@@ -2529,7 +2397,6 @@ typedef union _hw_pcie_pl_vc0crqc
  * a time: Bit 23: Bypass Bit 22: Cut-through Bit 21: Store-and-forward
  */
 //@{
-
 #define BP_PCIE_PL_VC0CRQC_VC0_COMPLETION_TLP_QUEUE_MODE      (21)      //!< Bit position for PCIE_PL_VC0CRQC_VC0_COMPLETION_TLP_QUEUE_MODE.
 #define BM_PCIE_PL_VC0CRQC_VC0_COMPLETION_TLP_QUEUE_MODE      (0x00e00000)  //!< Bit mask for PCIE_PL_VC0CRQC_VC0_COMPLETION_TLP_QUEUE_MODE.
 
@@ -2543,7 +2410,6 @@ typedef union _hw_pcie_pl_vc0crqc
 //! @brief Set the VC0_COMPLETION_TLP_QUEUE_MODE field to a new value.
 #define BW_PCIE_PL_VC0CRQC_VC0_COMPLETION_TLP_QUEUE_MODE(v)   (HW_PCIE_PL_VC0CRQC_WR((HW_PCIE_PL_VC0CRQC_RD() & ~BM_PCIE_PL_VC0CRQC_VC0_COMPLETION_TLP_QUEUE_MODE) | BF_PCIE_PL_VC0CRQC_VC0_COMPLETION_TLP_QUEUE_MODE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2600,7 +2466,6 @@ typedef union _hw_pcie_pl_vcnprqc
  * queue buffer configurations. This field is not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VCNPRQC_VC1_POSTED_DATA_CREDITS      (0)      //!< Bit position for PCIE_PL_VCNPRQC_VC1_POSTED_DATA_CREDITS.
 #define BM_PCIE_PL_VCNPRQC_VC1_POSTED_DATA_CREDITS      (0x00000fff)  //!< Bit mask for PCIE_PL_VCNPRQC_VC1_POSTED_DATA_CREDITS.
 
@@ -2614,7 +2479,6 @@ typedef union _hw_pcie_pl_vcnprqc
 //! @brief Set the VC1_POSTED_DATA_CREDITS field to a new value.
 #define BW_PCIE_PL_VCNPRQC_VC1_POSTED_DATA_CREDITS(v)   (HW_PCIE_PL_VCNPRQC_WR((HW_PCIE_PL_VCNPRQC_RD() & ~BM_PCIE_PL_VCNPRQC_VC1_POSTED_DATA_CREDITS) | BF_PCIE_PL_VCNPRQC_VC1_POSTED_DATA_CREDITS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VCNPRQC, field VC1_POSTED_HEADER_CREDITS[19:12] (RW)
@@ -2623,7 +2487,6 @@ typedef union _hw_pcie_pl_vcnprqc
  * receive queue buffer configurations. This field is not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VCNPRQC_VC1_POSTED_HEADER_CREDITS      (12)      //!< Bit position for PCIE_PL_VCNPRQC_VC1_POSTED_HEADER_CREDITS.
 #define BM_PCIE_PL_VCNPRQC_VC1_POSTED_HEADER_CREDITS      (0x000ff000)  //!< Bit mask for PCIE_PL_VCNPRQC_VC1_POSTED_HEADER_CREDITS.
 
@@ -2637,7 +2500,6 @@ typedef union _hw_pcie_pl_vcnprqc
 //! @brief Set the VC1_POSTED_HEADER_CREDITS field to a new value.
 #define BW_PCIE_PL_VCNPRQC_VC1_POSTED_HEADER_CREDITS(v)   (HW_PCIE_PL_VCNPRQC_WR((HW_PCIE_PL_VCNPRQC_RD() & ~BM_PCIE_PL_VCNPRQC_VC1_POSTED_HEADER_CREDITS) | BF_PCIE_PL_VCNPRQC_VC1_POSTED_HEADER_CREDITS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VCNPRQC, field VC1_POSTED_TLP_QUEUE_MODE[23:21] (RW)
@@ -2647,7 +2509,6 @@ typedef union _hw_pcie_pl_vcnprqc
  * Bit 23: Bypass Bit 22: Cut-through Bit 21: Store-and-forward
  */
 //@{
-
 #define BP_PCIE_PL_VCNPRQC_VC1_POSTED_TLP_QUEUE_MODE      (21)      //!< Bit position for PCIE_PL_VCNPRQC_VC1_POSTED_TLP_QUEUE_MODE.
 #define BM_PCIE_PL_VCNPRQC_VC1_POSTED_TLP_QUEUE_MODE      (0x00e00000)  //!< Bit mask for PCIE_PL_VCNPRQC_VC1_POSTED_TLP_QUEUE_MODE.
 
@@ -2661,7 +2522,6 @@ typedef union _hw_pcie_pl_vcnprqc
 //! @brief Set the VC1_POSTED_TLP_QUEUE_MODE field to a new value.
 #define BW_PCIE_PL_VCNPRQC_VC1_POSTED_TLP_QUEUE_MODE(v)   (HW_PCIE_PL_VCNPRQC_WR((HW_PCIE_PL_VCNPRQC_RD() & ~BM_PCIE_PL_VCNPRQC_VC1_POSTED_TLP_QUEUE_MODE) | BF_PCIE_PL_VCNPRQC_VC1_POSTED_TLP_QUEUE_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VCNPRQC, field TLP_TYPE_ORDERING_FOR_VC1[30] (RW)
@@ -2672,7 +2532,6 @@ typedef union _hw_pcie_pl_vcnprqc
  * Posted, then Completion, then Non-Posted
  */
 //@{
-
 #define BP_PCIE_PL_VCNPRQC_TLP_TYPE_ORDERING_FOR_VC1      (30)      //!< Bit position for PCIE_PL_VCNPRQC_TLP_TYPE_ORDERING_FOR_VC1.
 #define BM_PCIE_PL_VCNPRQC_TLP_TYPE_ORDERING_FOR_VC1      (0x40000000)  //!< Bit mask for PCIE_PL_VCNPRQC_TLP_TYPE_ORDERING_FOR_VC1.
 
@@ -2686,7 +2545,6 @@ typedef union _hw_pcie_pl_vcnprqc
 //! @brief Set the TLP_TYPE_ORDERING_FOR_VC1 field to a new value.
 #define BW_PCIE_PL_VCNPRQC_TLP_TYPE_ORDERING_FOR_VC1(v)   (HW_PCIE_PL_VCNPRQC_WR((HW_PCIE_PL_VCNPRQC_RD() & ~BM_PCIE_PL_VCNPRQC_TLP_TYPE_ORDERING_FOR_VC1) | BF_PCIE_PL_VCNPRQC_TLP_TYPE_ORDERING_FOR_VC1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2741,7 +2599,6 @@ typedef union _hw_pcie_pl_vcnnrqc
  * receive queue buffer configurations. This field is not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VCNNRQC_VC1_NON_POSTED_DATA_CREDITS      (0)      //!< Bit position for PCIE_PL_VCNNRQC_VC1_NON_POSTED_DATA_CREDITS.
 #define BM_PCIE_PL_VCNNRQC_VC1_NON_POSTED_DATA_CREDITS      (0x00000fff)  //!< Bit mask for PCIE_PL_VCNNRQC_VC1_NON_POSTED_DATA_CREDITS.
 
@@ -2755,7 +2612,6 @@ typedef union _hw_pcie_pl_vcnnrqc
 //! @brief Set the VC1_NON_POSTED_DATA_CREDITS field to a new value.
 #define BW_PCIE_PL_VCNNRQC_VC1_NON_POSTED_DATA_CREDITS(v)   (HW_PCIE_PL_VCNNRQC_WR((HW_PCIE_PL_VCNNRQC_RD() & ~BM_PCIE_PL_VCNNRQC_VC1_NON_POSTED_DATA_CREDITS) | BF_PCIE_PL_VCNNRQC_VC1_NON_POSTED_DATA_CREDITS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VCNNRQC, field VC1_NON_POSTED_HEADER_CREDITS[19:12] (RW)
@@ -2764,7 +2620,6 @@ typedef union _hw_pcie_pl_vcnnrqc
  * all receive queue buffer configurations. This field is not writable through the DBId.
  */
 //@{
-
 #define BP_PCIE_PL_VCNNRQC_VC1_NON_POSTED_HEADER_CREDITS      (12)      //!< Bit position for PCIE_PL_VCNNRQC_VC1_NON_POSTED_HEADER_CREDITS.
 #define BM_PCIE_PL_VCNNRQC_VC1_NON_POSTED_HEADER_CREDITS      (0x000ff000)  //!< Bit mask for PCIE_PL_VCNNRQC_VC1_NON_POSTED_HEADER_CREDITS.
 
@@ -2778,7 +2633,6 @@ typedef union _hw_pcie_pl_vcnnrqc
 //! @brief Set the VC1_NON_POSTED_HEADER_CREDITS field to a new value.
 #define BW_PCIE_PL_VCNNRQC_VC1_NON_POSTED_HEADER_CREDITS(v)   (HW_PCIE_PL_VCNNRQC_WR((HW_PCIE_PL_VCNNRQC_RD() & ~BM_PCIE_PL_VCNNRQC_VC1_NON_POSTED_HEADER_CREDITS) | BF_PCIE_PL_VCNNRQC_VC1_NON_POSTED_HEADER_CREDITS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VCNNRQC, field VC1_NON_POSTED_TLP_QUEUE_MODE[23:21] (RW)
@@ -2788,7 +2642,6 @@ typedef union _hw_pcie_pl_vcnnrqc
  * a time: Bit 23: Bypass Bit 22: Cut-through Bit 21: Store-and-forward
  */
 //@{
-
 #define BP_PCIE_PL_VCNNRQC_VC1_NON_POSTED_TLP_QUEUE_MODE      (21)      //!< Bit position for PCIE_PL_VCNNRQC_VC1_NON_POSTED_TLP_QUEUE_MODE.
 #define BM_PCIE_PL_VCNNRQC_VC1_NON_POSTED_TLP_QUEUE_MODE      (0x00e00000)  //!< Bit mask for PCIE_PL_VCNNRQC_VC1_NON_POSTED_TLP_QUEUE_MODE.
 
@@ -2802,7 +2655,6 @@ typedef union _hw_pcie_pl_vcnnrqc
 //! @brief Set the VC1_NON_POSTED_TLP_QUEUE_MODE field to a new value.
 #define BW_PCIE_PL_VCNNRQC_VC1_NON_POSTED_TLP_QUEUE_MODE(v)   (HW_PCIE_PL_VCNNRQC_WR((HW_PCIE_PL_VCNNRQC_RD() & ~BM_PCIE_PL_VCNNRQC_VC1_NON_POSTED_TLP_QUEUE_MODE) | BF_PCIE_PL_VCNNRQC_VC1_NON_POSTED_TLP_QUEUE_MODE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2857,7 +2709,6 @@ typedef union _hw_pcie_pl_vcncrqc
  * receive queue buffer configurations. This field is not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VCNCRQC_VC1_COMPLETION_DATA_CREDITS      (0)      //!< Bit position for PCIE_PL_VCNCRQC_VC1_COMPLETION_DATA_CREDITS.
 #define BM_PCIE_PL_VCNCRQC_VC1_COMPLETION_DATA_CREDITS      (0x00000fff)  //!< Bit mask for PCIE_PL_VCNCRQC_VC1_COMPLETION_DATA_CREDITS.
 
@@ -2871,7 +2722,6 @@ typedef union _hw_pcie_pl_vcncrqc
 //! @brief Set the VC1_COMPLETION_DATA_CREDITS field to a new value.
 #define BW_PCIE_PL_VCNCRQC_VC1_COMPLETION_DATA_CREDITS(v)   (HW_PCIE_PL_VCNCRQC_WR((HW_PCIE_PL_VCNCRQC_RD() & ~BM_PCIE_PL_VCNCRQC_VC1_COMPLETION_DATA_CREDITS) | BF_PCIE_PL_VCNCRQC_VC1_COMPLETION_DATA_CREDITS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VCNCRQC, field VC1_COMPLETION_HEADER_CREDITS[19:12] (RW)
@@ -2880,7 +2730,6 @@ typedef union _hw_pcie_pl_vcncrqc
  * all receive queue buffer configurations. This field is not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VCNCRQC_VC1_COMPLETION_HEADER_CREDITS      (12)      //!< Bit position for PCIE_PL_VCNCRQC_VC1_COMPLETION_HEADER_CREDITS.
 #define BM_PCIE_PL_VCNCRQC_VC1_COMPLETION_HEADER_CREDITS      (0x000ff000)  //!< Bit mask for PCIE_PL_VCNCRQC_VC1_COMPLETION_HEADER_CREDITS.
 
@@ -2894,7 +2743,6 @@ typedef union _hw_pcie_pl_vcncrqc
 //! @brief Set the VC1_COMPLETION_HEADER_CREDITS field to a new value.
 #define BW_PCIE_PL_VCNCRQC_VC1_COMPLETION_HEADER_CREDITS(v)   (HW_PCIE_PL_VCNCRQC_WR((HW_PCIE_PL_VCNCRQC_RD() & ~BM_PCIE_PL_VCNCRQC_VC1_COMPLETION_HEADER_CREDITS) | BF_PCIE_PL_VCNCRQC_VC1_COMPLETION_HEADER_CREDITS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_VCNCRQC, field VC1_COMPLETION_TLP_QUEUE_MODE[23:21] (RW)
@@ -2904,7 +2752,6 @@ typedef union _hw_pcie_pl_vcncrqc
  * a time: Bit 23: Bypass Bit 22: Cut-through Bit 21: Store-and-forward
  */
 //@{
-
 #define BP_PCIE_PL_VCNCRQC_VC1_COMPLETION_TLP_QUEUE_MODE      (21)      //!< Bit position for PCIE_PL_VCNCRQC_VC1_COMPLETION_TLP_QUEUE_MODE.
 #define BM_PCIE_PL_VCNCRQC_VC1_COMPLETION_TLP_QUEUE_MODE      (0x00e00000)  //!< Bit mask for PCIE_PL_VCNCRQC_VC1_COMPLETION_TLP_QUEUE_MODE.
 
@@ -2918,7 +2765,6 @@ typedef union _hw_pcie_pl_vcncrqc
 //! @brief Set the VC1_COMPLETION_TLP_QUEUE_MODE field to a new value.
 #define BW_PCIE_PL_VCNCRQC_VC1_COMPLETION_TLP_QUEUE_MODE(v)   (HW_PCIE_PL_VCNCRQC_WR((HW_PCIE_PL_VCNCRQC_RD() & ~BM_PCIE_PL_VCNCRQC_VC1_COMPLETION_TLP_QUEUE_MODE) | BF_PCIE_PL_VCNCRQC_VC1_COMPLETION_TLP_QUEUE_MODE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2969,13 +2815,11 @@ typedef union _hw_pcie_pl_vc0pbd
  * using the segmented-buffer configuration.Not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC0PBD_VC0_POSTED_DATA_QUEUE_DEPTH      (0)      //!< Bit position for PCIE_PL_VC0PBD_VC0_POSTED_DATA_QUEUE_DEPTH.
 #define BM_PCIE_PL_VC0PBD_VC0_POSTED_DATA_QUEUE_DEPTH      (0x00003fff)  //!< Bit mask for PCIE_PL_VC0PBD_VC0_POSTED_DATA_QUEUE_DEPTH.
 
 //! @brief Get value of PCIE_PL_VC0PBD_VC0_POSTED_DATA_QUEUE_DEPTH from a register value.
 #define BG_PCIE_PL_VC0PBD_VC0_POSTED_DATA_QUEUE_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VC0PBD_VC0_POSTED_DATA_QUEUE_DEPTH) >> BP_PCIE_PL_VC0PBD_VC0_POSTED_DATA_QUEUE_DEPTH)
-
 //@}
 
 /*! @name Register PCIE_PL_VC0PBD, field VC0_POSTED_HEADER_QUEUE_DEPTH[25:16] (RO)
@@ -2984,13 +2828,11 @@ typedef union _hw_pcie_pl_vc0pbd
  * using the segmented-buffer configuration.Not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC0PBD_VC0_POSTED_HEADER_QUEUE_DEPTH      (16)      //!< Bit position for PCIE_PL_VC0PBD_VC0_POSTED_HEADER_QUEUE_DEPTH.
 #define BM_PCIE_PL_VC0PBD_VC0_POSTED_HEADER_QUEUE_DEPTH      (0x03ff0000)  //!< Bit mask for PCIE_PL_VC0PBD_VC0_POSTED_HEADER_QUEUE_DEPTH.
 
 //! @brief Get value of PCIE_PL_VC0PBD_VC0_POSTED_HEADER_QUEUE_DEPTH from a register value.
 #define BG_PCIE_PL_VC0PBD_VC0_POSTED_HEADER_QUEUE_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VC0PBD_VC0_POSTED_HEADER_QUEUE_DEPTH) >> BP_PCIE_PL_VC0PBD_VC0_POSTED_HEADER_QUEUE_DEPTH)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3040,13 +2882,11 @@ typedef union _hw_pcie_pl_vc0npbd
  * when using the segmented-buffer configuration. Not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC0NPBD_VC0_NON_POSTED_DATA_QUEUE_DEPTH      (0)      //!< Bit position for PCIE_PL_VC0NPBD_VC0_NON_POSTED_DATA_QUEUE_DEPTH.
 #define BM_PCIE_PL_VC0NPBD_VC0_NON_POSTED_DATA_QUEUE_DEPTH      (0x00003fff)  //!< Bit mask for PCIE_PL_VC0NPBD_VC0_NON_POSTED_DATA_QUEUE_DEPTH.
 
 //! @brief Get value of PCIE_PL_VC0NPBD_VC0_NON_POSTED_DATA_QUEUE_DEPTH from a register value.
 #define BG_PCIE_PL_VC0NPBD_VC0_NON_POSTED_DATA_QUEUE_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VC0NPBD_VC0_NON_POSTED_DATA_QUEUE_DEPTH) >> BP_PCIE_PL_VC0NPBD_VC0_NON_POSTED_DATA_QUEUE_DEPTH)
-
 //@}
 
 /*! @name Register PCIE_PL_VC0NPBD, field VC0_NON_POSTED_HEADER_QUEUE_DEPTH[25:16] (RO)
@@ -3055,13 +2895,11 @@ typedef union _hw_pcie_pl_vc0npbd
  * VC0 when using the segmented-buffer configuration.Not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC0NPBD_VC0_NON_POSTED_HEADER_QUEUE_DEPTH      (16)      //!< Bit position for PCIE_PL_VC0NPBD_VC0_NON_POSTED_HEADER_QUEUE_DEPTH.
 #define BM_PCIE_PL_VC0NPBD_VC0_NON_POSTED_HEADER_QUEUE_DEPTH      (0x03ff0000)  //!< Bit mask for PCIE_PL_VC0NPBD_VC0_NON_POSTED_HEADER_QUEUE_DEPTH.
 
 //! @brief Get value of PCIE_PL_VC0NPBD_VC0_NON_POSTED_HEADER_QUEUE_DEPTH from a register value.
 #define BG_PCIE_PL_VC0NPBD_VC0_NON_POSTED_HEADER_QUEUE_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VC0NPBD_VC0_NON_POSTED_HEADER_QUEUE_DEPTH) >> BP_PCIE_PL_VC0NPBD_VC0_NON_POSTED_HEADER_QUEUE_DEPTH)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3111,13 +2949,11 @@ typedef union _hw_pcie_pl_vc0cbd
  * when using the segmented-buffer configuration. Not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC0CBD_VC0_COMPLETION_DATA_QUEUE_DEPTH      (0)      //!< Bit position for PCIE_PL_VC0CBD_VC0_COMPLETION_DATA_QUEUE_DEPTH.
 #define BM_PCIE_PL_VC0CBD_VC0_COMPLETION_DATA_QUEUE_DEPTH      (0x00003fff)  //!< Bit mask for PCIE_PL_VC0CBD_VC0_COMPLETION_DATA_QUEUE_DEPTH.
 
 //! @brief Get value of PCIE_PL_VC0CBD_VC0_COMPLETION_DATA_QUEUE_DEPTH from a register value.
 #define BG_PCIE_PL_VC0CBD_VC0_COMPLETION_DATA_QUEUE_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VC0CBD_VC0_COMPLETION_DATA_QUEUE_DEPTH) >> BP_PCIE_PL_VC0CBD_VC0_COMPLETION_DATA_QUEUE_DEPTH)
-
 //@}
 
 /*! @name Register PCIE_PL_VC0CBD, field VC0_POSTED_HEADER_QUEUE_DEPTH[25:16] (RO)
@@ -3126,13 +2962,11 @@ typedef union _hw_pcie_pl_vc0cbd
  * when using the segmented-buffer configuration.Not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC0CBD_VC0_POSTED_HEADER_QUEUE_DEPTH      (16)      //!< Bit position for PCIE_PL_VC0CBD_VC0_POSTED_HEADER_QUEUE_DEPTH.
 #define BM_PCIE_PL_VC0CBD_VC0_POSTED_HEADER_QUEUE_DEPTH      (0x03ff0000)  //!< Bit mask for PCIE_PL_VC0CBD_VC0_POSTED_HEADER_QUEUE_DEPTH.
 
 //! @brief Get value of PCIE_PL_VC0CBD_VC0_POSTED_HEADER_QUEUE_DEPTH from a register value.
 #define BG_PCIE_PL_VC0CBD_VC0_POSTED_HEADER_QUEUE_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VC0CBD_VC0_POSTED_HEADER_QUEUE_DEPTH) >> BP_PCIE_PL_VC0CBD_VC0_POSTED_HEADER_QUEUE_DEPTH)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3182,13 +3016,11 @@ typedef union _hw_pcie_pl_vc1pbd
  * using the segmented-buffer configuration.Not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC1PBD_VC1_POSTED_DATA_QUEUE_DEPTH      (0)      //!< Bit position for PCIE_PL_VC1PBD_VC1_POSTED_DATA_QUEUE_DEPTH.
 #define BM_PCIE_PL_VC1PBD_VC1_POSTED_DATA_QUEUE_DEPTH      (0x00003fff)  //!< Bit mask for PCIE_PL_VC1PBD_VC1_POSTED_DATA_QUEUE_DEPTH.
 
 //! @brief Get value of PCIE_PL_VC1PBD_VC1_POSTED_DATA_QUEUE_DEPTH from a register value.
 #define BG_PCIE_PL_VC1PBD_VC1_POSTED_DATA_QUEUE_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VC1PBD_VC1_POSTED_DATA_QUEUE_DEPTH) >> BP_PCIE_PL_VC1PBD_VC1_POSTED_DATA_QUEUE_DEPTH)
-
 //@}
 
 /*! @name Register PCIE_PL_VC1PBD, field VC1_POSTED_HEADER_QUEUE_DEPTH[25:16] (RO)
@@ -3197,13 +3029,11 @@ typedef union _hw_pcie_pl_vc1pbd
  * using the segmented-buffer configuration.Not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC1PBD_VC1_POSTED_HEADER_QUEUE_DEPTH      (16)      //!< Bit position for PCIE_PL_VC1PBD_VC1_POSTED_HEADER_QUEUE_DEPTH.
 #define BM_PCIE_PL_VC1PBD_VC1_POSTED_HEADER_QUEUE_DEPTH      (0x03ff0000)  //!< Bit mask for PCIE_PL_VC1PBD_VC1_POSTED_HEADER_QUEUE_DEPTH.
 
 //! @brief Get value of PCIE_PL_VC1PBD_VC1_POSTED_HEADER_QUEUE_DEPTH from a register value.
 #define BG_PCIE_PL_VC1PBD_VC1_POSTED_HEADER_QUEUE_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VC1PBD_VC1_POSTED_HEADER_QUEUE_DEPTH) >> BP_PCIE_PL_VC1PBD_VC1_POSTED_HEADER_QUEUE_DEPTH)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3253,13 +3083,11 @@ typedef union _hw_pcie_pl_vc1npbd
  * when using the segmented-buffer configuration. Not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC1NPBD_VC1_NON_POSTED_DATA_QUEUE_DEPTH      (0)      //!< Bit position for PCIE_PL_VC1NPBD_VC1_NON_POSTED_DATA_QUEUE_DEPTH.
 #define BM_PCIE_PL_VC1NPBD_VC1_NON_POSTED_DATA_QUEUE_DEPTH      (0x00003fff)  //!< Bit mask for PCIE_PL_VC1NPBD_VC1_NON_POSTED_DATA_QUEUE_DEPTH.
 
 //! @brief Get value of PCIE_PL_VC1NPBD_VC1_NON_POSTED_DATA_QUEUE_DEPTH from a register value.
 #define BG_PCIE_PL_VC1NPBD_VC1_NON_POSTED_DATA_QUEUE_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VC1NPBD_VC1_NON_POSTED_DATA_QUEUE_DEPTH) >> BP_PCIE_PL_VC1NPBD_VC1_NON_POSTED_DATA_QUEUE_DEPTH)
-
 //@}
 
 /*! @name Register PCIE_PL_VC1NPBD, field VC1_NON_POSTED_HEADER_QUEUE_DEPTH[25:16] (RO)
@@ -3268,13 +3096,11 @@ typedef union _hw_pcie_pl_vc1npbd
  * VC1 when using the segmented-buffer configuration. Not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC1NPBD_VC1_NON_POSTED_HEADER_QUEUE_DEPTH      (16)      //!< Bit position for PCIE_PL_VC1NPBD_VC1_NON_POSTED_HEADER_QUEUE_DEPTH.
 #define BM_PCIE_PL_VC1NPBD_VC1_NON_POSTED_HEADER_QUEUE_DEPTH      (0x03ff0000)  //!< Bit mask for PCIE_PL_VC1NPBD_VC1_NON_POSTED_HEADER_QUEUE_DEPTH.
 
 //! @brief Get value of PCIE_PL_VC1NPBD_VC1_NON_POSTED_HEADER_QUEUE_DEPTH from a register value.
 #define BG_PCIE_PL_VC1NPBD_VC1_NON_POSTED_HEADER_QUEUE_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VC1NPBD_VC1_NON_POSTED_HEADER_QUEUE_DEPTH) >> BP_PCIE_PL_VC1NPBD_VC1_NON_POSTED_HEADER_QUEUE_DEPTH)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3324,13 +3150,11 @@ typedef union _hw_pcie_pl_vc1cbd
  * when using the segmented-buffer configuration. Not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC1CBD_VC1_COMPLETION_DATA_QUEUE_DEPTH      (0)      //!< Bit position for PCIE_PL_VC1CBD_VC1_COMPLETION_DATA_QUEUE_DEPTH.
 #define BM_PCIE_PL_VC1CBD_VC1_COMPLETION_DATA_QUEUE_DEPTH      (0x00003fff)  //!< Bit mask for PCIE_PL_VC1CBD_VC1_COMPLETION_DATA_QUEUE_DEPTH.
 
 //! @brief Get value of PCIE_PL_VC1CBD_VC1_COMPLETION_DATA_QUEUE_DEPTH from a register value.
 #define BG_PCIE_PL_VC1CBD_VC1_COMPLETION_DATA_QUEUE_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VC1CBD_VC1_COMPLETION_DATA_QUEUE_DEPTH) >> BP_PCIE_PL_VC1CBD_VC1_COMPLETION_DATA_QUEUE_DEPTH)
-
 //@}
 
 /*! @name Register PCIE_PL_VC1CBD, field VC1_POSTED_HEADER_QUEUE_DEPTH[25:16] (RO)
@@ -3339,13 +3163,11 @@ typedef union _hw_pcie_pl_vc1cbd
  * when using the segmented-buffer configuration. Not writable through the DBI
  */
 //@{
-
 #define BP_PCIE_PL_VC1CBD_VC1_POSTED_HEADER_QUEUE_DEPTH      (16)      //!< Bit position for PCIE_PL_VC1CBD_VC1_POSTED_HEADER_QUEUE_DEPTH.
 #define BM_PCIE_PL_VC1CBD_VC1_POSTED_HEADER_QUEUE_DEPTH      (0x03ff0000)  //!< Bit mask for PCIE_PL_VC1CBD_VC1_POSTED_HEADER_QUEUE_DEPTH.
 
 //! @brief Get value of PCIE_PL_VC1CBD_VC1_POSTED_HEADER_QUEUE_DEPTH from a register value.
 #define BG_PCIE_PL_VC1CBD_VC1_POSTED_HEADER_QUEUE_DEPTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_VC1CBD_VC1_POSTED_HEADER_QUEUE_DEPTH) >> BP_PCIE_PL_VC1CBD_VC1_POSTED_HEADER_QUEUE_DEPTH)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3407,7 +3229,6 @@ typedef union _hw_pcie_pl_g2cr
  * exiting from L0s.
  */
 //@{
-
 #define BP_PCIE_PL_G2CR_N_FTS      (0)      //!< Bit position for PCIE_PL_G2CR_N_FTS.
 #define BM_PCIE_PL_G2CR_N_FTS      (0x000000ff)  //!< Bit mask for PCIE_PL_G2CR_N_FTS.
 
@@ -3421,7 +3242,6 @@ typedef union _hw_pcie_pl_g2cr
 //! @brief Set the N_FTS field to a new value.
 #define BW_PCIE_PL_G2CR_N_FTS(v)   (HW_PCIE_PL_G2CR_WR((HW_PCIE_PL_G2CR_RD() & ~BM_PCIE_PL_G2CR_N_FTS) | BF_PCIE_PL_G2CR_N_FTS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_G2CR, field PREDETERMINED_NUMBER_OF_LANES[16:8] (RW)
@@ -3434,7 +3254,6 @@ typedef union _hw_pcie_pl_g2cr
  * is as follows: 0x01 = 1 lane
  */
 //@{
-
 #define BP_PCIE_PL_G2CR_PREDETERMINED_NUMBER_OF_LANES      (8)      //!< Bit position for PCIE_PL_G2CR_PREDETERMINED_NUMBER_OF_LANES.
 #define BM_PCIE_PL_G2CR_PREDETERMINED_NUMBER_OF_LANES      (0x0001ff00)  //!< Bit mask for PCIE_PL_G2CR_PREDETERMINED_NUMBER_OF_LANES.
 
@@ -3448,7 +3267,6 @@ typedef union _hw_pcie_pl_g2cr
 //! @brief Set the PREDETERMINED_NUMBER_OF_LANES field to a new value.
 #define BW_PCIE_PL_G2CR_PREDETERMINED_NUMBER_OF_LANES(v)   (HW_PCIE_PL_G2CR_WR((HW_PCIE_PL_G2CR_RD() & ~BM_PCIE_PL_G2CR_PREDETERMINED_NUMBER_OF_LANES) | BF_PCIE_PL_G2CR_PREDETERMINED_NUMBER_OF_LANES(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_G2CR, field DIRECTED_SPEED_CHANGE[17] (RW)
@@ -3456,7 +3274,6 @@ typedef union _hw_pcie_pl_g2cr
  * Directed Speed Change Indicates to the LTSSM whether or not to initiate a speed change to Gen2
  */
 //@{
-
 #define BP_PCIE_PL_G2CR_DIRECTED_SPEED_CHANGE      (17)      //!< Bit position for PCIE_PL_G2CR_DIRECTED_SPEED_CHANGE.
 #define BM_PCIE_PL_G2CR_DIRECTED_SPEED_CHANGE      (0x00020000)  //!< Bit mask for PCIE_PL_G2CR_DIRECTED_SPEED_CHANGE.
 
@@ -3470,7 +3287,6 @@ typedef union _hw_pcie_pl_g2cr
 //! @brief Set the DIRECTED_SPEED_CHANGE field to a new value.
 #define BW_PCIE_PL_G2CR_DIRECTED_SPEED_CHANGE(v)   (HW_PCIE_PL_G2CR_WR((HW_PCIE_PL_G2CR_RD() & ~BM_PCIE_PL_G2CR_DIRECTED_SPEED_CHANGE) | BF_PCIE_PL_G2CR_DIRECTED_SPEED_CHANGE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_G2CR, field CONFIG_PHY_TX_SWING[18] (RW)
@@ -3479,7 +3295,6 @@ typedef union _hw_pcie_pl_g2cr
  * Full Swing. When set to 0, indicates Low Swing
  */
 //@{
-
 #define BP_PCIE_PL_G2CR_CONFIG_PHY_TX_SWING      (18)      //!< Bit position for PCIE_PL_G2CR_CONFIG_PHY_TX_SWING.
 #define BM_PCIE_PL_G2CR_CONFIG_PHY_TX_SWING      (0x00040000)  //!< Bit mask for PCIE_PL_G2CR_CONFIG_PHY_TX_SWING.
 
@@ -3493,7 +3308,6 @@ typedef union _hw_pcie_pl_g2cr
 //! @brief Set the CONFIG_PHY_TX_SWING field to a new value.
 #define BW_PCIE_PL_G2CR_CONFIG_PHY_TX_SWING(v)   (HW_PCIE_PL_G2CR_WR((HW_PCIE_PL_G2CR_RD() & ~BM_PCIE_PL_G2CR_CONFIG_PHY_TX_SWING) | BF_PCIE_PL_G2CR_CONFIG_PHY_TX_SWING(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_G2CR, field CONFIG_TX_COMPLIANCE_RECEIVE_BIT[19] (RW)
@@ -3502,7 +3316,6 @@ typedef union _hw_pcie_pl_g2cr
  * the compliance receive bit assert (equal to 1).
  */
 //@{
-
 #define BP_PCIE_PL_G2CR_CONFIG_TX_COMPLIANCE_RECEIVE_BIT      (19)      //!< Bit position for PCIE_PL_G2CR_CONFIG_TX_COMPLIANCE_RECEIVE_BIT.
 #define BM_PCIE_PL_G2CR_CONFIG_TX_COMPLIANCE_RECEIVE_BIT      (0x00080000)  //!< Bit mask for PCIE_PL_G2CR_CONFIG_TX_COMPLIANCE_RECEIVE_BIT.
 
@@ -3516,7 +3329,6 @@ typedef union _hw_pcie_pl_g2cr
 //! @brief Set the CONFIG_TX_COMPLIANCE_RECEIVE_BIT field to a new value.
 #define BW_PCIE_PL_G2CR_CONFIG_TX_COMPLIANCE_RECEIVE_BIT(v)   (HW_PCIE_PL_G2CR_WR((HW_PCIE_PL_G2CR_RD() & ~BM_PCIE_PL_G2CR_CONFIG_TX_COMPLIANCE_RECEIVE_BIT) | BF_PCIE_PL_G2CR_CONFIG_TX_COMPLIANCE_RECEIVE_BIT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_G2CR, field DE_EMPHASIS_LEVEL[20] (RW)
@@ -3524,7 +3336,6 @@ typedef union _hw_pcie_pl_g2cr
  * Used to set the de-emphasis level for upstream ports.
  */
 //@{
-
 #define BP_PCIE_PL_G2CR_DE_EMPHASIS_LEVEL      (20)      //!< Bit position for PCIE_PL_G2CR_DE_EMPHASIS_LEVEL.
 #define BM_PCIE_PL_G2CR_DE_EMPHASIS_LEVEL      (0x00100000)  //!< Bit mask for PCIE_PL_G2CR_DE_EMPHASIS_LEVEL.
 
@@ -3538,7 +3349,6 @@ typedef union _hw_pcie_pl_g2cr
 //! @brief Set the DE_EMPHASIS_LEVEL field to a new value.
 #define BW_PCIE_PL_G2CR_DE_EMPHASIS_LEVEL(v)   (HW_PCIE_PL_G2CR_WR((HW_PCIE_PL_G2CR_RD() & ~BM_PCIE_PL_G2CR_DE_EMPHASIS_LEVEL) | BF_PCIE_PL_G2CR_DE_EMPHASIS_LEVEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3584,13 +3394,11 @@ typedef union _hw_pcie_pl_phy_status
  * PHY Status Data received directly from the phy_cfg_status bus.
  */
 //@{
-
 #define BP_PCIE_PL_PHY_STATUS_PHY_STATUS      (0)      //!< Bit position for PCIE_PL_PHY_STATUS_PHY_STATUS.
 #define BM_PCIE_PL_PHY_STATUS_PHY_STATUS      (0xffffffff)  //!< Bit mask for PCIE_PL_PHY_STATUS_PHY_STATUS.
 
 //! @brief Get value of PCIE_PL_PHY_STATUS_PHY_STATUS from a register value.
 #define BG_PCIE_PL_PHY_STATUS_PHY_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_PL_PHY_STATUS_PHY_STATUS) >> BP_PCIE_PL_PHY_STATUS_PHY_STATUS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3640,7 +3448,6 @@ typedef union _hw_pcie_pl_phy_ctrl
  * PHY Control Data sent directly to the cfg_phy_control bus.
  */
 //@{
-
 #define BP_PCIE_PL_PHY_CTRL_PHY_CONTROL      (0)      //!< Bit position for PCIE_PL_PHY_CTRL_PHY_CONTROL.
 #define BM_PCIE_PL_PHY_CTRL_PHY_CONTROL      (0xffffffff)  //!< Bit mask for PCIE_PL_PHY_CTRL_PHY_CONTROL.
 
@@ -3654,7 +3461,6 @@ typedef union _hw_pcie_pl_phy_ctrl
 //! @brief Set the PHY_CONTROL field to a new value.
 #define BW_PCIE_PL_PHY_CTRL_PHY_CONTROL(v)   (HW_PCIE_PL_PHY_CTRL_WR((HW_PCIE_PL_PHY_CTRL_RD() & ~BM_PCIE_PL_PHY_CTRL_PHY_CONTROL) | BF_PCIE_PL_PHY_CTRL_PHY_CONTROL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3721,7 +3527,6 @@ typedef union _hw_pcie_pl_mrccr0
  * - 101 - 4096 default: 128
  */
 //@{
-
 #define BP_PCIE_PL_MRCCR0_REMOTE_READ_REQUEST_SIZE      (0)      //!< Bit position for PCIE_PL_MRCCR0_REMOTE_READ_REQUEST_SIZE.
 #define BM_PCIE_PL_MRCCR0_REMOTE_READ_REQUEST_SIZE      (0x00000007)  //!< Bit mask for PCIE_PL_MRCCR0_REMOTE_READ_REQUEST_SIZE.
 
@@ -3735,7 +3540,6 @@ typedef union _hw_pcie_pl_mrccr0
 //! @brief Set the REMOTE_READ_REQUEST_SIZE field to a new value.
 #define BW_PCIE_PL_MRCCR0_REMOTE_READ_REQUEST_SIZE(v)   (HW_PCIE_PL_MRCCR0_WR((HW_PCIE_PL_MRCCR0_RD() & ~BM_PCIE_PL_MRCCR0_REMOTE_READ_REQUEST_SIZE) | BF_PCIE_PL_MRCCR0_REMOTE_READ_REQUEST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_MRCCR0, field REMOTE_MAX_BRIDGE_TAG[15:8] (RW)
@@ -3750,7 +3554,6 @@ typedef union _hw_pcie_pl_mrccr0
  * value up to a maximum of CX_REMOTE_MAX_TAG
  */
 //@{
-
 #define BP_PCIE_PL_MRCCR0_REMOTE_MAX_BRIDGE_TAG      (8)      //!< Bit position for PCIE_PL_MRCCR0_REMOTE_MAX_BRIDGE_TAG.
 #define BM_PCIE_PL_MRCCR0_REMOTE_MAX_BRIDGE_TAG      (0x0000ff00)  //!< Bit mask for PCIE_PL_MRCCR0_REMOTE_MAX_BRIDGE_TAG.
 
@@ -3764,7 +3567,6 @@ typedef union _hw_pcie_pl_mrccr0
 //! @brief Set the REMOTE_MAX_BRIDGE_TAG field to a new value.
 #define BW_PCIE_PL_MRCCR0_REMOTE_MAX_BRIDGE_TAG(v)   (HW_PCIE_PL_MRCCR0_WR((HW_PCIE_PL_MRCCR0_RD() & ~BM_PCIE_PL_MRCCR0_REMOTE_MAX_BRIDGE_TAG) | BF_PCIE_PL_MRCCR0_REMOTE_MAX_BRIDGE_TAG(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3820,7 +3622,6 @@ typedef union _hw_pcie_pl_mrccr1
  * self-clearing register field always returns a 0.
  */
 //@{
-
 #define BP_PCIE_PL_MRCCR1_SEGMENTED_BUFFER_CONTROLLER_INITIALIZE      (0)      //!< Bit position for PCIE_PL_MRCCR1_SEGMENTED_BUFFER_CONTROLLER_INITIALIZE.
 #define BM_PCIE_PL_MRCCR1_SEGMENTED_BUFFER_CONTROLLER_INITIALIZE      (0x00000001)  //!< Bit mask for PCIE_PL_MRCCR1_SEGMENTED_BUFFER_CONTROLLER_INITIALIZE.
 
@@ -3834,7 +3635,6 @@ typedef union _hw_pcie_pl_mrccr1
 //! @brief Set the SEGMENTED_BUFFER_CONTROLLER_INITIALIZE field to a new value.
 #define BW_PCIE_PL_MRCCR1_SEGMENTED_BUFFER_CONTROLLER_INITIALIZE(v)   (HW_PCIE_PL_MRCCR1_WR((HW_PCIE_PL_MRCCR1_RD() & ~BM_PCIE_PL_MRCCR1_SEGMENTED_BUFFER_CONTROLLER_INITIALIZE) | BF_PCIE_PL_MRCCR1_SEGMENTED_BUFFER_CONTROLLER_INITIALIZE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3889,7 +3689,6 @@ typedef union _hw_pcie_pl_msica
  * Memory Write Request is marked as an MSI Request.
  */
 //@{
-
 #define BP_PCIE_PL_MSICA_MSI_CONTROLLER_ADDRESS      (0)      //!< Bit position for PCIE_PL_MSICA_MSI_CONTROLLER_ADDRESS.
 #define BM_PCIE_PL_MSICA_MSI_CONTROLLER_ADDRESS      (0xffffffff)  //!< Bit mask for PCIE_PL_MSICA_MSI_CONTROLLER_ADDRESS.
 
@@ -3903,7 +3702,6 @@ typedef union _hw_pcie_pl_msica
 //! @brief Set the MSI_CONTROLLER_ADDRESS field to a new value.
 #define BW_PCIE_PL_MSICA_MSI_CONTROLLER_ADDRESS(v)   (HW_PCIE_PL_MSICA_WR((HW_PCIE_PL_MSICA_RD() & ~BM_PCIE_PL_MSICA_MSI_CONTROLLER_ADDRESS) | BF_PCIE_PL_MSICA_MSI_CONTROLLER_ADDRESS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3954,7 +3752,6 @@ typedef union _hw_pcie_pl_msicua
  * termination. Allows functions to support a 64- bit MSI address.
  */
 //@{
-
 #define BP_PCIE_PL_MSICUA_MSI_CONTROLLER_UPPER_ADDRESS      (0)      //!< Bit position for PCIE_PL_MSICUA_MSI_CONTROLLER_UPPER_ADDRESS.
 #define BM_PCIE_PL_MSICUA_MSI_CONTROLLER_UPPER_ADDRESS      (0xffffffff)  //!< Bit mask for PCIE_PL_MSICUA_MSI_CONTROLLER_UPPER_ADDRESS.
 
@@ -3968,7 +3765,6 @@ typedef union _hw_pcie_pl_msicua
 //! @brief Set the MSI_CONTROLLER_UPPER_ADDRESS field to a new value.
 #define BW_PCIE_PL_MSICUA_MSI_CONTROLLER_UPPER_ADDRESS(v)   (HW_PCIE_PL_MSICUA_WR((HW_PCIE_PL_MSICUA_RD() & ~BM_PCIE_PL_MSICUA_MSI_CONTROLLER_UPPER_ADDRESS) | BF_PCIE_PL_MSICUA_MSI_CONTROLLER_UPPER_ADDRESS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4020,7 +3816,6 @@ typedef union _hw_pcie_pl_msicin_enb
  * corresponds to a single MSI Interrupt Vector.
  */
 //@{
-
 #define BP_PCIE_PL_MSICIN_ENB_MSI_INTERRUPT0_ENABLE      (0)      //!< Bit position for PCIE_PL_MSICIN_ENB_MSI_INTERRUPT0_ENABLE.
 #define BM_PCIE_PL_MSICIN_ENB_MSI_INTERRUPT0_ENABLE      (0xffffffff)  //!< Bit mask for PCIE_PL_MSICIN_ENB_MSI_INTERRUPT0_ENABLE.
 
@@ -4034,7 +3829,6 @@ typedef union _hw_pcie_pl_msicin_enb
 //! @brief Set the MSI_INTERRUPT0_ENABLE field to a new value.
 #define BW_PCIE_PL_MSICIN_ENB_MSI_INTERRUPT0_ENABLE(v)   (HW_PCIE_PL_MSICIN_ENB_WR((HW_PCIE_PL_MSICIN_ENB_RD() & ~BM_PCIE_PL_MSICIN_ENB_MSI_INTERRUPT0_ENABLE) | BF_PCIE_PL_MSICIN_ENB_MSI_INTERRUPT0_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4086,7 +3880,6 @@ typedef union _hw_pcie_pl_msicin_mask
  * msi_ctrl_int output is not set HIGH. Each bit corresponds to a single MSI Interrupt Vector.
  */
 //@{
-
 #define BP_PCIE_PL_MSICIN_MASK_MSI_INTERRUPT0_MASK      (0)      //!< Bit position for PCIE_PL_MSICIN_MASK_MSI_INTERRUPT0_MASK.
 #define BM_PCIE_PL_MSICIN_MASK_MSI_INTERRUPT0_MASK      (0xffffffff)  //!< Bit mask for PCIE_PL_MSICIN_MASK_MSI_INTERRUPT0_MASK.
 
@@ -4100,7 +3893,6 @@ typedef union _hw_pcie_pl_msicin_mask
 //! @brief Set the MSI_INTERRUPT0_MASK field to a new value.
 #define BW_PCIE_PL_MSICIN_MASK_MSI_INTERRUPT0_MASK(v)   (HW_PCIE_PL_MSICIN_MASK_WR((HW_PCIE_PL_MSICIN_MASK_RD() & ~BM_PCIE_PL_MSICIN_MASK_MSI_INTERRUPT0_MASK) | BF_PCIE_PL_MSICIN_MASK_MSI_INTERRUPT0_MASK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4153,7 +3945,6 @@ typedef union _hw_pcie_pl_msicin_status
  * Interrupt Vector.
  */
 //@{
-
 #define BP_PCIE_PL_MSICIN_STATUS_MSI_INTERRUPT0_STATUS      (0)      //!< Bit position for PCIE_PL_MSICIN_STATUS_MSI_INTERRUPT0_STATUS.
 #define BM_PCIE_PL_MSICIN_STATUS_MSI_INTERRUPT0_STATUS      (0xffffffff)  //!< Bit mask for PCIE_PL_MSICIN_STATUS_MSI_INTERRUPT0_STATUS.
 
@@ -4167,7 +3958,6 @@ typedef union _hw_pcie_pl_msicin_status
 //! @brief Set the MSI_INTERRUPT0_STATUS field to a new value.
 #define BW_PCIE_PL_MSICIN_STATUS_MSI_INTERRUPT0_STATUS(v)   (HW_PCIE_PL_MSICIN_STATUS_WR((HW_PCIE_PL_MSICIN_STATUS_RD() & ~BM_PCIE_PL_MSICIN_STATUS_MSI_INTERRUPT0_STATUS) | BF_PCIE_PL_MSICIN_STATUS_MSI_INTERRUPT0_STATUS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4217,7 +4007,6 @@ typedef union _hw_pcie_pl_msicgpio
  * MSI GPIO Register The contents of this register drives the top-level output msi_ctrl_io[31:0]
  */
 //@{
-
 #define BP_PCIE_PL_MSICGPIO_MSI_GPIO_REGISTER      (0)      //!< Bit position for PCIE_PL_MSICGPIO_MSI_GPIO_REGISTER.
 #define BM_PCIE_PL_MSICGPIO_MSI_GPIO_REGISTER      (0xffffffff)  //!< Bit mask for PCIE_PL_MSICGPIO_MSI_GPIO_REGISTER.
 
@@ -4231,7 +4020,6 @@ typedef union _hw_pcie_pl_msicgpio
 //! @brief Set the MSI_GPIO_REGISTER field to a new value.
 #define BW_PCIE_PL_MSICGPIO_MSI_GPIO_REGISTER(v)   (HW_PCIE_PL_MSICGPIO_WR((HW_PCIE_PL_MSICGPIO_RD() & ~BM_PCIE_PL_MSICGPIO_MSI_GPIO_REGISTER) | BF_PCIE_PL_MSICGPIO_MSI_GPIO_REGISTER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4303,7 +4091,6 @@ typedef union _hw_pcie_pl_iatuvr
  * regions for both inbound or outbound (4 each).
  */
 //@{
-
 #define BP_PCIE_PL_IATUVR_REGION_INDEX      (0)      //!< Bit position for PCIE_PL_IATUVR_REGION_INDEX.
 #define BM_PCIE_PL_IATUVR_REGION_INDEX      (0x0000000f)  //!< Bit mask for PCIE_PL_IATUVR_REGION_INDEX.
 
@@ -4317,7 +4104,6 @@ typedef union _hw_pcie_pl_iatuvr
 //! @brief Set the REGION_INDEX field to a new value.
 #define BW_PCIE_PL_IATUVR_REGION_INDEX(v)   (HW_PCIE_PL_IATUVR_WR((HW_PCIE_PL_IATUVR_RD() & ~BM_PCIE_PL_IATUVR_REGION_INDEX) | BF_PCIE_PL_IATUVR_REGION_INDEX(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATUVR, field REGION_DIRECTION[31] (RW)
@@ -4329,7 +4115,6 @@ typedef union _hw_pcie_pl_iatuvr
  * - 1 - Inbound
  */
 //@{
-
 #define BP_PCIE_PL_IATUVR_REGION_DIRECTION      (31)      //!< Bit position for PCIE_PL_IATUVR_REGION_DIRECTION.
 #define BM_PCIE_PL_IATUVR_REGION_DIRECTION      (0x80000000)  //!< Bit mask for PCIE_PL_IATUVR_REGION_DIRECTION.
 
@@ -4343,7 +4128,6 @@ typedef union _hw_pcie_pl_iatuvr
 //! @brief Set the REGION_DIRECTION field to a new value.
 #define BW_PCIE_PL_IATUVR_REGION_DIRECTION(v)   (HW_PCIE_PL_IATUVR_WR((HW_PCIE_PL_IATUVR_RD() & ~BM_PCIE_PL_IATUVR_REGION_DIRECTION) | BF_PCIE_PL_IATUVR_REGION_DIRECTION(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4403,7 +4187,6 @@ typedef union _hw_pcie_pl_iaturc1
  * inbound TLP is matched to this value, then address translation will proceed 1 .
  */
 //@{
-
 #define BP_PCIE_PL_IATURC1_TYPE      (0)      //!< Bit position for PCIE_PL_IATURC1_TYPE.
 #define BM_PCIE_PL_IATURC1_TYPE      (0x0000001f)  //!< Bit mask for PCIE_PL_IATURC1_TYPE.
 
@@ -4417,7 +4200,6 @@ typedef union _hw_pcie_pl_iaturc1
 //! @brief Set the TYPE field to a new value.
 #define BW_PCIE_PL_IATURC1_TYPE(v)   (HW_PCIE_PL_IATURC1_WR((HW_PCIE_PL_IATURC1_RD() & ~BM_PCIE_PL_IATURC1_TYPE) | BF_PCIE_PL_IATURC1_TYPE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC1, field TC[7:5] (RW)
@@ -4428,7 +4210,6 @@ typedef union _hw_pcie_pl_iaturc1
  * if the ìTC Match Enable bit of the ìiATU Control 2 Register is set.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC1_TC      (5)      //!< Bit position for PCIE_PL_IATURC1_TC.
 #define BM_PCIE_PL_IATURC1_TC      (0x000000e0)  //!< Bit mask for PCIE_PL_IATURC1_TC.
 
@@ -4442,7 +4223,6 @@ typedef union _hw_pcie_pl_iaturc1
 //! @brief Set the TC field to a new value.
 #define BW_PCIE_PL_IATURC1_TC(v)   (HW_PCIE_PL_IATURC1_WR((HW_PCIE_PL_IATURC1_RD() & ~BM_PCIE_PL_IATURC1_TC) | BF_PCIE_PL_IATURC1_TC(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC1, field TD[8] (RW)
@@ -4453,7 +4233,6 @@ typedef union _hw_pcie_pl_iaturc1
  * the ìTD Match Enable bit of the ìiATU Control 2 Register is set.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC1_TD      (8)      //!< Bit position for PCIE_PL_IATURC1_TD.
 #define BM_PCIE_PL_IATURC1_TD      (0x00000100)  //!< Bit mask for PCIE_PL_IATURC1_TD.
 
@@ -4467,7 +4246,6 @@ typedef union _hw_pcie_pl_iaturc1
 //! @brief Set the TD field to a new value.
 #define BW_PCIE_PL_IATURC1_TD(v)   (HW_PCIE_PL_IATURC1_WR((HW_PCIE_PL_IATURC1_RD() & ~BM_PCIE_PL_IATURC1_TD) | BF_PCIE_PL_IATURC1_TD(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC1, field ATTR[10:9] (RW)
@@ -4478,7 +4256,6 @@ typedef union _hw_pcie_pl_iaturc1
  * only performed if the ìATTR Match Enable bit of the ìiATU Control 2 Register is set.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC1_ATTR      (9)      //!< Bit position for PCIE_PL_IATURC1_ATTR.
 #define BM_PCIE_PL_IATURC1_ATTR      (0x00000600)  //!< Bit mask for PCIE_PL_IATURC1_ATTR.
 
@@ -4492,7 +4269,6 @@ typedef union _hw_pcie_pl_iaturc1
 //! @brief Set the ATTR field to a new value.
 #define BW_PCIE_PL_IATURC1_ATTR(v)   (HW_PCIE_PL_IATURC1_WR((HW_PCIE_PL_IATURC1_RD() & ~BM_PCIE_PL_IATURC1_ATTR) | BF_PCIE_PL_IATURC1_ATTR(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC1, field AT[17:16] (RW)
@@ -4500,7 +4276,6 @@ typedef union _hw_pcie_pl_iaturc1
  * AT NA
  */
 //@{
-
 #define BP_PCIE_PL_IATURC1_AT      (16)      //!< Bit position for PCIE_PL_IATURC1_AT.
 #define BM_PCIE_PL_IATURC1_AT      (0x00030000)  //!< Bit mask for PCIE_PL_IATURC1_AT.
 
@@ -4514,7 +4289,6 @@ typedef union _hw_pcie_pl_iaturc1
 //! @brief Set the AT field to a new value.
 #define BW_PCIE_PL_IATURC1_AT(v)   (HW_PCIE_PL_IATURC1_WR((HW_PCIE_PL_IATURC1_RD() & ~BM_PCIE_PL_IATURC1_AT) | BF_PCIE_PL_IATURC1_AT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC1, field FUNCTION_NUMBER[22:20] (RW)
@@ -4530,7 +4304,6 @@ typedef union _hw_pcie_pl_iaturc1
  * only performed if the ìFunction Number Match Enable bit of the ìiATU Control 2 Register is set.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC1_FUNCTION_NUMBER      (20)      //!< Bit position for PCIE_PL_IATURC1_FUNCTION_NUMBER.
 #define BM_PCIE_PL_IATURC1_FUNCTION_NUMBER      (0x00700000)  //!< Bit mask for PCIE_PL_IATURC1_FUNCTION_NUMBER.
 
@@ -4544,7 +4317,6 @@ typedef union _hw_pcie_pl_iaturc1
 //! @brief Set the FUNCTION_NUMBER field to a new value.
 #define BW_PCIE_PL_IATURC1_FUNCTION_NUMBER(v)   (HW_PCIE_PL_IATURC1_WR((HW_PCIE_PL_IATURC1_RD() & ~BM_PCIE_PL_IATURC1_FUNCTION_NUMBER) | BF_PCIE_PL_IATURC1_FUNCTION_NUMBER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4616,7 +4388,6 @@ typedef union _hw_pcie_pl_iaturc2
  * ìFunction Message Code Match Enable bit of the is set.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_MESSAGE_CODE      (0)      //!< Bit position for PCIE_PL_IATURC2_MESSAGE_CODE.
 #define BM_PCIE_PL_IATURC2_MESSAGE_CODE      (0x000000ff)  //!< Bit mask for PCIE_PL_IATURC2_MESSAGE_CODE.
 
@@ -4630,7 +4401,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the MESSAGE_CODE field to a new value.
 #define BW_PCIE_PL_IATURC2_MESSAGE_CODE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_MESSAGE_CODE) | BF_PCIE_PL_IATURC2_MESSAGE_CODE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field BAR_NUMBER[10:8] (RW)
@@ -4652,7 +4422,6 @@ typedef union _hw_pcie_pl_iaturc2
  * - 111b - - reserved
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_BAR_NUMBER      (8)      //!< Bit position for PCIE_PL_IATURC2_BAR_NUMBER.
 #define BM_PCIE_PL_IATURC2_BAR_NUMBER      (0x00000700)  //!< Bit mask for PCIE_PL_IATURC2_BAR_NUMBER.
 
@@ -4666,7 +4435,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the BAR_NUMBER field to a new value.
 #define BW_PCIE_PL_IATURC2_BAR_NUMBER(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_BAR_NUMBER) | BF_PCIE_PL_IATURC2_BAR_NUMBER(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field TC_MATCH_ENABLE[14] (RW)
@@ -4675,7 +4443,6 @@ typedef union _hw_pcie_pl_iaturc2
  * match (see TC field of the ) occurs for address translation to proceed.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_TC_MATCH_ENABLE      (14)      //!< Bit position for PCIE_PL_IATURC2_TC_MATCH_ENABLE.
 #define BM_PCIE_PL_IATURC2_TC_MATCH_ENABLE      (0x00004000)  //!< Bit mask for PCIE_PL_IATURC2_TC_MATCH_ENABLE.
 
@@ -4689,7 +4456,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the TC_MATCH_ENABLE field to a new value.
 #define BW_PCIE_PL_IATURC2_TC_MATCH_ENABLE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_TC_MATCH_ENABLE) | BF_PCIE_PL_IATURC2_TC_MATCH_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field TD_MATCH_ENABLE[15] (RW)
@@ -4698,7 +4464,6 @@ typedef union _hw_pcie_pl_iaturc2
  * match (see TD field of the ) occurs for address translation to proceed.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_TD_MATCH_ENABLE      (15)      //!< Bit position for PCIE_PL_IATURC2_TD_MATCH_ENABLE.
 #define BM_PCIE_PL_IATURC2_TD_MATCH_ENABLE      (0x00008000)  //!< Bit mask for PCIE_PL_IATURC2_TD_MATCH_ENABLE.
 
@@ -4712,7 +4477,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the TD_MATCH_ENABLE field to a new value.
 #define BW_PCIE_PL_IATURC2_TD_MATCH_ENABLE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_TD_MATCH_ENABLE) | BF_PCIE_PL_IATURC2_TD_MATCH_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field ATTR_MATCH_ENABLE[16] (RW)
@@ -4721,7 +4485,6 @@ typedef union _hw_pcie_pl_iaturc2
  * comparison match (see ATTR field of the ) occurs for address translation to proceed.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_ATTR_MATCH_ENABLE      (16)      //!< Bit position for PCIE_PL_IATURC2_ATTR_MATCH_ENABLE.
 #define BM_PCIE_PL_IATURC2_ATTR_MATCH_ENABLE      (0x00010000)  //!< Bit mask for PCIE_PL_IATURC2_ATTR_MATCH_ENABLE.
 
@@ -4735,7 +4498,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the ATTR_MATCH_ENABLE field to a new value.
 #define BW_PCIE_PL_IATURC2_ATTR_MATCH_ENABLE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_ATTR_MATCH_ENABLE) | BF_PCIE_PL_IATURC2_ATTR_MATCH_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field AT_MATCH_ENABLE[18] (RW)
@@ -4745,7 +4507,6 @@ typedef union _hw_pcie_pl_iaturc2
  * proceed. Only valid when the ATS_RX_ENABLE configuration parameter is 1.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_AT_MATCH_ENABLE      (18)      //!< Bit position for PCIE_PL_IATURC2_AT_MATCH_ENABLE.
 #define BM_PCIE_PL_IATURC2_AT_MATCH_ENABLE      (0x00040000)  //!< Bit mask for PCIE_PL_IATURC2_AT_MATCH_ENABLE.
 
@@ -4759,7 +4520,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the AT_MATCH_ENABLE field to a new value.
 #define BW_PCIE_PL_IATURC2_AT_MATCH_ENABLE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_AT_MATCH_ENABLE) | BF_PCIE_PL_IATURC2_AT_MATCH_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field FUNCTION_NUMBER_MATCH_ENABLE[19] (RW)
@@ -4770,7 +4530,6 @@ typedef union _hw_pcie_pl_iaturc2
  * must not be set at the same time as 'Virtual Function Number Match Enable'.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_FUNCTION_NUMBER_MATCH_ENABLE      (19)      //!< Bit position for PCIE_PL_IATURC2_FUNCTION_NUMBER_MATCH_ENABLE.
 #define BM_PCIE_PL_IATURC2_FUNCTION_NUMBER_MATCH_ENABLE      (0x00080000)  //!< Bit mask for PCIE_PL_IATURC2_FUNCTION_NUMBER_MATCH_ENABLE.
 
@@ -4784,7 +4543,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the FUNCTION_NUMBER_MATCH_ENABLE field to a new value.
 #define BW_PCIE_PL_IATURC2_FUNCTION_NUMBER_MATCH_ENABLE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_FUNCTION_NUMBER_MATCH_ENABLE) | BF_PCIE_PL_IATURC2_FUNCTION_NUMBER_MATCH_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field VIRTUAL_FUNCTION_NUMBER_MATCH_ENABLE[20] (RW)
@@ -4795,7 +4553,6 @@ typedef union _hw_pcie_pl_iaturc2
  * This bit must not be set at the same time as 'Function Number Match Enable'.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_VIRTUAL_FUNCTION_NUMBER_MATCH_ENABLE      (20)      //!< Bit position for PCIE_PL_IATURC2_VIRTUAL_FUNCTION_NUMBER_MATCH_ENABLE.
 #define BM_PCIE_PL_IATURC2_VIRTUAL_FUNCTION_NUMBER_MATCH_ENABLE      (0x00100000)  //!< Bit mask for PCIE_PL_IATURC2_VIRTUAL_FUNCTION_NUMBER_MATCH_ENABLE.
 
@@ -4809,7 +4566,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the VIRTUAL_FUNCTION_NUMBER_MATCH_ENABLE field to a new value.
 #define BW_PCIE_PL_IATURC2_VIRTUAL_FUNCTION_NUMBER_MATCH_ENABLE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_VIRTUAL_FUNCTION_NUMBER_MATCH_ENABLE) | BF_PCIE_PL_IATURC2_VIRTUAL_FUNCTION_NUMBER_MATCH_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field MESSAGE_CODE_MATCH_ENABLE[21] (RW)
@@ -4819,7 +4575,6 @@ typedef union _hw_pcie_pl_iaturc2
  * 1 Register in ) for address translation to proceed.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_MESSAGE_CODE_MATCH_ENABLE      (21)      //!< Bit position for PCIE_PL_IATURC2_MESSAGE_CODE_MATCH_ENABLE.
 #define BM_PCIE_PL_IATURC2_MESSAGE_CODE_MATCH_ENABLE      (0x00200000)  //!< Bit mask for PCIE_PL_IATURC2_MESSAGE_CODE_MATCH_ENABLE.
 
@@ -4833,7 +4588,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the MESSAGE_CODE_MATCH_ENABLE field to a new value.
 #define BW_PCIE_PL_IATURC2_MESSAGE_CODE_MATCH_ENABLE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_MESSAGE_CODE_MATCH_ENABLE) | BF_PCIE_PL_IATURC2_MESSAGE_CODE_MATCH_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field RESPONSE_CODE[25:24] (RW)
@@ -4848,7 +4602,6 @@ typedef union _hw_pcie_pl_iaturc2
  * - 11 - - Not used / undefined / reserved.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_RESPONSE_CODE      (24)      //!< Bit position for PCIE_PL_IATURC2_RESPONSE_CODE.
 #define BM_PCIE_PL_IATURC2_RESPONSE_CODE      (0x03000000)  //!< Bit mask for PCIE_PL_IATURC2_RESPONSE_CODE.
 
@@ -4862,7 +4615,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the RESPONSE_CODE field to a new value.
 #define BW_PCIE_PL_IATURC2_RESPONSE_CODE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_RESPONSE_CODE) | BF_PCIE_PL_IATURC2_RESPONSE_CODE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field FUZZY_TYPE_MATCH_MODE[27] (RW)
@@ -4874,7 +4626,6 @@ typedef union _hw_pcie_pl_iaturc2
  * an inbound CfgRd0, CfgRd1, CfgWr0 or CfgWr1 TLP.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_FUZZY_TYPE_MATCH_MODE      (27)      //!< Bit position for PCIE_PL_IATURC2_FUZZY_TYPE_MATCH_MODE.
 #define BM_PCIE_PL_IATURC2_FUZZY_TYPE_MATCH_MODE      (0x08000000)  //!< Bit mask for PCIE_PL_IATURC2_FUZZY_TYPE_MATCH_MODE.
 
@@ -4888,7 +4639,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the FUZZY_TYPE_MATCH_MODE field to a new value.
 #define BW_PCIE_PL_IATURC2_FUZZY_TYPE_MATCH_MODE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_FUZZY_TYPE_MATCH_MODE) | BF_PCIE_PL_IATURC2_FUZZY_TYPE_MATCH_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field CFG_SHIFT_MODE[28] (RW)
@@ -4901,7 +4651,6 @@ typedef union _hw_pcie_pl_iaturc2
  * form bits [27:12] of the translated address.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_CFG_SHIFT_MODE      (28)      //!< Bit position for PCIE_PL_IATURC2_CFG_SHIFT_MODE.
 #define BM_PCIE_PL_IATURC2_CFG_SHIFT_MODE      (0x10000000)  //!< Bit mask for PCIE_PL_IATURC2_CFG_SHIFT_MODE.
 
@@ -4915,7 +4664,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the CFG_SHIFT_MODE field to a new value.
 #define BW_PCIE_PL_IATURC2_CFG_SHIFT_MODE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_CFG_SHIFT_MODE) | BF_PCIE_PL_IATURC2_CFG_SHIFT_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field INVERT_MODE[29] (RW)
@@ -4925,7 +4673,6 @@ typedef union _hw_pcie_pl_iaturc2
  * (Base Address to Limit Address).
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_INVERT_MODE      (29)      //!< Bit position for PCIE_PL_IATURC2_INVERT_MODE.
 #define BM_PCIE_PL_IATURC2_INVERT_MODE      (0x20000000)  //!< Bit mask for PCIE_PL_IATURC2_INVERT_MODE.
 
@@ -4939,7 +4686,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the INVERT_MODE field to a new value.
 #define BW_PCIE_PL_IATURC2_INVERT_MODE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_INVERT_MODE) | BF_PCIE_PL_IATURC2_INVERT_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field MATCH_MODE[30] (RW)
@@ -4964,7 +4710,6 @@ typedef union _hw_pcie_pl_iaturc2
  * the TLP header.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_MATCH_MODE      (30)      //!< Bit position for PCIE_PL_IATURC2_MATCH_MODE.
 #define BM_PCIE_PL_IATURC2_MATCH_MODE      (0x40000000)  //!< Bit mask for PCIE_PL_IATURC2_MATCH_MODE.
 
@@ -4978,7 +4723,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the MATCH_MODE field to a new value.
 #define BW_PCIE_PL_IATURC2_MATCH_MODE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_MATCH_MODE) | BF_PCIE_PL_IATURC2_MATCH_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURC2, field REGION_ENABLE[31] (RW)
@@ -4987,7 +4731,6 @@ typedef union _hw_pcie_pl_iaturc2
  * place.
  */
 //@{
-
 #define BP_PCIE_PL_IATURC2_REGION_ENABLE      (31)      //!< Bit position for PCIE_PL_IATURC2_REGION_ENABLE.
 #define BM_PCIE_PL_IATURC2_REGION_ENABLE      (0x80000000)  //!< Bit mask for PCIE_PL_IATURC2_REGION_ENABLE.
 
@@ -5001,7 +4744,6 @@ typedef union _hw_pcie_pl_iaturc2
 //! @brief Set the REGION_ENABLE field to a new value.
 #define BW_PCIE_PL_IATURC2_REGION_ENABLE(v)   (HW_PCIE_PL_IATURC2_WR((HW_PCIE_PL_IATURC2_RD() & ~BM_PCIE_PL_IATURC2_REGION_ENABLE) | BF_PCIE_PL_IATURC2_REGION_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5058,7 +4800,6 @@ typedef union _hw_pcie_pl_iaturlba
  * this location is ignored by the PCIe core.
  */
 //@{
-
 #define BP_PCIE_PL_IATURLBA_ADDRESS_LOWER      (0)      //!< Bit position for PCIE_PL_IATURLBA_ADDRESS_LOWER.
 #define BM_PCIE_PL_IATURLBA_ADDRESS_LOWER      (0x0000ffff)  //!< Bit mask for PCIE_PL_IATURLBA_ADDRESS_LOWER.
 
@@ -5072,7 +4813,6 @@ typedef union _hw_pcie_pl_iaturlba
 //! @brief Set the ADDRESS_LOWER field to a new value.
 #define BW_PCIE_PL_IATURLBA_ADDRESS_LOWER(v)   (HW_PCIE_PL_IATURLBA_WR((HW_PCIE_PL_IATURLBA_RD() & ~BM_PCIE_PL_IATURLBA_ADDRESS_LOWER) | BF_PCIE_PL_IATURLBA_ADDRESS_LOWER(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURLBA, field ADDRESS_UPPER[31:16] (RW)
@@ -5080,7 +4820,6 @@ typedef union _hw_pcie_pl_iaturlba
  * Forms bits [31:16] of the start address of the address region to be translated.
  */
 //@{
-
 #define BP_PCIE_PL_IATURLBA_ADDRESS_UPPER      (16)      //!< Bit position for PCIE_PL_IATURLBA_ADDRESS_UPPER.
 #define BM_PCIE_PL_IATURLBA_ADDRESS_UPPER      (0xffff0000)  //!< Bit mask for PCIE_PL_IATURLBA_ADDRESS_UPPER.
 
@@ -5094,7 +4833,6 @@ typedef union _hw_pcie_pl_iaturlba
 //! @brief Set the ADDRESS_UPPER field to a new value.
 #define BW_PCIE_PL_IATURLBA_ADDRESS_UPPER(v)   (HW_PCIE_PL_IATURLBA_WR((HW_PCIE_PL_IATURLBA_RD() & ~BM_PCIE_PL_IATURLBA_ADDRESS_UPPER) | BF_PCIE_PL_IATURLBA_ADDRESS_UPPER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5146,7 +4884,6 @@ typedef union _hw_pcie_pl_iaturuba
  * therefore writing to this register has no effect.
  */
 //@{
-
 #define BP_PCIE_PL_IATURUBA_ADDRESS      (0)      //!< Bit position for PCIE_PL_IATURUBA_ADDRESS.
 #define BM_PCIE_PL_IATURUBA_ADDRESS      (0xffffffff)  //!< Bit mask for PCIE_PL_IATURUBA_ADDRESS.
 
@@ -5160,7 +4897,6 @@ typedef union _hw_pcie_pl_iaturuba
 //! @brief Set the ADDRESS field to a new value.
 #define BW_PCIE_PL_IATURUBA_ADDRESS(v)   (HW_PCIE_PL_IATURUBA_WR((HW_PCIE_PL_IATURUBA_RD() & ~BM_PCIE_PL_IATURUBA_ADDRESS) | BF_PCIE_PL_IATURUBA_ADDRESS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5213,7 +4949,6 @@ typedef union _hw_pcie_pl_iaturla
  * location is ignored by the PCIe core.
  */
 //@{
-
 #define BP_PCIE_PL_IATURLA_ADDRESS_LOWER      (0)      //!< Bit position for PCIE_PL_IATURLA_ADDRESS_LOWER.
 #define BM_PCIE_PL_IATURLA_ADDRESS_LOWER      (0x0000ffff)  //!< Bit mask for PCIE_PL_IATURLA_ADDRESS_LOWER.
 
@@ -5227,7 +4962,6 @@ typedef union _hw_pcie_pl_iaturla
 //! @brief Set the ADDRESS_LOWER field to a new value.
 #define BW_PCIE_PL_IATURLA_ADDRESS_LOWER(v)   (HW_PCIE_PL_IATURLA_WR((HW_PCIE_PL_IATURLA_RD() & ~BM_PCIE_PL_IATURLA_ADDRESS_LOWER) | BF_PCIE_PL_IATURLA_ADDRESS_LOWER(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURLA, field ADDRESS_UPPER[31:16] (RW)
@@ -5235,7 +4969,6 @@ typedef union _hw_pcie_pl_iaturla
  * Forms bits [31:16] of the end address of the address region to be translated.
  */
 //@{
-
 #define BP_PCIE_PL_IATURLA_ADDRESS_UPPER      (16)      //!< Bit position for PCIE_PL_IATURLA_ADDRESS_UPPER.
 #define BM_PCIE_PL_IATURLA_ADDRESS_UPPER      (0xffff0000)  //!< Bit mask for PCIE_PL_IATURLA_ADDRESS_UPPER.
 
@@ -5249,7 +4982,6 @@ typedef union _hw_pcie_pl_iaturla
 //! @brief Set the ADDRESS_UPPER field to a new value.
 #define BW_PCIE_PL_IATURLA_ADDRESS_UPPER(v)   (HW_PCIE_PL_IATURLA_WR((HW_PCIE_PL_IATURLA_RD() & ~BM_PCIE_PL_IATURLA_ADDRESS_UPPER) | BF_PCIE_PL_IATURLA_ADDRESS_UPPER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5302,7 +5034,6 @@ typedef union _hw_pcie_pl_iaturlta
  * write to this location is ignored by the PCIe core.
  */
 //@{
-
 #define BP_PCIE_PL_IATURLTA_ADDRESS_LOWER      (0)      //!< Bit position for PCIE_PL_IATURLTA_ADDRESS_LOWER.
 #define BM_PCIE_PL_IATURLTA_ADDRESS_LOWER      (0x0000ffff)  //!< Bit mask for PCIE_PL_IATURLTA_ADDRESS_LOWER.
 
@@ -5316,7 +5047,6 @@ typedef union _hw_pcie_pl_iaturlta
 //! @brief Set the ADDRESS_LOWER field to a new value.
 #define BW_PCIE_PL_IATURLTA_ADDRESS_LOWER(v)   (HW_PCIE_PL_IATURLTA_WR((HW_PCIE_PL_IATURLTA_RD() & ~BM_PCIE_PL_IATURLTA_ADDRESS_LOWER) | BF_PCIE_PL_IATURLTA_ADDRESS_LOWER(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_PL_IATURLTA, field ADDRESS_UPPER[31:16] (RW)
@@ -5324,7 +5054,6 @@ typedef union _hw_pcie_pl_iaturlta
  * Forms bits [31:16] of the of the new address of the translated region.
  */
 //@{
-
 #define BP_PCIE_PL_IATURLTA_ADDRESS_UPPER      (16)      //!< Bit position for PCIE_PL_IATURLTA_ADDRESS_UPPER.
 #define BM_PCIE_PL_IATURLTA_ADDRESS_UPPER      (0xffff0000)  //!< Bit mask for PCIE_PL_IATURLTA_ADDRESS_UPPER.
 
@@ -5338,7 +5067,6 @@ typedef union _hw_pcie_pl_iaturlta
 //! @brief Set the ADDRESS_UPPER field to a new value.
 #define BW_PCIE_PL_IATURLTA_ADDRESS_UPPER(v)   (HW_PCIE_PL_IATURLTA_WR((HW_PCIE_PL_IATURLTA_RD() & ~BM_PCIE_PL_IATURLTA_ADDRESS_UPPER) | BF_PCIE_PL_IATURLTA_ADDRESS_UPPER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5390,7 +5118,6 @@ typedef union _hw_pcie_pl_iaturuta
  * writing to this register has no effect.
  */
 //@{
-
 #define BP_PCIE_PL_IATURUTA_ADDRESS      (0)      //!< Bit position for PCIE_PL_IATURUTA_ADDRESS.
 #define BM_PCIE_PL_IATURUTA_ADDRESS      (0xffffffff)  //!< Bit mask for PCIE_PL_IATURUTA_ADDRESS.
 
@@ -5404,7 +5131,6 @@ typedef union _hw_pcie_pl_iaturuta
 //! @brief Set the ADDRESS field to a new value.
 #define BW_PCIE_PL_IATURUTA_ADDRESS(v)   (HW_PCIE_PL_IATURUTA_WR((HW_PCIE_PL_IATURUTA_RD() & ~BM_PCIE_PL_IATURUTA_ADDRESS) | BF_PCIE_PL_IATURUTA_ADDRESS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5481,3 +5207,5 @@ typedef struct _hw_pcie_pl
 #endif
 
 #endif // __HW_PCIE_PL_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

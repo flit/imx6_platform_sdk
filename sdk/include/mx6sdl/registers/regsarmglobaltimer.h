@@ -96,7 +96,6 @@ typedef union _hw_armglobaltimer_counter0
  * 32-bits of the counter value.
  */
 //@{
-
 #define BP_ARMGLOBALTIMER_COUNTER0_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COUNTER0_VALUE.
 #define BM_ARMGLOBALTIMER_COUNTER0_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COUNTER0_VALUE.
 
@@ -110,7 +109,6 @@ typedef union _hw_armglobaltimer_counter0
 //! @brief Set the VALUE field to a new value.
 #define BW_ARMGLOBALTIMER_COUNTER0_VALUE(v)   (HW_ARMGLOBALTIMER_COUNTER0_WR((HW_ARMGLOBALTIMER_COUNTER0_RD() & ~BM_ARMGLOBALTIMER_COUNTER0_VALUE) | BF_ARMGLOBALTIMER_COUNTER0_VALUE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -161,7 +159,6 @@ typedef union _hw_armglobaltimer_counter1
  * 32-bits of the counter value.
  */
 //@{
-
 #define BP_ARMGLOBALTIMER_COUNTER1_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COUNTER1_VALUE.
 #define BM_ARMGLOBALTIMER_COUNTER1_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COUNTER1_VALUE.
 
@@ -175,7 +172,6 @@ typedef union _hw_armglobaltimer_counter1
 //! @brief Set the VALUE field to a new value.
 #define BW_ARMGLOBALTIMER_COUNTER1_VALUE(v)   (HW_ARMGLOBALTIMER_COUNTER1_WR((HW_ARMGLOBALTIMER_COUNTER1_RD() & ~BM_ARMGLOBALTIMER_COUNTER1_VALUE) | BF_ARMGLOBALTIMER_COUNTER1_VALUE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -235,7 +231,6 @@ typedef union _hw_armglobaltimer_control
  * - ENABLED = 1 - Timer is enabled and the counter increments normally.
  */
 //@{
-
 #define BP_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE      (0)      //!< Bit position for ARMGLOBALTIMER_CONTROL_TIMER_ENABLE.
 #define BM_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE      (0x00000001)  //!< Bit mask for ARMGLOBALTIMER_CONTROL_TIMER_ENABLE.
 
@@ -255,7 +250,6 @@ typedef union _hw_armglobaltimer_control
 
 #define BV_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE__DISABLED (0x0) //!< Timer is disabled and the counter does not increment. All registers can still be read and written.
 #define BV_ARMGLOBALTIMER_CONTROL_TIMER_ENABLE__ENABLED (0x1) //!< Timer is enabled and the counter increments normally.
-
 //@}
 
 /*! @name Register ARMGLOBALTIMER_CONTROL, field COMP_ENABLE[1] (RW)
@@ -269,7 +263,6 @@ typedef union _hw_armglobaltimer_control
  * - ENABLED = 1 - Comparison is enabled.
  */
 //@{
-
 #define BP_ARMGLOBALTIMER_CONTROL_COMP_ENABLE      (1)      //!< Bit position for ARMGLOBALTIMER_CONTROL_COMP_ENABLE.
 #define BM_ARMGLOBALTIMER_CONTROL_COMP_ENABLE      (0x00000002)  //!< Bit mask for ARMGLOBALTIMER_CONTROL_COMP_ENABLE.
 
@@ -289,7 +282,6 @@ typedef union _hw_armglobaltimer_control
 
 #define BV_ARMGLOBALTIMER_CONTROL_COMP_ENABLE__DISABLED (0x0) //!< Comparison is disabled.
 #define BV_ARMGLOBALTIMER_CONTROL_COMP_ENABLE__ENABLED (0x1) //!< Comparison is enabled.
-
 //@}
 
 /*! @name Register ARMGLOBALTIMER_CONTROL, field IRQ_ENABLE[2] (RW)
@@ -302,7 +294,6 @@ typedef union _hw_armglobaltimer_control
  * - ENABLED = 1 - Interrupts are enabled.
  */
 //@{
-
 #define BP_ARMGLOBALTIMER_CONTROL_IRQ_ENABLE      (2)      //!< Bit position for ARMGLOBALTIMER_CONTROL_IRQ_ENABLE.
 #define BM_ARMGLOBALTIMER_CONTROL_IRQ_ENABLE      (0x00000004)  //!< Bit mask for ARMGLOBALTIMER_CONTROL_IRQ_ENABLE.
 
@@ -322,7 +313,6 @@ typedef union _hw_armglobaltimer_control
 
 #define BV_ARMGLOBALTIMER_CONTROL_IRQ_ENABLE__DISABLED (0x0) //!< Interrupts are disabled.
 #define BV_ARMGLOBALTIMER_CONTROL_IRQ_ENABLE__ENABLED (0x1) //!< Interrupts are enabled.
-
 //@}
 
 /*! @name Register ARMGLOBALTIMER_CONTROL, field AUTO_INCREMENT[3] (RW)
@@ -337,7 +327,6 @@ typedef union _hw_armglobaltimer_control
  *     updates.
  */
 //@{
-
 #define BP_ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT      (3)      //!< Bit position for ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT.
 #define BM_ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT      (0x00000008)  //!< Bit mask for ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT.
 
@@ -357,7 +346,6 @@ typedef union _hw_armglobaltimer_control
 
 #define BV_ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT__SINGLE_SHOT_MODE (0x0) //!< When the counter reaches the comparator value, sets the event flag. It is the responsibility of software to update the comparator value to get more events.
 #define BV_ARMGLOBALTIMER_CONTROL_AUTO_INCREMENT__AUTO_INCREMENT_MODE (0x1) //!< Each time the counter reaches the comparator value, the comparator register is incremented with the auto-increment register, so that more events can be set periodically without any software updates.
-
 //@}
 
 /*! @name Register ARMGLOBALTIMER_CONTROL, field PRESCALER[15:8] (RW)
@@ -365,7 +353,6 @@ typedef union _hw_armglobaltimer_control
  * The prescaler modifies the clock period for the decrementing event for the Counter Register.
  */
 //@{
-
 #define BP_ARMGLOBALTIMER_CONTROL_PRESCALER      (8)      //!< Bit position for ARMGLOBALTIMER_CONTROL_PRESCALER.
 #define BM_ARMGLOBALTIMER_CONTROL_PRESCALER      (0x0000ff00)  //!< Bit mask for ARMGLOBALTIMER_CONTROL_PRESCALER.
 
@@ -379,7 +366,6 @@ typedef union _hw_armglobaltimer_control
 //! @brief Set the PRESCALER field to a new value.
 #define BW_ARMGLOBALTIMER_CONTROL_PRESCALER(v)   (HW_ARMGLOBALTIMER_CONTROL_WR((HW_ARMGLOBALTIMER_CONTROL_RD() & ~BM_ARMGLOBALTIMER_CONTROL_PRESCALER) | BF_ARMGLOBALTIMER_CONTROL_PRESCALER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -433,7 +419,6 @@ typedef union _hw_armglobaltimer_irqstatus
  * to 1.
  */
 //@{
-
 #define BP_ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG      (0)      //!< Bit position for ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG.
 #define BM_ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG      (0x00000001)  //!< Bit mask for ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG.
 
@@ -447,7 +432,6 @@ typedef union _hw_armglobaltimer_irqstatus
 //! @brief Set the EVENT_FLAG field to a new value.
 #define BW_ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG(v)   (HW_ARMGLOBALTIMER_IRQSTATUS_WR((HW_ARMGLOBALTIMER_IRQSTATUS_RD() & ~BM_ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG) | BF_ARMGLOBALTIMER_IRQSTATUS_EVENT_FLAG(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -498,7 +482,6 @@ typedef union _hw_armglobaltimer_comparator0
  * 32-bits of the comparator value.
  */
 //@{
-
 #define BP_ARMGLOBALTIMER_COMPARATOR0_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COMPARATOR0_VALUE.
 #define BM_ARMGLOBALTIMER_COMPARATOR0_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COMPARATOR0_VALUE.
 
@@ -512,7 +495,6 @@ typedef union _hw_armglobaltimer_comparator0
 //! @brief Set the VALUE field to a new value.
 #define BW_ARMGLOBALTIMER_COMPARATOR0_VALUE(v)   (HW_ARMGLOBALTIMER_COMPARATOR0_WR((HW_ARMGLOBALTIMER_COMPARATOR0_RD() & ~BM_ARMGLOBALTIMER_COMPARATOR0_VALUE) | BF_ARMGLOBALTIMER_COMPARATOR0_VALUE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -563,7 +545,6 @@ typedef union _hw_armglobaltimer_comparator1
  * 32-bits of the comparator value.
  */
 //@{
-
 #define BP_ARMGLOBALTIMER_COMPARATOR1_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COMPARATOR1_VALUE.
 #define BM_ARMGLOBALTIMER_COMPARATOR1_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COMPARATOR1_VALUE.
 
@@ -577,7 +558,6 @@ typedef union _hw_armglobaltimer_comparator1
 //! @brief Set the VALUE field to a new value.
 #define BW_ARMGLOBALTIMER_COMPARATOR1_VALUE(v)   (HW_ARMGLOBALTIMER_COMPARATOR1_WR((HW_ARMGLOBALTIMER_COMPARATOR1_RD() & ~BM_ARMGLOBALTIMER_COMPARATOR1_VALUE) | BF_ARMGLOBALTIMER_COMPARATOR1_VALUE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -632,7 +612,6 @@ typedef union _hw_armglobaltimer_autoincrement
  * 32-bit auto-increment value.
  */
 //@{
-
 #define BP_ARMGLOBALTIMER_AUTOINCREMENT_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_AUTOINCREMENT_VALUE.
 #define BM_ARMGLOBALTIMER_AUTOINCREMENT_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_AUTOINCREMENT_VALUE.
 
@@ -646,7 +625,6 @@ typedef union _hw_armglobaltimer_autoincrement
 //! @brief Set the VALUE field to a new value.
 #define BW_ARMGLOBALTIMER_AUTOINCREMENT_VALUE(v)   (HW_ARMGLOBALTIMER_AUTOINCREMENT_WR((HW_ARMGLOBALTIMER_AUTOINCREMENT_RD() & ~BM_ARMGLOBALTIMER_AUTOINCREMENT_VALUE) | BF_ARMGLOBALTIMER_AUTOINCREMENT_VALUE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -677,3 +655,5 @@ typedef struct _hw_armglobaltimer
 #endif
 
 #endif // __HW_ARMGLOBALTIMER_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

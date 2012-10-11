@@ -181,8 +181,26 @@ Advanced_Information.Cortex-A9={\
     :Register.G_SNVS_HPSR={\
       gui_name="HPSR":start=0x20cc014:length=4:\
       read_only=false:write_only=false\
+      :bit_fields.B_SNVS_HPSR_HPTA={\
+        gui_name="HPTA":position=0:size=1:read_only=false\
+      }\
+      :bit_fields.B_SNVS_HPSR_PI={\
+        gui_name="PI":position=1:size=1:read_only=false\
+      }\
+      :bit_fields.B_SNVS_HPSR_LPDIS={\
+        gui_name="LPDIS":position=4:size=1:read_only=false\
+      }\
       :bit_fields.B_SNVS_HPSR_SSM_ST={\
         gui_name="SSM_ST":position=8:size=4:read_only=false\
+      }\
+      :bit_fields.B_SNVS_HPSR_SYS_SECURITY_CFG={\
+        gui_name="SYS_SECURITY_CFG":position=12:size=3:read_only=false\
+      }\
+      :bit_fields.B_SNVS_HPSR_SYS_SECURE_BOOT={\
+        gui_name="SYS_SECURE_BOOT":position=15:size=1:read_only=false\
+      }\
+      :bit_fields.B_SNVS_HPSR_OTPMK_SYNDROME={\
+        gui_name="OTPMK_SYNDROME":position=16:size=9:read_only=false\
       }\
       :bit_fields.B_SNVS_HPSR_OTPMK_ZERO={\
         gui_name="OTPMK_ZERO":position=27:size=1:read_only=false\
@@ -370,12 +388,6 @@ Advanced_Information.Cortex-A9={\
     :Register.G_SNVS_LPTGFCR={\
       gui_name="LPTGFCR":start=0x20cc044:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_SNVS_LPTGFCR_WMTGF={\
-        gui_name="WMTGF":position=0:size=5:read_only=false\
-      }\
-      :bit_fields.B_SNVS_LPTGFCR_WMTGF_EN={\
-        gui_name="WMTGF_EN":position=7:size=1:read_only=false\
-      }\
       :bit_fields.B_SNVS_LPTGFCR_ETGF1={\
         gui_name="ETGF1":position=16:size=5:read_only=false\
       }\
@@ -392,21 +404,6 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_SNVS_LPTDCR_MCR_EN={\
         gui_name="MCR_EN":position=2:size=1:read_only=false\
       }\
-      :bit_fields.B_SNVS_LPTDCR_CT_EN={\
-        gui_name="CT_EN":position=4:size=1:read_only=false\
-      }\
-      :bit_fields.B_SNVS_LPTDCR_TT_EN={\
-        gui_name="TT_EN":position=5:size=1:read_only=false\
-      }\
-      :bit_fields.B_SNVS_LPTDCR_VT_EN={\
-        gui_name="VT_EN":position=6:size=1:read_only=false\
-      }\
-      :bit_fields.B_SNVS_LPTDCR_WMT1_EN={\
-        gui_name="WMT1_EN":position=7:size=1:read_only=false\
-      }\
-      :bit_fields.B_SNVS_LPTDCR_WMT2_EN={\
-        gui_name="WMT2_EN":position=8:size=1:read_only=false\
-      }\
       :bit_fields.B_SNVS_LPTDCR_ET1_EN={\
         gui_name="ET1_EN":position=9:size=1:read_only=false\
       }\
@@ -415,18 +412,6 @@ Advanced_Information.Cortex-A9={\
       }\
       :bit_fields.B_SNVS_LPTDCR_POR_OBSERV={\
         gui_name="POR_OBSERV":position=15:size=1:read_only=false\
-      }\
-      :bit_fields.B_SNVS_LPTDCR_LTDC={\
-        gui_name="LTDC":position=16:size=3:read_only=false\
-      }\
-      :bit_fields.B_SNVS_LPTDCR_HTDC={\
-        gui_name="HTDC":position=20:size=3:read_only=false\
-      }\
-      :bit_fields.B_SNVS_LPTDCR_VRC={\
-        gui_name="VRC":position=24:size=3:read_only=false\
-      }\
-      :bit_fields.B_SNVS_LPTDCR_OSCB={\
-        gui_name="OSCB":position=28:size=1:read_only=false\
       }\
     }\
     :Register.G_SNVS_LPSR={\
@@ -444,26 +429,20 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_SNVS_LPSR_PGD={\
         gui_name="PGD":position=3:size=1:read_only=false\
       }\
-      :bit_fields.B_SNVS_LPSR_CTD={\
-        gui_name="CTD":position=4:size=1:read_only=false\
-      }\
-      :bit_fields.B_SNVS_LPSR_TTD={\
-        gui_name="TTD":position=5:size=1:read_only=false\
-      }\
-      :bit_fields.B_SNVS_LPSR_VTD={\
-        gui_name="VTD":position=6:size=1:read_only=false\
-      }\
-      :bit_fields.B_SNVS_LPSR_WMT1D={\
-        gui_name="WMT1D":position=7:size=1:read_only=false\
-      }\
-      :bit_fields.B_SNVS_LPSR_WMT2D={\
-        gui_name="WMT2D":position=8:size=1:read_only=false\
-      }\
       :bit_fields.B_SNVS_LPSR_ET1D={\
         gui_name="ET1D":position=9:size=1:read_only=false\
       }\
       :bit_fields.B_SNVS_LPSR_ESVD={\
         gui_name="ESVD":position=16:size=1:read_only=false\
+      }\
+      :bit_fields.B_SNVS_LPSR_EO={\
+        gui_name="EO":position=17:size=1:read_only=false\
+      }\
+      :bit_fields.B_SNVS_LPSR_SPO={\
+        gui_name="SPO":position=18:size=1:read_only=false\
+      }\
+      :bit_fields.B_SNVS_LPSR_SED={\
+        gui_name="SED":position=20:size=1:read_only=false\
       }\
       :bit_fields.B_SNVS_LPSR_LPNS={\
         gui_name="LPNS":position=30:size=1:read_only=true\
@@ -674,7 +653,13 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_SNVS_HPSR":\
+    line="B_SNVS_HPSR_HPTA":\
+    line="B_SNVS_HPSR_PI":\
+    line="B_SNVS_HPSR_LPDIS":\
     line="B_SNVS_HPSR_SSM_ST":\
+    line="B_SNVS_HPSR_SYS_SECURITY_CFG":\
+    line="B_SNVS_HPSR_SYS_SECURE_BOOT":\
+    line="B_SNVS_HPSR_OTPMK_SYNDROME":\
     line="B_SNVS_HPSR_OTPMK_ZERO":\
     line="B_SNVS_HPSR_ZMK_ZERO":\
     line="$$":\
@@ -757,8 +742,6 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_SNVS_LPTGFCR":\
-    line="B_SNVS_LPTGFCR_WMTGF":\
-    line="B_SNVS_LPTGFCR_WMTGF_EN":\
     line="B_SNVS_LPTGFCR_ETGF1":\
     line="B_SNVS_LPTGFCR_ETGF1_EN":\
     line="$$":\
@@ -766,18 +749,9 @@ Advanced_Information.Cortex-A9={\
     line="=G_SNVS_LPTDCR":\
     line="B_SNVS_LPTDCR_SRTCR_EN":\
     line="B_SNVS_LPTDCR_MCR_EN":\
-    line="B_SNVS_LPTDCR_CT_EN":\
-    line="B_SNVS_LPTDCR_TT_EN":\
-    line="B_SNVS_LPTDCR_VT_EN":\
-    line="B_SNVS_LPTDCR_WMT1_EN":\
-    line="B_SNVS_LPTDCR_WMT2_EN":\
     line="B_SNVS_LPTDCR_ET1_EN":\
     line="B_SNVS_LPTDCR_PFD_OBSERV":\
     line="B_SNVS_LPTDCR_POR_OBSERV":\
-    line="B_SNVS_LPTDCR_LTDC":\
-    line="B_SNVS_LPTDCR_HTDC":\
-    line="B_SNVS_LPTDCR_VRC":\
-    line="B_SNVS_LPTDCR_OSCB":\
     line="$$":\
     line="$+":\
     line="=G_SNVS_LPSR":\
@@ -785,13 +759,11 @@ Advanced_Information.Cortex-A9={\
     line="B_SNVS_LPSR_SRTCR":\
     line="B_SNVS_LPSR_MCR":\
     line="B_SNVS_LPSR_PGD":\
-    line="B_SNVS_LPSR_CTD":\
-    line="B_SNVS_LPSR_TTD":\
-    line="B_SNVS_LPSR_VTD":\
-    line="B_SNVS_LPSR_WMT1D":\
-    line="B_SNVS_LPSR_WMT2D":\
     line="B_SNVS_LPSR_ET1D":\
     line="B_SNVS_LPSR_ESVD":\
+    line="B_SNVS_LPSR_EO":\
+    line="B_SNVS_LPSR_SPO":\
+    line="B_SNVS_LPSR_SED":\
     line="B_SNVS_LPSR_LPNS":\
     line="B_SNVS_LPSR_LPS":\
     line="$$":\

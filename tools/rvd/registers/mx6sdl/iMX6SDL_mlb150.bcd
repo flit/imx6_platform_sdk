@@ -17,8 +17,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_MLB150_MLBC0_MLBEN={\
         gui_name="MLBEN":position=0:size=1:read_only=false\
       }\
-      :bit_fields.B_MLB150_MLBC0_MLBCLK={\
-        gui_name="MLBCLK":position=2:size=3:read_only=false\
+      :bit_fields.B_MLB150_MLBC0_MLBCLK_2_0={\
+        gui_name="MLBCLK_2_0":position=2:size=3:read_only=false\
       }\
       :bit_fields.B_MLB150_MLBC0_MLBPEN={\
         gui_name="MLBPEN":position=5:size=1:read_only=false\
@@ -46,8 +46,8 @@ Advanced_Information.Cortex-A9={\
     :Register.G_MLB150_MS0={\
       gui_name="MS0":start=0x218c00c:length=4:\
       read_only=true:write_only=false\
-      :bit_fields.B_MLB150_MS0_MCS={\
-        gui_name="MCS":position=0:size=32:read_only=true\
+      :bit_fields.B_MLB150_MS0_MCS_31_0={\
+        gui_name="MCS_31_0":position=0:size=32:read_only=true\
       }\
     }\
     :Register.G_MLB150_MLBPC2={\
@@ -69,8 +69,8 @@ Advanced_Information.Cortex-A9={\
     :Register.G_MLB150_MS1={\
       gui_name="MS1":start=0x218c014:length=4:\
       read_only=true:write_only=false\
-      :bit_fields.B_MLB150_MS1_MCS={\
-        gui_name="MCS":position=0:size=32:read_only=true\
+      :bit_fields.B_MLB150_MS1_MCS_63_32={\
+        gui_name="MCS_63_32":position=0:size=32:read_only=true\
       }\
     }\
     :Register.G_MLB150_MSS={\
@@ -98,17 +98,17 @@ Advanced_Information.Cortex-A9={\
     :Register.G_MLB150_MSD={\
       gui_name="MSD":start=0x218c024:length=4:\
       read_only=true:write_only=false\
-      :bit_fields.B_MLB150_MSD_SD0={\
-        gui_name="SD0":position=0:size=8:read_only=true\
+      :bit_fields.B_MLB150_MSD_SD0_7_0={\
+        gui_name="SD0_7_0":position=0:size=8:read_only=true\
       }\
-      :bit_fields.B_MLB150_MSD_SD1={\
-        gui_name="SD1":position=8:size=8:read_only=true\
+      :bit_fields.B_MLB150_MSD_SD1_7_0={\
+        gui_name="SD1_7_0":position=8:size=8:read_only=true\
       }\
-      :bit_fields.B_MLB150_MSD_SD2={\
-        gui_name="SD2":position=16:size=8:read_only=true\
+      :bit_fields.B_MLB150_MSD_SD2_7_0={\
+        gui_name="SD2_7_0":position=16:size=8:read_only=true\
       }\
-      :bit_fields.B_MLB150_MSD_SD3={\
-        gui_name="SD3":position=24:size=8:read_only=true\
+      :bit_fields.B_MLB150_MSD_SD3_7_0={\
+        gui_name="SD3_7_0":position=24:size=8:read_only=true\
       }\
     }\
     :Register.G_MLB150_MIEN={\
@@ -163,14 +163,14 @@ Advanced_Information.Cortex-A9={\
     :Register.G_MLB150_MLBPC1={\
       gui_name="MLBPC1":start=0x218c038:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_MLB150_MLBPC1_SDRCVBIAS={\
-        gui_name="SDRCVBIAS":position=0:size=4:read_only=false\
+      :bit_fields.B_MLB150_MLBPC1_SDRCVBIAS_3_0={\
+        gui_name="SDRCVBIAS_3_0":position=0:size=4:read_only=false\
       }\
-      :bit_fields.B_MLB150_MLBPC1_SDXMTBIAS={\
-        gui_name="SDXMTBIAS":position=4:size=4:read_only=false\
+      :bit_fields.B_MLB150_MLBPC1_SDXMTBIAS_3_0={\
+        gui_name="SDXMTBIAS_3_0":position=4:size=4:read_only=false\
       }\
-      :bit_fields.B_MLB150_MLBPC1_CKRCVBIAS={\
-        gui_name="CKRCVBIAS":position=8:size=4:read_only=false\
+      :bit_fields.B_MLB150_MLBPC1_CKRCVBIAS_3_0={\
+        gui_name="CKRCVBIAS_3_0":position=8:size=4:read_only=false\
       }\
     }\
     :Register.G_MLB150_MLBC1={\
@@ -182,8 +182,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_MLB150_MLBC1_CLKM={\
         gui_name="CLKM":position=7:size=1:read_only=true\
       }\
-      :bit_fields.B_MLB150_MLBC1_NDA={\
-        gui_name="NDA":position=8:size=8:read_only=false\
+      :bit_fields.B_MLB150_MLBC1_NDA_7_0={\
+        gui_name="NDA_7_0":position=8:size=8:read_only=false\
       }\
     }\
     :Register.G_MLB150_HCTL={\
@@ -202,99 +202,99 @@ Advanced_Information.Cortex-A9={\
     :Register.G_MLB150_HCMR0={\
       gui_name="HCMR0":start=0x218c088:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_MLB150_HCMR0_CHM={\
-        gui_name="CHM":position=0:size=32:read_only=false\
+      :bit_fields.B_MLB150_HCMR0_CHM_31_0_P={\
+        gui_name="CHM_31_0_P":position=0:size=32:read_only=false\
       }\
     }\
     :Register.G_MLB150_HCMR1={\
       gui_name="HCMR1":start=0x218c08c:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_MLB150_HCMR1_CHM={\
-        gui_name="CHM":position=0:size=32:read_only=false\
+      :bit_fields.B_MLB150_HCMR1_CHM_63_32={\
+        gui_name="CHM_63_32":position=0:size=32:read_only=false\
       }\
     }\
     :Register.G_MLB150_HCER0={\
       gui_name="HCER0":start=0x218c090:length=4:\
       read_only=true:write_only=false\
-      :bit_fields.B_MLB150_HCER0_CERR={\
-        gui_name="CERR":position=0:size=32:read_only=true\
+      :bit_fields.B_MLB150_HCER0_CERR_31_0={\
+        gui_name="CERR_31_0":position=0:size=32:read_only=true\
       }\
     }\
     :Register.G_MLB150_HCER1={\
       gui_name="HCER1":start=0x218c094:length=4:\
       read_only=true:write_only=false\
-      :bit_fields.B_MLB150_HCER1_CERR={\
-        gui_name="CERR":position=0:size=32:read_only=true\
+      :bit_fields.B_MLB150_HCER1_CERR_63_32={\
+        gui_name="CERR_63_32":position=0:size=32:read_only=true\
       }\
     }\
     :Register.G_MLB150_HCBR0={\
       gui_name="HCBR0":start=0x218c098:length=4:\
       read_only=true:write_only=false\
-      :bit_fields.B_MLB150_HCBR0_CHB={\
-        gui_name="CHB":position=0:size=32:read_only=true\
+      :bit_fields.B_MLB150_HCBR0_CHB_31_0={\
+        gui_name="CHB_31_0":position=0:size=32:read_only=true\
       }\
     }\
     :Register.G_MLB150_HCBR1={\
       gui_name="HCBR1":start=0x218c09c:length=4:\
       read_only=true:write_only=false\
-      :bit_fields.B_MLB150_HCBR1_CHB={\
-        gui_name="CHB":position=0:size=32:read_only=true\
+      :bit_fields.B_MLB150_HCBR1_CHB_63_32={\
+        gui_name="CHB_63_32":position=0:size=32:read_only=true\
       }\
     }\
     :Register.G_MLB150_MDAT0={\
       gui_name="MDAT0":start=0x218c0c0:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_MLB150_MDAT0_DATA={\
-        gui_name="DATA":position=0:size=32:read_only=false\
+      :bit_fields.B_MLB150_MDAT0_DATA_31_0={\
+        gui_name="DATA_31_0":position=0:size=32:read_only=false\
       }\
     }\
     :Register.G_MLB150_MDAT1={\
       gui_name="MDAT1":start=0x218c0c4:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_MLB150_MDAT1_DATA={\
-        gui_name="DATA":position=0:size=32:read_only=false\
+      :bit_fields.B_MLB150_MDAT1_DATA_63_32={\
+        gui_name="DATA_63_32":position=0:size=32:read_only=false\
       }\
     }\
     :Register.G_MLB150_MDAT2={\
       gui_name="MDAT2":start=0x218c0c8:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_MLB150_MDAT2_DATA={\
-        gui_name="DATA":position=0:size=32:read_only=false\
+      :bit_fields.B_MLB150_MDAT2_DATA_95_64={\
+        gui_name="DATA_95_64":position=0:size=32:read_only=false\
       }\
     }\
     :Register.G_MLB150_MDAT3={\
       gui_name="MDAT3":start=0x218c0cc:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_MLB150_MDAT3_DATA={\
-        gui_name="DATA":position=0:size=32:read_only=false\
+      :bit_fields.B_MLB150_MDAT3_DATA_127_96={\
+        gui_name="DATA_127_96":position=0:size=32:read_only=false\
       }\
     }\
     :Register.G_MLB150_MDWE0={\
       gui_name="MDWE0":start=0x218c0d0:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_MLB150_MDWE0_MASK={\
-        gui_name="MASK":position=0:size=32:read_only=false\
+      :bit_fields.B_MLB150_MDWE0_MASK_31_0={\
+        gui_name="MASK_31_0":position=0:size=32:read_only=false\
       }\
     }\
     :Register.G_MLB150_MDWE1={\
       gui_name="MDWE1":start=0x218c0d4:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_MLB150_MDWE1_MASK={\
-        gui_name="MASK":position=0:size=32:read_only=false\
+      :bit_fields.B_MLB150_MDWE1_MASK_63_32={\
+        gui_name="MASK_63_32":position=0:size=32:read_only=false\
       }\
     }\
     :Register.G_MLB150_MDWE2={\
       gui_name="MDWE2":start=0x218c0d8:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_MLB150_MDWE2_MASK={\
-        gui_name="MASK":position=0:size=32:read_only=false\
+      :bit_fields.B_MLB150_MDWE2_MASK_95_64={\
+        gui_name="MASK_95_64":position=0:size=32:read_only=false\
       }\
     }\
     :Register.G_MLB150_MDWE3={\
       gui_name="MDWE3":start=0x218c0dc:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_MLB150_MDWE3_MASK={\
-        gui_name="MASK":position=0:size=32:read_only=false\
+      :bit_fields.B_MLB150_MDWE3_MASK_127_96={\
+        gui_name="MASK_127_96":position=0:size=32:read_only=false\
       }\
     }\
     :Register.G_MLB150_MCTL={\
@@ -307,11 +307,11 @@ Advanced_Information.Cortex-A9={\
     :Register.G_MLB150_MADR={\
       gui_name="MADR":start=0x218c0e4:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_MLB150_MADR_ADDR1={\
-        gui_name="ADDR1":position=0:size=8:read_only=false\
+      :bit_fields.B_MLB150_MADR_ADDR_7_0={\
+        gui_name="ADDR_7_0":position=0:size=8:read_only=false\
       }\
-      :bit_fields.B_MLB150_MADR_ADDR={\
-        gui_name="ADDR":position=8:size=6:read_only=false\
+      :bit_fields.B_MLB150_MADR_ADDR_13_8={\
+        gui_name="ADDR_13_8":position=8:size=6:read_only=false\
       }\
       :bit_fields.B_MLB150_MADR_TB={\
         gui_name="TB":position=30:size=1:read_only=false\
@@ -353,8 +353,8 @@ Advanced_Information.Cortex-A9={\
     :Register.G_MLB150_ACMR0={\
       gui_name="ACMR0":start=0x218c3d8:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_MLB150_ACMR0_CHM={\
-        gui_name="CHM":position=0:size=32:read_only=false\
+      :bit_fields.B_MLB150_ACMR0_CHM_31_0={\
+        gui_name="CHM_31_0":position=0:size=32:read_only=false\
       }\
     }\
     :Register.G_MLB150_ACMR1={\
@@ -369,7 +369,7 @@ Advanced_Information.Cortex-A9={\
     line="$+":\
     line="=G_MLB150_MLBC0":\
     line="B_MLB150_MLBC0_MLBEN":\
-    line="B_MLB150_MLBC0_MLBCLK":\
+    line="B_MLB150_MLBC0_MLBCLK_2_0":\
     line="B_MLB150_MLBC0_MLBPEN":\
     line="B_MLB150_MLBC0_MLBLK":\
     line="B_MLB150_MLBC0_ASYRETRY":\
@@ -382,7 +382,7 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MS0":\
-    line="B_MLB150_MS0_MCS":\
+    line="B_MLB150_MS0_MCS_31_0":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MLBPC2":\
@@ -393,7 +393,7 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MS1":\
-    line="B_MLB150_MS1_MCS":\
+    line="B_MLB150_MS1_MCS_63_32":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MSS":\
@@ -406,10 +406,10 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MSD":\
-    line="B_MLB150_MSD_SD0":\
-    line="B_MLB150_MSD_SD1":\
-    line="B_MLB150_MSD_SD2":\
-    line="B_MLB150_MSD_SD3":\
+    line="B_MLB150_MSD_SD0_7_0":\
+    line="B_MLB150_MSD_SD1_7_0":\
+    line="B_MLB150_MSD_SD2_7_0":\
+    line="B_MLB150_MSD_SD3_7_0":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MIEN":\
@@ -431,15 +431,15 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MLBPC1":\
-    line="B_MLB150_MLBPC1_SDRCVBIAS":\
-    line="B_MLB150_MLBPC1_SDXMTBIAS":\
-    line="B_MLB150_MLBPC1_CKRCVBIAS":\
+    line="B_MLB150_MLBPC1_SDRCVBIAS_3_0":\
+    line="B_MLB150_MLBPC1_SDXMTBIAS_3_0":\
+    line="B_MLB150_MLBPC1_CKRCVBIAS_3_0":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MLBC1":\
     line="B_MLB150_MLBC1_LOCK":\
     line="B_MLB150_MLBC1_CLKM":\
-    line="B_MLB150_MLBC1_NDA":\
+    line="B_MLB150_MLBC1_NDA_7_0":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_HCTL":\
@@ -449,59 +449,59 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_MLB150_HCMR0":\
-    line="B_MLB150_HCMR0_CHM":\
+    line="B_MLB150_HCMR0_CHM_31_0_P":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_HCMR1":\
-    line="B_MLB150_HCMR1_CHM":\
+    line="B_MLB150_HCMR1_CHM_63_32":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_HCER0":\
-    line="B_MLB150_HCER0_CERR":\
+    line="B_MLB150_HCER0_CERR_31_0":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_HCER1":\
-    line="B_MLB150_HCER1_CERR":\
+    line="B_MLB150_HCER1_CERR_63_32":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_HCBR0":\
-    line="B_MLB150_HCBR0_CHB":\
+    line="B_MLB150_HCBR0_CHB_31_0":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_HCBR1":\
-    line="B_MLB150_HCBR1_CHB":\
+    line="B_MLB150_HCBR1_CHB_63_32":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MDAT0":\
-    line="B_MLB150_MDAT0_DATA":\
+    line="B_MLB150_MDAT0_DATA_31_0":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MDAT1":\
-    line="B_MLB150_MDAT1_DATA":\
+    line="B_MLB150_MDAT1_DATA_63_32":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MDAT2":\
-    line="B_MLB150_MDAT2_DATA":\
+    line="B_MLB150_MDAT2_DATA_95_64":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MDAT3":\
-    line="B_MLB150_MDAT3_DATA":\
+    line="B_MLB150_MDAT3_DATA_127_96":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MDWE0":\
-    line="B_MLB150_MDWE0_MASK":\
+    line="B_MLB150_MDWE0_MASK_31_0":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MDWE1":\
-    line="B_MLB150_MDWE1_MASK":\
+    line="B_MLB150_MDWE1_MASK_63_32":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MDWE2":\
-    line="B_MLB150_MDWE2_MASK":\
+    line="B_MLB150_MDWE2_MASK_95_64":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MDWE3":\
-    line="B_MLB150_MDWE3_MASK":\
+    line="B_MLB150_MDWE3_MASK_127_96":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MCTL":\
@@ -509,8 +509,8 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_MLB150_MADR":\
-    line="B_MLB150_MADR_ADDR1":\
-    line="B_MLB150_MADR_ADDR":\
+    line="B_MLB150_MADR_ADDR_7_0":\
+    line="B_MLB150_MADR_ADDR_13_8":\
     line="B_MLB150_MADR_TB":\
     line="B_MLB150_MADR_WNR":\
     line="$$":\
@@ -531,7 +531,7 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_MLB150_ACMR0":\
-    line="B_MLB150_ACMR0_CHM":\
+    line="B_MLB150_ACMR0_CHM_31_0":\
     line="$$":\
     line="$+":\
     line="=G_MLB150_ACMR1":\

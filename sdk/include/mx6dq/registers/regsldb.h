@@ -108,7 +108,6 @@ typedef union _hw_ldb_ctrl
  * - 11 - Channel enabled, routed to DI1.
  */
 //@{
-
 #define BP_LDB_CTRL_CH0_MODE      (0)      //!< Bit position for LDB_CTRL_CH0_MODE.
 #define BM_LDB_CTRL_CH0_MODE      (0x00000003)  //!< Bit mask for LDB_CTRL_CH0_MODE.
 
@@ -122,7 +121,6 @@ typedef union _hw_ldb_ctrl
 //! @brief Set the CH0_MODE field to a new value.
 #define BW_LDB_CTRL_CH0_MODE(v)   (HW_LDB_CTRL_WR((HW_LDB_CTRL_RD() & ~BM_LDB_CTRL_CH0_MODE) | BF_LDB_CTRL_CH0_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register LDB_CTRL, field CH1_MODE[3:2] (RW)
@@ -136,7 +134,6 @@ typedef union _hw_ldb_ctrl
  * - 11 - Channel enabled, routed to DI1.
  */
 //@{
-
 #define BP_LDB_CTRL_CH1_MODE      (2)      //!< Bit position for LDB_CTRL_CH1_MODE.
 #define BM_LDB_CTRL_CH1_MODE      (0x0000000c)  //!< Bit mask for LDB_CTRL_CH1_MODE.
 
@@ -150,7 +147,6 @@ typedef union _hw_ldb_ctrl
 //! @brief Set the CH1_MODE field to a new value.
 #define BW_LDB_CTRL_CH1_MODE(v)   (HW_LDB_CTRL_WR((HW_LDB_CTRL_RD() & ~BM_LDB_CTRL_CH1_MODE) | BF_LDB_CTRL_CH1_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register LDB_CTRL, field SPLIT_MODE_EN[4] (RW)
@@ -163,7 +159,6 @@ typedef union _hw_ldb_ctrl
  * - 1 - Split mode is enabled.
  */
 //@{
-
 #define BP_LDB_CTRL_SPLIT_MODE_EN      (4)      //!< Bit position for LDB_CTRL_SPLIT_MODE_EN.
 #define BM_LDB_CTRL_SPLIT_MODE_EN      (0x00000010)  //!< Bit mask for LDB_CTRL_SPLIT_MODE_EN.
 
@@ -177,7 +172,6 @@ typedef union _hw_ldb_ctrl
 //! @brief Set the SPLIT_MODE_EN field to a new value.
 #define BW_LDB_CTRL_SPLIT_MODE_EN(v)   (HW_LDB_CTRL_WR((HW_LDB_CTRL_RD() & ~BM_LDB_CTRL_SPLIT_MODE_EN) | BF_LDB_CTRL_SPLIT_MODE_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register LDB_CTRL, field DATA_WIDTH_CH0[5] (RW)
@@ -190,7 +184,6 @@ typedef union _hw_ldb_ctrl
  * - 1 - Data width is 24 bits wide.
  */
 //@{
-
 #define BP_LDB_CTRL_DATA_WIDTH_CH0      (5)      //!< Bit position for LDB_CTRL_DATA_WIDTH_CH0.
 #define BM_LDB_CTRL_DATA_WIDTH_CH0      (0x00000020)  //!< Bit mask for LDB_CTRL_DATA_WIDTH_CH0.
 
@@ -204,7 +197,6 @@ typedef union _hw_ldb_ctrl
 //! @brief Set the DATA_WIDTH_CH0 field to a new value.
 #define BW_LDB_CTRL_DATA_WIDTH_CH0(v)   (HW_LDB_CTRL_WR((HW_LDB_CTRL_RD() & ~BM_LDB_CTRL_DATA_WIDTH_CH0) | BF_LDB_CTRL_DATA_WIDTH_CH0(v)))
 #endif
-
 //@}
 
 /*! @name Register LDB_CTRL, field BIT_MAPPING_CH0[6] (RW)
@@ -216,7 +208,6 @@ typedef union _hw_ldb_ctrl
  * - 1 - Use JEIDA standard.
  */
 //@{
-
 #define BP_LDB_CTRL_BIT_MAPPING_CH0      (6)      //!< Bit position for LDB_CTRL_BIT_MAPPING_CH0.
 #define BM_LDB_CTRL_BIT_MAPPING_CH0      (0x00000040)  //!< Bit mask for LDB_CTRL_BIT_MAPPING_CH0.
 
@@ -230,7 +221,6 @@ typedef union _hw_ldb_ctrl
 //! @brief Set the BIT_MAPPING_CH0 field to a new value.
 #define BW_LDB_CTRL_BIT_MAPPING_CH0(v)   (HW_LDB_CTRL_WR((HW_LDB_CTRL_RD() & ~BM_LDB_CTRL_BIT_MAPPING_CH0) | BF_LDB_CTRL_BIT_MAPPING_CH0(v)))
 #endif
-
 //@}
 
 /*! @name Register LDB_CTRL, field DATA_WIDTH_CH1[7] (RW)
@@ -243,7 +233,6 @@ typedef union _hw_ldb_ctrl
  * - 1 - Data width is 24 bits wide.
  */
 //@{
-
 #define BP_LDB_CTRL_DATA_WIDTH_CH1      (7)      //!< Bit position for LDB_CTRL_DATA_WIDTH_CH1.
 #define BM_LDB_CTRL_DATA_WIDTH_CH1      (0x00000080)  //!< Bit mask for LDB_CTRL_DATA_WIDTH_CH1.
 
@@ -257,7 +246,6 @@ typedef union _hw_ldb_ctrl
 //! @brief Set the DATA_WIDTH_CH1 field to a new value.
 #define BW_LDB_CTRL_DATA_WIDTH_CH1(v)   (HW_LDB_CTRL_WR((HW_LDB_CTRL_RD() & ~BM_LDB_CTRL_DATA_WIDTH_CH1) | BF_LDB_CTRL_DATA_WIDTH_CH1(v)))
 #endif
-
 //@}
 
 /*! @name Register LDB_CTRL, field BIT_MAPPING_CH1[8] (RW)
@@ -269,7 +257,6 @@ typedef union _hw_ldb_ctrl
  * - 1 - Use JEIDA standard.
  */
 //@{
-
 #define BP_LDB_CTRL_BIT_MAPPING_CH1      (8)      //!< Bit position for LDB_CTRL_BIT_MAPPING_CH1.
 #define BM_LDB_CTRL_BIT_MAPPING_CH1      (0x00000100)  //!< Bit mask for LDB_CTRL_BIT_MAPPING_CH1.
 
@@ -283,7 +270,6 @@ typedef union _hw_ldb_ctrl
 //! @brief Set the BIT_MAPPING_CH1 field to a new value.
 #define BW_LDB_CTRL_BIT_MAPPING_CH1(v)   (HW_LDB_CTRL_WR((HW_LDB_CTRL_RD() & ~BM_LDB_CTRL_BIT_MAPPING_CH1) | BF_LDB_CTRL_BIT_MAPPING_CH1(v)))
 #endif
-
 //@}
 
 /*! @name Register LDB_CTRL, field DI0_VS_POLARITY[9] (RW)
@@ -295,7 +281,6 @@ typedef union _hw_ldb_ctrl
  * - 1 - ipu_di0_vsync is active low.
  */
 //@{
-
 #define BP_LDB_CTRL_DI0_VS_POLARITY      (9)      //!< Bit position for LDB_CTRL_DI0_VS_POLARITY.
 #define BM_LDB_CTRL_DI0_VS_POLARITY      (0x00000200)  //!< Bit mask for LDB_CTRL_DI0_VS_POLARITY.
 
@@ -309,7 +294,6 @@ typedef union _hw_ldb_ctrl
 //! @brief Set the DI0_VS_POLARITY field to a new value.
 #define BW_LDB_CTRL_DI0_VS_POLARITY(v)   (HW_LDB_CTRL_WR((HW_LDB_CTRL_RD() & ~BM_LDB_CTRL_DI0_VS_POLARITY) | BF_LDB_CTRL_DI0_VS_POLARITY(v)))
 #endif
-
 //@}
 
 /*! @name Register LDB_CTRL, field DI1_VS_POLARITY[10] (RW)
@@ -321,7 +305,6 @@ typedef union _hw_ldb_ctrl
  * - 1 - ipu_di1_vsync is active low.
  */
 //@{
-
 #define BP_LDB_CTRL_DI1_VS_POLARITY      (10)      //!< Bit position for LDB_CTRL_DI1_VS_POLARITY.
 #define BM_LDB_CTRL_DI1_VS_POLARITY      (0x00000400)  //!< Bit mask for LDB_CTRL_DI1_VS_POLARITY.
 
@@ -335,7 +318,6 @@ typedef union _hw_ldb_ctrl
 //! @brief Set the DI1_VS_POLARITY field to a new value.
 #define BW_LDB_CTRL_DI1_VS_POLARITY(v)   (HW_LDB_CTRL_WR((HW_LDB_CTRL_RD() & ~BM_LDB_CTRL_DI1_VS_POLARITY) | BF_LDB_CTRL_DI1_VS_POLARITY(v)))
 #endif
-
 //@}
 
 /*! @name Register LDB_CTRL, field LVDS_CLK_SHIFT[18:16] (RW)
@@ -354,7 +336,6 @@ typedef union _hw_ldb_ctrl
  * - 111 - Output clock is '1100011'
  */
 //@{
-
 #define BP_LDB_CTRL_LVDS_CLK_SHIFT      (16)      //!< Bit position for LDB_CTRL_LVDS_CLK_SHIFT.
 #define BM_LDB_CTRL_LVDS_CLK_SHIFT      (0x00070000)  //!< Bit mask for LDB_CTRL_LVDS_CLK_SHIFT.
 
@@ -368,7 +349,6 @@ typedef union _hw_ldb_ctrl
 //! @brief Set the LVDS_CLK_SHIFT field to a new value.
 #define BW_LDB_CTRL_LVDS_CLK_SHIFT(v)   (HW_LDB_CTRL_WR((HW_LDB_CTRL_RD() & ~BM_LDB_CTRL_LVDS_CLK_SHIFT) | BF_LDB_CTRL_LVDS_CLK_SHIFT(v)))
 #endif
-
 //@}
 
 /*! @name Register LDB_CTRL, field COUNTER_RESET_VAL[21:20] (RW)
@@ -383,7 +363,6 @@ typedef union _hw_ldb_ctrl
  * - 11 - Reset value is 6
  */
 //@{
-
 #define BP_LDB_CTRL_COUNTER_RESET_VAL      (20)      //!< Bit position for LDB_CTRL_COUNTER_RESET_VAL.
 #define BM_LDB_CTRL_COUNTER_RESET_VAL      (0x00300000)  //!< Bit mask for LDB_CTRL_COUNTER_RESET_VAL.
 
@@ -397,7 +376,6 @@ typedef union _hw_ldb_ctrl
 //! @brief Set the COUNTER_RESET_VAL field to a new value.
 #define BW_LDB_CTRL_COUNTER_RESET_VAL(v)   (HW_LDB_CTRL_WR((HW_LDB_CTRL_RD() & ~BM_LDB_CTRL_COUNTER_RESET_VAL) | BF_LDB_CTRL_COUNTER_RESET_VAL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -421,3 +399,5 @@ typedef struct _hw_ldb
 #endif
 
 #endif // __HW_LDB_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

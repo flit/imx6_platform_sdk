@@ -115,7 +115,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
  * - 1 - Disables overcurrent detection
  */
 //@{
-
 #define BP_USBNC_USB_OTG_CTRL_OVER_CUR_DIS      (7)      //!< Bit position for USBNC_USB_OTG_CTRL_OVER_CUR_DIS.
 #define BM_USBNC_USB_OTG_CTRL_OVER_CUR_DIS      (0x00000080)  //!< Bit mask for USBNC_USB_OTG_CTRL_OVER_CUR_DIS.
 
@@ -129,7 +128,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
 //! @brief Set the OVER_CUR_DIS field to a new value.
 #define BW_USBNC_USB_OTG_CTRL_OVER_CUR_DIS(v)   (HW_USBNC_USB_OTG_CTRL_WR((HW_USBNC_USB_OTG_CTRL_RD() & ~BM_USBNC_USB_OTG_CTRL_OVER_CUR_DIS) | BF_USBNC_USB_OTG_CTRL_OVER_CUR_DIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_OTG_CTRL, field OVER_CUR_POL[8] (RW)
@@ -141,7 +139,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
  * - 1 - Low active
  */
 //@{
-
 #define BP_USBNC_USB_OTG_CTRL_OVER_CUR_POL      (8)      //!< Bit position for USBNC_USB_OTG_CTRL_OVER_CUR_POL.
 #define BM_USBNC_USB_OTG_CTRL_OVER_CUR_POL      (0x00000100)  //!< Bit mask for USBNC_USB_OTG_CTRL_OVER_CUR_POL.
 
@@ -155,7 +152,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
 //! @brief Set the OVER_CUR_POL field to a new value.
 #define BW_USBNC_USB_OTG_CTRL_OVER_CUR_POL(v)   (HW_USBNC_USB_OTG_CTRL_WR((HW_USBNC_USB_OTG_CTRL_RD() & ~BM_USBNC_USB_OTG_CTRL_OVER_CUR_POL) | BF_USBNC_USB_OTG_CTRL_OVER_CUR_POL(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_OTG_CTRL, field PWR_POL[9] (RW)
@@ -167,7 +163,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
  * - 1 - Power switch has an active-high enable input
  */
 //@{
-
 #define BP_USBNC_USB_OTG_CTRL_PWR_POL      (9)      //!< Bit position for USBNC_USB_OTG_CTRL_PWR_POL.
 #define BM_USBNC_USB_OTG_CTRL_PWR_POL      (0x00000200)  //!< Bit mask for USBNC_USB_OTG_CTRL_PWR_POL.
 
@@ -181,7 +176,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
 //! @brief Set the PWR_POL field to a new value.
 #define BW_USBNC_USB_OTG_CTRL_PWR_POL(v)   (HW_USBNC_USB_OTG_CTRL_WR((HW_USBNC_USB_OTG_CTRL_RD() & ~BM_USBNC_USB_OTG_CTRL_PWR_POL) | BF_USBNC_USB_OTG_CTRL_PWR_POL(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_OTG_CTRL, field WIE[10] (RW)
@@ -195,7 +189,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
  * - 1 - Interrupt Enabled
  */
 //@{
-
 #define BP_USBNC_USB_OTG_CTRL_WIE      (10)      //!< Bit position for USBNC_USB_OTG_CTRL_WIE.
 #define BM_USBNC_USB_OTG_CTRL_WIE      (0x00000400)  //!< Bit mask for USBNC_USB_OTG_CTRL_WIE.
 
@@ -209,7 +202,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
 //! @brief Set the WIE field to a new value.
 #define BW_USBNC_USB_OTG_CTRL_WIE(v)   (HW_USBNC_USB_OTG_CTRL_WR((HW_USBNC_USB_OTG_CTRL_RD() & ~BM_USBNC_USB_OTG_CTRL_WIE) | BF_USBNC_USB_OTG_CTRL_WIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_OTG_CTRL, field RESET[11] (RW)
@@ -222,7 +214,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
  * - 1 - Reset the PHY
  */
 //@{
-
 #define BP_USBNC_USB_OTG_CTRL_RESET      (11)      //!< Bit position for USBNC_USB_OTG_CTRL_RESET.
 #define BM_USBNC_USB_OTG_CTRL_RESET      (0x00000800)  //!< Bit mask for USBNC_USB_OTG_CTRL_RESET.
 
@@ -236,7 +227,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
 //! @brief Set the RESET field to a new value.
 #define BW_USBNC_USB_OTG_CTRL_RESET(v)   (HW_USBNC_USB_OTG_CTRL_WR((HW_USBNC_USB_OTG_CTRL_RD() & ~BM_USBNC_USB_OTG_CTRL_RESET) | BF_USBNC_USB_OTG_CTRL_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_OTG_CTRL, field SUSPENDM[12] (RW)
@@ -250,7 +240,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
  * - 1 - Inactive
  */
 //@{
-
 #define BP_USBNC_USB_OTG_CTRL_SUSPENDM      (12)      //!< Bit position for USBNC_USB_OTG_CTRL_SUSPENDM.
 #define BM_USBNC_USB_OTG_CTRL_SUSPENDM      (0x00001000)  //!< Bit mask for USBNC_USB_OTG_CTRL_SUSPENDM.
 
@@ -264,7 +253,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
 //! @brief Set the SUSPENDM field to a new value.
 #define BW_USBNC_USB_OTG_CTRL_SUSPENDM(v)   (HW_USBNC_USB_OTG_CTRL_WR((HW_USBNC_USB_OTG_CTRL_RD() & ~BM_USBNC_USB_OTG_CTRL_SUSPENDM) | BF_USBNC_USB_OTG_CTRL_SUSPENDM(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_OTG_CTRL, field UTMI_ON_CLOCK[13] (RW)
@@ -276,7 +264,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
  * - 1 - Force clock output on
  */
 //@{
-
 #define BP_USBNC_USB_OTG_CTRL_UTMI_ON_CLOCK      (13)      //!< Bit position for USBNC_USB_OTG_CTRL_UTMI_ON_CLOCK.
 #define BM_USBNC_USB_OTG_CTRL_UTMI_ON_CLOCK      (0x00002000)  //!< Bit mask for USBNC_USB_OTG_CTRL_UTMI_ON_CLOCK.
 
@@ -290,7 +277,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
 //! @brief Set the UTMI_ON_CLOCK field to a new value.
 #define BW_USBNC_USB_OTG_CTRL_UTMI_ON_CLOCK(v)   (HW_USBNC_USB_OTG_CTRL_WR((HW_USBNC_USB_OTG_CTRL_RD() & ~BM_USBNC_USB_OTG_CTRL_UTMI_ON_CLOCK) | BF_USBNC_USB_OTG_CTRL_UTMI_ON_CLOCK(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_OTG_CTRL, field WKUP_SW_EN[14] (RW)
@@ -302,7 +288,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
  * - 1 - Enable
  */
 //@{
-
 #define BP_USBNC_USB_OTG_CTRL_WKUP_SW_EN      (14)      //!< Bit position for USBNC_USB_OTG_CTRL_WKUP_SW_EN.
 #define BM_USBNC_USB_OTG_CTRL_WKUP_SW_EN      (0x00004000)  //!< Bit mask for USBNC_USB_OTG_CTRL_WKUP_SW_EN.
 
@@ -316,7 +301,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
 //! @brief Set the WKUP_SW_EN field to a new value.
 #define BW_USBNC_USB_OTG_CTRL_WKUP_SW_EN(v)   (HW_USBNC_USB_OTG_CTRL_WR((HW_USBNC_USB_OTG_CTRL_RD() & ~BM_USBNC_USB_OTG_CTRL_WKUP_SW_EN) | BF_USBNC_USB_OTG_CTRL_WKUP_SW_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_OTG_CTRL, field WKUP_SW[15] (RW)
@@ -328,7 +312,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
  * - 1 - Force wake-up
  */
 //@{
-
 #define BP_USBNC_USB_OTG_CTRL_WKUP_SW      (15)      //!< Bit position for USBNC_USB_OTG_CTRL_WKUP_SW.
 #define BM_USBNC_USB_OTG_CTRL_WKUP_SW      (0x00008000)  //!< Bit mask for USBNC_USB_OTG_CTRL_WKUP_SW.
 
@@ -342,7 +325,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
 //! @brief Set the WKUP_SW field to a new value.
 #define BW_USBNC_USB_OTG_CTRL_WKUP_SW(v)   (HW_USBNC_USB_OTG_CTRL_WR((HW_USBNC_USB_OTG_CTRL_RD() & ~BM_USBNC_USB_OTG_CTRL_WKUP_SW) | BF_USBNC_USB_OTG_CTRL_WKUP_SW(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_OTG_CTRL, field WKUP_ID_EN[16] (RW)
@@ -354,7 +336,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
  * - 1 - Enable
  */
 //@{
-
 #define BP_USBNC_USB_OTG_CTRL_WKUP_ID_EN      (16)      //!< Bit position for USBNC_USB_OTG_CTRL_WKUP_ID_EN.
 #define BM_USBNC_USB_OTG_CTRL_WKUP_ID_EN      (0x00010000)  //!< Bit mask for USBNC_USB_OTG_CTRL_WKUP_ID_EN.
 
@@ -368,7 +349,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
 //! @brief Set the WKUP_ID_EN field to a new value.
 #define BW_USBNC_USB_OTG_CTRL_WKUP_ID_EN(v)   (HW_USBNC_USB_OTG_CTRL_WR((HW_USBNC_USB_OTG_CTRL_RD() & ~BM_USBNC_USB_OTG_CTRL_WKUP_ID_EN) | BF_USBNC_USB_OTG_CTRL_WKUP_ID_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_OTG_CTRL, field WKUP_VBUS_EN[17] (RW)
@@ -380,7 +360,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
  * - 1 - Enable
  */
 //@{
-
 #define BP_USBNC_USB_OTG_CTRL_WKUP_VBUS_EN      (17)      //!< Bit position for USBNC_USB_OTG_CTRL_WKUP_VBUS_EN.
 #define BM_USBNC_USB_OTG_CTRL_WKUP_VBUS_EN      (0x00020000)  //!< Bit mask for USBNC_USB_OTG_CTRL_WKUP_VBUS_EN.
 
@@ -394,7 +373,6 @@ typedef union _hw_usbnc_usb_otg_ctrl
 //! @brief Set the WKUP_VBUS_EN field to a new value.
 #define BW_USBNC_USB_OTG_CTRL_WKUP_VBUS_EN(v)   (HW_USBNC_USB_OTG_CTRL_WR((HW_USBNC_USB_OTG_CTRL_RD() & ~BM_USBNC_USB_OTG_CTRL_WKUP_VBUS_EN) | BF_USBNC_USB_OTG_CTRL_WKUP_VBUS_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_OTG_CTRL, field WIR[31] (RO)
@@ -407,13 +385,11 @@ typedef union _hw_usbnc_usb_otg_ctrl
  * - 1 - Wake-up Interrupt Request received
  */
 //@{
-
 #define BP_USBNC_USB_OTG_CTRL_WIR      (31)      //!< Bit position for USBNC_USB_OTG_CTRL_WIR.
 #define BM_USBNC_USB_OTG_CTRL_WIR      (0x80000000)  //!< Bit mask for USBNC_USB_OTG_CTRL_WIR.
 
 //! @brief Get value of USBNC_USB_OTG_CTRL_WIR from a register value.
 #define BG_USBNC_USB_OTG_CTRL_WIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_OTG_CTRL_WIR) >> BP_USBNC_USB_OTG_CTRL_WIR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -482,7 +458,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
  * - 1 - Disables overcurrent detection
  */
 //@{
-
 #define BP_USBNC_USB_UH1_CTRL_OVER_CUR_DIS      (7)      //!< Bit position for USBNC_USB_UH1_CTRL_OVER_CUR_DIS.
 #define BM_USBNC_USB_UH1_CTRL_OVER_CUR_DIS      (0x00000080)  //!< Bit mask for USBNC_USB_UH1_CTRL_OVER_CUR_DIS.
 
@@ -496,7 +471,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
 //! @brief Set the OVER_CUR_DIS field to a new value.
 #define BW_USBNC_USB_UH1_CTRL_OVER_CUR_DIS(v)   (HW_USBNC_USB_UH1_CTRL_WR((HW_USBNC_USB_UH1_CTRL_RD() & ~BM_USBNC_USB_UH1_CTRL_OVER_CUR_DIS) | BF_USBNC_USB_UH1_CTRL_OVER_CUR_DIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH1_CTRL, field OVER_CUR_POL[8] (RW)
@@ -508,7 +482,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
  * - 1 - Low active
  */
 //@{
-
 #define BP_USBNC_USB_UH1_CTRL_OVER_CUR_POL      (8)      //!< Bit position for USBNC_USB_UH1_CTRL_OVER_CUR_POL.
 #define BM_USBNC_USB_UH1_CTRL_OVER_CUR_POL      (0x00000100)  //!< Bit mask for USBNC_USB_UH1_CTRL_OVER_CUR_POL.
 
@@ -522,7 +495,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
 //! @brief Set the OVER_CUR_POL field to a new value.
 #define BW_USBNC_USB_UH1_CTRL_OVER_CUR_POL(v)   (HW_USBNC_USB_UH1_CTRL_WR((HW_USBNC_USB_UH1_CTRL_RD() & ~BM_USBNC_USB_UH1_CTRL_OVER_CUR_POL) | BF_USBNC_USB_UH1_CTRL_OVER_CUR_POL(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH1_CTRL, field PWR_POL[9] (RW)
@@ -534,7 +506,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
  * - 1 - Power switch has an active-high enable input
  */
 //@{
-
 #define BP_USBNC_USB_UH1_CTRL_PWR_POL      (9)      //!< Bit position for USBNC_USB_UH1_CTRL_PWR_POL.
 #define BM_USBNC_USB_UH1_CTRL_PWR_POL      (0x00000200)  //!< Bit mask for USBNC_USB_UH1_CTRL_PWR_POL.
 
@@ -548,7 +519,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
 //! @brief Set the PWR_POL field to a new value.
 #define BW_USBNC_USB_UH1_CTRL_PWR_POL(v)   (HW_USBNC_USB_UH1_CTRL_WR((HW_USBNC_USB_UH1_CTRL_RD() & ~BM_USBNC_USB_UH1_CTRL_PWR_POL) | BF_USBNC_USB_UH1_CTRL_PWR_POL(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH1_CTRL, field WIE[10] (RW)
@@ -562,7 +532,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
  * - 1 - Interrupt Enabled
  */
 //@{
-
 #define BP_USBNC_USB_UH1_CTRL_WIE      (10)      //!< Bit position for USBNC_USB_UH1_CTRL_WIE.
 #define BM_USBNC_USB_UH1_CTRL_WIE      (0x00000400)  //!< Bit mask for USBNC_USB_UH1_CTRL_WIE.
 
@@ -576,7 +545,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
 //! @brief Set the WIE field to a new value.
 #define BW_USBNC_USB_UH1_CTRL_WIE(v)   (HW_USBNC_USB_UH1_CTRL_WR((HW_USBNC_USB_UH1_CTRL_RD() & ~BM_USBNC_USB_UH1_CTRL_WIE) | BF_USBNC_USB_UH1_CTRL_WIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH1_CTRL, field RESET[11] (RW)
@@ -589,7 +557,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
  * - 1 - Reset the PHY
  */
 //@{
-
 #define BP_USBNC_USB_UH1_CTRL_RESET      (11)      //!< Bit position for USBNC_USB_UH1_CTRL_RESET.
 #define BM_USBNC_USB_UH1_CTRL_RESET      (0x00000800)  //!< Bit mask for USBNC_USB_UH1_CTRL_RESET.
 
@@ -603,7 +570,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
 //! @brief Set the RESET field to a new value.
 #define BW_USBNC_USB_UH1_CTRL_RESET(v)   (HW_USBNC_USB_UH1_CTRL_WR((HW_USBNC_USB_UH1_CTRL_RD() & ~BM_USBNC_USB_UH1_CTRL_RESET) | BF_USBNC_USB_UH1_CTRL_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH1_CTRL, field SUSPENDM[12] (RW)
@@ -617,7 +583,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
  * - 1 - Disable
  */
 //@{
-
 #define BP_USBNC_USB_UH1_CTRL_SUSPENDM      (12)      //!< Bit position for USBNC_USB_UH1_CTRL_SUSPENDM.
 #define BM_USBNC_USB_UH1_CTRL_SUSPENDM      (0x00001000)  //!< Bit mask for USBNC_USB_UH1_CTRL_SUSPENDM.
 
@@ -631,7 +596,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
 //! @brief Set the SUSPENDM field to a new value.
 #define BW_USBNC_USB_UH1_CTRL_SUSPENDM(v)   (HW_USBNC_USB_UH1_CTRL_WR((HW_USBNC_USB_UH1_CTRL_RD() & ~BM_USBNC_USB_UH1_CTRL_SUSPENDM) | BF_USBNC_USB_UH1_CTRL_SUSPENDM(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH1_CTRL, field UTMI_ON_CLOCK[13] (RW)
@@ -643,7 +607,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
  * - 1 - Enable
  */
 //@{
-
 #define BP_USBNC_USB_UH1_CTRL_UTMI_ON_CLOCK      (13)      //!< Bit position for USBNC_USB_UH1_CTRL_UTMI_ON_CLOCK.
 #define BM_USBNC_USB_UH1_CTRL_UTMI_ON_CLOCK      (0x00002000)  //!< Bit mask for USBNC_USB_UH1_CTRL_UTMI_ON_CLOCK.
 
@@ -657,7 +620,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
 //! @brief Set the UTMI_ON_CLOCK field to a new value.
 #define BW_USBNC_USB_UH1_CTRL_UTMI_ON_CLOCK(v)   (HW_USBNC_USB_UH1_CTRL_WR((HW_USBNC_USB_UH1_CTRL_RD() & ~BM_USBNC_USB_UH1_CTRL_UTMI_ON_CLOCK) | BF_USBNC_USB_UH1_CTRL_UTMI_ON_CLOCK(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH1_CTRL, field WKUP_SW_EN[14] (RW)
@@ -669,7 +631,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
  * - 1 - Enable
  */
 //@{
-
 #define BP_USBNC_USB_UH1_CTRL_WKUP_SW_EN      (14)      //!< Bit position for USBNC_USB_UH1_CTRL_WKUP_SW_EN.
 #define BM_USBNC_USB_UH1_CTRL_WKUP_SW_EN      (0x00004000)  //!< Bit mask for USBNC_USB_UH1_CTRL_WKUP_SW_EN.
 
@@ -683,7 +644,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
 //! @brief Set the WKUP_SW_EN field to a new value.
 #define BW_USBNC_USB_UH1_CTRL_WKUP_SW_EN(v)   (HW_USBNC_USB_UH1_CTRL_WR((HW_USBNC_USB_UH1_CTRL_RD() & ~BM_USBNC_USB_UH1_CTRL_WKUP_SW_EN) | BF_USBNC_USB_UH1_CTRL_WKUP_SW_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH1_CTRL, field WKUP_SW[15] (RW)
@@ -695,7 +655,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
  * - 1 - Force wake-up
  */
 //@{
-
 #define BP_USBNC_USB_UH1_CTRL_WKUP_SW      (15)      //!< Bit position for USBNC_USB_UH1_CTRL_WKUP_SW.
 #define BM_USBNC_USB_UH1_CTRL_WKUP_SW      (0x00008000)  //!< Bit mask for USBNC_USB_UH1_CTRL_WKUP_SW.
 
@@ -709,7 +668,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
 //! @brief Set the WKUP_SW field to a new value.
 #define BW_USBNC_USB_UH1_CTRL_WKUP_SW(v)   (HW_USBNC_USB_UH1_CTRL_WR((HW_USBNC_USB_UH1_CTRL_RD() & ~BM_USBNC_USB_UH1_CTRL_WKUP_SW) | BF_USBNC_USB_UH1_CTRL_WKUP_SW(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH1_CTRL, field WKUP_ID_EN[16] (RW)
@@ -721,7 +679,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
  * - 1 - Enable
  */
 //@{
-
 #define BP_USBNC_USB_UH1_CTRL_WKUP_ID_EN      (16)      //!< Bit position for USBNC_USB_UH1_CTRL_WKUP_ID_EN.
 #define BM_USBNC_USB_UH1_CTRL_WKUP_ID_EN      (0x00010000)  //!< Bit mask for USBNC_USB_UH1_CTRL_WKUP_ID_EN.
 
@@ -735,7 +692,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
 //! @brief Set the WKUP_ID_EN field to a new value.
 #define BW_USBNC_USB_UH1_CTRL_WKUP_ID_EN(v)   (HW_USBNC_USB_UH1_CTRL_WR((HW_USBNC_USB_UH1_CTRL_RD() & ~BM_USBNC_USB_UH1_CTRL_WKUP_ID_EN) | BF_USBNC_USB_UH1_CTRL_WKUP_ID_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH1_CTRL, field WKUP_VBUS_EN[17] (RW)
@@ -747,7 +703,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
  * - 1 - Enable
  */
 //@{
-
 #define BP_USBNC_USB_UH1_CTRL_WKUP_VBUS_EN      (17)      //!< Bit position for USBNC_USB_UH1_CTRL_WKUP_VBUS_EN.
 #define BM_USBNC_USB_UH1_CTRL_WKUP_VBUS_EN      (0x00020000)  //!< Bit mask for USBNC_USB_UH1_CTRL_WKUP_VBUS_EN.
 
@@ -761,7 +716,6 @@ typedef union _hw_usbnc_usb_uh1_ctrl
 //! @brief Set the WKUP_VBUS_EN field to a new value.
 #define BW_USBNC_USB_UH1_CTRL_WKUP_VBUS_EN(v)   (HW_USBNC_USB_UH1_CTRL_WR((HW_USBNC_USB_UH1_CTRL_RD() & ~BM_USBNC_USB_UH1_CTRL_WKUP_VBUS_EN) | BF_USBNC_USB_UH1_CTRL_WKUP_VBUS_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH1_CTRL, field WIR[31] (RO)
@@ -774,13 +728,11 @@ typedef union _hw_usbnc_usb_uh1_ctrl
  * - 1 - Wake-up Interrupt Request received
  */
 //@{
-
 #define BP_USBNC_USB_UH1_CTRL_WIR      (31)      //!< Bit position for USBNC_USB_UH1_CTRL_WIR.
 #define BM_USBNC_USB_UH1_CTRL_WIR      (0x80000000)  //!< Bit mask for USBNC_USB_UH1_CTRL_WIR.
 
 //! @brief Get value of USBNC_USB_UH1_CTRL_WIR from a register value.
 #define BG_USBNC_USB_UH1_CTRL_WIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH1_CTRL_WIR) >> BP_USBNC_USB_UH1_CTRL_WIR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -846,7 +798,6 @@ typedef union _hw_usbnc_usb_uh2_ctrl
  * - 1 - Interrupt Enabled
  */
 //@{
-
 #define BP_USBNC_USB_UH2_CTRL_WIE      (10)      //!< Bit position for USBNC_USB_UH2_CTRL_WIE.
 #define BM_USBNC_USB_UH2_CTRL_WIE      (0x00000400)  //!< Bit mask for USBNC_USB_UH2_CTRL_WIE.
 
@@ -860,7 +811,6 @@ typedef union _hw_usbnc_usb_uh2_ctrl
 //! @brief Set the WIE field to a new value.
 #define BW_USBNC_USB_UH2_CTRL_WIE(v)   (HW_USBNC_USB_UH2_CTRL_WR((HW_USBNC_USB_UH2_CTRL_RD() & ~BM_USBNC_USB_UH2_CTRL_WIE) | BF_USBNC_USB_UH2_CTRL_WIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH2_CTRL, field RESET[11] (RW)
@@ -873,7 +823,6 @@ typedef union _hw_usbnc_usb_uh2_ctrl
  * - 1 - Reset the PHY
  */
 //@{
-
 #define BP_USBNC_USB_UH2_CTRL_RESET      (11)      //!< Bit position for USBNC_USB_UH2_CTRL_RESET.
 #define BM_USBNC_USB_UH2_CTRL_RESET      (0x00000800)  //!< Bit mask for USBNC_USB_UH2_CTRL_RESET.
 
@@ -887,7 +836,6 @@ typedef union _hw_usbnc_usb_uh2_ctrl
 //! @brief Set the RESET field to a new value.
 #define BW_USBNC_USB_UH2_CTRL_RESET(v)   (HW_USBNC_USB_UH2_CTRL_WR((HW_USBNC_USB_UH2_CTRL_RD() & ~BM_USBNC_USB_UH2_CTRL_RESET) | BF_USBNC_USB_UH2_CTRL_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH2_CTRL, field SUSPENDM[12] (RW)
@@ -901,7 +849,6 @@ typedef union _hw_usbnc_usb_uh2_ctrl
  * - 1 - Disable
  */
 //@{
-
 #define BP_USBNC_USB_UH2_CTRL_SUSPENDM      (12)      //!< Bit position for USBNC_USB_UH2_CTRL_SUSPENDM.
 #define BM_USBNC_USB_UH2_CTRL_SUSPENDM      (0x00001000)  //!< Bit mask for USBNC_USB_UH2_CTRL_SUSPENDM.
 
@@ -915,7 +862,6 @@ typedef union _hw_usbnc_usb_uh2_ctrl
 //! @brief Set the SUSPENDM field to a new value.
 #define BW_USBNC_USB_UH2_CTRL_SUSPENDM(v)   (HW_USBNC_USB_UH2_CTRL_WR((HW_USBNC_USB_UH2_CTRL_RD() & ~BM_USBNC_USB_UH2_CTRL_SUSPENDM) | BF_USBNC_USB_UH2_CTRL_SUSPENDM(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH2_CTRL, field _480M_CLK_ON[13] (RW)
@@ -927,7 +873,6 @@ typedef union _hw_usbnc_usb_uh2_ctrl
  * - 1 - Force OTG UTMI PHY 480M clock output on
  */
 //@{
-
 #define BP_USBNC_USB_UH2_CTRL__480M_CLK_ON      (13)      //!< Bit position for USBNC_USB_UH2_CTRL__480M_CLK_ON.
 #define BM_USBNC_USB_UH2_CTRL__480M_CLK_ON      (0x00002000)  //!< Bit mask for USBNC_USB_UH2_CTRL__480M_CLK_ON.
 
@@ -941,7 +886,6 @@ typedef union _hw_usbnc_usb_uh2_ctrl
 //! @brief Set the _480M_CLK_ON field to a new value.
 #define BW_USBNC_USB_UH2_CTRL__480M_CLK_ON(v)   (HW_USBNC_USB_UH2_CTRL_WR((HW_USBNC_USB_UH2_CTRL_RD() & ~BM_USBNC_USB_UH2_CTRL__480M_CLK_ON) | BF_USBNC_USB_UH2_CTRL__480M_CLK_ON(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH2_CTRL, field WKUP_SW_EN[14] (RW)
@@ -953,7 +897,6 @@ typedef union _hw_usbnc_usb_uh2_ctrl
  * - 1 - Enable
  */
 //@{
-
 #define BP_USBNC_USB_UH2_CTRL_WKUP_SW_EN      (14)      //!< Bit position for USBNC_USB_UH2_CTRL_WKUP_SW_EN.
 #define BM_USBNC_USB_UH2_CTRL_WKUP_SW_EN      (0x00004000)  //!< Bit mask for USBNC_USB_UH2_CTRL_WKUP_SW_EN.
 
@@ -967,7 +910,6 @@ typedef union _hw_usbnc_usb_uh2_ctrl
 //! @brief Set the WKUP_SW_EN field to a new value.
 #define BW_USBNC_USB_UH2_CTRL_WKUP_SW_EN(v)   (HW_USBNC_USB_UH2_CTRL_WR((HW_USBNC_USB_UH2_CTRL_RD() & ~BM_USBNC_USB_UH2_CTRL_WKUP_SW_EN) | BF_USBNC_USB_UH2_CTRL_WKUP_SW_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH2_CTRL, field WKUP_SW[15] (RW)
@@ -979,7 +921,6 @@ typedef union _hw_usbnc_usb_uh2_ctrl
  * - 1 - Force wake-up
  */
 //@{
-
 #define BP_USBNC_USB_UH2_CTRL_WKUP_SW      (15)      //!< Bit position for USBNC_USB_UH2_CTRL_WKUP_SW.
 #define BM_USBNC_USB_UH2_CTRL_WKUP_SW      (0x00008000)  //!< Bit mask for USBNC_USB_UH2_CTRL_WKUP_SW.
 
@@ -993,7 +934,6 @@ typedef union _hw_usbnc_usb_uh2_ctrl
 //! @brief Set the WKUP_SW field to a new value.
 #define BW_USBNC_USB_UH2_CTRL_WKUP_SW(v)   (HW_USBNC_USB_UH2_CTRL_WR((HW_USBNC_USB_UH2_CTRL_RD() & ~BM_USBNC_USB_UH2_CTRL_WKUP_SW) | BF_USBNC_USB_UH2_CTRL_WKUP_SW(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH2_CTRL, field WIR[31] (RO)
@@ -1006,13 +946,11 @@ typedef union _hw_usbnc_usb_uh2_ctrl
  * - 1 - Wake-up Interrupt Request received
  */
 //@{
-
 #define BP_USBNC_USB_UH2_CTRL_WIR      (31)      //!< Bit position for USBNC_USB_UH2_CTRL_WIR.
 #define BM_USBNC_USB_UH2_CTRL_WIR      (0x80000000)  //!< Bit mask for USBNC_USB_UH2_CTRL_WIR.
 
 //! @brief Get value of USBNC_USB_UH2_CTRL_WIR from a register value.
 #define BG_USBNC_USB_UH2_CTRL_WIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH2_CTRL_WIR) >> BP_USBNC_USB_UH2_CTRL_WIR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1078,7 +1016,6 @@ typedef union _hw_usbnc_usb_uh3_ctrl
  * - 1 - Interrupt Enabled
  */
 //@{
-
 #define BP_USBNC_USB_UH3_CTRL_WIE      (10)      //!< Bit position for USBNC_USB_UH3_CTRL_WIE.
 #define BM_USBNC_USB_UH3_CTRL_WIE      (0x00000400)  //!< Bit mask for USBNC_USB_UH3_CTRL_WIE.
 
@@ -1092,7 +1029,6 @@ typedef union _hw_usbnc_usb_uh3_ctrl
 //! @brief Set the WIE field to a new value.
 #define BW_USBNC_USB_UH3_CTRL_WIE(v)   (HW_USBNC_USB_UH3_CTRL_WR((HW_USBNC_USB_UH3_CTRL_RD() & ~BM_USBNC_USB_UH3_CTRL_WIE) | BF_USBNC_USB_UH3_CTRL_WIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH3_CTRL, field RESET[11] (RW)
@@ -1105,7 +1041,6 @@ typedef union _hw_usbnc_usb_uh3_ctrl
  * - 1 - Reset the PHY
  */
 //@{
-
 #define BP_USBNC_USB_UH3_CTRL_RESET      (11)      //!< Bit position for USBNC_USB_UH3_CTRL_RESET.
 #define BM_USBNC_USB_UH3_CTRL_RESET      (0x00000800)  //!< Bit mask for USBNC_USB_UH3_CTRL_RESET.
 
@@ -1119,7 +1054,6 @@ typedef union _hw_usbnc_usb_uh3_ctrl
 //! @brief Set the RESET field to a new value.
 #define BW_USBNC_USB_UH3_CTRL_RESET(v)   (HW_USBNC_USB_UH3_CTRL_WR((HW_USBNC_USB_UH3_CTRL_RD() & ~BM_USBNC_USB_UH3_CTRL_RESET) | BF_USBNC_USB_UH3_CTRL_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH3_CTRL, field SUSPENDM[12] (RW)
@@ -1133,7 +1067,6 @@ typedef union _hw_usbnc_usb_uh3_ctrl
  * - 1 - Inactive
  */
 //@{
-
 #define BP_USBNC_USB_UH3_CTRL_SUSPENDM      (12)      //!< Bit position for USBNC_USB_UH3_CTRL_SUSPENDM.
 #define BM_USBNC_USB_UH3_CTRL_SUSPENDM      (0x00001000)  //!< Bit mask for USBNC_USB_UH3_CTRL_SUSPENDM.
 
@@ -1147,7 +1080,6 @@ typedef union _hw_usbnc_usb_uh3_ctrl
 //! @brief Set the SUSPENDM field to a new value.
 #define BW_USBNC_USB_UH3_CTRL_SUSPENDM(v)   (HW_USBNC_USB_UH3_CTRL_WR((HW_USBNC_USB_UH3_CTRL_RD() & ~BM_USBNC_USB_UH3_CTRL_SUSPENDM) | BF_USBNC_USB_UH3_CTRL_SUSPENDM(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH3_CTRL, field _480M_CLK_ON[13] (RW)
@@ -1159,7 +1091,6 @@ typedef union _hw_usbnc_usb_uh3_ctrl
  * - 1 - Force OTG UTMI PHY 480M clock output on
  */
 //@{
-
 #define BP_USBNC_USB_UH3_CTRL__480M_CLK_ON      (13)      //!< Bit position for USBNC_USB_UH3_CTRL__480M_CLK_ON.
 #define BM_USBNC_USB_UH3_CTRL__480M_CLK_ON      (0x00002000)  //!< Bit mask for USBNC_USB_UH3_CTRL__480M_CLK_ON.
 
@@ -1173,7 +1104,6 @@ typedef union _hw_usbnc_usb_uh3_ctrl
 //! @brief Set the _480M_CLK_ON field to a new value.
 #define BW_USBNC_USB_UH3_CTRL__480M_CLK_ON(v)   (HW_USBNC_USB_UH3_CTRL_WR((HW_USBNC_USB_UH3_CTRL_RD() & ~BM_USBNC_USB_UH3_CTRL__480M_CLK_ON) | BF_USBNC_USB_UH3_CTRL__480M_CLK_ON(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH3_CTRL, field WKUP_SW_EN[14] (RW)
@@ -1185,7 +1115,6 @@ typedef union _hw_usbnc_usb_uh3_ctrl
  * - 1 - Enable
  */
 //@{
-
 #define BP_USBNC_USB_UH3_CTRL_WKUP_SW_EN      (14)      //!< Bit position for USBNC_USB_UH3_CTRL_WKUP_SW_EN.
 #define BM_USBNC_USB_UH3_CTRL_WKUP_SW_EN      (0x00004000)  //!< Bit mask for USBNC_USB_UH3_CTRL_WKUP_SW_EN.
 
@@ -1199,7 +1128,6 @@ typedef union _hw_usbnc_usb_uh3_ctrl
 //! @brief Set the WKUP_SW_EN field to a new value.
 #define BW_USBNC_USB_UH3_CTRL_WKUP_SW_EN(v)   (HW_USBNC_USB_UH3_CTRL_WR((HW_USBNC_USB_UH3_CTRL_RD() & ~BM_USBNC_USB_UH3_CTRL_WKUP_SW_EN) | BF_USBNC_USB_UH3_CTRL_WKUP_SW_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH3_CTRL, field WKUP_SW[15] (RW)
@@ -1211,7 +1139,6 @@ typedef union _hw_usbnc_usb_uh3_ctrl
  * - 1 - Force wake-up
  */
 //@{
-
 #define BP_USBNC_USB_UH3_CTRL_WKUP_SW      (15)      //!< Bit position for USBNC_USB_UH3_CTRL_WKUP_SW.
 #define BM_USBNC_USB_UH3_CTRL_WKUP_SW      (0x00008000)  //!< Bit mask for USBNC_USB_UH3_CTRL_WKUP_SW.
 
@@ -1225,7 +1152,6 @@ typedef union _hw_usbnc_usb_uh3_ctrl
 //! @brief Set the WKUP_SW field to a new value.
 #define BW_USBNC_USB_UH3_CTRL_WKUP_SW(v)   (HW_USBNC_USB_UH3_CTRL_WR((HW_USBNC_USB_UH3_CTRL_RD() & ~BM_USBNC_USB_UH3_CTRL_WKUP_SW) | BF_USBNC_USB_UH3_CTRL_WKUP_SW(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH3_CTRL, field WIR[31] (RO)
@@ -1238,13 +1164,11 @@ typedef union _hw_usbnc_usb_uh3_ctrl
  * - 1 - Wake-up interrupt received
  */
 //@{
-
 #define BP_USBNC_USB_UH3_CTRL_WIR      (31)      //!< Bit position for USBNC_USB_UH3_CTRL_WIR.
 #define BM_USBNC_USB_UH3_CTRL_WIR      (0x80000000)  //!< Bit mask for USBNC_USB_UH3_CTRL_WIR.
 
 //! @brief Get value of USBNC_USB_UH3_CTRL_WIR from a register value.
 #define BG_USBNC_USB_UH3_CTRL_WIR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH3_CTRL_WIR) >> BP_USBNC_USB_UH3_CTRL_WIR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1304,7 +1228,6 @@ typedef union _hw_usbnc_usb_uh2_hsic_ctrl
  * - 1 - Active
  */
 //@{
-
 #define BP_USBNC_USB_UH2_HSIC_CTRL_HSIC_CLK_ON      (11)      //!< Bit position for USBNC_USB_UH2_HSIC_CTRL_HSIC_CLK_ON.
 #define BM_USBNC_USB_UH2_HSIC_CTRL_HSIC_CLK_ON      (0x00000800)  //!< Bit mask for USBNC_USB_UH2_HSIC_CTRL_HSIC_CLK_ON.
 
@@ -1318,7 +1241,6 @@ typedef union _hw_usbnc_usb_uh2_hsic_ctrl
 //! @brief Set the HSIC_CLK_ON field to a new value.
 #define BW_USBNC_USB_UH2_HSIC_CTRL_HSIC_CLK_ON(v)   (HW_USBNC_USB_UH2_HSIC_CTRL_WR((HW_USBNC_USB_UH2_HSIC_CTRL_RD() & ~BM_USBNC_USB_UH2_HSIC_CTRL_HSIC_CLK_ON) | BF_USBNC_USB_UH2_HSIC_CTRL_HSIC_CLK_ON(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH2_HSIC_CTRL, field HSIC_EN[12] (RW)
@@ -1330,7 +1252,6 @@ typedef union _hw_usbnc_usb_uh2_hsic_ctrl
  * - 1 - Enabled
  */
 //@{
-
 #define BP_USBNC_USB_UH2_HSIC_CTRL_HSIC_EN      (12)      //!< Bit position for USBNC_USB_UH2_HSIC_CTRL_HSIC_EN.
 #define BM_USBNC_USB_UH2_HSIC_CTRL_HSIC_EN      (0x00001000)  //!< Bit mask for USBNC_USB_UH2_HSIC_CTRL_HSIC_EN.
 
@@ -1344,7 +1265,6 @@ typedef union _hw_usbnc_usb_uh2_hsic_ctrl
 //! @brief Set the HSIC_EN field to a new value.
 #define BW_USBNC_USB_UH2_HSIC_CTRL_HSIC_EN(v)   (HW_USBNC_USB_UH2_HSIC_CTRL_WR((HW_USBNC_USB_UH2_HSIC_CTRL_RD() & ~BM_USBNC_USB_UH2_HSIC_CTRL_HSIC_EN) | BF_USBNC_USB_UH2_HSIC_CTRL_HSIC_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH2_HSIC_CTRL, field CLK_VLD[31] (RO)
@@ -1356,13 +1276,11 @@ typedef union _hw_usbnc_usb_uh2_hsic_ctrl
  * - 2 - Invalid
  */
 //@{
-
 #define BP_USBNC_USB_UH2_HSIC_CTRL_CLK_VLD      (31)      //!< Bit position for USBNC_USB_UH2_HSIC_CTRL_CLK_VLD.
 #define BM_USBNC_USB_UH2_HSIC_CTRL_CLK_VLD      (0x80000000)  //!< Bit mask for USBNC_USB_UH2_HSIC_CTRL_CLK_VLD.
 
 //! @brief Get value of USBNC_USB_UH2_HSIC_CTRL_CLK_VLD from a register value.
 #define BG_USBNC_USB_UH2_HSIC_CTRL_CLK_VLD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH2_HSIC_CTRL_CLK_VLD) >> BP_USBNC_USB_UH2_HSIC_CTRL_CLK_VLD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1422,7 +1340,6 @@ typedef union _hw_usbnc_usb_uh3_hsic_ctrl
  * - 1 - Active
  */
 //@{
-
 #define BP_USBNC_USB_UH3_HSIC_CTRL_HSIC_CLK_ON      (11)      //!< Bit position for USBNC_USB_UH3_HSIC_CTRL_HSIC_CLK_ON.
 #define BM_USBNC_USB_UH3_HSIC_CTRL_HSIC_CLK_ON      (0x00000800)  //!< Bit mask for USBNC_USB_UH3_HSIC_CTRL_HSIC_CLK_ON.
 
@@ -1436,7 +1353,6 @@ typedef union _hw_usbnc_usb_uh3_hsic_ctrl
 //! @brief Set the HSIC_CLK_ON field to a new value.
 #define BW_USBNC_USB_UH3_HSIC_CTRL_HSIC_CLK_ON(v)   (HW_USBNC_USB_UH3_HSIC_CTRL_WR((HW_USBNC_USB_UH3_HSIC_CTRL_RD() & ~BM_USBNC_USB_UH3_HSIC_CTRL_HSIC_CLK_ON) | BF_USBNC_USB_UH3_HSIC_CTRL_HSIC_CLK_ON(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH3_HSIC_CTRL, field HSIC_EN[12] (RW)
@@ -1448,7 +1364,6 @@ typedef union _hw_usbnc_usb_uh3_hsic_ctrl
  * - 1 - Enabled
  */
 //@{
-
 #define BP_USBNC_USB_UH3_HSIC_CTRL_HSIC_EN      (12)      //!< Bit position for USBNC_USB_UH3_HSIC_CTRL_HSIC_EN.
 #define BM_USBNC_USB_UH3_HSIC_CTRL_HSIC_EN      (0x00001000)  //!< Bit mask for USBNC_USB_UH3_HSIC_CTRL_HSIC_EN.
 
@@ -1462,7 +1377,6 @@ typedef union _hw_usbnc_usb_uh3_hsic_ctrl
 //! @brief Set the HSIC_EN field to a new value.
 #define BW_USBNC_USB_UH3_HSIC_CTRL_HSIC_EN(v)   (HW_USBNC_USB_UH3_HSIC_CTRL_WR((HW_USBNC_USB_UH3_HSIC_CTRL_RD() & ~BM_USBNC_USB_UH3_HSIC_CTRL_HSIC_EN) | BF_USBNC_USB_UH3_HSIC_CTRL_HSIC_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBNC_USB_UH3_HSIC_CTRL, field CLK_VLD[31] (RO)
@@ -1474,13 +1388,11 @@ typedef union _hw_usbnc_usb_uh3_hsic_ctrl
  * - 2 - Invalid
  */
 //@{
-
 #define BP_USBNC_USB_UH3_HSIC_CTRL_CLK_VLD      (31)      //!< Bit position for USBNC_USB_UH3_HSIC_CTRL_CLK_VLD.
 #define BM_USBNC_USB_UH3_HSIC_CTRL_CLK_VLD      (0x80000000)  //!< Bit mask for USBNC_USB_UH3_HSIC_CTRL_CLK_VLD.
 
 //! @brief Get value of USBNC_USB_UH3_HSIC_CTRL_CLK_VLD from a register value.
 #define BG_USBNC_USB_UH3_HSIC_CTRL_CLK_VLD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBNC_USB_UH3_HSIC_CTRL_CLK_VLD) >> BP_USBNC_USB_UH3_HSIC_CTRL_CLK_VLD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1535,7 +1447,6 @@ typedef union _hw_usbnc_usb_otg_phy_ctrl_0
  * - 1 - Valid
  */
 //@{
-
 #define BP_USBNC_USB_OTG_PHY_CTRL_0_UTMI_CLK_VLD      (31)      //!< Bit position for USBNC_USB_OTG_PHY_CTRL_0_UTMI_CLK_VLD.
 #define BM_USBNC_USB_OTG_PHY_CTRL_0_UTMI_CLK_VLD      (0x80000000)  //!< Bit mask for USBNC_USB_OTG_PHY_CTRL_0_UTMI_CLK_VLD.
 
@@ -1549,7 +1460,6 @@ typedef union _hw_usbnc_usb_otg_phy_ctrl_0
 //! @brief Set the UTMI_CLK_VLD field to a new value.
 #define BW_USBNC_USB_OTG_PHY_CTRL_0_UTMI_CLK_VLD(v)   (HW_USBNC_USB_OTG_PHY_CTRL_0_WR((HW_USBNC_USB_OTG_PHY_CTRL_0_RD() & ~BM_USBNC_USB_OTG_PHY_CTRL_0_UTMI_CLK_VLD) | BF_USBNC_USB_OTG_PHY_CTRL_0_UTMI_CLK_VLD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1604,7 +1514,6 @@ typedef union _hw_usbnc_usb_uh1_phy_ctrl_0
  * - 1 - Valid
  */
 //@{
-
 #define BP_USBNC_USB_UH1_PHY_CTRL_0_UTMI_CLK_VLD      (31)      //!< Bit position for USBNC_USB_UH1_PHY_CTRL_0_UTMI_CLK_VLD.
 #define BM_USBNC_USB_UH1_PHY_CTRL_0_UTMI_CLK_VLD      (0x80000000)  //!< Bit mask for USBNC_USB_UH1_PHY_CTRL_0_UTMI_CLK_VLD.
 
@@ -1618,7 +1527,6 @@ typedef union _hw_usbnc_usb_uh1_phy_ctrl_0
 //! @brief Set the UTMI_CLK_VLD field to a new value.
 #define BW_USBNC_USB_UH1_PHY_CTRL_0_UTMI_CLK_VLD(v)   (HW_USBNC_USB_UH1_PHY_CTRL_0_WR((HW_USBNC_USB_UH1_PHY_CTRL_0_RD() & ~BM_USBNC_USB_UH1_PHY_CTRL_0_UTMI_CLK_VLD) | BF_USBNC_USB_UH1_PHY_CTRL_0_UTMI_CLK_VLD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1650,3 +1558,5 @@ typedef struct _hw_usbnc
 #endif
 
 #endif // __HW_USBNC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

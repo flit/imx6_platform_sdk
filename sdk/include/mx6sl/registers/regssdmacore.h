@@ -106,13 +106,11 @@ typedef union _hw_sdmacore_mc0ptr
  * that are loaded by the SDMA boot script running on channel 0.
  */
 //@{
-
 #define BP_SDMACORE_MC0PTR_MC0PTR      (0)      //!< Bit position for SDMACORE_MC0PTR_MC0PTR.
 #define BM_SDMACORE_MC0PTR_MC0PTR      (0xffffffff)  //!< Bit mask for SDMACORE_MC0PTR_MC0PTR.
 
 //! @brief Get value of SDMACORE_MC0PTR_MC0PTR from a register value.
 #define BG_SDMACORE_MC0PTR_MC0PTR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_MC0PTR_MC0PTR) >> BP_SDMACORE_MC0PTR_MC0PTR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -161,13 +159,11 @@ typedef union _hw_sdmacore_ccptr
  * according to the programmed channel scratch RAM size in the register shown in .
  */
 //@{
-
 #define BP_SDMACORE_CCPTR_CCPTR      (0)      //!< Bit position for SDMACORE_CCPTR_CCPTR.
 #define BM_SDMACORE_CCPTR_CCPTR      (0x0000ffff)  //!< Bit mask for SDMACORE_CCPTR_CCPTR.
 
 //! @brief Get value of SDMACORE_CCPTR_CCPTR from a register value.
 #define BG_SDMACORE_CCPTR_CCPTR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_CCPTR_CCPTR) >> BP_SDMACORE_CCPTR_CCPTR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -217,13 +213,11 @@ typedef union _hw_sdmacore_ccr
  * state.
  */
 //@{
-
 #define BP_SDMACORE_CCR_CCR      (0)      //!< Bit position for SDMACORE_CCR_CCR.
 #define BM_SDMACORE_CCR_CCR      (0x0000001f)  //!< Bit mask for SDMACORE_CCR_CCR.
 
 //! @brief Get value of SDMACORE_CCR_CCR from a register value.
 #define BG_SDMACORE_CCR_CCR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_CCR_CCR) >> BP_SDMACORE_CCR_CCR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -270,13 +264,11 @@ typedef union _hw_sdmacore_ncr
  * Contains the number of the pending channel that the scheduler has selected to run next.
  */
 //@{
-
 #define BP_SDMACORE_NCR_NCR      (0)      //!< Bit position for SDMACORE_NCR_NCR.
 #define BM_SDMACORE_NCR_NCR      (0x0000001f)  //!< Bit mask for SDMACORE_NCR_NCR.
 
 //! @brief Get value of SDMACORE_NCR_NCR from a register value.
 #define BG_SDMACORE_NCR_NCR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_NCR_NCR) >> BP_SDMACORE_NCR_NCR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -341,13 +333,11 @@ typedef union _hw_sdmacore_events
  * displays events 32-47.
  */
 //@{
-
 #define BP_SDMACORE_EVENTS_EVENTS      (0)      //!< Bit position for SDMACORE_EVENTS_EVENTS.
 #define BM_SDMACORE_EVENTS_EVENTS      (0xffffffff)  //!< Bit mask for SDMACORE_EVENTS_EVENTS.
 
 //! @brief Get value of SDMACORE_EVENTS_EVENTS from a register value.
 #define BG_SDMACORE_EVENTS_EVENTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_EVENTS_EVENTS) >> BP_SDMACORE_EVENTS_EVENTS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -398,13 +388,11 @@ typedef union _hw_sdmacore_ccpri
  * - 0 - no running channel
  */
 //@{
-
 #define BP_SDMACORE_CCPRI_CCPRI      (0)      //!< Bit position for SDMACORE_CCPRI_CCPRI.
 #define BM_SDMACORE_CCPRI_CCPRI      (0x00000007)  //!< Bit mask for SDMACORE_CCPRI_CCPRI.
 
 //! @brief Get value of SDMACORE_CCPRI_CCPRI from a register value.
 #define BG_SDMACORE_CCPRI_CCPRI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_CCPRI_CCPRI) >> BP_SDMACORE_CCPRI_CCPRI)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -452,13 +440,11 @@ typedef union _hw_sdmacore_ncpri
  * no other channel is pending.
  */
 //@{
-
 #define BP_SDMACORE_NCPRI_NCPRI      (0)      //!< Bit position for SDMACORE_NCPRI_NCPRI.
 #define BM_SDMACORE_NCPRI_NCPRI      (0x00000007)  //!< Bit mask for SDMACORE_NCPRI_NCPRI.
 
 //! @brief Get value of SDMACORE_NCPRI_NCPRI from a register value.
 #define BG_SDMACORE_NCPRI_NCPRI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_NCPRI_NCPRI) >> BP_SDMACORE_NCPRI_NCPRI)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -512,7 +498,6 @@ typedef union _hw_sdmacore_ecount
  * reset.
  */
 //@{
-
 #define BP_SDMACORE_ECOUNT_ECOUNT      (0)      //!< Bit position for SDMACORE_ECOUNT_ECOUNT.
 #define BM_SDMACORE_ECOUNT_ECOUNT      (0x0000ffff)  //!< Bit mask for SDMACORE_ECOUNT_ECOUNT.
 
@@ -526,7 +511,6 @@ typedef union _hw_sdmacore_ecount
 //! @brief Set the ECOUNT field to a new value.
 #define BW_SDMACORE_ECOUNT_ECOUNT(v)   (HW_SDMACORE_ECOUNT_WR((HW_SDMACORE_ECOUNT_RD() & ~BM_SDMACORE_ECOUNT_ECOUNT) | BF_SDMACORE_ECOUNT_ECOUNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -590,7 +574,6 @@ typedef union _hw_sdmacore_ectl
  * - 11 - -
  */
 //@{
-
 #define BP_SDMACORE_ECTL_ATS      (0)      //!< Bit position for SDMACORE_ECTL_ATS.
 #define BM_SDMACORE_ECTL_ATS      (0x00000003)  //!< Bit mask for SDMACORE_ECTL_ATS.
 
@@ -604,7 +587,6 @@ typedef union _hw_sdmacore_ectl
 //! @brief Set the ATS field to a new value.
 #define BW_SDMACORE_ECTL_ATS(v)   (HW_SDMACORE_ECTL_WR((HW_SDMACORE_ECTL_RD() & ~BM_SDMACORE_ECTL_ATS) | BF_SDMACORE_ECTL_ATS(v)))
 #endif
-
 //@}
 
 /*! @name Register SDMACORE_ECTL, field AATC[3:2] (RW)
@@ -620,7 +602,6 @@ typedef union _hw_sdmacore_ectl
  * - 11 - less than
  */
 //@{
-
 #define BP_SDMACORE_ECTL_AATC      (2)      //!< Bit position for SDMACORE_ECTL_AATC.
 #define BM_SDMACORE_ECTL_AATC      (0x0000000c)  //!< Bit mask for SDMACORE_ECTL_AATC.
 
@@ -634,7 +615,6 @@ typedef union _hw_sdmacore_ectl
 //! @brief Set the AATC field to a new value.
 #define BW_SDMACORE_ECTL_AATC(v)   (HW_SDMACORE_ECTL_WR((HW_SDMACORE_ECTL_RD() & ~BM_SDMACORE_ECTL_AATC) | BF_SDMACORE_ECTL_AATC(v)))
 #endif
-
 //@}
 
 /*! @name Register SDMACORE_ECTL, field ABTC[5:4] (RW)
@@ -650,7 +630,6 @@ typedef union _hw_sdmacore_ectl
  * - 11 - less than
  */
 //@{
-
 #define BP_SDMACORE_ECTL_ABTC      (4)      //!< Bit position for SDMACORE_ECTL_ABTC.
 #define BM_SDMACORE_ECTL_ABTC      (0x00000030)  //!< Bit mask for SDMACORE_ECTL_ABTC.
 
@@ -664,7 +643,6 @@ typedef union _hw_sdmacore_ectl
 //! @brief Set the ABTC field to a new value.
 #define BW_SDMACORE_ECTL_ABTC(v)   (HW_SDMACORE_ECTL_WR((HW_SDMACORE_ECTL_RD() & ~BM_SDMACORE_ECTL_ABTC) | BF_SDMACORE_ECTL_ABTC(v)))
 #endif
-
 //@}
 
 /*! @name Register SDMACORE_ECTL, field ATC[7:6] (RW)
@@ -680,7 +658,6 @@ typedef union _hw_sdmacore_ectl
  * - 11 - reserved
  */
 //@{
-
 #define BP_SDMACORE_ECTL_ATC      (6)      //!< Bit position for SDMACORE_ECTL_ATC.
 #define BM_SDMACORE_ECTL_ATC      (0x000000c0)  //!< Bit mask for SDMACORE_ECTL_ATC.
 
@@ -694,7 +671,6 @@ typedef union _hw_sdmacore_ectl
 //! @brief Set the ATC field to a new value.
 #define BW_SDMACORE_ECTL_ATC(v)   (HW_SDMACORE_ECTL_WR((HW_SDMACORE_ECTL_RD() & ~BM_SDMACORE_ECTL_ATC) | BF_SDMACORE_ECTL_ATC(v)))
 #endif
-
 //@}
 
 /*! @name Register SDMACORE_ECTL, field DTC[9:8] (RW)
@@ -709,7 +685,6 @@ typedef union _hw_sdmacore_ectl
  * - 11 - less than
  */
 //@{
-
 #define BP_SDMACORE_ECTL_DTC      (8)      //!< Bit position for SDMACORE_ECTL_DTC.
 #define BM_SDMACORE_ECTL_DTC      (0x00000300)  //!< Bit mask for SDMACORE_ECTL_DTC.
 
@@ -723,7 +698,6 @@ typedef union _hw_sdmacore_ectl
 //! @brief Set the DTC field to a new value.
 #define BW_SDMACORE_ECTL_DTC(v)   (HW_SDMACORE_ECTL_WR((HW_SDMACORE_ECTL_RD() & ~BM_SDMACORE_ECTL_DTC) | BF_SDMACORE_ECTL_DTC(v)))
 #endif
-
 //@}
 
 /*! @name Register SDMACORE_ECTL, field ECTC[11:10] (RW)
@@ -740,7 +714,6 @@ typedef union _hw_sdmacore_ectl
  * - 11 - address OR data
  */
 //@{
-
 #define BP_SDMACORE_ECTL_ECTC      (10)      //!< Bit position for SDMACORE_ECTL_ECTC.
 #define BM_SDMACORE_ECTL_ECTC      (0x00000c00)  //!< Bit mask for SDMACORE_ECTL_ECTC.
 
@@ -754,7 +727,6 @@ typedef union _hw_sdmacore_ectl
 //! @brief Set the ECTC field to a new value.
 #define BW_SDMACORE_ECTL_ECTC(v)   (HW_SDMACORE_ECTL_WR((HW_SDMACORE_ECTL_RD() & ~BM_SDMACORE_ECTL_ECTC) | BF_SDMACORE_ECTL_ECTC(v)))
 #endif
-
 //@}
 
 /*! @name Register SDMACORE_ECTL, field CNT[12] (RW)
@@ -772,7 +744,6 @@ typedef union _hw_sdmacore_ectl
  * - 1 - Counter is enabled.
  */
 //@{
-
 #define BP_SDMACORE_ECTL_CNT      (12)      //!< Bit position for SDMACORE_ECTL_CNT.
 #define BM_SDMACORE_ECTL_CNT      (0x00001000)  //!< Bit mask for SDMACORE_ECTL_CNT.
 
@@ -786,7 +757,6 @@ typedef union _hw_sdmacore_ectl
 //! @brief Set the CNT field to a new value.
 #define BW_SDMACORE_ECTL_CNT(v)   (HW_SDMACORE_ECTL_WR((HW_SDMACORE_ECTL_RD() & ~BM_SDMACORE_ECTL_CNT) | BF_SDMACORE_ECTL_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register SDMACORE_ECTL, field EN[13] (RW)
@@ -800,7 +770,6 @@ typedef union _hw_sdmacore_ectl
  * - 1 - Cell is enabled.
  */
 //@{
-
 #define BP_SDMACORE_ECTL_EN      (13)      //!< Bit position for SDMACORE_ECTL_EN.
 #define BM_SDMACORE_ECTL_EN      (0x00002000)  //!< Bit mask for SDMACORE_ECTL_EN.
 
@@ -814,7 +783,6 @@ typedef union _hw_sdmacore_ectl
 //! @brief Set the EN field to a new value.
 #define BW_SDMACORE_ECTL_EN(v)   (HW_SDMACORE_ECTL_WR((HW_SDMACORE_ECTL_RD() & ~BM_SDMACORE_ECTL_EN) | BF_SDMACORE_ECTL_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -865,7 +833,6 @@ typedef union _hw_sdmacore_eaa
  * Event Cell Address Register A computes an address A condition. It is cleared on a JTAG reset.
  */
 //@{
-
 #define BP_SDMACORE_EAA_EAA      (0)      //!< Bit position for SDMACORE_EAA_EAA.
 #define BM_SDMACORE_EAA_EAA      (0x0000ffff)  //!< Bit mask for SDMACORE_EAA_EAA.
 
@@ -879,7 +846,6 @@ typedef union _hw_sdmacore_eaa
 //! @brief Set the EAA field to a new value.
 #define BW_SDMACORE_EAA_EAA(v)   (HW_SDMACORE_EAA_WR((HW_SDMACORE_EAA_RD() & ~BM_SDMACORE_EAA_EAA) | BF_SDMACORE_EAA_EAA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -930,7 +896,6 @@ typedef union _hw_sdmacore_eab
  * Event Cell Address Register B computes an address B condition. It is cleared on a JTAG reset.
  */
 //@{
-
 #define BP_SDMACORE_EAB_EAB      (0)      //!< Bit position for SDMACORE_EAB_EAB.
 #define BM_SDMACORE_EAB_EAB      (0x0000ffff)  //!< Bit mask for SDMACORE_EAB_EAB.
 
@@ -944,7 +909,6 @@ typedef union _hw_sdmacore_eab
 //! @brief Set the EAB field to a new value.
 #define BW_SDMACORE_EAB_EAB(v)   (HW_SDMACORE_EAB_WR((HW_SDMACORE_EAB_RD() & ~BM_SDMACORE_EAB_EAB) | BF_SDMACORE_EAB_EAB(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -999,7 +963,6 @@ typedef union _hw_sdmacore_eam
  * the address comparison. The register is cleared on a JTAG reset.
  */
 //@{
-
 #define BP_SDMACORE_EAM_EAM      (0)      //!< Bit position for SDMACORE_EAM_EAM.
 #define BM_SDMACORE_EAM_EAM      (0x0000ffff)  //!< Bit mask for SDMACORE_EAM_EAM.
 
@@ -1013,7 +976,6 @@ typedef union _hw_sdmacore_eam
 //! @brief Set the EAM field to a new value.
 #define BW_SDMACORE_EAM_EAM(v)   (HW_SDMACORE_EAM_WR((HW_SDMACORE_EAM_RD() & ~BM_SDMACORE_EAM_EAM) | BF_SDMACORE_EAM_EAM(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1064,7 +1026,6 @@ typedef union _hw_sdmacore_ed
  * the data comparator which generates the data condition. It is cleared on a JTAG reset.
  */
 //@{
-
 #define BP_SDMACORE_ED_ED      (0)      //!< Bit position for SDMACORE_ED_ED.
 #define BM_SDMACORE_ED_ED      (0xffffffff)  //!< Bit mask for SDMACORE_ED_ED.
 
@@ -1078,7 +1039,6 @@ typedef union _hw_sdmacore_ed
 //! @brief Set the ED field to a new value.
 #define BW_SDMACORE_ED_ED(v)   (HW_SDMACORE_ED_WR((HW_SDMACORE_ED_RD() & ~BM_SDMACORE_ED_ED) | BF_SDMACORE_ED_ED(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1132,7 +1092,6 @@ typedef union _hw_sdmacore_edm
  * JTAG reset.
  */
 //@{
-
 #define BP_SDMACORE_EDM_EDM      (0)      //!< Bit position for SDMACORE_EDM_EDM.
 #define BM_SDMACORE_EDM_EDM      (0xffffffff)  //!< Bit mask for SDMACORE_EDM_EDM.
 
@@ -1146,7 +1105,6 @@ typedef union _hw_sdmacore_edm
 //! @brief Set the EDM field to a new value.
 #define BW_SDMACORE_EDM_EDM(v)   (HW_SDMACORE_EDM_WR((HW_SDMACORE_EDM_RD() & ~BM_SDMACORE_EDM_EDM) | BF_SDMACORE_EDM_EDM(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1199,7 +1157,6 @@ typedef union _hw_sdmacore_rtb
  * ARM platform or JTAG control using the rbuffer command.
  */
 //@{
-
 #define BP_SDMACORE_RTB_RTB      (0)      //!< Bit position for SDMACORE_RTB_RTB.
 #define BM_SDMACORE_RTB_RTB      (0xffffffff)  //!< Bit mask for SDMACORE_RTB_RTB.
 
@@ -1213,7 +1170,6 @@ typedef union _hw_sdmacore_rtb
 //! @brief Set the RTB field to a new value.
 #define BW_SDMACORE_RTB_RTB(v)   (HW_SDMACORE_RTB_WR((HW_SDMACORE_RTB_RD() & ~BM_SDMACORE_RTB_RTB) | BF_SDMACORE_RTB_RTB(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1263,13 +1219,11 @@ typedef union _hw_sdmacore_tb
  * change of flow instruction.
  */
 //@{
-
 #define BP_SDMACORE_TB_CHFADDR      (0)      //!< Bit position for SDMACORE_TB_CHFADDR.
 #define BM_SDMACORE_TB_CHFADDR      (0x00003fff)  //!< Bit mask for SDMACORE_TB_CHFADDR.
 
 //! @brief Get value of SDMACORE_TB_CHFADDR from a register value.
 #define BG_SDMACORE_TB_CHFADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_TB_CHFADDR) >> BP_SDMACORE_TB_CHFADDR)
-
 //@}
 
 /*! @name Register SDMACORE_TB, field TADDR[27:14] (RO)
@@ -1277,13 +1231,11 @@ typedef union _hw_sdmacore_tb
  * The target address is the address taken after the execution of the change of flow instruction.
  */
 //@{
-
 #define BP_SDMACORE_TB_TADDR      (14)      //!< Bit position for SDMACORE_TB_TADDR.
 #define BM_SDMACORE_TB_TADDR      (0x0fffc000)  //!< Bit mask for SDMACORE_TB_TADDR.
 
 //! @brief Get value of SDMACORE_TB_TADDR from a register value.
 #define BG_SDMACORE_TB_TADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_TB_TADDR) >> BP_SDMACORE_TB_TADDR)
-
 //@}
 
 /*! @name Register SDMACORE_TB, field TBF[28] (RO)
@@ -1296,13 +1248,11 @@ typedef union _hw_sdmacore_tb
  * - 1 - Valid information
  */
 //@{
-
 #define BP_SDMACORE_TB_TBF      (28)      //!< Bit position for SDMACORE_TB_TBF.
 #define BM_SDMACORE_TB_TBF      (0x10000000)  //!< Bit mask for SDMACORE_TB_TBF.
 
 //! @brief Get value of SDMACORE_TB_TBF from a register value.
 #define BG_SDMACORE_TB_TBF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_TB_TBF) >> BP_SDMACORE_TB_TBF)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1367,13 +1317,11 @@ typedef union _hw_sdmacore_ostat
  * - 2 - 1 matched data condition
  */
 //@{
-
 #define BP_SDMACORE_OSTAT_ECDR      (0)      //!< Bit position for SDMACORE_OSTAT_ECDR.
 #define BM_SDMACORE_OSTAT_ECDR      (0x00000007)  //!< Bit mask for SDMACORE_OSTAT_ECDR.
 
 //! @brief Get value of SDMACORE_OSTAT_ECDR from a register value.
 #define BG_SDMACORE_OSTAT_ECDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_ECDR) >> BP_SDMACORE_OSTAT_ECDR)
-
 //@}
 
 /*! @name Register SDMACORE_OSTAT, field MST[7] (RO)
@@ -1385,13 +1333,11 @@ typedef union _hw_sdmacore_ostat
  * - 1 - ARM platform peripheral interface controls the OnCE.
  */
 //@{
-
 #define BP_SDMACORE_OSTAT_MST      (7)      //!< Bit position for SDMACORE_OSTAT_MST.
 #define BM_SDMACORE_OSTAT_MST      (0x00000080)  //!< Bit mask for SDMACORE_OSTAT_MST.
 
 //! @brief Get value of SDMACORE_OSTAT_MST from a register value.
 #define BG_SDMACORE_OSTAT_MST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_MST) >> BP_SDMACORE_OSTAT_MST)
-
 //@}
 
 /*! @name Register SDMACORE_OSTAT, field SWB[8] (RO)
@@ -1399,13 +1345,11 @@ typedef union _hw_sdmacore_ostat
  * This flag is raised when the SDMA has entered debug mode after a software breakpoint.
  */
 //@{
-
 #define BP_SDMACORE_OSTAT_SWB      (8)      //!< Bit position for SDMACORE_OSTAT_SWB.
 #define BM_SDMACORE_OSTAT_SWB      (0x00000100)  //!< Bit mask for SDMACORE_OSTAT_SWB.
 
 //! @brief Get value of SDMACORE_OSTAT_SWB from a register value.
 #define BG_SDMACORE_OSTAT_SWB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_SWB) >> BP_SDMACORE_OSTAT_SWB)
-
 //@}
 
 /*! @name Register SDMACORE_OSTAT, field ODR[9] (RO)
@@ -1413,13 +1357,11 @@ typedef union _hw_sdmacore_ostat
  * This flag is raised when the SDMA has entered debug mode after a OnCE debug request.
  */
 //@{
-
 #define BP_SDMACORE_OSTAT_ODR      (9)      //!< Bit position for SDMACORE_OSTAT_ODR.
 #define BM_SDMACORE_OSTAT_ODR      (0x00000200)  //!< Bit mask for SDMACORE_OSTAT_ODR.
 
 //! @brief Get value of SDMACORE_OSTAT_ODR from a register value.
 #define BG_SDMACORE_OSTAT_ODR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_ODR) >> BP_SDMACORE_OSTAT_ODR)
-
 //@}
 
 /*! @name Register SDMACORE_OSTAT, field EDR[10] (RO)
@@ -1427,13 +1369,11 @@ typedef union _hw_sdmacore_ostat
  * This flag is raised when the SDMA has entered debug mode after an external debug request.
  */
 //@{
-
 #define BP_SDMACORE_OSTAT_EDR      (10)      //!< Bit position for SDMACORE_OSTAT_EDR.
 #define BM_SDMACORE_OSTAT_EDR      (0x00000400)  //!< Bit mask for SDMACORE_OSTAT_EDR.
 
 //! @brief Get value of SDMACORE_OSTAT_EDR from a register value.
 #define BG_SDMACORE_OSTAT_EDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_EDR) >> BP_SDMACORE_OSTAT_EDR)
-
 //@}
 
 /*! @name Register SDMACORE_OSTAT, field RCV[11] (RO)
@@ -1442,13 +1382,11 @@ typedef union _hw_sdmacore_ostat
  * after execution of an rbuffer command and on a JTAG reset.
  */
 //@{
-
 #define BP_SDMACORE_OSTAT_RCV      (11)      //!< Bit position for SDMACORE_OSTAT_RCV.
 #define BM_SDMACORE_OSTAT_RCV      (0x00000800)  //!< Bit mask for SDMACORE_OSTAT_RCV.
 
 //! @brief Get value of SDMACORE_OSTAT_RCV from a register value.
 #define BG_SDMACORE_OSTAT_RCV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_RCV) >> BP_SDMACORE_OSTAT_RCV)
-
 //@}
 
 /*! @name Register SDMACORE_OSTAT, field PST[15:12] (RO)
@@ -1486,13 +1424,11 @@ typedef union _hw_sdmacore_ostat
  * - 15 - Restore
  */
 //@{
-
 #define BP_SDMACORE_OSTAT_PST      (12)      //!< Bit position for SDMACORE_OSTAT_PST.
 #define BM_SDMACORE_OSTAT_PST      (0x0000f000)  //!< Bit mask for SDMACORE_OSTAT_PST.
 
 //! @brief Get value of SDMACORE_OSTAT_PST from a register value.
 #define BG_SDMACORE_OSTAT_PST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_OSTAT_PST) >> BP_SDMACORE_OSTAT_PST)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1542,13 +1478,11 @@ typedef union _hw_sdmacore_mchn0addr
  * default, it points to the standard boot routine in ROM.
  */
 //@{
-
 #define BP_SDMACORE_MCHN0ADDR_CHN0ADDR      (0)      //!< Bit position for SDMACORE_MCHN0ADDR_CHN0ADDR.
 #define BM_SDMACORE_MCHN0ADDR_CHN0ADDR      (0x00003fff)  //!< Bit mask for SDMACORE_MCHN0ADDR_CHN0ADDR.
 
 //! @brief Get value of SDMACORE_MCHN0ADDR_CHN0ADDR from a register value.
 #define BG_SDMACORE_MCHN0ADDR_CHN0ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_MCHN0ADDR_CHN0ADDR) >> BP_SDMACORE_MCHN0ADDR_CHN0ADDR)
-
 //@}
 
 /*! @name Register SDMACORE_MCHN0ADDR, field SMSZ[14] (RO)
@@ -1565,13 +1499,11 @@ typedef union _hw_sdmacore_mchn0addr
  * - 1 - 32 words per context
  */
 //@{
-
 #define BP_SDMACORE_MCHN0ADDR_SMSZ      (14)      //!< Bit position for SDMACORE_MCHN0ADDR_SMSZ.
 #define BM_SDMACORE_MCHN0ADDR_SMSZ      (0x00004000)  //!< Bit mask for SDMACORE_MCHN0ADDR_SMSZ.
 
 //! @brief Get value of SDMACORE_MCHN0ADDR_SMSZ from a register value.
 #define BG_SDMACORE_MCHN0ADDR_SMSZ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_MCHN0ADDR_SMSZ) >> BP_SDMACORE_MCHN0ADDR_SMSZ)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1623,13 +1555,11 @@ typedef union _hw_sdmacore_endianness
  * - 1 - - ARM platform is in little-endian mode
  */
 //@{
-
 #define BP_SDMACORE_ENDIANNESS_APEND      (0)      //!< Bit position for SDMACORE_ENDIANNESS_APEND.
 #define BM_SDMACORE_ENDIANNESS_APEND      (0x00000001)  //!< Bit mask for SDMACORE_ENDIANNESS_APEND.
 
 //! @brief Get value of SDMACORE_ENDIANNESS_APEND from a register value.
 #define BG_SDMACORE_ENDIANNESS_APEND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_ENDIANNESS_APEND) >> BP_SDMACORE_ENDIANNESS_APEND)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1681,13 +1611,11 @@ typedef union _hw_sdmacore_sdma_lock
  * - 1 - - LOCK bit set
  */
 //@{
-
 #define BP_SDMACORE_SDMA_LOCK_LOCK      (0)      //!< Bit position for SDMACORE_SDMA_LOCK_LOCK.
 #define BM_SDMACORE_SDMA_LOCK_LOCK      (0x00000001)  //!< Bit mask for SDMACORE_SDMA_LOCK_LOCK.
 
 //! @brief Get value of SDMACORE_SDMA_LOCK_LOCK from a register value.
 #define BG_SDMACORE_SDMA_LOCK_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_SDMA_LOCK_LOCK) >> BP_SDMACORE_SDMA_LOCK_LOCK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1736,13 +1664,11 @@ typedef union _hw_sdmacore_events2
  * register displays events 0-31.
  */
 //@{
-
 #define BP_SDMACORE_EVENTS2_EVENTS      (0)      //!< Bit position for SDMACORE_EVENTS2_EVENTS.
 #define BM_SDMACORE_EVENTS2_EVENTS      (0x0000ffff)  //!< Bit mask for SDMACORE_EVENTS2_EVENTS.
 
 //! @brief Get value of SDMACORE_EVENTS2_EVENTS from a register value.
 #define BG_SDMACORE_EVENTS2_EVENTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMACORE_EVENTS2_EVENTS) >> BP_SDMACORE_EVENTS2_EVENTS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1786,3 +1712,5 @@ typedef struct _hw_sdmacore
 #endif
 
 #endif // __HW_SDMACORE_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

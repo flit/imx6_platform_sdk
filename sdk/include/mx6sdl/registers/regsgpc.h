@@ -61,7 +61,7 @@
  *
  * Reset value: 0x00100000
  *
- * CNTR - Interface control register
+
  */
 typedef union _hw_gpc_cntr
 {
@@ -109,7 +109,6 @@ typedef union _hw_gpc_cntr
  * - 1 - Request Power Down sequence to start for GPU /VPU
  */
 //@{
-
 #define BP_GPC_CNTR_GPU_VPU_PDN_REQ      (0)      //!< Bit position for GPC_CNTR_GPU_VPU_PDN_REQ.
 #define BM_GPC_CNTR_GPU_VPU_PDN_REQ      (0x00000001)  //!< Bit mask for GPC_CNTR_GPU_VPU_PDN_REQ.
 
@@ -123,7 +122,6 @@ typedef union _hw_gpc_cntr
 //! @brief Set the GPU_VPU_PDN_REQ field to a new value.
 #define BW_GPC_CNTR_GPU_VPU_PDN_REQ(v)   (HW_GPC_CNTR_WR((HW_GPC_CNTR_RD() & ~BM_GPC_CNTR_GPU_VPU_PDN_REQ) | BF_GPC_CNTR_GPU_VPU_PDN_REQ(v)))
 #endif
-
 //@}
 
 /*! @name Register GPC_CNTR, field GPU_VPU_PUP_REQ[1] (RW)
@@ -136,7 +134,6 @@ typedef union _hw_gpc_cntr
  * - 1 - Request Power Up sequence to start for GPU /VPU
  */
 //@{
-
 #define BP_GPC_CNTR_GPU_VPU_PUP_REQ      (1)      //!< Bit position for GPC_CNTR_GPU_VPU_PUP_REQ.
 #define BM_GPC_CNTR_GPU_VPU_PUP_REQ      (0x00000002)  //!< Bit mask for GPC_CNTR_GPU_VPU_PUP_REQ.
 
@@ -150,7 +147,6 @@ typedef union _hw_gpc_cntr
 //! @brief Set the GPU_VPU_PUP_REQ field to a new value.
 #define BW_GPC_CNTR_GPU_VPU_PUP_REQ(v)   (HW_GPC_CNTR_WR((HW_GPC_CNTR_RD() & ~BM_GPC_CNTR_GPU_VPU_PUP_REQ) | BF_GPC_CNTR_GPU_VPU_PUP_REQ(v)))
 #endif
-
 //@}
 
 /*! @name Register GPC_CNTR, field DVFS0CR[16] (RO)
@@ -162,13 +158,11 @@ typedef union _hw_gpc_cntr
  * - 1 - DVFS0 is requesting for frequency/voltage update
  */
 //@{
-
 #define BP_GPC_CNTR_DVFS0CR      (16)      //!< Bit position for GPC_CNTR_DVFS0CR.
 #define BM_GPC_CNTR_DVFS0CR      (0x00010000)  //!< Bit mask for GPC_CNTR_DVFS0CR.
 
 //! @brief Get value of GPC_CNTR_DVFS0CR from a register value.
 #define BG_GPC_CNTR_DVFS0CR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPC_CNTR_DVFS0CR) >> BP_GPC_CNTR_DVFS0CR)
-
 //@}
 
 /*! @name Register GPC_CNTR, field GPCIRQM[21] (RW)
@@ -180,7 +174,6 @@ typedef union _hw_gpc_cntr
  * - 1 - interrupt/event is masked
  */
 //@{
-
 #define BP_GPC_CNTR_GPCIRQM      (21)      //!< Bit position for GPC_CNTR_GPCIRQM.
 #define BM_GPC_CNTR_GPCIRQM      (0x00200000)  //!< Bit mask for GPC_CNTR_GPCIRQM.
 
@@ -194,7 +187,6 @@ typedef union _hw_gpc_cntr
 //! @brief Set the GPCIRQM field to a new value.
 #define BW_GPC_CNTR_GPCIRQM(v)   (HW_GPC_CNTR_WR((HW_GPC_CNTR_RD() & ~BM_GPC_CNTR_GPCIRQM) | BF_GPC_CNTR_GPCIRQM(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -207,7 +199,7 @@ typedef union _hw_gpc_cntr
  *
  * Reset value: 0x00000000
  *
- * PGR - Power Gating Register
+
  */
 typedef union _hw_gpc_pgr
 {
@@ -252,7 +244,6 @@ typedef union _hw_gpc_pgr
  * - 11 - restricted
  */
 //@{
-
 #define BP_GPC_PGR_DRCIC      (29)      //!< Bit position for GPC_PGR_DRCIC.
 #define BM_GPC_PGR_DRCIC      (0x60000000)  //!< Bit mask for GPC_PGR_DRCIC.
 
@@ -266,7 +257,6 @@ typedef union _hw_gpc_pgr
 //! @brief Set the DRCIC field to a new value.
 #define BW_GPC_PGR_DRCIC(v)   (HW_GPC_PGR_WR((HW_GPC_PGR_RD() & ~BM_GPC_PGR_DRCIC) | BF_GPC_PGR_DRCIC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -316,7 +306,6 @@ typedef union _hw_gpc_imr1
  * IRQ[63:32] masking bits: 1-irq masked, 0-irq is not masked
  */
 //@{
-
 #define BP_GPC_IMR1_IMR1      (0)      //!< Bit position for GPC_IMR1_IMR1.
 #define BM_GPC_IMR1_IMR1      (0xffffffff)  //!< Bit mask for GPC_IMR1_IMR1.
 
@@ -330,7 +319,6 @@ typedef union _hw_gpc_imr1
 //! @brief Set the IMR1 field to a new value.
 #define BW_GPC_IMR1_IMR1(v)   (HW_GPC_IMR1_WR((HW_GPC_IMR1_RD() & ~BM_GPC_IMR1_IMR1) | BF_GPC_IMR1_IMR1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -380,7 +368,6 @@ typedef union _hw_gpc_imr2
  * IRQ[95:64] masking bits: 1-irq masked, 0-irq is not masked
  */
 //@{
-
 #define BP_GPC_IMR2_IMR2      (0)      //!< Bit position for GPC_IMR2_IMR2.
 #define BM_GPC_IMR2_IMR2      (0xffffffff)  //!< Bit mask for GPC_IMR2_IMR2.
 
@@ -394,7 +381,6 @@ typedef union _hw_gpc_imr2
 //! @brief Set the IMR2 field to a new value.
 #define BW_GPC_IMR2_IMR2(v)   (HW_GPC_IMR2_WR((HW_GPC_IMR2_RD() & ~BM_GPC_IMR2_IMR2) | BF_GPC_IMR2_IMR2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -444,7 +430,6 @@ typedef union _hw_gpc_imr3
  * IRQ[127:96] masking bits: 1-irq masked, 0-irq is not masked
  */
 //@{
-
 #define BP_GPC_IMR3_IMR3      (0)      //!< Bit position for GPC_IMR3_IMR3.
 #define BM_GPC_IMR3_IMR3      (0xffffffff)  //!< Bit mask for GPC_IMR3_IMR3.
 
@@ -458,7 +443,6 @@ typedef union _hw_gpc_imr3
 //! @brief Set the IMR3 field to a new value.
 #define BW_GPC_IMR3_IMR3(v)   (HW_GPC_IMR3_WR((HW_GPC_IMR3_RD() & ~BM_GPC_IMR3_IMR3) | BF_GPC_IMR3_IMR3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -508,7 +492,6 @@ typedef union _hw_gpc_imr4
  * IRQ[159:128] masking bits: 1-irq masked, 0-irq is not masked
  */
 //@{
-
 #define BP_GPC_IMR4_IMR4      (0)      //!< Bit position for GPC_IMR4_IMR4.
 #define BM_GPC_IMR4_IMR4      (0xffffffff)  //!< Bit mask for GPC_IMR4_IMR4.
 
@@ -522,7 +505,6 @@ typedef union _hw_gpc_imr4
 //! @brief Set the IMR4 field to a new value.
 #define BW_GPC_IMR4_IMR4(v)   (HW_GPC_IMR4_WR((HW_GPC_IMR4_RD() & ~BM_GPC_IMR4_IMR4) | BF_GPC_IMR4_IMR4(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -568,13 +550,11 @@ typedef union _hw_gpc_isr1
  * IRQ[63:32] status, read only
  */
 //@{
-
 #define BP_GPC_ISR1_ISR1      (0)      //!< Bit position for GPC_ISR1_ISR1.
 #define BM_GPC_ISR1_ISR1      (0xffffffff)  //!< Bit mask for GPC_ISR1_ISR1.
 
 //! @brief Get value of GPC_ISR1_ISR1 from a register value.
 #define BG_GPC_ISR1_ISR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPC_ISR1_ISR1) >> BP_GPC_ISR1_ISR1)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -620,13 +600,11 @@ typedef union _hw_gpc_isr2
  * IRQ[95:64] status, read only
  */
 //@{
-
 #define BP_GPC_ISR2_ISR2      (0)      //!< Bit position for GPC_ISR2_ISR2.
 #define BM_GPC_ISR2_ISR2      (0xffffffff)  //!< Bit mask for GPC_ISR2_ISR2.
 
 //! @brief Get value of GPC_ISR2_ISR2 from a register value.
 #define BG_GPC_ISR2_ISR2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPC_ISR2_ISR2) >> BP_GPC_ISR2_ISR2)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -672,13 +650,11 @@ typedef union _hw_gpc_isr3
  * IRQ[127:96] status, read only
  */
 //@{
-
 #define BP_GPC_ISR3_ISR3      (0)      //!< Bit position for GPC_ISR3_ISR3.
 #define BM_GPC_ISR3_ISR3      (0xffffffff)  //!< Bit mask for GPC_ISR3_ISR3.
 
 //! @brief Get value of GPC_ISR3_ISR3 from a register value.
 #define BG_GPC_ISR3_ISR3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPC_ISR3_ISR3) >> BP_GPC_ISR3_ISR3)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -724,13 +700,11 @@ typedef union _hw_gpc_isr4
  * IRQ[159:128] status, read only
  */
 //@{
-
 #define BP_GPC_ISR4_ISR4      (0)      //!< Bit position for GPC_ISR4_ISR4.
 #define BM_GPC_ISR4_ISR4      (0xffffffff)  //!< Bit mask for GPC_ISR4_ISR4.
 
 //! @brief Get value of GPC_ISR4_ISR4 from a register value.
 #define BG_GPC_ISR4_ISR4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPC_ISR4_ISR4) >> BP_GPC_ISR4_ISR4)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -763,3 +737,5 @@ typedef struct _hw_gpc
 #endif
 
 #endif // __HW_GPC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

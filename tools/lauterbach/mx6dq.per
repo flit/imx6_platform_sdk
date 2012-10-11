@@ -9691,6 +9691,22 @@ group.byte 0x808++0x0
         textline "      "
         bitfld.byte 0x00 7. " VPPOL7 ,Polarity bit for VP_INT[7] interrupt bit." "0,1"
 width 13.
+group.byte 0x1000++0x0
+    line.byte 0x00 "FC_INVIDCONF,Frame Composer Input Video Configuration and HDCP Keepout Register"
+        bitfld.byte 0x00 0. " IN_I_P ,Input video mode:" "0,1"
+        textline "            "
+        bitfld.byte 0x00 1. " R_V_BLANK_IN_OSC ,Used for CEA861-D modes with fractional Vblank (for example, modes 5, 6, 7, 10, 11, 20, 21, and 22." "0,1"
+        textline "            "
+        bitfld.byte 0x00 3. " DVI_MODEZ ,Active low" "0,1"
+        textline "            "
+        bitfld.byte 0x00 4. " DE_IN_POLARITY ,Data enable input polarity" "0,1"
+        textline "            "
+        bitfld.byte 0x00 5. " HSYNC_IN_POLARITY ,Hsync input polarity" "0,1"
+        textline "            "
+        bitfld.byte 0x00 6. " VSYNC_IN_POLARITY ,Vsync input polarity" "0,1"
+        textline "            "
+        bitfld.byte 0x00 7. " HDCP_KEEPOUT ,Start/stop HDCP keepout window generation" "0,1"
+width 13.
 group.byte 0x1001++0x0
     line.byte 0x00 "FC_INHACTIV0,Frame Composer Input Video HActive Pixels Register 0"
         hexmask.byte.byte 0x00 0.--8. 1. " H_IN_ACTIV ,Input video Horizontal active pixel region width."
@@ -10925,7 +10941,7 @@ group.byte 0x4001++0x0
         textline "         "
         bitfld.byte 0x00 5. " CECCLK_DISABLE ,CEC Engine clock synchronous disable signal." "0,1"
         textline "         "
-        bitfld.byte 0x00 6. " HDCPCLK_DISABLE ,Reserved" "0,1"
+        bitfld.byte 0x00 6. " HDCPCLK_DISABLE ,HDCP clock synchronous disable signal." "0,1"
 width 13.
 group.byte 0x4002++0x0
     line.byte 0x00 "MC_SWRSTZREQ,Main Controller Software Reset Register"
@@ -10967,7 +10983,9 @@ group.byte 0x4100++0x0
 width 10.
 group.byte 0x4101++0x0
     line.byte 0x00 "CSC_SCALE,Color Space Converter Scale and Deep Color Configuration Register"
-        hexmask.byte.byte 0x00 4.--8. 1. " CSC_COLORDE_PTH ,Color space converter color depth configuration: Other: Reserved."
+        hexmask.byte.byte 0x00 0.--2. 1. " CSC_SCALE ,Defines the csc_scale[1:0] scale factor to apply to all coefficients in Color Space Conversion."
+        textline "         "
+        hexmask.byte.byte 0x00 4.--8. 1. " CSC_COLORDEPTH ,Color space converter color depth configuration: Other: Reserved."
 width 16.
 group.byte 0x4102++0x0
     line.byte 0x00 "CSC_COEF_A1_MSB,CSC_COEF_A1_MSB"
@@ -11056,14 +11074,216 @@ width 16.
 group.byte 0x4117++0x0
     line.byte 0x00 "CSC_COEF_C3_LSB,CSC_COEF_C3_LSB"
         hexmask.byte.byte 0x00 0.--8. 1. " CSC_COEF_C3_LSB ,Color Space Conversion C3 LSB coefficient."
-width 15.
+width 16.
 group.byte 0x4118++0x0
-    line.byte 0x00 "CSC_COEFC4_MSB,CSC_COEFC4_MSB"
-        hexmask.byte.byte 0x00 0.--8. 1. " CSC_COEFC4_MSB ,Color Space Conversion C4 MSB coefficient."
-width 15.
+    line.byte 0x00 "CSC_COEF_C4_MSB,CSC_COEF_C4_MSB"
+        hexmask.byte.byte 0x00 0.--8. 1. " CSC_COEF_C4_MSB ,Color Space Conversion C4 MSB coefficient."
+width 16.
 group.byte 0x4119++0x0
-    line.byte 0x00 "CSC_COEFC4_LSB,CSC_COEFC4_LSB"
-        hexmask.byte.byte 0x00 0.--8. 1. " CSC_COEFC4_LSB ,Color Space Conversion C4 LSB coefficient."
+    line.byte 0x00 "CSC_COEF_C4_LSB,CSC_COEF_C4_LSB"
+        hexmask.byte.byte 0x00 0.--8. 1. " CSC_COEF_C4_LSB ,Color Space Conversion C4 LSB coefficient."
+width 11.
+group.byte 0x5000++0x0
+    line.byte 0x00 "A_HDCPCFG0,A_HDCPCFG0"
+        bitfld.byte 0x00 0. " HDMIDVI ,Configures the transmitter to operate with a HDMI capable device or with a DVI device." "0,1"
+        textline "          "
+        bitfld.byte 0x00 1. " EN11FEATURE ,Enable the use of features 1.1 from the transmitter's side" "0,1"
+        textline "          "
+        bitfld.byte 0x00 2. " RXDETECT ,Information that a RX device was detected connected to the HDMI port" "0,1"
+        textline "          "
+        bitfld.byte 0x00 3. " AVMUTE ,Command given by the API system to enter in AVMUTE state" "0,1"
+        textline "          "
+        bitfld.byte 0x00 4. " SYNCRICHECK ,Configure if the Ri check should be done at every 2s even or synchronously to every 128 encrypted frame." "0,1"
+        textline "          "
+        bitfld.byte 0x00 5. " BYPENCRYPTION ,Bypasses all the data encryption stage." "0,1"
+        textline "          "
+        bitfld.byte 0x00 6. " I2CFASTMODE ,Enable the I2C fast mode option from the transmitter's side." "0,1"
+        textline "          "
+        bitfld.byte 0x00 7. " ELVENA ,Enables the Enhanced Link Verification from the transmitter's side." "0,1"
+width 11.
+group.byte 0x5001++0x0
+    line.byte 0x00 "A_HDCPCFG1,A_HDCPCFG1"
+        bitfld.byte 0x00 0. " SWRESET ,Software reset signal, active by writing a zero and auto cleared to one in the following cycle." "0,1"
+        textline "          "
+        bitfld.byte 0x00 1. " ENCRYPTIONDISABLE ,Disable encryption without losing authentication." "0,1"
+        textline "          "
+        bitfld.byte 0x00 2. " PH2UPSHFTENC ,This bit enables the encoding of packet header in the tmdsch0 bit[0] with cipher[2] instead of the tmdsch0 bit[2]." "0,1"
+        textline "          "
+        bitfld.byte 0x00 3. " DISSHA1CHECK ,This bit disables the request to the API processor to verify the SHA1 message digest of a received KSV List." "0,1"
+width 11.
+rgroup.byte 0x5002++0x0
+    line.byte 0x00 "A_HDCPOBS0,A_HDCPOBS0"
+        bitfld.byte 0x00 0. " HDCPENGAGED ,Informs that the current HDMI link has the HDCP protocol fully engaged." "0,1"
+        textline "          "
+        hexmask.byte.byte 0x00 1.--4. 1. " DISSHA1CHECK ,Observability register informs in which sub-state the authentication is on."
+        textline "          "
+        hexmask.byte.byte 0x00 4.--8. 1. " STATEA ,Observability register informs in which state the authentication machine is on."
+width 11.
+rgroup.byte 0x5003++0x0
+    line.byte 0x00 "A_HDCPOBS1,A_HDCPOBS1"
+        hexmask.byte.byte 0x00 0.--3. 1. " STATER ,Observability register informs in which state the revocation machine is on."
+        textline "          "
+        hexmask.byte.byte 0x00 3.--6. 1. " STATEOEG ,Observability register informs in which state the OESS machine is on."
+width 11.
+rgroup.byte 0x5004++0x0
+    line.byte 0x00 "A_HDCPOBS2,A_HDCPOBS2"
+        hexmask.byte.byte 0x00 0.--3. 1. " STATEEEG ,Observability register informs in which state the EESS machine is on."
+        textline "          "
+        hexmask.byte.byte 0x00 3.--6. 1. " STATEE ,Observability register informs in which state the cipher machine is on."
+width 11.
+rgroup.byte 0x5005++0x0
+    line.byte 0x00 "A_HDCPOBS3,A_HDCPOBS3"
+        bitfld.byte 0x00 0. " FAST_REAUTHENTICATION ,From RX: Bcap(0x40) bit 0." "0,1"
+        textline "          "
+        bitfld.byte 0x00 1. " FEATURES_1_1 ,From RX: Bcap(0x40) bit 1." "0,1"
+        textline "          "
+        bitfld.byte 0x00 2. " HDMI_MODE ,From RX: Bstatus(0x41) bit 12." "0,1"
+        textline "          "
+        bitfld.byte 0x00 3. " HDMI_RESERVED_2 ,From RX: Bstatus(0x41) bit 13." "0,1"
+        textline "          "
+        bitfld.byte 0x00 4. " FAST_I_2C ,From RX: Bcap(0x40) bit 4." "0,1"
+        textline "          "
+        bitfld.byte 0x00 5. " KSV_FIFO_READY ,From RX: Bcap(0x40) bit 5." "0,1"
+        textline "          "
+        bitfld.byte 0x00 6. " REPEATER ,From RX: Bcap(0x40) bit 6." "0,1"
+        textline "          "
+        bitfld.byte 0x00 7. " HDMI_RESERVED_1 ,From RX: Bcap(0x40) bit 7." "0,1"
+width 12.
+wgroup.byte 0x5006++0x0
+    line.byte 0x00 "A_APIINTCLR,A_APIINTCLR"
+        bitfld.byte 0x00 0. " KSVACCESSINT ,Clear the interruption related to KSV memory access grant for Read-Write access." "0,1"
+        textline "           "
+        bitfld.byte 0x00 1. " KSVSHA1CALCINT ,Clear the interruption related to KSV list update in memory that needs to be SHA1 verified." "0,1"
+        textline "           "
+        bitfld.byte 0x00 2. " KEEPOUTERRORINT ,Clear the interruption related to keep out window error." "0,1"
+        textline "           "
+        bitfld.byte 0x00 3. " LOSTARBITRATION ,Clear the interruption related to I2C arbitration lost." "0,1"
+        textline "           "
+        bitfld.byte 0x00 4. " I2CNACK ,Clear the interruption related to I2C NACK reception." "0,1"
+        textline "           "
+        bitfld.byte 0x00 6. " HDCP_FAILED ,Clear the interruption related to HDCP authentication process failed." "0,1"
+        textline "           "
+        bitfld.byte 0x00 7. " HDCP_ENGAGED ,Clear the interruption related to HDCP authentication process successful." "0,1"
+width 13.
+rgroup.byte 0x5007++0x0
+    line.byte 0x00 "A_APIINTSTAT,A_APIINTSTAT"
+        bitfld.byte 0x00 0. " KSVACCESSINT ,Notifies that the KSV memory access as been guaranteed for Read-Write access." "0,1"
+        textline "            "
+        bitfld.byte 0x00 1. " KSVSHA1CALCINT ,Notifies that the HDCP13TCTRL core as updated a KSV list in memory that needs to be SHA1 verified." "0,1"
+        textline "            "
+        bitfld.byte 0x00 2. " KEEPOUTERRORINT ,Notifies that during the keep out window, the ctlout[3:0] bus was used besides control period." "0,1"
+        textline "            "
+        bitfld.byte 0x00 3. " LOSTARBITRATION ,Notifies that the I2C lost the arbitration to communicate." "0,1"
+        textline "            "
+        bitfld.byte 0x00 4. " I2CNACK ,Notifies that the I2C received a NACK from slave device." "0,1"
+        textline "            "
+        bitfld.byte 0x00 6. " HDCP_FAILED ,Notifies that the HDCP authentication process was failed." "0,1"
+        textline "            "
+        bitfld.byte 0x00 7. " HCDP_ENGAGED ,Notifies that the HDCP authentication process was successful." "0,1"
+width 12.
+group.byte 0x5008++0x0
+    line.byte 0x00 "A_APIINTMSK,A_APIINTMSK"
+        bitfld.byte 0x00 0. " KSVACCESSINT ,Masks the interruption related to KSV memory access grant for Read-Write access." "0,1"
+        textline "           "
+        bitfld.byte 0x00 1. " KSVSHA1CALCINT ,Masks the interruption related to KSV list update in memory that needs to be SHA1 verified." "0,1"
+        textline "           "
+        bitfld.byte 0x00 2. " KEEPOUTERRORINT ,Masks the interruption related to keep out window error." "0,1"
+        textline "           "
+        bitfld.byte 0x00 3. " LOSTARBITRATION ,Masks the interruption related to I2C arbitration lost." "0,1"
+        textline "           "
+        bitfld.byte 0x00 4. " I2CNACK ,Masks the interruption related to I2C NACK reception." "0,1"
+        textline "           "
+        bitfld.byte 0x00 6. " HDCP_FAILED ,Masks the interruption related to HDCP authentication process failed." "0,1"
+        textline "           "
+        bitfld.byte 0x00 7. " HCDP_ENGAGED ,Masks the interruption related to HDCP authentication process successful." "0,1"
+width 12.
+group.byte 0x5009++0x0
+    line.byte 0x00 "A_VIDPOLCFG,A_VIDPOLCFG"
+        bitfld.byte 0x00 1. " HSYNCPOL ,Configuration of the video Horizontal synchronism polarity." "0,1"
+        textline "           "
+        bitfld.byte 0x00 3. " VSYNCPOL ,Configuration of the video Vertical synchronism polarity." "0,1"
+        textline "           "
+        bitfld.byte 0x00 4. " DATAENPOL ,Configuration of the video data enable polarity." "0,1"
+        textline "           "
+        hexmask.byte.byte 0x00 5.--7. 1. " UNENCRYPTCONF ,Configuration of the color sent when sending unencrypted video data"
+width 11.
+group.byte 0x500a++0x0
+    line.byte 0x00 "A_OESSWCFG,A_OESSWCFG"
+        hexmask.byte.byte 0x00 0.--8. 1. " A_OESSWCFG ,Size of the window of opportunity for the OESS mode."
+width 13.
+rgroup.byte 0x5014++0x0
+    line.byte 0x00 "A_COREVERLSB,A_COREVERLSB"
+        hexmask.byte.byte 0x00 0.--8. 1. " A_COREVERLSB ,Design ID number"
+width 13.
+rgroup.byte 0x5015++0x0
+    line.byte 0x00 "A_COREVERMSB,A_COREVERMSB"
+        hexmask.byte.byte 0x00 0.--8. 1. " A_COREVERMSB ,Revision ID number"
+width 13.
+group.byte 0x5016++0x0
+    line.byte 0x00 "A_KSVMEMCTRL,A_KSVMEMCTRL"
+        bitfld.byte 0x00 0. " KSVMEMREQUEST ,Request access to the KSV memory, must be de-asserted after the access is completed by the system." "0,1"
+        textline "            "
+        bitfld.byte 0x00 1. " KSVMEMACCESS ,Notification that the KSV memory access as been guaranteed." "0,1"
+        textline "            "
+        bitfld.byte 0x00 2. " KSVCTRLUPD ,Set to inform that the KSV list in memory has been analyzed and the response to it's Message Digest as been updated." "0,1"
+        textline "            "
+        bitfld.byte 0x00 3. " SHA1FAIL ,Notification that the KSV list's message digest is correct or not." "0,1"
+width 14.
+rgroup.byte 0x7800++0x0
+    line.byte 0x00 "HDCPREG_BKSV0,HDCPREG_BKSV0"
+        hexmask.byte.byte 0x00 0.--8. 1. " HDCPREG_BKSV0 ,Contains the value of BKSV[7:0] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV)."
+width 14.
+rgroup.byte 0x7801++0x0
+    line.byte 0x00 "HDCPREG_BKSV1,HDCPREG_BKSV1"
+        hexmask.byte.byte 0x00 0.--8. 1. " HDCPREG_BKSV1 ,Contains the value of BKSV[15:8] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV)."
+width 14.
+rgroup.byte 0x7802++0x0
+    line.byte 0x00 "HDCPREG_BKSV2,HDCPREG_BKSV2"
+        hexmask.byte.byte 0x00 0.--8. 1. " HDCPREG_BKSV2 ,Contains the value of BKSV[23:16] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV)."
+width 14.
+rgroup.byte 0x7803++0x0
+    line.byte 0x00 "HDCPREG_BKSV3,HDCPREG_BKSV3"
+        hexmask.byte.byte 0x00 0.--8. 1. " HDCPREG_BKSV3 ,Contains the value of BKSV[31:24] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV)."
+width 14.
+rgroup.byte 0x7804++0x0
+    line.byte 0x00 "HDCPREG_BKSV4,HDCPREG_BKSV4"
+        hexmask.byte.byte 0x00 0.--8. 1. " HDCPREG_BKSV4 ,Contains the value of BKSV[39:32] During HDCP authentication, the HDCP Transmitter (Device A) sends an A Key Selection Vector (AKSV) to the HDCP Receiver (Device B), which affirms its authorization to the HDCP Transmitter by sending a B Key Selection Vector (BKSV)."
+width 15.
+group.byte 0x7805++0x0
+    line.byte 0x00 "HDCPREG_ANCONF,HDCPREG_ANCONF"
+        bitfld.byte 0x00 0. " OANBYPASS ,When oanbypass=1, the value of AN used in the HDCP engine comes from the registers HDCPREG_AN0 to HDCPREG_AN7." "0,1"
+width 12.
+group.byte 0x7806++0x0
+    line.byte 0x00 "HDCPREG_AN0,HDCPREG_AN0"
+        hexmask.byte.byte 0x00 0.--8. 1. " HDCPREG_AN0 ,Contains the value of AN[7:0]"
+width 12.
+group.byte 0x7807++0x0
+    line.byte 0x00 "HDCPREG_AN1,HDCPREG_AN1"
+        hexmask.byte.byte 0x00 0.--8. 1. " HDCPREG_AN1 ,Contains the value of AN[15:8]"
+width 12.
+group.byte 0x7808++0x0
+    line.byte 0x00 "HDCPREG_AN2,HDCPREG_AN2"
+        hexmask.byte.byte 0x00 0.--8. 1. " HDCPREG_AN2 ,Contains the value of AN[23:16]"
+width 12.
+group.byte 0x7809++0x0
+    line.byte 0x00 "HDCPREG_AN3,HDCPREG_AN3"
+        hexmask.byte.byte 0x00 0.--8. 1. " HDCPREG_AN3 ,Contains the value of AN[31:24]"
+width 12.
+group.byte 0x780a++0x0
+    line.byte 0x00 "HDCPREG_AN4,HDCPREG_AN4"
+        hexmask.byte.byte 0x00 0.--8. 1. " HDCPREG_AN4 ,Contains the value of AN[39:32]"
+width 12.
+group.byte 0x780b++0x0
+    line.byte 0x00 "HDCPREG_AN5,HDCPREG_AN5"
+        hexmask.byte.byte 0x00 0.--8. 1. " HDCPREG_AN5 ,Contains the value of AN[47:40]"
+width 12.
+group.byte 0x780c++0x0
+    line.byte 0x00 "HDCPREG_AN6,HDCPREG_AN6"
+        hexmask.byte.byte 0x00 0.--8. 1. " HDCPREG_AN6 ,Contains the value of AN[55:48]"
+width 12.
+group.byte 0x780d++0x0
+    line.byte 0x00 "HDCPREG_AN7,HDCPREG_AN7"
+        hexmask.byte.byte 0x00 0.--8. 1. " HDCPREG_AN7 ,Contains the value of AN[63:56]"
 width 9.
 group.byte 0x7d00++0x0
     line.byte 0x00 "CEC_CTRL,CEC_CTRL"
@@ -11181,15 +11401,135 @@ group.byte 0x7d07++0x0
 width 11.
 rgroup.byte 0x7d08++0x0
     line.byte 0x00 "CEC_RX_CNT,CEC_RX_CNT"
-        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--5. 1. " CEC_RX_CNT ,CEC Receiver Counter register Value after Reset: 5'b00000"
 width 13.
 group.byte 0x7d10++0x0
-    line.byte 0x00 "CEC_TX_DATAN,CEC_TX_DATAn"
+    line.byte 0x00 "CEC_TX_DATA0,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 13.
+group.byte 0x7d11++0x0
+    line.byte 0x00 "CEC_TX_DATA1,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 13.
+group.byte 0x7d12++0x0
+    line.byte 0x00 "CEC_TX_DATA2,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 13.
+group.byte 0x7d13++0x0
+    line.byte 0x00 "CEC_TX_DATA3,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 13.
+group.byte 0x7d14++0x0
+    line.byte 0x00 "CEC_TX_DATA4,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 13.
+group.byte 0x7d15++0x0
+    line.byte 0x00 "CEC_TX_DATA5,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 13.
+group.byte 0x7d16++0x0
+    line.byte 0x00 "CEC_TX_DATA6,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 13.
+group.byte 0x7d17++0x0
+    line.byte 0x00 "CEC_TX_DATA7,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 13.
+group.byte 0x7d18++0x0
+    line.byte 0x00 "CEC_TX_DATA8,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 13.
+group.byte 0x7d19++0x0
+    line.byte 0x00 "CEC_TX_DATA9,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 14.
+group.byte 0x7d1a++0x0
+    line.byte 0x00 "CEC_TX_DATA10,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 14.
+group.byte 0x7d1b++0x0
+    line.byte 0x00 "CEC_TX_DATA11,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 14.
+group.byte 0x7d1c++0x0
+    line.byte 0x00 "CEC_TX_DATA12,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 14.
+group.byte 0x7d1d++0x0
+    line.byte 0x00 "CEC_TX_DATA13,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 14.
+group.byte 0x7d1e++0x0
+    line.byte 0x00 "CEC_TX_DATA14,CEC_TX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
+width 14.
+group.byte 0x7d1f++0x0
+    line.byte 0x00 "CEC_TX_DATA15,CEC_TX_DATAn"
         hexmask.byte.byte 0x00 0.--8. 1. " RX_DATA ,Header block in CEC_RX_DATA0 Data blockn in CEC_RX_DATAn"
 width 13.
 rgroup.byte 0x7d20++0x0
-    line.byte 0x00 "CEC_RX_DATAN,CEC_RX_DATAn"
-        hexmask.byte.byte 0x00 0.--5. 1. " CEC_RX_CNT ,CEC Receiver Counter register Value after Reset: 5'b00000"
+    line.byte 0x00 "CEC_RX_DATA0,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 13.
+rgroup.byte 0x7d21++0x0
+    line.byte 0x00 "CEC_RX_DATA1,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 13.
+rgroup.byte 0x7d22++0x0
+    line.byte 0x00 "CEC_RX_DATA2,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 13.
+rgroup.byte 0x7d23++0x0
+    line.byte 0x00 "CEC_RX_DATA3,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 13.
+rgroup.byte 0x7d24++0x0
+    line.byte 0x00 "CEC_RX_DATA4,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 13.
+rgroup.byte 0x7d25++0x0
+    line.byte 0x00 "CEC_RX_DATA5,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 13.
+rgroup.byte 0x7d26++0x0
+    line.byte 0x00 "CEC_RX_DATA6,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 13.
+rgroup.byte 0x7d27++0x0
+    line.byte 0x00 "CEC_RX_DATA7,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 13.
+rgroup.byte 0x7d28++0x0
+    line.byte 0x00 "CEC_RX_DATA8,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 13.
+rgroup.byte 0x7d29++0x0
+    line.byte 0x00 "CEC_RX_DATA9,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 14.
+rgroup.byte 0x7d2a++0x0
+    line.byte 0x00 "CEC_RX_DATA10,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 14.
+rgroup.byte 0x7d2b++0x0
+    line.byte 0x00 "CEC_RX_DATA11,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 14.
+rgroup.byte 0x7d2c++0x0
+    line.byte 0x00 "CEC_RX_DATA12,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 14.
+rgroup.byte 0x7d2d++0x0
+    line.byte 0x00 "CEC_RX_DATA13,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 14.
+rgroup.byte 0x7d2e++0x0
+    line.byte 0x00 "CEC_RX_DATA14,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
+width 14.
+rgroup.byte 0x7d2f++0x0
+    line.byte 0x00 "CEC_RX_DATA15,CEC_RX_DATAn"
+        hexmask.byte.byte 0x00 0.--8. 1. " TX_DATA ,Header block in CEC_TX_DATA0 Data blockn in CEC_TX_DATAn"
 width 9.
 group.byte 0x7d30++0x0
     line.byte 0x00 "CEC_LOCK,CEC_LOCK"
@@ -32554,7 +32894,7 @@ group.long 0x0++0x3
     line.long 0x00 "MLBC0,MediaLB Control 0 Register"
         bitfld.long 0x00 0. " MLBEN ,MediaLB enable." "0,1"
         textline "     "
-        hexmask.long.byte 0x00 2.--5. 1. " MLBCLK ,MediaLB clock speed select."
+        hexmask.long.byte 0x00 2.--5. 1. " MLBCLK_2_0 ,MediaLB clock speed select."
         textline "     "
         bitfld.long 0x00 5. " MLBPEN ,MediaLB 6-pin enable." "0,1"
         textline "     "
@@ -32572,7 +32912,7 @@ group.long 0x8++0x3
 width 4.
 rgroup.long 0xc++0x3
     line.long 0x00 "MS0,MediaLB Channel Status 0 Register"
-        hexmask.long.long 0x00 0.--32. 1. " MCS ,MediaLB channel status."
+        hexmask.long.long 0x00 0.--32. 1. " MCS_31_0 ,MediaLB channel status."
 width 7.
 rgroup.long 0xd++0x3
     line.long 0x00 "MLBPC2,MediaLB 6-pin Control 2 Register"
@@ -32582,7 +32922,7 @@ rgroup.long 0xd++0x3
 width 4.
 rgroup.long 0x14++0x3
     line.long 0x00 "MS1,MediaLB Channel Status1 Register"
-        hexmask.long.long 0x00 0.--32. 1. " MCS ,MediaLB channel status."
+        hexmask.long.long 0x00 0.--32. 1. " MCS_63_32 ,MediaLB channel status."
 width 4.
 rgroup.long 0x20++0x3
     line.long 0x00 "MSS,MediaLB System Status Register"
@@ -32600,13 +32940,13 @@ rgroup.long 0x20++0x3
 width 4.
 rgroup.long 0x24++0x3
     line.long 0x00 "MSD,MediaLB System Data Register"
-        hexmask.long.byte 0x00 0.--8. 1. " SD0 ,System data (byte 0)."
+        hexmask.long.byte 0x00 0.--8. 1. " SD0_7_0 ,System data (byte 0)."
         textline "   "
-        hexmask.long.byte 0x00 8.--16. 1. " SD1 ,System data (byte 1)."
+        hexmask.long.byte 0x00 8.--16. 1. " SD1_7_0 ,System data (byte 1)."
         textline "   "
-        hexmask.long.byte 0x00 16.--24. 1. " SD2 ,System data (byte 2)."
+        hexmask.long.byte 0x00 16.--24. 1. " SD2_7_0 ,System data (byte 2)."
         textline "   "
-        hexmask.long.byte 0x00 24.--32. 1. " SD3 ,System data (byte 3)."
+        hexmask.long.byte 0x00 24.--32. 1. " SD3_7_0 ,System data (byte 3)."
 width 5.
 group.long 0x2c++0x3
     line.long 0x00 "MIEN,MediaLB Interrupt Enable Register"
@@ -32642,11 +32982,11 @@ group.long 0x2c++0x3
 width 7.
 group.long 0x38++0x3
     line.long 0x00 "MLBPC1,MediaLB 6-pin Control 1 Register"
-        hexmask.long.byte 0x00 0.--4. 1. " SDRCVBIAS ,Signal/Data receiver bias control (for MediaLB 6-pin interface)."
+        hexmask.long.byte 0x00 0.--4. 1. " SDRCVBIAS_3_0 ,Signal/Data receiver bias control (for MediaLB 6-pin interface)."
         textline "      "
-        hexmask.long.byte 0x00 4.--8. 1. " SDXMTBIAS ,Signal/Data transmitter bias control (for MediaLB 6-pin interface)."
+        hexmask.long.byte 0x00 4.--8. 1. " SDXMTBIAS_3_0 ,Signal/Data transmitter bias control (for MediaLB 6-pin interface)."
         textline "      "
-        hexmask.long.byte 0x00 8.--12. 1. " CKRCVBIAS ,Clock receiver bias control (for MediaLB 6-pin interface)."
+        hexmask.long.byte 0x00 8.--12. 1. " CKRCVBIAS_3_0 ,Clock receiver bias control (for MediaLB 6-pin interface)."
 width 6.
 rgroup.long 0x3c++0x3
     line.long 0x00 "MLBC1,MediaLB Control 1 Register"
@@ -32654,7 +32994,7 @@ rgroup.long 0x3c++0x3
         textline "     "
         bitfld.long 0x00 7. " CLKM ,MediaLB clock missing status." "0,1"
         textline "     "
-        hexmask.long.byte 0x00 8.--16. 1. " NDA ,Node device address."
+        hexmask.long.byte 0x00 8.--16. 1. " NDA_7_0 ,Node device address."
 width 5.
 group.long 0x80++0x3
     line.long 0x00 "HCTL,HBI Control Register"
@@ -32666,59 +33006,59 @@ group.long 0x80++0x3
 width 6.
 group.long 0x88++0x3
     line.long 0x00 "HCMR0,HBI Channel Mask 0 Register"
-        hexmask.long.long 0x00 0.--32. 1. " CHM ,Bitwise channel mask bit"
+        hexmask.long.long 0x00 0.--32. 1. " CHM_31_0_P ,Bitwise channel mask bit"
 width 6.
 group.long 0x8c++0x3
     line.long 0x00 "HCMR1,HBI Channel Mask 1 Register"
-        hexmask.long.long 0x00 0.--32. 1. " CHM ,Bitwise channel mask bit"
+        hexmask.long.long 0x00 0.--32. 1. " CHM_63_32 ,Bitwise channel mask bit"
 width 6.
 rgroup.long 0x90++0x3
     line.long 0x00 "HCER0,HBI Channel Error 0 Register"
-        hexmask.long.long 0x00 0.--32. 1. " CERR ,Bitwise channel error bit"
+        hexmask.long.long 0x00 0.--32. 1. " CERR_31_0 ,Bitwise channel error bit"
 width 6.
 rgroup.long 0x94++0x3
     line.long 0x00 "HCER1,HBI Channel Error 1 Register"
-        hexmask.long.long 0x00 0.--32. 1. " CERR ,Bitwise channel error bit"
+        hexmask.long.long 0x00 0.--32. 1. " CERR_63_32 ,Bitwise channel error bit"
 width 6.
 rgroup.long 0x98++0x3
     line.long 0x00 "HCBR0,HBI Channel Busy 0 Register"
-        hexmask.long.long 0x00 0.--32. 1. " CHB ,Bitwise channel busy bit"
+        hexmask.long.long 0x00 0.--32. 1. " CHB_31_0 ,Bitwise channel busy bit"
 width 6.
 rgroup.long 0x9c++0x3
     line.long 0x00 "HCBR1,HBI Channel Busy 1 Register"
-        hexmask.long.long 0x00 0.--32. 1. " CHB ,Bitwise channel busy bit"
+        hexmask.long.long 0x00 0.--32. 1. " CHB_63_32 ,Bitwise channel busy bit"
 width 6.
 group.long 0xc0++0x3
     line.long 0x00 "MDAT0,MIF Data 0 Register"
-        hexmask.long.long 0x00 0.--32. 1. " DATA ,CTR data - bits[31:0] of 128-bit entry or DBR data - bits[7:0] of 8-bit entry"
+        hexmask.long.long 0x00 0.--32. 1. " DATA_31_0 ,CTR data - bits[31:0] of 128-bit entry or DBR data - bits[7:0] of 8-bit entry"
 width 6.
 group.long 0xc4++0x3
     line.long 0x00 "MDAT1,MIF Data 1 Register"
-        hexmask.long.long 0x00 0.--32. 1. " DATA ,CTR data - bits[63:32] of 128-bit entry"
+        hexmask.long.long 0x00 0.--32. 1. " DATA_63_32 ,CTR data - bits[63:32] of 128-bit entry"
 width 6.
 group.long 0xc8++0x3
     line.long 0x00 "MDAT2,MIF Data 2 Register"
-        hexmask.long.long 0x00 0.--32. 1. " DATA ,CTR data - bits[95:64] of 128-bit entry"
+        hexmask.long.long 0x00 0.--32. 1. " DATA_95_64 ,CTR data - bits[95:64] of 128-bit entry"
 width 6.
 group.long 0xcc++0x3
     line.long 0x00 "MDAT3,MIF Data 3 Register"
-        hexmask.long.long 0x00 0.--32. 1. " DATA ,CTR data - bits[127:96] of 128-bit entry"
+        hexmask.long.long 0x00 0.--32. 1. " DATA_127_96 ,CTR data - bits[127:96] of 128-bit entry"
 width 6.
 group.long 0xd0++0x3
     line.long 0x00 "MDWE0,MIF Data Write Enable 0 Register"
-        hexmask.long.long 0x00 0.--32. 1. " MASK ,Bitwise write enable for CTR data - bits[31:0]"
+        hexmask.long.long 0x00 0.--32. 1. " MASK_31_0 ,Bitwise write enable for CTR data - bits[31:0]"
 width 6.
 group.long 0xd4++0x3
     line.long 0x00 "MDWE1,MIF Data Write Enable 1 Register"
-        hexmask.long.long 0x00 0.--32. 1. " MASK ,Bitwise write enable for CTR data - bits[63:32]"
+        hexmask.long.long 0x00 0.--32. 1. " MASK_63_32 ,Bitwise write enable for CTR data - bits[63:32]"
 width 6.
 group.long 0xd8++0x3
     line.long 0x00 "MDWE2,MIF Data Write Enable 2 Register"
-        hexmask.long.long 0x00 0.--32. 1. " MASK ,Bitwise write enable for CTR data - bits[95:64]"
+        hexmask.long.long 0x00 0.--32. 1. " MASK_95_64 ,Bitwise write enable for CTR data - bits[95:64]"
 width 6.
 group.long 0xdc++0x3
     line.long 0x00 "MDWE3,MIF Data Write Enable 3 Register"
-        hexmask.long.long 0x00 0.--32. 1. " MASK ,Bitwise write enable for CTR data - bits[127:96]"
+        hexmask.long.long 0x00 0.--32. 1. " MASK_127_96 ,Bitwise write enable for CTR data - bits[127:96]"
 width 5.
 rgroup.long 0xe0++0x3
     line.long 0x00 "MCTL,MIF Control Register"
@@ -32726,9 +33066,9 @@ rgroup.long 0xe0++0x3
 width 5.
 group.long 0xe4++0x3
     line.long 0x00 "MADR,MIF Address Register"
-        hexmask.long.byte 0x00 0.--8. 1. " ADDR1 ,CTR address of 128-bit entry or DBR address of 8-bit entry - bits[7:0]"
+        hexmask.long.byte 0x00 0.--8. 1. " ADDR_7_0 ,CTR address of 128-bit entry or DBR address of 8-bit entry - bits[7:0]"
         textline "    "
-        hexmask.long.byte 0x00 8.--14. 1. " ADDR ,DBR address of 8-bit entry - bits[13:8]"
+        hexmask.long.byte 0x00 8.--14. 1. " ADDR_13_8 ,DBR address of 8-bit entry - bits[13:8]"
         textline "    "
         bitfld.long 0x00 30. " TB ,Target location bit" "0,1"
         textline "    "
@@ -32754,7 +33094,7 @@ rgroup.long 0x3d4++0x3
 width 6.
 group.long 0x3d8++0x3
     line.long 0x00 "ACMR0,AHB Channel Mask 0 Register"
-        hexmask.long.long 0x00 0.--32. 1. " CHM ,Bitwise channel mask bit:"
+        hexmask.long.long 0x00 0.--32. 1. " CHM_31_0 ,Bitwise channel mask bit:"
 width 6.
 group.long 0x3dc++0x3
     line.long 0x00 "ACMR1,AHB Channel Mask 1 Register"
@@ -32909,7 +33249,7 @@ group.long 0x1c++0x3
         textline "     "
         bitfld.long 0x00 15. " CON_REQ ,Configuration request." "0,1"
         textline "     "
-        hexmask.long.byte 0x00 16.--24. 1. " CMD_ADDR_LSB ,Command/Address LSB."
+        hexmask.long.byte 0x00 16.--24. 1. " CMD_ADDR_LSB_MR_ADDR ,Command/Address LSB."
         textline "     "
         hexmask.long.byte 0x00 24.--32. 1. " CMD_ADDR_MSB ,Command/Address MSB."
 width 6.
@@ -33833,7 +34173,7 @@ group.long 0x1c++0x3
         textline "     "
         bitfld.long 0x00 15. " CON_REQ ,Configuration request." "0,1"
         textline "     "
-        hexmask.long.byte 0x00 16.--24. 1. " CMD_ADDR_LSB ,Command/Address LSB."
+        hexmask.long.byte 0x00 16.--24. 1. " CMD_ADDR_LSB_MR_ADDR ,Command/Address LSB."
         textline "     "
         hexmask.long.byte 0x00 24.--32. 1. " CMD_ADDR_MSB ,Command/Address MSB."
 width 6.
@@ -37297,7 +37637,7 @@ group.long 0x8++0x3
 width 7.
 group.long 0xc++0x3
     line.long 0x00 "HSTART,Channel Start"
-        hexmask.long.long 0x00 0.--32. 1. " HSTART ,The HSTART/HE registers are 32 bits wide with one bit for every channel."
+        hexmask.long.long 0x00 0.--32. 1. " HSTART_HE ,The HSTART_HE registers are 32 bits wide with one bit for every channel."
 width 7.
 group.long 0x10++0x3
     line.long 0x00 "EVTOVR,Channel Event Override"
@@ -37572,197 +37912,197 @@ width 14.
 group.long 0x17c++0x3
     line.long 0x00 "SDMA_CHNPRI31,Channel Priority Registers"
         hexmask.long.byte 0x00 0.--3. 1. " CHNPRIN ,This contains the priority of channel number n ."
-width 14.
+width 9.
 group.long 0x200++0x3
-    line.long 0x00 "SDMA_CHNENBL0,Channel Enable RAM"
+    line.long 0x00 "CHNENBL0,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x204++0x3
-    line.long 0x00 "SDMA_CHNENBL1,Channel Enable RAM"
+    line.long 0x00 "CHNENBL1,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x208++0x3
-    line.long 0x00 "SDMA_CHNENBL2,Channel Enable RAM"
+    line.long 0x00 "CHNENBL2,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x20c++0x3
-    line.long 0x00 "SDMA_CHNENBL3,Channel Enable RAM"
+    line.long 0x00 "CHNENBL3,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x210++0x3
-    line.long 0x00 "SDMA_CHNENBL4,Channel Enable RAM"
+    line.long 0x00 "CHNENBL4,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x214++0x3
-    line.long 0x00 "SDMA_CHNENBL5,Channel Enable RAM"
+    line.long 0x00 "CHNENBL5,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x218++0x3
-    line.long 0x00 "SDMA_CHNENBL6,Channel Enable RAM"
+    line.long 0x00 "CHNENBL6,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x21c++0x3
-    line.long 0x00 "SDMA_CHNENBL7,Channel Enable RAM"
+    line.long 0x00 "CHNENBL7,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x220++0x3
-    line.long 0x00 "SDMA_CHNENBL8,Channel Enable RAM"
+    line.long 0x00 "CHNENBL8,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x224++0x3
-    line.long 0x00 "SDMA_CHNENBL9,Channel Enable RAM"
+    line.long 0x00 "CHNENBL9,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x228++0x3
-    line.long 0x00 "SDMA_CHNENBL10,Channel Enable RAM"
+    line.long 0x00 "CHNENBL10,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x22c++0x3
-    line.long 0x00 "SDMA_CHNENBL11,Channel Enable RAM"
+    line.long 0x00 "CHNENBL11,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x230++0x3
-    line.long 0x00 "SDMA_CHNENBL12,Channel Enable RAM"
+    line.long 0x00 "CHNENBL12,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x234++0x3
-    line.long 0x00 "SDMA_CHNENBL13,Channel Enable RAM"
+    line.long 0x00 "CHNENBL13,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x238++0x3
-    line.long 0x00 "SDMA_CHNENBL14,Channel Enable RAM"
+    line.long 0x00 "CHNENBL14,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x23c++0x3
-    line.long 0x00 "SDMA_CHNENBL15,Channel Enable RAM"
+    line.long 0x00 "CHNENBL15,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x240++0x3
-    line.long 0x00 "SDMA_CHNENBL16,Channel Enable RAM"
+    line.long 0x00 "CHNENBL16,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x244++0x3
-    line.long 0x00 "SDMA_CHNENBL17,Channel Enable RAM"
+    line.long 0x00 "CHNENBL17,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x248++0x3
-    line.long 0x00 "SDMA_CHNENBL18,Channel Enable RAM"
+    line.long 0x00 "CHNENBL18,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x24c++0x3
-    line.long 0x00 "SDMA_CHNENBL19,Channel Enable RAM"
+    line.long 0x00 "CHNENBL19,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x250++0x3
-    line.long 0x00 "SDMA_CHNENBL20,Channel Enable RAM"
+    line.long 0x00 "CHNENBL20,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x254++0x3
-    line.long 0x00 "SDMA_CHNENBL21,Channel Enable RAM"
+    line.long 0x00 "CHNENBL21,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x258++0x3
-    line.long 0x00 "SDMA_CHNENBL22,Channel Enable RAM"
+    line.long 0x00 "CHNENBL22,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x25c++0x3
-    line.long 0x00 "SDMA_CHNENBL23,Channel Enable RAM"
+    line.long 0x00 "CHNENBL23,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x260++0x3
-    line.long 0x00 "SDMA_CHNENBL24,Channel Enable RAM"
+    line.long 0x00 "CHNENBL24,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x264++0x3
-    line.long 0x00 "SDMA_CHNENBL25,Channel Enable RAM"
+    line.long 0x00 "CHNENBL25,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x268++0x3
-    line.long 0x00 "SDMA_CHNENBL26,Channel Enable RAM"
+    line.long 0x00 "CHNENBL26,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x26c++0x3
-    line.long 0x00 "SDMA_CHNENBL27,Channel Enable RAM"
+    line.long 0x00 "CHNENBL27,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x270++0x3
-    line.long 0x00 "SDMA_CHNENBL28,Channel Enable RAM"
+    line.long 0x00 "CHNENBL28,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x274++0x3
-    line.long 0x00 "SDMA_CHNENBL29,Channel Enable RAM"
+    line.long 0x00 "CHNENBL29,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x278++0x3
-    line.long 0x00 "SDMA_CHNENBL30,Channel Enable RAM"
+    line.long 0x00 "CHNENBL30,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x27c++0x3
-    line.long 0x00 "SDMA_CHNENBL31,Channel Enable RAM"
+    line.long 0x00 "CHNENBL31,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x280++0x3
-    line.long 0x00 "SDMA_CHNENBL32,Channel Enable RAM"
+    line.long 0x00 "CHNENBL32,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x284++0x3
-    line.long 0x00 "SDMA_CHNENBL33,Channel Enable RAM"
+    line.long 0x00 "CHNENBL33,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x288++0x3
-    line.long 0x00 "SDMA_CHNENBL34,Channel Enable RAM"
+    line.long 0x00 "CHNENBL34,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x28c++0x3
-    line.long 0x00 "SDMA_CHNENBL35,Channel Enable RAM"
+    line.long 0x00 "CHNENBL35,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x290++0x3
-    line.long 0x00 "SDMA_CHNENBL36,Channel Enable RAM"
+    line.long 0x00 "CHNENBL36,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x294++0x3
-    line.long 0x00 "SDMA_CHNENBL37,Channel Enable RAM"
+    line.long 0x00 "CHNENBL37,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x298++0x3
-    line.long 0x00 "SDMA_CHNENBL38,Channel Enable RAM"
+    line.long 0x00 "CHNENBL38,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x29c++0x3
-    line.long 0x00 "SDMA_CHNENBL39,Channel Enable RAM"
+    line.long 0x00 "CHNENBL39,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2a0++0x3
-    line.long 0x00 "SDMA_CHNENBL40,Channel Enable RAM"
+    line.long 0x00 "CHNENBL40,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2a4++0x3
-    line.long 0x00 "SDMA_CHNENBL41,Channel Enable RAM"
+    line.long 0x00 "CHNENBL41,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2a8++0x3
-    line.long 0x00 "SDMA_CHNENBL42,Channel Enable RAM"
+    line.long 0x00 "CHNENBL42,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2ac++0x3
-    line.long 0x00 "SDMA_CHNENBL43,Channel Enable RAM"
+    line.long 0x00 "CHNENBL43,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2b0++0x3
-    line.long 0x00 "SDMA_CHNENBL44,Channel Enable RAM"
+    line.long 0x00 "CHNENBL44,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2b4++0x3
-    line.long 0x00 "SDMA_CHNENBL45,Channel Enable RAM"
+    line.long 0x00 "CHNENBL45,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2b8++0x3
-    line.long 0x00 "SDMA_CHNENBL46,Channel Enable RAM"
+    line.long 0x00 "CHNENBL46,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2bc++0x3
-    line.long 0x00 "SDMA_CHNENBL47,Channel Enable RAM"
+    line.long 0x00 "CHNENBL47,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
 
 
@@ -37791,7 +38131,7 @@ group.long 0x8++0x3
 width 7.
 rgroup.long 0xc++0x3
     line.long 0x00 "DSTART,Channel Start"
-        hexmask.long.long 0x00 0.--32. 1. " DSTART ,The DSTART/DE registers are 32 bits wide with one bit for every channel."
+        hexmask.long.long 0x00 0.--32. 1. " DSTART_DE ,The DSTART_DE registers are 32 bits wide with one bit for every channel."
 width 7.
 rgroup.long 0x28++0x3
     line.long 0x00 "EVTERR,DMA Request Error Register"
@@ -38137,7 +38477,19 @@ group.long 0x10++0x3
 width 5.
 group.long 0x14++0x3
     line.long 0x00 "HPSR,SNVS _HP Status Register"
+        bitfld.long 0x00 0. " HPTA ,HP Time Alarm Indicates that the HP Time Alarm has occurred since this bit was last cleared." "0,1"
+        textline "    "
+        bitfld.long 0x00 1. " PI ,Periodic Interrupt Indicates that periodic interrupt has occurred since this bit was last cleared." "0,1"
+        textline "    "
+        bitfld.long 0x00 4. " LPDIS ,Low Power Disable If 1, the SNVS low power section has been disabled by means of an input signal to the SNVS ." "0,1"
+        textline "    "
         hexmask.long.byte 0x00 8.--12. 1. " SSM_ST ,System Security Monitor State This field contains the encoded state of the SSM's state machine."
+        textline "    "
+        hexmask.long.byte 0x00 12.--15. 1. " SYS_SECURITY_CFG ,This field reflects the value of the sys_security_cfg input signal, which is defined as follows:"
+        textline "    "
+        bitfld.long 0x00 15. " SYS_SECURE_BOOT ,This bit reflects the value of the sys_secure_boot input signal to SNVS ." "0,1"
+        textline "    "
+        hexmask.long.word 0x00 16.--25. 1. " OTPMK_SYNDROME ,One Time Programmable Master Key Syndrome Value The eight lower bits of this value indicate error location in case of a single-bit error."
         textline "    "
         bitfld.long 0x00 27. " OTPMK_ZERO ,One Time Programmable Master Key is Equal to Zero." "0,1"
         textline "    "
@@ -38157,7 +38509,7 @@ group.long 0x18++0x3
         textline "      "
         bitfld.long 0x00 5. " SEC_VIO5 ,Security volation on input 5 is detected." "0,1"
         textline "      "
-        hexmask.long.word 0x00 16.--25. 1. " ZMK_SYNDROME ,Zeroizable Master Key Syndrome Value The ZMK syndrome indicates error location and parity ."
+        hexmask.long.word 0x00 16.--25. 1. " ZMK_SYNDROME ,Zeroizable Master Key Syndrome Value The ZMK syndrome indicates error location and parity similar to the OTPMK syndrome ."
         textline "      "
         bitfld.long 0x00 27. " ZMK_ECC_FAIL ,Zeroizable Master Key Error Correcting Code Check Failure When set, this bit triggers a bad key violation to the SSM and a security violation to the SNVS _LP section, which clears security sensitive data." "0,1"
 width 9.
@@ -38171,7 +38523,7 @@ group.long 0x20++0x3
 width 8.
 group.long 0x24++0x3
     line.long 0x00 "HPRTCMR,SNVS_HP Real Time Counter MSB Register"
-        hexmask.long.word 0x00 0.--15. 1. " RTC ,HP Real Time Counter Most significant bits."
+        hexmask.long.word 0x00 0.--15. 1. " RTC ,HP Real Time Counter Most significant 15 bits."
 width 8.
 group.long 0x28++0x3
     line.long 0x00 "HPRTCLR,SNVS_HP Real Time Counter LSB Register"
@@ -38255,10 +38607,6 @@ group.long 0x40++0x3
 width 8.
 group.long 0x44++0x3
     line.long 0x00 "LPTGFCR,SNVS_LP Tamper Glitch Filters Configuration Register"
-        hexmask.long.byte 0x00 0.--5. 1. " WMTGF ,Wire-Mesh Tamper Glitch Filter Configures the length of the digital glitch filter for the wire-mesh tamper 1 and 2 pins between 1 and 63 SRTC clock cycles."
-        textline "       "
-        bitfld.long 0x00 7. " WMTGF_EN ,Wire-Mesh Tamper Glitch Filter Enable When set, enables the wire-mesh tamper glitch filter." "0,1"
-        textline "       "
         hexmask.long.byte 0x00 16.--21. 1. " ETGF1 ,External Tamper Glitch Filter 1 Configures the length of the digital glitch filter for the external tamper 1 pin between 128 and 8064 SRTC clock cycles."
         textline "       "
         bitfld.long 0x00 23. " ETGF1_EN ,External Tamper Glitch Filter 1 Enable When set, enables the external tamper glitch filter 1." "0,1"
@@ -38269,29 +38617,11 @@ group.long 0x48++0x3
         textline "      "
         bitfld.long 0x00 2. " MCR_EN ,MC Rollover Enable When set, an MC Rollover event generates an LP security violation." "0,1"
         textline "      "
-        bitfld.long 0x00 4. " CT_EN ,Clock Tamper Enable When set, a clock monitor tamper generates an LP security violation." "0,1"
-        textline "      "
-        bitfld.long 0x00 5. " TT_EN ,Temperature Tamper Enable When set, a temperature monitor tamper generates an LP security violation." "0,1"
-        textline "      "
-        bitfld.long 0x00 6. " VT_EN ,Voltage Tamper Enable When set, a voltage monitor tamper generates an LP security violation." "0,1"
-        textline "      "
-        bitfld.long 0x00 7. " WMT1_EN ,Wire-Mesh Tampering 1 Enable When set, wire-mesh tampering 1 detection generates an LP security violation." "0,1"
-        textline "      "
-        bitfld.long 0x00 8. " WMT2_EN ,Wire-Mesh Tampering 2 Enable When set, wire-mesh tampering 2 detection generates an LP security violation." "0,1"
-        textline "      "
         bitfld.long 0x00 9. " ET1_EN ,External Tampering 1 Enable When set, external tampering 1 detection generates an LP security violation." "0,1"
         textline "      "
         bitfld.long 0x00 14. " PFD_OBSERV ,System Power Fail Detector (PFD) Observability Flop The asynchronous reset input of this flop is connected directly to the inverted output of the PFD analog circuitry (external to the SNVS block)." "0,1"
         textline "      "
         bitfld.long 0x00 15. " POR_OBSERV ,Power On Reset (POR) Observability Flop The asynchronous reset input of this flop is connected directly to the output of the POR analog circuitry (external to the SNVS block)." "0,1"
-        textline "      "
-        hexmask.long.byte 0x00 16.--19. 1. " LTDC ,Low Temperature Detect Configuration These configuration bits are wired as an output of the module."
-        textline "      "
-        hexmask.long.byte 0x00 20.--23. 1. " HTDC ,High Temperature Detect Configuration These configuration bits are wired as an output of the module."
-        textline "      "
-        hexmask.long.byte 0x00 24.--27. 1. " VRC ,Voltage Reference Configuration These configuration bits are wired as an output of the module."
-        textline "      "
-        bitfld.long 0x00 28. " OSCB ,Oscillator Bypass When set, this signal bypasses the internal SRTC clock oscillator, allowing only an external clock to drive the SRTC clock source." "0,1"
 width 5.
 group.long 0x4c++0x3
     line.long 0x00 "LPSR,SNVS _LP Status Register"
@@ -38303,19 +38633,15 @@ group.long 0x4c++0x3
         textline "    "
         bitfld.long 0x00 3. " PGD ,Power Supply Glitch Detected." "0,1"
         textline "    "
-        bitfld.long 0x00 4. " CTD ,Clock Tampering Detected." "0,1"
-        textline "    "
-        bitfld.long 0x00 5. " TTD ,Temperature Tamper Detected." "0,1"
-        textline "    "
-        bitfld.long 0x00 6. " VTD ,Voltage Tampering Detected." "0,1"
-        textline "    "
-        bitfld.long 0x00 7. " WMT1D ,Wire-Mesh Tampering 1 Detected." "0,1"
-        textline "    "
-        bitfld.long 0x00 8. " WMT2D ,Wire-Mesh Tampering 2 Detected." "0,1"
-        textline "    "
         bitfld.long 0x00 9. " ET1D ,External Tampering 1 Detected." "0,1"
         textline "    "
         bitfld.long 0x00 16. " ESVD ,External Security Violation Detected Indicates that a security violation is detected on one of the HP security violation ports." "0,1"
+        textline "    "
+        bitfld.long 0x00 17. " EO ,Emergency Off This bit is set when a power off is requested." "0,1"
+        textline "    "
+        bitfld.long 0x00 18. " SPO ,Set Power Off This bit is set when power off was requested by a button press, but the button was not pressed for 5 seconds." "0,1"
+        textline "    "
+        bitfld.long 0x00 20. " SED ,Scan Exit Detected" "0,1"
         textline "    "
         bitfld.long 0x00 30. " LPNS ,LP Section is Non-Secured Indicates that LP section was provisioned/programmed in the non-secure state." "0,1"
         textline "    "
@@ -38323,7 +38649,7 @@ group.long 0x4c++0x3
 width 9.
 group.long 0x50++0x3
     line.long 0x00 "LPSRTCMR,SNVS_LP Secure Real Time Counter MSB Register"
-        hexmask.long.word 0x00 0.--15. 1. " SRTC ,LP Secure Real Time Counter most significant bits This register can be programmed only when SRTC is not active and not locked, meaning the SRTC_ENV, SRTC_SL, and SRTC_HL bits are not set."
+        hexmask.long.word 0x00 0.--15. 1. " SRTC ,LP Secure Real Time Counter most significant 15 bits This register can be programmed only when SRTC is not active and not locked, meaning the SRTC_ENV, SRTC_SL, and SRTC_HL bits are not set."
 width 9.
 group.long 0x54++0x3
     line.long 0x00 "LPSRTCLR,SNVS_LP Secure Real Time Counter LSB Register"

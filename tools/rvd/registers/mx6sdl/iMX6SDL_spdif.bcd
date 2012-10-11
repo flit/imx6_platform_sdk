@@ -82,6 +82,9 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_SPDIF_SRPC_LOCK={\
         gui_name="LOCK":position=6:size=1:read_only=true\
       }\
+      :bit_fields.B_SPDIF_SRPC_CLKSRC_SEL={\
+        gui_name="CLKSRC_SEL":position=7:size=4:read_only=false\
+      }\
       :bit_fields.B_SPDIF_SRPC_UNIMPLEMENTED={\
         gui_name="UNIMPLEMENTED":position=24:size=8:read_only=true\
       }\
@@ -373,6 +376,12 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_SPDIF_STC_TXCLK_DF={\
         gui_name="TXCLK_DF":position=0:size=7:read_only=false\
       }\
+      :bit_fields.B_SPDIF_STC_TX_ALL_CLK_EN={\
+        gui_name="TX_ALL_CLK_EN":position=7:size=1:read_only=false\
+      }\
+      :bit_fields.B_SPDIF_STC_TXCLK_SOURCE={\
+        gui_name="TXCLK_SOURCE":position=8:size=3:read_only=false\
+      }\
       :bit_fields.B_SPDIF_STC_SYSCLK_DF={\
         gui_name="SYSCLK_DF":position=11:size=9:read_only=false\
       }\
@@ -410,6 +419,7 @@ Advanced_Information.Cortex-A9={\
     line="=G_SPDIF_SRPC":\
     line="B_SPDIF_SRPC_GAINSEL":\
     line="B_SPDIF_SRPC_LOCK":\
+    line="B_SPDIF_SRPC_CLKSRC_SEL":\
     line="B_SPDIF_SRPC_UNIMPLEMENTED":\
     line="$$":\
     line="$+":\
@@ -532,6 +542,8 @@ Advanced_Information.Cortex-A9={\
     line="$+":\
     line="=G_SPDIF_STC":\
     line="B_SPDIF_STC_TXCLK_DF":\
+    line="B_SPDIF_STC_TX_ALL_CLK_EN":\
+    line="B_SPDIF_STC_TXCLK_SOURCE":\
     line="B_SPDIF_STC_SYSCLK_DF":\
     line="B_SPDIF_STC_UNIMPLEMENTED":\
     line="$$":\

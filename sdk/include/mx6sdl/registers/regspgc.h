@@ -106,7 +106,6 @@ typedef union _hw_pgc_display_ctrl
  * - 1 - Switch off power when pdn_req is asserted.
  */
 //@{
-
 #define BP_PGC_DISPLAY_CTRL_PCR      (0)      //!< Bit position for PGC_DISPLAY_CTRL_PCR.
 #define BM_PGC_DISPLAY_CTRL_PCR      (0x00000001)  //!< Bit mask for PGC_DISPLAY_CTRL_PCR.
 
@@ -120,7 +119,6 @@ typedef union _hw_pgc_display_ctrl
 //! @brief Set the PCR field to a new value.
 #define BW_PGC_DISPLAY_CTRL_PCR(v)   (HW_PGC_DISPLAY_CTRL_WR((HW_PGC_DISPLAY_CTRL_RD() & ~BM_PGC_DISPLAY_CTRL_PCR) | BF_PGC_DISPLAY_CTRL_PCR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -172,10 +170,9 @@ typedef union _hw_pgc_display_pupscr
  *
  * After a power-up request (pup_req assertion), the PGC waits a number of clocks equal to the value
  * of SW before asserting switch_b. SW must not be programmed to zero. The PGC clock is generated
- * from the IPG_CLK_ROOT. for frequency configuration of the IPG_CLK_ROOT, see CCM chapter.
+ * from the IPG_CLK_ROOT. for frequency configuration of the IPG_CLK_ROOT. See .
  */
 //@{
-
 #define BP_PGC_DISPLAY_PUPSCR_SW      (0)      //!< Bit position for PGC_DISPLAY_PUPSCR_SW.
 #define BM_PGC_DISPLAY_PUPSCR_SW      (0x0000003f)  //!< Bit mask for PGC_DISPLAY_PUPSCR_SW.
 
@@ -189,7 +186,6 @@ typedef union _hw_pgc_display_pupscr
 //! @brief Set the SW field to a new value.
 #define BW_PGC_DISPLAY_PUPSCR_SW(v)   (HW_PGC_DISPLAY_PUPSCR_WR((HW_PGC_DISPLAY_PUPSCR_RD() & ~BM_PGC_DISPLAY_PUPSCR_SW) | BF_PGC_DISPLAY_PUPSCR_SW(v)))
 #endif
-
 //@}
 
 /*! @name Register PGC_DISPLAY_PUPSCR, field SW2ISO[13:8] (RW)
@@ -198,7 +194,6 @@ typedef union _hw_pgc_display_pupscr
  * negating isolation. SW2ISO must not be programmed to zero.
  */
 //@{
-
 #define BP_PGC_DISPLAY_PUPSCR_SW2ISO      (8)      //!< Bit position for PGC_DISPLAY_PUPSCR_SW2ISO.
 #define BM_PGC_DISPLAY_PUPSCR_SW2ISO      (0x00003f00)  //!< Bit mask for PGC_DISPLAY_PUPSCR_SW2ISO.
 
@@ -212,7 +207,6 @@ typedef union _hw_pgc_display_pupscr
 //! @brief Set the SW2ISO field to a new value.
 #define BW_PGC_DISPLAY_PUPSCR_SW2ISO(v)   (HW_PGC_DISPLAY_PUPSCR_WR((HW_PGC_DISPLAY_PUPSCR_RD() & ~BM_PGC_DISPLAY_PUPSCR_SW2ISO) | BF_PGC_DISPLAY_PUPSCR_SW2ISO(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -266,7 +260,6 @@ typedef union _hw_pgc_display_pdnscr
  * value of ISO before asserting isolation. ISO must not be programmed to zero.
  */
 //@{
-
 #define BP_PGC_DISPLAY_PDNSCR_ISO      (0)      //!< Bit position for PGC_DISPLAY_PDNSCR_ISO.
 #define BM_PGC_DISPLAY_PDNSCR_ISO      (0x0000003f)  //!< Bit mask for PGC_DISPLAY_PDNSCR_ISO.
 
@@ -280,7 +273,6 @@ typedef union _hw_pgc_display_pdnscr
 //! @brief Set the ISO field to a new value.
 #define BW_PGC_DISPLAY_PDNSCR_ISO(v)   (HW_PGC_DISPLAY_PDNSCR_WR((HW_PGC_DISPLAY_PDNSCR_RD() & ~BM_PGC_DISPLAY_PDNSCR_ISO) | BF_PGC_DISPLAY_PDNSCR_ISO(v)))
 #endif
-
 //@}
 
 /*! @name Register PGC_DISPLAY_PDNSCR, field ISO2SW[13:8] (RW)
@@ -289,7 +281,6 @@ typedef union _hw_pgc_display_pdnscr
  * negating switch_b. ISO2SW must not be programmed to zero.
  */
 //@{
-
 #define BP_PGC_DISPLAY_PDNSCR_ISO2SW      (8)      //!< Bit position for PGC_DISPLAY_PDNSCR_ISO2SW.
 #define BM_PGC_DISPLAY_PDNSCR_ISO2SW      (0x00003f00)  //!< Bit mask for PGC_DISPLAY_PDNSCR_ISO2SW.
 
@@ -303,7 +294,6 @@ typedef union _hw_pgc_display_pdnscr
 //! @brief Set the ISO2SW field to a new value.
 #define BW_PGC_DISPLAY_PDNSCR_ISO2SW(v)   (HW_PGC_DISPLAY_PDNSCR_WR((HW_PGC_DISPLAY_PDNSCR_RD() & ~BM_PGC_DISPLAY_PDNSCR_ISO2SW) | BF_PGC_DISPLAY_PDNSCR_ISO2SW(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -361,7 +351,6 @@ typedef union _hw_pgc_display_sr
  * - 1 - The target subsystem was powered down for the previous power-down request.
  */
 //@{
-
 #define BP_PGC_DISPLAY_SR_PSR      (0)      //!< Bit position for PGC_DISPLAY_SR_PSR.
 #define BM_PGC_DISPLAY_SR_PSR      (0x00000001)  //!< Bit mask for PGC_DISPLAY_SR_PSR.
 
@@ -375,7 +364,6 @@ typedef union _hw_pgc_display_sr
 //! @brief Set the PSR field to a new value.
 #define BW_PGC_DISPLAY_SR_PSR(v)   (HW_PGC_DISPLAY_SR_WR((HW_PGC_DISPLAY_SR_RD() & ~BM_PGC_DISPLAY_SR_PSR) | BF_PGC_DISPLAY_SR_PSR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -431,7 +419,6 @@ typedef union _hw_pgc_gpu_ctrl
  * - 1 - Switch off power when pdn_req is asserted.
  */
 //@{
-
 #define BP_PGC_GPU_CTRL_PCR      (0)      //!< Bit position for PGC_GPU_CTRL_PCR.
 #define BM_PGC_GPU_CTRL_PCR      (0x00000001)  //!< Bit mask for PGC_GPU_CTRL_PCR.
 
@@ -445,7 +432,6 @@ typedef union _hw_pgc_gpu_ctrl
 //! @brief Set the PCR field to a new value.
 #define BW_PGC_GPU_CTRL_PCR(v)   (HW_PGC_GPU_CTRL_WR((HW_PGC_GPU_CTRL_RD() & ~BM_PGC_GPU_CTRL_PCR) | BF_PGC_GPU_CTRL_PCR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -497,10 +483,9 @@ typedef union _hw_pgc_gpu_pupscr
  *
  * After a power-up request (pup_req assertion), the PGC waits a number of clocks equal to the value
  * of SW before asserting switch_b. SW must not be programmed to zero. The PGC clock is generated
- * from the IPG_CLK_ROOT. for frequency configuration of the IPG_CLK_ROOT, see CCM chapter.
+ * from the IPG_CLK_ROOT. for frequency configuration of the IPG_CLK_ROOT. See .
  */
 //@{
-
 #define BP_PGC_GPU_PUPSCR_SW      (0)      //!< Bit position for PGC_GPU_PUPSCR_SW.
 #define BM_PGC_GPU_PUPSCR_SW      (0x0000003f)  //!< Bit mask for PGC_GPU_PUPSCR_SW.
 
@@ -514,7 +499,6 @@ typedef union _hw_pgc_gpu_pupscr
 //! @brief Set the SW field to a new value.
 #define BW_PGC_GPU_PUPSCR_SW(v)   (HW_PGC_GPU_PUPSCR_WR((HW_PGC_GPU_PUPSCR_RD() & ~BM_PGC_GPU_PUPSCR_SW) | BF_PGC_GPU_PUPSCR_SW(v)))
 #endif
-
 //@}
 
 /*! @name Register PGC_GPU_PUPSCR, field SW2ISO[13:8] (RW)
@@ -523,7 +507,6 @@ typedef union _hw_pgc_gpu_pupscr
  * negating isolation. SW2ISO must not be programmed to zero.
  */
 //@{
-
 #define BP_PGC_GPU_PUPSCR_SW2ISO      (8)      //!< Bit position for PGC_GPU_PUPSCR_SW2ISO.
 #define BM_PGC_GPU_PUPSCR_SW2ISO      (0x00003f00)  //!< Bit mask for PGC_GPU_PUPSCR_SW2ISO.
 
@@ -537,7 +520,6 @@ typedef union _hw_pgc_gpu_pupscr
 //! @brief Set the SW2ISO field to a new value.
 #define BW_PGC_GPU_PUPSCR_SW2ISO(v)   (HW_PGC_GPU_PUPSCR_WR((HW_PGC_GPU_PUPSCR_RD() & ~BM_PGC_GPU_PUPSCR_SW2ISO) | BF_PGC_GPU_PUPSCR_SW2ISO(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -591,7 +573,6 @@ typedef union _hw_pgc_gpu_pdnscr
  * value of ISO before asserting isolation. ISO must not be programmed to zero.
  */
 //@{
-
 #define BP_PGC_GPU_PDNSCR_ISO      (0)      //!< Bit position for PGC_GPU_PDNSCR_ISO.
 #define BM_PGC_GPU_PDNSCR_ISO      (0x0000003f)  //!< Bit mask for PGC_GPU_PDNSCR_ISO.
 
@@ -605,7 +586,6 @@ typedef union _hw_pgc_gpu_pdnscr
 //! @brief Set the ISO field to a new value.
 #define BW_PGC_GPU_PDNSCR_ISO(v)   (HW_PGC_GPU_PDNSCR_WR((HW_PGC_GPU_PDNSCR_RD() & ~BM_PGC_GPU_PDNSCR_ISO) | BF_PGC_GPU_PDNSCR_ISO(v)))
 #endif
-
 //@}
 
 /*! @name Register PGC_GPU_PDNSCR, field ISO2SW[13:8] (RW)
@@ -614,7 +594,6 @@ typedef union _hw_pgc_gpu_pdnscr
  * negating switch_b. ISO2SW must not be programmed to zero.
  */
 //@{
-
 #define BP_PGC_GPU_PDNSCR_ISO2SW      (8)      //!< Bit position for PGC_GPU_PDNSCR_ISO2SW.
 #define BM_PGC_GPU_PDNSCR_ISO2SW      (0x00003f00)  //!< Bit mask for PGC_GPU_PDNSCR_ISO2SW.
 
@@ -628,7 +607,6 @@ typedef union _hw_pgc_gpu_pdnscr
 //! @brief Set the ISO2SW field to a new value.
 #define BW_PGC_GPU_PDNSCR_ISO2SW(v)   (HW_PGC_GPU_PDNSCR_WR((HW_PGC_GPU_PDNSCR_RD() & ~BM_PGC_GPU_PDNSCR_ISO2SW) | BF_PGC_GPU_PDNSCR_ISO2SW(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -686,7 +664,6 @@ typedef union _hw_pgc_gpu_sr
  * - 1 - The target subsystem was powered down for the previous power-down request.
  */
 //@{
-
 #define BP_PGC_GPU_SR_PSR      (0)      //!< Bit position for PGC_GPU_SR_PSR.
 #define BM_PGC_GPU_SR_PSR      (0x00000001)  //!< Bit mask for PGC_GPU_SR_PSR.
 
@@ -700,7 +677,6 @@ typedef union _hw_pgc_gpu_sr
 //! @brief Set the PSR field to a new value.
 #define BW_PGC_GPU_SR_PSR(v)   (HW_PGC_GPU_SR_WR((HW_PGC_GPU_SR_RD() & ~BM_PGC_GPU_SR_PSR) | BF_PGC_GPU_SR_PSR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -756,7 +732,6 @@ typedef union _hw_pgc_cpu_ctrl
  * - 1 - Switch off power when pdn_req is asserted.
  */
 //@{
-
 #define BP_PGC_CPU_CTRL_PCR      (0)      //!< Bit position for PGC_CPU_CTRL_PCR.
 #define BM_PGC_CPU_CTRL_PCR      (0x00000001)  //!< Bit mask for PGC_CPU_CTRL_PCR.
 
@@ -770,7 +745,6 @@ typedef union _hw_pgc_cpu_ctrl
 //! @brief Set the PCR field to a new value.
 #define BW_PGC_CPU_CTRL_PCR(v)   (HW_PGC_CPU_CTRL_WR((HW_PGC_CPU_CTRL_RD() & ~BM_PGC_CPU_CTRL_PCR) | BF_PGC_CPU_CTRL_PCR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -822,10 +796,9 @@ typedef union _hw_pgc_cpu_pupscr
  *
  * After a power-up request (pup_req assertion), the PGC waits a number of clocks equal to the value
  * of SW before asserting switch_b. SW must not be programmed to zero. The PGC clock is generated
- * from the IPG_CLK_ROOT. for frequency configuration of the IPG_CLK_ROOT, see CCM chapter.
+ * from the IPG_CLK_ROOT. for frequency configuration of the IPG_CLK_ROOT. See .
  */
 //@{
-
 #define BP_PGC_CPU_PUPSCR_SW      (0)      //!< Bit position for PGC_CPU_PUPSCR_SW.
 #define BM_PGC_CPU_PUPSCR_SW      (0x0000003f)  //!< Bit mask for PGC_CPU_PUPSCR_SW.
 
@@ -839,7 +812,6 @@ typedef union _hw_pgc_cpu_pupscr
 //! @brief Set the SW field to a new value.
 #define BW_PGC_CPU_PUPSCR_SW(v)   (HW_PGC_CPU_PUPSCR_WR((HW_PGC_CPU_PUPSCR_RD() & ~BM_PGC_CPU_PUPSCR_SW) | BF_PGC_CPU_PUPSCR_SW(v)))
 #endif
-
 //@}
 
 /*! @name Register PGC_CPU_PUPSCR, field SW2ISO[13:8] (RW)
@@ -848,7 +820,6 @@ typedef union _hw_pgc_cpu_pupscr
  * negating isolation. SW2ISO must not be programmed to zero.
  */
 //@{
-
 #define BP_PGC_CPU_PUPSCR_SW2ISO      (8)      //!< Bit position for PGC_CPU_PUPSCR_SW2ISO.
 #define BM_PGC_CPU_PUPSCR_SW2ISO      (0x00003f00)  //!< Bit mask for PGC_CPU_PUPSCR_SW2ISO.
 
@@ -862,7 +833,6 @@ typedef union _hw_pgc_cpu_pupscr
 //! @brief Set the SW2ISO field to a new value.
 #define BW_PGC_CPU_PUPSCR_SW2ISO(v)   (HW_PGC_CPU_PUPSCR_WR((HW_PGC_CPU_PUPSCR_RD() & ~BM_PGC_CPU_PUPSCR_SW2ISO) | BF_PGC_CPU_PUPSCR_SW2ISO(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -916,7 +886,6 @@ typedef union _hw_pgc_cpu_pdnscr
  * value of ISO before asserting isolation. ISO must not be programmed to zero.
  */
 //@{
-
 #define BP_PGC_CPU_PDNSCR_ISO      (0)      //!< Bit position for PGC_CPU_PDNSCR_ISO.
 #define BM_PGC_CPU_PDNSCR_ISO      (0x0000003f)  //!< Bit mask for PGC_CPU_PDNSCR_ISO.
 
@@ -930,7 +899,6 @@ typedef union _hw_pgc_cpu_pdnscr
 //! @brief Set the ISO field to a new value.
 #define BW_PGC_CPU_PDNSCR_ISO(v)   (HW_PGC_CPU_PDNSCR_WR((HW_PGC_CPU_PDNSCR_RD() & ~BM_PGC_CPU_PDNSCR_ISO) | BF_PGC_CPU_PDNSCR_ISO(v)))
 #endif
-
 //@}
 
 /*! @name Register PGC_CPU_PDNSCR, field ISO2SW[13:8] (RW)
@@ -939,7 +907,6 @@ typedef union _hw_pgc_cpu_pdnscr
  * negating switch_b. ISO2SW must not be programmed to zero.
  */
 //@{
-
 #define BP_PGC_CPU_PDNSCR_ISO2SW      (8)      //!< Bit position for PGC_CPU_PDNSCR_ISO2SW.
 #define BM_PGC_CPU_PDNSCR_ISO2SW      (0x00003f00)  //!< Bit mask for PGC_CPU_PDNSCR_ISO2SW.
 
@@ -953,7 +920,6 @@ typedef union _hw_pgc_cpu_pdnscr
 //! @brief Set the ISO2SW field to a new value.
 #define BW_PGC_CPU_PDNSCR_ISO2SW(v)   (HW_PGC_CPU_PDNSCR_WR((HW_PGC_CPU_PDNSCR_RD() & ~BM_PGC_CPU_PDNSCR_ISO2SW) | BF_PGC_CPU_PDNSCR_ISO2SW(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1011,7 +977,6 @@ typedef union _hw_pgc_cpu_sr
  * - 1 - The target subsystem was powered down for the previous power-down request.
  */
 //@{
-
 #define BP_PGC_CPU_SR_PSR      (0)      //!< Bit position for PGC_CPU_SR_PSR.
 #define BM_PGC_CPU_SR_PSR      (0x00000001)  //!< Bit mask for PGC_CPU_SR_PSR.
 
@@ -1025,7 +990,6 @@ typedef union _hw_pgc_cpu_sr
 //! @brief Set the PSR field to a new value.
 #define BW_PGC_CPU_SR_PSR(v)   (HW_PGC_CPU_SR_WR((HW_PGC_CPU_SR_RD() & ~BM_PGC_CPU_SR_PSR) | BF_PGC_CPU_SR_PSR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1063,3 +1027,5 @@ typedef struct _hw_pgc
 #endif
 
 #endif // __HW_PGC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

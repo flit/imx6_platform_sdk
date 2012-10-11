@@ -148,7 +148,6 @@ typedef union _hw_enet_eir
  * Set the timer period value before setting ATCR[PEREN].
  */
 //@{
-
 #define BP_ENET_EIR_TS_TIMER      (15)      //!< Bit position for ENET_EIR_TS_TIMER.
 #define BM_ENET_EIR_TS_TIMER      (0x00008000)  //!< Bit mask for ENET_EIR_TS_TIMER.
 
@@ -162,7 +161,6 @@ typedef union _hw_enet_eir
 //! @brief Set the TS_TIMER field to a new value.
 #define BW_ENET_EIR_TS_TIMER(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_TS_TIMER) | BF_ENET_EIR_TS_TIMER(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field TS_AVAIL[16] (W1C)
@@ -171,7 +169,6 @@ typedef union _hw_enet_eir
  * register.
  */
 //@{
-
 #define BP_ENET_EIR_TS_AVAIL      (16)      //!< Bit position for ENET_EIR_TS_AVAIL.
 #define BM_ENET_EIR_TS_AVAIL      (0x00010000)  //!< Bit mask for ENET_EIR_TS_AVAIL.
 
@@ -185,7 +182,6 @@ typedef union _hw_enet_eir
 //! @brief Set the TS_AVAIL field to a new value.
 #define BW_ENET_EIR_TS_AVAIL(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_TS_AVAIL) | BF_ENET_EIR_TS_AVAIL(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field WAKEUP[17] (W1C)
@@ -194,7 +190,6 @@ typedef union _hw_enet_eir
  * ECR[MAGICEN] is set.
  */
 //@{
-
 #define BP_ENET_EIR_WAKEUP      (17)      //!< Bit position for ENET_EIR_WAKEUP.
 #define BM_ENET_EIR_WAKEUP      (0x00020000)  //!< Bit mask for ENET_EIR_WAKEUP.
 
@@ -208,7 +203,6 @@ typedef union _hw_enet_eir
 //! @brief Set the WAKEUP field to a new value.
 #define BW_ENET_EIR_WAKEUP(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_WAKEUP) | BF_ENET_EIR_WAKEUP(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field PLR[18] (W1C)
@@ -217,7 +211,6 @@ typedef union _hw_enet_eir
  * Payload Length Check for more information.
  */
 //@{
-
 #define BP_ENET_EIR_PLR      (18)      //!< Bit position for ENET_EIR_PLR.
 #define BM_ENET_EIR_PLR      (0x00040000)  //!< Bit mask for ENET_EIR_PLR.
 
@@ -231,7 +224,6 @@ typedef union _hw_enet_eir
 //! @brief Set the PLR field to a new value.
 #define BW_ENET_EIR_PLR(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_PLR) | BF_ENET_EIR_PLR(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field UN[19] (W1C)
@@ -240,7 +232,6 @@ typedef union _hw_enet_eir
  * appended to the frame fragment and the remainder of the frame is discarded.
  */
 //@{
-
 #define BP_ENET_EIR_UN      (19)      //!< Bit position for ENET_EIR_UN.
 #define BM_ENET_EIR_UN      (0x00080000)  //!< Bit mask for ENET_EIR_UN.
 
@@ -254,7 +245,6 @@ typedef union _hw_enet_eir
 //! @brief Set the UN field to a new value.
 #define BW_ENET_EIR_UN(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_UN) | BF_ENET_EIR_UN(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field RL[20] (W1C)
@@ -264,7 +254,6 @@ typedef union _hw_enet_eir
  * can only occur in half-duplex mode.
  */
 //@{
-
 #define BP_ENET_EIR_RL      (20)      //!< Bit position for ENET_EIR_RL.
 #define BM_ENET_EIR_RL      (0x00100000)  //!< Bit mask for ENET_EIR_RL.
 
@@ -278,7 +267,6 @@ typedef union _hw_enet_eir
 //! @brief Set the RL field to a new value.
 #define BW_ENET_EIR_RL(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_RL) | BF_ENET_EIR_RL(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field LC[21] (W1C)
@@ -287,7 +275,6 @@ typedef union _hw_enet_eir
  * frame truncates with a bad CRC and the remainder of the frame is discarded.
  */
 //@{
-
 #define BP_ENET_EIR_LC      (21)      //!< Bit position for ENET_EIR_LC.
 #define BM_ENET_EIR_LC      (0x00200000)  //!< Bit mask for ENET_EIR_LC.
 
@@ -301,7 +288,6 @@ typedef union _hw_enet_eir
 //! @brief Set the LC field to a new value.
 #define BW_ENET_EIR_LC(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_LC) | BF_ENET_EIR_LC(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field EBERR[22] (W1C)
@@ -311,7 +297,6 @@ typedef union _hw_enet_eir
  * ensure proper actions, possibly resetting the system, to resume normal operation.
  */
 //@{
-
 #define BP_ENET_EIR_EBERR      (22)      //!< Bit position for ENET_EIR_EBERR.
 #define BM_ENET_EIR_EBERR      (0x00400000)  //!< Bit mask for ENET_EIR_EBERR.
 
@@ -325,7 +310,6 @@ typedef union _hw_enet_eir
 //! @brief Set the EBERR field to a new value.
 #define BW_ENET_EIR_EBERR(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_EBERR) | BF_ENET_EIR_EBERR(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field MII[23] (W1C)
@@ -333,7 +317,6 @@ typedef union _hw_enet_eir
  * Indicates that the MII has completed the data transfer requested.
  */
 //@{
-
 #define BP_ENET_EIR_MII      (23)      //!< Bit position for ENET_EIR_MII.
 #define BM_ENET_EIR_MII      (0x00800000)  //!< Bit mask for ENET_EIR_MII.
 
@@ -347,7 +330,6 @@ typedef union _hw_enet_eir
 //! @brief Set the MII field to a new value.
 #define BW_ENET_EIR_MII(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_MII) | BF_ENET_EIR_MII(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field RXB[24] (W1C)
@@ -355,7 +337,6 @@ typedef union _hw_enet_eir
  * Indicates a receive buffer descriptor is not the last in the frame has been updated.
  */
 //@{
-
 #define BP_ENET_EIR_RXB      (24)      //!< Bit position for ENET_EIR_RXB.
 #define BM_ENET_EIR_RXB      (0x01000000)  //!< Bit mask for ENET_EIR_RXB.
 
@@ -369,7 +350,6 @@ typedef union _hw_enet_eir
 //! @brief Set the RXB field to a new value.
 #define BW_ENET_EIR_RXB(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_RXB) | BF_ENET_EIR_RXB(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field RXF[25] (W1C)
@@ -378,7 +358,6 @@ typedef union _hw_enet_eir
  * updated.
  */
 //@{
-
 #define BP_ENET_EIR_RXF      (25)      //!< Bit position for ENET_EIR_RXF.
 #define BM_ENET_EIR_RXF      (0x02000000)  //!< Bit mask for ENET_EIR_RXF.
 
@@ -392,7 +371,6 @@ typedef union _hw_enet_eir
 //! @brief Set the RXF field to a new value.
 #define BW_ENET_EIR_RXF(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_RXF) | BF_ENET_EIR_RXF(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field TXB[26] (W1C)
@@ -400,7 +378,6 @@ typedef union _hw_enet_eir
  * Indicates a transmit buffer descriptor has been updated.
  */
 //@{
-
 #define BP_ENET_EIR_TXB      (26)      //!< Bit position for ENET_EIR_TXB.
 #define BM_ENET_EIR_TXB      (0x04000000)  //!< Bit mask for ENET_EIR_TXB.
 
@@ -414,7 +391,6 @@ typedef union _hw_enet_eir
 //! @brief Set the TXB field to a new value.
 #define BW_ENET_EIR_TXB(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_TXB) | BF_ENET_EIR_TXB(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field TXF[27] (W1C)
@@ -423,7 +399,6 @@ typedef union _hw_enet_eir
  * updated.
  */
 //@{
-
 #define BP_ENET_EIR_TXF      (27)      //!< Bit position for ENET_EIR_TXF.
 #define BM_ENET_EIR_TXF      (0x08000000)  //!< Bit mask for ENET_EIR_TXF.
 
@@ -437,7 +412,6 @@ typedef union _hw_enet_eir
 //! @brief Set the TXF field to a new value.
 #define BW_ENET_EIR_TXF(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_TXF) | BF_ENET_EIR_TXF(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field GRA[28] (W1C)
@@ -448,7 +422,6 @@ typedef union _hw_enet_eir
  * state. If this bit is cleared by writing 1 and the TX is still stopped, the bit is not set again.
  */
 //@{
-
 #define BP_ENET_EIR_GRA      (28)      //!< Bit position for ENET_EIR_GRA.
 #define BM_ENET_EIR_GRA      (0x10000000)  //!< Bit mask for ENET_EIR_GRA.
 
@@ -462,7 +435,6 @@ typedef union _hw_enet_eir
 //! @brief Set the GRA field to a new value.
 #define BW_ENET_EIR_GRA(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_GRA) | BF_ENET_EIR_GRA(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field BABT[29] (W1C)
@@ -472,7 +444,6 @@ typedef union _hw_enet_eir
  * not occur.
  */
 //@{
-
 #define BP_ENET_EIR_BABT      (29)      //!< Bit position for ENET_EIR_BABT.
 #define BM_ENET_EIR_BABT      (0x20000000)  //!< Bit mask for ENET_EIR_BABT.
 
@@ -486,7 +457,6 @@ typedef union _hw_enet_eir
 //! @brief Set the BABT field to a new value.
 #define BW_ENET_EIR_BABT(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_BABT) | BF_ENET_EIR_BABT(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIR, field BABR[30] (W1C)
@@ -494,7 +464,6 @@ typedef union _hw_enet_eir
  * Indicates a frame was received with length in excess of RCR[MAX_FL] bytes.
  */
 //@{
-
 #define BP_ENET_EIR_BABR      (30)      //!< Bit position for ENET_EIR_BABR.
 #define BM_ENET_EIR_BABR      (0x40000000)  //!< Bit mask for ENET_EIR_BABR.
 
@@ -508,7 +477,6 @@ typedef union _hw_enet_eir
 //! @brief Set the BABR field to a new value.
 #define BW_ENET_EIR_BABR(v)   (HW_ENET_EIR_WR((HW_ENET_EIR_RD() & ~BM_ENET_EIR_BABR) | BF_ENET_EIR_BABR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -581,7 +549,6 @@ typedef union _hw_enet_eimr
  * the interrupt signal even if the corresponding EIMR field is cleared.
  */
 //@{
-
 #define BP_ENET_EIMR_TS_TIMER      (15)      //!< Bit position for ENET_EIMR_TS_TIMER.
 #define BM_ENET_EIMR_TS_TIMER      (0x00008000)  //!< Bit mask for ENET_EIMR_TS_TIMER.
 
@@ -595,7 +562,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the TS_TIMER field to a new value.
 #define BW_ENET_EIMR_TS_TIMER(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_TS_TIMER) | BF_ENET_EIMR_TS_TIMER(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field TS_AVAIL[16] (RW)
@@ -606,7 +572,6 @@ typedef union _hw_enet_eimr
  * the interrupt signal even if the corresponding EIMR field is cleared.
  */
 //@{
-
 #define BP_ENET_EIMR_TS_AVAIL      (16)      //!< Bit position for ENET_EIMR_TS_AVAIL.
 #define BM_ENET_EIMR_TS_AVAIL      (0x00010000)  //!< Bit mask for ENET_EIMR_TS_AVAIL.
 
@@ -620,7 +585,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the TS_AVAIL field to a new value.
 #define BW_ENET_EIMR_TS_AVAIL(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_TS_AVAIL) | BF_ENET_EIMR_TS_AVAIL(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field WAKEUP[17] (RW)
@@ -631,7 +595,6 @@ typedef union _hw_enet_eimr
  * the interrupt signal even if the corresponding EIMR field is cleared.
  */
 //@{
-
 #define BP_ENET_EIMR_WAKEUP      (17)      //!< Bit position for ENET_EIMR_WAKEUP.
 #define BM_ENET_EIMR_WAKEUP      (0x00020000)  //!< Bit mask for ENET_EIMR_WAKEUP.
 
@@ -645,7 +608,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the WAKEUP field to a new value.
 #define BW_ENET_EIMR_WAKEUP(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_WAKEUP) | BF_ENET_EIMR_WAKEUP(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field PLR[18] (RW)
@@ -656,7 +618,6 @@ typedef union _hw_enet_eimr
  * interrupt signal even if the corresponding EIMR field is cleared.
  */
 //@{
-
 #define BP_ENET_EIMR_PLR      (18)      //!< Bit position for ENET_EIMR_PLR.
 #define BM_ENET_EIMR_PLR      (0x00040000)  //!< Bit mask for ENET_EIMR_PLR.
 
@@ -670,7 +631,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the PLR field to a new value.
 #define BW_ENET_EIMR_PLR(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_PLR) | BF_ENET_EIMR_PLR(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field UN[19] (RW)
@@ -681,7 +641,6 @@ typedef union _hw_enet_eimr
  * interrupt signal even if the corresponding EIMR field is cleared.
  */
 //@{
-
 #define BP_ENET_EIMR_UN      (19)      //!< Bit position for ENET_EIMR_UN.
 #define BM_ENET_EIMR_UN      (0x00080000)  //!< Bit mask for ENET_EIMR_UN.
 
@@ -695,7 +654,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the UN field to a new value.
 #define BW_ENET_EIMR_UN(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_UN) | BF_ENET_EIMR_UN(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field RL[20] (RW)
@@ -706,7 +664,6 @@ typedef union _hw_enet_eimr
  * interrupt signal even if the corresponding EIMR field is cleared.
  */
 //@{
-
 #define BP_ENET_EIMR_RL      (20)      //!< Bit position for ENET_EIMR_RL.
 #define BM_ENET_EIMR_RL      (0x00100000)  //!< Bit mask for ENET_EIMR_RL.
 
@@ -720,7 +677,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the RL field to a new value.
 #define BW_ENET_EIMR_RL(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_RL) | BF_ENET_EIMR_RL(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field LC[21] (RW)
@@ -731,7 +687,6 @@ typedef union _hw_enet_eimr
  * interrupt signal even if the corresponding EIMR field is cleared.
  */
 //@{
-
 #define BP_ENET_EIMR_LC      (21)      //!< Bit position for ENET_EIMR_LC.
 #define BM_ENET_EIMR_LC      (0x00200000)  //!< Bit mask for ENET_EIMR_LC.
 
@@ -745,7 +700,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the LC field to a new value.
 #define BW_ENET_EIMR_LC(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_LC) | BF_ENET_EIMR_LC(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field EBERR[22] (RW)
@@ -756,7 +710,6 @@ typedef union _hw_enet_eimr
  * interrupt signal even if the corresponding EIMR field is cleared.
  */
 //@{
-
 #define BP_ENET_EIMR_EBERR      (22)      //!< Bit position for ENET_EIMR_EBERR.
 #define BM_ENET_EIMR_EBERR      (0x00400000)  //!< Bit mask for ENET_EIMR_EBERR.
 
@@ -770,7 +723,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the EBERR field to a new value.
 #define BW_ENET_EIMR_EBERR(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_EBERR) | BF_ENET_EIMR_EBERR(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field MII[23] (RW)
@@ -781,7 +733,6 @@ typedef union _hw_enet_eimr
  * interrupt signal even if the corresponding EIMR field is cleared.
  */
 //@{
-
 #define BP_ENET_EIMR_MII      (23)      //!< Bit position for ENET_EIMR_MII.
 #define BM_ENET_EIMR_MII      (0x00800000)  //!< Bit mask for ENET_EIMR_MII.
 
@@ -795,7 +746,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the MII field to a new value.
 #define BW_ENET_EIMR_MII(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_MII) | BF_ENET_EIMR_MII(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field RXB[24] (RW)
@@ -806,7 +756,6 @@ typedef union _hw_enet_eimr
  * interrupt signal even if the corresponding EIMR field is cleared.
  */
 //@{
-
 #define BP_ENET_EIMR_RXB      (24)      //!< Bit position for ENET_EIMR_RXB.
 #define BM_ENET_EIMR_RXB      (0x01000000)  //!< Bit mask for ENET_EIMR_RXB.
 
@@ -820,7 +769,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the RXB field to a new value.
 #define BW_ENET_EIMR_RXB(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_RXB) | BF_ENET_EIMR_RXB(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field RXF[25] (RW)
@@ -831,7 +779,6 @@ typedef union _hw_enet_eimr
  * interrupt signal even if the corresponding EIMR field is cleared.
  */
 //@{
-
 #define BP_ENET_EIMR_RXF      (25)      //!< Bit position for ENET_EIMR_RXF.
 #define BM_ENET_EIMR_RXF      (0x02000000)  //!< Bit mask for ENET_EIMR_RXF.
 
@@ -845,7 +792,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the RXF field to a new value.
 #define BW_ENET_EIMR_RXF(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_RXF) | BF_ENET_EIMR_RXF(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field TXB[26] (RW)
@@ -860,7 +806,6 @@ typedef union _hw_enet_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_ENET_EIMR_TXB      (26)      //!< Bit position for ENET_EIMR_TXB.
 #define BM_ENET_EIMR_TXB      (0x04000000)  //!< Bit mask for ENET_EIMR_TXB.
 
@@ -874,7 +819,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the TXB field to a new value.
 #define BW_ENET_EIMR_TXB(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_TXB) | BF_ENET_EIMR_TXB(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field TXF[27] (RW)
@@ -889,7 +833,6 @@ typedef union _hw_enet_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_ENET_EIMR_TXF      (27)      //!< Bit position for ENET_EIMR_TXF.
 #define BM_ENET_EIMR_TXF      (0x08000000)  //!< Bit mask for ENET_EIMR_TXF.
 
@@ -903,7 +846,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the TXF field to a new value.
 #define BW_ENET_EIMR_TXF(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_TXF) | BF_ENET_EIMR_TXF(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field GRA[28] (RW)
@@ -918,7 +860,6 @@ typedef union _hw_enet_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_ENET_EIMR_GRA      (28)      //!< Bit position for ENET_EIMR_GRA.
 #define BM_ENET_EIMR_GRA      (0x10000000)  //!< Bit mask for ENET_EIMR_GRA.
 
@@ -932,7 +873,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the GRA field to a new value.
 #define BW_ENET_EIMR_GRA(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_GRA) | BF_ENET_EIMR_GRA(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field BABT[29] (RW)
@@ -947,7 +887,6 @@ typedef union _hw_enet_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_ENET_EIMR_BABT      (29)      //!< Bit position for ENET_EIMR_BABT.
 #define BM_ENET_EIMR_BABT      (0x20000000)  //!< Bit mask for ENET_EIMR_BABT.
 
@@ -961,7 +900,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the BABT field to a new value.
 #define BW_ENET_EIMR_BABT(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_BABT) | BF_ENET_EIMR_BABT(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_EIMR, field BABR[30] (RW)
@@ -976,7 +914,6 @@ typedef union _hw_enet_eimr
  * - 1 - The corresponding interrupt source is not masked.
  */
 //@{
-
 #define BP_ENET_EIMR_BABR      (30)      //!< Bit position for ENET_EIMR_BABR.
 #define BM_ENET_EIMR_BABR      (0x40000000)  //!< Bit mask for ENET_EIMR_BABR.
 
@@ -990,7 +927,6 @@ typedef union _hw_enet_eimr
 //! @brief Set the BABR field to a new value.
 #define BW_ENET_EIMR_BABR(v)   (HW_ENET_EIMR_WR((HW_ENET_EIMR_RD() & ~BM_ENET_EIMR_BABR) | BF_ENET_EIMR_BABR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1052,7 +988,6 @@ typedef union _hw_enet_rdar
  * also cleared when ECR[ETHER_EN] transitions from set to cleared or when ECR[RESET] is set.
  */
 //@{
-
 #define BP_ENET_RDAR_RDAR      (24)      //!< Bit position for ENET_RDAR_RDAR.
 #define BM_ENET_RDAR_RDAR      (0x01000000)  //!< Bit mask for ENET_RDAR_RDAR.
 
@@ -1066,7 +1001,6 @@ typedef union _hw_enet_rdar
 //! @brief Set the RDAR field to a new value.
 #define BW_ENET_RDAR_RDAR(v)   (HW_ENET_RDAR_WR((HW_ENET_RDAR_RD() & ~BM_ENET_RDAR_RDAR) | BF_ENET_RDAR_RDAR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1128,7 +1062,6 @@ typedef union _hw_enet_tdar
  * cleared when ECR[ETHER_EN] transitions from set to cleared or when ECR[RESET] is set.
  */
 //@{
-
 #define BP_ENET_TDAR_TDAR      (24)      //!< Bit position for ENET_TDAR_TDAR.
 #define BM_ENET_TDAR_TDAR      (0x01000000)  //!< Bit mask for ENET_TDAR_TDAR.
 
@@ -1142,7 +1075,6 @@ typedef union _hw_enet_tdar
 //! @brief Set the TDAR field to a new value.
 #define BW_ENET_TDAR_TDAR(v)   (HW_ENET_TDAR_WR((HW_ENET_TDAR_RD() & ~BM_ENET_TDAR_TDAR) | BF_ENET_TDAR_TDAR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1202,7 +1134,6 @@ typedef union _hw_enet_ecr
  * When this field is set, it clears the ETHER_EN field.
  */
 //@{
-
 #define BP_ENET_ECR_RESET      (0)      //!< Bit position for ENET_ECR_RESET.
 #define BM_ENET_ECR_RESET      (0x00000001)  //!< Bit mask for ENET_ECR_RESET.
 
@@ -1216,7 +1147,6 @@ typedef union _hw_enet_ecr
 //! @brief Set the RESET field to a new value.
 #define BW_ENET_ECR_RESET(v)   (HW_ENET_ECR_WR((HW_ENET_ECR_RD() & ~BM_ENET_ECR_RESET) | BF_ENET_ECR_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ECR, field ETHEREN[1] (RW)
@@ -1234,7 +1164,6 @@ typedef union _hw_enet_ecr
  * - 1 - MAC is enabled, and reception and transmission are possible.
  */
 //@{
-
 #define BP_ENET_ECR_ETHEREN      (1)      //!< Bit position for ENET_ECR_ETHEREN.
 #define BM_ENET_ECR_ETHEREN      (0x00000002)  //!< Bit mask for ENET_ECR_ETHEREN.
 
@@ -1248,7 +1177,6 @@ typedef union _hw_enet_ecr
 //! @brief Set the ETHEREN field to a new value.
 #define BW_ENET_ECR_ETHEREN(v)   (HW_ENET_ECR_WR((HW_ENET_ECR_RD() & ~BM_ENET_ECR_ETHEREN) | BF_ENET_ECR_ETHEREN(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ECR, field MAGICEN[2] (RW)
@@ -1261,7 +1189,6 @@ typedef union _hw_enet_ecr
  * - 1 - The MAC core detects magic packets and asserts EIR[WAKEUP] when a frame is detected.
  */
 //@{
-
 #define BP_ENET_ECR_MAGICEN      (2)      //!< Bit position for ENET_ECR_MAGICEN.
 #define BM_ENET_ECR_MAGICEN      (0x00000004)  //!< Bit mask for ENET_ECR_MAGICEN.
 
@@ -1275,7 +1202,6 @@ typedef union _hw_enet_ecr
 //! @brief Set the MAGICEN field to a new value.
 #define BW_ENET_ECR_MAGICEN(v)   (HW_ENET_ECR_WR((HW_ENET_ECR_RD() & ~BM_ENET_ECR_MAGICEN) | BF_ENET_ECR_MAGICEN(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ECR, field SLEEP[3] (RW)
@@ -1287,7 +1213,6 @@ typedef union _hw_enet_ecr
  * - 1 - Sleep mode.
  */
 //@{
-
 #define BP_ENET_ECR_SLEEP      (3)      //!< Bit position for ENET_ECR_SLEEP.
 #define BM_ENET_ECR_SLEEP      (0x00000008)  //!< Bit mask for ENET_ECR_SLEEP.
 
@@ -1301,7 +1226,6 @@ typedef union _hw_enet_ecr
 //! @brief Set the SLEEP field to a new value.
 #define BW_ENET_ECR_SLEEP(v)   (HW_ENET_ECR_WR((HW_ENET_ECR_RD() & ~BM_ENET_ECR_SLEEP) | BF_ENET_ECR_SLEEP(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ECR, field EN1588[4] (RW)
@@ -1313,7 +1237,6 @@ typedef union _hw_enet_ecr
  * - 1 - Enhanced frame time-stamping functions enabled.
  */
 //@{
-
 #define BP_ENET_ECR_EN1588      (4)      //!< Bit position for ENET_ECR_EN1588.
 #define BM_ENET_ECR_EN1588      (0x00000010)  //!< Bit mask for ENET_ECR_EN1588.
 
@@ -1327,7 +1250,6 @@ typedef union _hw_enet_ecr
 //! @brief Set the EN1588 field to a new value.
 #define BW_ENET_ECR_EN1588(v)   (HW_ENET_ECR_WR((HW_ENET_ECR_RD() & ~BM_ENET_ECR_EN1588) | BF_ENET_ECR_EN1588(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ECR, field DBGEN[6] (RW)
@@ -1339,7 +1261,6 @@ typedef union _hw_enet_ecr
  * - 1 - MAC enters hardware freeze mode when the processor is in debug mode.
  */
 //@{
-
 #define BP_ENET_ECR_DBGEN      (6)      //!< Bit position for ENET_ECR_DBGEN.
 #define BM_ENET_ECR_DBGEN      (0x00000040)  //!< Bit mask for ENET_ECR_DBGEN.
 
@@ -1353,7 +1274,6 @@ typedef union _hw_enet_ecr
 //! @brief Set the DBGEN field to a new value.
 #define BW_ENET_ECR_DBGEN(v)   (HW_ENET_ECR_WR((HW_ENET_ECR_RD() & ~BM_ENET_ECR_DBGEN) | BF_ENET_ECR_DBGEN(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ECR, field STOPEN[7] (RW)
@@ -1365,7 +1285,6 @@ typedef union _hw_enet_ecr
  * must be set prior to entering sleep/stop mode.
  */
 //@{
-
 #define BP_ENET_ECR_STOPEN      (7)      //!< Bit position for ENET_ECR_STOPEN.
 #define BM_ENET_ECR_STOPEN      (0x00000080)  //!< Bit mask for ENET_ECR_STOPEN.
 
@@ -1379,7 +1298,6 @@ typedef union _hw_enet_ecr
 //! @brief Set the STOPEN field to a new value.
 #define BW_ENET_ECR_STOPEN(v)   (HW_ENET_ECR_WR((HW_ENET_ECR_RD() & ~BM_ENET_ECR_STOPEN) | BF_ENET_ECR_STOPEN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1439,7 +1357,6 @@ typedef union _hw_enet_mmfr
  * This is the field for data to be written to or read from the PHY register.
  */
 //@{
-
 #define BP_ENET_MMFR_DATA      (0)      //!< Bit position for ENET_MMFR_DATA.
 #define BM_ENET_MMFR_DATA      (0x0000ffff)  //!< Bit mask for ENET_MMFR_DATA.
 
@@ -1453,7 +1370,6 @@ typedef union _hw_enet_mmfr
 //! @brief Set the DATA field to a new value.
 #define BW_ENET_MMFR_DATA(v)   (HW_ENET_MMFR_WR((HW_ENET_MMFR_RD() & ~BM_ENET_MMFR_DATA) | BF_ENET_MMFR_DATA(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_MMFR, field TA[17:16] (RW)
@@ -1461,7 +1377,6 @@ typedef union _hw_enet_mmfr
  * This field must be programmed to 10 to generate a valid MII management frame.
  */
 //@{
-
 #define BP_ENET_MMFR_TA      (16)      //!< Bit position for ENET_MMFR_TA.
 #define BM_ENET_MMFR_TA      (0x00030000)  //!< Bit mask for ENET_MMFR_TA.
 
@@ -1475,7 +1390,6 @@ typedef union _hw_enet_mmfr
 //! @brief Set the TA field to a new value.
 #define BW_ENET_MMFR_TA(v)   (HW_ENET_MMFR_WR((HW_ENET_MMFR_RD() & ~BM_ENET_MMFR_TA) | BF_ENET_MMFR_TA(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_MMFR, field RA[22:18] (RW)
@@ -1483,7 +1397,6 @@ typedef union _hw_enet_mmfr
  * Specifies one of up to 32 registers within the specified PHY device.
  */
 //@{
-
 #define BP_ENET_MMFR_RA      (18)      //!< Bit position for ENET_MMFR_RA.
 #define BM_ENET_MMFR_RA      (0x007c0000)  //!< Bit mask for ENET_MMFR_RA.
 
@@ -1497,7 +1410,6 @@ typedef union _hw_enet_mmfr
 //! @brief Set the RA field to a new value.
 #define BW_ENET_MMFR_RA(v)   (HW_ENET_MMFR_WR((HW_ENET_MMFR_RD() & ~BM_ENET_MMFR_RA) | BF_ENET_MMFR_RA(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_MMFR, field PA[27:23] (RW)
@@ -1505,7 +1417,6 @@ typedef union _hw_enet_mmfr
  * Specifies one of up to 32 attached PHY devices.
  */
 //@{
-
 #define BP_ENET_MMFR_PA      (23)      //!< Bit position for ENET_MMFR_PA.
 #define BM_ENET_MMFR_PA      (0x0f800000)  //!< Bit mask for ENET_MMFR_PA.
 
@@ -1519,7 +1430,6 @@ typedef union _hw_enet_mmfr
 //! @brief Set the PA field to a new value.
 #define BW_ENET_MMFR_PA(v)   (HW_ENET_MMFR_WR((HW_ENET_MMFR_RD() & ~BM_ENET_MMFR_PA) | BF_ENET_MMFR_PA(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_MMFR, field OP[29:28] (RW)
@@ -1533,7 +1443,6 @@ typedef union _hw_enet_mmfr
  * - 11 - Read frame operation, but not MII compliant.
  */
 //@{
-
 #define BP_ENET_MMFR_OP      (28)      //!< Bit position for ENET_MMFR_OP.
 #define BM_ENET_MMFR_OP      (0x30000000)  //!< Bit mask for ENET_MMFR_OP.
 
@@ -1547,7 +1456,6 @@ typedef union _hw_enet_mmfr
 //! @brief Set the OP field to a new value.
 #define BW_ENET_MMFR_OP(v)   (HW_ENET_MMFR_WR((HW_ENET_MMFR_RD() & ~BM_ENET_MMFR_OP) | BF_ENET_MMFR_OP(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_MMFR, field ST[31:30] (RW)
@@ -1555,7 +1463,6 @@ typedef union _hw_enet_mmfr
  * These fields must be programmed to 01 for a valid MII management frame.
  */
 //@{
-
 #define BP_ENET_MMFR_ST      (30)      //!< Bit position for ENET_MMFR_ST.
 #define BM_ENET_MMFR_ST      (0xc0000000)  //!< Bit mask for ENET_MMFR_ST.
 
@@ -1569,7 +1476,6 @@ typedef union _hw_enet_mmfr
 //! @brief Set the ST field to a new value.
 #define BW_ENET_MMFR_ST(v)   (HW_ENET_MMFR_WR((HW_ENET_MMFR_RD() & ~BM_ENET_MMFR_ST) | BF_ENET_MMFR_ST(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1637,7 +1543,6 @@ typedef union _hw_enet_mscr
  * clock frequency
  */
 //@{
-
 #define BP_ENET_MSCR_MII_SPEED      (1)      //!< Bit position for ENET_MSCR_MII_SPEED.
 #define BM_ENET_MSCR_MII_SPEED      (0x0000007e)  //!< Bit mask for ENET_MSCR_MII_SPEED.
 
@@ -1651,7 +1556,6 @@ typedef union _hw_enet_mscr
 //! @brief Set the MII_SPEED field to a new value.
 #define BW_ENET_MSCR_MII_SPEED(v)   (HW_ENET_MSCR_WR((HW_ENET_MSCR_RD() & ~BM_ENET_MSCR_MII_SPEED) | BF_ENET_MSCR_MII_SPEED(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_MSCR, field DIS_PRE[7] (RW)
@@ -1664,7 +1568,6 @@ typedef union _hw_enet_mscr
  * - 1 - Preamble (32 ones) is not prepended to the MII management frame.
  */
 //@{
-
 #define BP_ENET_MSCR_DIS_PRE      (7)      //!< Bit position for ENET_MSCR_DIS_PRE.
 #define BM_ENET_MSCR_DIS_PRE      (0x00000080)  //!< Bit mask for ENET_MSCR_DIS_PRE.
 
@@ -1678,7 +1581,6 @@ typedef union _hw_enet_mscr
 //! @brief Set the DIS_PRE field to a new value.
 #define BW_ENET_MSCR_DIS_PRE(v)   (HW_ENET_MSCR_WR((HW_ENET_MSCR_RD() & ~BM_ENET_MSCR_DIS_PRE) | BF_ENET_MSCR_DIS_PRE(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_MSCR, field HOLDTIME[10:8] (RW)
@@ -1693,7 +1595,6 @@ typedef union _hw_enet_mscr
  * - 111 - 8 internal module clock cycles
  */
 //@{
-
 #define BP_ENET_MSCR_HOLDTIME      (8)      //!< Bit position for ENET_MSCR_HOLDTIME.
 #define BM_ENET_MSCR_HOLDTIME      (0x00000700)  //!< Bit mask for ENET_MSCR_HOLDTIME.
 
@@ -1707,7 +1608,6 @@ typedef union _hw_enet_mscr
 //! @brief Set the HOLDTIME field to a new value.
 #define BW_ENET_MSCR_HOLDTIME(v)   (HW_ENET_MSCR_WR((HW_ENET_MSCR_RD() & ~BM_ENET_MSCR_HOLDTIME) | BF_ENET_MSCR_HOLDTIME(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1763,7 +1663,6 @@ typedef union _hw_enet_mibc
  * counters set and then clear the field.
  */
 //@{
-
 #define BP_ENET_MIBC_MIB_CLEAR      (29)      //!< Bit position for ENET_MIBC_MIB_CLEAR.
 #define BM_ENET_MIBC_MIB_CLEAR      (0x20000000)  //!< Bit mask for ENET_MIBC_MIB_CLEAR.
 
@@ -1777,7 +1676,6 @@ typedef union _hw_enet_mibc
 //! @brief Set the MIB_CLEAR field to a new value.
 #define BW_ENET_MIBC_MIB_CLEAR(v)   (HW_ENET_MIBC_WR((HW_ENET_MIBC_RD() & ~BM_ENET_MIBC_MIB_CLEAR) | BF_ENET_MIBC_MIB_CLEAR(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_MIBC, field MIB_IDLE[30] (RO)
@@ -1785,13 +1683,11 @@ typedef union _hw_enet_mibc
  * If this status field is set, the MIB block is not currently updating any MIB counters.
  */
 //@{
-
 #define BP_ENET_MIBC_MIB_IDLE      (30)      //!< Bit position for ENET_MIBC_MIB_IDLE.
 #define BM_ENET_MIBC_MIB_IDLE      (0x40000000)  //!< Bit mask for ENET_MIBC_MIB_IDLE.
 
 //! @brief Get value of ENET_MIBC_MIB_IDLE from a register value.
 #define BG_ENET_MIBC_MIB_IDLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_MIBC_MIB_IDLE) >> BP_ENET_MIBC_MIB_IDLE)
-
 //@}
 
 /*! @name Register ENET_MIBC, field MIB_DIS[31] (RW)
@@ -1799,7 +1695,6 @@ typedef union _hw_enet_mibc
  * If this control field is set, the MIB logic halts and does not update any MIB counters.
  */
 //@{
-
 #define BP_ENET_MIBC_MIB_DIS      (31)      //!< Bit position for ENET_MIBC_MIB_DIS.
 #define BM_ENET_MIBC_MIB_DIS      (0x80000000)  //!< Bit mask for ENET_MIBC_MIB_DIS.
 
@@ -1813,7 +1708,6 @@ typedef union _hw_enet_mibc
 //! @brief Set the MIB_DIS field to a new value.
 #define BW_ENET_MIBC_MIB_DIS(v)   (HW_ENET_MIBC_WR((HW_ENET_MIBC_RD() & ~BM_ENET_MIBC_MIB_DIS) | BF_ENET_MIBC_MIB_DIS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1885,7 +1779,6 @@ typedef union _hw_enet_rcr
  *     asserted. DRT must be cleared.
  */
 //@{
-
 #define BP_ENET_RCR_LOOP      (0)      //!< Bit position for ENET_RCR_LOOP.
 #define BM_ENET_RCR_LOOP      (0x00000001)  //!< Bit mask for ENET_RCR_LOOP.
 
@@ -1899,7 +1792,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the LOOP field to a new value.
 #define BW_ENET_RCR_LOOP(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_LOOP) | BF_ENET_RCR_LOOP(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field DRT[1] (RW)
@@ -1912,7 +1804,6 @@ typedef union _hw_enet_rcr
  * - 1 - Disable reception of frames while transmitting. Normally used for half-duplex mode.
  */
 //@{
-
 #define BP_ENET_RCR_DRT      (1)      //!< Bit position for ENET_RCR_DRT.
 #define BM_ENET_RCR_DRT      (0x00000002)  //!< Bit mask for ENET_RCR_DRT.
 
@@ -1926,7 +1817,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the DRT field to a new value.
 #define BW_ENET_RCR_DRT(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_DRT) | BF_ENET_RCR_DRT(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field MII_MODE[2] (RW)
@@ -1938,7 +1828,6 @@ typedef union _hw_enet_rcr
  * - 1 - MII or RMII mode, as indicated by the RMII_MODE field.
  */
 //@{
-
 #define BP_ENET_RCR_MII_MODE      (2)      //!< Bit position for ENET_RCR_MII_MODE.
 #define BM_ENET_RCR_MII_MODE      (0x00000004)  //!< Bit mask for ENET_RCR_MII_MODE.
 
@@ -1952,7 +1841,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the MII_MODE field to a new value.
 #define BW_ENET_RCR_MII_MODE(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_MII_MODE) | BF_ENET_RCR_MII_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field PROM[3] (RW)
@@ -1964,7 +1852,6 @@ typedef union _hw_enet_rcr
  * - 1 - Enabled.
  */
 //@{
-
 #define BP_ENET_RCR_PROM      (3)      //!< Bit position for ENET_RCR_PROM.
 #define BM_ENET_RCR_PROM      (0x00000008)  //!< Bit mask for ENET_RCR_PROM.
 
@@ -1978,7 +1865,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the PROM field to a new value.
 #define BW_ENET_RCR_PROM(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_PROM) | BF_ENET_RCR_PROM(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field BC_REJ[4] (RW)
@@ -1988,7 +1874,6 @@ typedef union _hw_enet_rcr
  * (M) is set in the receive buffer descriptor.
  */
 //@{
-
 #define BP_ENET_RCR_BC_REJ      (4)      //!< Bit position for ENET_RCR_BC_REJ.
 #define BM_ENET_RCR_BC_REJ      (0x00000010)  //!< Bit mask for ENET_RCR_BC_REJ.
 
@@ -2002,7 +1887,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the BC_REJ field to a new value.
 #define BW_ENET_RCR_BC_REJ(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_BC_REJ) | BF_ENET_RCR_BC_REJ(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field FCE[5] (RW)
@@ -2011,7 +1895,6 @@ typedef union _hw_enet_rcr
  * transmitting data frames for a given duration.
  */
 //@{
-
 #define BP_ENET_RCR_FCE      (5)      //!< Bit position for ENET_RCR_FCE.
 #define BM_ENET_RCR_FCE      (0x00000020)  //!< Bit mask for ENET_RCR_FCE.
 
@@ -2025,7 +1908,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the FCE field to a new value.
 #define BW_ENET_RCR_FCE(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_FCE) | BF_ENET_RCR_FCE(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field RMII_MODE[8] (RW)
@@ -2037,7 +1919,6 @@ typedef union _hw_enet_rcr
  * - 1 - MAC configured for RMII operation.
  */
 //@{
-
 #define BP_ENET_RCR_RMII_MODE      (8)      //!< Bit position for ENET_RCR_RMII_MODE.
 #define BM_ENET_RCR_RMII_MODE      (0x00000100)  //!< Bit mask for ENET_RCR_RMII_MODE.
 
@@ -2051,7 +1932,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the RMII_MODE field to a new value.
 #define BW_ENET_RCR_RMII_MODE(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_RMII_MODE) | BF_ENET_RCR_RMII_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field RMII_10T[9] (RW)
@@ -2063,7 +1943,6 @@ typedef union _hw_enet_rcr
  * - 1 - 10 Mbps operation.
  */
 //@{
-
 #define BP_ENET_RCR_RMII_10T      (9)      //!< Bit position for ENET_RCR_RMII_10T.
 #define BM_ENET_RCR_RMII_10T      (0x00000200)  //!< Bit mask for ENET_RCR_RMII_10T.
 
@@ -2077,7 +1956,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the RMII_10T field to a new value.
 #define BW_ENET_RCR_RMII_10T(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_RMII_10T) | BF_ENET_RCR_RMII_10T(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field PADEN[12] (RW)
@@ -2089,7 +1967,6 @@ typedef union _hw_enet_rcr
  * - 1 - Padding is removed from received frames.
  */
 //@{
-
 #define BP_ENET_RCR_PADEN      (12)      //!< Bit position for ENET_RCR_PADEN.
 #define BM_ENET_RCR_PADEN      (0x00001000)  //!< Bit mask for ENET_RCR_PADEN.
 
@@ -2103,7 +1980,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the PADEN field to a new value.
 #define BW_ENET_RCR_PADEN(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_PADEN) | BF_ENET_RCR_PADEN(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field PAUFWD[13] (RW)
@@ -2115,7 +1991,6 @@ typedef union _hw_enet_rcr
  * - 1 - Pause frames are forwarded to the user application.
  */
 //@{
-
 #define BP_ENET_RCR_PAUFWD      (13)      //!< Bit position for ENET_RCR_PAUFWD.
 #define BM_ENET_RCR_PAUFWD      (0x00002000)  //!< Bit mask for ENET_RCR_PAUFWD.
 
@@ -2129,7 +2004,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the PAUFWD field to a new value.
 #define BW_ENET_RCR_PAUFWD(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_PAUFWD) | BF_ENET_RCR_PAUFWD(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field CRCFWD[14] (RW)
@@ -2143,7 +2017,6 @@ typedef union _hw_enet_rcr
  * - 1 - The CRC field is stripped from the frame.
  */
 //@{
-
 #define BP_ENET_RCR_CRCFWD      (14)      //!< Bit position for ENET_RCR_CRCFWD.
 #define BM_ENET_RCR_CRCFWD      (0x00004000)  //!< Bit mask for ENET_RCR_CRCFWD.
 
@@ -2157,7 +2030,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the CRCFWD field to a new value.
 #define BW_ENET_RCR_CRCFWD(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_CRCFWD) | BF_ENET_RCR_CRCFWD(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field CFEN[15] (RW)
@@ -2170,7 +2042,6 @@ typedef union _hw_enet_rcr
  * - 1 - MAC control frames with any opcode other than 0x0001 (pause frame) are silently discarded.
  */
 //@{
-
 #define BP_ENET_RCR_CFEN      (15)      //!< Bit position for ENET_RCR_CFEN.
 #define BM_ENET_RCR_CFEN      (0x00008000)  //!< Bit mask for ENET_RCR_CFEN.
 
@@ -2184,7 +2055,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the CFEN field to a new value.
 #define BW_ENET_RCR_CFEN(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_CFEN) | BF_ENET_RCR_CFEN(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field MAX_FL[29:16] (RW)
@@ -2196,7 +2066,6 @@ typedef union _hw_enet_rcr
  * tags are supported.
  */
 //@{
-
 #define BP_ENET_RCR_MAX_FL      (16)      //!< Bit position for ENET_RCR_MAX_FL.
 #define BM_ENET_RCR_MAX_FL      (0x3fff0000)  //!< Bit mask for ENET_RCR_MAX_FL.
 
@@ -2210,7 +2079,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the MAX_FL field to a new value.
 #define BW_ENET_RCR_MAX_FL(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_MAX_FL) | BF_ENET_RCR_MAX_FL(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field NLC[30] (RW)
@@ -2223,7 +2091,6 @@ typedef union _hw_enet_rcr
  *     the EIR[PLC] field.
  */
 //@{
-
 #define BP_ENET_RCR_NLC      (30)      //!< Bit position for ENET_RCR_NLC.
 #define BM_ENET_RCR_NLC      (0x40000000)  //!< Bit mask for ENET_RCR_NLC.
 
@@ -2237,7 +2104,6 @@ typedef union _hw_enet_rcr
 //! @brief Set the NLC field to a new value.
 #define BW_ENET_RCR_NLC(v)   (HW_ENET_RCR_WR((HW_ENET_RCR_RD() & ~BM_ENET_RCR_NLC) | BF_ENET_RCR_NLC(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RCR, field GRS[31] (RO)
@@ -2245,13 +2111,11 @@ typedef union _hw_enet_rcr
  * Read-only status indicating that the MAC receive datapath is stopped.
  */
 //@{
-
 #define BP_ENET_RCR_GRS      (31)      //!< Bit position for ENET_RCR_GRS.
 #define BM_ENET_RCR_GRS      (0x80000000)  //!< Bit mask for ENET_RCR_GRS.
 
 //! @brief Get value of ENET_RCR_GRS from a register value.
 #define BG_ENET_RCR_GRS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_RCR_GRS) >> BP_ENET_RCR_GRS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2316,7 +2180,6 @@ typedef union _hw_enet_tcr
  * clear ECR[ETHER_EN] following the GRA interrupt.
  */
 //@{
-
 #define BP_ENET_TCR_GTS      (0)      //!< Bit position for ENET_TCR_GTS.
 #define BM_ENET_TCR_GTS      (0x00000001)  //!< Bit mask for ENET_TCR_GTS.
 
@@ -2330,7 +2193,6 @@ typedef union _hw_enet_tcr
 //! @brief Set the GTS field to a new value.
 #define BW_ENET_TCR_GTS(v)   (HW_ENET_TCR_WR((HW_ENET_TCR_RD() & ~BM_ENET_TCR_GTS) | BF_ENET_TCR_GTS(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_TCR, field FDEN[2] (RW)
@@ -2339,7 +2201,6 @@ typedef union _hw_enet_tcr
  * modify this bit when ECR[ETHER_EN] is cleared.
  */
 //@{
-
 #define BP_ENET_TCR_FDEN      (2)      //!< Bit position for ENET_TCR_FDEN.
 #define BM_ENET_TCR_FDEN      (0x00000004)  //!< Bit mask for ENET_TCR_FDEN.
 
@@ -2353,7 +2214,6 @@ typedef union _hw_enet_tcr
 //! @brief Set the FDEN field to a new value.
 #define BW_ENET_TCR_FDEN(v)   (HW_ENET_TCR_WR((HW_ENET_TCR_RD() & ~BM_ENET_TCR_FDEN) | BF_ENET_TCR_FDEN(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_TCR, field TFC_PAUSE[3] (RW)
@@ -2368,7 +2228,6 @@ typedef union _hw_enet_tcr
  * - 1 - The MAC stops transmission of data frames after the current transmission is complete.
  */
 //@{
-
 #define BP_ENET_TCR_TFC_PAUSE      (3)      //!< Bit position for ENET_TCR_TFC_PAUSE.
 #define BM_ENET_TCR_TFC_PAUSE      (0x00000008)  //!< Bit mask for ENET_TCR_TFC_PAUSE.
 
@@ -2382,7 +2241,6 @@ typedef union _hw_enet_tcr
 //! @brief Set the TFC_PAUSE field to a new value.
 #define BW_ENET_TCR_TFC_PAUSE(v)   (HW_ENET_TCR_WR((HW_ENET_TCR_RD() & ~BM_ENET_TCR_TFC_PAUSE) | BF_ENET_TCR_TFC_PAUSE(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_TCR, field RFC_PAUSE[4] (RO)
@@ -2392,13 +2250,11 @@ typedef union _hw_enet_tcr
  * when the pause duration is complete.
  */
 //@{
-
 #define BP_ENET_TCR_RFC_PAUSE      (4)      //!< Bit position for ENET_TCR_RFC_PAUSE.
 #define BM_ENET_TCR_RFC_PAUSE      (0x00000010)  //!< Bit mask for ENET_TCR_RFC_PAUSE.
 
 //! @brief Get value of ENET_TCR_RFC_PAUSE from a register value.
 #define BG_ENET_TCR_RFC_PAUSE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_TCR_RFC_PAUSE) >> BP_ENET_TCR_RFC_PAUSE)
-
 //@}
 
 /*! @name Register ENET_TCR, field ADDSEL[7:5] (RW)
@@ -2412,7 +2268,6 @@ typedef union _hw_enet_tcr
  * - 110 - 
  */
 //@{
-
 #define BP_ENET_TCR_ADDSEL      (5)      //!< Bit position for ENET_TCR_ADDSEL.
 #define BM_ENET_TCR_ADDSEL      (0x000000e0)  //!< Bit mask for ENET_TCR_ADDSEL.
 
@@ -2426,7 +2281,6 @@ typedef union _hw_enet_tcr
 //! @brief Set the ADDSEL field to a new value.
 #define BW_ENET_TCR_ADDSEL(v)   (HW_ENET_TCR_WR((HW_ENET_TCR_RD() & ~BM_ENET_TCR_ADDSEL) | BF_ENET_TCR_ADDSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_TCR, field ADDINS[8] (RW)
@@ -2438,7 +2292,6 @@ typedef union _hw_enet_tcr
  * - 1 - The MAC overwrites the source MAC address with the programmed MAC address according to ADDSEL.
  */
 //@{
-
 #define BP_ENET_TCR_ADDINS      (8)      //!< Bit position for ENET_TCR_ADDINS.
 #define BM_ENET_TCR_ADDINS      (0x00000100)  //!< Bit mask for ENET_TCR_ADDINS.
 
@@ -2452,7 +2305,6 @@ typedef union _hw_enet_tcr
 //! @brief Set the ADDINS field to a new value.
 #define BW_ENET_TCR_ADDINS(v)   (HW_ENET_TCR_WR((HW_ENET_TCR_RD() & ~BM_ENET_TCR_ADDINS) | BF_ENET_TCR_ADDINS(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_TCR, field CRCFWD[9] (RW)
@@ -2465,7 +2317,6 @@ typedef union _hw_enet_tcr
  *     from the application.
  */
 //@{
-
 #define BP_ENET_TCR_CRCFWD      (9)      //!< Bit position for ENET_TCR_CRCFWD.
 #define BM_ENET_TCR_CRCFWD      (0x00000200)  //!< Bit mask for ENET_TCR_CRCFWD.
 
@@ -2479,7 +2330,6 @@ typedef union _hw_enet_tcr
 //! @brief Set the CRCFWD field to a new value.
 #define BW_ENET_TCR_CRCFWD(v)   (HW_ENET_TCR_WR((HW_ENET_TCR_RD() & ~BM_ENET_TCR_CRCFWD) | BF_ENET_TCR_CRCFWD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2534,7 +2384,6 @@ typedef union _hw_enet_palr
  * address are used for exact match and the source address field in PAUSE frames.
  */
 //@{
-
 #define BP_ENET_PALR_PADDR1      (0)      //!< Bit position for ENET_PALR_PADDR1.
 #define BM_ENET_PALR_PADDR1      (0xffffffff)  //!< Bit mask for ENET_PALR_PADDR1.
 
@@ -2548,7 +2397,6 @@ typedef union _hw_enet_palr
 //! @brief Set the PADDR1 field to a new value.
 #define BW_ENET_PALR_PADDR1(v)   (HW_ENET_PALR_WR((HW_ENET_PALR_RD() & ~BM_ENET_PALR_PADDR1) | BF_ENET_PALR_PADDR1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2604,13 +2452,11 @@ typedef union _hw_enet_paur
  * These fields have a constant value of 0x8808.
  */
 //@{
-
 #define BP_ENET_PAUR_TYPE      (0)      //!< Bit position for ENET_PAUR_TYPE.
 #define BM_ENET_PAUR_TYPE      (0x0000ffff)  //!< Bit mask for ENET_PAUR_TYPE.
 
 //! @brief Get value of ENET_PAUR_TYPE from a register value.
 #define BG_ENET_PAUR_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_PAUR_TYPE) >> BP_ENET_PAUR_TYPE)
-
 //@}
 
 /*! @name Register ENET_PAUR, field PADDR2[31:16] (RW)
@@ -2619,7 +2465,6 @@ typedef union _hw_enet_paur
  * and the source address field in PAUSE frames.
  */
 //@{
-
 #define BP_ENET_PAUR_PADDR2      (16)      //!< Bit position for ENET_PAUR_PADDR2.
 #define BM_ENET_PAUR_PADDR2      (0xffff0000)  //!< Bit mask for ENET_PAUR_PADDR2.
 
@@ -2633,7 +2478,6 @@ typedef union _hw_enet_paur
 //! @brief Set the PADDR2 field to a new value.
 #define BW_ENET_PAUR_PADDR2(v)   (HW_ENET_PAUR_WR((HW_ENET_PAUR_RD() & ~BM_ENET_PAUR_PADDR2) | BF_ENET_PAUR_PADDR2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2688,7 +2532,6 @@ typedef union _hw_enet_opd
  * Pause duration field used in PAUSE frames.
  */
 //@{
-
 #define BP_ENET_OPD_PAUSE_DUR      (0)      //!< Bit position for ENET_OPD_PAUSE_DUR.
 #define BM_ENET_OPD_PAUSE_DUR      (0x0000ffff)  //!< Bit mask for ENET_OPD_PAUSE_DUR.
 
@@ -2702,7 +2545,6 @@ typedef union _hw_enet_opd
 //! @brief Set the PAUSE_DUR field to a new value.
 #define BW_ENET_OPD_PAUSE_DUR(v)   (HW_ENET_OPD_WR((HW_ENET_OPD_RD() & ~BM_ENET_OPD_PAUSE_DUR) | BF_ENET_OPD_PAUSE_DUR(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_OPD, field OPCODE[31:16] (RO)
@@ -2710,13 +2552,11 @@ typedef union _hw_enet_opd
  * These fields have a constant value of 0x0001.
  */
 //@{
-
 #define BP_ENET_OPD_OPCODE      (16)      //!< Bit position for ENET_OPD_OPCODE.
 #define BM_ENET_OPD_OPCODE      (0xffff0000)  //!< Bit mask for ENET_OPD_OPCODE.
 
 //! @brief Get value of ENET_OPD_OPCODE from a register value.
 #define BG_ENET_OPD_OPCODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_OPD_OPCODE) >> BP_ENET_OPD_OPCODE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2771,7 +2611,6 @@ typedef union _hw_enet_iaur
  * IADDR1 contains hash index bit 32.
  */
 //@{
-
 #define BP_ENET_IAUR_IADDR1      (0)      //!< Bit position for ENET_IAUR_IADDR1.
 #define BM_ENET_IAUR_IADDR1      (0xffffffff)  //!< Bit mask for ENET_IAUR_IADDR1.
 
@@ -2785,7 +2624,6 @@ typedef union _hw_enet_iaur
 //! @brief Set the IADDR1 field to a new value.
 #define BW_ENET_IAUR_IADDR1(v)   (HW_ENET_IAUR_WR((HW_ENET_IAUR_RD() & ~BM_ENET_IAUR_IADDR1) | BF_ENET_IAUR_IADDR1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2839,7 +2677,6 @@ typedef union _hw_enet_ialr
  * IADDR2 contains hash index bit 0.
  */
 //@{
-
 #define BP_ENET_IALR_IADDR2      (0)      //!< Bit position for ENET_IALR_IADDR2.
 #define BM_ENET_IALR_IADDR2      (0xffffffff)  //!< Bit mask for ENET_IALR_IADDR2.
 
@@ -2853,7 +2690,6 @@ typedef union _hw_enet_ialr
 //! @brief Set the IADDR2 field to a new value.
 #define BW_ENET_IALR_IADDR2(v)   (HW_ENET_IALR_WR((HW_ENET_IALR_RD() & ~BM_ENET_IALR_IADDR2) | BF_ENET_IALR_IADDR2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2906,7 +2742,6 @@ typedef union _hw_enet_gaur
  * GADDR1 contains hash index bit 32.
  */
 //@{
-
 #define BP_ENET_GAUR_GADDR1      (0)      //!< Bit position for ENET_GAUR_GADDR1.
 #define BM_ENET_GAUR_GADDR1      (0xffffffff)  //!< Bit mask for ENET_GAUR_GADDR1.
 
@@ -2920,7 +2755,6 @@ typedef union _hw_enet_gaur
 //! @brief Set the GADDR1 field to a new value.
 #define BW_ENET_GAUR_GADDR1(v)   (HW_ENET_GAUR_WR((HW_ENET_GAUR_RD() & ~BM_ENET_GAUR_GADDR1) | BF_ENET_GAUR_GADDR1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2973,7 +2807,6 @@ typedef union _hw_enet_galr
  * GADDR2 contains hash index bit 0.
  */
 //@{
-
 #define BP_ENET_GALR_GADDR2      (0)      //!< Bit position for ENET_GALR_GADDR2.
 #define BM_ENET_GALR_GADDR2      (0xffffffff)  //!< Bit mask for ENET_GALR_GADDR2.
 
@@ -2987,7 +2820,6 @@ typedef union _hw_enet_galr
 //! @brief Set the GADDR2 field to a new value.
 #define BW_ENET_GALR_GADDR2(v)   (HW_ENET_GALR_WR((HW_ENET_GALR_RD() & ~BM_ENET_GALR_GADDR2) | BF_ENET_GALR_GADDR2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3056,7 +2888,6 @@ typedef union _hw_enet_tfwr
  * - 111111 - 4032 bytes written.
  */
 //@{
-
 #define BP_ENET_TFWR_TFWR      (0)      //!< Bit position for ENET_TFWR_TFWR.
 #define BM_ENET_TFWR_TFWR      (0x0000003f)  //!< Bit mask for ENET_TFWR_TFWR.
 
@@ -3070,7 +2901,6 @@ typedef union _hw_enet_tfwr
 //! @brief Set the TFWR field to a new value.
 #define BW_ENET_TFWR_TFWR(v)   (HW_ENET_TFWR_WR((HW_ENET_TFWR_RD() & ~BM_ENET_TFWR_TFWR) | BF_ENET_TFWR_TFWR(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_TFWR, field STRFWD[8] (RW)
@@ -3082,7 +2912,6 @@ typedef union _hw_enet_tfwr
  * - 1 - Enabled.
  */
 //@{
-
 #define BP_ENET_TFWR_STRFWD      (8)      //!< Bit position for ENET_TFWR_STRFWD.
 #define BM_ENET_TFWR_STRFWD      (0x00000100)  //!< Bit mask for ENET_TFWR_STRFWD.
 
@@ -3096,7 +2925,6 @@ typedef union _hw_enet_tfwr
 //! @brief Set the STRFWD field to a new value.
 #define BW_ENET_TFWR_STRFWD(v)   (HW_ENET_TFWR_WR((HW_ENET_TFWR_RD() & ~BM_ENET_TFWR_STRFWD) | BF_ENET_TFWR_STRFWD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3150,7 +2978,6 @@ typedef union _hw_enet_rdsr
  * Pointer to the beginning of the receive buffer descriptor queue.
  */
 //@{
-
 #define BP_ENET_RDSR_R_DES_START      (3)      //!< Bit position for ENET_RDSR_R_DES_START.
 #define BM_ENET_RDSR_R_DES_START      (0xfffffff8)  //!< Bit mask for ENET_RDSR_R_DES_START.
 
@@ -3164,7 +2991,6 @@ typedef union _hw_enet_rdsr
 //! @brief Set the R_DES_START field to a new value.
 #define BW_ENET_RDSR_R_DES_START(v)   (HW_ENET_RDSR_WR((HW_ENET_RDSR_RD() & ~BM_ENET_RDSR_R_DES_START) | BF_ENET_RDSR_R_DES_START(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3218,7 +3044,6 @@ typedef union _hw_enet_tdsr
  * Pointer to the beginning of the transmit buffer descriptor queue.
  */
 //@{
-
 #define BP_ENET_TDSR_X_DES_START      (3)      //!< Bit position for ENET_TDSR_X_DES_START.
 #define BM_ENET_TDSR_X_DES_START      (0xfffffff8)  //!< Bit mask for ENET_TDSR_X_DES_START.
 
@@ -3232,7 +3057,6 @@ typedef union _hw_enet_tdsr
 //! @brief Set the X_DES_START field to a new value.
 #define BW_ENET_TDSR_X_DES_START(v)   (HW_ENET_TDSR_WR((HW_ENET_TDSR_RD() & ~BM_ENET_TDSR_X_DES_START) | BF_ENET_TDSR_X_DES_START(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3289,7 +3113,6 @@ typedef union _hw_enet_mrbr
  * Receive buffer size in bytes.
  */
 //@{
-
 #define BP_ENET_MRBR_R_BUF_SIZE      (4)      //!< Bit position for ENET_MRBR_R_BUF_SIZE.
 #define BM_ENET_MRBR_R_BUF_SIZE      (0x00003ff0)  //!< Bit mask for ENET_MRBR_R_BUF_SIZE.
 
@@ -3303,7 +3126,6 @@ typedef union _hw_enet_mrbr
 //! @brief Set the R_BUF_SIZE field to a new value.
 #define BW_ENET_MRBR_R_BUF_SIZE(v)   (HW_ENET_MRBR_WR((HW_ENET_MRBR_RD() & ~BM_ENET_MRBR_R_BUF_SIZE) | BF_ENET_MRBR_R_BUF_SIZE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3649,7 +3471,6 @@ typedef union _hw_enet_tipg
  * value is less than 8, the IPG is 8. If value is greater than 27, the IPG is 27.
  */
 //@{
-
 #define BP_ENET_TIPG_IPG      (0)      //!< Bit position for ENET_TIPG_IPG.
 #define BM_ENET_TIPG_IPG      (0x0000001f)  //!< Bit mask for ENET_TIPG_IPG.
 
@@ -3663,7 +3484,6 @@ typedef union _hw_enet_tipg
 //! @brief Set the IPG field to a new value.
 #define BW_ENET_TIPG_IPG(v)   (HW_ENET_TIPG_WR((HW_ENET_TIPG_RD() & ~BM_ENET_TIPG_IPG) | BF_ENET_TIPG_IPG(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3717,7 +3537,6 @@ typedef union _hw_enet_ftrl
  * than the set limit.
  */
 //@{
-
 #define BP_ENET_FTRL_TRUNC_FL      (0)      //!< Bit position for ENET_FTRL_TRUNC_FL.
 #define BM_ENET_FTRL_TRUNC_FL      (0x00003fff)  //!< Bit mask for ENET_FTRL_TRUNC_FL.
 
@@ -3731,7 +3550,6 @@ typedef union _hw_enet_ftrl
 //! @brief Set the TRUNC_FL field to a new value.
 #define BW_ENET_FTRL_TRUNC_FL(v)   (HW_ENET_FTRL_WR((HW_ENET_FTRL_RD() & ~BM_ENET_FTRL_TRUNC_FL) | BF_ENET_FTRL_TRUNC_FL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3794,7 +3612,6 @@ typedef union _hw_enet_tacc
  *     14-byte Ethernet header is extended to a 16-byte header.
  */
 //@{
-
 #define BP_ENET_TACC_SHIFT16      (0)      //!< Bit position for ENET_TACC_SHIFT16.
 #define BM_ENET_TACC_SHIFT16      (0x00000001)  //!< Bit mask for ENET_TACC_SHIFT16.
 
@@ -3808,7 +3625,6 @@ typedef union _hw_enet_tacc
 //! @brief Set the SHIFT16 field to a new value.
 #define BW_ENET_TACC_SHIFT16(v)   (HW_ENET_TACC_WR((HW_ENET_TACC_RD() & ~BM_ENET_TACC_SHIFT16) | BF_ENET_TACC_SHIFT16(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_TACC, field IPCHK[3] (RW)
@@ -3821,7 +3637,6 @@ typedef union _hw_enet_tacc
  *     must be cleared. If a non-IP frame is transmitted the frame is not modified.
  */
 //@{
-
 #define BP_ENET_TACC_IPCHK      (3)      //!< Bit position for ENET_TACC_IPCHK.
 #define BM_ENET_TACC_IPCHK      (0x00000008)  //!< Bit mask for ENET_TACC_IPCHK.
 
@@ -3835,7 +3650,6 @@ typedef union _hw_enet_tacc
 //! @brief Set the IPCHK field to a new value.
 #define BW_ENET_TACC_IPCHK(v)   (HW_ENET_TACC_WR((HW_ENET_TACC_RD() & ~BM_ENET_TACC_IPCHK) | BF_ENET_TACC_IPCHK(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_TACC, field PROCHK[4] (RW)
@@ -3848,7 +3662,6 @@ typedef union _hw_enet_tacc
  *     frame. The checksum field must be cleared. The other frames are not modified.
  */
 //@{
-
 #define BP_ENET_TACC_PROCHK      (4)      //!< Bit position for ENET_TACC_PROCHK.
 #define BM_ENET_TACC_PROCHK      (0x00000010)  //!< Bit mask for ENET_TACC_PROCHK.
 
@@ -3862,7 +3675,6 @@ typedef union _hw_enet_tacc
 //! @brief Set the PROCHK field to a new value.
 #define BW_ENET_TACC_PROCHK(v)   (HW_ENET_TACC_WR((HW_ENET_TACC_RD() & ~BM_ENET_TACC_PROCHK) | BF_ENET_TACC_PROCHK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3922,7 +3734,6 @@ typedef union _hw_enet_racc
  * - 1 - Any bytes following the IP payload section of the frame are removed from the frame.
  */
 //@{
-
 #define BP_ENET_RACC_PADREM      (0)      //!< Bit position for ENET_RACC_PADREM.
 #define BM_ENET_RACC_PADREM      (0x00000001)  //!< Bit mask for ENET_RACC_PADREM.
 
@@ -3936,7 +3747,6 @@ typedef union _hw_enet_racc
 //! @brief Set the PADREM field to a new value.
 #define BW_ENET_RACC_PADREM(v)   (HW_ENET_RACC_WR((HW_ENET_RACC_RD() & ~BM_ENET_RACC_PADREM) | BF_ENET_RACC_PADREM(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RACC, field IPDIS[1] (RW)
@@ -3950,7 +3760,6 @@ typedef union _hw_enet_racc
  *     FIFO operates in store and forward mode (RSFL cleared).
  */
 //@{
-
 #define BP_ENET_RACC_IPDIS      (1)      //!< Bit position for ENET_RACC_IPDIS.
 #define BM_ENET_RACC_IPDIS      (0x00000002)  //!< Bit mask for ENET_RACC_IPDIS.
 
@@ -3964,7 +3773,6 @@ typedef union _hw_enet_racc
 //! @brief Set the IPDIS field to a new value.
 #define BW_ENET_RACC_IPDIS(v)   (HW_ENET_RACC_WR((HW_ENET_RACC_RD() & ~BM_ENET_RACC_IPDIS) | BF_ENET_RACC_IPDIS(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RACC, field PRODIS[2] (RW)
@@ -3978,7 +3786,6 @@ typedef union _hw_enet_racc
  *     forward mode (RSFL cleared).
  */
 //@{
-
 #define BP_ENET_RACC_PRODIS      (2)      //!< Bit position for ENET_RACC_PRODIS.
 #define BM_ENET_RACC_PRODIS      (0x00000004)  //!< Bit mask for ENET_RACC_PRODIS.
 
@@ -3992,7 +3799,6 @@ typedef union _hw_enet_racc
 //! @brief Set the PRODIS field to a new value.
 #define BW_ENET_RACC_PRODIS(v)   (HW_ENET_RACC_WR((HW_ENET_RACC_RD() & ~BM_ENET_RACC_PRODIS) | BF_ENET_RACC_PRODIS(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RACC, field LINEDIS[6] (RW)
@@ -4005,7 +3811,6 @@ typedef union _hw_enet_racc
  *     the user application interface.
  */
 //@{
-
 #define BP_ENET_RACC_LINEDIS      (6)      //!< Bit position for ENET_RACC_LINEDIS.
 #define BM_ENET_RACC_LINEDIS      (0x00000040)  //!< Bit mask for ENET_RACC_LINEDIS.
 
@@ -4019,7 +3824,6 @@ typedef union _hw_enet_racc
 //! @brief Set the LINEDIS field to a new value.
 #define BW_ENET_RACC_LINEDIS(v)   (HW_ENET_RACC_WR((HW_ENET_RACC_RD() & ~BM_ENET_RACC_LINEDIS) | BF_ENET_RACC_LINEDIS(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_RACC, field SHIFT16[7] (RW)
@@ -4034,7 +3838,6 @@ typedef union _hw_enet_racc
  * - 1 - Instructs the MAC to write two additional bytes in front of each frame received into the RX FIFO.
  */
 //@{
-
 #define BP_ENET_RACC_SHIFT16      (7)      //!< Bit position for ENET_RACC_SHIFT16.
 #define BM_ENET_RACC_SHIFT16      (0x00000080)  //!< Bit mask for ENET_RACC_SHIFT16.
 
@@ -4048,7 +3851,6 @@ typedef union _hw_enet_racc
 //! @brief Set the SHIFT16 field to a new value.
 #define BW_ENET_RACC_SHIFT16(v)   (HW_ENET_RACC_WR((HW_ENET_RACC_RD() & ~BM_ENET_RACC_SHIFT16) | BF_ENET_RACC_SHIFT16(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4117,7 +3919,6 @@ typedef union _hw_enet_atcr
  * - 1 - The timer starts incrementing.
  */
 //@{
-
 #define BP_ENET_ATCR_EN      (0)      //!< Bit position for ENET_ATCR_EN.
 #define BM_ENET_ATCR_EN      (0x00000001)  //!< Bit mask for ENET_ATCR_EN.
 
@@ -4131,7 +3932,6 @@ typedef union _hw_enet_atcr
 //! @brief Set the EN field to a new value.
 #define BW_ENET_ATCR_EN(v)   (HW_ENET_ATCR_WR((HW_ENET_ATCR_RD() & ~BM_ENET_ATCR_EN) | BF_ENET_ATCR_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ATCR, field OFFEN[2] (RW)
@@ -4145,7 +3945,6 @@ typedef union _hw_enet_atcr
  *     again. The timer offset value must be set before setting this field.
  */
 //@{
-
 #define BP_ENET_ATCR_OFFEN      (2)      //!< Bit position for ENET_ATCR_OFFEN.
 #define BM_ENET_ATCR_OFFEN      (0x00000004)  //!< Bit mask for ENET_ATCR_OFFEN.
 
@@ -4159,7 +3958,6 @@ typedef union _hw_enet_atcr
 //! @brief Set the OFFEN field to a new value.
 #define BW_ENET_ATCR_OFFEN(v)   (HW_ENET_ATCR_WR((HW_ENET_ATCR_RD() & ~BM_ENET_ATCR_OFFEN) | BF_ENET_ATCR_OFFEN(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ATCR, field OFFRST[3] (RW)
@@ -4172,7 +3970,6 @@ typedef union _hw_enet_atcr
  *     not cause a timer interrupt.
  */
 //@{
-
 #define BP_ENET_ATCR_OFFRST      (3)      //!< Bit position for ENET_ATCR_OFFRST.
 #define BM_ENET_ATCR_OFFRST      (0x00000008)  //!< Bit mask for ENET_ATCR_OFFRST.
 
@@ -4186,7 +3983,6 @@ typedef union _hw_enet_atcr
 //! @brief Set the OFFRST field to a new value.
 #define BW_ENET_ATCR_OFFRST(v)   (HW_ENET_ATCR_WR((HW_ENET_ATCR_RD() & ~BM_ENET_ATCR_OFFRST) | BF_ENET_ATCR_OFFRST(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ATCR, field PEREN[4] (RW)
@@ -4201,7 +3997,6 @@ typedef union _hw_enet_atcr
  *     the chip configuration details.
  */
 //@{
-
 #define BP_ENET_ATCR_PEREN      (4)      //!< Bit position for ENET_ATCR_PEREN.
 #define BM_ENET_ATCR_PEREN      (0x00000010)  //!< Bit mask for ENET_ATCR_PEREN.
 
@@ -4215,7 +4010,6 @@ typedef union _hw_enet_atcr
 //! @brief Set the PEREN field to a new value.
 #define BW_ENET_ATCR_PEREN(v)   (HW_ENET_ATCR_WR((HW_ENET_ATCR_RD() & ~BM_ENET_ATCR_PEREN) | BF_ENET_ATCR_PEREN(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ATCR, field PINPER[7] (RW)
@@ -4228,7 +4022,6 @@ typedef union _hw_enet_atcr
  * - 1 - Enable.
  */
 //@{
-
 #define BP_ENET_ATCR_PINPER      (7)      //!< Bit position for ENET_ATCR_PINPER.
 #define BM_ENET_ATCR_PINPER      (0x00000080)  //!< Bit mask for ENET_ATCR_PINPER.
 
@@ -4242,7 +4035,6 @@ typedef union _hw_enet_atcr
 //! @brief Set the PINPER field to a new value.
 #define BW_ENET_ATCR_PINPER(v)   (HW_ENET_ATCR_WR((HW_ENET_ATCR_RD() & ~BM_ENET_ATCR_PINPER) | BF_ENET_ATCR_PINPER(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ATCR, field RESTART[9] (RW)
@@ -4252,7 +4044,6 @@ typedef union _hw_enet_atcr
  * other fields are ignored during a write.
  */
 //@{
-
 #define BP_ENET_ATCR_RESTART      (9)      //!< Bit position for ENET_ATCR_RESTART.
 #define BM_ENET_ATCR_RESTART      (0x00000200)  //!< Bit mask for ENET_ATCR_RESTART.
 
@@ -4266,7 +4057,6 @@ typedef union _hw_enet_atcr
 //! @brief Set the RESTART field to a new value.
 #define BW_ENET_ATCR_RESTART(v)   (HW_ENET_ATCR_WR((HW_ENET_ATCR_RD() & ~BM_ENET_ATCR_RESTART) | BF_ENET_ATCR_RESTART(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ATCR, field CAPTURE[11] (RW)
@@ -4278,7 +4068,6 @@ typedef union _hw_enet_atcr
  * - 1 - The current time is captured and can be read from the ATVR register.
  */
 //@{
-
 #define BP_ENET_ATCR_CAPTURE      (11)      //!< Bit position for ENET_ATCR_CAPTURE.
 #define BM_ENET_ATCR_CAPTURE      (0x00000800)  //!< Bit mask for ENET_ATCR_CAPTURE.
 
@@ -4292,7 +4081,6 @@ typedef union _hw_enet_atcr
 //! @brief Set the CAPTURE field to a new value.
 #define BW_ENET_ATCR_CAPTURE(v)   (HW_ENET_ATCR_WR((HW_ENET_ATCR_RD() & ~BM_ENET_ATCR_CAPTURE) | BF_ENET_ATCR_CAPTURE(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ATCR, field SLAVE[13] (RW)
@@ -4306,7 +4094,6 @@ typedef union _hw_enet_atcr
  *     current timer value.
  */
 //@{
-
 #define BP_ENET_ATCR_SLAVE      (13)      //!< Bit position for ENET_ATCR_SLAVE.
 #define BM_ENET_ATCR_SLAVE      (0x00002000)  //!< Bit mask for ENET_ATCR_SLAVE.
 
@@ -4320,7 +4107,6 @@ typedef union _hw_enet_atcr
 //! @brief Set the SLAVE field to a new value.
 #define BW_ENET_ATCR_SLAVE(v)   (HW_ENET_ATCR_WR((HW_ENET_ATCR_RD() & ~BM_ENET_ATCR_SLAVE) | BF_ENET_ATCR_SLAVE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4371,7 +4157,6 @@ typedef union _hw_enet_atvr
  * a capture command (set ATCR[CAPTURE]) prior to reading this register.
  */
 //@{
-
 #define BP_ENET_ATVR_ATIME      (0)      //!< Bit position for ENET_ATVR_ATIME.
 #define BM_ENET_ATVR_ATIME      (0xffffffff)  //!< Bit mask for ENET_ATVR_ATIME.
 
@@ -4385,7 +4170,6 @@ typedef union _hw_enet_atvr
 //! @brief Set the ATIME field to a new value.
 #define BW_ENET_ATVR_ATIME(v)   (HW_ENET_ATVR_WR((HW_ENET_ATVR_RD() & ~BM_ENET_ATVR_ATIME) | BF_ENET_ATVR_ATIME(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4437,7 +4221,6 @@ typedef union _hw_enet_atoff
  * this value is also given in true nanoseconds.
  */
 //@{
-
 #define BP_ENET_ATOFF_OFFSET      (0)      //!< Bit position for ENET_ATOFF_OFFSET.
 #define BM_ENET_ATOFF_OFFSET      (0xffffffff)  //!< Bit mask for ENET_ATOFF_OFFSET.
 
@@ -4451,7 +4234,6 @@ typedef union _hw_enet_atoff
 //! @brief Set the OFFSET field to a new value.
 #define BW_ENET_ATOFF_OFFSET(v)   (HW_ENET_ATOFF_WR((HW_ENET_ATOFF_RD() & ~BM_ENET_ATOFF_OFFSET) | BF_ENET_ATOFF_OFFSET(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4506,7 +4288,6 @@ typedef union _hw_enet_atper
  * a true 1 second counter.
  */
 //@{
-
 #define BP_ENET_ATPER_PERIOD      (0)      //!< Bit position for ENET_ATPER_PERIOD.
 #define BM_ENET_ATPER_PERIOD      (0xffffffff)  //!< Bit mask for ENET_ATPER_PERIOD.
 
@@ -4520,7 +4301,6 @@ typedef union _hw_enet_atper
 //! @brief Set the PERIOD field to a new value.
 #define BW_ENET_ATPER_PERIOD(v)   (HW_ENET_ATPER_WR((HW_ENET_ATPER_RD() & ~BM_ENET_ATPER_PERIOD) | BF_ENET_ATPER_PERIOD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4574,7 +4354,6 @@ typedef union _hw_enet_atcor
  * value is given in clock cycles, not in nanoseconds as all other values.
  */
 //@{
-
 #define BP_ENET_ATCOR_COR      (0)      //!< Bit position for ENET_ATCOR_COR.
 #define BM_ENET_ATCOR_COR      (0x7fffffff)  //!< Bit mask for ENET_ATCOR_COR.
 
@@ -4588,7 +4367,6 @@ typedef union _hw_enet_atcor
 //! @brief Set the COR field to a new value.
 #define BW_ENET_ATCOR_COR(v)   (HW_ENET_ATCOR_WR((HW_ENET_ATCOR_RD() & ~BM_ENET_ATCOR_COR) | BF_ENET_ATCOR_COR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4643,7 +4421,6 @@ typedef union _hw_enet_atinc
  * period set in ATPER.
  */
 //@{
-
 #define BP_ENET_ATINC_INC      (0)      //!< Bit position for ENET_ATINC_INC.
 #define BM_ENET_ATINC_INC      (0x0000007f)  //!< Bit mask for ENET_ATINC_INC.
 
@@ -4657,7 +4434,6 @@ typedef union _hw_enet_atinc
 //! @brief Set the INC field to a new value.
 #define BW_ENET_ATINC_INC(v)   (HW_ENET_ATINC_WR((HW_ENET_ATINC_RD() & ~BM_ENET_ATINC_INC) | BF_ENET_ATINC_INC(v)))
 #endif
-
 //@}
 
 /*! @name Register ENET_ATINC, field INC_CORR[14:8] (RW)
@@ -4666,7 +4442,6 @@ typedef union _hw_enet_atinc
  * value smaller than INC slows the timer, while a value larger than INC speeds the timer.
  */
 //@{
-
 #define BP_ENET_ATINC_INC_CORR      (8)      //!< Bit position for ENET_ATINC_INC_CORR.
 #define BM_ENET_ATINC_INC_CORR      (0x00007f00)  //!< Bit mask for ENET_ATINC_INC_CORR.
 
@@ -4680,7 +4455,6 @@ typedef union _hw_enet_atinc
 //! @brief Set the INC_CORR field to a new value.
 #define BW_ENET_ATINC_INC_CORR(v)   (HW_ENET_ATINC_WR((HW_ENET_ATINC_RD() & ~BM_ENET_ATINC_INC_CORR) | BF_ENET_ATINC_INC_CORR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4727,13 +4501,11 @@ typedef union _hw_enet_atstmp
  * valid when EIR[TS_AVAIL] is set.
  */
 //@{
-
 #define BP_ENET_ATSTMP_TIMESTAMP      (0)      //!< Bit position for ENET_ATSTMP_TIMESTAMP.
 #define BM_ENET_ATSTMP_TIMESTAMP      (0xffffffff)  //!< Bit mask for ENET_ATSTMP_TIMESTAMP.
 
 //! @brief Get value of ENET_ATSTMP_TIMESTAMP from a register value.
 #define BG_ENET_ATSTMP_TIMESTAMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ENET_ATSTMP_TIMESTAMP) >> BP_ENET_ATSTMP_TIMESTAMP)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4809,3 +4581,5 @@ typedef struct _hw_enet
 #endif
 
 #endif // __HW_ENET_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

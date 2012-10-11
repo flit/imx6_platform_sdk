@@ -122,7 +122,6 @@ typedef union _hw_usb_analog_usb1_vbus_detect
  * - 4V7 = 111 - 4.7V
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_VBUS_DETECT_VBUSVALID_THRESH      (0)      //!< Bit position for USB_ANALOG_USB1_VBUS_DETECT_VBUSVALID_THRESH.
 #define BM_USB_ANALOG_USB1_VBUS_DETECT_VBUSVALID_THRESH      (0x00000007)  //!< Bit mask for USB_ANALOG_USB1_VBUS_DETECT_VBUSVALID_THRESH.
 
@@ -148,7 +147,6 @@ typedef union _hw_usb_analog_usb1_vbus_detect
 #define BV_USB_ANALOG_USB1_VBUS_DETECT_VBUSVALID_THRESH__4V5 (0x5) //!< 4.5V
 #define BV_USB_ANALOG_USB1_VBUS_DETECT_VBUSVALID_THRESH__4V6 (0x6) //!< 4.6V
 #define BV_USB_ANALOG_USB1_VBUS_DETECT_VBUSVALID_THRESH__4V7 (0x7) //!< 4.7V
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_VBUS_DETECT, field VBUSVALID_PWRUP_CMPS[20] (RW)
@@ -156,7 +154,6 @@ typedef union _hw_usb_analog_usb1_vbus_detect
  * Powers up comparators for vbus_valid detector.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_VBUS_DETECT_VBUSVALID_PWRUP_CMPS      (20)      //!< Bit position for USB_ANALOG_USB1_VBUS_DETECT_VBUSVALID_PWRUP_CMPS.
 #define BM_USB_ANALOG_USB1_VBUS_DETECT_VBUSVALID_PWRUP_CMPS      (0x00100000)  //!< Bit mask for USB_ANALOG_USB1_VBUS_DETECT_VBUSVALID_PWRUP_CMPS.
 
@@ -170,7 +167,6 @@ typedef union _hw_usb_analog_usb1_vbus_detect
 //! @brief Set the VBUSVALID_PWRUP_CMPS field to a new value.
 #define BW_USB_ANALOG_USB1_VBUS_DETECT_VBUSVALID_PWRUP_CMPS(v)   BF_CS1(USB_ANALOG_USB1_VBUS_DETECT, VBUSVALID_PWRUP_CMPS, v)
 #endif
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_VBUS_DETECT, field DISCHARGE_VBUS[26] (RW)
@@ -178,7 +174,6 @@ typedef union _hw_usb_analog_usb1_vbus_detect
  * USB OTG discharge VBUS.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_VBUS_DETECT_DISCHARGE_VBUS      (26)      //!< Bit position for USB_ANALOG_USB1_VBUS_DETECT_DISCHARGE_VBUS.
 #define BM_USB_ANALOG_USB1_VBUS_DETECT_DISCHARGE_VBUS      (0x04000000)  //!< Bit mask for USB_ANALOG_USB1_VBUS_DETECT_DISCHARGE_VBUS.
 
@@ -192,7 +187,6 @@ typedef union _hw_usb_analog_usb1_vbus_detect
 //! @brief Set the DISCHARGE_VBUS field to a new value.
 #define BW_USB_ANALOG_USB1_VBUS_DETECT_DISCHARGE_VBUS(v)   BF_CS1(USB_ANALOG_USB1_VBUS_DETECT, DISCHARGE_VBUS, v)
 #endif
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_VBUS_DETECT, field CHARGE_VBUS[27] (RW)
@@ -200,7 +194,6 @@ typedef union _hw_usb_analog_usb1_vbus_detect
  * USB OTG charge VBUS.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_VBUS_DETECT_CHARGE_VBUS      (27)      //!< Bit position for USB_ANALOG_USB1_VBUS_DETECT_CHARGE_VBUS.
 #define BM_USB_ANALOG_USB1_VBUS_DETECT_CHARGE_VBUS      (0x08000000)  //!< Bit mask for USB_ANALOG_USB1_VBUS_DETECT_CHARGE_VBUS.
 
@@ -214,7 +207,6 @@ typedef union _hw_usb_analog_usb1_vbus_detect
 //! @brief Set the CHARGE_VBUS field to a new value.
 #define BW_USB_ANALOG_USB1_VBUS_DETECT_CHARGE_VBUS(v)   BF_CS1(USB_ANALOG_USB1_VBUS_DETECT, CHARGE_VBUS, v)
 #endif
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_VBUS_DETECT, field EN_CHARGER_RESISTOR[31] (RW)
@@ -223,7 +215,6 @@ typedef union _hw_usb_analog_usb1_vbus_detect
  * This functionality is a new USB spec and should not be enabled unless recommended by Freescale.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR      (31)      //!< Bit position for USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR.
 #define BM_USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR      (0x80000000)  //!< Bit mask for USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR.
 
@@ -237,7 +228,6 @@ typedef union _hw_usb_analog_usb1_vbus_detect
 //! @brief Set the EN_CHARGER_RESISTOR field to a new value.
 #define BW_USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR(v)   BF_CS1(USB_ANALOG_USB1_VBUS_DETECT, EN_CHARGER_RESISTOR, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -298,7 +288,6 @@ typedef union _hw_usb_analog_usb1_chrg_detect
  * - CHECK = 1 - Check whether the USB plug has been in contact with each other
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_CHRG_DETECT_CHK_CONTACT      (18)      //!< Bit position for USB_ANALOG_USB1_CHRG_DETECT_CHK_CONTACT.
 #define BM_USB_ANALOG_USB1_CHRG_DETECT_CHK_CONTACT      (0x00040000)  //!< Bit mask for USB_ANALOG_USB1_CHRG_DETECT_CHK_CONTACT.
 
@@ -318,7 +307,6 @@ typedef union _hw_usb_analog_usb1_chrg_detect
 
 #define BV_USB_ANALOG_USB1_CHRG_DETECT_CHK_CONTACT__NO_CHECK (0x0) //!< Do not check the contact of USB plug.
 #define BV_USB_ANALOG_USB1_CHRG_DETECT_CHK_CONTACT__CHECK (0x1) //!< Check whether the USB plug has been in contact with each other
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_CHRG_DETECT, field CHK_CHRG_B[19] (RW)
@@ -330,7 +318,6 @@ typedef union _hw_usb_analog_usb1_chrg_detect
  * - NO_CHECK = 1 - Do not check whether a charger is connected to the USB port.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_CHRG_DETECT_CHK_CHRG_B      (19)      //!< Bit position for USB_ANALOG_USB1_CHRG_DETECT_CHK_CHRG_B.
 #define BM_USB_ANALOG_USB1_CHRG_DETECT_CHK_CHRG_B      (0x00080000)  //!< Bit mask for USB_ANALOG_USB1_CHRG_DETECT_CHK_CHRG_B.
 
@@ -350,7 +337,6 @@ typedef union _hw_usb_analog_usb1_chrg_detect
 
 #define BV_USB_ANALOG_USB1_CHRG_DETECT_CHK_CHRG_B__CHECK (0x0) //!< Check whether a charger (either a dedicated charger or a host charger) is connected to USB port.
 #define BV_USB_ANALOG_USB1_CHRG_DETECT_CHK_CHRG_B__NO_CHECK (0x1) //!< Do not check whether a charger is connected to the USB port.
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_CHRG_DETECT, field EN_B[20] (RW)
@@ -362,7 +348,6 @@ typedef union _hw_usb_analog_usb1_chrg_detect
  * - DISABLE = 1 - Disable the charger detector.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_CHRG_DETECT_EN_B      (20)      //!< Bit position for USB_ANALOG_USB1_CHRG_DETECT_EN_B.
 #define BM_USB_ANALOG_USB1_CHRG_DETECT_EN_B      (0x00100000)  //!< Bit mask for USB_ANALOG_USB1_CHRG_DETECT_EN_B.
 
@@ -382,7 +367,6 @@ typedef union _hw_usb_analog_usb1_chrg_detect
 
 #define BV_USB_ANALOG_USB1_CHRG_DETECT_EN_B__ENABLE (0x0) //!< Enable the charger detector.
 #define BV_USB_ANALOG_USB1_CHRG_DETECT_EN_B__DISABLE (0x1) //!< Disable the charger detector.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -434,13 +418,11 @@ typedef union _hw_usb_analog_usb1_vbus_detect_stat
  * depends on whether VDD5V is present, 0 if VDD5V is present, 1 if VDD5V is not present.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_VBUS_DETECT_STAT_SESSEND      (0)      //!< Bit position for USB_ANALOG_USB1_VBUS_DETECT_STAT_SESSEND.
 #define BM_USB_ANALOG_USB1_VBUS_DETECT_STAT_SESSEND      (0x00000001)  //!< Bit mask for USB_ANALOG_USB1_VBUS_DETECT_STAT_SESSEND.
 
 //! @brief Get value of USB_ANALOG_USB1_VBUS_DETECT_STAT_SESSEND from a register value.
 #define BG_USB_ANALOG_USB1_VBUS_DETECT_STAT_SESSEND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB1_VBUS_DETECT_STAT_SESSEND) >> BP_USB_ANALOG_USB1_VBUS_DETECT_STAT_SESSEND)
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_VBUS_DETECT_STAT, field BVALID[1] (RO)
@@ -449,13 +431,11 @@ typedef union _hw_usb_analog_usb1_vbus_detect_stat
  * analog signal. It can not be overritten by software.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_VBUS_DETECT_STAT_BVALID      (1)      //!< Bit position for USB_ANALOG_USB1_VBUS_DETECT_STAT_BVALID.
 #define BM_USB_ANALOG_USB1_VBUS_DETECT_STAT_BVALID      (0x00000002)  //!< Bit mask for USB_ANALOG_USB1_VBUS_DETECT_STAT_BVALID.
 
 //! @brief Get value of USB_ANALOG_USB1_VBUS_DETECT_STAT_BVALID from a register value.
 #define BG_USB_ANALOG_USB1_VBUS_DETECT_STAT_BVALID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB1_VBUS_DETECT_STAT_BVALID) >> BP_USB_ANALOG_USB1_VBUS_DETECT_STAT_BVALID)
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_VBUS_DETECT_STAT, field AVALID[2] (RO)
@@ -464,13 +444,11 @@ typedef union _hw_usb_analog_usb1_vbus_detect_stat
  * analog signal. It can not be overritten by software.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_VBUS_DETECT_STAT_AVALID      (2)      //!< Bit position for USB_ANALOG_USB1_VBUS_DETECT_STAT_AVALID.
 #define BM_USB_ANALOG_USB1_VBUS_DETECT_STAT_AVALID      (0x00000004)  //!< Bit mask for USB_ANALOG_USB1_VBUS_DETECT_STAT_AVALID.
 
 //! @brief Get value of USB_ANALOG_USB1_VBUS_DETECT_STAT_AVALID from a register value.
 #define BG_USB_ANALOG_USB1_VBUS_DETECT_STAT_AVALID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB1_VBUS_DETECT_STAT_AVALID) >> BP_USB_ANALOG_USB1_VBUS_DETECT_STAT_AVALID)
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_VBUS_DETECT_STAT, field VBUS_VALID[3] (RO)
@@ -479,13 +457,11 @@ typedef union _hw_usb_analog_usb1_vbus_detect_stat
  * not be overwritten by software.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_VBUS_DETECT_STAT_VBUS_VALID      (3)      //!< Bit position for USB_ANALOG_USB1_VBUS_DETECT_STAT_VBUS_VALID.
 #define BM_USB_ANALOG_USB1_VBUS_DETECT_STAT_VBUS_VALID      (0x00000008)  //!< Bit mask for USB_ANALOG_USB1_VBUS_DETECT_STAT_VBUS_VALID.
 
 //! @brief Get value of USB_ANALOG_USB1_VBUS_DETECT_STAT_VBUS_VALID from a register value.
 #define BG_USB_ANALOG_USB1_VBUS_DETECT_STAT_VBUS_VALID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB1_VBUS_DETECT_STAT_VBUS_VALID) >> BP_USB_ANALOG_USB1_VBUS_DETECT_STAT_VBUS_VALID)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -539,7 +515,6 @@ typedef union _hw_usb_analog_usb1_chrg_detect_stat
  * - GOOD_CONTACT = 1 - The USB plug has made good contact.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_CHRG_DETECT_STAT_PLUG_CONTACT      (0)      //!< Bit position for USB_ANALOG_USB1_CHRG_DETECT_STAT_PLUG_CONTACT.
 #define BM_USB_ANALOG_USB1_CHRG_DETECT_STAT_PLUG_CONTACT      (0x00000001)  //!< Bit mask for USB_ANALOG_USB1_CHRG_DETECT_STAT_PLUG_CONTACT.
 
@@ -551,7 +526,6 @@ typedef union _hw_usb_analog_usb1_chrg_detect_stat
 
 #define BV_USB_ANALOG_USB1_CHRG_DETECT_STAT_PLUG_CONTACT__NO_CONTACT (0x0) //!< The USB plug has not made contact.
 #define BV_USB_ANALOG_USB1_CHRG_DETECT_STAT_PLUG_CONTACT__GOOD_CONTACT (0x1) //!< The USB plug has made good contact.
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_CHRG_DETECT_STAT, field CHRG_DETECTED[1] (RO)
@@ -563,7 +537,6 @@ typedef union _hw_usb_analog_usb1_chrg_detect_stat
  * - CHARGER_PRESENT = 1 - A charger (either a dedicated charger or a host charger) is connected to the USB port.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_CHRG_DETECT_STAT_CHRG_DETECTED      (1)      //!< Bit position for USB_ANALOG_USB1_CHRG_DETECT_STAT_CHRG_DETECTED.
 #define BM_USB_ANALOG_USB1_CHRG_DETECT_STAT_CHRG_DETECTED      (0x00000002)  //!< Bit mask for USB_ANALOG_USB1_CHRG_DETECT_STAT_CHRG_DETECTED.
 
@@ -575,7 +548,6 @@ typedef union _hw_usb_analog_usb1_chrg_detect_stat
 
 #define BV_USB_ANALOG_USB1_CHRG_DETECT_STAT_CHRG_DETECTED__CHARGER_NOT_PRESENT (0x0) //!< The USB port is not connected to a charger.
 #define BV_USB_ANALOG_USB1_CHRG_DETECT_STAT_CHRG_DETECTED__CHARGER_PRESENT (0x1) //!< A charger (either a dedicated charger or a host charger) is connected to the USB port.
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_CHRG_DETECT_STAT, field DM_STATE[2] (RO)
@@ -583,13 +555,11 @@ typedef union _hw_usb_analog_usb1_chrg_detect_stat
  * DM line state output of the charger detector.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_CHRG_DETECT_STAT_DM_STATE      (2)      //!< Bit position for USB_ANALOG_USB1_CHRG_DETECT_STAT_DM_STATE.
 #define BM_USB_ANALOG_USB1_CHRG_DETECT_STAT_DM_STATE      (0x00000004)  //!< Bit mask for USB_ANALOG_USB1_CHRG_DETECT_STAT_DM_STATE.
 
 //! @brief Get value of USB_ANALOG_USB1_CHRG_DETECT_STAT_DM_STATE from a register value.
 #define BG_USB_ANALOG_USB1_CHRG_DETECT_STAT_DM_STATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB1_CHRG_DETECT_STAT_DM_STATE) >> BP_USB_ANALOG_USB1_CHRG_DETECT_STAT_DM_STATE)
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_CHRG_DETECT_STAT, field DP_STATE[3] (RO)
@@ -597,13 +567,11 @@ typedef union _hw_usb_analog_usb1_chrg_detect_stat
  * DP line state output of the charger detector.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_CHRG_DETECT_STAT_DP_STATE      (3)      //!< Bit position for USB_ANALOG_USB1_CHRG_DETECT_STAT_DP_STATE.
 #define BM_USB_ANALOG_USB1_CHRG_DETECT_STAT_DP_STATE      (0x00000008)  //!< Bit mask for USB_ANALOG_USB1_CHRG_DETECT_STAT_DP_STATE.
 
 //! @brief Get value of USB_ANALOG_USB1_CHRG_DETECT_STAT_DP_STATE from a register value.
 #define BG_USB_ANALOG_USB1_CHRG_DETECT_STAT_DP_STATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB1_CHRG_DETECT_STAT_DP_STATE) >> BP_USB_ANALOG_USB1_CHRG_DETECT_STAT_DP_STATE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -661,7 +629,6 @@ typedef union _hw_usb_analog_usb1_misc
  * should not be changed unless recommended by Freescale.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_MISC_HS_USE_EXTERNAL_R      (0)      //!< Bit position for USB_ANALOG_USB1_MISC_HS_USE_EXTERNAL_R.
 #define BM_USB_ANALOG_USB1_MISC_HS_USE_EXTERNAL_R      (0x00000001)  //!< Bit mask for USB_ANALOG_USB1_MISC_HS_USE_EXTERNAL_R.
 
@@ -675,7 +642,6 @@ typedef union _hw_usb_analog_usb1_misc
 //! @brief Set the HS_USE_EXTERNAL_R field to a new value.
 #define BW_USB_ANALOG_USB1_MISC_HS_USE_EXTERNAL_R(v)   BF_CS1(USB_ANALOG_USB1_MISC, HS_USE_EXTERNAL_R, v)
 #endif
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_MISC, field EN_DEGLITCH[1] (RW)
@@ -683,7 +649,6 @@ typedef union _hw_usb_analog_usb1_misc
  * Enable the deglitching circuit of the USB PLL output.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_MISC_EN_DEGLITCH      (1)      //!< Bit position for USB_ANALOG_USB1_MISC_EN_DEGLITCH.
 #define BM_USB_ANALOG_USB1_MISC_EN_DEGLITCH      (0x00000002)  //!< Bit mask for USB_ANALOG_USB1_MISC_EN_DEGLITCH.
 
@@ -697,7 +662,6 @@ typedef union _hw_usb_analog_usb1_misc
 //! @brief Set the EN_DEGLITCH field to a new value.
 #define BW_USB_ANALOG_USB1_MISC_EN_DEGLITCH(v)   BF_CS1(USB_ANALOG_USB1_MISC, EN_DEGLITCH, v)
 #endif
-
 //@}
 
 /*! @name Register USB_ANALOG_USB1_MISC, field EN_CLK_UTMI[30] (RW)
@@ -705,7 +669,6 @@ typedef union _hw_usb_analog_usb1_misc
  * Enables the clk to the UTMI block.
  */
 //@{
-
 #define BP_USB_ANALOG_USB1_MISC_EN_CLK_UTMI      (30)      //!< Bit position for USB_ANALOG_USB1_MISC_EN_CLK_UTMI.
 #define BM_USB_ANALOG_USB1_MISC_EN_CLK_UTMI      (0x40000000)  //!< Bit mask for USB_ANALOG_USB1_MISC_EN_CLK_UTMI.
 
@@ -719,7 +682,6 @@ typedef union _hw_usb_analog_usb1_misc
 //! @brief Set the EN_CLK_UTMI field to a new value.
 #define BW_USB_ANALOG_USB1_MISC_EN_CLK_UTMI(v)   BF_CS1(USB_ANALOG_USB1_MISC, EN_CLK_UTMI, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -792,7 +754,6 @@ typedef union _hw_usb_analog_usb2_vbus_detect
  * - 4V7 = 111 - 4.7V
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_VBUS_DETECT_VBUSVALID_THRESH      (0)      //!< Bit position for USB_ANALOG_USB2_VBUS_DETECT_VBUSVALID_THRESH.
 #define BM_USB_ANALOG_USB2_VBUS_DETECT_VBUSVALID_THRESH      (0x00000007)  //!< Bit mask for USB_ANALOG_USB2_VBUS_DETECT_VBUSVALID_THRESH.
 
@@ -818,7 +779,6 @@ typedef union _hw_usb_analog_usb2_vbus_detect
 #define BV_USB_ANALOG_USB2_VBUS_DETECT_VBUSVALID_THRESH__4V5 (0x5) //!< 4.5V
 #define BV_USB_ANALOG_USB2_VBUS_DETECT_VBUSVALID_THRESH__4V6 (0x6) //!< 4.6V
 #define BV_USB_ANALOG_USB2_VBUS_DETECT_VBUSVALID_THRESH__4V7 (0x7) //!< 4.7V
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_VBUS_DETECT, field VBUSVALID_PWRUP_CMPS[20] (RW)
@@ -826,7 +786,6 @@ typedef union _hw_usb_analog_usb2_vbus_detect
  * Powers up comparators for vbus_valid detector.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_VBUS_DETECT_VBUSVALID_PWRUP_CMPS      (20)      //!< Bit position for USB_ANALOG_USB2_VBUS_DETECT_VBUSVALID_PWRUP_CMPS.
 #define BM_USB_ANALOG_USB2_VBUS_DETECT_VBUSVALID_PWRUP_CMPS      (0x00100000)  //!< Bit mask for USB_ANALOG_USB2_VBUS_DETECT_VBUSVALID_PWRUP_CMPS.
 
@@ -840,7 +799,6 @@ typedef union _hw_usb_analog_usb2_vbus_detect
 //! @brief Set the VBUSVALID_PWRUP_CMPS field to a new value.
 #define BW_USB_ANALOG_USB2_VBUS_DETECT_VBUSVALID_PWRUP_CMPS(v)   BF_CS1(USB_ANALOG_USB2_VBUS_DETECT, VBUSVALID_PWRUP_CMPS, v)
 #endif
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_VBUS_DETECT, field DISCHARGE_VBUS[26] (RW)
@@ -848,7 +806,6 @@ typedef union _hw_usb_analog_usb2_vbus_detect
  * USB OTG discharge VBUS.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_VBUS_DETECT_DISCHARGE_VBUS      (26)      //!< Bit position for USB_ANALOG_USB2_VBUS_DETECT_DISCHARGE_VBUS.
 #define BM_USB_ANALOG_USB2_VBUS_DETECT_DISCHARGE_VBUS      (0x04000000)  //!< Bit mask for USB_ANALOG_USB2_VBUS_DETECT_DISCHARGE_VBUS.
 
@@ -862,7 +819,6 @@ typedef union _hw_usb_analog_usb2_vbus_detect
 //! @brief Set the DISCHARGE_VBUS field to a new value.
 #define BW_USB_ANALOG_USB2_VBUS_DETECT_DISCHARGE_VBUS(v)   BF_CS1(USB_ANALOG_USB2_VBUS_DETECT, DISCHARGE_VBUS, v)
 #endif
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_VBUS_DETECT, field CHARGE_VBUS[27] (RW)
@@ -870,7 +826,6 @@ typedef union _hw_usb_analog_usb2_vbus_detect
  * USB OTG charge VBUS.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_VBUS_DETECT_CHARGE_VBUS      (27)      //!< Bit position for USB_ANALOG_USB2_VBUS_DETECT_CHARGE_VBUS.
 #define BM_USB_ANALOG_USB2_VBUS_DETECT_CHARGE_VBUS      (0x08000000)  //!< Bit mask for USB_ANALOG_USB2_VBUS_DETECT_CHARGE_VBUS.
 
@@ -884,7 +839,6 @@ typedef union _hw_usb_analog_usb2_vbus_detect
 //! @brief Set the CHARGE_VBUS field to a new value.
 #define BW_USB_ANALOG_USB2_VBUS_DETECT_CHARGE_VBUS(v)   BF_CS1(USB_ANALOG_USB2_VBUS_DETECT, CHARGE_VBUS, v)
 #endif
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_VBUS_DETECT, field EN_CHARGER_RESISTOR[31] (RW)
@@ -893,7 +847,6 @@ typedef union _hw_usb_analog_usb2_vbus_detect
  * This functionality is a new USB spec and should not be enabled unless recommended by Freescale.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR      (31)      //!< Bit position for USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR.
 #define BM_USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR      (0x80000000)  //!< Bit mask for USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR.
 
@@ -907,7 +860,6 @@ typedef union _hw_usb_analog_usb2_vbus_detect
 //! @brief Set the EN_CHARGER_RESISTOR field to a new value.
 #define BW_USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR(v)   BF_CS1(USB_ANALOG_USB2_VBUS_DETECT, EN_CHARGER_RESISTOR, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -968,7 +920,6 @@ typedef union _hw_usb_analog_usb2_chrg_detect
  * - CHECK = 1 - Check whether the USB plug has been in contact with each other
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_CHRG_DETECT_CHK_CONTACT      (18)      //!< Bit position for USB_ANALOG_USB2_CHRG_DETECT_CHK_CONTACT.
 #define BM_USB_ANALOG_USB2_CHRG_DETECT_CHK_CONTACT      (0x00040000)  //!< Bit mask for USB_ANALOG_USB2_CHRG_DETECT_CHK_CONTACT.
 
@@ -988,7 +939,6 @@ typedef union _hw_usb_analog_usb2_chrg_detect
 
 #define BV_USB_ANALOG_USB2_CHRG_DETECT_CHK_CONTACT__NO_CHECK (0x0) //!< Do not check the contact of USB plug.
 #define BV_USB_ANALOG_USB2_CHRG_DETECT_CHK_CONTACT__CHECK (0x1) //!< Check whether the USB plug has been in contact with each other
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_CHRG_DETECT, field CHK_CHRG_B[19] (RW)
@@ -1000,7 +950,6 @@ typedef union _hw_usb_analog_usb2_chrg_detect
  * - NO_CHECK = 1 - Do not check whether a charger is connected to the USB port.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_CHRG_DETECT_CHK_CHRG_B      (19)      //!< Bit position for USB_ANALOG_USB2_CHRG_DETECT_CHK_CHRG_B.
 #define BM_USB_ANALOG_USB2_CHRG_DETECT_CHK_CHRG_B      (0x00080000)  //!< Bit mask for USB_ANALOG_USB2_CHRG_DETECT_CHK_CHRG_B.
 
@@ -1020,7 +969,6 @@ typedef union _hw_usb_analog_usb2_chrg_detect
 
 #define BV_USB_ANALOG_USB2_CHRG_DETECT_CHK_CHRG_B__CHECK (0x0) //!< Check whether a charger (either a dedicated charger or a host charger) is connected to USB port.
 #define BV_USB_ANALOG_USB2_CHRG_DETECT_CHK_CHRG_B__NO_CHECK (0x1) //!< Do not check whether a charger is connected to the USB port.
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_CHRG_DETECT, field EN_B[20] (RW)
@@ -1032,7 +980,6 @@ typedef union _hw_usb_analog_usb2_chrg_detect
  * - DISABLE = 1 - Disable the charger detector.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_CHRG_DETECT_EN_B      (20)      //!< Bit position for USB_ANALOG_USB2_CHRG_DETECT_EN_B.
 #define BM_USB_ANALOG_USB2_CHRG_DETECT_EN_B      (0x00100000)  //!< Bit mask for USB_ANALOG_USB2_CHRG_DETECT_EN_B.
 
@@ -1052,7 +999,6 @@ typedef union _hw_usb_analog_usb2_chrg_detect
 
 #define BV_USB_ANALOG_USB2_CHRG_DETECT_EN_B__ENABLE (0x0) //!< Enable the charger detector.
 #define BV_USB_ANALOG_USB2_CHRG_DETECT_EN_B__DISABLE (0x1) //!< Disable the charger detector.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1104,13 +1050,11 @@ typedef union _hw_usb_analog_usb2_vbus_detect_stat
  * depends on whether VDD5V is present, 0 if VDD5V is present, 1 if VDD5V is not present.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_VBUS_DETECT_STAT_SESSEND      (0)      //!< Bit position for USB_ANALOG_USB2_VBUS_DETECT_STAT_SESSEND.
 #define BM_USB_ANALOG_USB2_VBUS_DETECT_STAT_SESSEND      (0x00000001)  //!< Bit mask for USB_ANALOG_USB2_VBUS_DETECT_STAT_SESSEND.
 
 //! @brief Get value of USB_ANALOG_USB2_VBUS_DETECT_STAT_SESSEND from a register value.
 #define BG_USB_ANALOG_USB2_VBUS_DETECT_STAT_SESSEND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB2_VBUS_DETECT_STAT_SESSEND) >> BP_USB_ANALOG_USB2_VBUS_DETECT_STAT_SESSEND)
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_VBUS_DETECT_STAT, field BVALID[1] (RO)
@@ -1119,13 +1063,11 @@ typedef union _hw_usb_analog_usb2_vbus_detect_stat
  * analog signal. It can not be overritten by software.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_VBUS_DETECT_STAT_BVALID      (1)      //!< Bit position for USB_ANALOG_USB2_VBUS_DETECT_STAT_BVALID.
 #define BM_USB_ANALOG_USB2_VBUS_DETECT_STAT_BVALID      (0x00000002)  //!< Bit mask for USB_ANALOG_USB2_VBUS_DETECT_STAT_BVALID.
 
 //! @brief Get value of USB_ANALOG_USB2_VBUS_DETECT_STAT_BVALID from a register value.
 #define BG_USB_ANALOG_USB2_VBUS_DETECT_STAT_BVALID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB2_VBUS_DETECT_STAT_BVALID) >> BP_USB_ANALOG_USB2_VBUS_DETECT_STAT_BVALID)
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_VBUS_DETECT_STAT, field AVALID[2] (RO)
@@ -1134,13 +1076,11 @@ typedef union _hw_usb_analog_usb2_vbus_detect_stat
  * analog signal. It can not be overritten by software.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_VBUS_DETECT_STAT_AVALID      (2)      //!< Bit position for USB_ANALOG_USB2_VBUS_DETECT_STAT_AVALID.
 #define BM_USB_ANALOG_USB2_VBUS_DETECT_STAT_AVALID      (0x00000004)  //!< Bit mask for USB_ANALOG_USB2_VBUS_DETECT_STAT_AVALID.
 
 //! @brief Get value of USB_ANALOG_USB2_VBUS_DETECT_STAT_AVALID from a register value.
 #define BG_USB_ANALOG_USB2_VBUS_DETECT_STAT_AVALID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB2_VBUS_DETECT_STAT_AVALID) >> BP_USB_ANALOG_USB2_VBUS_DETECT_STAT_AVALID)
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_VBUS_DETECT_STAT, field VBUS_VALID[3] (RO)
@@ -1149,13 +1089,11 @@ typedef union _hw_usb_analog_usb2_vbus_detect_stat
  * not be overwritten by software.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_VBUS_DETECT_STAT_VBUS_VALID      (3)      //!< Bit position for USB_ANALOG_USB2_VBUS_DETECT_STAT_VBUS_VALID.
 #define BM_USB_ANALOG_USB2_VBUS_DETECT_STAT_VBUS_VALID      (0x00000008)  //!< Bit mask for USB_ANALOG_USB2_VBUS_DETECT_STAT_VBUS_VALID.
 
 //! @brief Get value of USB_ANALOG_USB2_VBUS_DETECT_STAT_VBUS_VALID from a register value.
 #define BG_USB_ANALOG_USB2_VBUS_DETECT_STAT_VBUS_VALID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB2_VBUS_DETECT_STAT_VBUS_VALID) >> BP_USB_ANALOG_USB2_VBUS_DETECT_STAT_VBUS_VALID)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1209,7 +1147,6 @@ typedef union _hw_usb_analog_usb2_chrg_detect_stat
  * - GOOD_CONTACT = 1 - The USB plug has made good contact.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_CHRG_DETECT_STAT_PLUG_CONTACT      (0)      //!< Bit position for USB_ANALOG_USB2_CHRG_DETECT_STAT_PLUG_CONTACT.
 #define BM_USB_ANALOG_USB2_CHRG_DETECT_STAT_PLUG_CONTACT      (0x00000001)  //!< Bit mask for USB_ANALOG_USB2_CHRG_DETECT_STAT_PLUG_CONTACT.
 
@@ -1221,7 +1158,6 @@ typedef union _hw_usb_analog_usb2_chrg_detect_stat
 
 #define BV_USB_ANALOG_USB2_CHRG_DETECT_STAT_PLUG_CONTACT__NO_CONTACT (0x0) //!< The USB plug has not made contact.
 #define BV_USB_ANALOG_USB2_CHRG_DETECT_STAT_PLUG_CONTACT__GOOD_CONTACT (0x1) //!< The USB plug has made good contact.
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_CHRG_DETECT_STAT, field CHRG_DETECTED[1] (RO)
@@ -1233,7 +1169,6 @@ typedef union _hw_usb_analog_usb2_chrg_detect_stat
  * - CHARGER_PRESENT = 1 - A charger (either a dedicated charger or a host charger) is connected to the USB port.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_CHRG_DETECT_STAT_CHRG_DETECTED      (1)      //!< Bit position for USB_ANALOG_USB2_CHRG_DETECT_STAT_CHRG_DETECTED.
 #define BM_USB_ANALOG_USB2_CHRG_DETECT_STAT_CHRG_DETECTED      (0x00000002)  //!< Bit mask for USB_ANALOG_USB2_CHRG_DETECT_STAT_CHRG_DETECTED.
 
@@ -1245,7 +1180,6 @@ typedef union _hw_usb_analog_usb2_chrg_detect_stat
 
 #define BV_USB_ANALOG_USB2_CHRG_DETECT_STAT_CHRG_DETECTED__CHARGER_NOT_PRESENT (0x0) //!< The USB port is not connected to a charger.
 #define BV_USB_ANALOG_USB2_CHRG_DETECT_STAT_CHRG_DETECTED__CHARGER_PRESENT (0x1) //!< A charger (either a dedicated charger or a host charger) is connected to the USB port.
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_CHRG_DETECT_STAT, field DM_STATE[2] (RO)
@@ -1253,13 +1187,11 @@ typedef union _hw_usb_analog_usb2_chrg_detect_stat
  * DM line state output of the charger detector.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_CHRG_DETECT_STAT_DM_STATE      (2)      //!< Bit position for USB_ANALOG_USB2_CHRG_DETECT_STAT_DM_STATE.
 #define BM_USB_ANALOG_USB2_CHRG_DETECT_STAT_DM_STATE      (0x00000004)  //!< Bit mask for USB_ANALOG_USB2_CHRG_DETECT_STAT_DM_STATE.
 
 //! @brief Get value of USB_ANALOG_USB2_CHRG_DETECT_STAT_DM_STATE from a register value.
 #define BG_USB_ANALOG_USB2_CHRG_DETECT_STAT_DM_STATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB2_CHRG_DETECT_STAT_DM_STATE) >> BP_USB_ANALOG_USB2_CHRG_DETECT_STAT_DM_STATE)
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_CHRG_DETECT_STAT, field DP_STATE[3] (RO)
@@ -1267,13 +1199,11 @@ typedef union _hw_usb_analog_usb2_chrg_detect_stat
  * DP line state output of the charger detector.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_CHRG_DETECT_STAT_DP_STATE      (3)      //!< Bit position for USB_ANALOG_USB2_CHRG_DETECT_STAT_DP_STATE.
 #define BM_USB_ANALOG_USB2_CHRG_DETECT_STAT_DP_STATE      (0x00000008)  //!< Bit mask for USB_ANALOG_USB2_CHRG_DETECT_STAT_DP_STATE.
 
 //! @brief Get value of USB_ANALOG_USB2_CHRG_DETECT_STAT_DP_STATE from a register value.
 #define BG_USB_ANALOG_USB2_CHRG_DETECT_STAT_DP_STATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB2_CHRG_DETECT_STAT_DP_STATE) >> BP_USB_ANALOG_USB2_CHRG_DETECT_STAT_DP_STATE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1331,7 +1261,6 @@ typedef union _hw_usb_analog_usb2_misc
  * should not be changed unless recommended by Freescale.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_MISC_HS_USE_EXTERNAL_R      (0)      //!< Bit position for USB_ANALOG_USB2_MISC_HS_USE_EXTERNAL_R.
 #define BM_USB_ANALOG_USB2_MISC_HS_USE_EXTERNAL_R      (0x00000001)  //!< Bit mask for USB_ANALOG_USB2_MISC_HS_USE_EXTERNAL_R.
 
@@ -1345,7 +1274,6 @@ typedef union _hw_usb_analog_usb2_misc
 //! @brief Set the HS_USE_EXTERNAL_R field to a new value.
 #define BW_USB_ANALOG_USB2_MISC_HS_USE_EXTERNAL_R(v)   BF_CS1(USB_ANALOG_USB2_MISC, HS_USE_EXTERNAL_R, v)
 #endif
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_MISC, field EN_DEGLITCH[1] (RW)
@@ -1353,7 +1281,6 @@ typedef union _hw_usb_analog_usb2_misc
  * Enable the deglitching circuit of the USB PLL output.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_MISC_EN_DEGLITCH      (1)      //!< Bit position for USB_ANALOG_USB2_MISC_EN_DEGLITCH.
 #define BM_USB_ANALOG_USB2_MISC_EN_DEGLITCH      (0x00000002)  //!< Bit mask for USB_ANALOG_USB2_MISC_EN_DEGLITCH.
 
@@ -1367,7 +1294,6 @@ typedef union _hw_usb_analog_usb2_misc
 //! @brief Set the EN_DEGLITCH field to a new value.
 #define BW_USB_ANALOG_USB2_MISC_EN_DEGLITCH(v)   BF_CS1(USB_ANALOG_USB2_MISC, EN_DEGLITCH, v)
 #endif
-
 //@}
 
 /*! @name Register USB_ANALOG_USB2_MISC, field EN_CLK_UTMI[30] (RW)
@@ -1375,7 +1301,6 @@ typedef union _hw_usb_analog_usb2_misc
  * Enables the clk to the UTMI block.
  */
 //@{
-
 #define BP_USB_ANALOG_USB2_MISC_EN_CLK_UTMI      (30)      //!< Bit position for USB_ANALOG_USB2_MISC_EN_CLK_UTMI.
 #define BM_USB_ANALOG_USB2_MISC_EN_CLK_UTMI      (0x40000000)  //!< Bit mask for USB_ANALOG_USB2_MISC_EN_CLK_UTMI.
 
@@ -1389,7 +1314,6 @@ typedef union _hw_usb_analog_usb2_misc
 //! @brief Set the EN_CLK_UTMI field to a new value.
 #define BW_USB_ANALOG_USB2_MISC_EN_CLK_UTMI(v)   BF_CS1(USB_ANALOG_USB2_MISC, EN_CLK_UTMI, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1437,13 +1361,11 @@ typedef union _hw_usb_analog_digprog
  * Fixed read-only value reflecting the MINOR field of the RTL version.
  */
 //@{
-
 #define BP_USB_ANALOG_DIGPROG_MINOR      (0)      //!< Bit position for USB_ANALOG_DIGPROG_MINOR.
 #define BM_USB_ANALOG_DIGPROG_MINOR      (0x000000ff)  //!< Bit mask for USB_ANALOG_DIGPROG_MINOR.
 
 //! @brief Get value of USB_ANALOG_DIGPROG_MINOR from a register value.
 #define BG_USB_ANALOG_DIGPROG_MINOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_DIGPROG_MINOR) >> BP_USB_ANALOG_DIGPROG_MINOR)
-
 //@}
 
 /*! @name Register USB_ANALOG_DIGPROG, field MAJOR[23:8] (RO)
@@ -1451,13 +1373,11 @@ typedef union _hw_usb_analog_digprog
  * Fixed read-only value reflecting the MAJOR field of the RTL version.
  */
 //@{
-
 #define BP_USB_ANALOG_DIGPROG_MAJOR      (8)      //!< Bit position for USB_ANALOG_DIGPROG_MAJOR.
 #define BM_USB_ANALOG_DIGPROG_MAJOR      (0x00ffff00)  //!< Bit mask for USB_ANALOG_DIGPROG_MAJOR.
 
 //! @brief Get value of USB_ANALOG_DIGPROG_MAJOR from a register value.
 #define BG_USB_ANALOG_DIGPROG_MAJOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_DIGPROG_MAJOR) >> BP_USB_ANALOG_DIGPROG_MAJOR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1514,3 +1434,5 @@ typedef struct _hw_usb_analog
 #endif
 
 #endif // __HW_USB_ANALOG_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

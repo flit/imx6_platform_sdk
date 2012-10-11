@@ -116,7 +116,6 @@ typedef union _hw_dcic_dcicc
  * - 1 - Enabled
  */
 //@{
-
 #define BP_DCIC_DCICC_IC_EN      (0)      //!< Bit position for DCIC_DCICC_IC_EN.
 #define BM_DCIC_DCICC_IC_EN      (0x00000001)  //!< Bit mask for DCIC_DCICC_IC_EN.
 
@@ -130,7 +129,6 @@ typedef union _hw_dcic_dcicc
 //! @brief Set the IC_EN field to a new value.
 #define BW_DCIC_DCICC_IC_EN(x, v)   (HW_DCIC_DCICC_WR(x, (HW_DCIC_DCICC_RD(x) & ~BM_DCIC_DCICC_IC_EN) | BF_DCIC_DCICC_IC_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register DCIC_DCICC, field DE_POL[4] (RW)
@@ -142,7 +140,6 @@ typedef union _hw_dcic_dcicc
  * - 1 - Active Low (default).
  */
 //@{
-
 #define BP_DCIC_DCICC_DE_POL      (4)      //!< Bit position for DCIC_DCICC_DE_POL.
 #define BM_DCIC_DCICC_DE_POL      (0x00000010)  //!< Bit mask for DCIC_DCICC_DE_POL.
 
@@ -156,7 +153,6 @@ typedef union _hw_dcic_dcicc
 //! @brief Set the DE_POL field to a new value.
 #define BW_DCIC_DCICC_DE_POL(x, v)   (HW_DCIC_DCICC_WR(x, (HW_DCIC_DCICC_RD(x) & ~BM_DCIC_DCICC_DE_POL) | BF_DCIC_DCICC_DE_POL(v)))
 #endif
-
 //@}
 
 /*! @name Register DCIC_DCICC, field HSYNC_POL[5] (RW)
@@ -168,7 +164,6 @@ typedef union _hw_dcic_dcicc
  * - 1 - Active Low (default).
  */
 //@{
-
 #define BP_DCIC_DCICC_HSYNC_POL      (5)      //!< Bit position for DCIC_DCICC_HSYNC_POL.
 #define BM_DCIC_DCICC_HSYNC_POL      (0x00000020)  //!< Bit mask for DCIC_DCICC_HSYNC_POL.
 
@@ -182,7 +177,6 @@ typedef union _hw_dcic_dcicc
 //! @brief Set the HSYNC_POL field to a new value.
 #define BW_DCIC_DCICC_HSYNC_POL(x, v)   (HW_DCIC_DCICC_WR(x, (HW_DCIC_DCICC_RD(x) & ~BM_DCIC_DCICC_HSYNC_POL) | BF_DCIC_DCICC_HSYNC_POL(v)))
 #endif
-
 //@}
 
 /*! @name Register DCIC_DCICC, field VSYNC_POL[6] (RW)
@@ -194,7 +188,6 @@ typedef union _hw_dcic_dcicc
  * - 1 - Active Low (default).
  */
 //@{
-
 #define BP_DCIC_DCICC_VSYNC_POL      (6)      //!< Bit position for DCIC_DCICC_VSYNC_POL.
 #define BM_DCIC_DCICC_VSYNC_POL      (0x00000040)  //!< Bit mask for DCIC_DCICC_VSYNC_POL.
 
@@ -208,7 +201,6 @@ typedef union _hw_dcic_dcicc
 //! @brief Set the VSYNC_POL field to a new value.
 #define BW_DCIC_DCICC_VSYNC_POL(x, v)   (HW_DCIC_DCICC_WR(x, (HW_DCIC_DCICC_RD(x) & ~BM_DCIC_DCICC_VSYNC_POL) | BF_DCIC_DCICC_VSYNC_POL(v)))
 #endif
-
 //@}
 
 /*! @name Register DCIC_DCICC, field CLK_POL[7] (RW)
@@ -220,7 +212,6 @@ typedef union _hw_dcic_dcicc
  * - 1 - Inverted.
  */
 //@{
-
 #define BP_DCIC_DCICC_CLK_POL      (7)      //!< Bit position for DCIC_DCICC_CLK_POL.
 #define BM_DCIC_DCICC_CLK_POL      (0x00000080)  //!< Bit mask for DCIC_DCICC_CLK_POL.
 
@@ -234,7 +225,6 @@ typedef union _hw_dcic_dcicc
 //! @brief Set the CLK_POL field to a new value.
 #define BW_DCIC_DCICC_CLK_POL(x, v)   (HW_DCIC_DCICC_WR(x, (HW_DCIC_DCICC_RD(x) & ~BM_DCIC_DCICC_CLK_POL) | BF_DCIC_DCICC_CLK_POL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -294,7 +284,6 @@ typedef union _hw_dcic_dcicic
  * - 1 - Mask enabled - Interrupt assertion disabled (default)
  */
 //@{
-
 #define BP_DCIC_DCICIC_EI_MASK      (0)      //!< Bit position for DCIC_DCICIC_EI_MASK.
 #define BM_DCIC_DCICIC_EI_MASK      (0x00000001)  //!< Bit mask for DCIC_DCICIC_EI_MASK.
 
@@ -308,7 +297,6 @@ typedef union _hw_dcic_dcicic
 //! @brief Set the EI_MASK field to a new value.
 #define BW_DCIC_DCICIC_EI_MASK(x, v)   (HW_DCIC_DCICIC_WR(x, (HW_DCIC_DCICIC_RD(x) & ~BM_DCIC_DCICIC_EI_MASK) | BF_DCIC_DCICIC_EI_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register DCIC_DCICIC, field FI_MASK[1] (RW)
@@ -320,7 +308,6 @@ typedef union _hw_dcic_dcicic
  * - 1 - Mask enabled - Interrupt assertion disabled (default)
  */
 //@{
-
 #define BP_DCIC_DCICIC_FI_MASK      (1)      //!< Bit position for DCIC_DCICIC_FI_MASK.
 #define BM_DCIC_DCICIC_FI_MASK      (0x00000002)  //!< Bit mask for DCIC_DCICIC_FI_MASK.
 
@@ -334,7 +321,6 @@ typedef union _hw_dcic_dcicic
 //! @brief Set the FI_MASK field to a new value.
 #define BW_DCIC_DCICIC_FI_MASK(x, v)   (HW_DCIC_DCICIC_WR(x, (HW_DCIC_DCICIC_RD(x) & ~BM_DCIC_DCICIC_FI_MASK) | BF_DCIC_DCICIC_FI_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register DCIC_DCICIC, field FREEZE_MASK[3] (RW)
@@ -346,7 +332,6 @@ typedef union _hw_dcic_dcicic
  * - 1 - Masks are frozen
  */
 //@{
-
 #define BP_DCIC_DCICIC_FREEZE_MASK      (3)      //!< Bit position for DCIC_DCICIC_FREEZE_MASK.
 #define BM_DCIC_DCICIC_FREEZE_MASK      (0x00000008)  //!< Bit mask for DCIC_DCICIC_FREEZE_MASK.
 
@@ -360,7 +345,6 @@ typedef union _hw_dcic_dcicic
 //! @brief Set the FREEZE_MASK field to a new value.
 #define BW_DCIC_DCICIC_FREEZE_MASK(x, v)   (HW_DCIC_DCICIC_WR(x, (HW_DCIC_DCICIC_RD(x) & ~BM_DCIC_DCICIC_FREEZE_MASK) | BF_DCIC_DCICIC_FREEZE_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register DCIC_DCICIC, field EXT_SIG_EN[16] (RW)
@@ -372,7 +356,6 @@ typedef union _hw_dcic_dcicic
  * - 1 - Enabled
  */
 //@{
-
 #define BP_DCIC_DCICIC_EXT_SIG_EN      (16)      //!< Bit position for DCIC_DCICIC_EXT_SIG_EN.
 #define BM_DCIC_DCICIC_EXT_SIG_EN      (0x00010000)  //!< Bit mask for DCIC_DCICIC_EXT_SIG_EN.
 
@@ -386,7 +369,6 @@ typedef union _hw_dcic_dcicic
 //! @brief Set the EXT_SIG_EN field to a new value.
 #define BW_DCIC_DCICIC_EXT_SIG_EN(x, v)   (HW_DCIC_DCICIC_WR(x, (HW_DCIC_DCICIC_RD(x) & ~BM_DCIC_DCICIC_EXT_SIG_EN) | BF_DCIC_DCICIC_EXT_SIG_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -444,7 +426,6 @@ typedef union _hw_dcic_dcics
  * - 1 - Mismatch at ROI calculated CRC
  */
 //@{
-
 #define BP_DCIC_DCICS_ROI_MATCH_STAT      (0)      //!< Bit position for DCIC_DCICS_ROI_MATCH_STAT.
 #define BM_DCIC_DCICS_ROI_MATCH_STAT      (0x0000ffff)  //!< Bit mask for DCIC_DCICS_ROI_MATCH_STAT.
 
@@ -458,7 +439,6 @@ typedef union _hw_dcic_dcics
 //! @brief Set the ROI_MATCH_STAT field to a new value.
 #define BW_DCIC_DCICS_ROI_MATCH_STAT(x, v)   (HW_DCIC_DCICS_WR(x, (HW_DCIC_DCICS_RD(x) & ~BM_DCIC_DCICS_ROI_MATCH_STAT) | BF_DCIC_DCICS_ROI_MATCH_STAT(v)))
 #endif
-
 //@}
 
 /*! @name Register DCIC_DCICS, field EI_STAT[16] (RO)
@@ -471,13 +451,11 @@ typedef union _hw_dcic_dcics
  * - 1 - Pending Interrupt
  */
 //@{
-
 #define BP_DCIC_DCICS_EI_STAT      (16)      //!< Bit position for DCIC_DCICS_EI_STAT.
 #define BM_DCIC_DCICS_EI_STAT      (0x00010000)  //!< Bit mask for DCIC_DCICS_EI_STAT.
 
 //! @brief Get value of DCIC_DCICS_EI_STAT from a register value.
 #define BG_DCIC_DCICS_EI_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICS_EI_STAT) >> BP_DCIC_DCICS_EI_STAT)
-
 //@}
 
 /*! @name Register DCIC_DCICS, field FI_STAT[17] (W1C)
@@ -489,7 +467,6 @@ typedef union _hw_dcic_dcics
  * - 1 - Pending Interrupt
  */
 //@{
-
 #define BP_DCIC_DCICS_FI_STAT      (17)      //!< Bit position for DCIC_DCICS_FI_STAT.
 #define BM_DCIC_DCICS_FI_STAT      (0x00020000)  //!< Bit mask for DCIC_DCICS_FI_STAT.
 
@@ -503,7 +480,6 @@ typedef union _hw_dcic_dcics
 //! @brief Set the FI_STAT field to a new value.
 #define BW_DCIC_DCICS_FI_STAT(x, v)   (HW_DCIC_DCICS_WR(x, (HW_DCIC_DCICS_RD(x) & ~BM_DCIC_DCICS_FI_STAT) | BF_DCIC_DCICS_FI_STAT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -558,7 +534,6 @@ typedef union _hw_dcic_dcicrc
  * Column number of ROIs upper-left corner (X coordinate) Range: 0 to 2^ 13 -1
  */
 //@{
-
 #define BP_DCIC_DCICRC_START_OFFSET_X      (0)      //!< Bit position for DCIC_DCICRC_START_OFFSET_X.
 #define BM_DCIC_DCICRC_START_OFFSET_X      (0x00001fff)  //!< Bit mask for DCIC_DCICRC_START_OFFSET_X.
 
@@ -572,7 +547,6 @@ typedef union _hw_dcic_dcicrc
 //! @brief Set the START_OFFSET_X field to a new value.
 #define BW_DCIC_DCICRC_START_OFFSET_X(x, v)   (HW_DCIC_DCICRC_WR(x, (HW_DCIC_DCICRC_RD(x) & ~BM_DCIC_DCICRC_START_OFFSET_X) | BF_DCIC_DCICRC_START_OFFSET_X(v)))
 #endif
-
 //@}
 
 /*! @name Register DCIC_DCICRC, field START_OFFSET_Y[27:16] (RW)
@@ -580,7 +554,6 @@ typedef union _hw_dcic_dcicrc
  * Row number of ROIs upper-left corner (Y coordinate) Range: 0 to 2^ 12 -1
  */
 //@{
-
 #define BP_DCIC_DCICRC_START_OFFSET_Y      (16)      //!< Bit position for DCIC_DCICRC_START_OFFSET_Y.
 #define BM_DCIC_DCICRC_START_OFFSET_Y      (0x0fff0000)  //!< Bit mask for DCIC_DCICRC_START_OFFSET_Y.
 
@@ -594,7 +567,6 @@ typedef union _hw_dcic_dcicrc
 //! @brief Set the START_OFFSET_Y field to a new value.
 #define BW_DCIC_DCICRC_START_OFFSET_Y(x, v)   (HW_DCIC_DCICRC_WR(x, (HW_DCIC_DCICRC_RD(x) & ~BM_DCIC_DCICRC_START_OFFSET_Y) | BF_DCIC_DCICRC_START_OFFSET_Y(v)))
 #endif
-
 //@}
 
 /*! @name Register DCIC_DCICRC, field ROI_FREEZE[30] (RW)
@@ -607,7 +579,6 @@ typedef union _hw_dcic_dcicrc
  * - 1 - ROI configuration is frozen
  */
 //@{
-
 #define BP_DCIC_DCICRC_ROI_FREEZE      (30)      //!< Bit position for DCIC_DCICRC_ROI_FREEZE.
 #define BM_DCIC_DCICRC_ROI_FREEZE      (0x40000000)  //!< Bit mask for DCIC_DCICRC_ROI_FREEZE.
 
@@ -621,7 +592,6 @@ typedef union _hw_dcic_dcicrc
 //! @brief Set the ROI_FREEZE field to a new value.
 #define BW_DCIC_DCICRC_ROI_FREEZE(x, v)   (HW_DCIC_DCICRC_WR(x, (HW_DCIC_DCICRC_RD(x) & ~BM_DCIC_DCICRC_ROI_FREEZE) | BF_DCIC_DCICRC_ROI_FREEZE(v)))
 #endif
-
 //@}
 
 /*! @name Register DCIC_DCICRC, field ROI_EN[31] (RW)
@@ -633,7 +603,6 @@ typedef union _hw_dcic_dcicrc
  * - 1 - Enabled
  */
 //@{
-
 #define BP_DCIC_DCICRC_ROI_EN      (31)      //!< Bit position for DCIC_DCICRC_ROI_EN.
 #define BM_DCIC_DCICRC_ROI_EN      (0x80000000)  //!< Bit mask for DCIC_DCICRC_ROI_EN.
 
@@ -647,7 +616,6 @@ typedef union _hw_dcic_dcicrc
 //! @brief Set the ROI_EN field to a new value.
 #define BW_DCIC_DCICRC_ROI_EN(x, v)   (HW_DCIC_DCICRC_WR(x, (HW_DCIC_DCICRC_RD(x) & ~BM_DCIC_DCICRC_ROI_EN) | BF_DCIC_DCICRC_ROI_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -700,7 +668,6 @@ typedef union _hw_dcic_dcicrs
  * Column number of ROIs lower-right corner (X coordinate) Range: 1 to 2^ 13 -1
  */
 //@{
-
 #define BP_DCIC_DCICRS_END_OFFSET_X      (0)      //!< Bit position for DCIC_DCICRS_END_OFFSET_X.
 #define BM_DCIC_DCICRS_END_OFFSET_X      (0x00001fff)  //!< Bit mask for DCIC_DCICRS_END_OFFSET_X.
 
@@ -714,7 +681,6 @@ typedef union _hw_dcic_dcicrs
 //! @brief Set the END_OFFSET_X field to a new value.
 #define BW_DCIC_DCICRS_END_OFFSET_X(x, v)   (HW_DCIC_DCICRS_WR(x, (HW_DCIC_DCICRS_RD(x) & ~BM_DCIC_DCICRS_END_OFFSET_X) | BF_DCIC_DCICRS_END_OFFSET_X(v)))
 #endif
-
 //@}
 
 /*! @name Register DCIC_DCICRS, field END_OFFSET_Y[27:16] (RW)
@@ -722,7 +688,6 @@ typedef union _hw_dcic_dcicrs
  * Row number of ROIs lower-right corner (Y coordinate) Range: 1 to 2^ 12 -1
  */
 //@{
-
 #define BP_DCIC_DCICRS_END_OFFSET_Y      (16)      //!< Bit position for DCIC_DCICRS_END_OFFSET_Y.
 #define BM_DCIC_DCICRS_END_OFFSET_Y      (0x0fff0000)  //!< Bit mask for DCIC_DCICRS_END_OFFSET_Y.
 
@@ -736,7 +701,6 @@ typedef union _hw_dcic_dcicrs
 //! @brief Set the END_OFFSET_Y field to a new value.
 #define BW_DCIC_DCICRS_END_OFFSET_Y(x, v)   (HW_DCIC_DCICRS_WR(x, (HW_DCIC_DCICRS_RD(x) & ~BM_DCIC_DCICRS_END_OFFSET_Y) | BF_DCIC_DCICRS_END_OFFSET_Y(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -786,7 +750,6 @@ typedef union _hw_dcic_dcicrrs
  * 32-bit expected signature (CRC calculation result) for ROI #m
  */
 //@{
-
 #define BP_DCIC_DCICRRS_REFERENCE_SIGNATURE      (0)      //!< Bit position for DCIC_DCICRRS_REFERENCE_SIGNATURE.
 #define BM_DCIC_DCICRRS_REFERENCE_SIGNATURE      (0xffffffff)  //!< Bit mask for DCIC_DCICRRS_REFERENCE_SIGNATURE.
 
@@ -800,7 +763,6 @@ typedef union _hw_dcic_dcicrrs
 //! @brief Set the REFERENCE_SIGNATURE field to a new value.
 #define BW_DCIC_DCICRRS_REFERENCE_SIGNATURE(x, v)   (HW_DCIC_DCICRRS_WR(x, (HW_DCIC_DCICRRS_RD(x) & ~BM_DCIC_DCICRRS_REFERENCE_SIGNATURE) | BF_DCIC_DCICRRS_REFERENCE_SIGNATURE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -847,13 +809,11 @@ typedef union _hw_dcic_dcicrcs
  * automatically at the beginning of a next frame.
  */
 //@{
-
 #define BP_DCIC_DCICRCS_CALCULATED_SIGNATURE      (0)      //!< Bit position for DCIC_DCICRCS_CALCULATED_SIGNATURE.
 #define BM_DCIC_DCICRCS_CALCULATED_SIGNATURE      (0xffffffff)  //!< Bit mask for DCIC_DCICRCS_CALCULATED_SIGNATURE.
 
 //! @brief Get value of DCIC_DCICRCS_CALCULATED_SIGNATURE from a register value.
 #define BG_DCIC_DCICRCS_CALCULATED_SIGNATURE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DCIC_DCICRCS_CALCULATED_SIGNATURE) >> BP_DCIC_DCICRCS_CALCULATED_SIGNATURE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -885,3 +845,5 @@ typedef struct _hw_dcic
 #endif
 
 #endif // __HW_DCIC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

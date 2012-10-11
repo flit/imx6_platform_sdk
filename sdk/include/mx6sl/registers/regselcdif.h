@@ -152,7 +152,6 @@ typedef union _hw_lcdif_ctrl
  * display. This bit must remain set until the operation is complete.
  */
 //@{
-
 #define BP_LCDIF_CTRL_RUN      (0)      //!< Bit position for LCDIF_CTRL_RUN.
 #define BM_LCDIF_CTRL_RUN      (0x00000001)  //!< Bit mask for LCDIF_CTRL_RUN.
 
@@ -166,7 +165,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the RUN field to a new value.
 #define BW_LCDIF_CTRL_RUN(v)   BF_CS1(LCDIF_CTRL, RUN, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field DATA_FORMAT_24_BIT[1] (RW)
@@ -180,7 +178,6 @@ typedef union _hw_lcdif_ctrl
  *     bits in each byte do not contain any useful data, and should be dropped.
  */
 //@{
-
 #define BP_LCDIF_CTRL_DATA_FORMAT_24_BIT      (1)      //!< Bit position for LCDIF_CTRL_DATA_FORMAT_24_BIT.
 #define BM_LCDIF_CTRL_DATA_FORMAT_24_BIT      (0x00000002)  //!< Bit mask for LCDIF_CTRL_DATA_FORMAT_24_BIT.
 
@@ -200,7 +197,6 @@ typedef union _hw_lcdif_ctrl
 
 #define BV_LCDIF_CTRL_DATA_FORMAT_24_BIT__ALL_24_BITS_VALID (0x0) //!< Data input to the block is in 24 bpp format, such that all RGB 888 data is contained in 24 bits.
 #define BV_LCDIF_CTRL_DATA_FORMAT_24_BIT__DROP_UPPER_2_BITS_PER_BYTE (0x1) //!< Data input to the block is actually RGB 18 bpp, but there is 1 color per byte, hence the upper 2 bits in each byte do not contain any useful data, and should be dropped.
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field DATA_FORMAT_18_BIT[2] (RW)
@@ -214,7 +210,6 @@ typedef union _hw_lcdif_ctrl
  *     bits do not contain any useful data.
  */
 //@{
-
 #define BP_LCDIF_CTRL_DATA_FORMAT_18_BIT      (2)      //!< Bit position for LCDIF_CTRL_DATA_FORMAT_18_BIT.
 #define BM_LCDIF_CTRL_DATA_FORMAT_18_BIT      (0x00000004)  //!< Bit mask for LCDIF_CTRL_DATA_FORMAT_18_BIT.
 
@@ -234,7 +229,6 @@ typedef union _hw_lcdif_ctrl
 
 #define BV_LCDIF_CTRL_DATA_FORMAT_18_BIT__LOWER_18_BITS_VALID (0x0) //!< Data input to the block is in 18 bpp format, such that lower 18 bits contain RGB 666 and upper 14 bits do not contain any useful data.
 #define BV_LCDIF_CTRL_DATA_FORMAT_18_BIT__UPPER_18_BITS_VALID (0x1) //!< Data input to the block is in 18 bpp format, such that upper 18 bits contain RGB 666 and lower 14 bits do not contain any useful data.
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field DATA_FORMAT_16_BIT[3] (RW)
@@ -244,7 +238,6 @@ typedef union _hw_lcdif_ctrl
  * WORD_LENGTH is not 0, this bit is a dont care.
  */
 //@{
-
 #define BP_LCDIF_CTRL_DATA_FORMAT_16_BIT      (3)      //!< Bit position for LCDIF_CTRL_DATA_FORMAT_16_BIT.
 #define BM_LCDIF_CTRL_DATA_FORMAT_16_BIT      (0x00000008)  //!< Bit mask for LCDIF_CTRL_DATA_FORMAT_16_BIT.
 
@@ -258,7 +251,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the DATA_FORMAT_16_BIT field to a new value.
 #define BW_LCDIF_CTRL_DATA_FORMAT_16_BIT(v)   BF_CS1(LCDIF_CTRL, DATA_FORMAT_16_BIT, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field MASTER[5] (RW)
@@ -267,7 +259,6 @@ typedef union _hw_lcdif_ctrl
  * support or PIO mode.
  */
 //@{
-
 #define BP_LCDIF_CTRL_MASTER      (5)      //!< Bit position for LCDIF_CTRL_MASTER.
 #define BM_LCDIF_CTRL_MASTER      (0x00000020)  //!< Bit mask for LCDIF_CTRL_MASTER.
 
@@ -281,7 +272,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the MASTER field to a new value.
 #define BW_LCDIF_CTRL_MASTER(v)   BF_CS1(LCDIF_CTRL, MASTER, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field ENABLE_PXP_HANDSHAKE[6] (RW)
@@ -291,7 +281,6 @@ typedef union _hw_lcdif_ctrl
  * this bit becomes a don't care.
  */
 //@{
-
 #define BP_LCDIF_CTRL_ENABLE_PXP_HANDSHAKE      (6)      //!< Bit position for LCDIF_CTRL_ENABLE_PXP_HANDSHAKE.
 #define BM_LCDIF_CTRL_ENABLE_PXP_HANDSHAKE      (0x00000040)  //!< Bit mask for LCDIF_CTRL_ENABLE_PXP_HANDSHAKE.
 
@@ -305,7 +294,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the ENABLE_PXP_HANDSHAKE field to a new value.
 #define BW_LCDIF_CTRL_ENABLE_PXP_HANDSHAKE(v)   BF_CS1(LCDIF_CTRL, ENABLE_PXP_HANDSHAKE, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field RGB_TO_YCBCR422_CSC[7] (RW)
@@ -314,7 +302,6 @@ typedef union _hw_lcdif_ctrl
  * for further details.
  */
 //@{
-
 #define BP_LCDIF_CTRL_RGB_TO_YCBCR422_CSC      (7)      //!< Bit position for LCDIF_CTRL_RGB_TO_YCBCR422_CSC.
 #define BM_LCDIF_CTRL_RGB_TO_YCBCR422_CSC      (0x00000080)  //!< Bit mask for LCDIF_CTRL_RGB_TO_YCBCR422_CSC.
 
@@ -328,7 +315,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the RGB_TO_YCBCR422_CSC field to a new value.
 #define BW_LCDIF_CTRL_RGB_TO_YCBCR422_CSC(v)   BF_CS1(LCDIF_CTRL, RGB_TO_YCBCR422_CSC, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field WORD_LENGTH[9:8] (RW)
@@ -342,7 +328,6 @@ typedef union _hw_lcdif_ctrl
  * - 24_BIT = 0x3 - Input data is 24 bits per pixel.
  */
 //@{
-
 #define BP_LCDIF_CTRL_WORD_LENGTH      (8)      //!< Bit position for LCDIF_CTRL_WORD_LENGTH.
 #define BM_LCDIF_CTRL_WORD_LENGTH      (0x00000300)  //!< Bit mask for LCDIF_CTRL_WORD_LENGTH.
 
@@ -364,7 +349,6 @@ typedef union _hw_lcdif_ctrl
 #define BV_LCDIF_CTRL_WORD_LENGTH__8_BIT (0x1) //!< Input data is 8 bits wide.
 #define BV_LCDIF_CTRL_WORD_LENGTH__18_BIT (0x2) //!< Input data is 18 bits per pixel.
 #define BV_LCDIF_CTRL_WORD_LENGTH__24_BIT (0x3) //!< Input data is 24 bits per pixel.
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field LCD_DATABUS_WIDTH[11:10] (RW)
@@ -378,7 +362,6 @@ typedef union _hw_lcdif_ctrl
  * - 24_BIT = 0x3 - 24-bit data bus mode.
  */
 //@{
-
 #define BP_LCDIF_CTRL_LCD_DATABUS_WIDTH      (10)      //!< Bit position for LCDIF_CTRL_LCD_DATABUS_WIDTH.
 #define BM_LCDIF_CTRL_LCD_DATABUS_WIDTH      (0x00000c00)  //!< Bit mask for LCDIF_CTRL_LCD_DATABUS_WIDTH.
 
@@ -400,7 +383,6 @@ typedef union _hw_lcdif_ctrl
 #define BV_LCDIF_CTRL_LCD_DATABUS_WIDTH__8_BIT (0x1) //!< 8-bit data bus mode.
 #define BV_LCDIF_CTRL_LCD_DATABUS_WIDTH__18_BIT (0x2) //!< 18-bit data bus mode.
 #define BV_LCDIF_CTRL_LCD_DATABUS_WIDTH__24_BIT (0x3) //!< 24-bit data bus mode.
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field CSC_DATA_SWIZZLE[13:12] (RW)
@@ -422,7 +404,6 @@ typedef union _hw_lcdif_ctrl
  * - HWD_BYTE_SWAP = 0x3 - Swap bytes within each half-word.
  */
 //@{
-
 #define BP_LCDIF_CTRL_CSC_DATA_SWIZZLE      (12)      //!< Bit position for LCDIF_CTRL_CSC_DATA_SWIZZLE.
 #define BM_LCDIF_CTRL_CSC_DATA_SWIZZLE      (0x00003000)  //!< Bit mask for LCDIF_CTRL_CSC_DATA_SWIZZLE.
 
@@ -446,7 +427,6 @@ typedef union _hw_lcdif_ctrl
 #define BV_LCDIF_CTRL_CSC_DATA_SWIZZLE__SWAP_ALL_BYTES (0x1) //!< Swizzle all bytes, swap bytes 0,3 and 1,2 (aka Big Endian).
 #define BV_LCDIF_CTRL_CSC_DATA_SWIZZLE__HWD_SWAP (0x2) //!< Swap half-words.
 #define BV_LCDIF_CTRL_CSC_DATA_SWIZZLE__HWD_BYTE_SWAP (0x3) //!< Swap bytes within each half-word.
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field INPUT_DATA_SWIZZLE[15:14] (RW)
@@ -463,7 +443,6 @@ typedef union _hw_lcdif_ctrl
  * - HWD_BYTE_SWAP = 0x3 - Swap bytes within each half-word.
  */
 //@{
-
 #define BP_LCDIF_CTRL_INPUT_DATA_SWIZZLE      (14)      //!< Bit position for LCDIF_CTRL_INPUT_DATA_SWIZZLE.
 #define BM_LCDIF_CTRL_INPUT_DATA_SWIZZLE      (0x0000c000)  //!< Bit mask for LCDIF_CTRL_INPUT_DATA_SWIZZLE.
 
@@ -487,7 +466,6 @@ typedef union _hw_lcdif_ctrl
 #define BV_LCDIF_CTRL_INPUT_DATA_SWIZZLE__SWAP_ALL_BYTES (0x1) //!< Swizzle all bytes, swap bytes 0,3 and 1,2 (aka Big Endian).
 #define BV_LCDIF_CTRL_INPUT_DATA_SWIZZLE__HWD_SWAP (0x2) //!< Swap half-words.
 #define BV_LCDIF_CTRL_INPUT_DATA_SWIZZLE__HWD_BYTE_SWAP (0x3) //!< Swap bytes within each half-word.
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field DATA_SELECT[16] (RW)
@@ -499,7 +477,6 @@ typedef union _hw_lcdif_ctrl
  * - DATA_MODE = 0x1 - Data Mode. DCn signal is High.
  */
 //@{
-
 #define BP_LCDIF_CTRL_DATA_SELECT      (16)      //!< Bit position for LCDIF_CTRL_DATA_SELECT.
 #define BM_LCDIF_CTRL_DATA_SELECT      (0x00010000)  //!< Bit mask for LCDIF_CTRL_DATA_SELECT.
 
@@ -519,7 +496,6 @@ typedef union _hw_lcdif_ctrl
 
 #define BV_LCDIF_CTRL_DATA_SELECT__CMD_MODE (0x0) //!< Command Mode. DCn signal is Low.
 #define BV_LCDIF_CTRL_DATA_SELECT__DATA_MODE (0x1) //!< Data Mode. DCn signal is High.
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field DOTCLK_MODE[17] (RW)
@@ -530,7 +506,6 @@ typedef union _hw_lcdif_ctrl
  * the RUN bit.
  */
 //@{
-
 #define BP_LCDIF_CTRL_DOTCLK_MODE      (17)      //!< Bit position for LCDIF_CTRL_DOTCLK_MODE.
 #define BM_LCDIF_CTRL_DOTCLK_MODE      (0x00020000)  //!< Bit mask for LCDIF_CTRL_DOTCLK_MODE.
 
@@ -544,7 +519,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the DOTCLK_MODE field to a new value.
 #define BW_LCDIF_CTRL_DOTCLK_MODE(v)   BF_CS1(LCDIF_CTRL, DOTCLK_MODE, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field VSYNC_MODE[18] (RW)
@@ -554,7 +528,6 @@ typedef union _hw_lcdif_ctrl
  * SYNC_SIGNALS_ON bit in LCDIF_VDCTRL4 register must be set.
  */
 //@{
-
 #define BP_LCDIF_CTRL_VSYNC_MODE      (18)      //!< Bit position for LCDIF_CTRL_VSYNC_MODE.
 #define BM_LCDIF_CTRL_VSYNC_MODE      (0x00040000)  //!< Bit mask for LCDIF_CTRL_VSYNC_MODE.
 
@@ -568,7 +541,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the VSYNC_MODE field to a new value.
 #define BW_LCDIF_CTRL_VSYNC_MODE(v)   BF_CS1(LCDIF_CTRL, VSYNC_MODE, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field BYPASS_COUNT[19] (RW)
@@ -580,7 +552,6 @@ typedef union _hw_lcdif_ctrl
  * operation.
  */
 //@{
-
 #define BP_LCDIF_CTRL_BYPASS_COUNT      (19)      //!< Bit position for LCDIF_CTRL_BYPASS_COUNT.
 #define BM_LCDIF_CTRL_BYPASS_COUNT      (0x00080000)  //!< Bit mask for LCDIF_CTRL_BYPASS_COUNT.
 
@@ -594,7 +565,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the BYPASS_COUNT field to a new value.
 #define BW_LCDIF_CTRL_BYPASS_COUNT(v)   BF_CS1(LCDIF_CTRL, BYPASS_COUNT, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field DVI_MODE[20] (RW)
@@ -604,7 +574,6 @@ typedef union _hw_lcdif_ctrl
  * RUN bit has been deasserted.
  */
 //@{
-
 #define BP_LCDIF_CTRL_DVI_MODE      (20)      //!< Bit position for LCDIF_CTRL_DVI_MODE.
 #define BM_LCDIF_CTRL_DVI_MODE      (0x00100000)  //!< Bit mask for LCDIF_CTRL_DVI_MODE.
 
@@ -618,7 +587,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the DVI_MODE field to a new value.
 #define BW_LCDIF_CTRL_DVI_MODE(v)   BF_CS1(LCDIF_CTRL, DVI_MODE, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field SHIFT_NUM_BITS[25:21] (RW)
@@ -626,7 +594,6 @@ typedef union _hw_lcdif_ctrl
  * The data to be transmitted is shifted left or right by this number of bits.
  */
 //@{
-
 #define BP_LCDIF_CTRL_SHIFT_NUM_BITS      (21)      //!< Bit position for LCDIF_CTRL_SHIFT_NUM_BITS.
 #define BM_LCDIF_CTRL_SHIFT_NUM_BITS      (0x03e00000)  //!< Bit mask for LCDIF_CTRL_SHIFT_NUM_BITS.
 
@@ -640,7 +607,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the SHIFT_NUM_BITS field to a new value.
 #define BW_LCDIF_CTRL_SHIFT_NUM_BITS(v)   BF_CS1(LCDIF_CTRL, SHIFT_NUM_BITS, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field DATA_SHIFT_DIR[26] (RW)
@@ -653,7 +619,6 @@ typedef union _hw_lcdif_ctrl
  * - TXDATA_SHIFT_RIGHT = 0x1 - Data to be transmitted is shifted RIGHT by SHIFT_NUM_BITS bits.
  */
 //@{
-
 #define BP_LCDIF_CTRL_DATA_SHIFT_DIR      (26)      //!< Bit position for LCDIF_CTRL_DATA_SHIFT_DIR.
 #define BM_LCDIF_CTRL_DATA_SHIFT_DIR      (0x04000000)  //!< Bit mask for LCDIF_CTRL_DATA_SHIFT_DIR.
 
@@ -673,7 +638,6 @@ typedef union _hw_lcdif_ctrl
 
 #define BV_LCDIF_CTRL_DATA_SHIFT_DIR__TXDATA_SHIFT_LEFT (0x0) //!< Data to be transmitted is shifted LEFT by SHIFT_NUM_BITS bits.
 #define BV_LCDIF_CTRL_DATA_SHIFT_DIR__TXDATA_SHIFT_RIGHT (0x1) //!< Data to be transmitted is shifted RIGHT by SHIFT_NUM_BITS bits.
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field WAIT_FOR_VSYNC_EDGE[27] (RW)
@@ -682,7 +646,6 @@ typedef union _hw_lcdif_ctrl
  * write transfers to the LCD. Used only in the VSYNC mode of operation.
  */
 //@{
-
 #define BP_LCDIF_CTRL_WAIT_FOR_VSYNC_EDGE      (27)      //!< Bit position for LCDIF_CTRL_WAIT_FOR_VSYNC_EDGE.
 #define BM_LCDIF_CTRL_WAIT_FOR_VSYNC_EDGE      (0x08000000)  //!< Bit mask for LCDIF_CTRL_WAIT_FOR_VSYNC_EDGE.
 
@@ -696,7 +659,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the WAIT_FOR_VSYNC_EDGE field to a new value.
 #define BW_LCDIF_CTRL_WAIT_FOR_VSYNC_EDGE(v)   BF_CS1(LCDIF_CTRL, WAIT_FOR_VSYNC_EDGE, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field READ_WRITEB[28] (RW)
@@ -706,7 +668,6 @@ typedef union _hw_lcdif_ctrl
  * for writing the display.
  */
 //@{
-
 #define BP_LCDIF_CTRL_READ_WRITEB      (28)      //!< Bit position for LCDIF_CTRL_READ_WRITEB.
 #define BM_LCDIF_CTRL_READ_WRITEB      (0x10000000)  //!< Bit mask for LCDIF_CTRL_READ_WRITEB.
 
@@ -720,7 +681,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the READ_WRITEB field to a new value.
 #define BW_LCDIF_CTRL_READ_WRITEB(v)   BF_CS1(LCDIF_CTRL, READ_WRITEB, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field YCBCR422_INPUT[29] (RW)
@@ -732,7 +692,6 @@ typedef union _hw_lcdif_ctrl
  * BYTE_PACKING_FORMAT should be 0xF. The WORD_LENGTH does not matter in this case.
  */
 //@{
-
 #define BP_LCDIF_CTRL_YCBCR422_INPUT      (29)      //!< Bit position for LCDIF_CTRL_YCBCR422_INPUT.
 #define BM_LCDIF_CTRL_YCBCR422_INPUT      (0x20000000)  //!< Bit mask for LCDIF_CTRL_YCBCR422_INPUT.
 
@@ -746,7 +705,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the YCBCR422_INPUT field to a new value.
 #define BW_LCDIF_CTRL_YCBCR422_INPUT(v)   BF_CS1(LCDIF_CTRL, YCBCR422_INPUT, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field CLKGATE[30] (RW)
@@ -755,7 +713,6 @@ typedef union _hw_lcdif_ctrl
  * block.
  */
 //@{
-
 #define BP_LCDIF_CTRL_CLKGATE      (30)      //!< Bit position for LCDIF_CTRL_CLKGATE.
 #define BM_LCDIF_CTRL_CLKGATE      (0x40000000)  //!< Bit mask for LCDIF_CTRL_CLKGATE.
 
@@ -769,7 +726,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the CLKGATE field to a new value.
 #define BW_LCDIF_CTRL_CLKGATE(v)   BF_CS1(LCDIF_CTRL, CLKGATE, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL, field SFTRST[31] (RW)
@@ -778,7 +734,6 @@ typedef union _hw_lcdif_ctrl
  * a block level reset.
  */
 //@{
-
 #define BP_LCDIF_CTRL_SFTRST      (31)      //!< Bit position for LCDIF_CTRL_SFTRST.
 #define BM_LCDIF_CTRL_SFTRST      (0x80000000)  //!< Bit mask for LCDIF_CTRL_SFTRST.
 
@@ -792,7 +747,6 @@ typedef union _hw_lcdif_ctrl
 //! @brief Set the SFTRST field to a new value.
 #define BW_LCDIF_CTRL_SFTRST(v)   BF_CS1(LCDIF_CTRL, SFTRST, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -874,7 +828,6 @@ typedef union _hw_lcdif_ctrl1
  * - LCDRESET_HIGH = 0x1 - LCD_RESET output signal is high.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_RESET      (0)      //!< Bit position for LCDIF_CTRL1_RESET.
 #define BM_LCDIF_CTRL1_RESET      (0x00000001)  //!< Bit mask for LCDIF_CTRL1_RESET.
 
@@ -894,7 +847,6 @@ typedef union _hw_lcdif_ctrl1
 
 #define BV_LCDIF_CTRL1_RESET__LCDRESET_LOW (0x0) //!< LCD_RESET output signal is low.
 #define BV_LCDIF_CTRL1_RESET__LCDRESET_HIGH (0x1) //!< LCD_RESET output signal is high.
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field MODE86[1] (RW)
@@ -907,7 +859,6 @@ typedef union _hw_lcdif_ctrl1
  * - 6800_MODE = 0x1 - Pins LCD_WR_RWn and LCD_RD_E function as Read/Writeb and active high Enable signals respectively.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_MODE86      (1)      //!< Bit position for LCDIF_CTRL1_MODE86.
 #define BM_LCDIF_CTRL1_MODE86      (0x00000002)  //!< Bit mask for LCDIF_CTRL1_MODE86.
 
@@ -927,7 +878,6 @@ typedef union _hw_lcdif_ctrl1
 
 #define BV_LCDIF_CTRL1_MODE86__8080_MODE (0x0) //!< Pins LCD_WR_RWn and LCD_RD_E function as active low WR and active low RD signals respectively.
 #define BV_LCDIF_CTRL1_MODE86__6800_MODE (0x1) //!< Pins LCD_WR_RWn and LCD_RD_E function as Read/Writeb and active high Enable signals respectively.
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field BUSY_ENABLE[2] (RW)
@@ -941,7 +891,6 @@ typedef union _hw_lcdif_ctrl1
  * - BUSY_ENABLED = 0x1 - Enable the use of the busy signal from the LCD controller.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_BUSY_ENABLE      (2)      //!< Bit position for LCDIF_CTRL1_BUSY_ENABLE.
 #define BM_LCDIF_CTRL1_BUSY_ENABLE      (0x00000004)  //!< Bit mask for LCDIF_CTRL1_BUSY_ENABLE.
 
@@ -961,7 +910,6 @@ typedef union _hw_lcdif_ctrl1
 
 #define BV_LCDIF_CTRL1_BUSY_ENABLE__BUSY_DISABLED (0x0) //!< The busy signal from the LCD controller will be ignored.
 #define BV_LCDIF_CTRL1_BUSY_ENABLE__BUSY_ENABLED (0x1) //!< Enable the use of the busy signal from the LCD controller.
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field VSYNC_EDGE_IRQ[8] (RW)
@@ -976,7 +924,6 @@ typedef union _hw_lcdif_ctrl1
  * - REQUEST = 0x1 - Interrupt Request Pending.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_VSYNC_EDGE_IRQ      (8)      //!< Bit position for LCDIF_CTRL1_VSYNC_EDGE_IRQ.
 #define BM_LCDIF_CTRL1_VSYNC_EDGE_IRQ      (0x00000100)  //!< Bit mask for LCDIF_CTRL1_VSYNC_EDGE_IRQ.
 
@@ -996,7 +943,6 @@ typedef union _hw_lcdif_ctrl1
 
 #define BV_LCDIF_CTRL1_VSYNC_EDGE_IRQ__NO_REQUEST (0x0) //!< No Interrupt Request Pending.
 #define BV_LCDIF_CTRL1_VSYNC_EDGE_IRQ__REQUEST (0x1) //!< Interrupt Request Pending.
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field CUR_FRAME_DONE_IRQ[9] (RW)
@@ -1012,7 +958,6 @@ typedef union _hw_lcdif_ctrl1
  * - REQUEST = 0x1 - Interrupt Request Pending.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_CUR_FRAME_DONE_IRQ      (9)      //!< Bit position for LCDIF_CTRL1_CUR_FRAME_DONE_IRQ.
 #define BM_LCDIF_CTRL1_CUR_FRAME_DONE_IRQ      (0x00000200)  //!< Bit mask for LCDIF_CTRL1_CUR_FRAME_DONE_IRQ.
 
@@ -1032,7 +977,6 @@ typedef union _hw_lcdif_ctrl1
 
 #define BV_LCDIF_CTRL1_CUR_FRAME_DONE_IRQ__NO_REQUEST (0x0) //!< No Interrupt Request Pending.
 #define BV_LCDIF_CTRL1_CUR_FRAME_DONE_IRQ__REQUEST (0x1) //!< Interrupt Request Pending.
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field UNDERFLOW_IRQ[10] (RW)
@@ -1046,7 +990,6 @@ typedef union _hw_lcdif_ctrl1
  * - REQUEST = 0x1 - Interrupt Request Pending.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_UNDERFLOW_IRQ      (10)      //!< Bit position for LCDIF_CTRL1_UNDERFLOW_IRQ.
 #define BM_LCDIF_CTRL1_UNDERFLOW_IRQ      (0x00000400)  //!< Bit mask for LCDIF_CTRL1_UNDERFLOW_IRQ.
 
@@ -1066,7 +1009,6 @@ typedef union _hw_lcdif_ctrl1
 
 #define BV_LCDIF_CTRL1_UNDERFLOW_IRQ__NO_REQUEST (0x0) //!< No Interrupt Request Pending.
 #define BV_LCDIF_CTRL1_UNDERFLOW_IRQ__REQUEST (0x1) //!< Interrupt Request Pending.
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field OVERFLOW_IRQ[11] (RW)
@@ -1080,7 +1022,6 @@ typedef union _hw_lcdif_ctrl1
  * - REQUEST = 0x1 - Interrupt Request Pending.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_OVERFLOW_IRQ      (11)      //!< Bit position for LCDIF_CTRL1_OVERFLOW_IRQ.
 #define BM_LCDIF_CTRL1_OVERFLOW_IRQ      (0x00000800)  //!< Bit mask for LCDIF_CTRL1_OVERFLOW_IRQ.
 
@@ -1100,7 +1041,6 @@ typedef union _hw_lcdif_ctrl1
 
 #define BV_LCDIF_CTRL1_OVERFLOW_IRQ__NO_REQUEST (0x0) //!< No Interrupt Request Pending.
 #define BV_LCDIF_CTRL1_OVERFLOW_IRQ__REQUEST (0x1) //!< Interrupt Request Pending.
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field VSYNC_EDGE_IRQ_EN[12] (RW)
@@ -1109,7 +1049,6 @@ typedef union _hw_lcdif_ctrl1
  * in the VSYNC and DOTCLK modes, or the beginning of every field in DVI mode.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_VSYNC_EDGE_IRQ_EN      (12)      //!< Bit position for LCDIF_CTRL1_VSYNC_EDGE_IRQ_EN.
 #define BM_LCDIF_CTRL1_VSYNC_EDGE_IRQ_EN      (0x00001000)  //!< Bit mask for LCDIF_CTRL1_VSYNC_EDGE_IRQ_EN.
 
@@ -1123,7 +1062,6 @@ typedef union _hw_lcdif_ctrl1
 //! @brief Set the VSYNC_EDGE_IRQ_EN field to a new value.
 #define BW_LCDIF_CTRL1_VSYNC_EDGE_IRQ_EN(v)   BF_CS1(LCDIF_CTRL1, VSYNC_EDGE_IRQ_EN, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field CUR_FRAME_DONE_IRQ_EN[13] (RW)
@@ -1132,7 +1070,6 @@ typedef union _hw_lcdif_ctrl1
  * state.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN      (13)      //!< Bit position for LCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN.
 #define BM_LCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN      (0x00002000)  //!< Bit mask for LCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN.
 
@@ -1146,7 +1083,6 @@ typedef union _hw_lcdif_ctrl1
 //! @brief Set the CUR_FRAME_DONE_IRQ_EN field to a new value.
 #define BW_LCDIF_CTRL1_CUR_FRAME_DONE_IRQ_EN(v)   BF_CS1(LCDIF_CTRL1, CUR_FRAME_DONE_IRQ_EN, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field UNDERFLOW_IRQ_EN[14] (RW)
@@ -1154,7 +1090,6 @@ typedef union _hw_lcdif_ctrl1
  * This bit is set to enable an underflow interrupt in the TXFIFO in the write mode.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_UNDERFLOW_IRQ_EN      (14)      //!< Bit position for LCDIF_CTRL1_UNDERFLOW_IRQ_EN.
 #define BM_LCDIF_CTRL1_UNDERFLOW_IRQ_EN      (0x00004000)  //!< Bit mask for LCDIF_CTRL1_UNDERFLOW_IRQ_EN.
 
@@ -1168,7 +1103,6 @@ typedef union _hw_lcdif_ctrl1
 //! @brief Set the UNDERFLOW_IRQ_EN field to a new value.
 #define BW_LCDIF_CTRL1_UNDERFLOW_IRQ_EN(v)   BF_CS1(LCDIF_CTRL1, UNDERFLOW_IRQ_EN, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field OVERFLOW_IRQ_EN[15] (RW)
@@ -1176,7 +1110,6 @@ typedef union _hw_lcdif_ctrl1
  * This bit is set to enable an overflow interrupt in the TXFIFO in the write mode.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_OVERFLOW_IRQ_EN      (15)      //!< Bit position for LCDIF_CTRL1_OVERFLOW_IRQ_EN.
 #define BM_LCDIF_CTRL1_OVERFLOW_IRQ_EN      (0x00008000)  //!< Bit mask for LCDIF_CTRL1_OVERFLOW_IRQ_EN.
 
@@ -1190,7 +1123,6 @@ typedef union _hw_lcdif_ctrl1
 //! @brief Set the OVERFLOW_IRQ_EN field to a new value.
 #define BW_LCDIF_CTRL1_OVERFLOW_IRQ_EN(v)   BF_CS1(LCDIF_CTRL1, OVERFLOW_IRQ_EN, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field BYTE_PACKING_FORMAT[19:16] (RW)
@@ -1206,7 +1138,6 @@ typedef union _hw_lcdif_ctrl1
  * 0xF.(Note - YCBCR422_INPUT = 1 implies 2 pixels per 32 bits).
  */
 //@{
-
 #define BP_LCDIF_CTRL1_BYTE_PACKING_FORMAT      (16)      //!< Bit position for LCDIF_CTRL1_BYTE_PACKING_FORMAT.
 #define BM_LCDIF_CTRL1_BYTE_PACKING_FORMAT      (0x000f0000)  //!< Bit mask for LCDIF_CTRL1_BYTE_PACKING_FORMAT.
 
@@ -1220,7 +1151,6 @@ typedef union _hw_lcdif_ctrl1
 //! @brief Set the BYTE_PACKING_FORMAT field to a new value.
 #define BW_LCDIF_CTRL1_BYTE_PACKING_FORMAT(v)   BF_CS1(LCDIF_CTRL1, BYTE_PACKING_FORMAT, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field IRQ_ON_ALTERNATE_FIELDS[20] (RW)
@@ -1230,7 +1160,6 @@ typedef union _hw_lcdif_ctrl1
  * relevant if INTERLACE_FIELDS is set. This feature is only available in DOTCLK and DVI modes.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS      (20)      //!< Bit position for LCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS.
 #define BM_LCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS      (0x00100000)  //!< Bit mask for LCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS.
 
@@ -1244,7 +1173,6 @@ typedef union _hw_lcdif_ctrl1
 //! @brief Set the IRQ_ON_ALTERNATE_FIELDS field to a new value.
 #define BW_LCDIF_CTRL1_IRQ_ON_ALTERNATE_FIELDS(v)   BF_CS1(LCDIF_CTRL1, IRQ_ON_ALTERNATE_FIELDS, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field FIFO_CLEAR[21] (RW)
@@ -1252,7 +1180,6 @@ typedef union _hw_lcdif_ctrl1
  * Set this bit to clear all the data in the latency FIFO (LFIFO), TXFIFO and the RXFIFO.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_FIFO_CLEAR      (21)      //!< Bit position for LCDIF_CTRL1_FIFO_CLEAR.
 #define BM_LCDIF_CTRL1_FIFO_CLEAR      (0x00200000)  //!< Bit mask for LCDIF_CTRL1_FIFO_CLEAR.
 
@@ -1266,7 +1193,6 @@ typedef union _hw_lcdif_ctrl1
 //! @brief Set the FIFO_CLEAR field to a new value.
 #define BW_LCDIF_CTRL1_FIFO_CLEAR(v)   BF_CS1(LCDIF_CTRL1, FIFO_CLEAR, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field START_INTERLACE_FROM_SECOND_FIELD[22] (RW)
@@ -1276,7 +1202,6 @@ typedef union _hw_lcdif_ctrl1
  * lines are 1,3,5,etc. and even lines are 2,4,6, etc.)
  */
 //@{
-
 #define BP_LCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD      (22)      //!< Bit position for LCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD.
 #define BM_LCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD      (0x00400000)  //!< Bit mask for LCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD.
 
@@ -1290,7 +1215,6 @@ typedef union _hw_lcdif_ctrl1
 //! @brief Set the START_INTERLACE_FROM_SECOND_FIELD field to a new value.
 #define BW_LCDIF_CTRL1_START_INTERLACE_FROM_SECOND_FIELD(v)   BF_CS1(LCDIF_CTRL1, START_INTERLACE_FROM_SECOND_FIELD, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field INTERLACE_FIELDS[23] (RW)
@@ -1299,7 +1223,6 @@ typedef union _hw_lcdif_ctrl1
  * lines in the other field. It will work only in LCDIF_MASTER is set to 1.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_INTERLACE_FIELDS      (23)      //!< Bit position for LCDIF_CTRL1_INTERLACE_FIELDS.
 #define BM_LCDIF_CTRL1_INTERLACE_FIELDS      (0x00800000)  //!< Bit mask for LCDIF_CTRL1_INTERLACE_FIELDS.
 
@@ -1313,7 +1236,6 @@ typedef union _hw_lcdif_ctrl1
 //! @brief Set the INTERLACE_FIELDS field to a new value.
 #define BW_LCDIF_CTRL1_INTERLACE_FIELDS(v)   BF_CS1(LCDIF_CTRL1, INTERLACE_FIELDS, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field RECOVER_ON_UNDERFLOW[24] (RW)
@@ -1322,7 +1244,6 @@ typedef union _hw_lcdif_ctrl1
  * underflow in the current field/frame.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_RECOVER_ON_UNDERFLOW      (24)      //!< Bit position for LCDIF_CTRL1_RECOVER_ON_UNDERFLOW.
 #define BM_LCDIF_CTRL1_RECOVER_ON_UNDERFLOW      (0x01000000)  //!< Bit mask for LCDIF_CTRL1_RECOVER_ON_UNDERFLOW.
 
@@ -1336,7 +1257,6 @@ typedef union _hw_lcdif_ctrl1
 //! @brief Set the RECOVER_ON_UNDERFLOW field to a new value.
 #define BW_LCDIF_CTRL1_RECOVER_ON_UNDERFLOW(v)   BF_CS1(LCDIF_CTRL1, RECOVER_ON_UNDERFLOW, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field BM_ERROR_IRQ[25] (RW)
@@ -1350,7 +1270,6 @@ typedef union _hw_lcdif_ctrl1
  * - REQUEST = 0x1 - Interrupt Request Pending.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_BM_ERROR_IRQ      (25)      //!< Bit position for LCDIF_CTRL1_BM_ERROR_IRQ.
 #define BM_LCDIF_CTRL1_BM_ERROR_IRQ      (0x02000000)  //!< Bit mask for LCDIF_CTRL1_BM_ERROR_IRQ.
 
@@ -1370,7 +1289,6 @@ typedef union _hw_lcdif_ctrl1
 
 #define BV_LCDIF_CTRL1_BM_ERROR_IRQ__NO_REQUEST (0x0) //!< No Interrupt Request Pending.
 #define BV_LCDIF_CTRL1_BM_ERROR_IRQ__REQUEST (0x1) //!< Interrupt Request Pending.
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field BM_ERROR_IRQ_EN[26] (RW)
@@ -1378,7 +1296,6 @@ typedef union _hw_lcdif_ctrl1
  * This bit is set to enable bus master error interrupt in the eLCDIF master mode.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_BM_ERROR_IRQ_EN      (26)      //!< Bit position for LCDIF_CTRL1_BM_ERROR_IRQ_EN.
 #define BM_LCDIF_CTRL1_BM_ERROR_IRQ_EN      (0x04000000)  //!< Bit mask for LCDIF_CTRL1_BM_ERROR_IRQ_EN.
 
@@ -1392,7 +1309,6 @@ typedef union _hw_lcdif_ctrl1
 //! @brief Set the BM_ERROR_IRQ_EN field to a new value.
 #define BW_LCDIF_CTRL1_BM_ERROR_IRQ_EN(v)   BF_CS1(LCDIF_CTRL1, BM_ERROR_IRQ_EN, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL1, field COMBINE_MPU_WR_STRB[27] (RW)
@@ -1402,7 +1318,6 @@ typedef union _hw_lcdif_ctrl1
  * will be driven only on the LCD_WR_RWn pin. Note that this does not work for read strobe.
  */
 //@{
-
 #define BP_LCDIF_CTRL1_COMBINE_MPU_WR_STRB      (27)      //!< Bit position for LCDIF_CTRL1_COMBINE_MPU_WR_STRB.
 #define BM_LCDIF_CTRL1_COMBINE_MPU_WR_STRB      (0x08000000)  //!< Bit mask for LCDIF_CTRL1_COMBINE_MPU_WR_STRB.
 
@@ -1416,7 +1331,6 @@ typedef union _hw_lcdif_ctrl1
 //! @brief Set the COMBINE_MPU_WR_STRB field to a new value.
 #define BW_LCDIF_CTRL1_COMBINE_MPU_WR_STRB(v)   BF_CS1(LCDIF_CTRL1, COMBINE_MPU_WR_STRB, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1486,7 +1400,6 @@ typedef union _hw_lcdif_ctrl2
  * read back from the LCD panel/controller. They will then not be stored in the read FIFO.
  */
 //@{
-
 #define BP_LCDIF_CTRL2_INITIAL_DUMMY_READ      (1)      //!< Bit position for LCDIF_CTRL2_INITIAL_DUMMY_READ.
 #define BM_LCDIF_CTRL2_INITIAL_DUMMY_READ      (0x0000000e)  //!< Bit mask for LCDIF_CTRL2_INITIAL_DUMMY_READ.
 
@@ -1500,7 +1413,6 @@ typedef union _hw_lcdif_ctrl2
 //! @brief Set the INITIAL_DUMMY_READ field to a new value.
 #define BW_LCDIF_CTRL2_INITIAL_DUMMY_READ(v)   BF_CS1(LCDIF_CTRL2, INITIAL_DUMMY_READ, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL2, field READ_MODE_NUM_PACKED_SUBWORDS[6:4] (RW)
@@ -1515,7 +1427,6 @@ typedef union _hw_lcdif_ctrl2
  * databus and 1 for 18/24-bit databus.
  */
 //@{
-
 #define BP_LCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS      (4)      //!< Bit position for LCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS.
 #define BM_LCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS      (0x00000070)  //!< Bit mask for LCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS.
 
@@ -1529,7 +1440,6 @@ typedef union _hw_lcdif_ctrl2
 //! @brief Set the READ_MODE_NUM_PACKED_SUBWORDS field to a new value.
 #define BW_LCDIF_CTRL2_READ_MODE_NUM_PACKED_SUBWORDS(v)   BF_CS1(LCDIF_CTRL2, READ_MODE_NUM_PACKED_SUBWORDS, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL2, field READ_MODE_6_BIT_INPUT[8] (RW)
@@ -1538,7 +1448,6 @@ typedef union _hw_lcdif_ctrl2
  * the input data is actually only 6 bits wide and exists on D5-D0.
  */
 //@{
-
 #define BP_LCDIF_CTRL2_READ_MODE_6_BIT_INPUT      (8)      //!< Bit position for LCDIF_CTRL2_READ_MODE_6_BIT_INPUT.
 #define BM_LCDIF_CTRL2_READ_MODE_6_BIT_INPUT      (0x00000100)  //!< Bit mask for LCDIF_CTRL2_READ_MODE_6_BIT_INPUT.
 
@@ -1552,7 +1461,6 @@ typedef union _hw_lcdif_ctrl2
 //! @brief Set the READ_MODE_6_BIT_INPUT field to a new value.
 #define BW_LCDIF_CTRL2_READ_MODE_6_BIT_INPUT(v)   BF_CS1(LCDIF_CTRL2, READ_MODE_6_BIT_INPUT, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL2, field READ_MODE_OUTPUT_IN_RGB_FORMAT[9] (RW)
@@ -1563,7 +1471,6 @@ typedef union _hw_lcdif_ctrl2
  * the READ_PACK_DIR bitfield.
  */
 //@{
-
 #define BP_LCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT      (9)      //!< Bit position for LCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT.
 #define BM_LCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT      (0x00000200)  //!< Bit mask for LCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT.
 
@@ -1577,7 +1484,6 @@ typedef union _hw_lcdif_ctrl2
 //! @brief Set the READ_MODE_OUTPUT_IN_RGB_FORMAT field to a new value.
 #define BW_LCDIF_CTRL2_READ_MODE_OUTPUT_IN_RGB_FORMAT(v)   BF_CS1(LCDIF_CTRL2, READ_MODE_OUTPUT_IN_RGB_FORMAT, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL2, field READ_PACK_DIR[10] (RW)
@@ -1590,7 +1496,6 @@ typedef union _hw_lcdif_ctrl2
  * operation done by SHIFT_NUM_BITS bitfield.
  */
 //@{
-
 #define BP_LCDIF_CTRL2_READ_PACK_DIR      (10)      //!< Bit position for LCDIF_CTRL2_READ_PACK_DIR.
 #define BM_LCDIF_CTRL2_READ_PACK_DIR      (0x00000400)  //!< Bit mask for LCDIF_CTRL2_READ_PACK_DIR.
 
@@ -1604,7 +1509,6 @@ typedef union _hw_lcdif_ctrl2
 //! @brief Set the READ_PACK_DIR field to a new value.
 #define BW_LCDIF_CTRL2_READ_PACK_DIR(v)   BF_CS1(LCDIF_CTRL2, READ_PACK_DIR, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL2, field EVEN_LINE_PATTERN[14:12] (RW)
@@ -1621,7 +1525,6 @@ typedef union _hw_lcdif_ctrl2
  * - BGR = 0x5 - 
  */
 //@{
-
 #define BP_LCDIF_CTRL2_EVEN_LINE_PATTERN      (12)      //!< Bit position for LCDIF_CTRL2_EVEN_LINE_PATTERN.
 #define BM_LCDIF_CTRL2_EVEN_LINE_PATTERN      (0x00007000)  //!< Bit mask for LCDIF_CTRL2_EVEN_LINE_PATTERN.
 
@@ -1645,7 +1548,6 @@ typedef union _hw_lcdif_ctrl2
 #define BV_LCDIF_CTRL2_EVEN_LINE_PATTERN__GRB (0x3) //!< 
 #define BV_LCDIF_CTRL2_EVEN_LINE_PATTERN__BRG (0x4) //!< 
 #define BV_LCDIF_CTRL2_EVEN_LINE_PATTERN__BGR (0x5) //!< 
-
 //@}
 
 /*! @name Register LCDIF_CTRL2, field ODD_LINE_PATTERN[18:16] (RW)
@@ -1662,7 +1564,6 @@ typedef union _hw_lcdif_ctrl2
  * - BGR = 0x5 - 
  */
 //@{
-
 #define BP_LCDIF_CTRL2_ODD_LINE_PATTERN      (16)      //!< Bit position for LCDIF_CTRL2_ODD_LINE_PATTERN.
 #define BM_LCDIF_CTRL2_ODD_LINE_PATTERN      (0x00070000)  //!< Bit mask for LCDIF_CTRL2_ODD_LINE_PATTERN.
 
@@ -1686,7 +1587,6 @@ typedef union _hw_lcdif_ctrl2
 #define BV_LCDIF_CTRL2_ODD_LINE_PATTERN__GRB (0x3) //!< 
 #define BV_LCDIF_CTRL2_ODD_LINE_PATTERN__BRG (0x4) //!< 
 #define BV_LCDIF_CTRL2_ODD_LINE_PATTERN__BGR (0x5) //!< 
-
 //@}
 
 /*! @name Register LCDIF_CTRL2, field BURST_LEN_8[20] (RW)
@@ -1697,7 +1597,6 @@ typedef union _hw_lcdif_ctrl2
  * bursts of length 9). Note that this bitfield is only applicable when LCDIF_MASTER is set to 1.
  */
 //@{
-
 #define BP_LCDIF_CTRL2_BURST_LEN_8      (20)      //!< Bit position for LCDIF_CTRL2_BURST_LEN_8.
 #define BM_LCDIF_CTRL2_BURST_LEN_8      (0x00100000)  //!< Bit mask for LCDIF_CTRL2_BURST_LEN_8.
 
@@ -1711,7 +1610,6 @@ typedef union _hw_lcdif_ctrl2
 //! @brief Set the BURST_LEN_8 field to a new value.
 #define BW_LCDIF_CTRL2_BURST_LEN_8(v)   BF_CS1(LCDIF_CTRL2, BURST_LEN_8, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CTRL2, field OUTSTANDING_REQS[23:21] (RW)
@@ -1727,7 +1625,6 @@ typedef union _hw_lcdif_ctrl2
  * - REQ_16 = 0x4 - 
  */
 //@{
-
 #define BP_LCDIF_CTRL2_OUTSTANDING_REQS      (21)      //!< Bit position for LCDIF_CTRL2_OUTSTANDING_REQS.
 #define BM_LCDIF_CTRL2_OUTSTANDING_REQS      (0x00e00000)  //!< Bit mask for LCDIF_CTRL2_OUTSTANDING_REQS.
 
@@ -1750,7 +1647,6 @@ typedef union _hw_lcdif_ctrl2
 #define BV_LCDIF_CTRL2_OUTSTANDING_REQS__REQ_4 (0x2) //!< 
 #define BV_LCDIF_CTRL2_OUTSTANDING_REQS__REQ_8 (0x3) //!< 
 #define BV_LCDIF_CTRL2_OUTSTANDING_REQS__REQ_16 (0x4) //!< 
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1809,7 +1705,6 @@ typedef union _hw_lcdif_transfer_count
  * be a multiple of 2 pixels.
  */
 //@{
-
 #define BP_LCDIF_TRANSFER_COUNT_H_COUNT      (0)      //!< Bit position for LCDIF_TRANSFER_COUNT_H_COUNT.
 #define BM_LCDIF_TRANSFER_COUNT_H_COUNT      (0x0000ffff)  //!< Bit mask for LCDIF_TRANSFER_COUNT_H_COUNT.
 
@@ -1823,7 +1718,6 @@ typedef union _hw_lcdif_transfer_count
 //! @brief Set the H_COUNT field to a new value.
 #define BW_LCDIF_TRANSFER_COUNT_H_COUNT(v)   (HW_LCDIF_TRANSFER_COUNT_WR((HW_LCDIF_TRANSFER_COUNT_RD() & ~BM_LCDIF_TRANSFER_COUNT_H_COUNT) | BF_LCDIF_TRANSFER_COUNT_H_COUNT(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_TRANSFER_COUNT, field V_COUNT[31:16] (RW)
@@ -1833,7 +1727,6 @@ typedef union _hw_lcdif_transfer_count
  * should be the number of active horizontal lines per frame, and not per field.
  */
 //@{
-
 #define BP_LCDIF_TRANSFER_COUNT_V_COUNT      (16)      //!< Bit position for LCDIF_TRANSFER_COUNT_V_COUNT.
 #define BM_LCDIF_TRANSFER_COUNT_V_COUNT      (0xffff0000)  //!< Bit mask for LCDIF_TRANSFER_COUNT_V_COUNT.
 
@@ -1847,7 +1740,6 @@ typedef union _hw_lcdif_transfer_count
 //! @brief Set the V_COUNT field to a new value.
 #define BW_LCDIF_TRANSFER_COUNT_V_COUNT(v)   (HW_LCDIF_TRANSFER_COUNT_WR((HW_LCDIF_TRANSFER_COUNT_RD() & ~BM_LCDIF_TRANSFER_COUNT_V_COUNT) | BF_LCDIF_TRANSFER_COUNT_V_COUNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1902,7 +1794,6 @@ typedef union _hw_lcdif_cur_buf
  * -
  */
 //@{
-
 #define BP_LCDIF_CUR_BUF_ADDR      (0)      //!< Bit position for LCDIF_CUR_BUF_ADDR.
 #define BM_LCDIF_CUR_BUF_ADDR      (0xffffffff)  //!< Bit mask for LCDIF_CUR_BUF_ADDR.
 
@@ -1916,7 +1807,6 @@ typedef union _hw_lcdif_cur_buf
 //! @brief Set the ADDR field to a new value.
 #define BW_LCDIF_CUR_BUF_ADDR(v)   (HW_LCDIF_CUR_BUF_WR((HW_LCDIF_CUR_BUF_RD() & ~BM_LCDIF_CUR_BUF_ADDR) | BF_LCDIF_CUR_BUF_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1970,7 +1860,6 @@ typedef union _hw_lcdif_next_buf
  * -
  */
 //@{
-
 #define BP_LCDIF_NEXT_BUF_ADDR      (0)      //!< Bit position for LCDIF_NEXT_BUF_ADDR.
 #define BM_LCDIF_NEXT_BUF_ADDR      (0xffffffff)  //!< Bit mask for LCDIF_NEXT_BUF_ADDR.
 
@@ -1984,7 +1873,6 @@ typedef union _hw_lcdif_next_buf
 //! @brief Set the ADDR field to a new value.
 #define BW_LCDIF_NEXT_BUF_ADDR(v)   (HW_LCDIF_NEXT_BUF_WR((HW_LCDIF_NEXT_BUF_RD() & ~BM_LCDIF_NEXT_BUF_ADDR) | BF_LCDIF_NEXT_BUF_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2045,7 +1933,6 @@ typedef union _hw_lcdif_timing
  * cycle.
  */
 //@{
-
 #define BP_LCDIF_TIMING_DATA_SETUP      (0)      //!< Bit position for LCDIF_TIMING_DATA_SETUP.
 #define BM_LCDIF_TIMING_DATA_SETUP      (0x000000ff)  //!< Bit mask for LCDIF_TIMING_DATA_SETUP.
 
@@ -2059,7 +1946,6 @@ typedef union _hw_lcdif_timing
 //! @brief Set the DATA_SETUP field to a new value.
 #define BW_LCDIF_TIMING_DATA_SETUP(v)   (HW_LCDIF_TIMING_WR((HW_LCDIF_TIMING_RD() & ~BM_LCDIF_TIMING_DATA_SETUP) | BF_LCDIF_TIMING_DATA_SETUP(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_TIMING, field DATA_HOLD[15:8] (RW)
@@ -2068,7 +1954,6 @@ typedef union _hw_lcdif_timing
  * a cycle
  */
 //@{
-
 #define BP_LCDIF_TIMING_DATA_HOLD      (8)      //!< Bit position for LCDIF_TIMING_DATA_HOLD.
 #define BM_LCDIF_TIMING_DATA_HOLD      (0x0000ff00)  //!< Bit mask for LCDIF_TIMING_DATA_HOLD.
 
@@ -2082,7 +1967,6 @@ typedef union _hw_lcdif_timing
 //! @brief Set the DATA_HOLD field to a new value.
 #define BW_LCDIF_TIMING_DATA_HOLD(v)   (HW_LCDIF_TIMING_WR((HW_LCDIF_TIMING_RD() & ~BM_LCDIF_TIMING_DATA_HOLD) | BF_LCDIF_TIMING_DATA_HOLD(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_TIMING, field CMD_SETUP[23:16] (RW)
@@ -2090,7 +1974,6 @@ typedef union _hw_lcdif_timing
  * Number of CLK_DIS_LCDIFn cycles that the the DCn signal is active before CEn is asserted.
  */
 //@{
-
 #define BP_LCDIF_TIMING_CMD_SETUP      (16)      //!< Bit position for LCDIF_TIMING_CMD_SETUP.
 #define BM_LCDIF_TIMING_CMD_SETUP      (0x00ff0000)  //!< Bit mask for LCDIF_TIMING_CMD_SETUP.
 
@@ -2104,7 +1987,6 @@ typedef union _hw_lcdif_timing
 //! @brief Set the CMD_SETUP field to a new value.
 #define BW_LCDIF_TIMING_CMD_SETUP(v)   (HW_LCDIF_TIMING_WR((HW_LCDIF_TIMING_RD() & ~BM_LCDIF_TIMING_CMD_SETUP) | BF_LCDIF_TIMING_CMD_SETUP(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_TIMING, field CMD_HOLD[31:24] (RW)
@@ -2112,7 +1994,6 @@ typedef union _hw_lcdif_timing
  * Number of CLK_DIS_LCDIFn cycles that the DCn signal is active after CEn is deasserted.
  */
 //@{
-
 #define BP_LCDIF_TIMING_CMD_HOLD      (24)      //!< Bit position for LCDIF_TIMING_CMD_HOLD.
 #define BM_LCDIF_TIMING_CMD_HOLD      (0xff000000)  //!< Bit mask for LCDIF_TIMING_CMD_HOLD.
 
@@ -2126,7 +2007,6 @@ typedef union _hw_lcdif_timing
 //! @brief Set the CMD_HOLD field to a new value.
 #define BW_LCDIF_TIMING_CMD_HOLD(v)   (HW_LCDIF_TIMING_WR((HW_LCDIF_TIMING_RD() & ~BM_LCDIF_TIMING_CMD_HOLD) | BF_LCDIF_TIMING_CMD_HOLD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2197,7 +2077,6 @@ typedef union _hw_lcdif_vdctrl0
  * CLK_DIS_LCDIFn cycles only.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL0_VSYNC_PULSE_WIDTH      (0)      //!< Bit position for LCDIF_VDCTRL0_VSYNC_PULSE_WIDTH.
 #define BM_LCDIF_VDCTRL0_VSYNC_PULSE_WIDTH      (0x0003ffff)  //!< Bit mask for LCDIF_VDCTRL0_VSYNC_PULSE_WIDTH.
 
@@ -2211,7 +2090,6 @@ typedef union _hw_lcdif_vdctrl0
 //! @brief Set the VSYNC_PULSE_WIDTH field to a new value.
 #define BW_LCDIF_VDCTRL0_VSYNC_PULSE_WIDTH(v)   BF_CS1(LCDIF_VDCTRL0, VSYNC_PULSE_WIDTH, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL0, field HALF_LINE_MODE[18] (RW)
@@ -2221,7 +2099,6 @@ typedef union _hw_lcdif_vdctrl0
  * half a horizontal line, and none will begin with half a horizontal line.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL0_HALF_LINE_MODE      (18)      //!< Bit position for LCDIF_VDCTRL0_HALF_LINE_MODE.
 #define BM_LCDIF_VDCTRL0_HALF_LINE_MODE      (0x00040000)  //!< Bit mask for LCDIF_VDCTRL0_HALF_LINE_MODE.
 
@@ -2235,7 +2112,6 @@ typedef union _hw_lcdif_vdctrl0
 //! @brief Set the HALF_LINE_MODE field to a new value.
 #define BW_LCDIF_VDCTRL0_HALF_LINE_MODE(v)   BF_CS1(LCDIF_VDCTRL0, HALF_LINE_MODE, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL0, field HALF_LINE[19] (RW)
@@ -2245,7 +2121,6 @@ typedef union _hw_lcdif_vdctrl0
  * just VSYNC_PERIOD. Should be only used in the DOTCLK mode, not in the VSYNC interface mode.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL0_HALF_LINE      (19)      //!< Bit position for LCDIF_VDCTRL0_HALF_LINE.
 #define BM_LCDIF_VDCTRL0_HALF_LINE      (0x00080000)  //!< Bit mask for LCDIF_VDCTRL0_HALF_LINE.
 
@@ -2259,7 +2134,6 @@ typedef union _hw_lcdif_vdctrl0
 //! @brief Set the HALF_LINE field to a new value.
 #define BW_LCDIF_VDCTRL0_HALF_LINE(v)   BF_CS1(LCDIF_VDCTRL0, HALF_LINE, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL0, field VSYNC_PULSE_WIDTH_UNIT[20] (RW)
@@ -2268,7 +2142,6 @@ typedef union _hw_lcdif_vdctrl0
  * in terms of complete horizontal lines.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT      (20)      //!< Bit position for LCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT.
 #define BM_LCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT      (0x00100000)  //!< Bit mask for LCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT.
 
@@ -2282,7 +2155,6 @@ typedef union _hw_lcdif_vdctrl0
 //! @brief Set the VSYNC_PULSE_WIDTH_UNIT field to a new value.
 #define BW_LCDIF_VDCTRL0_VSYNC_PULSE_WIDTH_UNIT(v)   BF_CS1(LCDIF_VDCTRL0, VSYNC_PULSE_WIDTH_UNIT, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL0, field VSYNC_PERIOD_UNIT[21] (RW)
@@ -2292,7 +2164,6 @@ typedef union _hw_lcdif_vdctrl0
  * horizontal line should be used in the DOTCLK mode.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL0_VSYNC_PERIOD_UNIT      (21)      //!< Bit position for LCDIF_VDCTRL0_VSYNC_PERIOD_UNIT.
 #define BM_LCDIF_VDCTRL0_VSYNC_PERIOD_UNIT      (0x00200000)  //!< Bit mask for LCDIF_VDCTRL0_VSYNC_PERIOD_UNIT.
 
@@ -2306,7 +2177,6 @@ typedef union _hw_lcdif_vdctrl0
 //! @brief Set the VSYNC_PERIOD_UNIT field to a new value.
 #define BW_LCDIF_VDCTRL0_VSYNC_PERIOD_UNIT(v)   BF_CS1(LCDIF_VDCTRL0, VSYNC_PERIOD_UNIT, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL0, field ENABLE_POL[24] (RW)
@@ -2314,7 +2184,6 @@ typedef union _hw_lcdif_vdctrl0
  * Default 0 active low during valid data transfer on each horizontal line.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL0_ENABLE_POL      (24)      //!< Bit position for LCDIF_VDCTRL0_ENABLE_POL.
 #define BM_LCDIF_VDCTRL0_ENABLE_POL      (0x01000000)  //!< Bit mask for LCDIF_VDCTRL0_ENABLE_POL.
 
@@ -2328,7 +2197,6 @@ typedef union _hw_lcdif_vdctrl0
 //! @brief Set the ENABLE_POL field to a new value.
 #define BW_LCDIF_VDCTRL0_ENABLE_POL(v)   BF_CS1(LCDIF_VDCTRL0, ENABLE_POL, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL0, field DOTCLK_POL[25] (RW)
@@ -2337,7 +2205,6 @@ typedef union _hw_lcdif_vdctrl0
  * invert the polarity. Set it to 0 in DVI mode.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL0_DOTCLK_POL      (25)      //!< Bit position for LCDIF_VDCTRL0_DOTCLK_POL.
 #define BM_LCDIF_VDCTRL0_DOTCLK_POL      (0x02000000)  //!< Bit mask for LCDIF_VDCTRL0_DOTCLK_POL.
 
@@ -2351,7 +2218,6 @@ typedef union _hw_lcdif_vdctrl0
 //! @brief Set the DOTCLK_POL field to a new value.
 #define BW_LCDIF_VDCTRL0_DOTCLK_POL(v)   BF_CS1(LCDIF_VDCTRL0, DOTCLK_POL, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL0, field HSYNC_POL[26] (RW)
@@ -2360,7 +2226,6 @@ typedef union _hw_lcdif_vdctrl0
  * period. Set it to 1 to invert the polarity.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL0_HSYNC_POL      (26)      //!< Bit position for LCDIF_VDCTRL0_HSYNC_POL.
 #define BM_LCDIF_VDCTRL0_HSYNC_POL      (0x04000000)  //!< Bit mask for LCDIF_VDCTRL0_HSYNC_POL.
 
@@ -2374,7 +2239,6 @@ typedef union _hw_lcdif_vdctrl0
 //! @brief Set the HSYNC_POL field to a new value.
 #define BW_LCDIF_VDCTRL0_HSYNC_POL(v)   BF_CS1(LCDIF_VDCTRL0, HSYNC_POL, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL0, field VSYNC_POL[27] (RW)
@@ -2383,7 +2247,6 @@ typedef union _hw_lcdif_vdctrl0
  * period. Set it to 1 to invert the polarity.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL0_VSYNC_POL      (27)      //!< Bit position for LCDIF_VDCTRL0_VSYNC_POL.
 #define BM_LCDIF_VDCTRL0_VSYNC_POL      (0x08000000)  //!< Bit mask for LCDIF_VDCTRL0_VSYNC_POL.
 
@@ -2397,7 +2260,6 @@ typedef union _hw_lcdif_vdctrl0
 //! @brief Set the VSYNC_POL field to a new value.
 #define BW_LCDIF_VDCTRL0_VSYNC_POL(v)   BF_CS1(LCDIF_VDCTRL0, VSYNC_POL, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL0, field ENABLE_PRESENT[28] (RW)
@@ -2407,7 +2269,6 @@ typedef union _hw_lcdif_vdctrl0
  * DOTCLK.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL0_ENABLE_PRESENT      (28)      //!< Bit position for LCDIF_VDCTRL0_ENABLE_PRESENT.
 #define BM_LCDIF_VDCTRL0_ENABLE_PRESENT      (0x10000000)  //!< Bit mask for LCDIF_VDCTRL0_ENABLE_PRESENT.
 
@@ -2421,7 +2282,6 @@ typedef union _hw_lcdif_vdctrl0
 //! @brief Set the ENABLE_PRESENT field to a new value.
 #define BW_LCDIF_VDCTRL0_ENABLE_PRESENT(v)   BF_CS1(LCDIF_VDCTRL0, ENABLE_PRESENT, v)
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL0, field VSYNC_OEB[29] (RW)
@@ -2434,7 +2294,6 @@ typedef union _hw_lcdif_vdctrl0
  * - VSYNC_INPUT = 0x1 - The VSYNC pin is in the input mode and the LCD controller sends the VSYNC signal to the block.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL0_VSYNC_OEB      (29)      //!< Bit position for LCDIF_VDCTRL0_VSYNC_OEB.
 #define BM_LCDIF_VDCTRL0_VSYNC_OEB      (0x20000000)  //!< Bit mask for LCDIF_VDCTRL0_VSYNC_OEB.
 
@@ -2454,7 +2313,6 @@ typedef union _hw_lcdif_vdctrl0
 
 #define BV_LCDIF_VDCTRL0_VSYNC_OEB__VSYNC_OUTPUT (0x0) //!< The VSYNC pin is in the output mode and the VSYNC signal has to be generated by the eLCDIF block.
 #define BV_LCDIF_VDCTRL0_VSYNC_OEB__VSYNC_INPUT (0x1) //!< The VSYNC pin is in the input mode and the LCD controller sends the VSYNC signal to the block.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2507,7 +2365,6 @@ typedef union _hw_lcdif_vdctrl1
  * HALF_LINE is set, it is implicitly calculated to be VSYNC_PERIOD plus half HSYNC_PERIOD.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL1_VSYNC_PERIOD      (0)      //!< Bit position for LCDIF_VDCTRL1_VSYNC_PERIOD.
 #define BM_LCDIF_VDCTRL1_VSYNC_PERIOD      (0xffffffff)  //!< Bit mask for LCDIF_VDCTRL1_VSYNC_PERIOD.
 
@@ -2521,7 +2378,6 @@ typedef union _hw_lcdif_vdctrl1
 //! @brief Set the VSYNC_PERIOD field to a new value.
 #define BW_LCDIF_VDCTRL1_VSYNC_PERIOD(v)   (HW_LCDIF_VDCTRL1_WR((HW_LCDIF_VDCTRL1_RD() & ~BM_LCDIF_VDCTRL1_VSYNC_PERIOD) | BF_LCDIF_VDCTRL1_VSYNC_PERIOD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2574,7 +2430,6 @@ typedef union _hw_lcdif_vdctrl2
  * signal.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL2_HSYNC_PERIOD      (0)      //!< Bit position for LCDIF_VDCTRL2_HSYNC_PERIOD.
 #define BM_LCDIF_VDCTRL2_HSYNC_PERIOD      (0x0003ffff)  //!< Bit mask for LCDIF_VDCTRL2_HSYNC_PERIOD.
 
@@ -2588,7 +2443,6 @@ typedef union _hw_lcdif_vdctrl2
 //! @brief Set the HSYNC_PERIOD field to a new value.
 #define BW_LCDIF_VDCTRL2_HSYNC_PERIOD(v)   (HW_LCDIF_VDCTRL2_WR((HW_LCDIF_VDCTRL2_RD() & ~BM_LCDIF_VDCTRL2_HSYNC_PERIOD) | BF_LCDIF_VDCTRL2_HSYNC_PERIOD(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL2, field HSYNC_PULSE_WIDTH[31:18] (RW)
@@ -2596,7 +2450,6 @@ typedef union _hw_lcdif_vdctrl2
  * Number of CLK_DIS_LCDIFn cycles for which HSYNC signal is active.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL2_HSYNC_PULSE_WIDTH      (18)      //!< Bit position for LCDIF_VDCTRL2_HSYNC_PULSE_WIDTH.
 #define BM_LCDIF_VDCTRL2_HSYNC_PULSE_WIDTH      (0xfffc0000)  //!< Bit mask for LCDIF_VDCTRL2_HSYNC_PULSE_WIDTH.
 
@@ -2610,7 +2463,6 @@ typedef union _hw_lcdif_vdctrl2
 //! @brief Set the HSYNC_PULSE_WIDTH field to a new value.
 #define BW_LCDIF_VDCTRL2_HSYNC_PULSE_WIDTH(v)   (HW_LCDIF_VDCTRL2_WR((HW_LCDIF_VDCTRL2_RD() & ~BM_LCDIF_VDCTRL2_HSYNC_PULSE_WIDTH) | BF_LCDIF_VDCTRL2_HSYNC_PULSE_WIDTH(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2669,7 +2521,6 @@ typedef union _hw_lcdif_vdctrl3
  * The unit for this parameter is inherently the same as the VSYNC_PERIOD_UNIT.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL3_VERTICAL_WAIT_CNT      (0)      //!< Bit position for LCDIF_VDCTRL3_VERTICAL_WAIT_CNT.
 #define BM_LCDIF_VDCTRL3_VERTICAL_WAIT_CNT      (0x0000ffff)  //!< Bit mask for LCDIF_VDCTRL3_VERTICAL_WAIT_CNT.
 
@@ -2683,7 +2534,6 @@ typedef union _hw_lcdif_vdctrl3
 //! @brief Set the VERTICAL_WAIT_CNT field to a new value.
 #define BW_LCDIF_VDCTRL3_VERTICAL_WAIT_CNT(v)   (HW_LCDIF_VDCTRL3_WR((HW_LCDIF_VDCTRL3_RD() & ~BM_LCDIF_VDCTRL3_VERTICAL_WAIT_CNT) | BF_LCDIF_VDCTRL3_VERTICAL_WAIT_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL3, field HORIZONTAL_WAIT_CNT[27:16] (RW)
@@ -2693,7 +2543,6 @@ typedef union _hw_lcdif_vdctrl3
  * moving picture information begins.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT      (16)      //!< Bit position for LCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT.
 #define BM_LCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT      (0x0fff0000)  //!< Bit mask for LCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT.
 
@@ -2707,7 +2556,6 @@ typedef union _hw_lcdif_vdctrl3
 //! @brief Set the HORIZONTAL_WAIT_CNT field to a new value.
 #define BW_LCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT(v)   (HW_LCDIF_VDCTRL3_WR((HW_LCDIF_VDCTRL3_RD() & ~BM_LCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT) | BF_LCDIF_VDCTRL3_HORIZONTAL_WAIT_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL3, field VSYNC_ONLY[28] (RW)
@@ -2715,7 +2563,6 @@ typedef union _hw_lcdif_vdctrl3
  * This bit must be set to 1 in the VSYNC mode of operation, and 0 in the DOTCLK mode of operation.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL3_VSYNC_ONLY      (28)      //!< Bit position for LCDIF_VDCTRL3_VSYNC_ONLY.
 #define BM_LCDIF_VDCTRL3_VSYNC_ONLY      (0x10000000)  //!< Bit mask for LCDIF_VDCTRL3_VSYNC_ONLY.
 
@@ -2729,7 +2576,6 @@ typedef union _hw_lcdif_vdctrl3
 //! @brief Set the VSYNC_ONLY field to a new value.
 #define BW_LCDIF_VDCTRL3_VSYNC_ONLY(v)   (HW_LCDIF_VDCTRL3_WR((HW_LCDIF_VDCTRL3_RD() & ~BM_LCDIF_VDCTRL3_VSYNC_ONLY) | BF_LCDIF_VDCTRL3_VSYNC_ONLY(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL3, field MUX_SYNC_SIGNALS[29] (RW)
@@ -2739,7 +2585,6 @@ typedef union _hw_lcdif_vdctrl3
  * feature can be used to maintain backward compatability with 37xx.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL3_MUX_SYNC_SIGNALS      (29)      //!< Bit position for LCDIF_VDCTRL3_MUX_SYNC_SIGNALS.
 #define BM_LCDIF_VDCTRL3_MUX_SYNC_SIGNALS      (0x20000000)  //!< Bit mask for LCDIF_VDCTRL3_MUX_SYNC_SIGNALS.
 
@@ -2753,7 +2598,6 @@ typedef union _hw_lcdif_vdctrl3
 //! @brief Set the MUX_SYNC_SIGNALS field to a new value.
 #define BW_LCDIF_VDCTRL3_MUX_SYNC_SIGNALS(v)   (HW_LCDIF_VDCTRL3_WR((HW_LCDIF_VDCTRL3_RD() & ~BM_LCDIF_VDCTRL3_MUX_SYNC_SIGNALS) | BF_LCDIF_VDCTRL3_MUX_SYNC_SIGNALS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2810,7 +2654,6 @@ typedef union _hw_lcdif_vdctrl4
  * mode.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT      (0)      //!< Bit position for LCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT.
 #define BM_LCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT      (0x0003ffff)  //!< Bit mask for LCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT.
 
@@ -2824,7 +2667,6 @@ typedef union _hw_lcdif_vdctrl4
 //! @brief Set the DOTCLK_H_VALID_DATA_CNT field to a new value.
 #define BW_LCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT(v)   (HW_LCDIF_VDCTRL4_WR((HW_LCDIF_VDCTRL4_RD() & ~BM_LCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT) | BF_LCDIF_VDCTRL4_DOTCLK_H_VALID_DATA_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL4, field SYNC_SIGNALS_ON[18] (RW)
@@ -2838,7 +2680,6 @@ typedef union _hw_lcdif_vdctrl4
  * be set in the VSYNC mode of operation when VSYNC signal is an output.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL4_SYNC_SIGNALS_ON      (18)      //!< Bit position for LCDIF_VDCTRL4_SYNC_SIGNALS_ON.
 #define BM_LCDIF_VDCTRL4_SYNC_SIGNALS_ON      (0x00040000)  //!< Bit mask for LCDIF_VDCTRL4_SYNC_SIGNALS_ON.
 
@@ -2852,7 +2693,6 @@ typedef union _hw_lcdif_vdctrl4
 //! @brief Set the SYNC_SIGNALS_ON field to a new value.
 #define BW_LCDIF_VDCTRL4_SYNC_SIGNALS_ON(v)   (HW_LCDIF_VDCTRL4_WR((HW_LCDIF_VDCTRL4_RD() & ~BM_LCDIF_VDCTRL4_SYNC_SIGNALS_ON) | BF_LCDIF_VDCTRL4_SYNC_SIGNALS_ON(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_VDCTRL4, field DOTCLK_DLY_SEL[31:29] (RW)
@@ -2861,7 +2701,6 @@ typedef union _hw_lcdif_vdctrl4
  * coming out of the LCD_DOTCK pin. 0 = 2ns; 1=4ns;2=6ns;3=8ns. Remaining values are reserved.
  */
 //@{
-
 #define BP_LCDIF_VDCTRL4_DOTCLK_DLY_SEL      (29)      //!< Bit position for LCDIF_VDCTRL4_DOTCLK_DLY_SEL.
 #define BM_LCDIF_VDCTRL4_DOTCLK_DLY_SEL      (0xe0000000)  //!< Bit mask for LCDIF_VDCTRL4_DOTCLK_DLY_SEL.
 
@@ -2875,7 +2714,6 @@ typedef union _hw_lcdif_vdctrl4
 //! @brief Set the DOTCLK_DLY_SEL field to a new value.
 #define BW_LCDIF_VDCTRL4_DOTCLK_DLY_SEL(v)   (HW_LCDIF_VDCTRL4_WR((HW_LCDIF_VDCTRL4_RD() & ~BM_LCDIF_VDCTRL4_DOTCLK_DLY_SEL) | BF_LCDIF_VDCTRL4_DOTCLK_DLY_SEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2934,7 +2772,6 @@ typedef union _hw_lcdif_dvictrl0
  * interval.
  */
 //@{
-
 #define BP_LCDIF_DVICTRL0_H_BLANKING_CNT      (0)      //!< Bit position for LCDIF_DVICTRL0_H_BLANKING_CNT.
 #define BM_LCDIF_DVICTRL0_H_BLANKING_CNT      (0x00000fff)  //!< Bit mask for LCDIF_DVICTRL0_H_BLANKING_CNT.
 
@@ -2948,7 +2785,6 @@ typedef union _hw_lcdif_dvictrl0
 //! @brief Set the H_BLANKING_CNT field to a new value.
 #define BW_LCDIF_DVICTRL0_H_BLANKING_CNT(v)   (HW_LCDIF_DVICTRL0_WR((HW_LCDIF_DVICTRL0_RD() & ~BM_LCDIF_DVICTRL0_H_BLANKING_CNT) | BF_LCDIF_DVICTRL0_H_BLANKING_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_DVICTRL0, field H_ACTIVE_CNT[27:16] (RW)
@@ -2957,7 +2793,6 @@ typedef union _hw_lcdif_dvictrl0
  * Must always be a multiple of 4.
  */
 //@{
-
 #define BP_LCDIF_DVICTRL0_H_ACTIVE_CNT      (16)      //!< Bit position for LCDIF_DVICTRL0_H_ACTIVE_CNT.
 #define BM_LCDIF_DVICTRL0_H_ACTIVE_CNT      (0x0fff0000)  //!< Bit mask for LCDIF_DVICTRL0_H_ACTIVE_CNT.
 
@@ -2971,7 +2806,6 @@ typedef union _hw_lcdif_dvictrl0
 //! @brief Set the H_ACTIVE_CNT field to a new value.
 #define BW_LCDIF_DVICTRL0_H_ACTIVE_CNT(v)   (HW_LCDIF_DVICTRL0_WR((HW_LCDIF_DVICTRL0_RD() & ~BM_LCDIF_DVICTRL0_H_ACTIVE_CNT) | BF_LCDIF_DVICTRL0_H_ACTIVE_CNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3030,7 +2864,6 @@ typedef union _hw_lcdif_dvictrl1
  * Vertical line number from which Field 2 begins.
  */
 //@{
-
 #define BP_LCDIF_DVICTRL1_F2_START_LINE      (0)      //!< Bit position for LCDIF_DVICTRL1_F2_START_LINE.
 #define BM_LCDIF_DVICTRL1_F2_START_LINE      (0x000003ff)  //!< Bit mask for LCDIF_DVICTRL1_F2_START_LINE.
 
@@ -3044,7 +2877,6 @@ typedef union _hw_lcdif_dvictrl1
 //! @brief Set the F2_START_LINE field to a new value.
 #define BW_LCDIF_DVICTRL1_F2_START_LINE(v)   (HW_LCDIF_DVICTRL1_WR((HW_LCDIF_DVICTRL1_RD() & ~BM_LCDIF_DVICTRL1_F2_START_LINE) | BF_LCDIF_DVICTRL1_F2_START_LINE(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_DVICTRL1, field F1_END_LINE[19:10] (RW)
@@ -3052,7 +2884,6 @@ typedef union _hw_lcdif_dvictrl1
  * Vertical line number at which Field1 ends.
  */
 //@{
-
 #define BP_LCDIF_DVICTRL1_F1_END_LINE      (10)      //!< Bit position for LCDIF_DVICTRL1_F1_END_LINE.
 #define BM_LCDIF_DVICTRL1_F1_END_LINE      (0x000ffc00)  //!< Bit mask for LCDIF_DVICTRL1_F1_END_LINE.
 
@@ -3066,7 +2897,6 @@ typedef union _hw_lcdif_dvictrl1
 //! @brief Set the F1_END_LINE field to a new value.
 #define BW_LCDIF_DVICTRL1_F1_END_LINE(v)   (HW_LCDIF_DVICTRL1_WR((HW_LCDIF_DVICTRL1_RD() & ~BM_LCDIF_DVICTRL1_F1_END_LINE) | BF_LCDIF_DVICTRL1_F1_END_LINE(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_DVICTRL1, field F1_START_LINE[29:20] (RW)
@@ -3074,7 +2904,6 @@ typedef union _hw_lcdif_dvictrl1
  * Vertical line number from which Field 1 begins.
  */
 //@{
-
 #define BP_LCDIF_DVICTRL1_F1_START_LINE      (20)      //!< Bit position for LCDIF_DVICTRL1_F1_START_LINE.
 #define BM_LCDIF_DVICTRL1_F1_START_LINE      (0x3ff00000)  //!< Bit mask for LCDIF_DVICTRL1_F1_START_LINE.
 
@@ -3088,7 +2917,6 @@ typedef union _hw_lcdif_dvictrl1
 //! @brief Set the F1_START_LINE field to a new value.
 #define BW_LCDIF_DVICTRL1_F1_START_LINE(v)   (HW_LCDIF_DVICTRL1_WR((HW_LCDIF_DVICTRL1_RD() & ~BM_LCDIF_DVICTRL1_F1_START_LINE) | BF_LCDIF_DVICTRL1_F1_START_LINE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3148,7 +2976,6 @@ typedef union _hw_lcdif_dvictrl2
  * Vertical line number in the beginning part of Field2 where first Vertical Blanking interval ends.
  */
 //@{
-
 #define BP_LCDIF_DVICTRL2_V1_BLANK_END_LINE      (0)      //!< Bit position for LCDIF_DVICTRL2_V1_BLANK_END_LINE.
 #define BM_LCDIF_DVICTRL2_V1_BLANK_END_LINE      (0x000003ff)  //!< Bit mask for LCDIF_DVICTRL2_V1_BLANK_END_LINE.
 
@@ -3162,7 +2989,6 @@ typedef union _hw_lcdif_dvictrl2
 //! @brief Set the V1_BLANK_END_LINE field to a new value.
 #define BW_LCDIF_DVICTRL2_V1_BLANK_END_LINE(v)   (HW_LCDIF_DVICTRL2_WR((HW_LCDIF_DVICTRL2_RD() & ~BM_LCDIF_DVICTRL2_V1_BLANK_END_LINE) | BF_LCDIF_DVICTRL2_V1_BLANK_END_LINE(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_DVICTRL2, field V1_BLANK_START_LINE[19:10] (RW)
@@ -3170,7 +2996,6 @@ typedef union _hw_lcdif_dvictrl2
  * Vertical line number towards the end of Field1 where first Vertical Blanking interval starts.
  */
 //@{
-
 #define BP_LCDIF_DVICTRL2_V1_BLANK_START_LINE      (10)      //!< Bit position for LCDIF_DVICTRL2_V1_BLANK_START_LINE.
 #define BM_LCDIF_DVICTRL2_V1_BLANK_START_LINE      (0x000ffc00)  //!< Bit mask for LCDIF_DVICTRL2_V1_BLANK_START_LINE.
 
@@ -3184,7 +3009,6 @@ typedef union _hw_lcdif_dvictrl2
 //! @brief Set the V1_BLANK_START_LINE field to a new value.
 #define BW_LCDIF_DVICTRL2_V1_BLANK_START_LINE(v)   (HW_LCDIF_DVICTRL2_WR((HW_LCDIF_DVICTRL2_RD() & ~BM_LCDIF_DVICTRL2_V1_BLANK_START_LINE) | BF_LCDIF_DVICTRL2_V1_BLANK_START_LINE(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_DVICTRL2, field F2_END_LINE[29:20] (RW)
@@ -3192,7 +3016,6 @@ typedef union _hw_lcdif_dvictrl2
  * Vertical line number at which Field 2 ends.
  */
 //@{
-
 #define BP_LCDIF_DVICTRL2_F2_END_LINE      (20)      //!< Bit position for LCDIF_DVICTRL2_F2_END_LINE.
 #define BM_LCDIF_DVICTRL2_F2_END_LINE      (0x3ff00000)  //!< Bit mask for LCDIF_DVICTRL2_F2_END_LINE.
 
@@ -3206,7 +3029,6 @@ typedef union _hw_lcdif_dvictrl2
 //! @brief Set the F2_END_LINE field to a new value.
 #define BW_LCDIF_DVICTRL2_F2_END_LINE(v)   (HW_LCDIF_DVICTRL2_WR((HW_LCDIF_DVICTRL2_RD() & ~BM_LCDIF_DVICTRL2_F2_END_LINE) | BF_LCDIF_DVICTRL2_F2_END_LINE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3264,7 +3086,6 @@ typedef union _hw_lcdif_dvictrl3
  * Total number of vertical lines per frame (generally 525 or 625)
  */
 //@{
-
 #define BP_LCDIF_DVICTRL3_V_LINES_CNT      (0)      //!< Bit position for LCDIF_DVICTRL3_V_LINES_CNT.
 #define BM_LCDIF_DVICTRL3_V_LINES_CNT      (0x000003ff)  //!< Bit mask for LCDIF_DVICTRL3_V_LINES_CNT.
 
@@ -3278,7 +3099,6 @@ typedef union _hw_lcdif_dvictrl3
 //! @brief Set the V_LINES_CNT field to a new value.
 #define BW_LCDIF_DVICTRL3_V_LINES_CNT(v)   (HW_LCDIF_DVICTRL3_WR((HW_LCDIF_DVICTRL3_RD() & ~BM_LCDIF_DVICTRL3_V_LINES_CNT) | BF_LCDIF_DVICTRL3_V_LINES_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_DVICTRL3, field V2_BLANK_END_LINE[19:10] (RW)
@@ -3287,7 +3107,6 @@ typedef union _hw_lcdif_dvictrl3
  * ends.
  */
 //@{
-
 #define BP_LCDIF_DVICTRL3_V2_BLANK_END_LINE      (10)      //!< Bit position for LCDIF_DVICTRL3_V2_BLANK_END_LINE.
 #define BM_LCDIF_DVICTRL3_V2_BLANK_END_LINE      (0x000ffc00)  //!< Bit mask for LCDIF_DVICTRL3_V2_BLANK_END_LINE.
 
@@ -3301,7 +3120,6 @@ typedef union _hw_lcdif_dvictrl3
 //! @brief Set the V2_BLANK_END_LINE field to a new value.
 #define BW_LCDIF_DVICTRL3_V2_BLANK_END_LINE(v)   (HW_LCDIF_DVICTRL3_WR((HW_LCDIF_DVICTRL3_RD() & ~BM_LCDIF_DVICTRL3_V2_BLANK_END_LINE) | BF_LCDIF_DVICTRL3_V2_BLANK_END_LINE(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_DVICTRL3, field V2_BLANK_START_LINE[29:20] (RW)
@@ -3309,7 +3127,6 @@ typedef union _hw_lcdif_dvictrl3
  * Vertical line number towards the end of Field2 where second Vertical Blanking interval starts.
  */
 //@{
-
 #define BP_LCDIF_DVICTRL3_V2_BLANK_START_LINE      (20)      //!< Bit position for LCDIF_DVICTRL3_V2_BLANK_START_LINE.
 #define BM_LCDIF_DVICTRL3_V2_BLANK_START_LINE      (0x3ff00000)  //!< Bit mask for LCDIF_DVICTRL3_V2_BLANK_START_LINE.
 
@@ -3323,7 +3140,6 @@ typedef union _hw_lcdif_dvictrl3
 //! @brief Set the V2_BLANK_START_LINE field to a new value.
 #define BW_LCDIF_DVICTRL3_V2_BLANK_START_LINE(v)   (HW_LCDIF_DVICTRL3_WR((HW_LCDIF_DVICTRL3_RD() & ~BM_LCDIF_DVICTRL3_V2_BLANK_START_LINE) | BF_LCDIF_DVICTRL3_V2_BLANK_START_LINE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3383,7 +3199,6 @@ typedef union _hw_lcdif_dvictrl4
  * programmed if the input frame has less than 720 pixels per line.
  */
 //@{
-
 #define BP_LCDIF_DVICTRL4_H_FILL_CNT      (0)      //!< Bit position for LCDIF_DVICTRL4_H_FILL_CNT.
 #define BM_LCDIF_DVICTRL4_H_FILL_CNT      (0x000000ff)  //!< Bit mask for LCDIF_DVICTRL4_H_FILL_CNT.
 
@@ -3397,7 +3212,6 @@ typedef union _hw_lcdif_dvictrl4
 //! @brief Set the H_FILL_CNT field to a new value.
 #define BW_LCDIF_DVICTRL4_H_FILL_CNT(v)   (HW_LCDIF_DVICTRL4_WR((HW_LCDIF_DVICTRL4_RD() & ~BM_LCDIF_DVICTRL4_H_FILL_CNT) | BF_LCDIF_DVICTRL4_H_FILL_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_DVICTRL4, field CR_FILL_VALUE[15:8] (RW)
@@ -3405,7 +3219,6 @@ typedef union _hw_lcdif_dvictrl4
  * Value of CR component of filler data.
  */
 //@{
-
 #define BP_LCDIF_DVICTRL4_CR_FILL_VALUE      (8)      //!< Bit position for LCDIF_DVICTRL4_CR_FILL_VALUE.
 #define BM_LCDIF_DVICTRL4_CR_FILL_VALUE      (0x0000ff00)  //!< Bit mask for LCDIF_DVICTRL4_CR_FILL_VALUE.
 
@@ -3419,7 +3232,6 @@ typedef union _hw_lcdif_dvictrl4
 //! @brief Set the CR_FILL_VALUE field to a new value.
 #define BW_LCDIF_DVICTRL4_CR_FILL_VALUE(v)   (HW_LCDIF_DVICTRL4_WR((HW_LCDIF_DVICTRL4_RD() & ~BM_LCDIF_DVICTRL4_CR_FILL_VALUE) | BF_LCDIF_DVICTRL4_CR_FILL_VALUE(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_DVICTRL4, field CB_FILL_VALUE[23:16] (RW)
@@ -3427,7 +3239,6 @@ typedef union _hw_lcdif_dvictrl4
  * Value of CB component of filler data
  */
 //@{
-
 #define BP_LCDIF_DVICTRL4_CB_FILL_VALUE      (16)      //!< Bit position for LCDIF_DVICTRL4_CB_FILL_VALUE.
 #define BM_LCDIF_DVICTRL4_CB_FILL_VALUE      (0x00ff0000)  //!< Bit mask for LCDIF_DVICTRL4_CB_FILL_VALUE.
 
@@ -3441,7 +3252,6 @@ typedef union _hw_lcdif_dvictrl4
 //! @brief Set the CB_FILL_VALUE field to a new value.
 #define BW_LCDIF_DVICTRL4_CB_FILL_VALUE(v)   (HW_LCDIF_DVICTRL4_WR((HW_LCDIF_DVICTRL4_RD() & ~BM_LCDIF_DVICTRL4_CB_FILL_VALUE) | BF_LCDIF_DVICTRL4_CB_FILL_VALUE(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_DVICTRL4, field Y_FILL_VALUE[31:24] (RW)
@@ -3449,7 +3259,6 @@ typedef union _hw_lcdif_dvictrl4
  * Value of Y component of filler data
  */
 //@{
-
 #define BP_LCDIF_DVICTRL4_Y_FILL_VALUE      (24)      //!< Bit position for LCDIF_DVICTRL4_Y_FILL_VALUE.
 #define BM_LCDIF_DVICTRL4_Y_FILL_VALUE      (0xff000000)  //!< Bit mask for LCDIF_DVICTRL4_Y_FILL_VALUE.
 
@@ -3463,7 +3272,6 @@ typedef union _hw_lcdif_dvictrl4
 //! @brief Set the Y_FILL_VALUE field to a new value.
 #define BW_LCDIF_DVICTRL4_Y_FILL_VALUE(v)   (HW_LCDIF_DVICTRL4_WR((HW_LCDIF_DVICTRL4_RD() & ~BM_LCDIF_DVICTRL4_Y_FILL_VALUE) | BF_LCDIF_DVICTRL4_Y_FILL_VALUE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3533,7 +3341,6 @@ typedef union _hw_lcdif_csc_coeff0
  *     discarded.
  */
 //@{
-
 #define BP_LCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER      (0)      //!< Bit position for LCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER.
 #define BM_LCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER      (0x00000003)  //!< Bit mask for LCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER.
 
@@ -3555,7 +3362,6 @@ typedef union _hw_lcdif_csc_coeff0
 #define BV_LCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER__RSRVD (0x1) //!< Reserved
 #define BV_LCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER__INTERSTITIAL (0x2) //!< Chroma samples numbered 2n and 2n+1 are averaged (weights 1/2, 1/2) and that chroma value replaces the two chroma values at 2n and 2n+1. This chroma now exists horizontally halfway between the two luma samples.
 #define BV_LCDIF_CSC_COEFF0_CSC_SUBSAMPLE_FILTER__COSITED (0x3) //!< Chroma samples numbered 2n-1, 2n, and 2n+1 are averaged (weights 1/4,1/2,1/4) and that chroma value exists at the same site as the luma sample numbered 2n and the chroma samples at 2n+1 are discarded.
-
 //@}
 
 /*! @name Register LCDIF_CSC_COEFF0, field C0[25:16] (RW)
@@ -3563,7 +3369,6 @@ typedef union _hw_lcdif_csc_coeff0
  * Two's complement red multiplier coefficient for Y
  */
 //@{
-
 #define BP_LCDIF_CSC_COEFF0_C0      (16)      //!< Bit position for LCDIF_CSC_COEFF0_C0.
 #define BM_LCDIF_CSC_COEFF0_C0      (0x03ff0000)  //!< Bit mask for LCDIF_CSC_COEFF0_C0.
 
@@ -3577,7 +3382,6 @@ typedef union _hw_lcdif_csc_coeff0
 //! @brief Set the C0 field to a new value.
 #define BW_LCDIF_CSC_COEFF0_C0(v)   (HW_LCDIF_CSC_COEFF0_WR((HW_LCDIF_CSC_COEFF0_RD() & ~BM_LCDIF_CSC_COEFF0_C0) | BF_LCDIF_CSC_COEFF0_C0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3634,7 +3438,6 @@ typedef union _hw_lcdif_csc_coeff1
  * Two's complement green multiplier coefficient for Y
  */
 //@{
-
 #define BP_LCDIF_CSC_COEFF1_C1      (0)      //!< Bit position for LCDIF_CSC_COEFF1_C1.
 #define BM_LCDIF_CSC_COEFF1_C1      (0x000003ff)  //!< Bit mask for LCDIF_CSC_COEFF1_C1.
 
@@ -3648,7 +3451,6 @@ typedef union _hw_lcdif_csc_coeff1
 //! @brief Set the C1 field to a new value.
 #define BW_LCDIF_CSC_COEFF1_C1(v)   (HW_LCDIF_CSC_COEFF1_WR((HW_LCDIF_CSC_COEFF1_RD() & ~BM_LCDIF_CSC_COEFF1_C1) | BF_LCDIF_CSC_COEFF1_C1(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CSC_COEFF1, field C2[25:16] (RW)
@@ -3656,7 +3458,6 @@ typedef union _hw_lcdif_csc_coeff1
  * Two's complement blue multiplier coefficient for Y
  */
 //@{
-
 #define BP_LCDIF_CSC_COEFF1_C2      (16)      //!< Bit position for LCDIF_CSC_COEFF1_C2.
 #define BM_LCDIF_CSC_COEFF1_C2      (0x03ff0000)  //!< Bit mask for LCDIF_CSC_COEFF1_C2.
 
@@ -3670,7 +3471,6 @@ typedef union _hw_lcdif_csc_coeff1
 //! @brief Set the C2 field to a new value.
 #define BW_LCDIF_CSC_COEFF1_C2(v)   (HW_LCDIF_CSC_COEFF1_WR((HW_LCDIF_CSC_COEFF1_RD() & ~BM_LCDIF_CSC_COEFF1_C2) | BF_LCDIF_CSC_COEFF1_C2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3728,7 +3528,6 @@ typedef union _hw_lcdif_csc_coeff2
  * Two's complement red multiplier coefficient for Cb
  */
 //@{
-
 #define BP_LCDIF_CSC_COEFF2_C3      (0)      //!< Bit position for LCDIF_CSC_COEFF2_C3.
 #define BM_LCDIF_CSC_COEFF2_C3      (0x000003ff)  //!< Bit mask for LCDIF_CSC_COEFF2_C3.
 
@@ -3742,7 +3541,6 @@ typedef union _hw_lcdif_csc_coeff2
 //! @brief Set the C3 field to a new value.
 #define BW_LCDIF_CSC_COEFF2_C3(v)   (HW_LCDIF_CSC_COEFF2_WR((HW_LCDIF_CSC_COEFF2_RD() & ~BM_LCDIF_CSC_COEFF2_C3) | BF_LCDIF_CSC_COEFF2_C3(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CSC_COEFF2, field C4[25:16] (RW)
@@ -3750,7 +3548,6 @@ typedef union _hw_lcdif_csc_coeff2
  * Two's complement green multiplier coefficient for Cb
  */
 //@{
-
 #define BP_LCDIF_CSC_COEFF2_C4      (16)      //!< Bit position for LCDIF_CSC_COEFF2_C4.
 #define BM_LCDIF_CSC_COEFF2_C4      (0x03ff0000)  //!< Bit mask for LCDIF_CSC_COEFF2_C4.
 
@@ -3764,7 +3561,6 @@ typedef union _hw_lcdif_csc_coeff2
 //! @brief Set the C4 field to a new value.
 #define BW_LCDIF_CSC_COEFF2_C4(v)   (HW_LCDIF_CSC_COEFF2_WR((HW_LCDIF_CSC_COEFF2_RD() & ~BM_LCDIF_CSC_COEFF2_C4) | BF_LCDIF_CSC_COEFF2_C4(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3821,7 +3617,6 @@ typedef union _hw_lcdif_csc_coeff3
  * Two's complement blue multiplier coefficient for Cb
  */
 //@{
-
 #define BP_LCDIF_CSC_COEFF3_C5      (0)      //!< Bit position for LCDIF_CSC_COEFF3_C5.
 #define BM_LCDIF_CSC_COEFF3_C5      (0x000003ff)  //!< Bit mask for LCDIF_CSC_COEFF3_C5.
 
@@ -3835,7 +3630,6 @@ typedef union _hw_lcdif_csc_coeff3
 //! @brief Set the C5 field to a new value.
 #define BW_LCDIF_CSC_COEFF3_C5(v)   (HW_LCDIF_CSC_COEFF3_WR((HW_LCDIF_CSC_COEFF3_RD() & ~BM_LCDIF_CSC_COEFF3_C5) | BF_LCDIF_CSC_COEFF3_C5(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CSC_COEFF3, field C6[25:16] (RW)
@@ -3843,7 +3637,6 @@ typedef union _hw_lcdif_csc_coeff3
  * Two's complement red multiplier coefficient for Cr
  */
 //@{
-
 #define BP_LCDIF_CSC_COEFF3_C6      (16)      //!< Bit position for LCDIF_CSC_COEFF3_C6.
 #define BM_LCDIF_CSC_COEFF3_C6      (0x03ff0000)  //!< Bit mask for LCDIF_CSC_COEFF3_C6.
 
@@ -3857,7 +3650,6 @@ typedef union _hw_lcdif_csc_coeff3
 //! @brief Set the C6 field to a new value.
 #define BW_LCDIF_CSC_COEFF3_C6(v)   (HW_LCDIF_CSC_COEFF3_WR((HW_LCDIF_CSC_COEFF3_RD() & ~BM_LCDIF_CSC_COEFF3_C6) | BF_LCDIF_CSC_COEFF3_C6(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3915,7 +3707,6 @@ typedef union _hw_lcdif_csc_coeff4
  * Two's complement green multiplier coefficient for Cr
  */
 //@{
-
 #define BP_LCDIF_CSC_COEFF4_C7      (0)      //!< Bit position for LCDIF_CSC_COEFF4_C7.
 #define BM_LCDIF_CSC_COEFF4_C7      (0x000003ff)  //!< Bit mask for LCDIF_CSC_COEFF4_C7.
 
@@ -3929,7 +3720,6 @@ typedef union _hw_lcdif_csc_coeff4
 //! @brief Set the C7 field to a new value.
 #define BW_LCDIF_CSC_COEFF4_C7(v)   (HW_LCDIF_CSC_COEFF4_WR((HW_LCDIF_CSC_COEFF4_RD() & ~BM_LCDIF_CSC_COEFF4_C7) | BF_LCDIF_CSC_COEFF4_C7(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CSC_COEFF4, field C8[25:16] (RW)
@@ -3937,7 +3727,6 @@ typedef union _hw_lcdif_csc_coeff4
  * Two's complement blue multiplier coefficient for Cr
  */
 //@{
-
 #define BP_LCDIF_CSC_COEFF4_C8      (16)      //!< Bit position for LCDIF_CSC_COEFF4_C8.
 #define BM_LCDIF_CSC_COEFF4_C8      (0x03ff0000)  //!< Bit mask for LCDIF_CSC_COEFF4_C8.
 
@@ -3951,7 +3740,6 @@ typedef union _hw_lcdif_csc_coeff4
 //! @brief Set the C8 field to a new value.
 #define BW_LCDIF_CSC_COEFF4_C8(v)   (HW_LCDIF_CSC_COEFF4_WR((HW_LCDIF_CSC_COEFF4_RD() & ~BM_LCDIF_CSC_COEFF4_C8) | BF_LCDIF_CSC_COEFF4_C8(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4007,7 +3795,6 @@ typedef union _hw_lcdif_csc_offset
  * Two's complement offset for the Y component
  */
 //@{
-
 #define BP_LCDIF_CSC_OFFSET_Y_OFFSET      (0)      //!< Bit position for LCDIF_CSC_OFFSET_Y_OFFSET.
 #define BM_LCDIF_CSC_OFFSET_Y_OFFSET      (0x000001ff)  //!< Bit mask for LCDIF_CSC_OFFSET_Y_OFFSET.
 
@@ -4021,7 +3808,6 @@ typedef union _hw_lcdif_csc_offset
 //! @brief Set the Y_OFFSET field to a new value.
 #define BW_LCDIF_CSC_OFFSET_Y_OFFSET(v)   (HW_LCDIF_CSC_OFFSET_WR((HW_LCDIF_CSC_OFFSET_RD() & ~BM_LCDIF_CSC_OFFSET_Y_OFFSET) | BF_LCDIF_CSC_OFFSET_Y_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CSC_OFFSET, field CBCR_OFFSET[24:16] (RW)
@@ -4029,7 +3815,6 @@ typedef union _hw_lcdif_csc_offset
  * Two's complement offset for the Cb and Cr components
  */
 //@{
-
 #define BP_LCDIF_CSC_OFFSET_CBCR_OFFSET      (16)      //!< Bit position for LCDIF_CSC_OFFSET_CBCR_OFFSET.
 #define BM_LCDIF_CSC_OFFSET_CBCR_OFFSET      (0x01ff0000)  //!< Bit mask for LCDIF_CSC_OFFSET_CBCR_OFFSET.
 
@@ -4043,7 +3828,6 @@ typedef union _hw_lcdif_csc_offset
 //! @brief Set the CBCR_OFFSET field to a new value.
 #define BW_LCDIF_CSC_OFFSET_CBCR_OFFSET(v)   (HW_LCDIF_CSC_OFFSET_WR((HW_LCDIF_CSC_OFFSET_RD() & ~BM_LCDIF_CSC_OFFSET_CBCR_OFFSET) | BF_LCDIF_CSC_OFFSET_CBCR_OFFSET(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4102,7 +3886,6 @@ typedef union _hw_lcdif_csc_limit
  * Upper limit of Y after RGB to 4:2:2 YCbCr conversion
  */
 //@{
-
 #define BP_LCDIF_CSC_LIMIT_Y_MAX      (0)      //!< Bit position for LCDIF_CSC_LIMIT_Y_MAX.
 #define BM_LCDIF_CSC_LIMIT_Y_MAX      (0x000000ff)  //!< Bit mask for LCDIF_CSC_LIMIT_Y_MAX.
 
@@ -4116,7 +3899,6 @@ typedef union _hw_lcdif_csc_limit
 //! @brief Set the Y_MAX field to a new value.
 #define BW_LCDIF_CSC_LIMIT_Y_MAX(v)   (HW_LCDIF_CSC_LIMIT_WR((HW_LCDIF_CSC_LIMIT_RD() & ~BM_LCDIF_CSC_LIMIT_Y_MAX) | BF_LCDIF_CSC_LIMIT_Y_MAX(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CSC_LIMIT, field Y_MIN[15:8] (RW)
@@ -4124,7 +3906,6 @@ typedef union _hw_lcdif_csc_limit
  * Lower limit of Y after RGB to 4:2:2 YCbCr conversion
  */
 //@{
-
 #define BP_LCDIF_CSC_LIMIT_Y_MIN      (8)      //!< Bit position for LCDIF_CSC_LIMIT_Y_MIN.
 #define BM_LCDIF_CSC_LIMIT_Y_MIN      (0x0000ff00)  //!< Bit mask for LCDIF_CSC_LIMIT_Y_MIN.
 
@@ -4138,7 +3919,6 @@ typedef union _hw_lcdif_csc_limit
 //! @brief Set the Y_MIN field to a new value.
 #define BW_LCDIF_CSC_LIMIT_Y_MIN(v)   (HW_LCDIF_CSC_LIMIT_WR((HW_LCDIF_CSC_LIMIT_RD() & ~BM_LCDIF_CSC_LIMIT_Y_MIN) | BF_LCDIF_CSC_LIMIT_Y_MIN(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CSC_LIMIT, field CBCR_MAX[23:16] (RW)
@@ -4146,7 +3926,6 @@ typedef union _hw_lcdif_csc_limit
  * Upper limit of Cb and Cr after RGB to 4:2:2 YCbCr conversion
  */
 //@{
-
 #define BP_LCDIF_CSC_LIMIT_CBCR_MAX      (16)      //!< Bit position for LCDIF_CSC_LIMIT_CBCR_MAX.
 #define BM_LCDIF_CSC_LIMIT_CBCR_MAX      (0x00ff0000)  //!< Bit mask for LCDIF_CSC_LIMIT_CBCR_MAX.
 
@@ -4160,7 +3939,6 @@ typedef union _hw_lcdif_csc_limit
 //! @brief Set the CBCR_MAX field to a new value.
 #define BW_LCDIF_CSC_LIMIT_CBCR_MAX(v)   (HW_LCDIF_CSC_LIMIT_WR((HW_LCDIF_CSC_LIMIT_RD() & ~BM_LCDIF_CSC_LIMIT_CBCR_MAX) | BF_LCDIF_CSC_LIMIT_CBCR_MAX(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_CSC_LIMIT, field CBCR_MIN[31:24] (RW)
@@ -4168,7 +3946,6 @@ typedef union _hw_lcdif_csc_limit
  * Lower limit of Cb and Cr after RGB to 4:2:2 YCbCr conversion
  */
 //@{
-
 #define BP_LCDIF_CSC_LIMIT_CBCR_MIN      (24)      //!< Bit position for LCDIF_CSC_LIMIT_CBCR_MIN.
 #define BM_LCDIF_CSC_LIMIT_CBCR_MIN      (0xff000000)  //!< Bit mask for LCDIF_CSC_LIMIT_CBCR_MIN.
 
@@ -4182,7 +3959,6 @@ typedef union _hw_lcdif_csc_limit
 //! @brief Set the CBCR_MIN field to a new value.
 #define BW_LCDIF_CSC_LIMIT_CBCR_MIN(v)   (HW_LCDIF_CSC_LIMIT_WR((HW_LCDIF_CSC_LIMIT_RD() & ~BM_LCDIF_CSC_LIMIT_CBCR_MIN) | BF_LCDIF_CSC_LIMIT_CBCR_MIN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4240,7 +4016,6 @@ typedef union _hw_lcdif_data
  * Byte 0 (least significant byte) of data written to eLCDIF.
  */
 //@{
-
 #define BP_LCDIF_DATA_DATA_ZERO      (0)      //!< Bit position for LCDIF_DATA_DATA_ZERO.
 #define BM_LCDIF_DATA_DATA_ZERO      (0x000000ff)  //!< Bit mask for LCDIF_DATA_DATA_ZERO.
 
@@ -4254,7 +4029,6 @@ typedef union _hw_lcdif_data
 //! @brief Set the DATA_ZERO field to a new value.
 #define BW_LCDIF_DATA_DATA_ZERO(v)   (HW_LCDIF_DATA_WR((HW_LCDIF_DATA_RD() & ~BM_LCDIF_DATA_DATA_ZERO) | BF_LCDIF_DATA_DATA_ZERO(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_DATA, field DATA_ONE[15:8] (RW)
@@ -4262,7 +4036,6 @@ typedef union _hw_lcdif_data
  * Byte 1 of data written to eLCDIF.
  */
 //@{
-
 #define BP_LCDIF_DATA_DATA_ONE      (8)      //!< Bit position for LCDIF_DATA_DATA_ONE.
 #define BM_LCDIF_DATA_DATA_ONE      (0x0000ff00)  //!< Bit mask for LCDIF_DATA_DATA_ONE.
 
@@ -4276,7 +4049,6 @@ typedef union _hw_lcdif_data
 //! @brief Set the DATA_ONE field to a new value.
 #define BW_LCDIF_DATA_DATA_ONE(v)   (HW_LCDIF_DATA_WR((HW_LCDIF_DATA_RD() & ~BM_LCDIF_DATA_DATA_ONE) | BF_LCDIF_DATA_DATA_ONE(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_DATA, field DATA_TWO[23:16] (RW)
@@ -4284,7 +4056,6 @@ typedef union _hw_lcdif_data
  * Byte 2 of data written to eLCDIF.
  */
 //@{
-
 #define BP_LCDIF_DATA_DATA_TWO      (16)      //!< Bit position for LCDIF_DATA_DATA_TWO.
 #define BM_LCDIF_DATA_DATA_TWO      (0x00ff0000)  //!< Bit mask for LCDIF_DATA_DATA_TWO.
 
@@ -4298,7 +4069,6 @@ typedef union _hw_lcdif_data
 //! @brief Set the DATA_TWO field to a new value.
 #define BW_LCDIF_DATA_DATA_TWO(v)   (HW_LCDIF_DATA_WR((HW_LCDIF_DATA_RD() & ~BM_LCDIF_DATA_DATA_TWO) | BF_LCDIF_DATA_DATA_TWO(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_DATA, field DATA_THREE[31:24] (RW)
@@ -4306,7 +4076,6 @@ typedef union _hw_lcdif_data
  * Byte 3 (most significant byte) of data written to LCDIF.
  */
 //@{
-
 #define BP_LCDIF_DATA_DATA_THREE      (24)      //!< Bit position for LCDIF_DATA_DATA_THREE.
 #define BM_LCDIF_DATA_DATA_THREE      (0xff000000)  //!< Bit mask for LCDIF_DATA_DATA_THREE.
 
@@ -4320,7 +4089,6 @@ typedef union _hw_lcdif_data
 //! @brief Set the DATA_THREE field to a new value.
 #define BW_LCDIF_DATA_DATA_THREE(v)   (HW_LCDIF_DATA_WR((HW_LCDIF_DATA_RD() & ~BM_LCDIF_DATA_DATA_THREE) | BF_LCDIF_DATA_DATA_THREE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4372,7 +4140,6 @@ typedef union _hw_lcdif_bm_error_stat
  * Virtual address at which bus master error occurred.
  */
 //@{
-
 #define BP_LCDIF_BM_ERROR_STAT_ADDR      (0)      //!< Bit position for LCDIF_BM_ERROR_STAT_ADDR.
 #define BM_LCDIF_BM_ERROR_STAT_ADDR      (0xffffffff)  //!< Bit mask for LCDIF_BM_ERROR_STAT_ADDR.
 
@@ -4386,7 +4153,6 @@ typedef union _hw_lcdif_bm_error_stat
 //! @brief Set the ADDR field to a new value.
 #define BW_LCDIF_BM_ERROR_STAT_ADDR(v)   (HW_LCDIF_BM_ERROR_STAT_WR((HW_LCDIF_BM_ERROR_STAT_RD() & ~BM_LCDIF_BM_ERROR_STAT_ADDR) | BF_LCDIF_BM_ERROR_STAT_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4440,7 +4206,6 @@ typedef union _hw_lcdif_crc_stat
  * Calculated CRC value.
  */
 //@{
-
 #define BP_LCDIF_CRC_STAT_CRC_VALUE      (0)      //!< Bit position for LCDIF_CRC_STAT_CRC_VALUE.
 #define BM_LCDIF_CRC_STAT_CRC_VALUE      (0xffffffff)  //!< Bit mask for LCDIF_CRC_STAT_CRC_VALUE.
 
@@ -4454,7 +4219,6 @@ typedef union _hw_lcdif_crc_stat
 //! @brief Set the CRC_VALUE field to a new value.
 #define BW_LCDIF_CRC_STAT_CRC_VALUE(v)   (HW_LCDIF_CRC_STAT_WR((HW_LCDIF_CRC_STAT_RD() & ~BM_LCDIF_CRC_STAT_CRC_VALUE) | BF_LCDIF_CRC_STAT_CRC_VALUE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4511,13 +4275,11 @@ typedef union _hw_lcdif_stat
  * Read only view of the current count in Latency buffer (LFIFO).
  */
 //@{
-
 #define BP_LCDIF_STAT_LFIFO_COUNT      (0)      //!< Bit position for LCDIF_STAT_LFIFO_COUNT.
 #define BM_LCDIF_STAT_LFIFO_COUNT      (0x000001ff)  //!< Bit mask for LCDIF_STAT_LFIFO_COUNT.
 
 //! @brief Get value of LCDIF_STAT_LFIFO_COUNT from a register value.
 #define BG_LCDIF_STAT_LFIFO_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_STAT_LFIFO_COUNT) >> BP_LCDIF_STAT_LFIFO_COUNT)
-
 //@}
 
 /*! @name Register LCDIF_STAT, field DVI_CURRENT_FIELD[24] (RO)
@@ -4526,13 +4288,11 @@ typedef union _hw_lcdif_stat
  * DVI_CURRENT_FIELD = 1 means field 2.
  */
 //@{
-
 #define BP_LCDIF_STAT_DVI_CURRENT_FIELD      (24)      //!< Bit position for LCDIF_STAT_DVI_CURRENT_FIELD.
 #define BM_LCDIF_STAT_DVI_CURRENT_FIELD      (0x01000000)  //!< Bit mask for LCDIF_STAT_DVI_CURRENT_FIELD.
 
 //! @brief Get value of LCDIF_STAT_DVI_CURRENT_FIELD from a register value.
 #define BG_LCDIF_STAT_DVI_CURRENT_FIELD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_STAT_DVI_CURRENT_FIELD) >> BP_LCDIF_STAT_DVI_CURRENT_FIELD)
-
 //@}
 
 /*! @name Register LCDIF_STAT, field BUSY[25] (RO)
@@ -4540,13 +4300,11 @@ typedef union _hw_lcdif_stat
  * Read only view of the input busy signal from the external LCD controller.
  */
 //@{
-
 #define BP_LCDIF_STAT_BUSY      (25)      //!< Bit position for LCDIF_STAT_BUSY.
 #define BM_LCDIF_STAT_BUSY      (0x02000000)  //!< Bit mask for LCDIF_STAT_BUSY.
 
 //! @brief Get value of LCDIF_STAT_BUSY from a register value.
 #define BG_LCDIF_STAT_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_STAT_BUSY) >> BP_LCDIF_STAT_BUSY)
-
 //@}
 
 /*! @name Register LCDIF_STAT, field TXFIFO_EMPTY[26] (RO)
@@ -4555,13 +4313,11 @@ typedef union _hw_lcdif_stat
  * generally used in the read mode of the LCD interface.
  */
 //@{
-
 #define BP_LCDIF_STAT_TXFIFO_EMPTY      (26)      //!< Bit position for LCDIF_STAT_TXFIFO_EMPTY.
 #define BM_LCDIF_STAT_TXFIFO_EMPTY      (0x04000000)  //!< Bit mask for LCDIF_STAT_TXFIFO_EMPTY.
 
 //! @brief Get value of LCDIF_STAT_TXFIFO_EMPTY from a register value.
 #define BG_LCDIF_STAT_TXFIFO_EMPTY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_STAT_TXFIFO_EMPTY) >> BP_LCDIF_STAT_TXFIFO_EMPTY)
-
 //@}
 
 /*! @name Register LCDIF_STAT, field TXFIFO_FULL[27] (RO)
@@ -4570,13 +4326,11 @@ typedef union _hw_lcdif_stat
  * generally used in the write mode of the LCD interface.
  */
 //@{
-
 #define BP_LCDIF_STAT_TXFIFO_FULL      (27)      //!< Bit position for LCDIF_STAT_TXFIFO_FULL.
 #define BM_LCDIF_STAT_TXFIFO_FULL      (0x08000000)  //!< Bit mask for LCDIF_STAT_TXFIFO_FULL.
 
 //! @brief Get value of LCDIF_STAT_TXFIFO_FULL from a register value.
 #define BG_LCDIF_STAT_TXFIFO_FULL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_STAT_TXFIFO_FULL) >> BP_LCDIF_STAT_TXFIFO_FULL)
-
 //@}
 
 /*! @name Register LCDIF_STAT, field LFIFO_EMPTY[28] (RO)
@@ -4585,13 +4339,11 @@ typedef union _hw_lcdif_stat
  * generally used in the read mode of the LCD interface.
  */
 //@{
-
 #define BP_LCDIF_STAT_LFIFO_EMPTY      (28)      //!< Bit position for LCDIF_STAT_LFIFO_EMPTY.
 #define BM_LCDIF_STAT_LFIFO_EMPTY      (0x10000000)  //!< Bit mask for LCDIF_STAT_LFIFO_EMPTY.
 
 //! @brief Get value of LCDIF_STAT_LFIFO_EMPTY from a register value.
 #define BG_LCDIF_STAT_LFIFO_EMPTY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_STAT_LFIFO_EMPTY) >> BP_LCDIF_STAT_LFIFO_EMPTY)
-
 //@}
 
 /*! @name Register LCDIF_STAT, field LFIFO_FULL[29] (RO)
@@ -4600,13 +4352,11 @@ typedef union _hw_lcdif_stat
  * generally used in the write mode of the LCD interface.
  */
 //@{
-
 #define BP_LCDIF_STAT_LFIFO_FULL      (29)      //!< Bit position for LCDIF_STAT_LFIFO_FULL.
 #define BM_LCDIF_STAT_LFIFO_FULL      (0x20000000)  //!< Bit mask for LCDIF_STAT_LFIFO_FULL.
 
 //! @brief Get value of LCDIF_STAT_LFIFO_FULL from a register value.
 #define BG_LCDIF_STAT_LFIFO_FULL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_STAT_LFIFO_FULL) >> BP_LCDIF_STAT_LFIFO_FULL)
-
 //@}
 
 /*! @name Register LCDIF_STAT, field PRESENT[31] (RO)
@@ -4614,13 +4364,11 @@ typedef union _hw_lcdif_stat
  * 0: eLCDIF not present on this product 1: eLCDIF is present.
  */
 //@{
-
 #define BP_LCDIF_STAT_PRESENT      (31)      //!< Bit position for LCDIF_STAT_PRESENT.
 #define BM_LCDIF_STAT_PRESENT      (0x80000000)  //!< Bit mask for LCDIF_STAT_PRESENT.
 
 //! @brief Get value of LCDIF_STAT_PRESENT from a register value.
 #define BG_LCDIF_STAT_PRESENT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_STAT_PRESENT) >> BP_LCDIF_STAT_PRESENT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4669,13 +4417,11 @@ typedef union _hw_lcdif_version
  * Fixed read-only value reflecting the stepping of RTL version.
  */
 //@{
-
 #define BP_LCDIF_VERSION_STEP      (0)      //!< Bit position for LCDIF_VERSION_STEP.
 #define BM_LCDIF_VERSION_STEP      (0x0000ffff)  //!< Bit mask for LCDIF_VERSION_STEP.
 
 //! @brief Get value of LCDIF_VERSION_STEP from a register value.
 #define BG_LCDIF_VERSION_STEP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_VERSION_STEP) >> BP_LCDIF_VERSION_STEP)
-
 //@}
 
 /*! @name Register LCDIF_VERSION, field MINOR[23:16] (RO)
@@ -4683,13 +4429,11 @@ typedef union _hw_lcdif_version
  * Fixed read-only value reflecting the MINOR field of RTL version.
  */
 //@{
-
 #define BP_LCDIF_VERSION_MINOR      (16)      //!< Bit position for LCDIF_VERSION_MINOR.
 #define BM_LCDIF_VERSION_MINOR      (0x00ff0000)  //!< Bit mask for LCDIF_VERSION_MINOR.
 
 //! @brief Get value of LCDIF_VERSION_MINOR from a register value.
 #define BG_LCDIF_VERSION_MINOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_VERSION_MINOR) >> BP_LCDIF_VERSION_MINOR)
-
 //@}
 
 /*! @name Register LCDIF_VERSION, field MAJOR[31:24] (RO)
@@ -4697,13 +4441,11 @@ typedef union _hw_lcdif_version
  * Fixed read-only value reflecting the MAJOR field of RTL version.
  */
 //@{
-
 #define BP_LCDIF_VERSION_MAJOR      (24)      //!< Bit position for LCDIF_VERSION_MAJOR.
 #define BM_LCDIF_VERSION_MAJOR      (0xff000000)  //!< Bit mask for LCDIF_VERSION_MAJOR.
 
 //! @brief Get value of LCDIF_VERSION_MAJOR from a register value.
 #define BG_LCDIF_VERSION_MAJOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_VERSION_MAJOR) >> BP_LCDIF_VERSION_MAJOR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4767,13 +4509,11 @@ typedef union _hw_lcdif_debug0
  * Read only view of the current bursts issued by the AXI bus master.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_MST_WORDS      (0)      //!< Bit position for LCDIF_DEBUG0_MST_WORDS.
 #define BM_LCDIF_DEBUG0_MST_WORDS      (0x0000000f)  //!< Bit mask for LCDIF_DEBUG0_MST_WORDS.
 
 //! @brief Get value of LCDIF_DEBUG0_MST_WORDS from a register value.
 #define BG_LCDIF_DEBUG0_MST_WORDS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_MST_WORDS) >> BP_LCDIF_DEBUG0_MST_WORDS)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field MST_OUTSTANDING_REQS[8:4] (RO)
@@ -4781,13 +4521,11 @@ typedef union _hw_lcdif_debug0
  * Read only view of the current outstanding requests issued by the AXI bus master.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_MST_OUTSTANDING_REQS      (4)      //!< Bit position for LCDIF_DEBUG0_MST_OUTSTANDING_REQS.
 #define BM_LCDIF_DEBUG0_MST_OUTSTANDING_REQS      (0x000001f0)  //!< Bit mask for LCDIF_DEBUG0_MST_OUTSTANDING_REQS.
 
 //! @brief Get value of LCDIF_DEBUG0_MST_OUTSTANDING_REQS from a register value.
 #define BG_LCDIF_DEBUG0_MST_OUTSTANDING_REQS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_MST_OUTSTANDING_REQS) >> BP_LCDIF_DEBUG0_MST_OUTSTANDING_REQS)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field MST_AVALID[9] (RO)
@@ -4795,13 +4533,11 @@ typedef union _hw_lcdif_debug0
  * Read only view of the mst_avalid signal issued by the AXI bus master.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_MST_AVALID      (9)      //!< Bit position for LCDIF_DEBUG0_MST_AVALID.
 #define BM_LCDIF_DEBUG0_MST_AVALID      (0x00000200)  //!< Bit mask for LCDIF_DEBUG0_MST_AVALID.
 
 //! @brief Get value of LCDIF_DEBUG0_MST_AVALID from a register value.
 #define BG_LCDIF_DEBUG0_MST_AVALID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_MST_AVALID) >> BP_LCDIF_DEBUG0_MST_AVALID)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field CUR_REQ_STATE[11:10] (RO)
@@ -4809,13 +4545,11 @@ typedef union _hw_lcdif_debug0
  * Read only view of the request state machine.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_CUR_REQ_STATE      (10)      //!< Bit position for LCDIF_DEBUG0_CUR_REQ_STATE.
 #define BM_LCDIF_DEBUG0_CUR_REQ_STATE      (0x00000c00)  //!< Bit mask for LCDIF_DEBUG0_CUR_REQ_STATE.
 
 //! @brief Get value of LCDIF_DEBUG0_CUR_REQ_STATE from a register value.
 #define BG_LCDIF_DEBUG0_CUR_REQ_STATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_CUR_REQ_STATE) >> BP_LCDIF_DEBUG0_CUR_REQ_STATE)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field PXP_B1_DONE[12] (RO)
@@ -4823,13 +4557,11 @@ typedef union _hw_lcdif_debug0
  * Buffer1 done signal issued by eLCDIF.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_PXP_B1_DONE      (12)      //!< Bit position for LCDIF_DEBUG0_PXP_B1_DONE.
 #define BM_LCDIF_DEBUG0_PXP_B1_DONE      (0x00001000)  //!< Bit mask for LCDIF_DEBUG0_PXP_B1_DONE.
 
 //! @brief Get value of LCDIF_DEBUG0_PXP_B1_DONE from a register value.
 #define BG_LCDIF_DEBUG0_PXP_B1_DONE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_PXP_B1_DONE) >> BP_LCDIF_DEBUG0_PXP_B1_DONE)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field PXP_LCDIF_B1_READY[13] (RO)
@@ -4837,13 +4569,11 @@ typedef union _hw_lcdif_debug0
  * Buffer1 ready signal issued by ePXP.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_PXP_LCDIF_B1_READY      (13)      //!< Bit position for LCDIF_DEBUG0_PXP_LCDIF_B1_READY.
 #define BM_LCDIF_DEBUG0_PXP_LCDIF_B1_READY      (0x00002000)  //!< Bit mask for LCDIF_DEBUG0_PXP_LCDIF_B1_READY.
 
 //! @brief Get value of LCDIF_DEBUG0_PXP_LCDIF_B1_READY from a register value.
 #define BG_LCDIF_DEBUG0_PXP_LCDIF_B1_READY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_PXP_LCDIF_B1_READY) >> BP_LCDIF_DEBUG0_PXP_LCDIF_B1_READY)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field PXP_B0_DONE[14] (RO)
@@ -4851,13 +4581,11 @@ typedef union _hw_lcdif_debug0
  * Buffer0 done signal issued by eLCDIF.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_PXP_B0_DONE      (14)      //!< Bit position for LCDIF_DEBUG0_PXP_B0_DONE.
 #define BM_LCDIF_DEBUG0_PXP_B0_DONE      (0x00004000)  //!< Bit mask for LCDIF_DEBUG0_PXP_B0_DONE.
 
 //! @brief Get value of LCDIF_DEBUG0_PXP_B0_DONE from a register value.
 #define BG_LCDIF_DEBUG0_PXP_B0_DONE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_PXP_B0_DONE) >> BP_LCDIF_DEBUG0_PXP_B0_DONE)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field PXP_LCDIF_B0_READY[15] (RO)
@@ -4865,13 +4593,11 @@ typedef union _hw_lcdif_debug0
  * Buffer0 ready signal issued by ePXP.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_PXP_LCDIF_B0_READY      (15)      //!< Bit position for LCDIF_DEBUG0_PXP_LCDIF_B0_READY.
 #define BM_LCDIF_DEBUG0_PXP_LCDIF_B0_READY      (0x00008000)  //!< Bit mask for LCDIF_DEBUG0_PXP_LCDIF_B0_READY.
 
 //! @brief Get value of LCDIF_DEBUG0_PXP_LCDIF_B0_READY from a register value.
 #define BG_LCDIF_DEBUG0_PXP_LCDIF_B0_READY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_PXP_LCDIF_B0_READY) >> BP_LCDIF_DEBUG0_PXP_LCDIF_B0_READY)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field CUR_STATE[22:16] (RO)
@@ -4879,13 +4605,11 @@ typedef union _hw_lcdif_debug0
  * Read only view of the current state machine state in the current mode of operation.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_CUR_STATE      (16)      //!< Bit position for LCDIF_DEBUG0_CUR_STATE.
 #define BM_LCDIF_DEBUG0_CUR_STATE      (0x007f0000)  //!< Bit mask for LCDIF_DEBUG0_CUR_STATE.
 
 //! @brief Get value of LCDIF_DEBUG0_CUR_STATE from a register value.
 #define BG_LCDIF_DEBUG0_CUR_STATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_CUR_STATE) >> BP_LCDIF_DEBUG0_CUR_STATE)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field EMPTY_WORD[23] (RO)
@@ -4893,13 +4617,11 @@ typedef union _hw_lcdif_debug0
  * Indicates that the current word is empty.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_EMPTY_WORD      (23)      //!< Bit position for LCDIF_DEBUG0_EMPTY_WORD.
 #define BM_LCDIF_DEBUG0_EMPTY_WORD      (0x00800000)  //!< Bit mask for LCDIF_DEBUG0_EMPTY_WORD.
 
 //! @brief Get value of LCDIF_DEBUG0_EMPTY_WORD from a register value.
 #define BG_LCDIF_DEBUG0_EMPTY_WORD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_EMPTY_WORD) >> BP_LCDIF_DEBUG0_EMPTY_WORD)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field CUR_FRAME_TX[24] (RO)
@@ -4908,13 +4630,11 @@ typedef union _hw_lcdif_debug0
  * VSYNC mode debug.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_CUR_FRAME_TX      (24)      //!< Bit position for LCDIF_DEBUG0_CUR_FRAME_TX.
 #define BM_LCDIF_DEBUG0_CUR_FRAME_TX      (0x01000000)  //!< Bit mask for LCDIF_DEBUG0_CUR_FRAME_TX.
 
 //! @brief Get value of LCDIF_DEBUG0_CUR_FRAME_TX from a register value.
 #define BG_LCDIF_DEBUG0_CUR_FRAME_TX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_CUR_FRAME_TX) >> BP_LCDIF_DEBUG0_CUR_FRAME_TX)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field VSYNC[25] (RO)
@@ -4922,13 +4642,11 @@ typedef union _hw_lcdif_debug0
  * Read only view of VSYNC signal.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_VSYNC      (25)      //!< Bit position for LCDIF_DEBUG0_VSYNC.
 #define BM_LCDIF_DEBUG0_VSYNC      (0x02000000)  //!< Bit mask for LCDIF_DEBUG0_VSYNC.
 
 //! @brief Get value of LCDIF_DEBUG0_VSYNC from a register value.
 #define BG_LCDIF_DEBUG0_VSYNC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_VSYNC) >> BP_LCDIF_DEBUG0_VSYNC)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field HSYNC[26] (RO)
@@ -4936,13 +4654,11 @@ typedef union _hw_lcdif_debug0
  * Read only view of HSYNC signal.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_HSYNC      (26)      //!< Bit position for LCDIF_DEBUG0_HSYNC.
 #define BM_LCDIF_DEBUG0_HSYNC      (0x04000000)  //!< Bit mask for LCDIF_DEBUG0_HSYNC.
 
 //! @brief Get value of LCDIF_DEBUG0_HSYNC from a register value.
 #define BG_LCDIF_DEBUG0_HSYNC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_HSYNC) >> BP_LCDIF_DEBUG0_HSYNC)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field ENABLE[27] (RO)
@@ -4950,13 +4666,11 @@ typedef union _hw_lcdif_debug0
  * Read only view of ENABLE signal.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_ENABLE      (27)      //!< Bit position for LCDIF_DEBUG0_ENABLE.
 #define BM_LCDIF_DEBUG0_ENABLE      (0x08000000)  //!< Bit mask for LCDIF_DEBUG0_ENABLE.
 
 //! @brief Get value of LCDIF_DEBUG0_ENABLE from a register value.
 #define BG_LCDIF_DEBUG0_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_ENABLE) >> BP_LCDIF_DEBUG0_ENABLE)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field SYNC_SIGNALS_ON_REG[29] (RO)
@@ -4964,13 +4678,11 @@ typedef union _hw_lcdif_debug0
  * Read only view of internal sync_signals_on_reg signal.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_SYNC_SIGNALS_ON_REG      (29)      //!< Bit position for LCDIF_DEBUG0_SYNC_SIGNALS_ON_REG.
 #define BM_LCDIF_DEBUG0_SYNC_SIGNALS_ON_REG      (0x20000000)  //!< Bit mask for LCDIF_DEBUG0_SYNC_SIGNALS_ON_REG.
 
 //! @brief Get value of LCDIF_DEBUG0_SYNC_SIGNALS_ON_REG from a register value.
 #define BG_LCDIF_DEBUG0_SYNC_SIGNALS_ON_REG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_SYNC_SIGNALS_ON_REG) >> BP_LCDIF_DEBUG0_SYNC_SIGNALS_ON_REG)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field WAIT_FOR_VSYNC_EDGE_OUT[30] (RO)
@@ -4978,13 +4690,11 @@ typedef union _hw_lcdif_debug0
  * Read only view of WAIT_FOR_VSYNC_EDGE bit in the VSYNC mode after it comes out of the TXFIFO.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT      (30)      //!< Bit position for LCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT.
 #define BM_LCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT      (0x40000000)  //!< Bit mask for LCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT.
 
 //! @brief Get value of LCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT from a register value.
 #define BG_LCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT) >> BP_LCDIF_DEBUG0_WAIT_FOR_VSYNC_EDGE_OUT)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG0, field STREAMING_END_DETECTED[31] (RO)
@@ -4992,13 +4702,11 @@ typedef union _hw_lcdif_debug0
  * Read only view of the DOTCLK_MODE or DVI_MODE bit going from 1 to 0.
  */
 //@{
-
 #define BP_LCDIF_DEBUG0_STREAMING_END_DETECTED      (31)      //!< Bit position for LCDIF_DEBUG0_STREAMING_END_DETECTED.
 #define BM_LCDIF_DEBUG0_STREAMING_END_DETECTED      (0x80000000)  //!< Bit mask for LCDIF_DEBUG0_STREAMING_END_DETECTED.
 
 //! @brief Get value of LCDIF_DEBUG0_STREAMING_END_DETECTED from a register value.
 #define BG_LCDIF_DEBUG0_STREAMING_END_DETECTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG0_STREAMING_END_DETECTED) >> BP_LCDIF_DEBUG0_STREAMING_END_DETECTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5046,13 +4754,11 @@ typedef union _hw_lcdif_debug1
  * Read only view of the current state of the vertical data counter.
  */
 //@{
-
 #define BP_LCDIF_DEBUG1_V_DATA_COUNT      (0)      //!< Bit position for LCDIF_DEBUG1_V_DATA_COUNT.
 #define BM_LCDIF_DEBUG1_V_DATA_COUNT      (0x0000ffff)  //!< Bit mask for LCDIF_DEBUG1_V_DATA_COUNT.
 
 //! @brief Get value of LCDIF_DEBUG1_V_DATA_COUNT from a register value.
 #define BG_LCDIF_DEBUG1_V_DATA_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG1_V_DATA_COUNT) >> BP_LCDIF_DEBUG1_V_DATA_COUNT)
-
 //@}
 
 /*! @name Register LCDIF_DEBUG1, field H_DATA_COUNT[31:16] (RO)
@@ -5060,13 +4766,11 @@ typedef union _hw_lcdif_debug1
  * Read only view of the current state of the horizontal data counter.
  */
 //@{
-
 #define BP_LCDIF_DEBUG1_H_DATA_COUNT      (16)      //!< Bit position for LCDIF_DEBUG1_H_DATA_COUNT.
 #define BM_LCDIF_DEBUG1_H_DATA_COUNT      (0xffff0000)  //!< Bit mask for LCDIF_DEBUG1_H_DATA_COUNT.
 
 //! @brief Get value of LCDIF_DEBUG1_H_DATA_COUNT from a register value.
 #define BG_LCDIF_DEBUG1_H_DATA_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG1_H_DATA_COUNT) >> BP_LCDIF_DEBUG1_H_DATA_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5113,13 +4817,11 @@ typedef union _hw_lcdif_debug2
  * Read only view of the current address issued by the AXI bus master.
  */
 //@{
-
 #define BP_LCDIF_DEBUG2_MST_ADDRESS      (0)      //!< Bit position for LCDIF_DEBUG2_MST_ADDRESS.
 #define BM_LCDIF_DEBUG2_MST_ADDRESS      (0xffffffff)  //!< Bit mask for LCDIF_DEBUG2_MST_ADDRESS.
 
 //! @brief Get value of LCDIF_DEBUG2_MST_ADDRESS from a register value.
 #define BG_LCDIF_DEBUG2_MST_ADDRESS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_LCDIF_DEBUG2_MST_ADDRESS) >> BP_LCDIF_DEBUG2_MST_ADDRESS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5177,7 +4879,6 @@ typedef union _hw_lcdif_thres
  * can be used to raise the access eLCDIF's access priority.
  */
 //@{
-
 #define BP_LCDIF_THRES_PANIC      (0)      //!< Bit position for LCDIF_THRES_PANIC.
 #define BM_LCDIF_THRES_PANIC      (0x000001ff)  //!< Bit mask for LCDIF_THRES_PANIC.
 
@@ -5191,7 +4892,6 @@ typedef union _hw_lcdif_thres
 //! @brief Set the PANIC field to a new value.
 #define BW_LCDIF_THRES_PANIC(v)   (HW_LCDIF_THRES_WR((HW_LCDIF_THRES_RD() & ~BM_LCDIF_THRES_PANIC) | BF_LCDIF_THRES_PANIC(v)))
 #endif
-
 //@}
 
 /*! @name Register LCDIF_THRES, field FASTCLOCK[24:16] (RW)
@@ -5204,7 +4904,6 @@ typedef union _hw_lcdif_thres
  * pixels in the FIFO before a "panic" level is encountered.
  */
 //@{
-
 #define BP_LCDIF_THRES_FASTCLOCK      (16)      //!< Bit position for LCDIF_THRES_FASTCLOCK.
 #define BM_LCDIF_THRES_FASTCLOCK      (0x01ff0000)  //!< Bit mask for LCDIF_THRES_FASTCLOCK.
 
@@ -5218,7 +4917,6 @@ typedef union _hw_lcdif_thres
 //! @brief Set the FASTCLOCK field to a new value.
 #define BW_LCDIF_THRES_FASTCLOCK(v)   (HW_LCDIF_THRES_WR((HW_LCDIF_THRES_RD() & ~BM_LCDIF_THRES_FASTCLOCK) | BF_LCDIF_THRES_FASTCLOCK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5314,3 +5012,5 @@ typedef struct _hw_lcdif
 #endif
 
 #endif // __HW_LCDIF_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

@@ -129,7 +129,6 @@ typedef union _hw_spdif_scr
  * - 11 - U channel from on chip transmitter
  */
 //@{
-
 #define BP_SPDIF_SCR_USRC_SEL      (0)      //!< Bit position for SPDIF_SCR_USRC_SEL.
 #define BM_SPDIF_SCR_USRC_SEL      (0x00000003)  //!< Bit mask for SPDIF_SCR_USRC_SEL.
 
@@ -143,7 +142,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the USRC_SEL field to a new value.
 #define BW_SPDIF_SCR_USRC_SEL(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_USRC_SEL) | BF_SPDIF_SCR_USRC_SEL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field TXSEL[4:2] (RW)
@@ -157,7 +155,6 @@ typedef union _hw_spdif_scr
  * - Others - Reserved
  */
 //@{
-
 #define BP_SPDIF_SCR_TXSEL      (2)      //!< Bit position for SPDIF_SCR_TXSEL.
 #define BM_SPDIF_SCR_TXSEL      (0x0000001c)  //!< Bit mask for SPDIF_SCR_TXSEL.
 
@@ -171,7 +168,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the TXSEL field to a new value.
 #define BW_SPDIF_SCR_TXSEL(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_TXSEL) | BF_SPDIF_SCR_TXSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field VALCTRL[5] (RW)
@@ -183,7 +179,6 @@ typedef union _hw_spdif_scr
  * - 1 - Outgoing Validity always clear
  */
 //@{
-
 #define BP_SPDIF_SCR_VALCTRL      (5)      //!< Bit position for SPDIF_SCR_VALCTRL.
 #define BM_SPDIF_SCR_VALCTRL      (0x00000020)  //!< Bit mask for SPDIF_SCR_VALCTRL.
 
@@ -197,7 +192,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the VALCTRL field to a new value.
 #define BW_SPDIF_SCR_VALCTRL(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_VALCTRL) | BF_SPDIF_SCR_VALCTRL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field DMA_TX_EN[8] (RW)
@@ -205,7 +199,6 @@ typedef union _hw_spdif_scr
  * DMA Transmit Request Enable (Tx FIFO empty)
  */
 //@{
-
 #define BP_SPDIF_SCR_DMA_TX_EN      (8)      //!< Bit position for SPDIF_SCR_DMA_TX_EN.
 #define BM_SPDIF_SCR_DMA_TX_EN      (0x00000100)  //!< Bit mask for SPDIF_SCR_DMA_TX_EN.
 
@@ -219,7 +212,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the DMA_TX_EN field to a new value.
 #define BW_SPDIF_SCR_DMA_TX_EN(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_DMA_TX_EN) | BF_SPDIF_SCR_DMA_TX_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field DMA_RX_EN[9] (RW)
@@ -227,7 +219,6 @@ typedef union _hw_spdif_scr
  * DMA Receive Request Enable (RX FIFO full)
  */
 //@{
-
 #define BP_SPDIF_SCR_DMA_RX_EN      (9)      //!< Bit position for SPDIF_SCR_DMA_RX_EN.
 #define BM_SPDIF_SCR_DMA_RX_EN      (0x00000200)  //!< Bit mask for SPDIF_SCR_DMA_RX_EN.
 
@@ -241,7 +232,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the DMA_RX_EN field to a new value.
 #define BW_SPDIF_SCR_DMA_RX_EN(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_DMA_RX_EN) | BF_SPDIF_SCR_DMA_RX_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field TXFIFO_CTRL[11:10] (RW)
@@ -255,7 +245,6 @@ typedef union _hw_spdif_scr
  * - 11 - Reserved
  */
 //@{
-
 #define BP_SPDIF_SCR_TXFIFO_CTRL      (10)      //!< Bit position for SPDIF_SCR_TXFIFO_CTRL.
 #define BM_SPDIF_SCR_TXFIFO_CTRL      (0x00000c00)  //!< Bit mask for SPDIF_SCR_TXFIFO_CTRL.
 
@@ -269,7 +258,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the TXFIFO_CTRL field to a new value.
 #define BW_SPDIF_SCR_TXFIFO_CTRL(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_TXFIFO_CTRL) | BF_SPDIF_SCR_TXFIFO_CTRL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field SOFT_RESET[12] (RW)
@@ -278,7 +266,6 @@ typedef union _hw_spdif_scr
  * cycles. When in the reset process, return 1 when read. else return 0 when read.
  */
 //@{
-
 #define BP_SPDIF_SCR_SOFT_RESET      (12)      //!< Bit position for SPDIF_SCR_SOFT_RESET.
 #define BM_SPDIF_SCR_SOFT_RESET      (0x00001000)  //!< Bit mask for SPDIF_SCR_SOFT_RESET.
 
@@ -292,7 +279,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the SOFT_RESET field to a new value.
 #define BW_SPDIF_SCR_SOFT_RESET(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_SOFT_RESET) | BF_SPDIF_SCR_SOFT_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field LOW_POWER[13] (RW)
@@ -301,7 +287,6 @@ typedef union _hw_spdif_scr
  * Power mode.
  */
 //@{
-
 #define BP_SPDIF_SCR_LOW_POWER      (13)      //!< Bit position for SPDIF_SCR_LOW_POWER.
 #define BM_SPDIF_SCR_LOW_POWER      (0x00002000)  //!< Bit mask for SPDIF_SCR_LOW_POWER.
 
@@ -315,7 +300,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the LOW_POWER field to a new value.
 #define BW_SPDIF_SCR_LOW_POWER(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_LOW_POWER) | BF_SPDIF_SCR_LOW_POWER(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field TXFIFOEMPTY_SEL[16:15] (RW)
@@ -329,7 +313,6 @@ typedef union _hw_spdif_scr
  * - 11 - Empty interrupt if at most 12 sample in Tx left and right FIFOs
  */
 //@{
-
 #define BP_SPDIF_SCR_TXFIFOEMPTY_SEL      (15)      //!< Bit position for SPDIF_SCR_TXFIFOEMPTY_SEL.
 #define BM_SPDIF_SCR_TXFIFOEMPTY_SEL      (0x00018000)  //!< Bit mask for SPDIF_SCR_TXFIFOEMPTY_SEL.
 
@@ -343,7 +326,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the TXFIFOEMPTY_SEL field to a new value.
 #define BW_SPDIF_SCR_TXFIFOEMPTY_SEL(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_TXFIFOEMPTY_SEL) | BF_SPDIF_SCR_TXFIFOEMPTY_SEL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field TXAUTOSYNC[17] (RW)
@@ -355,7 +337,6 @@ typedef union _hw_spdif_scr
  * - 1 - Tx FIFO auto sync on
  */
 //@{
-
 #define BP_SPDIF_SCR_TXAUTOSYNC      (17)      //!< Bit position for SPDIF_SCR_TXAUTOSYNC.
 #define BM_SPDIF_SCR_TXAUTOSYNC      (0x00020000)  //!< Bit mask for SPDIF_SCR_TXAUTOSYNC.
 
@@ -369,7 +350,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the TXAUTOSYNC field to a new value.
 #define BW_SPDIF_SCR_TXAUTOSYNC(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_TXAUTOSYNC) | BF_SPDIF_SCR_TXAUTOSYNC(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field RXAUTOSYNC[18] (RW)
@@ -381,7 +361,6 @@ typedef union _hw_spdif_scr
  * - 1 - RxFIFO auto sync on
  */
 //@{
-
 #define BP_SPDIF_SCR_RXAUTOSYNC      (18)      //!< Bit position for SPDIF_SCR_RXAUTOSYNC.
 #define BM_SPDIF_SCR_RXAUTOSYNC      (0x00040000)  //!< Bit mask for SPDIF_SCR_RXAUTOSYNC.
 
@@ -395,7 +374,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the RXAUTOSYNC field to a new value.
 #define BW_SPDIF_SCR_RXAUTOSYNC(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_RXAUTOSYNC) | BF_SPDIF_SCR_RXAUTOSYNC(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field RXFIFOFULL_SEL[20:19] (RW)
@@ -409,7 +387,6 @@ typedef union _hw_spdif_scr
  * - 11 - Full interrupt if at least 16 sample in Rx left and right FIFO
  */
 //@{
-
 #define BP_SPDIF_SCR_RXFIFOFULL_SEL      (19)      //!< Bit position for SPDIF_SCR_RXFIFOFULL_SEL.
 #define BM_SPDIF_SCR_RXFIFOFULL_SEL      (0x00180000)  //!< Bit mask for SPDIF_SCR_RXFIFOFULL_SEL.
 
@@ -423,7 +400,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the RXFIFOFULL_SEL field to a new value.
 #define BW_SPDIF_SCR_RXFIFOFULL_SEL(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_RXFIFOFULL_SEL) | BF_SPDIF_SCR_RXFIFOFULL_SEL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field RXFIFO_RST[21] (RW)
@@ -435,7 +411,6 @@ typedef union _hw_spdif_scr
  * - 1 - Reset register to 1 sample remaining
  */
 //@{
-
 #define BP_SPDIF_SCR_RXFIFO_RST      (21)      //!< Bit position for SPDIF_SCR_RXFIFO_RST.
 #define BM_SPDIF_SCR_RXFIFO_RST      (0x00200000)  //!< Bit mask for SPDIF_SCR_RXFIFO_RST.
 
@@ -449,7 +424,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the RXFIFO_RST field to a new value.
 #define BW_SPDIF_SCR_RXFIFO_RST(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_RXFIFO_RST) | BF_SPDIF_SCR_RXFIFO_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field RXFIFO_OFF[22] (RW)
@@ -461,7 +435,6 @@ typedef union _hw_spdif_scr
  * - 1 - SPDIF Rx FIFO is off. Does not accept data from interface
  */
 //@{
-
 #define BP_SPDIF_SCR_RXFIFO_OFF      (22)      //!< Bit position for SPDIF_SCR_RXFIFO_OFF.
 #define BM_SPDIF_SCR_RXFIFO_OFF      (0x00400000)  //!< Bit mask for SPDIF_SCR_RXFIFO_OFF.
 
@@ -475,7 +448,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the RXFIFO_OFF field to a new value.
 #define BW_SPDIF_SCR_RXFIFO_OFF(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_RXFIFO_OFF) | BF_SPDIF_SCR_RXFIFO_OFF(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field RXFIFO_CTRL[23] (RW)
@@ -487,7 +459,6 @@ typedef union _hw_spdif_scr
  * - 1 - Always read zero from Rx data register
  */
 //@{
-
 #define BP_SPDIF_SCR_RXFIFO_CTRL      (23)      //!< Bit position for SPDIF_SCR_RXFIFO_CTRL.
 #define BM_SPDIF_SCR_RXFIFO_CTRL      (0x00800000)  //!< Bit mask for SPDIF_SCR_RXFIFO_CTRL.
 
@@ -501,7 +472,6 @@ typedef union _hw_spdif_scr
 //! @brief Set the RXFIFO_CTRL field to a new value.
 #define BW_SPDIF_SCR_RXFIFO_CTRL(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_RXFIFO_CTRL) | BF_SPDIF_SCR_RXFIFO_CTRL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SCR, field UNIMPLEMENTED[31:24] (RU)
@@ -509,13 +479,11 @@ typedef union _hw_spdif_scr
 
  */
 //@{
-
 #define BP_SPDIF_SCR_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SCR_UNIMPLEMENTED.
 #define BM_SPDIF_SCR_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_SCR_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_SCR_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_SCR_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SCR_UNIMPLEMENTED) >> BP_SPDIF_SCR_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -572,7 +540,6 @@ typedef union _hw_spdif_srcd
  * - 1 - CD user channel subcode
  */
 //@{
-
 #define BP_SPDIF_SRCD_USYNCMODE      (1)      //!< Bit position for SPDIF_SRCD_USYNCMODE.
 #define BM_SPDIF_SRCD_USYNCMODE      (0x00000002)  //!< Bit mask for SPDIF_SRCD_USYNCMODE.
 
@@ -586,7 +553,6 @@ typedef union _hw_spdif_srcd
 //! @brief Set the USYNCMODE field to a new value.
 #define BW_SPDIF_SRCD_USYNCMODE(v)   (HW_SPDIF_SRCD_WR((HW_SPDIF_SRCD_RD() & ~BM_SPDIF_SRCD_USYNCMODE) | BF_SPDIF_SRCD_USYNCMODE(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SRCD, field UNIMPLEMENTED[31:24] (RU)
@@ -594,13 +560,11 @@ typedef union _hw_spdif_srcd
 
  */
 //@{
-
 #define BP_SPDIF_SRCD_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRCD_UNIMPLEMENTED.
 #define BM_SPDIF_SRCD_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_SRCD_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_SRCD_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_SRCD_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRCD_UNIMPLEMENTED) >> BP_SPDIF_SRCD_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -664,7 +628,6 @@ typedef union _hw_spdif_srpc
  * - 110 - 3*(2**10)
  */
 //@{
-
 #define BP_SPDIF_SRPC_GAINSEL      (3)      //!< Bit position for SPDIF_SRPC_GAINSEL.
 #define BM_SPDIF_SRPC_GAINSEL      (0x00000038)  //!< Bit mask for SPDIF_SRPC_GAINSEL.
 
@@ -678,7 +641,6 @@ typedef union _hw_spdif_srpc
 //! @brief Set the GAINSEL field to a new value.
 #define BW_SPDIF_SRPC_GAINSEL(v)   (HW_SPDIF_SRPC_WR((HW_SPDIF_SRPC_RD() & ~BM_SPDIF_SRPC_GAINSEL) | BF_SPDIF_SRPC_GAINSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SRPC, field LOCK[6] (RO)
@@ -686,13 +648,11 @@ typedef union _hw_spdif_srpc
  * LOCK bit to show that the internal DPLL is locked, read only
  */
 //@{
-
 #define BP_SPDIF_SRPC_LOCK      (6)      //!< Bit position for SPDIF_SRPC_LOCK.
 #define BM_SPDIF_SRPC_LOCK      (0x00000040)  //!< Bit mask for SPDIF_SRPC_LOCK.
 
 //! @brief Get value of SPDIF_SRPC_LOCK from a register value.
 #define BG_SPDIF_SRPC_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRPC_LOCK) >> BP_SPDIF_SRPC_LOCK)
-
 //@}
 
 /*! @name Register SPDIF_SRPC, field CLKSRC_SEL[10:7] (RW)
@@ -709,7 +669,6 @@ typedef union _hw_spdif_srpc
  * - 1100 - mkb_clk
  */
 //@{
-
 #define BP_SPDIF_SRPC_CLKSRC_SEL      (7)      //!< Bit position for SPDIF_SRPC_CLKSRC_SEL.
 #define BM_SPDIF_SRPC_CLKSRC_SEL      (0x00000780)  //!< Bit mask for SPDIF_SRPC_CLKSRC_SEL.
 
@@ -723,7 +682,6 @@ typedef union _hw_spdif_srpc
 //! @brief Set the CLKSRC_SEL field to a new value.
 #define BW_SPDIF_SRPC_CLKSRC_SEL(v)   (HW_SPDIF_SRPC_WR((HW_SPDIF_SRPC_RD() & ~BM_SPDIF_SRPC_CLKSRC_SEL) | BF_SPDIF_SRPC_CLKSRC_SEL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SRPC, field UNIMPLEMENTED[31:24] (RU)
@@ -731,13 +689,11 @@ typedef union _hw_spdif_srpc
 
  */
 //@{
-
 #define BP_SPDIF_SRPC_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRPC_UNIMPLEMENTED.
 #define BM_SPDIF_SRPC_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_SRPC_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_SRPC_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_SRPC_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRPC_UNIMPLEMENTED) >> BP_SPDIF_SRPC_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -807,7 +763,6 @@ typedef union _hw_spdif_sie
  * SPDIF Rx FIFO full, can't be cleared with reg. IntClear. To clear it, read from Rx FIFO.
  */
 //@{
-
 #define BP_SPDIF_SIE_RXFIFOFUL      (0)      //!< Bit position for SPDIF_SIE_RXFIFOFUL.
 #define BM_SPDIF_SIE_RXFIFOFUL      (0x00000001)  //!< Bit mask for SPDIF_SIE_RXFIFOFUL.
 
@@ -821,7 +776,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the RXFIFOFUL field to a new value.
 #define BW_SPDIF_SIE_RXFIFOFUL(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_RXFIFOFUL) | BF_SPDIF_SIE_RXFIFOFUL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field TXEM[1] (RW)
@@ -829,7 +783,6 @@ typedef union _hw_spdif_sie
  * SPDIF Tx FIFO empty, can't be cleared with reg. IntClear. To clear it, write toTx FIFO.
  */
 //@{
-
 #define BP_SPDIF_SIE_TXEM      (1)      //!< Bit position for SPDIF_SIE_TXEM.
 #define BM_SPDIF_SIE_TXEM      (0x00000002)  //!< Bit mask for SPDIF_SIE_TXEM.
 
@@ -843,7 +796,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the TXEM field to a new value.
 #define BW_SPDIF_SIE_TXEM(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_TXEM) | BF_SPDIF_SIE_TXEM(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field LOCKLOSS[2] (RW)
@@ -851,7 +803,6 @@ typedef union _hw_spdif_sie
  * SPDIF receiver loss of lock
  */
 //@{
-
 #define BP_SPDIF_SIE_LOCKLOSS      (2)      //!< Bit position for SPDIF_SIE_LOCKLOSS.
 #define BM_SPDIF_SIE_LOCKLOSS      (0x00000004)  //!< Bit mask for SPDIF_SIE_LOCKLOSS.
 
@@ -865,7 +816,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the LOCKLOSS field to a new value.
 #define BW_SPDIF_SIE_LOCKLOSS(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_LOCKLOSS) | BF_SPDIF_SIE_LOCKLOSS(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field RXFIFORESYN[3] (RW)
@@ -873,7 +823,6 @@ typedef union _hw_spdif_sie
  * Rx FIFO resync
  */
 //@{
-
 #define BP_SPDIF_SIE_RXFIFORESYN      (3)      //!< Bit position for SPDIF_SIE_RXFIFORESYN.
 #define BM_SPDIF_SIE_RXFIFORESYN      (0x00000008)  //!< Bit mask for SPDIF_SIE_RXFIFORESYN.
 
@@ -887,7 +836,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the RXFIFORESYN field to a new value.
 #define BW_SPDIF_SIE_RXFIFORESYN(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_RXFIFORESYN) | BF_SPDIF_SIE_RXFIFORESYN(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field RXFIFOUNOV[4] (RW)
@@ -895,7 +843,6 @@ typedef union _hw_spdif_sie
  * Rx FIFO underrun/overrun
  */
 //@{
-
 #define BP_SPDIF_SIE_RXFIFOUNOV      (4)      //!< Bit position for SPDIF_SIE_RXFIFOUNOV.
 #define BM_SPDIF_SIE_RXFIFOUNOV      (0x00000010)  //!< Bit mask for SPDIF_SIE_RXFIFOUNOV.
 
@@ -909,7 +856,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the RXFIFOUNOV field to a new value.
 #define BW_SPDIF_SIE_RXFIFOUNOV(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_RXFIFOUNOV) | BF_SPDIF_SIE_RXFIFOUNOV(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field UQERR[5] (RW)
@@ -917,7 +863,6 @@ typedef union _hw_spdif_sie
  * U/Q Channel framing error
  */
 //@{
-
 #define BP_SPDIF_SIE_UQERR      (5)      //!< Bit position for SPDIF_SIE_UQERR.
 #define BM_SPDIF_SIE_UQERR      (0x00000020)  //!< Bit mask for SPDIF_SIE_UQERR.
 
@@ -931,7 +876,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the UQERR field to a new value.
 #define BW_SPDIF_SIE_UQERR(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_UQERR) | BF_SPDIF_SIE_UQERR(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field UQSYNC[6] (RW)
@@ -939,7 +883,6 @@ typedef union _hw_spdif_sie
  * U/Q Channel sync found
  */
 //@{
-
 #define BP_SPDIF_SIE_UQSYNC      (6)      //!< Bit position for SPDIF_SIE_UQSYNC.
 #define BM_SPDIF_SIE_UQSYNC      (0x00000040)  //!< Bit mask for SPDIF_SIE_UQSYNC.
 
@@ -953,7 +896,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the UQSYNC field to a new value.
 #define BW_SPDIF_SIE_UQSYNC(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_UQSYNC) | BF_SPDIF_SIE_UQSYNC(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field QRXOV[7] (RW)
@@ -961,7 +903,6 @@ typedef union _hw_spdif_sie
  * Q Channel receive register overrun
  */
 //@{
-
 #define BP_SPDIF_SIE_QRXOV      (7)      //!< Bit position for SPDIF_SIE_QRXOV.
 #define BM_SPDIF_SIE_QRXOV      (0x00000080)  //!< Bit mask for SPDIF_SIE_QRXOV.
 
@@ -975,7 +916,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the QRXOV field to a new value.
 #define BW_SPDIF_SIE_QRXOV(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_QRXOV) | BF_SPDIF_SIE_QRXOV(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field QRXFUL[8] (RW)
@@ -984,7 +924,6 @@ typedef union _hw_spdif_sie
  * reg.
  */
 //@{
-
 #define BP_SPDIF_SIE_QRXFUL      (8)      //!< Bit position for SPDIF_SIE_QRXFUL.
 #define BM_SPDIF_SIE_QRXFUL      (0x00000100)  //!< Bit mask for SPDIF_SIE_QRXFUL.
 
@@ -998,7 +937,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the QRXFUL field to a new value.
 #define BW_SPDIF_SIE_QRXFUL(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_QRXFUL) | BF_SPDIF_SIE_QRXFUL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field URXOV[9] (RW)
@@ -1006,7 +944,6 @@ typedef union _hw_spdif_sie
  * U Channel receive register overrun
  */
 //@{
-
 #define BP_SPDIF_SIE_URXOV      (9)      //!< Bit position for SPDIF_SIE_URXOV.
 #define BM_SPDIF_SIE_URXOV      (0x00000200)  //!< Bit mask for SPDIF_SIE_URXOV.
 
@@ -1020,7 +957,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the URXOV field to a new value.
 #define BW_SPDIF_SIE_URXOV(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_URXOV) | BF_SPDIF_SIE_URXOV(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field URXFUL[10] (RW)
@@ -1029,7 +965,6 @@ typedef union _hw_spdif_sie
  * reg.
  */
 //@{
-
 #define BP_SPDIF_SIE_URXFUL      (10)      //!< Bit position for SPDIF_SIE_URXFUL.
 #define BM_SPDIF_SIE_URXFUL      (0x00000400)  //!< Bit mask for SPDIF_SIE_URXFUL.
 
@@ -1043,7 +978,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the URXFUL field to a new value.
 #define BW_SPDIF_SIE_URXFUL(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_URXFUL) | BF_SPDIF_SIE_URXFUL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field BITERR[14] (RW)
@@ -1051,7 +985,6 @@ typedef union _hw_spdif_sie
  * SPDIF receiver found parity bit error
  */
 //@{
-
 #define BP_SPDIF_SIE_BITERR      (14)      //!< Bit position for SPDIF_SIE_BITERR.
 #define BM_SPDIF_SIE_BITERR      (0x00004000)  //!< Bit mask for SPDIF_SIE_BITERR.
 
@@ -1065,7 +998,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the BITERR field to a new value.
 #define BW_SPDIF_SIE_BITERR(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_BITERR) | BF_SPDIF_SIE_BITERR(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field SYMERR[15] (RW)
@@ -1073,7 +1005,6 @@ typedef union _hw_spdif_sie
  * SPDIF receiver found illegal symbol
  */
 //@{
-
 #define BP_SPDIF_SIE_SYMERR      (15)      //!< Bit position for SPDIF_SIE_SYMERR.
 #define BM_SPDIF_SIE_SYMERR      (0x00008000)  //!< Bit mask for SPDIF_SIE_SYMERR.
 
@@ -1087,7 +1018,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the SYMERR field to a new value.
 #define BW_SPDIF_SIE_SYMERR(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_SYMERR) | BF_SPDIF_SIE_SYMERR(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field VALNOGOOD[16] (RW)
@@ -1095,7 +1025,6 @@ typedef union _hw_spdif_sie
  * SPDIF validity flag no good
  */
 //@{
-
 #define BP_SPDIF_SIE_VALNOGOOD      (16)      //!< Bit position for SPDIF_SIE_VALNOGOOD.
 #define BM_SPDIF_SIE_VALNOGOOD      (0x00010000)  //!< Bit mask for SPDIF_SIE_VALNOGOOD.
 
@@ -1109,7 +1038,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the VALNOGOOD field to a new value.
 #define BW_SPDIF_SIE_VALNOGOOD(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_VALNOGOOD) | BF_SPDIF_SIE_VALNOGOOD(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field CNEW[17] (RW)
@@ -1117,7 +1045,6 @@ typedef union _hw_spdif_sie
  * SPDIF receive change in value of control channel
  */
 //@{
-
 #define BP_SPDIF_SIE_CNEW      (17)      //!< Bit position for SPDIF_SIE_CNEW.
 #define BM_SPDIF_SIE_CNEW      (0x00020000)  //!< Bit mask for SPDIF_SIE_CNEW.
 
@@ -1131,7 +1058,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the CNEW field to a new value.
 #define BW_SPDIF_SIE_CNEW(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_CNEW) | BF_SPDIF_SIE_CNEW(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field TXRESYN[18] (RW)
@@ -1139,7 +1065,6 @@ typedef union _hw_spdif_sie
  * SPDIF Tx FIFO resync
  */
 //@{
-
 #define BP_SPDIF_SIE_TXRESYN      (18)      //!< Bit position for SPDIF_SIE_TXRESYN.
 #define BM_SPDIF_SIE_TXRESYN      (0x00040000)  //!< Bit mask for SPDIF_SIE_TXRESYN.
 
@@ -1153,7 +1078,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the TXRESYN field to a new value.
 #define BW_SPDIF_SIE_TXRESYN(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_TXRESYN) | BF_SPDIF_SIE_TXRESYN(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field TXUNOV[19] (RW)
@@ -1161,7 +1085,6 @@ typedef union _hw_spdif_sie
  * SPDIF Tx FIFO under/overrun
  */
 //@{
-
 #define BP_SPDIF_SIE_TXUNOV      (19)      //!< Bit position for SPDIF_SIE_TXUNOV.
 #define BM_SPDIF_SIE_TXUNOV      (0x00080000)  //!< Bit mask for SPDIF_SIE_TXUNOV.
 
@@ -1175,7 +1098,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the TXUNOV field to a new value.
 #define BW_SPDIF_SIE_TXUNOV(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_TXUNOV) | BF_SPDIF_SIE_TXUNOV(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field LOCK[20] (RW)
@@ -1183,7 +1105,6 @@ typedef union _hw_spdif_sie
  * SPDIF receiver's DPLL is locked
  */
 //@{
-
 #define BP_SPDIF_SIE_LOCK      (20)      //!< Bit position for SPDIF_SIE_LOCK.
 #define BM_SPDIF_SIE_LOCK      (0x00100000)  //!< Bit mask for SPDIF_SIE_LOCK.
 
@@ -1197,7 +1118,6 @@ typedef union _hw_spdif_sie
 //! @brief Set the LOCK field to a new value.
 #define BW_SPDIF_SIE_LOCK(v)   (HW_SPDIF_SIE_WR((HW_SPDIF_SIE_RD() & ~BM_SPDIF_SIE_LOCK) | BF_SPDIF_SIE_LOCK(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_SIE, field UNIMPLEMENTED[31:24] (RU)
@@ -1205,13 +1125,11 @@ typedef union _hw_spdif_sie
 
  */
 //@{
-
 #define BP_SPDIF_SIE_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SIE_UNIMPLEMENTED.
 #define BM_SPDIF_SIE_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_SIE_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_SIE_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_SIE_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIE_UNIMPLEMENTED) >> BP_SPDIF_SIE_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1278,13 +1196,11 @@ typedef union _hw_spdif_sis
  * SPDIF Rx FIFO full, can't be cleared with reg. IntClear. To clear it, read from Rx FIFO.
  */
 //@{
-
 #define BP_SPDIF_SIS_RXFIFOFUL      (0)      //!< Bit position for SPDIF_SIS_RXFIFOFUL.
 #define BM_SPDIF_SIS_RXFIFOFUL      (0x00000001)  //!< Bit mask for SPDIF_SIS_RXFIFOFUL.
 
 //! @brief Get value of SPDIF_SIS_RXFIFOFUL from a register value.
 #define BG_SPDIF_SIS_RXFIFOFUL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_RXFIFOFUL) >> BP_SPDIF_SIS_RXFIFOFUL)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field TXEM[1] (RO)
@@ -1292,13 +1208,11 @@ typedef union _hw_spdif_sis
  * SPDIF Tx FIFO empty, can't be cleared with reg. IntClear. To clear it, write toTx FIFO.
  */
 //@{
-
 #define BP_SPDIF_SIS_TXEM      (1)      //!< Bit position for SPDIF_SIS_TXEM.
 #define BM_SPDIF_SIS_TXEM      (0x00000002)  //!< Bit mask for SPDIF_SIS_TXEM.
 
 //! @brief Get value of SPDIF_SIS_TXEM from a register value.
 #define BG_SPDIF_SIS_TXEM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_TXEM) >> BP_SPDIF_SIS_TXEM)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field LOCKLOSS[2] (RO)
@@ -1306,13 +1220,11 @@ typedef union _hw_spdif_sis
  * SPDIF receiver loss of lock
  */
 //@{
-
 #define BP_SPDIF_SIS_LOCKLOSS      (2)      //!< Bit position for SPDIF_SIS_LOCKLOSS.
 #define BM_SPDIF_SIS_LOCKLOSS      (0x00000004)  //!< Bit mask for SPDIF_SIS_LOCKLOSS.
 
 //! @brief Get value of SPDIF_SIS_LOCKLOSS from a register value.
 #define BG_SPDIF_SIS_LOCKLOSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_LOCKLOSS) >> BP_SPDIF_SIS_LOCKLOSS)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field RXFIFORESYN[3] (RO)
@@ -1320,13 +1232,11 @@ typedef union _hw_spdif_sis
  * Rx FIFO resync
  */
 //@{
-
 #define BP_SPDIF_SIS_RXFIFORESYN      (3)      //!< Bit position for SPDIF_SIS_RXFIFORESYN.
 #define BM_SPDIF_SIS_RXFIFORESYN      (0x00000008)  //!< Bit mask for SPDIF_SIS_RXFIFORESYN.
 
 //! @brief Get value of SPDIF_SIS_RXFIFORESYN from a register value.
 #define BG_SPDIF_SIS_RXFIFORESYN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_RXFIFORESYN) >> BP_SPDIF_SIS_RXFIFORESYN)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field RXFIFOUNOV[4] (RO)
@@ -1334,13 +1244,11 @@ typedef union _hw_spdif_sis
  * Rx FIFO underrun/overrun
  */
 //@{
-
 #define BP_SPDIF_SIS_RXFIFOUNOV      (4)      //!< Bit position for SPDIF_SIS_RXFIFOUNOV.
 #define BM_SPDIF_SIS_RXFIFOUNOV      (0x00000010)  //!< Bit mask for SPDIF_SIS_RXFIFOUNOV.
 
 //! @brief Get value of SPDIF_SIS_RXFIFOUNOV from a register value.
 #define BG_SPDIF_SIS_RXFIFOUNOV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_RXFIFOUNOV) >> BP_SPDIF_SIS_RXFIFOUNOV)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field UQERR[5] (RO)
@@ -1348,13 +1256,11 @@ typedef union _hw_spdif_sis
  * U/Q Channel framing error
  */
 //@{
-
 #define BP_SPDIF_SIS_UQERR      (5)      //!< Bit position for SPDIF_SIS_UQERR.
 #define BM_SPDIF_SIS_UQERR      (0x00000020)  //!< Bit mask for SPDIF_SIS_UQERR.
 
 //! @brief Get value of SPDIF_SIS_UQERR from a register value.
 #define BG_SPDIF_SIS_UQERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_UQERR) >> BP_SPDIF_SIS_UQERR)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field UQSYNC[6] (RO)
@@ -1362,13 +1268,11 @@ typedef union _hw_spdif_sis
  * U/Q Channel sync found
  */
 //@{
-
 #define BP_SPDIF_SIS_UQSYNC      (6)      //!< Bit position for SPDIF_SIS_UQSYNC.
 #define BM_SPDIF_SIS_UQSYNC      (0x00000040)  //!< Bit mask for SPDIF_SIS_UQSYNC.
 
 //! @brief Get value of SPDIF_SIS_UQSYNC from a register value.
 #define BG_SPDIF_SIS_UQSYNC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_UQSYNC) >> BP_SPDIF_SIS_UQSYNC)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field QRXOV[7] (RO)
@@ -1376,13 +1280,11 @@ typedef union _hw_spdif_sis
  * Q Channel receive register overrun
  */
 //@{
-
 #define BP_SPDIF_SIS_QRXOV      (7)      //!< Bit position for SPDIF_SIS_QRXOV.
 #define BM_SPDIF_SIS_QRXOV      (0x00000080)  //!< Bit mask for SPDIF_SIS_QRXOV.
 
 //! @brief Get value of SPDIF_SIS_QRXOV from a register value.
 #define BG_SPDIF_SIS_QRXOV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_QRXOV) >> BP_SPDIF_SIS_QRXOV)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field QRXFUL[8] (RO)
@@ -1391,13 +1293,11 @@ typedef union _hw_spdif_sis
  * reg.
  */
 //@{
-
 #define BP_SPDIF_SIS_QRXFUL      (8)      //!< Bit position for SPDIF_SIS_QRXFUL.
 #define BM_SPDIF_SIS_QRXFUL      (0x00000100)  //!< Bit mask for SPDIF_SIS_QRXFUL.
 
 //! @brief Get value of SPDIF_SIS_QRXFUL from a register value.
 #define BG_SPDIF_SIS_QRXFUL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_QRXFUL) >> BP_SPDIF_SIS_QRXFUL)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field URXOV[9] (RO)
@@ -1405,13 +1305,11 @@ typedef union _hw_spdif_sis
  * U Channel receive register overrun
  */
 //@{
-
 #define BP_SPDIF_SIS_URXOV      (9)      //!< Bit position for SPDIF_SIS_URXOV.
 #define BM_SPDIF_SIS_URXOV      (0x00000200)  //!< Bit mask for SPDIF_SIS_URXOV.
 
 //! @brief Get value of SPDIF_SIS_URXOV from a register value.
 #define BG_SPDIF_SIS_URXOV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_URXOV) >> BP_SPDIF_SIS_URXOV)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field URXFUL[10] (RO)
@@ -1420,13 +1318,11 @@ typedef union _hw_spdif_sis
  * reg.
  */
 //@{
-
 #define BP_SPDIF_SIS_URXFUL      (10)      //!< Bit position for SPDIF_SIS_URXFUL.
 #define BM_SPDIF_SIS_URXFUL      (0x00000400)  //!< Bit mask for SPDIF_SIS_URXFUL.
 
 //! @brief Get value of SPDIF_SIS_URXFUL from a register value.
 #define BG_SPDIF_SIS_URXFUL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_URXFUL) >> BP_SPDIF_SIS_URXFUL)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field BITERR[14] (RO)
@@ -1434,13 +1330,11 @@ typedef union _hw_spdif_sis
  * SPDIF receiver found parity bit error
  */
 //@{
-
 #define BP_SPDIF_SIS_BITERR      (14)      //!< Bit position for SPDIF_SIS_BITERR.
 #define BM_SPDIF_SIS_BITERR      (0x00004000)  //!< Bit mask for SPDIF_SIS_BITERR.
 
 //! @brief Get value of SPDIF_SIS_BITERR from a register value.
 #define BG_SPDIF_SIS_BITERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_BITERR) >> BP_SPDIF_SIS_BITERR)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field SYMERR[15] (RO)
@@ -1448,13 +1342,11 @@ typedef union _hw_spdif_sis
  * SPDIF receiver found illegal symbol
  */
 //@{
-
 #define BP_SPDIF_SIS_SYMERR      (15)      //!< Bit position for SPDIF_SIS_SYMERR.
 #define BM_SPDIF_SIS_SYMERR      (0x00008000)  //!< Bit mask for SPDIF_SIS_SYMERR.
 
 //! @brief Get value of SPDIF_SIS_SYMERR from a register value.
 #define BG_SPDIF_SIS_SYMERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_SYMERR) >> BP_SPDIF_SIS_SYMERR)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field VALNOGOOD[16] (RO)
@@ -1462,13 +1354,11 @@ typedef union _hw_spdif_sis
  * SPDIF validity flag no good
  */
 //@{
-
 #define BP_SPDIF_SIS_VALNOGOOD      (16)      //!< Bit position for SPDIF_SIS_VALNOGOOD.
 #define BM_SPDIF_SIS_VALNOGOOD      (0x00010000)  //!< Bit mask for SPDIF_SIS_VALNOGOOD.
 
 //! @brief Get value of SPDIF_SIS_VALNOGOOD from a register value.
 #define BG_SPDIF_SIS_VALNOGOOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_VALNOGOOD) >> BP_SPDIF_SIS_VALNOGOOD)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field CNEW[17] (RO)
@@ -1476,13 +1366,11 @@ typedef union _hw_spdif_sis
  * SPDIF receive change in value of control channel
  */
 //@{
-
 #define BP_SPDIF_SIS_CNEW      (17)      //!< Bit position for SPDIF_SIS_CNEW.
 #define BM_SPDIF_SIS_CNEW      (0x00020000)  //!< Bit mask for SPDIF_SIS_CNEW.
 
 //! @brief Get value of SPDIF_SIS_CNEW from a register value.
 #define BG_SPDIF_SIS_CNEW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_CNEW) >> BP_SPDIF_SIS_CNEW)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field TXRESYN[18] (RO)
@@ -1490,13 +1378,11 @@ typedef union _hw_spdif_sis
  * SPDIF Tx FIFO resync
  */
 //@{
-
 #define BP_SPDIF_SIS_TXRESYN      (18)      //!< Bit position for SPDIF_SIS_TXRESYN.
 #define BM_SPDIF_SIS_TXRESYN      (0x00040000)  //!< Bit mask for SPDIF_SIS_TXRESYN.
 
 //! @brief Get value of SPDIF_SIS_TXRESYN from a register value.
 #define BG_SPDIF_SIS_TXRESYN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_TXRESYN) >> BP_SPDIF_SIS_TXRESYN)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field TXUNOV[19] (RO)
@@ -1504,13 +1390,11 @@ typedef union _hw_spdif_sis
  * SPDIF Tx FIFO under/overrun
  */
 //@{
-
 #define BP_SPDIF_SIS_TXUNOV      (19)      //!< Bit position for SPDIF_SIS_TXUNOV.
 #define BM_SPDIF_SIS_TXUNOV      (0x00080000)  //!< Bit mask for SPDIF_SIS_TXUNOV.
 
 //! @brief Get value of SPDIF_SIS_TXUNOV from a register value.
 #define BG_SPDIF_SIS_TXUNOV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_TXUNOV) >> BP_SPDIF_SIS_TXUNOV)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field LOCK[20] (RO)
@@ -1518,13 +1402,11 @@ typedef union _hw_spdif_sis
  * SPDIF receiver's DPLL is locked
  */
 //@{
-
 #define BP_SPDIF_SIS_LOCK      (20)      //!< Bit position for SPDIF_SIS_LOCK.
 #define BM_SPDIF_SIS_LOCK      (0x00100000)  //!< Bit mask for SPDIF_SIS_LOCK.
 
 //! @brief Get value of SPDIF_SIS_LOCK from a register value.
 #define BG_SPDIF_SIS_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_LOCK) >> BP_SPDIF_SIS_LOCK)
-
 //@}
 
 /*! @name Register SPDIF_SIS, field UNIMPLEMENTED[31:24] (RU)
@@ -1532,13 +1414,11 @@ typedef union _hw_spdif_sis
 
  */
 //@{
-
 #define BP_SPDIF_SIS_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SIS_UNIMPLEMENTED.
 #define BM_SPDIF_SIS_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_SIS_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_SIS_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_SIS_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIS_UNIMPLEMENTED) >> BP_SPDIF_SIS_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1602,7 +1482,6 @@ typedef union _hw_spdif_sic
  * SPDIF receiver loss of lock
  */
 //@{
-
 #define BP_SPDIF_SIC_LOCKLOSS      (2)      //!< Bit position for SPDIF_SIC_LOCKLOSS.
 #define BM_SPDIF_SIC_LOCKLOSS      (0x00000004)  //!< Bit mask for SPDIF_SIC_LOCKLOSS.
 
@@ -1611,7 +1490,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_LOCKLOSS.
 #define BF_SPDIF_SIC_LOCKLOSS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_LOCKLOSS) & BM_SPDIF_SIC_LOCKLOSS)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field RXFIFORESYN[3] (WO)
@@ -1619,7 +1497,6 @@ typedef union _hw_spdif_sic
  * Rx FIFO resync
  */
 //@{
-
 #define BP_SPDIF_SIC_RXFIFORESYN      (3)      //!< Bit position for SPDIF_SIC_RXFIFORESYN.
 #define BM_SPDIF_SIC_RXFIFORESYN      (0x00000008)  //!< Bit mask for SPDIF_SIC_RXFIFORESYN.
 
@@ -1628,7 +1505,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_RXFIFORESYN.
 #define BF_SPDIF_SIC_RXFIFORESYN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_RXFIFORESYN) & BM_SPDIF_SIC_RXFIFORESYN)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field RXFIFOUNOV[4] (WO)
@@ -1636,7 +1512,6 @@ typedef union _hw_spdif_sic
  * Rx FIFO underrun/overrun
  */
 //@{
-
 #define BP_SPDIF_SIC_RXFIFOUNOV      (4)      //!< Bit position for SPDIF_SIC_RXFIFOUNOV.
 #define BM_SPDIF_SIC_RXFIFOUNOV      (0x00000010)  //!< Bit mask for SPDIF_SIC_RXFIFOUNOV.
 
@@ -1645,7 +1520,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_RXFIFOUNOV.
 #define BF_SPDIF_SIC_RXFIFOUNOV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_RXFIFOUNOV) & BM_SPDIF_SIC_RXFIFOUNOV)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field UQERR[5] (WO)
@@ -1653,7 +1527,6 @@ typedef union _hw_spdif_sic
  * U/Q Channel framing error
  */
 //@{
-
 #define BP_SPDIF_SIC_UQERR      (5)      //!< Bit position for SPDIF_SIC_UQERR.
 #define BM_SPDIF_SIC_UQERR      (0x00000020)  //!< Bit mask for SPDIF_SIC_UQERR.
 
@@ -1662,7 +1535,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_UQERR.
 #define BF_SPDIF_SIC_UQERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_UQERR) & BM_SPDIF_SIC_UQERR)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field UQSYNC[6] (WO)
@@ -1670,7 +1542,6 @@ typedef union _hw_spdif_sic
  * U/Q Channel sync found
  */
 //@{
-
 #define BP_SPDIF_SIC_UQSYNC      (6)      //!< Bit position for SPDIF_SIC_UQSYNC.
 #define BM_SPDIF_SIC_UQSYNC      (0x00000040)  //!< Bit mask for SPDIF_SIC_UQSYNC.
 
@@ -1679,7 +1550,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_UQSYNC.
 #define BF_SPDIF_SIC_UQSYNC(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_UQSYNC) & BM_SPDIF_SIC_UQSYNC)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field QRXOV[7] (WO)
@@ -1687,7 +1557,6 @@ typedef union _hw_spdif_sic
  * Q Channel receive register overrun
  */
 //@{
-
 #define BP_SPDIF_SIC_QRXOV      (7)      //!< Bit position for SPDIF_SIC_QRXOV.
 #define BM_SPDIF_SIC_QRXOV      (0x00000080)  //!< Bit mask for SPDIF_SIC_QRXOV.
 
@@ -1696,7 +1565,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_QRXOV.
 #define BF_SPDIF_SIC_QRXOV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_QRXOV) & BM_SPDIF_SIC_QRXOV)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field URXOV[9] (WO)
@@ -1704,7 +1572,6 @@ typedef union _hw_spdif_sic
  * U Channel receive register overrun
  */
 //@{
-
 #define BP_SPDIF_SIC_URXOV      (9)      //!< Bit position for SPDIF_SIC_URXOV.
 #define BM_SPDIF_SIC_URXOV      (0x00000200)  //!< Bit mask for SPDIF_SIC_URXOV.
 
@@ -1713,7 +1580,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_URXOV.
 #define BF_SPDIF_SIC_URXOV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_URXOV) & BM_SPDIF_SIC_URXOV)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field BITERR[14] (WO)
@@ -1721,7 +1587,6 @@ typedef union _hw_spdif_sic
  * SPDIF receiver found parity bit error
  */
 //@{
-
 #define BP_SPDIF_SIC_BITERR      (14)      //!< Bit position for SPDIF_SIC_BITERR.
 #define BM_SPDIF_SIC_BITERR      (0x00004000)  //!< Bit mask for SPDIF_SIC_BITERR.
 
@@ -1730,7 +1595,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_BITERR.
 #define BF_SPDIF_SIC_BITERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_BITERR) & BM_SPDIF_SIC_BITERR)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field SYMERR[15] (WO)
@@ -1738,7 +1602,6 @@ typedef union _hw_spdif_sic
  * SPDIF receiver found illegal symbol
  */
 //@{
-
 #define BP_SPDIF_SIC_SYMERR      (15)      //!< Bit position for SPDIF_SIC_SYMERR.
 #define BM_SPDIF_SIC_SYMERR      (0x00008000)  //!< Bit mask for SPDIF_SIC_SYMERR.
 
@@ -1747,7 +1610,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_SYMERR.
 #define BF_SPDIF_SIC_SYMERR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_SYMERR) & BM_SPDIF_SIC_SYMERR)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field VALNOGOOD[16] (WO)
@@ -1755,7 +1617,6 @@ typedef union _hw_spdif_sic
  * SPDIF validity flag no good
  */
 //@{
-
 #define BP_SPDIF_SIC_VALNOGOOD      (16)      //!< Bit position for SPDIF_SIC_VALNOGOOD.
 #define BM_SPDIF_SIC_VALNOGOOD      (0x00010000)  //!< Bit mask for SPDIF_SIC_VALNOGOOD.
 
@@ -1764,7 +1625,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_VALNOGOOD.
 #define BF_SPDIF_SIC_VALNOGOOD(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_VALNOGOOD) & BM_SPDIF_SIC_VALNOGOOD)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field CNEW[17] (WO)
@@ -1772,7 +1632,6 @@ typedef union _hw_spdif_sic
  * SPDIF receive change in value of control channel
  */
 //@{
-
 #define BP_SPDIF_SIC_CNEW      (17)      //!< Bit position for SPDIF_SIC_CNEW.
 #define BM_SPDIF_SIC_CNEW      (0x00020000)  //!< Bit mask for SPDIF_SIC_CNEW.
 
@@ -1781,7 +1640,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_CNEW.
 #define BF_SPDIF_SIC_CNEW(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_CNEW) & BM_SPDIF_SIC_CNEW)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field TXRESYN[18] (WO)
@@ -1789,7 +1647,6 @@ typedef union _hw_spdif_sic
  * SPDIF Tx FIFO resync
  */
 //@{
-
 #define BP_SPDIF_SIC_TXRESYN      (18)      //!< Bit position for SPDIF_SIC_TXRESYN.
 #define BM_SPDIF_SIC_TXRESYN      (0x00040000)  //!< Bit mask for SPDIF_SIC_TXRESYN.
 
@@ -1798,7 +1655,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_TXRESYN.
 #define BF_SPDIF_SIC_TXRESYN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_TXRESYN) & BM_SPDIF_SIC_TXRESYN)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field TXUNOV[19] (WO)
@@ -1806,7 +1662,6 @@ typedef union _hw_spdif_sic
  * SPDIF Tx FIFO under/overrun
  */
 //@{
-
 #define BP_SPDIF_SIC_TXUNOV      (19)      //!< Bit position for SPDIF_SIC_TXUNOV.
 #define BM_SPDIF_SIC_TXUNOV      (0x00080000)  //!< Bit mask for SPDIF_SIC_TXUNOV.
 
@@ -1815,7 +1670,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_TXUNOV.
 #define BF_SPDIF_SIC_TXUNOV(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_TXUNOV) & BM_SPDIF_SIC_TXUNOV)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field LOCK[20] (WO)
@@ -1823,7 +1677,6 @@ typedef union _hw_spdif_sic
  * SPDIF receiver's DPLL is locked
  */
 //@{
-
 #define BP_SPDIF_SIC_LOCK      (20)      //!< Bit position for SPDIF_SIC_LOCK.
 #define BM_SPDIF_SIC_LOCK      (0x00100000)  //!< Bit mask for SPDIF_SIC_LOCK.
 
@@ -1832,7 +1685,6 @@ typedef union _hw_spdif_sic
 
 //! @brief Format value for bitfield SPDIF_SIC_LOCK.
 #define BF_SPDIF_SIC_LOCK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SIC_LOCK) & BM_SPDIF_SIC_LOCK)
-
 //@}
 
 /*! @name Register SPDIF_SIC, field UNIMPLEMENTED[31:24] (RU)
@@ -1840,13 +1692,11 @@ typedef union _hw_spdif_sic
 
  */
 //@{
-
 #define BP_SPDIF_SIC_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SIC_UNIMPLEMENTED.
 #define BM_SPDIF_SIC_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_SIC_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_SIC_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_SIC_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SIC_UNIMPLEMENTED) >> BP_SPDIF_SIC_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1893,13 +1743,11 @@ typedef union _hw_spdif_srl
  * Processor receive SPDIF data left
  */
 //@{
-
 #define BP_SPDIF_SRL_RXDATALEFT      (0)      //!< Bit position for SPDIF_SRL_RXDATALEFT.
 #define BM_SPDIF_SRL_RXDATALEFT      (0x00ffffff)  //!< Bit mask for SPDIF_SRL_RXDATALEFT.
 
 //! @brief Get value of SPDIF_SRL_RXDATALEFT from a register value.
 #define BG_SPDIF_SRL_RXDATALEFT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRL_RXDATALEFT) >> BP_SPDIF_SRL_RXDATALEFT)
-
 //@}
 
 /*! @name Register SPDIF_SRL, field UNIMPLEMENTED[31:24] (RU)
@@ -1907,13 +1755,11 @@ typedef union _hw_spdif_srl
 
  */
 //@{
-
 #define BP_SPDIF_SRL_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRL_UNIMPLEMENTED.
 #define BM_SPDIF_SRL_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_SRL_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_SRL_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_SRL_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRL_UNIMPLEMENTED) >> BP_SPDIF_SRL_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1960,13 +1806,11 @@ typedef union _hw_spdif_srr
  * Processor receive SPDIF data right
  */
 //@{
-
 #define BP_SPDIF_SRR_RXDATARIGHT      (0)      //!< Bit position for SPDIF_SRR_RXDATARIGHT.
 #define BM_SPDIF_SRR_RXDATARIGHT      (0x00ffffff)  //!< Bit mask for SPDIF_SRR_RXDATARIGHT.
 
 //! @brief Get value of SPDIF_SRR_RXDATARIGHT from a register value.
 #define BG_SPDIF_SRR_RXDATARIGHT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRR_RXDATARIGHT) >> BP_SPDIF_SRR_RXDATARIGHT)
-
 //@}
 
 /*! @name Register SPDIF_SRR, field UNIMPLEMENTED[31:24] (RU)
@@ -1974,13 +1818,11 @@ typedef union _hw_spdif_srr
 
  */
 //@{
-
 #define BP_SPDIF_SRR_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRR_UNIMPLEMENTED.
 #define BM_SPDIF_SRR_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_SRR_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_SRR_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_SRR_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRR_UNIMPLEMENTED) >> BP_SPDIF_SRR_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2027,13 +1869,11 @@ typedef union _hw_spdif_srcsh
  * SPDIF receive C channel register, contains first 24 bits of C channel without interpretation
  */
 //@{
-
 #define BP_SPDIF_SRCSH_RXCCHANNEL_H      (0)      //!< Bit position for SPDIF_SRCSH_RXCCHANNEL_H.
 #define BM_SPDIF_SRCSH_RXCCHANNEL_H      (0x00ffffff)  //!< Bit mask for SPDIF_SRCSH_RXCCHANNEL_H.
 
 //! @brief Get value of SPDIF_SRCSH_RXCCHANNEL_H from a register value.
 #define BG_SPDIF_SRCSH_RXCCHANNEL_H(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRCSH_RXCCHANNEL_H) >> BP_SPDIF_SRCSH_RXCCHANNEL_H)
-
 //@}
 
 /*! @name Register SPDIF_SRCSH, field UNIMPLEMENTED[31:24] (RU)
@@ -2041,13 +1881,11 @@ typedef union _hw_spdif_srcsh
 
  */
 //@{
-
 #define BP_SPDIF_SRCSH_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRCSH_UNIMPLEMENTED.
 #define BM_SPDIF_SRCSH_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_SRCSH_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_SRCSH_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_SRCSH_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRCSH_UNIMPLEMENTED) >> BP_SPDIF_SRCSH_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2094,13 +1932,11 @@ typedef union _hw_spdif_srcsl
  * SPDIF receive C channel register, contains next 24 bits of C channel without interpretation
  */
 //@{
-
 #define BP_SPDIF_SRCSL_RXCCHANNEL_L      (0)      //!< Bit position for SPDIF_SRCSL_RXCCHANNEL_L.
 #define BM_SPDIF_SRCSL_RXCCHANNEL_L      (0x00ffffff)  //!< Bit mask for SPDIF_SRCSL_RXCCHANNEL_L.
 
 //! @brief Get value of SPDIF_SRCSL_RXCCHANNEL_L from a register value.
 #define BG_SPDIF_SRCSL_RXCCHANNEL_L(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRCSL_RXCCHANNEL_L) >> BP_SPDIF_SRCSL_RXCCHANNEL_L)
-
 //@}
 
 /*! @name Register SPDIF_SRCSL, field UNIMPLEMENTED[31:24] (RU)
@@ -2108,13 +1944,11 @@ typedef union _hw_spdif_srcsl
 
  */
 //@{
-
 #define BP_SPDIF_SRCSL_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRCSL_UNIMPLEMENTED.
 #define BM_SPDIF_SRCSL_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_SRCSL_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_SRCSL_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_SRCSL_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRCSL_UNIMPLEMENTED) >> BP_SPDIF_SRCSL_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2161,13 +1995,11 @@ typedef union _hw_spdif_sru
  * SPDIF receive U channel register, contains next 3 U channel bytes
  */
 //@{
-
 #define BP_SPDIF_SRU_RXUCHANNEL      (0)      //!< Bit position for SPDIF_SRU_RXUCHANNEL.
 #define BM_SPDIF_SRU_RXUCHANNEL      (0x00ffffff)  //!< Bit mask for SPDIF_SRU_RXUCHANNEL.
 
 //! @brief Get value of SPDIF_SRU_RXUCHANNEL from a register value.
 #define BG_SPDIF_SRU_RXUCHANNEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRU_RXUCHANNEL) >> BP_SPDIF_SRU_RXUCHANNEL)
-
 //@}
 
 /*! @name Register SPDIF_SRU, field UNIMPLEMENTED[31:24] (RU)
@@ -2175,13 +2007,11 @@ typedef union _hw_spdif_sru
  * This is a 24-bit register the upper byte is unimplemented.
  */
 //@{
-
 #define BP_SPDIF_SRU_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRU_UNIMPLEMENTED.
 #define BM_SPDIF_SRU_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_SRU_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_SRU_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_SRU_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRU_UNIMPLEMENTED) >> BP_SPDIF_SRU_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2228,13 +2058,11 @@ typedef union _hw_spdif_srq
  * SPDIF receive Q channel register, contains next 3 Q channel bytes
  */
 //@{
-
 #define BP_SPDIF_SRQ_RXQCHANNEL      (0)      //!< Bit position for SPDIF_SRQ_RXQCHANNEL.
 #define BM_SPDIF_SRQ_RXQCHANNEL      (0x00ffffff)  //!< Bit mask for SPDIF_SRQ_RXQCHANNEL.
 
 //! @brief Get value of SPDIF_SRQ_RXQCHANNEL from a register value.
 #define BG_SPDIF_SRQ_RXQCHANNEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRQ_RXQCHANNEL) >> BP_SPDIF_SRQ_RXQCHANNEL)
-
 //@}
 
 /*! @name Register SPDIF_SRQ, field UNIMPLEMENTED[31:24] (RU)
@@ -2242,13 +2070,11 @@ typedef union _hw_spdif_srq
 
  */
 //@{
-
 #define BP_SPDIF_SRQ_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRQ_UNIMPLEMENTED.
 #define BM_SPDIF_SRQ_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_SRQ_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_SRQ_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_SRQ_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRQ_UNIMPLEMENTED) >> BP_SPDIF_SRQ_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2295,7 +2121,6 @@ typedef union _hw_spdif_stl
  * SPDIF transmit left channel data. It is write-only, and always returns zeros when read
  */
 //@{
-
 #define BP_SPDIF_STL_TXDATALEFT      (0)      //!< Bit position for SPDIF_STL_TXDATALEFT.
 #define BM_SPDIF_STL_TXDATALEFT      (0x00ffffff)  //!< Bit mask for SPDIF_STL_TXDATALEFT.
 
@@ -2304,7 +2129,6 @@ typedef union _hw_spdif_stl
 
 //! @brief Format value for bitfield SPDIF_STL_TXDATALEFT.
 #define BF_SPDIF_STL_TXDATALEFT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_STL_TXDATALEFT) & BM_SPDIF_STL_TXDATALEFT)
-
 //@}
 
 /*! @name Register SPDIF_STL, field UNIMPLEMENTED[31:24] (RU)
@@ -2312,13 +2136,11 @@ typedef union _hw_spdif_stl
  * This is a 24-bit register the upper byte is unimplemented.
  */
 //@{
-
 #define BP_SPDIF_STL_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_STL_UNIMPLEMENTED.
 #define BM_SPDIF_STL_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_STL_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_STL_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_STL_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_STL_UNIMPLEMENTED) >> BP_SPDIF_STL_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2365,7 +2187,6 @@ typedef union _hw_spdif_str
  * SPDIF transmit right channel data. It is write-only, and always returns zeros when read
  */
 //@{
-
 #define BP_SPDIF_STR_TXDATARIGHT      (0)      //!< Bit position for SPDIF_STR_TXDATARIGHT.
 #define BM_SPDIF_STR_TXDATARIGHT      (0x00ffffff)  //!< Bit mask for SPDIF_STR_TXDATARIGHT.
 
@@ -2374,7 +2195,6 @@ typedef union _hw_spdif_str
 
 //! @brief Format value for bitfield SPDIF_STR_TXDATARIGHT.
 #define BF_SPDIF_STR_TXDATARIGHT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_STR_TXDATARIGHT) & BM_SPDIF_STR_TXDATARIGHT)
-
 //@}
 
 /*! @name Register SPDIF_STR, field UNIMPLEMENTED[31:24] (RU)
@@ -2382,13 +2202,11 @@ typedef union _hw_spdif_str
  * This is a 24-bit register the upper byte is unimplemented.
  */
 //@{
-
 #define BP_SPDIF_STR_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_STR_UNIMPLEMENTED.
 #define BM_SPDIF_STR_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_STR_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_STR_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_STR_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_STR_UNIMPLEMENTED) >> BP_SPDIF_STR_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2440,7 +2258,6 @@ typedef union _hw_spdif_stcsch
  * returns the latest data written by the processor
  */
 //@{
-
 #define BP_SPDIF_STCSCH_TXCCHANNELCONS_H      (0)      //!< Bit position for SPDIF_STCSCH_TXCCHANNELCONS_H.
 #define BM_SPDIF_STCSCH_TXCCHANNELCONS_H      (0x00ffffff)  //!< Bit mask for SPDIF_STCSCH_TXCCHANNELCONS_H.
 
@@ -2454,7 +2271,6 @@ typedef union _hw_spdif_stcsch
 //! @brief Set the TXCCHANNELCONS_H field to a new value.
 #define BW_SPDIF_STCSCH_TXCCHANNELCONS_H(v)   (HW_SPDIF_STCSCH_WR((HW_SPDIF_STCSCH_RD() & ~BM_SPDIF_STCSCH_TXCCHANNELCONS_H) | BF_SPDIF_STCSCH_TXCCHANNELCONS_H(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_STCSCH, field UNIMPLEMENTED[31:24] (RU)
@@ -2462,13 +2278,11 @@ typedef union _hw_spdif_stcsch
 
  */
 //@{
-
 #define BP_SPDIF_STCSCH_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_STCSCH_UNIMPLEMENTED.
 #define BM_SPDIF_STCSCH_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_STCSCH_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_STCSCH_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_STCSCH_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_STCSCH_UNIMPLEMENTED) >> BP_SPDIF_STCSCH_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2520,7 +2334,6 @@ typedef union _hw_spdif_stcscl
  * returns the latest data written by the processor
  */
 //@{
-
 #define BP_SPDIF_STCSCL_TXCCHANNELCONS_L      (0)      //!< Bit position for SPDIF_STCSCL_TXCCHANNELCONS_L.
 #define BM_SPDIF_STCSCL_TXCCHANNELCONS_L      (0x00ffffff)  //!< Bit mask for SPDIF_STCSCL_TXCCHANNELCONS_L.
 
@@ -2534,7 +2347,6 @@ typedef union _hw_spdif_stcscl
 //! @brief Set the TXCCHANNELCONS_L field to a new value.
 #define BW_SPDIF_STCSCL_TXCCHANNELCONS_L(v)   (HW_SPDIF_STCSCL_WR((HW_SPDIF_STCSCL_RD() & ~BM_SPDIF_STCSCL_TXCCHANNELCONS_L) | BF_SPDIF_STCSCL_TXCCHANNELCONS_L(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_STCSCL, field UNIMPLEMENTED[31:24] (RU)
@@ -2542,13 +2354,11 @@ typedef union _hw_spdif_stcscl
 
  */
 //@{
-
 #define BP_SPDIF_STCSCL_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_STCSCL_UNIMPLEMENTED.
 #define BM_SPDIF_STCSCL_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_STCSCL_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_STCSCL_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_STCSCL_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_STCSCL_UNIMPLEMENTED) >> BP_SPDIF_STCSCL_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2595,13 +2405,11 @@ typedef union _hw_spdif_srfm
  * Frequency measurement data
  */
 //@{
-
 #define BP_SPDIF_SRFM_FREQMEAS      (0)      //!< Bit position for SPDIF_SRFM_FREQMEAS.
 #define BM_SPDIF_SRFM_FREQMEAS      (0x00ffffff)  //!< Bit mask for SPDIF_SRFM_FREQMEAS.
 
 //! @brief Get value of SPDIF_SRFM_FREQMEAS from a register value.
 #define BG_SPDIF_SRFM_FREQMEAS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRFM_FREQMEAS) >> BP_SPDIF_SRFM_FREQMEAS)
-
 //@}
 
 /*! @name Register SPDIF_SRFM, field UNIMPLEMENTED[31:24] (RU)
@@ -2609,13 +2417,11 @@ typedef union _hw_spdif_srfm
 
  */
 //@{
-
 #define BP_SPDIF_SRFM_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRFM_UNIMPLEMENTED.
 #define BM_SPDIF_SRFM_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_SRFM_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_SRFM_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_SRFM_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SRFM_UNIMPLEMENTED) >> BP_SPDIF_SRFM_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2677,7 +2483,6 @@ typedef union _hw_spdif_stc
  * - 127 - divider factor is 128
  */
 //@{
-
 #define BP_SPDIF_STC_TXCLK_DF      (0)      //!< Bit position for SPDIF_STC_TXCLK_DF.
 #define BM_SPDIF_STC_TXCLK_DF      (0x0000007f)  //!< Bit mask for SPDIF_STC_TXCLK_DF.
 
@@ -2691,7 +2496,6 @@ typedef union _hw_spdif_stc
 //! @brief Set the TXCLK_DF field to a new value.
 #define BW_SPDIF_STC_TXCLK_DF(v)   (HW_SPDIF_STC_WR((HW_SPDIF_STC_RD() & ~BM_SPDIF_STC_TXCLK_DF) | BF_SPDIF_STC_TXCLK_DF(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_STC, field TX_ALL_CLK_EN[7] (RW)
@@ -2703,7 +2507,6 @@ typedef union _hw_spdif_stc
  * - 1 - enable transfer clock.
  */
 //@{
-
 #define BP_SPDIF_STC_TX_ALL_CLK_EN      (7)      //!< Bit position for SPDIF_STC_TX_ALL_CLK_EN.
 #define BM_SPDIF_STC_TX_ALL_CLK_EN      (0x00000080)  //!< Bit mask for SPDIF_STC_TX_ALL_CLK_EN.
 
@@ -2717,7 +2520,6 @@ typedef union _hw_spdif_stc
 //! @brief Set the TX_ALL_CLK_EN field to a new value.
 #define BW_SPDIF_STC_TX_ALL_CLK_EN(v)   (HW_SPDIF_STC_WR((HW_SPDIF_STC_RD() & ~BM_SPDIF_STC_TX_ALL_CLK_EN) | BF_SPDIF_STC_TX_ALL_CLK_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_STC, field TXCLK_SOURCE[10:8] (RW)
@@ -2731,7 +2533,6 @@ typedef union _hw_spdif_stc
  * - 101 - frequency divided ipg_clk input
  */
 //@{
-
 #define BP_SPDIF_STC_TXCLK_SOURCE      (8)      //!< Bit position for SPDIF_STC_TXCLK_SOURCE.
 #define BM_SPDIF_STC_TXCLK_SOURCE      (0x00000700)  //!< Bit mask for SPDIF_STC_TXCLK_SOURCE.
 
@@ -2745,7 +2546,6 @@ typedef union _hw_spdif_stc
 //! @brief Set the TXCLK_SOURCE field to a new value.
 #define BW_SPDIF_STC_TXCLK_SOURCE(v)   (HW_SPDIF_STC_WR((HW_SPDIF_STC_RD() & ~BM_SPDIF_STC_TXCLK_SOURCE) | BF_SPDIF_STC_TXCLK_SOURCE(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_STC, field SYSCLK_DF[19:11] (RW)
@@ -2759,7 +2559,6 @@ typedef union _hw_spdif_stc
  * - 511 - divider factor is 512
  */
 //@{
-
 #define BP_SPDIF_STC_SYSCLK_DF      (11)      //!< Bit position for SPDIF_STC_SYSCLK_DF.
 #define BM_SPDIF_STC_SYSCLK_DF      (0x000ff800)  //!< Bit mask for SPDIF_STC_SYSCLK_DF.
 
@@ -2773,7 +2572,6 @@ typedef union _hw_spdif_stc
 //! @brief Set the SYSCLK_DF field to a new value.
 #define BW_SPDIF_STC_SYSCLK_DF(v)   (HW_SPDIF_STC_WR((HW_SPDIF_STC_RD() & ~BM_SPDIF_STC_SYSCLK_DF) | BF_SPDIF_STC_SYSCLK_DF(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDIF_STC, field UNIMPLEMENTED[31:24] (RU)
@@ -2781,13 +2579,11 @@ typedef union _hw_spdif_stc
 
  */
 //@{
-
 #define BP_SPDIF_STC_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_STC_UNIMPLEMENTED.
 #define BM_SPDIF_STC_UNIMPLEMENTED      (0xff000000)  //!< Bit mask for SPDIF_STC_UNIMPLEMENTED.
 
 //! @brief Get value of SPDIF_STC_UNIMPLEMENTED from a register value.
 #define BG_SPDIF_STC_UNIMPLEMENTED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_STC_UNIMPLEMENTED) >> BP_SPDIF_STC_UNIMPLEMENTED)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2830,3 +2626,5 @@ typedef struct _hw_spdif
 #endif
 
 #endif // __HW_SPDIF_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

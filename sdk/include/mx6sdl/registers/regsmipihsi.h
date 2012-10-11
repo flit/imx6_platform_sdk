@@ -243,7 +243,6 @@ typedef union _hw_mipi_hsi_ctrl
  * - 1000 - tx_refclk divided by 256
  */
 //@{
-
 #define BP_MIPI_HSI_CTRL_TX_CLK_DIVISOR      (0)      //!< Bit position for MIPI_HSI_CTRL_TX_CLK_DIVISOR.
 #define BM_MIPI_HSI_CTRL_TX_CLK_DIVISOR      (0x0000000f)  //!< Bit mask for MIPI_HSI_CTRL_TX_CLK_DIVISOR.
 
@@ -257,7 +256,6 @@ typedef union _hw_mipi_hsi_ctrl
 //! @brief Set the TX_CLK_DIVISOR field to a new value.
 #define BW_MIPI_HSI_CTRL_TX_CLK_DIVISOR(v)   (HW_MIPI_HSI_CTRL_WR((HW_MIPI_HSI_CTRL_RD() & ~BM_MIPI_HSI_CTRL_TX_CLK_DIVISOR) | BF_MIPI_HSI_CTRL_TX_CLK_DIVISOR(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_CTRL, field TX_BREAK[4] (RW)
@@ -267,7 +265,6 @@ typedef union _hw_mipi_hsi_ctrl
  * will be automatically cleared, when the send is finished.
  */
 //@{
-
 #define BP_MIPI_HSI_CTRL_TX_BREAK      (4)      //!< Bit position for MIPI_HSI_CTRL_TX_BREAK.
 #define BM_MIPI_HSI_CTRL_TX_BREAK      (0x00000010)  //!< Bit mask for MIPI_HSI_CTRL_TX_BREAK.
 
@@ -281,7 +278,6 @@ typedef union _hw_mipi_hsi_ctrl
 //! @brief Set the TX_BREAK field to a new value.
 #define BW_MIPI_HSI_CTRL_TX_BREAK(v)   (HW_MIPI_HSI_CTRL_WR((HW_MIPI_HSI_CTRL_RD() & ~BM_MIPI_HSI_CTRL_TX_BREAK) | BF_MIPI_HSI_CTRL_TX_BREAK(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_CTRL, field DATA_TIMEOUT_CNT[11:8] (RW)
@@ -299,7 +295,6 @@ typedef union _hw_mipi_hsi_ctrl
  * - 1110 - HSI Tx Clock x 2 ^ 27
  */
 //@{
-
 #define BP_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT      (8)      //!< Bit position for MIPI_HSI_CTRL_DATA_TIMEOUT_CNT.
 #define BM_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT      (0x00000f00)  //!< Bit mask for MIPI_HSI_CTRL_DATA_TIMEOUT_CNT.
 
@@ -313,7 +308,6 @@ typedef union _hw_mipi_hsi_ctrl
 //! @brief Set the DATA_TIMEOUT_CNT field to a new value.
 #define BW_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT(v)   (HW_MIPI_HSI_CTRL_WR((HW_MIPI_HSI_CTRL_RD() & ~BM_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT) | BF_MIPI_HSI_CTRL_DATA_TIMEOUT_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_CTRL, field RX_TAIL_BIT_CNT[13:12] (RW)
@@ -330,7 +324,6 @@ typedef union _hw_mipi_hsi_ctrl
  * - 11 - 100-> tx_refclk
  */
 //@{
-
 #define BP_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT      (12)      //!< Bit position for MIPI_HSI_CTRL_RX_TAIL_BIT_CNT.
 #define BM_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT      (0x00003000)  //!< Bit mask for MIPI_HSI_CTRL_RX_TAIL_BIT_CNT.
 
@@ -344,7 +337,6 @@ typedef union _hw_mipi_hsi_ctrl
 //! @brief Set the RX_TAIL_BIT_CNT field to a new value.
 #define BW_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT(v)   (HW_MIPI_HSI_CTRL_WR((HW_MIPI_HSI_CTRL_RD() & ~BM_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT) | BF_MIPI_HSI_CTRL_RX_TAIL_BIT_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_CTRL, field RX_FRAME_BRST_CNT[23:16] (RW)
@@ -355,7 +347,6 @@ typedef union _hw_mipi_hsi_ctrl
  * frames transmission count is set. 7'hff 255 frames transmission count is set.
  */
 //@{
-
 #define BP_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT      (16)      //!< Bit position for MIPI_HSI_CTRL_RX_FRAME_BRST_CNT.
 #define BM_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT      (0x00ff0000)  //!< Bit mask for MIPI_HSI_CTRL_RX_FRAME_BRST_CNT.
 
@@ -369,7 +360,6 @@ typedef union _hw_mipi_hsi_ctrl
 //! @brief Set the RX_FRAME_BRST_CNT field to a new value.
 #define BW_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT(v)   (HW_MIPI_HSI_CTRL_WR((HW_MIPI_HSI_CTRL_RD() & ~BM_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT) | BF_MIPI_HSI_CTRL_RX_FRAME_BRST_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_CTRL, field RX_DLY_SEL[26:24] (RW)
@@ -387,7 +377,6 @@ typedef union _hw_mipi_hsi_ctrl
  * - 111 - 7ns ;
  */
 //@{
-
 #define BP_MIPI_HSI_CTRL_RX_DLY_SEL      (24)      //!< Bit position for MIPI_HSI_CTRL_RX_DLY_SEL.
 #define BM_MIPI_HSI_CTRL_RX_DLY_SEL      (0x07000000)  //!< Bit mask for MIPI_HSI_CTRL_RX_DLY_SEL.
 
@@ -401,7 +390,6 @@ typedef union _hw_mipi_hsi_ctrl
 //! @brief Set the RX_DLY_SEL field to a new value.
 #define BW_MIPI_HSI_CTRL_RX_DLY_SEL(v)   (HW_MIPI_HSI_CTRL_WR((HW_MIPI_HSI_CTRL_RD() & ~BM_MIPI_HSI_CTRL_RX_DLY_SEL) | BF_MIPI_HSI_CTRL_RX_DLY_SEL(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_CTRL, field DMA_DISABLE[27] (RW)
@@ -410,7 +398,6 @@ typedef union _hw_mipi_hsi_ctrl
  * channels.
  */
 //@{
-
 #define BP_MIPI_HSI_CTRL_DMA_DISABLE      (27)      //!< Bit position for MIPI_HSI_CTRL_DMA_DISABLE.
 #define BM_MIPI_HSI_CTRL_DMA_DISABLE      (0x08000000)  //!< Bit mask for MIPI_HSI_CTRL_DMA_DISABLE.
 
@@ -424,7 +411,6 @@ typedef union _hw_mipi_hsi_ctrl
 //! @brief Set the DMA_DISABLE field to a new value.
 #define BW_MIPI_HSI_CTRL_DMA_DISABLE(v)   (HW_MIPI_HSI_CTRL_WR((HW_MIPI_HSI_CTRL_RD() & ~BM_MIPI_HSI_CTRL_DMA_DISABLE) | BF_MIPI_HSI_CTRL_DMA_DISABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_CTRL, field CLKGATE[30] (RW)
@@ -433,7 +419,6 @@ typedef union _hw_mipi_hsi_ctrl
  * block.
  */
 //@{
-
 #define BP_MIPI_HSI_CTRL_CLKGATE      (30)      //!< Bit position for MIPI_HSI_CTRL_CLKGATE.
 #define BM_MIPI_HSI_CTRL_CLKGATE      (0x40000000)  //!< Bit mask for MIPI_HSI_CTRL_CLKGATE.
 
@@ -447,7 +432,6 @@ typedef union _hw_mipi_hsi_ctrl
 //! @brief Set the CLKGATE field to a new value.
 #define BW_MIPI_HSI_CTRL_CLKGATE(v)   (HW_MIPI_HSI_CTRL_WR((HW_MIPI_HSI_CTRL_RD() & ~BM_MIPI_HSI_CTRL_CLKGATE) | BF_MIPI_HSI_CTRL_CLKGATE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_CTRL, field SFTRST[31] (RW)
@@ -457,7 +441,6 @@ typedef union _hw_mipi_hsi_ctrl
  * and then off to reset the HSI block to its default state.
  */
 //@{
-
 #define BP_MIPI_HSI_CTRL_SFTRST      (31)      //!< Bit position for MIPI_HSI_CTRL_SFTRST.
 #define BM_MIPI_HSI_CTRL_SFTRST      (0x80000000)  //!< Bit mask for MIPI_HSI_CTRL_SFTRST.
 
@@ -471,7 +454,6 @@ typedef union _hw_mipi_hsi_ctrl
 //! @brief Set the SFTRST field to a new value.
 #define BW_MIPI_HSI_CTRL_SFTRST(v)   (HW_MIPI_HSI_CTRL_WR((HW_MIPI_HSI_CTRL_RD() & ~BM_MIPI_HSI_CTRL_SFTRST) | BF_MIPI_HSI_CTRL_SFTRST(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -546,7 +528,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Frame Transmission Mode
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_TRANS_MODE      (0)      //!< Bit position for MIPI_HSI_TX_CONF_TRANS_MODE.
 #define BM_MIPI_HSI_TX_CONF_TRANS_MODE      (0x00000001)  //!< Bit mask for MIPI_HSI_TX_CONF_TRANS_MODE.
 
@@ -560,7 +541,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the TRANS_MODE field to a new value.
 #define BW_MIPI_HSI_TX_CONF_TRANS_MODE(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_TRANS_MODE) | BF_MIPI_HSI_TX_CONF_TRANS_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field WAKEUP[1] (RW)
@@ -573,7 +553,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Transmitter is in Wakeup State.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_WAKEUP      (1)      //!< Bit position for MIPI_HSI_TX_CONF_WAKEUP.
 #define BM_MIPI_HSI_TX_CONF_WAKEUP      (0x00000002)  //!< Bit mask for MIPI_HSI_TX_CONF_WAKEUP.
 
@@ -587,7 +566,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the WAKEUP field to a new value.
 #define BW_MIPI_HSI_TX_CONF_WAKEUP(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_WAKEUP) | BF_MIPI_HSI_TX_CONF_WAKEUP(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field TIMEOUT_CNT[11:8] (RW)
@@ -603,7 +581,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1111 - tx timeout value 2^29 tx_refclk
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_TIMEOUT_CNT      (8)      //!< Bit position for MIPI_HSI_TX_CONF_TIMEOUT_CNT.
 #define BM_MIPI_HSI_TX_CONF_TIMEOUT_CNT      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_CONF_TIMEOUT_CNT.
 
@@ -617,7 +594,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the TIMEOUT_CNT field to a new value.
 #define BW_MIPI_HSI_TX_CONF_TIMEOUT_CNT(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_TIMEOUT_CNT) | BF_MIPI_HSI_TX_CONF_TIMEOUT_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH0_EN[16] (RW)
@@ -629,7 +605,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch0 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH0_EN      (16)      //!< Bit position for MIPI_HSI_TX_CONF_CH0_EN.
 #define BM_MIPI_HSI_TX_CONF_CH0_EN      (0x00010000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH0_EN.
 
@@ -643,7 +618,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH0_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH0_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH0_EN) | BF_MIPI_HSI_TX_CONF_CH0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH1_EN[17] (RW)
@@ -655,7 +629,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch1 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH1_EN      (17)      //!< Bit position for MIPI_HSI_TX_CONF_CH1_EN.
 #define BM_MIPI_HSI_TX_CONF_CH1_EN      (0x00020000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH1_EN.
 
@@ -669,7 +642,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH1_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH1_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH1_EN) | BF_MIPI_HSI_TX_CONF_CH1_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH2_EN[18] (RW)
@@ -681,7 +653,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch2 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH2_EN      (18)      //!< Bit position for MIPI_HSI_TX_CONF_CH2_EN.
 #define BM_MIPI_HSI_TX_CONF_CH2_EN      (0x00040000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH2_EN.
 
@@ -695,7 +666,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH2_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH2_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH2_EN) | BF_MIPI_HSI_TX_CONF_CH2_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH3_EN[19] (RW)
@@ -707,7 +677,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch3 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH3_EN      (19)      //!< Bit position for MIPI_HSI_TX_CONF_CH3_EN.
 #define BM_MIPI_HSI_TX_CONF_CH3_EN      (0x00080000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH3_EN.
 
@@ -721,7 +690,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH3_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH3_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH3_EN) | BF_MIPI_HSI_TX_CONF_CH3_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH4_EN[20] (RW)
@@ -733,7 +701,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch4 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH4_EN      (20)      //!< Bit position for MIPI_HSI_TX_CONF_CH4_EN.
 #define BM_MIPI_HSI_TX_CONF_CH4_EN      (0x00100000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH4_EN.
 
@@ -747,7 +714,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH4_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH4_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH4_EN) | BF_MIPI_HSI_TX_CONF_CH4_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH5_EN[21] (RW)
@@ -759,7 +725,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch5 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH5_EN      (21)      //!< Bit position for MIPI_HSI_TX_CONF_CH5_EN.
 #define BM_MIPI_HSI_TX_CONF_CH5_EN      (0x00200000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH5_EN.
 
@@ -773,7 +738,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH5_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH5_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH5_EN) | BF_MIPI_HSI_TX_CONF_CH5_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH6_EN[22] (RW)
@@ -785,7 +749,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch6 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH6_EN      (22)      //!< Bit position for MIPI_HSI_TX_CONF_CH6_EN.
 #define BM_MIPI_HSI_TX_CONF_CH6_EN      (0x00400000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH6_EN.
 
@@ -799,7 +762,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH6_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH6_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH6_EN) | BF_MIPI_HSI_TX_CONF_CH6_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH7_EN[23] (RW)
@@ -811,7 +773,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch7 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH7_EN      (23)      //!< Bit position for MIPI_HSI_TX_CONF_CH7_EN.
 #define BM_MIPI_HSI_TX_CONF_CH7_EN      (0x00800000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH7_EN.
 
@@ -825,7 +786,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH7_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH7_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH7_EN) | BF_MIPI_HSI_TX_CONF_CH7_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH8_EN[24] (RW)
@@ -837,7 +797,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch8 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH8_EN      (24)      //!< Bit position for MIPI_HSI_TX_CONF_CH8_EN.
 #define BM_MIPI_HSI_TX_CONF_CH8_EN      (0x01000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH8_EN.
 
@@ -851,7 +810,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH8_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH8_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH8_EN) | BF_MIPI_HSI_TX_CONF_CH8_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH9_EN[25] (RW)
@@ -863,7 +821,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch9 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH9_EN      (25)      //!< Bit position for MIPI_HSI_TX_CONF_CH9_EN.
 #define BM_MIPI_HSI_TX_CONF_CH9_EN      (0x02000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH9_EN.
 
@@ -877,7 +834,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH9_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH9_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH9_EN) | BF_MIPI_HSI_TX_CONF_CH9_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH10_EN[26] (RW)
@@ -889,7 +845,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch10 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH10_EN      (26)      //!< Bit position for MIPI_HSI_TX_CONF_CH10_EN.
 #define BM_MIPI_HSI_TX_CONF_CH10_EN      (0x04000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH10_EN.
 
@@ -903,7 +858,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH10_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH10_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH10_EN) | BF_MIPI_HSI_TX_CONF_CH10_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH11_EN[27] (RW)
@@ -915,7 +869,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch11 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH11_EN      (27)      //!< Bit position for MIPI_HSI_TX_CONF_CH11_EN.
 #define BM_MIPI_HSI_TX_CONF_CH11_EN      (0x08000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH11_EN.
 
@@ -929,7 +882,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH11_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH11_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH11_EN) | BF_MIPI_HSI_TX_CONF_CH11_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH12_EN[28] (RW)
@@ -941,7 +893,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch12 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH12_EN      (28)      //!< Bit position for MIPI_HSI_TX_CONF_CH12_EN.
 #define BM_MIPI_HSI_TX_CONF_CH12_EN      (0x10000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH12_EN.
 
@@ -955,7 +906,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH12_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH12_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH12_EN) | BF_MIPI_HSI_TX_CONF_CH12_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH13_EN[29] (RW)
@@ -967,7 +917,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch13 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH13_EN      (29)      //!< Bit position for MIPI_HSI_TX_CONF_CH13_EN.
 #define BM_MIPI_HSI_TX_CONF_CH13_EN      (0x20000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH13_EN.
 
@@ -981,7 +930,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH13_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH13_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH13_EN) | BF_MIPI_HSI_TX_CONF_CH13_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH14_EN[30] (RW)
@@ -993,7 +941,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch14 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH14_EN      (30)      //!< Bit position for MIPI_HSI_TX_CONF_CH14_EN.
 #define BM_MIPI_HSI_TX_CONF_CH14_EN      (0x40000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH14_EN.
 
@@ -1007,7 +954,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH14_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH14_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH14_EN) | BF_MIPI_HSI_TX_CONF_CH14_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH15_EN[31] (RW)
@@ -1019,7 +965,6 @@ typedef union _hw_mipi_hsi_tx_conf
  * - 1 - Tx Ch15 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CONF_CH15_EN      (31)      //!< Bit position for MIPI_HSI_TX_CONF_CH15_EN.
 #define BM_MIPI_HSI_TX_CONF_CH15_EN      (0x80000000)  //!< Bit mask for MIPI_HSI_TX_CONF_CH15_EN.
 
@@ -1033,7 +978,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //! @brief Set the CH15_EN field to a new value.
 #define BW_MIPI_HSI_TX_CONF_CH15_EN(v)   (HW_MIPI_HSI_TX_CONF_WR((HW_MIPI_HSI_TX_CONF_RD() & ~BM_MIPI_HSI_TX_CONF_CH15_EN) | BF_MIPI_HSI_TX_CONF_CH15_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1112,7 +1056,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 11 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_DATA_FLOW      (0)      //!< Bit position for MIPI_HSI_RX_CONF_DATA_FLOW.
 #define BM_MIPI_HSI_RX_CONF_DATA_FLOW      (0x00000003)  //!< Bit mask for MIPI_HSI_RX_CONF_DATA_FLOW.
 
@@ -1126,7 +1069,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the DATA_FLOW field to a new value.
 #define BW_MIPI_HSI_RX_CONF_DATA_FLOW(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_DATA_FLOW) | BF_MIPI_HSI_RX_CONF_DATA_FLOW(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field WAKE[2] (RW)
@@ -1138,7 +1080,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Receiver is in Wakeup State
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_WAKE      (2)      //!< Bit position for MIPI_HSI_RX_CONF_WAKE.
 #define BM_MIPI_HSI_RX_CONF_WAKE      (0x00000004)  //!< Bit mask for MIPI_HSI_RX_CONF_WAKE.
 
@@ -1152,7 +1093,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the WAKE field to a new value.
 #define BW_MIPI_HSI_RX_CONF_WAKE(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_WAKE) | BF_MIPI_HSI_RX_CONF_WAKE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field REC_MODE[3] (RW)
@@ -1164,7 +1104,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Frame Receive Mode
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_REC_MODE      (3)      //!< Bit position for MIPI_HSI_RX_CONF_REC_MODE.
 #define BM_MIPI_HSI_RX_CONF_REC_MODE      (0x00000008)  //!< Bit mask for MIPI_HSI_RX_CONF_REC_MODE.
 
@@ -1178,7 +1117,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the REC_MODE field to a new value.
 #define BW_MIPI_HSI_RX_CONF_REC_MODE(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_REC_MODE) | BF_MIPI_HSI_RX_CONF_REC_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field TAIL_BIT_CNT_EN[4] (RW)
@@ -1190,7 +1128,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Tailing bit counter Enable
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN      (4)      //!< Bit position for MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN.
 #define BM_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN      (0x00000010)  //!< Bit mask for MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN.
 
@@ -1204,7 +1141,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the TAIL_BIT_CNT_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN) | BF_MIPI_HSI_RX_CONF_TAIL_BIT_CNT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field TIMEOUT_CNT[14:8] (RW)
@@ -1218,7 +1154,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * tx_refclk 7'h40 26000 ---> tx_refclk
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_TIMEOUT_CNT      (8)      //!< Bit position for MIPI_HSI_RX_CONF_TIMEOUT_CNT.
 #define BM_MIPI_HSI_RX_CONF_TIMEOUT_CNT      (0x00007f00)  //!< Bit mask for MIPI_HSI_RX_CONF_TIMEOUT_CNT.
 
@@ -1232,7 +1167,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the TIMEOUT_CNT field to a new value.
 #define BW_MIPI_HSI_RX_CONF_TIMEOUT_CNT(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_TIMEOUT_CNT) | BF_MIPI_HSI_RX_CONF_TIMEOUT_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH0_EN[16] (RW)
@@ -1244,7 +1178,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch0 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH0_EN      (16)      //!< Bit position for MIPI_HSI_RX_CONF_CH0_EN.
 #define BM_MIPI_HSI_RX_CONF_CH0_EN      (0x00010000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH0_EN.
 
@@ -1258,7 +1191,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH0_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH0_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH0_EN) | BF_MIPI_HSI_RX_CONF_CH0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH1_EN[17] (RW)
@@ -1270,7 +1202,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch1 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH1_EN      (17)      //!< Bit position for MIPI_HSI_RX_CONF_CH1_EN.
 #define BM_MIPI_HSI_RX_CONF_CH1_EN      (0x00020000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH1_EN.
 
@@ -1284,7 +1215,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH1_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH1_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH1_EN) | BF_MIPI_HSI_RX_CONF_CH1_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH2_EN[18] (RW)
@@ -1296,7 +1226,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch2 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH2_EN      (18)      //!< Bit position for MIPI_HSI_RX_CONF_CH2_EN.
 #define BM_MIPI_HSI_RX_CONF_CH2_EN      (0x00040000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH2_EN.
 
@@ -1310,7 +1239,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH2_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH2_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH2_EN) | BF_MIPI_HSI_RX_CONF_CH2_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH3_EN[19] (RW)
@@ -1322,7 +1250,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch3 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH3_EN      (19)      //!< Bit position for MIPI_HSI_RX_CONF_CH3_EN.
 #define BM_MIPI_HSI_RX_CONF_CH3_EN      (0x00080000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH3_EN.
 
@@ -1336,7 +1263,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH3_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH3_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH3_EN) | BF_MIPI_HSI_RX_CONF_CH3_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH4_EN[20] (RW)
@@ -1348,7 +1274,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch4 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH4_EN      (20)      //!< Bit position for MIPI_HSI_RX_CONF_CH4_EN.
 #define BM_MIPI_HSI_RX_CONF_CH4_EN      (0x00100000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH4_EN.
 
@@ -1362,7 +1287,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH4_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH4_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH4_EN) | BF_MIPI_HSI_RX_CONF_CH4_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH5_EN[21] (RW)
@@ -1374,7 +1298,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch5 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH5_EN      (21)      //!< Bit position for MIPI_HSI_RX_CONF_CH5_EN.
 #define BM_MIPI_HSI_RX_CONF_CH5_EN      (0x00200000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH5_EN.
 
@@ -1388,7 +1311,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH5_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH5_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH5_EN) | BF_MIPI_HSI_RX_CONF_CH5_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH6_EN[22] (RW)
@@ -1400,7 +1322,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch6 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH6_EN      (22)      //!< Bit position for MIPI_HSI_RX_CONF_CH6_EN.
 #define BM_MIPI_HSI_RX_CONF_CH6_EN      (0x00400000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH6_EN.
 
@@ -1414,7 +1335,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH6_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH6_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH6_EN) | BF_MIPI_HSI_RX_CONF_CH6_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH7_EN[23] (RW)
@@ -1426,7 +1346,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch7 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH7_EN      (23)      //!< Bit position for MIPI_HSI_RX_CONF_CH7_EN.
 #define BM_MIPI_HSI_RX_CONF_CH7_EN      (0x00800000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH7_EN.
 
@@ -1440,7 +1359,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH7_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH7_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH7_EN) | BF_MIPI_HSI_RX_CONF_CH7_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH8_EN[24] (RW)
@@ -1452,7 +1370,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch8 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH8_EN      (24)      //!< Bit position for MIPI_HSI_RX_CONF_CH8_EN.
 #define BM_MIPI_HSI_RX_CONF_CH8_EN      (0x01000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH8_EN.
 
@@ -1466,7 +1383,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH8_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH8_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH8_EN) | BF_MIPI_HSI_RX_CONF_CH8_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH9_EN[25] (RW)
@@ -1478,7 +1394,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch9 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH9_EN      (25)      //!< Bit position for MIPI_HSI_RX_CONF_CH9_EN.
 #define BM_MIPI_HSI_RX_CONF_CH9_EN      (0x02000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH9_EN.
 
@@ -1492,7 +1407,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH9_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH9_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH9_EN) | BF_MIPI_HSI_RX_CONF_CH9_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH10_EN[26] (RW)
@@ -1504,7 +1418,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch10 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH10_EN      (26)      //!< Bit position for MIPI_HSI_RX_CONF_CH10_EN.
 #define BM_MIPI_HSI_RX_CONF_CH10_EN      (0x04000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH10_EN.
 
@@ -1518,7 +1431,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH10_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH10_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH10_EN) | BF_MIPI_HSI_RX_CONF_CH10_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH11_EN[27] (RW)
@@ -1530,7 +1442,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch11 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH11_EN      (27)      //!< Bit position for MIPI_HSI_RX_CONF_CH11_EN.
 #define BM_MIPI_HSI_RX_CONF_CH11_EN      (0x08000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH11_EN.
 
@@ -1544,7 +1455,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH11_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH11_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH11_EN) | BF_MIPI_HSI_RX_CONF_CH11_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH12_EN[28] (RW)
@@ -1556,7 +1466,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch12 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH12_EN      (28)      //!< Bit position for MIPI_HSI_RX_CONF_CH12_EN.
 #define BM_MIPI_HSI_RX_CONF_CH12_EN      (0x10000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH12_EN.
 
@@ -1570,7 +1479,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH12_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH12_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH12_EN) | BF_MIPI_HSI_RX_CONF_CH12_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH13_EN[29] (RW)
@@ -1582,7 +1490,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch13 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH13_EN      (29)      //!< Bit position for MIPI_HSI_RX_CONF_CH13_EN.
 #define BM_MIPI_HSI_RX_CONF_CH13_EN      (0x20000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH13_EN.
 
@@ -1596,7 +1503,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH13_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH13_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH13_EN) | BF_MIPI_HSI_RX_CONF_CH13_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH14_EN[30] (RW)
@@ -1608,7 +1514,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch14 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH14_EN      (30)      //!< Bit position for MIPI_HSI_RX_CONF_CH14_EN.
 #define BM_MIPI_HSI_RX_CONF_CH14_EN      (0x40000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH14_EN.
 
@@ -1622,7 +1527,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH14_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH14_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH14_EN) | BF_MIPI_HSI_RX_CONF_CH14_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH15_EN[31] (RW)
@@ -1634,7 +1538,6 @@ typedef union _hw_mipi_hsi_rx_conf
  * - 1 - Rx Ch15 is Enabled.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CONF_CH15_EN      (31)      //!< Bit position for MIPI_HSI_RX_CONF_CH15_EN.
 #define BM_MIPI_HSI_RX_CONF_CH15_EN      (0x80000000)  //!< Bit mask for MIPI_HSI_RX_CONF_CH15_EN.
 
@@ -1648,7 +1551,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //! @brief Set the CH15_EN field to a new value.
 #define BW_MIPI_HSI_RX_CONF_CH15_EN(v)   (HW_MIPI_HSI_RX_CONF_WR((HW_MIPI_HSI_RX_CONF_RD() & ~BM_MIPI_HSI_RX_CONF_CH15_EN) | BF_MIPI_HSI_RX_CONF_CH15_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1706,13 +1608,11 @@ typedef union _hw_mipi_hsi_cap
  * - 1111 - 16 Tx channels supported
  */
 //@{
-
 #define BP_MIPI_HSI_CAP_TX_CH_NU_SUPPORTE      (0)      //!< Bit position for MIPI_HSI_CAP_TX_CH_NU_SUPPORTE.
 #define BM_MIPI_HSI_CAP_TX_CH_NU_SUPPORTE      (0x0000000f)  //!< Bit mask for MIPI_HSI_CAP_TX_CH_NU_SUPPORTE.
 
 //! @brief Get value of MIPI_HSI_CAP_TX_CH_NU_SUPPORTE from a register value.
 #define BG_MIPI_HSI_CAP_TX_CH_NU_SUPPORTE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CAP_TX_CH_NU_SUPPORTE) >> BP_MIPI_HSI_CAP_TX_CH_NU_SUPPORTE)
-
 //@}
 
 /*! @name Register MIPI_HSI_CAP, field RX_CH_NU_SUPPORTE[7:4] (RO)
@@ -1725,13 +1625,11 @@ typedef union _hw_mipi_hsi_cap
  * - 1111 - 16 Rx channels supported
  */
 //@{
-
 #define BP_MIPI_HSI_CAP_RX_CH_NU_SUPPORTE      (4)      //!< Bit position for MIPI_HSI_CAP_RX_CH_NU_SUPPORTE.
 #define BM_MIPI_HSI_CAP_RX_CH_NU_SUPPORTE      (0x000000f0)  //!< Bit mask for MIPI_HSI_CAP_RX_CH_NU_SUPPORTE.
 
 //! @brief Get value of MIPI_HSI_CAP_RX_CH_NU_SUPPORTE from a register value.
 #define BG_MIPI_HSI_CAP_RX_CH_NU_SUPPORTE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CAP_RX_CH_NU_SUPPORTE) >> BP_MIPI_HSI_CAP_RX_CH_NU_SUPPORTE)
-
 //@}
 
 /*! @name Register MIPI_HSI_CAP, field DMA_CH_NU_SUPPORT[12:8] (RO)
@@ -1749,13 +1647,11 @@ typedef union _hw_mipi_hsi_cap
  * - 11111 - 32 DMA supported
  */
 //@{
-
 #define BP_MIPI_HSI_CAP_DMA_CH_NU_SUPPORT      (8)      //!< Bit position for MIPI_HSI_CAP_DMA_CH_NU_SUPPORT.
 #define BM_MIPI_HSI_CAP_DMA_CH_NU_SUPPORT      (0x00001f00)  //!< Bit mask for MIPI_HSI_CAP_DMA_CH_NU_SUPPORT.
 
 //! @brief Get value of MIPI_HSI_CAP_DMA_CH_NU_SUPPORT from a register value.
 #define BG_MIPI_HSI_CAP_DMA_CH_NU_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CAP_DMA_CH_NU_SUPPORT) >> BP_MIPI_HSI_CAP_DMA_CH_NU_SUPPORT)
-
 //@}
 
 /*! @name Register MIPI_HSI_CAP, field TX_DMA_SUPPORT[16] (RO)
@@ -1767,13 +1663,11 @@ typedef union _hw_mipi_hsi_cap
  * - 1 - DMA is supported.
  */
 //@{
-
 #define BP_MIPI_HSI_CAP_TX_DMA_SUPPORT      (16)      //!< Bit position for MIPI_HSI_CAP_TX_DMA_SUPPORT.
 #define BM_MIPI_HSI_CAP_TX_DMA_SUPPORT      (0x00010000)  //!< Bit mask for MIPI_HSI_CAP_TX_DMA_SUPPORT.
 
 //! @brief Get value of MIPI_HSI_CAP_TX_DMA_SUPPORT from a register value.
 #define BG_MIPI_HSI_CAP_TX_DMA_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CAP_TX_DMA_SUPPORT) >> BP_MIPI_HSI_CAP_TX_DMA_SUPPORT)
-
 //@}
 
 /*! @name Register MIPI_HSI_CAP, field RX_DMA_SUPPORT[17] (RO)
@@ -1785,13 +1679,11 @@ typedef union _hw_mipi_hsi_cap
  * - 1 - DMA is supported.
  */
 //@{
-
 #define BP_MIPI_HSI_CAP_RX_DMA_SUPPORT      (17)      //!< Bit position for MIPI_HSI_CAP_RX_DMA_SUPPORT.
 #define BM_MIPI_HSI_CAP_RX_DMA_SUPPORT      (0x00020000)  //!< Bit mask for MIPI_HSI_CAP_RX_DMA_SUPPORT.
 
 //! @brief Get value of MIPI_HSI_CAP_RX_DMA_SUPPORT from a register value.
 #define BG_MIPI_HSI_CAP_RX_DMA_SUPPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CAP_RX_DMA_SUPPORT) >> BP_MIPI_HSI_CAP_RX_DMA_SUPPORT)
-
 //@}
 
 /*! @name Register MIPI_HSI_CAP, field WAKEUP_EVENT[18] (RO)
@@ -1803,13 +1695,11 @@ typedef union _hw_mipi_hsi_cap
  * - 1 - Wakeup Event is not supported.
  */
 //@{
-
 #define BP_MIPI_HSI_CAP_WAKEUP_EVENT      (18)      //!< Bit position for MIPI_HSI_CAP_WAKEUP_EVENT.
 #define BM_MIPI_HSI_CAP_WAKEUP_EVENT      (0x00040000)  //!< Bit mask for MIPI_HSI_CAP_WAKEUP_EVENT.
 
 //! @brief Get value of MIPI_HSI_CAP_WAKEUP_EVENT from a register value.
 #define BG_MIPI_HSI_CAP_WAKEUP_EVENT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_CAP_WAKEUP_EVENT) >> BP_MIPI_HSI_CAP_WAKEUP_EVENT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1874,7 +1764,6 @@ typedef union _hw_mipi_hsi_tx_wml0
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_WML0_CH8      (0)      //!< Bit position for MIPI_HSI_TX_WML0_CH8.
 #define BM_MIPI_HSI_TX_WML0_CH8      (0x0000000f)  //!< Bit mask for MIPI_HSI_TX_WML0_CH8.
 
@@ -1888,7 +1777,6 @@ typedef union _hw_mipi_hsi_tx_wml0
 //! @brief Set the CH8 field to a new value.
 #define BW_MIPI_HSI_TX_WML0_CH8(v)   (HW_MIPI_HSI_TX_WML0_WR((HW_MIPI_HSI_TX_WML0_RD() & ~BM_MIPI_HSI_TX_WML0_CH8) | BF_MIPI_HSI_TX_WML0_CH8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_WML0, field CH9[7:4] (RW)
@@ -1904,7 +1792,6 @@ typedef union _hw_mipi_hsi_tx_wml0
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_WML0_CH9      (4)      //!< Bit position for MIPI_HSI_TX_WML0_CH9.
 #define BM_MIPI_HSI_TX_WML0_CH9      (0x000000f0)  //!< Bit mask for MIPI_HSI_TX_WML0_CH9.
 
@@ -1918,7 +1805,6 @@ typedef union _hw_mipi_hsi_tx_wml0
 //! @brief Set the CH9 field to a new value.
 #define BW_MIPI_HSI_TX_WML0_CH9(v)   (HW_MIPI_HSI_TX_WML0_WR((HW_MIPI_HSI_TX_WML0_RD() & ~BM_MIPI_HSI_TX_WML0_CH9) | BF_MIPI_HSI_TX_WML0_CH9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_WML0, field CH10[11:8] (RW)
@@ -1934,7 +1820,6 @@ typedef union _hw_mipi_hsi_tx_wml0
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_WML0_CH10      (8)      //!< Bit position for MIPI_HSI_TX_WML0_CH10.
 #define BM_MIPI_HSI_TX_WML0_CH10      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_WML0_CH10.
 
@@ -1948,7 +1833,6 @@ typedef union _hw_mipi_hsi_tx_wml0
 //! @brief Set the CH10 field to a new value.
 #define BW_MIPI_HSI_TX_WML0_CH10(v)   (HW_MIPI_HSI_TX_WML0_WR((HW_MIPI_HSI_TX_WML0_RD() & ~BM_MIPI_HSI_TX_WML0_CH10) | BF_MIPI_HSI_TX_WML0_CH10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_WML0, field CH11[15:12] (RW)
@@ -1964,7 +1848,6 @@ typedef union _hw_mipi_hsi_tx_wml0
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_WML0_CH11      (12)      //!< Bit position for MIPI_HSI_TX_WML0_CH11.
 #define BM_MIPI_HSI_TX_WML0_CH11      (0x0000f000)  //!< Bit mask for MIPI_HSI_TX_WML0_CH11.
 
@@ -1978,7 +1861,6 @@ typedef union _hw_mipi_hsi_tx_wml0
 //! @brief Set the CH11 field to a new value.
 #define BW_MIPI_HSI_TX_WML0_CH11(v)   (HW_MIPI_HSI_TX_WML0_WR((HW_MIPI_HSI_TX_WML0_RD() & ~BM_MIPI_HSI_TX_WML0_CH11) | BF_MIPI_HSI_TX_WML0_CH11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_WML0, field CH12[19:16] (RW)
@@ -1994,7 +1876,6 @@ typedef union _hw_mipi_hsi_tx_wml0
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_WML0_CH12      (16)      //!< Bit position for MIPI_HSI_TX_WML0_CH12.
 #define BM_MIPI_HSI_TX_WML0_CH12      (0x000f0000)  //!< Bit mask for MIPI_HSI_TX_WML0_CH12.
 
@@ -2008,7 +1889,6 @@ typedef union _hw_mipi_hsi_tx_wml0
 //! @brief Set the CH12 field to a new value.
 #define BW_MIPI_HSI_TX_WML0_CH12(v)   (HW_MIPI_HSI_TX_WML0_WR((HW_MIPI_HSI_TX_WML0_RD() & ~BM_MIPI_HSI_TX_WML0_CH12) | BF_MIPI_HSI_TX_WML0_CH12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_WML0, field CH13[23:20] (RW)
@@ -2024,7 +1904,6 @@ typedef union _hw_mipi_hsi_tx_wml0
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_WML0_CH13      (20)      //!< Bit position for MIPI_HSI_TX_WML0_CH13.
 #define BM_MIPI_HSI_TX_WML0_CH13      (0x00f00000)  //!< Bit mask for MIPI_HSI_TX_WML0_CH13.
 
@@ -2038,7 +1917,6 @@ typedef union _hw_mipi_hsi_tx_wml0
 //! @brief Set the CH13 field to a new value.
 #define BW_MIPI_HSI_TX_WML0_CH13(v)   (HW_MIPI_HSI_TX_WML0_WR((HW_MIPI_HSI_TX_WML0_RD() & ~BM_MIPI_HSI_TX_WML0_CH13) | BF_MIPI_HSI_TX_WML0_CH13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_WML0, field CH14[27:24] (RW)
@@ -2054,7 +1932,6 @@ typedef union _hw_mipi_hsi_tx_wml0
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_WML0_CH14      (24)      //!< Bit position for MIPI_HSI_TX_WML0_CH14.
 #define BM_MIPI_HSI_TX_WML0_CH14      (0x0f000000)  //!< Bit mask for MIPI_HSI_TX_WML0_CH14.
 
@@ -2068,7 +1945,6 @@ typedef union _hw_mipi_hsi_tx_wml0
 //! @brief Set the CH14 field to a new value.
 #define BW_MIPI_HSI_TX_WML0_CH14(v)   (HW_MIPI_HSI_TX_WML0_WR((HW_MIPI_HSI_TX_WML0_RD() & ~BM_MIPI_HSI_TX_WML0_CH14) | BF_MIPI_HSI_TX_WML0_CH14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_WML0, field CH15[31:28] (RW)
@@ -2084,7 +1960,6 @@ typedef union _hw_mipi_hsi_tx_wml0
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_WML0_CH15      (28)      //!< Bit position for MIPI_HSI_TX_WML0_CH15.
 #define BM_MIPI_HSI_TX_WML0_CH15      (0xf0000000)  //!< Bit mask for MIPI_HSI_TX_WML0_CH15.
 
@@ -2098,7 +1973,6 @@ typedef union _hw_mipi_hsi_tx_wml0
 //! @brief Set the CH15 field to a new value.
 #define BW_MIPI_HSI_TX_WML0_CH15(v)   (HW_MIPI_HSI_TX_WML0_WR((HW_MIPI_HSI_TX_WML0_RD() & ~BM_MIPI_HSI_TX_WML0_CH15) | BF_MIPI_HSI_TX_WML0_CH15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2164,7 +2038,6 @@ typedef union _hw_mipi_hsi_tx_tml1
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_TML1_CH0      (0)      //!< Bit position for MIPI_HSI_TX_TML1_CH0.
 #define BM_MIPI_HSI_TX_TML1_CH0      (0x0000000f)  //!< Bit mask for MIPI_HSI_TX_TML1_CH0.
 
@@ -2178,7 +2051,6 @@ typedef union _hw_mipi_hsi_tx_tml1
 //! @brief Set the CH0 field to a new value.
 #define BW_MIPI_HSI_TX_TML1_CH0(v)   (HW_MIPI_HSI_TX_TML1_WR((HW_MIPI_HSI_TX_TML1_RD() & ~BM_MIPI_HSI_TX_TML1_CH0) | BF_MIPI_HSI_TX_TML1_CH0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_TML1, field CH1[7:4] (RW)
@@ -2194,7 +2066,6 @@ typedef union _hw_mipi_hsi_tx_tml1
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_TML1_CH1      (4)      //!< Bit position for MIPI_HSI_TX_TML1_CH1.
 #define BM_MIPI_HSI_TX_TML1_CH1      (0x000000f0)  //!< Bit mask for MIPI_HSI_TX_TML1_CH1.
 
@@ -2208,7 +2079,6 @@ typedef union _hw_mipi_hsi_tx_tml1
 //! @brief Set the CH1 field to a new value.
 #define BW_MIPI_HSI_TX_TML1_CH1(v)   (HW_MIPI_HSI_TX_TML1_WR((HW_MIPI_HSI_TX_TML1_RD() & ~BM_MIPI_HSI_TX_TML1_CH1) | BF_MIPI_HSI_TX_TML1_CH1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_TML1, field CH2[11:8] (RW)
@@ -2224,7 +2094,6 @@ typedef union _hw_mipi_hsi_tx_tml1
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_TML1_CH2      (8)      //!< Bit position for MIPI_HSI_TX_TML1_CH2.
 #define BM_MIPI_HSI_TX_TML1_CH2      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_TML1_CH2.
 
@@ -2238,7 +2107,6 @@ typedef union _hw_mipi_hsi_tx_tml1
 //! @brief Set the CH2 field to a new value.
 #define BW_MIPI_HSI_TX_TML1_CH2(v)   (HW_MIPI_HSI_TX_TML1_WR((HW_MIPI_HSI_TX_TML1_RD() & ~BM_MIPI_HSI_TX_TML1_CH2) | BF_MIPI_HSI_TX_TML1_CH2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_TML1, field CH3[15:12] (RW)
@@ -2254,7 +2122,6 @@ typedef union _hw_mipi_hsi_tx_tml1
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_TML1_CH3      (12)      //!< Bit position for MIPI_HSI_TX_TML1_CH3.
 #define BM_MIPI_HSI_TX_TML1_CH3      (0x0000f000)  //!< Bit mask for MIPI_HSI_TX_TML1_CH3.
 
@@ -2268,7 +2135,6 @@ typedef union _hw_mipi_hsi_tx_tml1
 //! @brief Set the CH3 field to a new value.
 #define BW_MIPI_HSI_TX_TML1_CH3(v)   (HW_MIPI_HSI_TX_TML1_WR((HW_MIPI_HSI_TX_TML1_RD() & ~BM_MIPI_HSI_TX_TML1_CH3) | BF_MIPI_HSI_TX_TML1_CH3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_TML1, field CH4[19:16] (RW)
@@ -2284,7 +2150,6 @@ typedef union _hw_mipi_hsi_tx_tml1
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_TML1_CH4      (16)      //!< Bit position for MIPI_HSI_TX_TML1_CH4.
 #define BM_MIPI_HSI_TX_TML1_CH4      (0x000f0000)  //!< Bit mask for MIPI_HSI_TX_TML1_CH4.
 
@@ -2298,7 +2163,6 @@ typedef union _hw_mipi_hsi_tx_tml1
 //! @brief Set the CH4 field to a new value.
 #define BW_MIPI_HSI_TX_TML1_CH4(v)   (HW_MIPI_HSI_TX_TML1_WR((HW_MIPI_HSI_TX_TML1_RD() & ~BM_MIPI_HSI_TX_TML1_CH4) | BF_MIPI_HSI_TX_TML1_CH4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_TML1, field CH5[23:20] (RW)
@@ -2314,7 +2178,6 @@ typedef union _hw_mipi_hsi_tx_tml1
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_TML1_CH5      (20)      //!< Bit position for MIPI_HSI_TX_TML1_CH5.
 #define BM_MIPI_HSI_TX_TML1_CH5      (0x00f00000)  //!< Bit mask for MIPI_HSI_TX_TML1_CH5.
 
@@ -2328,7 +2191,6 @@ typedef union _hw_mipi_hsi_tx_tml1
 //! @brief Set the CH5 field to a new value.
 #define BW_MIPI_HSI_TX_TML1_CH5(v)   (HW_MIPI_HSI_TX_TML1_WR((HW_MIPI_HSI_TX_TML1_RD() & ~BM_MIPI_HSI_TX_TML1_CH5) | BF_MIPI_HSI_TX_TML1_CH5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_TML1, field CH6[27:24] (RW)
@@ -2344,7 +2206,6 @@ typedef union _hw_mipi_hsi_tx_tml1
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_TML1_CH6      (24)      //!< Bit position for MIPI_HSI_TX_TML1_CH6.
 #define BM_MIPI_HSI_TX_TML1_CH6      (0x0f000000)  //!< Bit mask for MIPI_HSI_TX_TML1_CH6.
 
@@ -2358,7 +2219,6 @@ typedef union _hw_mipi_hsi_tx_tml1
 //! @brief Set the CH6 field to a new value.
 #define BW_MIPI_HSI_TX_TML1_CH6(v)   (HW_MIPI_HSI_TX_TML1_WR((HW_MIPI_HSI_TX_TML1_RD() & ~BM_MIPI_HSI_TX_TML1_CH6) | BF_MIPI_HSI_TX_TML1_CH6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_TML1, field CH7[31:28] (RW)
@@ -2374,7 +2234,6 @@ typedef union _hw_mipi_hsi_tx_tml1
  * - 1010 - 1024
  */
 //@{
-
 #define BP_MIPI_HSI_TX_TML1_CH7      (28)      //!< Bit position for MIPI_HSI_TX_TML1_CH7.
 #define BM_MIPI_HSI_TX_TML1_CH7      (0xf0000000)  //!< Bit mask for MIPI_HSI_TX_TML1_CH7.
 
@@ -2388,7 +2247,6 @@ typedef union _hw_mipi_hsi_tx_tml1
 //! @brief Set the CH7 field to a new value.
 #define BW_MIPI_HSI_TX_TML1_CH7(v)   (HW_MIPI_HSI_TX_TML1_WR((HW_MIPI_HSI_TX_TML1_RD() & ~BM_MIPI_HSI_TX_TML1_CH7) | BF_MIPI_HSI_TX_TML1_CH7(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2453,7 +2311,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI0_CH0      (0)      //!< Bit position for MIPI_HSI_TX_ARB_PRI0_CH0.
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH0      (0x0000000f)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH0.
 
@@ -2467,7 +2324,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 //! @brief Set the CH0 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI0_CH0(v)   (HW_MIPI_HSI_TX_ARB_PRI0_WR((HW_MIPI_HSI_TX_ARB_PRI0_RD() & ~BM_MIPI_HSI_TX_ARB_PRI0_CH0) | BF_MIPI_HSI_TX_ARB_PRI0_CH0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI0, field CH1[7:4] (RW)
@@ -2483,7 +2339,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI0_CH1      (4)      //!< Bit position for MIPI_HSI_TX_ARB_PRI0_CH1.
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH1      (0x000000f0)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH1.
 
@@ -2497,7 +2352,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 //! @brief Set the CH1 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI0_CH1(v)   (HW_MIPI_HSI_TX_ARB_PRI0_WR((HW_MIPI_HSI_TX_ARB_PRI0_RD() & ~BM_MIPI_HSI_TX_ARB_PRI0_CH1) | BF_MIPI_HSI_TX_ARB_PRI0_CH1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI0, field CH2[11:8] (RW)
@@ -2513,7 +2367,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI0_CH2      (8)      //!< Bit position for MIPI_HSI_TX_ARB_PRI0_CH2.
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH2      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH2.
 
@@ -2527,7 +2380,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 //! @brief Set the CH2 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI0_CH2(v)   (HW_MIPI_HSI_TX_ARB_PRI0_WR((HW_MIPI_HSI_TX_ARB_PRI0_RD() & ~BM_MIPI_HSI_TX_ARB_PRI0_CH2) | BF_MIPI_HSI_TX_ARB_PRI0_CH2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI0, field CH3[15:12] (RW)
@@ -2543,7 +2395,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI0_CH3      (12)      //!< Bit position for MIPI_HSI_TX_ARB_PRI0_CH3.
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH3      (0x0000f000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH3.
 
@@ -2557,7 +2408,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 //! @brief Set the CH3 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI0_CH3(v)   (HW_MIPI_HSI_TX_ARB_PRI0_WR((HW_MIPI_HSI_TX_ARB_PRI0_RD() & ~BM_MIPI_HSI_TX_ARB_PRI0_CH3) | BF_MIPI_HSI_TX_ARB_PRI0_CH3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI0, field CH4[19:16] (RW)
@@ -2573,7 +2423,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI0_CH4      (16)      //!< Bit position for MIPI_HSI_TX_ARB_PRI0_CH4.
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH4      (0x000f0000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH4.
 
@@ -2587,7 +2436,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 //! @brief Set the CH4 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI0_CH4(v)   (HW_MIPI_HSI_TX_ARB_PRI0_WR((HW_MIPI_HSI_TX_ARB_PRI0_RD() & ~BM_MIPI_HSI_TX_ARB_PRI0_CH4) | BF_MIPI_HSI_TX_ARB_PRI0_CH4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI0, field CH5[23:20] (RW)
@@ -2603,7 +2451,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI0_CH5      (20)      //!< Bit position for MIPI_HSI_TX_ARB_PRI0_CH5.
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH5      (0x00f00000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH5.
 
@@ -2617,7 +2464,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 //! @brief Set the CH5 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI0_CH5(v)   (HW_MIPI_HSI_TX_ARB_PRI0_WR((HW_MIPI_HSI_TX_ARB_PRI0_RD() & ~BM_MIPI_HSI_TX_ARB_PRI0_CH5) | BF_MIPI_HSI_TX_ARB_PRI0_CH5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI0, field CH6[27:24] (RW)
@@ -2633,7 +2479,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI0_CH6      (24)      //!< Bit position for MIPI_HSI_TX_ARB_PRI0_CH6.
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH6      (0x0f000000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH6.
 
@@ -2647,7 +2492,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 //! @brief Set the CH6 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI0_CH6(v)   (HW_MIPI_HSI_TX_ARB_PRI0_WR((HW_MIPI_HSI_TX_ARB_PRI0_RD() & ~BM_MIPI_HSI_TX_ARB_PRI0_CH6) | BF_MIPI_HSI_TX_ARB_PRI0_CH6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI0, field CH7[31:28] (RW)
@@ -2663,7 +2507,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI0_CH7      (28)      //!< Bit position for MIPI_HSI_TX_ARB_PRI0_CH7.
 #define BM_MIPI_HSI_TX_ARB_PRI0_CH7      (0xf0000000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI0_CH7.
 
@@ -2677,7 +2520,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
 //! @brief Set the CH7 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI0_CH7(v)   (HW_MIPI_HSI_TX_ARB_PRI0_WR((HW_MIPI_HSI_TX_ARB_PRI0_RD() & ~BM_MIPI_HSI_TX_ARB_PRI0_CH7) | BF_MIPI_HSI_TX_ARB_PRI0_CH7(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2742,7 +2584,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI1_CH8      (0)      //!< Bit position for MIPI_HSI_TX_ARB_PRI1_CH8.
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH8      (0x0000000f)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH8.
 
@@ -2756,7 +2597,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 //! @brief Set the CH8 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI1_CH8(v)   (HW_MIPI_HSI_TX_ARB_PRI1_WR((HW_MIPI_HSI_TX_ARB_PRI1_RD() & ~BM_MIPI_HSI_TX_ARB_PRI1_CH8) | BF_MIPI_HSI_TX_ARB_PRI1_CH8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI1, field CH9[7:4] (RW)
@@ -2772,7 +2612,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI1_CH9      (4)      //!< Bit position for MIPI_HSI_TX_ARB_PRI1_CH9.
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH9      (0x000000f0)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH9.
 
@@ -2786,7 +2625,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 //! @brief Set the CH9 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI1_CH9(v)   (HW_MIPI_HSI_TX_ARB_PRI1_WR((HW_MIPI_HSI_TX_ARB_PRI1_RD() & ~BM_MIPI_HSI_TX_ARB_PRI1_CH9) | BF_MIPI_HSI_TX_ARB_PRI1_CH9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI1, field CH10[11:8] (RW)
@@ -2802,7 +2640,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI1_CH10      (8)      //!< Bit position for MIPI_HSI_TX_ARB_PRI1_CH10.
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH10      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH10.
 
@@ -2816,7 +2653,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 //! @brief Set the CH10 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI1_CH10(v)   (HW_MIPI_HSI_TX_ARB_PRI1_WR((HW_MIPI_HSI_TX_ARB_PRI1_RD() & ~BM_MIPI_HSI_TX_ARB_PRI1_CH10) | BF_MIPI_HSI_TX_ARB_PRI1_CH10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI1, field CH11[15:12] (RW)
@@ -2832,7 +2668,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI1_CH11      (12)      //!< Bit position for MIPI_HSI_TX_ARB_PRI1_CH11.
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH11      (0x0000f000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH11.
 
@@ -2846,7 +2681,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 //! @brief Set the CH11 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI1_CH11(v)   (HW_MIPI_HSI_TX_ARB_PRI1_WR((HW_MIPI_HSI_TX_ARB_PRI1_RD() & ~BM_MIPI_HSI_TX_ARB_PRI1_CH11) | BF_MIPI_HSI_TX_ARB_PRI1_CH11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI1, field CH12[19:16] (RW)
@@ -2862,7 +2696,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI1_CH12      (16)      //!< Bit position for MIPI_HSI_TX_ARB_PRI1_CH12.
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH12      (0x000f0000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH12.
 
@@ -2876,7 +2709,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 //! @brief Set the CH12 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI1_CH12(v)   (HW_MIPI_HSI_TX_ARB_PRI1_WR((HW_MIPI_HSI_TX_ARB_PRI1_RD() & ~BM_MIPI_HSI_TX_ARB_PRI1_CH12) | BF_MIPI_HSI_TX_ARB_PRI1_CH12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI1, field CH13[23:20] (RW)
@@ -2892,7 +2724,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI1_CH13      (20)      //!< Bit position for MIPI_HSI_TX_ARB_PRI1_CH13.
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH13      (0x00f00000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH13.
 
@@ -2906,7 +2737,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 //! @brief Set the CH13 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI1_CH13(v)   (HW_MIPI_HSI_TX_ARB_PRI1_WR((HW_MIPI_HSI_TX_ARB_PRI1_RD() & ~BM_MIPI_HSI_TX_ARB_PRI1_CH13) | BF_MIPI_HSI_TX_ARB_PRI1_CH13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI1, field CH14[27:24] (RW)
@@ -2922,7 +2752,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI1_CH14      (24)      //!< Bit position for MIPI_HSI_TX_ARB_PRI1_CH14.
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH14      (0x0f000000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH14.
 
@@ -2936,7 +2765,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 //! @brief Set the CH14 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI1_CH14(v)   (HW_MIPI_HSI_TX_ARB_PRI1_WR((HW_MIPI_HSI_TX_ARB_PRI1_RD() & ~BM_MIPI_HSI_TX_ARB_PRI1_CH14) | BF_MIPI_HSI_TX_ARB_PRI1_CH14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_ARB_PRI1, field CH15[31:28] (RW)
@@ -2952,7 +2780,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
  * - 1111 - 16th priority
  */
 //@{
-
 #define BP_MIPI_HSI_TX_ARB_PRI1_CH15      (28)      //!< Bit position for MIPI_HSI_TX_ARB_PRI1_CH15.
 #define BM_MIPI_HSI_TX_ARB_PRI1_CH15      (0xf0000000)  //!< Bit mask for MIPI_HSI_TX_ARB_PRI1_CH15.
 
@@ -2966,7 +2793,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri1
 //! @brief Set the CH15 field to a new value.
 #define BW_MIPI_HSI_TX_ARB_PRI1_CH15(v)   (HW_MIPI_HSI_TX_ARB_PRI1_WR((HW_MIPI_HSI_TX_ARB_PRI1_RD() & ~BM_MIPI_HSI_TX_ARB_PRI1_CH15) | BF_MIPI_HSI_TX_ARB_PRI1_CH15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3020,13 +2846,11 @@ typedef union _hw_mipi_hsi_line_st
  * This field reflects the tx_data pin(only for debug).
  */
 //@{
-
 #define BP_MIPI_HSI_LINE_ST_TX_DATA_STATUS      (0)      //!< Bit position for MIPI_HSI_LINE_ST_TX_DATA_STATUS.
 #define BM_MIPI_HSI_LINE_ST_TX_DATA_STATUS      (0x00000001)  //!< Bit mask for MIPI_HSI_LINE_ST_TX_DATA_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_TX_DATA_STATUS from a register value.
 #define BG_MIPI_HSI_LINE_ST_TX_DATA_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_TX_DATA_STATUS) >> BP_MIPI_HSI_LINE_ST_TX_DATA_STATUS)
-
 //@}
 
 /*! @name Register MIPI_HSI_LINE_ST, field TX_FLAG_STATUS[1] (RO)
@@ -3034,13 +2858,11 @@ typedef union _hw_mipi_hsi_line_st
  * This field reflects the tx_flag pin(only for debug).
  */
 //@{
-
 #define BP_MIPI_HSI_LINE_ST_TX_FLAG_STATUS      (1)      //!< Bit position for MIPI_HSI_LINE_ST_TX_FLAG_STATUS.
 #define BM_MIPI_HSI_LINE_ST_TX_FLAG_STATUS      (0x00000002)  //!< Bit mask for MIPI_HSI_LINE_ST_TX_FLAG_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_TX_FLAG_STATUS from a register value.
 #define BG_MIPI_HSI_LINE_ST_TX_FLAG_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_TX_FLAG_STATUS) >> BP_MIPI_HSI_LINE_ST_TX_FLAG_STATUS)
-
 //@}
 
 /*! @name Register MIPI_HSI_LINE_ST, field TX_READY_STATUS[2] (RO)
@@ -3048,13 +2870,11 @@ typedef union _hw_mipi_hsi_line_st
  * This field reflects the tx_ready pin(only for debug).
  */
 //@{
-
 #define BP_MIPI_HSI_LINE_ST_TX_READY_STATUS      (2)      //!< Bit position for MIPI_HSI_LINE_ST_TX_READY_STATUS.
 #define BM_MIPI_HSI_LINE_ST_TX_READY_STATUS      (0x00000004)  //!< Bit mask for MIPI_HSI_LINE_ST_TX_READY_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_TX_READY_STATUS from a register value.
 #define BG_MIPI_HSI_LINE_ST_TX_READY_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_TX_READY_STATUS) >> BP_MIPI_HSI_LINE_ST_TX_READY_STATUS)
-
 //@}
 
 /*! @name Register MIPI_HSI_LINE_ST, field TX_WAKEUP_STATUS[3] (RO)
@@ -3062,13 +2882,11 @@ typedef union _hw_mipi_hsi_line_st
  * This field reflects the tx_wake pin(only for debug).
  */
 //@{
-
 #define BP_MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS      (3)      //!< Bit position for MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS.
 #define BM_MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS      (0x00000008)  //!< Bit mask for MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS from a register value.
 #define BG_MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS) >> BP_MIPI_HSI_LINE_ST_TX_WAKEUP_STATUS)
-
 //@}
 
 /*! @name Register MIPI_HSI_LINE_ST, field RX_DATA_STATUS[4] (RO)
@@ -3076,13 +2894,11 @@ typedef union _hw_mipi_hsi_line_st
  * This field reflects the rx_data pin(only for debug).
  */
 //@{
-
 #define BP_MIPI_HSI_LINE_ST_RX_DATA_STATUS      (4)      //!< Bit position for MIPI_HSI_LINE_ST_RX_DATA_STATUS.
 #define BM_MIPI_HSI_LINE_ST_RX_DATA_STATUS      (0x00000010)  //!< Bit mask for MIPI_HSI_LINE_ST_RX_DATA_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_RX_DATA_STATUS from a register value.
 #define BG_MIPI_HSI_LINE_ST_RX_DATA_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_RX_DATA_STATUS) >> BP_MIPI_HSI_LINE_ST_RX_DATA_STATUS)
-
 //@}
 
 /*! @name Register MIPI_HSI_LINE_ST, field RX_FLAG_STATUS[5] (RO)
@@ -3090,13 +2906,11 @@ typedef union _hw_mipi_hsi_line_st
  * This field reflects the rx_flag pin(only for debug).
  */
 //@{
-
 #define BP_MIPI_HSI_LINE_ST_RX_FLAG_STATUS      (5)      //!< Bit position for MIPI_HSI_LINE_ST_RX_FLAG_STATUS.
 #define BM_MIPI_HSI_LINE_ST_RX_FLAG_STATUS      (0x00000020)  //!< Bit mask for MIPI_HSI_LINE_ST_RX_FLAG_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_RX_FLAG_STATUS from a register value.
 #define BG_MIPI_HSI_LINE_ST_RX_FLAG_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_RX_FLAG_STATUS) >> BP_MIPI_HSI_LINE_ST_RX_FLAG_STATUS)
-
 //@}
 
 /*! @name Register MIPI_HSI_LINE_ST, field RX_READY_STATUS[6] (RO)
@@ -3104,13 +2918,11 @@ typedef union _hw_mipi_hsi_line_st
  * This field reflects the rx_rdy pin(only for debug).
  */
 //@{
-
 #define BP_MIPI_HSI_LINE_ST_RX_READY_STATUS      (6)      //!< Bit position for MIPI_HSI_LINE_ST_RX_READY_STATUS.
 #define BM_MIPI_HSI_LINE_ST_RX_READY_STATUS      (0x00000040)  //!< Bit mask for MIPI_HSI_LINE_ST_RX_READY_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_RX_READY_STATUS from a register value.
 #define BG_MIPI_HSI_LINE_ST_RX_READY_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_RX_READY_STATUS) >> BP_MIPI_HSI_LINE_ST_RX_READY_STATUS)
-
 //@}
 
 /*! @name Register MIPI_HSI_LINE_ST, field RX_WAKEUP_STATUS[7] (RO)
@@ -3118,13 +2930,11 @@ typedef union _hw_mipi_hsi_line_st
  * This field reflects the rx_wake pin(only for debug).
  */
 //@{
-
 #define BP_MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS      (7)      //!< Bit position for MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS.
 #define BM_MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS      (0x00000080)  //!< Bit mask for MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS.
 
 //! @brief Get value of MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS from a register value.
 #define BG_MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS) >> BP_MIPI_HSI_LINE_ST_RX_WAKEUP_STATUS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3185,7 +2995,6 @@ typedef union _hw_mipi_hsi_id_bit
  * - 4 - 4 bits
  */
 //@{
-
 #define BP_MIPI_HSI_ID_BIT_TX_CH      (0)      //!< Bit position for MIPI_HSI_ID_BIT_TX_CH.
 #define BM_MIPI_HSI_ID_BIT_TX_CH      (0x00000007)  //!< Bit mask for MIPI_HSI_ID_BIT_TX_CH.
 
@@ -3199,7 +3008,6 @@ typedef union _hw_mipi_hsi_id_bit
 //! @brief Set the TX_CH field to a new value.
 #define BW_MIPI_HSI_ID_BIT_TX_CH(v)   (HW_MIPI_HSI_ID_BIT_WR((HW_MIPI_HSI_ID_BIT_RD() & ~BM_MIPI_HSI_ID_BIT_TX_CH) | BF_MIPI_HSI_ID_BIT_TX_CH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ID_BIT, field RX_CH[6:4] (RW)
@@ -3214,7 +3022,6 @@ typedef union _hw_mipi_hsi_id_bit
  * - 4 - 4 bits
  */
 //@{
-
 #define BP_MIPI_HSI_ID_BIT_RX_CH      (4)      //!< Bit position for MIPI_HSI_ID_BIT_RX_CH.
 #define BM_MIPI_HSI_ID_BIT_RX_CH      (0x00000070)  //!< Bit mask for MIPI_HSI_ID_BIT_RX_CH.
 
@@ -3228,7 +3035,6 @@ typedef union _hw_mipi_hsi_id_bit
 //! @brief Set the RX_CH field to a new value.
 #define BW_MIPI_HSI_ID_BIT_RX_CH(v)   (HW_MIPI_HSI_ID_BIT_WR((HW_MIPI_HSI_ID_BIT_RD() & ~BM_MIPI_HSI_ID_BIT_RX_CH) | BF_MIPI_HSI_ID_BIT_RX_CH(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3313,7 +3119,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH0      (0)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH0.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH0      (0x00000001)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH0.
 
@@ -3327,7 +3132,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH0 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH0(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH0) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH1[1] (RW)
@@ -3339,7 +3143,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH1      (1)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH1.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH1      (0x00000002)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH1.
 
@@ -3353,7 +3156,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH1 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH1(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH1) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH2[2] (RW)
@@ -3365,7 +3167,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH2      (2)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH2.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH2      (0x00000004)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH2.
 
@@ -3379,7 +3180,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH2 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH2(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH2) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH3[3] (RW)
@@ -3391,7 +3191,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH3      (3)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH3.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH3      (0x00000008)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH3.
 
@@ -3405,7 +3204,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH3 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH3(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH3) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH4[4] (RW)
@@ -3417,7 +3215,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH4      (4)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH4.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH4      (0x00000010)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH4.
 
@@ -3431,7 +3228,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH4 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH4(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH4) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH5[5] (RW)
@@ -3443,7 +3239,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH5      (5)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH5.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH5      (0x00000020)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH5.
 
@@ -3457,7 +3252,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH5 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH5(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH5) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH6[6] (RW)
@@ -3469,7 +3263,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH6      (6)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH6.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH6      (0x00000040)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH6.
 
@@ -3483,7 +3276,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH6 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH6(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH6) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH7[7] (RW)
@@ -3495,7 +3287,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH7      (7)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH7.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH7      (0x00000080)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH7.
 
@@ -3509,7 +3300,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH7 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH7(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH7) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH7(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH8[8] (RW)
@@ -3521,7 +3311,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH8      (8)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH8.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH8      (0x00000100)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH8.
 
@@ -3535,7 +3324,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH8 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH8(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH8) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH9[9] (RW)
@@ -3547,7 +3335,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH9      (9)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH9.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH9      (0x00000200)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH9.
 
@@ -3561,7 +3348,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH9 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH9(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH9) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH10[10] (RW)
@@ -3573,7 +3359,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH10      (10)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH10.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH10      (0x00000400)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH10.
 
@@ -3587,7 +3372,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH10 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH10(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH10) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH11[11] (RW)
@@ -3599,7 +3383,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH11      (11)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH11.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH11      (0x00000800)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH11.
 
@@ -3613,7 +3396,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH11 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH11(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH11) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH12[12] (RW)
@@ -3625,7 +3407,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH12      (12)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH12.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH12      (0x00001000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH12.
 
@@ -3639,7 +3420,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH12 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH12(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH12) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH13[13] (RW)
@@ -3651,7 +3431,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH13      (13)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH13.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH13      (0x00002000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH13.
 
@@ -3665,7 +3444,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH13 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH13(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH13) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH14[14] (RW)
@@ -3677,7 +3455,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH14      (14)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH14.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH14      (0x00004000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH14.
 
@@ -3691,7 +3468,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH14 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH14(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH14) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH15[15] (RW)
@@ -3703,7 +3479,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Full (3/4th of fifo size)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_RX_CH15      (15)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_RX_CH15.
 #define BM_MIPI_HSI_FIFO_THR_CONF_RX_CH15      (0x00008000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_RX_CH15.
 
@@ -3717,7 +3492,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the RX_CH15 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_RX_CH15(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_RX_CH15) | BF_MIPI_HSI_FIFO_THR_CONF_RX_CH15(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH0[16] (RW)
@@ -3729,7 +3503,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH0      (16)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH0.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH0      (0x00010000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH0.
 
@@ -3743,7 +3516,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH0 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH0(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH0) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH1[17] (RW)
@@ -3755,7 +3527,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH1      (17)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH1.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH1      (0x00020000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH1.
 
@@ -3769,7 +3540,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH1 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH1(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH1) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH2[18] (RW)
@@ -3781,7 +3551,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH2      (18)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH2.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH2      (0x00040000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH2.
 
@@ -3795,7 +3564,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH2 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH2(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH2) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH3[19] (RW)
@@ -3807,7 +3575,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH3      (19)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH3.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH3      (0x00080000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH3.
 
@@ -3821,7 +3588,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH3 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH3(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH3) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH4[20] (RW)
@@ -3833,7 +3599,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH4      (20)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH4.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH4      (0x00100000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH4.
 
@@ -3847,7 +3612,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH4 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH4(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH4) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH5[21] (RW)
@@ -3859,7 +3623,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH5      (21)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH5.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH5      (0x00200000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH5.
 
@@ -3873,7 +3636,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH5 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH5(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH5) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH6[22] (RW)
@@ -3885,7 +3647,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH6      (22)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH6.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH6      (0x00400000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH6.
 
@@ -3899,7 +3660,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH6 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH6(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH6) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH7[23] (RW)
@@ -3911,7 +3671,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH7      (23)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH7.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH7      (0x00800000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH7.
 
@@ -3925,7 +3684,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH7 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH7(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH7) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH7(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH8[24] (RW)
@@ -3937,7 +3695,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH8      (24)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH8.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH8      (0x01000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH8.
 
@@ -3951,7 +3708,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH8 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH8(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH8) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH9[25] (RW)
@@ -3963,7 +3719,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH9      (25)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH9.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH9      (0x02000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH9.
 
@@ -3977,7 +3732,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH9 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH9(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH9) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH10[26] (RW)
@@ -3989,7 +3743,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH10      (26)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH10.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH10      (0x04000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH10.
 
@@ -4003,7 +3756,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH10 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH10(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH10) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH11[27] (RW)
@@ -4015,7 +3767,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH11      (27)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH11.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH11      (0x08000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH11.
 
@@ -4029,7 +3780,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH11 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH11(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH11) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH12[28] (RW)
@@ -4041,7 +3791,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH12      (28)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH12.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH12      (0x10000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH12.
 
@@ -4055,7 +3804,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH12 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH12(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH12) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH13[29] (RW)
@@ -4067,7 +3815,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH13      (29)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH13.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH13      (0x20000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH13.
 
@@ -4081,7 +3828,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH13 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH13(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH13) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH14[30] (RW)
@@ -4093,7 +3839,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH14      (30)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH14.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH14      (0x40000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH14.
 
@@ -4107,7 +3852,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH14 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH14(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH14) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH15[31] (RW)
@@ -4119,7 +3863,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
  * - 1 - Almost Empty (fifo size / 4)
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_CONF_TX_CH15      (31)      //!< Bit position for MIPI_HSI_FIFO_THR_CONF_TX_CH15.
 #define BM_MIPI_HSI_FIFO_THR_CONF_TX_CH15      (0x80000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_CONF_TX_CH15.
 
@@ -4133,7 +3876,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //! @brief Set the TX_CH15 field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_CONF_TX_CH15(v)   (HW_MIPI_HSI_FIFO_THR_CONF_WR((HW_MIPI_HSI_FIFO_THR_CONF_RD() & ~BM_MIPI_HSI_FIFO_THR_CONF_TX_CH15) | BF_MIPI_HSI_FIFO_THR_CONF_TX_CH15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4211,7 +3953,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH0      (0)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH0.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH0      (0x00000001)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH0.
 
@@ -4220,7 +3961,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH0.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH0) & BM_MIPI_HSI_CH_SFTRST_RX_CH0)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH1[1] (WO)
@@ -4229,7 +3969,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH1      (1)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH1.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH1      (0x00000002)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH1.
 
@@ -4238,7 +3977,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH1.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH1) & BM_MIPI_HSI_CH_SFTRST_RX_CH1)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH2[2] (WO)
@@ -4247,7 +3985,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH2      (2)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH2.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH2      (0x00000004)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH2.
 
@@ -4256,7 +3993,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH2.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH2) & BM_MIPI_HSI_CH_SFTRST_RX_CH2)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH3[3] (WO)
@@ -4265,7 +4001,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH3      (3)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH3.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH3      (0x00000008)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH3.
 
@@ -4274,7 +4009,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH3.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH3) & BM_MIPI_HSI_CH_SFTRST_RX_CH3)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH4[4] (WO)
@@ -4283,7 +4017,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH4      (4)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH4.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH4      (0x00000010)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH4.
 
@@ -4292,7 +4025,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH4.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH4) & BM_MIPI_HSI_CH_SFTRST_RX_CH4)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH5[5] (WO)
@@ -4301,7 +4033,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH5      (5)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH5.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH5      (0x00000020)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH5.
 
@@ -4310,7 +4041,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH5.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH5) & BM_MIPI_HSI_CH_SFTRST_RX_CH5)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH6[6] (WO)
@@ -4319,7 +4049,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH6      (6)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH6.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH6      (0x00000040)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH6.
 
@@ -4328,7 +4057,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH6.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH6) & BM_MIPI_HSI_CH_SFTRST_RX_CH6)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH7[7] (WO)
@@ -4337,7 +4065,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH7      (7)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH7.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH7      (0x00000080)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH7.
 
@@ -4346,7 +4073,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH7.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH7) & BM_MIPI_HSI_CH_SFTRST_RX_CH7)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH8[8] (WO)
@@ -4355,7 +4081,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH8      (8)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH8.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH8      (0x00000100)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH8.
 
@@ -4364,7 +4089,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH8.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH8) & BM_MIPI_HSI_CH_SFTRST_RX_CH8)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH9[9] (WO)
@@ -4373,7 +4097,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH9      (9)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH9.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH9      (0x00000200)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH9.
 
@@ -4382,7 +4105,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH9.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH9) & BM_MIPI_HSI_CH_SFTRST_RX_CH9)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH10[10] (WO)
@@ -4391,7 +4113,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH10      (10)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH10.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH10      (0x00000400)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH10.
 
@@ -4400,7 +4121,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH10.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH10) & BM_MIPI_HSI_CH_SFTRST_RX_CH10)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH11[11] (WO)
@@ -4409,7 +4129,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH11      (11)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH11.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH11      (0x00000800)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH11.
 
@@ -4418,7 +4137,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH11.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH11) & BM_MIPI_HSI_CH_SFTRST_RX_CH11)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH12[12] (WO)
@@ -4427,7 +4145,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH12      (12)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH12.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH12      (0x00001000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH12.
 
@@ -4436,7 +4153,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH12.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH12) & BM_MIPI_HSI_CH_SFTRST_RX_CH12)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH13[13] (WO)
@@ -4445,7 +4161,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH13      (13)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH13.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH13      (0x00002000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH13.
 
@@ -4454,7 +4169,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH13.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH13) & BM_MIPI_HSI_CH_SFTRST_RX_CH13)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH14[14] (WO)
@@ -4463,7 +4177,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH14      (14)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH14.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH14      (0x00004000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH14.
 
@@ -4472,7 +4185,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH14.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH14) & BM_MIPI_HSI_CH_SFTRST_RX_CH14)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field RX_CH15[15] (WO)
@@ -4481,7 +4193,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_RX_CH15      (15)      //!< Bit position for MIPI_HSI_CH_SFTRST_RX_CH15.
 #define BM_MIPI_HSI_CH_SFTRST_RX_CH15      (0x00008000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_RX_CH15.
 
@@ -4490,7 +4201,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_RX_CH15.
 #define BF_MIPI_HSI_CH_SFTRST_RX_CH15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_RX_CH15) & BM_MIPI_HSI_CH_SFTRST_RX_CH15)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH0[16] (WO)
@@ -4499,7 +4209,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH0      (16)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH0.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH0      (0x00010000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH0.
 
@@ -4508,7 +4217,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH0.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH0) & BM_MIPI_HSI_CH_SFTRST_TX_CH0)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH1[17] (WO)
@@ -4517,7 +4225,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH1      (17)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH1.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH1      (0x00020000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH1.
 
@@ -4526,7 +4233,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH1.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH1) & BM_MIPI_HSI_CH_SFTRST_TX_CH1)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH2[18] (WO)
@@ -4535,7 +4241,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH2      (18)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH2.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH2      (0x00040000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH2.
 
@@ -4544,7 +4249,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH2.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH2) & BM_MIPI_HSI_CH_SFTRST_TX_CH2)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH3[19] (WO)
@@ -4553,7 +4257,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH3      (19)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH3.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH3      (0x00080000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH3.
 
@@ -4562,7 +4265,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH3.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH3(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH3) & BM_MIPI_HSI_CH_SFTRST_TX_CH3)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH4[20] (WO)
@@ -4571,7 +4273,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH4      (20)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH4.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH4      (0x00100000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH4.
 
@@ -4580,7 +4281,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH4.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH4(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH4) & BM_MIPI_HSI_CH_SFTRST_TX_CH4)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH5[21] (WO)
@@ -4589,7 +4289,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH5      (21)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH5.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH5      (0x00200000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH5.
 
@@ -4598,7 +4297,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH5.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH5(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH5) & BM_MIPI_HSI_CH_SFTRST_TX_CH5)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH6[22] (WO)
@@ -4607,7 +4305,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH6      (22)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH6.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH6      (0x00400000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH6.
 
@@ -4616,7 +4313,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH6.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH6(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH6) & BM_MIPI_HSI_CH_SFTRST_TX_CH6)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH7[23] (WO)
@@ -4625,7 +4321,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH7      (23)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH7.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH7      (0x00800000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH7.
 
@@ -4634,7 +4329,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH7.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH7(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH7) & BM_MIPI_HSI_CH_SFTRST_TX_CH7)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH8[24] (WO)
@@ -4643,7 +4337,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH8      (24)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH8.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH8      (0x01000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH8.
 
@@ -4652,7 +4345,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH8.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH8) & BM_MIPI_HSI_CH_SFTRST_TX_CH8)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH9[25] (WO)
@@ -4661,7 +4353,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH9      (25)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH9.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH9      (0x02000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH9.
 
@@ -4670,7 +4361,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH9.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH9(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH9) & BM_MIPI_HSI_CH_SFTRST_TX_CH9)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH10[26] (WO)
@@ -4679,7 +4369,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH10      (26)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH10.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH10      (0x04000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH10.
 
@@ -4688,7 +4377,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH10.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH10(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH10) & BM_MIPI_HSI_CH_SFTRST_TX_CH10)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH11[27] (WO)
@@ -4697,7 +4385,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH11      (27)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH11.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH11      (0x08000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH11.
 
@@ -4706,7 +4393,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH11.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH11(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH11) & BM_MIPI_HSI_CH_SFTRST_TX_CH11)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH12[28] (WO)
@@ -4715,7 +4401,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH12      (28)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH12.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH12      (0x10000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH12.
 
@@ -4724,7 +4409,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH12.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH12(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH12) & BM_MIPI_HSI_CH_SFTRST_TX_CH12)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH13[29] (WO)
@@ -4733,7 +4417,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH13      (29)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH13.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH13      (0x20000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH13.
 
@@ -4742,7 +4425,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH13.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH13(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH13) & BM_MIPI_HSI_CH_SFTRST_TX_CH13)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH14[30] (WO)
@@ -4751,7 +4433,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH14      (30)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH14.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH14      (0x40000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH14.
 
@@ -4760,7 +4441,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH14.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH14(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH14) & BM_MIPI_HSI_CH_SFTRST_TX_CH14)
-
 //@}
 
 /*! @name Register MIPI_HSI_CH_SFTRST, field TX_CH15[31] (WO)
@@ -4769,7 +4449,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
  * (DMA and Fifo). When the reset operation complete, this bit will turn to zero automatically.
  */
 //@{
-
 #define BP_MIPI_HSI_CH_SFTRST_TX_CH15      (31)      //!< Bit position for MIPI_HSI_CH_SFTRST_TX_CH15.
 #define BM_MIPI_HSI_CH_SFTRST_TX_CH15      (0x80000000)  //!< Bit mask for MIPI_HSI_CH_SFTRST_TX_CH15.
 
@@ -4778,7 +4457,6 @@ typedef union _hw_mipi_hsi_ch_sftrst
 
 //! @brief Format value for bitfield MIPI_HSI_CH_SFTRST_TX_CH15.
 #define BF_MIPI_HSI_CH_SFTRST_TX_CH15(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_CH_SFTRST_TX_CH15) & BM_MIPI_HSI_CH_SFTRST_TX_CH15)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4842,13 +4520,11 @@ typedef union _hw_mipi_hsi_irqstat
  * - 1 - Threshold amount of data reached in TX/Rx FIFO Interrupt Status
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT      (0)      //!< Bit position for MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT.
 #define BM_MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT      (0x00000001)  //!< Bit mask for MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT from a register value.
 #define BG_MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT) >> BP_MIPI_HSI_IRQSTAT_FIFO_THRESHOLD_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT, field RX_WAKEUP_INT[1] (WO)
@@ -4860,7 +4536,6 @@ typedef union _hw_mipi_hsi_irqstat
  * - 1 - Receiver Wakeup event is occurred
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT      (1)      //!< Bit position for MIPI_HSI_IRQSTAT_RX_WAKEUP_INT.
 #define BM_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT      (0x00000002)  //!< Bit mask for MIPI_HSI_IRQSTAT_RX_WAKEUP_INT.
 
@@ -4869,7 +4544,6 @@ typedef union _hw_mipi_hsi_irqstat
 
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_RX_WAKEUP_INT.
 #define BF_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT) & BM_MIPI_HSI_IRQSTAT_RX_WAKEUP_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT, field RX_TIMEOUT_INT[2] (RO)
@@ -4882,13 +4556,11 @@ typedef union _hw_mipi_hsi_irqstat
  * - 1 - Error.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT      (2)      //!< Bit position for MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT.
 #define BM_MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT      (0x00000004)  //!< Bit mask for MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT) >> BP_MIPI_HSI_IRQSTAT_RX_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT, field DMA_INT[3] (RO)
@@ -4896,13 +4568,11 @@ typedef union _hw_mipi_hsi_irqstat
  * This bit is set when a Transmit or Receive Operation is completed for DMA.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_DMA_INT      (3)      //!< Bit position for MIPI_HSI_IRQSTAT_DMA_INT.
 #define BM_MIPI_HSI_IRQSTAT_DMA_INT      (0x00000008)  //!< Bit mask for MIPI_HSI_IRQSTAT_DMA_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_DMA_INT from a register value.
 #define BG_MIPI_HSI_IRQSTAT_DMA_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_DMA_INT) >> BP_MIPI_HSI_IRQSTAT_DMA_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT, field DMA_ERR_INT[4] (RO)
@@ -4915,13 +4585,11 @@ typedef union _hw_mipi_hsi_irqstat
  * - 1 - Error.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_DMA_ERR_INT      (4)      //!< Bit position for MIPI_HSI_IRQSTAT_DMA_ERR_INT.
 #define BM_MIPI_HSI_IRQSTAT_DMA_ERR_INT      (0x00000010)  //!< Bit mask for MIPI_HSI_IRQSTAT_DMA_ERR_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_DMA_ERR_INT from a register value.
 #define BG_MIPI_HSI_IRQSTAT_DMA_ERR_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_DMA_ERR_INT) >> BP_MIPI_HSI_IRQSTAT_DMA_ERR_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT, field TX_TIMEOUT_ERR_INT[5] (WO)
@@ -4933,7 +4601,6 @@ typedef union _hw_mipi_hsi_irqstat
  * - 1 - Error.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT      (5)      //!< Bit position for MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT.
 #define BM_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT      (0x00000020)  //!< Bit mask for MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT.
 
@@ -4942,7 +4609,6 @@ typedef union _hw_mipi_hsi_irqstat
 
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT.
 #define BF_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT) & BM_MIPI_HSI_IRQSTAT_TX_TIMEOUT_ERR_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT, field RX_ERROR_INT[6] (WO)
@@ -4954,7 +4620,6 @@ typedef union _hw_mipi_hsi_irqstat
  * - 1 - Error.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_RX_ERROR_INT      (6)      //!< Bit position for MIPI_HSI_IRQSTAT_RX_ERROR_INT.
 #define BM_MIPI_HSI_IRQSTAT_RX_ERROR_INT      (0x00000040)  //!< Bit mask for MIPI_HSI_IRQSTAT_RX_ERROR_INT.
 
@@ -4963,7 +4628,6 @@ typedef union _hw_mipi_hsi_irqstat
 
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_RX_ERROR_INT.
 #define BF_MIPI_HSI_IRQSTAT_RX_ERROR_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_RX_ERROR_INT) & BM_MIPI_HSI_IRQSTAT_RX_ERROR_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT, field RX_BREAK_INT[7] (WO)
@@ -4975,7 +4639,6 @@ typedef union _hw_mipi_hsi_irqstat
  * - 1 - Error.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_RX_BREAK_INT      (7)      //!< Bit position for MIPI_HSI_IRQSTAT_RX_BREAK_INT.
 #define BM_MIPI_HSI_IRQSTAT_RX_BREAK_INT      (0x00000080)  //!< Bit mask for MIPI_HSI_IRQSTAT_RX_BREAK_INT.
 
@@ -4984,7 +4647,6 @@ typedef union _hw_mipi_hsi_irqstat
 
 //! @brief Format value for bitfield MIPI_HSI_IRQSTAT_RX_BREAK_INT.
 #define BF_MIPI_HSI_IRQSTAT_RX_BREAK_INT(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_IRQSTAT_RX_BREAK_INT) & BM_MIPI_HSI_IRQSTAT_RX_BREAK_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT, field TX_EMPTY_INT[8] (RO)
@@ -4996,13 +4658,11 @@ typedef union _hw_mipi_hsi_irqstat
  * - 1 - All tx channel empty and tx state IDLE Interrupt Status
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_TX_EMPTY_INT      (8)      //!< Bit position for MIPI_HSI_IRQSTAT_TX_EMPTY_INT.
 #define BM_MIPI_HSI_IRQSTAT_TX_EMPTY_INT      (0x00000100)  //!< Bit mask for MIPI_HSI_IRQSTAT_TX_EMPTY_INT.
 
 //! @brief Get value of MIPI_HSI_IRQSTAT_TX_EMPTY_INT from a register value.
 #define BG_MIPI_HSI_IRQSTAT_TX_EMPTY_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_IRQSTAT_TX_EMPTY_INT) >> BP_MIPI_HSI_IRQSTAT_TX_EMPTY_INT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5065,7 +4725,6 @@ typedef union _hw_mipi_hsi_irqstat_en
  * - 1 - Interrupt status enabled for FIFO_THRESHOLD_INT_STATUS interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT      (0)      //!< Bit position for MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT.
 #define BM_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT      (0x00000001)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT.
 
@@ -5079,7 +4738,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 //! @brief Set the FIFO_THRESHOLD_INT field to a new value.
 #define BW_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT(v)   (HW_MIPI_HSI_IRQSTAT_EN_WR((HW_MIPI_HSI_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT) | BF_MIPI_HSI_IRQSTAT_EN_FIFO_THRESHOLD_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field RX_WAKEUP_INT[1] (RW)
@@ -5091,7 +4749,6 @@ typedef union _hw_mipi_hsi_irqstat_en
  * - 1 - Interrupt status enabled for RX_WAKEUP_INT_STATUS interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT      (1)      //!< Bit position for MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT.
 #define BM_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT      (0x00000002)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT.
 
@@ -5105,7 +4762,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 //! @brief Set the RX_WAKEUP_INT field to a new value.
 #define BW_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT(v)   (HW_MIPI_HSI_IRQSTAT_EN_WR((HW_MIPI_HSI_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT) | BF_MIPI_HSI_IRQSTAT_EN_RX_WAKEUP_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field RX_TIMEOUT_INT[2] (RW)
@@ -5117,7 +4773,6 @@ typedef union _hw_mipi_hsi_irqstat_en
  * - 1 - Interrupt status enabled for RX_TIMEOUT_INT_STATUS interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT      (2)      //!< Bit position for MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT.
 #define BM_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT      (0x00000004)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT.
 
@@ -5131,7 +4786,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 //! @brief Set the RX_TIMEOUT_INT field to a new value.
 #define BW_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT(v)   (HW_MIPI_HSI_IRQSTAT_EN_WR((HW_MIPI_HSI_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT) | BF_MIPI_HSI_IRQSTAT_EN_RX_TIMEOUT_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field DMA_INT[3] (RW)
@@ -5143,7 +4797,6 @@ typedef union _hw_mipi_hsi_irqstat_en
  * - 1 - Interrupt status enabled for DMA_INT_STATUS interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_EN_DMA_INT      (3)      //!< Bit position for MIPI_HSI_IRQSTAT_EN_DMA_INT.
 #define BM_MIPI_HSI_IRQSTAT_EN_DMA_INT      (0x00000008)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_DMA_INT.
 
@@ -5157,7 +4810,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 //! @brief Set the DMA_INT field to a new value.
 #define BW_MIPI_HSI_IRQSTAT_EN_DMA_INT(v)   (HW_MIPI_HSI_IRQSTAT_EN_WR((HW_MIPI_HSI_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_IRQSTAT_EN_DMA_INT) | BF_MIPI_HSI_IRQSTAT_EN_DMA_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field DMA_ERR_INT[4] (RW)
@@ -5169,7 +4821,6 @@ typedef union _hw_mipi_hsi_irqstat_en
  * - 1 - Interrupt status enabled for DMA_ERROR_INT_STATUS interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT      (4)      //!< Bit position for MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT.
 #define BM_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT      (0x00000010)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT.
 
@@ -5183,7 +4834,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 //! @brief Set the DMA_ERR_INT field to a new value.
 #define BW_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT(v)   (HW_MIPI_HSI_IRQSTAT_EN_WR((HW_MIPI_HSI_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT) | BF_MIPI_HSI_IRQSTAT_EN_DMA_ERR_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field TX_TIMEOUT_ERR_INT[5] (RW)
@@ -5195,7 +4845,6 @@ typedef union _hw_mipi_hsi_irqstat_en
  * - 1 - Interrupt status enabled for TX_TIMEOUT_ERR status interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT      (5)      //!< Bit position for MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT.
 #define BM_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT      (0x00000020)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT.
 
@@ -5209,7 +4858,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 //! @brief Set the TX_TIMEOUT_ERR_INT field to a new value.
 #define BW_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT(v)   (HW_MIPI_HSI_IRQSTAT_EN_WR((HW_MIPI_HSI_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT) | BF_MIPI_HSI_IRQSTAT_EN_TX_TIMEOUT_ERR_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field RX_ERROR_INT[6] (RW)
@@ -5221,7 +4869,6 @@ typedef union _hw_mipi_hsi_irqstat_en
  * - 1 - Interrupt status enabled for RX_ERROR status interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT      (6)      //!< Bit position for MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT.
 #define BM_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT      (0x00000040)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT.
 
@@ -5235,7 +4882,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 //! @brief Set the RX_ERROR_INT field to a new value.
 #define BW_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT(v)   (HW_MIPI_HSI_IRQSTAT_EN_WR((HW_MIPI_HSI_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT) | BF_MIPI_HSI_IRQSTAT_EN_RX_ERROR_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field RX_BREAK_INT[7] (RW)
@@ -5247,7 +4893,6 @@ typedef union _hw_mipi_hsi_irqstat_en
  * - 1 - Interrupt status enabled for RX_BREAK status interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT      (7)      //!< Bit position for MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT.
 #define BM_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT      (0x00000080)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT.
 
@@ -5261,7 +4906,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 //! @brief Set the RX_BREAK_INT field to a new value.
 #define BW_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT(v)   (HW_MIPI_HSI_IRQSTAT_EN_WR((HW_MIPI_HSI_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT) | BF_MIPI_HSI_IRQSTAT_EN_RX_BREAK_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field TX_EMPTY_INT[8] (RW)
@@ -5273,7 +4917,6 @@ typedef union _hw_mipi_hsi_irqstat_en
  * - 1 - Interrupt status enabled for TX_EMPTY_INT_STATUS interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT      (8)      //!< Bit position for MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT.
 #define BM_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT      (0x00000100)  //!< Bit mask for MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT.
 
@@ -5287,7 +4930,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 //! @brief Set the TX_EMPTY_INT field to a new value.
 #define BW_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT(v)   (HW_MIPI_HSI_IRQSTAT_EN_WR((HW_MIPI_HSI_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT) | BF_MIPI_HSI_IRQSTAT_EN_TX_EMPTY_INT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5350,7 +4992,6 @@ typedef union _hw_mipi_hsi_irqsig_en
  * - 1 - Interrupt signal enabled for HSI FIFO_THRESHOLD interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT      (0)      //!< Bit position for MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT.
 #define BM_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT      (0x00000001)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT.
 
@@ -5364,7 +5005,6 @@ typedef union _hw_mipi_hsi_irqsig_en
 //! @brief Set the FIFO_THRESHOLD_INT field to a new value.
 #define BW_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT(v)   (HW_MIPI_HSI_IRQSIG_EN_WR((HW_MIPI_HSI_IRQSIG_EN_RD() & ~BM_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT) | BF_MIPI_HSI_IRQSIG_EN_FIFO_THRESHOLD_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSIG_EN, field RX_WAKEUP_INT[1] (RW)
@@ -5376,7 +5016,6 @@ typedef union _hw_mipi_hsi_irqsig_en
  * - 1 - Interrupt signal enabled for HSI RX Wakeup interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT      (1)      //!< Bit position for MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT.
 #define BM_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT      (0x00000002)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT.
 
@@ -5390,7 +5029,6 @@ typedef union _hw_mipi_hsi_irqsig_en
 //! @brief Set the RX_WAKEUP_INT field to a new value.
 #define BW_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT(v)   (HW_MIPI_HSI_IRQSIG_EN_WR((HW_MIPI_HSI_IRQSIG_EN_RD() & ~BM_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT) | BF_MIPI_HSI_IRQSIG_EN_RX_WAKEUP_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSIG_EN, field RX_TIMEOUT_INT[2] (RW)
@@ -5402,7 +5040,6 @@ typedef union _hw_mipi_hsi_irqsig_en
  * - 1 - Interrupt signal enabled for RX TIMEOUT interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT      (2)      //!< Bit position for MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT.
 #define BM_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT      (0x00000004)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT.
 
@@ -5416,7 +5053,6 @@ typedef union _hw_mipi_hsi_irqsig_en
 //! @brief Set the RX_TIMEOUT_INT field to a new value.
 #define BW_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT(v)   (HW_MIPI_HSI_IRQSIG_EN_WR((HW_MIPI_HSI_IRQSIG_EN_RD() & ~BM_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT) | BF_MIPI_HSI_IRQSIG_EN_RX_TIMEOUT_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSIG_EN, field DMA_INT[3] (RW)
@@ -5428,7 +5064,6 @@ typedef union _hw_mipi_hsi_irqsig_en
  * - 1 - Interrupt signal enabled for DMA Completed interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSIG_EN_DMA_INT      (3)      //!< Bit position for MIPI_HSI_IRQSIG_EN_DMA_INT.
 #define BM_MIPI_HSI_IRQSIG_EN_DMA_INT      (0x00000008)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_DMA_INT.
 
@@ -5442,7 +5077,6 @@ typedef union _hw_mipi_hsi_irqsig_en
 //! @brief Set the DMA_INT field to a new value.
 #define BW_MIPI_HSI_IRQSIG_EN_DMA_INT(v)   (HW_MIPI_HSI_IRQSIG_EN_WR((HW_MIPI_HSI_IRQSIG_EN_RD() & ~BM_MIPI_HSI_IRQSIG_EN_DMA_INT) | BF_MIPI_HSI_IRQSIG_EN_DMA_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSIG_EN, field DMA_ERR_INT[4] (RW)
@@ -5454,7 +5088,6 @@ typedef union _hw_mipi_hsi_irqsig_en
  * - 1 - Interrupt signal enabled for DMA Error interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT      (4)      //!< Bit position for MIPI_HSI_IRQSIG_EN_DMA_ERR_INT.
 #define BM_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT      (0x00000010)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_DMA_ERR_INT.
 
@@ -5468,7 +5101,6 @@ typedef union _hw_mipi_hsi_irqsig_en
 //! @brief Set the DMA_ERR_INT field to a new value.
 #define BW_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT(v)   (HW_MIPI_HSI_IRQSIG_EN_WR((HW_MIPI_HSI_IRQSIG_EN_RD() & ~BM_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT) | BF_MIPI_HSI_IRQSIG_EN_DMA_ERR_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSIG_EN, field TX_TIMEOUT_ERR_INT[5] (RW)
@@ -5480,7 +5112,6 @@ typedef union _hw_mipi_hsi_irqsig_en
  * - 1 - Interrupt signal enabled for TX Timeout Error interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT      (5)      //!< Bit position for MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT.
 #define BM_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT      (0x00000020)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT.
 
@@ -5494,7 +5125,6 @@ typedef union _hw_mipi_hsi_irqsig_en
 //! @brief Set the TX_TIMEOUT_ERR_INT field to a new value.
 #define BW_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT(v)   (HW_MIPI_HSI_IRQSIG_EN_WR((HW_MIPI_HSI_IRQSIG_EN_RD() & ~BM_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT) | BF_MIPI_HSI_IRQSIG_EN_TX_TIMEOUT_ERR_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSIG_EN, field RX_ERROR_INT[6] (RW)
@@ -5506,7 +5136,6 @@ typedef union _hw_mipi_hsi_irqsig_en
  * - 1 - Interrupt signal enabled for RX Error interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT      (6)      //!< Bit position for MIPI_HSI_IRQSIG_EN_RX_ERROR_INT.
 #define BM_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT      (0x00000040)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_RX_ERROR_INT.
 
@@ -5520,7 +5149,6 @@ typedef union _hw_mipi_hsi_irqsig_en
 //! @brief Set the RX_ERROR_INT field to a new value.
 #define BW_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT(v)   (HW_MIPI_HSI_IRQSIG_EN_WR((HW_MIPI_HSI_IRQSIG_EN_RD() & ~BM_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT) | BF_MIPI_HSI_IRQSIG_EN_RX_ERROR_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSIG_EN, field RX_BREAK_INT[7] (RW)
@@ -5532,7 +5160,6 @@ typedef union _hw_mipi_hsi_irqsig_en
  * - 1 - Interrupt signal enabled for RX_BREAK interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT      (7)      //!< Bit position for MIPI_HSI_IRQSIG_EN_RX_BREAK_INT.
 #define BM_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT      (0x00000080)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_RX_BREAK_INT.
 
@@ -5546,7 +5173,6 @@ typedef union _hw_mipi_hsi_irqsig_en
 //! @brief Set the RX_BREAK_INT field to a new value.
 #define BW_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT(v)   (HW_MIPI_HSI_IRQSIG_EN_WR((HW_MIPI_HSI_IRQSIG_EN_RD() & ~BM_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT) | BF_MIPI_HSI_IRQSIG_EN_RX_BREAK_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_IRQSIG_EN, field TX_EMPTY_INT[8] (RW)
@@ -5558,7 +5184,6 @@ typedef union _hw_mipi_hsi_irqsig_en
  * - 1 - Interrupt signal enabled for HSI TX_EMPTY interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT      (8)      //!< Bit position for MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT.
 #define BM_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT      (0x00000100)  //!< Bit mask for MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT.
 
@@ -5572,7 +5197,6 @@ typedef union _hw_mipi_hsi_irqsig_en
 //! @brief Set the TX_EMPTY_INT field to a new value.
 #define BW_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT(v)   (HW_MIPI_HSI_IRQSIG_EN_WR((HW_MIPI_HSI_IRQSIG_EN_RD() & ~BM_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT) | BF_MIPI_HSI_IRQSIG_EN_TX_EMPTY_INT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5653,13 +5277,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 0 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT      (0)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT      (0x00000001)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH0_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH1_INT[1] (RO)
@@ -5671,13 +5293,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 1 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT      (1)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT      (0x00000002)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH1_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH2_INT[2] (RO)
@@ -5689,13 +5309,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 2 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT      (2)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT      (0x00000004)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH2_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH3_INT[3] (RO)
@@ -5707,13 +5325,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 3 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT      (3)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT      (0x00000008)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH3_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH4_INT[4] (RO)
@@ -5725,13 +5341,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 4 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT      (4)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT      (0x00000010)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH4_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH5_INT[5] (RO)
@@ -5743,13 +5357,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 5 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT      (5)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT      (0x00000020)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH5_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH6_INT[6] (RO)
@@ -5761,13 +5373,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 6 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT      (6)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT      (0x00000040)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH6_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH7_INT[7] (RO)
@@ -5779,13 +5389,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 7 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT      (7)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT      (0x00000080)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH7_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH8_INT[8] (RO)
@@ -5797,13 +5405,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 8 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT      (8)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT      (0x00000100)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH8_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH9_INT[9] (RO)
@@ -5815,13 +5421,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 9 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT      (9)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT      (0x00000200)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH9_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH10_INT[10] (RO)
@@ -5833,13 +5437,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 10 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT      (10)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT      (0x00000400)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH10_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH11_INT[11] (RO)
@@ -5851,13 +5453,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 11 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT      (11)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT      (0x00000800)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH11_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH12_INT[12] (RO)
@@ -5869,13 +5469,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 12 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT      (12)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT      (0x00001000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH12_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH13_INT[13] (RO)
@@ -5887,13 +5485,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 13 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT      (13)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT      (0x00002000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH13_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH14_INT[14] (RO)
@@ -5905,13 +5501,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 14 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT      (14)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT      (0x00004000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH14_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH15_INT[15] (RO)
@@ -5923,13 +5517,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Rx Channel 15 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT      (15)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT      (0x00008000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_RX_CH15_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH0_INT[16] (RO)
@@ -5941,13 +5533,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 0 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT      (16)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT      (0x00010000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH0_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH1_INT[17] (RO)
@@ -5959,13 +5549,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 1 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT      (17)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT      (0x00020000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH1_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH2_INT[18] (RO)
@@ -5977,13 +5565,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 2 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT      (18)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT      (0x00040000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH2_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH3_INT[19] (RO)
@@ -5995,13 +5581,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 3 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT      (19)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT      (0x00080000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH3_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH4_INT[20] (RO)
@@ -6013,13 +5597,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 4 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT      (20)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT      (0x00100000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH4_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH5_INT[21] (RO)
@@ -6031,13 +5613,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 5 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT      (21)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT      (0x00200000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH5_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH6_INT[22] (RO)
@@ -6049,13 +5629,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 6 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT      (22)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT      (0x00400000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH6_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH7_INT[23] (RO)
@@ -6067,13 +5645,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 7 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT      (23)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT      (0x00800000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH7_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH8_INT[24] (RO)
@@ -6085,13 +5661,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 8 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT      (24)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT      (0x01000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH8_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH9_INT[25] (RO)
@@ -6103,13 +5677,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 9 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT      (25)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT      (0x02000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH9_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH10_INT[26] (RO)
@@ -6121,13 +5693,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 10 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT      (26)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT      (0x04000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH10_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH11_INT[27] (RO)
@@ -6139,13 +5709,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 11 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT      (27)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT      (0x08000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH11_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH12_INT[28] (RO)
@@ -6157,13 +5725,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 12 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT      (28)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT      (0x10000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH12_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH13_INT[29] (RO)
@@ -6175,13 +5741,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 13 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT      (29)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT      (0x20000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH13_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH14_INT[30] (RO)
@@ -6193,13 +5757,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 14 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT      (30)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT      (0x40000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH14_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH15_INT[31] (RO)
@@ -6211,13 +5773,11 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
  * - 1 - Threshold amount of data reached in Tx Channel 15 FIFO
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT      (31)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT      (0x80000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT.
 
 //! @brief Get value of MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT from a register value.
 #define BG_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT) >> BP_MIPI_HSI_FIFO_THR_IRQSTAT_TX_CH15_INT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6302,7 +5862,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch0 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT      (0)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT      (0x00000001)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT.
 
@@ -6316,7 +5875,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH0_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH0_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH1_INT[1] (RW)
@@ -6328,7 +5886,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch1 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT      (1)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT      (0x00000002)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT.
 
@@ -6342,7 +5899,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH1_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH1_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH2_INT[2] (RW)
@@ -6354,7 +5910,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch2 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT      (2)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT      (0x00000004)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT.
 
@@ -6368,7 +5923,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH2_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH2_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH3_INT[3] (RW)
@@ -6380,7 +5934,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch3 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT      (3)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT      (0x00000008)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT.
 
@@ -6394,7 +5947,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH3_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH3_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH4_INT[4] (RW)
@@ -6406,7 +5958,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch4 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT      (4)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT      (0x00000010)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT.
 
@@ -6420,7 +5971,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH4_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH4_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH5_INT[5] (RW)
@@ -6432,7 +5982,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch5 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT      (5)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT      (0x00000020)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT.
 
@@ -6446,7 +5995,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH5_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH5_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH6_INT[6] (RW)
@@ -6458,7 +6006,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch6 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT      (6)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT      (0x00000040)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT.
 
@@ -6472,7 +6019,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH6_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH6_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH7_INT[7] (RW)
@@ -6484,7 +6030,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch7 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT      (7)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT      (0x00000080)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT.
 
@@ -6498,7 +6043,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH7_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH7_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH8_INT[8] (RW)
@@ -6510,7 +6054,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch8 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT      (8)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT      (0x00000100)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT.
 
@@ -6524,7 +6067,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH8_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH8_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH9_INT[9] (RW)
@@ -6536,7 +6078,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch9 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT      (9)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT      (0x00000200)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT.
 
@@ -6550,7 +6091,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH9_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH9_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH10_INT[10] (RW)
@@ -6562,7 +6102,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch10 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT      (10)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT      (0x00000400)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT.
 
@@ -6576,7 +6115,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH10_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH10_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH11_INT[11] (RW)
@@ -6588,7 +6126,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch11 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT      (11)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT      (0x00000800)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT.
 
@@ -6602,7 +6139,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH11_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH11_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH12_INT[12] (RW)
@@ -6614,7 +6150,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch12 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT      (12)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT      (0x00001000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT.
 
@@ -6628,7 +6163,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH12_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH12_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH13_INT[13] (RW)
@@ -6640,7 +6174,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch13 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT      (13)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT      (0x00002000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT.
 
@@ -6654,7 +6187,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH13_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH13_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH14_INT[14] (RW)
@@ -6666,7 +6198,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch14 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT      (14)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT      (0x00004000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT.
 
@@ -6680,7 +6211,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH14_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH14_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field RX_CH15_INT[15] (RW)
@@ -6692,7 +6222,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Rx Ch15 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT      (15)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT      (0x00008000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT.
 
@@ -6706,7 +6235,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the RX_CH15_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RX_CH15_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH0_INT[16] (RW)
@@ -6718,7 +6246,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch0 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT      (16)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT      (0x00010000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT.
 
@@ -6732,7 +6259,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH0_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH0_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH1_INT[17] (RW)
@@ -6744,7 +6270,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch1 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT      (17)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT      (0x00020000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT.
 
@@ -6758,7 +6283,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH1_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH1_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH2_INT[18] (RW)
@@ -6770,7 +6294,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch2 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT      (18)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT      (0x00040000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT.
 
@@ -6784,7 +6307,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH2_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH2_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH3_INT[19] (RW)
@@ -6796,7 +6318,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch3 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT      (19)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT      (0x00080000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT.
 
@@ -6810,7 +6331,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH3_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH3_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH4_INT[20] (RW)
@@ -6822,7 +6342,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch4 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT      (20)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT      (0x00100000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT.
 
@@ -6836,7 +6355,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH4_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH4_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH5_INT[21] (RW)
@@ -6848,7 +6366,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch5 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT      (21)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT      (0x00200000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT.
 
@@ -6862,7 +6379,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH5_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH5_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH6_INT[22] (RW)
@@ -6874,7 +6390,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch6 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT      (22)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT      (0x00400000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT.
 
@@ -6888,7 +6403,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH6_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH6_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH7_INT[23] (RW)
@@ -6900,7 +6414,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch7 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT      (23)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT      (0x00800000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT.
 
@@ -6914,7 +6427,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH7_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH7_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH8_INT[24] (RW)
@@ -6926,7 +6438,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch8 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT      (24)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT      (0x01000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT.
 
@@ -6940,7 +6451,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH8_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH8_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH9_INT[25] (RW)
@@ -6952,7 +6462,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch9 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT      (25)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT      (0x02000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT.
 
@@ -6966,7 +6475,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH9_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH9_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH10_INT[26] (RW)
@@ -6978,7 +6486,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch10 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT      (26)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT      (0x04000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT.
 
@@ -6992,7 +6499,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH10_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH10_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH11_INT[27] (RW)
@@ -7004,7 +6510,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch11 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT      (27)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT      (0x08000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT.
 
@@ -7018,7 +6523,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH11_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH11_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH12_INT[28] (RW)
@@ -7030,7 +6534,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch12 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT      (28)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT      (0x10000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT.
 
@@ -7044,7 +6547,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH12_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH12_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH13_INT[29] (RW)
@@ -7056,7 +6558,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch13 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT      (29)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT      (0x20000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT.
 
@@ -7070,7 +6571,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH13_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH13_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH14_INT[30] (RW)
@@ -7082,7 +6582,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch14 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT      (30)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT      (0x40000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT.
 
@@ -7096,7 +6595,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH14_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH14_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT_EN, field TX_CH15_INT[31] (RW)
@@ -7108,7 +6606,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
  * - 1 - Interrupt signal enabled for Tx Ch15 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT      (31)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT      (0x80000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT.
 
@@ -7122,7 +6619,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat_en
 //! @brief Set the TX_CH15_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT) | BF_MIPI_HSI_FIFO_THR_IRQSTAT_EN_TX_CH15_INT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7207,7 +6703,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch0 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT      (0)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT      (0x00000001)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT.
 
@@ -7221,7 +6716,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH0_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH0_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH1_INT[1] (RW)
@@ -7233,7 +6727,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch1 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT      (1)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT      (0x00000002)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT.
 
@@ -7247,7 +6740,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH1_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH1_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH2_INT[2] (RW)
@@ -7259,7 +6751,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch2 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT      (2)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT      (0x00000004)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT.
 
@@ -7273,7 +6764,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH2_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH2_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH3_INT[3] (RW)
@@ -7285,7 +6775,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch3 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT      (3)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT      (0x00000008)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT.
 
@@ -7299,7 +6788,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH3_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH3_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH4_INT[4] (RW)
@@ -7311,7 +6799,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch4 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT      (4)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT      (0x00000010)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT.
 
@@ -7325,7 +6812,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH4_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH4_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH5_INT[5] (RW)
@@ -7337,7 +6823,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch5 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT      (5)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT      (0x00000020)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT.
 
@@ -7351,7 +6836,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH5_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH5_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH6_INT[6] (RW)
@@ -7363,7 +6847,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch6 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT      (6)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT      (0x00000040)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT.
 
@@ -7377,7 +6860,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH6_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH6_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH7_INT[7] (RW)
@@ -7389,7 +6871,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch7 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT      (7)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT      (0x00000080)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT.
 
@@ -7403,7 +6884,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH7_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH7_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH8_INT[8] (RW)
@@ -7415,7 +6895,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch8 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT      (8)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT      (0x00000100)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT.
 
@@ -7429,7 +6908,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH8_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH8_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH9_INT[9] (RW)
@@ -7441,7 +6919,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch9 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT      (9)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT      (0x00000200)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT.
 
@@ -7455,7 +6932,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH9_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH9_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH10_INT[10] (RW)
@@ -7467,7 +6943,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch10 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT      (10)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT      (0x00000400)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT.
 
@@ -7481,7 +6956,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH10_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH10_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH11_INT[11] (RW)
@@ -7493,7 +6967,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch11 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT      (11)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT      (0x00000800)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT.
 
@@ -7507,7 +6980,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH11_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH11_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH12_INT[12] (RW)
@@ -7519,7 +6991,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch12 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT      (12)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT      (0x00001000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT.
 
@@ -7533,7 +7004,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH12_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH12_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH13_INT[13] (RW)
@@ -7545,7 +7015,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch13 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT      (13)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT      (0x00002000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT.
 
@@ -7559,7 +7028,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH13_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH13_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH14_INT[14] (RW)
@@ -7571,7 +7039,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch14 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT      (14)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT      (0x00004000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT.
 
@@ -7585,7 +7052,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH14_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH14_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field RX_CH15_INT[15] (RW)
@@ -7597,7 +7063,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Rx Ch15 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT      (15)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT      (0x00008000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT.
 
@@ -7611,7 +7076,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the RX_CH15_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_RX_CH15_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH0_INT[16] (RW)
@@ -7623,7 +7087,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch0 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT      (16)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT      (0x00010000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT.
 
@@ -7637,7 +7100,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH0_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH0_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH1_INT[17] (RW)
@@ -7649,7 +7111,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch1 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT      (17)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT      (0x00020000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT.
 
@@ -7663,7 +7124,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH1_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH1_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH2_INT[18] (RW)
@@ -7675,7 +7135,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch2 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT      (18)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT      (0x00040000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT.
 
@@ -7689,7 +7148,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH2_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH2_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH3_INT[19] (RW)
@@ -7701,7 +7159,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch3 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT      (19)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT      (0x00080000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT.
 
@@ -7715,7 +7172,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH3_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH3_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH4_INT[20] (RW)
@@ -7727,7 +7183,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch4 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT      (20)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT      (0x00100000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT.
 
@@ -7741,7 +7196,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH4_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH4_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH5_INT[21] (RW)
@@ -7753,7 +7207,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch5 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT      (21)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT      (0x00200000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT.
 
@@ -7767,7 +7220,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH5_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH5_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH6_INT[22] (RW)
@@ -7779,7 +7231,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch6 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT      (22)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT      (0x00400000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT.
 
@@ -7793,7 +7244,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH6_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH6_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH7_INT[23] (RW)
@@ -7805,7 +7255,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch7 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT      (23)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT      (0x00800000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT.
 
@@ -7819,7 +7268,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH7_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH7_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH8_INT[24] (RW)
@@ -7831,7 +7279,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch8 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT      (24)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT      (0x01000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT.
 
@@ -7845,7 +7292,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH8_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH8_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH9_INT[25] (RW)
@@ -7857,7 +7303,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch9 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT      (25)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT      (0x02000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT.
 
@@ -7871,7 +7316,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH9_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH9_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH10_INT[26] (RW)
@@ -7883,7 +7327,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch10 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT      (26)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT      (0x04000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT.
 
@@ -7897,7 +7340,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH10_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH10_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH11_INT[27] (RW)
@@ -7909,7 +7351,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch11 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT      (27)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT      (0x08000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT.
 
@@ -7923,7 +7364,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH11_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH11_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH12_INT[28] (RW)
@@ -7935,7 +7375,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch12 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT      (28)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT      (0x10000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT.
 
@@ -7949,7 +7388,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH12_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH12_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH13_INT[29] (RW)
@@ -7961,7 +7399,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch13 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT      (29)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT      (0x20000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT.
 
@@ -7975,7 +7412,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH13_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH13_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH14_INT[30] (RW)
@@ -7987,7 +7423,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch14 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT      (30)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT      (0x40000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT.
 
@@ -8001,7 +7436,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH14_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH14_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSIG_EN, field TX_CH15_INT[31] (RW)
@@ -8013,7 +7447,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
  * - 1 - Interrupt signal enabled for Tx Ch15 threshold Reached interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT      (31)      //!< Bit position for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT.
 #define BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT      (0x80000000)  //!< Bit mask for MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT.
 
@@ -8027,7 +7460,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //! @brief Set the TX_CH15_INT field to a new value.
 #define BW_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT(v)   (HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_WR((HW_MIPI_HSI_FIFO_THR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT) | BF_MIPI_HSI_FIFO_THR_IRQSIG_EN_TX_CH15_INT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8077,7 +7509,6 @@ typedef union _hw_mipi_hsi_tx_ch0_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH0_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH0_DP_DATA.
 #define BM_MIPI_HSI_TX_CH0_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH0_DP_DATA.
 
@@ -8091,7 +7522,6 @@ typedef union _hw_mipi_hsi_tx_ch0_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH0_DP_DATA(v)   (HW_MIPI_HSI_TX_CH0_DP_WR((HW_MIPI_HSI_TX_CH0_DP_RD() & ~BM_MIPI_HSI_TX_CH0_DP_DATA) | BF_MIPI_HSI_TX_CH0_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8141,7 +7571,6 @@ typedef union _hw_mipi_hsi_tx_ch1_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH1_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH1_DP_DATA.
 #define BM_MIPI_HSI_TX_CH1_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH1_DP_DATA.
 
@@ -8155,7 +7584,6 @@ typedef union _hw_mipi_hsi_tx_ch1_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH1_DP_DATA(v)   (HW_MIPI_HSI_TX_CH1_DP_WR((HW_MIPI_HSI_TX_CH1_DP_RD() & ~BM_MIPI_HSI_TX_CH1_DP_DATA) | BF_MIPI_HSI_TX_CH1_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8205,7 +7633,6 @@ typedef union _hw_mipi_hsi_tx_ch2_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH2_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH2_DP_DATA.
 #define BM_MIPI_HSI_TX_CH2_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH2_DP_DATA.
 
@@ -8219,7 +7646,6 @@ typedef union _hw_mipi_hsi_tx_ch2_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH2_DP_DATA(v)   (HW_MIPI_HSI_TX_CH2_DP_WR((HW_MIPI_HSI_TX_CH2_DP_RD() & ~BM_MIPI_HSI_TX_CH2_DP_DATA) | BF_MIPI_HSI_TX_CH2_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8269,7 +7695,6 @@ typedef union _hw_mipi_hsi_tx_ch3_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH3_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH3_DP_DATA.
 #define BM_MIPI_HSI_TX_CH3_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH3_DP_DATA.
 
@@ -8283,7 +7708,6 @@ typedef union _hw_mipi_hsi_tx_ch3_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH3_DP_DATA(v)   (HW_MIPI_HSI_TX_CH3_DP_WR((HW_MIPI_HSI_TX_CH3_DP_RD() & ~BM_MIPI_HSI_TX_CH3_DP_DATA) | BF_MIPI_HSI_TX_CH3_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8333,7 +7757,6 @@ typedef union _hw_mipi_hsi_tx_ch4_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH4_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH4_DP_DATA.
 #define BM_MIPI_HSI_TX_CH4_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH4_DP_DATA.
 
@@ -8347,7 +7770,6 @@ typedef union _hw_mipi_hsi_tx_ch4_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH4_DP_DATA(v)   (HW_MIPI_HSI_TX_CH4_DP_WR((HW_MIPI_HSI_TX_CH4_DP_RD() & ~BM_MIPI_HSI_TX_CH4_DP_DATA) | BF_MIPI_HSI_TX_CH4_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8397,7 +7819,6 @@ typedef union _hw_mipi_hsi_tx_ch5_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH5_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH5_DP_DATA.
 #define BM_MIPI_HSI_TX_CH5_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH5_DP_DATA.
 
@@ -8411,7 +7832,6 @@ typedef union _hw_mipi_hsi_tx_ch5_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH5_DP_DATA(v)   (HW_MIPI_HSI_TX_CH5_DP_WR((HW_MIPI_HSI_TX_CH5_DP_RD() & ~BM_MIPI_HSI_TX_CH5_DP_DATA) | BF_MIPI_HSI_TX_CH5_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8461,7 +7881,6 @@ typedef union _hw_mipi_hsi_tx_ch6_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH6_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH6_DP_DATA.
 #define BM_MIPI_HSI_TX_CH6_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH6_DP_DATA.
 
@@ -8475,7 +7894,6 @@ typedef union _hw_mipi_hsi_tx_ch6_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH6_DP_DATA(v)   (HW_MIPI_HSI_TX_CH6_DP_WR((HW_MIPI_HSI_TX_CH6_DP_RD() & ~BM_MIPI_HSI_TX_CH6_DP_DATA) | BF_MIPI_HSI_TX_CH6_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8525,7 +7943,6 @@ typedef union _hw_mipi_hsi_tx_ch7_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH7_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH7_DP_DATA.
 #define BM_MIPI_HSI_TX_CH7_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH7_DP_DATA.
 
@@ -8539,7 +7956,6 @@ typedef union _hw_mipi_hsi_tx_ch7_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH7_DP_DATA(v)   (HW_MIPI_HSI_TX_CH7_DP_WR((HW_MIPI_HSI_TX_CH7_DP_RD() & ~BM_MIPI_HSI_TX_CH7_DP_DATA) | BF_MIPI_HSI_TX_CH7_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8589,7 +8005,6 @@ typedef union _hw_mipi_hsi_tx_ch8_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH8_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH8_DP_DATA.
 #define BM_MIPI_HSI_TX_CH8_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH8_DP_DATA.
 
@@ -8603,7 +8018,6 @@ typedef union _hw_mipi_hsi_tx_ch8_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH8_DP_DATA(v)   (HW_MIPI_HSI_TX_CH8_DP_WR((HW_MIPI_HSI_TX_CH8_DP_RD() & ~BM_MIPI_HSI_TX_CH8_DP_DATA) | BF_MIPI_HSI_TX_CH8_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8653,7 +8067,6 @@ typedef union _hw_mipi_hsi_tx_ch9_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH9_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH9_DP_DATA.
 #define BM_MIPI_HSI_TX_CH9_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH9_DP_DATA.
 
@@ -8667,7 +8080,6 @@ typedef union _hw_mipi_hsi_tx_ch9_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH9_DP_DATA(v)   (HW_MIPI_HSI_TX_CH9_DP_WR((HW_MIPI_HSI_TX_CH9_DP_RD() & ~BM_MIPI_HSI_TX_CH9_DP_DATA) | BF_MIPI_HSI_TX_CH9_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8717,7 +8129,6 @@ typedef union _hw_mipi_hsi_tx_ch10_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH10_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH10_DP_DATA.
 #define BM_MIPI_HSI_TX_CH10_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH10_DP_DATA.
 
@@ -8731,7 +8142,6 @@ typedef union _hw_mipi_hsi_tx_ch10_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH10_DP_DATA(v)   (HW_MIPI_HSI_TX_CH10_DP_WR((HW_MIPI_HSI_TX_CH10_DP_RD() & ~BM_MIPI_HSI_TX_CH10_DP_DATA) | BF_MIPI_HSI_TX_CH10_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8781,7 +8191,6 @@ typedef union _hw_mipi_hsi_tx_ch11_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH11_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH11_DP_DATA.
 #define BM_MIPI_HSI_TX_CH11_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH11_DP_DATA.
 
@@ -8795,7 +8204,6 @@ typedef union _hw_mipi_hsi_tx_ch11_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH11_DP_DATA(v)   (HW_MIPI_HSI_TX_CH11_DP_WR((HW_MIPI_HSI_TX_CH11_DP_RD() & ~BM_MIPI_HSI_TX_CH11_DP_DATA) | BF_MIPI_HSI_TX_CH11_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8845,7 +8253,6 @@ typedef union _hw_mipi_hsi_tx_ch12_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH12_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH12_DP_DATA.
 #define BM_MIPI_HSI_TX_CH12_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH12_DP_DATA.
 
@@ -8859,7 +8266,6 @@ typedef union _hw_mipi_hsi_tx_ch12_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH12_DP_DATA(v)   (HW_MIPI_HSI_TX_CH12_DP_WR((HW_MIPI_HSI_TX_CH12_DP_RD() & ~BM_MIPI_HSI_TX_CH12_DP_DATA) | BF_MIPI_HSI_TX_CH12_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8909,7 +8315,6 @@ typedef union _hw_mipi_hsi_tx_ch13_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH13_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH13_DP_DATA.
 #define BM_MIPI_HSI_TX_CH13_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH13_DP_DATA.
 
@@ -8923,7 +8328,6 @@ typedef union _hw_mipi_hsi_tx_ch13_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH13_DP_DATA(v)   (HW_MIPI_HSI_TX_CH13_DP_WR((HW_MIPI_HSI_TX_CH13_DP_RD() & ~BM_MIPI_HSI_TX_CH13_DP_DATA) | BF_MIPI_HSI_TX_CH13_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8973,7 +8377,6 @@ typedef union _hw_mipi_hsi_tx_ch14_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH14_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH14_DP_DATA.
 #define BM_MIPI_HSI_TX_CH14_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH14_DP_DATA.
 
@@ -8987,7 +8390,6 @@ typedef union _hw_mipi_hsi_tx_ch14_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH14_DP_DATA(v)   (HW_MIPI_HSI_TX_CH14_DP_WR((HW_MIPI_HSI_TX_CH14_DP_RD() & ~BM_MIPI_HSI_TX_CH14_DP_DATA) | BF_MIPI_HSI_TX_CH14_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9037,7 +8439,6 @@ typedef union _hw_mipi_hsi_tx_ch15_dp
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_CH15_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH15_DP_DATA.
 #define BM_MIPI_HSI_TX_CH15_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH15_DP_DATA.
 
@@ -9051,7 +8452,6 @@ typedef union _hw_mipi_hsi_tx_ch15_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_TX_CH15_DP_DATA(v)   (HW_MIPI_HSI_TX_CH15_DP_WR((HW_MIPI_HSI_TX_CH15_DP_RD() & ~BM_MIPI_HSI_TX_CH15_DP_DATA) | BF_MIPI_HSI_TX_CH15_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9101,7 +8501,6 @@ typedef union _hw_mipi_hsi_rx_ch0_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH0_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH0_DP_DATA.
 #define BM_MIPI_HSI_RX_CH0_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH0_DP_DATA.
 
@@ -9115,7 +8514,6 @@ typedef union _hw_mipi_hsi_rx_ch0_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH0_DP_DATA(v)   (HW_MIPI_HSI_RX_CH0_DP_WR((HW_MIPI_HSI_RX_CH0_DP_RD() & ~BM_MIPI_HSI_RX_CH0_DP_DATA) | BF_MIPI_HSI_RX_CH0_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9165,7 +8563,6 @@ typedef union _hw_mipi_hsi_rx_ch1_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH1_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH1_DP_DATA.
 #define BM_MIPI_HSI_RX_CH1_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH1_DP_DATA.
 
@@ -9179,7 +8576,6 @@ typedef union _hw_mipi_hsi_rx_ch1_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH1_DP_DATA(v)   (HW_MIPI_HSI_RX_CH1_DP_WR((HW_MIPI_HSI_RX_CH1_DP_RD() & ~BM_MIPI_HSI_RX_CH1_DP_DATA) | BF_MIPI_HSI_RX_CH1_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9229,7 +8625,6 @@ typedef union _hw_mipi_hsi_rx_ch2_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH2_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH2_DP_DATA.
 #define BM_MIPI_HSI_RX_CH2_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH2_DP_DATA.
 
@@ -9243,7 +8638,6 @@ typedef union _hw_mipi_hsi_rx_ch2_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH2_DP_DATA(v)   (HW_MIPI_HSI_RX_CH2_DP_WR((HW_MIPI_HSI_RX_CH2_DP_RD() & ~BM_MIPI_HSI_RX_CH2_DP_DATA) | BF_MIPI_HSI_RX_CH2_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9293,7 +8687,6 @@ typedef union _hw_mipi_hsi_rx_ch3_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH3_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH3_DP_DATA.
 #define BM_MIPI_HSI_RX_CH3_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH3_DP_DATA.
 
@@ -9307,7 +8700,6 @@ typedef union _hw_mipi_hsi_rx_ch3_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH3_DP_DATA(v)   (HW_MIPI_HSI_RX_CH3_DP_WR((HW_MIPI_HSI_RX_CH3_DP_RD() & ~BM_MIPI_HSI_RX_CH3_DP_DATA) | BF_MIPI_HSI_RX_CH3_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9357,7 +8749,6 @@ typedef union _hw_mipi_hsi_rx_ch4_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH4_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH4_DP_DATA.
 #define BM_MIPI_HSI_RX_CH4_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH4_DP_DATA.
 
@@ -9371,7 +8762,6 @@ typedef union _hw_mipi_hsi_rx_ch4_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH4_DP_DATA(v)   (HW_MIPI_HSI_RX_CH4_DP_WR((HW_MIPI_HSI_RX_CH4_DP_RD() & ~BM_MIPI_HSI_RX_CH4_DP_DATA) | BF_MIPI_HSI_RX_CH4_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9421,7 +8811,6 @@ typedef union _hw_mipi_hsi_rx_ch5_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH5_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH5_DP_DATA.
 #define BM_MIPI_HSI_RX_CH5_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH5_DP_DATA.
 
@@ -9435,7 +8824,6 @@ typedef union _hw_mipi_hsi_rx_ch5_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH5_DP_DATA(v)   (HW_MIPI_HSI_RX_CH5_DP_WR((HW_MIPI_HSI_RX_CH5_DP_RD() & ~BM_MIPI_HSI_RX_CH5_DP_DATA) | BF_MIPI_HSI_RX_CH5_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9485,7 +8873,6 @@ typedef union _hw_mipi_hsi_rx_ch6_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH6_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH6_DP_DATA.
 #define BM_MIPI_HSI_RX_CH6_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH6_DP_DATA.
 
@@ -9499,7 +8886,6 @@ typedef union _hw_mipi_hsi_rx_ch6_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH6_DP_DATA(v)   (HW_MIPI_HSI_RX_CH6_DP_WR((HW_MIPI_HSI_RX_CH6_DP_RD() & ~BM_MIPI_HSI_RX_CH6_DP_DATA) | BF_MIPI_HSI_RX_CH6_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9549,7 +8935,6 @@ typedef union _hw_mipi_hsi_rx_ch7_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH7_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH7_DP_DATA.
 #define BM_MIPI_HSI_RX_CH7_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH7_DP_DATA.
 
@@ -9563,7 +8948,6 @@ typedef union _hw_mipi_hsi_rx_ch7_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH7_DP_DATA(v)   (HW_MIPI_HSI_RX_CH7_DP_WR((HW_MIPI_HSI_RX_CH7_DP_RD() & ~BM_MIPI_HSI_RX_CH7_DP_DATA) | BF_MIPI_HSI_RX_CH7_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9613,7 +8997,6 @@ typedef union _hw_mipi_hsi_rx_ch8_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH8_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH8_DP_DATA.
 #define BM_MIPI_HSI_RX_CH8_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH8_DP_DATA.
 
@@ -9627,7 +9010,6 @@ typedef union _hw_mipi_hsi_rx_ch8_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH8_DP_DATA(v)   (HW_MIPI_HSI_RX_CH8_DP_WR((HW_MIPI_HSI_RX_CH8_DP_RD() & ~BM_MIPI_HSI_RX_CH8_DP_DATA) | BF_MIPI_HSI_RX_CH8_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9677,7 +9059,6 @@ typedef union _hw_mipi_hsi_rx_ch9_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH9_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH9_DP_DATA.
 #define BM_MIPI_HSI_RX_CH9_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH9_DP_DATA.
 
@@ -9691,7 +9072,6 @@ typedef union _hw_mipi_hsi_rx_ch9_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH9_DP_DATA(v)   (HW_MIPI_HSI_RX_CH9_DP_WR((HW_MIPI_HSI_RX_CH9_DP_RD() & ~BM_MIPI_HSI_RX_CH9_DP_DATA) | BF_MIPI_HSI_RX_CH9_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9741,7 +9121,6 @@ typedef union _hw_mipi_hsi_rx_ch10_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH10_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH10_DP_DATA.
 #define BM_MIPI_HSI_RX_CH10_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH10_DP_DATA.
 
@@ -9755,7 +9134,6 @@ typedef union _hw_mipi_hsi_rx_ch10_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH10_DP_DATA(v)   (HW_MIPI_HSI_RX_CH10_DP_WR((HW_MIPI_HSI_RX_CH10_DP_RD() & ~BM_MIPI_HSI_RX_CH10_DP_DATA) | BF_MIPI_HSI_RX_CH10_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9805,7 +9183,6 @@ typedef union _hw_mipi_hsi_rx_ch11_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH11_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH11_DP_DATA.
 #define BM_MIPI_HSI_RX_CH11_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH11_DP_DATA.
 
@@ -9819,7 +9196,6 @@ typedef union _hw_mipi_hsi_rx_ch11_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH11_DP_DATA(v)   (HW_MIPI_HSI_RX_CH11_DP_WR((HW_MIPI_HSI_RX_CH11_DP_RD() & ~BM_MIPI_HSI_RX_CH11_DP_DATA) | BF_MIPI_HSI_RX_CH11_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9869,7 +9245,6 @@ typedef union _hw_mipi_hsi_rx_ch12_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH12_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH12_DP_DATA.
 #define BM_MIPI_HSI_RX_CH12_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH12_DP_DATA.
 
@@ -9883,7 +9258,6 @@ typedef union _hw_mipi_hsi_rx_ch12_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH12_DP_DATA(v)   (HW_MIPI_HSI_RX_CH12_DP_WR((HW_MIPI_HSI_RX_CH12_DP_RD() & ~BM_MIPI_HSI_RX_CH12_DP_DATA) | BF_MIPI_HSI_RX_CH12_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9933,7 +9307,6 @@ typedef union _hw_mipi_hsi_rx_ch13_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH13_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH13_DP_DATA.
 #define BM_MIPI_HSI_RX_CH13_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH13_DP_DATA.
 
@@ -9947,7 +9320,6 @@ typedef union _hw_mipi_hsi_rx_ch13_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH13_DP_DATA(v)   (HW_MIPI_HSI_RX_CH13_DP_WR((HW_MIPI_HSI_RX_CH13_DP_RD() & ~BM_MIPI_HSI_RX_CH13_DP_DATA) | BF_MIPI_HSI_RX_CH13_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9997,7 +9369,6 @@ typedef union _hw_mipi_hsi_rx_ch14_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH14_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH14_DP_DATA.
 #define BM_MIPI_HSI_RX_CH14_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH14_DP_DATA.
 
@@ -10011,7 +9382,6 @@ typedef union _hw_mipi_hsi_rx_ch14_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH14_DP_DATA(v)   (HW_MIPI_HSI_RX_CH14_DP_WR((HW_MIPI_HSI_RX_CH14_DP_RD() & ~BM_MIPI_HSI_RX_CH14_DP_DATA) | BF_MIPI_HSI_RX_CH14_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10061,7 +9431,6 @@ typedef union _hw_mipi_hsi_rx_ch15_dp
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_CH15_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH15_DP_DATA.
 #define BM_MIPI_HSI_RX_CH15_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH15_DP_DATA.
 
@@ -10075,7 +9444,6 @@ typedef union _hw_mipi_hsi_rx_ch15_dp
 //! @brief Set the DATA field to a new value.
 #define BW_MIPI_HSI_RX_CH15_DP_DATA(v)   (HW_MIPI_HSI_RX_CH15_DP_WR((HW_MIPI_HSI_RX_CH15_DP_RD() & ~BM_MIPI_HSI_RX_CH15_DP_DATA) | BF_MIPI_HSI_RX_CH15_DP_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10140,13 +9508,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * read the Rx ch0 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT      (16)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT      (0x00010000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH0_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH1_TIMEOUT_INT[17] (RO)
@@ -10157,13 +9523,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * read the Rx ch1 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT      (17)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT      (0x00020000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH1_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH2_TIMEOUT_INT[18] (RO)
@@ -10174,13 +9538,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * read the Rx ch2 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT      (18)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT      (0x00040000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH2_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH3_TIMEOUT_INT[19] (RO)
@@ -10191,13 +9553,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * read the Rx ch3 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT      (19)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT      (0x00080000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH3_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH4_TIMEOUT_INT[20] (RO)
@@ -10208,13 +9568,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * read the Rx ch4 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT      (20)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT      (0x00100000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH4_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH5_TIMEOUT_INT[21] (RO)
@@ -10225,13 +9583,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * read the Rx ch5 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT      (21)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT      (0x00200000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH5_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH6_TIMEOUT_INT[22] (RO)
@@ -10242,13 +9598,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * read the Rx ch6 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT      (22)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT      (0x00400000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH6_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH7_TIMEOUT_INT[23] (RO)
@@ -10259,13 +9613,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * read the Rx ch7 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT      (23)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT      (0x00800000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH7_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH8_TIMEOUT_INT[24] (RO)
@@ -10276,13 +9628,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * read the Rx ch8 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT      (24)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT      (0x01000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH8_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH9_TIMEOUT_INT[25] (RO)
@@ -10293,13 +9643,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * read the Rx ch9 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT      (25)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT      (0x02000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH9_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH10_TIMEOUT_INT[26] (RO)
@@ -10310,13 +9658,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * has to read the Rx ch10 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT      (26)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT      (0x04000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH10_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH11_TIMEOUT_INT[27] (RO)
@@ -10327,13 +9673,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * has to read the Rx ch11 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT      (27)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT      (0x08000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH11_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH12_TIMEOUT_INT[28] (RO)
@@ -10344,13 +9688,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * has to read the Rx ch12 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT      (28)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT      (0x10000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH12_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH13_TIMEOUT_INT[29] (RO)
@@ -10361,13 +9703,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * has to read the Rx ch13 fifo on Dword basis, till thefifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT      (29)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT      (0x20000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH13_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH14_TIMEOUT_INT[30] (RO)
@@ -10378,13 +9718,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * has to read the Rx ch14 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT      (30)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT      (0x40000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH14_TIMEOUT_INT)
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT, field RX_CH15_TIMEOUT_INT[31] (RO)
@@ -10395,13 +9733,11 @@ typedef union _hw_mipi_hsi_err_irqstat
  * has to read the Rx ch15 fifo on Dword basis, till the fifo is completely empty.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT      (31)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT.
 #define BM_MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT      (0x80000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT.
 
 //! @brief Get value of MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT from a register value.
 #define BG_MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT) >> BP_MIPI_HSI_ERR_IRQSTAT_RX_CH15_TIMEOUT_INT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10471,7 +9807,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch0 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN      (16)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN      (0x00010000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN.
 
@@ -10485,7 +9820,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH0_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH0_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH1_TIMEOUT_INT_EN[17] (RW)
@@ -10497,7 +9831,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch1 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN      (17)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN      (0x00020000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN.
 
@@ -10511,7 +9844,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH1_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH1_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH2_TIMEOUT_INT_EN[18] (RW)
@@ -10523,7 +9855,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch2 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN      (18)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN      (0x00040000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN.
 
@@ -10537,7 +9868,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH2_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH2_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH3_TIMEOUT_INT_EN[19] (RW)
@@ -10549,7 +9879,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch3 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN      (19)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN      (0x00080000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN.
 
@@ -10563,7 +9892,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH3_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH3_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH4_TIMEOUT_INT_EN[20] (RW)
@@ -10575,7 +9903,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch4 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN      (20)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN      (0x00100000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN.
 
@@ -10589,7 +9916,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH4_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH4_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH5_TIMEOUT_INT_EN[21] (RW)
@@ -10601,7 +9927,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch5 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN      (21)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN      (0x00200000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN.
 
@@ -10615,7 +9940,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH5_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH5_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH6_TIMEOUT_INT_EN[22] (RW)
@@ -10627,7 +9951,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch6 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN      (22)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN      (0x00400000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN.
 
@@ -10641,7 +9964,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH6_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH6_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH7_TIMEOUT_INT_EN[23] (RW)
@@ -10653,7 +9975,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch7 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN      (23)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN      (0x00800000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN.
 
@@ -10667,7 +9988,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH7_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH7_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH8_TIMEOUT_INT_EN[24] (RW)
@@ -10679,7 +9999,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch8 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN      (24)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN      (0x01000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN.
 
@@ -10693,7 +10012,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH8_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH8_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH9_TIMEOUT_INT_EN[25] (RW)
@@ -10705,7 +10023,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch9 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN      (25)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN      (0x02000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN.
 
@@ -10719,7 +10036,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH9_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH9_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH10_TIMEOUT_INT_EN[26] (RW)
@@ -10731,7 +10047,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch10 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN      (26)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN      (0x04000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN.
 
@@ -10745,7 +10060,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH10_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH10_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH11_TIMEOUT_INT_EN[27] (RW)
@@ -10757,7 +10071,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch11 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN      (27)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN      (0x08000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN.
 
@@ -10771,7 +10084,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH11_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH11_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH12_TIMEOUT_INT_EN[28] (RW)
@@ -10783,7 +10095,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch12 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN      (28)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN      (0x10000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN.
 
@@ -10797,7 +10108,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH12_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH12_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH13_TIMEOUT_INT_EN[29] (RW)
@@ -10809,7 +10119,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch13 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN      (29)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN      (0x20000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN.
 
@@ -10823,7 +10132,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH13_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH13_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH14_TIMEOUT_INT_EN[30] (RW)
@@ -10835,7 +10143,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch14 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN      (30)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN      (0x40000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN.
 
@@ -10849,7 +10156,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH14_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH14_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH15_TIMEOUT_INT_EN[31] (RW)
@@ -10861,7 +10167,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
  * - 1 - Interrupt status enabled for data timeout for ch15 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN      (31)      //!< Bit position for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN      (0x80000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN.
 
@@ -10875,7 +10180,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //! @brief Set the RX_CH15_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSTAT_EN_RX_CH15_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10945,7 +10249,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch0 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN      (16)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN      (0x00010000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN.
 
@@ -10959,7 +10262,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH0_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH0_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH1_TIMEOUT_INT_EN[17] (RW)
@@ -10971,7 +10273,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch1 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN      (17)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN      (0x00020000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN.
 
@@ -10985,7 +10286,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH1_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH1_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH2_TIMEOUT_INT_EN[18] (RW)
@@ -10997,7 +10297,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch2 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN      (18)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN      (0x00040000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN.
 
@@ -11011,7 +10310,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH2_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH2_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH3_TIMEOUT_INT_EN[19] (RW)
@@ -11023,7 +10321,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch3 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN      (19)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN      (0x00080000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN.
 
@@ -11037,7 +10334,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH3_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH3_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH4_TIMEOUT_INT_EN[20] (RW)
@@ -11049,7 +10345,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch4 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN      (20)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN      (0x00100000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN.
 
@@ -11063,7 +10358,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH4_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH4_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH5_TIMEOUT_INT_EN[21] (RW)
@@ -11075,7 +10369,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch5 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN      (21)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN      (0x00200000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN.
 
@@ -11089,7 +10382,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH5_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH5_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH6_TIMEOUT_INT_EN[22] (RW)
@@ -11101,7 +10393,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch6 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN      (22)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN      (0x00400000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN.
 
@@ -11115,7 +10406,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH6_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH6_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH7_TIMEOUT_INT_EN[23] (RW)
@@ -11127,7 +10417,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch7 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN      (23)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN      (0x00800000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN.
 
@@ -11141,7 +10430,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH7_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH7_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH8_TIMEOUT_INT_EN[24] (RW)
@@ -11153,7 +10441,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch8 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN      (24)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN      (0x01000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN.
 
@@ -11167,7 +10454,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH8_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH8_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH9_TIMEOUT_INT_EN[25] (RW)
@@ -11179,7 +10465,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch9 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN      (25)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN      (0x02000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN.
 
@@ -11193,7 +10478,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH9_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH9_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH10_TIMEOUT_INT_EN[26] (RW)
@@ -11205,7 +10489,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch10 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN      (26)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN      (0x04000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN.
 
@@ -11219,7 +10502,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH10_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH10_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH11_TIMEOUT_INT_EN[27] (RW)
@@ -11231,7 +10513,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch11 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN      (27)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN      (0x08000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN.
 
@@ -11245,7 +10526,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH11_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH11_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH12_TIMEOUT_INT_EN[28] (RW)
@@ -11257,7 +10537,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch12 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN      (28)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN      (0x10000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN.
 
@@ -11271,7 +10550,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH12_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH12_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH13_TIMEOUT_INT_EN[29] (RW)
@@ -11283,7 +10561,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch13 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN      (29)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN      (0x20000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN.
 
@@ -11297,7 +10574,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH13_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH13_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH14_TIMEOUT_INT_EN[30] (RW)
@@ -11309,7 +10585,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch14 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN      (30)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN      (0x40000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN.
 
@@ -11323,7 +10598,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH14_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH14_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSIG_EN, field RX_CH15_TIMEOUT_INT_EN[31] (RW)
@@ -11335,7 +10609,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
  * - 1 - Interrupt signal enabled for data timeout for ch15 interrupt.
  */
 //@{
-
 #define BP_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN      (31)      //!< Bit position for MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN.
 #define BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN      (0x80000000)  //!< Bit mask for MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN.
 
@@ -11349,7 +10622,6 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //! @brief Set the RX_CH15_TIMEOUT_INT_EN field to a new value.
 #define BW_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN(v)   (HW_MIPI_HSI_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN) | BF_MIPI_HSI_ERR_IRQSIG_EN_RX_CH15_TIMEOUT_INT_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11405,7 +10677,6 @@ typedef union _hw_mipi_hsi_tdma0_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA0_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA0_CONF_TRANS_LENGTH.
 
@@ -11419,7 +10690,6 @@ typedef union _hw_mipi_hsi_tdma0_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA0_CONF_WR((HW_MIPI_HSI_TDMA0_CONF_RD() & ~BM_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA0_CONF, field BURST_SIZE[28:25] (RW)
@@ -11429,7 +10699,6 @@ typedef union _hw_mipi_hsi_tdma0_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA0_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA0_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA0_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA0_CONF_BURST_SIZE.
 
@@ -11443,7 +10712,6 @@ typedef union _hw_mipi_hsi_tdma0_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA0_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA0_CONF_WR((HW_MIPI_HSI_TDMA0_CONF_RD() & ~BM_MIPI_HSI_TDMA0_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA0_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA0_CONF, field ENABLE[31] (RW)
@@ -11451,7 +10719,6 @@ typedef union _hw_mipi_hsi_tdma0_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA0_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA0_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA0_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA0_CONF_ENABLE.
 
@@ -11465,7 +10732,6 @@ typedef union _hw_mipi_hsi_tdma0_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA0_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA0_CONF_WR((HW_MIPI_HSI_TDMA0_CONF_RD() & ~BM_MIPI_HSI_TDMA0_CONF_ENABLE) | BF_MIPI_HSI_TDMA0_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11521,7 +10787,6 @@ typedef union _hw_mipi_hsi_tdma1_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA1_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA1_CONF_TRANS_LENGTH.
 
@@ -11535,7 +10800,6 @@ typedef union _hw_mipi_hsi_tdma1_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA1_CONF_WR((HW_MIPI_HSI_TDMA1_CONF_RD() & ~BM_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA1_CONF, field BURST_SIZE[28:25] (RW)
@@ -11545,7 +10809,6 @@ typedef union _hw_mipi_hsi_tdma1_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA1_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA1_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA1_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA1_CONF_BURST_SIZE.
 
@@ -11559,7 +10822,6 @@ typedef union _hw_mipi_hsi_tdma1_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA1_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA1_CONF_WR((HW_MIPI_HSI_TDMA1_CONF_RD() & ~BM_MIPI_HSI_TDMA1_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA1_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA1_CONF, field ENABLE[31] (RW)
@@ -11567,7 +10829,6 @@ typedef union _hw_mipi_hsi_tdma1_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA1_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA1_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA1_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA1_CONF_ENABLE.
 
@@ -11581,7 +10842,6 @@ typedef union _hw_mipi_hsi_tdma1_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA1_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA1_CONF_WR((HW_MIPI_HSI_TDMA1_CONF_RD() & ~BM_MIPI_HSI_TDMA1_CONF_ENABLE) | BF_MIPI_HSI_TDMA1_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11637,7 +10897,6 @@ typedef union _hw_mipi_hsi_tdma2_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA2_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA2_CONF_TRANS_LENGTH.
 
@@ -11651,7 +10910,6 @@ typedef union _hw_mipi_hsi_tdma2_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA2_CONF_WR((HW_MIPI_HSI_TDMA2_CONF_RD() & ~BM_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA2_CONF, field BURST_SIZE[28:25] (RW)
@@ -11661,7 +10919,6 @@ typedef union _hw_mipi_hsi_tdma2_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA2_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA2_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA2_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA2_CONF_BURST_SIZE.
 
@@ -11675,7 +10932,6 @@ typedef union _hw_mipi_hsi_tdma2_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA2_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA2_CONF_WR((HW_MIPI_HSI_TDMA2_CONF_RD() & ~BM_MIPI_HSI_TDMA2_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA2_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA2_CONF, field ENABLE[31] (RW)
@@ -11683,7 +10939,6 @@ typedef union _hw_mipi_hsi_tdma2_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA2_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA2_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA2_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA2_CONF_ENABLE.
 
@@ -11697,7 +10952,6 @@ typedef union _hw_mipi_hsi_tdma2_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA2_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA2_CONF_WR((HW_MIPI_HSI_TDMA2_CONF_RD() & ~BM_MIPI_HSI_TDMA2_CONF_ENABLE) | BF_MIPI_HSI_TDMA2_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11753,7 +11007,6 @@ typedef union _hw_mipi_hsi_tdma3_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA3_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA3_CONF_TRANS_LENGTH.
 
@@ -11767,7 +11020,6 @@ typedef union _hw_mipi_hsi_tdma3_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA3_CONF_WR((HW_MIPI_HSI_TDMA3_CONF_RD() & ~BM_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA3_CONF, field BURST_SIZE[28:25] (RW)
@@ -11777,7 +11029,6 @@ typedef union _hw_mipi_hsi_tdma3_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA3_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA3_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA3_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA3_CONF_BURST_SIZE.
 
@@ -11791,7 +11042,6 @@ typedef union _hw_mipi_hsi_tdma3_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA3_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA3_CONF_WR((HW_MIPI_HSI_TDMA3_CONF_RD() & ~BM_MIPI_HSI_TDMA3_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA3_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA3_CONF, field ENABLE[31] (RW)
@@ -11799,7 +11049,6 @@ typedef union _hw_mipi_hsi_tdma3_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA3_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA3_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA3_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA3_CONF_ENABLE.
 
@@ -11813,7 +11062,6 @@ typedef union _hw_mipi_hsi_tdma3_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA3_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA3_CONF_WR((HW_MIPI_HSI_TDMA3_CONF_RD() & ~BM_MIPI_HSI_TDMA3_CONF_ENABLE) | BF_MIPI_HSI_TDMA3_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11869,7 +11117,6 @@ typedef union _hw_mipi_hsi_tdma4_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA4_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA4_CONF_TRANS_LENGTH.
 
@@ -11883,7 +11130,6 @@ typedef union _hw_mipi_hsi_tdma4_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA4_CONF_WR((HW_MIPI_HSI_TDMA4_CONF_RD() & ~BM_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA4_CONF, field BURST_SIZE[28:25] (RW)
@@ -11893,7 +11139,6 @@ typedef union _hw_mipi_hsi_tdma4_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA4_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA4_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA4_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA4_CONF_BURST_SIZE.
 
@@ -11907,7 +11152,6 @@ typedef union _hw_mipi_hsi_tdma4_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA4_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA4_CONF_WR((HW_MIPI_HSI_TDMA4_CONF_RD() & ~BM_MIPI_HSI_TDMA4_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA4_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA4_CONF, field ENABLE[31] (RW)
@@ -11915,7 +11159,6 @@ typedef union _hw_mipi_hsi_tdma4_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA4_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA4_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA4_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA4_CONF_ENABLE.
 
@@ -11929,7 +11172,6 @@ typedef union _hw_mipi_hsi_tdma4_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA4_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA4_CONF_WR((HW_MIPI_HSI_TDMA4_CONF_RD() & ~BM_MIPI_HSI_TDMA4_CONF_ENABLE) | BF_MIPI_HSI_TDMA4_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11985,7 +11227,6 @@ typedef union _hw_mipi_hsi_tdma5_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA5_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA5_CONF_TRANS_LENGTH.
 
@@ -11999,7 +11240,6 @@ typedef union _hw_mipi_hsi_tdma5_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA5_CONF_WR((HW_MIPI_HSI_TDMA5_CONF_RD() & ~BM_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA5_CONF, field BURST_SIZE[28:25] (RW)
@@ -12009,7 +11249,6 @@ typedef union _hw_mipi_hsi_tdma5_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA5_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA5_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA5_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA5_CONF_BURST_SIZE.
 
@@ -12023,7 +11262,6 @@ typedef union _hw_mipi_hsi_tdma5_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA5_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA5_CONF_WR((HW_MIPI_HSI_TDMA5_CONF_RD() & ~BM_MIPI_HSI_TDMA5_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA5_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA5_CONF, field ENABLE[31] (RW)
@@ -12031,7 +11269,6 @@ typedef union _hw_mipi_hsi_tdma5_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA5_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA5_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA5_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA5_CONF_ENABLE.
 
@@ -12045,7 +11282,6 @@ typedef union _hw_mipi_hsi_tdma5_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA5_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA5_CONF_WR((HW_MIPI_HSI_TDMA5_CONF_RD() & ~BM_MIPI_HSI_TDMA5_CONF_ENABLE) | BF_MIPI_HSI_TDMA5_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12101,7 +11337,6 @@ typedef union _hw_mipi_hsi_tdma6_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA6_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA6_CONF_TRANS_LENGTH.
 
@@ -12115,7 +11350,6 @@ typedef union _hw_mipi_hsi_tdma6_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA6_CONF_WR((HW_MIPI_HSI_TDMA6_CONF_RD() & ~BM_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA6_CONF, field BURST_SIZE[28:25] (RW)
@@ -12125,7 +11359,6 @@ typedef union _hw_mipi_hsi_tdma6_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA6_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA6_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA6_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA6_CONF_BURST_SIZE.
 
@@ -12139,7 +11372,6 @@ typedef union _hw_mipi_hsi_tdma6_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA6_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA6_CONF_WR((HW_MIPI_HSI_TDMA6_CONF_RD() & ~BM_MIPI_HSI_TDMA6_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA6_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA6_CONF, field ENABLE[31] (RW)
@@ -12147,7 +11379,6 @@ typedef union _hw_mipi_hsi_tdma6_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA6_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA6_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA6_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA6_CONF_ENABLE.
 
@@ -12161,7 +11392,6 @@ typedef union _hw_mipi_hsi_tdma6_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA6_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA6_CONF_WR((HW_MIPI_HSI_TDMA6_CONF_RD() & ~BM_MIPI_HSI_TDMA6_CONF_ENABLE) | BF_MIPI_HSI_TDMA6_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12217,7 +11447,6 @@ typedef union _hw_mipi_hsi_tdma7_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA7_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA7_CONF_TRANS_LENGTH.
 
@@ -12231,7 +11460,6 @@ typedef union _hw_mipi_hsi_tdma7_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA7_CONF_WR((HW_MIPI_HSI_TDMA7_CONF_RD() & ~BM_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA7_CONF, field BURST_SIZE[28:25] (RW)
@@ -12241,7 +11469,6 @@ typedef union _hw_mipi_hsi_tdma7_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA7_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA7_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA7_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA7_CONF_BURST_SIZE.
 
@@ -12255,7 +11482,6 @@ typedef union _hw_mipi_hsi_tdma7_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA7_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA7_CONF_WR((HW_MIPI_HSI_TDMA7_CONF_RD() & ~BM_MIPI_HSI_TDMA7_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA7_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA7_CONF, field ENABLE[31] (RW)
@@ -12263,7 +11489,6 @@ typedef union _hw_mipi_hsi_tdma7_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA7_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA7_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA7_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA7_CONF_ENABLE.
 
@@ -12277,7 +11502,6 @@ typedef union _hw_mipi_hsi_tdma7_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA7_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA7_CONF_WR((HW_MIPI_HSI_TDMA7_CONF_RD() & ~BM_MIPI_HSI_TDMA7_CONF_ENABLE) | BF_MIPI_HSI_TDMA7_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12333,7 +11557,6 @@ typedef union _hw_mipi_hsi_tdma8_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA8_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA8_CONF_TRANS_LENGTH.
 
@@ -12347,7 +11570,6 @@ typedef union _hw_mipi_hsi_tdma8_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA8_CONF_WR((HW_MIPI_HSI_TDMA8_CONF_RD() & ~BM_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA8_CONF, field BURST_SIZE[28:25] (RW)
@@ -12357,7 +11579,6 @@ typedef union _hw_mipi_hsi_tdma8_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA8_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA8_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA8_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA8_CONF_BURST_SIZE.
 
@@ -12371,7 +11592,6 @@ typedef union _hw_mipi_hsi_tdma8_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA8_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA8_CONF_WR((HW_MIPI_HSI_TDMA8_CONF_RD() & ~BM_MIPI_HSI_TDMA8_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA8_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA8_CONF, field ENABLE[31] (RW)
@@ -12379,7 +11599,6 @@ typedef union _hw_mipi_hsi_tdma8_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA8_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA8_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA8_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA8_CONF_ENABLE.
 
@@ -12393,7 +11612,6 @@ typedef union _hw_mipi_hsi_tdma8_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA8_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA8_CONF_WR((HW_MIPI_HSI_TDMA8_CONF_RD() & ~BM_MIPI_HSI_TDMA8_CONF_ENABLE) | BF_MIPI_HSI_TDMA8_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12449,7 +11667,6 @@ typedef union _hw_mipi_hsi_tdma9_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA9_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA9_CONF_TRANS_LENGTH.
 
@@ -12463,7 +11680,6 @@ typedef union _hw_mipi_hsi_tdma9_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA9_CONF_WR((HW_MIPI_HSI_TDMA9_CONF_RD() & ~BM_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA9_CONF, field BURST_SIZE[28:25] (RW)
@@ -12473,7 +11689,6 @@ typedef union _hw_mipi_hsi_tdma9_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA9_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA9_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA9_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA9_CONF_BURST_SIZE.
 
@@ -12487,7 +11702,6 @@ typedef union _hw_mipi_hsi_tdma9_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA9_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA9_CONF_WR((HW_MIPI_HSI_TDMA9_CONF_RD() & ~BM_MIPI_HSI_TDMA9_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA9_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA9_CONF, field ENABLE[31] (RW)
@@ -12495,7 +11709,6 @@ typedef union _hw_mipi_hsi_tdma9_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA9_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA9_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA9_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA9_CONF_ENABLE.
 
@@ -12509,7 +11722,6 @@ typedef union _hw_mipi_hsi_tdma9_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA9_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA9_CONF_WR((HW_MIPI_HSI_TDMA9_CONF_RD() & ~BM_MIPI_HSI_TDMA9_CONF_ENABLE) | BF_MIPI_HSI_TDMA9_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12565,7 +11777,6 @@ typedef union _hw_mipi_hsi_tdma10_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA10_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA10_CONF_TRANS_LENGTH.
 
@@ -12579,7 +11790,6 @@ typedef union _hw_mipi_hsi_tdma10_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA10_CONF_WR((HW_MIPI_HSI_TDMA10_CONF_RD() & ~BM_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA10_CONF, field BURST_SIZE[28:25] (RW)
@@ -12589,7 +11799,6 @@ typedef union _hw_mipi_hsi_tdma10_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA10_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA10_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA10_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA10_CONF_BURST_SIZE.
 
@@ -12603,7 +11812,6 @@ typedef union _hw_mipi_hsi_tdma10_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA10_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA10_CONF_WR((HW_MIPI_HSI_TDMA10_CONF_RD() & ~BM_MIPI_HSI_TDMA10_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA10_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA10_CONF, field ENABLE[31] (RW)
@@ -12611,7 +11819,6 @@ typedef union _hw_mipi_hsi_tdma10_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA10_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA10_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA10_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA10_CONF_ENABLE.
 
@@ -12625,7 +11832,6 @@ typedef union _hw_mipi_hsi_tdma10_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA10_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA10_CONF_WR((HW_MIPI_HSI_TDMA10_CONF_RD() & ~BM_MIPI_HSI_TDMA10_CONF_ENABLE) | BF_MIPI_HSI_TDMA10_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12681,7 +11887,6 @@ typedef union _hw_mipi_hsi_tdma11_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA11_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA11_CONF_TRANS_LENGTH.
 
@@ -12695,7 +11900,6 @@ typedef union _hw_mipi_hsi_tdma11_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA11_CONF_WR((HW_MIPI_HSI_TDMA11_CONF_RD() & ~BM_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA11_CONF, field BURST_SIZE[28:25] (RW)
@@ -12705,7 +11909,6 @@ typedef union _hw_mipi_hsi_tdma11_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA11_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA11_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA11_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA11_CONF_BURST_SIZE.
 
@@ -12719,7 +11922,6 @@ typedef union _hw_mipi_hsi_tdma11_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA11_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA11_CONF_WR((HW_MIPI_HSI_TDMA11_CONF_RD() & ~BM_MIPI_HSI_TDMA11_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA11_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA11_CONF, field ENABLE[31] (RW)
@@ -12727,7 +11929,6 @@ typedef union _hw_mipi_hsi_tdma11_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA11_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA11_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA11_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA11_CONF_ENABLE.
 
@@ -12741,7 +11942,6 @@ typedef union _hw_mipi_hsi_tdma11_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA11_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA11_CONF_WR((HW_MIPI_HSI_TDMA11_CONF_RD() & ~BM_MIPI_HSI_TDMA11_CONF_ENABLE) | BF_MIPI_HSI_TDMA11_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12797,7 +11997,6 @@ typedef union _hw_mipi_hsi_tdma12_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA12_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA12_CONF_TRANS_LENGTH.
 
@@ -12811,7 +12010,6 @@ typedef union _hw_mipi_hsi_tdma12_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA12_CONF_WR((HW_MIPI_HSI_TDMA12_CONF_RD() & ~BM_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA12_CONF, field BURST_SIZE[28:25] (RW)
@@ -12821,7 +12019,6 @@ typedef union _hw_mipi_hsi_tdma12_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA12_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA12_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA12_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA12_CONF_BURST_SIZE.
 
@@ -12835,7 +12032,6 @@ typedef union _hw_mipi_hsi_tdma12_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA12_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA12_CONF_WR((HW_MIPI_HSI_TDMA12_CONF_RD() & ~BM_MIPI_HSI_TDMA12_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA12_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA12_CONF, field ENABLE[31] (RW)
@@ -12843,7 +12039,6 @@ typedef union _hw_mipi_hsi_tdma12_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA12_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA12_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA12_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA12_CONF_ENABLE.
 
@@ -12857,7 +12052,6 @@ typedef union _hw_mipi_hsi_tdma12_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA12_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA12_CONF_WR((HW_MIPI_HSI_TDMA12_CONF_RD() & ~BM_MIPI_HSI_TDMA12_CONF_ENABLE) | BF_MIPI_HSI_TDMA12_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12913,7 +12107,6 @@ typedef union _hw_mipi_hsi_tdma13_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA13_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA13_CONF_TRANS_LENGTH.
 
@@ -12927,7 +12120,6 @@ typedef union _hw_mipi_hsi_tdma13_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA13_CONF_WR((HW_MIPI_HSI_TDMA13_CONF_RD() & ~BM_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA13_CONF, field BURST_SIZE[28:25] (RW)
@@ -12937,7 +12129,6 @@ typedef union _hw_mipi_hsi_tdma13_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA13_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA13_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA13_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA13_CONF_BURST_SIZE.
 
@@ -12951,7 +12142,6 @@ typedef union _hw_mipi_hsi_tdma13_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA13_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA13_CONF_WR((HW_MIPI_HSI_TDMA13_CONF_RD() & ~BM_MIPI_HSI_TDMA13_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA13_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA13_CONF, field ENABLE[31] (RW)
@@ -12959,7 +12149,6 @@ typedef union _hw_mipi_hsi_tdma13_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA13_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA13_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA13_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA13_CONF_ENABLE.
 
@@ -12973,7 +12162,6 @@ typedef union _hw_mipi_hsi_tdma13_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA13_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA13_CONF_WR((HW_MIPI_HSI_TDMA13_CONF_RD() & ~BM_MIPI_HSI_TDMA13_CONF_ENABLE) | BF_MIPI_HSI_TDMA13_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13029,7 +12217,6 @@ typedef union _hw_mipi_hsi_tdma14_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA14_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA14_CONF_TRANS_LENGTH.
 
@@ -13043,7 +12230,6 @@ typedef union _hw_mipi_hsi_tdma14_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA14_CONF_WR((HW_MIPI_HSI_TDMA14_CONF_RD() & ~BM_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA14_CONF, field BURST_SIZE[28:25] (RW)
@@ -13053,7 +12239,6 @@ typedef union _hw_mipi_hsi_tdma14_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA14_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA14_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA14_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA14_CONF_BURST_SIZE.
 
@@ -13067,7 +12252,6 @@ typedef union _hw_mipi_hsi_tdma14_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA14_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA14_CONF_WR((HW_MIPI_HSI_TDMA14_CONF_RD() & ~BM_MIPI_HSI_TDMA14_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA14_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA14_CONF, field ENABLE[31] (RW)
@@ -13075,7 +12259,6 @@ typedef union _hw_mipi_hsi_tdma14_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA14_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA14_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA14_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA14_CONF_ENABLE.
 
@@ -13089,7 +12272,6 @@ typedef union _hw_mipi_hsi_tdma14_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA14_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA14_CONF_WR((HW_MIPI_HSI_TDMA14_CONF_RD() & ~BM_MIPI_HSI_TDMA14_CONF_ENABLE) | BF_MIPI_HSI_TDMA14_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13145,7 +12327,6 @@ typedef union _hw_mipi_hsi_tdma15_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA15_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA15_CONF_TRANS_LENGTH.
 
@@ -13159,7 +12340,6 @@ typedef union _hw_mipi_hsi_tdma15_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA15_CONF_WR((HW_MIPI_HSI_TDMA15_CONF_RD() & ~BM_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA15_CONF, field BURST_SIZE[28:25] (RW)
@@ -13169,7 +12349,6 @@ typedef union _hw_mipi_hsi_tdma15_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA15_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA15_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_TDMA15_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA15_CONF_BURST_SIZE.
 
@@ -13183,7 +12362,6 @@ typedef union _hw_mipi_hsi_tdma15_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_TDMA15_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA15_CONF_WR((HW_MIPI_HSI_TDMA15_CONF_RD() & ~BM_MIPI_HSI_TDMA15_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA15_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TDMA15_CONF, field ENABLE[31] (RW)
@@ -13191,7 +12369,6 @@ typedef union _hw_mipi_hsi_tdma15_conf
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA15_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA15_CONF_ENABLE.
 #define BM_MIPI_HSI_TDMA15_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA15_CONF_ENABLE.
 
@@ -13205,7 +12382,6 @@ typedef union _hw_mipi_hsi_tdma15_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_TDMA15_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA15_CONF_WR((HW_MIPI_HSI_TDMA15_CONF_RD() & ~BM_MIPI_HSI_TDMA15_CONF_ENABLE) | BF_MIPI_HSI_TDMA15_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13261,7 +12437,6 @@ typedef union _hw_mipi_hsi_rdma0_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA0_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA0_CONF_TRANS_LENGTH.
 
@@ -13275,7 +12450,6 @@ typedef union _hw_mipi_hsi_rdma0_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA0_CONF_WR((HW_MIPI_HSI_RDMA0_CONF_RD() & ~BM_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA0_CONF, field BURST_SIZE[28:25] (RW)
@@ -13285,7 +12459,6 @@ typedef union _hw_mipi_hsi_rdma0_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA0_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA0_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA0_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA0_CONF_BURST_SIZE.
 
@@ -13299,7 +12472,6 @@ typedef union _hw_mipi_hsi_rdma0_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA0_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA0_CONF_WR((HW_MIPI_HSI_RDMA0_CONF_RD() & ~BM_MIPI_HSI_RDMA0_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA0_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA0_CONF, field ENABLE[31] (RW)
@@ -13307,7 +12479,6 @@ typedef union _hw_mipi_hsi_rdma0_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA0_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA0_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA0_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA0_CONF_ENABLE.
 
@@ -13321,7 +12492,6 @@ typedef union _hw_mipi_hsi_rdma0_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA0_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA0_CONF_WR((HW_MIPI_HSI_RDMA0_CONF_RD() & ~BM_MIPI_HSI_RDMA0_CONF_ENABLE) | BF_MIPI_HSI_RDMA0_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13377,7 +12547,6 @@ typedef union _hw_mipi_hsi_rdma1_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA1_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA1_CONF_TRANS_LENGTH.
 
@@ -13391,7 +12560,6 @@ typedef union _hw_mipi_hsi_rdma1_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA1_CONF_WR((HW_MIPI_HSI_RDMA1_CONF_RD() & ~BM_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA1_CONF, field BURST_SIZE[28:25] (RW)
@@ -13401,7 +12569,6 @@ typedef union _hw_mipi_hsi_rdma1_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA1_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA1_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA1_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA1_CONF_BURST_SIZE.
 
@@ -13415,7 +12582,6 @@ typedef union _hw_mipi_hsi_rdma1_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA1_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA1_CONF_WR((HW_MIPI_HSI_RDMA1_CONF_RD() & ~BM_MIPI_HSI_RDMA1_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA1_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA1_CONF, field ENABLE[31] (RW)
@@ -13423,7 +12589,6 @@ typedef union _hw_mipi_hsi_rdma1_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA1_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA1_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA1_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA1_CONF_ENABLE.
 
@@ -13437,7 +12602,6 @@ typedef union _hw_mipi_hsi_rdma1_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA1_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA1_CONF_WR((HW_MIPI_HSI_RDMA1_CONF_RD() & ~BM_MIPI_HSI_RDMA1_CONF_ENABLE) | BF_MIPI_HSI_RDMA1_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13493,7 +12657,6 @@ typedef union _hw_mipi_hsi_rdma2_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA2_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA2_CONF_TRANS_LENGTH.
 
@@ -13507,7 +12670,6 @@ typedef union _hw_mipi_hsi_rdma2_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA2_CONF_WR((HW_MIPI_HSI_RDMA2_CONF_RD() & ~BM_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA2_CONF, field BURST_SIZE[28:25] (RW)
@@ -13517,7 +12679,6 @@ typedef union _hw_mipi_hsi_rdma2_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA2_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA2_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA2_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA2_CONF_BURST_SIZE.
 
@@ -13531,7 +12692,6 @@ typedef union _hw_mipi_hsi_rdma2_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA2_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA2_CONF_WR((HW_MIPI_HSI_RDMA2_CONF_RD() & ~BM_MIPI_HSI_RDMA2_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA2_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA2_CONF, field ENABLE[31] (RW)
@@ -13539,7 +12699,6 @@ typedef union _hw_mipi_hsi_rdma2_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA2_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA2_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA2_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA2_CONF_ENABLE.
 
@@ -13553,7 +12712,6 @@ typedef union _hw_mipi_hsi_rdma2_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA2_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA2_CONF_WR((HW_MIPI_HSI_RDMA2_CONF_RD() & ~BM_MIPI_HSI_RDMA2_CONF_ENABLE) | BF_MIPI_HSI_RDMA2_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13609,7 +12767,6 @@ typedef union _hw_mipi_hsi_rdma3_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA3_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA3_CONF_TRANS_LENGTH.
 
@@ -13623,7 +12780,6 @@ typedef union _hw_mipi_hsi_rdma3_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA3_CONF_WR((HW_MIPI_HSI_RDMA3_CONF_RD() & ~BM_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA3_CONF, field BURST_SIZE[28:25] (RW)
@@ -13633,7 +12789,6 @@ typedef union _hw_mipi_hsi_rdma3_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA3_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA3_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA3_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA3_CONF_BURST_SIZE.
 
@@ -13647,7 +12802,6 @@ typedef union _hw_mipi_hsi_rdma3_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA3_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA3_CONF_WR((HW_MIPI_HSI_RDMA3_CONF_RD() & ~BM_MIPI_HSI_RDMA3_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA3_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA3_CONF, field ENABLE[31] (RW)
@@ -13655,7 +12809,6 @@ typedef union _hw_mipi_hsi_rdma3_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA3_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA3_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA3_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA3_CONF_ENABLE.
 
@@ -13669,7 +12822,6 @@ typedef union _hw_mipi_hsi_rdma3_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA3_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA3_CONF_WR((HW_MIPI_HSI_RDMA3_CONF_RD() & ~BM_MIPI_HSI_RDMA3_CONF_ENABLE) | BF_MIPI_HSI_RDMA3_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13725,7 +12877,6 @@ typedef union _hw_mipi_hsi_rdma4_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA4_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA4_CONF_TRANS_LENGTH.
 
@@ -13739,7 +12890,6 @@ typedef union _hw_mipi_hsi_rdma4_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA4_CONF_WR((HW_MIPI_HSI_RDMA4_CONF_RD() & ~BM_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA4_CONF, field BURST_SIZE[28:25] (RW)
@@ -13749,7 +12899,6 @@ typedef union _hw_mipi_hsi_rdma4_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA4_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA4_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA4_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA4_CONF_BURST_SIZE.
 
@@ -13763,7 +12912,6 @@ typedef union _hw_mipi_hsi_rdma4_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA4_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA4_CONF_WR((HW_MIPI_HSI_RDMA4_CONF_RD() & ~BM_MIPI_HSI_RDMA4_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA4_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA4_CONF, field ENABLE[31] (RW)
@@ -13771,7 +12919,6 @@ typedef union _hw_mipi_hsi_rdma4_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA4_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA4_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA4_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA4_CONF_ENABLE.
 
@@ -13785,7 +12932,6 @@ typedef union _hw_mipi_hsi_rdma4_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA4_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA4_CONF_WR((HW_MIPI_HSI_RDMA4_CONF_RD() & ~BM_MIPI_HSI_RDMA4_CONF_ENABLE) | BF_MIPI_HSI_RDMA4_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13841,7 +12987,6 @@ typedef union _hw_mipi_hsi_rdma5_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA5_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA5_CONF_TRANS_LENGTH.
 
@@ -13855,7 +13000,6 @@ typedef union _hw_mipi_hsi_rdma5_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA5_CONF_WR((HW_MIPI_HSI_RDMA5_CONF_RD() & ~BM_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA5_CONF, field BURST_SIZE[28:25] (RW)
@@ -13865,7 +13009,6 @@ typedef union _hw_mipi_hsi_rdma5_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA5_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA5_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA5_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA5_CONF_BURST_SIZE.
 
@@ -13879,7 +13022,6 @@ typedef union _hw_mipi_hsi_rdma5_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA5_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA5_CONF_WR((HW_MIPI_HSI_RDMA5_CONF_RD() & ~BM_MIPI_HSI_RDMA5_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA5_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA5_CONF, field ENABLE[31] (RW)
@@ -13887,7 +13029,6 @@ typedef union _hw_mipi_hsi_rdma5_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA5_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA5_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA5_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA5_CONF_ENABLE.
 
@@ -13901,7 +13042,6 @@ typedef union _hw_mipi_hsi_rdma5_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA5_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA5_CONF_WR((HW_MIPI_HSI_RDMA5_CONF_RD() & ~BM_MIPI_HSI_RDMA5_CONF_ENABLE) | BF_MIPI_HSI_RDMA5_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13957,7 +13097,6 @@ typedef union _hw_mipi_hsi_rdma6_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA6_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA6_CONF_TRANS_LENGTH.
 
@@ -13971,7 +13110,6 @@ typedef union _hw_mipi_hsi_rdma6_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA6_CONF_WR((HW_MIPI_HSI_RDMA6_CONF_RD() & ~BM_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA6_CONF, field BURST_SIZE[28:25] (RW)
@@ -13981,7 +13119,6 @@ typedef union _hw_mipi_hsi_rdma6_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA6_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA6_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA6_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA6_CONF_BURST_SIZE.
 
@@ -13995,7 +13132,6 @@ typedef union _hw_mipi_hsi_rdma6_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA6_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA6_CONF_WR((HW_MIPI_HSI_RDMA6_CONF_RD() & ~BM_MIPI_HSI_RDMA6_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA6_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA6_CONF, field ENABLE[31] (RW)
@@ -14003,7 +13139,6 @@ typedef union _hw_mipi_hsi_rdma6_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA6_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA6_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA6_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA6_CONF_ENABLE.
 
@@ -14017,7 +13152,6 @@ typedef union _hw_mipi_hsi_rdma6_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA6_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA6_CONF_WR((HW_MIPI_HSI_RDMA6_CONF_RD() & ~BM_MIPI_HSI_RDMA6_CONF_ENABLE) | BF_MIPI_HSI_RDMA6_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14073,7 +13207,6 @@ typedef union _hw_mipi_hsi_rdma7_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA7_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA7_CONF_TRANS_LENGTH.
 
@@ -14087,7 +13220,6 @@ typedef union _hw_mipi_hsi_rdma7_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA7_CONF_WR((HW_MIPI_HSI_RDMA7_CONF_RD() & ~BM_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA7_CONF, field BURST_SIZE[28:25] (RW)
@@ -14097,7 +13229,6 @@ typedef union _hw_mipi_hsi_rdma7_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA7_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA7_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA7_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA7_CONF_BURST_SIZE.
 
@@ -14111,7 +13242,6 @@ typedef union _hw_mipi_hsi_rdma7_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA7_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA7_CONF_WR((HW_MIPI_HSI_RDMA7_CONF_RD() & ~BM_MIPI_HSI_RDMA7_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA7_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA7_CONF, field ENABLE[31] (RW)
@@ -14119,7 +13249,6 @@ typedef union _hw_mipi_hsi_rdma7_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA7_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA7_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA7_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA7_CONF_ENABLE.
 
@@ -14133,7 +13262,6 @@ typedef union _hw_mipi_hsi_rdma7_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA7_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA7_CONF_WR((HW_MIPI_HSI_RDMA7_CONF_RD() & ~BM_MIPI_HSI_RDMA7_CONF_ENABLE) | BF_MIPI_HSI_RDMA7_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14189,7 +13317,6 @@ typedef union _hw_mipi_hsi_rdma8_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA8_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA8_CONF_TRANS_LENGTH.
 
@@ -14203,7 +13330,6 @@ typedef union _hw_mipi_hsi_rdma8_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA8_CONF_WR((HW_MIPI_HSI_RDMA8_CONF_RD() & ~BM_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA8_CONF, field BURST_SIZE[28:25] (RW)
@@ -14213,7 +13339,6 @@ typedef union _hw_mipi_hsi_rdma8_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA8_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA8_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA8_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA8_CONF_BURST_SIZE.
 
@@ -14227,7 +13352,6 @@ typedef union _hw_mipi_hsi_rdma8_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA8_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA8_CONF_WR((HW_MIPI_HSI_RDMA8_CONF_RD() & ~BM_MIPI_HSI_RDMA8_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA8_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA8_CONF, field ENABLE[31] (RW)
@@ -14235,7 +13359,6 @@ typedef union _hw_mipi_hsi_rdma8_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA8_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA8_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA8_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA8_CONF_ENABLE.
 
@@ -14249,7 +13372,6 @@ typedef union _hw_mipi_hsi_rdma8_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA8_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA8_CONF_WR((HW_MIPI_HSI_RDMA8_CONF_RD() & ~BM_MIPI_HSI_RDMA8_CONF_ENABLE) | BF_MIPI_HSI_RDMA8_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14305,7 +13427,6 @@ typedef union _hw_mipi_hsi_rdma9_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA9_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA9_CONF_TRANS_LENGTH.
 
@@ -14319,7 +13440,6 @@ typedef union _hw_mipi_hsi_rdma9_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA9_CONF_WR((HW_MIPI_HSI_RDMA9_CONF_RD() & ~BM_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA9_CONF, field BURST_SIZE[28:25] (RW)
@@ -14329,7 +13449,6 @@ typedef union _hw_mipi_hsi_rdma9_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA9_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA9_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA9_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA9_CONF_BURST_SIZE.
 
@@ -14343,7 +13462,6 @@ typedef union _hw_mipi_hsi_rdma9_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA9_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA9_CONF_WR((HW_MIPI_HSI_RDMA9_CONF_RD() & ~BM_MIPI_HSI_RDMA9_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA9_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA9_CONF, field ENABLE[31] (RW)
@@ -14351,7 +13469,6 @@ typedef union _hw_mipi_hsi_rdma9_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA9_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA9_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA9_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA9_CONF_ENABLE.
 
@@ -14365,7 +13482,6 @@ typedef union _hw_mipi_hsi_rdma9_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA9_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA9_CONF_WR((HW_MIPI_HSI_RDMA9_CONF_RD() & ~BM_MIPI_HSI_RDMA9_CONF_ENABLE) | BF_MIPI_HSI_RDMA9_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14421,7 +13537,6 @@ typedef union _hw_mipi_hsi_rdma10_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA10_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA10_CONF_TRANS_LENGTH.
 
@@ -14435,7 +13550,6 @@ typedef union _hw_mipi_hsi_rdma10_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA10_CONF_WR((HW_MIPI_HSI_RDMA10_CONF_RD() & ~BM_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA10_CONF, field BURST_SIZE[28:25] (RW)
@@ -14445,7 +13559,6 @@ typedef union _hw_mipi_hsi_rdma10_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA10_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA10_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA10_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA10_CONF_BURST_SIZE.
 
@@ -14459,7 +13572,6 @@ typedef union _hw_mipi_hsi_rdma10_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA10_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA10_CONF_WR((HW_MIPI_HSI_RDMA10_CONF_RD() & ~BM_MIPI_HSI_RDMA10_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA10_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA10_CONF, field ENABLE[31] (RW)
@@ -14467,7 +13579,6 @@ typedef union _hw_mipi_hsi_rdma10_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA10_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA10_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA10_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA10_CONF_ENABLE.
 
@@ -14481,7 +13592,6 @@ typedef union _hw_mipi_hsi_rdma10_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA10_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA10_CONF_WR((HW_MIPI_HSI_RDMA10_CONF_RD() & ~BM_MIPI_HSI_RDMA10_CONF_ENABLE) | BF_MIPI_HSI_RDMA10_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14537,7 +13647,6 @@ typedef union _hw_mipi_hsi_rdma11_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA11_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA11_CONF_TRANS_LENGTH.
 
@@ -14551,7 +13660,6 @@ typedef union _hw_mipi_hsi_rdma11_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA11_CONF_WR((HW_MIPI_HSI_RDMA11_CONF_RD() & ~BM_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA11_CONF, field BURST_SIZE[28:25] (RW)
@@ -14561,7 +13669,6 @@ typedef union _hw_mipi_hsi_rdma11_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA11_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA11_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA11_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA11_CONF_BURST_SIZE.
 
@@ -14575,7 +13682,6 @@ typedef union _hw_mipi_hsi_rdma11_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA11_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA11_CONF_WR((HW_MIPI_HSI_RDMA11_CONF_RD() & ~BM_MIPI_HSI_RDMA11_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA11_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA11_CONF, field ENABLE[31] (RW)
@@ -14583,7 +13689,6 @@ typedef union _hw_mipi_hsi_rdma11_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA11_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA11_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA11_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA11_CONF_ENABLE.
 
@@ -14597,7 +13702,6 @@ typedef union _hw_mipi_hsi_rdma11_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA11_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA11_CONF_WR((HW_MIPI_HSI_RDMA11_CONF_RD() & ~BM_MIPI_HSI_RDMA11_CONF_ENABLE) | BF_MIPI_HSI_RDMA11_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14653,7 +13757,6 @@ typedef union _hw_mipi_hsi_rdma12_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA12_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA12_CONF_TRANS_LENGTH.
 
@@ -14667,7 +13770,6 @@ typedef union _hw_mipi_hsi_rdma12_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA12_CONF_WR((HW_MIPI_HSI_RDMA12_CONF_RD() & ~BM_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA12_CONF, field BURST_SIZE[28:25] (RW)
@@ -14677,7 +13779,6 @@ typedef union _hw_mipi_hsi_rdma12_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA12_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA12_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA12_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA12_CONF_BURST_SIZE.
 
@@ -14691,7 +13792,6 @@ typedef union _hw_mipi_hsi_rdma12_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA12_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA12_CONF_WR((HW_MIPI_HSI_RDMA12_CONF_RD() & ~BM_MIPI_HSI_RDMA12_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA12_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA12_CONF, field ENABLE[31] (RW)
@@ -14699,7 +13799,6 @@ typedef union _hw_mipi_hsi_rdma12_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA12_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA12_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA12_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA12_CONF_ENABLE.
 
@@ -14713,7 +13812,6 @@ typedef union _hw_mipi_hsi_rdma12_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA12_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA12_CONF_WR((HW_MIPI_HSI_RDMA12_CONF_RD() & ~BM_MIPI_HSI_RDMA12_CONF_ENABLE) | BF_MIPI_HSI_RDMA12_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14769,7 +13867,6 @@ typedef union _hw_mipi_hsi_rdma13_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA13_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA13_CONF_TRANS_LENGTH.
 
@@ -14783,7 +13880,6 @@ typedef union _hw_mipi_hsi_rdma13_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA13_CONF_WR((HW_MIPI_HSI_RDMA13_CONF_RD() & ~BM_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA13_CONF, field BURST_SIZE[28:25] (RW)
@@ -14793,7 +13889,6 @@ typedef union _hw_mipi_hsi_rdma13_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA13_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA13_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA13_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA13_CONF_BURST_SIZE.
 
@@ -14807,7 +13902,6 @@ typedef union _hw_mipi_hsi_rdma13_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA13_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA13_CONF_WR((HW_MIPI_HSI_RDMA13_CONF_RD() & ~BM_MIPI_HSI_RDMA13_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA13_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA13_CONF, field ENABLE[31] (RW)
@@ -14815,7 +13909,6 @@ typedef union _hw_mipi_hsi_rdma13_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA13_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA13_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA13_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA13_CONF_ENABLE.
 
@@ -14829,7 +13922,6 @@ typedef union _hw_mipi_hsi_rdma13_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA13_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA13_CONF_WR((HW_MIPI_HSI_RDMA13_CONF_RD() & ~BM_MIPI_HSI_RDMA13_CONF_ENABLE) | BF_MIPI_HSI_RDMA13_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14885,7 +13977,6 @@ typedef union _hw_mipi_hsi_rdma14_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA14_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA14_CONF_TRANS_LENGTH.
 
@@ -14899,7 +13990,6 @@ typedef union _hw_mipi_hsi_rdma14_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA14_CONF_WR((HW_MIPI_HSI_RDMA14_CONF_RD() & ~BM_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA14_CONF, field BURST_SIZE[28:25] (RW)
@@ -14909,7 +13999,6 @@ typedef union _hw_mipi_hsi_rdma14_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA14_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA14_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA14_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA14_CONF_BURST_SIZE.
 
@@ -14923,7 +14012,6 @@ typedef union _hw_mipi_hsi_rdma14_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA14_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA14_CONF_WR((HW_MIPI_HSI_RDMA14_CONF_RD() & ~BM_MIPI_HSI_RDMA14_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA14_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA14_CONF, field ENABLE[31] (RW)
@@ -14931,7 +14019,6 @@ typedef union _hw_mipi_hsi_rdma14_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA14_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA14_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA14_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA14_CONF_ENABLE.
 
@@ -14945,7 +14032,6 @@ typedef union _hw_mipi_hsi_rdma14_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA14_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA14_CONF_WR((HW_MIPI_HSI_RDMA14_CONF_RD() & ~BM_MIPI_HSI_RDMA14_CONF_ENABLE) | BF_MIPI_HSI_RDMA14_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15001,7 +14087,6 @@ typedef union _hw_mipi_hsi_rdma15_conf
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA15_CONF_TRANS_LENGTH.
 #define BM_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA15_CONF_TRANS_LENGTH.
 
@@ -15015,7 +14100,6 @@ typedef union _hw_mipi_hsi_rdma15_conf
 //! @brief Set the TRANS_LENGTH field to a new value.
 #define BW_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA15_CONF_WR((HW_MIPI_HSI_RDMA15_CONF_RD() & ~BM_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA15_CONF, field BURST_SIZE[28:25] (RW)
@@ -15025,7 +14109,6 @@ typedef union _hw_mipi_hsi_rdma15_conf
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA15_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA15_CONF_BURST_SIZE.
 #define BM_MIPI_HSI_RDMA15_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA15_CONF_BURST_SIZE.
 
@@ -15039,7 +14122,6 @@ typedef union _hw_mipi_hsi_rdma15_conf
 //! @brief Set the BURST_SIZE field to a new value.
 #define BW_MIPI_HSI_RDMA15_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA15_CONF_WR((HW_MIPI_HSI_RDMA15_CONF_RD() & ~BM_MIPI_HSI_RDMA15_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA15_CONF_BURST_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RDMA15_CONF, field ENABLE[31] (RW)
@@ -15047,7 +14129,6 @@ typedef union _hw_mipi_hsi_rdma15_conf
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA15_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA15_CONF_ENABLE.
 #define BM_MIPI_HSI_RDMA15_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA15_CONF_ENABLE.
 
@@ -15061,7 +14142,6 @@ typedef union _hw_mipi_hsi_rdma15_conf
 //! @brief Set the ENABLE field to a new value.
 #define BW_MIPI_HSI_RDMA15_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA15_CONF_WR((HW_MIPI_HSI_RDMA15_CONF_RD() & ~BM_MIPI_HSI_RDMA15_CONF_ENABLE) | BF_MIPI_HSI_RDMA15_CONF_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15112,7 +14192,6 @@ typedef union _hw_mipi_hsi_tdma0_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR.
 
@@ -15126,7 +14205,6 @@ typedef union _hw_mipi_hsi_tdma0_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA0_STA_ADDR_WR((HW_MIPI_HSI_TDMA0_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15177,7 +14255,6 @@ typedef union _hw_mipi_hsi_tdma1_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR.
 
@@ -15191,7 +14268,6 @@ typedef union _hw_mipi_hsi_tdma1_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA1_STA_ADDR_WR((HW_MIPI_HSI_TDMA1_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15242,7 +14318,6 @@ typedef union _hw_mipi_hsi_tdma2_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR.
 
@@ -15256,7 +14331,6 @@ typedef union _hw_mipi_hsi_tdma2_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA2_STA_ADDR_WR((HW_MIPI_HSI_TDMA2_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15307,7 +14381,6 @@ typedef union _hw_mipi_hsi_tdma3_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR.
 
@@ -15321,7 +14394,6 @@ typedef union _hw_mipi_hsi_tdma3_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA3_STA_ADDR_WR((HW_MIPI_HSI_TDMA3_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15372,7 +14444,6 @@ typedef union _hw_mipi_hsi_tdma4_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR.
 
@@ -15386,7 +14457,6 @@ typedef union _hw_mipi_hsi_tdma4_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA4_STA_ADDR_WR((HW_MIPI_HSI_TDMA4_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15437,7 +14507,6 @@ typedef union _hw_mipi_hsi_tdma5_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR.
 
@@ -15451,7 +14520,6 @@ typedef union _hw_mipi_hsi_tdma5_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA5_STA_ADDR_WR((HW_MIPI_HSI_TDMA5_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15502,7 +14570,6 @@ typedef union _hw_mipi_hsi_tdma6_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR.
 
@@ -15516,7 +14583,6 @@ typedef union _hw_mipi_hsi_tdma6_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA6_STA_ADDR_WR((HW_MIPI_HSI_TDMA6_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15567,7 +14633,6 @@ typedef union _hw_mipi_hsi_tdma7_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR.
 
@@ -15581,7 +14646,6 @@ typedef union _hw_mipi_hsi_tdma7_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA7_STA_ADDR_WR((HW_MIPI_HSI_TDMA7_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15632,7 +14696,6 @@ typedef union _hw_mipi_hsi_tdma8_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR.
 
@@ -15646,7 +14709,6 @@ typedef union _hw_mipi_hsi_tdma8_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA8_STA_ADDR_WR((HW_MIPI_HSI_TDMA8_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15697,7 +14759,6 @@ typedef union _hw_mipi_hsi_tdma9_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR.
 
@@ -15711,7 +14772,6 @@ typedef union _hw_mipi_hsi_tdma9_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA9_STA_ADDR_WR((HW_MIPI_HSI_TDMA9_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15762,7 +14822,6 @@ typedef union _hw_mipi_hsi_tdma10_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR.
 
@@ -15776,7 +14835,6 @@ typedef union _hw_mipi_hsi_tdma10_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA10_STA_ADDR_WR((HW_MIPI_HSI_TDMA10_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15827,7 +14885,6 @@ typedef union _hw_mipi_hsi_tdma11_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR.
 
@@ -15841,7 +14898,6 @@ typedef union _hw_mipi_hsi_tdma11_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA11_STA_ADDR_WR((HW_MIPI_HSI_TDMA11_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15892,7 +14948,6 @@ typedef union _hw_mipi_hsi_tdma12_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR.
 
@@ -15906,7 +14961,6 @@ typedef union _hw_mipi_hsi_tdma12_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA12_STA_ADDR_WR((HW_MIPI_HSI_TDMA12_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15957,7 +15011,6 @@ typedef union _hw_mipi_hsi_tdma13_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR.
 
@@ -15971,7 +15024,6 @@ typedef union _hw_mipi_hsi_tdma13_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA13_STA_ADDR_WR((HW_MIPI_HSI_TDMA13_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16022,7 +15074,6 @@ typedef union _hw_mipi_hsi_tdma14_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR.
 
@@ -16036,7 +15087,6 @@ typedef union _hw_mipi_hsi_tdma14_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA14_STA_ADDR_WR((HW_MIPI_HSI_TDMA14_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16087,7 +15137,6 @@ typedef union _hw_mipi_hsi_tdma15_sta_addr
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR.
 
@@ -16101,7 +15150,6 @@ typedef union _hw_mipi_hsi_tdma15_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA15_STA_ADDR_WR((HW_MIPI_HSI_TDMA15_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16152,7 +15200,6 @@ typedef union _hw_mipi_hsi_rdma0_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR.
 
@@ -16166,7 +15213,6 @@ typedef union _hw_mipi_hsi_rdma0_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA0_STA_ADDR_WR((HW_MIPI_HSI_RDMA0_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16217,7 +15263,6 @@ typedef union _hw_mipi_hsi_rdma1_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR.
 
@@ -16231,7 +15276,6 @@ typedef union _hw_mipi_hsi_rdma1_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA1_STA_ADDR_WR((HW_MIPI_HSI_RDMA1_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16282,7 +15326,6 @@ typedef union _hw_mipi_hsi_rdma2_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR.
 
@@ -16296,7 +15339,6 @@ typedef union _hw_mipi_hsi_rdma2_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA2_STA_ADDR_WR((HW_MIPI_HSI_RDMA2_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16347,7 +15389,6 @@ typedef union _hw_mipi_hsi_rdma3_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR.
 
@@ -16361,7 +15402,6 @@ typedef union _hw_mipi_hsi_rdma3_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA3_STA_ADDR_WR((HW_MIPI_HSI_RDMA3_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16412,7 +15452,6 @@ typedef union _hw_mipi_hsi_rdma4_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR.
 
@@ -16426,7 +15465,6 @@ typedef union _hw_mipi_hsi_rdma4_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA4_STA_ADDR_WR((HW_MIPI_HSI_RDMA4_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16477,7 +15515,6 @@ typedef union _hw_mipi_hsi_rdma5_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR.
 
@@ -16491,7 +15528,6 @@ typedef union _hw_mipi_hsi_rdma5_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA5_STA_ADDR_WR((HW_MIPI_HSI_RDMA5_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16542,7 +15578,6 @@ typedef union _hw_mipi_hsi_rdma6_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR.
 
@@ -16556,7 +15591,6 @@ typedef union _hw_mipi_hsi_rdma6_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA6_STA_ADDR_WR((HW_MIPI_HSI_RDMA6_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16607,7 +15641,6 @@ typedef union _hw_mipi_hsi_rdma7_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR.
 
@@ -16621,7 +15654,6 @@ typedef union _hw_mipi_hsi_rdma7_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA7_STA_ADDR_WR((HW_MIPI_HSI_RDMA7_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16672,7 +15704,6 @@ typedef union _hw_mipi_hsi_rdma8_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR.
 
@@ -16686,7 +15717,6 @@ typedef union _hw_mipi_hsi_rdma8_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA8_STA_ADDR_WR((HW_MIPI_HSI_RDMA8_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16737,7 +15767,6 @@ typedef union _hw_mipi_hsi_rdma9_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR.
 
@@ -16751,7 +15780,6 @@ typedef union _hw_mipi_hsi_rdma9_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA9_STA_ADDR_WR((HW_MIPI_HSI_RDMA9_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16802,7 +15830,6 @@ typedef union _hw_mipi_hsi_rdma10_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR.
 
@@ -16816,7 +15843,6 @@ typedef union _hw_mipi_hsi_rdma10_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA10_STA_ADDR_WR((HW_MIPI_HSI_RDMA10_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16867,7 +15893,6 @@ typedef union _hw_mipi_hsi_rdma11_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR.
 
@@ -16881,7 +15906,6 @@ typedef union _hw_mipi_hsi_rdma11_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA11_STA_ADDR_WR((HW_MIPI_HSI_RDMA11_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16932,7 +15956,6 @@ typedef union _hw_mipi_hsi_rdma12_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR.
 
@@ -16946,7 +15969,6 @@ typedef union _hw_mipi_hsi_rdma12_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA12_STA_ADDR_WR((HW_MIPI_HSI_RDMA12_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16997,7 +16019,6 @@ typedef union _hw_mipi_hsi_rdma13_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR.
 
@@ -17011,7 +16032,6 @@ typedef union _hw_mipi_hsi_rdma13_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA13_STA_ADDR_WR((HW_MIPI_HSI_RDMA13_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17062,7 +16082,6 @@ typedef union _hw_mipi_hsi_rdma14_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR.
 
@@ -17076,7 +16095,6 @@ typedef union _hw_mipi_hsi_rdma14_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA14_STA_ADDR_WR((HW_MIPI_HSI_RDMA14_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17127,7 +16145,6 @@ typedef union _hw_mipi_hsi_rdma15_sta_addr
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-
 #define BP_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR.
 #define BM_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR.
 
@@ -17141,7 +16158,6 @@ typedef union _hw_mipi_hsi_rdma15_sta_addr
 //! @brief Set the DS_ADDR field to a new value.
 #define BW_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA15_STA_ADDR_WR((HW_MIPI_HSI_RDMA15_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17218,13 +16234,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 0 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA0      (0)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA0.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA0 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA0) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA0)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA1[1] (RO)
@@ -17232,13 +16246,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 1 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA1      (1)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA1.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA1 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA1) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA1)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA2[2] (RO)
@@ -17246,13 +16258,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 2 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA2      (2)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA2.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA2 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA2) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA2)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA3[3] (RO)
@@ -17260,13 +16270,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 3 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA3      (3)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA3.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA3 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA3) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA3)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA4[4] (RO)
@@ -17274,13 +16282,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 4 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA4      (4)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA4.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA4 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA4) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA4)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA5[5] (RO)
@@ -17288,13 +16294,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 5 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA5      (5)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA5.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA5 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA5) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA5)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA6[6] (RO)
@@ -17302,13 +16306,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 6 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA6      (6)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA6.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA6 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA6) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA6)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA7[7] (RO)
@@ -17316,13 +16318,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 7 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA7      (7)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA7.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA7 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA7) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA7)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA8[8] (RO)
@@ -17330,13 +16330,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 8 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA8      (8)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA8.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA8 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA8) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA8)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA9[9] (RO)
@@ -17344,13 +16342,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 9 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA9      (9)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA9.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA9 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA9) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA9)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA10[10] (RO)
@@ -17358,13 +16354,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 10 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA10      (10)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA10.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA10 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA10) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA10)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA11[11] (RO)
@@ -17372,13 +16366,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 11 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA11      (11)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA11.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA11 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA11) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA11)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA12[12] (RO)
@@ -17386,13 +16378,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 12 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA12      (12)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA12.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA12 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA12) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA12)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA13[13] (RO)
@@ -17400,13 +16390,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 13 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA13      (13)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA13.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA13 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA13) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA13)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA14[14] (RO)
@@ -17414,13 +16402,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 14 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA14      (14)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA14.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA14 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA14) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA14)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field RDMA15[15] (RO)
@@ -17428,13 +16414,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * RDMA Channel 15 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_RDMA15      (15)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_RDMA15.
 #define BM_MIPI_HSI_DMA_IRQSTAT_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_RDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_RDMA15 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_RDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_RDMA15) >> BP_MIPI_HSI_DMA_IRQSTAT_RDMA15)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA0[16] (RO)
@@ -17442,13 +16426,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 0 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA0      (16)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA0.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA0 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA0) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA0)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA1[17] (RO)
@@ -17456,13 +16438,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 1 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA1      (17)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA1.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA1 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA1) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA1)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA2[18] (RO)
@@ -17470,13 +16450,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 2 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA2      (18)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA2.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA2 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA2) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA2)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA3[19] (RO)
@@ -17484,13 +16462,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 3 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA3      (19)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA3.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA3 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA3) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA3)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA4[20] (RO)
@@ -17498,13 +16474,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 4 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA4      (20)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA4.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA4 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA4) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA4)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA5[21] (RO)
@@ -17512,13 +16486,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 5 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA5      (21)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA5.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA5 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA5) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA5)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA6[22] (RO)
@@ -17526,13 +16498,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 6 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA6      (22)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA6.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA6 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA6) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA6)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA7[23] (RO)
@@ -17540,13 +16510,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 7 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA7      (23)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA7.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA7 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA7) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA7)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA8[24] (RO)
@@ -17554,13 +16522,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 8 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA8      (24)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA8.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA8 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA8) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA8)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA9[25] (RO)
@@ -17568,13 +16534,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 9 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA9      (25)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA9.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA9 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA9) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA9)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA10[26] (RO)
@@ -17582,13 +16546,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 10 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA10      (26)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA10.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA10 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA10) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA10)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA11[27] (RO)
@@ -17596,13 +16558,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 11 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA11      (27)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA11.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA11 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA11) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA11)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA12[28] (RO)
@@ -17610,13 +16570,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 12 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA12      (28)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA12.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA12 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA12) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA12)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA13[29] (RO)
@@ -17624,13 +16582,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 13 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA13      (29)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA13.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA13 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA13) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA13)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA14[30] (RO)
@@ -17638,13 +16594,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 14 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA14      (30)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA14.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA14 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA14) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA14)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT, field TDMA15[31] (RO)
@@ -17652,13 +16606,11 @@ typedef union _hw_mipi_hsi_dma_irqstat
  * TDMA Channel 15 interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_TDMA15      (31)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_TDMA15.
 #define BM_MIPI_HSI_DMA_IRQSTAT_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_TDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_IRQSTAT_TDMA15 from a register value.
 #define BG_MIPI_HSI_DMA_IRQSTAT_TDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_IRQSTAT_TDMA15) >> BP_MIPI_HSI_DMA_IRQSTAT_TDMA15)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17739,7 +16691,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 0 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0      (0)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA0.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA0.
 
@@ -17753,7 +16704,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA0 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA1[1] (RW)
@@ -17761,7 +16711,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 1 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1      (1)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA1.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA1.
 
@@ -17775,7 +16724,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA1 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA2[2] (RW)
@@ -17783,7 +16731,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 2 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2      (2)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA2.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA2.
 
@@ -17797,7 +16744,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA2 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA3[3] (RW)
@@ -17805,7 +16751,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 3 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3      (3)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA3.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA3.
 
@@ -17819,7 +16764,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA3 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA4[4] (RW)
@@ -17827,7 +16771,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 4 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4      (4)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA4.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA4.
 
@@ -17841,7 +16784,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA4 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA5[5] (RW)
@@ -17849,7 +16791,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 5 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5      (5)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA5.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA5.
 
@@ -17863,7 +16804,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA5 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA6[6] (RW)
@@ -17871,7 +16811,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 6 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6      (6)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA6.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA6.
 
@@ -17885,7 +16824,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA6 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA7[7] (RW)
@@ -17893,7 +16831,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 7 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7      (7)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA7.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA7.
 
@@ -17907,7 +16844,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA7 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA7(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA8[8] (RW)
@@ -17915,7 +16851,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 8 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8      (8)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA8.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA8.
 
@@ -17929,7 +16864,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA8 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA9[9] (RW)
@@ -17937,7 +16871,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 9 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9      (9)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA9.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA9.
 
@@ -17951,7 +16884,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA9 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA10[10] (RW)
@@ -17959,7 +16891,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 10 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10      (10)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA10.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA10.
 
@@ -17973,7 +16904,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA10 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA11[11] (RW)
@@ -17981,7 +16911,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 11 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11      (11)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA11.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA11.
 
@@ -17995,7 +16924,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA11 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA12[12] (RW)
@@ -18003,7 +16931,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 12 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12      (12)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA12.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA12.
 
@@ -18017,7 +16944,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA12 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA13[13] (RW)
@@ -18025,7 +16951,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 13 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13      (13)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA13.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA13.
 
@@ -18039,7 +16964,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA13 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA14[14] (RW)
@@ -18047,7 +16971,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 14 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14      (14)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA14.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA14.
 
@@ -18061,7 +16984,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA14 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field RDMA15[15] (RW)
@@ -18069,7 +16991,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * RDMA Channel 15 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15      (15)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_RDMA15.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_RDMA15.
 
@@ -18083,7 +17004,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the RDMA15 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15) | BF_MIPI_HSI_DMA_IRQSTAT_EN_RDMA15(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA0[16] (RW)
@@ -18091,7 +17011,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 0 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0      (16)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA0.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA0.
 
@@ -18105,7 +17024,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA0 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA1[17] (RW)
@@ -18113,7 +17031,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 1 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1      (17)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA1.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA1.
 
@@ -18127,7 +17044,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA1 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA2[18] (RW)
@@ -18135,7 +17051,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 2 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2      (18)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA2.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA2.
 
@@ -18149,7 +17064,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA2 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA3[19] (RW)
@@ -18157,7 +17071,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 3 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3      (19)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA3.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA3.
 
@@ -18171,7 +17084,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA3 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA4[20] (RW)
@@ -18179,7 +17091,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 4 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4      (20)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA4.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA4.
 
@@ -18193,7 +17104,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA4 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA5[21] (RW)
@@ -18201,7 +17111,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 5 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5      (21)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA5.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA5.
 
@@ -18215,7 +17124,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA5 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA6[22] (RW)
@@ -18223,7 +17131,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 6 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6      (22)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA6.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA6.
 
@@ -18237,7 +17144,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA6 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA7[23] (RW)
@@ -18245,7 +17151,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 7 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7      (23)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA7.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA7.
 
@@ -18259,7 +17164,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA7 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA7(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA8[24] (RW)
@@ -18267,7 +17171,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 8 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8      (24)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA8.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA8.
 
@@ -18281,7 +17184,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA8 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA9[25] (RW)
@@ -18289,7 +17191,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 9 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9      (25)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA9.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA9.
 
@@ -18303,7 +17204,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA9 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA10[26] (RW)
@@ -18311,7 +17211,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 10 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10      (26)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA10.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA10.
 
@@ -18325,7 +17224,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA10 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA11[27] (RW)
@@ -18333,7 +17231,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 11 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11      (27)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA11.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA11.
 
@@ -18347,7 +17244,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA11 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA12[28] (RW)
@@ -18355,7 +17251,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 12 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12      (28)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA12.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA12.
 
@@ -18369,7 +17264,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA12 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA13[29] (RW)
@@ -18377,7 +17271,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 13 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13      (29)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA13.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA13.
 
@@ -18391,7 +17284,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA13 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA14[30] (RW)
@@ -18399,7 +17291,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 14 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14      (30)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA14.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA14.
 
@@ -18413,7 +17304,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA14 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSTAT_EN, field TDMA15[31] (RW)
@@ -18421,7 +17311,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
  * TDMA Channel 15 interrupt Enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15      (31)      //!< Bit position for MIPI_HSI_DMA_IRQSTAT_EN_TDMA15.
 #define BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSTAT_EN_TDMA15.
 
@@ -18435,7 +17324,6 @@ typedef union _hw_mipi_hsi_dma_irqstat_en
 //! @brief Set the TDMA15 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15(v)   (HW_MIPI_HSI_DMA_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15) | BF_MIPI_HSI_DMA_IRQSTAT_EN_TDMA15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -18517,7 +17405,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 0 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA0      (0)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA0.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA0.
 
@@ -18531,7 +17418,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA0 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA0(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA0) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA1[1] (RW)
@@ -18539,7 +17425,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 1 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA1      (1)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA1.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA1.
 
@@ -18553,7 +17438,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA1 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA1(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA1) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA2[2] (RW)
@@ -18561,7 +17445,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 2 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA2      (2)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA2.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA2.
 
@@ -18575,7 +17458,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA2 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA2(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA2) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA3[3] (RW)
@@ -18583,7 +17465,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 3 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA3      (3)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA3.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA3.
 
@@ -18597,7 +17478,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA3 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA3(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA3) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA4[4] (RW)
@@ -18605,7 +17485,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 4 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA4      (4)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA4.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA4.
 
@@ -18619,7 +17498,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA4 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA4(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA4) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA5[5] (RW)
@@ -18627,7 +17505,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 5 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA5      (5)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA5.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA5.
 
@@ -18641,7 +17518,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA5 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA5(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA5) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA6[6] (RW)
@@ -18649,7 +17525,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 6 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA6      (6)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA6.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA6.
 
@@ -18663,7 +17538,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA6 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA6(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA6) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA7[7] (RW)
@@ -18671,7 +17545,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 7 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA7      (7)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA7.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA7.
 
@@ -18685,7 +17558,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA7 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA7(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA7) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA7(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA8[8] (RW)
@@ -18693,7 +17565,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 8 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA8      (8)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA8.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA8.
 
@@ -18707,7 +17578,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA8 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA8(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA8) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA9[9] (RW)
@@ -18715,7 +17585,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 9 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA9      (9)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA9.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA9.
 
@@ -18729,7 +17598,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA9 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA9(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA9) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA10[10] (RW)
@@ -18737,7 +17605,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 10 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA10      (10)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA10.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA10.
 
@@ -18751,7 +17618,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA10 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA10(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA10) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA11[11] (RW)
@@ -18759,7 +17625,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 11 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA11      (11)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA11.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA11.
 
@@ -18773,7 +17638,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA11 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA11(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA11) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA12[12] (RW)
@@ -18781,7 +17645,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 12 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA12      (12)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA12.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA12.
 
@@ -18795,7 +17658,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA12 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA12(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA12) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA13[13] (RW)
@@ -18803,7 +17665,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 13 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA13      (13)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA13.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA13.
 
@@ -18817,7 +17678,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA13 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA13(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA13) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA14[14] (RW)
@@ -18825,7 +17685,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 14 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA14      (14)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA14.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA14.
 
@@ -18839,7 +17698,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA14 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA14(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA14) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field RDMA15[15] (RW)
@@ -18847,7 +17705,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * RDMA Channel 15 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_RDMA15      (15)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_RDMA15.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_RDMA15.
 
@@ -18861,7 +17718,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the RDMA15 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_RDMA15(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_RDMA15) | BF_MIPI_HSI_DMA_IRQSIG_EN_RDMA15(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA0[16] (RW)
@@ -18869,7 +17725,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 0 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA0      (16)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA0.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA0.
 
@@ -18883,7 +17738,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA0 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA0(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA0) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA1[17] (RW)
@@ -18891,7 +17745,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 1 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA1      (17)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA1.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA1.
 
@@ -18905,7 +17758,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA1 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA1(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA1) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA2[18] (RW)
@@ -18913,7 +17765,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 2 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA2      (18)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA2.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA2.
 
@@ -18927,7 +17778,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA2 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA2(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA2) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA3[19] (RW)
@@ -18935,7 +17785,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 3 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA3      (19)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA3.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA3.
 
@@ -18949,7 +17798,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA3 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA3(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA3) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA4[20] (RW)
@@ -18957,7 +17805,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 4 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA4      (20)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA4.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA4.
 
@@ -18971,7 +17818,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA4 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA4(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA4) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA5[21] (RW)
@@ -18979,7 +17825,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 5 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA5      (21)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA5.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA5.
 
@@ -18993,7 +17838,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA5 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA5(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA5) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA6[22] (RW)
@@ -19001,7 +17845,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 6 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA6      (22)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA6.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA6.
 
@@ -19015,7 +17858,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA6 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA6(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA6) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA7[23] (RW)
@@ -19023,7 +17865,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 7 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA7      (23)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA7.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA7.
 
@@ -19037,7 +17878,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA7 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA7(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA7) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA7(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA8[24] (RW)
@@ -19045,7 +17885,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 8 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA8      (24)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA8.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA8.
 
@@ -19059,7 +17898,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA8 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA8(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA8) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA9[25] (RW)
@@ -19067,7 +17905,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 9 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA9      (25)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA9.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA9.
 
@@ -19081,7 +17918,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA9 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA9(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA9) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA10[26] (RW)
@@ -19089,7 +17925,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 10 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA10      (26)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA10.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA10.
 
@@ -19103,7 +17938,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA10 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA10(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA10) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA11[27] (RW)
@@ -19111,7 +17945,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 11 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA11      (27)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA11.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA11.
 
@@ -19125,7 +17958,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA11 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA11(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA11) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA12[28] (RW)
@@ -19133,7 +17965,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 12 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA12      (28)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA12.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA12.
 
@@ -19147,7 +17978,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA12 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA12(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA12) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA13[29] (RW)
@@ -19155,7 +17985,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 13 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA13      (29)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA13.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA13.
 
@@ -19169,7 +17998,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA13 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA13(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA13) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA14[30] (RW)
@@ -19177,7 +18005,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 14 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA14      (30)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA14.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA14.
 
@@ -19191,7 +18018,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA14 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA14(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA14) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_IRQSIG_EN, field TDMA15[31] (RW)
@@ -19199,7 +18025,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
  * TDMA Channel 15 interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_IRQSIG_EN_TDMA15      (31)      //!< Bit position for MIPI_HSI_DMA_IRQSIG_EN_TDMA15.
 #define BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_IRQSIG_EN_TDMA15.
 
@@ -19213,7 +18038,6 @@ typedef union _hw_mipi_hsi_dma_irqsig_en
 //! @brief Set the TDMA15 field to a new value.
 #define BW_MIPI_HSI_DMA_IRQSIG_EN_TDMA15(v)   (HW_MIPI_HSI_DMA_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_IRQSIG_EN_TDMA15) | BF_MIPI_HSI_DMA_IRQSIG_EN_TDMA15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -19290,13 +18114,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 0 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0      (0)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA0)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA1[1] (RO)
@@ -19304,13 +18126,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 1 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1      (1)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA1)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA2[2] (RO)
@@ -19318,13 +18138,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 2 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2      (2)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA2)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA3[3] (RO)
@@ -19332,13 +18150,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 3 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3      (3)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA3)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA4[4] (RO)
@@ -19346,13 +18162,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 4 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4      (4)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA4)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA5[5] (RO)
@@ -19360,13 +18174,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 5 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5      (5)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA5)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA6[6] (RO)
@@ -19374,13 +18186,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 6 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6      (6)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA6)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA7[7] (RO)
@@ -19388,13 +18198,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 7 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7      (7)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA7)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA8[8] (RO)
@@ -19402,13 +18210,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 8 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8      (8)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA8)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA9[9] (RO)
@@ -19416,13 +18222,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 9 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9      (9)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA9)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA10[10] (RO)
@@ -19430,13 +18234,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 10 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10      (10)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA10)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA11[11] (RO)
@@ -19444,13 +18246,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 11 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11      (11)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA11)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA12[12] (RO)
@@ -19458,13 +18258,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 12 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12      (12)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA12)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA13[13] (RO)
@@ -19472,13 +18270,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 13 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13      (13)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA13)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA14[14] (RO)
@@ -19486,13 +18282,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 14 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14      (14)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA14)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field RDMA15[15] (RO)
@@ -19500,13 +18294,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * RDMA Channel 15 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15      (15)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_RDMA15)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA0[16] (RO)
@@ -19514,13 +18306,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 0 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0      (16)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA0)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA1[17] (RO)
@@ -19528,13 +18318,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 1 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1      (17)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA1)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA2[18] (RO)
@@ -19542,13 +18330,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 2 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2      (18)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA2)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA3[19] (RO)
@@ -19556,13 +18342,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 3 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3      (19)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA3)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA4[20] (RO)
@@ -19570,13 +18354,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 4 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4      (20)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA4)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA5[21] (RO)
@@ -19584,13 +18366,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 5 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5      (21)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA5)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA6[22] (RO)
@@ -19598,13 +18378,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 6 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6      (22)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA6)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA7[23] (RO)
@@ -19612,13 +18390,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 7 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7      (23)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA7)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA8[24] (RO)
@@ -19626,13 +18402,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 8 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8      (24)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA8)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA9[25] (RO)
@@ -19640,13 +18414,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 9 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9      (25)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA9)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA10[26] (RO)
@@ -19654,13 +18426,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 10 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10      (26)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA10)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA11[27] (RO)
@@ -19668,13 +18438,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 11 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11      (27)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA11)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA12[28] (RO)
@@ -19682,13 +18450,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 12 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12      (28)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA12)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA13[29] (RO)
@@ -19696,13 +18462,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 13 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13      (29)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA13)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA14[30] (RO)
@@ -19710,13 +18474,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 14 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14      (30)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA14)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT, field TDMA15[31] (RO)
@@ -19724,13 +18486,11 @@ typedef union _hw_mipi_hsi_dma_err_irqstat
  * TDMA Channel 15 error interrupt status
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15      (31)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15 from a register value.
 #define BG_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15) >> BP_MIPI_HSI_DMA_ERR_IRQSTAT_TDMA15)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -19812,7 +18572,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 0 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0      (0)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0.
 
@@ -19826,7 +18585,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA0 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA1[1] (RW)
@@ -19834,7 +18592,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 1 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1      (1)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1.
 
@@ -19848,7 +18605,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA1 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA2[2] (RW)
@@ -19856,7 +18612,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 2 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2      (2)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2.
 
@@ -19870,7 +18625,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA2 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA3[3] (RW)
@@ -19878,7 +18632,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 3 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3      (3)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3.
 
@@ -19892,7 +18645,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA3 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA4[4] (RW)
@@ -19900,7 +18652,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 4 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4      (4)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4.
 
@@ -19914,7 +18665,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA4 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA5[5] (RW)
@@ -19922,7 +18672,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 5 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5      (5)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5.
 
@@ -19936,7 +18685,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA5 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA6[6] (RW)
@@ -19944,7 +18692,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 6 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6      (6)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6.
 
@@ -19958,7 +18705,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA6 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA7[7] (RW)
@@ -19966,7 +18712,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 7 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7      (7)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7.
 
@@ -19980,7 +18725,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA7 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA7(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA8[8] (RW)
@@ -19988,7 +18732,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 8 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8      (8)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8.
 
@@ -20002,7 +18745,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA8 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA9[9] (RW)
@@ -20010,7 +18752,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 9 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9      (9)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9.
 
@@ -20024,7 +18765,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA9 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA10[10] (RW)
@@ -20032,7 +18772,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 10 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10      (10)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10.
 
@@ -20046,7 +18785,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA10 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA11[11] (RW)
@@ -20054,7 +18792,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 11 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11      (11)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11.
 
@@ -20068,7 +18805,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA11 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA12[12] (RW)
@@ -20076,7 +18812,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 12 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12      (12)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12.
 
@@ -20090,7 +18825,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA12 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA13[13] (RW)
@@ -20098,7 +18832,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 13 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13      (13)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13.
 
@@ -20112,7 +18845,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA13 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA14[14] (RW)
@@ -20120,7 +18852,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 14 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14      (14)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14.
 
@@ -20134,7 +18865,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA14 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field RDMA15[15] (RW)
@@ -20142,7 +18872,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * RDMA Channel 15 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15      (15)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15.
 
@@ -20156,7 +18885,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the RDMA15 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RDMA15(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA0[16] (RW)
@@ -20164,7 +18892,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 0 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0      (16)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0.
 
@@ -20178,7 +18905,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA0 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA1[17] (RW)
@@ -20186,7 +18912,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 1 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1      (17)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1.
 
@@ -20200,7 +18925,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA1 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA2[18] (RW)
@@ -20208,7 +18932,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 2 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2      (18)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2.
 
@@ -20222,7 +18945,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA2 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA3[19] (RW)
@@ -20230,7 +18952,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 3 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3      (19)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3.
 
@@ -20244,7 +18965,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA3 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA4[20] (RW)
@@ -20252,7 +18972,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 4 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4      (20)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4.
 
@@ -20266,7 +18985,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA4 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA5[21] (RW)
@@ -20274,7 +18992,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 5 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5      (21)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5.
 
@@ -20288,7 +19005,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA5 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA6[22] (RW)
@@ -20296,7 +19012,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 6 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6      (22)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6.
 
@@ -20310,7 +19025,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA6 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA7[23] (RW)
@@ -20318,7 +19032,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 7 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7      (23)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7.
 
@@ -20332,7 +19045,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA7 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA7(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA8[24] (RW)
@@ -20340,7 +19052,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 8 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8      (24)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8.
 
@@ -20354,7 +19065,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA8 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA9[25] (RW)
@@ -20362,7 +19072,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 9 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9      (25)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9.
 
@@ -20376,7 +19085,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA9 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA10[26] (RW)
@@ -20384,7 +19092,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 10 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10      (26)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10.
 
@@ -20398,7 +19105,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA10 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA11[27] (RW)
@@ -20406,7 +19112,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 11 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11      (27)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11.
 
@@ -20420,7 +19125,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA11 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA12[28] (RW)
@@ -20428,7 +19132,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 12 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12      (28)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12.
 
@@ -20442,7 +19145,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA12 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA13[29] (RW)
@@ -20450,7 +19152,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 13 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13      (29)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13.
 
@@ -20464,7 +19165,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA13 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA14[30] (RW)
@@ -20472,7 +19172,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 14 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14      (30)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14.
 
@@ -20486,7 +19185,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA14 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSTAT_EN, field TDMA15[31] (RW)
@@ -20494,7 +19192,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
  * TDMA Channel 15 error interrupt enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15      (31)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15.
 #define BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15.
 
@@ -20508,7 +19205,6 @@ typedef union _hw_mipi_hsi_dma_err_irqstat_en
 //! @brief Set the TDMA15 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15(v)   (HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSTAT_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15) | BF_MIPI_HSI_DMA_ERR_IRQSTAT_EN_TDMA15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -20590,7 +19286,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 0 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0      (0)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0.
 
@@ -20604,7 +19299,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA0 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA1[1] (RW)
@@ -20612,7 +19306,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 1 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1      (1)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1.
 
@@ -20626,7 +19319,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA1 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA2[2] (RW)
@@ -20634,7 +19326,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 2 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2      (2)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2.
 
@@ -20648,7 +19339,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA2 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA3[3] (RW)
@@ -20656,7 +19346,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 3 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3      (3)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3.
 
@@ -20670,7 +19359,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA3 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA4[4] (RW)
@@ -20678,7 +19366,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 4 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4      (4)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4.
 
@@ -20692,7 +19379,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA4 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA5[5] (RW)
@@ -20700,7 +19386,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 5 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5      (5)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5.
 
@@ -20714,7 +19399,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA5 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA6[6] (RW)
@@ -20722,7 +19406,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 6 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6      (6)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6.
 
@@ -20736,7 +19419,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA6 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA7[7] (RW)
@@ -20744,7 +19426,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 7 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7      (7)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7.
 
@@ -20758,7 +19439,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA7 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA7(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA8[8] (RW)
@@ -20766,7 +19446,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 8 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8      (8)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8.
 
@@ -20780,7 +19459,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA8 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA9[9] (RW)
@@ -20788,7 +19466,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 9 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9      (9)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9.
 
@@ -20802,7 +19479,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA9 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA10[10] (RW)
@@ -20810,7 +19486,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 10 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10      (10)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10.
 
@@ -20824,7 +19499,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA10 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA11[11] (RW)
@@ -20832,7 +19506,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 11 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11      (11)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11.
 
@@ -20846,7 +19519,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA11 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA12[12] (RW)
@@ -20854,7 +19526,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 12 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12      (12)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12.
 
@@ -20868,7 +19539,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA12 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA13[13] (RW)
@@ -20876,7 +19546,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 13 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13      (13)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13.
 
@@ -20890,7 +19559,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA13 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA14[14] (RW)
@@ -20898,7 +19566,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 14 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14      (14)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14.
 
@@ -20912,7 +19579,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA14 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field RDMA15[15] (RW)
@@ -20920,7 +19586,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * RDMA Channel 15 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15      (15)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15.
 
@@ -20934,7 +19599,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the RDMA15 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_RDMA15(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA0[16] (RW)
@@ -20942,7 +19606,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 0 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0      (16)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0.
 
@@ -20956,7 +19619,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA0 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA1[17] (RW)
@@ -20964,7 +19626,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 1 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1      (17)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1.
 
@@ -20978,7 +19639,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA1 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA2[18] (RW)
@@ -20986,7 +19646,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 2 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2      (18)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2.
 
@@ -21000,7 +19659,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA2 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA3[19] (RW)
@@ -21008,7 +19666,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 3 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3      (19)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3.
 
@@ -21022,7 +19679,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA3 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA4[20] (RW)
@@ -21030,7 +19686,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 4 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4      (20)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4.
 
@@ -21044,7 +19699,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA4 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA5[21] (RW)
@@ -21052,7 +19706,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 5 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5      (21)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5.
 
@@ -21066,7 +19719,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA5 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA6[22] (RW)
@@ -21074,7 +19726,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 6 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6      (22)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6.
 
@@ -21088,7 +19739,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA6 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA7[23] (RW)
@@ -21096,7 +19746,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 7 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7      (23)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7.
 
@@ -21110,7 +19759,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA7 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA7(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA8[24] (RW)
@@ -21118,7 +19766,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 8 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8      (24)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8.
 
@@ -21132,7 +19779,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA8 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA9[25] (RW)
@@ -21140,7 +19786,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 9 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9      (25)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9.
 
@@ -21154,7 +19799,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA9 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA10[26] (RW)
@@ -21162,7 +19806,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 10 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10      (26)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10.
 
@@ -21176,7 +19819,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA10 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA11[27] (RW)
@@ -21184,7 +19826,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 11 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11      (27)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11.
 
@@ -21198,7 +19839,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA11 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA12[28] (RW)
@@ -21206,7 +19846,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 12 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12      (28)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12.
 
@@ -21220,7 +19859,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA12 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA13[29] (RW)
@@ -21228,7 +19866,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 13 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13      (29)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13.
 
@@ -21242,7 +19879,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA13 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA14[30] (RW)
@@ -21250,7 +19886,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 14 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14      (30)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14.
 
@@ -21264,7 +19899,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA14 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_ERR_IRQSIG_EN, field TDMA15[31] (RW)
@@ -21272,7 +19906,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
  * TDMA Channel 15 error interrupt status enable
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15      (31)      //!< Bit position for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15.
 #define BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15.
 
@@ -21286,7 +19919,6 @@ typedef union _hw_mipi_hsi_dma_err_irqsig_en
 //! @brief Set the TDMA15 field to a new value.
 #define BW_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15(v)   (HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_WR((HW_MIPI_HSI_DMA_ERR_IRQSIG_EN_RD() & ~BM_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15) | BF_MIPI_HSI_DMA_ERR_IRQSIG_EN_TDMA15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -21364,13 +19996,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0      (0)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0      (0x00000001)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA0)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA1[1] (RO)
@@ -21379,13 +20009,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1      (1)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1      (0x00000002)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA1)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA2[2] (RO)
@@ -21394,13 +20022,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2      (2)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2      (0x00000004)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA2)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA3[3] (RO)
@@ -21409,13 +20035,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3      (3)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3      (0x00000008)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA3)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA4[4] (RO)
@@ -21424,13 +20048,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4      (4)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4      (0x00000010)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA4)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA5[5] (RO)
@@ -21439,13 +20061,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5      (5)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5      (0x00000020)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA5)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA6[6] (RO)
@@ -21454,13 +20074,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6      (6)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6      (0x00000040)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA6)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA7[7] (RO)
@@ -21469,13 +20087,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7      (7)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7      (0x00000080)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA7)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA8[8] (RO)
@@ -21484,13 +20100,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8      (8)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8      (0x00000100)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA8)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA9[9] (RO)
@@ -21499,13 +20113,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9      (9)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9      (0x00000200)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA9)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA10[10] (RO)
@@ -21514,13 +20126,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10      (10)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10      (0x00000400)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA10)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA11[11] (RO)
@@ -21529,13 +20139,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11      (11)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11      (0x00000800)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA11)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA12[12] (RO)
@@ -21544,13 +20152,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12      (12)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12      (0x00001000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA12)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA13[13] (RO)
@@ -21559,13 +20165,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13      (13)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13      (0x00002000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA13)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA14[14] (RO)
@@ -21574,13 +20178,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14      (14)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14      (0x00004000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA14)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field RDMA15[15] (RO)
@@ -21589,13 +20191,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15      (15)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15      (0x00008000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_RDMA15)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA0[16] (RO)
@@ -21604,13 +20204,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0      (16)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0      (0x00010000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA0)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA1[17] (RO)
@@ -21619,13 +20217,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1      (17)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1      (0x00020000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA1)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA2[18] (RO)
@@ -21634,13 +20230,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2      (18)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2      (0x00040000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA2)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA3[19] (RO)
@@ -21649,13 +20243,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3      (19)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3      (0x00080000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA3)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA4[20] (RO)
@@ -21664,13 +20256,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4      (20)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4      (0x00100000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA4)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA5[21] (RO)
@@ -21679,13 +20269,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5      (21)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5      (0x00200000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA5)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA6[22] (RO)
@@ -21694,13 +20282,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6      (22)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6      (0x00400000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA6)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA7[23] (RO)
@@ -21709,13 +20295,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7      (23)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7      (0x00800000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA7)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA8[24] (RO)
@@ -21724,13 +20308,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8      (24)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8      (0x01000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA8)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA9[25] (RO)
@@ -21739,13 +20321,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9      (25)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9      (0x02000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA9)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA10[26] (RO)
@@ -21754,13 +20334,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10      (26)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10      (0x04000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA10)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA11[27] (RO)
@@ -21769,13 +20347,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11      (27)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11      (0x08000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA11)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA12[28] (RO)
@@ -21784,13 +20360,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12      (28)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12      (0x10000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA12)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA13[29] (RO)
@@ -21799,13 +20373,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13      (29)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13      (0x20000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA13)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA14[30] (RO)
@@ -21814,13 +20386,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14      (30)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14      (0x40000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA14)
-
 //@}
 
 /*! @name Register MIPI_HSI_DMA_SINGLE_REQ_EN, field TDMA15[31] (RO)
@@ -21829,13 +20399,11 @@ typedef union _hw_mipi_hsi_dma_single_req_en
  * automatically
  */
 //@{
-
 #define BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15      (31)      //!< Bit position for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15.
 #define BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15      (0x80000000)  //!< Bit mask for MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15.
 
 //! @brief Get value of MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15 from a register value.
 #define BG_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15) >> BP_MIPI_HSI_DMA_SINGLE_REQ_EN_TDMA15)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -21907,7 +20475,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8      (0)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8      (0x0000000f)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8.
 
@@ -21921,7 +20488,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 //! @brief Set the CH8 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF0, field CH9[7:4] (RW)
@@ -21944,7 +20510,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9      (4)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9      (0x000000f0)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9.
 
@@ -21958,7 +20523,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 //! @brief Set the CH9 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF0, field CH10[11:8] (RW)
@@ -21981,7 +20545,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10      (8)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10.
 
@@ -21995,7 +20558,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 //! @brief Set the CH10 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF0, field CH11[15:12] (RW)
@@ -22018,7 +20580,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11      (12)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11      (0x0000f000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11.
 
@@ -22032,7 +20593,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 //! @brief Set the CH11 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF0, field CH12[19:16] (RW)
@@ -22055,7 +20615,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12      (16)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12      (0x000f0000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12.
 
@@ -22069,7 +20628,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 //! @brief Set the CH12 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF0, field CH13[23:20] (RW)
@@ -22092,7 +20650,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13      (20)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13      (0x00f00000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13.
 
@@ -22106,7 +20663,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 //! @brief Set the CH13 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF0, field CH14[27:24] (RW)
@@ -22129,7 +20685,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14      (24)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14      (0x0f000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14.
 
@@ -22143,7 +20698,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 //! @brief Set the CH14 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF0, field CH15[31:28] (RW)
@@ -22166,7 +20720,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15      (28)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15      (0xf0000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15.
 
@@ -22180,7 +20733,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf0
 //! @brief Set the CH15 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF0_CH15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -22252,7 +20804,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0      (0)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0      (0x0000000f)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0.
 
@@ -22266,7 +20817,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 //! @brief Set the CH0 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF1, field CH1[7:4] (RW)
@@ -22289,7 +20839,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1      (4)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1      (0x000000f0)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1.
 
@@ -22303,7 +20852,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 //! @brief Set the CH1 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF1, field CH2[11:8] (RW)
@@ -22326,7 +20874,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2      (8)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2      (0x00000f00)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2.
 
@@ -22340,7 +20887,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 //! @brief Set the CH2 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF1, field CH3[15:12] (RW)
@@ -22363,7 +20909,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3      (12)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3      (0x0000f000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3.
 
@@ -22377,7 +20922,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 //! @brief Set the CH3 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF1, field CH4[19:16] (RW)
@@ -22400,7 +20944,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4      (16)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4      (0x000f0000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4.
 
@@ -22414,7 +20957,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 //! @brief Set the CH4 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF1, field CH5[23:20] (RW)
@@ -22437,7 +20979,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5      (20)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5      (0x00f00000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5.
 
@@ -22451,7 +20992,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 //! @brief Set the CH5 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF1, field CH6[27:24] (RW)
@@ -22474,7 +21014,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6      (24)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6      (0x0f000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6.
 
@@ -22488,7 +21027,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 //! @brief Set the CH6 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_SIZE_CONF1, field CH7[31:28] (RW)
@@ -22511,7 +21049,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7      (28)      //!< Bit position for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7.
 #define BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7      (0xf0000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7.
 
@@ -22525,7 +21062,6 @@ typedef union _hw_mipi_hsi_tx_fifo_size_conf1
 //! @brief Set the CH7 field to a new value.
 #define BW_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7(v)   (HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_TX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7) | BF_MIPI_HSI_TX_FIFO_SIZE_CONF1_CH7(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -22597,7 +21133,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8      (0)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8      (0x0000000f)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8.
 
@@ -22611,7 +21146,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 //! @brief Set the CH8 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH8(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF0, field CH9[7:4] (RW)
@@ -22634,7 +21168,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9      (4)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9      (0x000000f0)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9.
 
@@ -22648,7 +21181,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 //! @brief Set the CH9 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH9(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF0, field CH10[11:8] (RW)
@@ -22671,7 +21203,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10      (8)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10      (0x00000f00)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10.
 
@@ -22685,7 +21216,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 //! @brief Set the CH10 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH10(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF0, field CH11[15:12] (RW)
@@ -22708,7 +21238,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11      (12)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11      (0x0000f000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11.
 
@@ -22722,7 +21251,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 //! @brief Set the CH11 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH11(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF0, field CH12[19:16] (RW)
@@ -22745,7 +21273,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12      (16)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12      (0x000f0000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12.
 
@@ -22759,7 +21286,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 //! @brief Set the CH12 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH12(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF0, field CH13[23:20] (RW)
@@ -22782,7 +21308,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
  * - 1111 - b1011 Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13      (20)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13      (0x00f00000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13.
 
@@ -22796,7 +21321,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 //! @brief Set the CH13 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH13(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF0, field CH14[27:24] (RW)
@@ -22819,7 +21343,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14      (24)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14      (0x0f000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14.
 
@@ -22833,7 +21356,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 //! @brief Set the CH14 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH14(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF0, field CH15[31:28] (RW)
@@ -22856,7 +21378,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15      (28)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15      (0xf0000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15.
 
@@ -22870,7 +21391,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf0
 //! @brief Set the CH15 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF0_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF0_CH15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -22942,7 +21462,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0      (0)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0      (0x0000000f)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0.
 
@@ -22956,7 +21475,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 //! @brief Set the CH0 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH0(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF1, field CH1[7:4] (RW)
@@ -22979,7 +21497,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1      (4)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1      (0x000000f0)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1.
 
@@ -22993,7 +21510,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 //! @brief Set the CH1 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH1(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF1, field CH2[11:8] (RW)
@@ -23016,7 +21532,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2      (8)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2      (0x00000f00)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2.
 
@@ -23030,7 +21545,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 //! @brief Set the CH2 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH2(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF1, field CH3[15:12] (RW)
@@ -23053,7 +21567,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3      (12)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3      (0x0000f000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3.
 
@@ -23067,7 +21580,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 //! @brief Set the CH3 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH3(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF1, field CH4[19:16] (RW)
@@ -23090,7 +21602,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4      (16)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4      (0x000f0000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4.
 
@@ -23104,7 +21615,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 //! @brief Set the CH4 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH4(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF1, field CH5[23:20] (RW)
@@ -23127,7 +21637,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5      (20)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5      (0x00f00000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5.
 
@@ -23141,7 +21650,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 //! @brief Set the CH5 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH5(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF1, field CH6[27:24] (RW)
@@ -23164,7 +21672,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6      (24)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6      (0x0f000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6.
 
@@ -23178,7 +21685,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 //! @brief Set the CH6 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH6(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_SIZE_CONF1, field CH7[31:28] (RW)
@@ -23201,7 +21707,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
  * - 1111-1011 - Reserved
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7      (28)      //!< Bit position for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7.
 #define BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7      (0xf0000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7.
 
@@ -23215,7 +21720,6 @@ typedef union _hw_mipi_hsi_rx_fifo_size_conf1
 //! @brief Set the CH7 field to a new value.
 #define BW_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7(v)   (HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_WR((HW_MIPI_HSI_RX_FIFO_SIZE_CONF1_RD() & ~BM_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7) | BF_MIPI_HSI_RX_FIFO_SIZE_CONF1_CH7(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -23282,13 +21786,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH0      (0)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH0.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH0      (0x00000003)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH0.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH0 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH0) >> BP_MIPI_HSI_TX_FIFO_STAT_CH0)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH1[3:2] (RO)
@@ -23302,13 +21804,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH1      (2)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH1.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH1      (0x0000000c)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH1.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH1 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH1) >> BP_MIPI_HSI_TX_FIFO_STAT_CH1)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH2[5:4] (RO)
@@ -23322,13 +21822,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH2      (4)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH2.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH2      (0x00000030)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH2.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH2 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH2) >> BP_MIPI_HSI_TX_FIFO_STAT_CH2)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH3[7:6] (RO)
@@ -23342,13 +21840,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH3      (6)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH3.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH3      (0x000000c0)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH3.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH3 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH3) >> BP_MIPI_HSI_TX_FIFO_STAT_CH3)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH4[9:8] (RO)
@@ -23362,13 +21858,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH4      (8)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH4.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH4      (0x00000300)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH4.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH4 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH4) >> BP_MIPI_HSI_TX_FIFO_STAT_CH4)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH5[11:10] (RO)
@@ -23382,13 +21876,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH5      (10)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH5.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH5      (0x00000c00)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH5.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH5 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH5) >> BP_MIPI_HSI_TX_FIFO_STAT_CH5)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH6[13:12] (RO)
@@ -23402,13 +21894,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH6      (12)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH6.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH6      (0x00003000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH6.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH6 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH6) >> BP_MIPI_HSI_TX_FIFO_STAT_CH6)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH7[15:14] (RO)
@@ -23422,13 +21912,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH7      (14)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH7.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH7      (0x0000c000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH7.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH7 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH7) >> BP_MIPI_HSI_TX_FIFO_STAT_CH7)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH8[17:16] (RO)
@@ -23442,13 +21930,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH8      (16)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH8.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH8      (0x00030000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH8.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH8 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH8) >> BP_MIPI_HSI_TX_FIFO_STAT_CH8)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH9[19:18] (RO)
@@ -23462,13 +21948,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH9      (18)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH9.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH9      (0x000c0000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH9.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH9 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH9) >> BP_MIPI_HSI_TX_FIFO_STAT_CH9)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH10[21:20] (RO)
@@ -23482,13 +21966,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH10      (20)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH10.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH10      (0x00300000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH10.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH10 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH10) >> BP_MIPI_HSI_TX_FIFO_STAT_CH10)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH11[23:22] (RO)
@@ -23502,13 +21984,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH11      (22)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH11.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH11      (0x00c00000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH11.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH11 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH11) >> BP_MIPI_HSI_TX_FIFO_STAT_CH11)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH12[25:24] (RO)
@@ -23522,13 +22002,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH12      (24)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH12.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH12      (0x03000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH12.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH12 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH12) >> BP_MIPI_HSI_TX_FIFO_STAT_CH12)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH13[27:26] (RO)
@@ -23542,13 +22020,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH13      (26)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH13.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH13      (0x0c000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH13.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH13 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH13) >> BP_MIPI_HSI_TX_FIFO_STAT_CH13)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH14[29:28] (RO)
@@ -23562,13 +22038,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH14      (28)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH14.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH14      (0x30000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH14.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH14 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH14) >> BP_MIPI_HSI_TX_FIFO_STAT_CH14)
-
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH15[31:30] (RO)
@@ -23582,13 +22056,11 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_TX_FIFO_STAT_CH15      (30)      //!< Bit position for MIPI_HSI_TX_FIFO_STAT_CH15.
 #define BM_MIPI_HSI_TX_FIFO_STAT_CH15      (0xc0000000)  //!< Bit mask for MIPI_HSI_TX_FIFO_STAT_CH15.
 
 //! @brief Get value of MIPI_HSI_TX_FIFO_STAT_CH15 from a register value.
 #define BG_MIPI_HSI_TX_FIFO_STAT_CH15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_FIFO_STAT_CH15) >> BP_MIPI_HSI_TX_FIFO_STAT_CH15)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -23655,13 +22127,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH0      (0)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH0.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH0      (0x00000003)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH0.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH0 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH0) >> BP_MIPI_HSI_RX_FIFO_STAT_CH0)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH1[3:2] (RO)
@@ -23675,13 +22145,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH1      (2)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH1.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH1      (0x0000000c)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH1.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH1 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH1) >> BP_MIPI_HSI_RX_FIFO_STAT_CH1)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH2[5:4] (RO)
@@ -23695,13 +22163,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH2      (4)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH2.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH2      (0x00000030)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH2.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH2 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH2) >> BP_MIPI_HSI_RX_FIFO_STAT_CH2)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH3[7:6] (RO)
@@ -23715,13 +22181,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH3      (6)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH3.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH3      (0x000000c0)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH3.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH3 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH3) >> BP_MIPI_HSI_RX_FIFO_STAT_CH3)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH4[9:8] (RO)
@@ -23735,13 +22199,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH4      (8)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH4.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH4      (0x00000300)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH4.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH4 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH4) >> BP_MIPI_HSI_RX_FIFO_STAT_CH4)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH5[11:10] (RO)
@@ -23755,13 +22217,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH5      (10)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH5.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH5      (0x00000c00)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH5.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH5 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH5) >> BP_MIPI_HSI_RX_FIFO_STAT_CH5)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH6[13:12] (RO)
@@ -23775,13 +22235,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH6      (12)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH6.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH6      (0x00003000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH6.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH6 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH6) >> BP_MIPI_HSI_RX_FIFO_STAT_CH6)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH7[15:14] (RO)
@@ -23795,13 +22253,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH7      (14)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH7.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH7      (0x0000c000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH7.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH7 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH7) >> BP_MIPI_HSI_RX_FIFO_STAT_CH7)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH8[17:16] (RO)
@@ -23815,13 +22271,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH8      (16)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH8.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH8      (0x00030000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH8.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH8 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH8) >> BP_MIPI_HSI_RX_FIFO_STAT_CH8)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH9[19:18] (RO)
@@ -23835,13 +22289,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH9      (18)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH9.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH9      (0x000c0000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH9.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH9 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH9) >> BP_MIPI_HSI_RX_FIFO_STAT_CH9)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH10[21:20] (RO)
@@ -23855,13 +22307,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH10      (20)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH10.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH10      (0x00300000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH10.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH10 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH10) >> BP_MIPI_HSI_RX_FIFO_STAT_CH10)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH11[23:22] (RO)
@@ -23875,13 +22325,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH11      (22)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH11.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH11      (0x00c00000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH11.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH11 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH11) >> BP_MIPI_HSI_RX_FIFO_STAT_CH11)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH12[25:24] (RO)
@@ -23895,13 +22343,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH12      (24)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH12.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH12      (0x03000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH12.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH12 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH12) >> BP_MIPI_HSI_RX_FIFO_STAT_CH12)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH13[27:26] (RO)
@@ -23915,13 +22361,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH13      (26)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH13.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH13      (0x0c000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH13.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH13 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH13) >> BP_MIPI_HSI_RX_FIFO_STAT_CH13)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH14[29:28] (RO)
@@ -23935,13 +22379,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH14      (28)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH14.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH14      (0x30000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH14.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH14 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH14) >> BP_MIPI_HSI_RX_FIFO_STAT_CH14)
-
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH15[31:30] (RO)
@@ -23955,13 +22397,11 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_MIPI_HSI_RX_FIFO_STAT_CH15      (30)      //!< Bit position for MIPI_HSI_RX_FIFO_STAT_CH15.
 #define BM_MIPI_HSI_RX_FIFO_STAT_CH15      (0xc0000000)  //!< Bit mask for MIPI_HSI_RX_FIFO_STAT_CH15.
 
 //! @brief Get value of MIPI_HSI_RX_FIFO_STAT_CH15 from a register value.
 #define BG_MIPI_HSI_RX_FIFO_STAT_CH15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_FIFO_STAT_CH15) >> BP_MIPI_HSI_RX_FIFO_STAT_CH15)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -24014,7 +22454,6 @@ typedef union _hw_mipi_hsi_ahb_master_conf
  * These bits used to set the number of "IDLE" cycles when DMA_MODE == 2'b0x.
  */
 //@{
-
 #define BP_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM      (0)      //!< Bit position for MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM.
 #define BM_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM      (0x0000000f)  //!< Bit mask for MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM.
 
@@ -24028,7 +22467,6 @@ typedef union _hw_mipi_hsi_ahb_master_conf
 //! @brief Set the DMA_INSERT_IDLE_NUM field to a new value.
 #define BW_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM(v)   (HW_MIPI_HSI_AHB_MASTER_CONF_WR((HW_MIPI_HSI_AHB_MASTER_CONF_RD() & ~BM_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM) | BF_MIPI_HSI_AHB_MASTER_CONF_DMA_INSERT_IDLE_NUM(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_AHB_MASTER_CONF, field DMA_MODE[5:4] (RW)
@@ -24044,7 +22482,6 @@ typedef union _hw_mipi_hsi_ahb_master_conf
  * - 1x - Once AHB master get hgrant from bus, dataport can not access fifo untill a dma operation done.
  */
 //@{
-
 #define BP_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE      (4)      //!< Bit position for MIPI_HSI_AHB_MASTER_CONF_DMA_MODE.
 #define BM_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE      (0x00000030)  //!< Bit mask for MIPI_HSI_AHB_MASTER_CONF_DMA_MODE.
 
@@ -24058,7 +22495,6 @@ typedef union _hw_mipi_hsi_ahb_master_conf
 //! @brief Set the DMA_MODE field to a new value.
 #define BW_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE(v)   (HW_MIPI_HSI_AHB_MASTER_CONF_WR((HW_MIPI_HSI_AHB_MASTER_CONF_RD() & ~BM_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE) | BF_MIPI_HSI_AHB_MASTER_CONF_DMA_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register MIPI_HSI_AHB_MASTER_CONF, field DP_HOLD_CYCLE[9:6] (RW)
@@ -24066,7 +22502,6 @@ typedef union _hw_mipi_hsi_ahb_master_conf
  * These bits used to set the number of cycles for DP access fifo.
  */
 //@{
-
 #define BP_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE      (6)      //!< Bit position for MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE.
 #define BM_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE      (0x000003c0)  //!< Bit mask for MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE.
 
@@ -24080,7 +22515,6 @@ typedef union _hw_mipi_hsi_ahb_master_conf
 //! @brief Set the DP_HOLD_CYCLE field to a new value.
 #define BW_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE(v)   (HW_MIPI_HSI_AHB_MASTER_CONF_WR((HW_MIPI_HSI_AHB_MASTER_CONF_RD() & ~BM_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE) | BF_MIPI_HSI_AHB_MASTER_CONF_DP_HOLD_CYCLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -24131,7 +22565,6 @@ typedef union _hw_mipi_hsi_tx_break_len
  * The tx break length count. 6'h00 64 6'h01 1 6'h3f 63
  */
 //@{
-
 #define BP_MIPI_HSI_TX_BREAK_LEN_COUNT      (0)      //!< Bit position for MIPI_HSI_TX_BREAK_LEN_COUNT.
 #define BM_MIPI_HSI_TX_BREAK_LEN_COUNT      (0x0000003f)  //!< Bit mask for MIPI_HSI_TX_BREAK_LEN_COUNT.
 
@@ -24145,7 +22578,6 @@ typedef union _hw_mipi_hsi_tx_break_len
 //! @brief Set the COUNT field to a new value.
 #define BW_MIPI_HSI_TX_BREAK_LEN_COUNT(v)   (HW_MIPI_HSI_TX_BREAK_LEN_WR((HW_MIPI_HSI_TX_BREAK_LEN_RD() & ~BM_MIPI_HSI_TX_BREAK_LEN_COUNT) | BF_MIPI_HSI_TX_BREAK_LEN_COUNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -24303,3 +22735,5 @@ typedef struct _hw_mipi_hsi
 #endif
 
 #endif // __HW_MIPI_HSI_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

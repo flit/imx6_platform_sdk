@@ -103,7 +103,6 @@ typedef union _hw_tempmon_tempsense0
  * - POWER_DOWN = 1 - Power down the temperature sensor.
  */
 //@{
-
 #define BP_TEMPMON_TEMPSENSE0_POWER_DOWN      (0)      //!< Bit position for TEMPMON_TEMPSENSE0_POWER_DOWN.
 #define BM_TEMPMON_TEMPSENSE0_POWER_DOWN      (0x00000001)  //!< Bit mask for TEMPMON_TEMPSENSE0_POWER_DOWN.
 
@@ -123,7 +122,6 @@ typedef union _hw_tempmon_tempsense0
 
 #define BV_TEMPMON_TEMPSENSE0_POWER_DOWN__POWER_UP (0x0) //!< Enable power to the temperature sensor.
 #define BV_TEMPMON_TEMPSENSE0_POWER_DOWN__POWER_DOWN (0x1) //!< Power down the temperature sensor.
-
 //@}
 
 /*! @name Register TEMPMON_TEMPSENSE0, field MEASURE_TEMP[1] (RW)
@@ -136,7 +134,6 @@ typedef union _hw_tempmon_tempsense0
  * - START = 1 - Start the measurement process.
  */
 //@{
-
 #define BP_TEMPMON_TEMPSENSE0_MEASURE_TEMP      (1)      //!< Bit position for TEMPMON_TEMPSENSE0_MEASURE_TEMP.
 #define BM_TEMPMON_TEMPSENSE0_MEASURE_TEMP      (0x00000002)  //!< Bit mask for TEMPMON_TEMPSENSE0_MEASURE_TEMP.
 
@@ -156,7 +153,6 @@ typedef union _hw_tempmon_tempsense0
 
 #define BV_TEMPMON_TEMPSENSE0_MEASURE_TEMP__STOP (0x0) //!< Do not start the measurement process.
 #define BV_TEMPMON_TEMPSENSE0_MEASURE_TEMP__START (0x1) //!< Start the measurement process.
-
 //@}
 
 /*! @name Register TEMPMON_TEMPSENSE0, field FINISHED[2] (RO)
@@ -169,7 +165,6 @@ typedef union _hw_tempmon_tempsense0
  * - VALID = 1 - Last measurement is valid.
  */
 //@{
-
 #define BP_TEMPMON_TEMPSENSE0_FINISHED      (2)      //!< Bit position for TEMPMON_TEMPSENSE0_FINISHED.
 #define BM_TEMPMON_TEMPSENSE0_FINISHED      (0x00000004)  //!< Bit mask for TEMPMON_TEMPSENSE0_FINISHED.
 
@@ -181,7 +176,6 @@ typedef union _hw_tempmon_tempsense0
 
 #define BV_TEMPMON_TEMPSENSE0_FINISHED__INVALID (0x0) //!< Last measurement is not ready yet.
 #define BV_TEMPMON_TEMPSENSE0_FINISHED__VALID (0x1) //!< Last measurement is valid.
-
 //@}
 
 /*! @name Register TEMPMON_TEMPSENSE0, field TEMP_CNT[19:8] (RO)
@@ -189,13 +183,11 @@ typedef union _hw_tempmon_tempsense0
  * This bit field contains the last measured temperature count.
  */
 //@{
-
 #define BP_TEMPMON_TEMPSENSE0_TEMP_CNT      (8)      //!< Bit position for TEMPMON_TEMPSENSE0_TEMP_CNT.
 #define BM_TEMPMON_TEMPSENSE0_TEMP_CNT      (0x000fff00)  //!< Bit mask for TEMPMON_TEMPSENSE0_TEMP_CNT.
 
 //! @brief Get value of TEMPMON_TEMPSENSE0_TEMP_CNT from a register value.
 #define BG_TEMPMON_TEMPSENSE0_TEMP_CNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_TEMPMON_TEMPSENSE0_TEMP_CNT) >> BP_TEMPMON_TEMPSENSE0_TEMP_CNT)
-
 //@}
 
 /*! @name Register TEMPMON_TEMPSENSE0, field ALARM_VALUE[31:20] (RW)
@@ -204,7 +196,6 @@ typedef union _hw_tempmon_tempsense0
  * interrupt.
  */
 //@{
-
 #define BP_TEMPMON_TEMPSENSE0_ALARM_VALUE      (20)      //!< Bit position for TEMPMON_TEMPSENSE0_ALARM_VALUE.
 #define BM_TEMPMON_TEMPSENSE0_ALARM_VALUE      (0xfff00000)  //!< Bit mask for TEMPMON_TEMPSENSE0_ALARM_VALUE.
 
@@ -218,7 +209,6 @@ typedef union _hw_tempmon_tempsense0
 //! @brief Set the ALARM_VALUE field to a new value.
 #define BW_TEMPMON_TEMPSENSE0_ALARM_VALUE(v)   BF_CS1(TEMPMON_TEMPSENSE0, ALARM_VALUE, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -281,7 +271,6 @@ typedef union _hw_tempmon_tempsense1
  *     accuracy of the RTC clock.
  */
 //@{
-
 #define BP_TEMPMON_TEMPSENSE1_MEASURE_FREQ      (0)      //!< Bit position for TEMPMON_TEMPSENSE1_MEASURE_FREQ.
 #define BM_TEMPMON_TEMPSENSE1_MEASURE_FREQ      (0x0000ffff)  //!< Bit mask for TEMPMON_TEMPSENSE1_MEASURE_FREQ.
 
@@ -295,7 +284,6 @@ typedef union _hw_tempmon_tempsense1
 //! @brief Set the MEASURE_FREQ field to a new value.
 #define BW_TEMPMON_TEMPSENSE1_MEASURE_FREQ(v)   BF_CS1(TEMPMON_TEMPSENSE1, MEASURE_FREQ, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -327,3 +315,5 @@ typedef struct _hw_tempmon
 #endif
 
 #endif // __HW_TEMPMON_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

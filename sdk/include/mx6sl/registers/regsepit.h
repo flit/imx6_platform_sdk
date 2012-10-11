@@ -128,7 +128,6 @@ typedef union _hw_epit_cr
  * - 1 - EPIT is enabled
  */
 //@{
-
 #define BP_EPIT_CR_EN      (0)      //!< Bit position for EPIT_CR_EN.
 #define BM_EPIT_CR_EN      (0x00000001)  //!< Bit mask for EPIT_CR_EN.
 
@@ -142,7 +141,6 @@ typedef union _hw_epit_cr
 //! @brief Set the EN field to a new value.
 #define BW_EPIT_CR_EN(x, v)   (HW_EPIT_CR_WR(x, (HW_EPIT_CR_RD(x) & ~BM_EPIT_CR_EN) | BF_EPIT_CR_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPIT_CR, field ENMOD[1] (RW)
@@ -164,7 +162,6 @@ typedef union _hw_epit_cr
  * - 1 - Counter starts count from load value (RLD=1) or 0xFFFF_FFFF (If RLD=0)
  */
 //@{
-
 #define BP_EPIT_CR_ENMOD      (1)      //!< Bit position for EPIT_CR_ENMOD.
 #define BM_EPIT_CR_ENMOD      (0x00000002)  //!< Bit mask for EPIT_CR_ENMOD.
 
@@ -178,7 +175,6 @@ typedef union _hw_epit_cr
 //! @brief Set the ENMOD field to a new value.
 #define BW_EPIT_CR_ENMOD(x, v)   (HW_EPIT_CR_WR(x, (HW_EPIT_CR_RD(x) & ~BM_EPIT_CR_ENMOD) | BF_EPIT_CR_ENMOD(v)))
 #endif
-
 //@}
 
 /*! @name Register EPIT_CR, field OCIEN[2] (RW)
@@ -191,7 +187,6 @@ typedef union _hw_epit_cr
  * - 1 - Compare interrupt enabled
  */
 //@{
-
 #define BP_EPIT_CR_OCIEN      (2)      //!< Bit position for EPIT_CR_OCIEN.
 #define BM_EPIT_CR_OCIEN      (0x00000004)  //!< Bit mask for EPIT_CR_OCIEN.
 
@@ -205,7 +200,6 @@ typedef union _hw_epit_cr
 //! @brief Set the OCIEN field to a new value.
 #define BW_EPIT_CR_OCIEN(x, v)   (HW_EPIT_CR_WR(x, (HW_EPIT_CR_RD(x) & ~BM_EPIT_CR_OCIEN) | BF_EPIT_CR_OCIEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPIT_CR, field RLD[3] (RW)
@@ -218,7 +212,6 @@ typedef union _hw_epit_cr
  * - 1 - When the counter reaches zero it reloads from the modulus register (set-and-forget mode)
  */
 //@{
-
 #define BP_EPIT_CR_RLD      (3)      //!< Bit position for EPIT_CR_RLD.
 #define BM_EPIT_CR_RLD      (0x00000008)  //!< Bit mask for EPIT_CR_RLD.
 
@@ -232,7 +225,6 @@ typedef union _hw_epit_cr
 //! @brief Set the RLD field to a new value.
 #define BW_EPIT_CR_RLD(x, v)   (HW_EPIT_CR_WR(x, (HW_EPIT_CR_RD(x) & ~BM_EPIT_CR_RLD) | BF_EPIT_CR_RLD(v)))
 #endif
-
 //@}
 
 /*! @name Register EPIT_CR, field PRESCALAR[15:4] (RW)
@@ -246,7 +238,6 @@ typedef union _hw_epit_cr
  * - 0xFFF - Divide by 4096
  */
 //@{
-
 #define BP_EPIT_CR_PRESCALAR      (4)      //!< Bit position for EPIT_CR_PRESCALAR.
 #define BM_EPIT_CR_PRESCALAR      (0x0000fff0)  //!< Bit mask for EPIT_CR_PRESCALAR.
 
@@ -260,7 +251,6 @@ typedef union _hw_epit_cr
 //! @brief Set the PRESCALAR field to a new value.
 #define BW_EPIT_CR_PRESCALAR(x, v)   (HW_EPIT_CR_WR(x, (HW_EPIT_CR_RD(x) & ~BM_EPIT_CR_PRESCALAR) | BF_EPIT_CR_PRESCALAR(v)))
 #endif
-
 //@}
 
 /*! @name Register EPIT_CR, field SWR[16] (RW)
@@ -275,7 +265,6 @@ typedef union _hw_epit_cr
  * - 1 - EPIT is undergoing reset
  */
 //@{
-
 #define BP_EPIT_CR_SWR      (16)      //!< Bit position for EPIT_CR_SWR.
 #define BM_EPIT_CR_SWR      (0x00010000)  //!< Bit mask for EPIT_CR_SWR.
 
@@ -289,7 +278,6 @@ typedef union _hw_epit_cr
 //! @brief Set the SWR field to a new value.
 #define BW_EPIT_CR_SWR(x, v)   (HW_EPIT_CR_WR(x, (HW_EPIT_CR_RD(x) & ~BM_EPIT_CR_SWR) | BF_EPIT_CR_SWR(v)))
 #endif
-
 //@}
 
 /*! @name Register EPIT_CR, field IOVW[17] (RW)
@@ -303,7 +291,6 @@ typedef union _hw_epit_cr
  * - 1 - Write to load register results in immediate overwriting of counter value.
  */
 //@{
-
 #define BP_EPIT_CR_IOVW      (17)      //!< Bit position for EPIT_CR_IOVW.
 #define BM_EPIT_CR_IOVW      (0x00020000)  //!< Bit mask for EPIT_CR_IOVW.
 
@@ -317,7 +304,6 @@ typedef union _hw_epit_cr
 //! @brief Set the IOVW field to a new value.
 #define BW_EPIT_CR_IOVW(x, v)   (HW_EPIT_CR_WR(x, (HW_EPIT_CR_RD(x) & ~BM_EPIT_CR_IOVW) | BF_EPIT_CR_IOVW(v)))
 #endif
-
 //@}
 
 /*! @name Register EPIT_CR, field DBGEN[18] (RW)
@@ -331,7 +317,6 @@ typedef union _hw_epit_cr
  * - 1 - Active in debug mode
  */
 //@{
-
 #define BP_EPIT_CR_DBGEN      (18)      //!< Bit position for EPIT_CR_DBGEN.
 #define BM_EPIT_CR_DBGEN      (0x00040000)  //!< Bit mask for EPIT_CR_DBGEN.
 
@@ -345,7 +330,6 @@ typedef union _hw_epit_cr
 //! @brief Set the DBGEN field to a new value.
 #define BW_EPIT_CR_DBGEN(x, v)   (HW_EPIT_CR_WR(x, (HW_EPIT_CR_RD(x) & ~BM_EPIT_CR_DBGEN) | BF_EPIT_CR_DBGEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPIT_CR, field WAITEN[19] (RW)
@@ -358,7 +342,6 @@ typedef union _hw_epit_cr
  * - 1 - EPIT is enabled in wait mode
  */
 //@{
-
 #define BP_EPIT_CR_WAITEN      (19)      //!< Bit position for EPIT_CR_WAITEN.
 #define BM_EPIT_CR_WAITEN      (0x00080000)  //!< Bit mask for EPIT_CR_WAITEN.
 
@@ -372,7 +355,6 @@ typedef union _hw_epit_cr
 //! @brief Set the WAITEN field to a new value.
 #define BW_EPIT_CR_WAITEN(x, v)   (HW_EPIT_CR_WR(x, (HW_EPIT_CR_RD(x) & ~BM_EPIT_CR_WAITEN) | BF_EPIT_CR_WAITEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPIT_CR, field STOPEN[21] (RW)
@@ -385,7 +367,6 @@ typedef union _hw_epit_cr
  * - 1 - EPIT is enabled in stop mode
  */
 //@{
-
 #define BP_EPIT_CR_STOPEN      (21)      //!< Bit position for EPIT_CR_STOPEN.
 #define BM_EPIT_CR_STOPEN      (0x00200000)  //!< Bit mask for EPIT_CR_STOPEN.
 
@@ -399,7 +380,6 @@ typedef union _hw_epit_cr
 //! @brief Set the STOPEN field to a new value.
 #define BW_EPIT_CR_STOPEN(x, v)   (HW_EPIT_CR_WR(x, (HW_EPIT_CR_RD(x) & ~BM_EPIT_CR_STOPEN) | BF_EPIT_CR_STOPEN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPIT_CR, field OM[23:22] (RW)
@@ -413,7 +393,6 @@ typedef union _hw_epit_cr
  * - 11 - Set output pin
  */
 //@{
-
 #define BP_EPIT_CR_OM      (22)      //!< Bit position for EPIT_CR_OM.
 #define BM_EPIT_CR_OM      (0x00c00000)  //!< Bit mask for EPIT_CR_OM.
 
@@ -427,7 +406,6 @@ typedef union _hw_epit_cr
 //! @brief Set the OM field to a new value.
 #define BW_EPIT_CR_OM(x, v)   (HW_EPIT_CR_WR(x, (HW_EPIT_CR_RD(x) & ~BM_EPIT_CR_OM) | BF_EPIT_CR_OM(v)))
 #endif
-
 //@}
 
 /*! @name Register EPIT_CR, field CLKSRC[25:24] (RW)
@@ -443,7 +421,6 @@ typedef union _hw_epit_cr
  * - 11 - Low-frequency reference clock
  */
 //@{
-
 #define BP_EPIT_CR_CLKSRC      (24)      //!< Bit position for EPIT_CR_CLKSRC.
 #define BM_EPIT_CR_CLKSRC      (0x03000000)  //!< Bit mask for EPIT_CR_CLKSRC.
 
@@ -457,7 +434,6 @@ typedef union _hw_epit_cr
 //! @brief Set the CLKSRC field to a new value.
 #define BW_EPIT_CR_CLKSRC(x, v)   (HW_EPIT_CR_WR(x, (HW_EPIT_CR_RD(x) & ~BM_EPIT_CR_CLKSRC) | BF_EPIT_CR_CLKSRC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -515,7 +491,6 @@ typedef union _hw_epit_sr
  * - 1 - Compare event occurred
  */
 //@{
-
 #define BP_EPIT_SR_OCIF      (0)      //!< Bit position for EPIT_SR_OCIF.
 #define BM_EPIT_SR_OCIF      (0x00000001)  //!< Bit mask for EPIT_SR_OCIF.
 
@@ -529,7 +504,6 @@ typedef union _hw_epit_sr
 //! @brief Set the OCIF field to a new value.
 #define BW_EPIT_SR_OCIF(x, v)   (HW_EPIT_SR_WR(x, (HW_EPIT_SR_RD(x) & ~BM_EPIT_SR_OCIF) | BF_EPIT_SR_OCIF(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -582,7 +556,6 @@ typedef union _hw_epit_lr
  * Load value. Value that is loaded into the counter at the start of each count cycle.
  */
 //@{
-
 #define BP_EPIT_LR_LOAD      (0)      //!< Bit position for EPIT_LR_LOAD.
 #define BM_EPIT_LR_LOAD      (0xffffffff)  //!< Bit mask for EPIT_LR_LOAD.
 
@@ -596,7 +569,6 @@ typedef union _hw_epit_lr
 //! @brief Set the LOAD field to a new value.
 #define BW_EPIT_LR_LOAD(x, v)   (HW_EPIT_LR_WR(x, (HW_EPIT_LR_RD(x) & ~BM_EPIT_LR_LOAD) | BF_EPIT_LR_LOAD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -647,7 +619,6 @@ typedef union _hw_epit_cmpr
  * Compare Value. When the counter value equals this bit field value a compare event is generated.
  */
 //@{
-
 #define BP_EPIT_CMPR_COMPARE      (0)      //!< Bit position for EPIT_CMPR_COMPARE.
 #define BM_EPIT_CMPR_COMPARE      (0xffffffff)  //!< Bit mask for EPIT_CMPR_COMPARE.
 
@@ -661,7 +632,6 @@ typedef union _hw_epit_cmpr
 //! @brief Set the COMPARE field to a new value.
 #define BW_EPIT_CMPR_COMPARE(x, v)   (HW_EPIT_CMPR_WR(x, (HW_EPIT_CMPR_RD(x) & ~BM_EPIT_CMPR_COMPARE) | BF_EPIT_CMPR_COMPARE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -711,13 +681,11 @@ typedef union _hw_epit_cnr
  * Counter value. This contains the current value of the counter.
  */
 //@{
-
 #define BP_EPIT_CNR_COUNT      (0)      //!< Bit position for EPIT_CNR_COUNT.
 #define BM_EPIT_CNR_COUNT      (0xffffffff)  //!< Bit mask for EPIT_CNR_COUNT.
 
 //! @brief Get value of EPIT_CNR_COUNT from a register value.
 #define BG_EPIT_CNR_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPIT_CNR_COUNT) >> BP_EPIT_CNR_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -746,3 +714,5 @@ typedef struct _hw_epit
 #endif
 
 #endif // __HW_EPIT_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

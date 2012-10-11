@@ -109,7 +109,6 @@ typedef union _hw_spdc_disp_trigger
  * EPD screen update trigger When set to "1" it will trigger TCON start to display image on panel.
  */
 //@{
-
 #define BP_SPDC_DISP_TRIGGER_DISP_TRIG      (0)      //!< Bit position for SPDC_DISP_TRIGGER_DISP_TRIG.
 #define BM_SPDC_DISP_TRIGGER_DISP_TRIG      (0x00000001)  //!< Bit mask for SPDC_DISP_TRIGGER_DISP_TRIG.
 
@@ -123,7 +122,6 @@ typedef union _hw_spdc_disp_trigger
 //! @brief Set the DISP_TRIG field to a new value.
 #define BW_SPDC_DISP_TRIGGER_DISP_TRIG(v)   (HW_SPDC_DISP_TRIGGER_WR((HW_SPDC_DISP_TRIGGER_RD() & ~BM_SPDC_DISP_TRIGGER_DISP_TRIG) | BF_SPDC_DISP_TRIGGER_DISP_TRIG(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_DISP_TRIGGER, field EPD_MODE[3:1] (RW)
@@ -135,7 +133,6 @@ typedef union _hw_spdc_disp_trigger
  * MODE_7 - It will be displayed with mode 7 waveform
  */
 //@{
-
 #define BP_SPDC_DISP_TRIGGER_EPD_MODE      (1)      //!< Bit position for SPDC_DISP_TRIGGER_EPD_MODE.
 #define BM_SPDC_DISP_TRIGGER_EPD_MODE      (0x0000000e)  //!< Bit mask for SPDC_DISP_TRIGGER_EPD_MODE.
 
@@ -149,7 +146,6 @@ typedef union _hw_spdc_disp_trigger
 //! @brief Set the EPD_MODE field to a new value.
 #define BW_SPDC_DISP_TRIGGER_EPD_MODE(v)   (HW_SPDC_DISP_TRIGGER_WR((HW_SPDC_DISP_TRIGGER_RD() & ~BM_SPDC_DISP_TRIGGER_EPD_MODE) | BF_SPDC_DISP_TRIGGER_EPD_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_DISP_TRIGGER, field FLASH_SET[4] (RW)
@@ -158,7 +154,6 @@ typedef union _hw_spdc_disp_trigger
  * screen update in mode 7 0x1 FLASH - It will be flashed screen update in mode 7
  */
 //@{
-
 #define BP_SPDC_DISP_TRIGGER_FLASH_SET      (4)      //!< Bit position for SPDC_DISP_TRIGGER_FLASH_SET.
 #define BM_SPDC_DISP_TRIGGER_FLASH_SET      (0x00000010)  //!< Bit mask for SPDC_DISP_TRIGGER_FLASH_SET.
 
@@ -172,7 +167,6 @@ typedef union _hw_spdc_disp_trigger
 //! @brief Set the FLASH_SET field to a new value.
 #define BW_SPDC_DISP_TRIGGER_FLASH_SET(v)   (HW_SPDC_DISP_TRIGGER_WR((HW_SPDC_DISP_TRIGGER_RD() & ~BM_SPDC_DISP_TRIGGER_FLASH_SET) | BF_SPDC_DISP_TRIGGER_FLASH_SET(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -226,7 +220,6 @@ typedef union _hw_spdc_update_x_y
  * should be 4n + 1 format where n is integer
  */
 //@{
-
 #define BP_SPDC_UPDATE_X_Y_COORDINATE_Y      (0)      //!< Bit position for SPDC_UPDATE_X_Y_COORDINATE_Y.
 #define BM_SPDC_UPDATE_X_Y_COORDINATE_Y      (0x00000fff)  //!< Bit mask for SPDC_UPDATE_X_Y_COORDINATE_Y.
 
@@ -240,7 +233,6 @@ typedef union _hw_spdc_update_x_y
 //! @brief Set the COORDINATE_Y field to a new value.
 #define BW_SPDC_UPDATE_X_Y_COORDINATE_Y(v)   (HW_SPDC_UPDATE_X_Y_WR((HW_SPDC_UPDATE_X_Y_RD() & ~BM_SPDC_UPDATE_X_Y_COORDINATE_Y) | BF_SPDC_UPDATE_X_Y_COORDINATE_Y(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_UPDATE_X_Y, field COORDINATE_X[27:16] (RW)
@@ -248,7 +240,6 @@ typedef union _hw_spdc_update_x_y
  * Horizontal coordinate of update region (minimum: 1) X should be 4n + 1 format where n is integer
  */
 //@{
-
 #define BP_SPDC_UPDATE_X_Y_COORDINATE_X      (16)      //!< Bit position for SPDC_UPDATE_X_Y_COORDINATE_X.
 #define BM_SPDC_UPDATE_X_Y_COORDINATE_X      (0x0fff0000)  //!< Bit mask for SPDC_UPDATE_X_Y_COORDINATE_X.
 
@@ -262,7 +253,6 @@ typedef union _hw_spdc_update_x_y
 //! @brief Set the COORDINATE_X field to a new value.
 #define BW_SPDC_UPDATE_X_Y_COORDINATE_X(v)   (HW_SPDC_UPDATE_X_Y_WR((HW_SPDC_UPDATE_X_Y_RD() & ~BM_SPDC_UPDATE_X_Y_COORDINATE_X) | BF_SPDC_UPDATE_X_Y_COORDINATE_X(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -316,7 +306,6 @@ typedef union _hw_spdc_update_w_h
  * is integer
  */
 //@{
-
 #define BP_SPDC_UPDATE_W_H_HEIGHT      (0)      //!< Bit position for SPDC_UPDATE_W_H_HEIGHT.
 #define BM_SPDC_UPDATE_W_H_HEIGHT      (0x00000fff)  //!< Bit mask for SPDC_UPDATE_W_H_HEIGHT.
 
@@ -330,7 +319,6 @@ typedef union _hw_spdc_update_w_h
 //! @brief Set the HEIGHT field to a new value.
 #define BW_SPDC_UPDATE_W_H_HEIGHT(v)   (HW_SPDC_UPDATE_W_H_WR((HW_SPDC_UPDATE_W_H_RD() & ~BM_SPDC_UPDATE_W_H_HEIGHT) | BF_SPDC_UPDATE_W_H_HEIGHT(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_UPDATE_W_H, field WIDTH[27:16] (RW)
@@ -338,7 +326,6 @@ typedef union _hw_spdc_update_w_h
  * Width of update region W should be 4n format where n is integer
  */
 //@{
-
 #define BP_SPDC_UPDATE_W_H_WIDTH      (16)      //!< Bit position for SPDC_UPDATE_W_H_WIDTH.
 #define BM_SPDC_UPDATE_W_H_WIDTH      (0x0fff0000)  //!< Bit mask for SPDC_UPDATE_W_H_WIDTH.
 
@@ -352,7 +339,6 @@ typedef union _hw_spdc_update_w_h
 //! @brief Set the WIDTH field to a new value.
 #define BW_SPDC_UPDATE_W_H_WIDTH(v)   (HW_SPDC_UPDATE_W_H_WR((HW_SPDC_UPDATE_W_H_RD() & ~BM_SPDC_UPDATE_W_H_WIDTH) | BF_SPDC_UPDATE_W_H_WIDTH(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -404,7 +390,6 @@ typedef union _hw_spdc_lut_para_update
  * The value of update LUT parameter
  */
 //@{
-
 #define BP_SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE      (0)      //!< Bit position for SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE.
 #define BM_SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE      (0x000000ff)  //!< Bit mask for SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE.
 
@@ -418,7 +403,6 @@ typedef union _hw_spdc_lut_para_update
 //! @brief Set the LUT_PARAMETER_UPDATED_VALUE field to a new value.
 #define BW_SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE(v)   (HW_SPDC_LUT_PARA_UPDATE_WR((HW_SPDC_LUT_PARA_UPDATE_RD() & ~BM_SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE) | BF_SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_VALUE(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_LUT_PARA_UPDATE, field LUT_PARAMETER_UPDATED_ADDR[15:8] (RW)
@@ -426,7 +410,6 @@ typedef union _hw_spdc_lut_para_update
  * The address of updated LUT parameter
  */
 //@{
-
 #define BP_SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR      (8)      //!< Bit position for SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR.
 #define BM_SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR      (0x0000ff00)  //!< Bit mask for SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR.
 
@@ -440,7 +423,6 @@ typedef union _hw_spdc_lut_para_update
 //! @brief Set the LUT_PARAMETER_UPDATED_ADDR field to a new value.
 #define BW_SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR(v)   (HW_SPDC_LUT_PARA_UPDATE_WR((HW_SPDC_LUT_PARA_UPDATE_RD() & ~BM_SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR) | BF_SPDC_LUT_PARA_UPDATE_LUT_PARAMETER_UPDATED_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -495,7 +477,6 @@ typedef union _hw_spdc_operate
  * image data (current frame memory) with mode 0 waveform.
  */
 //@{
-
 #define BP_SPDC_OPERATE_DISP_REFRESH      (0)      //!< Bit position for SPDC_OPERATE_DISP_REFRESH.
 #define BM_SPDC_OPERATE_DISP_REFRESH      (0x00000001)  //!< Bit mask for SPDC_OPERATE_DISP_REFRESH.
 
@@ -509,7 +490,6 @@ typedef union _hw_spdc_operate
 //! @brief Set the DISP_REFRESH field to a new value.
 #define BW_SPDC_OPERATE_DISP_REFRESH(v)   (HW_SPDC_OPERATE_WR((HW_SPDC_OPERATE_RD() & ~BM_SPDC_OPERATE_DISP_REFRESH) | BF_SPDC_OPERATE_DISP_REFRESH(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_OPERATE, field DEEP_REFRESH[1] (RW)
@@ -519,7 +499,6 @@ typedef union _hw_spdc_operate
  * (current frame memory) with mode 0 waveform.
  */
 //@{
-
 #define BP_SPDC_OPERATE_DEEP_REFRESH      (1)      //!< Bit position for SPDC_OPERATE_DEEP_REFRESH.
 #define BM_SPDC_OPERATE_DEEP_REFRESH      (0x00000002)  //!< Bit mask for SPDC_OPERATE_DEEP_REFRESH.
 
@@ -533,7 +512,6 @@ typedef union _hw_spdc_operate
 //! @brief Set the DEEP_REFRESH field to a new value.
 #define BW_SPDC_OPERATE_DEEP_REFRESH(v)   (HW_SPDC_OPERATE_WR((HW_SPDC_OPERATE_RD() & ~BM_SPDC_OPERATE_DEEP_REFRESH) | BF_SPDC_OPERATE_DEEP_REFRESH(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_OPERATE, field DISP_RESET[2] (RW)
@@ -542,7 +520,6 @@ typedef union _hw_spdc_operate
  * update next/current/previous frame memories according to flash LUT setting gray level.
  */
 //@{
-
 #define BP_SPDC_OPERATE_DISP_RESET      (2)      //!< Bit position for SPDC_OPERATE_DISP_RESET.
 #define BM_SPDC_OPERATE_DISP_RESET      (0x00000004)  //!< Bit mask for SPDC_OPERATE_DISP_RESET.
 
@@ -556,7 +533,6 @@ typedef union _hw_spdc_operate
 //! @brief Set the DISP_RESET field to a new value.
 #define BW_SPDC_OPERATE_DISP_RESET(v)   (HW_SPDC_OPERATE_WR((HW_SPDC_OPERATE_RD() & ~BM_SPDC_OPERATE_DISP_RESET) | BF_SPDC_OPERATE_DISP_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_OPERATE, field SW_TCON_RESET[31] (RW)
@@ -565,7 +541,6 @@ typedef union _hw_spdc_operate
  * registers in TCON.
  */
 //@{
-
 #define BP_SPDC_OPERATE_SW_TCON_RESET      (31)      //!< Bit position for SPDC_OPERATE_SW_TCON_RESET.
 #define BM_SPDC_OPERATE_SW_TCON_RESET      (0x80000000)  //!< Bit mask for SPDC_OPERATE_SW_TCON_RESET.
 
@@ -579,7 +554,6 @@ typedef union _hw_spdc_operate
 //! @brief Set the SW_TCON_RESET field to a new value.
 #define BW_SPDC_OPERATE_SW_TCON_RESET(v)   (HW_SPDC_OPERATE_WR((HW_SPDC_OPERATE_RD() & ~BM_SPDC_OPERATE_SW_TCON_RESET) | BF_SPDC_OPERATE_SW_TCON_RESET(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -665,7 +639,6 @@ typedef union _hw_spdc_panel_init_set
  * 0x1 HIGH_ENABLE -Gate pulse outputs high enable.
  */
 //@{
-
 #define BP_SPDC_PANEL_INIT_SET_YOE_POL      (0)      //!< Bit position for SPDC_PANEL_INIT_SET_YOE_POL.
 #define BM_SPDC_PANEL_INIT_SET_YOE_POL      (0x00000001)  //!< Bit mask for SPDC_PANEL_INIT_SET_YOE_POL.
 
@@ -679,7 +652,6 @@ typedef union _hw_spdc_panel_init_set
 //! @brief Set the YOE_POL field to a new value.
 #define BW_SPDC_PANEL_INIT_SET_YOE_POL(v)   (HW_SPDC_PANEL_INIT_SET_WR((HW_SPDC_PANEL_INIT_SET_RD() & ~BM_SPDC_PANEL_INIT_SET_YOE_POL) | BF_SPDC_PANEL_INIT_SET_YOE_POL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_PANEL_INIT_SET, field DUAL_GATE[1] (RW)
@@ -688,7 +660,6 @@ typedef union _hw_spdc_panel_init_set
  * gate driver K7900). 0x1 DOUBLE_GATE -Double side gate driver (support gate driver MEXI2300)
  */
 //@{
-
 #define BP_SPDC_PANEL_INIT_SET_DUAL_GATE      (1)      //!< Bit position for SPDC_PANEL_INIT_SET_DUAL_GATE.
 #define BM_SPDC_PANEL_INIT_SET_DUAL_GATE      (0x00000002)  //!< Bit mask for SPDC_PANEL_INIT_SET_DUAL_GATE.
 
@@ -702,7 +673,6 @@ typedef union _hw_spdc_panel_init_set
 //! @brief Set the DUAL_GATE field to a new value.
 #define BW_SPDC_PANEL_INIT_SET_DUAL_GATE(v)   (HW_SPDC_PANEL_INIT_SET_WR((HW_SPDC_PANEL_INIT_SET_RD() & ~BM_SPDC_PANEL_INIT_SET_DUAL_GATE) | BF_SPDC_PANEL_INIT_SET_DUAL_GATE(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_PANEL_INIT_SET, field RESOLUTION[6:2] (RW)
@@ -711,7 +681,6 @@ typedef union _hw_spdc_panel_init_set
  * the Table 45-13
  */
 //@{
-
 #define BP_SPDC_PANEL_INIT_SET_RESOLUTION      (2)      //!< Bit position for SPDC_PANEL_INIT_SET_RESOLUTION.
 #define BM_SPDC_PANEL_INIT_SET_RESOLUTION      (0x0000007c)  //!< Bit mask for SPDC_PANEL_INIT_SET_RESOLUTION.
 
@@ -725,7 +694,6 @@ typedef union _hw_spdc_panel_init_set
 //! @brief Set the RESOLUTION field to a new value.
 #define BW_SPDC_PANEL_INIT_SET_RESOLUTION(v)   (HW_SPDC_PANEL_INIT_SET_WR((HW_SPDC_PANEL_INIT_SET_RD() & ~BM_SPDC_PANEL_INIT_SET_RESOLUTION) | BF_SPDC_PANEL_INIT_SET_RESOLUTION(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_PANEL_INIT_SET, field UD[7] (RW)
@@ -734,7 +702,6 @@ typedef union _hw_spdc_panel_init_set
  * G2 ◊ Last line=G1. 0x1 UP -Scan up; First line=G1 ◊ G2 ◊ … ◊ Gm-1 ◊ Last line=Gm.
  */
 //@{
-
 #define BP_SPDC_PANEL_INIT_SET_UD      (7)      //!< Bit position for SPDC_PANEL_INIT_SET_UD.
 #define BM_SPDC_PANEL_INIT_SET_UD      (0x00000080)  //!< Bit mask for SPDC_PANEL_INIT_SET_UD.
 
@@ -748,7 +715,6 @@ typedef union _hw_spdc_panel_init_set
 //! @brief Set the UD field to a new value.
 #define BW_SPDC_PANEL_INIT_SET_UD(v)   (HW_SPDC_PANEL_INIT_SET_WR((HW_SPDC_PANEL_INIT_SET_RD() & ~BM_SPDC_PANEL_INIT_SET_UD) | BF_SPDC_PANEL_INIT_SET_UD(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_PANEL_INIT_SET, field RL[8] (RW)
@@ -757,7 +723,6 @@ typedef union _hw_spdc_panel_init_set
  * Sn-1 ◊ …◊ S2 ◊ Last data=S1. 0x1 RIGHT -Shift right: First data=S1◊ S2 ◊ …◊ Sn-1 ◊ Last data=Sn.
  */
 //@{
-
 #define BP_SPDC_PANEL_INIT_SET_RL      (8)      //!< Bit position for SPDC_PANEL_INIT_SET_RL.
 #define BM_SPDC_PANEL_INIT_SET_RL      (0x00000100)  //!< Bit mask for SPDC_PANEL_INIT_SET_RL.
 
@@ -771,7 +736,6 @@ typedef union _hw_spdc_panel_init_set
 //! @brief Set the RL field to a new value.
 #define BW_SPDC_PANEL_INIT_SET_RL(v)   (HW_SPDC_PANEL_INIT_SET_WR((HW_SPDC_PANEL_INIT_SET_RD() & ~BM_SPDC_PANEL_INIT_SET_RL) | BF_SPDC_PANEL_INIT_SET_RL(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_PANEL_INIT_SET, field DATA_FILTER_N[9] (RW)
@@ -782,7 +746,6 @@ typedef union _hw_spdc_panel_init_set
  * automatic filter the input image data
  */
 //@{
-
 #define BP_SPDC_PANEL_INIT_SET_DATA_FILTER_N      (9)      //!< Bit position for SPDC_PANEL_INIT_SET_DATA_FILTER_N.
 #define BM_SPDC_PANEL_INIT_SET_DATA_FILTER_N      (0x00000200)  //!< Bit mask for SPDC_PANEL_INIT_SET_DATA_FILTER_N.
 
@@ -796,7 +759,6 @@ typedef union _hw_spdc_panel_init_set
 //! @brief Set the DATA_FILTER_N field to a new value.
 #define BW_SPDC_PANEL_INIT_SET_DATA_FILTER_N(v)   (HW_SPDC_PANEL_INIT_SET_WR((HW_SPDC_PANEL_INIT_SET_RD() & ~BM_SPDC_PANEL_INIT_SET_DATA_FILTER_N) | BF_SPDC_PANEL_INIT_SET_DATA_FILTER_N(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_PANEL_INIT_SET, field POWER_READY[10] (RW)
@@ -806,7 +768,6 @@ typedef union _hw_spdc_panel_init_set
  * trigger
  */
 //@{
-
 #define BP_SPDC_PANEL_INIT_SET_POWER_READY      (10)      //!< Bit position for SPDC_PANEL_INIT_SET_POWER_READY.
 #define BM_SPDC_PANEL_INIT_SET_POWER_READY      (0x00000400)  //!< Bit mask for SPDC_PANEL_INIT_SET_POWER_READY.
 
@@ -820,7 +781,6 @@ typedef union _hw_spdc_panel_init_set
 //! @brief Set the POWER_READY field to a new value.
 #define BW_SPDC_PANEL_INIT_SET_POWER_READY(v)   (HW_SPDC_PANEL_INIT_SET_WR((HW_SPDC_PANEL_INIT_SET_RD() & ~BM_SPDC_PANEL_INIT_SET_POWER_READY) | BF_SPDC_PANEL_INIT_SET_POWER_READY(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_PANEL_INIT_SET, field RGBW_MODE_EN[11] (RW)
@@ -829,7 +789,6 @@ typedef union _hw_spdc_panel_init_set
  * RGBW_MODE - It will enable TCON into RGBW mode
  */
 //@{
-
 #define BP_SPDC_PANEL_INIT_SET_RGBW_MODE_EN      (11)      //!< Bit position for SPDC_PANEL_INIT_SET_RGBW_MODE_EN.
 #define BM_SPDC_PANEL_INIT_SET_RGBW_MODE_EN      (0x00000800)  //!< Bit mask for SPDC_PANEL_INIT_SET_RGBW_MODE_EN.
 
@@ -843,7 +802,6 @@ typedef union _hw_spdc_panel_init_set
 //! @brief Set the RGBW_MODE_EN field to a new value.
 #define BW_SPDC_PANEL_INIT_SET_RGBW_MODE_EN(v)   (HW_SPDC_PANEL_INIT_SET_WR((HW_SPDC_PANEL_INIT_SET_RD() & ~BM_SPDC_PANEL_INIT_SET_RGBW_MODE_EN) | BF_SPDC_PANEL_INIT_SET_RGBW_MODE_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_PANEL_INIT_SET, field HBURST_LEN_EN[13] (RW)
@@ -853,7 +811,6 @@ typedef union _hw_spdc_panel_init_set
  * [3:0] as the valid length for current INCR transfer.
  */
 //@{
-
 #define BP_SPDC_PANEL_INIT_SET_HBURST_LEN_EN      (13)      //!< Bit position for SPDC_PANEL_INIT_SET_HBURST_LEN_EN.
 #define BM_SPDC_PANEL_INIT_SET_HBURST_LEN_EN      (0x00002000)  //!< Bit mask for SPDC_PANEL_INIT_SET_HBURST_LEN_EN.
 
@@ -867,7 +824,6 @@ typedef union _hw_spdc_panel_init_set
 //! @brief Set the HBURST_LEN_EN field to a new value.
 #define BW_SPDC_PANEL_INIT_SET_HBURST_LEN_EN(v)   (HW_SPDC_PANEL_INIT_SET_WR((HW_SPDC_PANEL_INIT_SET_RD() & ~BM_SPDC_PANEL_INIT_SET_HBURST_LEN_EN) | BF_SPDC_PANEL_INIT_SET_HBURST_LEN_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -922,7 +878,6 @@ typedef union _hw_spdc_temper_setting
  * complement format)
  */
 //@{
-
 #define BP_SPDC_TEMPER_SETTING_TEMPERATURE      (0)      //!< Bit position for SPDC_TEMPER_SETTING_TEMPERATURE.
 #define BM_SPDC_TEMPER_SETTING_TEMPERATURE      (0x000001ff)  //!< Bit mask for SPDC_TEMPER_SETTING_TEMPERATURE.
 
@@ -936,7 +891,6 @@ typedef union _hw_spdc_temper_setting
 //! @brief Set the TEMPERATURE field to a new value.
 #define BW_SPDC_TEMPER_SETTING_TEMPERATURE(v)   (HW_SPDC_TEMPER_SETTING_WR((HW_SPDC_TEMPER_SETTING_RD() & ~BM_SPDC_TEMPER_SETTING_TEMPERATURE) | BF_SPDC_TEMPER_SETTING_TEMPERATURE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -987,7 +941,6 @@ typedef union _hw_spdc_next_buf
  * value, it means EPD TCON wills automatic truncate two bits of LSB.
  */
 //@{
-
 #define BP_SPDC_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR      (0)      //!< Bit position for SPDC_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR.
 #define BM_SPDC_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR      (0xffffffff)  //!< Bit mask for SPDC_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR.
 
@@ -1001,7 +954,6 @@ typedef union _hw_spdc_next_buf
 //! @brief Set the NEXT_FRAME_MEMORY_ADDR field to a new value.
 #define BW_SPDC_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR(v)   (HW_SPDC_NEXT_BUF_WR((HW_SPDC_NEXT_BUF_RD() & ~BM_SPDC_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR) | BF_SPDC_NEXT_BUF_NEXT_FRAME_MEMORY_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1052,7 +1004,6 @@ typedef union _hw_spdc_current_buf
  * word-align value, it means EPD TCON wills automatic truncate two bits of LSB.
  */
 //@{
-
 #define BP_SPDC_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR      (0)      //!< Bit position for SPDC_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR.
 #define BM_SPDC_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR      (0xffffffff)  //!< Bit mask for SPDC_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR.
 
@@ -1066,7 +1017,6 @@ typedef union _hw_spdc_current_buf
 //! @brief Set the CURRENT_FRAME_MEMORY_ADDR field to a new value.
 #define BW_SPDC_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR(v)   (HW_SPDC_CURRENT_BUF_WR((HW_SPDC_CURRENT_BUF_RD() & ~BM_SPDC_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR) | BF_SPDC_CURRENT_BUF_CURRENT_FRAME_MEMORY_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1117,7 +1067,6 @@ typedef union _hw_spdc_previous_buff
  * word-align value, it means EPD TCON wills automatic truncate two bits of LSB.
  */
 //@{
-
 #define BP_SPDC_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR      (0)      //!< Bit position for SPDC_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR.
 #define BM_SPDC_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR      (0xffffffff)  //!< Bit mask for SPDC_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR.
 
@@ -1131,7 +1080,6 @@ typedef union _hw_spdc_previous_buff
 //! @brief Set the PREVIOUS_FRAME_MEMORY_ADDR field to a new value.
 #define BW_SPDC_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR(v)   (HW_SPDC_PREVIOUS_BUFF_WR((HW_SPDC_PREVIOUS_BUFF_RD() & ~BM_SPDC_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR) | BF_SPDC_PREVIOUS_BUFF_PREVIOUS_FRAME_MEMORY_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1182,7 +1130,6 @@ typedef union _hw_spdc_frm_cnt_buff
  * word-align value, it means EPD TCON wills automatic truncate two bits of LSB.
  */
 //@{
-
 #define BP_SPDC_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR      (0)      //!< Bit position for SPDC_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR.
 #define BM_SPDC_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR      (0xffffffff)  //!< Bit mask for SPDC_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR.
 
@@ -1196,7 +1143,6 @@ typedef union _hw_spdc_frm_cnt_buff
 //! @brief Set the COUNTER_FRAME_MEMORY_ADDR field to a new value.
 #define BW_SPDC_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR(v)   (HW_SPDC_FRM_CNT_BUFF_WR((HW_SPDC_FRM_CNT_BUFF_RD() & ~BM_SPDC_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR) | BF_SPDC_FRM_CNT_BUFF_COUNTER_FRAME_MEMORY_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1247,7 +1193,6 @@ typedef union _hw_spdc_lut_buff
  * means EPD TCON wills automatic truncate two bits of LSB.
  */
 //@{
-
 #define BP_SPDC_LUT_BUFF_LUT_MEMORY_ADDR      (0)      //!< Bit position for SPDC_LUT_BUFF_LUT_MEMORY_ADDR.
 #define BM_SPDC_LUT_BUFF_LUT_MEMORY_ADDR      (0xffffffff)  //!< Bit mask for SPDC_LUT_BUFF_LUT_MEMORY_ADDR.
 
@@ -1261,7 +1206,6 @@ typedef union _hw_spdc_lut_buff
 //! @brief Set the LUT_MEMORY_ADDR field to a new value.
 #define BW_SPDC_LUT_BUFF_LUT_MEMORY_ADDR(v)   (HW_SPDC_LUT_BUFF_WR((HW_SPDC_LUT_BUFF_RD() & ~BM_SPDC_LUT_BUFF_LUT_MEMORY_ADDR) | BF_SPDC_LUT_BUFF_LUT_MEMORY_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1316,7 +1260,6 @@ typedef union _hw_spdc_int_en
  * Update Finish Interrupt 0x1 ENABLE_UPDATE_FINISH_INTERRUPT - Enable Frame Update Finish Interrupt
  */
 //@{
-
 #define BP_SPDC_INT_EN_UPDATE_FINISH_INT_EN      (0)      //!< Bit position for SPDC_INT_EN_UPDATE_FINISH_INT_EN.
 #define BM_SPDC_INT_EN_UPDATE_FINISH_INT_EN      (0x00000001)  //!< Bit mask for SPDC_INT_EN_UPDATE_FINISH_INT_EN.
 
@@ -1330,7 +1273,6 @@ typedef union _hw_spdc_int_en
 //! @brief Set the UPDATE_FINISH_INT_EN field to a new value.
 #define BW_SPDC_INT_EN_UPDATE_FINISH_INT_EN(v)   (HW_SPDC_INT_EN_WR((HW_SPDC_INT_EN_RD() & ~BM_SPDC_INT_EN_UPDATE_FINISH_INT_EN) | BF_SPDC_INT_EN_UPDATE_FINISH_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_INT_EN, field TCON_INIT_FINISH_INT_EN[1] (RW)
@@ -1340,7 +1282,6 @@ typedef union _hw_spdc_int_en
  * Initialization Interrupt
  */
 //@{
-
 #define BP_SPDC_INT_EN_TCON_INIT_FINISH_INT_EN      (1)      //!< Bit position for SPDC_INT_EN_TCON_INIT_FINISH_INT_EN.
 #define BM_SPDC_INT_EN_TCON_INIT_FINISH_INT_EN      (0x00000002)  //!< Bit mask for SPDC_INT_EN_TCON_INIT_FINISH_INT_EN.
 
@@ -1354,7 +1295,6 @@ typedef union _hw_spdc_int_en
 //! @brief Set the TCON_INIT_FINISH_INT_EN field to a new value.
 #define BW_SPDC_INT_EN_TCON_INIT_FINISH_INT_EN(v)   (HW_SPDC_INT_EN_WR((HW_SPDC_INT_EN_RD() & ~BM_SPDC_INT_EN_TCON_INIT_FINISH_INT_EN) | BF_SPDC_INT_EN_TCON_INIT_FINISH_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_INT_EN, field LUT_DOWNLOAD_FINISH_INT_EN[2] (RW)
@@ -1364,7 +1304,6 @@ typedef union _hw_spdc_int_en
  * LUT initial Download Finish Interrupt
  */
 //@{
-
 #define BP_SPDC_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN      (2)      //!< Bit position for SPDC_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN.
 #define BM_SPDC_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN      (0x00000004)  //!< Bit mask for SPDC_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN.
 
@@ -1378,7 +1317,6 @@ typedef union _hw_spdc_int_en
 //! @brief Set the LUT_DOWNLOAD_FINISH_INT_EN field to a new value.
 #define BW_SPDC_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN(v)   (HW_SPDC_INT_EN_WR((HW_SPDC_INT_EN_RD() & ~BM_SPDC_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN) | BF_SPDC_INT_EN_LUT_DOWNLOAD_FINISH_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_INT_EN, field TCON_ERROR_INT_EN[3] (RW)
@@ -1387,7 +1325,6 @@ typedef union _hw_spdc_int_en
  * ENABLE_ERRPR_INTERRUPT - Enable Error Interrupt
  */
 //@{
-
 #define BP_SPDC_INT_EN_TCON_ERROR_INT_EN      (3)      //!< Bit position for SPDC_INT_EN_TCON_ERROR_INT_EN.
 #define BM_SPDC_INT_EN_TCON_ERROR_INT_EN      (0x00000008)  //!< Bit mask for SPDC_INT_EN_TCON_ERROR_INT_EN.
 
@@ -1401,7 +1338,6 @@ typedef union _hw_spdc_int_en
 //! @brief Set the TCON_ERROR_INT_EN field to a new value.
 #define BW_SPDC_INT_EN_TCON_ERROR_INT_EN(v)   (HW_SPDC_INT_EN_WR((HW_SPDC_INT_EN_RD() & ~BM_SPDC_INT_EN_TCON_ERROR_INT_EN) | BF_SPDC_INT_EN_TCON_ERROR_INT_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1456,7 +1392,6 @@ typedef union _hw_spdc_int_st_clr
  * screen update finish interrupt.
  */
 //@{
-
 #define BP_SPDC_INT_ST_CLR_UPDATE_FINISH_INT_CLR      (0)      //!< Bit position for SPDC_INT_ST_CLR_UPDATE_FINISH_INT_CLR.
 #define BM_SPDC_INT_ST_CLR_UPDATE_FINISH_INT_CLR      (0x00000001)  //!< Bit mask for SPDC_INT_ST_CLR_UPDATE_FINISH_INT_CLR.
 
@@ -1470,7 +1405,6 @@ typedef union _hw_spdc_int_st_clr
 //! @brief Set the UPDATE_FINISH_INT_CLR field to a new value.
 #define BW_SPDC_INT_ST_CLR_UPDATE_FINISH_INT_CLR(v)   (HW_SPDC_INT_ST_CLR_WR((HW_SPDC_INT_ST_CLR_RD() & ~BM_SPDC_INT_ST_CLR_UPDATE_FINISH_INT_CLR) | BF_SPDC_INT_ST_CLR_UPDATE_FINISH_INT_CLR(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_INT_ST_CLR, field TCON_INIT_FINISH_INT_CLR[1] (RW)
@@ -1479,7 +1413,6 @@ typedef union _hw_spdc_int_st_clr
  * clear TCON initialization finish interrupt.
  */
 //@{
-
 #define BP_SPDC_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR      (1)      //!< Bit position for SPDC_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR.
 #define BM_SPDC_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR      (0x00000002)  //!< Bit mask for SPDC_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR.
 
@@ -1493,7 +1426,6 @@ typedef union _hw_spdc_int_st_clr
 //! @brief Set the TCON_INIT_FINISH_INT_CLR field to a new value.
 #define BW_SPDC_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR(v)   (HW_SPDC_INT_ST_CLR_WR((HW_SPDC_INT_ST_CLR_RD() & ~BM_SPDC_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR) | BF_SPDC_INT_ST_CLR_TCON_INIT_FINISH_INT_CLR(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_INT_ST_CLR, field LUT_DOWNLOAD_FINISH_INT_CLR[2] (RW)
@@ -1502,7 +1434,6 @@ typedef union _hw_spdc_int_st_clr
  * clear LUT download finish interrupt.
  */
 //@{
-
 #define BP_SPDC_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR      (2)      //!< Bit position for SPDC_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR.
 #define BM_SPDC_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR      (0x00000004)  //!< Bit mask for SPDC_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR.
 
@@ -1516,7 +1447,6 @@ typedef union _hw_spdc_int_st_clr
 //! @brief Set the LUT_DOWNLOAD_FINISH_INT_CLR field to a new value.
 #define BW_SPDC_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR(v)   (HW_SPDC_INT_ST_CLR_WR((HW_SPDC_INT_ST_CLR_RD() & ~BM_SPDC_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR) | BF_SPDC_INT_ST_CLR_LUT_DOWNLOAD_FINISH_INT_CLR(v)))
 #endif
-
 //@}
 
 /*! @name Register SPDC_INT_ST_CLR, field TCON_ERROR_INT_CLR[3] (RW)
@@ -1524,7 +1454,6 @@ typedef union _hw_spdc_int_st_clr
  * Error interrupt signal clear When set to "1" it will trigger TCON start to clear error interrupt.
  */
 //@{
-
 #define BP_SPDC_INT_ST_CLR_TCON_ERROR_INT_CLR      (3)      //!< Bit position for SPDC_INT_ST_CLR_TCON_ERROR_INT_CLR.
 #define BM_SPDC_INT_ST_CLR_TCON_ERROR_INT_CLR      (0x00000008)  //!< Bit mask for SPDC_INT_ST_CLR_TCON_ERROR_INT_CLR.
 
@@ -1538,7 +1467,6 @@ typedef union _hw_spdc_int_st_clr
 //! @brief Set the TCON_ERROR_INT_CLR field to a new value.
 #define BW_SPDC_INT_ST_CLR_TCON_ERROR_INT_CLR(v)   (HW_SPDC_INT_ST_CLR_WR((HW_SPDC_INT_ST_CLR_RD() & ~BM_SPDC_INT_ST_CLR_TCON_ERROR_INT_CLR) | BF_SPDC_INT_ST_CLR_TCON_ERROR_INT_CLR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1589,13 +1517,11 @@ typedef union _hw_spdc_status
  * finished
  */
 //@{
-
 #define BP_SPDC_STATUS_EPD_TCON_BUSY_N      (0)      //!< Bit position for SPDC_STATUS_EPD_TCON_BUSY_N.
 #define BM_SPDC_STATUS_EPD_TCON_BUSY_N      (0x00000001)  //!< Bit mask for SPDC_STATUS_EPD_TCON_BUSY_N.
 
 //! @brief Get value of SPDC_STATUS_EPD_TCON_BUSY_N from a register value.
 #define BG_SPDC_STATUS_EPD_TCON_BUSY_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_STATUS_EPD_TCON_BUSY_N) >> BP_SPDC_STATUS_EPD_TCON_BUSY_N)
-
 //@}
 
 /*! @name Register SPDC_STATUS, field LUT_CHECKSUM[3] (RO)
@@ -1604,13 +1530,11 @@ typedef union _hw_spdc_status
  * pass
  */
 //@{
-
 #define BP_SPDC_STATUS_LUT_CHECKSUM      (3)      //!< Bit position for SPDC_STATUS_LUT_CHECKSUM.
 #define BM_SPDC_STATUS_LUT_CHECKSUM      (0x00000008)  //!< Bit mask for SPDC_STATUS_LUT_CHECKSUM.
 
 //! @brief Get value of SPDC_STATUS_LUT_CHECKSUM from a register value.
 #define BG_SPDC_STATUS_LUT_CHECKSUM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_STATUS_LUT_CHECKSUM) >> BP_SPDC_STATUS_LUT_CHECKSUM)
-
 //@}
 
 /*! @name Register SPDC_STATUS, field EPD_TCON_STATUS[7:4] (RO)
@@ -1625,13 +1549,11 @@ typedef union _hw_spdc_status
  * waveform LUT 0xA PANEL_UPDATE_STATUS - EPD TCON is driving the panel screen.
  */
 //@{
-
 #define BP_SPDC_STATUS_EPD_TCON_STATUS      (4)      //!< Bit position for SPDC_STATUS_EPD_TCON_STATUS.
 #define BM_SPDC_STATUS_EPD_TCON_STATUS      (0x000000f0)  //!< Bit mask for SPDC_STATUS_EPD_TCON_STATUS.
 
 //! @brief Get value of SPDC_STATUS_EPD_TCON_STATUS from a register value.
 #define BG_SPDC_STATUS_EPD_TCON_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_STATUS_EPD_TCON_STATUS) >> BP_SPDC_STATUS_EPD_TCON_STATUS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1680,13 +1602,11 @@ typedef union _hw_spdc_panel_type_ver
  * (AUO-K7900) 0x1 A090XE01 - Panel type (AUO-K7900) Others need to be defined
  */
 //@{
-
 #define BP_SPDC_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID      (0)      //!< Bit position for SPDC_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID.
 #define BM_SPDC_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID      (0x0000ffff)  //!< Bit mask for SPDC_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID.
 
 //! @brief Get value of SPDC_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID from a register value.
 #define BG_SPDC_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID) >> BP_SPDC_PANEL_TYPE_VER_PRODUCT_AND_DRIVER_ID)
-
 //@}
 
 /*! @name Register SPDC_PANEL_TYPE_VER, field LUT_VERSION[23:16] (RO)
@@ -1695,13 +1615,11 @@ typedef union _hw_spdc_panel_type_ver
  * type 0x0102 V312 - Driving waveform type Others need to be defined
  */
 //@{
-
 #define BP_SPDC_PANEL_TYPE_VER_LUT_VERSION      (16)      //!< Bit position for SPDC_PANEL_TYPE_VER_LUT_VERSION.
 #define BM_SPDC_PANEL_TYPE_VER_LUT_VERSION      (0x00ff0000)  //!< Bit mask for SPDC_PANEL_TYPE_VER_LUT_VERSION.
 
 //! @brief Get value of SPDC_PANEL_TYPE_VER_LUT_VERSION from a register value.
 #define BG_SPDC_PANEL_TYPE_VER_LUT_VERSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_PANEL_TYPE_VER_LUT_VERSION) >> BP_SPDC_PANEL_TYPE_VER_LUT_VERSION)
-
 //@}
 
 /*! @name Register SPDC_PANEL_TYPE_VER, field EPD_PANEL_TYPE[31:24] (RO)
@@ -1711,13 +1629,11 @@ typedef union _hw_spdc_panel_type_ver
  * to be defined
  */
 //@{
-
 #define BP_SPDC_PANEL_TYPE_VER_EPD_PANEL_TYPE      (24)      //!< Bit position for SPDC_PANEL_TYPE_VER_EPD_PANEL_TYPE.
 #define BM_SPDC_PANEL_TYPE_VER_EPD_PANEL_TYPE      (0xff000000)  //!< Bit mask for SPDC_PANEL_TYPE_VER_EPD_PANEL_TYPE.
 
 //! @brief Get value of SPDC_PANEL_TYPE_VER_EPD_PANEL_TYPE from a register value.
 #define BG_SPDC_PANEL_TYPE_VER_EPD_PANEL_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_PANEL_TYPE_VER_EPD_PANEL_TYPE) >> BP_SPDC_PANEL_TYPE_VER_EPD_PANEL_TYPE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1765,13 +1681,11 @@ typedef union _hw_spdc_tcon_ver
  * Others need to be defined
  */
 //@{
-
 #define BP_SPDC_TCON_VER_EPD_TCON_VERSION      (0)      //!< Bit position for SPDC_TCON_VER_EPD_TCON_VERSION.
 #define BM_SPDC_TCON_VER_EPD_TCON_VERSION      (0x000000ff)  //!< Bit mask for SPDC_TCON_VER_EPD_TCON_VERSION.
 
 //! @brief Get value of SPDC_TCON_VER_EPD_TCON_VERSION from a register value.
 #define BG_SPDC_TCON_VER_EPD_TCON_VERSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDC_TCON_VER_EPD_TCON_VERSION) >> BP_SPDC_TCON_VER_EPD_TCON_VERSION)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1823,7 +1737,6 @@ typedef union _hw_spdc_sw_gate_clk
  * Gating all clocks for low power
  */
 //@{
-
 #define BP_SPDC_SW_GATE_CLK_GATING_ALL_CLK_EN      (0)      //!< Bit position for SPDC_SW_GATE_CLK_GATING_ALL_CLK_EN.
 #define BM_SPDC_SW_GATE_CLK_GATING_ALL_CLK_EN      (0x00000001)  //!< Bit mask for SPDC_SW_GATE_CLK_GATING_ALL_CLK_EN.
 
@@ -1837,7 +1750,6 @@ typedef union _hw_spdc_sw_gate_clk
 //! @brief Set the GATING_ALL_CLK_EN field to a new value.
 #define BW_SPDC_SW_GATE_CLK_GATING_ALL_CLK_EN(v)   (HW_SPDC_SW_GATE_CLK_WR((HW_SPDC_SW_GATE_CLK_RD() & ~BM_SPDC_SW_GATE_CLK_GATING_ALL_CLK_EN) | BF_SPDC_SW_GATE_CLK_GATING_ALL_CLK_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1879,3 +1791,5 @@ typedef struct _hw_spdc
 #endif
 
 #endif // __HW_SPDC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

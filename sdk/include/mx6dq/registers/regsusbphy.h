@@ -124,7 +124,6 @@ typedef union _hw_usbphy_pwd
  * auto cleared if there is USB wakeup event while ENAUTOCLR_PHY_PWD bit of USBPHYx_CTRL is enabled.
  */
 //@{
-
 #define BP_USBPHY_PWD_TXPWDFS      (10)      //!< Bit position for USBPHY_PWD_TXPWDFS.
 #define BM_USBPHY_PWD_TXPWDFS      (0x00000400)  //!< Bit mask for USBPHY_PWD_TXPWDFS.
 
@@ -138,7 +137,6 @@ typedef union _hw_usbphy_pwd
 //! @brief Set the TXPWDFS field to a new value.
 #define BW_USBPHY_PWD_TXPWDFS(x, v)   BFn_CS1((x), USBPHY_PWD, TXPWDFS, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_PWD, field TXPWDIBIAS[11] (RW)
@@ -151,7 +149,6 @@ typedef union _hw_usbphy_pwd
  * corresponding bit in the battery charger is also set for power-down.
  */
 //@{
-
 #define BP_USBPHY_PWD_TXPWDIBIAS      (11)      //!< Bit position for USBPHY_PWD_TXPWDIBIAS.
 #define BM_USBPHY_PWD_TXPWDIBIAS      (0x00000800)  //!< Bit mask for USBPHY_PWD_TXPWDIBIAS.
 
@@ -165,7 +162,6 @@ typedef union _hw_usbphy_pwd
 //! @brief Set the TXPWDIBIAS field to a new value.
 #define BW_USBPHY_PWD_TXPWDIBIAS(x, v)   BFn_CS1((x), USBPHY_PWD, TXPWDIBIAS, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_PWD, field TXPWDV2I[12] (RW)
@@ -177,7 +173,6 @@ typedef union _hw_usbphy_pwd
  * corresponding bit in the battery charger is also set for power-down.
  */
 //@{
-
 #define BP_USBPHY_PWD_TXPWDV2I      (12)      //!< Bit position for USBPHY_PWD_TXPWDV2I.
 #define BM_USBPHY_PWD_TXPWDV2I      (0x00001000)  //!< Bit mask for USBPHY_PWD_TXPWDV2I.
 
@@ -191,7 +186,6 @@ typedef union _hw_usbphy_pwd
 //! @brief Set the TXPWDV2I field to a new value.
 #define BW_USBPHY_PWD_TXPWDV2I(x, v)   BFn_CS1((x), USBPHY_PWD, TXPWDV2I, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_PWD, field RXPWDENV[17] (RW)
@@ -201,7 +195,6 @@ typedef union _hw_usbphy_pwd
  * ENAUTOCLR_PHY_PWD bit of USBPHYx_CTRL is enabled.
  */
 //@{
-
 #define BP_USBPHY_PWD_RXPWDENV      (17)      //!< Bit position for USBPHY_PWD_RXPWDENV.
 #define BM_USBPHY_PWD_RXPWDENV      (0x00020000)  //!< Bit mask for USBPHY_PWD_RXPWDENV.
 
@@ -215,7 +208,6 @@ typedef union _hw_usbphy_pwd
 //! @brief Set the RXPWDENV field to a new value.
 #define BW_USBPHY_PWD_RXPWDENV(x, v)   BFn_CS1((x), USBPHY_PWD, RXPWDENV, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_PWD, field RXPWD1PT1[18] (RW)
@@ -225,7 +217,6 @@ typedef union _hw_usbphy_pwd
  * enabled.
  */
 //@{
-
 #define BP_USBPHY_PWD_RXPWD1PT1      (18)      //!< Bit position for USBPHY_PWD_RXPWD1PT1.
 #define BM_USBPHY_PWD_RXPWD1PT1      (0x00040000)  //!< Bit mask for USBPHY_PWD_RXPWD1PT1.
 
@@ -239,7 +230,6 @@ typedef union _hw_usbphy_pwd
 //! @brief Set the RXPWD1PT1 field to a new value.
 #define BW_USBPHY_PWD_RXPWD1PT1(x, v)   BFn_CS1((x), USBPHY_PWD, RXPWD1PT1, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_PWD, field RXPWDDIFF[19] (RW)
@@ -249,7 +239,6 @@ typedef union _hw_usbphy_pwd
  * enabled.
  */
 //@{
-
 #define BP_USBPHY_PWD_RXPWDDIFF      (19)      //!< Bit position for USBPHY_PWD_RXPWDDIFF.
 #define BM_USBPHY_PWD_RXPWDDIFF      (0x00080000)  //!< Bit mask for USBPHY_PWD_RXPWDDIFF.
 
@@ -263,7 +252,6 @@ typedef union _hw_usbphy_pwd
 //! @brief Set the RXPWDDIFF field to a new value.
 #define BW_USBPHY_PWD_RXPWDDIFF(x, v)   BFn_CS1((x), USBPHY_PWD, RXPWDDIFF, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_PWD, field RXPWDRX[20] (RW)
@@ -273,7 +261,6 @@ typedef union _hw_usbphy_pwd
  * ENAUTOCLR_PHY_PWD bit of USBPHYx_CTRL is enabled.
  */
 //@{
-
 #define BP_USBPHY_PWD_RXPWDRX      (20)      //!< Bit position for USBPHY_PWD_RXPWDRX.
 #define BM_USBPHY_PWD_RXPWDRX      (0x00100000)  //!< Bit mask for USBPHY_PWD_RXPWDRX.
 
@@ -287,7 +274,6 @@ typedef union _hw_usbphy_pwd
 //! @brief Set the RXPWDRX field to a new value.
 #define BW_USBPHY_PWD_RXPWDRX(x, v)   BFn_CS1((x), USBPHY_PWD, RXPWDRX, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -345,7 +331,6 @@ typedef union _hw_usbphy_tx
  * Resistor Trimming Code: 0000 = 0.16% 0111 = Nominal 1111 = +25%
  */
 //@{
-
 #define BP_USBPHY_TX_D_CAL      (0)      //!< Bit position for USBPHY_TX_D_CAL.
 #define BM_USBPHY_TX_D_CAL      (0x0000000f)  //!< Bit mask for USBPHY_TX_D_CAL.
 
@@ -359,7 +344,6 @@ typedef union _hw_usbphy_tx
 //! @brief Set the D_CAL field to a new value.
 #define BW_USBPHY_TX_D_CAL(x, v)   BFn_CS1((x), USBPHY_TX, D_CAL, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_TX, field TXCAL45DN[11:8] (RW)
@@ -368,7 +352,6 @@ typedef union _hw_usbphy_tx
  * Resistance is centered by design at 0110.
  */
 //@{
-
 #define BP_USBPHY_TX_TXCAL45DN      (8)      //!< Bit position for USBPHY_TX_TXCAL45DN.
 #define BM_USBPHY_TX_TXCAL45DN      (0x00000f00)  //!< Bit mask for USBPHY_TX_TXCAL45DN.
 
@@ -382,7 +365,6 @@ typedef union _hw_usbphy_tx
 //! @brief Set the TXCAL45DN field to a new value.
 #define BW_USBPHY_TX_TXCAL45DN(x, v)   BFn_CS1((x), USBPHY_TX, TXCAL45DN, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_TX, field TXCAL45DP[19:16] (RW)
@@ -391,7 +373,6 @@ typedef union _hw_usbphy_tx
  * Resistance is centered by design at 0110.
  */
 //@{
-
 #define BP_USBPHY_TX_TXCAL45DP      (16)      //!< Bit position for USBPHY_TX_TXCAL45DP.
 #define BM_USBPHY_TX_TXCAL45DP      (0x000f0000)  //!< Bit mask for USBPHY_TX_TXCAL45DP.
 
@@ -405,7 +386,6 @@ typedef union _hw_usbphy_tx
 //! @brief Set the TXCAL45DP field to a new value.
 #define BW_USBPHY_TX_TXCAL45DP(x, v)   BFn_CS1((x), USBPHY_TX, TXCAL45DP, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -465,7 +445,6 @@ typedef union _hw_usbphy_rx
  * Level Voltage is 0.15000 V 1XX = Reserved
  */
 //@{
-
 #define BP_USBPHY_RX_ENVADJ      (0)      //!< Bit position for USBPHY_RX_ENVADJ.
 #define BM_USBPHY_RX_ENVADJ      (0x00000007)  //!< Bit mask for USBPHY_RX_ENVADJ.
 
@@ -479,7 +458,6 @@ typedef union _hw_usbphy_rx
 //! @brief Set the ENVADJ field to a new value.
 #define BW_USBPHY_RX_ENVADJ(x, v)   BFn_CS1((x), USBPHY_RX, ENVADJ, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_RX, field DISCONADJ[6:4] (RW)
@@ -489,7 +467,6 @@ typedef union _hw_usbphy_rx
  * Trip-Level Voltage is 0.58750 V 1XX = Reserved
  */
 //@{
-
 #define BP_USBPHY_RX_DISCONADJ      (4)      //!< Bit position for USBPHY_RX_DISCONADJ.
 #define BM_USBPHY_RX_DISCONADJ      (0x00000070)  //!< Bit mask for USBPHY_RX_DISCONADJ.
 
@@ -503,7 +480,6 @@ typedef union _hw_usbphy_rx
 //! @brief Set the DISCONADJ field to a new value.
 #define BW_USBPHY_RX_DISCONADJ(x, v)   BFn_CS1((x), USBPHY_RX, DISCONADJ, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_RX, field RXDBYPASS[22] (RW)
@@ -512,7 +488,6 @@ typedef union _hw_usbphy_rx
  * full-speed differential receiver. This test mode is intended for lab use only.
  */
 //@{
-
 #define BP_USBPHY_RX_RXDBYPASS      (22)      //!< Bit position for USBPHY_RX_RXDBYPASS.
 #define BM_USBPHY_RX_RXDBYPASS      (0x00400000)  //!< Bit mask for USBPHY_RX_RXDBYPASS.
 
@@ -526,7 +501,6 @@ typedef union _hw_usbphy_rx
 //! @brief Set the RXDBYPASS field to a new value.
 #define BW_USBPHY_RX_RXDBYPASS(x, v)   BFn_CS1((x), USBPHY_RX, RXDBYPASS, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -610,7 +584,6 @@ typedef union _hw_usbphy_ctrl
  * Enable OTG_ID_CHG_IRQ.
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENOTG_ID_CHG_IRQ      (0)      //!< Bit position for USBPHY_CTRL_ENOTG_ID_CHG_IRQ.
 #define BM_USBPHY_CTRL_ENOTG_ID_CHG_IRQ      (0x00000001)  //!< Bit mask for USBPHY_CTRL_ENOTG_ID_CHG_IRQ.
 
@@ -624,7 +597,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENOTG_ID_CHG_IRQ field to a new value.
 #define BW_USBPHY_CTRL_ENOTG_ID_CHG_IRQ(x, v)   BFn_CS1((x), USBPHY_CTRL, ENOTG_ID_CHG_IRQ, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENHOSTDISCONDETECT[1] (RW)
@@ -638,7 +610,6 @@ typedef union _hw_usbphy_ctrl
  * after resume is ended(USB_PORTSC1.FPR==0).
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENHOSTDISCONDETECT      (1)      //!< Bit position for USBPHY_CTRL_ENHOSTDISCONDETECT.
 #define BM_USBPHY_CTRL_ENHOSTDISCONDETECT      (0x00000002)  //!< Bit mask for USBPHY_CTRL_ENHOSTDISCONDETECT.
 
@@ -652,7 +623,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENHOSTDISCONDETECT field to a new value.
 #define BW_USBPHY_CTRL_ENHOSTDISCONDETECT(x, v)   BFn_CS1((x), USBPHY_CTRL, ENHOSTDISCONDETECT, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENIRQHOSTDISCON[2] (RW)
@@ -661,7 +631,6 @@ typedef union _hw_usbphy_ctrl
  * should be enabled after ENDEVPLUGINDETECT is enabled.
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENIRQHOSTDISCON      (2)      //!< Bit position for USBPHY_CTRL_ENIRQHOSTDISCON.
 #define BM_USBPHY_CTRL_ENIRQHOSTDISCON      (0x00000004)  //!< Bit mask for USBPHY_CTRL_ENIRQHOSTDISCON.
 
@@ -675,7 +644,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENIRQHOSTDISCON field to a new value.
 #define BW_USBPHY_CTRL_ENIRQHOSTDISCON(x, v)   BFn_CS1((x), USBPHY_CTRL, ENIRQHOSTDISCON, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field HOSTDISCONDETECT_IRQ[3] (RW)
@@ -684,7 +652,6 @@ typedef union _hw_usbphy_ctrl
  * the clear address space and not by a general write.
  */
 //@{
-
 #define BP_USBPHY_CTRL_HOSTDISCONDETECT_IRQ      (3)      //!< Bit position for USBPHY_CTRL_HOSTDISCONDETECT_IRQ.
 #define BM_USBPHY_CTRL_HOSTDISCONDETECT_IRQ      (0x00000008)  //!< Bit mask for USBPHY_CTRL_HOSTDISCONDETECT_IRQ.
 
@@ -698,7 +665,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the HOSTDISCONDETECT_IRQ field to a new value.
 #define BW_USBPHY_CTRL_HOSTDISCONDETECT_IRQ(x, v)   BFn_CS1((x), USBPHY_CTRL, HOSTDISCONDETECT_IRQ, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENDEVPLUGINDETECT[4] (RW)
@@ -706,7 +672,6 @@ typedef union _hw_usbphy_ctrl
  * For device mode, enables 200-KOhm pullups for detecting connectivity to the host.
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENDEVPLUGINDETECT      (4)      //!< Bit position for USBPHY_CTRL_ENDEVPLUGINDETECT.
 #define BM_USBPHY_CTRL_ENDEVPLUGINDETECT      (0x00000010)  //!< Bit mask for USBPHY_CTRL_ENDEVPLUGINDETECT.
 
@@ -720,7 +685,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENDEVPLUGINDETECT field to a new value.
 #define BW_USBPHY_CTRL_ENDEVPLUGINDETECT(x, v)   BFn_CS1((x), USBPHY_CTRL, ENDEVPLUGINDETECT, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field DEVPLUGIN_POLARITY[5] (RW)
@@ -729,7 +693,6 @@ typedef union _hw_usbphy_ctrl
  * plugged in. If set to 1, then it trips the interrupt if the device is unplugged.
  */
 //@{
-
 #define BP_USBPHY_CTRL_DEVPLUGIN_POLARITY      (5)      //!< Bit position for USBPHY_CTRL_DEVPLUGIN_POLARITY.
 #define BM_USBPHY_CTRL_DEVPLUGIN_POLARITY      (0x00000020)  //!< Bit mask for USBPHY_CTRL_DEVPLUGIN_POLARITY.
 
@@ -743,7 +706,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the DEVPLUGIN_POLARITY field to a new value.
 #define BW_USBPHY_CTRL_DEVPLUGIN_POLARITY(x, v)   BFn_CS1((x), USBPHY_CTRL, DEVPLUGIN_POLARITY, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field OTG_ID_CHG_IRQ[6] (RW)
@@ -751,7 +713,6 @@ typedef union _hw_usbphy_ctrl
  * OTG ID change interrupt. Indicates the value of ID pin changed.
  */
 //@{
-
 #define BP_USBPHY_CTRL_OTG_ID_CHG_IRQ      (6)      //!< Bit position for USBPHY_CTRL_OTG_ID_CHG_IRQ.
 #define BM_USBPHY_CTRL_OTG_ID_CHG_IRQ      (0x00000040)  //!< Bit mask for USBPHY_CTRL_OTG_ID_CHG_IRQ.
 
@@ -765,7 +726,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the OTG_ID_CHG_IRQ field to a new value.
 #define BW_USBPHY_CTRL_OTG_ID_CHG_IRQ(x, v)   BFn_CS1((x), USBPHY_CTRL, OTG_ID_CHG_IRQ, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENOTGIDDETECT[7] (RW)
@@ -773,7 +733,6 @@ typedef union _hw_usbphy_ctrl
  * Enables circuit to detect resistance of MiniAB ID pin.
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENOTGIDDETECT      (7)      //!< Bit position for USBPHY_CTRL_ENOTGIDDETECT.
 #define BM_USBPHY_CTRL_ENOTGIDDETECT      (0x00000080)  //!< Bit mask for USBPHY_CTRL_ENOTGIDDETECT.
 
@@ -787,7 +746,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENOTGIDDETECT field to a new value.
 #define BW_USBPHY_CTRL_ENOTGIDDETECT(x, v)   BFn_CS1((x), USBPHY_CTRL, ENOTGIDDETECT, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field RESUMEIRQSTICKY[8] (RW)
@@ -796,7 +754,6 @@ typedef union _hw_usbphy_ctrl
  * set during the wake-up period.
  */
 //@{
-
 #define BP_USBPHY_CTRL_RESUMEIRQSTICKY      (8)      //!< Bit position for USBPHY_CTRL_RESUMEIRQSTICKY.
 #define BM_USBPHY_CTRL_RESUMEIRQSTICKY      (0x00000100)  //!< Bit mask for USBPHY_CTRL_RESUMEIRQSTICKY.
 
@@ -810,7 +767,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the RESUMEIRQSTICKY field to a new value.
 #define BW_USBPHY_CTRL_RESUMEIRQSTICKY(x, v)   BFn_CS1((x), USBPHY_CTRL, RESUMEIRQSTICKY, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENIRQRESUMEDETECT[9] (RW)
@@ -819,7 +775,6 @@ typedef union _hw_usbphy_ctrl
  * after the device has entered suspend mode.
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENIRQRESUMEDETECT      (9)      //!< Bit position for USBPHY_CTRL_ENIRQRESUMEDETECT.
 #define BM_USBPHY_CTRL_ENIRQRESUMEDETECT      (0x00000200)  //!< Bit mask for USBPHY_CTRL_ENIRQRESUMEDETECT.
 
@@ -833,7 +788,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENIRQRESUMEDETECT field to a new value.
 #define BW_USBPHY_CTRL_ENIRQRESUMEDETECT(x, v)   BFn_CS1((x), USBPHY_CTRL, ENIRQRESUMEDETECT, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field RESUME_IRQ[10] (RW)
@@ -843,7 +797,6 @@ typedef union _hw_usbphy_ctrl
  * Reset this bit by writing a 1 to the clear address space and not by a general write.
  */
 //@{
-
 #define BP_USBPHY_CTRL_RESUME_IRQ      (10)      //!< Bit position for USBPHY_CTRL_RESUME_IRQ.
 #define BM_USBPHY_CTRL_RESUME_IRQ      (0x00000400)  //!< Bit mask for USBPHY_CTRL_RESUME_IRQ.
 
@@ -857,7 +810,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the RESUME_IRQ field to a new value.
 #define BW_USBPHY_CTRL_RESUME_IRQ(x, v)   BFn_CS1((x), USBPHY_CTRL, RESUME_IRQ, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENIRQDEVPLUGIN[11] (RW)
@@ -865,7 +817,6 @@ typedef union _hw_usbphy_ctrl
  * Enables interrupt for the detection of connectivity to the USB line.
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENIRQDEVPLUGIN      (11)      //!< Bit position for USBPHY_CTRL_ENIRQDEVPLUGIN.
 #define BM_USBPHY_CTRL_ENIRQDEVPLUGIN      (0x00000800)  //!< Bit mask for USBPHY_CTRL_ENIRQDEVPLUGIN.
 
@@ -879,7 +830,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENIRQDEVPLUGIN field to a new value.
 #define BW_USBPHY_CTRL_ENIRQDEVPLUGIN(x, v)   BFn_CS1((x), USBPHY_CTRL, ENIRQDEVPLUGIN, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field DEVPLUGIN_IRQ[12] (RW)
@@ -888,7 +838,6 @@ typedef union _hw_usbphy_ctrl
  * and not by a general write.
  */
 //@{
-
 #define BP_USBPHY_CTRL_DEVPLUGIN_IRQ      (12)      //!< Bit position for USBPHY_CTRL_DEVPLUGIN_IRQ.
 #define BM_USBPHY_CTRL_DEVPLUGIN_IRQ      (0x00001000)  //!< Bit mask for USBPHY_CTRL_DEVPLUGIN_IRQ.
 
@@ -902,7 +851,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the DEVPLUGIN_IRQ field to a new value.
 #define BW_USBPHY_CTRL_DEVPLUGIN_IRQ(x, v)   BFn_CS1((x), USBPHY_CTRL, DEVPLUGIN_IRQ, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field DATA_ON_LRADC[13] (RW)
@@ -910,7 +858,6 @@ typedef union _hw_usbphy_ctrl
  * Enables the LRADC to monitor USB_DP and USB_DM. This is for use in non-USB modes only.
  */
 //@{
-
 #define BP_USBPHY_CTRL_DATA_ON_LRADC      (13)      //!< Bit position for USBPHY_CTRL_DATA_ON_LRADC.
 #define BM_USBPHY_CTRL_DATA_ON_LRADC      (0x00002000)  //!< Bit mask for USBPHY_CTRL_DATA_ON_LRADC.
 
@@ -924,7 +871,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the DATA_ON_LRADC field to a new value.
 #define BW_USBPHY_CTRL_DATA_ON_LRADC(x, v)   BFn_CS1((x), USBPHY_CTRL, DATA_ON_LRADC, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENUTMILEVEL2[14] (RW)
@@ -932,7 +878,6 @@ typedef union _hw_usbphy_ctrl
  * Enables UTMI+ Level2. This should be enabled if needs to support LS device
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENUTMILEVEL2      (14)      //!< Bit position for USBPHY_CTRL_ENUTMILEVEL2.
 #define BM_USBPHY_CTRL_ENUTMILEVEL2      (0x00004000)  //!< Bit mask for USBPHY_CTRL_ENUTMILEVEL2.
 
@@ -946,7 +891,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENUTMILEVEL2 field to a new value.
 #define BW_USBPHY_CTRL_ENUTMILEVEL2(x, v)   BFn_CS1((x), USBPHY_CTRL, ENUTMILEVEL2, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENUTMILEVEL3[15] (RW)
@@ -955,7 +899,6 @@ typedef union _hw_usbphy_ctrl
  * connected
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENUTMILEVEL3      (15)      //!< Bit position for USBPHY_CTRL_ENUTMILEVEL3.
 #define BM_USBPHY_CTRL_ENUTMILEVEL3      (0x00008000)  //!< Bit mask for USBPHY_CTRL_ENUTMILEVEL3.
 
@@ -969,7 +912,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENUTMILEVEL3 field to a new value.
 #define BW_USBPHY_CTRL_ENUTMILEVEL3(x, v)   BFn_CS1((x), USBPHY_CTRL, ENUTMILEVEL3, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENIRQWAKEUP[16] (RW)
@@ -977,7 +919,6 @@ typedef union _hw_usbphy_ctrl
  * Enables interrupt for the wakeup events.
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENIRQWAKEUP      (16)      //!< Bit position for USBPHY_CTRL_ENIRQWAKEUP.
 #define BM_USBPHY_CTRL_ENIRQWAKEUP      (0x00010000)  //!< Bit mask for USBPHY_CTRL_ENIRQWAKEUP.
 
@@ -991,7 +932,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENIRQWAKEUP field to a new value.
 #define BW_USBPHY_CTRL_ENIRQWAKEUP(x, v)   BFn_CS1((x), USBPHY_CTRL, ENIRQWAKEUP, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field WAKEUP_IRQ[17] (RW)
@@ -1000,7 +940,6 @@ typedef union _hw_usbphy_ctrl
  * and not by a general write.
  */
 //@{
-
 #define BP_USBPHY_CTRL_WAKEUP_IRQ      (17)      //!< Bit position for USBPHY_CTRL_WAKEUP_IRQ.
 #define BM_USBPHY_CTRL_WAKEUP_IRQ      (0x00020000)  //!< Bit mask for USBPHY_CTRL_WAKEUP_IRQ.
 
@@ -1014,7 +953,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the WAKEUP_IRQ field to a new value.
 #define BW_USBPHY_CTRL_WAKEUP_IRQ(x, v)   BFn_CS1((x), USBPHY_CTRL, WAKEUP_IRQ, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENAUTOCLR_CLKGATE[19] (RW)
@@ -1023,7 +961,6 @@ typedef union _hw_usbphy_ctrl
  * suspended. This should be enabled if needs to support auto wakeup without S/W's interaction.
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENAUTOCLR_CLKGATE      (19)      //!< Bit position for USBPHY_CTRL_ENAUTOCLR_CLKGATE.
 #define BM_USBPHY_CTRL_ENAUTOCLR_CLKGATE      (0x00080000)  //!< Bit mask for USBPHY_CTRL_ENAUTOCLR_CLKGATE.
 
@@ -1037,7 +974,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENAUTOCLR_CLKGATE field to a new value.
 #define BW_USBPHY_CTRL_ENAUTOCLR_CLKGATE(x, v)   BFn_CS1((x), USBPHY_CTRL, ENAUTOCLR_CLKGATE, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENAUTOCLR_PHY_PWD[20] (RW)
@@ -1047,7 +983,6 @@ typedef union _hw_usbphy_ctrl
  * interaction.
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENAUTOCLR_PHY_PWD      (20)      //!< Bit position for USBPHY_CTRL_ENAUTOCLR_PHY_PWD.
 #define BM_USBPHY_CTRL_ENAUTOCLR_PHY_PWD      (0x00100000)  //!< Bit mask for USBPHY_CTRL_ENAUTOCLR_PHY_PWD.
 
@@ -1061,7 +996,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENAUTOCLR_PHY_PWD field to a new value.
 #define BW_USBPHY_CTRL_ENAUTOCLR_PHY_PWD(x, v)   BFn_CS1((x), USBPHY_CTRL, ENAUTOCLR_PHY_PWD, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENDPDMCHG_WKUP[21] (RW)
@@ -1070,7 +1004,6 @@ typedef union _hw_usbphy_ctrl
  * by default.
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENDPDMCHG_WKUP      (21)      //!< Bit position for USBPHY_CTRL_ENDPDMCHG_WKUP.
 #define BM_USBPHY_CTRL_ENDPDMCHG_WKUP      (0x00200000)  //!< Bit mask for USBPHY_CTRL_ENDPDMCHG_WKUP.
 
@@ -1084,7 +1017,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENDPDMCHG_WKUP field to a new value.
 #define BW_USBPHY_CTRL_ENDPDMCHG_WKUP(x, v)   BFn_CS1((x), USBPHY_CTRL, ENDPDMCHG_WKUP, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENIDCHG_WKUP[22] (RW)
@@ -1092,7 +1024,6 @@ typedef union _hw_usbphy_ctrl
  * Enables the feature to wakeup USB if ID is toggled when USB is suspended.
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENIDCHG_WKUP      (22)      //!< Bit position for USBPHY_CTRL_ENIDCHG_WKUP.
 #define BM_USBPHY_CTRL_ENIDCHG_WKUP      (0x00400000)  //!< Bit mask for USBPHY_CTRL_ENIDCHG_WKUP.
 
@@ -1106,7 +1037,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENIDCHG_WKUP field to a new value.
 #define BW_USBPHY_CTRL_ENIDCHG_WKUP(x, v)   BFn_CS1((x), USBPHY_CTRL, ENIDCHG_WKUP, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field ENVBUSCHG_WKUP[23] (RW)
@@ -1114,7 +1044,6 @@ typedef union _hw_usbphy_ctrl
  * Enables the feature to wakeup USB if VBUS is toggled when USB is suspended.
  */
 //@{
-
 #define BP_USBPHY_CTRL_ENVBUSCHG_WKUP      (23)      //!< Bit position for USBPHY_CTRL_ENVBUSCHG_WKUP.
 #define BM_USBPHY_CTRL_ENVBUSCHG_WKUP      (0x00800000)  //!< Bit mask for USBPHY_CTRL_ENVBUSCHG_WKUP.
 
@@ -1128,7 +1057,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the ENVBUSCHG_WKUP field to a new value.
 #define BW_USBPHY_CTRL_ENVBUSCHG_WKUP(x, v)   BFn_CS1((x), USBPHY_CTRL, ENVBUSCHG_WKUP, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field FSDLL_RST_EN[24] (RW)
@@ -1136,7 +1064,6 @@ typedef union _hw_usbphy_ctrl
  * Enables the feature to reset the FSDLL lock detection logic at the end of each TX packet.
  */
 //@{
-
 #define BP_USBPHY_CTRL_FSDLL_RST_EN      (24)      //!< Bit position for USBPHY_CTRL_FSDLL_RST_EN.
 #define BM_USBPHY_CTRL_FSDLL_RST_EN      (0x01000000)  //!< Bit mask for USBPHY_CTRL_FSDLL_RST_EN.
 
@@ -1150,7 +1077,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the FSDLL_RST_EN field to a new value.
 #define BW_USBPHY_CTRL_FSDLL_RST_EN(x, v)   BFn_CS1((x), USBPHY_CTRL, FSDLL_RST_EN, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field OTG_ID_VALUE[27] (RO)
@@ -1159,13 +1085,11 @@ typedef union _hw_usbphy_ctrl
  * has debounce logic to filter the glitches on ID Pad.
  */
 //@{
-
 #define BP_USBPHY_CTRL_OTG_ID_VALUE      (27)      //!< Bit position for USBPHY_CTRL_OTG_ID_VALUE.
 #define BM_USBPHY_CTRL_OTG_ID_VALUE      (0x08000000)  //!< Bit mask for USBPHY_CTRL_OTG_ID_VALUE.
 
 //! @brief Get value of USBPHY_CTRL_OTG_ID_VALUE from a register value.
 #define BG_USBPHY_CTRL_OTG_ID_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBPHY_CTRL_OTG_ID_VALUE) >> BP_USBPHY_CTRL_OTG_ID_VALUE)
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field HOST_FORCE_LS_SE0[28] (RW)
@@ -1177,7 +1101,6 @@ typedef union _hw_usbphy_ctrl
  * USBPHYx_DEBUG_HOST_RESUME_DEBUG.
  */
 //@{
-
 #define BP_USBPHY_CTRL_HOST_FORCE_LS_SE0      (28)      //!< Bit position for USBPHY_CTRL_HOST_FORCE_LS_SE0.
 #define BM_USBPHY_CTRL_HOST_FORCE_LS_SE0      (0x10000000)  //!< Bit mask for USBPHY_CTRL_HOST_FORCE_LS_SE0.
 
@@ -1191,7 +1114,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the HOST_FORCE_LS_SE0 field to a new value.
 #define BW_USBPHY_CTRL_HOST_FORCE_LS_SE0(x, v)   BFn_CS1((x), USBPHY_CTRL, HOST_FORCE_LS_SE0, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field UTMI_SUSPENDM[29] (RO)
@@ -1201,13 +1123,11 @@ typedef union _hw_usbphy_ctrl
  * by the UTMI specification.
  */
 //@{
-
 #define BP_USBPHY_CTRL_UTMI_SUSPENDM      (29)      //!< Bit position for USBPHY_CTRL_UTMI_SUSPENDM.
 #define BM_USBPHY_CTRL_UTMI_SUSPENDM      (0x20000000)  //!< Bit mask for USBPHY_CTRL_UTMI_SUSPENDM.
 
 //! @brief Get value of USBPHY_CTRL_UTMI_SUSPENDM from a register value.
 #define BG_USBPHY_CTRL_UTMI_SUSPENDM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBPHY_CTRL_UTMI_SUSPENDM) >> BP_USBPHY_CTRL_UTMI_SUSPENDM)
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field CLKGATE[30] (RW)
@@ -1218,7 +1138,6 @@ typedef union _hw_usbphy_ctrl
  * ENAUTOCLR_CLKGATE bit of USBPHYx_CTRL is enabled.
  */
 //@{
-
 #define BP_USBPHY_CTRL_CLKGATE      (30)      //!< Bit position for USBPHY_CTRL_CLKGATE.
 #define BM_USBPHY_CTRL_CLKGATE      (0x40000000)  //!< Bit mask for USBPHY_CTRL_CLKGATE.
 
@@ -1232,7 +1151,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the CLKGATE field to a new value.
 #define BW_USBPHY_CTRL_CLKGATE(x, v)   BFn_CS1((x), USBPHY_CTRL, CLKGATE, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_CTRL, field SFTRST[31] (RW)
@@ -1241,7 +1159,6 @@ typedef union _hw_usbphy_ctrl
  * registers. Set to 0 to release the PHY from reset.
  */
 //@{
-
 #define BP_USBPHY_CTRL_SFTRST      (31)      //!< Bit position for USBPHY_CTRL_SFTRST.
 #define BM_USBPHY_CTRL_SFTRST      (0x80000000)  //!< Bit mask for USBPHY_CTRL_SFTRST.
 
@@ -1255,7 +1172,6 @@ typedef union _hw_usbphy_ctrl
 //! @brief Set the SFTRST field to a new value.
 #define BW_USBPHY_CTRL_SFTRST(x, v)   BFn_CS1((x), USBPHY_CTRL, SFTRST, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1313,13 +1229,11 @@ typedef union _hw_usbphy_status
  * Indicates that the device has disconnected while in high-speed host mode.
  */
 //@{
-
 #define BP_USBPHY_STATUS_HOSTDISCONDETECT_STATUS      (3)      //!< Bit position for USBPHY_STATUS_HOSTDISCONDETECT_STATUS.
 #define BM_USBPHY_STATUS_HOSTDISCONDETECT_STATUS      (0x00000008)  //!< Bit mask for USBPHY_STATUS_HOSTDISCONDETECT_STATUS.
 
 //! @brief Get value of USBPHY_STATUS_HOSTDISCONDETECT_STATUS from a register value.
 #define BG_USBPHY_STATUS_HOSTDISCONDETECT_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBPHY_STATUS_HOSTDISCONDETECT_STATUS) >> BP_USBPHY_STATUS_HOSTDISCONDETECT_STATUS)
-
 //@}
 
 /*! @name Register USBPHY_STATUS, field DEVPLUGIN_STATUS[6] (RO)
@@ -1327,13 +1241,11 @@ typedef union _hw_usbphy_status
  * Indicates that the device has been connected on the USB_DP and USB_DM lines.
  */
 //@{
-
 #define BP_USBPHY_STATUS_DEVPLUGIN_STATUS      (6)      //!< Bit position for USBPHY_STATUS_DEVPLUGIN_STATUS.
 #define BM_USBPHY_STATUS_DEVPLUGIN_STATUS      (0x00000040)  //!< Bit mask for USBPHY_STATUS_DEVPLUGIN_STATUS.
 
 //! @brief Get value of USBPHY_STATUS_DEVPLUGIN_STATUS from a register value.
 #define BG_USBPHY_STATUS_DEVPLUGIN_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBPHY_STATUS_DEVPLUGIN_STATUS) >> BP_USBPHY_STATUS_DEVPLUGIN_STATUS)
-
 //@}
 
 /*! @name Register USBPHY_STATUS, field OTGID_STATUS[8] (RW)
@@ -1343,7 +1255,6 @@ typedef union _hw_usbphy_status
  * indicating device (B) side.
  */
 //@{
-
 #define BP_USBPHY_STATUS_OTGID_STATUS      (8)      //!< Bit position for USBPHY_STATUS_OTGID_STATUS.
 #define BM_USBPHY_STATUS_OTGID_STATUS      (0x00000100)  //!< Bit mask for USBPHY_STATUS_OTGID_STATUS.
 
@@ -1357,7 +1268,6 @@ typedef union _hw_usbphy_status
 //! @brief Set the OTGID_STATUS field to a new value.
 #define BW_USBPHY_STATUS_OTGID_STATUS(x, v)   (HW_USBPHY_STATUS_WR(x, (HW_USBPHY_STATUS_RD(x) & ~BM_USBPHY_STATUS_OTGID_STATUS) | BF_USBPHY_STATUS_OTGID_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBPHY_STATUS, field RESUME_STATUS[10] (RO)
@@ -1365,13 +1275,11 @@ typedef union _hw_usbphy_status
  * Indicates that the host is sending a wake-up after suspend and has triggered an interrupt.
  */
 //@{
-
 #define BP_USBPHY_STATUS_RESUME_STATUS      (10)      //!< Bit position for USBPHY_STATUS_RESUME_STATUS.
 #define BM_USBPHY_STATUS_RESUME_STATUS      (0x00000400)  //!< Bit mask for USBPHY_STATUS_RESUME_STATUS.
 
 //! @brief Get value of USBPHY_STATUS_RESUME_STATUS from a register value.
 #define BG_USBPHY_STATUS_RESUME_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBPHY_STATUS_RESUME_STATUS) >> BP_USBPHY_STATUS_RESUME_STATUS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1439,7 +1347,6 @@ typedef union _hw_usbphy_debug
  * for the comparators that are used to determine the ID status.
  */
 //@{
-
 #define BP_USBPHY_DEBUG_OTGIDPIOLOCK      (0)      //!< Bit position for USBPHY_DEBUG_OTGIDPIOLOCK.
 #define BM_USBPHY_DEBUG_OTGIDPIOLOCK      (0x00000001)  //!< Bit mask for USBPHY_DEBUG_OTGIDPIOLOCK.
 
@@ -1453,7 +1360,6 @@ typedef union _hw_usbphy_debug
 //! @brief Set the OTGIDPIOLOCK field to a new value.
 #define BW_USBPHY_DEBUG_OTGIDPIOLOCK(x, v)   BFn_CS1((x), USBPHY_DEBUG, OTGIDPIOLOCK, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_DEBUG, field DEBUG_INTERFACE_HOLD[1] (RW)
@@ -1461,7 +1367,6 @@ typedef union _hw_usbphy_debug
  * Use holding registers to assist in timing for external UTMI interface.
  */
 //@{
-
 #define BP_USBPHY_DEBUG_DEBUG_INTERFACE_HOLD      (1)      //!< Bit position for USBPHY_DEBUG_DEBUG_INTERFACE_HOLD.
 #define BM_USBPHY_DEBUG_DEBUG_INTERFACE_HOLD      (0x00000002)  //!< Bit mask for USBPHY_DEBUG_DEBUG_INTERFACE_HOLD.
 
@@ -1475,7 +1380,6 @@ typedef union _hw_usbphy_debug
 //! @brief Set the DEBUG_INTERFACE_HOLD field to a new value.
 #define BW_USBPHY_DEBUG_DEBUG_INTERFACE_HOLD(x, v)   BFn_CS1((x), USBPHY_DEBUG, DEBUG_INTERFACE_HOLD, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_DEBUG, field HSTPULLDOWN[3:2] (RW)
@@ -1484,7 +1388,6 @@ typedef union _hw_usbphy_debug
  * line. Clear to 0 to disable.
  */
 //@{
-
 #define BP_USBPHY_DEBUG_HSTPULLDOWN      (2)      //!< Bit position for USBPHY_DEBUG_HSTPULLDOWN.
 #define BM_USBPHY_DEBUG_HSTPULLDOWN      (0x0000000c)  //!< Bit mask for USBPHY_DEBUG_HSTPULLDOWN.
 
@@ -1498,7 +1401,6 @@ typedef union _hw_usbphy_debug
 //! @brief Set the HSTPULLDOWN field to a new value.
 #define BW_USBPHY_DEBUG_HSTPULLDOWN(x, v)   BFn_CS1((x), USBPHY_DEBUG, HSTPULLDOWN, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_DEBUG, field ENHSTPULLDOWN[5:4] (RW)
@@ -1507,7 +1409,6 @@ typedef union _hw_usbphy_debug
  * the control of the USB_DM 15-KOhm pulldown. Clear to 0 to disable.
  */
 //@{
-
 #define BP_USBPHY_DEBUG_ENHSTPULLDOWN      (4)      //!< Bit position for USBPHY_DEBUG_ENHSTPULLDOWN.
 #define BM_USBPHY_DEBUG_ENHSTPULLDOWN      (0x00000030)  //!< Bit mask for USBPHY_DEBUG_ENHSTPULLDOWN.
 
@@ -1521,7 +1422,6 @@ typedef union _hw_usbphy_debug
 //! @brief Set the ENHSTPULLDOWN field to a new value.
 #define BW_USBPHY_DEBUG_ENHSTPULLDOWN(x, v)   BFn_CS1((x), USBPHY_DEBUG, ENHSTPULLDOWN, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_DEBUG, field TX2RXCOUNT[11:8] (RW)
@@ -1530,7 +1430,6 @@ typedef union _hw_usbphy_debug
  * and thus will count to 8.
  */
 //@{
-
 #define BP_USBPHY_DEBUG_TX2RXCOUNT      (8)      //!< Bit position for USBPHY_DEBUG_TX2RXCOUNT.
 #define BM_USBPHY_DEBUG_TX2RXCOUNT      (0x00000f00)  //!< Bit mask for USBPHY_DEBUG_TX2RXCOUNT.
 
@@ -1544,7 +1443,6 @@ typedef union _hw_usbphy_debug
 //! @brief Set the TX2RXCOUNT field to a new value.
 #define BW_USBPHY_DEBUG_TX2RXCOUNT(x, v)   BFn_CS1((x), USBPHY_DEBUG, TX2RXCOUNT, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_DEBUG, field ENTX2RXCOUNT[12] (RW)
@@ -1552,7 +1450,6 @@ typedef union _hw_usbphy_debug
  * Set this bit to allow a countdown to transition in between TX and RX.
  */
 //@{
-
 #define BP_USBPHY_DEBUG_ENTX2RXCOUNT      (12)      //!< Bit position for USBPHY_DEBUG_ENTX2RXCOUNT.
 #define BM_USBPHY_DEBUG_ENTX2RXCOUNT      (0x00001000)  //!< Bit mask for USBPHY_DEBUG_ENTX2RXCOUNT.
 
@@ -1566,7 +1463,6 @@ typedef union _hw_usbphy_debug
 //! @brief Set the ENTX2RXCOUNT field to a new value.
 #define BW_USBPHY_DEBUG_ENTX2RXCOUNT(x, v)   BFn_CS1((x), USBPHY_DEBUG, ENTX2RXCOUNT, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_DEBUG, field SQUELCHRESETCOUNT[20:16] (RW)
@@ -1574,7 +1470,6 @@ typedef union _hw_usbphy_debug
  * Delay in between the detection of squelch to the reset of high-speed RX.
  */
 //@{
-
 #define BP_USBPHY_DEBUG_SQUELCHRESETCOUNT      (16)      //!< Bit position for USBPHY_DEBUG_SQUELCHRESETCOUNT.
 #define BM_USBPHY_DEBUG_SQUELCHRESETCOUNT      (0x001f0000)  //!< Bit mask for USBPHY_DEBUG_SQUELCHRESETCOUNT.
 
@@ -1588,7 +1483,6 @@ typedef union _hw_usbphy_debug
 //! @brief Set the SQUELCHRESETCOUNT field to a new value.
 #define BW_USBPHY_DEBUG_SQUELCHRESETCOUNT(x, v)   BFn_CS1((x), USBPHY_DEBUG, SQUELCHRESETCOUNT, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_DEBUG, field ENSQUELCHRESET[24] (RW)
@@ -1596,7 +1490,6 @@ typedef union _hw_usbphy_debug
  * Set bit to allow squelch to reset high-speed receive.
  */
 //@{
-
 #define BP_USBPHY_DEBUG_ENSQUELCHRESET      (24)      //!< Bit position for USBPHY_DEBUG_ENSQUELCHRESET.
 #define BM_USBPHY_DEBUG_ENSQUELCHRESET      (0x01000000)  //!< Bit mask for USBPHY_DEBUG_ENSQUELCHRESET.
 
@@ -1610,7 +1503,6 @@ typedef union _hw_usbphy_debug
 //! @brief Set the ENSQUELCHRESET field to a new value.
 #define BW_USBPHY_DEBUG_ENSQUELCHRESET(x, v)   BFn_CS1((x), USBPHY_DEBUG, ENSQUELCHRESET, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_DEBUG, field SQUELCHRESETLENGTH[28:25] (RW)
@@ -1618,7 +1510,6 @@ typedef union _hw_usbphy_debug
  * Duration of RESET in terms of the number of 480-MHz cycles.
  */
 //@{
-
 #define BP_USBPHY_DEBUG_SQUELCHRESETLENGTH      (25)      //!< Bit position for USBPHY_DEBUG_SQUELCHRESETLENGTH.
 #define BM_USBPHY_DEBUG_SQUELCHRESETLENGTH      (0x1e000000)  //!< Bit mask for USBPHY_DEBUG_SQUELCHRESETLENGTH.
 
@@ -1632,7 +1523,6 @@ typedef union _hw_usbphy_debug
 //! @brief Set the SQUELCHRESETLENGTH field to a new value.
 #define BW_USBPHY_DEBUG_SQUELCHRESETLENGTH(x, v)   BFn_CS1((x), USBPHY_DEBUG, SQUELCHRESETLENGTH, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_DEBUG, field HOST_RESUME_DEBUG[29] (RW)
@@ -1640,7 +1530,6 @@ typedef union _hw_usbphy_debug
  * Choose to trigger the host resume SE0 with HOST_FORCE_LS_SE0 = 0 or UTMI_SUSPEND = 1.
  */
 //@{
-
 #define BP_USBPHY_DEBUG_HOST_RESUME_DEBUG      (29)      //!< Bit position for USBPHY_DEBUG_HOST_RESUME_DEBUG.
 #define BM_USBPHY_DEBUG_HOST_RESUME_DEBUG      (0x20000000)  //!< Bit mask for USBPHY_DEBUG_HOST_RESUME_DEBUG.
 
@@ -1654,7 +1543,6 @@ typedef union _hw_usbphy_debug
 //! @brief Set the HOST_RESUME_DEBUG field to a new value.
 #define BW_USBPHY_DEBUG_HOST_RESUME_DEBUG(x, v)   BFn_CS1((x), USBPHY_DEBUG, HOST_RESUME_DEBUG, v)
 #endif
-
 //@}
 
 /*! @name Register USBPHY_DEBUG, field CLKGATE[30] (RW)
@@ -1663,7 +1551,6 @@ typedef union _hw_usbphy_debug
  * while the USB is not actively being used. Configuration state is kept while the clock is gated.
  */
 //@{
-
 #define BP_USBPHY_DEBUG_CLKGATE      (30)      //!< Bit position for USBPHY_DEBUG_CLKGATE.
 #define BM_USBPHY_DEBUG_CLKGATE      (0x40000000)  //!< Bit mask for USBPHY_DEBUG_CLKGATE.
 
@@ -1677,7 +1564,6 @@ typedef union _hw_usbphy_debug
 //! @brief Set the CLKGATE field to a new value.
 #define BW_USBPHY_DEBUG_CLKGATE(x, v)   BFn_CS1((x), USBPHY_DEBUG, CLKGATE, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1729,13 +1615,11 @@ typedef union _hw_usbphy_debug0_status
  * loopback tests.
  */
 //@{
-
 #define BP_USBPHY_DEBUG0_STATUS_LOOP_BACK_FAIL_COUNT      (0)      //!< Bit position for USBPHY_DEBUG0_STATUS_LOOP_BACK_FAIL_COUNT.
 #define BM_USBPHY_DEBUG0_STATUS_LOOP_BACK_FAIL_COUNT      (0x0000ffff)  //!< Bit mask for USBPHY_DEBUG0_STATUS_LOOP_BACK_FAIL_COUNT.
 
 //! @brief Get value of USBPHY_DEBUG0_STATUS_LOOP_BACK_FAIL_COUNT from a register value.
 #define BG_USBPHY_DEBUG0_STATUS_LOOP_BACK_FAIL_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBPHY_DEBUG0_STATUS_LOOP_BACK_FAIL_COUNT) >> BP_USBPHY_DEBUG0_STATUS_LOOP_BACK_FAIL_COUNT)
-
 //@}
 
 /*! @name Register USBPHY_DEBUG0_STATUS, field UTMI_RXERROR_FAIL_COUNT[25:16] (RO)
@@ -1743,13 +1627,11 @@ typedef union _hw_usbphy_debug0_status
  * Running count of the UTMI_RXERROR.
  */
 //@{
-
 #define BP_USBPHY_DEBUG0_STATUS_UTMI_RXERROR_FAIL_COUNT      (16)      //!< Bit position for USBPHY_DEBUG0_STATUS_UTMI_RXERROR_FAIL_COUNT.
 #define BM_USBPHY_DEBUG0_STATUS_UTMI_RXERROR_FAIL_COUNT      (0x03ff0000)  //!< Bit mask for USBPHY_DEBUG0_STATUS_UTMI_RXERROR_FAIL_COUNT.
 
 //! @brief Get value of USBPHY_DEBUG0_STATUS_UTMI_RXERROR_FAIL_COUNT from a register value.
 #define BG_USBPHY_DEBUG0_STATUS_UTMI_RXERROR_FAIL_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBPHY_DEBUG0_STATUS_UTMI_RXERROR_FAIL_COUNT) >> BP_USBPHY_DEBUG0_STATUS_UTMI_RXERROR_FAIL_COUNT)
-
 //@}
 
 /*! @name Register USBPHY_DEBUG0_STATUS, field SQUELCH_COUNT[31:26] (RO)
@@ -1757,13 +1639,11 @@ typedef union _hw_usbphy_debug0_status
  * Running count of the squelch reset instead of normal end for HS RX.
  */
 //@{
-
 #define BP_USBPHY_DEBUG0_STATUS_SQUELCH_COUNT      (26)      //!< Bit position for USBPHY_DEBUG0_STATUS_SQUELCH_COUNT.
 #define BM_USBPHY_DEBUG0_STATUS_SQUELCH_COUNT      (0xfc000000)  //!< Bit mask for USBPHY_DEBUG0_STATUS_SQUELCH_COUNT.
 
 //! @brief Get value of USBPHY_DEBUG0_STATUS_SQUELCH_COUNT from a register value.
 #define BG_USBPHY_DEBUG0_STATUS_SQUELCH_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBPHY_DEBUG0_STATUS_SQUELCH_COUNT) >> BP_USBPHY_DEBUG0_STATUS_SQUELCH_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1819,7 +1699,6 @@ typedef union _hw_usbphy_debug1
  * -20% 11 = Delay is -40%
  */
 //@{
-
 #define BP_USBPHY_DEBUG1_ENTAILADJVD      (13)      //!< Bit position for USBPHY_DEBUG1_ENTAILADJVD.
 #define BM_USBPHY_DEBUG1_ENTAILADJVD      (0x00006000)  //!< Bit mask for USBPHY_DEBUG1_ENTAILADJVD.
 
@@ -1833,7 +1712,6 @@ typedef union _hw_usbphy_debug1
 //! @brief Set the ENTAILADJVD field to a new value.
 #define BW_USBPHY_DEBUG1_ENTAILADJVD(x, v)   BFn_CS1((x), USBPHY_DEBUG1, ENTAILADJVD, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1881,13 +1759,11 @@ typedef union _hw_usbphy_version
  * Fixed read-only value reflecting the stepping of the RTL version.
  */
 //@{
-
 #define BP_USBPHY_VERSION_STEP      (0)      //!< Bit position for USBPHY_VERSION_STEP.
 #define BM_USBPHY_VERSION_STEP      (0x0000ffff)  //!< Bit mask for USBPHY_VERSION_STEP.
 
 //! @brief Get value of USBPHY_VERSION_STEP from a register value.
 #define BG_USBPHY_VERSION_STEP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBPHY_VERSION_STEP) >> BP_USBPHY_VERSION_STEP)
-
 //@}
 
 /*! @name Register USBPHY_VERSION, field MINOR[23:16] (RO)
@@ -1895,13 +1771,11 @@ typedef union _hw_usbphy_version
  * Fixed read-only value reflecting the MINOR field of the RTL version.
  */
 //@{
-
 #define BP_USBPHY_VERSION_MINOR      (16)      //!< Bit position for USBPHY_VERSION_MINOR.
 #define BM_USBPHY_VERSION_MINOR      (0x00ff0000)  //!< Bit mask for USBPHY_VERSION_MINOR.
 
 //! @brief Get value of USBPHY_VERSION_MINOR from a register value.
 #define BG_USBPHY_VERSION_MINOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBPHY_VERSION_MINOR) >> BP_USBPHY_VERSION_MINOR)
-
 //@}
 
 /*! @name Register USBPHY_VERSION, field MAJOR[31:24] (RO)
@@ -1909,13 +1783,11 @@ typedef union _hw_usbphy_version
  * Fixed read-only value reflecting the MAJOR field of the RTL version.
  */
 //@{
-
 #define BP_USBPHY_VERSION_MAJOR      (24)      //!< Bit position for USBPHY_VERSION_MAJOR.
 #define BM_USBPHY_VERSION_MAJOR      (0xff000000)  //!< Bit mask for USBPHY_VERSION_MAJOR.
 
 //! @brief Get value of USBPHY_VERSION_MAJOR from a register value.
 #define BG_USBPHY_VERSION_MAJOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBPHY_VERSION_MAJOR) >> BP_USBPHY_VERSION_MAJOR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1968,3 +1840,5 @@ typedef struct _hw_usbphy
 #endif
 
 #endif // __HW_USBPHY_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

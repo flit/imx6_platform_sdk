@@ -115,13 +115,11 @@ typedef union _hw_ecspi_rxdata
  * the Interrupt Control/Status register is cleared. Zeros are read when ECSPI is disabled.
  */
 //@{
-
 #define BP_ECSPI_RXDATA_ECSPI_RXDATA      (0)      //!< Bit position for ECSPI_RXDATA_ECSPI_RXDATA.
 #define BM_ECSPI_RXDATA_ECSPI_RXDATA      (0xffffffff)  //!< Bit mask for ECSPI_RXDATA_ECSPI_RXDATA.
 
 //! @brief Get value of ECSPI_RXDATA_ECSPI_RXDATA from a register value.
 #define BG_ECSPI_RXDATA_ECSPI_RXDATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_RXDATA_ECSPI_RXDATA) >> BP_ECSPI_RXDATA_ECSPI_RXDATA)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -177,7 +175,6 @@ typedef union _hw_ecspi_txdata
  * is empty. Zeros are read when ECSPI is disabled.
  */
 //@{
-
 #define BP_ECSPI_TXDATA_ECSPI_TXDATA      (0)      //!< Bit position for ECSPI_TXDATA_ECSPI_TXDATA.
 #define BM_ECSPI_TXDATA_ECSPI_TXDATA      (0xffffffff)  //!< Bit mask for ECSPI_TXDATA_ECSPI_TXDATA.
 
@@ -186,7 +183,6 @@ typedef union _hw_ecspi_txdata
 
 //! @brief Format value for bitfield ECSPI_TXDATA_ECSPI_TXDATA.
 #define BF_ECSPI_TXDATA_ECSPI_TXDATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_TXDATA_ECSPI_TXDATA) & BM_ECSPI_TXDATA_ECSPI_TXDATA)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -253,7 +249,6 @@ typedef union _hw_ecspi_conreg
  * - 1 - Enable the block.
  */
 //@{
-
 #define BP_ECSPI_CONREG_EN      (0)      //!< Bit position for ECSPI_CONREG_EN.
 #define BM_ECSPI_CONREG_EN      (0x00000001)  //!< Bit mask for ECSPI_CONREG_EN.
 
@@ -267,7 +262,6 @@ typedef union _hw_ecspi_conreg
 //! @brief Set the EN field to a new value.
 #define BW_ECSPI_CONREG_EN(x, v)   (HW_ECSPI_CONREG_WR(x, (HW_ECSPI_CONREG_RD(x) & ~BM_ECSPI_CONREG_EN) | BF_ECSPI_CONREG_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONREG, field HT[1] (RW)
@@ -280,7 +274,6 @@ typedef union _hw_ecspi_conreg
  * - 1 - Enable HT mode.
  */
 //@{
-
 #define BP_ECSPI_CONREG_HT      (1)      //!< Bit position for ECSPI_CONREG_HT.
 #define BM_ECSPI_CONREG_HT      (0x00000002)  //!< Bit mask for ECSPI_CONREG_HT.
 
@@ -294,7 +287,6 @@ typedef union _hw_ecspi_conreg
 //! @brief Set the HT field to a new value.
 #define BW_ECSPI_CONREG_HT(x, v)   (HW_ECSPI_CONREG_WR(x, (HW_ECSPI_CONREG_RD(x) & ~BM_ECSPI_CONREG_HT) | BF_ECSPI_CONREG_HT(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONREG, field XCH[2] (RW)
@@ -311,7 +303,6 @@ typedef union _hw_ecspi_conreg
  * - 1 - Initiates exchange (write) or busy (read).
  */
 //@{
-
 #define BP_ECSPI_CONREG_XCH      (2)      //!< Bit position for ECSPI_CONREG_XCH.
 #define BM_ECSPI_CONREG_XCH      (0x00000004)  //!< Bit mask for ECSPI_CONREG_XCH.
 
@@ -325,7 +316,6 @@ typedef union _hw_ecspi_conreg
 //! @brief Set the XCH field to a new value.
 #define BW_ECSPI_CONREG_XCH(x, v)   (HW_ECSPI_CONREG_WR(x, (HW_ECSPI_CONREG_RD(x) & ~BM_ECSPI_CONREG_XCH) | BF_ECSPI_CONREG_XCH(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONREG, field SMC[3] (RW)
@@ -341,7 +331,6 @@ typedef union _hw_ecspi_conreg
  * - 1 - Immediately starts a SPI burst when data is written in TXFIFO.
  */
 //@{
-
 #define BP_ECSPI_CONREG_SMC      (3)      //!< Bit position for ECSPI_CONREG_SMC.
 #define BM_ECSPI_CONREG_SMC      (0x00000008)  //!< Bit mask for ECSPI_CONREG_SMC.
 
@@ -355,7 +344,6 @@ typedef union _hw_ecspi_conreg
 //! @brief Set the SMC field to a new value.
 #define BW_ECSPI_CONREG_SMC(x, v)   (HW_ECSPI_CONREG_WR(x, (HW_ECSPI_CONREG_RD(x) & ~BM_ECSPI_CONREG_SMC) | BF_ECSPI_CONREG_SMC(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONREG, field CHANNEL_MODE[7:4] (RW)
@@ -369,7 +357,6 @@ typedef union _hw_ecspi_conreg
  * - 1 - Master mode.
  */
 //@{
-
 #define BP_ECSPI_CONREG_CHANNEL_MODE      (4)      //!< Bit position for ECSPI_CONREG_CHANNEL_MODE.
 #define BM_ECSPI_CONREG_CHANNEL_MODE      (0x000000f0)  //!< Bit mask for ECSPI_CONREG_CHANNEL_MODE.
 
@@ -383,7 +370,6 @@ typedef union _hw_ecspi_conreg
 //! @brief Set the CHANNEL_MODE field to a new value.
 #define BW_ECSPI_CONREG_CHANNEL_MODE(x, v)   (HW_ECSPI_CONREG_WR(x, (HW_ECSPI_CONREG_RD(x) & ~BM_ECSPI_CONREG_CHANNEL_MODE) | BF_ECSPI_CONREG_CHANNEL_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONREG, field POST_DIVIDER[11:8] (RW)
@@ -399,7 +385,6 @@ typedef union _hw_ecspi_conreg
  * - 1111 - Divide by 2 15 .
  */
 //@{
-
 #define BP_ECSPI_CONREG_POST_DIVIDER      (8)      //!< Bit position for ECSPI_CONREG_POST_DIVIDER.
 #define BM_ECSPI_CONREG_POST_DIVIDER      (0x00000f00)  //!< Bit mask for ECSPI_CONREG_POST_DIVIDER.
 
@@ -413,7 +398,6 @@ typedef union _hw_ecspi_conreg
 //! @brief Set the POST_DIVIDER field to a new value.
 #define BW_ECSPI_CONREG_POST_DIVIDER(x, v)   (HW_ECSPI_CONREG_WR(x, (HW_ECSPI_CONREG_RD(x) & ~BM_ECSPI_CONREG_POST_DIVIDER) | BF_ECSPI_CONREG_POST_DIVIDER(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONREG, field PRE_DIVIDER[15:12] (RW)
@@ -430,7 +414,6 @@ typedef union _hw_ecspi_conreg
  * - 1111 - Divide by 16.
  */
 //@{
-
 #define BP_ECSPI_CONREG_PRE_DIVIDER      (12)      //!< Bit position for ECSPI_CONREG_PRE_DIVIDER.
 #define BM_ECSPI_CONREG_PRE_DIVIDER      (0x0000f000)  //!< Bit mask for ECSPI_CONREG_PRE_DIVIDER.
 
@@ -444,7 +427,6 @@ typedef union _hw_ecspi_conreg
 //! @brief Set the PRE_DIVIDER field to a new value.
 #define BW_ECSPI_CONREG_PRE_DIVIDER(x, v)   (HW_ECSPI_CONREG_WR(x, (HW_ECSPI_CONREG_RD(x) & ~BM_ECSPI_CONREG_PRE_DIVIDER) | BF_ECSPI_CONREG_PRE_DIVIDER(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONREG, field DRCTL[17:16] (RW)
@@ -459,7 +441,6 @@ typedef union _hw_ecspi_conreg
  * - 11 - Reserved.
  */
 //@{
-
 #define BP_ECSPI_CONREG_DRCTL      (16)      //!< Bit position for ECSPI_CONREG_DRCTL.
 #define BM_ECSPI_CONREG_DRCTL      (0x00030000)  //!< Bit mask for ECSPI_CONREG_DRCTL.
 
@@ -473,7 +454,6 @@ typedef union _hw_ecspi_conreg
 //! @brief Set the DRCTL field to a new value.
 #define BW_ECSPI_CONREG_DRCTL(x, v)   (HW_ECSPI_CONREG_WR(x, (HW_ECSPI_CONREG_RD(x) & ~BM_ECSPI_CONREG_DRCTL) | BF_ECSPI_CONREG_DRCTL(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONREG, field CHANNEL_SELECT[19:18] (RW)
@@ -490,7 +470,6 @@ typedef union _hw_ecspi_conreg
  * - 11 - Channel 3 is selected. Chip Select 3 (SS3) will be asserted.
  */
 //@{
-
 #define BP_ECSPI_CONREG_CHANNEL_SELECT      (18)      //!< Bit position for ECSPI_CONREG_CHANNEL_SELECT.
 #define BM_ECSPI_CONREG_CHANNEL_SELECT      (0x000c0000)  //!< Bit mask for ECSPI_CONREG_CHANNEL_SELECT.
 
@@ -504,7 +483,6 @@ typedef union _hw_ecspi_conreg
 //! @brief Set the CHANNEL_SELECT field to a new value.
 #define BW_ECSPI_CONREG_CHANNEL_SELECT(x, v)   (HW_ECSPI_CONREG_WR(x, (HW_ECSPI_CONREG_RD(x) & ~BM_ECSPI_CONREG_CHANNEL_SELECT) | BF_ECSPI_CONREG_CHANNEL_SELECT(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONREG, field BURST_LENGTH[31:20] (RW)
@@ -528,7 +506,6 @@ typedef union _hw_ecspi_conreg
  * - 0xFFF - A SPI burst contains 2^7 words.
  */
 //@{
-
 #define BP_ECSPI_CONREG_BURST_LENGTH      (20)      //!< Bit position for ECSPI_CONREG_BURST_LENGTH.
 #define BM_ECSPI_CONREG_BURST_LENGTH      (0xfff00000)  //!< Bit mask for ECSPI_CONREG_BURST_LENGTH.
 
@@ -542,7 +519,6 @@ typedef union _hw_ecspi_conreg
 //! @brief Set the BURST_LENGTH field to a new value.
 #define BW_ECSPI_CONREG_BURST_LENGTH(x, v)   (HW_ECSPI_CONREG_WR(x, (HW_ECSPI_CONREG_RD(x) & ~BM_ECSPI_CONREG_BURST_LENGTH) | BF_ECSPI_CONREG_BURST_LENGTH(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -607,7 +583,6 @@ typedef union _hw_ecspi_configreg
  * - 1 - Phase 1 operation.
  */
 //@{
-
 #define BP_ECSPI_CONFIGREG_SCLK_PHA      (0)      //!< Bit position for ECSPI_CONFIGREG_SCLK_PHA.
 #define BM_ECSPI_CONFIGREG_SCLK_PHA      (0x0000000f)  //!< Bit mask for ECSPI_CONFIGREG_SCLK_PHA.
 
@@ -621,7 +596,6 @@ typedef union _hw_ecspi_configreg
 //! @brief Set the SCLK_PHA field to a new value.
 #define BW_ECSPI_CONFIGREG_SCLK_PHA(x, v)   (HW_ECSPI_CONFIGREG_WR(x, (HW_ECSPI_CONFIGREG_RD(x) & ~BM_ECSPI_CONFIGREG_SCLK_PHA) | BF_ECSPI_CONFIGREG_SCLK_PHA(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONFIGREG, field SCLK_POL[7:4] (RW)
@@ -635,7 +609,6 @@ typedef union _hw_ecspi_configreg
  * - 1 - Active low polarity (1 = Idle).
  */
 //@{
-
 #define BP_ECSPI_CONFIGREG_SCLK_POL      (4)      //!< Bit position for ECSPI_CONFIGREG_SCLK_POL.
 #define BM_ECSPI_CONFIGREG_SCLK_POL      (0x000000f0)  //!< Bit mask for ECSPI_CONFIGREG_SCLK_POL.
 
@@ -649,7 +622,6 @@ typedef union _hw_ecspi_configreg
 //! @brief Set the SCLK_POL field to a new value.
 #define BW_ECSPI_CONFIGREG_SCLK_POL(x, v)   (HW_ECSPI_CONFIGREG_WR(x, (HW_ECSPI_CONFIGREG_RD(x) & ~BM_ECSPI_CONFIGREG_SCLK_POL) | BF_ECSPI_CONFIGREG_SCLK_POL(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONFIGREG, field SS_CTL[11:8] (RW)
@@ -675,7 +647,6 @@ typedef union _hw_ecspi_configreg
  *     is detected or the shift register contains 32-bits of valid data.
  */
 //@{
-
 #define BP_ECSPI_CONFIGREG_SS_CTL      (8)      //!< Bit position for ECSPI_CONFIGREG_SS_CTL.
 #define BM_ECSPI_CONFIGREG_SS_CTL      (0x00000f00)  //!< Bit mask for ECSPI_CONFIGREG_SS_CTL.
 
@@ -689,7 +660,6 @@ typedef union _hw_ecspi_configreg
 //! @brief Set the SS_CTL field to a new value.
 #define BW_ECSPI_CONFIGREG_SS_CTL(x, v)   (HW_ECSPI_CONFIGREG_WR(x, (HW_ECSPI_CONFIGREG_RD(x) & ~BM_ECSPI_CONFIGREG_SS_CTL) | BF_ECSPI_CONFIGREG_SS_CTL(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONFIGREG, field SS_POL[15:12] (RW)
@@ -703,7 +673,6 @@ typedef union _hw_ecspi_configreg
  * - 1 - Active high.
  */
 //@{
-
 #define BP_ECSPI_CONFIGREG_SS_POL      (12)      //!< Bit position for ECSPI_CONFIGREG_SS_POL.
 #define BM_ECSPI_CONFIGREG_SS_POL      (0x0000f000)  //!< Bit mask for ECSPI_CONFIGREG_SS_POL.
 
@@ -717,7 +686,6 @@ typedef union _hw_ecspi_configreg
 //! @brief Set the SS_POL field to a new value.
 #define BW_ECSPI_CONFIGREG_SS_POL(x, v)   (HW_ECSPI_CONFIGREG_WR(x, (HW_ECSPI_CONFIGREG_RD(x) & ~BM_ECSPI_CONFIGREG_SS_POL) | BF_ECSPI_CONFIGREG_SS_POL(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONFIGREG, field DATA_CTL[19:16] (RW)
@@ -731,7 +699,6 @@ typedef union _hw_ecspi_configreg
  * - 1 - Stay low.
  */
 //@{
-
 #define BP_ECSPI_CONFIGREG_DATA_CTL      (16)      //!< Bit position for ECSPI_CONFIGREG_DATA_CTL.
 #define BM_ECSPI_CONFIGREG_DATA_CTL      (0x000f0000)  //!< Bit mask for ECSPI_CONFIGREG_DATA_CTL.
 
@@ -745,7 +712,6 @@ typedef union _hw_ecspi_configreg
 //! @brief Set the DATA_CTL field to a new value.
 #define BW_ECSPI_CONFIGREG_DATA_CTL(x, v)   (HW_ECSPI_CONFIGREG_WR(x, (HW_ECSPI_CONFIGREG_RD(x) & ~BM_ECSPI_CONFIGREG_DATA_CTL) | BF_ECSPI_CONFIGREG_DATA_CTL(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONFIGREG, field SCLK_CTL[23:20] (RW)
@@ -759,7 +725,6 @@ typedef union _hw_ecspi_configreg
  * - 1 - Stay high.
  */
 //@{
-
 #define BP_ECSPI_CONFIGREG_SCLK_CTL      (20)      //!< Bit position for ECSPI_CONFIGREG_SCLK_CTL.
 #define BM_ECSPI_CONFIGREG_SCLK_CTL      (0x00f00000)  //!< Bit mask for ECSPI_CONFIGREG_SCLK_CTL.
 
@@ -773,7 +738,6 @@ typedef union _hw_ecspi_configreg
 //! @brief Set the SCLK_CTL field to a new value.
 #define BW_ECSPI_CONFIGREG_SCLK_CTL(x, v)   (HW_ECSPI_CONFIGREG_WR(x, (HW_ECSPI_CONFIGREG_RD(x) & ~BM_ECSPI_CONFIGREG_SCLK_CTL) | BF_ECSPI_CONFIGREG_SCLK_CTL(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_CONFIGREG, field HT_LENGTH[28:24] (RW)
@@ -782,7 +746,6 @@ typedef union _hw_ecspi_configreg
  * (HT LENGTH + 1).
  */
 //@{
-
 #define BP_ECSPI_CONFIGREG_HT_LENGTH      (24)      //!< Bit position for ECSPI_CONFIGREG_HT_LENGTH.
 #define BM_ECSPI_CONFIGREG_HT_LENGTH      (0x1f000000)  //!< Bit mask for ECSPI_CONFIGREG_HT_LENGTH.
 
@@ -796,7 +759,6 @@ typedef union _hw_ecspi_configreg
 //! @brief Set the HT_LENGTH field to a new value.
 #define BW_ECSPI_CONFIGREG_HT_LENGTH(x, v)   (HW_ECSPI_CONFIGREG_WR(x, (HW_ECSPI_CONFIGREG_RD(x) & ~BM_ECSPI_CONFIGREG_HT_LENGTH) | BF_ECSPI_CONFIGREG_HT_LENGTH(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -859,7 +821,6 @@ typedef union _hw_ecspi_intreg
  * - 1 - Enable
  */
 //@{
-
 #define BP_ECSPI_INTREG_TEEN      (0)      //!< Bit position for ECSPI_INTREG_TEEN.
 #define BM_ECSPI_INTREG_TEEN      (0x00000001)  //!< Bit mask for ECSPI_INTREG_TEEN.
 
@@ -873,7 +834,6 @@ typedef union _hw_ecspi_intreg
 //! @brief Set the TEEN field to a new value.
 #define BW_ECSPI_INTREG_TEEN(x, v)   (HW_ECSPI_INTREG_WR(x, (HW_ECSPI_INTREG_RD(x) & ~BM_ECSPI_INTREG_TEEN) | BF_ECSPI_INTREG_TEEN(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_INTREG, field TDREN[1] (RW)
@@ -886,7 +846,6 @@ typedef union _hw_ecspi_intreg
  * - 1 - Enable
  */
 //@{
-
 #define BP_ECSPI_INTREG_TDREN      (1)      //!< Bit position for ECSPI_INTREG_TDREN.
 #define BM_ECSPI_INTREG_TDREN      (0x00000002)  //!< Bit mask for ECSPI_INTREG_TDREN.
 
@@ -900,7 +859,6 @@ typedef union _hw_ecspi_intreg
 //! @brief Set the TDREN field to a new value.
 #define BW_ECSPI_INTREG_TDREN(x, v)   (HW_ECSPI_INTREG_WR(x, (HW_ECSPI_INTREG_RD(x) & ~BM_ECSPI_INTREG_TDREN) | BF_ECSPI_INTREG_TDREN(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_INTREG, field TFEN[2] (RW)
@@ -912,7 +870,6 @@ typedef union _hw_ecspi_intreg
  * - 1 - Enable
  */
 //@{
-
 #define BP_ECSPI_INTREG_TFEN      (2)      //!< Bit position for ECSPI_INTREG_TFEN.
 #define BM_ECSPI_INTREG_TFEN      (0x00000004)  //!< Bit mask for ECSPI_INTREG_TFEN.
 
@@ -926,7 +883,6 @@ typedef union _hw_ecspi_intreg
 //! @brief Set the TFEN field to a new value.
 #define BW_ECSPI_INTREG_TFEN(x, v)   (HW_ECSPI_INTREG_WR(x, (HW_ECSPI_INTREG_RD(x) & ~BM_ECSPI_INTREG_TFEN) | BF_ECSPI_INTREG_TFEN(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_INTREG, field RREN[3] (RW)
@@ -938,7 +894,6 @@ typedef union _hw_ecspi_intreg
  * - 1 - Enable
  */
 //@{
-
 #define BP_ECSPI_INTREG_RREN      (3)      //!< Bit position for ECSPI_INTREG_RREN.
 #define BM_ECSPI_INTREG_RREN      (0x00000008)  //!< Bit mask for ECSPI_INTREG_RREN.
 
@@ -952,7 +907,6 @@ typedef union _hw_ecspi_intreg
 //! @brief Set the RREN field to a new value.
 #define BW_ECSPI_INTREG_RREN(x, v)   (HW_ECSPI_INTREG_WR(x, (HW_ECSPI_INTREG_RD(x) & ~BM_ECSPI_INTREG_RREN) | BF_ECSPI_INTREG_RREN(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_INTREG, field RDREN[4] (RW)
@@ -965,7 +919,6 @@ typedef union _hw_ecspi_intreg
  * - 1 - Enable
  */
 //@{
-
 #define BP_ECSPI_INTREG_RDREN      (4)      //!< Bit position for ECSPI_INTREG_RDREN.
 #define BM_ECSPI_INTREG_RDREN      (0x00000010)  //!< Bit mask for ECSPI_INTREG_RDREN.
 
@@ -979,7 +932,6 @@ typedef union _hw_ecspi_intreg
 //! @brief Set the RDREN field to a new value.
 #define BW_ECSPI_INTREG_RDREN(x, v)   (HW_ECSPI_INTREG_WR(x, (HW_ECSPI_INTREG_RD(x) & ~BM_ECSPI_INTREG_RDREN) | BF_ECSPI_INTREG_RDREN(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_INTREG, field RFEN[5] (RW)
@@ -991,7 +943,6 @@ typedef union _hw_ecspi_intreg
  * - 1 - Enable
  */
 //@{
-
 #define BP_ECSPI_INTREG_RFEN      (5)      //!< Bit position for ECSPI_INTREG_RFEN.
 #define BM_ECSPI_INTREG_RFEN      (0x00000020)  //!< Bit mask for ECSPI_INTREG_RFEN.
 
@@ -1005,7 +956,6 @@ typedef union _hw_ecspi_intreg
 //! @brief Set the RFEN field to a new value.
 #define BW_ECSPI_INTREG_RFEN(x, v)   (HW_ECSPI_INTREG_WR(x, (HW_ECSPI_INTREG_RD(x) & ~BM_ECSPI_INTREG_RFEN) | BF_ECSPI_INTREG_RFEN(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_INTREG, field ROEN[6] (RW)
@@ -1017,7 +967,6 @@ typedef union _hw_ecspi_intreg
  * - 1 - Enable
  */
 //@{
-
 #define BP_ECSPI_INTREG_ROEN      (6)      //!< Bit position for ECSPI_INTREG_ROEN.
 #define BM_ECSPI_INTREG_ROEN      (0x00000040)  //!< Bit mask for ECSPI_INTREG_ROEN.
 
@@ -1031,7 +980,6 @@ typedef union _hw_ecspi_intreg
 //! @brief Set the ROEN field to a new value.
 #define BW_ECSPI_INTREG_ROEN(x, v)   (HW_ECSPI_INTREG_WR(x, (HW_ECSPI_INTREG_RD(x) & ~BM_ECSPI_INTREG_ROEN) | BF_ECSPI_INTREG_ROEN(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_INTREG, field TCEN[7] (RW)
@@ -1043,7 +991,6 @@ typedef union _hw_ecspi_intreg
  * - 1 - Enable
  */
 //@{
-
 #define BP_ECSPI_INTREG_TCEN      (7)      //!< Bit position for ECSPI_INTREG_TCEN.
 #define BM_ECSPI_INTREG_TCEN      (0x00000080)  //!< Bit mask for ECSPI_INTREG_TCEN.
 
@@ -1057,7 +1004,6 @@ typedef union _hw_ecspi_intreg
 //! @brief Set the TCEN field to a new value.
 #define BW_ECSPI_INTREG_TCEN(x, v)   (HW_ECSPI_INTREG_WR(x, (HW_ECSPI_INTREG_RD(x) & ~BM_ECSPI_INTREG_TCEN) | BF_ECSPI_INTREG_TCEN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1121,7 +1067,6 @@ typedef union _hw_ecspi_dmareg
  * THRESHOLD.
  */
 //@{
-
 #define BP_ECSPI_DMAREG_TX_THRESHOLD      (0)      //!< Bit position for ECSPI_DMAREG_TX_THRESHOLD.
 #define BM_ECSPI_DMAREG_TX_THRESHOLD      (0x0000003f)  //!< Bit mask for ECSPI_DMAREG_TX_THRESHOLD.
 
@@ -1135,7 +1080,6 @@ typedef union _hw_ecspi_dmareg
 //! @brief Set the TX_THRESHOLD field to a new value.
 #define BW_ECSPI_DMAREG_TX_THRESHOLD(x, v)   (HW_ECSPI_DMAREG_WR(x, (HW_ECSPI_DMAREG_RD(x) & ~BM_ECSPI_DMAREG_TX_THRESHOLD) | BF_ECSPI_DMAREG_TX_THRESHOLD(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_DMAREG, field TEDEN[7] (RW)
@@ -1147,7 +1091,6 @@ typedef union _hw_ecspi_dmareg
  * - 1 - Enable
  */
 //@{
-
 #define BP_ECSPI_DMAREG_TEDEN      (7)      //!< Bit position for ECSPI_DMAREG_TEDEN.
 #define BM_ECSPI_DMAREG_TEDEN      (0x00000080)  //!< Bit mask for ECSPI_DMAREG_TEDEN.
 
@@ -1161,7 +1104,6 @@ typedef union _hw_ecspi_dmareg
 //! @brief Set the TEDEN field to a new value.
 #define BW_ECSPI_DMAREG_TEDEN(x, v)   (HW_ECSPI_DMAREG_WR(x, (HW_ECSPI_DMAREG_RD(x) & ~BM_ECSPI_DMAREG_TEDEN) | BF_ECSPI_DMAREG_TEDEN(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_DMAREG, field RX_THRESHOLD[21:16] (RW)
@@ -1171,7 +1113,6 @@ typedef union _hw_ecspi_dmareg
  * THRESHOLD.
  */
 //@{
-
 #define BP_ECSPI_DMAREG_RX_THRESHOLD      (16)      //!< Bit position for ECSPI_DMAREG_RX_THRESHOLD.
 #define BM_ECSPI_DMAREG_RX_THRESHOLD      (0x003f0000)  //!< Bit mask for ECSPI_DMAREG_RX_THRESHOLD.
 
@@ -1185,7 +1126,6 @@ typedef union _hw_ecspi_dmareg
 //! @brief Set the RX_THRESHOLD field to a new value.
 #define BW_ECSPI_DMAREG_RX_THRESHOLD(x, v)   (HW_ECSPI_DMAREG_WR(x, (HW_ECSPI_DMAREG_RD(x) & ~BM_ECSPI_DMAREG_RX_THRESHOLD) | BF_ECSPI_DMAREG_RX_THRESHOLD(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_DMAREG, field RXDEN[23] (RW)
@@ -1197,7 +1137,6 @@ typedef union _hw_ecspi_dmareg
  * - 1 - Enable
  */
 //@{
-
 #define BP_ECSPI_DMAREG_RXDEN      (23)      //!< Bit position for ECSPI_DMAREG_RXDEN.
 #define BM_ECSPI_DMAREG_RXDEN      (0x00800000)  //!< Bit mask for ECSPI_DMAREG_RXDEN.
 
@@ -1211,7 +1150,6 @@ typedef union _hw_ecspi_dmareg
 //! @brief Set the RXDEN field to a new value.
 #define BW_ECSPI_DMAREG_RXDEN(x, v)   (HW_ECSPI_DMAREG_WR(x, (HW_ECSPI_DMAREG_RD(x) & ~BM_ECSPI_DMAREG_RXDEN) | BF_ECSPI_DMAREG_RXDEN(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_DMAREG, field RX_DMA_LENGTH[29:24] (RW)
@@ -1220,7 +1158,6 @@ typedef union _hw_ecspi_dmareg
  * is set.
  */
 //@{
-
 #define BP_ECSPI_DMAREG_RX_DMA_LENGTH      (24)      //!< Bit position for ECSPI_DMAREG_RX_DMA_LENGTH.
 #define BM_ECSPI_DMAREG_RX_DMA_LENGTH      (0x3f000000)  //!< Bit mask for ECSPI_DMAREG_RX_DMA_LENGTH.
 
@@ -1234,7 +1171,6 @@ typedef union _hw_ecspi_dmareg
 //! @brief Set the RX_DMA_LENGTH field to a new value.
 #define BW_ECSPI_DMAREG_RX_DMA_LENGTH(x, v)   (HW_ECSPI_DMAREG_WR(x, (HW_ECSPI_DMAREG_RD(x) & ~BM_ECSPI_DMAREG_RX_DMA_LENGTH) | BF_ECSPI_DMAREG_RX_DMA_LENGTH(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_DMAREG, field RXTDEN[31] (RW)
@@ -1249,7 +1185,6 @@ typedef union _hw_ecspi_dmareg
  * - 1 - Enable
  */
 //@{
-
 #define BP_ECSPI_DMAREG_RXTDEN      (31)      //!< Bit position for ECSPI_DMAREG_RXTDEN.
 #define BM_ECSPI_DMAREG_RXTDEN      (0x80000000)  //!< Bit mask for ECSPI_DMAREG_RXTDEN.
 
@@ -1263,7 +1198,6 @@ typedef union _hw_ecspi_dmareg
 //! @brief Set the RXTDEN field to a new value.
 #define BW_ECSPI_DMAREG_RXTDEN(x, v)   (HW_ECSPI_DMAREG_WR(x, (HW_ECSPI_DMAREG_RD(x) & ~BM_ECSPI_DMAREG_RXTDEN) | BF_ECSPI_DMAREG_RXTDEN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1326,13 +1260,11 @@ typedef union _hw_ecspi_statreg
  * - 1 - TXFIFO is empty.
  */
 //@{
-
 #define BP_ECSPI_STATREG_TE      (0)      //!< Bit position for ECSPI_STATREG_TE.
 #define BM_ECSPI_STATREG_TE      (0x00000001)  //!< Bit mask for ECSPI_STATREG_TE.
 
 //! @brief Get value of ECSPI_STATREG_TE from a register value.
 #define BG_ECSPI_STATREG_TE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_TE) >> BP_ECSPI_STATREG_TE)
-
 //@}
 
 /*! @name Register ECSPI_STATREG, field TDR[1] (RO)
@@ -1344,13 +1276,11 @@ typedef union _hw_ecspi_statreg
  * - 1 - Number of empty slots in TXFIFO is not greater than TX THRESHOLD.
  */
 //@{
-
 #define BP_ECSPI_STATREG_TDR      (1)      //!< Bit position for ECSPI_STATREG_TDR.
 #define BM_ECSPI_STATREG_TDR      (0x00000002)  //!< Bit mask for ECSPI_STATREG_TDR.
 
 //! @brief Get value of ECSPI_STATREG_TDR from a register value.
 #define BG_ECSPI_STATREG_TDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_TDR) >> BP_ECSPI_STATREG_TDR)
-
 //@}
 
 /*! @name Register ECSPI_STATREG, field TF[2] (RO)
@@ -1362,13 +1292,11 @@ typedef union _hw_ecspi_statreg
  * - 1 - TXFIFO is Full.
  */
 //@{
-
 #define BP_ECSPI_STATREG_TF      (2)      //!< Bit position for ECSPI_STATREG_TF.
 #define BM_ECSPI_STATREG_TF      (0x00000004)  //!< Bit mask for ECSPI_STATREG_TF.
 
 //! @brief Get value of ECSPI_STATREG_TF from a register value.
 #define BG_ECSPI_STATREG_TF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_TF) >> BP_ECSPI_STATREG_TF)
-
 //@}
 
 /*! @name Register ECSPI_STATREG, field RR[3] (RO)
@@ -1380,13 +1308,11 @@ typedef union _hw_ecspi_statreg
  * - 1 - More than 1 word in RXFIFO.
  */
 //@{
-
 #define BP_ECSPI_STATREG_RR      (3)      //!< Bit position for ECSPI_STATREG_RR.
 #define BM_ECSPI_STATREG_RR      (0x00000008)  //!< Bit mask for ECSPI_STATREG_RR.
 
 //! @brief Get value of ECSPI_STATREG_RR from a register value.
 #define BG_ECSPI_STATREG_RR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_RR) >> BP_ECSPI_STATREG_RR)
-
 //@}
 
 /*! @name Register ECSPI_STATREG, field RDR[4] (RO)
@@ -1401,13 +1327,11 @@ typedef union _hw_ecspi_statreg
  * - 1 - When RXTDE is clear - Number of data entries in the RXFIFO is greater than RX THRESHOLD.
  */
 //@{
-
 #define BP_ECSPI_STATREG_RDR      (4)      //!< Bit position for ECSPI_STATREG_RDR.
 #define BM_ECSPI_STATREG_RDR      (0x00000010)  //!< Bit mask for ECSPI_STATREG_RDR.
 
 //! @brief Get value of ECSPI_STATREG_RDR from a register value.
 #define BG_ECSPI_STATREG_RDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_RDR) >> BP_ECSPI_STATREG_RDR)
-
 //@}
 
 /*! @name Register ECSPI_STATREG, field RF[5] (RO)
@@ -1419,13 +1343,11 @@ typedef union _hw_ecspi_statreg
  * - 1 - Full.
  */
 //@{
-
 #define BP_ECSPI_STATREG_RF      (5)      //!< Bit position for ECSPI_STATREG_RF.
 #define BM_ECSPI_STATREG_RF      (0x00000020)  //!< Bit mask for ECSPI_STATREG_RF.
 
 //! @brief Get value of ECSPI_STATREG_RF from a register value.
 #define BG_ECSPI_STATREG_RF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ECSPI_STATREG_RF) >> BP_ECSPI_STATREG_RF)
-
 //@}
 
 /*! @name Register ECSPI_STATREG, field RO[6] (W1C)
@@ -1438,7 +1360,6 @@ typedef union _hw_ecspi_statreg
  * - 1 - RXFIFO has overflowed.
  */
 //@{
-
 #define BP_ECSPI_STATREG_RO      (6)      //!< Bit position for ECSPI_STATREG_RO.
 #define BM_ECSPI_STATREG_RO      (0x00000040)  //!< Bit mask for ECSPI_STATREG_RO.
 
@@ -1452,7 +1373,6 @@ typedef union _hw_ecspi_statreg
 //! @brief Set the RO field to a new value.
 #define BW_ECSPI_STATREG_RO(x, v)   (HW_ECSPI_STATREG_WR(x, (HW_ECSPI_STATREG_RD(x) & ~BM_ECSPI_STATREG_RO) | BF_ECSPI_STATREG_RO(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_STATREG, field TC[7] (W1C)
@@ -1464,7 +1384,6 @@ typedef union _hw_ecspi_statreg
  * - 1 - Transfer completed.
  */
 //@{
-
 #define BP_ECSPI_STATREG_TC      (7)      //!< Bit position for ECSPI_STATREG_TC.
 #define BM_ECSPI_STATREG_TC      (0x00000080)  //!< Bit mask for ECSPI_STATREG_TC.
 
@@ -1478,7 +1397,6 @@ typedef union _hw_ecspi_statreg
 //! @brief Set the TC field to a new value.
 #define BW_ECSPI_STATREG_TC(x, v)   (HW_ECSPI_STATREG_WR(x, (HW_ECSPI_STATREG_RD(x) & ~BM_ECSPI_STATREG_TC) | BF_ECSPI_STATREG_TC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1546,7 +1464,6 @@ typedef union _hw_ecspi_periodreg
  * - 0x7FFF - 32767 wait states inserted
  */
 //@{
-
 #define BP_ECSPI_PERIODREG_SAMPLE_PERIOD      (0)      //!< Bit position for ECSPI_PERIODREG_SAMPLE_PERIOD.
 #define BM_ECSPI_PERIODREG_SAMPLE_PERIOD      (0x00007fff)  //!< Bit mask for ECSPI_PERIODREG_SAMPLE_PERIOD.
 
@@ -1560,7 +1477,6 @@ typedef union _hw_ecspi_periodreg
 //! @brief Set the SAMPLE_PERIOD field to a new value.
 #define BW_ECSPI_PERIODREG_SAMPLE_PERIOD(x, v)   (HW_ECSPI_PERIODREG_WR(x, (HW_ECSPI_PERIODREG_RD(x) & ~BM_ECSPI_PERIODREG_SAMPLE_PERIOD) | BF_ECSPI_PERIODREG_SAMPLE_PERIOD(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_PERIODREG, field CSRC[15] (RW)
@@ -1572,7 +1488,6 @@ typedef union _hw_ecspi_periodreg
  * - 1 - Low-Frequency Reference Clock (32.768 KHz)
  */
 //@{
-
 #define BP_ECSPI_PERIODREG_CSRC      (15)      //!< Bit position for ECSPI_PERIODREG_CSRC.
 #define BM_ECSPI_PERIODREG_CSRC      (0x00008000)  //!< Bit mask for ECSPI_PERIODREG_CSRC.
 
@@ -1586,7 +1501,6 @@ typedef union _hw_ecspi_periodreg
 //! @brief Set the CSRC field to a new value.
 #define BW_ECSPI_PERIODREG_CSRC(x, v)   (HW_ECSPI_PERIODREG_WR(x, (HW_ECSPI_PERIODREG_RD(x) & ~BM_ECSPI_PERIODREG_CSRC) | BF_ECSPI_PERIODREG_CSRC(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_PERIODREG, field CSD_CTL[21:16] (RW)
@@ -1595,7 +1509,6 @@ typedef union _hw_ecspi_periodreg
  * the chip select's active edge and the first SPI clock edge. The range is from 0 to 63.
  */
 //@{
-
 #define BP_ECSPI_PERIODREG_CSD_CTL      (16)      //!< Bit position for ECSPI_PERIODREG_CSD_CTL.
 #define BM_ECSPI_PERIODREG_CSD_CTL      (0x003f0000)  //!< Bit mask for ECSPI_PERIODREG_CSD_CTL.
 
@@ -1609,7 +1522,6 @@ typedef union _hw_ecspi_periodreg
 //! @brief Set the CSD_CTL field to a new value.
 #define BW_ECSPI_PERIODREG_CSD_CTL(x, v)   (HW_ECSPI_PERIODREG_WR(x, (HW_ECSPI_PERIODREG_RD(x) & ~BM_ECSPI_PERIODREG_CSD_CTL) | BF_ECSPI_PERIODREG_CSD_CTL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1665,7 +1577,6 @@ typedef union _hw_ecspi_testreg
  * TXFIFO Counter. This field indicates the number of words in the TXFIFO.
  */
 //@{
-
 #define BP_ECSPI_TESTREG_TXCNT      (0)      //!< Bit position for ECSPI_TESTREG_TXCNT.
 #define BM_ECSPI_TESTREG_TXCNT      (0x0000007f)  //!< Bit mask for ECSPI_TESTREG_TXCNT.
 
@@ -1679,7 +1590,6 @@ typedef union _hw_ecspi_testreg
 //! @brief Set the TXCNT field to a new value.
 #define BW_ECSPI_TESTREG_TXCNT(x, v)   (HW_ECSPI_TESTREG_WR(x, (HW_ECSPI_TESTREG_RD(x) & ~BM_ECSPI_TESTREG_TXCNT) | BF_ECSPI_TESTREG_TXCNT(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_TESTREG, field RXCNT[14:8] (RW)
@@ -1687,7 +1597,6 @@ typedef union _hw_ecspi_testreg
  * RXFIFO Counter. This field indicates the number of words in the RXFIFO.
  */
 //@{
-
 #define BP_ECSPI_TESTREG_RXCNT      (8)      //!< Bit position for ECSPI_TESTREG_RXCNT.
 #define BM_ECSPI_TESTREG_RXCNT      (0x00007f00)  //!< Bit mask for ECSPI_TESTREG_RXCNT.
 
@@ -1701,7 +1610,6 @@ typedef union _hw_ecspi_testreg
 //! @brief Set the RXCNT field to a new value.
 #define BW_ECSPI_TESTREG_RXCNT(x, v)   (HW_ECSPI_TESTREG_WR(x, (HW_ECSPI_TESTREG_RD(x) & ~BM_ECSPI_TESTREG_RXCNT) | BF_ECSPI_TESTREG_RXCNT(v)))
 #endif
-
 //@}
 
 /*! @name Register ECSPI_TESTREG, field LBC[31] (RW)
@@ -1717,7 +1625,6 @@ typedef union _hw_ecspi_testreg
  * - 1 - Transmitter and receiver sections internally connected for Loopback.
  */
 //@{
-
 #define BP_ECSPI_TESTREG_LBC      (31)      //!< Bit position for ECSPI_TESTREG_LBC.
 #define BM_ECSPI_TESTREG_LBC      (0x80000000)  //!< Bit mask for ECSPI_TESTREG_LBC.
 
@@ -1731,7 +1638,6 @@ typedef union _hw_ecspi_testreg
 //! @brief Set the LBC field to a new value.
 #define BW_ECSPI_TESTREG_LBC(x, v)   (HW_ECSPI_TESTREG_WR(x, (HW_ECSPI_TESTREG_RD(x) & ~BM_ECSPI_TESTREG_LBC) | BF_ECSPI_TESTREG_LBC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1781,7 +1687,6 @@ typedef union _hw_ecspi_msgdata
  * Data FIFO.
  */
 //@{
-
 #define BP_ECSPI_MSGDATA_ECSPI_MSGDATA      (0)      //!< Bit position for ECSPI_MSGDATA_ECSPI_MSGDATA.
 #define BM_ECSPI_MSGDATA_ECSPI_MSGDATA      (0xffffffff)  //!< Bit mask for ECSPI_MSGDATA_ECSPI_MSGDATA.
 
@@ -1790,7 +1695,6 @@ typedef union _hw_ecspi_msgdata
 
 //! @brief Format value for bitfield ECSPI_MSGDATA_ECSPI_MSGDATA.
 #define BF_ECSPI_MSGDATA_ECSPI_MSGDATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ECSPI_MSGDATA_ECSPI_MSGDATA) & BM_ECSPI_MSGDATA_ECSPI_MSGDATA)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1825,3 +1729,5 @@ typedef struct _hw_ecspi
 #endif
 
 #endif // __HW_ECSPI_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

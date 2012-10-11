@@ -118,7 +118,6 @@ typedef union _hw_vdoa_vdoac
  * - 11 - reserved
  */
 //@{
-
 #define BP_VDOA_VDOAC_BNDM      (0)      //!< Bit position for VDOA_VDOAC_BNDM.
 #define BM_VDOA_VDOAC_BNDM      (0x00000003)  //!< Bit mask for VDOA_VDOAC_BNDM.
 
@@ -139,7 +138,6 @@ typedef union _hw_vdoa_vdoac
 #define BV_VDOA_VDOAC_BNDM__BAND_HEIGHT_8 (0x0) //!< Band height = 8 lines.- Supported only for interlaced scan (SO=1)
 #define BV_VDOA_VDOAC_BNDM__BAND_HEIGHT_16 (0x1) //!< Band height = 16 lines.
 #define BV_VDOA_VDOAC_BNDM__BAND_HEIGHT_32 (0x2) //!< Band height = 32 lines.
-
 //@}
 
 /*! @name Register VDOA_VDOAC, field NF[2] (RW)
@@ -151,7 +149,6 @@ typedef union _hw_vdoa_vdoac
  * - 3_FRAMES = 1 - Three frames
  */
 //@{
-
 #define BP_VDOA_VDOAC_NF      (2)      //!< Bit position for VDOA_VDOAC_NF.
 #define BM_VDOA_VDOAC_NF      (0x00000004)  //!< Bit mask for VDOA_VDOAC_NF.
 
@@ -171,7 +168,6 @@ typedef union _hw_vdoa_vdoac
 
 #define BV_VDOA_VDOAC_NF__1_FRAME (0x0) //!< One frame (default)
 #define BV_VDOA_VDOAC_NF__3_FRAMES (0x1) //!< Three frames
-
 //@}
 
 /*! @name Register VDOA_VDOAC, field SYNC[3] (RW)
@@ -184,7 +180,6 @@ typedef union _hw_vdoa_vdoac
  * - SYNC_MODE = 1 - Sync mode
  */
 //@{
-
 #define BP_VDOA_VDOAC_SYNC      (3)      //!< Bit position for VDOA_VDOAC_SYNC.
 #define BM_VDOA_VDOAC_SYNC      (0x00000008)  //!< Bit mask for VDOA_VDOAC_SYNC.
 
@@ -204,7 +199,6 @@ typedef union _hw_vdoa_vdoac
 
 #define BV_VDOA_VDOAC_SYNC__NO_SYNC_MODE (0x0) //!< None SYNC mode (default)
 #define BV_VDOA_VDOAC_SYNC__SYNC_MODE (0x1) //!< Sync mode
-
 //@}
 
 /*! @name Register VDOA_VDOAC, field SO[4] (RW)
@@ -216,7 +210,6 @@ typedef union _hw_vdoa_vdoac
  * - INTERLACED = 1 - Scan order is interlaced
  */
 //@{
-
 #define BP_VDOA_VDOAC_SO      (4)      //!< Bit position for VDOA_VDOAC_SO.
 #define BM_VDOA_VDOAC_SO      (0x00000010)  //!< Bit mask for VDOA_VDOAC_SO.
 
@@ -236,7 +229,6 @@ typedef union _hw_vdoa_vdoac
 
 #define BV_VDOA_VDOAC_SO__PROGRESSIVE (0x0) //!< Scan order is progressive
 #define BV_VDOA_VDOAC_SO__INTERLACED (0x1) //!< Scan order is interlaced
-
 //@}
 
 /*! @name Register VDOA_VDOAC, field PFS[5] (RW)
@@ -249,7 +241,6 @@ typedef union _hw_vdoa_vdoac
  * - 4_2_2 = 1 - interleaved 4:2:2 Y1U1Y2V1
  */
 //@{
-
 #define BP_VDOA_VDOAC_PFS      (5)      //!< Bit position for VDOA_VDOAC_PFS.
 #define BM_VDOA_VDOAC_PFS      (0x00000020)  //!< Bit mask for VDOA_VDOAC_PFS.
 
@@ -269,7 +260,6 @@ typedef union _hw_vdoa_vdoac
 
 #define BV_VDOA_VDOAC_PFS__4_2_0 (0x0) //!< partialy interleaved 4:2:0
 #define BV_VDOA_VDOAC_PFS__4_2_2 (0x1) //!< interleaved 4:2:2 Y1U1Y2V1
-
 //@}
 
 /*! @name Register VDOA_VDOAC, field ISEL[6] (RW)
@@ -281,7 +271,6 @@ typedef union _hw_vdoa_vdoac
  * - VDOA_BUF_RDY_AND_IPU_BUF_EOB_1 = 1 - Use vdoa_buf_rdy[1] and ipu_buf_eob[1]
  */
 //@{
-
 #define BP_VDOA_VDOAC_ISEL      (6)      //!< Bit position for VDOA_VDOAC_ISEL.
 #define BM_VDOA_VDOAC_ISEL      (0x00000040)  //!< Bit mask for VDOA_VDOAC_ISEL.
 
@@ -301,7 +290,6 @@ typedef union _hw_vdoa_vdoac
 
 #define BV_VDOA_VDOAC_ISEL__VDOA_BUF_RDY_AND_IPU_BUF_EOB_0 (0x0) //!< Use vdoa_buf_rdy[0] and ipu_buf_eob[0]
 #define BV_VDOA_VDOAC_ISEL__VDOA_BUF_RDY_AND_IPU_BUF_EOB_1 (0x1) //!< Use vdoa_buf_rdy[1] and ipu_buf_eob[1]
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -354,7 +342,6 @@ typedef union _hw_vdoa_vdoasrr
  * configuration registers are mnot cleared
  */
 //@{
-
 #define BP_VDOA_VDOASRR_SWRST      (0)      //!< Bit position for VDOA_VDOASRR_SWRST.
 #define BM_VDOA_VDOASRR_SWRST      (0x00000001)  //!< Bit mask for VDOA_VDOASRR_SWRST.
 
@@ -368,7 +355,6 @@ typedef union _hw_vdoa_vdoasrr
 //! @brief Set the SWRST field to a new value.
 #define BW_VDOA_VDOASRR_SWRST(v)   (HW_VDOA_VDOASRR_WR((HW_VDOA_VDOASRR_RD() & ~BM_VDOA_VDOASRR_SWRST) | BF_VDOA_VDOASRR_SWRST(v)))
 #endif
-
 //@}
 
 /*! @name Register VDOA_VDOASRR, field START[1] (RW)
@@ -382,7 +368,6 @@ typedef union _hw_vdoa_vdoasrr
  *     next transfer (double buffer)
  */
 //@{
-
 #define BP_VDOA_VDOASRR_START      (1)      //!< Bit position for VDOA_VDOASRR_START.
 #define BM_VDOA_VDOASRR_START      (0x00000002)  //!< Bit mask for VDOA_VDOASRR_START.
 
@@ -401,7 +386,6 @@ typedef union _hw_vdoa_vdoasrr
 #define BF_VDOA_VDOASRR_START_V(v) BF_VDOA_VDOASRR_START(BV_VDOA_VDOASRR_START__##v)
 
 #define BV_VDOA_VDOASRR_START__START_TRANSFER (0x1) //!< Start a new transfer All registers we copied internally so any write to them will take place only in next transfer (double buffer)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -457,7 +441,6 @@ typedef union _hw_vdoa_vdoaie
  * - IRQ_ENABLED = 1 - Interrupt Enabled
  */
 //@{
-
 #define BP_VDOA_VDOAIE_EIEOT      (0)      //!< Bit position for VDOA_VDOAIE_EIEOT.
 #define BM_VDOA_VDOAIE_EIEOT      (0x00000001)  //!< Bit mask for VDOA_VDOAIE_EIEOT.
 
@@ -477,7 +460,6 @@ typedef union _hw_vdoa_vdoaie
 
 #define BV_VDOA_VDOAIE_EIEOT__IRQ_DISABLED (0x0) //!< interrupt disable (default)
 #define BV_VDOA_VDOAIE_EIEOT__IRQ_ENABLED (0x1) //!< Interrupt Enabled
-
 //@}
 
 /*! @name Register VDOA_VDOAIE, field EITERR[1] (RW)
@@ -489,7 +471,6 @@ typedef union _hw_vdoa_vdoaie
  * - IRQ_ENABLED = 1 - Interrupt Enabled
  */
 //@{
-
 #define BP_VDOA_VDOAIE_EITERR      (1)      //!< Bit position for VDOA_VDOAIE_EITERR.
 #define BM_VDOA_VDOAIE_EITERR      (0x00000002)  //!< Bit mask for VDOA_VDOAIE_EITERR.
 
@@ -509,7 +490,6 @@ typedef union _hw_vdoa_vdoaie
 
 #define BV_VDOA_VDOAIE_EITERR__IRQ_DISABLED (0x0) //!< interrupt disable (default)
 #define BV_VDOA_VDOAIE_EITERR__IRQ_ENABLED (0x1) //!< Interrupt Enabled
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -561,7 +541,6 @@ typedef union _hw_vdoa_vdoaist
  * End Of transfer - Transfer was completed if EIEOT is set an interrupt will be generated
  */
 //@{
-
 #define BP_VDOA_VDOAIST_EOT      (0)      //!< Bit position for VDOA_VDOAIST_EOT.
 #define BM_VDOA_VDOAIST_EOT      (0x00000001)  //!< Bit mask for VDOA_VDOAIST_EOT.
 
@@ -575,7 +554,6 @@ typedef union _hw_vdoa_vdoaist
 //! @brief Set the EOT field to a new value.
 #define BW_VDOA_VDOAIST_EOT(v)   (HW_VDOA_VDOAIST_WR((HW_VDOA_VDOAIST_RD() & ~BM_VDOA_VDOAIST_EOT) | BF_VDOA_VDOAIST_EOT(v)))
 #endif
-
 //@}
 
 /*! @name Register VDOA_VDOAIST, field TERR[1] (W1C)
@@ -584,7 +562,6 @@ typedef union _hw_vdoa_vdoaist
  * write) if EITERR is set an interrupt will be generated
  */
 //@{
-
 #define BP_VDOA_VDOAIST_TERR      (1)      //!< Bit position for VDOA_VDOAIST_TERR.
 #define BM_VDOA_VDOAIST_TERR      (0x00000002)  //!< Bit mask for VDOA_VDOAIST_TERR.
 
@@ -598,7 +575,6 @@ typedef union _hw_vdoa_vdoaist
 //! @brief Set the TERR field to a new value.
 #define BW_VDOA_VDOAIST_TERR(v)   (HW_VDOA_VDOAIST_WR((HW_VDOA_VDOAIST_RD() & ~BM_VDOA_VDOAIST_TERR) | BF_VDOA_VDOAIST_TERR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -652,7 +628,6 @@ typedef union _hw_vdoa_vdoafp
  * 8)
  */
 //@{
-
 #define BP_VDOA_VDOAFP_FW      (0)      //!< Bit position for VDOA_VDOAFP_FW.
 #define BM_VDOA_VDOAFP_FW      (0x00003fff)  //!< Bit mask for VDOA_VDOAFP_FW.
 
@@ -666,7 +641,6 @@ typedef union _hw_vdoa_vdoafp
 //! @brief Set the FW field to a new value.
 #define BW_VDOA_VDOAFP_FW(v)   (HW_VDOA_VDOAFP_WR((HW_VDOA_VDOAFP_RD() & ~BM_VDOA_VDOAFP_FW) | BF_VDOA_VDOAFP_FW(v)))
 #endif
-
 //@}
 
 /*! @name Register VDOA_VDOAFP, field FH[28:16] (RW)
@@ -675,7 +649,6 @@ typedef union _hw_vdoa_vdoafp
  * (multiply of 8)
  */
 //@{
-
 #define BP_VDOA_VDOAFP_FH      (16)      //!< Bit position for VDOA_VDOAFP_FH.
 #define BM_VDOA_VDOAFP_FH      (0x1fff0000)  //!< Bit mask for VDOA_VDOAFP_FH.
 
@@ -689,7 +662,6 @@ typedef union _hw_vdoa_vdoafp
 //! @brief Set the FH field to a new value.
 #define BW_VDOA_VDOAFP_FH(v)   (HW_VDOA_VDOAFP_WR((HW_VDOA_VDOAFP_RD() & ~BM_VDOA_VDOAFP_FH) | BF_VDOA_VDOAFP_FH(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -740,7 +712,6 @@ typedef union _hw_vdoa_vdoaieba00
  * 8 address) Used for all transfer types
  */
 //@{
-
 #define BP_VDOA_VDOAIEBA00_IEBA00      (0)      //!< Bit position for VDOA_VDOAIEBA00_IEBA00.
 #define BM_VDOA_VDOAIEBA00_IEBA00      (0xffffffff)  //!< Bit mask for VDOA_VDOAIEBA00_IEBA00.
 
@@ -754,7 +725,6 @@ typedef union _hw_vdoa_vdoaieba00
 //! @brief Set the IEBA00 field to a new value.
 #define BW_VDOA_VDOAIEBA00_IEBA00(v)   (HW_VDOA_VDOAIEBA00_WR((HW_VDOA_VDOAIEBA00_RD() & ~BM_VDOA_VDOAIEBA00_IEBA00) | BF_VDOA_VDOAIEBA00_IEBA00(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -805,7 +775,6 @@ typedef union _hw_vdoa_vdoaieba01
  * 8 address) Used when transfering 3 frames (NF=1) only
  */
 //@{
-
 #define BP_VDOA_VDOAIEBA01_IEBA01      (0)      //!< Bit position for VDOA_VDOAIEBA01_IEBA01.
 #define BM_VDOA_VDOAIEBA01_IEBA01      (0xffffffff)  //!< Bit mask for VDOA_VDOAIEBA01_IEBA01.
 
@@ -819,7 +788,6 @@ typedef union _hw_vdoa_vdoaieba01
 //! @brief Set the IEBA01 field to a new value.
 #define BW_VDOA_VDOAIEBA01_IEBA01(v)   (HW_VDOA_VDOAIEBA01_WR((HW_VDOA_VDOAIEBA01_RD() & ~BM_VDOA_VDOAIEBA01_IEBA01) | BF_VDOA_VDOAIEBA01_IEBA01(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -870,7 +838,6 @@ typedef union _hw_vdoa_vdoaieba02
  * 8 address) Used when transfering 3 frames (NF=1) only
  */
 //@{
-
 #define BP_VDOA_VDOAIEBA02_IEBA02      (0)      //!< Bit position for VDOA_VDOAIEBA02_IEBA02.
 #define BM_VDOA_VDOAIEBA02_IEBA02      (0xffffffff)  //!< Bit mask for VDOA_VDOAIEBA02_IEBA02.
 
@@ -884,7 +851,6 @@ typedef union _hw_vdoa_vdoaieba02
 //! @brief Set the IEBA02 field to a new value.
 #define BW_VDOA_VDOAIEBA02_IEBA02(v)   (HW_VDOA_VDOAIEBA02_WR((HW_VDOA_VDOAIEBA02_RD() & ~BM_VDOA_VDOAIEBA02_IEBA02) | BF_VDOA_VDOAIEBA02_IEBA02(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -935,7 +901,6 @@ typedef union _hw_vdoa_vdoaieba10
  * 8 address) Used in sync mode (SYNC=1) only
  */
 //@{
-
 #define BP_VDOA_VDOAIEBA10_IEBA10      (0)      //!< Bit position for VDOA_VDOAIEBA10_IEBA10.
 #define BM_VDOA_VDOAIEBA10_IEBA10      (0xffffffff)  //!< Bit mask for VDOA_VDOAIEBA10_IEBA10.
 
@@ -949,7 +914,6 @@ typedef union _hw_vdoa_vdoaieba10
 //! @brief Set the IEBA10 field to a new value.
 #define BW_VDOA_VDOAIEBA10_IEBA10(v)   (HW_VDOA_VDOAIEBA10_WR((HW_VDOA_VDOAIEBA10_RD() & ~BM_VDOA_VDOAIEBA10_IEBA10) | BF_VDOA_VDOAIEBA10_IEBA10(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1000,7 +964,6 @@ typedef union _hw_vdoa_vdoaieba11
  * 8 address) This register is used only in sync mode (SYNC=1), 3 frames transfer (NF=1)
  */
 //@{
-
 #define BP_VDOA_VDOAIEBA11_IEBA11      (0)      //!< Bit position for VDOA_VDOAIEBA11_IEBA11.
 #define BM_VDOA_VDOAIEBA11_IEBA11      (0xffffffff)  //!< Bit mask for VDOA_VDOAIEBA11_IEBA11.
 
@@ -1014,7 +977,6 @@ typedef union _hw_vdoa_vdoaieba11
 //! @brief Set the IEBA11 field to a new value.
 #define BW_VDOA_VDOAIEBA11_IEBA11(v)   (HW_VDOA_VDOAIEBA11_WR((HW_VDOA_VDOAIEBA11_RD() & ~BM_VDOA_VDOAIEBA11_IEBA11) | BF_VDOA_VDOAIEBA11_IEBA11(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1065,7 +1027,6 @@ typedef union _hw_vdoa_vdoaieba12
  * 8 address) This register is used only in sync mode (SYNC=1), 3 frames transfer (NF=1)
  */
 //@{
-
 #define BP_VDOA_VDOAIEBA12_IEBA12      (0)      //!< Bit position for VDOA_VDOAIEBA12_IEBA12.
 #define BM_VDOA_VDOAIEBA12_IEBA12      (0xffffffff)  //!< Bit mask for VDOA_VDOAIEBA12_IEBA12.
 
@@ -1079,7 +1040,6 @@ typedef union _hw_vdoa_vdoaieba12
 //! @brief Set the IEBA12 field to a new value.
 #define BW_VDOA_VDOAIEBA12_IEBA12(v)   (HW_VDOA_VDOAIEBA12_WR((HW_VDOA_VDOAIEBA12_RD() & ~BM_VDOA_VDOAIEBA12_IEBA12) | BF_VDOA_VDOAIEBA12_IEBA12(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1134,7 +1094,6 @@ typedef union _hw_vdoa_vdoasl
  * ISLY will be doubled since each pixel takes two bytes
  */
 //@{
-
 #define BP_VDOA_VDOASL_ISLY      (0)      //!< Bit position for VDOA_VDOASL_ISLY.
 #define BM_VDOA_VDOASL_ISLY      (0x00007fff)  //!< Bit mask for VDOA_VDOASL_ISLY.
 
@@ -1148,7 +1107,6 @@ typedef union _hw_vdoa_vdoasl
 //! @brief Set the ISLY field to a new value.
 #define BW_VDOA_VDOASL_ISLY(v)   (HW_VDOA_VDOASL_WR((HW_VDOA_VDOASL_RD() & ~BM_VDOA_VDOASL_ISLY) | BF_VDOA_VDOASL_ISLY(v)))
 #endif
-
 //@}
 
 /*! @name Register VDOA_VDOASL, field VSLY[29:16] (RW)
@@ -1157,7 +1115,6 @@ typedef union _hw_vdoa_vdoasl
  * maximum bytes in the "Y" component row according to memory limitations.
  */
 //@{
-
 #define BP_VDOA_VDOASL_VSLY      (16)      //!< Bit position for VDOA_VDOASL_VSLY.
 #define BM_VDOA_VDOASL_VSLY      (0x3fff0000)  //!< Bit mask for VDOA_VDOASL_VSLY.
 
@@ -1171,7 +1128,6 @@ typedef union _hw_vdoa_vdoasl
 //! @brief Set the VSLY field to a new value.
 #define BW_VDOA_VDOASL_VSLY(v)   (HW_VDOA_VDOASL_WR((HW_VDOA_VDOASL_RD() & ~BM_VDOA_VDOASL_VSLY) | BF_VDOA_VDOASL_VSLY(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1224,7 +1180,6 @@ typedef union _hw_vdoa_vdoaiubo
  * 4:2:0
  */
 //@{
-
 #define BP_VDOA_VDOAIUBO_IUBO      (0)      //!< Bit position for VDOA_VDOAIUBO_IUBO.
 #define BM_VDOA_VDOAIUBO_IUBO      (0x07ffffff)  //!< Bit mask for VDOA_VDOAIUBO_IUBO.
 
@@ -1238,7 +1193,6 @@ typedef union _hw_vdoa_vdoaiubo
 //! @brief Set the IUBO field to a new value.
 #define BW_VDOA_VDOAIUBO_IUBO(v)   (HW_VDOA_VDOAIUBO_WR((HW_VDOA_VDOAIUBO_RD() & ~BM_VDOA_VDOAIUBO_IUBO) | BF_VDOA_VDOAIUBO_IUBO(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1289,7 +1243,6 @@ typedef union _hw_vdoa_vdoaveba0
  * all transfers
  */
 //@{
-
 #define BP_VDOA_VDOAVEBA0_VEBA0      (0)      //!< Bit position for VDOA_VDOAVEBA0_VEBA0.
 #define BM_VDOA_VDOAVEBA0_VEBA0      (0xffffffff)  //!< Bit mask for VDOA_VDOAVEBA0_VEBA0.
 
@@ -1303,7 +1256,6 @@ typedef union _hw_vdoa_vdoaveba0
 //! @brief Set the VEBA0 field to a new value.
 #define BW_VDOA_VDOAVEBA0_VEBA0(v)   (HW_VDOA_VDOAVEBA0_WR((HW_VDOA_VDOAVEBA0_RD() & ~BM_VDOA_VDOAVEBA0_VEBA0) | BF_VDOA_VDOAVEBA0_VEBA0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1354,7 +1306,6 @@ typedef union _hw_vdoa_vdoaveba1
  * when transfering three frame (NF=1) only
  */
 //@{
-
 #define BP_VDOA_VDOAVEBA1_VEBA1      (0)      //!< Bit position for VDOA_VDOAVEBA1_VEBA1.
 #define BM_VDOA_VDOAVEBA1_VEBA1      (0xffffffff)  //!< Bit mask for VDOA_VDOAVEBA1_VEBA1.
 
@@ -1368,7 +1319,6 @@ typedef union _hw_vdoa_vdoaveba1
 //! @brief Set the VEBA1 field to a new value.
 #define BW_VDOA_VDOAVEBA1_VEBA1(v)   (HW_VDOA_VDOAVEBA1_WR((HW_VDOA_VDOAVEBA1_RD() & ~BM_VDOA_VDOAVEBA1_VEBA1) | BF_VDOA_VDOAVEBA1_VEBA1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1419,7 +1369,6 @@ typedef union _hw_vdoa_vdoaveba2
  * when transfering three frame (NF=1) only
  */
 //@{
-
 #define BP_VDOA_VDOAVEBA2_VEBA2      (0)      //!< Bit position for VDOA_VDOAVEBA2_VEBA2.
 #define BM_VDOA_VDOAVEBA2_VEBA2      (0xffffffff)  //!< Bit mask for VDOA_VDOAVEBA2_VEBA2.
 
@@ -1433,7 +1382,6 @@ typedef union _hw_vdoa_vdoaveba2
 //! @brief Set the VEBA2 field to a new value.
 #define BW_VDOA_VDOAVEBA2_VEBA2(v)   (HW_VDOA_VDOAVEBA2_WR((HW_VDOA_VDOAVEBA2_RD() & ~BM_VDOA_VDOAVEBA2_VEBA2) | BF_VDOA_VDOAVEBA2_VEBA2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1485,7 +1433,6 @@ typedef union _hw_vdoa_vdoavubo
  * VDOAVEBAm+VDOAVUBO - Note that the 3 LSB are always 0 (aligned to 8 address)
  */
 //@{
-
 #define BP_VDOA_VDOAVUBO_VUBO      (0)      //!< Bit position for VDOA_VDOAVUBO_VUBO.
 #define BM_VDOA_VDOAVUBO_VUBO      (0x07ffffff)  //!< Bit mask for VDOA_VDOAVUBO_VUBO.
 
@@ -1499,7 +1446,6 @@ typedef union _hw_vdoa_vdoavubo
 //! @brief Set the VUBO field to a new value.
 #define BW_VDOA_VDOAVUBO_VUBO(v)   (HW_VDOA_VDOAVUBO_WR((HW_VDOA_VDOAVUBO_RD() & ~BM_VDOA_VDOAVUBO_VUBO) | BF_VDOA_VDOAVUBO_VUBO(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1549,13 +1495,11 @@ typedef union _hw_vdoa_vdoasr
  * Current Buffer - for Double buffer shows the number of buffer currently transferred
  */
 //@{
-
 #define BP_VDOA_VDOASR_CURRENT_BUFFER      (0)      //!< Bit position for VDOA_VDOASR_CURRENT_BUFFER.
 #define BM_VDOA_VDOASR_CURRENT_BUFFER      (0x00000001)  //!< Bit mask for VDOA_VDOASR_CURRENT_BUFFER.
 
 //! @brief Get value of VDOA_VDOASR_CURRENT_BUFFER from a register value.
 #define BG_VDOA_VDOASR_CURRENT_BUFFER(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOASR_CURRENT_BUFFER) >> BP_VDOA_VDOASR_CURRENT_BUFFER)
-
 //@}
 
 /*! @name Register VDOA_VDOASR, field CURRENT_FRAME[2:1] (RO)
@@ -1563,13 +1507,11 @@ typedef union _hw_vdoa_vdoasr
  * Current Frame - When working on 3 frames the number of frame currently transferred
  */
 //@{
-
 #define BP_VDOA_VDOASR_CURRENT_FRAME      (1)      //!< Bit position for VDOA_VDOASR_CURRENT_FRAME.
 #define BM_VDOA_VDOASR_CURRENT_FRAME      (0x00000006)  //!< Bit mask for VDOA_VDOASR_CURRENT_FRAME.
 
 //! @brief Get value of VDOA_VDOASR_CURRENT_FRAME from a register value.
 #define BG_VDOA_VDOASR_CURRENT_FRAME(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOASR_CURRENT_FRAME) >> BP_VDOA_VDOASR_CURRENT_FRAME)
-
 //@}
 
 /*! @name Register VDOA_VDOASR, field EOB[3] (RO)
@@ -1578,13 +1520,11 @@ typedef union _hw_vdoa_vdoasr
  * to IPU to continue
  */
 //@{
-
 #define BP_VDOA_VDOASR_EOB      (3)      //!< Bit position for VDOA_VDOASR_EOB.
 #define BM_VDOA_VDOASR_EOB      (0x00000008)  //!< Bit mask for VDOA_VDOASR_EOB.
 
 //! @brief Get value of VDOA_VDOASR_EOB from a register value.
 #define BG_VDOA_VDOASR_EOB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VDOA_VDOASR_EOB) >> BP_VDOA_VDOASR_EOB)
-
 //@}
 
 /*! @name Register VDOA_VDOASR, field ERRW[4] (RO)
@@ -1597,7 +1537,6 @@ typedef union _hw_vdoa_vdoasr
  * - WRITE_ERROR = 1 - Write Error
  */
 //@{
-
 #define BP_VDOA_VDOASR_ERRW      (4)      //!< Bit position for VDOA_VDOASR_ERRW.
 #define BM_VDOA_VDOASR_ERRW      (0x00000010)  //!< Bit mask for VDOA_VDOASR_ERRW.
 
@@ -1609,7 +1548,6 @@ typedef union _hw_vdoa_vdoasr
 
 #define BV_VDOA_VDOASR_ERRW__READ_ERROR (0x0) //!< Read Error
 #define BV_VDOA_VDOASR_ERRW__WRITE_ERROR (0x1) //!< Write Error
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1650,3 +1588,5 @@ typedef struct _hw_vdoa
 #endif
 
 #endif // __HW_VDOA_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

@@ -143,7 +143,6 @@ typedef union _hw_flexcan_mcr
  * the number of available Message Buffers, otherwise FLEXCAN will not transmit or receive frames.
  */
 //@{
-
 #define BP_FLEXCAN_MCR_MAXMB      (0)      //!< Bit position for FLEXCAN_MCR_MAXMB.
 #define BM_FLEXCAN_MCR_MAXMB      (0x0000003f)  //!< Bit mask for FLEXCAN_MCR_MAXMB.
 
@@ -157,7 +156,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the MAXMB field to a new value.
 #define BW_FLEXCAN_MCR_MAXMB(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_MAXMB) | BF_FLEXCAN_MCR_MAXMB(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field IDAM[9:8] (RW)
@@ -170,7 +168,6 @@ typedef union _hw_flexcan_mcr
  * frames rejected.
  */
 //@{
-
 #define BP_FLEXCAN_MCR_IDAM      (8)      //!< Bit position for FLEXCAN_MCR_IDAM.
 #define BM_FLEXCAN_MCR_IDAM      (0x00000300)  //!< Bit mask for FLEXCAN_MCR_IDAM.
 
@@ -184,7 +181,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the IDAM field to a new value.
 #define BW_FLEXCAN_MCR_IDAM(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_IDAM) | BF_FLEXCAN_MCR_IDAM(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field AEN[12] (RW)
@@ -198,7 +194,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - Abort enabled
  */
 //@{
-
 #define BP_FLEXCAN_MCR_AEN      (12)      //!< Bit position for FLEXCAN_MCR_AEN.
 #define BM_FLEXCAN_MCR_AEN      (0x00001000)  //!< Bit mask for FLEXCAN_MCR_AEN.
 
@@ -212,7 +207,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the AEN field to a new value.
 #define BW_FLEXCAN_MCR_AEN(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_AEN) | BF_FLEXCAN_MCR_AEN(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field LPRIO_EN[13] (RW)
@@ -227,7 +221,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - Local Priority enabled
  */
 //@{
-
 #define BP_FLEXCAN_MCR_LPRIO_EN      (13)      //!< Bit position for FLEXCAN_MCR_LPRIO_EN.
 #define BM_FLEXCAN_MCR_LPRIO_EN      (0x00002000)  //!< Bit mask for FLEXCAN_MCR_LPRIO_EN.
 
@@ -241,7 +234,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the LPRIO_EN field to a new value.
 #define BW_FLEXCAN_MCR_LPRIO_EN(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_LPRIO_EN) | BF_FLEXCAN_MCR_LPRIO_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field BCC[16] (RW)
@@ -261,7 +253,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - Individual Rx masking and queue feature are enabled.
  */
 //@{
-
 #define BP_FLEXCAN_MCR_BCC      (16)      //!< Bit position for FLEXCAN_MCR_BCC.
 #define BM_FLEXCAN_MCR_BCC      (0x00010000)  //!< Bit mask for FLEXCAN_MCR_BCC.
 
@@ -275,7 +266,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the BCC field to a new value.
 #define BW_FLEXCAN_MCR_BCC(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_BCC) | BF_FLEXCAN_MCR_BCC(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field SRX_DIS[17] (RW)
@@ -290,7 +280,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - Self reception disabled
  */
 //@{
-
 #define BP_FLEXCAN_MCR_SRX_DIS      (17)      //!< Bit position for FLEXCAN_MCR_SRX_DIS.
 #define BM_FLEXCAN_MCR_SRX_DIS      (0x00020000)  //!< Bit mask for FLEXCAN_MCR_SRX_DIS.
 
@@ -304,7 +293,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the SRX_DIS field to a new value.
 #define BW_FLEXCAN_MCR_SRX_DIS(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_SRX_DIS) | BF_FLEXCAN_MCR_SRX_DIS(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field DOZE[18] (RW)
@@ -318,7 +306,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - FLEXCAN is enabled to enter low power mode when Doze Mode is requested
  */
 //@{
-
 #define BP_FLEXCAN_MCR_DOZE      (18)      //!< Bit position for FLEXCAN_MCR_DOZE.
 #define BM_FLEXCAN_MCR_DOZE      (0x00040000)  //!< Bit mask for FLEXCAN_MCR_DOZE.
 
@@ -332,7 +319,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the DOZE field to a new value.
 #define BW_FLEXCAN_MCR_DOZE(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_DOZE) | BF_FLEXCAN_MCR_DOZE(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field WAK_SRC[19] (RW)
@@ -343,7 +329,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - FLEXCAN us
  */
 //@{
-
 #define BP_FLEXCAN_MCR_WAK_SRC      (19)      //!< Bit position for FLEXCAN_MCR_WAK_SRC.
 #define BM_FLEXCAN_MCR_WAK_SRC      (0x00080000)  //!< Bit mask for FLEXCAN_MCR_WAK_SRC.
 
@@ -357,7 +342,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the WAK_SRC field to a new value.
 #define BW_FLEXCAN_MCR_WAK_SRC(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_WAK_SRC) | BF_FLEXCAN_MCR_WAK_SRC(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field LPM_ACK[20] (RO)
@@ -372,13 +356,11 @@ typedef union _hw_flexcan_mcr
  * - 1 - FLEXCAN is either in Disable Mode, or Stop mode
  */
 //@{
-
 #define BP_FLEXCAN_MCR_LPM_ACK      (20)      //!< Bit position for FLEXCAN_MCR_LPM_ACK.
 #define BM_FLEXCAN_MCR_LPM_ACK      (0x00100000)  //!< Bit mask for FLEXCAN_MCR_LPM_ACK.
 
 //! @brief Get value of FLEXCAN_MCR_LPM_ACK from a register value.
 #define BG_FLEXCAN_MCR_LPM_ACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_MCR_LPM_ACK) >> BP_FLEXCAN_MCR_LPM_ACK)
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field WRN_EN[21] (RW)
@@ -392,7 +374,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - TWRN_INT and RWRN_INT bits are set when the respective error counter transition from <96 to ℜ≥ 96.
  */
 //@{
-
 #define BP_FLEXCAN_MCR_WRN_EN      (21)      //!< Bit position for FLEXCAN_MCR_WRN_EN.
 #define BM_FLEXCAN_MCR_WRN_EN      (0x00200000)  //!< Bit mask for FLEXCAN_MCR_WRN_EN.
 
@@ -406,7 +387,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the WRN_EN field to a new value.
 #define BW_FLEXCAN_MCR_WRN_EN(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_WRN_EN) | BF_FLEXCAN_MCR_WRN_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field SLF_WAK[22] (RW)
@@ -423,7 +403,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - FLEXCAN Self Wake Up feature is enabled
  */
 //@{
-
 #define BP_FLEXCAN_MCR_SLF_WAK      (22)      //!< Bit position for FLEXCAN_MCR_SLF_WAK.
 #define BM_FLEXCAN_MCR_SLF_WAK      (0x00400000)  //!< Bit mask for FLEXCAN_MCR_SLF_WAK.
 
@@ -437,7 +416,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the SLF_WAK field to a new value.
 #define BW_FLEXCAN_MCR_SLF_WAK(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_SLF_WAK) | BF_FLEXCAN_MCR_SLF_WAK(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field SUPV[23] (RW)
@@ -453,7 +431,6 @@ typedef union _hw_flexcan_mcr
  *     as though the access was done to an unimplemented register location
  */
 //@{
-
 #define BP_FLEXCAN_MCR_SUPV      (23)      //!< Bit position for FLEXCAN_MCR_SUPV.
 #define BM_FLEXCAN_MCR_SUPV      (0x00800000)  //!< Bit mask for FLEXCAN_MCR_SUPV.
 
@@ -467,7 +444,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the SUPV field to a new value.
 #define BW_FLEXCAN_MCR_SUPV(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_SUPV) | BF_FLEXCAN_MCR_SUPV(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field FRZ_ACK[24] (RO)
@@ -484,13 +460,11 @@ typedef union _hw_flexcan_mcr
  * - 1 - FLEXCAN in Freeze Mode, prescaler stopped
  */
 //@{
-
 #define BP_FLEXCAN_MCR_FRZ_ACK      (24)      //!< Bit position for FLEXCAN_MCR_FRZ_ACK.
 #define BM_FLEXCAN_MCR_FRZ_ACK      (0x01000000)  //!< Bit mask for FLEXCAN_MCR_FRZ_ACK.
 
 //! @brief Get value of FLEXCAN_MCR_FRZ_ACK from a register value.
 #define BG_FLEXCAN_MCR_FRZ_ACK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_MCR_FRZ_ACK) >> BP_FLEXCAN_MCR_FRZ_ACK)
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field SOFT_RST[25] (RW)
@@ -512,7 +486,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - Resets the registers marked as affected by soft reset shown in the memory map
  */
 //@{
-
 #define BP_FLEXCAN_MCR_SOFT_RST      (25)      //!< Bit position for FLEXCAN_MCR_SOFT_RST.
 #define BM_FLEXCAN_MCR_SOFT_RST      (0x02000000)  //!< Bit mask for FLEXCAN_MCR_SOFT_RST.
 
@@ -526,7 +499,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the SOFT_RST field to a new value.
 #define BW_FLEXCAN_MCR_SOFT_RST(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_SOFT_RST) | BF_FLEXCAN_MCR_SOFT_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field WAK_MSK[26] (RW)
@@ -538,7 +510,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - Wake Up Interrupt is enabled
  */
 //@{
-
 #define BP_FLEXCAN_MCR_WAK_MSK      (26)      //!< Bit position for FLEXCAN_MCR_WAK_MSK.
 #define BM_FLEXCAN_MCR_WAK_MSK      (0x04000000)  //!< Bit mask for FLEXCAN_MCR_WAK_MSK.
 
@@ -552,7 +523,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the WAK_MSK field to a new value.
 #define BW_FLEXCAN_MCR_WAK_MSK(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_WAK_MSK) | BF_FLEXCAN_MCR_WAK_MSK(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field NOT_RDY[27] (RO)
@@ -565,13 +535,11 @@ typedef union _hw_flexcan_mcr
  * - 1 - FLEXCAN block is either in Disable Mode, Stop Mode or Freeze Mode
  */
 //@{
-
 #define BP_FLEXCAN_MCR_NOT_RDY      (27)      //!< Bit position for FLEXCAN_MCR_NOT_RDY.
 #define BM_FLEXCAN_MCR_NOT_RDY      (0x08000000)  //!< Bit mask for FLEXCAN_MCR_NOT_RDY.
 
 //! @brief Get value of FLEXCAN_MCR_NOT_RDY from a register value.
 #define BG_FLEXCAN_MCR_NOT_RDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_MCR_NOT_RDY) >> BP_FLEXCAN_MCR_NOT_RDY)
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field HALT[28] (RW)
@@ -587,7 +555,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - Enters Freeze Mode if the FRZ bit is asserted.
  */
 //@{
-
 #define BP_FLEXCAN_MCR_HALT      (28)      //!< Bit position for FLEXCAN_MCR_HALT.
 #define BM_FLEXCAN_MCR_HALT      (0x10000000)  //!< Bit mask for FLEXCAN_MCR_HALT.
 
@@ -601,7 +568,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the HALT field to a new value.
 #define BW_FLEXCAN_MCR_HALT(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_HALT) | BF_FLEXCAN_MCR_HALT(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field FEN[29] (RW)
@@ -615,7 +581,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - FIFO enabled
  */
 //@{
-
 #define BP_FLEXCAN_MCR_FEN      (29)      //!< Bit position for FLEXCAN_MCR_FEN.
 #define BM_FLEXCAN_MCR_FEN      (0x20000000)  //!< Bit mask for FLEXCAN_MCR_FEN.
 
@@ -629,7 +594,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the FEN field to a new value.
 #define BW_FLEXCAN_MCR_FEN(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_FEN) | BF_FLEXCAN_MCR_FEN(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field FRZ[30] (RW)
@@ -643,7 +607,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - Enabled to enter Freeze Mode
  */
 //@{
-
 #define BP_FLEXCAN_MCR_FRZ      (30)      //!< Bit position for FLEXCAN_MCR_FRZ.
 #define BM_FLEXCAN_MCR_FRZ      (0x40000000)  //!< Bit mask for FLEXCAN_MCR_FRZ.
 
@@ -657,7 +620,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the FRZ field to a new value.
 #define BW_FLEXCAN_MCR_FRZ(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_FRZ) | BF_FLEXCAN_MCR_FRZ(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_MCR, field MDIS[31] (RW)
@@ -671,7 +633,6 @@ typedef union _hw_flexcan_mcr
  * - 1 - Disable the FLEXCAN block
  */
 //@{
-
 #define BP_FLEXCAN_MCR_MDIS      (31)      //!< Bit position for FLEXCAN_MCR_MDIS.
 #define BM_FLEXCAN_MCR_MDIS      (0x80000000)  //!< Bit mask for FLEXCAN_MCR_MDIS.
 
@@ -685,7 +646,6 @@ typedef union _hw_flexcan_mcr
 //! @brief Set the MDIS field to a new value.
 #define BW_FLEXCAN_MCR_MDIS(x, v)   (HW_FLEXCAN_MCR_WR(x, (HW_FLEXCAN_MCR_RD(x) & ~BM_FLEXCAN_MCR_MDIS) | BF_FLEXCAN_MCR_MDIS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -758,7 +718,6 @@ typedef union _hw_flexcan_ctrl
  * = one Sclock period.
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_PROP_SEG      (0)      //!< Bit position for FLEXCAN_CTRL_PROP_SEG.
 #define BM_FLEXCAN_CTRL_PROP_SEG      (0x00000007)  //!< Bit mask for FLEXCAN_CTRL_PROP_SEG.
 
@@ -772,7 +731,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the PROP_SEG field to a new value.
 #define BW_FLEXCAN_CTRL_PROP_SEG(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_PROP_SEG) | BF_FLEXCAN_CTRL_PROP_SEG(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field LOM[3] (RW)
@@ -788,7 +746,6 @@ typedef union _hw_flexcan_ctrl
  * - 1 - FLEXCAN block operates in Listen Only Mode
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_LOM      (3)      //!< Bit position for FLEXCAN_CTRL_LOM.
 #define BM_FLEXCAN_CTRL_LOM      (0x00000008)  //!< Bit mask for FLEXCAN_CTRL_LOM.
 
@@ -802,7 +759,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the LOM field to a new value.
 #define BW_FLEXCAN_CTRL_LOM(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_LOM) | BF_FLEXCAN_CTRL_LOM(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field LBUF[4] (RW)
@@ -815,7 +771,6 @@ typedef union _hw_flexcan_ctrl
  * - 1 - Lowest number buffer is transmitted first
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_LBUF      (4)      //!< Bit position for FLEXCAN_CTRL_LBUF.
 #define BM_FLEXCAN_CTRL_LBUF      (0x00000010)  //!< Bit mask for FLEXCAN_CTRL_LBUF.
 
@@ -829,7 +784,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the LBUF field to a new value.
 #define BW_FLEXCAN_CTRL_LBUF(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_LBUF) | BF_FLEXCAN_CTRL_LBUF(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field TSYN[5] (RW)
@@ -844,7 +798,6 @@ typedef union _hw_flexcan_ctrl
  * - 1 - Timer Sync feature enabled
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_TSYN      (5)      //!< Bit position for FLEXCAN_CTRL_TSYN.
 #define BM_FLEXCAN_CTRL_TSYN      (0x00000020)  //!< Bit mask for FLEXCAN_CTRL_TSYN.
 
@@ -858,7 +811,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the TSYN field to a new value.
 #define BW_FLEXCAN_CTRL_TSYN(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_TSYN) | BF_FLEXCAN_CTRL_TSYN(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field BOFF_REC[6] (RW)
@@ -879,7 +831,6 @@ typedef union _hw_flexcan_ctrl
  * - 1 - Automatic recovering from Bus Off state disabled
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_BOFF_REC      (6)      //!< Bit position for FLEXCAN_CTRL_BOFF_REC.
 #define BM_FLEXCAN_CTRL_BOFF_REC      (0x00000040)  //!< Bit mask for FLEXCAN_CTRL_BOFF_REC.
 
@@ -893,7 +844,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the BOFF_REC field to a new value.
 #define BW_FLEXCAN_CTRL_BOFF_REC(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_BOFF_REC) | BF_FLEXCAN_CTRL_BOFF_REC(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field SMP[7] (RW)
@@ -906,7 +856,6 @@ typedef union _hw_flexcan_ctrl
  *     and 2 preceding samples, a majority rule is used
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_SMP      (7)      //!< Bit position for FLEXCAN_CTRL_SMP.
 #define BM_FLEXCAN_CTRL_SMP      (0x00000080)  //!< Bit mask for FLEXCAN_CTRL_SMP.
 
@@ -920,7 +869,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the SMP field to a new value.
 #define BW_FLEXCAN_CTRL_SMP(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_SMP) | BF_FLEXCAN_CTRL_SMP(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field RWRN_MSK[10] (RW)
@@ -934,7 +882,6 @@ typedef union _hw_flexcan_ctrl
  * - 1 - Rx Warning Interrupt enabled
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_RWRN_MSK      (10)      //!< Bit position for FLEXCAN_CTRL_RWRN_MSK.
 #define BM_FLEXCAN_CTRL_RWRN_MSK      (0x00000400)  //!< Bit mask for FLEXCAN_CTRL_RWRN_MSK.
 
@@ -948,7 +895,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the RWRN_MSK field to a new value.
 #define BW_FLEXCAN_CTRL_RWRN_MSK(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_RWRN_MSK) | BF_FLEXCAN_CTRL_RWRN_MSK(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field TWRN_MSK[11] (RW)
@@ -962,7 +908,6 @@ typedef union _hw_flexcan_ctrl
  * - 1 - Tx Warning Interrupt enabled
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_TWRN_MSK      (11)      //!< Bit position for FLEXCAN_CTRL_TWRN_MSK.
 #define BM_FLEXCAN_CTRL_TWRN_MSK      (0x00000800)  //!< Bit mask for FLEXCAN_CTRL_TWRN_MSK.
 
@@ -976,7 +921,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the TWRN_MSK field to a new value.
 #define BW_FLEXCAN_CTRL_TWRN_MSK(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_TWRN_MSK) | BF_FLEXCAN_CTRL_TWRN_MSK(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field LPB[12] (RW)
@@ -995,7 +939,6 @@ typedef union _hw_flexcan_ctrl
  * - 1 - Loop Back enabled
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_LPB      (12)      //!< Bit position for FLEXCAN_CTRL_LPB.
 #define BM_FLEXCAN_CTRL_LPB      (0x00001000)  //!< Bit mask for FLEXCAN_CTRL_LPB.
 
@@ -1009,7 +952,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the LPB field to a new value.
 #define BW_FLEXCAN_CTRL_LPB(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_LPB) | BF_FLEXCAN_CTRL_LPB(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field ERR_MSK[14] (RW)
@@ -1021,7 +963,6 @@ typedef union _hw_flexcan_ctrl
  * - 1 - Error interrupt enabled
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_ERR_MSK      (14)      //!< Bit position for FLEXCAN_CTRL_ERR_MSK.
 #define BM_FLEXCAN_CTRL_ERR_MSK      (0x00004000)  //!< Bit mask for FLEXCAN_CTRL_ERR_MSK.
 
@@ -1035,7 +976,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the ERR_MSK field to a new value.
 #define BW_FLEXCAN_CTRL_ERR_MSK(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_ERR_MSK) | BF_FLEXCAN_CTRL_ERR_MSK(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field BOFF_MSK[15] (RW)
@@ -1047,7 +987,6 @@ typedef union _hw_flexcan_ctrl
  * - 1 - Bus Off interrupt enabled
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_BOFF_MSK      (15)      //!< Bit position for FLEXCAN_CTRL_BOFF_MSK.
 #define BM_FLEXCAN_CTRL_BOFF_MSK      (0x00008000)  //!< Bit mask for FLEXCAN_CTRL_BOFF_MSK.
 
@@ -1061,7 +1000,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the BOFF_MSK field to a new value.
 #define BW_FLEXCAN_CTRL_BOFF_MSK(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_BOFF_MSK) | BF_FLEXCAN_CTRL_BOFF_MSK(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field PSEG2[18:16] (RW)
@@ -1070,7 +1008,6 @@ typedef union _hw_flexcan_ctrl
  * programmable values are 1‚7. Phase Buffer Segment 2 = (PSEG2 + 1) x Time-Quanta.
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_PSEG2      (16)      //!< Bit position for FLEXCAN_CTRL_PSEG2.
 #define BM_FLEXCAN_CTRL_PSEG2      (0x00070000)  //!< Bit mask for FLEXCAN_CTRL_PSEG2.
 
@@ -1084,7 +1021,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the PSEG2 field to a new value.
 #define BW_FLEXCAN_CTRL_PSEG2(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_PSEG2) | BF_FLEXCAN_CTRL_PSEG2(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field PSEG1[21:19] (RW)
@@ -1093,7 +1029,6 @@ typedef union _hw_flexcan_ctrl
  * programmable values are 0‚7. Phase Buffer Segment 1 = (PSEG1 + 1) x Time-Quanta.
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_PSEG1      (19)      //!< Bit position for FLEXCAN_CTRL_PSEG1.
 #define BM_FLEXCAN_CTRL_PSEG1      (0x00380000)  //!< Bit mask for FLEXCAN_CTRL_PSEG1.
 
@@ -1107,7 +1042,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the PSEG1 field to a new value.
 #define BW_FLEXCAN_CTRL_PSEG1(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_PSEG1) | BF_FLEXCAN_CTRL_PSEG1(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field RJW[23:22] (RW)
@@ -1117,7 +1051,6 @@ typedef union _hw_flexcan_ctrl
  * values are 0‚3. Resync Jump Width = RJW + 1.
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_RJW      (22)      //!< Bit position for FLEXCAN_CTRL_RJW.
 #define BM_FLEXCAN_CTRL_RJW      (0x00c00000)  //!< Bit mask for FLEXCAN_CTRL_RJW.
 
@@ -1131,7 +1064,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the RJW field to a new value.
 #define BW_FLEXCAN_CTRL_RJW(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_RJW) | BF_FLEXCAN_CTRL_RJW(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_CTRL, field PRESDIV[31:24] (RW)
@@ -1143,7 +1075,6 @@ typedef union _hw_flexcan_ctrl
  * more information refer to . Sclock frequency = CPI clock frequency / (PRESDIV + 1)
  */
 //@{
-
 #define BP_FLEXCAN_CTRL_PRESDIV      (24)      //!< Bit position for FLEXCAN_CTRL_PRESDIV.
 #define BM_FLEXCAN_CTRL_PRESDIV      (0xff000000)  //!< Bit mask for FLEXCAN_CTRL_PRESDIV.
 
@@ -1157,7 +1088,6 @@ typedef union _hw_flexcan_ctrl
 //! @brief Set the PRESDIV field to a new value.
 #define BW_FLEXCAN_CTRL_PRESDIV(x, v)   (HW_FLEXCAN_CTRL_WR(x, (HW_FLEXCAN_CTRL_RD(x) & ~BM_FLEXCAN_CTRL_PRESDIV) | BF_FLEXCAN_CTRL_PRESDIV(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1220,7 +1150,6 @@ typedef union _hw_flexcan_timer
  * Timer value Contains the free-running counter value.
  */
 //@{
-
 #define BP_FLEXCAN_TIMER_TIMER      (0)      //!< Bit position for FLEXCAN_TIMER_TIMER.
 #define BM_FLEXCAN_TIMER_TIMER      (0x0000ffff)  //!< Bit mask for FLEXCAN_TIMER_TIMER.
 
@@ -1234,7 +1163,6 @@ typedef union _hw_flexcan_timer
 //! @brief Set the TIMER field to a new value.
 #define BW_FLEXCAN_TIMER_TIMER(x, v)   (HW_FLEXCAN_TIMER_WR(x, (HW_FLEXCAN_TIMER_RD(x) & ~BM_FLEXCAN_TIMER_TIMER) | BF_FLEXCAN_TIMER_TIMER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1296,7 +1224,6 @@ typedef union _hw_flexcan_rxgmask
  * - 1 - The corresponding bit in the filter is checked against the one received
  */
 //@{
-
 #define BP_FLEXCAN_RXGMASK_MI31_MI0      (0)      //!< Bit position for FLEXCAN_RXGMASK_MI31_MI0.
 #define BM_FLEXCAN_RXGMASK_MI31_MI0      (0xffffffff)  //!< Bit mask for FLEXCAN_RXGMASK_MI31_MI0.
 
@@ -1310,7 +1237,6 @@ typedef union _hw_flexcan_rxgmask
 //! @brief Set the MI31_MI0 field to a new value.
 #define BW_FLEXCAN_RXGMASK_MI31_MI0(x, v)   (HW_FLEXCAN_RXGMASK_WR(x, (HW_FLEXCAN_RXGMASK_RD(x) & ~BM_FLEXCAN_RXGMASK_MI31_MI0) | BF_FLEXCAN_RXGMASK_MI31_MI0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1365,7 +1291,6 @@ typedef union _hw_flexcan_rx14mask
  * Acceptance mask for the Identifier in Message Buffer 14
  */
 //@{
-
 #define BP_FLEXCAN_RX14MASK_MI31_MI0      (0)      //!< Bit position for FLEXCAN_RX14MASK_MI31_MI0.
 #define BM_FLEXCAN_RX14MASK_MI31_MI0      (0xffffffff)  //!< Bit mask for FLEXCAN_RX14MASK_MI31_MI0.
 
@@ -1379,7 +1304,6 @@ typedef union _hw_flexcan_rx14mask
 //! @brief Set the MI31_MI0 field to a new value.
 #define BW_FLEXCAN_RX14MASK_MI31_MI0(x, v)   (HW_FLEXCAN_RX14MASK_WR(x, (HW_FLEXCAN_RX14MASK_RD(x) & ~BM_FLEXCAN_RX14MASK_MI31_MI0) | BF_FLEXCAN_RX14MASK_MI31_MI0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1434,7 +1358,6 @@ typedef union _hw_flexcan_rx15mask
  * Acceptance mask for the Identifier in Message Buffer 15
  */
 //@{
-
 #define BP_FLEXCAN_RX15MASK_MI31_MI0      (0)      //!< Bit position for FLEXCAN_RX15MASK_MI31_MI0.
 #define BM_FLEXCAN_RX15MASK_MI31_MI0      (0xffffffff)  //!< Bit mask for FLEXCAN_RX15MASK_MI31_MI0.
 
@@ -1448,7 +1371,6 @@ typedef union _hw_flexcan_rx15mask
 //! @brief Set the MI31_MI0 field to a new value.
 #define BW_FLEXCAN_RX15MASK_MI31_MI0(x, v)   (HW_FLEXCAN_RX15MASK_WR(x, (HW_FLEXCAN_RX15MASK_RD(x) & ~BM_FLEXCAN_RX15MASK_MI31_MI0) | BF_FLEXCAN_RX15MASK_MI31_MI0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1533,7 +1455,6 @@ typedef union _hw_flexcan_ecr
  * Transmit Error Counter
  */
 //@{
-
 #define BP_FLEXCAN_ECR_TX_ERR_COUNTER      (0)      //!< Bit position for FLEXCAN_ECR_TX_ERR_COUNTER.
 #define BM_FLEXCAN_ECR_TX_ERR_COUNTER      (0x000000ff)  //!< Bit mask for FLEXCAN_ECR_TX_ERR_COUNTER.
 
@@ -1547,7 +1468,6 @@ typedef union _hw_flexcan_ecr
 //! @brief Set the TX_ERR_COUNTER field to a new value.
 #define BW_FLEXCAN_ECR_TX_ERR_COUNTER(x, v)   (HW_FLEXCAN_ECR_WR(x, (HW_FLEXCAN_ECR_RD(x) & ~BM_FLEXCAN_ECR_TX_ERR_COUNTER) | BF_FLEXCAN_ECR_TX_ERR_COUNTER(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_ECR, field RX_ERR_COUNTER[15:8] (RW)
@@ -1555,7 +1475,6 @@ typedef union _hw_flexcan_ecr
  * Receive Error Counter
  */
 //@{
-
 #define BP_FLEXCAN_ECR_RX_ERR_COUNTER      (8)      //!< Bit position for FLEXCAN_ECR_RX_ERR_COUNTER.
 #define BM_FLEXCAN_ECR_RX_ERR_COUNTER      (0x0000ff00)  //!< Bit mask for FLEXCAN_ECR_RX_ERR_COUNTER.
 
@@ -1569,7 +1488,6 @@ typedef union _hw_flexcan_ecr
 //! @brief Set the RX_ERR_COUNTER field to a new value.
 #define BW_FLEXCAN_ECR_RX_ERR_COUNTER(x, v)   (HW_FLEXCAN_ECR_WR(x, (HW_FLEXCAN_ECR_RD(x) & ~BM_FLEXCAN_ECR_RX_ERR_COUNTER) | BF_FLEXCAN_ECR_RX_ERR_COUNTER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1648,7 +1566,6 @@ typedef union _hw_flexcan_esr
  *     Mode
  */
 //@{
-
 #define BP_FLEXCAN_ESR_WAK_INT      (0)      //!< Bit position for FLEXCAN_ESR_WAK_INT.
 #define BM_FLEXCAN_ESR_WAK_INT      (0x00000001)  //!< Bit mask for FLEXCAN_ESR_WAK_INT.
 
@@ -1662,7 +1579,6 @@ typedef union _hw_flexcan_esr
 //! @brief Set the WAK_INT field to a new value.
 #define BW_FLEXCAN_ESR_WAK_INT(x, v)   (HW_FLEXCAN_ESR_WR(x, (HW_FLEXCAN_ESR_RD(x) & ~BM_FLEXCAN_ESR_WAK_INT) | BF_FLEXCAN_ESR_WAK_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field ERR_INT[1] (RW)
@@ -1676,7 +1592,6 @@ typedef union _hw_flexcan_esr
  * - 1 - Indicates setting of any Error Bit in the Error and Status Register
  */
 //@{
-
 #define BP_FLEXCAN_ESR_ERR_INT      (1)      //!< Bit position for FLEXCAN_ESR_ERR_INT.
 #define BM_FLEXCAN_ESR_ERR_INT      (0x00000002)  //!< Bit mask for FLEXCAN_ESR_ERR_INT.
 
@@ -1690,7 +1605,6 @@ typedef union _hw_flexcan_esr
 //! @brief Set the ERR_INT field to a new value.
 #define BW_FLEXCAN_ESR_ERR_INT(x, v)   (HW_FLEXCAN_ESR_WR(x, (HW_FLEXCAN_ESR_RD(x) & ~BM_FLEXCAN_ESR_ERR_INT) | BF_FLEXCAN_ESR_ERR_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field BOFF_INT[2] (RW)
@@ -1704,7 +1618,6 @@ typedef union _hw_flexcan_esr
  * - 1 - FLEXCAN block entered Bus Off state
  */
 //@{
-
 #define BP_FLEXCAN_ESR_BOFF_INT      (2)      //!< Bit position for FLEXCAN_ESR_BOFF_INT.
 #define BM_FLEXCAN_ESR_BOFF_INT      (0x00000004)  //!< Bit mask for FLEXCAN_ESR_BOFF_INT.
 
@@ -1718,7 +1631,6 @@ typedef union _hw_flexcan_esr
 //! @brief Set the BOFF_INT field to a new value.
 #define BW_FLEXCAN_ESR_BOFF_INT(x, v)   (HW_FLEXCAN_ESR_WR(x, (HW_FLEXCAN_ESR_RD(x) & ~BM_FLEXCAN_ESR_BOFF_INT) | BF_FLEXCAN_ESR_BOFF_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field FLT_CONF[5:4] (RO)
@@ -1733,13 +1645,11 @@ typedef union _hw_flexcan_esr
  * - 1x - Bus off
  */
 //@{
-
 #define BP_FLEXCAN_ESR_FLT_CONF      (4)      //!< Bit position for FLEXCAN_ESR_FLT_CONF.
 #define BM_FLEXCAN_ESR_FLT_CONF      (0x00000030)  //!< Bit mask for FLEXCAN_ESR_FLT_CONF.
 
 //! @brief Get value of FLEXCAN_ESR_FLT_CONF from a register value.
 #define BG_FLEXCAN_ESR_FLT_CONF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_ESR_FLT_CONF) >> BP_FLEXCAN_ESR_FLT_CONF)
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field TXRX[6] (RO)
@@ -1752,13 +1662,11 @@ typedef union _hw_flexcan_esr
  * - 1 - FLEXCAN is transmitting a message (IDLE=0)
  */
 //@{
-
 #define BP_FLEXCAN_ESR_TXRX      (6)      //!< Bit position for FLEXCAN_ESR_TXRX.
 #define BM_FLEXCAN_ESR_TXRX      (0x00000040)  //!< Bit mask for FLEXCAN_ESR_TXRX.
 
 //! @brief Get value of FLEXCAN_ESR_TXRX from a register value.
 #define BG_FLEXCAN_ESR_TXRX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_ESR_TXRX) >> BP_FLEXCAN_ESR_TXRX)
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field IDLE[7] (RO)
@@ -1770,13 +1678,11 @@ typedef union _hw_flexcan_esr
  * - 1 - CAN bus is now IDLE
  */
 //@{
-
 #define BP_FLEXCAN_ESR_IDLE      (7)      //!< Bit position for FLEXCAN_ESR_IDLE.
 #define BM_FLEXCAN_ESR_IDLE      (0x00000080)  //!< Bit mask for FLEXCAN_ESR_IDLE.
 
 //! @brief Get value of FLEXCAN_ESR_IDLE from a register value.
 #define BG_FLEXCAN_ESR_IDLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_ESR_IDLE) >> BP_FLEXCAN_ESR_IDLE)
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field RX_WRN[8] (RO)
@@ -1788,13 +1694,11 @@ typedef union _hw_flexcan_esr
  * - 1 - Rx_Err_Counter ℜ≥ 96
  */
 //@{
-
 #define BP_FLEXCAN_ESR_RX_WRN      (8)      //!< Bit position for FLEXCAN_ESR_RX_WRN.
 #define BM_FLEXCAN_ESR_RX_WRN      (0x00000100)  //!< Bit mask for FLEXCAN_ESR_RX_WRN.
 
 //! @brief Get value of FLEXCAN_ESR_RX_WRN from a register value.
 #define BG_FLEXCAN_ESR_RX_WRN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_ESR_RX_WRN) >> BP_FLEXCAN_ESR_RX_WRN)
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field TX_WRN[9] (RO)
@@ -1806,13 +1710,11 @@ typedef union _hw_flexcan_esr
  * - 1 - TX_Err_Counter ℜ≥ 96
  */
 //@{
-
 #define BP_FLEXCAN_ESR_TX_WRN      (9)      //!< Bit position for FLEXCAN_ESR_TX_WRN.
 #define BM_FLEXCAN_ESR_TX_WRN      (0x00000200)  //!< Bit mask for FLEXCAN_ESR_TX_WRN.
 
 //! @brief Get value of FLEXCAN_ESR_TX_WRN from a register value.
 #define BG_FLEXCAN_ESR_TX_WRN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_ESR_TX_WRN) >> BP_FLEXCAN_ESR_TX_WRN)
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field STF_ERR[10] (RO)
@@ -1824,13 +1726,11 @@ typedef union _hw_flexcan_esr
  * - 1 - A Stuffing Error occurred since last read of this register.
  */
 //@{
-
 #define BP_FLEXCAN_ESR_STF_ERR      (10)      //!< Bit position for FLEXCAN_ESR_STF_ERR.
 #define BM_FLEXCAN_ESR_STF_ERR      (0x00000400)  //!< Bit mask for FLEXCAN_ESR_STF_ERR.
 
 //! @brief Get value of FLEXCAN_ESR_STF_ERR from a register value.
 #define BG_FLEXCAN_ESR_STF_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_ESR_STF_ERR) >> BP_FLEXCAN_ESR_STF_ERR)
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field FRM_ERR[11] (RO)
@@ -1843,13 +1743,11 @@ typedef union _hw_flexcan_esr
  * - 1 - A Form Error occurred since last read of this register
  */
 //@{
-
 #define BP_FLEXCAN_ESR_FRM_ERR      (11)      //!< Bit position for FLEXCAN_ESR_FRM_ERR.
 #define BM_FLEXCAN_ESR_FRM_ERR      (0x00000800)  //!< Bit mask for FLEXCAN_ESR_FRM_ERR.
 
 //! @brief Get value of FLEXCAN_ESR_FRM_ERR from a register value.
 #define BG_FLEXCAN_ESR_FRM_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_ESR_FRM_ERR) >> BP_FLEXCAN_ESR_FRM_ERR)
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field CRC_ERR[12] (RO)
@@ -1862,13 +1760,11 @@ typedef union _hw_flexcan_esr
  * - 1 - A CRC error occurred since last read of this register.
  */
 //@{
-
 #define BP_FLEXCAN_ESR_CRC_ERR      (12)      //!< Bit position for FLEXCAN_ESR_CRC_ERR.
 #define BM_FLEXCAN_ESR_CRC_ERR      (0x00001000)  //!< Bit mask for FLEXCAN_ESR_CRC_ERR.
 
 //! @brief Get value of FLEXCAN_ESR_CRC_ERR from a register value.
 #define BG_FLEXCAN_ESR_CRC_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_ESR_CRC_ERR) >> BP_FLEXCAN_ESR_CRC_ERR)
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field ACK_ERR[13] (RO)
@@ -1881,13 +1777,11 @@ typedef union _hw_flexcan_esr
  * - 1 - An ACK error occurred since last read of this register
  */
 //@{
-
 #define BP_FLEXCAN_ESR_ACK_ERR      (13)      //!< Bit position for FLEXCAN_ESR_ACK_ERR.
 #define BM_FLEXCAN_ESR_ACK_ERR      (0x00002000)  //!< Bit mask for FLEXCAN_ESR_ACK_ERR.
 
 //! @brief Get value of FLEXCAN_ESR_ACK_ERR from a register value.
 #define BG_FLEXCAN_ESR_ACK_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_ESR_ACK_ERR) >> BP_FLEXCAN_ESR_ACK_ERR)
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field BIT0_ERR[14] (RO)
@@ -1900,13 +1794,11 @@ typedef union _hw_flexcan_esr
  * - 1 - At least one bit sent as dominant is received as recessive
  */
 //@{
-
 #define BP_FLEXCAN_ESR_BIT0_ERR      (14)      //!< Bit position for FLEXCAN_ESR_BIT0_ERR.
 #define BM_FLEXCAN_ESR_BIT0_ERR      (0x00004000)  //!< Bit mask for FLEXCAN_ESR_BIT0_ERR.
 
 //! @brief Get value of FLEXCAN_ESR_BIT0_ERR from a register value.
 #define BG_FLEXCAN_ESR_BIT0_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_ESR_BIT0_ERR) >> BP_FLEXCAN_ESR_BIT0_ERR)
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field BIT1_ERR[15] (RO)
@@ -1920,13 +1812,11 @@ typedef union _hw_flexcan_esr
  * - 1 - At least one bit sent as recessive is received as dominant
  */
 //@{
-
 #define BP_FLEXCAN_ESR_BIT1_ERR      (15)      //!< Bit position for FLEXCAN_ESR_BIT1_ERR.
 #define BM_FLEXCAN_ESR_BIT1_ERR      (0x00008000)  //!< Bit mask for FLEXCAN_ESR_BIT1_ERR.
 
 //! @brief Get value of FLEXCAN_ESR_BIT1_ERR from a register value.
 #define BG_FLEXCAN_ESR_BIT1_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_FLEXCAN_ESR_BIT1_ERR) >> BP_FLEXCAN_ESR_BIT1_ERR)
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field RWRN_INT[16] (RW)
@@ -1941,7 +1831,6 @@ typedef union _hw_flexcan_esr
  * - 1 - The Rx error counter transition from < 96 to ℜ≥ 96
  */
 //@{
-
 #define BP_FLEXCAN_ESR_RWRN_INT      (16)      //!< Bit position for FLEXCAN_ESR_RWRN_INT.
 #define BM_FLEXCAN_ESR_RWRN_INT      (0x00010000)  //!< Bit mask for FLEXCAN_ESR_RWRN_INT.
 
@@ -1955,7 +1844,6 @@ typedef union _hw_flexcan_esr
 //! @brief Set the RWRN_INT field to a new value.
 #define BW_FLEXCAN_ESR_RWRN_INT(x, v)   (HW_FLEXCAN_ESR_WR(x, (HW_FLEXCAN_ESR_RD(x) & ~BM_FLEXCAN_ESR_RWRN_INT) | BF_FLEXCAN_ESR_RWRN_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_ESR, field TWRN_INT[17] (RW)
@@ -1970,7 +1858,6 @@ typedef union _hw_flexcan_esr
  * - 1 - The Tx error counter transition from < 96 to ℜ≥ 96
  */
 //@{
-
 #define BP_FLEXCAN_ESR_TWRN_INT      (17)      //!< Bit position for FLEXCAN_ESR_TWRN_INT.
 #define BM_FLEXCAN_ESR_TWRN_INT      (0x00020000)  //!< Bit mask for FLEXCAN_ESR_TWRN_INT.
 
@@ -1984,7 +1871,6 @@ typedef union _hw_flexcan_esr
 //! @brief Set the TWRN_INT field to a new value.
 #define BW_FLEXCAN_ESR_TWRN_INT(x, v)   (HW_FLEXCAN_ESR_WR(x, (HW_FLEXCAN_ESR_RD(x) & ~BM_FLEXCAN_ESR_TWRN_INT) | BF_FLEXCAN_ESR_TWRN_INT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2042,7 +1928,6 @@ typedef union _hw_flexcan_imask2
  * - 1 - The corresponding buffer Interrupt is enabled
  */
 //@{
-
 #define BP_FLEXCAN_IMASK2_BUF63M      (0)      //!< Bit position for FLEXCAN_IMASK2_BUF63M.
 #define BM_FLEXCAN_IMASK2_BUF63M      (0xffffffff)  //!< Bit mask for FLEXCAN_IMASK2_BUF63M.
 
@@ -2056,7 +1941,6 @@ typedef union _hw_flexcan_imask2
 //! @brief Set the BUF63M field to a new value.
 #define BW_FLEXCAN_IMASK2_BUF63M(x, v)   (HW_FLEXCAN_IMASK2_WR(x, (HW_FLEXCAN_IMASK2_RD(x) & ~BM_FLEXCAN_IMASK2_BUF63M) | BF_FLEXCAN_IMASK2_BUF63M(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2114,7 +1998,6 @@ typedef union _hw_flexcan_imask1
  * - 1 - The corresponding buffer Interrupt is enabled
  */
 //@{
-
 #define BP_FLEXCAN_IMASK1_BUF31M_BUF0M      (0)      //!< Bit position for FLEXCAN_IMASK1_BUF31M_BUF0M.
 #define BM_FLEXCAN_IMASK1_BUF31M_BUF0M      (0xffffffff)  //!< Bit mask for FLEXCAN_IMASK1_BUF31M_BUF0M.
 
@@ -2128,7 +2011,6 @@ typedef union _hw_flexcan_imask1
 //! @brief Set the BUF31M_BUF0M field to a new value.
 #define BW_FLEXCAN_IMASK1_BUF31M_BUF0M(x, v)   (HW_FLEXCAN_IMASK1_WR(x, (HW_FLEXCAN_IMASK1_RD(x) & ~BM_FLEXCAN_IMASK1_BUF31M_BUF0M) | BF_FLEXCAN_IMASK1_BUF31M_BUF0M(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2187,7 +2069,6 @@ typedef union _hw_flexcan_iflag2
  * - 1 - The corresponding buffer has successfully completed transmission or reception
  */
 //@{
-
 #define BP_FLEXCAN_IFLAG2_BUF63I_BUF32I      (0)      //!< Bit position for FLEXCAN_IFLAG2_BUF63I_BUF32I.
 #define BM_FLEXCAN_IFLAG2_BUF63I_BUF32I      (0xffffffff)  //!< Bit mask for FLEXCAN_IFLAG2_BUF63I_BUF32I.
 
@@ -2201,7 +2082,6 @@ typedef union _hw_flexcan_iflag2
 //! @brief Set the BUF63I_BUF32I field to a new value.
 #define BW_FLEXCAN_IFLAG2_BUF63I_BUF32I(x, v)   (HW_FLEXCAN_IFLAG2_WR(x, (HW_FLEXCAN_IFLAG2_RD(x) & ~BM_FLEXCAN_IFLAG2_BUF63I_BUF32I) | BF_FLEXCAN_IFLAG2_BUF63I_BUF32I(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2268,7 +2148,6 @@ typedef union _hw_flexcan_iflag1
  * - 1 - Corresponding message buffer completed transmission/reception
  */
 //@{
-
 #define BP_FLEXCAN_IFLAG1_BUF4I_BUF0I      (0)      //!< Bit position for FLEXCAN_IFLAG1_BUF4I_BUF0I.
 #define BM_FLEXCAN_IFLAG1_BUF4I_BUF0I      (0x0000001f)  //!< Bit mask for FLEXCAN_IFLAG1_BUF4I_BUF0I.
 
@@ -2282,7 +2161,6 @@ typedef union _hw_flexcan_iflag1
 //! @brief Set the BUF4I_BUF0I field to a new value.
 #define BW_FLEXCAN_IFLAG1_BUF4I_BUF0I(x, v)   (HW_FLEXCAN_IFLAG1_WR(x, (HW_FLEXCAN_IFLAG1_RD(x) & ~BM_FLEXCAN_IFLAG1_BUF4I_BUF0I) | BF_FLEXCAN_IFLAG1_BUF4I_BUF0I(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_IFLAG1, field BUF5I[5] (RW)
@@ -2295,7 +2173,6 @@ typedef union _hw_flexcan_iflag1
  * - 1 - MB5 completed transmission/reception or frames available in the FIFO
  */
 //@{
-
 #define BP_FLEXCAN_IFLAG1_BUF5I      (5)      //!< Bit position for FLEXCAN_IFLAG1_BUF5I.
 #define BM_FLEXCAN_IFLAG1_BUF5I      (0x00000020)  //!< Bit mask for FLEXCAN_IFLAG1_BUF5I.
 
@@ -2309,7 +2186,6 @@ typedef union _hw_flexcan_iflag1
 //! @brief Set the BUF5I field to a new value.
 #define BW_FLEXCAN_IFLAG1_BUF5I(x, v)   (HW_FLEXCAN_IFLAG1_WR(x, (HW_FLEXCAN_IFLAG1_RD(x) & ~BM_FLEXCAN_IFLAG1_BUF5I) | BF_FLEXCAN_IFLAG1_BUF5I(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_IFLAG1, field BUF6I[6] (RW)
@@ -2322,7 +2198,6 @@ typedef union _hw_flexcan_iflag1
  * - 1 - MB6 completed transmission/reception or FIFO almost full
  */
 //@{
-
 #define BP_FLEXCAN_IFLAG1_BUF6I      (6)      //!< Bit position for FLEXCAN_IFLAG1_BUF6I.
 #define BM_FLEXCAN_IFLAG1_BUF6I      (0x00000040)  //!< Bit mask for FLEXCAN_IFLAG1_BUF6I.
 
@@ -2336,7 +2211,6 @@ typedef union _hw_flexcan_iflag1
 //! @brief Set the BUF6I field to a new value.
 #define BW_FLEXCAN_IFLAG1_BUF6I(x, v)   (HW_FLEXCAN_IFLAG1_WR(x, (HW_FLEXCAN_IFLAG1_RD(x) & ~BM_FLEXCAN_IFLAG1_BUF6I) | BF_FLEXCAN_IFLAG1_BUF6I(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_IFLAG1, field BUF7I[7] (RW)
@@ -2349,7 +2223,6 @@ typedef union _hw_flexcan_iflag1
  * - 1 - MB7 completed transmission/reception or FIFO overflow
  */
 //@{
-
 #define BP_FLEXCAN_IFLAG1_BUF7I      (7)      //!< Bit position for FLEXCAN_IFLAG1_BUF7I.
 #define BM_FLEXCAN_IFLAG1_BUF7I      (0x00000080)  //!< Bit mask for FLEXCAN_IFLAG1_BUF7I.
 
@@ -2363,7 +2236,6 @@ typedef union _hw_flexcan_iflag1
 //! @brief Set the BUF7I field to a new value.
 #define BW_FLEXCAN_IFLAG1_BUF7I(x, v)   (HW_FLEXCAN_IFLAG1_WR(x, (HW_FLEXCAN_IFLAG1_RD(x) & ~BM_FLEXCAN_IFLAG1_BUF7I) | BF_FLEXCAN_IFLAG1_BUF7I(v)))
 #endif
-
 //@}
 
 /*! @name Register FLEXCAN_IFLAG1, field BUF31I_BUF8I[31:8] (RW)
@@ -2375,7 +2247,6 @@ typedef union _hw_flexcan_iflag1
  * - 1 - The corresponding message buffer has successfully completed transmission or reception
  */
 //@{
-
 #define BP_FLEXCAN_IFLAG1_BUF31I_BUF8I      (8)      //!< Bit position for FLEXCAN_IFLAG1_BUF31I_BUF8I.
 #define BM_FLEXCAN_IFLAG1_BUF31I_BUF8I      (0xffffff00)  //!< Bit mask for FLEXCAN_IFLAG1_BUF31I_BUF8I.
 
@@ -2389,7 +2260,6 @@ typedef union _hw_flexcan_iflag1
 //! @brief Set the BUF31I_BUF8I field to a new value.
 #define BW_FLEXCAN_IFLAG1_BUF31I_BUF8I(x, v)   (HW_FLEXCAN_IFLAG1_WR(x, (HW_FLEXCAN_IFLAG1_RD(x) & ~BM_FLEXCAN_IFLAG1_BUF31I_BUF8I) | BF_FLEXCAN_IFLAG1_BUF31I_BUF8I(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2441,7 +2311,6 @@ typedef union _hw_flexcan_gfwr
  * values. By default, it is 5.33us when the oscillator is 24MHz.
  */
 //@{
-
 #define BP_FLEXCAN_GFWR_GFWR      (0)      //!< Bit position for FLEXCAN_GFWR_GFWR.
 #define BM_FLEXCAN_GFWR_GFWR      (0x000000ff)  //!< Bit mask for FLEXCAN_GFWR_GFWR.
 
@@ -2455,7 +2324,6 @@ typedef union _hw_flexcan_gfwr
 //! @brief Set the GFWR field to a new value.
 #define BW_FLEXCAN_GFWR_GFWR(x, v)   (HW_FLEXCAN_GFWR_WR(x, (HW_FLEXCAN_GFWR_RD(x) & ~BM_FLEXCAN_GFWR_GFWR) | BF_FLEXCAN_GFWR_GFWR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2520,7 +2388,6 @@ typedef union _hw_flexcan_rx0imr
  * - 1 - The corresponding bit in the filter is checked against the one received
  */
 //@{
-
 #define BP_FLEXCAN_RX0IMR_MI31_MI0      (0)      //!< Bit position for FLEXCAN_RX0IMR_MI31_MI0.
 #define BM_FLEXCAN_RX0IMR_MI31_MI0      (0xffffffff)  //!< Bit mask for FLEXCAN_RX0IMR_MI31_MI0.
 
@@ -2534,7 +2401,6 @@ typedef union _hw_flexcan_rx0imr
 //! @brief Set the MI31_MI0 field to a new value.
 #define BW_FLEXCAN_RX0IMR_MI31_MI0(x, v)   (HW_FLEXCAN_RX0IMR_WR(x, (HW_FLEXCAN_RX0IMR_RD(x) & ~BM_FLEXCAN_RX0IMR_MI31_MI0) | BF_FLEXCAN_RX0IMR_MI31_MI0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2599,7 +2465,6 @@ typedef union _hw_flexcan_rx63imr
  * - 1 - The corresponding bit in the filter is checked against the one received
  */
 //@{
-
 #define BP_FLEXCAN_RX63IMR_MI31_MI0      (0)      //!< Bit position for FLEXCAN_RX63IMR_MI31_MI0.
 #define BM_FLEXCAN_RX63IMR_MI31_MI0      (0xffffffff)  //!< Bit mask for FLEXCAN_RX63IMR_MI31_MI0.
 
@@ -2613,7 +2478,6 @@ typedef union _hw_flexcan_rx63imr
 //! @brief Set the MI31_MI0 field to a new value.
 #define BW_FLEXCAN_RX63IMR_MI31_MI0(x, v)   (HW_FLEXCAN_RX63IMR_WR(x, (HW_FLEXCAN_RX63IMR_RD(x) & ~BM_FLEXCAN_RX63IMR_MI31_MI0) | BF_FLEXCAN_RX63IMR_MI31_MI0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2655,3 +2519,5 @@ typedef struct _hw_flexcan
 #endif
 
 #endif // __HW_FLEXCAN_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF
